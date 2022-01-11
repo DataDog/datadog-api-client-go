@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Requests** | [**[]FunnelWidgetRequest**](FunnelWidgetRequest.md) | Request payload used to query items. | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | The title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | The size of the title. | [optional] 
-**Type** | [**FunnelWidgetDefinitionType**](FunnelWidgetDefinitionType.md) |  | [default to FUNNELWIDGETDEFINITIONTYPE_FUNNEL]
+| Name           | Type                                                            | Description                          | Notes                                          |
+| -------------- | --------------------------------------------------------------- | ------------------------------------ | ---------------------------------------------- |
+| **Requests**   | [**[]FunnelWidgetRequest**](FunnelWidgetRequest.md)             | Request payload used to query items. |
+| **Time**       | Pointer to [**WidgetTime**](WidgetTime.md)                      |                                      | [optional]                                     |
+| **Title**      | Pointer to **string**                                           | The title of the widget.             | [optional]                                     |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)            |                                      | [optional]                                     |
+| **TitleSize**  | Pointer to **string**                                           | The size of the title.               | [optional]                                     |
+| **Type**       | [**FunnelWidgetDefinitionType**](FunnelWidgetDefinitionType.md) |                                      | [default to FUNNELWIDGETDEFINITIONTYPE_FUNNEL] |
 
 ## Methods
 
@@ -48,7 +48,6 @@ and a boolean to check if the value has been set.
 `func (o *FunnelWidgetDefinition) SetRequests(v []FunnelWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTime
 
@@ -169,8 +168,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

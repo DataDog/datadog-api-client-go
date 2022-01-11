@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**NotebookCreateDataAttributes**](NotebookCreateDataAttributes.md) |  | 
-**Type** | [**NotebookResourceType**](NotebookResourceType.md) |  | [default to NOTEBOOKRESOURCETYPE_NOTEBOOKS]
+| Name           | Type                                                                | Description | Notes                                       |
+| -------------- | ------------------------------------------------------------------- | ----------- | ------------------------------------------- |
+| **Attributes** | [**NotebookCreateDataAttributes**](NotebookCreateDataAttributes.md) |             |
+| **Type**       | [**NotebookResourceType**](NotebookResourceType.md)                 |             | [default to NOTEBOOKRESOURCETYPE_NOTEBOOKS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetType
 
 `func (o *NotebookCreateData) GetType() NotebookResourceType`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

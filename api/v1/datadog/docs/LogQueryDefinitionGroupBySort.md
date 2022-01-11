@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | **string** | The aggregation method. | 
-**Facet** | Pointer to **string** | Facet name. | [optional] 
-**Order** | [**WidgetSort**](WidgetSort.md) |  | 
+| Name            | Type                            | Description             | Notes      |
+| --------------- | ------------------------------- | ----------------------- | ---------- |
+| **Aggregation** | **string**                      | The aggregation method. |
+| **Facet**       | Pointer to **string**           | Facet name.             | [optional] |
+| **Order**       | [**WidgetSort**](WidgetSort.md) |                         |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *LogQueryDefinitionGroupBySort) SetAggregation(v string)`
 
 SetAggregation sets Aggregation field to given value.
-
 
 ### GetFacet
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetOrder sets Order field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

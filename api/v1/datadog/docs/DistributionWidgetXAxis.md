@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IncludeZero** | Pointer to **bool** | True includes zero. | [optional] 
-**Max** | Pointer to **string** | Specifies maximum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]
-**Min** | Pointer to **string** | Specifies minimum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]
-**Scale** | Pointer to **string** | Specifies the scale type. Possible values are &#x60;linear&#x60;. | [optional] [default to "linear"]
+| Name            | Type                  | Description                                                                                                                                          | Notes                            |
+| --------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| **IncludeZero** | Pointer to **bool**   | True includes zero.                                                                                                                                  | [optional]                       |
+| **Max**         | Pointer to **string** | Specifies maximum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]   |
+| **Min**         | Pointer to **string** | Specifies minimum value to show on the x-axis. It takes a number, percentile (p90 &#x3D;&#x3D;&#x3D; 90th percentile), or auto for default behavior. | [optional] [default to "auto"]   |
+| **Scale**       | Pointer to **string** | Specifies the scale type. Possible values are &#x60;linear&#x60;.                                                                                    | [optional] [default to "linear"] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetScale sets Scale field to given value.
 
 HasScale returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

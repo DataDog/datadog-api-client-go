@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |  | [optional] 
-**PublicId** | **string** | The public ID of the Synthetics test to trigger. | 
+| Name         | Type                                                                     | Description                                      | Notes      |
+| ------------ | ------------------------------------------------------------------------ | ------------------------------------------------ | ---------- |
+| **Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |                                                  | [optional] |
+| **PublicId** | **string**                                                               | The public ID of the Synthetics test to trigger. |
 
 ## Methods
 
@@ -70,8 +70,4 @@ and a boolean to check if the value has been set.
 
 SetPublicId sets PublicId field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

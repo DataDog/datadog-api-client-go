@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomerImpactEnd** | Pointer to **NullableTime** | Timestamp when customers were no longer impacted by the incident. | [optional] 
-**CustomerImpactScope** | Pointer to **string** | A summary of the impact customers experienced during the incident. | [optional] 
-**CustomerImpactStart** | Pointer to **NullableTime** | Timestamp when customers began being impacted by the incident. | [optional] 
-**CustomerImpacted** | Pointer to **bool** | A flag indicating whether the incident caused customer impact. | [optional] 
-**Detected** | Pointer to **NullableTime** | Timestamp when the incident was detected. | [optional] 
-**Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to update selections. | [optional] 
-**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident during update. | [optional] 
-**Resolved** | Pointer to **NullableTime** | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
-**Title** | Pointer to **string** | The title of the incident, which summarizes what happened. | [optional] 
+| Name                    | Type                                                                            | Description                                                                 | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------- |
+| **CustomerImpactEnd**   | Pointer to **NullableTime**                                                     | Timestamp when customers were no longer impacted by the incident.           | [optional] |
+| **CustomerImpactScope** | Pointer to **string**                                                           | A summary of the impact customers experienced during the incident.          | [optional] |
+| **CustomerImpactStart** | Pointer to **NullableTime**                                                     | Timestamp when customers began being impacted by the incident.              | [optional] |
+| **CustomerImpacted**    | Pointer to **bool**                                                             | A flag indicating whether the incident caused customer impact.              | [optional] |
+| **Detected**            | Pointer to **NullableTime**                                                     | Timestamp when the incident was detected.                                   | [optional] |
+| **Fields**              | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to update selections. | [optional] |
+| **NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md)    | Notification handles that will be notified of the incident during update.   | [optional] |
+| **Resolved**            | Pointer to **NullableTime**                                                     | Timestamp when the incident&#39;s state was set to resolved.                | [optional] |
+| **Title**               | Pointer to **string**                                                           | The title of the incident, which summarizes what happened.                  | [optional] |
 
 ## Methods
 
@@ -62,12 +62,14 @@ HasCustomerImpactEnd returns a boolean if a field has been set.
 
 `func (o *IncidentUpdateAttributes) SetCustomerImpactEndNil(b bool)`
 
- SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil
+SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil
 
 ### UnsetCustomerImpactEnd
+
 `func (o *IncidentUpdateAttributes) UnsetCustomerImpactEnd()`
 
 UnsetCustomerImpactEnd ensures that no value is present for CustomerImpactEnd, not even an explicit nil
+
 ### GetCustomerImpactScope
 
 `func (o *IncidentUpdateAttributes) GetCustomerImpactScope() string`
@@ -122,12 +124,14 @@ HasCustomerImpactStart returns a boolean if a field has been set.
 
 `func (o *IncidentUpdateAttributes) SetCustomerImpactStartNil(b bool)`
 
- SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil
+SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil
 
 ### UnsetCustomerImpactStart
+
 `func (o *IncidentUpdateAttributes) UnsetCustomerImpactStart()`
 
 UnsetCustomerImpactStart ensures that no value is present for CustomerImpactStart, not even an explicit nil
+
 ### GetCustomerImpacted
 
 `func (o *IncidentUpdateAttributes) GetCustomerImpacted() bool`
@@ -182,12 +186,14 @@ HasDetected returns a boolean if a field has been set.
 
 `func (o *IncidentUpdateAttributes) SetDetectedNil(b bool)`
 
- SetDetectedNil sets the value for Detected to be an explicit nil
+SetDetectedNil sets the value for Detected to be an explicit nil
 
 ### UnsetDetected
+
 `func (o *IncidentUpdateAttributes) UnsetDetected()`
 
 UnsetDetected ensures that no value is present for Detected, not even an explicit nil
+
 ### GetFields
 
 `func (o *IncidentUpdateAttributes) GetFields() map[string]IncidentFieldAttributes`
@@ -267,12 +273,14 @@ HasResolved returns a boolean if a field has been set.
 
 `func (o *IncidentUpdateAttributes) SetResolvedNil(b bool)`
 
- SetResolvedNil sets the value for Resolved to be an explicit nil
+SetResolvedNil sets the value for Resolved to be an explicit nil
 
 ### UnsetResolved
+
 `func (o *IncidentUpdateAttributes) UnsetResolved()`
 
 UnsetResolved ensures that no value is present for Resolved, not even an explicit nil
+
 ### GetTitle
 
 `func (o *IncidentUpdateAttributes) GetTitle() string`
@@ -298,7 +306,4 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

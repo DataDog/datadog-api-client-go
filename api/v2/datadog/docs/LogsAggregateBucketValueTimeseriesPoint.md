@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Time** | Pointer to **string** | The time value for this point | [optional] 
-**Value** | Pointer to **float64** | The value for this point | [optional] 
+| Name      | Type                   | Description                   | Notes      |
+| --------- | ---------------------- | ----------------------------- | ---------- |
+| **Time**  | Pointer to **string**  | The time value for this point | [optional] |
+| **Value** | Pointer to **float64** | The value for this point      | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

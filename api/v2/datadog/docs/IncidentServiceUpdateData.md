@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**IncidentServiceUpdateAttributes**](IncidentServiceUpdateAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The incident service&#39;s ID. | [optional] 
-**Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md) |  | [optional] 
-**Type** | [**IncidentServiceType**](IncidentServiceType.md) |  | [default to INCIDENTSERVICETYPE_SERVICES]
+| Name              | Type                                                                                 | Description                    | Notes                                     |
+| ----------------- | ------------------------------------------------------------------------------------ | ------------------------------ | ----------------------------------------- |
+| **Attributes**    | Pointer to [**IncidentServiceUpdateAttributes**](IncidentServiceUpdateAttributes.md) |                                | [optional]                                |
+| **Id**            | Pointer to **string**                                                                | The incident service&#39;s ID. | [optional]                                |
+| **Relationships** | Pointer to [**IncidentServiceRelationships**](IncidentServiceRelationships.md)       |                                | [optional]                                |
+| **Type**          | [**IncidentServiceType**](IncidentServiceType.md)                                    |                                | [default to INCIDENTSERVICETYPE_SERVICES] |
 
 ## Methods
 
@@ -122,8 +122,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

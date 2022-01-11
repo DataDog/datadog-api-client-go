@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**HidePercent** | Pointer to **bool** | Whether to hide the percentages of the groups. | [optional] 
-**HideValue** | Pointer to **bool** | Whether to hide the values of the groups. | [optional] 
-**Type** | [**SunburstWidgetLegendInlineAutomaticType**](SunburstWidgetLegendInlineAutomaticType.md) |  | 
+| Name            | Type                                                                                      | Description                                    | Notes      |
+| --------------- | ----------------------------------------------------------------------------------------- | ---------------------------------------------- | ---------- |
+| **HidePercent** | Pointer to **bool**                                                                       | Whether to hide the percentages of the groups. | [optional] |
+| **HideValue**   | Pointer to **bool**                                                                       | Whether to hide the values of the groups.      | [optional] |
+| **Type**        | [**SunburstWidgetLegendInlineAutomaticType**](SunburstWidgetLegendInlineAutomaticType.md) |                                                |
 
 ## Methods
 
@@ -96,8 +96,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

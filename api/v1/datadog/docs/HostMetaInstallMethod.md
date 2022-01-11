@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**InstallerVersion** | Pointer to **string** | The installer version. | [optional] 
-**Tool** | Pointer to **string** | Tool used to install the agent. | [optional] 
-**ToolVersion** | Pointer to **string** | The tool version. | [optional] 
+| Name                 | Type                  | Description                     | Notes      |
+| -------------------- | --------------------- | ------------------------------- | ---------- |
+| **InstallerVersion** | Pointer to **string** | The installer version.          | [optional] |
+| **Tool**             | Pointer to **string** | Tool used to install the agent. | [optional] |
+| **ToolVersion**      | Pointer to **string** | The tool version.               | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetToolVersion sets ToolVersion field to given value.
 
 HasToolVersion returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

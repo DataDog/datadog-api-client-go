@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
-**Type** | [**LogsPipelineProcessorType**](LogsPipelineProcessorType.md) |  | [default to LOGSPIPELINEPROCESSORTYPE_PIPELINE]
+| Name           | Type                                                          | Description                                  | Notes                                           |
+| -------------- | ------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------- |
+| **Filter**     | Pointer to [**LogsFilter**](LogsFilter.md)                    |                                              | [optional]                                      |
+| **IsEnabled**  | Pointer to **bool**                                           | Whether or not the processor is enabled.     | [optional] [default to false]                   |
+| **Name**       | Pointer to **string**                                         | Name of the processor.                       | [optional]                                      |
+| **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md)            | Ordered list of processors in this pipeline. | [optional]                                      |
+| **Type**       | [**LogsPipelineProcessorType**](LogsPipelineProcessorType.md) |                                              | [default to LOGSPIPELINEPROCESSORTYPE_PIPELINE] |
 
 ## Methods
 
@@ -148,8 +148,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

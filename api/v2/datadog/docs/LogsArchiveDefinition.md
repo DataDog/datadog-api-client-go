@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**LogsArchiveAttributes**](LogsArchiveAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The archive ID. | [optional] [readonly] 
-**Type** | **string** | The type of the resource. The value should always be archives. | [readonly] [default to "archives"]
+| Name           | Type                                                             | Description                                                    | Notes                              |
+| -------------- | ---------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------- |
+| **Attributes** | Pointer to [**LogsArchiveAttributes**](LogsArchiveAttributes.md) |                                                                | [optional]                         |
+| **Id**         | Pointer to **string**                                            | The archive ID.                                                | [optional] [readonly]              |
+| **Type**       | **string**                                                       | The type of the resource. The value should always be archives. | [readonly] [default to "archives"] |
 
 ## Methods
 
@@ -96,8 +96,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

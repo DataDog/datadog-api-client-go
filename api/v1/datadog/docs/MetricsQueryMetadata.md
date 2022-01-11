@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggr** | Pointer to **NullableString** | Aggregation type. | [optional] [readonly] 
-**DisplayName** | Pointer to **string** | Display name of the metric. | [optional] [readonly] 
-**End** | Pointer to **int64** | End of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
-**Expression** | Pointer to **string** | Metric expression. | [optional] [readonly] 
-**Interval** | Pointer to **int64** | Number of seconds between data samples. | [optional] [readonly] 
-**Length** | Pointer to **int64** | Number of data samples. | [optional] [readonly] 
-**Metric** | Pointer to **string** | Metric name. | [optional] [readonly] 
-**Pointlist** | Pointer to **[][]*float64** | List of points of the time series. | [optional] [readonly] 
-**QueryIndex** | Pointer to **int64** | The index of the series&#39; query within the request. | [optional] [readonly] 
-**Scope** | Pointer to **string** | Metric scope, comma separated list of tags. | [optional] [readonly] 
-**Start** | Pointer to **int64** | Start of the time window, milliseconds since Unix epoch. | [optional] [readonly] 
-**TagSet** | Pointer to **[]string** | Unique tags identifying this series. | [optional] [readonly] 
-**Unit** | Pointer to [**[]MetricsQueryUnit**](MetricsQueryUnit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] 
+| Name            | Type                                                     | Description                                                                                                                                                                                                                                                                         | Notes                 |
+| --------------- | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **Aggr**        | Pointer to **NullableString**                            | Aggregation type.                                                                                                                                                                                                                                                                   | [optional] [readonly] |
+| **DisplayName** | Pointer to **string**                                    | Display name of the metric.                                                                                                                                                                                                                                                         | [optional] [readonly] |
+| **End**         | Pointer to **int64**                                     | End of the time window, milliseconds since Unix epoch.                                                                                                                                                                                                                              | [optional] [readonly] |
+| **Expression**  | Pointer to **string**                                    | Metric expression.                                                                                                                                                                                                                                                                  | [optional] [readonly] |
+| **Interval**    | Pointer to **int64**                                     | Number of seconds between data samples.                                                                                                                                                                                                                                             | [optional] [readonly] |
+| **Length**      | Pointer to **int64**                                     | Number of data samples.                                                                                                                                                                                                                                                             | [optional] [readonly] |
+| **Metric**      | Pointer to **string**                                    | Metric name.                                                                                                                                                                                                                                                                        | [optional] [readonly] |
+| **Pointlist**   | Pointer to **[][]\*float64**                             | List of points of the time series.                                                                                                                                                                                                                                                  | [optional] [readonly] |
+| **QueryIndex**  | Pointer to **int64**                                     | The index of the series&#39; query within the request.                                                                                                                                                                                                                              | [optional] [readonly] |
+| **Scope**       | Pointer to **string**                                    | Metric scope, comma separated list of tags.                                                                                                                                                                                                                                         | [optional] [readonly] |
+| **Start**       | Pointer to **int64**                                     | Start of the time window, milliseconds since Unix epoch.                                                                                                                                                                                                                            | [optional] [readonly] |
+| **TagSet**      | Pointer to **[]string**                                  | Unique tags identifying this series.                                                                                                                                                                                                                                                | [optional] [readonly] |
+| **Unit**        | Pointer to [**[]MetricsQueryUnit**](MetricsQueryUnit.md) | Detailed information about the metric unit. First element describes the \&quot;primary unit\&quot; (for example, &#x60;bytes&#x60; in &#x60;bytes per second&#x60;), second describes the \&quot;per unit\&quot; (for example, &#x60;second&#x60; in &#x60;bytes per second&#x60;). | [optional] [readonly] |
 
 ## Methods
 
@@ -66,12 +66,14 @@ HasAggr returns a boolean if a field has been set.
 
 `func (o *MetricsQueryMetadata) SetAggrNil(b bool)`
 
- SetAggrNil sets the value for Aggr to be an explicit nil
+SetAggrNil sets the value for Aggr to be an explicit nil
 
 ### UnsetAggr
+
 `func (o *MetricsQueryMetadata) UnsetAggr()`
 
 UnsetAggr ensures that no value is present for Aggr, not even an explicit nil
+
 ### GetDisplayName
 
 `func (o *MetricsQueryMetadata) GetDisplayName() string`
@@ -372,7 +374,4 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Org** | Pointer to [**RelationshipToOrganization**](RelationshipToOrganization.md) |  | [optional] 
-**OtherOrgs** | Pointer to [**RelationshipToOrganizations**](RelationshipToOrganizations.md) |  | [optional] 
-**OtherUsers** | Pointer to [**RelationshipToUsers**](RelationshipToUsers.md) |  | [optional] 
-**Roles** | Pointer to [**RelationshipToRoles**](RelationshipToRoles.md) |  | [optional] 
+| Name           | Type                                                                         | Description | Notes      |
+| -------------- | ---------------------------------------------------------------------------- | ----------- | ---------- |
+| **Org**        | Pointer to [**RelationshipToOrganization**](RelationshipToOrganization.md)   |             | [optional] |
+| **OtherOrgs**  | Pointer to [**RelationshipToOrganizations**](RelationshipToOrganizations.md) |             | [optional] |
+| **OtherUsers** | Pointer to [**RelationshipToUsers**](RelationshipToUsers.md)                 |             | [optional] |
+| **Roles**      | Pointer to [**RelationshipToRoles**](RelationshipToRoles.md)                 |             | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetRoles sets Roles field to given value.
 
 HasRoles returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

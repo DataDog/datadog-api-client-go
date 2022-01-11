@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**NotebookCellUpdateRequestAttributes**](NotebookCellUpdateRequestAttributes.md) |  | 
-**Id** | **string** | Notebook cell ID. | 
-**Type** | [**NotebookCellResourceType**](NotebookCellResourceType.md) |  | [default to NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS]
+| Name           | Type                                                                              | Description       | Notes                                                |
+| -------------- | --------------------------------------------------------------------------------- | ----------------- | ---------------------------------------------------- |
+| **Attributes** | [**NotebookCellUpdateRequestAttributes**](NotebookCellUpdateRequestAttributes.md) |                   |
+| **Id**         | **string**                                                                        | Notebook cell ID. |
+| **Type**       | [**NotebookCellResourceType**](NotebookCellResourceType.md)                       |                   | [default to NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetId
 
 `func (o *NotebookCellUpdateRequest) GetId() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookCellUpdateRequest) SetId(v string)`
 
 SetId sets Id field to given value.
-
 
 ### GetType
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

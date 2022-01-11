@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Code** | Pointer to **string** | Code identifying the error | [optional] 
-**Details** | Pointer to [**[]LogsAPIError**](LogsAPIError.md) | Additional error details | [optional] 
-**Message** | Pointer to **string** | Error message | [optional] 
+| Name        | Type                                             | Description                | Notes      |
+| ----------- | ------------------------------------------------ | -------------------------- | ---------- |
+| **Code**    | Pointer to **string**                            | Code identifying the error | [optional] |
+| **Details** | Pointer to [**[]LogsAPIError**](LogsAPIError.md) | Additional error details   | [optional] |
+| **Message** | Pointer to **string**                            | Error message              | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

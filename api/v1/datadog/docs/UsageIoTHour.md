@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**IotDeviceCount** | Pointer to **int64** | The total number of IoT devices during a given hour. | [optional] 
+| Name               | Type                     | Description                                          | Notes      |
+| ------------------ | ------------------------ | ---------------------------------------------------- | ---------- |
+| **Hour**           | Pointer to **time.Time** | The hour for the usage.                              | [optional] |
+| **IotDeviceCount** | Pointer to **int64**     | The total number of IoT devices during a given hour. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetIotDeviceCount sets IotDeviceCount field to given value.
 
 HasIotDeviceCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

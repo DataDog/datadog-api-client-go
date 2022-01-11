@@ -2,16 +2,12 @@
 
 ## Enum
 
+- `CHANGE` (value: `"change"`)
 
-* `CHANGE` (value: `"change"`)
+- `NAME` (value: `"name"`)
 
-* `NAME` (value: `"name"`)
+- `PRESENT` (value: `"present"`)
 
-* `PRESENT` (value: `"present"`)
-
-* `PAST` (value: `"past"`)
-
+- `PAST` (value: `"past"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

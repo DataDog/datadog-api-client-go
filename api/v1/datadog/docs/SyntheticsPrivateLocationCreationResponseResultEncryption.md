@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Id** | Pointer to **string** | Fingerprint for the encryption key. | [optional] 
-**Key** | Pointer to **string** | Public key for result encryption. | [optional] 
+| Name    | Type                  | Description                         | Notes      |
+| ------- | --------------------- | ----------------------------------- | ---------- |
+| **Id**  | Pointer to **string** | Fingerprint for the encryption key. | [optional] |
+| **Key** | Pointer to **string** | Public key for result encryption.   | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetKey sets Key field to given value.
 
 HasKey returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

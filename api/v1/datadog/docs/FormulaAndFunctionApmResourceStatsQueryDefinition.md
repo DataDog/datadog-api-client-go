@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DataSource** | [**FormulaAndFunctionApmResourceStatsDataSource**](FormulaAndFunctionApmResourceStatsDataSource.md) |  | 
-**Env** | **string** | APM environment. | 
-**GroupBy** | Pointer to **[]string** | Array of fields to group results by. | [optional] 
-**Name** | **string** | Name of this query to use in formulas. | 
-**OperationName** | Pointer to **string** | Name of operation on service. | [optional] 
-**PrimaryTagName** | Pointer to **string** | Name of the second primary tag used within APM. Required when &#x60;primary_tag_value&#x60; is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog | [optional] 
-**PrimaryTagValue** | Pointer to **string** | Value of the second primary tag by which to filter APM data. &#x60;primary_tag_name&#x60; must also be specified. | [optional] 
-**ResourceName** | Pointer to **string** | APM resource name. | [optional] 
-**Service** | **string** | APM service name. | 
-**Stat** | [**FormulaAndFunctionApmResourceStatName**](FormulaAndFunctionApmResourceStatName.md) |  | 
+| Name                | Type                                                                                                | Description                                                                                                                                                                                                               | Notes      |
+| ------------------- | --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **DataSource**      | [**FormulaAndFunctionApmResourceStatsDataSource**](FormulaAndFunctionApmResourceStatsDataSource.md) |                                                                                                                                                                                                                           |
+| **Env**             | **string**                                                                                          | APM environment.                                                                                                                                                                                                          |
+| **GroupBy**         | Pointer to **[]string**                                                                             | Array of fields to group results by.                                                                                                                                                                                      | [optional] |
+| **Name**            | **string**                                                                                          | Name of this query to use in formulas.                                                                                                                                                                                    |
+| **OperationName**   | Pointer to **string**                                                                               | Name of operation on service.                                                                                                                                                                                             | [optional] |
+| **PrimaryTagName**  | Pointer to **string**                                                                               | Name of the second primary tag used within APM. Required when &#x60;primary_tag_value&#x60; is specified. See https://docs.datadoghq.com/tracing/guide/setting_primary_tags_to_scope/#add-a-second-primary-tag-in-datadog | [optional] |
+| **PrimaryTagValue** | Pointer to **string**                                                                               | Value of the second primary tag by which to filter APM data. &#x60;primary_tag_name&#x60; must also be specified.                                                                                                         | [optional] |
+| **ResourceName**    | Pointer to **string**                                                                               | APM resource name.                                                                                                                                                                                                        | [optional] |
+| **Service**         | **string**                                                                                          | APM service name.                                                                                                                                                                                                         |
+| **Stat**            | [**FormulaAndFunctionApmResourceStatName**](FormulaAndFunctionApmResourceStatName.md)               |                                                                                                                                                                                                                           |
 
 ## Methods
 
@@ -53,7 +53,6 @@ and a boolean to check if the value has been set.
 
 SetDataSource sets DataSource field to given value.
 
-
 ### GetEnv
 
 `func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnv() string`
@@ -72,7 +71,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetEnv(v string)`
 
 SetEnv sets Env field to given value.
-
 
 ### GetGroupBy
 
@@ -117,7 +115,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetOperationName
 
@@ -238,7 +235,6 @@ and a boolean to check if the value has been set.
 
 SetService sets Service field to given value.
 
-
 ### GetStat
 
 `func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStat() FormulaAndFunctionApmResourceStatName`
@@ -258,8 +254,4 @@ and a boolean to check if the value has been set.
 
 SetStat sets Stat field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

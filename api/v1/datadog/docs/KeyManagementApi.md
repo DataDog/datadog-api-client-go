@@ -2,20 +2,18 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey) | **Post** /api/v1/api_key | Create an API key
-[**CreateApplicationKey**](KeyManagementApi.md#CreateApplicationKey) | **Post** /api/v1/application_key | Create an application key
-[**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey) | **Delete** /api/v1/api_key/{key} | Delete an API key
-[**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey) | **Delete** /api/v1/application_key/{key} | Delete an application key
-[**GetAPIKey**](KeyManagementApi.md#GetAPIKey) | **Get** /api/v1/api_key/{key} | Get API key
-[**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey) | **Get** /api/v1/application_key/{key} | Get an application key
-[**ListAPIKeys**](KeyManagementApi.md#ListAPIKeys) | **Get** /api/v1/api_key | Get all API keys
-[**ListApplicationKeys**](KeyManagementApi.md#ListApplicationKeys) | **Get** /api/v1/application_key | Get all application keys
-[**UpdateAPIKey**](KeyManagementApi.md#UpdateAPIKey) | **Put** /api/v1/api_key/{key} | Edit an API key
-[**UpdateApplicationKey**](KeyManagementApi.md#UpdateApplicationKey) | **Put** /api/v1/application_key/{key} | Edit an application key
-
-
+| Method                                                               | HTTP request                             | Description               |
+| -------------------------------------------------------------------- | ---------------------------------------- | ------------------------- |
+| [**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey)                 | **Post** /api/v1/api_key                 | Create an API key         |
+| [**CreateApplicationKey**](KeyManagementApi.md#CreateApplicationKey) | **Post** /api/v1/application_key         | Create an application key |
+| [**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey)                 | **Delete** /api/v1/api_key/{key}         | Delete an API key         |
+| [**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey) | **Delete** /api/v1/application_key/{key} | Delete an application key |
+| [**GetAPIKey**](KeyManagementApi.md#GetAPIKey)                       | **Get** /api/v1/api_key/{key}            | Get API key               |
+| [**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey)       | **Get** /api/v1/application_key/{key}    | Get an application key    |
+| [**ListAPIKeys**](KeyManagementApi.md#ListAPIKeys)                   | **Get** /api/v1/api_key                  | Get all API keys          |
+| [**ListApplicationKeys**](KeyManagementApi.md#ListApplicationKeys)   | **Get** /api/v1/application_key          | Get all application keys  |
+| [**UpdateAPIKey**](KeyManagementApi.md#UpdateAPIKey)                 | **Put** /api/v1/api_key/{key}            | Edit an API key           |
+| [**UpdateApplicationKey**](KeyManagementApi.md#UpdateApplicationKey) | **Put** /api/v1/application_key/{key}    | Edit an application key   |
 
 ## CreateAPIKey
 
@@ -39,7 +37,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewApiKey() // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey |
 
     configuration := datadog.NewConfiguration()
 
@@ -57,17 +55,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**ApiKey**](ApiKey.md) |  | 
-
+| Name     | Type                    | Description                                                                 | Notes |
+| -------- | ----------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**ApiKey**](ApiKey.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -85,7 +80,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateApplicationKey
 
@@ -109,7 +103,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewApplicationKey() // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey |
 
     configuration := datadog.NewConfiguration()
 
@@ -127,17 +121,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**ApplicationKey**](ApplicationKey.md) |  | 
-
+| Name     | Type                                    | Description                                                                 | Notes |
+| -------- | --------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**ApplicationKey**](ApplicationKey.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -155,7 +146,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteAPIKey
 
@@ -197,17 +187,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific API key you are working with. | 
-
+| Name    | Type                | Description                                                                 | Notes |
+| ------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key** | **string**          | The specific API key you are working with.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -225,7 +212,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteApplicationKey
 
@@ -267,17 +253,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific APP key you are working with. | 
-
+| Name    | Type                | Description                                                                 | Notes |
+| ------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key** | **string**          | The specific APP key you are working with.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -295,7 +278,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetAPIKey
 
@@ -337,17 +319,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific API key you are working with. | 
-
+| Name    | Type                | Description                                                                 | Notes |
+| ------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key** | **string**          | The specific API key you are working with.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -365,7 +344,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetApplicationKey
 
@@ -407,17 +385,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific APP key you are working with. | 
-
+| Name    | Type                | Description                                                                 | Notes |
+| ------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key** | **string**          | The specific APP key you are working with.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -435,7 +410,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAPIKeys
 
@@ -478,11 +452,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -500,7 +472,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListApplicationKeys
 
@@ -543,11 +514,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -565,7 +534,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAPIKey
 
@@ -590,7 +558,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     key := "key_example" // string | The specific API key you are working with.
-    body := *datadog.NewApiKey() // ApiKey | 
+    body := *datadog.NewApiKey() // ApiKey |
 
     configuration := datadog.NewConfiguration()
 
@@ -608,18 +576,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific API key you are working with. |  |
-**body** | [**ApiKey**](ApiKey.md) |  | 
-
+| Name     | Type                    | Description                                                                 | Notes |
+| -------- | ----------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key**  | **string**              | The specific API key you are working with.                                  |       |
+| **body** | [**ApiKey**](ApiKey.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -637,7 +602,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateApplicationKey
 
@@ -662,7 +626,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     key := "key_example" // string | The specific APP key you are working with.
-    body := *datadog.NewApplicationKey() // ApplicationKey | 
+    body := *datadog.NewApplicationKey() // ApplicationKey |
 
     configuration := datadog.NewConfiguration()
 
@@ -680,18 +644,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**key** | **string** | The specific APP key you are working with. |  |
-**body** | [**ApplicationKey**](ApplicationKey.md) |  | 
-
+| Name     | Type                                    | Description                                                                 | Notes |
+| -------- | --------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **key**  | **string**                              | The specific APP key you are working with.                                  |       |
+| **body** | [**ApplicationKey**](ApplicationKey.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -709,4 +670,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

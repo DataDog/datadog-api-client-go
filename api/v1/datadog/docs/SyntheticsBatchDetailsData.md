@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |  | [optional] 
-**Results** | Pointer to [**[]SyntheticsBatchResult**](SyntheticsBatchResult.md) | List of results for the batch. | [optional] 
-**Status** | Pointer to [**SyntheticsStatus**](SyntheticsStatus.md) |  | [optional] 
+| Name         | Type                                                                     | Description                    | Notes      |
+| ------------ | ------------------------------------------------------------------------ | ------------------------------ | ---------- |
+| **Metadata** | Pointer to [**SyntheticsCIBatchMetadata**](SyntheticsCIBatchMetadata.md) |                                | [optional] |
+| **Results**  | Pointer to [**[]SyntheticsBatchResult**](SyntheticsBatchResult.md)       | List of results for the batch. | [optional] |
+| **Status**   | Pointer to [**SyntheticsStatus**](SyntheticsStatus.md)                   |                                | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

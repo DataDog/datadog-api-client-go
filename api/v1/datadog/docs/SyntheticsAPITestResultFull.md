@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Check** | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFullCheck.md) |  | [optional] 
-**CheckTime** | Pointer to **float64** | When the API test was conducted. | [optional] 
-**CheckVersion** | Pointer to **int64** | Version of the API test used. | [optional] 
-**ProbeDc** | Pointer to **string** | Locations for which to query the API test results. | [optional] 
-**Result** | Pointer to [**SyntheticsAPITestResultData**](SyntheticsAPITestResultData.md) |  | [optional] 
-**ResultId** | Pointer to **string** | ID of the API test result. | [optional] 
-**Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
+| Name             | Type                                                                                   | Description                                        | Notes      |
+| ---------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------- | ---------- |
+| **Check**        | Pointer to [**SyntheticsAPITestResultFullCheck**](SyntheticsAPITestResultFullCheck.md) |                                                    | [optional] |
+| **CheckTime**    | Pointer to **float64**                                                                 | When the API test was conducted.                   | [optional] |
+| **CheckVersion** | Pointer to **int64**                                                                   | Version of the API test used.                      | [optional] |
+| **ProbeDc**      | Pointer to **string**                                                                  | Locations for which to query the API test results. | [optional] |
+| **Result**       | Pointer to [**SyntheticsAPITestResultData**](SyntheticsAPITestResultData.md)           |                                                    | [optional] |
+| **ResultId**     | Pointer to **string**                                                                  | ID of the API test result.                         | [optional] |
+| **Status**       | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md)           |                                                    | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

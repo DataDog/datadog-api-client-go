@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsSecret** | Pointer to **bool** | Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload. | [optional] 
-**Name** | Pointer to **string** | The name of the variable. It corresponds with &#x60;&lt;CUSTOM_VARIABLE_NAME&gt;&#x60;. It must only contains upper-case characters, integers or underscores. | [optional] 
-**Value** | Pointer to **string** | Value of the custom variable. | [optional] 
+| Name         | Type                  | Description                                                                                                                                                   | Notes      |
+| ------------ | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **IsSecret** | Pointer to **bool**   | Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload.                                   | [optional] |
+| **Name**     | Pointer to **string** | The name of the variable. It corresponds with &#x60;&lt;CUSTOM_VARIABLE_NAME&gt;&#x60;. It must only contains upper-case characters, integers or underscores. | [optional] |
+| **Value**    | Pointer to **string** | Value of the custom variable.                                                                                                                                 | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

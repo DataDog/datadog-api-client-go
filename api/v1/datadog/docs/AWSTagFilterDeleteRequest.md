@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccountId** | Pointer to **string** | The unique identifier of your AWS account. | [optional] 
-**Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |  | [optional] 
+| Name          | Type                                           | Description                                | Notes      |
+| ------------- | ---------------------------------------------- | ------------------------------------------ | ---------- |
+| **AccountId** | Pointer to **string**                          | The unique identifier of your AWS account. | [optional] |
+| **Namespace** | Pointer to [**AWSNamespace**](AWSNamespace.md) |                                            | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetNamespace sets Namespace field to given value.
 
 HasNamespace returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

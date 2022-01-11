@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**HideTotal** | Pointer to **bool** | Show the total value in this widget. | [optional] 
-**Legend** | Pointer to [**SunburstWidgetLegend**](SunburstWidgetLegend.md) |  | [optional] 
-**Requests** | [**[]SunburstWidgetRequest**](SunburstWidgetRequest.md) | List of sunburst widget requests. | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**SunburstWidgetDefinitionType**](SunburstWidgetDefinitionType.md) |  | [default to SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST]
+| Name            | Type                                                                | Description                          | Notes                                              |
+| --------------- | ------------------------------------------------------------------- | ------------------------------------ | -------------------------------------------------- |
+| **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)            | List of custom links.                | [optional]                                         |
+| **HideTotal**   | Pointer to **bool**                                                 | Show the total value in this widget. | [optional]                                         |
+| **Legend**      | Pointer to [**SunburstWidgetLegend**](SunburstWidgetLegend.md)      |                                      | [optional]                                         |
+| **Requests**    | [**[]SunburstWidgetRequest**](SunburstWidgetRequest.md)             | List of sunburst widget requests.    |
+| **Time**        | Pointer to [**WidgetTime**](WidgetTime.md)                          |                                      | [optional]                                         |
+| **Title**       | Pointer to **string**                                               | Title of your widget.                | [optional]                                         |
+| **TitleAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                |                                      | [optional]                                         |
+| **TitleSize**   | Pointer to **string**                                               | Size of the title.                   | [optional]                                         |
+| **Type**        | [**SunburstWidgetDefinitionType**](SunburstWidgetDefinitionType.md) |                                      | [default to SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST] |
 
 ## Methods
 
@@ -126,7 +126,6 @@ and a boolean to check if the value has been set.
 `func (o *SunburstWidgetDefinition) SetRequests(v []SunburstWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTime
 
@@ -247,8 +246,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

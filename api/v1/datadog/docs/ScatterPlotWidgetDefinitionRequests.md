@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Table** | Pointer to [**ScatterplotTableRequest**](ScatterplotTableRequest.md) |  | [optional] 
-**X** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | [optional] 
-**Y** | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md) |  | [optional] 
+| Name      | Type                                                                 | Description | Notes      |
+| --------- | -------------------------------------------------------------------- | ----------- | ---------- |
+| **Table** | Pointer to [**ScatterplotTableRequest**](ScatterplotTableRequest.md) |             | [optional] |
+| **X**     | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md)           |             | [optional] |
+| **Y**     | Pointer to [**ScatterPlotRequest**](ScatterPlotRequest.md)           |             | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetY sets Y field to given value.
 
 HasY returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

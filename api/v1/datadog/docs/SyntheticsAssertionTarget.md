@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Operator** | [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |  | 
-**Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | **interface{}** | Value used by the operator. | 
-**Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
+| Name         | Type                                                              | Description                        | Notes      |
+| ------------ | ----------------------------------------------------------------- | ---------------------------------- | ---------- |
+| **Operator** | [**SyntheticsAssertionOperator**](SyntheticsAssertionOperator.md) |                                    |
+| **Property** | Pointer to **string**                                             | The associated assertion property. | [optional] |
+| **Target**   | **interface{}**                                                   | Value used by the operator.        |
+| **Type**     | [**SyntheticsAssertionType**](SyntheticsAssertionType.md)         |                                    |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAssertionTarget) SetOperator(v SyntheticsAssertionOperator)`
 
 SetOperator sets Operator field to given value.
-
 
 ### GetProperty
 
@@ -92,7 +91,6 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
-
 ### GetType
 
 `func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType`
@@ -112,8 +110,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

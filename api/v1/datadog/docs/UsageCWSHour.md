@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CwsContainerCount** | Pointer to **int64** | The total number of Cloud Workload Security container hours from the start of the given hour’s month until the given hour. | [optional] 
-**CwsHostCount** | Pointer to **int64** | The total number of Cloud Workload Security host hours from the start of the given hour’s month until the given hour. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
+| Name                  | Type                     | Description                                                                                                                | Notes      |
+| --------------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **CwsContainerCount** | Pointer to **int64**     | The total number of Cloud Workload Security container hours from the start of the given hour’s month until the given hour. | [optional] |
+| **CwsHostCount**      | Pointer to **int64**     | The total number of Cloud Workload Security host hours from the start of the given hour’s month until the given hour.      | [optional] |
+| **Hour**              | Pointer to **time.Time** | The hour for the usage.                                                                                                    | [optional] |
+| **OrgName**           | Pointer to **string**    | The organization name.                                                                                                     | [optional] |
+| **PublicId**          | Pointer to **string**    | The organization public ID.                                                                                                | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetPublicId sets PublicId field to given value.
 
 HasPublicId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

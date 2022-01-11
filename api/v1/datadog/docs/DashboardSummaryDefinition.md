@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AuthorHandle** | Pointer to **string** | Identifier of the dashboard author. | [optional] 
-**CreatedAt** | Pointer to **time.Time** | Creation date of the dashboard. | [optional] 
-**Description** | Pointer to **NullableString** | Description of the dashboard. | [optional] 
-**Id** | Pointer to **string** | Dashboard identifier. | [optional] 
-**IsReadOnly** | Pointer to **bool** | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] 
-**LayoutType** | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |  | [optional] 
-**ModifiedAt** | Pointer to **time.Time** | Modification date of the dashboard. | [optional] 
-**Title** | Pointer to **string** | Title of the dashboard. | [optional] 
-**Url** | Pointer to **string** | URL of the dashboard. | [optional] 
+| Name             | Type                                                         | Description                                                                                      | Notes      |
+| ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ---------- |
+| **AuthorHandle** | Pointer to **string**                                        | Identifier of the dashboard author.                                                              | [optional] |
+| **CreatedAt**    | Pointer to **time.Time**                                     | Creation date of the dashboard.                                                                  | [optional] |
+| **Description**  | Pointer to **NullableString**                                | Description of the dashboard.                                                                    | [optional] |
+| **Id**           | Pointer to **string**                                        | Dashboard identifier.                                                                            | [optional] |
+| **IsReadOnly**   | Pointer to **bool**                                          | Whether this dashboard is read-only. If True, only the author and admins can make changes to it. | [optional] |
+| **LayoutType**   | Pointer to [**DashboardLayoutType**](DashboardLayoutType.md) |                                                                                                  | [optional] |
+| **ModifiedAt**   | Pointer to **time.Time**                                     | Modification date of the dashboard.                                                              | [optional] |
+| **Title**        | Pointer to **string**                                        | Title of the dashboard.                                                                          | [optional] |
+| **Url**          | Pointer to **string**                                        | URL of the dashboard.                                                                            | [optional] |
 
 ## Methods
 
@@ -112,12 +112,14 @@ HasDescription returns a boolean if a field has been set.
 
 `func (o *DashboardSummaryDefinition) SetDescriptionNil(b bool)`
 
- SetDescriptionNil sets the value for Description to be an explicit nil
+SetDescriptionNil sets the value for Description to be an explicit nil
 
 ### UnsetDescription
+
 `func (o *DashboardSummaryDefinition) UnsetDescription()`
 
 UnsetDescription ensures that no value is present for Description, not even an explicit nil
+
 ### GetId
 
 `func (o *DashboardSummaryDefinition) GetId() string`
@@ -268,7 +270,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

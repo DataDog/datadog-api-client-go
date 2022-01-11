@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ComputedOn** | Pointer to **string** | The date the specified custom report was computed. | [optional] 
-**EndDate** | Pointer to **string** | The ending date of specified custom report. | [optional] 
-**Location** | Pointer to **string** | A downloadable file for the specified custom reporting file. | [optional] 
-**Size** | Pointer to **int64** | size | [optional] 
-**StartDate** | Pointer to **string** | The starting date of specified custom report. | [optional] 
-**Tags** | Pointer to **[]string** | A list of tags to apply to specified custom reports. | [optional] 
+| Name           | Type                    | Description                                                  | Notes      |
+| -------------- | ----------------------- | ------------------------------------------------------------ | ---------- |
+| **ComputedOn** | Pointer to **string**   | The date the specified custom report was computed.           | [optional] |
+| **EndDate**    | Pointer to **string**   | The ending date of specified custom report.                  | [optional] |
+| **Location**   | Pointer to **string**   | A downloadable file for the specified custom reporting file. | [optional] |
+| **Size**       | Pointer to **int64**    | size                                                         | [optional] |
+| **StartDate**  | Pointer to **string**   | The starting date of specified custom report.                | [optional] |
+| **Tags**       | Pointer to **[]string** | A list of tags to apply to specified custom reports.         | [optional] |
 
 ## Methods
 
@@ -180,7 +180,4 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**End** | Pointer to **int64** | POSIX timestamp in seconds when the host is unmuted. If omitted, the host remains muted until explicitly unmuted. | [optional] 
-**Message** | Pointer to **string** | Message to associate with the muting of this host. | [optional] 
-**Override** | Pointer to **bool** | If true and the host is already muted, replaces existing host mute settings. | [optional] 
+| Name         | Type                  | Description                                                                                                       | Notes      |
+| ------------ | --------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| **End**      | Pointer to **int64**  | POSIX timestamp in seconds when the host is unmuted. If omitted, the host remains muted until explicitly unmuted. | [optional] |
+| **Message**  | Pointer to **string** | Message to associate with the muting of this host.                                                                | [optional] |
+| **Override** | Pointer to **bool**   | If true and the host is already muted, replaces existing host mute settings.                                      | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetOverride sets Override field to given value.
 
 HasOverride returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

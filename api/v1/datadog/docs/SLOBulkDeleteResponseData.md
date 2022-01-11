@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Deleted** | Pointer to **[]string** | An array of service level objective object IDs that indicates which objects that were completely deleted. | [optional] 
-**Updated** | Pointer to **[]string** | An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted). | [optional] 
+| Name        | Type                    | Description                                                                                                                                                                                  | Notes      |
+| ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Deleted** | Pointer to **[]string** | An array of service level objective object IDs that indicates which objects that were completely deleted.                                                                                    | [optional] |
+| **Updated** | Pointer to **[]string** | An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted). | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetUpdated sets Updated field to given value.
 
 HasUpdated returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

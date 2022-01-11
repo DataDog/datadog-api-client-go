@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Denominator** | **string** | A Datadog metric query for total (valid) events. | 
-**Numerator** | **string** | A Datadog metric query for good events. | 
+| Name            | Type       | Description                                      | Notes |
+| --------------- | ---------- | ------------------------------------------------ | ----- |
+| **Denominator** | **string** | A Datadog metric query for total (valid) events. |
+| **Numerator**   | **string** | A Datadog metric query for good events.          |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetDenominator sets Denominator field to given value.
 
-
 ### GetNumerator
 
 `func (o *ServiceLevelObjectiveQuery) GetNumerator() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetNumerator sets Numerator field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

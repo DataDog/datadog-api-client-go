@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Field** | **string** | Widget column field. | 
-**Width** | [**ListStreamColumnWidth**](ListStreamColumnWidth.md) |  | 
+| Name      | Type                                                  | Description          | Notes |
+| --------- | ----------------------------------------------------- | -------------------- | ----- |
+| **Field** | **string**                                            | Widget column field. |
+| **Width** | [**ListStreamColumnWidth**](ListStreamColumnWidth.md) |                      |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetField sets Field field to given value.
 
-
 ### GetWidth
 
 `func (o *ListStreamColumn) GetWidth() ListStreamColumnWidth`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetWidth sets Width field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

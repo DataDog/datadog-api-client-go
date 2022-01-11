@@ -2,12 +2,10 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**ListLogs**](LogsApi.md#ListLogs) | **Post** /api/v1/logs-queries/list | Search logs
-[**SubmitLog**](LogsApi.md#SubmitLog) | **Post** /v1/input | Send logs
-
-
+| Method                                | HTTP request                       | Description |
+| ------------------------------------- | ---------------------------------- | ----------- |
+| [**ListLogs**](LogsApi.md#ListLogs)   | **Post** /api/v1/logs-queries/list | Search logs |
+| [**SubmitLog**](LogsApi.md#SubmitLog) | **Post** /v1/input                 | Send logs   |
 
 ## ListLogs
 
@@ -58,17 +56,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsListRequest**](LogsListRequest.md) | Logs filter | 
-
+| Name     | Type                                      | Description                                                                 | Notes |
+| -------- | ----------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                       | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsListRequest**](LogsListRequest.md) | Logs filter                                                                 |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -87,7 +82,6 @@ This endpoint does not have optional parameters.
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
-
 ## SubmitLog
 
 > interface{} SubmitLog(ctx, body, datadog.SubmitLogOptionalParameters{})
@@ -99,6 +93,7 @@ Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
 - Maximum array size if sending multiple logs in an array: 1000 entries
 
 Any log exceeding 1MB is accepted and truncated by Datadog:
+
 - For a single log request, the API truncates the log at 1MB and returns a 2xx.
 - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
 
@@ -106,6 +101,7 @@ Datadog recommends sending your logs compressed.
 Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
 
 The status codes answered by the HTTP API are:
+
 - 200: OK
 - 400: Bad request (likely an issue in the payload formatting)
 - 403: Permission issue (likely using an invalid API Key)
@@ -152,23 +148,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**[]HTTPLogItem**](HTTPLogItem.md) | Log to send (JSON format). | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**[]HTTPLogItem**](HTTPLogItem.md) | Log to send (JSON format).                                                  |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a SubmitLogOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**contentEncoding** | [**ContentEncoding**](ContentEncoding.md) | HTTP header used to compress the media-type. | 
-**ddtags** | **string** | Log tags can be passed as query parameters with &#x60;text/plain&#x60; content type. | 
+| Name                | Type                                      | Description                                                                          | Notes |
+| ------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------ | ----- |
+| **contentEncoding** | [**ContentEncoding**](ContentEncoding.md) | HTTP header used to compress the media-type.                                         |
+| **ddtags**          | **string**                                | Log tags can be passed as query parameters with &#x60;text/plain&#x60; content type. |
 
 ### Return type
 
@@ -186,4 +178,3 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

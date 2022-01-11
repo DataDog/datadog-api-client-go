@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**From** | Pointer to **time.Time** | The minimum timestamp for requested security signals. | [optional] 
-**Query** | Pointer to **string** | Search query for listing security signals. | [optional] 
-**To** | Pointer to **time.Time** | The maximum timestamp for requested security signals. | [optional] 
+| Name      | Type                     | Description                                           | Notes      |
+| --------- | ------------------------ | ----------------------------------------------------- | ---------- |
+| **From**  | Pointer to **time.Time** | The minimum timestamp for requested security signals. | [optional] |
+| **Query** | Pointer to **string**    | Search query for listing security signals.            | [optional] |
+| **To**    | Pointer to **time.Time** | The maximum timestamp for requested security signals. | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetTo sets To field to given value.
 
 HasTo returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

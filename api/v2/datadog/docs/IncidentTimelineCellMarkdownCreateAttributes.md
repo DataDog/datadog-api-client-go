@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CellType** | [**IncidentTimelineCellMarkdownContentType**](IncidentTimelineCellMarkdownContentType.md) |  | [default to INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN]
-**Content** | [**IncidentTimelineCellMarkdownCreateAttributesContent**](IncidentTimelineCellMarkdownCreateAttributesContent.md) |  | 
-**Important** | Pointer to **bool** | A flag indicating whether the timeline cell is important and should be highlighted. | [optional] [default to false]
+| Name          | Type                                                                                                              | Description                                                                         | Notes                                                         |
+| ------------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **CellType**  | [**IncidentTimelineCellMarkdownContentType**](IncidentTimelineCellMarkdownContentType.md)                         |                                                                                     | [default to INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN] |
+| **Content**   | [**IncidentTimelineCellMarkdownCreateAttributesContent**](IncidentTimelineCellMarkdownCreateAttributesContent.md) |                                                                                     |
+| **Important** | Pointer to **bool**                                                                                               | A flag indicating whether the timeline cell is important and should be highlighted. | [optional] [default to false]                                 |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetCellType sets CellType field to given value.
 
-
 ### GetContent
 
 `func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContent() IncidentTimelineCellMarkdownCreateAttributesContent`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *IncidentTimelineCellMarkdownCreateAttributes) SetContent(v IncidentTimelineCellMarkdownCreateAttributesContent)`
 
 SetContent sets Content field to given value.
-
 
 ### GetImportant
 
@@ -92,7 +90,4 @@ SetImportant sets Important field to given value.
 
 HasImportant returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

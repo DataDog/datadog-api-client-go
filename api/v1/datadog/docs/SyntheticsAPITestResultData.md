@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cert** | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md) |  | [optional] 
-**ErrorCode** | Pointer to [**SyntheticsErrorCode**](SyntheticsErrorCode.md) |  | [optional] 
-**ErrorMessage** | Pointer to **string** | The API test error message. | [optional] 
-**EventType** | Pointer to [**SyntheticsTestProcessStatus**](SyntheticsTestProcessStatus.md) |  | [optional] 
-**HttpStatusCode** | Pointer to **int64** | The API test HTTP status code. | [optional] 
-**RequestHeaders** | Pointer to **map[string]interface{}** | Request header object used for the API test. | [optional] 
-**ResponseBody** | Pointer to **string** | Response body returned for the API test. | [optional] 
-**ResponseHeaders** | Pointer to **map[string]interface{}** | Response headers returned for the API test. | [optional] 
-**ResponseSize** | Pointer to **int64** | Global size in byte of the API test response. | [optional] 
-**Timings** | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md) |  | [optional] 
+| Name                | Type                                                                         | Description                                   | Notes      |
+| ------------------- | ---------------------------------------------------------------------------- | --------------------------------------------- | ---------- |
+| **Cert**            | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md)       |                                               | [optional] |
+| **ErrorCode**       | Pointer to [**SyntheticsErrorCode**](SyntheticsErrorCode.md)                 |                                               | [optional] |
+| **ErrorMessage**    | Pointer to **string**                                                        | The API test error message.                   | [optional] |
+| **EventType**       | Pointer to [**SyntheticsTestProcessStatus**](SyntheticsTestProcessStatus.md) |                                               | [optional] |
+| **HttpStatusCode**  | Pointer to **int64**                                                         | The API test HTTP status code.                | [optional] |
+| **RequestHeaders**  | Pointer to **map[string]interface{}**                                        | Request header object used for the API test.  | [optional] |
+| **ResponseBody**    | Pointer to **string**                                                        | Response body returned for the API test.      | [optional] |
+| **ResponseHeaders** | Pointer to **map[string]interface{}**                                        | Response headers returned for the API test.   | [optional] |
+| **ResponseSize**    | Pointer to **int64**                                                         | Global size in byte of the API test response. | [optional] |
+| **Timings**         | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md)                       |                                               | [optional] |
 
 ## Methods
 
@@ -284,7 +284,4 @@ SetTimings sets Timings field to given value.
 
 HasTimings returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

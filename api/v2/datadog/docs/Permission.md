@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**PermissionAttributes**](PermissionAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the permission. | [optional] 
-**Type** | [**PermissionsType**](PermissionsType.md) |  | [default to PERMISSIONSTYPE_PERMISSIONS]
+| Name           | Type                                                           | Description           | Notes                                    |
+| -------------- | -------------------------------------------------------------- | --------------------- | ---------------------------------------- |
+| **Attributes** | Pointer to [**PermissionAttributes**](PermissionAttributes.md) |                       | [optional]                               |
+| **Id**         | Pointer to **string**                                          | ID of the permission. | [optional]                               |
+| **Type**       | [**PermissionsType**](PermissionsType.md)                      |                       | [default to PERMISSIONSTYPE_PERMISSIONS] |
 
 ## Methods
 
@@ -96,8 +96,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

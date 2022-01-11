@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AliasName** | Pointer to **string** | Expression alias. | [optional] 
-**Expression** | **string** | Expression name. | 
+| Name           | Type                  | Description       | Notes      |
+| -------------- | --------------------- | ----------------- | ---------- |
+| **AliasName**  | Pointer to **string** | Expression alias. | [optional] |
+| **Expression** | **string**            | Expression name.  |
 
 ## Methods
 
@@ -70,8 +70,4 @@ and a boolean to check if the value has been set.
 
 SetExpression sets Expression field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,23 +2,23 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**WidgetAggregator**](WidgetAggregator.md) |  | [optional] 
-**ApmQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**AuditQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ConditionalFormats** | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md) | List of conditional formats. | [optional] 
-**EventQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Formulas** | Pointer to [**[]WidgetFormula**](WidgetFormula.md) | List of formulas that operate on queries. **This feature is currently in beta.** | [optional] 
-**LogQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**NetworkQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**ProcessQuery** | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md) |  | [optional] 
-**ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**Q** | Pointer to **string** | TODO. | [optional] 
-**Queries** | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] 
-**ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md) |  | [optional] 
-**RumQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
-**SecurityQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md) |  | [optional] 
+| Name                    | Type                                                                                       | Description                                                                                               | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **Aggregator**          | Pointer to [**WidgetAggregator**](WidgetAggregator.md)                                     |                                                                                                           | [optional] |
+| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **AuditQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **ConditionalFormats**  | Pointer to [**[]WidgetConditionalFormat**](WidgetConditionalFormat.md)                     | List of conditional formats.                                                                              | [optional] |
+| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **Formulas**            | Pointer to [**[]WidgetFormula**](WidgetFormula.md)                                         | List of formulas that operate on queries. **This feature is currently in beta.**                          | [optional] |
+| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)                         |                                                                                                           | [optional] |
+| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **Q**                   | Pointer to **string**                                                                      | TODO.                                                                                                     | [optional] |
+| **Queries**             | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] |
+| **ResponseFormat**      | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                                                           | [optional] |
+| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
 
 ## Methods
 
@@ -414,7 +414,4 @@ SetSecurityQuery sets SecurityQuery field to given value.
 
 HasSecurityQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

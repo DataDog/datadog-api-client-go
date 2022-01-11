@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**UserAttributes**](UserAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the user. | [optional] 
-**Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |  | [optional] 
-**Type** | Pointer to [**UsersType**](UsersType.md) |  | [optional] [default to USERSTYPE_USERS]
+| Name              | Type                                                                     | Description     | Notes                                   |
+| ----------------- | ------------------------------------------------------------------------ | --------------- | --------------------------------------- |
+| **Attributes**    | Pointer to [**UserAttributes**](UserAttributes.md)                       |                 | [optional]                              |
+| **Id**            | Pointer to **string**                                                    | ID of the user. | [optional]                              |
+| **Relationships** | Pointer to [**UserResponseRelationships**](UserResponseRelationships.md) |                 | [optional]                              |
+| **Type**          | Pointer to [**UsersType**](UsersType.md)                                 |                 | [optional] [default to USERSTYPE_USERS] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

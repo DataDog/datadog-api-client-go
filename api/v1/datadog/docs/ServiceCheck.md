@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Check** | **string** | The check. | 
-**HostName** | **string** | The host name correlated with the check. | 
-**Message** | Pointer to **string** | Message containing check status. | [optional] 
-**Status** | [**ServiceCheckStatus**](ServiceCheckStatus.md) |  | 
-**Tags** | **[]string** | Tags related to a check. | 
-**Timestamp** | Pointer to **int64** | Time of check. | [optional] 
+| Name          | Type                                            | Description                              | Notes      |
+| ------------- | ----------------------------------------------- | ---------------------------------------- | ---------- |
+| **Check**     | **string**                                      | The check.                               |
+| **HostName**  | **string**                                      | The host name correlated with the check. |
+| **Message**   | Pointer to **string**                           | Message containing check status.         | [optional] |
+| **Status**    | [**ServiceCheckStatus**](ServiceCheckStatus.md) |                                          |
+| **Tags**      | **[]string**                                    | Tags related to a check.                 |
+| **Timestamp** | Pointer to **int64**                            | Time of check.                           | [optional] |
 
 ## Methods
 
@@ -49,7 +49,6 @@ and a boolean to check if the value has been set.
 
 SetCheck sets Check field to given value.
 
-
 ### GetHostName
 
 `func (o *ServiceCheck) GetHostName() string`
@@ -68,7 +67,6 @@ and a boolean to check if the value has been set.
 `func (o *ServiceCheck) SetHostName(v string)`
 
 SetHostName sets HostName field to given value.
-
 
 ### GetMessage
 
@@ -114,7 +112,6 @@ and a boolean to check if the value has been set.
 
 SetStatus sets Status field to given value.
 
-
 ### GetTags
 
 `func (o *ServiceCheck) GetTags() []string`
@@ -133,7 +130,6 @@ and a boolean to check if the value has been set.
 `func (o *ServiceCheck) SetTags(v []string)`
 
 SetTags sets Tags field to given value.
-
 
 ### GetTimestamp
 
@@ -160,7 +156,4 @@ SetTimestamp sets Timestamp field to given value.
 
 HasTimestamp returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

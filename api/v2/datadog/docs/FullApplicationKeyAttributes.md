@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **string** | Creation date of the application key. | [optional] [readonly] 
-**Key** | Pointer to **string** | The application key. | [optional] [readonly] 
-**Last4** | Pointer to **string** | The last four characters of the application key. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the application key. | [optional] 
-**Scopes** | Pointer to **[]string** | Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys. | [optional] 
+| Name          | Type                    | Description                                                                                                                                               | Notes                 |
+| ------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **CreatedAt** | Pointer to **string**   | Creation date of the application key.                                                                                                                     | [optional] [readonly] |
+| **Key**       | Pointer to **string**   | The application key.                                                                                                                                      | [optional] [readonly] |
+| **Last4**     | Pointer to **string**   | The last four characters of the application key.                                                                                                          | [optional] [readonly] |
+| **Name**      | Pointer to **string**   | Name of the application key.                                                                                                                              | [optional]            |
+| **Scopes**    | Pointer to **[]string** | Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys. | [optional]            |
 
 ## Methods
 
@@ -158,13 +158,12 @@ HasScopes returns a boolean if a field has been set.
 
 `func (o *FullApplicationKeyAttributes) SetScopesNil(b bool)`
 
- SetScopesNil sets the value for Scopes to be an explicit nil
+SetScopesNil sets the value for Scopes to be an explicit nil
 
 ### UnsetScopes
+
 `func (o *FullApplicationKeyAttributes) UnsetScopes()`
 
 UnsetScopes ensures that no value is present for Scopes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

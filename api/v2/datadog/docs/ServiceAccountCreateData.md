@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**ServiceAccountCreateAttributes**](ServiceAccountCreateAttributes.md) |  | 
-**Relationships** | Pointer to [**UserRelationships**](UserRelationships.md) |  | [optional] 
-**Type** | [**UsersType**](UsersType.md) |  | [default to USERSTYPE_USERS]
+| Name              | Type                                                                    | Description | Notes                        |
+| ----------------- | ----------------------------------------------------------------------- | ----------- | ---------------------------- |
+| **Attributes**    | [**ServiceAccountCreateAttributes**](ServiceAccountCreateAttributes.md) |             |
+| **Relationships** | Pointer to [**UserRelationships**](UserRelationships.md)                |             | [optional]                   |
+| **Type**          | [**UsersType**](UsersType.md)                                           |             | [default to USERSTYPE_USERS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *ServiceAccountCreateData) SetAttributes(v ServiceAccountCreateAttributes)`
 
 SetAttributes sets Attributes field to given value.
-
 
 ### GetRelationships
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Index** | Pointer to **string** | The log index on which the request is performed. For multi-index organizations, the default is all live indexes. Historical indexes of rehydrated logs must be specified. | [optional] 
-**Limit** | Pointer to **int32** | Number of logs return in the response. | [optional] 
-**Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] 
-**Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
-**StartAt** | Pointer to **string** | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] 
-**Time** | [**LogsListRequestTime**](LogsListRequestTime.md) |  | 
+| Name        | Type                                              | Description                                                                                                                                                                                                                                                            | Notes      |
+| ----------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Index**   | Pointer to **string**                             | The log index on which the request is performed. For multi-index organizations, the default is all live indexes. Historical indexes of rehydrated logs must be specified.                                                                                              | [optional] |
+| **Limit**   | Pointer to **int32**                              | Number of logs return in the response.                                                                                                                                                                                                                                 | [optional] |
+| **Query**   | Pointer to **string**                             | The search query - following the log search syntax.                                                                                                                                                                                                                    | [optional] |
+| **Sort**    | Pointer to [**LogsSort**](LogsSort.md)            |                                                                                                                                                                                                                                                                        | [optional] |
+| **StartAt** | Pointer to **string**                             | Hash identifier of the first log to return in the list, available in a log &#x60;id&#x60; attribute. This parameter is used for the pagination feature. **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window. | [optional] |
+| **Time**    | [**LogsListRequestTime**](LogsListRequestTime.md) |                                                                                                                                                                                                                                                                        |
 
 ## Methods
 
@@ -174,8 +174,4 @@ and a boolean to check if the value has been set.
 
 SetTime sets Time field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

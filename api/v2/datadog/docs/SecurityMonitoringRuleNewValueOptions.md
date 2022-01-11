@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ForgetAfter** | Pointer to [**SecurityMonitoringRuleNewValueOptionsForgetAfter**](SecurityMonitoringRuleNewValueOptionsForgetAfter.md) |  | [optional] 
-**LearningDuration** | Pointer to [**SecurityMonitoringRuleNewValueOptionsLearningDuration**](SecurityMonitoringRuleNewValueOptionsLearningDuration.md) |  | [optional] 
+| Name                 | Type                                                                                                                             | Description | Notes      |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **ForgetAfter**      | Pointer to [**SecurityMonitoringRuleNewValueOptionsForgetAfter**](SecurityMonitoringRuleNewValueOptionsForgetAfter.md)           |             | [optional] |
+| **LearningDuration** | Pointer to [**SecurityMonitoringRuleNewValueOptionsLearningDuration**](SecurityMonitoringRuleNewValueOptionsLearningDuration.md) |             | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetLearningDuration sets LearningDuration field to given value.
 
 HasLearningDuration returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

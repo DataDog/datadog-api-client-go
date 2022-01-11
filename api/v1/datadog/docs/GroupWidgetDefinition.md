@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BackgroundColor** | Pointer to **string** | Background color of the group title. | [optional] 
-**BannerImg** | Pointer to **string** | URL of image to display as a banner for the group. | [optional] 
-**LayoutType** | [**WidgetLayoutType**](WidgetLayoutType.md) |  | 
-**ShowTitle** | Pointer to **bool** | Whether to show the title or not. | [optional] [default to true]
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Type** | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |  | [default to GROUPWIDGETDEFINITIONTYPE_GROUP]
-**Widgets** | [**[]Widget**](Widget.md) | List of widget groups. | 
+| Name                | Type                                                          | Description                                        | Notes                                        |
+| ------------------- | ------------------------------------------------------------- | -------------------------------------------------- | -------------------------------------------- |
+| **BackgroundColor** | Pointer to **string**                                         | Background color of the group title.               | [optional]                                   |
+| **BannerImg**       | Pointer to **string**                                         | URL of image to display as a banner for the group. | [optional]                                   |
+| **LayoutType**      | [**WidgetLayoutType**](WidgetLayoutType.md)                   |                                                    |
+| **ShowTitle**       | Pointer to **bool**                                           | Whether to show the title or not.                  | [optional] [default to true]                 |
+| **Title**           | Pointer to **string**                                         | Title of the widget.                               | [optional]                                   |
+| **TitleAlign**      | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)          |                                                    | [optional]                                   |
+| **Type**            | [**GroupWidgetDefinitionType**](GroupWidgetDefinitionType.md) |                                                    | [default to GROUPWIDGETDEFINITIONTYPE_GROUP] |
+| **Widgets**         | [**[]Widget**](Widget.md)                                     | List of widget groups.                             |
 
 ## Methods
 
@@ -100,7 +100,6 @@ and a boolean to check if the value has been set.
 `func (o *GroupWidgetDefinition) SetLayoutType(v WidgetLayoutType)`
 
 SetLayoutType sets LayoutType field to given value.
-
 
 ### GetShowTitle
 
@@ -196,7 +195,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetWidgets
 
 `func (o *GroupWidgetDefinition) GetWidgets() []Widget`
@@ -216,8 +214,4 @@ and a boolean to check if the value has been set.
 
 SetWidgets sets Widgets field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

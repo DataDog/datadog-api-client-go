@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**UserInvitationDataAttributes**](UserInvitationDataAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the user invitation. | [optional] 
-**Type** | Pointer to [**UserInvitationsType**](UserInvitationsType.md) |  | [optional] [default to USERINVITATIONSTYPE_USER_INVITATIONS]
+| Name           | Type                                                                           | Description                | Notes                                                        |
+| -------------- | ------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------------------ |
+| **Attributes** | Pointer to [**UserInvitationDataAttributes**](UserInvitationDataAttributes.md) |                            | [optional]                                                   |
+| **Id**         | Pointer to **string**                                                          | ID of the user invitation. | [optional]                                                   |
+| **Type**       | Pointer to [**UserInvitationsType**](UserInvitationsType.md)                   |                            | [optional] [default to USERINVITATIONSTYPE_USER_INVITATIONS] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

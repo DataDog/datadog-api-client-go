@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Device** | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |  | [optional] 
-**Location** | Pointer to **int64** | The location ID of the test run. | [optional] 
-**PublicId** | Pointer to **string** | The public ID of the Synthetics test. | [optional] 
-**ResultId** | Pointer to **string** | ID of the result. | [optional] 
+| Name         | Type                                                       | Description                           | Notes      |
+| ------------ | ---------------------------------------------------------- | ------------------------------------- | ---------- |
+| **Device**   | Pointer to [**SyntheticsDeviceID**](SyntheticsDeviceID.md) |                                       | [optional] |
+| **Location** | Pointer to **int64**                                       | The location ID of the test run.      | [optional] |
+| **PublicId** | Pointer to **string**                                      | The public ID of the Synthetics test. | [optional] |
+| **ResultId** | Pointer to **string**                                      | ID of the result.                     | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetResultId sets ResultId field to given value.
 
 HasResultId returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

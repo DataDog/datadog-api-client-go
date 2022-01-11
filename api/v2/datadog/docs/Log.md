@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**LogAttributes**](LogAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | Unique ID of the Log. | [optional] 
-**Type** | Pointer to [**LogType**](LogType.md) |  | [optional] [default to LOGTYPE_LOG]
+| Name           | Type                                             | Description           | Notes                               |
+| -------------- | ------------------------------------------------ | --------------------- | ----------------------------------- |
+| **Attributes** | Pointer to [**LogAttributes**](LogAttributes.md) |                       | [optional]                          |
+| **Id**         | Pointer to **string**                            | Unique ID of the Log. | [optional]                          |
+| **Type**       | Pointer to [**LogType**](LogType.md)             |                       | [optional] [default to LOGTYPE_LOG] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

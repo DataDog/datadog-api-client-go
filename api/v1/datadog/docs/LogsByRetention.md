@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Orgs** | Pointer to [**LogsByRetentionOrgs**](LogsByRetentionOrgs.md) |  | [optional] 
-**Usage** | Pointer to [**[]LogsRetentionAggSumUsage**](LogsRetentionAggSumUsage.md) | Aggregated index logs usage for each retention period with usage. | [optional] 
-**UsageByMonth** | Pointer to [**LogsByRetentionMonthlyUsage**](LogsByRetentionMonthlyUsage.md) |  | [optional] 
+| Name             | Type                                                                         | Description                                                       | Notes      |
+| ---------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------- |
+| **Orgs**         | Pointer to [**LogsByRetentionOrgs**](LogsByRetentionOrgs.md)                 |                                                                   | [optional] |
+| **Usage**        | Pointer to [**[]LogsRetentionAggSumUsage**](LogsRetentionAggSumUsage.md)     | Aggregated index logs usage for each retention period with usage. | [optional] |
+| **UsageByMonth** | Pointer to [**LogsByRetentionMonthlyUsage**](LogsByRetentionMonthlyUsage.md) |                                                                   | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetUsageByMonth sets UsageByMonth field to given value.
 
 HasUsageByMonth returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

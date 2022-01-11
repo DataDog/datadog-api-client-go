@@ -2,14 +2,10 @@
 
 ## Enum
 
+- `PASSED` (value: `"passed"`)
 
-* `PASSED` (value: `"passed"`)
+- `skipped` (value: `"skipped"`)
 
-* `skipped` (value: `"skipped"`)
-
-* `failed` (value: `"failed"`)
-
+- `failed` (value: `"failed"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

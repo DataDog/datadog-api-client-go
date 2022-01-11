@@ -2,38 +2,34 @@
 
 ## Enum
 
+- `BODY` (value: `"body"`)
 
-* `BODY` (value: `"body"`)
+- `HEADER` (value: `"header"`)
 
-* `HEADER` (value: `"header"`)
+- `STATUS_CODE` (value: `"statusCode"`)
 
-* `STATUS_CODE` (value: `"statusCode"`)
+- `CERTIFICATE` (value: `"certificate"`)
 
-* `CERTIFICATE` (value: `"certificate"`)
+- `RESPONSE_TIME` (value: `"responseTime"`)
 
-* `RESPONSE_TIME` (value: `"responseTime"`)
+- `PROPERTY` (value: `"property"`)
 
-* `PROPERTY` (value: `"property"`)
+- `RECORD_EVERY` (value: `"recordEvery"`)
 
-* `RECORD_EVERY` (value: `"recordEvery"`)
+- `RECORD_SOME` (value: `"recordSome"`)
 
-* `RECORD_SOME` (value: `"recordSome"`)
+- `TLS_VERSION` (value: `"tlsVersion"`)
 
-* `TLS_VERSION` (value: `"tlsVersion"`)
+- `MIN_TLS_VERSION` (value: `"minTlsVersion"`)
 
-* `MIN_TLS_VERSION` (value: `"minTlsVersion"`)
+- `LATENCY` (value: `"latency"`)
 
-* `LATENCY` (value: `"latency"`)
+- `PACKET_LOSS_PERCENTAGE` (value: `"packetLossPercentage"`)
 
-* `PACKET_LOSS_PERCENTAGE` (value: `"packetLossPercentage"`)
+- `PACKETS_RECEIVED` (value: `"packetsReceived"`)
 
-* `PACKETS_RECEIVED` (value: `"packetsReceived"`)
+- `NETWORK_HOP` (value: `"networkHop"`)
 
-* `NETWORK_HOP` (value: `"networkHop"`)
-
-* `RECEIVED_MESSAGE` (value: `"receivedMessage"`)
-
+- `RECEIVED_MESSAGE` (value: `"receivedMessage"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

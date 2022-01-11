@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. Required for single API tests. | [optional] [default to []]
-**ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
-**Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
-**Variables** | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Browser tests only - array of variables used for the test steps. | [optional] 
+| Name                | Type                                                                       | Description                                                           | Notes                      |
+| ------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------------- |
+| **Assertions**      | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md)             | Array of assertions used for the test. Required for single API tests. | [optional] [default to []] |
+| **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md)   | Array of variables used for the test.                                 | [optional]                 |
+| **Request**         | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md)           |                                                                       | [optional]                 |
+| **Variables**       | Pointer to [**[]SyntheticsBrowserVariable**](SyntheticsBrowserVariable.md) | Browser tests only - array of variables used for the test steps.      | [optional]                 |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetVariables sets Variables field to given value.
 
 HasVariables returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

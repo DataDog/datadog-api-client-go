@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ArchiveIds** | **[]string** | An ordered array of &#x60;&lt;ARCHIVE_ID&gt;&#x60; strings, the order of archive IDs in the array define the overall archives order for Datadog. | 
+| Name           | Type         | Description                                                                                                                                      | Notes |
+| -------------- | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----- |
+| **ArchiveIds** | **[]string** | An ordered array of &#x60;&lt;ARCHIVE_ID&gt;&#x60; strings, the order of archive IDs in the array define the overall archives order for Datadog. |
 
 ## Methods
 
@@ -44,8 +44,4 @@ and a boolean to check if the value has been set.
 
 SetArchiveIds sets ArchiveIds field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

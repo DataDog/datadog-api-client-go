@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**APIKeyCreateAttributes**](APIKeyCreateAttributes.md) |  | 
-**Type** | [**APIKeysType**](APIKeysType.md) |  | [default to APIKEYSTYPE_API_KEYS]
+| Name           | Type                                                    | Description | Notes                             |
+| -------------- | ------------------------------------------------------- | ----------- | --------------------------------- |
+| **Attributes** | [**APIKeyCreateAttributes**](APIKeyCreateAttributes.md) |             |
+| **Type**       | [**APIKeysType**](APIKeysType.md)                       |             | [default to APIKEYSTYPE_API_KEYS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetType
 
 `func (o *APIKeyCreateData) GetType() APIKeysType`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

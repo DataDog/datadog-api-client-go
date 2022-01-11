@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AllowFailure** | Pointer to **bool** | A boolean set to allow this step to fail. | [optional] 
-**Name** | Pointer to **string** | The name of the step. | [optional] 
-**Params** | Pointer to **interface{}** | The parameters of the step. | [optional] 
-**Timeout** | Pointer to **int64** | The time before declaring a step failed. | [optional] 
-**Type** | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |  | [optional] 
+| Name             | Type                                                       | Description                               | Notes      |
+| ---------------- | ---------------------------------------------------------- | ----------------------------------------- | ---------- |
+| **AllowFailure** | Pointer to **bool**                                        | A boolean set to allow this step to fail. | [optional] |
+| **Name**         | Pointer to **string**                                      | The name of the step.                     | [optional] |
+| **Params**       | Pointer to **interface{}**                                 | The parameters of the step.               | [optional] |
+| **Timeout**      | Pointer to **int64**                                       | The time before declaring a step failed.  | [optional] |
+| **Type**         | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |                                           | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

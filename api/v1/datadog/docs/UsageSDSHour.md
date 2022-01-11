@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**LogsScannedBytes** | Pointer to **int64** | The total number of bytes scanned of logs usage by the Sensitive Data Scanner from the start of the given hour’s month until the given hour. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**TotalScannedBytes** | Pointer to **int64** | The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour. | [optional] 
+| Name                  | Type                     | Description                                                                                                                                           | Notes      |
+| --------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Hour**              | Pointer to **time.Time** | The hour for the usage.                                                                                                                               | [optional] |
+| **LogsScannedBytes**  | Pointer to **int64**     | The total number of bytes scanned of logs usage by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.          | [optional] |
+| **OrgName**           | Pointer to **string**    | The organization name.                                                                                                                                | [optional] |
+| **PublicId**          | Pointer to **string**    | The organization public ID.                                                                                                                           | [optional] |
+| **TotalScannedBytes** | Pointer to **int64**     | The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour. | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetTotalScannedBytes sets TotalScannedBytes field to given value.
 
 HasTotalScannedBytes returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

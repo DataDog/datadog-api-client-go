@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Page** | Pointer to **int64** | The page to start paginating from. | [optional] [readonly] 
-**PageCount** | Pointer to **int64** | The number of pages. | [optional] [readonly] 
-**PerPage** | Pointer to **int64** | The number of monitors to return per page. | [optional] [readonly] 
-**TotalCount** | Pointer to **int64** | The total number of monitors. | [optional] [readonly] 
+| Name           | Type                 | Description                                | Notes                 |
+| -------------- | -------------------- | ------------------------------------------ | --------------------- |
+| **Page**       | Pointer to **int64** | The page to start paginating from.         | [optional] [readonly] |
+| **PageCount**  | Pointer to **int64** | The number of pages.                       | [optional] [readonly] |
+| **PerPage**    | Pointer to **int64** | The number of monitors to return per page. | [optional] [readonly] |
+| **TotalCount** | Pointer to **int64** | The total number of monitors.              | [optional] [readonly] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetTotalCount sets TotalCount field to given value.
 
 HasTotalCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

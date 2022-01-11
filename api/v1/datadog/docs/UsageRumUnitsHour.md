@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BrowserRumUnits** | Pointer to **int64** | The number of browser RUM units. | [optional] 
-**MobileRumUnits** | Pointer to **int64** | The number of mobile RUM units. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**RumUnits** | Pointer to **NullableInt64** | Total RUM units across mobile and browser RUM. | [optional] 
+| Name                | Type                         | Description                                    | Notes      |
+| ------------------- | ---------------------------- | ---------------------------------------------- | ---------- |
+| **BrowserRumUnits** | Pointer to **int64**         | The number of browser RUM units.               | [optional] |
+| **MobileRumUnits**  | Pointer to **int64**         | The number of mobile RUM units.                | [optional] |
+| **OrgName**         | Pointer to **string**        | The organization name.                         | [optional] |
+| **PublicId**        | Pointer to **string**        | The organization public ID.                    | [optional] |
+| **RumUnits**        | Pointer to **NullableInt64** | Total RUM units across mobile and browser RUM. | [optional] |
 
 ## Methods
 
@@ -158,13 +158,12 @@ HasRumUnits returns a boolean if a field has been set.
 
 `func (o *UsageRumUnitsHour) SetRumUnitsNil(b bool)`
 
- SetRumUnitsNil sets the value for RumUnits to be an explicit nil
+SetRumUnitsNil sets the value for RumUnits to be an explicit nil
 
 ### UnsetRumUnits
+
 `func (o *UsageRumUnitsHour) UnsetRumUnits()`
 
 UnsetRumUnits ensures that no value is present for RumUnits, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

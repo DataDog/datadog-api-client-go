@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Author** | Pointer to [**NotebookAuthor**](NotebookAuthor.md) |  | [optional] 
-**Cells** | [**[]NotebookCellResponse**](NotebookCellResponse.md) | List of cells to display in the notebook. | 
-**Created** | Pointer to **time.Time** | UTC time stamp for when the notebook was created. | [optional] [readonly] 
-**Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md) |  | [optional] 
-**Modified** | Pointer to **time.Time** | UTC time stamp for when the notebook was last modified. | [optional] [readonly] 
-**Name** | **string** | The name of the notebook. | 
-**Status** | Pointer to [**NotebookStatus**](NotebookStatus.md) |  | [optional] [default to NOTEBOOKSTATUS_PUBLISHED]
-**Time** | [**NotebookGlobalTime**](NotebookGlobalTime.md) |  | 
+| Name         | Type                                                   | Description                                             | Notes                                            |
+| ------------ | ------------------------------------------------------ | ------------------------------------------------------- | ------------------------------------------------ |
+| **Author**   | Pointer to [**NotebookAuthor**](NotebookAuthor.md)     |                                                         | [optional]                                       |
+| **Cells**    | [**[]NotebookCellResponse**](NotebookCellResponse.md)  | List of cells to display in the notebook.               |
+| **Created**  | Pointer to **time.Time**                               | UTC time stamp for when the notebook was created.       | [optional] [readonly]                            |
+| **Metadata** | Pointer to [**NotebookMetadata**](NotebookMetadata.md) |                                                         | [optional]                                       |
+| **Modified** | Pointer to **time.Time**                               | UTC time stamp for when the notebook was last modified. | [optional] [readonly]                            |
+| **Name**     | **string**                                             | The name of the notebook.                               |
+| **Status**   | Pointer to [**NotebookStatus**](NotebookStatus.md)     |                                                         | [optional] [default to NOTEBOOKSTATUS_PUBLISHED] |
+| **Time**     | [**NotebookGlobalTime**](NotebookGlobalTime.md)        |                                                         |
 
 ## Methods
 
@@ -75,7 +75,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookResponseDataAttributes) SetCells(v []NotebookCellResponse)`
 
 SetCells sets Cells field to given value.
-
 
 ### GetCreated
 
@@ -171,7 +170,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetStatus
 
 `func (o *NotebookResponseDataAttributes) GetStatus() NotebookStatus`
@@ -216,8 +214,4 @@ and a boolean to check if the value has been set.
 
 SetTime sets Time field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

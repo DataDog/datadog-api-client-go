@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Search** | **string** | The query being made on the event. | 
-**TagsExecution** | **string** | The execution method for multi-value filters. Can be either and or or. | 
+| Name              | Type       | Description                                                            | Notes |
+| ----------------- | ---------- | ---------------------------------------------------------------------- | ----- |
+| **Search**        | **string** | The query being made on the event.                                     |
+| **TagsExecution** | **string** | The execution method for multi-value filters. Can be either and or or. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetSearch sets Search field to given value.
 
-
 ### GetTagsExecution
 
 `func (o *EventQueryDefinition) GetTagsExecution() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetTagsExecution sets TagsExecution field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

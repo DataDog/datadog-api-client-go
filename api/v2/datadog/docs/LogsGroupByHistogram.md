@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Interval** | **float64** | The bin size of the histogram buckets | 
-**Max** | **float64** | The maximum value for the measure used in the histogram (values greater than this one are filtered out) | 
-**Min** | **float64** | The minimum value for the measure used in the histogram (values smaller than this one are filtered out) | 
+| Name         | Type        | Description                                                                                             | Notes |
+| ------------ | ----------- | ------------------------------------------------------------------------------------------------------- | ----- |
+| **Interval** | **float64** | The bin size of the histogram buckets                                                                   |
+| **Max**      | **float64** | The maximum value for the measure used in the histogram (values greater than this one are filtered out) |
+| **Min**      | **float64** | The minimum value for the measure used in the histogram (values smaller than this one are filtered out) |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetInterval sets Interval field to given value.
 
-
 ### GetMax
 
 `func (o *LogsGroupByHistogram) GetMax() float64`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsGroupByHistogram) SetMax(v float64)`
 
 SetMax sets Max field to given value.
-
 
 ### GetMin
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetMin sets Min field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

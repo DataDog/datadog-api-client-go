@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Compute** | Pointer to [**LogsMetricResponseCompute**](LogsMetricResponseCompute.md) |  | [optional] 
-**Filter** | Pointer to [**LogsMetricResponseFilter**](LogsMetricResponseFilter.md) |  | [optional] 
-**GroupBy** | Pointer to [**[]LogsMetricResponseGroupBy**](LogsMetricResponseGroupBy.md) | The rules for the group by. | [optional] 
+| Name        | Type                                                                       | Description                 | Notes      |
+| ----------- | -------------------------------------------------------------------------- | --------------------------- | ---------- |
+| **Compute** | Pointer to [**LogsMetricResponseCompute**](LogsMetricResponseCompute.md)   |                             | [optional] |
+| **Filter**  | Pointer to [**LogsMetricResponseFilter**](LogsMetricResponseFilter.md)     |                             | [optional] |
+| **GroupBy** | Pointer to [**[]LogsMetricResponseGroupBy**](LogsMetricResponseGroupBy.md) | The rules for the group by. | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetGroupBy sets GroupBy field to given value.
 
 HasGroupBy returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

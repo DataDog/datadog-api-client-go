@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Passed** | Pointer to **bool** | Describes if the test run has passed or failed. | [optional] 
-**Timings** | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md) |  | [optional] 
+| Name        | Type                                                   | Description                                     | Notes      |
+| ----------- | ------------------------------------------------------ | ----------------------------------------------- | ---------- |
+| **Passed**  | Pointer to **bool**                                    | Describes if the test run has passed or failed. | [optional] |
+| **Timings** | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md) |                                                 | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTimings sets Timings field to given value.
 
 HasTimings returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

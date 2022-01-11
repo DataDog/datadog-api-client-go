@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**GroupBy** | Pointer to **string** | Group to break down the monitor on. | [optional] 
-**Metric** | Pointer to **string** | Metric name used in the monitor. | [optional] 
-**Type** | Pointer to **string** | Metric type used in the monitor. | [optional] 
+| Name        | Type                  | Description                         | Notes      |
+| ----------- | --------------------- | ----------------------------------- | ---------- |
+| **GroupBy** | Pointer to **string** | Group to break down the monitor on. | [optional] |
+| **Metric**  | Pointer to **string** | Metric name used in the monitor.    | [optional] |
+| **Type**    | Pointer to **string** | Metric type used in the monitor.    | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,18 +2,16 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateWebhooksIntegration**](WebhooksIntegrationApi.md#CreateWebhooksIntegration) | **Post** /api/v1/integration/webhooks/configuration/webhooks | Create a webhooks integration
-[**CreateWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#CreateWebhooksIntegrationCustomVariable) | **Post** /api/v1/integration/webhooks/configuration/custom-variables | Create a custom variable
-[**DeleteWebhooksIntegration**](WebhooksIntegrationApi.md#DeleteWebhooksIntegration) | **Delete** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Delete a webhook
-[**DeleteWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#DeleteWebhooksIntegrationCustomVariable) | **Delete** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Delete a custom variable
-[**GetWebhooksIntegration**](WebhooksIntegrationApi.md#GetWebhooksIntegration) | **Get** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Get a webhook integration
-[**GetWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#GetWebhooksIntegrationCustomVariable) | **Get** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Get a custom variable
-[**UpdateWebhooksIntegration**](WebhooksIntegrationApi.md#UpdateWebhooksIntegration) | **Put** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name} | Update a webhook
-[**UpdateWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#UpdateWebhooksIntegrationCustomVariable) | **Put** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Update a custom variable
-
-
+| Method                                                                                                           | HTTP request                                                                                  | Description                   |
+| ---------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ----------------------------- |
+| [**CreateWebhooksIntegration**](WebhooksIntegrationApi.md#CreateWebhooksIntegration)                             | **Post** /api/v1/integration/webhooks/configuration/webhooks                                  | Create a webhooks integration |
+| [**CreateWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#CreateWebhooksIntegrationCustomVariable) | **Post** /api/v1/integration/webhooks/configuration/custom-variables                          | Create a custom variable      |
+| [**DeleteWebhooksIntegration**](WebhooksIntegrationApi.md#DeleteWebhooksIntegration)                             | **Delete** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name}                 | Delete a webhook              |
+| [**DeleteWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#DeleteWebhooksIntegrationCustomVariable) | **Delete** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name} | Delete a custom variable      |
+| [**GetWebhooksIntegration**](WebhooksIntegrationApi.md#GetWebhooksIntegration)                                   | **Get** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name}                    | Get a webhook integration     |
+| [**GetWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#GetWebhooksIntegrationCustomVariable)       | **Get** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name}    | Get a custom variable         |
+| [**UpdateWebhooksIntegration**](WebhooksIntegrationApi.md#UpdateWebhooksIntegration)                             | **Put** /api/v1/integration/webhooks/configuration/webhooks/{webhook_name}                    | Update a webhook              |
+| [**UpdateWebhooksIntegrationCustomVariable**](WebhooksIntegrationApi.md#UpdateWebhooksIntegrationCustomVariable) | **Put** /api/v1/integration/webhooks/configuration/custom-variables/{custom_variable_name}    | Update a custom variable      |
 
 ## CreateWebhooksIntegration
 
@@ -55,17 +53,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**WebhooksIntegration**](WebhooksIntegration.md) | Create a webhooks integration request body. | 
-
+| Name     | Type                                              | Description                                                                 | Notes |
+| -------- | ------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**WebhooksIntegration**](WebhooksIntegration.md) | Create a webhooks integration request body.                                 |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -83,7 +78,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateWebhooksIntegrationCustomVariable
 
@@ -125,17 +119,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**WebhooksIntegrationCustomVariable**](WebhooksIntegrationCustomVariable.md) | Define a custom variable request body. | 
-
+| Name     | Type                                                                          | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**WebhooksIntegrationCustomVariable**](WebhooksIntegrationCustomVariable.md) | Define a custom variable request body.                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -153,7 +144,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteWebhooksIntegration
 
@@ -191,21 +181,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**webhookName** | **string** | The name of the webhook. | 
-
+| Name            | Type                | Description                                                                 | Notes |
+| --------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **webhookName** | **string**          | The name of the webhook.                                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -219,7 +206,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteWebhooksIntegrationCustomVariable
 
@@ -257,21 +243,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**customVariableName** | **string** | The name of the custom variable. | 
-
+| Name                   | Type                | Description                                                                 | Notes |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**                | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **customVariableName** | **string**          | The name of the custom variable.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -285,7 +268,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetWebhooksIntegration
 
@@ -327,17 +309,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**webhookName** | **string** | The name of the webhook. | 
-
+| Name            | Type                | Description                                                                 | Notes |
+| --------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **webhookName** | **string**          | The name of the webhook.                                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -355,7 +334,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetWebhooksIntegrationCustomVariable
 
@@ -400,17 +378,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**customVariableName** | **string** | The name of the custom variable. | 
-
+| Name                   | Type                | Description                                                                 | Notes |
+| ---------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**                | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **customVariableName** | **string**          | The name of the custom variable.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -428,7 +403,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateWebhooksIntegration
 
@@ -471,18 +445,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**webhookName** | **string** | The name of the webhook. |  |
-**body** | [**WebhooksIntegrationUpdateRequest**](WebhooksIntegrationUpdateRequest.md) | Update an existing Datadog-Webhooks integration. | 
-
+| Name            | Type                                                                        | Description                                                                 | Notes |
+| --------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**         | **context.Context**                                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **webhookName** | **string**                                                                  | The name of the webhook.                                                    |       |
+| **body**        | [**WebhooksIntegrationUpdateRequest**](WebhooksIntegrationUpdateRequest.md) | Update an existing Datadog-Webhooks integration.                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -500,7 +471,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateWebhooksIntegrationCustomVariable
 
@@ -543,18 +513,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**customVariableName** | **string** | The name of the custom variable. |  |
-**body** | [**WebhooksIntegrationCustomVariableUpdateRequest**](WebhooksIntegrationCustomVariableUpdateRequest.md) | Update an existing custom variable request body. | 
-
+| Name                   | Type                                                                                                    | Description                                                                 | Notes |
+| ---------------------- | ------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**                | **context.Context**                                                                                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **customVariableName** | **string**                                                                                              | The name of the custom variable.                                            |       |
+| **body**               | [**WebhooksIntegrationCustomVariableUpdateRequest**](WebhooksIntegrationCustomVariableUpdateRequest.md) | Update an existing custom variable request body.                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -572,4 +539,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

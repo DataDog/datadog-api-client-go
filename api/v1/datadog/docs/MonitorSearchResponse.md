@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Counts** | Pointer to [**MonitorSearchResponseCounts**](MonitorSearchResponseCounts.md) |  | [optional] 
-**Metadata** | Pointer to [**MonitorSearchResponseMetadata**](MonitorSearchResponseMetadata.md) |  | [optional] 
-**Monitors** | Pointer to [**[]MonitorSearchResult**](MonitorSearchResult.md) | The list of found monitors. | [optional] [readonly] 
+| Name         | Type                                                                             | Description                 | Notes                 |
+| ------------ | -------------------------------------------------------------------------------- | --------------------------- | --------------------- |
+| **Counts**   | Pointer to [**MonitorSearchResponseCounts**](MonitorSearchResponseCounts.md)     |                             | [optional]            |
+| **Metadata** | Pointer to [**MonitorSearchResponseMetadata**](MonitorSearchResponseMetadata.md) |                             | [optional]            |
+| **Monitors** | Pointer to [**[]MonitorSearchResult**](MonitorSearchResult.md)                   | The list of found monitors. | [optional] [readonly] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetMonitors sets Monitors field to given value.
 
 HasMonitors returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

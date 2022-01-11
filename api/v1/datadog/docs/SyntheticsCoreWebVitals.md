@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cls** | Pointer to **int64** | Cumulative Layout Shift. | [optional] 
-**Lcp** | Pointer to **int64** | Largest Contentful Paint in milliseconds. | [optional] 
-**Url** | Pointer to **string** | URL attached to the metrics. | [optional] 
+| Name    | Type                  | Description                               | Notes      |
+| ------- | --------------------- | ----------------------------------------- | ---------- |
+| **Cls** | Pointer to **int64**  | Cumulative Layout Shift.                  | [optional] |
+| **Lcp** | Pointer to **int64**  | Largest Contentful Paint in milliseconds. | [optional] |
+| **Url** | Pointer to **string** | URL attached to the metrics.              | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

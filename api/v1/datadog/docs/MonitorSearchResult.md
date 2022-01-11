@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Classification** | Pointer to **string** | Classification of the monitor. | [optional] [readonly] 
-**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Id** | Pointer to **int64** | ID of the monitor. | [optional] [readonly] 
-**LastTriggeredTs** | Pointer to **NullableInt64** | Latest timestamp the monitor triggered. | [optional] [readonly] 
-**Metrics** | Pointer to **[]string** | Metrics used by the monitor. | [optional] [readonly] 
-**Name** | Pointer to **string** | The monitor name. | [optional] [readonly] 
-**Notifications** | Pointer to [**[]MonitorSearchResultNotification**](MonitorSearchResultNotification.md) | The notification triggered by the monitor. | [optional] [readonly] 
-**OrgId** | Pointer to **int64** | The ID of the organization. | [optional] [readonly] 
-**Query** | Pointer to **string** | The monitor query. | [optional] 
-**Scopes** | Pointer to **[]string** | The scope(s) to which the downtime applies, for example &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list, for example &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (that is &#x60;env:dev AND env:prod&#x60;), NOT any of them. | [optional] 
-**Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | Tags associated with the monitor. | [optional] [readonly] 
-**Type** | Pointer to [**MonitorType**](MonitorType.md) |  | [optional] 
+| Name                | Type                                                                                   | Description                                                                                                                                                                                                                                                                                                         | Notes                 |
+| ------------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **Classification**  | Pointer to **string**                                                                  | Classification of the monitor.                                                                                                                                                                                                                                                                                      | [optional] [readonly] |
+| **Creator**         | Pointer to [**Creator**](Creator.md)                                                   |                                                                                                                                                                                                                                                                                                                     | [optional]            |
+| **Id**              | Pointer to **int64**                                                                   | ID of the monitor.                                                                                                                                                                                                                                                                                                  | [optional] [readonly] |
+| **LastTriggeredTs** | Pointer to **NullableInt64**                                                           | Latest timestamp the monitor triggered.                                                                                                                                                                                                                                                                             | [optional] [readonly] |
+| **Metrics**         | Pointer to **[]string**                                                                | Metrics used by the monitor.                                                                                                                                                                                                                                                                                        | [optional] [readonly] |
+| **Name**            | Pointer to **string**                                                                  | The monitor name.                                                                                                                                                                                                                                                                                                   | [optional] [readonly] |
+| **Notifications**   | Pointer to [**[]MonitorSearchResultNotification**](MonitorSearchResultNotification.md) | The notification triggered by the monitor.                                                                                                                                                                                                                                                                          | [optional] [readonly] |
+| **OrgId**           | Pointer to **int64**                                                                   | The ID of the organization.                                                                                                                                                                                                                                                                                         | [optional] [readonly] |
+| **Query**           | Pointer to **string**                                                                  | The monitor query.                                                                                                                                                                                                                                                                                                  | [optional]            |
+| **Scopes**          | Pointer to **[]string**                                                                | The scope(s) to which the downtime applies, for example &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list, for example &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (that is &#x60;env:dev AND env:prod&#x60;), NOT any of them. | [optional]            |
+| **Status**          | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md)                         |                                                                                                                                                                                                                                                                                                                     | [optional]            |
+| **Tags**            | Pointer to **[]string**                                                                | Tags associated with the monitor.                                                                                                                                                                                                                                                                                   | [optional] [readonly] |
+| **Type**            | Pointer to [**MonitorType**](MonitorType.md)                                           |                                                                                                                                                                                                                                                                                                                     | [optional]            |
 
 ## Methods
 
@@ -141,12 +141,14 @@ HasLastTriggeredTs returns a boolean if a field has been set.
 
 `func (o *MonitorSearchResult) SetLastTriggeredTsNil(b bool)`
 
- SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
+SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 
 ### UnsetLastTriggeredTs
+
 `func (o *MonitorSearchResult) UnsetLastTriggeredTs()`
 
 UnsetLastTriggeredTs ensures that no value is present for LastTriggeredTs, not even an explicit nil
+
 ### GetMetrics
 
 `func (o *MonitorSearchResult) GetMetrics() []string`
@@ -372,7 +374,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

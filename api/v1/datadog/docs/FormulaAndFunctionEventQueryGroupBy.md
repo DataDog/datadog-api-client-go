@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Facet** | **string** | Event facet. | 
-**Limit** | Pointer to **int64** | Number of groups to return. | [optional] 
-**Sort** | Pointer to [**FormulaAndFunctionEventQueryGroupBySort**](FormulaAndFunctionEventQueryGroupBySort.md) |  | [optional] 
+| Name      | Type                                                                                                 | Description                 | Notes      |
+| --------- | ---------------------------------------------------------------------------------------------------- | --------------------------- | ---------- |
+| **Facet** | **string**                                                                                           | Event facet.                |
+| **Limit** | Pointer to **int64**                                                                                 | Number of groups to return. | [optional] |
+| **Sort**  | Pointer to [**FormulaAndFunctionEventQueryGroupBySort**](FormulaAndFunctionEventQueryGroupBySort.md) |                             | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionEventQueryGroupBy) SetFacet(v string)`
 
 SetFacet sets Facet field to given value.
-
 
 ### GetLimit
 
@@ -97,7 +96,4 @@ SetSort sets Sort field to given value.
 
 HasSort returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

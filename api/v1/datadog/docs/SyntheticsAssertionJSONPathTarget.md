@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Operator** | [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md) |  | 
-**Property** | Pointer to **string** | The associated assertion property. | [optional] 
-**Target** | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTargetTarget.md) |  | [optional] 
-**Type** | [**SyntheticsAssertionType**](SyntheticsAssertionType.md) |  | 
+| Name         | Type                                                                                                 | Description                        | Notes      |
+| ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------------------- | ---------- |
+| **Operator** | [**SyntheticsAssertionJSONPathOperator**](SyntheticsAssertionJSONPathOperator.md)                    |                                    |
+| **Property** | Pointer to **string**                                                                                | The associated assertion property. | [optional] |
+| **Target**   | Pointer to [**SyntheticsAssertionJSONPathTargetTarget**](SyntheticsAssertionJSONPathTargetTarget.md) |                                    | [optional] |
+| **Type**     | [**SyntheticsAssertionType**](SyntheticsAssertionType.md)                                            |                                    |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAssertionJSONPathTarget) SetOperator(v SyntheticsAssertionJSONPathOperator)`
 
 SetOperator sets Operator field to given value.
-
 
 ### GetProperty
 
@@ -117,8 +116,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

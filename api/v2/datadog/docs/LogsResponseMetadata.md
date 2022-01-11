@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Elapsed** | Pointer to **int64** | The time elapsed in milliseconds | [optional] 
-**Page** | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadataPage.md) |  | [optional] 
-**RequestId** | Pointer to **string** | The identifier of the request | [optional] 
-**Status** | Pointer to [**LogsAggregateResponseStatus**](LogsAggregateResponseStatus.md) |  | [optional] 
-**Warnings** | Pointer to [**[]LogsWarning**](LogsWarning.md) | A list of warnings (non fatal errors) encountered, partial results might be returned if warnings are present in the response. | [optional] 
+| Name          | Type                                                                         | Description                                                                                                                   | Notes      |
+| ------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Elapsed**   | Pointer to **int64**                                                         | The time elapsed in milliseconds                                                                                              | [optional] |
+| **Page**      | Pointer to [**LogsResponseMetadataPage**](LogsResponseMetadataPage.md)       |                                                                                                                               | [optional] |
+| **RequestId** | Pointer to **string**                                                        | The identifier of the request                                                                                                 | [optional] |
+| **Status**    | Pointer to [**LogsAggregateResponseStatus**](LogsAggregateResponseStatus.md) |                                                                                                                               | [optional] |
+| **Warnings**  | Pointer to [**[]LogsWarning**](LogsWarning.md)                               | A list of warnings (non fatal errors) encountered, partial results might be returned if warnings are present in the response. | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetWarnings sets Warnings field to given value.
 
 HasWarnings returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

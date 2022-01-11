@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | 
-**Relationships** | Pointer to [**RoleRelationships**](RoleRelationships.md) |  | [optional] 
-**Type** | Pointer to [**RolesType**](RolesType.md) |  | [optional] [default to ROLESTYPE_ROLES]
+| Name              | Type                                                     | Description | Notes                                   |
+| ----------------- | -------------------------------------------------------- | ----------- | --------------------------------------- |
+| **Attributes**    | [**RoleCreateAttributes**](RoleCreateAttributes.md)      |             |
+| **Relationships** | Pointer to [**RoleRelationships**](RoleRelationships.md) |             | [optional]                              |
+| **Type**          | Pointer to [**RolesType**](RolesType.md)                 |             | [optional] [default to ROLESTYPE_ROLES] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *RoleCreateData) SetAttributes(v RoleCreateAttributes)`
 
 SetAttributes sets Attributes field to given value.
-
 
 ### GetRelationships
 
@@ -97,7 +96,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Description** | **string** | Description of the private location. | 
-**Id** | Pointer to **string** | Unique identifier of the private location. | [optional] [readonly] 
-**Name** | **string** | Name of the private location. | 
-**Secrets** | Pointer to [**SyntheticsPrivateLocationSecrets**](SyntheticsPrivateLocationSecrets.md) |  | [optional] 
-**Tags** | **[]string** | Array of tags attached to the private location. | 
+| Name            | Type                                                                                   | Description                                     | Notes                 |
+| --------------- | -------------------------------------------------------------------------------------- | ----------------------------------------------- | --------------------- |
+| **Description** | **string**                                                                             | Description of the private location.            |
+| **Id**          | Pointer to **string**                                                                  | Unique identifier of the private location.      | [optional] [readonly] |
+| **Name**        | **string**                                                                             | Name of the private location.                   |
+| **Secrets**     | Pointer to [**SyntheticsPrivateLocationSecrets**](SyntheticsPrivateLocationSecrets.md) |                                                 | [optional]            |
+| **Tags**        | **[]string**                                                                           | Array of tags attached to the private location. |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsPrivateLocation) SetDescription(v string)`
 
 SetDescription sets Description field to given value.
-
 
 ### GetId
 
@@ -93,7 +92,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetSecrets
 
 `func (o *SyntheticsPrivateLocation) GetSecrets() SyntheticsPrivateLocationSecrets`
@@ -138,8 +136,4 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

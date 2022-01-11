@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**IsReplaceMissing** | Pointer to **bool** | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Target** | **string** | The name of the attribute that contains the result of the template. | 
-**Template** | **string** | A formula with one or more attributes and raw text. | 
-**Type** | [**LogsStringBuilderProcessorType**](LogsStringBuilderProcessorType.md) |  | [default to LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR]
+| Name                 | Type                                                                    | Description                                                                                                                                                         | Notes                                                                |
+| -------------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **IsEnabled**        | Pointer to **bool**                                                     | Whether or not the processor is enabled.                                                                                                                            | [optional] [default to false]                                        |
+| **IsReplaceMissing** | Pointer to **bool**                                                     | If true, it replaces all missing attributes of &#x60;template&#x60; by an empty string. If &#x60;false&#x60; (default), skips the operation for missing attributes. | [optional] [default to false]                                        |
+| **Name**             | Pointer to **string**                                                   | Name of the processor.                                                                                                                                              | [optional]                                                           |
+| **Target**           | **string**                                                              | The name of the attribute that contains the result of the template.                                                                                                 |
+| **Template**         | **string**                                                              | A formula with one or more attributes and raw text.                                                                                                                 |
+| **Type**             | [**LogsStringBuilderProcessorType**](LogsStringBuilderProcessorType.md) |                                                                                                                                                                     | [default to LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR] |
 
 ## Methods
 
@@ -124,7 +124,6 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
-
 ### GetTemplate
 
 `func (o *LogsStringBuilderProcessor) GetTemplate() string`
@@ -143,7 +142,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsStringBuilderProcessor) SetTemplate(v string)`
 
 SetTemplate sets Template field to given value.
-
 
 ### GetType
 
@@ -164,8 +162,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

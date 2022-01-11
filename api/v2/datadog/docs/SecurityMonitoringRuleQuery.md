@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |  | [optional] 
-**DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 
-**GroupByFields** | Pointer to **[]string** | Fields to group by. | [optional] 
-**Metric** | Pointer to **string** | The target field to aggregate over when using the sum or max aggregations. | [optional] 
-**Name** | Pointer to **string** | Name of the query. | [optional] 
-**Query** | Pointer to **string** | Query to run on logs. | [optional] 
+| Name               | Type                                                                                               | Description                                                                | Notes      |
+| ------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------- |
+| **Aggregation**    | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |                                                                            | [optional] |
+| **DistinctFields** | Pointer to **[]string**                                                                            | Field for which the cardinality is measured. Sent as an array.             | [optional] |
+| **GroupByFields**  | Pointer to **[]string**                                                                            | Fields to group by.                                                        | [optional] |
+| **Metric**         | Pointer to **string**                                                                              | The target field to aggregate over when using the sum or max aggregations. | [optional] |
+| **Name**           | Pointer to **string**                                                                              | Name of the query.                                                         | [optional] |
+| **Query**          | Pointer to **string**                                                                              | Query to run on logs.                                                      | [optional] |
 
 ## Methods
 
@@ -180,7 +180,4 @@ SetQuery sets Query field to given value.
 
 HasQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LastNodataTs** | Pointer to **int64** | Latest timestamp the monitor was in NO_DATA state. | [optional] 
-**LastNotifiedTs** | Pointer to **int64** | Latest timestamp of the notification sent for this monitor group. | [optional] 
-**LastResolvedTs** | Pointer to **int64** | Latest timestamp the monitor group was resolved. | [optional] 
-**LastTriggeredTs** | Pointer to **int64** | Latest timestamp the monitor group triggered. | [optional] 
-**Name** | Pointer to **string** | The name of the monitor. | [optional] 
-**Status** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
+| Name                | Type                                                           | Description                                                       | Notes      |
+| ------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------- | ---------- |
+| **LastNodataTs**    | Pointer to **int64**                                           | Latest timestamp the monitor was in NO_DATA state.                | [optional] |
+| **LastNotifiedTs**  | Pointer to **int64**                                           | Latest timestamp of the notification sent for this monitor group. | [optional] |
+| **LastResolvedTs**  | Pointer to **int64**                                           | Latest timestamp the monitor group was resolved.                  | [optional] |
+| **LastTriggeredTs** | Pointer to **int64**                                           | Latest timestamp the monitor group triggered.                     | [optional] |
+| **Name**            | Pointer to **string**                                          | The name of the monitor.                                          | [optional] |
+| **Status**          | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |                                                                   | [optional] |
 
 ## Methods
 
@@ -180,7 +180,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

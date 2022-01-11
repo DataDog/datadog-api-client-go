@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DataSource** | [**ListStreamSource**](ListStreamSource.md) |  | [default to LISTSTREAMSOURCE_ISSUE_STREAM]
-**Indexes** | Pointer to **[]string** | List of indexes. | [optional] 
-**QueryString** | **string** | Widget query. | 
+| Name            | Type                                        | Description      | Notes                                      |
+| --------------- | ------------------------------------------- | ---------------- | ------------------------------------------ |
+| **DataSource**  | [**ListStreamSource**](ListStreamSource.md) |                  | [default to LISTSTREAMSOURCE_ISSUE_STREAM] |
+| **Indexes**     | Pointer to **[]string**                     | List of indexes. | [optional]                                 |
+| **QueryString** | **string**                                  | Widget query.    |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *ListStreamQuery) SetDataSource(v ListStreamSource)`
 
 SetDataSource sets DataSource field to given value.
-
 
 ### GetIndexes
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetQueryString sets QueryString field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

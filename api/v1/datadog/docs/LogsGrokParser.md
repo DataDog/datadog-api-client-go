@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Grok** | [**LogsGrokParserRules**](LogsGrokParserRules.md) |  | 
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Samples** | Pointer to **[]string** | List of sample logs to test this grok parser. | [optional] 
-**Source** | **string** | Name of the log attribute to parse. | [default to "message"]
-**Type** | [**LogsGrokParserType**](LogsGrokParserType.md) |  | [default to LOGSGROKPARSERTYPE_GROK_PARSER]
+| Name          | Type                                              | Description                                   | Notes                                       |
+| ------------- | ------------------------------------------------- | --------------------------------------------- | ------------------------------------------- |
+| **Grok**      | [**LogsGrokParserRules**](LogsGrokParserRules.md) |                                               |
+| **IsEnabled** | Pointer to **bool**                               | Whether or not the processor is enabled.      | [optional] [default to false]               |
+| **Name**      | Pointer to **string**                             | Name of the processor.                        | [optional]                                  |
+| **Samples**   | Pointer to **[]string**                           | List of sample logs to test this grok parser. | [optional]                                  |
+| **Source**    | **string**                                        | Name of the log attribute to parse.           | [default to "message"]                      |
+| **Type**      | [**LogsGrokParserType**](LogsGrokParserType.md)   |                                               | [default to LOGSGROKPARSERTYPE_GROK_PARSER] |
 
 ## Methods
 
@@ -48,7 +48,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsGrokParser) SetGrok(v LogsGrokParserRules)`
 
 SetGrok sets Grok field to given value.
-
 
 ### GetIsEnabled
 
@@ -144,7 +143,6 @@ and a boolean to check if the value has been set.
 
 SetSource sets Source field to given value.
 
-
 ### GetType
 
 `func (o *LogsGrokParser) GetType() LogsGrokParserType`
@@ -164,8 +162,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

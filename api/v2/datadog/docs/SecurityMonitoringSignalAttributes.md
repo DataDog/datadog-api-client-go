@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to **map[string]interface{}** | A JSON object of attributes in the security signal. | [optional] 
-**Message** | Pointer to **string** | The message in the security signal defined by the rule that generated the signal. | [optional] 
-**Tags** | Pointer to **[]string** | An array of tags associated with the security signal. | [optional] 
-**Timestamp** | Pointer to **time.Time** | The timestamp of the security signal. | [optional] 
+| Name           | Type                                  | Description                                                                       | Notes      |
+| -------------- | ------------------------------------- | --------------------------------------------------------------------------------- | ---------- |
+| **Attributes** | Pointer to **map[string]interface{}** | A JSON object of attributes in the security signal.                               | [optional] |
+| **Message**    | Pointer to **string**                 | The message in the security signal defined by the rule that generated the signal. | [optional] |
+| **Tags**       | Pointer to **[]string**               | An array of tags associated with the security signal.                             | [optional] |
+| **Timestamp**  | Pointer to **time.Time**              | The timestamp of the security signal.                                             | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetTimestamp sets Timestamp field to given value.
 
 HasTimestamp returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

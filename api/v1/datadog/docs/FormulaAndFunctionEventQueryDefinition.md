@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Compute** | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinitionCompute.md) |  | 
-**DataSource** | [**FormulaAndFunctionEventsDataSource**](FormulaAndFunctionEventsDataSource.md) |  | 
-**GroupBy** | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md) | Group by options. | [optional] 
-**Indexes** | Pointer to **[]string** | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] 
-**Name** | **string** | Name of the query for use in formulas. | 
-**Search** | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinitionSearch.md) |  | [optional] 
+| Name           | Type                                                                                                           | Description                                                                                              | Notes      |
+| -------------- | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ---------- |
+| **Compute**    | [**FormulaAndFunctionEventQueryDefinitionCompute**](FormulaAndFunctionEventQueryDefinitionCompute.md)          |                                                                                                          |
+| **DataSource** | [**FormulaAndFunctionEventsDataSource**](FormulaAndFunctionEventsDataSource.md)                                |                                                                                                          |
+| **GroupBy**    | Pointer to [**[]FormulaAndFunctionEventQueryGroupBy**](FormulaAndFunctionEventQueryGroupBy.md)                 | Group by options.                                                                                        | [optional] |
+| **Indexes**    | Pointer to **[]string**                                                                                        | An array of index names to query in the stream. Omit or use &#x60;[]&#x60; to query all indexes at once. | [optional] |
+| **Name**       | **string**                                                                                                     | Name of the query for use in formulas.                                                                   |
+| **Search**     | Pointer to [**FormulaAndFunctionEventQueryDefinitionSearch**](FormulaAndFunctionEventQueryDefinitionSearch.md) |                                                                                                          | [optional] |
 
 ## Methods
 
@@ -49,7 +49,6 @@ and a boolean to check if the value has been set.
 
 SetCompute sets Compute field to given value.
 
-
 ### GetDataSource
 
 `func (o *FormulaAndFunctionEventQueryDefinition) GetDataSource() FormulaAndFunctionEventsDataSource`
@@ -68,7 +67,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionEventQueryDefinition) SetDataSource(v FormulaAndFunctionEventsDataSource)`
 
 SetDataSource sets DataSource field to given value.
-
 
 ### GetGroupBy
 
@@ -139,7 +137,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetSearch
 
 `func (o *FormulaAndFunctionEventQueryDefinition) GetSearch() FormulaAndFunctionEventQueryDefinitionSearch`
@@ -165,7 +162,4 @@ SetSearch sets Search field to given value.
 
 HasSearch returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

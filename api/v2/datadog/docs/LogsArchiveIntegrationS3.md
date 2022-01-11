@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccountId** | **string** | The account ID for the integration. | 
-**RoleName** | **string** | The path of the integration. | 
+| Name          | Type       | Description                         | Notes |
+| ------------- | ---------- | ----------------------------------- | ----- |
+| **AccountId** | **string** | The account ID for the integration. |
+| **RoleName**  | **string** | The path of the integration.        |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAccountId sets AccountId field to given value.
 
-
 ### GetRoleName
 
 `func (o *LogsArchiveIntegrationS3) GetRoleName() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetRoleName sets RoleName field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

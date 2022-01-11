@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ExclusionFilters** | Pointer to [**[]SecurityFilterExclusionFilter**](SecurityFilterExclusionFilter.md) | Exclusion filters to exclude some logs from the security filter. | [optional] 
-**FilteredDataType** | Pointer to [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md) |  | [optional] 
-**IsEnabled** | Pointer to **bool** | Whether the security filter is enabled. | [optional] 
-**Name** | Pointer to **string** | The name of the security filter. | [optional] 
-**Query** | Pointer to **string** | The query of the security filter. | [optional] 
-**Version** | Pointer to **int32** | The version of the security filter to update. | [optional] 
+| Name                 | Type                                                                               | Description                                                      | Notes      |
+| -------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------- |
+| **ExclusionFilters** | Pointer to [**[]SecurityFilterExclusionFilter**](SecurityFilterExclusionFilter.md) | Exclusion filters to exclude some logs from the security filter. | [optional] |
+| **FilteredDataType** | Pointer to [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md) |                                                                  | [optional] |
+| **IsEnabled**        | Pointer to **bool**                                                                | Whether the security filter is enabled.                          | [optional] |
+| **Name**             | Pointer to **string**                                                              | The name of the security filter.                                 | [optional] |
+| **Query**            | Pointer to **string**                                                              | The query of the security filter.                                | [optional] |
+| **Version**          | Pointer to **int32**                                                               | The version of the security filter to update.                    | [optional] |
 
 ## Methods
 
@@ -180,7 +180,4 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

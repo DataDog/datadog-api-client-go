@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**ReplaySessionCount** | Pointer to **int64** | Contains the number of RUM Replay Sessions (data available beginning November 1, 2021). | [optional] 
-**SessionCount** | Pointer to **int64** | Contains the number of browser RUM Lite Sessions. | [optional] 
-**SessionCountAndroid** | Pointer to **int64** | Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020). | [optional] 
-**SessionCountIos** | Pointer to **int64** | Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020). | [optional] 
+| Name                    | Type                     | Description                                                                                        | Notes      |
+| ----------------------- | ------------------------ | -------------------------------------------------------------------------------------------------- | ---------- |
+| **Hour**                | Pointer to **time.Time** | The hour for the usage.                                                                            | [optional] |
+| **OrgName**             | Pointer to **string**    | The organization name.                                                                             | [optional] |
+| **PublicId**            | Pointer to **string**    | The organization public ID.                                                                        | [optional] |
+| **ReplaySessionCount**  | Pointer to **int64**     | Contains the number of RUM Replay Sessions (data available beginning November 1, 2021).            | [optional] |
+| **SessionCount**        | Pointer to **int64**     | Contains the number of browser RUM Lite Sessions.                                                  | [optional] |
+| **SessionCountAndroid** | Pointer to **int64**     | Contains the number of mobile RUM Sessions on Android (data available beginning December 1, 2020). | [optional] |
+| **SessionCountIos**     | Pointer to **int64**     | Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020).     | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetSessionCountIos sets SessionCountIos field to given value.
 
 HasSessionCountIos returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

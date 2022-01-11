@@ -2,16 +2,12 @@
 
 ## Enum
 
+- `MULTISELECT` (value: `"multiselect"`)
 
-* `MULTISELECT` (value: `"multiselect"`)
+- `TEXTARRAY` (value: `"textarray"`)
 
-* `TEXTARRAY` (value: `"textarray"`)
+- `METRICTAG` (value: `"metrictag"`)
 
-* `METRICTAG` (value: `"metrictag"`)
-
-* `AUTOCOMPLETE` (value: `"autocomplete"`)
-
+- `AUTOCOMPLETE` (value: `"autocomplete"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

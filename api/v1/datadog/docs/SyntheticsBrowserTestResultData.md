@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BrowserType** | Pointer to **string** | Type of browser device used for the browser test. | [optional] 
-**BrowserVersion** | Pointer to **string** | Browser version used for the browser test. | [optional] 
-**Device** | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md) |  | [optional] 
-**Duration** | Pointer to **float64** | Global duration in second of the browser test. | [optional] 
-**Error** | Pointer to **string** | Error returned for the browser test. | [optional] 
-**Passed** | Pointer to **bool** | Whether or not the browser test was conducted. | [optional] 
-**ReceivedEmailCount** | Pointer to **int64** | The amount of email received during the browser test. | [optional] 
-**StartUrl** | Pointer to **string** | Starting URL for the browser test. | [optional] 
-**StepDetails** | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | Array containing the different browser test steps. | [optional] 
-**ThumbnailsBucketKey** | Pointer to **bool** | Whether or not a thumbnail is associated with the browser test. | [optional] 
-**TimeToInteractive** | Pointer to **float64** | Time in second to wait before the browser test starts after reaching the start URL. | [optional] 
+| Name                    | Type                                                             | Description                                                                         | Notes      |
+| ----------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------- |
+| **BrowserType**         | Pointer to **string**                                            | Type of browser device used for the browser test.                                   | [optional] |
+| **BrowserVersion**      | Pointer to **string**                                            | Browser version used for the browser test.                                          | [optional] |
+| **Device**              | Pointer to [**SyntheticsDevice**](SyntheticsDevice.md)           |                                                                                     | [optional] |
+| **Duration**            | Pointer to **float64**                                           | Global duration in second of the browser test.                                      | [optional] |
+| **Error**               | Pointer to **string**                                            | Error returned for the browser test.                                                | [optional] |
+| **Passed**              | Pointer to **bool**                                              | Whether or not the browser test was conducted.                                      | [optional] |
+| **ReceivedEmailCount**  | Pointer to **int64**                                             | The amount of email received during the browser test.                               | [optional] |
+| **StartUrl**            | Pointer to **string**                                            | Starting URL for the browser test.                                                  | [optional] |
+| **StepDetails**         | Pointer to [**[]SyntheticsStepDetail**](SyntheticsStepDetail.md) | Array containing the different browser test steps.                                  | [optional] |
+| **ThumbnailsBucketKey** | Pointer to **bool**                                              | Whether or not a thumbnail is associated with the browser test.                     | [optional] |
+| **TimeToInteractive**   | Pointer to **float64**                                           | Time in second to wait before the browser test starts after reaching the start URL. | [optional] |
 
 ## Methods
 
@@ -310,7 +310,4 @@ SetTimeToInteractive sets TimeToInteractive field to given value.
 
 HasTimeToInteractive returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

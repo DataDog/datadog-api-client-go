@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**From** | **time.Time** | Minimum timestamp for requested logs. | 
-**Timezone** | Pointer to **string** | Timezone can be specified both as an offset (for example \&quot;UTC+03:00\&quot;) or a regional zone (for example \&quot;Europe/Paris\&quot;). | [optional] 
-**To** | **time.Time** | Maximum timestamp for requested logs. | 
+| Name         | Type                  | Description                                                                                                                                    | Notes      |
+| ------------ | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **From**     | **time.Time**         | Minimum timestamp for requested logs.                                                                                                          |
+| **Timezone** | Pointer to **string** | Timezone can be specified both as an offset (for example \&quot;UTC+03:00\&quot;) or a regional zone (for example \&quot;Europe/Paris\&quot;). | [optional] |
+| **To**       | **time.Time**         | Maximum timestamp for requested logs.                                                                                                          |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsListRequestTime) SetFrom(v time.Time)`
 
 SetFrom sets From field to given value.
-
 
 ### GetTimezone
 
@@ -91,8 +90,4 @@ and a boolean to check if the value has been set.
 
 SetTo sets To field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

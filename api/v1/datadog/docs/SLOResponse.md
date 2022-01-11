@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**SLOResponseData**](SLOResponseData.md) |  | [optional] 
-**Errors** | Pointer to **[]string** | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] 
+| Name       | Type                                                 | Description                                                                         | Notes      |
+| ---------- | ---------------------------------------------------- | ----------------------------------------------------------------------------------- | ---------- |
+| **Data**   | Pointer to [**SLOResponseData**](SLOResponseData.md) |                                                                                     | [optional] |
+| **Errors** | Pointer to **[]string**                              | An array of error messages. Each endpoint documents how/whether this field is used. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetErrors sets Errors field to given value.
 
 HasErrors returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

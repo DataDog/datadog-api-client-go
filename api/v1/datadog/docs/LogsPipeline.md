@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the pipeline. | [optional] [readonly] 
-**IsEnabled** | Pointer to **bool** | Whether or not the pipeline is enabled. | [optional] 
-**IsReadOnly** | Pointer to **bool** | Whether or not the pipeline can be edited. | [optional] [readonly] 
-**Name** | **string** | Name of the pipeline. | 
-**Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional] 
-**Type** | Pointer to **string** | Type of pipeline. | [optional] [readonly] 
+| Name           | Type                                               | Description                                  | Notes                 |
+| -------------- | -------------------------------------------------- | -------------------------------------------- | --------------------- |
+| **Filter**     | Pointer to [**LogsFilter**](LogsFilter.md)         |                                              | [optional]            |
+| **Id**         | Pointer to **string**                              | ID of the pipeline.                          | [optional] [readonly] |
+| **IsEnabled**  | Pointer to **bool**                                | Whether or not the pipeline is enabled.      | [optional]            |
+| **IsReadOnly** | Pointer to **bool**                                | Whether or not the pipeline can be edited.   | [optional] [readonly] |
+| **Name**       | **string**                                         | Name of the pipeline.                        |
+| **Processors** | Pointer to [**[]LogsProcessor**](LogsProcessor.md) | Ordered list of processors in this pipeline. | [optional]            |
+| **Type**       | Pointer to **string**                              | Type of pipeline.                            | [optional] [readonly] |
 
 ## Methods
 
@@ -150,7 +150,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetProcessors
 
 `func (o *LogsPipeline) GetProcessors() []LogsProcessor`
@@ -201,7 +200,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

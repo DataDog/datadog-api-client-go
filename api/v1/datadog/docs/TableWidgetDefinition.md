@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |  | [optional] 
-**Requests** | [**[]TableWidgetRequest**](TableWidgetRequest.md) | Widget definition. | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**TableWidgetDefinitionType**](TableWidgetDefinitionType.md) |  | [default to TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE]
+| Name             | Type                                                                 | Description           | Notes                                              |
+| ---------------- | -------------------------------------------------------------------- | --------------------- | -------------------------------------------------- |
+| **CustomLinks**  | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)             | List of custom links. | [optional]                                         |
+| **HasSearchBar** | Pointer to [**TableWidgetHasSearchBar**](TableWidgetHasSearchBar.md) |                       | [optional]                                         |
+| **Requests**     | [**[]TableWidgetRequest**](TableWidgetRequest.md)                    | Widget definition.    |
+| **Time**         | Pointer to [**WidgetTime**](WidgetTime.md)                           |                       | [optional]                                         |
+| **Title**        | Pointer to **string**                                                | Title of your widget. | [optional]                                         |
+| **TitleAlign**   | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                 |                       | [optional]                                         |
+| **TitleSize**    | Pointer to **string**                                                | Size of the title.    | [optional]                                         |
+| **Type**         | [**TableWidgetDefinitionType**](TableWidgetDefinitionType.md)        |                       | [default to TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE] |
 
 ## Methods
 
@@ -100,7 +100,6 @@ and a boolean to check if the value has been set.
 `func (o *TableWidgetDefinition) SetRequests(v []TableWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTime
 
@@ -221,8 +220,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

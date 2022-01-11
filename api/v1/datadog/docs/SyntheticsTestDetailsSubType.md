@@ -2,24 +2,20 @@
 
 ## Enum
 
+- `HTTP` (value: `"http"`)
 
-* `HTTP` (value: `"http"`)
+- `SSL` (value: `"ssl"`)
 
-* `SSL` (value: `"ssl"`)
+- `TCP` (value: `"tcp"`)
 
-* `TCP` (value: `"tcp"`)
+- `DNS` (value: `"dns"`)
 
-* `DNS` (value: `"dns"`)
+- `MULTI` (value: `"multi"`)
 
-* `MULTI` (value: `"multi"`)
+- `ICMP` (value: `"icmp"`)
 
-* `ICMP` (value: `"icmp"`)
+- `UDP` (value: `"udp"`)
 
-* `UDP` (value: `"udp"`)
-
-* `WEBSOCKET` (value: `"websocket"`)
-
+- `WEBSOCKET` (value: `"websocket"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

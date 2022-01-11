@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Dashboards** | Pointer to [**[]DashboardListItemRequest**](DashboardListItemRequest.md) | List of dashboards to add the dashboard list. | [optional] 
+| Name           | Type                                                                     | Description                                   | Notes      |
+| -------------- | ------------------------------------------------------------------------ | --------------------------------------------- | ---------- |
+| **Dashboards** | Pointer to [**[]DashboardListItemRequest**](DashboardListItemRequest.md) | List of dashboards to add the dashboard list. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDashboards sets Dashboards field to given value.
 
 HasDashboards returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

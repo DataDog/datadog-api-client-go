@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**OrgName** | Pointer to **string** | The name of the organization. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**TagConfigSource** | Pointer to **string** | The source of the usage attribution tag configuration and the selected tags in the format of &#x60;&lt;source_org_name&gt;:::&lt;selected tag 1&gt;///&lt;selected tag 2&gt;///&lt;selected tag 3&gt;&#x60;. | [optional] 
-**Tags** | Pointer to **map[string][]string** | Usage Summary by tag name. | [optional] 
-**TotalUsageSum** | Pointer to **float64** | Total product usage for the given tags within the hour. | [optional] 
-**UpdatedAt** | Pointer to **string** | Shows the most recent hour in the current month for all organizations where usages are calculated. | [optional] 
-**UsageType** | Pointer to [**HourlyUsageAttributionUsageType**](HourlyUsageAttributionUsageType.md) |  | [optional] 
+| Name                | Type                                                                                 | Description                                                                                                                                                                                                  | Notes      |
+| ------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| **Hour**            | Pointer to **time.Time**                                                             | The hour for the usage.                                                                                                                                                                                      | [optional] |
+| **OrgName**         | Pointer to **string**                                                                | The name of the organization.                                                                                                                                                                                | [optional] |
+| **PublicId**        | Pointer to **string**                                                                | The organization public ID.                                                                                                                                                                                  | [optional] |
+| **TagConfigSource** | Pointer to **string**                                                                | The source of the usage attribution tag configuration and the selected tags in the format of &#x60;&lt;source_org_name&gt;:::&lt;selected tag 1&gt;///&lt;selected tag 2&gt;///&lt;selected tag 3&gt;&#x60;. | [optional] |
+| **Tags**            | Pointer to **map[string][]string**                                                   | Usage Summary by tag name.                                                                                                                                                                                   | [optional] |
+| **TotalUsageSum**   | Pointer to **float64**                                                               | Total product usage for the given tags within the hour.                                                                                                                                                      | [optional] |
+| **UpdatedAt**       | Pointer to **string**                                                                | Shows the most recent hour in the current month for all organizations where usages are calculated.                                                                                                           | [optional] |
+| **UsageType**       | Pointer to [**HourlyUsageAttributionUsageType**](HourlyUsageAttributionUsageType.md) |                                                                                                                                                                                                              | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetUsageType sets UsageType field to given value.
 
 HasUsageType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | **[]string** | Array of source attributes. | [default to ["network.client.ip"]]
-**Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]
-**Type** | [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |  | [default to LOGSGEOIPPARSERTYPE_GEO_IP_PARSER]
+| Name          | Type                                              | Description                                                                                        | Notes                                          |
+| ------------- | ------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| **IsEnabled** | Pointer to **bool**                               | Whether or not the processor is enabled.                                                           | [optional] [default to false]                  |
+| **Name**      | Pointer to **string**                             | Name of the processor.                                                                             | [optional]                                     |
+| **Sources**   | **[]string**                                      | Array of source attributes.                                                                        | [default to ["network.client.ip"]]             |
+| **Target**    | **string**                                        | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "network.client.geoip"]            |
+| **Type**      | [**LogsGeoIPParserType**](LogsGeoIPParserType.md) |                                                                                                    | [default to LOGSGEOIPPARSERTYPE_GEO_IP_PARSER] |
 
 ## Methods
 
@@ -98,7 +98,6 @@ and a boolean to check if the value has been set.
 
 SetSources sets Sources field to given value.
 
-
 ### GetTarget
 
 `func (o *LogsGeoIPParser) GetTarget() string`
@@ -117,7 +116,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsGeoIPParser) SetTarget(v string)`
 
 SetTarget sets Target field to given value.
-
 
 ### GetType
 
@@ -138,8 +136,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

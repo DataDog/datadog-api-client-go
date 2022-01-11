@@ -2,22 +2,22 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aliases** | Pointer to **[]string** | Host aliases collected by Datadog. | [optional] 
-**Apps** | Pointer to **[]string** | The Datadog integrations reporting metrics for the host. | [optional] 
-**AwsName** | Pointer to **string** | AWS name of your host. | [optional] 
-**HostName** | Pointer to **string** | The host name. | [optional] 
-**Id** | Pointer to **int64** | The host ID. | [optional] 
-**IsMuted** | Pointer to **bool** | If a host is muted or unmuted. | [optional] 
-**LastReportedTime** | Pointer to **int64** | Last time the host reported a metric data point. | [optional] 
-**Meta** | Pointer to [**HostMeta**](HostMeta.md) |  | [optional] 
-**Metrics** | Pointer to [**HostMetrics**](HostMetrics.md) |  | [optional] 
-**MuteTimeout** | Pointer to **int64** | Timeout of the mute applied to your host. | [optional] 
-**Name** | Pointer to **string** | The host name. | [optional] 
-**Sources** | Pointer to **[]string** | Source or cloud provider associated with your host. | [optional] 
-**TagsBySource** | Pointer to **map[string][]string** | List of tags for each source (AWS, Datadog Agent, Chef..). | [optional] 
-**Up** | Pointer to **bool** | Displays UP when the expected metrics are received and displays &#x60;???&#x60; if no metrics are received. | [optional] 
+| Name                 | Type                                         | Description                                                                                                 | Notes      |
+| -------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------- |
+| **Aliases**          | Pointer to **[]string**                      | Host aliases collected by Datadog.                                                                          | [optional] |
+| **Apps**             | Pointer to **[]string**                      | The Datadog integrations reporting metrics for the host.                                                    | [optional] |
+| **AwsName**          | Pointer to **string**                        | AWS name of your host.                                                                                      | [optional] |
+| **HostName**         | Pointer to **string**                        | The host name.                                                                                              | [optional] |
+| **Id**               | Pointer to **int64**                         | The host ID.                                                                                                | [optional] |
+| **IsMuted**          | Pointer to **bool**                          | If a host is muted or unmuted.                                                                              | [optional] |
+| **LastReportedTime** | Pointer to **int64**                         | Last time the host reported a metric data point.                                                            | [optional] |
+| **Meta**             | Pointer to [**HostMeta**](HostMeta.md)       |                                                                                                             | [optional] |
+| **Metrics**          | Pointer to [**HostMetrics**](HostMetrics.md) |                                                                                                             | [optional] |
+| **MuteTimeout**      | Pointer to **int64**                         | Timeout of the mute applied to your host.                                                                   | [optional] |
+| **Name**             | Pointer to **string**                        | The host name.                                                                                              | [optional] |
+| **Sources**          | Pointer to **[]string**                      | Source or cloud provider associated with your host.                                                         | [optional] |
+| **TagsBySource**     | Pointer to **map[string][]string**           | List of tags for each source (AWS, Datadog Agent, Chef..).                                                  | [optional] |
+| **Up**               | Pointer to **bool**                          | Displays UP when the expected metrics are received and displays &#x60;???&#x60; if no metrics are received. | [optional] |
 
 ## Methods
 
@@ -388,7 +388,4 @@ SetUp sets Up field to given value.
 
 HasUp returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Definition** | [**LogStreamWidgetDefinition**](LogStreamWidgetDefinition.md) |  | 
-**GraphSize** | Pointer to [**NotebookGraphSize**](NotebookGraphSize.md) |  | [optional] 
-**Time** | Pointer to [**NullableNotebookCellTime**](NotebookCellTime.md) |  | [optional] 
+| Name           | Type                                                           | Description | Notes      |
+| -------------- | -------------------------------------------------------------- | ----------- | ---------- |
+| **Definition** | [**LogStreamWidgetDefinition**](LogStreamWidgetDefinition.md)  |             |
+| **GraphSize**  | Pointer to [**NotebookGraphSize**](NotebookGraphSize.md)       |             | [optional] |
+| **Time**       | Pointer to [**NullableNotebookCellTime**](NotebookCellTime.md) |             | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookLogStreamCellAttributes) SetDefinition(v LogStreamWidgetDefinition)`
 
 SetDefinition sets Definition field to given value.
-
 
 ### GetGraphSize
 
@@ -101,13 +100,12 @@ HasTime returns a boolean if a field has been set.
 
 `func (o *NotebookLogStreamCellAttributes) SetTimeNil(b bool)`
 
- SetTimeNil sets the value for Time to be an explicit nil
+SetTimeNil sets the value for Time to be an explicit nil
 
 ### UnsetTime
+
 `func (o *NotebookLogStreamCellAttributes) UnsetTime()`
 
 UnsetTime ensures that no value is present for Time, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

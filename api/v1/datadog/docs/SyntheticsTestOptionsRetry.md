@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Count** | Pointer to **int64** | Number of times a test needs to be retried before marking a location as failed. Defaults to 0. | [optional] 
-**Interval** | Pointer to **float64** | Time interval between retries (in milliseconds). Defaults to 300ms. | [optional] 
+| Name         | Type                   | Description                                                                                    | Notes      |
+| ------------ | ---------------------- | ---------------------------------------------------------------------------------------------- | ---------- |
+| **Count**    | Pointer to **int64**   | Number of times a test needs to be retried before marking a location as failed. Defaults to 0. | [optional] |
+| **Interval** | Pointer to **float64** | Time interval between retries (in milliseconds). Defaults to 300ms.                            | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetInterval sets Interval field to given value.
 
 HasInterval returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

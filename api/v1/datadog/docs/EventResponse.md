@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Event** | Pointer to [**Event**](Event.md) |  | [optional] 
-**Status** | Pointer to **string** | A status. | [optional] 
+| Name       | Type                             | Description | Notes      |
+| ---------- | -------------------------------- | ----------- | ---------- |
+| **Event**  | Pointer to [**Event**](Event.md) |             | [optional] |
+| **Status** | Pointer to **string**            | A status.   | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

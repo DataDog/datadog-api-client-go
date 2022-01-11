@@ -2,48 +2,48 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ApiPercentage** | Pointer to **float64** | The percentage of synthetic API test usage by tag(s). | [optional] 
-**ApiUsage** | Pointer to **float64** | The synthetic API test usage by tag(s). | [optional] 
-**ApmHostPercentage** | Pointer to **float64** | The percentage of APM host usage by tag(s). | [optional] 
-**ApmHostUsage** | Pointer to **float64** | The APM host usage by tag(s). | [optional] 
-**BrowserPercentage** | Pointer to **float64** | The percentage of synthetic browser test usage by tag(s). | [optional] 
-**BrowserUsage** | Pointer to **float64** | The synthetic browser test usage by tag(s). | [optional] 
-**ContainerPercentage** | Pointer to **float64** | The percentage of container usage by tag(s). | [optional] 
-**ContainerUsage** | Pointer to **float64** | The container usage by tag(s). | [optional] 
-**CspmContainerPercentage** | Pointer to **float64** | The percentage of Cloud Security Posture Management container usage by tag(s) | [optional] 
-**CspmContainerUsage** | Pointer to **float64** | The Cloud Security Posture Management container usage by tag(s) | [optional] 
-**CspmHostPercentage** | Pointer to **float64** | The percentage of Cloud Security Posture Management host usage by tag(s) | [optional] 
-**CspmHostUsage** | Pointer to **float64** | The Cloud Security Posture Management host usage by tag(s) | [optional] 
-**CustomTimeseriesPercentage** | Pointer to **float64** | The percentage of custom metrics usage by tag(s). | [optional] 
-**CustomTimeseriesUsage** | Pointer to **float64** | The custom metrics usage by tag(s). | [optional] 
-**CwsContainerPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security container usage by tag(s) | [optional] 
-**CwsContainerUsage** | Pointer to **float64** | The Cloud Workload Security container usage by tag(s) | [optional] 
-**CwsHostPercentage** | Pointer to **float64** | The percentage of Cloud Workload Security host usage by tag(s) | [optional] 
-**CwsHostUsage** | Pointer to **float64** | The Cloud Workload Security host usage by tag(s) | [optional] 
-**DbmHostsPercentage** | Pointer to **float64** | The percentage of Database Monitoring host usage by tag(s). | [optional] 
-**DbmHostsUsage** | Pointer to **float64** | The Database Monitoring host usage by tag(s). | [optional] 
-**DbmQueriesPercentage** | Pointer to **float64** | The percentage of Database Monitoring normalized queries usage by tag(s). | [optional] 
-**DbmQueriesUsage** | Pointer to **float64** | The Database Monitoring normalized queries usage by tag(s). | [optional] 
-**EstimatedIndexedLogsPercentage** | Pointer to **float64** | The percentage of estimated live indexed logs usage by tag(s). Note this field is in private beta. | [optional] 
-**EstimatedIndexedLogsUsage** | Pointer to **float64** | The estimated live indexed logs usage by tag(s). Note this field is in private beta. | [optional] 
-**InfraHostPercentage** | Pointer to **float64** | The percentage of infrastructure host usage by tag(s). | [optional] 
-**InfraHostUsage** | Pointer to **float64** | The infrastructure host usage by tag(s). | [optional] 
-**LambdaFunctionsPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s). | [optional] 
-**LambdaFunctionsUsage** | Pointer to **float64** | The Lambda function usage by tag(s). | [optional] 
-**LambdaInvocationsPercentage** | Pointer to **float64** | The percentage of Lambda invocation usage by tag(s). | [optional] 
-**LambdaInvocationsUsage** | Pointer to **float64** | The Lambda invocation usage by tag(s). | [optional] 
-**LambdaPercentage** | Pointer to **float64** | The percentage of Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_percentage instead. | [optional] 
-**LambdaUsage** | Pointer to **float64** | The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead. | [optional] 
-**NpmHostPercentage** | Pointer to **float64** | The percentage of network host usage by tag(s). | [optional] 
-**NpmHostUsage** | Pointer to **float64** | The network host usage by tag(s). | [optional] 
-**ProfiledContainerPercentage** | Pointer to **float64** | The percentage of profiled containers usage by tag(s). | [optional] 
-**ProfiledContainerUsage** | Pointer to **float64** | The profiled container usage by tag(s). | [optional] 
-**ProfiledHostsPercentage** | Pointer to **float64** | The percentage of profiled hosts usage by tag(s). | [optional] 
-**ProfiledHostsUsage** | Pointer to **float64** | The profiled host usage by tag(s). | [optional] 
-**SnmpPercentage** | Pointer to **float64** | The percentage of network device usage by tag(s). | [optional] 
-**SnmpUsage** | Pointer to **float64** | The network device usage by tag(s). | [optional] 
+| Name                               | Type                   | Description                                                                                                                    | Notes      |
+| ---------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| **ApiPercentage**                  | Pointer to **float64** | The percentage of synthetic API test usage by tag(s).                                                                          | [optional] |
+| **ApiUsage**                       | Pointer to **float64** | The synthetic API test usage by tag(s).                                                                                        | [optional] |
+| **ApmHostPercentage**              | Pointer to **float64** | The percentage of APM host usage by tag(s).                                                                                    | [optional] |
+| **ApmHostUsage**                   | Pointer to **float64** | The APM host usage by tag(s).                                                                                                  | [optional] |
+| **BrowserPercentage**              | Pointer to **float64** | The percentage of synthetic browser test usage by tag(s).                                                                      | [optional] |
+| **BrowserUsage**                   | Pointer to **float64** | The synthetic browser test usage by tag(s).                                                                                    | [optional] |
+| **ContainerPercentage**            | Pointer to **float64** | The percentage of container usage by tag(s).                                                                                   | [optional] |
+| **ContainerUsage**                 | Pointer to **float64** | The container usage by tag(s).                                                                                                 | [optional] |
+| **CspmContainerPercentage**        | Pointer to **float64** | The percentage of Cloud Security Posture Management container usage by tag(s)                                                  | [optional] |
+| **CspmContainerUsage**             | Pointer to **float64** | The Cloud Security Posture Management container usage by tag(s)                                                                | [optional] |
+| **CspmHostPercentage**             | Pointer to **float64** | The percentage of Cloud Security Posture Management host usage by tag(s)                                                       | [optional] |
+| **CspmHostUsage**                  | Pointer to **float64** | The Cloud Security Posture Management host usage by tag(s)                                                                     | [optional] |
+| **CustomTimeseriesPercentage**     | Pointer to **float64** | The percentage of custom metrics usage by tag(s).                                                                              | [optional] |
+| **CustomTimeseriesUsage**          | Pointer to **float64** | The custom metrics usage by tag(s).                                                                                            | [optional] |
+| **CwsContainerPercentage**         | Pointer to **float64** | The percentage of Cloud Workload Security container usage by tag(s)                                                            | [optional] |
+| **CwsContainerUsage**              | Pointer to **float64** | The Cloud Workload Security container usage by tag(s)                                                                          | [optional] |
+| **CwsHostPercentage**              | Pointer to **float64** | The percentage of Cloud Workload Security host usage by tag(s)                                                                 | [optional] |
+| **CwsHostUsage**                   | Pointer to **float64** | The Cloud Workload Security host usage by tag(s)                                                                               | [optional] |
+| **DbmHostsPercentage**             | Pointer to **float64** | The percentage of Database Monitoring host usage by tag(s).                                                                    | [optional] |
+| **DbmHostsUsage**                  | Pointer to **float64** | The Database Monitoring host usage by tag(s).                                                                                  | [optional] |
+| **DbmQueriesPercentage**           | Pointer to **float64** | The percentage of Database Monitoring normalized queries usage by tag(s).                                                      | [optional] |
+| **DbmQueriesUsage**                | Pointer to **float64** | The Database Monitoring normalized queries usage by tag(s).                                                                    | [optional] |
+| **EstimatedIndexedLogsPercentage** | Pointer to **float64** | The percentage of estimated live indexed logs usage by tag(s). Note this field is in private beta.                             | [optional] |
+| **EstimatedIndexedLogsUsage**      | Pointer to **float64** | The estimated live indexed logs usage by tag(s). Note this field is in private beta.                                           | [optional] |
+| **InfraHostPercentage**            | Pointer to **float64** | The percentage of infrastructure host usage by tag(s).                                                                         | [optional] |
+| **InfraHostUsage**                 | Pointer to **float64** | The infrastructure host usage by tag(s).                                                                                       | [optional] |
+| **LambdaFunctionsPercentage**      | Pointer to **float64** | The percentage of Lambda function usage by tag(s).                                                                             | [optional] |
+| **LambdaFunctionsUsage**           | Pointer to **float64** | The Lambda function usage by tag(s).                                                                                           | [optional] |
+| **LambdaInvocationsPercentage**    | Pointer to **float64** | The percentage of Lambda invocation usage by tag(s).                                                                           | [optional] |
+| **LambdaInvocationsUsage**         | Pointer to **float64** | The Lambda invocation usage by tag(s).                                                                                         | [optional] |
+| **LambdaPercentage**               | Pointer to **float64** | The percentage of Lambda function usage by tag(s). **Note** this field is deprecated. Use lambda_functions_percentage instead. | [optional] |
+| **LambdaUsage**                    | Pointer to **float64** | The Lambda function usage by tag(s). **Note** this field is deprecated. Use lambda_functions_usage instead.                    | [optional] |
+| **NpmHostPercentage**              | Pointer to **float64** | The percentage of network host usage by tag(s).                                                                                | [optional] |
+| **NpmHostUsage**                   | Pointer to **float64** | The network host usage by tag(s).                                                                                              | [optional] |
+| **ProfiledContainerPercentage**    | Pointer to **float64** | The percentage of profiled containers usage by tag(s).                                                                         | [optional] |
+| **ProfiledContainerUsage**         | Pointer to **float64** | The profiled container usage by tag(s).                                                                                        | [optional] |
+| **ProfiledHostsPercentage**        | Pointer to **float64** | The percentage of profiled hosts usage by tag(s).                                                                              | [optional] |
+| **ProfiledHostsUsage**             | Pointer to **float64** | The profiled host usage by tag(s).                                                                                             | [optional] |
+| **SnmpPercentage**                 | Pointer to **float64** | The percentage of network device usage by tag(s).                                                                              | [optional] |
+| **SnmpUsage**                      | Pointer to **float64** | The network device usage by tag(s).                                                                                            | [optional] |
 
 ## Methods
 
@@ -1064,7 +1064,4 @@ SetSnmpUsage sets SnmpUsage field to given value.
 
 HasSnmpUsage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

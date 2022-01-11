@@ -2,17 +2,15 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline) | **Post** /api/v1/logs/config/pipelines | Create a pipeline
-[**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline) | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline
-[**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline) | **Get** /api/v1/logs/config/pipelines/{pipeline_id} | Get a pipeline
-[**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder) | **Get** /api/v1/logs/config/pipeline-order | Get pipeline order
-[**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines) | **Get** /api/v1/logs/config/pipelines | Get all pipelines
-[**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline) | **Put** /api/v1/logs/config/pipelines/{pipeline_id} | Update a pipeline
-[**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order | Update pipeline order
-
-
+| Method                                                                     | HTTP request                                           | Description           |
+| -------------------------------------------------------------------------- | ------------------------------------------------------ | --------------------- |
+| [**CreateLogsPipeline**](LogsPipelinesApi.md#CreateLogsPipeline)           | **Post** /api/v1/logs/config/pipelines                 | Create a pipeline     |
+| [**DeleteLogsPipeline**](LogsPipelinesApi.md#DeleteLogsPipeline)           | **Delete** /api/v1/logs/config/pipelines/{pipeline_id} | Delete a pipeline     |
+| [**GetLogsPipeline**](LogsPipelinesApi.md#GetLogsPipeline)                 | **Get** /api/v1/logs/config/pipelines/{pipeline_id}    | Get a pipeline        |
+| [**GetLogsPipelineOrder**](LogsPipelinesApi.md#GetLogsPipelineOrder)       | **Get** /api/v1/logs/config/pipeline-order             | Get pipeline order    |
+| [**ListLogsPipelines**](LogsPipelinesApi.md#ListLogsPipelines)             | **Get** /api/v1/logs/config/pipelines                  | Get all pipelines     |
+| [**UpdateLogsPipeline**](LogsPipelinesApi.md#UpdateLogsPipeline)           | **Put** /api/v1/logs/config/pipelines/{pipeline_id}    | Update a pipeline     |
+| [**UpdateLogsPipelineOrder**](LogsPipelinesApi.md#UpdateLogsPipelineOrder) | **Put** /api/v1/logs/config/pipeline-order             | Update pipeline order |
 
 ## CreateLogsPipeline
 
@@ -54,17 +52,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsPipeline**](LogsPipeline.md) | Definition of the new pipeline. | 
-
+| Name     | Type                                | Description                                                                 | Notes |
+| -------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsPipeline**](LogsPipeline.md) | Definition of the new pipeline.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -82,7 +77,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteLogsPipeline
 
@@ -121,21 +115,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**pipelineId** | **string** | ID of the pipeline to delete. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **pipelineId** | **string**          | ID of the pipeline to delete.                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -149,7 +140,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsPipeline
 
@@ -192,17 +182,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**pipelineId** | **string** | ID of the pipeline to get. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **pipelineId** | **string**          | ID of the pipeline to get.                                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -220,7 +207,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsPipelineOrder
 
@@ -264,11 +250,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -286,7 +270,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListLogsPipelines
 
@@ -330,11 +313,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -352,7 +333,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsPipeline
 
@@ -398,18 +378,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**pipelineId** | **string** | ID of the pipeline to delete. |  |
-**body** | [**LogsPipeline**](LogsPipeline.md) | New definition of the pipeline. | 
-
+| Name           | Type                                | Description                                                                 | Notes |
+| -------------- | ----------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **pipelineId** | **string**                          | ID of the pipeline to delete.                                               |       |
+| **body**       | [**LogsPipeline**](LogsPipeline.md) | New definition of the pipeline.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -427,7 +404,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsPipelineOrder
 
@@ -473,17 +449,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md) | Object containing the new ordered list of pipeline IDs. | 
-
+| Name     | Type                                            | Description                                                                 | Notes |
+| -------- | ----------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsPipelinesOrder**](LogsPipelinesOrder.md) | Object containing the new ordered list of pipeline IDs.                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -501,4 +474,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Detail** | Pointer to **string** | Error message. | [optional] 
-**Status** | Pointer to **string** | Error code. | [optional] 
-**Title** | Pointer to **string** | Error title. | [optional] 
+| Name       | Type                  | Description    | Notes      |
+| ---------- | --------------------- | -------------- | ---------- |
+| **Detail** | Pointer to **string** | Error message. | [optional] |
+| **Status** | Pointer to **string** | Error code.    | [optional] |
+| **Title**  | Pointer to **string** | Error title.   | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

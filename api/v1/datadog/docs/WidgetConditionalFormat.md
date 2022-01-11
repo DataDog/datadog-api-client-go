@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Comparator** | [**WidgetComparator**](WidgetComparator.md) |  | 
-**CustomBgColor** | Pointer to **string** | Color palette to apply to the background, same values available as palette. | [optional] 
-**CustomFgColor** | Pointer to **string** | Color palette to apply to the foreground, same values available as palette. | [optional] 
-**HideValue** | Pointer to **bool** | True hides values. | [optional] 
-**ImageUrl** | Pointer to **string** | Displays an image as the background. | [optional] 
-**Metric** | Pointer to **string** | Metric from the request to correlate this conditional format with. | [optional] 
-**Palette** | [**WidgetPalette**](WidgetPalette.md) |  | 
-**Timeframe** | Pointer to **string** | Defines the displayed timeframe. | [optional] 
-**Value** | **float64** | Value for the comparator. | 
+| Name              | Type                                        | Description                                                                 | Notes      |
+| ----------------- | ------------------------------------------- | --------------------------------------------------------------------------- | ---------- |
+| **Comparator**    | [**WidgetComparator**](WidgetComparator.md) |                                                                             |
+| **CustomBgColor** | Pointer to **string**                       | Color palette to apply to the background, same values available as palette. | [optional] |
+| **CustomFgColor** | Pointer to **string**                       | Color palette to apply to the foreground, same values available as palette. | [optional] |
+| **HideValue**     | Pointer to **bool**                         | True hides values.                                                          | [optional] |
+| **ImageUrl**      | Pointer to **string**                       | Displays an image as the background.                                        | [optional] |
+| **Metric**        | Pointer to **string**                       | Metric from the request to correlate this conditional format with.          | [optional] |
+| **Palette**       | [**WidgetPalette**](WidgetPalette.md)       |                                                                             |
+| **Timeframe**     | Pointer to **string**                       | Defines the displayed timeframe.                                            | [optional] |
+| **Value**         | **float64**                                 | Value for the comparator.                                                   |
 
 ## Methods
 
@@ -51,7 +51,6 @@ and a boolean to check if the value has been set.
 `func (o *WidgetConditionalFormat) SetComparator(v WidgetComparator)`
 
 SetComparator sets Comparator field to given value.
-
 
 ### GetCustomBgColor
 
@@ -197,7 +196,6 @@ and a boolean to check if the value has been set.
 
 SetPalette sets Palette field to given value.
 
-
 ### GetTimeframe
 
 `func (o *WidgetConditionalFormat) GetTimeframe() string`
@@ -242,8 +240,4 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

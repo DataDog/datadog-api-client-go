@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Check** | Pointer to [**SyntheticsBrowserTestResultFullCheck**](SyntheticsBrowserTestResultFullCheck.md) |  | [optional] 
-**CheckTime** | Pointer to **float64** | When the browser test was conducted. | [optional] 
-**CheckVersion** | Pointer to **int64** | Version of the browser test used. | [optional] 
-**ProbeDc** | Pointer to **string** | Location from which the browser test was performed. | [optional] 
-**Result** | Pointer to [**SyntheticsBrowserTestResultData**](SyntheticsBrowserTestResultData.md) |  | [optional] 
-**ResultId** | Pointer to **string** | ID of the browser test result. | [optional] 
-**Status** | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md) |  | [optional] 
+| Name             | Type                                                                                           | Description                                         | Notes      |
+| ---------------- | ---------------------------------------------------------------------------------------------- | --------------------------------------------------- | ---------- |
+| **Check**        | Pointer to [**SyntheticsBrowserTestResultFullCheck**](SyntheticsBrowserTestResultFullCheck.md) |                                                     | [optional] |
+| **CheckTime**    | Pointer to **float64**                                                                         | When the browser test was conducted.                | [optional] |
+| **CheckVersion** | Pointer to **int64**                                                                           | Version of the browser test used.                   | [optional] |
+| **ProbeDc**      | Pointer to **string**                                                                          | Location from which the browser test was performed. | [optional] |
+| **Result**       | Pointer to [**SyntheticsBrowserTestResultData**](SyntheticsBrowserTestResultData.md)           |                                                     | [optional] |
+| **ResultId**     | Pointer to **string**                                                                          | ID of the browser test result.                      | [optional] |
+| **Status**       | Pointer to [**SyntheticsTestMonitorStatus**](SyntheticsTestMonitorStatus.md)                   |                                                     | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

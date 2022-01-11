@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LegendSize** | Pointer to **string** | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional] 
-**Requests** | [**[]ListStreamWidgetRequest**](ListStreamWidgetRequest.md) | Request payload used to query items. | 
-**ShowLegend** | Pointer to **bool** | Whether or not to display the legend on this widget. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ListStreamWidgetDefinitionType**](ListStreamWidgetDefinitionType.md) |  | [default to LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM]
+| Name           | Type                                                                    | Description                                                                                                                                                        | Notes                                                   |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------- |
+| **LegendSize** | Pointer to **string**                                                   | Available legend sizes for a widget. Should be one of \&quot;0\&quot;, \&quot;2\&quot;, \&quot;4\&quot;, \&quot;8\&quot;, \&quot;16\&quot;, or \&quot;auto\&quot;. | [optional]                                              |
+| **Requests**   | [**[]ListStreamWidgetRequest**](ListStreamWidgetRequest.md)             | Request payload used to query items.                                                                                                                               |
+| **ShowLegend** | Pointer to **bool**                                                     | Whether or not to display the legend on this widget.                                                                                                               | [optional]                                              |
+| **Time**       | Pointer to [**WidgetTime**](WidgetTime.md)                              |                                                                                                                                                                    | [optional]                                              |
+| **Title**      | Pointer to **string**                                                   | Title of the widget.                                                                                                                                               | [optional]                                              |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                                                                                                                    | [optional]                                              |
+| **TitleSize**  | Pointer to **string**                                                   | Size of the title.                                                                                                                                                 | [optional]                                              |
+| **Type**       | [**ListStreamWidgetDefinitionType**](ListStreamWidgetDefinitionType.md) |                                                                                                                                                                    | [default to LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM] |
 
 ## Methods
 
@@ -75,7 +75,6 @@ and a boolean to check if the value has been set.
 `func (o *ListStreamWidgetDefinition) SetRequests(v []ListStreamWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetShowLegend
 
@@ -221,8 +220,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

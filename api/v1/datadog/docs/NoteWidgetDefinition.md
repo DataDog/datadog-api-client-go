@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BackgroundColor** | Pointer to **string** | Background color of the note. | [optional] 
-**Content** | **string** | Content of the note. | 
-**FontSize** | Pointer to **string** | Size of the text. | [optional] 
-**HasPadding** | Pointer to **bool** | Whether to add padding or not. | [optional] [default to true]
-**ShowTick** | Pointer to **bool** | Whether to show a tick or not. | [optional] 
-**TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TickEdge** | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md) |  | [optional] 
-**TickPos** | Pointer to **string** | Where to position the tick on an edge. | [optional] 
-**Type** | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md) |  | [default to NOTEWIDGETDEFINITIONTYPE_NOTE]
-**VerticalAlign** | Pointer to [**WidgetVerticalAlign**](WidgetVerticalAlign.md) |  | [optional] 
+| Name                | Type                                                         | Description                            | Notes                                      |
+| ------------------- | ------------------------------------------------------------ | -------------------------------------- | ------------------------------------------ |
+| **BackgroundColor** | Pointer to **string**                                        | Background color of the note.          | [optional]                                 |
+| **Content**         | **string**                                                   | Content of the note.                   |
+| **FontSize**        | Pointer to **string**                                        | Size of the text.                      | [optional]                                 |
+| **HasPadding**      | Pointer to **bool**                                          | Whether to add padding or not.         | [optional] [default to true]               |
+| **ShowTick**        | Pointer to **bool**                                          | Whether to show a tick or not.         | [optional]                                 |
+| **TextAlign**       | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)         |                                        | [optional]                                 |
+| **TickEdge**        | Pointer to [**WidgetTickEdge**](WidgetTickEdge.md)           |                                        | [optional]                                 |
+| **TickPos**         | Pointer to **string**                                        | Where to position the tick on an edge. | [optional]                                 |
+| **Type**            | [**NoteWidgetDefinitionType**](NoteWidgetDefinitionType.md)  |                                        | [default to NOTEWIDGETDEFINITIONTYPE_NOTE] |
+| **VerticalAlign**   | Pointer to [**WidgetVerticalAlign**](WidgetVerticalAlign.md) |                                        | [optional]                                 |
 
 ## Methods
 
@@ -77,7 +77,6 @@ and a boolean to check if the value has been set.
 `func (o *NoteWidgetDefinition) SetContent(v string)`
 
 SetContent sets Content field to given value.
-
 
 ### GetFontSize
 
@@ -248,7 +247,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetVerticalAlign
 
 `func (o *NoteWidgetDefinition) GetVerticalAlign() WidgetVerticalAlign`
@@ -274,7 +272,4 @@ SetVerticalAlign sets VerticalAlign field to given value.
 
 HasVerticalAlign returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

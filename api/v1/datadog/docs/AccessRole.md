@@ -2,16 +2,12 @@
 
 ## Enum
 
+- `STANDARD` (value: `"st"`)
 
-* `STANDARD` (value: `"st"`)
+- `ADMIN` (value: `"adm"`)
 
-* `ADMIN` (value: `"adm"`)
+- `READ_ONLY` (value: `"ro"`)
 
-* `READ_ONLY` (value: `"ro"`)
-
-* `ERROR` (value: `"ERROR"`)
-
+- `ERROR` (value: `"ERROR"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

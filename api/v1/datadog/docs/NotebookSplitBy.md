@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Keys** | **[]string** | Keys to split on. | 
-**Tags** | **[]string** | Tags to split on. | 
+| Name     | Type         | Description       | Notes |
+| -------- | ------------ | ----------------- | ----- |
+| **Keys** | **[]string** | Keys to split on. |
+| **Tags** | **[]string** | Tags to split on. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetKeys sets Keys field to given value.
 
-
 ### GetTags
 
 `func (o *NotebookSplitBy) GetTags() []string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

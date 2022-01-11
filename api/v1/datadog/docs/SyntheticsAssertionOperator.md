@@ -2,34 +2,30 @@
 
 ## Enum
 
+- `CONTAINS` (value: `"contains"`)
 
-* `CONTAINS` (value: `"contains"`)
+- `DOES_NOT_CONTAIN` (value: `"doesNotContain"`)
 
-* `DOES_NOT_CONTAIN` (value: `"doesNotContain"`)
+- `IS` (value: `"is"`)
 
-* `IS` (value: `"is"`)
+- `IS_NOT` (value: `"isNot"`)
 
-* `IS_NOT` (value: `"isNot"`)
+- `LESS_THAN` (value: `"lessThan"`)
 
-* `LESS_THAN` (value: `"lessThan"`)
+- `LESS_THAN_OR_EQUAL` (value: `"lessThanOrEqual"`)
 
-* `LESS_THAN_OR_EQUAL` (value: `"lessThanOrEqual"`)
+- `MORE_THAN` (value: `"moreThan"`)
 
-* `MORE_THAN` (value: `"moreThan"`)
+- `MORE_THAN_OR_EQUAL` (value: `"moreThanOrEqual"`)
 
-* `MORE_THAN_OR_EQUAL` (value: `"moreThanOrEqual"`)
+- `MATCHES` (value: `"matches"`)
 
-* `MATCHES` (value: `"matches"`)
+- `DOES_NOT_MATCH` (value: `"doesNotMatch"`)
 
-* `DOES_NOT_MATCH` (value: `"doesNotMatch"`)
+- `VALIDATES` (value: `"validates"`)
 
-* `VALIDATES` (value: `"validates"`)
+- `IS_IN_MORE_DAYS_THAN` (value: `"isInMoreThan"`)
 
-* `IS_IN_MORE_DAYS_THAN` (value: `"isInMoreThan"`)
-
-* `IS_IN_LESS_DAYS_THAN` (value: `"isInLessThan"`)
-
+- `IS_IN_LESS_DAYS_THAN` (value: `"isInLessThan"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

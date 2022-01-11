@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**NumCustomInputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are inputs for aggregations (metric configured is custom). | [optional] 
-**NumCustomOutputTimeseries** | Pointer to **int64** | Contains the number of custom metrics that are outputs for aggregations (metric configured is custom). | [optional] 
-**NumCustomTimeseries** | Pointer to **int64** | Contains sum of non-aggregation custom metrics and custom metrics that are outputs for aggregations. | [optional] 
+| Name                          | Type                     | Description                                                                                            | Notes      |
+| ----------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------ | ---------- |
+| **Hour**                      | Pointer to **time.Time** | The hour for the usage.                                                                                | [optional] |
+| **NumCustomInputTimeseries**  | Pointer to **int64**     | Contains the number of custom metrics that are inputs for aggregations (metric configured is custom).  | [optional] |
+| **NumCustomOutputTimeseries** | Pointer to **int64**     | Contains the number of custom metrics that are outputs for aggregations (metric configured is custom). | [optional] |
+| **NumCustomTimeseries**       | Pointer to **int64**     | Contains sum of non-aggregation custom metrics and custom metrics that are outputs for aggregations.   | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetNumCustomTimeseries sets NumCustomTimeseries field to given value.
 
 HasNumCustomTimeseries returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

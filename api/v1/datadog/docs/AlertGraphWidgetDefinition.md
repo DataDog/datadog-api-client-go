@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AlertId** | **string** | ID of the alert to use in the widget. | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | The title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**AlertGraphWidgetDefinitionType**](AlertGraphWidgetDefinitionType.md) |  | [default to ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH]
-**VizType** | [**WidgetVizType**](WidgetVizType.md) |  | 
+| Name           | Type                                                                    | Description                           | Notes                                                   |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------- | ------------------------------------------------------- |
+| **AlertId**    | **string**                                                              | ID of the alert to use in the widget. |
+| **Time**       | Pointer to [**WidgetTime**](WidgetTime.md)                              |                                       | [optional]                                              |
+| **Title**      | Pointer to **string**                                                   | The title of the widget.              | [optional]                                              |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                       | [optional]                                              |
+| **TitleSize**  | Pointer to **string**                                                   | Size of the title.                    | [optional]                                              |
+| **Type**       | [**AlertGraphWidgetDefinitionType**](AlertGraphWidgetDefinitionType.md) |                                       | [default to ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH] |
+| **VizType**    | [**WidgetVizType**](WidgetVizType.md)                                   |                                       |
 
 ## Methods
 
@@ -49,7 +49,6 @@ and a boolean to check if the value has been set.
 `func (o *AlertGraphWidgetDefinition) SetAlertId(v string)`
 
 SetAlertId sets AlertId field to given value.
-
 
 ### GetTime
 
@@ -170,7 +169,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetVizType
 
 `func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType`
@@ -190,8 +188,4 @@ and a boolean to check if the value has been set.
 
 SetVizType sets VizType field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

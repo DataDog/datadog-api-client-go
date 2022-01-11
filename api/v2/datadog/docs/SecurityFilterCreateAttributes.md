@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ExclusionFilters** | [**[]SecurityFilterExclusionFilter**](SecurityFilterExclusionFilter.md) | Exclusion filters to exclude some logs from the security filter. | 
-**FilteredDataType** | [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md) |  | 
-**IsEnabled** | **bool** | Whether the security filter is enabled. | 
-**Name** | **string** | The name of the security filter. | 
-**Query** | **string** | The query of the security filter. | 
+| Name                 | Type                                                                    | Description                                                      | Notes |
+| -------------------- | ----------------------------------------------------------------------- | ---------------------------------------------------------------- | ----- |
+| **ExclusionFilters** | [**[]SecurityFilterExclusionFilter**](SecurityFilterExclusionFilter.md) | Exclusion filters to exclude some logs from the security filter. |
+| **FilteredDataType** | [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md) |                                                                  |
+| **IsEnabled**        | **bool**                                                                | Whether the security filter is enabled.                          |
+| **Name**             | **string**                                                              | The name of the security filter.                                 |
+| **Query**            | **string**                                                              | The query of the security filter.                                |
 
 ## Methods
 
@@ -48,7 +48,6 @@ and a boolean to check if the value has been set.
 
 SetExclusionFilters sets ExclusionFilters field to given value.
 
-
 ### GetFilteredDataType
 
 `func (o *SecurityFilterCreateAttributes) GetFilteredDataType() SecurityFilterFilteredDataType`
@@ -67,7 +66,6 @@ and a boolean to check if the value has been set.
 `func (o *SecurityFilterCreateAttributes) SetFilteredDataType(v SecurityFilterFilteredDataType)`
 
 SetFilteredDataType sets FilteredDataType field to given value.
-
 
 ### GetIsEnabled
 
@@ -88,7 +86,6 @@ and a boolean to check if the value has been set.
 
 SetIsEnabled sets IsEnabled field to given value.
 
-
 ### GetName
 
 `func (o *SecurityFilterCreateAttributes) GetName() string`
@@ -107,7 +104,6 @@ and a boolean to check if the value has been set.
 `func (o *SecurityFilterCreateAttributes) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetQuery
 
@@ -128,8 +124,4 @@ and a boolean to check if the value has been set.
 
 SetQuery sets Query field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

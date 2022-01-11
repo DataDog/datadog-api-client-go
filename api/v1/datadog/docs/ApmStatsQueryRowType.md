@@ -2,14 +2,10 @@
 
 ## Enum
 
+- `SERVICE` (value: `"service"`)
 
-* `SERVICE` (value: `"service"`)
+- `RESOURCE` (value: `"resource"`)
 
-* `RESOURCE` (value: `"resource"`)
-
-* `SPAN` (value: `"span"`)
-
+- `SPAN` (value: `"span"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,26 +2,26 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Created** | Pointer to **time.Time** | Timestamp when the incident was created. | [optional] [readonly] 
-**CustomerImpactDuration** | Pointer to **int64** | Length of the incident&#39;s customer impact in seconds. Equals the difference between &#x60;customer_impact_start&#x60; and &#x60;customer_impact_end&#x60;. | [optional] [readonly] 
-**CustomerImpactEnd** | Pointer to **NullableTime** | Timestamp when customers were no longer impacted by the incident. | [optional] 
-**CustomerImpactScope** | Pointer to **NullableString** | A summary of the impact customers experienced during the incident. | [optional] 
-**CustomerImpactStart** | Pointer to **NullableTime** | Timestamp when customers began being impacted by the incident. | [optional] 
-**CustomerImpacted** | Pointer to **bool** | A flag indicating whether the incident caused customer impact. | [optional] 
-**Detected** | Pointer to **NullableTime** | Timestamp when the incident was detected. | [optional] 
-**Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields attached to incidents. | [optional] 
-**Modified** | Pointer to **time.Time** | Timestamp when the incident was last modified. | [optional] [readonly] 
-**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident during update. | [optional] 
-**PostmortemId** | Pointer to **string** | The UUID of the postmortem object attached to the incident. | [optional] 
-**PublicId** | Pointer to **int64** | The monotonically increasing integer ID for the incident. | [optional] 
-**Resolved** | Pointer to **NullableTime** | Timestamp when the incident&#39;s state was set to resolved. | [optional] 
-**TimeToDetect** | Pointer to **int64** | The amount of time in seconds to detect the incident. Equals the difference between &#x60;customer_impact_start&#x60; and &#x60;detected&#x60;. | [optional] [readonly] 
-**TimeToInternalResponse** | Pointer to **int64** | The amount of time in seconds to call incident after detection. Equals the difference of &#x60;detected&#x60; and &#x60;created&#x60;. | [optional] [readonly] 
-**TimeToRepair** | Pointer to **int64** | The amount of time in seconds to resolve customer impact after detecting the issue. Equals the difference between &#x60;customer_impact_end&#x60; and &#x60;detected&#x60;. | [optional] [readonly] 
-**TimeToResolve** | Pointer to **int64** | The amount of time in seconds to resolve the incident after it was created. Equals the difference between &#x60;created&#x60; and &#x60;resolved&#x60;. | [optional] [readonly] 
-**Title** | **string** | The title of the incident, which summarizes what happened. | 
+| Name                       | Type                                                                            | Description                                                                                                                                                                 | Notes                 |
+| -------------------------- | ------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **Created**                | Pointer to **time.Time**                                                        | Timestamp when the incident was created.                                                                                                                                    | [optional] [readonly] |
+| **CustomerImpactDuration** | Pointer to **int64**                                                            | Length of the incident&#39;s customer impact in seconds. Equals the difference between &#x60;customer_impact_start&#x60; and &#x60;customer_impact_end&#x60;.               | [optional] [readonly] |
+| **CustomerImpactEnd**      | Pointer to **NullableTime**                                                     | Timestamp when customers were no longer impacted by the incident.                                                                                                           | [optional]            |
+| **CustomerImpactScope**    | Pointer to **NullableString**                                                   | A summary of the impact customers experienced during the incident.                                                                                                          | [optional]            |
+| **CustomerImpactStart**    | Pointer to **NullableTime**                                                     | Timestamp when customers began being impacted by the incident.                                                                                                              | [optional]            |
+| **CustomerImpacted**       | Pointer to **bool**                                                             | A flag indicating whether the incident caused customer impact.                                                                                                              | [optional]            |
+| **Detected**               | Pointer to **NullableTime**                                                     | Timestamp when the incident was detected.                                                                                                                                   | [optional]            |
+| **Fields**                 | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields attached to incidents.                                                                                                          | [optional]            |
+| **Modified**               | Pointer to **time.Time**                                                        | Timestamp when the incident was last modified.                                                                                                                              | [optional] [readonly] |
+| **NotificationHandles**    | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md)    | Notification handles that will be notified of the incident during update.                                                                                                   | [optional]            |
+| **PostmortemId**           | Pointer to **string**                                                           | The UUID of the postmortem object attached to the incident.                                                                                                                 | [optional]            |
+| **PublicId**               | Pointer to **int64**                                                            | The monotonically increasing integer ID for the incident.                                                                                                                   | [optional]            |
+| **Resolved**               | Pointer to **NullableTime**                                                     | Timestamp when the incident&#39;s state was set to resolved.                                                                                                                | [optional]            |
+| **TimeToDetect**           | Pointer to **int64**                                                            | The amount of time in seconds to detect the incident. Equals the difference between &#x60;customer_impact_start&#x60; and &#x60;detected&#x60;.                             | [optional] [readonly] |
+| **TimeToInternalResponse** | Pointer to **int64**                                                            | The amount of time in seconds to call incident after detection. Equals the difference of &#x60;detected&#x60; and &#x60;created&#x60;.                                      | [optional] [readonly] |
+| **TimeToRepair**           | Pointer to **int64**                                                            | The amount of time in seconds to resolve customer impact after detecting the issue. Equals the difference between &#x60;customer_impact_end&#x60; and &#x60;detected&#x60;. | [optional] [readonly] |
+| **TimeToResolve**          | Pointer to **int64**                                                            | The amount of time in seconds to resolve the incident after it was created. Equals the difference between &#x60;created&#x60; and &#x60;resolved&#x60;.                     | [optional] [readonly] |
+| **Title**                  | **string**                                                                      | The title of the incident, which summarizes what happened.                                                                                                                  |
 
 ## Methods
 
@@ -121,12 +121,14 @@ HasCustomerImpactEnd returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetCustomerImpactEndNil(b bool)`
 
- SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil
+SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil
 
 ### UnsetCustomerImpactEnd
+
 `func (o *IncidentResponseAttributes) UnsetCustomerImpactEnd()`
 
 UnsetCustomerImpactEnd ensures that no value is present for CustomerImpactEnd, not even an explicit nil
+
 ### GetCustomerImpactScope
 
 `func (o *IncidentResponseAttributes) GetCustomerImpactScope() string`
@@ -156,12 +158,14 @@ HasCustomerImpactScope returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetCustomerImpactScopeNil(b bool)`
 
- SetCustomerImpactScopeNil sets the value for CustomerImpactScope to be an explicit nil
+SetCustomerImpactScopeNil sets the value for CustomerImpactScope to be an explicit nil
 
 ### UnsetCustomerImpactScope
+
 `func (o *IncidentResponseAttributes) UnsetCustomerImpactScope()`
 
 UnsetCustomerImpactScope ensures that no value is present for CustomerImpactScope, not even an explicit nil
+
 ### GetCustomerImpactStart
 
 `func (o *IncidentResponseAttributes) GetCustomerImpactStart() time.Time`
@@ -191,12 +195,14 @@ HasCustomerImpactStart returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetCustomerImpactStartNil(b bool)`
 
- SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil
+SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil
 
 ### UnsetCustomerImpactStart
+
 `func (o *IncidentResponseAttributes) UnsetCustomerImpactStart()`
 
 UnsetCustomerImpactStart ensures that no value is present for CustomerImpactStart, not even an explicit nil
+
 ### GetCustomerImpacted
 
 `func (o *IncidentResponseAttributes) GetCustomerImpacted() bool`
@@ -251,12 +257,14 @@ HasDetected returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetDetectedNil(b bool)`
 
- SetDetectedNil sets the value for Detected to be an explicit nil
+SetDetectedNil sets the value for Detected to be an explicit nil
 
 ### UnsetDetected
+
 `func (o *IncidentResponseAttributes) UnsetDetected()`
 
 UnsetDetected ensures that no value is present for Detected, not even an explicit nil
+
 ### GetFields
 
 `func (o *IncidentResponseAttributes) GetFields() map[string]IncidentFieldAttributes`
@@ -336,12 +344,14 @@ HasNotificationHandles returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetNotificationHandlesNil(b bool)`
 
- SetNotificationHandlesNil sets the value for NotificationHandles to be an explicit nil
+SetNotificationHandlesNil sets the value for NotificationHandles to be an explicit nil
 
 ### UnsetNotificationHandles
+
 `func (o *IncidentResponseAttributes) UnsetNotificationHandles()`
 
 UnsetNotificationHandles ensures that no value is present for NotificationHandles, not even an explicit nil
+
 ### GetPostmortemId
 
 `func (o *IncidentResponseAttributes) GetPostmortemId() string`
@@ -421,12 +431,14 @@ HasResolved returns a boolean if a field has been set.
 
 `func (o *IncidentResponseAttributes) SetResolvedNil(b bool)`
 
- SetResolvedNil sets the value for Resolved to be an explicit nil
+SetResolvedNil sets the value for Resolved to be an explicit nil
 
 ### UnsetResolved
+
 `func (o *IncidentResponseAttributes) UnsetResolved()`
 
 UnsetResolved ensures that no value is present for Resolved, not even an explicit nil
+
 ### GetTimeToDetect
 
 `func (o *IncidentResponseAttributes) GetTimeToDetect() int64`
@@ -546,8 +558,4 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Count** | Pointer to **int64** | Number of results to return. | [optional] 
-**Order** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |  | [optional] [default to QUERYSORTORDER_DESC]
+| Name      | Type                                               | Description                  | Notes                                       |
+| --------- | -------------------------------------------------- | ---------------------------- | ------------------------------------------- |
+| **Count** | Pointer to **int64**                               | Number of results to return. | [optional]                                  |
+| **Order** | Pointer to [**QuerySortOrder**](QuerySortOrder.md) |                              | [optional] [default to QUERYSORTORDER_DESC] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetOrder sets Order field to given value.
 
 HasOrder returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

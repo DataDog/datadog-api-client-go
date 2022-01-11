@@ -2,12 +2,8 @@
 
 ## Enum
 
+- `REQUIRE` (value: `"require"`)
 
-* `REQUIRE` (value: `"require"`)
-
-* `SUPPRESS` (value: `"suppress"`)
-
+- `SUPPRESS` (value: `"suppress"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

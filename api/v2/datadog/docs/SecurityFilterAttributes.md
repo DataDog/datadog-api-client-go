@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ExclusionFilters** | Pointer to [**[]SecurityFilterExclusionFilterResponse**](SecurityFilterExclusionFilterResponse.md) | The list of exclusion filters applied in this security filter. | [optional] 
-**FilteredDataType** | Pointer to [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md) |  | [optional] 
-**IsBuiltin** | Pointer to **bool** | Whether the security filter is the built-in filter. | [optional] 
-**IsEnabled** | Pointer to **bool** | Whether the security filter is enabled. | [optional] 
-**Name** | Pointer to **string** | The security filter name. | [optional] 
-**Query** | Pointer to **string** | The security filter query. Logs accepted by this query will be accepted by this filter. | [optional] 
-**Version** | Pointer to **int32** | The version of the security filter. | [optional] 
+| Name                 | Type                                                                                               | Description                                                                             | Notes      |
+| -------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ---------- |
+| **ExclusionFilters** | Pointer to [**[]SecurityFilterExclusionFilterResponse**](SecurityFilterExclusionFilterResponse.md) | The list of exclusion filters applied in this security filter.                          | [optional] |
+| **FilteredDataType** | Pointer to [**SecurityFilterFilteredDataType**](SecurityFilterFilteredDataType.md)                 |                                                                                         | [optional] |
+| **IsBuiltin**        | Pointer to **bool**                                                                                | Whether the security filter is the built-in filter.                                     | [optional] |
+| **IsEnabled**        | Pointer to **bool**                                                                                | Whether the security filter is enabled.                                                 | [optional] |
+| **Name**             | Pointer to **string**                                                                              | The security filter name.                                                               | [optional] |
+| **Query**            | Pointer to **string**                                                                              | The security filter query. Logs accepted by this query will be accepted by this filter. | [optional] |
+| **Version**          | Pointer to **int32**                                                                               | The version of the security filter.                                                     | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetVersion sets Version field to given value.
 
 HasVersion returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

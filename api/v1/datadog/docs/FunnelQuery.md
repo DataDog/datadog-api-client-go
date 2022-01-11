@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DataSource** | [**FunnelSource**](FunnelSource.md) |  | [default to FUNNELSOURCE_RUM]
-**QueryString** | **string** | The widget query. | 
-**Steps** | **[]interface{}** | List of funnel steps. | 
+| Name            | Type                                | Description           | Notes                         |
+| --------------- | ----------------------------------- | --------------------- | ----------------------------- |
+| **DataSource**  | [**FunnelSource**](FunnelSource.md) |                       | [default to FUNNELSOURCE_RUM] |
+| **QueryString** | **string**                          | The widget query.     |
+| **Steps**       | **[]interface{}**                   | List of funnel steps. |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetDataSource sets DataSource field to given value.
 
-
 ### GetQueryString
 
 `func (o *FunnelQuery) GetQueryString() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *FunnelQuery) SetQueryString(v string)`
 
 SetQueryString sets QueryString field to given value.
-
 
 ### GetSteps
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetSteps sets Steps field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

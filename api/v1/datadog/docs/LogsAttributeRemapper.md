@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**OverrideOnConflict** | Pointer to **bool** | Override or not the target element if already set, | [optional] [default to false]
-**PreserveSource** | Pointer to **bool** | Remove or preserve the remapped source element. | [optional] [default to false]
-**SourceType** | Pointer to **string** | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
-**Sources** | **[]string** | Array of source attributes. | 
-**Target** | **string** | Final attribute or tag name to remap the sources to. | 
-**TargetFormat** | Pointer to [**TargetFormatType**](TargetFormatType.md) |  | [optional] 
-**TargetType** | Pointer to **string** | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]
-**Type** | [**LogsAttributeRemapperType**](LogsAttributeRemapperType.md) |  | [default to LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER]
+| Name                   | Type                                                          | Description                                                                                      | Notes                                                     |
+| ---------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
+| **IsEnabled**          | Pointer to **bool**                                           | Whether or not the processor is enabled.                                                         | [optional] [default to false]                             |
+| **Name**               | Pointer to **string**                                         | Name of the processor.                                                                           | [optional]                                                |
+| **OverrideOnConflict** | Pointer to **bool**                                           | Override or not the target element if already set,                                               | [optional] [default to false]                             |
+| **PreserveSource**     | Pointer to **bool**                                           | Remove or preserve the remapped source element.                                                  | [optional] [default to false]                             |
+| **SourceType**         | Pointer to **string**                                         | Defines if the sources are from log &#x60;attribute&#x60; or &#x60;tag&#x60;.                    | [optional] [default to "attribute"]                       |
+| **Sources**            | **[]string**                                                  | Array of source attributes.                                                                      |
+| **Target**             | **string**                                                    | Final attribute or tag name to remap the sources to.                                             |
+| **TargetFormat**       | Pointer to [**TargetFormatType**](TargetFormatType.md)        |                                                                                                  | [optional]                                                |
+| **TargetType**         | Pointer to **string**                                         | Defines if the final attribute or tag name is from log &#x60;attribute&#x60; or &#x60;tag&#x60;. | [optional] [default to "attribute"]                       |
+| **Type**               | [**LogsAttributeRemapperType**](LogsAttributeRemapperType.md) |                                                                                                  | [default to LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER] |
 
 ## Methods
 
@@ -178,7 +178,6 @@ and a boolean to check if the value has been set.
 
 SetSources sets Sources field to given value.
 
-
 ### GetTarget
 
 `func (o *LogsAttributeRemapper) GetTarget() string`
@@ -197,7 +196,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsAttributeRemapper) SetTarget(v string)`
 
 SetTarget sets Target field to given value.
-
 
 ### GetTargetFormat
 
@@ -268,8 +266,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

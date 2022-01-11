@@ -2,17 +2,15 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CancelDowntime**](DowntimesApi.md#CancelDowntime) | **Delete** /api/v1/downtime/{downtime_id} | Cancel a downtime
-[**CancelDowntimesByScope**](DowntimesApi.md#CancelDowntimesByScope) | **Post** /api/v1/downtime/cancel/by_scope | Cancel downtimes by scope
-[**CreateDowntime**](DowntimesApi.md#CreateDowntime) | **Post** /api/v1/downtime | Schedule a downtime
-[**GetDowntime**](DowntimesApi.md#GetDowntime) | **Get** /api/v1/downtime/{downtime_id} | Get a downtime
-[**ListDowntimes**](DowntimesApi.md#ListDowntimes) | **Get** /api/v1/downtime | Get all downtimes
-[**ListMonitorDowntimes**](DowntimesApi.md#ListMonitorDowntimes) | **Get** /api/v1/monitor/{monitor_id}/downtimes | Get all downtimes for a monitor
-[**UpdateDowntime**](DowntimesApi.md#UpdateDowntime) | **Put** /api/v1/downtime/{downtime_id} | Update a downtime
-
-
+| Method                                                               | HTTP request                                   | Description                     |
+| -------------------------------------------------------------------- | ---------------------------------------------- | ------------------------------- |
+| [**CancelDowntime**](DowntimesApi.md#CancelDowntime)                 | **Delete** /api/v1/downtime/{downtime_id}      | Cancel a downtime               |
+| [**CancelDowntimesByScope**](DowntimesApi.md#CancelDowntimesByScope) | **Post** /api/v1/downtime/cancel/by_scope      | Cancel downtimes by scope       |
+| [**CreateDowntime**](DowntimesApi.md#CreateDowntime)                 | **Post** /api/v1/downtime                      | Schedule a downtime             |
+| [**GetDowntime**](DowntimesApi.md#GetDowntime)                       | **Get** /api/v1/downtime/{downtime_id}         | Get a downtime                  |
+| [**ListDowntimes**](DowntimesApi.md#ListDowntimes)                   | **Get** /api/v1/downtime                       | Get all downtimes               |
+| [**ListMonitorDowntimes**](DowntimesApi.md#ListMonitorDowntimes)     | **Get** /api/v1/monitor/{monitor_id}/downtimes | Get all downtimes for a monitor |
+| [**UpdateDowntime**](DowntimesApi.md#UpdateDowntime)                 | **Put** /api/v1/downtime/{downtime_id}         | Update a downtime               |
 
 ## CancelDowntime
 
@@ -50,21 +48,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**downtimeId** | **int64** | ID of the downtime to cancel. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **downtimeId** | **int64**           | ID of the downtime to cancel.                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -78,7 +73,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CancelDowntimesByScope
 
@@ -120,17 +114,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for. | 
-
+| Name     | Type                                                                  | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**CancelDowntimesByScopeRequest**](CancelDowntimesByScopeRequest.md) | Scope to cancel downtimes for.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -148,7 +139,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateDowntime
 
@@ -190,17 +180,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**Downtime**](Downtime.md) | Schedule a downtime request body. | 
-
+| Name     | Type                        | Description                                                                 | Notes |
+| -------- | --------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**Downtime**](Downtime.md) | Schedule a downtime request body.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -218,7 +205,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetDowntime
 
@@ -260,17 +246,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**downtimeId** | **int64** | ID of the downtime to fetch. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **downtimeId** | **int64**           | ID of the downtime to fetch.                                                |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -288,7 +271,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListDowntimes
 
@@ -333,18 +315,13 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListDowntimesOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**currentOnly** | **bool** | Only return downtimes that are active when the request is made. | 
+| Name            | Type     | Description                                                     | Notes |
+| --------------- | -------- | --------------------------------------------------------------- | ----- |
+| **currentOnly** | **bool** | Only return downtimes that are active when the request is made. |
 
 ### Return type
 
@@ -362,7 +339,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListMonitorDowntimes
 
@@ -404,17 +380,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**monitorId** | **int64** | The id of the monitor | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **monitorId** | **int64**           | The id of the monitor                                                       |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -432,7 +405,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateDowntime
 
@@ -475,18 +447,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**downtimeId** | **int64** | ID of the downtime to update. |  |
-**body** | [**Downtime**](Downtime.md) | Update a downtime request body. | 
-
+| Name           | Type                        | Description                                                                 | Notes |
+| -------------- | --------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **downtimeId** | **int64**                   | ID of the downtime to update.                                               |       |
+| **body**       | [**Downtime**](Downtime.md) | Update a downtime request body.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -504,4 +473,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

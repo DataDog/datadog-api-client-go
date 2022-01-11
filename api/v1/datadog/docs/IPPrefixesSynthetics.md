@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**PrefixesIpv4** | Pointer to **[]string** | List of IPv4 prefixes. | [optional] 
-**PrefixesIpv4ByLocation** | Pointer to **map[string][]string** | List of IPv4 prefixes by location. | [optional] 
-**PrefixesIpv6** | Pointer to **[]string** | List of IPv6 prefixes. | [optional] 
-**PrefixesIpv6ByLocation** | Pointer to **map[string][]string** | List of IPv6 prefixes by location. | [optional] 
+| Name                       | Type                               | Description                        | Notes      |
+| -------------------------- | ---------------------------------- | ---------------------------------- | ---------- |
+| **PrefixesIpv4**           | Pointer to **[]string**            | List of IPv4 prefixes.             | [optional] |
+| **PrefixesIpv4ByLocation** | Pointer to **map[string][]string** | List of IPv4 prefixes by location. | [optional] |
+| **PrefixesIpv6**           | Pointer to **[]string**            | List of IPv6 prefixes.             | [optional] |
+| **PrefixesIpv6ByLocation** | Pointer to **map[string][]string** | List of IPv6 prefixes by location. | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetPrefixesIpv6ByLocation sets PrefixesIpv6ByLocation field to given value.
 
 HasPrefixesIpv6ByLocation returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

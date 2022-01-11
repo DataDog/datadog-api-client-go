@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Columns** | Pointer to [**[]ApmStatsQueryColumnType**](ApmStatsQueryColumnType.md) | Column properties used by the front end for display. | [optional] 
-**Env** | **string** | Environment name. | 
-**Name** | **string** | Operation name associated with service. | 
-**PrimaryTag** | **string** | The organization&#39;s host group name and value. | 
-**Resource** | Pointer to **string** | Resource name. | [optional] 
-**RowType** | [**ApmStatsQueryRowType**](ApmStatsQueryRowType.md) |  | 
-**Service** | **string** | Service name. | 
+| Name           | Type                                                                   | Description                                          | Notes      |
+| -------------- | ---------------------------------------------------------------------- | ---------------------------------------------------- | ---------- |
+| **Columns**    | Pointer to [**[]ApmStatsQueryColumnType**](ApmStatsQueryColumnType.md) | Column properties used by the front end for display. | [optional] |
+| **Env**        | **string**                                                             | Environment name.                                    |
+| **Name**       | **string**                                                             | Operation name associated with service.              |
+| **PrimaryTag** | **string**                                                             | The organization&#39;s host group name and value.    |
+| **Resource**   | Pointer to **string**                                                  | Resource name.                                       | [optional] |
+| **RowType**    | [**ApmStatsQueryRowType**](ApmStatsQueryRowType.md)                    |                                                      |
+| **Service**    | **string**                                                             | Service name.                                        |
 
 ## Methods
 
@@ -75,7 +75,6 @@ and a boolean to check if the value has been set.
 
 SetEnv sets Env field to given value.
 
-
 ### GetName
 
 `func (o *ApmStatsQueryDefinition) GetName() string`
@@ -95,7 +94,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetPrimaryTag
 
 `func (o *ApmStatsQueryDefinition) GetPrimaryTag() string`
@@ -114,7 +112,6 @@ and a boolean to check if the value has been set.
 `func (o *ApmStatsQueryDefinition) SetPrimaryTag(v string)`
 
 SetPrimaryTag sets PrimaryTag field to given value.
-
 
 ### GetResource
 
@@ -160,7 +157,6 @@ and a boolean to check if the value has been set.
 
 SetRowType sets RowType field to given value.
 
-
 ### GetService
 
 `func (o *ApmStatsQueryDefinition) GetService() string`
@@ -180,8 +176,4 @@ and a boolean to check if the value has been set.
 
 SetService sets Service field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

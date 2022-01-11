@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**SLOCorrectionUpdateRequestAttributes**](SLOCorrectionUpdateRequestAttributes.md) |  | [optional] 
-**Type** | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md) |  | [optional] [default to SLOCORRECTIONTYPE_CORRECTION]
+| Name           | Type                                                                                           | Description | Notes                                                |
+| -------------- | ---------------------------------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| **Attributes** | Pointer to [**SLOCorrectionUpdateRequestAttributes**](SLOCorrectionUpdateRequestAttributes.md) |             | [optional]                                           |
+| **Type**       | Pointer to [**SLOCorrectionType**](SLOCorrectionType.md)                                       |             | [optional] [default to SLOCORRECTIONTYPE_CORRECTION] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

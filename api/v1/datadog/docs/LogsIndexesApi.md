@@ -2,16 +2,14 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateLogsIndex**](LogsIndexesApi.md#CreateLogsIndex) | **Post** /api/v1/logs/config/indexes | Create an index
-[**GetLogsIndex**](LogsIndexesApi.md#GetLogsIndex) | **Get** /api/v1/logs/config/indexes/{name} | Get an index
-[**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder) | **Get** /api/v1/logs/config/index-order | Get indexes order
-[**ListLogIndexes**](LogsIndexesApi.md#ListLogIndexes) | **Get** /api/v1/logs/config/indexes | Get all indexes
-[**UpdateLogsIndex**](LogsIndexesApi.md#UpdateLogsIndex) | **Put** /api/v1/logs/config/indexes/{name} | Update an index
-[**UpdateLogsIndexOrder**](LogsIndexesApi.md#UpdateLogsIndexOrder) | **Put** /api/v1/logs/config/index-order | Update indexes order
-
-
+| Method                                                             | HTTP request                               | Description          |
+| ------------------------------------------------------------------ | ------------------------------------------ | -------------------- |
+| [**CreateLogsIndex**](LogsIndexesApi.md#CreateLogsIndex)           | **Post** /api/v1/logs/config/indexes       | Create an index      |
+| [**GetLogsIndex**](LogsIndexesApi.md#GetLogsIndex)                 | **Get** /api/v1/logs/config/indexes/{name} | Get an index         |
+| [**GetLogsIndexOrder**](LogsIndexesApi.md#GetLogsIndexOrder)       | **Get** /api/v1/logs/config/index-order    | Get indexes order    |
+| [**ListLogIndexes**](LogsIndexesApi.md#ListLogIndexes)             | **Get** /api/v1/logs/config/indexes        | Get all indexes      |
+| [**UpdateLogsIndex**](LogsIndexesApi.md#UpdateLogsIndex)           | **Put** /api/v1/logs/config/indexes/{name} | Update an index      |
+| [**UpdateLogsIndexOrder**](LogsIndexesApi.md#UpdateLogsIndexOrder) | **Put** /api/v1/logs/config/index-order    | Update indexes order |
 
 ## CreateLogsIndex
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsIndex**](LogsIndex.md) | Object containing the new index. | 
-
+| Name     | Type                          | Description                                                                 | Notes |
+| -------- | ----------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsIndex**](LogsIndex.md) | Object containing the new index.                                            |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsIndex
 
@@ -123,17 +117,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**name** | **string** | Name of the log index. | 
-
+| Name     | Type                | Description                                                                 | Notes |
+| -------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **name** | **string**          | Name of the log index.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -151,7 +142,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsIndexOrder
 
@@ -194,11 +184,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -216,7 +204,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListLogIndexes
 
@@ -260,11 +247,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -282,7 +267,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsIndex
 
@@ -329,18 +313,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**name** | **string** | Name of the log index. |  |
-**body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;. | 
-
+| Name     | Type                                                    | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **name** | **string**                                              | Name of the log index.                                                      |       |
+| **body** | [**LogsIndexUpdateRequest**](LogsIndexUpdateRequest.md) | Object containing the new &#x60;LogsIndexUpdateRequest&#x60;.               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -358,7 +339,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsIndexOrder
 
@@ -401,17 +381,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsIndexesOrder**](LogsIndexesOrder.md) | Object containing the new ordered list of index names | 
-
+| Name     | Type                                        | Description                                                                 | Notes |
+| -------- | ------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsIndexesOrder**](LogsIndexesOrder.md) | Object containing the new ordered list of index names                       |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -429,4 +406,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

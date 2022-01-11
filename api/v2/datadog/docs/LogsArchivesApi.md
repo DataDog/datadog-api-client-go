@@ -2,20 +2,18 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**AddReadRoleToArchive**](LogsArchivesApi.md#AddReadRoleToArchive) | **Post** /api/v2/logs/config/archives/{archive_id}/readers | Grant role to an archive
-[**CreateLogsArchive**](LogsArchivesApi.md#CreateLogsArchive) | **Post** /api/v2/logs/config/archives | Create an archive
-[**DeleteLogsArchive**](LogsArchivesApi.md#DeleteLogsArchive) | **Delete** /api/v2/logs/config/archives/{archive_id} | Delete an archive
-[**GetLogsArchive**](LogsArchivesApi.md#GetLogsArchive) | **Get** /api/v2/logs/config/archives/{archive_id} | Get an archive
-[**GetLogsArchiveOrder**](LogsArchivesApi.md#GetLogsArchiveOrder) | **Get** /api/v2/logs/config/archive-order | Get archive order
-[**ListArchiveReadRoles**](LogsArchivesApi.md#ListArchiveReadRoles) | **Get** /api/v2/logs/config/archives/{archive_id}/readers | List read roles for an archive
-[**ListLogsArchives**](LogsArchivesApi.md#ListLogsArchives) | **Get** /api/v2/logs/config/archives | Get all archives
-[**RemoveRoleFromArchive**](LogsArchivesApi.md#RemoveRoleFromArchive) | **Delete** /api/v2/logs/config/archives/{archive_id}/readers | Revoke role from an archive
-[**UpdateLogsArchive**](LogsArchivesApi.md#UpdateLogsArchive) | **Put** /api/v2/logs/config/archives/{archive_id} | Update an archive
-[**UpdateLogsArchiveOrder**](LogsArchivesApi.md#UpdateLogsArchiveOrder) | **Put** /api/v2/logs/config/archive-order | Update archive order
-
-
+| Method                                                                  | HTTP request                                                 | Description                    |
+| ----------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------ |
+| [**AddReadRoleToArchive**](LogsArchivesApi.md#AddReadRoleToArchive)     | **Post** /api/v2/logs/config/archives/{archive_id}/readers   | Grant role to an archive       |
+| [**CreateLogsArchive**](LogsArchivesApi.md#CreateLogsArchive)           | **Post** /api/v2/logs/config/archives                        | Create an archive              |
+| [**DeleteLogsArchive**](LogsArchivesApi.md#DeleteLogsArchive)           | **Delete** /api/v2/logs/config/archives/{archive_id}         | Delete an archive              |
+| [**GetLogsArchive**](LogsArchivesApi.md#GetLogsArchive)                 | **Get** /api/v2/logs/config/archives/{archive_id}            | Get an archive                 |
+| [**GetLogsArchiveOrder**](LogsArchivesApi.md#GetLogsArchiveOrder)       | **Get** /api/v2/logs/config/archive-order                    | Get archive order              |
+| [**ListArchiveReadRoles**](LogsArchivesApi.md#ListArchiveReadRoles)     | **Get** /api/v2/logs/config/archives/{archive_id}/readers    | List read roles for an archive |
+| [**ListLogsArchives**](LogsArchivesApi.md#ListLogsArchives)             | **Get** /api/v2/logs/config/archives                         | Get all archives               |
+| [**RemoveRoleFromArchive**](LogsArchivesApi.md#RemoveRoleFromArchive)   | **Delete** /api/v2/logs/config/archives/{archive_id}/readers | Revoke role from an archive    |
+| [**UpdateLogsArchive**](LogsArchivesApi.md#UpdateLogsArchive)           | **Put** /api/v2/logs/config/archives/{archive_id}            | Update an archive              |
+| [**UpdateLogsArchiveOrder**](LogsArchivesApi.md#UpdateLogsArchiveOrder) | **Put** /api/v2/logs/config/archive-order                    | Update archive order           |
 
 ## AddReadRoleToArchive
 
@@ -39,7 +37,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |
 
     configuration := datadog.NewConfiguration()
 
@@ -54,22 +52,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. |  |
-**body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
-
+| Name          | Type                                            | Description                                                                 | Notes |
+| ------------- | ----------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context**                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**                                      | The ID of the archive.                                                      |       |
+| **body**      | [**RelationshipToRole**](RelationshipToRole.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -83,7 +78,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateLogsArchive
 
@@ -125,17 +119,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | The definition of the new archive. | 
-
+| Name     | Type                                                        | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | The definition of the new archive.                                          |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -153,7 +144,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteLogsArchive
 
@@ -191,21 +181,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**          | The ID of the archive.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -219,7 +206,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsArchive
 
@@ -261,17 +247,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**          | The ID of the archive.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -289,7 +272,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetLogsArchiveOrder
 
@@ -333,11 +315,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -355,7 +335,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListArchiveReadRoles
 
@@ -397,17 +376,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**          | The ID of the archive.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -425,7 +401,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListLogsArchives
 
@@ -468,11 +443,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -490,7 +463,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## RemoveRoleFromArchive
 
@@ -514,7 +486,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     archiveId := "archiveId_example" // string | The ID of the archive.
-    body := *datadog.NewRelationshipToRole() // RelationshipToRole | 
+    body := *datadog.NewRelationshipToRole() // RelationshipToRole |
 
     configuration := datadog.NewConfiguration()
 
@@ -529,22 +501,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. |  |
-**body** | [**RelationshipToRole**](RelationshipToRole.md) |  | 
-
+| Name          | Type                                            | Description                                                                 | Notes |
+| ------------- | ----------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context**                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**                                      | The ID of the archive.                                                      |       |
+| **body**      | [**RelationshipToRole**](RelationshipToRole.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -558,7 +527,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsArchive
 
@@ -604,18 +572,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**archiveId** | **string** | The ID of the archive. |  |
-**body** | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | New definition of the archive. | 
-
+| Name          | Type                                                        | Description                                                                 | Notes |
+| ------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context**                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **archiveId** | **string**                                                  | The ID of the archive.                                                      |       |
+| **body**      | [**LogsArchiveCreateRequest**](LogsArchiveCreateRequest.md) | New definition of the archive.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -633,7 +598,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateLogsArchiveOrder
 
@@ -679,17 +643,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs. | 
-
+| Name     | Type                                        | Description                                                                 | Notes |
+| -------- | ------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**LogsArchiveOrder**](LogsArchiveOrder.md) | An object containing the new ordered list of archive IDs.                   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -707,4 +668,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

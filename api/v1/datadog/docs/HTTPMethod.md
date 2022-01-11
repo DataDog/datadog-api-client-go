@@ -2,22 +2,18 @@
 
 ## Enum
 
+- `GET` (value: `"GET"`)
 
-* `GET` (value: `"GET"`)
+- `POST` (value: `"POST"`)
 
-* `POST` (value: `"POST"`)
+- `PATCH` (value: `"PATCH"`)
 
-* `PATCH` (value: `"PATCH"`)
+- `PUT` (value: `"PUT"`)
 
-* `PUT` (value: `"PUT"`)
+- `DELETE` (value: `"DELETE"`)
 
-* `DELETE` (value: `"DELETE"`)
+- `HEAD` (value: `"HEAD"`)
 
-* `HEAD` (value: `"HEAD"`)
-
-* `OPTIONS` (value: `"OPTIONS"`)
-
+- `OPTIONS` (value: `"OPTIONS"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

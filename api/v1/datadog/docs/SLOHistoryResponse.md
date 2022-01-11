@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**SLOHistoryResponseData**](SLOHistoryResponseData.md) |  | [optional] 
-**Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] 
+| Name       | Type                                                                   | Description                                                                       | Notes      |
+| ---------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ---------- |
+| **Data**   | Pointer to [**SLOHistoryResponseData**](SLOHistoryResponseData.md)     |                                                                                   | [optional] |
+| **Errors** | Pointer to [**[]SLOHistoryResponseError**](SLOHistoryResponseError.md) | A list of errors while querying the history data for the service level objective. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetErrors sets Errors field to given value.
 
 HasErrors returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,24 +2,20 @@
 
 ## Enum
 
+- `SEVEN_DAYS` (value: `"7d"`)
 
-* `SEVEN_DAYS` (value: `"7d"`)
+- `THIRTY_DAYS` (value: `"30d"`)
 
-* `THIRTY_DAYS` (value: `"30d"`)
+- `NINETY_DAYS` (value: `"90d"`)
 
-* `NINETY_DAYS` (value: `"90d"`)
+- `WEEK_TO_DATE` (value: `"week_to_date"`)
 
-* `WEEK_TO_DATE` (value: `"week_to_date"`)
+- `PREVIOUS_WEEK` (value: `"previous_week"`)
 
-* `PREVIOUS_WEEK` (value: `"previous_week"`)
+- `MONTH_TO_DATE` (value: `"month_to_date"`)
 
-* `MONTH_TO_DATE` (value: `"month_to_date"`)
+- `PREVIOUS_MONTH` (value: `"previous_month"`)
 
-* `PREVIOUS_MONTH` (value: `"previous_month"`)
-
-* `GLOBAL_TIME` (value: `"global_time"`)
-
+- `GLOBAL_TIME` (value: `"global_time"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AlertId** | **string** | ID of the alert to use in the widget. | 
-**Precision** | Pointer to **int64** | Number of decimal to show. If not defined, will use the raw value. | [optional] 
-**TextAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of value in the widget. | [optional] 
-**Type** | [**AlertValueWidgetDefinitionType**](AlertValueWidgetDefinitionType.md) |  | [default to ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE]
-**Unit** | Pointer to **string** | Unit to display with the value. | [optional] 
+| Name           | Type                                                                    | Description                                                        | Notes                                                   |
+| -------------- | ----------------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------- |
+| **AlertId**    | **string**                                                              | ID of the alert to use in the widget.                              |
+| **Precision**  | Pointer to **int64**                                                    | Number of decimal to show. If not defined, will use the raw value. | [optional]                                              |
+| **TextAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                    | [optional]                                              |
+| **Title**      | Pointer to **string**                                                   | Title of the widget.                                               | [optional]                                              |
+| **TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                    |                                                                    | [optional]                                              |
+| **TitleSize**  | Pointer to **string**                                                   | Size of value in the widget.                                       | [optional]                                              |
+| **Type**       | [**AlertValueWidgetDefinitionType**](AlertValueWidgetDefinitionType.md) |                                                                    | [default to ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE] |
+| **Unit**       | Pointer to **string**                                                   | Unit to display with the value.                                    | [optional]                                              |
 
 ## Methods
 
@@ -50,7 +50,6 @@ and a boolean to check if the value has been set.
 `func (o *AlertValueWidgetDefinition) SetAlertId(v string)`
 
 SetAlertId sets AlertId field to given value.
-
 
 ### GetPrecision
 
@@ -196,7 +195,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetUnit
 
 `func (o *AlertValueWidgetDefinition) GetUnit() string`
@@ -222,7 +220,4 @@ SetUnit sets Unit field to given value.
 
 HasUnit returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

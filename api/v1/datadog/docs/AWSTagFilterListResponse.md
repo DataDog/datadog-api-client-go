@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filters** | Pointer to [**[]AWSTagFilter**](AWSTagFilter.md) | An array of tag filters. | [optional] 
+| Name        | Type                                             | Description              | Notes      |
+| ----------- | ------------------------------------------------ | ------------------------ | ---------- |
+| **Filters** | Pointer to [**[]AWSTagFilter**](AWSTagFilter.md) | An array of tag filters. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetFilters sets Filters field to given value.
 
 HasFilters returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

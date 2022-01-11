@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DisplayType** | Pointer to **string** | Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be &#x60;x_axis_percentile&#x60;.  | [optional] 
-**Label** | Pointer to **string** | Label to display over the marker. | [optional] 
-**Time** | Pointer to **string** | Timestamp for the widget. | [optional] 
-**Value** | **string** | Value to apply. Can be a single value y &#x3D; 15 or a range of values 0 &lt; y &lt; 10. | 
+| Name            | Type                  | Description                                                                                                                                                                                | Notes      |
+| --------------- | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| **DisplayType** | Pointer to **string** | Combination of: - A severity error, warning, ok, or info - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be &#x60;x_axis_percentile&#x60;. | [optional] |
+| **Label**       | Pointer to **string** | Label to display over the marker.                                                                                                                                                          | [optional] |
+| **Time**        | Pointer to **string** | Timestamp for the widget.                                                                                                                                                                  | [optional] |
+| **Value**       | **string**            | Value to apply. Can be a single value y &#x3D; 15 or a range of values 0 &lt; y &lt; 10.                                                                                                   |
 
 ## Methods
 
@@ -122,8 +122,4 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

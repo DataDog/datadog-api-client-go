@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsTemplate** | Pointer to **bool** | Whether or not the notebook is a template. | [optional] [default to false]
-**TakeSnapshots** | Pointer to **bool** | Whether or not the notebook takes snapshot image backups of the notebook&#39;s fixed-time graphs. | [optional] [default to false]
-**Type** | Pointer to [**NullableNotebookMetadataType**](NotebookMetadataType.md) |  | [optional] [default to "null"]
+| Name              | Type                                                                   | Description                                                                                       | Notes                          |
+| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **IsTemplate**    | Pointer to **bool**                                                    | Whether or not the notebook is a template.                                                        | [optional] [default to false]  |
+| **TakeSnapshots** | Pointer to **bool**                                                    | Whether or not the notebook takes snapshot image backups of the notebook&#39;s fixed-time graphs. | [optional] [default to false]  |
+| **Type**          | Pointer to [**NullableNotebookMetadataType**](NotebookMetadataType.md) |                                                                                                   | [optional] [default to "null"] |
 
 ## Methods
 
@@ -106,13 +106,12 @@ HasType returns a boolean if a field has been set.
 
 `func (o *NotebookMetadata) SetTypeNil(b bool)`
 
- SetTypeNil sets the value for Type to be an explicit nil
+SetTypeNil sets the value for Type to be an explicit nil
 
 ### UnsetType
+
 `func (o *NotebookMetadata) UnsetType()`
 
 UnsetType ensures that no value is present for Type, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

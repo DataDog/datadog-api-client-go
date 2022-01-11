@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**TimeOffset** | Pointer to **int64** | The time offset (in seconds) to apply to the query. | [optional] 
-**Timezone** | Pointer to **string** | The timezone can be specified both as an offset, for example: \&quot;UTC+03:00\&quot;. | [optional] [default to "UTC"]
+| Name           | Type                  | Description                                                                            | Notes                         |
+| -------------- | --------------------- | -------------------------------------------------------------------------------------- | ----------------------------- |
+| **TimeOffset** | Pointer to **int64**  | The time offset (in seconds) to apply to the query.                                    | [optional]                    |
+| **Timezone**   | Pointer to **string** | The timezone can be specified both as an offset, for example: \&quot;UTC+03:00\&quot;. | [optional] [default to "UTC"] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTimezone sets Timezone field to given value.
 
 HasTimezone returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

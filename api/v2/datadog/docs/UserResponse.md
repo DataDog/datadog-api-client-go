@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**User**](User.md) |  | [optional] 
-**Included** | Pointer to [**[]UserResponseIncludedItem**](UserResponseIncludedItem.md) | Array of objects related to the user. | [optional] 
+| Name         | Type                                                                     | Description                           | Notes      |
+| ------------ | ------------------------------------------------------------------------ | ------------------------------------- | ---------- |
+| **Data**     | Pointer to [**User**](User.md)                                           |                                       | [optional] |
+| **Included** | Pointer to [**[]UserResponseIncludedItem**](UserResponseIncludedItem.md) | Array of objects related to the user. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetIncluded sets Included field to given value.
 
 HasIncluded returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

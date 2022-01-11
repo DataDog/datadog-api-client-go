@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**LineType** | Pointer to [**WidgetLineType**](WidgetLineType.md) |  | [optional] 
-**LineWidth** | Pointer to [**WidgetLineWidth**](WidgetLineWidth.md) |  | [optional] 
-**Palette** | Pointer to **string** | Color palette to apply to the widget. | [optional] 
+| Name          | Type                                                 | Description                           | Notes      |
+| ------------- | ---------------------------------------------------- | ------------------------------------- | ---------- |
+| **LineType**  | Pointer to [**WidgetLineType**](WidgetLineType.md)   |                                       | [optional] |
+| **LineWidth** | Pointer to [**WidgetLineWidth**](WidgetLineWidth.md) |                                       | [optional] |
+| **Palette**   | Pointer to **string**                                | Color palette to apply to the widget. | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetPalette sets Palette field to given value.
 
 HasPalette returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-
