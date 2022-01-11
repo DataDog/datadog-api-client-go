@@ -312,6 +312,12 @@ docs/MonitorThresholds.md
 docs/MonitorType.md
 docs/MonitorUpdateRequest.md
 docs/MonitorsApi.md
+docs/MonthlyUsageAttributionBody.md
+docs/MonthlyUsageAttributionMetadata.md
+docs/MonthlyUsageAttributionPagination.md
+docs/MonthlyUsageAttributionResponse.md
+docs/MonthlyUsageAttributionSupportedMetrics.md
+docs/MonthlyUsageAttributionValues.md
 docs/NoteWidgetDefinition.md
 docs/NoteWidgetDefinitionType.md
 docs/NotebookAbsoluteTime.md
@@ -982,6 +988,12 @@ model_monitor_threshold_window_options.go
 model_monitor_thresholds.go
 model_monitor_type.go
 model_monitor_update_request.go
+model_monthly_usage_attribution_body.go
+model_monthly_usage_attribution_metadata.go
+model_monthly_usage_attribution_pagination.go
+model_monthly_usage_attribution_response.go
+model_monthly_usage_attribution_supported_metrics.go
+model_monthly_usage_attribution_values.go
 model_note_widget_definition.go
 model_note_widget_definition_type.go
 model_notebook_absolute_time.go

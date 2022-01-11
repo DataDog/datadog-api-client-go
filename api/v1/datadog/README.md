@@ -245,6 +245,7 @@ All URIs are relative to *https://api.datadoghq.com*
 | _UsageMeteringApi_                    | [**GetIncidentManagement**](docs/UsageMeteringApi.md#getincidentmanagement)                                           | **Get** /api/v1/usage/incident-management                                                          | Get hourly usage for incident management          |
 | _UsageMeteringApi_                    | [**GetIngestedSpans**](docs/UsageMeteringApi.md#getingestedspans)                                                     | **Get** /api/v1/usage/ingested-spans                                                               | Get hourly usage for ingested spans               |
 | _UsageMeteringApi_                    | [**GetMonthlyCustomReports**](docs/UsageMeteringApi.md#getmonthlycustomreports)                                       | **Get** /api/v1/monthly_custom_reports                                                             | Get the list of available monthly custom reports  |
+| _UsageMeteringApi_                    | [**GetMonthlyUsageAttribution**](docs/UsageMeteringApi.md#getmonthlyusageattribution)                                 | **Get** /api/v1/usage/monthly-attribution                                                          | Get Monthly Usage Attribution                     |
 | _UsageMeteringApi_                    | [**GetSpecifiedDailyCustomReports**](docs/UsageMeteringApi.md#getspecifieddailycustomreports)                         | **Get** /api/v1/daily_custom_reports/{report_id}                                                   | Get specified daily custom reports                |
 | _UsageMeteringApi_                    | [**GetSpecifiedMonthlyCustomReports**](docs/UsageMeteringApi.md#getspecifiedmonthlycustomreports)                     | **Get** /api/v1/monthly_custom_reports/{report_id}                                                 | Get specified monthly custom reports              |
 | _UsageMeteringApi_                    | [**GetUsageAnalyzedLogs**](docs/UsageMeteringApi.md#getusageanalyzedlogs)                                             | **Get** /api/v1/usage/analyzed_logs                                                                | Get hourly usage for analyzed logs                |
@@ -553,6 +554,12 @@ All URIs are relative to *https://api.datadoghq.com*
 - [MonitorThresholds](docs/MonitorThresholds.md)
 - [MonitorType](docs/MonitorType.md)
 - [MonitorUpdateRequest](docs/MonitorUpdateRequest.md)
+- [MonthlyUsageAttributionBody](docs/MonthlyUsageAttributionBody.md)
+- [MonthlyUsageAttributionMetadata](docs/MonthlyUsageAttributionMetadata.md)
+- [MonthlyUsageAttributionPagination](docs/MonthlyUsageAttributionPagination.md)
+- [MonthlyUsageAttributionResponse](docs/MonthlyUsageAttributionResponse.md)
+- [MonthlyUsageAttributionSupportedMetrics](docs/MonthlyUsageAttributionSupportedMetrics.md)
+- [MonthlyUsageAttributionValues](docs/MonthlyUsageAttributionValues.md)
 - [NoteWidgetDefinition](docs/NoteWidgetDefinition.md)
 - [NoteWidgetDefinitionType](docs/NoteWidgetDefinitionType.md)
 - [NotebookAbsoluteTime](docs/NotebookAbsoluteTime.md)
