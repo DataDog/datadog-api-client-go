@@ -4,11 +4,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v1/validate
   response:
-    body: '{"errors": ["API key required"]}'
+    body: '{"errors":["API key required"]}'
     code: 403
     duration: ''
     headers:

@@ -5,13 +5,13 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: PUT
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/0
   response:
-    body: '{"errors": ["Manual Dashboard List with id 0 not found"]}'
+    body: '{"errors":["Manual Dashboard List with id 0 not found"]}'
     code: 404
     duration: ''
     headers:

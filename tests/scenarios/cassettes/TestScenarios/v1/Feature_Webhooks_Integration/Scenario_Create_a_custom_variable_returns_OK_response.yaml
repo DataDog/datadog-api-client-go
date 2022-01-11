@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711","value":"CUSTOM_VARIABLE_VALUE"}
+      {"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1641430280","value":"CUSTOM_VARIABLE_VALUE"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
   response:
-    body: '{"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711"}'
+    body: '{"is_secret":true,"name":"TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1641430280"}'
     code: 201
     duration: ''
     headers:
@@ -23,9 +23,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1628785711
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTCREATEACUSTOMVARIABLERETURNSOKRESPONSE1641430280
   response:
     body: '{}'
     code: 200

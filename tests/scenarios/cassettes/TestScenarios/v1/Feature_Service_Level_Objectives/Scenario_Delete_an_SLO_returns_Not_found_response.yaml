@@ -4,11 +4,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/slo/testdeleteansloreturnsnotfoundresponse1618491680
+    url: https://api.datadoghq.com/api/v1/slo/testdeleteansloreturnsnotfoundresponse1641430270
   response:
-    body: '{"errors": ["SLO not found: testdeleteansloreturnsnotfoundresponse1618491680
+    body: '{"errors":["SLO not found: testdeleteansloreturnsnotfoundresponse1641430270
       not found"]}'
     code: 404
     duration: ''

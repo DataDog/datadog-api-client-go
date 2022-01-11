@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713","value":"variable-value"}
+      {"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1641833861","value":"variable-value"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables
   response:
-    body: '{"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713","value":"variable-value"}'
+    body: '{"is_secret":false,"name":"TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1641833861","value":"variable-value"}'
     code: 201
     duration: ''
     headers:
@@ -23,9 +23,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1641833861
   response:
     body: '{}'
     code: 200
@@ -39,15 +39,15 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1628785713
+    url: https://api.datadoghq.com/api/v1/integration/webhooks/configuration/custom-variables/TESTDELETEACUSTOMVARIABLERETURNSOKRESPONSE1641833861
   response:
     body: '{"errors": ["Custom variable does not exist"]}'
-    code: 400
+    code: 404
     duration: ''
     headers:
       Content-Type:
       - application/json
-    status: 400 Bad Request
+    status: 404 Not Found
 version: 1

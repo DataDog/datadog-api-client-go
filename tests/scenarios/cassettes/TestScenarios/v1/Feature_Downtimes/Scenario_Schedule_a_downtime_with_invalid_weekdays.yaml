@@ -1,17 +1,17 @@
 interactions:
 - request:
     body: |
-      {"end":1634659062,"message":"Test-Schedule_a_downtime_with_invalid_weekdays-1634655462","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1634655462,"timezone":"Etc/UTC"}
+      {"end":1641433848,"message":"Test-Schedule_a_downtime_with_invalid_weekdays-1641430248","recurrence":{"period":1,"type":"weeks","week_days":["mon","tue"]},"scope":["*"],"start":1641430248,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
     url: https://api.datadoghq.com/api/v1/downtime
   response:
-    body: '{"errors": ["Invalid set of days in week_days. Be sure that the first letter
+    body: '{"errors":["Invalid set of days in week_days. Be sure that the first letter
       is capitalized."]}'
     code: 400
     duration: ''

@@ -5,7 +5,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
       Content-Type:
       - application/json
     method: POST
@@ -23,7 +23,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v2/incidents/f1c9c645-68c5-5e3e-85f8-85f23a5fb9e5
   response:
@@ -39,7 +39,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/f1c9c645-68c5-5e3e-85f8-85f23a5fb9e5
   response:

@@ -4,11 +4,11 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v1/monitor/groups/search?query=status%3Anotastatus
   response:
-    body: '{"errors": ["Query parsing error: ''notastatus'' is not a valid monitor
+    body: '{"errors":["Query parsing error: ''notastatus'' is not a valid monitor
       status"]}'
     code: 400
     duration: ''
