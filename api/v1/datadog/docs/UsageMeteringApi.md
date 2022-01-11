@@ -9,6 +9,7 @@ All URIs are relative to *https://api.datadoghq.com*
 | [**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement)                                   | **Get** /api/v1/usage/incident-management          | Get hourly usage for incident management         |
 | [**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans)                                             | **Get** /api/v1/usage/ingested-spans               | Get hourly usage for ingested spans              |
 | [**GetMonthlyCustomReports**](UsageMeteringApi.md#GetMonthlyCustomReports)                               | **Get** /api/v1/monthly_custom_reports             | Get the list of available monthly custom reports |
+| [**GetMonthlyUsageAttribution**](UsageMeteringApi.md#GetMonthlyUsageAttribution)                         | **Get** /api/v1/usage/monthly-attribution          | Get Monthly Usage Attribution                    |
 | [**GetSpecifiedDailyCustomReports**](UsageMeteringApi.md#GetSpecifiedDailyCustomReports)                 | **Get** /api/v1/daily_custom_reports/{report_id}   | Get specified daily custom reports               |
 | [**GetSpecifiedMonthlyCustomReports**](UsageMeteringApi.md#GetSpecifiedMonthlyCustomReports)             | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports             |
 | [**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs)                                     | **Get** /api/v1/usage/analyzed_logs                | Get hourly usage for analyzed logs               |
@@ -112,7 +113,7 @@ Other parameters are passed through a pointer to a GetDailyCustomReportsOptional
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -196,7 +197,7 @@ Other parameters are passed through a pointer to a GetHourlyUsageAttributionOpti
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -271,7 +272,7 @@ Other parameters are passed through a pointer to a GetIncidentManagementOptional
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -346,7 +347,7 @@ Other parameters are passed through a pointer to a GetIngestedSpansOptionalParam
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -424,7 +425,97 @@ Other parameters are passed through a pointer to a GetMonthlyCustomReportsOption
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
+
+## GetMonthlyUsageAttribution
+
+> MonthlyUsageAttributionResponse GetMonthlyUsageAttribution(ctx, startMonth, fields, datadog.GetMonthlyUsageAttributionOptionalParameters{})
+
+Get Monthly Usage Attribution.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
+    fields := datadog.MonthlyUsageAttributionSupportedMetrics("api_usage") // MonthlyUsageAttributionSupportedMetrics | Comma-separated list of usage types to return, or `*` for all usage types.
+    endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
+    sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
+    sortName := datadog.MonthlyUsageAttributionSupportedMetrics("api_usage") // MonthlyUsageAttributionSupportedMetrics | The field to sort by. (optional)
+    tagBreakdownKeys := "tagBreakdownKeys_example" // string | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. (optional)
+    nextRecordId := "nextRecordId_example" // string | List following results with a next_record_id provided in the previous query. (optional)
+    optionalParams := datadog.GetMonthlyUsageAttributionOptionalParameters{
+        EndMonth: &endMonth,
+        SortDirection: &sortDirection,
+        SortName: &sortName,
+        TagBreakdownKeys: &tagBreakdownKeys,
+        NextRecordId: &nextRecordId,
+    }
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetMonthlyUsageAttribution", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetMonthlyUsageAttribution(ctx, startMonth, fields, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyUsageAttribution`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMonthlyUsageAttribution`: MonthlyUsageAttributionResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetMonthlyUsageAttribution:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+| Name           | Type                                                                                      | Description                                                                                                                            | Notes |
+| -------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                            |
+| **startMonth** | **time.Time**                                                                             | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |       |
+| **fields**     | [**MonthlyUsageAttributionSupportedMetrics**](MonthlyUsageAttributionSupportedMetrics.md) | Comma-separated list of usage types to return, or &#x60;\*&#x60; for all usage types.                                                  |
+
+### Optional Parameters
+
+Other parameters are passed through a pointer to a GetMonthlyUsageAttributionOptionalParameters struct.
+
+| Name                 | Type                                                                                      | Description                                                                                                          | Notes                         |
+| -------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **endMonth**         | **time.Time**                                                                             | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month.               |
+| **sortDirection**    | [**UsageSortDirection**](UsageSortDirection.md)                                           | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                                   | [default to &quot;desc&quot;] |
+| **sortName**         | [**MonthlyUsageAttributionSupportedMetrics**](MonthlyUsageAttributionSupportedMetrics.md) | The field to sort by.                                                                                                |
+| **tagBreakdownKeys** | **string**                                                                                | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. |
+| **nextRecordId**     | **string**                                                                                | List following results with a next_record_id provided in the previous query.                                         |
+
+### Return type
+
+[**MonthlyUsageAttributionResponse**](MonthlyUsageAttributionResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -491,7 +582,7 @@ This endpoint does not have optional parameters.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -558,7 +649,7 @@ This endpoint does not have optional parameters.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -633,7 +724,7 @@ Other parameters are passed through a pointer to a GetUsageAnalyzedLogsOptionalP
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -720,7 +811,7 @@ Other parameters are passed through a pointer to a GetUsageAttributionOptionalPa
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -795,7 +886,7 @@ Other parameters are passed through a pointer to a GetUsageAuditLogsOptionalPara
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -864,7 +955,7 @@ Other parameters are passed through a pointer to a GetUsageBillableSummaryOption
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -939,7 +1030,7 @@ Other parameters are passed through a pointer to a GetUsageCWSOptionalParameters
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1014,7 +1105,7 @@ Other parameters are passed through a pointer to a GetUsageCloudSecurityPostureM
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1089,7 +1180,7 @@ Other parameters are passed through a pointer to a GetUsageDBMOptionalParameters
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1164,7 +1255,7 @@ Other parameters are passed through a pointer to a GetUsageFargateOptionalParame
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1239,7 +1330,7 @@ Other parameters are passed through a pointer to a GetUsageHostsOptionalParamete
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1314,7 +1405,7 @@ Other parameters are passed through a pointer to a GetUsageIndexedSpansOptionalP
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1389,7 +1480,7 @@ Other parameters are passed through a pointer to a GetUsageInternetOfThingsOptio
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1464,7 +1555,7 @@ Other parameters are passed through a pointer to a GetUsageLambdaOptionalParamet
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1539,7 +1630,7 @@ Other parameters are passed through a pointer to a GetUsageLogsOptionalParameter
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1617,7 +1708,7 @@ Other parameters are passed through a pointer to a GetUsageLogsByIndexOptionalPa
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1692,7 +1783,7 @@ Other parameters are passed through a pointer to a GetUsageLogsByRetentionOption
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1767,7 +1858,7 @@ Other parameters are passed through a pointer to a GetUsageNetworkFlowsOptionalP
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1842,7 +1933,7 @@ Other parameters are passed through a pointer to a GetUsageNetworkHostsOptionalP
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1917,7 +2008,7 @@ Other parameters are passed through a pointer to a GetUsageProfilingOptionalPara
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -1995,7 +2086,7 @@ Other parameters are passed through a pointer to a GetUsageRumSessionsOptionalPa
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2070,7 +2161,7 @@ Other parameters are passed through a pointer to a GetUsageRumUnitsOptionalParam
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2145,7 +2236,7 @@ Other parameters are passed through a pointer to a GetUsageSDSOptionalParameters
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2220,7 +2311,7 @@ Other parameters are passed through a pointer to a GetUsageSNMPOptionalParameter
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2298,7 +2389,7 @@ Other parameters are passed through a pointer to a GetUsageSummaryOptionalParame
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2373,7 +2464,7 @@ Other parameters are passed through a pointer to a GetUsageSyntheticsOptionalPar
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2448,7 +2539,7 @@ Other parameters are passed through a pointer to a GetUsageSyntheticsAPIOptional
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2523,7 +2614,7 @@ Other parameters are passed through a pointer to a GetUsageSyntheticsBrowserOpti
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2598,7 +2689,7 @@ Other parameters are passed through a pointer to a GetUsageTimeseriesOptionalPar
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
@@ -2679,7 +2770,7 @@ Other parameters are passed through a pointer to a GetUsageTopAvgMetricsOptional
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)

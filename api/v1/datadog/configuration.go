@@ -271,6 +271,7 @@ func NewConfiguration() *Configuration {
 			"GetDailyCustomReports":            false,
 			"GetHourlyUsageAttribution":        false,
 			"GetMonthlyCustomReports":          false,
+			"GetMonthlyUsageAttribution":       false,
 			"GetSpecifiedDailyCustomReports":   false,
 			"GetSpecifiedMonthlyCustomReports": false,
 			"GetUsageAttribution":              false,
