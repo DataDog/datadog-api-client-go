@@ -98,7 +98,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    incidentId := "incidentId_example" // string | The UUID the incident.
+    incidentId := "incidentId_example" // string | The UUID of the incident.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("DeleteIncident", true)
@@ -117,7 +117,7 @@ func main() {
 | Name           | Type                | Description                                                                 | Notes |
 | -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
 | **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **incidentId** | **string**          | The UUID the incident.                                                      |
+| **incidentId** | **string**          | The UUID of the incident.                                                   |
 
 ### Optional Parameters
 
@@ -162,7 +162,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    incidentId := "incidentId_example" // string | The UUID the incident.
+    incidentId := "incidentId_example" // string | The UUID of the incident.
     include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
     optionalParams := datadog.GetIncidentOptionalParameters{
         Include: &include,
@@ -188,7 +188,7 @@ func main() {
 | Name           | Type                | Description                                                                 | Notes |
 | -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
 | **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **incidentId** | **string**          | The UUID the incident.                                                      |
+| **incidentId** | **string**          | The UUID of the incident.                                                   |
 
 ### Optional Parameters
 
@@ -312,7 +312,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    incidentId := "incidentId_example" // string | The UUID the incident.
+    incidentId := "incidentId_example" // string | The UUID of the incident.
     body := *datadog.NewIncidentUpdateRequest(*datadog.NewIncidentUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentType("incidents"))) // IncidentUpdateRequest | Incident Payload.
 
     configuration := datadog.NewConfiguration()
@@ -335,7 +335,7 @@ func main() {
 | Name           | Type                                                  | Description                                                                 | Notes |
 | -------------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
 | **ctx**        | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-| **incidentId** | **string**                                            | The UUID the incident.                                                      |       |
+| **incidentId** | **string**                                            | The UUID of the incident.                                                   |       |
 | **body**       | [**IncidentUpdateRequest**](IncidentUpdateRequest.md) | Incident Payload.                                                           |
 
 ### Optional Parameters
