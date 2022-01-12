@@ -20,7 +20,7 @@ type SyntheticsGlobalVariable struct {
 	Description string `json:"description"`
 	// Unique identifier of the global variable.
 	Id *string `json:"id,omitempty"`
-	// Name of the global variable.
+	// Name of the global variable. Unique across Synthetics global variables.
 	Name             string                                    `json:"name"`
 	ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
 	// A Synthetic test ID to use as a test to generate the variable value.

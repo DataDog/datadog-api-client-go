@@ -2,16 +2,16 @@
 
 ## Properties
 
-| Name                  | Type                                                                                                   | Description                                                          | Notes                 |
-| --------------------- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- | --------------------- |
-| **Attributes**        | Pointer to [**SyntheticsGlobalVariableAttributes**](SyntheticsGlobalVariableAttributes.md)             |                                                                      | [optional]            |
-| **Description**       | **string**                                                                                             | Description of the global variable.                                  |
-| **Id**                | Pointer to **string**                                                                                  | Unique identifier of the global variable.                            | [optional] [readonly] |
-| **Name**              | **string**                                                                                             | Name of the global variable.                                         |
-| **ParseTestOptions**  | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariableParseTestOptions.md) |                                                                      | [optional]            |
-| **ParseTestPublicId** | Pointer to **string**                                                                                  | A Synthetic test ID to use as a test to generate the variable value. | [optional]            |
-| **Tags**              | **[]string**                                                                                           | Tags of the global variable.                                         |
-| **Value**             | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md)                                  |                                                                      |
+| Name                  | Type                                                                                                   | Description                                                             | Notes                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------------------- |
+| **Attributes**        | Pointer to [**SyntheticsGlobalVariableAttributes**](SyntheticsGlobalVariableAttributes.md)             |                                                                         | [optional]            |
+| **Description**       | **string**                                                                                             | Description of the global variable.                                     |
+| **Id**                | Pointer to **string**                                                                                  | Unique identifier of the global variable.                               | [optional] [readonly] |
+| **Name**              | **string**                                                                                             | Name of the global variable. Unique across Synthetics global variables. |
+| **ParseTestOptions**  | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariableParseTestOptions.md) |                                                                         | [optional]            |
+| **ParseTestPublicId** | Pointer to **string**                                                                                  | A Synthetic test ID to use as a test to generate the variable value.    | [optional]            |
+| **Tags**              | **[]string**                                                                                           | Tags of the global variable.                                            |
+| **Value**             | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md)                                  |                                                                         |
 
 ## Methods
 
