@@ -128,7 +128,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 }
 
 var matchFirstUpper = regexp.MustCompile("(.)([A-Z][a-z]+)")
-var matchAllUpper = regexp.MustCompile("([a-z0-9])([A-Z])")
+var matchAllUpper = regexp.MustCompile("([a-z0-9])([A-Z][a-z0-9]+)")
 
 // CamelToSnakeCase converts CamelCase to snake_case.
 func CamelToSnakeCase(camel string) string {
