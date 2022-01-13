@@ -2,22 +2,19 @@
 
 ## Properties
 
-| Name               | Type                                               | Description                                                                                                                                                                                                                                                               | Notes                 |
-| ------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| **AggregationKey** | Pointer to **string**                              | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.                                                                                                          | [optional]            |
-| **AlertType**      | Pointer to [**EventAlertType**](EventAlertType.md) |                                                                                                                                                                                                                                                                           | [optional]            |
-| **DateHappened**   | Pointer to **int64**                               | POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.                                                                                                                                                     | [optional]            |
-| **DeviceName**     | Pointer to **string**                              | A device name.                                                                                                                                                                                                                                                            | [optional]            |
-| **Host**           | Pointer to **string**                              | Host name to associate with the event. Any tags associated with the host are also applied to this event.                                                                                                                                                                  | [optional]            |
-| **Id**             | Pointer to **int64**                               | Integer ID of the event.                                                                                                                                                                                                                                                  | [optional] [readonly] |
-| **Payload**        | Pointer to **string**                              | Payload of the event.                                                                                                                                                                                                                                                     | [optional] [readonly] |
-| **Priority**       | Pointer to [**EventPriority**](EventPriority.md)   |                                                                                                                                                                                                                                                                           | [optional]            |
-| **RelatedEventId** | Pointer to **int64**                               | ID of the parent event. Must be sent as an integer (that is no quotes).                                                                                                                                                                                                   | [optional]            |
-| **SourceTypeName** | Pointer to **string**                              | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional]            |
-| **Tags**           | Pointer to **[]string**                            | A list of tags to apply to the event.                                                                                                                                                                                                                                     | [optional]            |
+| Name               | Type                                               | Description                                                                                                                                                                                                                                                               | Notes      |
+| ------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AggregationKey** | Pointer to **string**                              | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.                                                                                                          | [optional] |
+| **AlertType**      | Pointer to [**EventAlertType**](EventAlertType.md) |                                                                                                                                                                                                                                                                           | [optional] |
+| **DateHappened**   | Pointer to **int64**                               | POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.                                                                                                                                                     | [optional] |
+| **DeviceName**     | Pointer to **string**                              | A device name.                                                                                                                                                                                                                                                            | [optional] |
+| **Host**           | Pointer to **string**                              | Host name to associate with the event. Any tags associated with the host are also applied to this event.                                                                                                                                                                  | [optional] |
+| **Priority**       | Pointer to [**EventPriority**](EventPriority.md)   |                                                                                                                                                                                                                                                                           | [optional] |
+| **RelatedEventId** | Pointer to **int64**                               | ID of the parent event. Must be sent as an integer (that is no quotes).                                                                                                                                                                                                   | [optional] |
+| **SourceTypeName** | Pointer to **string**                              | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] |
+| **Tags**           | Pointer to **[]string**                            | A list of tags to apply to the event.                                                                                                                                                                                                                                     | [optional] |
 | **Text**           | **string**                                         | The body of the event. Limited to 4000 characters. The text supports markdown. To use markdown in the event text, start the text block with &#x60;%%% \\n&#x60; and end the text block with &#x60;\\n %%%&#x60;. Use &#x60;msg_text&#x60; with the Datadog Ruby library.  |
 | **Title**          | **string**                                         | The event title.                                                                                                                                                                                                                                                          |
-| **Url**            | Pointer to **string**                              | URL of the event.                                                                                                                                                                                                                                                         | [optional] [readonly] |
 
 ## Methods
 
@@ -163,56 +160,6 @@ SetHost sets Host field to given value.
 
 HasHost returns a boolean if a field has been set.
 
-### GetId
-
-`func (o *EventCreateRequest) GetId() int64`
-
-GetId returns the Id field if non-nil, zero value otherwise.
-
-### GetIdOk
-
-`func (o *EventCreateRequest) GetIdOk() (*int64, bool)`
-
-GetIdOk returns a tuple with the Id field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetId
-
-`func (o *EventCreateRequest) SetId(v int64)`
-
-SetId sets Id field to given value.
-
-### HasId
-
-`func (o *EventCreateRequest) HasId() bool`
-
-HasId returns a boolean if a field has been set.
-
-### GetPayload
-
-`func (o *EventCreateRequest) GetPayload() string`
-
-GetPayload returns the Payload field if non-nil, zero value otherwise.
-
-### GetPayloadOk
-
-`func (o *EventCreateRequest) GetPayloadOk() (*string, bool)`
-
-GetPayloadOk returns a tuple with the Payload field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetPayload
-
-`func (o *EventCreateRequest) SetPayload(v string)`
-
-SetPayload sets Payload field to given value.
-
-### HasPayload
-
-`func (o *EventCreateRequest) HasPayload() bool`
-
-HasPayload returns a boolean if a field has been set.
-
 ### GetPriority
 
 `func (o *EventCreateRequest) GetPriority() EventPriority`
@@ -350,30 +297,5 @@ and a boolean to check if the value has been set.
 `func (o *EventCreateRequest) SetTitle(v string)`
 
 SetTitle sets Title field to given value.
-
-### GetUrl
-
-`func (o *EventCreateRequest) GetUrl() string`
-
-GetUrl returns the Url field if non-nil, zero value otherwise.
-
-### GetUrlOk
-
-`func (o *EventCreateRequest) GetUrlOk() (*string, bool)`
-
-GetUrlOk returns a tuple with the Url field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetUrl
-
-`func (o *EventCreateRequest) SetUrl(v string)`
-
-SetUrl sets Url field to given value.
-
-### HasUrl
-
-`func (o *EventCreateRequest) HasUrl() bool`
-
-HasUrl returns a boolean if a field has been set.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
