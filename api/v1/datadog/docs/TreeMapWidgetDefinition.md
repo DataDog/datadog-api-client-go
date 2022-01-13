@@ -4,10 +4,10 @@
 
 | Name         | Type                                                              | Description                       | Notes                                            |
 | ------------ | ----------------------------------------------------------------- | --------------------------------- | ------------------------------------------------ |
-| **ColorBy**  | [**TreeMapColorBy**](TreeMapColorBy.md)                           |                                   | [default to TREEMAPCOLORBY_USER]                 |
-| **GroupBy**  | [**TreeMapGroupBy**](TreeMapGroupBy.md)                           |                                   |
+| **ColorBy**  | Pointer to [**TreeMapColorBy**](TreeMapColorBy.md)                |                                   | [optional] [default to TREEMAPCOLORBY_USER]      |
+| **GroupBy**  | Pointer to [**TreeMapGroupBy**](TreeMapGroupBy.md)                |                                   | [optional]                                       |
 | **Requests** | [**[]TreeMapWidgetRequest**](TreeMapWidgetRequest.md)             | List of top list widget requests. |
-| **SizeBy**   | [**TreeMapSizeBy**](TreeMapSizeBy.md)                             |                                   |
+| **SizeBy**   | Pointer to [**TreeMapSizeBy**](TreeMapSizeBy.md)                  |                                   | [optional]                                       |
 | **Title**    | Pointer to **string**                                             | Title of your widget.             | [optional]                                       |
 | **Type**     | [**TreeMapWidgetDefinitionType**](TreeMapWidgetDefinitionType.md) |                                   | [default to TREEMAPWIDGETDEFINITIONTYPE_TREEMAP] |
 
@@ -15,7 +15,7 @@
 
 ### NewTreeMapWidgetDefinition
 
-`func NewTreeMapWidgetDefinition(colorBy TreeMapColorBy, groupBy TreeMapGroupBy, requests []TreeMapWidgetRequest, sizeBy TreeMapSizeBy, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition`
+`func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition`
 
 NewTreeMapWidgetDefinition instantiates a new TreeMapWidgetDefinition object.
 This constructor will assign default values to properties that have it defined,
@@ -49,6 +49,12 @@ and a boolean to check if the value has been set.
 
 SetColorBy sets ColorBy field to given value.
 
+### HasColorBy
+
+`func (o *TreeMapWidgetDefinition) HasColorBy() bool`
+
+HasColorBy returns a boolean if a field has been set.
+
 ### GetGroupBy
 
 `func (o *TreeMapWidgetDefinition) GetGroupBy() TreeMapGroupBy`
@@ -67,6 +73,12 @@ and a boolean to check if the value has been set.
 `func (o *TreeMapWidgetDefinition) SetGroupBy(v TreeMapGroupBy)`
 
 SetGroupBy sets GroupBy field to given value.
+
+### HasGroupBy
+
+`func (o *TreeMapWidgetDefinition) HasGroupBy() bool`
+
+HasGroupBy returns a boolean if a field has been set.
 
 ### GetRequests
 
@@ -105,6 +117,12 @@ and a boolean to check if the value has been set.
 `func (o *TreeMapWidgetDefinition) SetSizeBy(v TreeMapSizeBy)`
 
 SetSizeBy sets SizeBy field to given value.
+
+### HasSizeBy
+
+`func (o *TreeMapWidgetDefinition) HasSizeBy() bool`
+
+HasSizeBy returns a boolean if a field has been set.
 
 ### GetTitle
 
