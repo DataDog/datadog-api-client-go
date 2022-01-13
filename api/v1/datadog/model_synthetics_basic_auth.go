@@ -10,131 +10,134 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
 )
 
-// SyntheticsBasicAuth Object to handle basic authentication when performing the test.
+// SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	// Password to use for the basic authentication.
-	Password string `json:"password"`
-	// Username to use for the basic authentication.
-	Username string `json:"username"`
+	SyntheticsBasicAuthNTLM  *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
+	SyntheticsBasicAuthWeb   *SyntheticsBasicAuthWeb
+
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject interface{}
 }
 
-// NewSyntheticsBasicAuth instantiates a new SyntheticsBasicAuth object
-// This constructor will assign default values to properties that have it defined,
-// and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsBasicAuth(password string, username string) *SyntheticsBasicAuth {
-	this := SyntheticsBasicAuth{}
-	this.Password = password
-	this.Username = username
-	return &this
+// SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthNTLM wrapped in SyntheticsBasicAuth
+func SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth(v *SyntheticsBasicAuthNTLM) SyntheticsBasicAuth {
+	return SyntheticsBasicAuth{SyntheticsBasicAuthNTLM: v}
 }
 
-// NewSyntheticsBasicAuthWithDefaults instantiates a new SyntheticsBasicAuth object
-// This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
-func NewSyntheticsBasicAuthWithDefaults() *SyntheticsBasicAuth {
-	this := SyntheticsBasicAuth{}
-	return &this
+// SyntheticsBasicAuthSigv4AsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthSigv4 wrapped in SyntheticsBasicAuth
+func SyntheticsBasicAuthSigv4AsSyntheticsBasicAuth(v *SyntheticsBasicAuthSigv4) SyntheticsBasicAuth {
+	return SyntheticsBasicAuth{SyntheticsBasicAuthSigv4: v}
 }
 
-// GetPassword returns the Password field value
-func (o *SyntheticsBasicAuth) GetPassword() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Password
+// SyntheticsBasicAuthWebAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthWeb wrapped in SyntheticsBasicAuth
+func SyntheticsBasicAuthWebAsSyntheticsBasicAuth(v *SyntheticsBasicAuthWeb) SyntheticsBasicAuth {
+	return SyntheticsBasicAuth{SyntheticsBasicAuthWeb: v}
 }
 
-// GetPasswordOk returns a tuple with the Password field value
-// and a boolean to check if the value has been set.
-func (o *SyntheticsBasicAuth) GetPasswordOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Password, true
-}
-
-// SetPassword sets field value
-func (o *SyntheticsBasicAuth) SetPassword(v string) {
-	o.Password = v
-}
-
-// GetUsername returns the Username field value
-func (o *SyntheticsBasicAuth) GetUsername() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Username
-}
-
-// GetUsernameOk returns a tuple with the Username field value
-// and a boolean to check if the value has been set.
-func (o *SyntheticsBasicAuth) GetUsernameOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Username, true
-}
-
-// SetUsername sets field value
-func (o *SyntheticsBasicAuth) SetUsername(v string) {
-	o.Username = v
-}
-
-func (o SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
-	toSerialize := map[string]interface{}{}
-	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
-	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if true {
-		toSerialize["username"] = o.Username
-	}
-	return json.Marshal(toSerialize)
-}
-
-func (o *SyntheticsBasicAuth) UnmarshalJSON(bytes []byte) (err error) {
-	raw := map[string]interface{}{}
-	required := struct {
-		Password *string `json:"password"`
-		Username *string `json:"username"`
-	}{}
-	all := struct {
-		Password string `json:"password"`
-		Username string `json:"username"`
-	}{}
-	err = json.Unmarshal(bytes, &required)
-	if err != nil {
-		return err
-	}
-	if required.Password == nil {
-		return fmt.Errorf("Required field password missing")
-	}
-	if required.Username == nil {
-		return fmt.Errorf("Required field username missing")
-	}
-	err = json.Unmarshal(bytes, &all)
-	if err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
+// Unmarshal JSON data into one of the pointers in the struct
+func (dst *SyntheticsBasicAuth) UnmarshalJSON(data []byte) error {
+	var err error
+	match := 0
+	// try to unmarshal data into SyntheticsBasicAuthWeb
+	err = json.Unmarshal(data, &dst.SyntheticsBasicAuthWeb)
+	if err == nil {
+		if dst.SyntheticsBasicAuthWeb != nil && dst.SyntheticsBasicAuthWeb.UnparsedObject == nil {
+			jsonSyntheticsBasicAuthWeb, _ := json.Marshal(dst.SyntheticsBasicAuthWeb)
+			if string(jsonSyntheticsBasicAuthWeb) == "{}" { // empty struct
+				dst.SyntheticsBasicAuthWeb = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SyntheticsBasicAuthWeb = nil
 		}
-		o.UnparsedObject = raw
-		return nil
+	} else {
+		dst.SyntheticsBasicAuthWeb = nil
 	}
-	o.Password = all.Password
-	o.Username = all.Username
+
+	// try to unmarshal data into SyntheticsBasicAuthSigv4
+	err = json.Unmarshal(data, &dst.SyntheticsBasicAuthSigv4)
+	if err == nil {
+		if dst.SyntheticsBasicAuthSigv4 != nil && dst.SyntheticsBasicAuthSigv4.UnparsedObject == nil {
+			jsonSyntheticsBasicAuthSigv4, _ := json.Marshal(dst.SyntheticsBasicAuthSigv4)
+			if string(jsonSyntheticsBasicAuthSigv4) == "{}" { // empty struct
+				dst.SyntheticsBasicAuthSigv4 = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SyntheticsBasicAuthSigv4 = nil
+		}
+	} else {
+		dst.SyntheticsBasicAuthSigv4 = nil
+	}
+
+	// try to unmarshal data into SyntheticsBasicAuthNTLM
+	err = json.Unmarshal(data, &dst.SyntheticsBasicAuthNTLM)
+	if err == nil {
+		if dst.SyntheticsBasicAuthNTLM != nil && dst.SyntheticsBasicAuthNTLM.UnparsedObject == nil {
+			jsonSyntheticsBasicAuthNTLM, _ := json.Marshal(dst.SyntheticsBasicAuthNTLM)
+			if string(jsonSyntheticsBasicAuthNTLM) == "{}" { // empty struct
+				dst.SyntheticsBasicAuthNTLM = nil
+			} else {
+				match++
+			}
+		} else {
+			dst.SyntheticsBasicAuthNTLM = nil
+		}
+	} else {
+		dst.SyntheticsBasicAuthNTLM = nil
+	}
+
+	if match != 1 { // more than 1 match
+		// reset to nil
+		dst.SyntheticsBasicAuthNTLM = nil
+		dst.SyntheticsBasicAuthSigv4 = nil
+		dst.SyntheticsBasicAuthWeb = nil
+		return json.Unmarshal(data, &dst.UnparsedObject)
+	} else {
+		return nil // exactly one match
+	}
+}
+
+// Marshal data from the first non-nil pointers in the struct to JSON
+func (src SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
+	if src.SyntheticsBasicAuthNTLM != nil {
+		return json.Marshal(&src.SyntheticsBasicAuthNTLM)
+	}
+
+	if src.SyntheticsBasicAuthSigv4 != nil {
+		return json.Marshal(&src.SyntheticsBasicAuthSigv4)
+	}
+
+	if src.SyntheticsBasicAuthWeb != nil {
+		return json.Marshal(&src.SyntheticsBasicAuthWeb)
+	}
+
+	if src.UnparsedObject != nil {
+		return json.Marshal(src.UnparsedObject)
+	}
+	return nil, nil // no data in oneOf schemas
+}
+
+// Get the actual instance
+func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
+	if obj.SyntheticsBasicAuthNTLM != nil {
+		return obj.SyntheticsBasicAuthNTLM
+	}
+
+	if obj.SyntheticsBasicAuthSigv4 != nil {
+		return obj.SyntheticsBasicAuthSigv4
+	}
+
+	if obj.SyntheticsBasicAuthWeb != nil {
+		return obj.SyntheticsBasicAuthWeb
+	}
+
+	// all schemas are nil
 	return nil
 }
 

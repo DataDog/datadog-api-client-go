@@ -38,7 +38,8 @@ type SyntheticsTestRequest struct {
 	// Number of pings to use per test.
 	NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
 	// Port to use when performing the test.
-	Port *int64 `json:"port,omitempty"`
+	Port  *int64                      `json:"port,omitempty"`
+	Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
 	// Query to use for the test.
 	Query *interface{} `json:"query,omitempty"`
 	// For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number.
@@ -518,6 +519,38 @@ func (o *SyntheticsTestRequest) SetPort(v int64) {
 	o.Port = &v
 }
 
+// GetProxy returns the Proxy field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetProxy() SyntheticsTestRequestProxy {
+	if o == nil || o.Proxy == nil {
+		var ret SyntheticsTestRequestProxy
+		return ret
+	}
+	return *o.Proxy
+}
+
+// GetProxyOk returns a tuple with the Proxy field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetProxyOk() (*SyntheticsTestRequestProxy, bool) {
+	if o == nil || o.Proxy == nil {
+		return nil, false
+	}
+	return o.Proxy, true
+}
+
+// HasProxy returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasProxy() bool {
+	if o != nil && o.Proxy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetProxy gets a reference to the given SyntheticsTestRequestProxy and assigns it to the Proxy field.
+func (o *SyntheticsTestRequest) SetProxy(v SyntheticsTestRequestProxy) {
+	o.Proxy = &v
+}
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetQuery() interface{} {
 	if o == nil || o.Query == nil {
@@ -725,6 +758,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Port != nil {
 		toSerialize["port"] = o.Port
 	}
+	if o.Proxy != nil {
+		toSerialize["proxy"] = o.Proxy
+	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
@@ -760,6 +796,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
 		Port                 *int64                            `json:"port,omitempty"`
+		Proxy                *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
 		Query                *interface{}                      `json:"query,omitempty"`
 		Servername           *string                           `json:"servername,omitempty"`
 		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
@@ -797,6 +834,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets
 	o.Port = all.Port
+	o.Proxy = all.Proxy
 	o.Query = all.Query
 	o.Servername = all.Servername
 	o.ShouldTrackHops = all.ShouldTrackHops

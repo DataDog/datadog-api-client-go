@@ -66,6 +66,10 @@ func main() {
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
 				Url:     datadog.PtrString("https://datadoghq.com"),
+				Proxy: &datadog.SyntheticsTestRequestProxy{
+					Url:     "https://datadoghq.com",
+					Headers: &map[string]string{},
+				},
 			},
 		},
 		Locations: &[]string{

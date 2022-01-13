@@ -18,6 +18,7 @@
 | **NoSavingResponseBody** | Pointer to **bool**                                                                    | Determines whether or not to save the response body.                                                                                                                                                 | [optional] |
 | **NumberOfPackets**      | Pointer to **int32**                                                                   | Number of pings to use per test.                                                                                                                                                                     | [optional] |
 | **Port**                 | Pointer to **int64**                                                                   | Port to use when performing the test.                                                                                                                                                                | [optional] |
+| **Proxy**                | Pointer to [**SyntheticsTestRequestProxy**](SyntheticsTestRequestProxy.md)             |                                                                                                                                                                                                      | [optional] |
 | **Query**                | Pointer to **interface{}**                                                             | Query to use for the test.                                                                                                                                                                           | [optional] |
 | **Servername**           | Pointer to **string**                                                                  | For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number. | [optional] |
 | **ShouldTrackHops**      | Pointer to **bool**                                                                    | Turns on a traceroute probe to discover all gateways along the path to the host destination.                                                                                                         | [optional] |
@@ -392,6 +393,31 @@ SetPort sets Port field to given value.
 `func (o *SyntheticsTestRequest) HasPort() bool`
 
 HasPort returns a boolean if a field has been set.
+
+### GetProxy
+
+`func (o *SyntheticsTestRequest) GetProxy() SyntheticsTestRequestProxy`
+
+GetProxy returns the Proxy field if non-nil, zero value otherwise.
+
+### GetProxyOk
+
+`func (o *SyntheticsTestRequest) GetProxyOk() (*SyntheticsTestRequestProxy, bool)`
+
+GetProxyOk returns a tuple with the Proxy field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetProxy
+
+`func (o *SyntheticsTestRequest) SetProxy(v SyntheticsTestRequestProxy)`
+
+SetProxy sets Proxy field to given value.
+
+### HasProxy
+
+`func (o *SyntheticsTestRequest) HasProxy() bool`
+
+HasProxy returns a boolean if a field has been set.
 
 ### GetQuery
 

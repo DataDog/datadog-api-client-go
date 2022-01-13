@@ -477,6 +477,12 @@ docs/SyntheticsAssertionOperator.md
 docs/SyntheticsAssertionTarget.md
 docs/SyntheticsAssertionType.md
 docs/SyntheticsBasicAuth.md
+docs/SyntheticsBasicAuthNTLM.md
+docs/SyntheticsBasicAuthNTLMType.md
+docs/SyntheticsBasicAuthSigv4.md
+docs/SyntheticsBasicAuthSigv4Type.md
+docs/SyntheticsBasicAuthWeb.md
+docs/SyntheticsBasicAuthWebType.md
 docs/SyntheticsBatchDetails.md
 docs/SyntheticsBatchDetailsData.md
 docs/SyntheticsBatchResult.md
@@ -551,6 +557,7 @@ docs/SyntheticsTestProcessStatus.md
 docs/SyntheticsTestRequest.md
 docs/SyntheticsTestRequestCertificate.md
 docs/SyntheticsTestRequestCertificateItem.md
+docs/SyntheticsTestRequestProxy.md
 docs/SyntheticsTiming.md
 docs/SyntheticsTriggerBody.md
 docs/SyntheticsTriggerCITestLocation.md
@@ -1144,6 +1151,12 @@ model_synthetics_assertion_operator.go
 model_synthetics_assertion_target.go
 model_synthetics_assertion_type.go
 model_synthetics_basic_auth.go
+model_synthetics_basic_auth_ntlm.go
+model_synthetics_basic_auth_ntlm_type.go
+model_synthetics_basic_auth_sigv4.go
+model_synthetics_basic_auth_sigv4_type.go
+model_synthetics_basic_auth_web.go
+model_synthetics_basic_auth_web_type.go
 model_synthetics_batch_details.go
 model_synthetics_batch_details_data.go
 model_synthetics_batch_result.go
@@ -1218,6 +1231,7 @@ model_synthetics_test_process_status.go
 model_synthetics_test_request.go
 model_synthetics_test_request_certificate.go
 model_synthetics_test_request_certificate_item.go
+model_synthetics_test_request_proxy.go
 model_synthetics_timing.go
 model_synthetics_trigger_body.go
 model_synthetics_trigger_ci_test_location.go
