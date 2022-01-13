@@ -367,6 +367,23 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	if err != nil {
 		return false
 	}
+
+	for k, v := range i.Headers {
+		if strings.Compare(k, "Accept") != 0 && strings.Compare(k, "Content-Type") != 0 {
+			continue
+		}
+		rv := r.Header.Values(k)
+		if len(v) != len(rv) {
+			return false
+		}
+		for kv, vv := range rv {
+			if strings.Compare(vv, v[kv]) != 0 {
+				log.Printf("header %s %s does not match %s on possition %d", k, v, rv, kv)
+				return false
+			}
+		}
+	}
+
 	if cassetteURL.Path != r.URL.Path {
 		return false
 	}
@@ -375,6 +392,7 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	q.Del("api_key")
 	q.Del("application_key")
 	if cassetteURL.Query().Encode() != q.Encode() {
+		log.Printf("query %s does not match %s", cassetteURL.Query().Encode(), q.Encode())
 		return false
 	}
 

@@ -14,6 +14,7 @@ import (
 	"os"
 	"reflect"
 	"strconv"
+	"strings"
 
 	v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -222,6 +223,13 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	if len(result) > 2 {
 		resp := result[len(result)-2].Interface().(*http.Response)
 		if resp == nil {
+			return
+		}
+		contentType := resp.Header.Get("Content-Type")
+		if !strings.Contains(contentType, "application/json") && !strings.Contains(contentType, "text/json") {
+			// We don't care about non-JSON responses
+			t.Logf("Response is not JSON: %s", contentType)
+			ctx.Set(jsonResponseKey{}, result[0])
 			return
 		}
 		code := resp.StatusCode
