@@ -57,7 +57,7 @@ func relativeTime(iso bool) func(map[string]interface{}, string) string {
 				}
 			}
 			if iso {
-				return ret.Format(time.RFC3339)
+				return ret.Format("2006-01-02T15:04:05.000Z07:00")
 			}
 			return strconv.FormatInt(ret.Unix(), 10)
 		}
