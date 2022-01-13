@@ -1,51 +1,21 @@
 interactions:
 - request:
     body: |
-      {"end":1634659063,"message":"Test-Schedule_a_downtime_with_mutually_exclusive_until_occurrences_and_until_date_properties-1634655463","recurrence":{"period":1,"type":"weeks","until_date":1636469863,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634655463,"timezone":"Etc/UTC"}
+      {"end":1641433849,"message":"Test-Schedule_a_downtime_with_mutually_exclusive_until_occurrences_and_until_date_properties-1641430249","recurrence":{"period":1,"type":"weeks","until_date":1643244649,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1641430249,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '319'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '5571625235413541261'
-      X-Datadog-Trace-Id:
-      - '1846571273775628065'
     method: POST
     url: https://api.datadoghq.com/api/v1/downtime
   response:
-    body: '{"errors": ["You must provide only provide one of (until_occurrences, until_date)"]}'
+    body: '{"errors":["You must provide only provide one of (until_occurrences, until_date)"]}'
     code: 400
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '84'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 19 Oct 2021 14:57:43 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 400 Bad Request
 version: 1

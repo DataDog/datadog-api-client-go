@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Date** | Pointer to **string** | The month for the usage. | [optional] 
-**Usage** | Pointer to [**[]LogsRetentionSumUsage**](LogsRetentionSumUsage.md) | Indexed logs usage for each active retention for the month. | [optional] 
+| Name      | Type                                                               | Description                                                 | Notes      |
+| --------- | ------------------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
+| **Date**  | Pointer to **string**                                              | The month for the usage.                                    | [optional] |
+| **Usage** | Pointer to [**[]LogsRetentionSumUsage**](LogsRetentionSumUsage.md) | Indexed logs usage for each active retention for the month. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetUsage sets Usage field to given value.
 
 HasUsage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

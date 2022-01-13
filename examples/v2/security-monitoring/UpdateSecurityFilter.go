@@ -13,25 +13,25 @@ import (
 
 func main() {
 	// there is a valid "security_filter" in the system
-	SECURITY_FILTER_DATA_ID := os.Getenv("SECURITY_FILTER_DATA_ID")
+	SecurityFilterDataID := os.Getenv("SECURITY_FILTER_DATA_ID")
 
 	body := datadog.SecurityFilterUpdateRequest{
 		Data: datadog.SecurityFilterUpdateData{
 			Attributes: datadog.SecurityFilterUpdateAttributes{
 				ExclusionFilters: &[]datadog.SecurityFilterExclusionFilter{},
-				FilteredDataType: datadog.SecurityFilterFilteredDataType("logs").Ptr(),
+				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS.Ptr(),
 				IsEnabled:        datadog.PtrBool(true),
 				Name:             datadog.PtrString("Example-Update_a_security_filter_returns_OK_response"),
 				Query:            datadog.PtrString("service:ExampleUpdateasecurityfilterreturnsOKresponse"),
 				Version:          datadog.PtrInt32(1),
 			},
-			Type: datadog.SecurityFilterType("security_filters"),
+			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, SECURITY_FILTER_DATA_ID, body)
+	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, SecurityFilterDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityFilter`: %v\n", err)

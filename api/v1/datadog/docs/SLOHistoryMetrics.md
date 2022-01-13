@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Denominator** | [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
-**Interval** | **int64** | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. | 
-**Message** | Pointer to **string** | Optional message if there are specific query issues/warnings. | [optional] 
-**Numerator** | [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |  | 
-**Query** | **string** | The combined numerator and denominator query CSV. | 
-**ResType** | **string** | The series result type. This mimics &#x60;batch_query&#x60; response type. | 
-**RespVersion** | **int64** | The series response version type. This mimics &#x60;batch_query&#x60; response type. | 
-**Times** | **[]float64** | An array of query timestamps in EPOCH milliseconds | 
+| Name            | Type                                                      | Description                                                                                          | Notes      |
+| --------------- | --------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ---------- |
+| **Denominator** | [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |                                                                                                      |
+| **Interval**    | **int64**                                                 | The aggregated query interval for the series data. It&#39;s implicit based on the query time window. |
+| **Message**     | Pointer to **string**                                     | Optional message if there are specific query issues/warnings.                                        | [optional] |
+| **Numerator**   | [**SLOHistoryMetricsSeries**](SLOHistoryMetricsSeries.md) |                                                                                                      |
+| **Query**       | **string**                                                | The combined numerator and denominator query CSV.                                                    |
+| **ResType**     | **string**                                                | The series result type. This mimics &#x60;batch_query&#x60; response type.                           |
+| **RespVersion** | **int64**                                                 | The series response version type. This mimics &#x60;batch_query&#x60; response type.                 |
+| **Times**       | **[]float64**                                             | An array of query timestamps in EPOCH milliseconds                                                   |
 
 ## Methods
 
@@ -51,7 +51,6 @@ and a boolean to check if the value has been set.
 
 SetDenominator sets Denominator field to given value.
 
-
 ### GetInterval
 
 `func (o *SLOHistoryMetrics) GetInterval() int64`
@@ -70,7 +69,6 @@ and a boolean to check if the value has been set.
 `func (o *SLOHistoryMetrics) SetInterval(v int64)`
 
 SetInterval sets Interval field to given value.
-
 
 ### GetMessage
 
@@ -116,7 +114,6 @@ and a boolean to check if the value has been set.
 
 SetNumerator sets Numerator field to given value.
 
-
 ### GetQuery
 
 `func (o *SLOHistoryMetrics) GetQuery() string`
@@ -135,7 +132,6 @@ and a boolean to check if the value has been set.
 `func (o *SLOHistoryMetrics) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetResType
 
@@ -156,7 +152,6 @@ and a boolean to check if the value has been set.
 
 SetResType sets ResType field to given value.
 
-
 ### GetRespVersion
 
 `func (o *SLOHistoryMetrics) GetRespVersion() int64`
@@ -175,7 +170,6 @@ and a boolean to check if the value has been set.
 `func (o *SLOHistoryMetrics) SetRespVersion(v int64)`
 
 SetRespVersion sets RespVersion field to given value.
-
 
 ### GetTimes
 
@@ -196,8 +190,4 @@ and a boolean to check if the value has been set.
 
 SetTimes sets Times field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

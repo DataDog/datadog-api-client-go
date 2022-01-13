@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **string** | Creation date of the API key. | [optional] [readonly] 
-**Key** | Pointer to **string** | The API key. | [optional] [readonly] 
-**Last4** | Pointer to **string** | The last four characters of the API key. | [optional] [readonly] 
-**ModifiedAt** | Pointer to **string** | Date the API key was last modified. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the API key. | [optional] 
+| Name           | Type                  | Description                              | Notes                 |
+| -------------- | --------------------- | ---------------------------------------- | --------------------- |
+| **CreatedAt**  | Pointer to **string** | Creation date of the API key.            | [optional] [readonly] |
+| **Key**        | Pointer to **string** | The API key.                             | [optional] [readonly] |
+| **Last4**      | Pointer to **string** | The last four characters of the API key. | [optional] [readonly] |
+| **ModifiedAt** | Pointer to **string** | Date the API key was last modified.      | [optional] [readonly] |
+| **Name**       | Pointer to **string** | Name of the API key.                     | [optional]            |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

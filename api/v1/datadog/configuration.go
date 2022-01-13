@@ -167,7 +167,7 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "The regional site for our customers.",
+							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
@@ -214,7 +214,7 @@ func NewConfiguration() *Configuration {
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "The regional site for our customers.",
+							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
@@ -266,9 +266,12 @@ func NewConfiguration() *Configuration {
 			"GetSLOCorrection":                 false,
 			"ListSLOCorrection":                false,
 			"UpdateSLOCorrection":              false,
+			"GetSLOCorrections":                false,
 			"GetSLOHistory":                    false,
 			"GetDailyCustomReports":            false,
+			"GetHourlyUsageAttribution":        false,
 			"GetMonthlyCustomReports":          false,
+			"GetMonthlyUsageAttribution":       false,
 			"GetSpecifiedDailyCustomReports":   false,
 			"GetSpecifiedMonthlyCustomReports": false,
 			"GetUsageAttribution":              false,

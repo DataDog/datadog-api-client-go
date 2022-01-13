@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.ServiceLevelObjectiveRequest{
-		Type:        datadog.SLOType("metric"),
+		Type:        datadog.SLOTYPE_METRIC,
 		Description: *datadog.NewNullableString(datadog.PtrString("string")),
 		Groups: &[]string{
 			"env:test",
@@ -30,10 +30,10 @@ func main() {
 			"app:core",
 		},
 		Thresholds: []datadog.SLOThreshold{
-			datadog.SLOThreshold{
+			{
 				Target:         95.0,
 				TargetDisplay:  datadog.PtrString("95.0"),
-				Timeframe:      datadog.SLOTimeframe("7d"),
+				Timeframe:      datadog.SLOTIMEFRAME_SEVEN_DAYS,
 				Warning:        datadog.PtrFloat64(98),
 				WarningDisplay: datadog.PtrString("98.0"),
 			},

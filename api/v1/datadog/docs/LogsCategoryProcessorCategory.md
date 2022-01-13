@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |  | [optional] 
-**Name** | Pointer to **string** | Value to assign to the target attribute. | [optional] 
+| Name       | Type                                       | Description                              | Notes      |
+| ---------- | ------------------------------------------ | ---------------------------------------- | ---------- |
+| **Filter** | Pointer to [**LogsFilter**](LogsFilter.md) |                                          | [optional] |
+| **Name**   | Pointer to **string**                      | Value to assign to the target attribute. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

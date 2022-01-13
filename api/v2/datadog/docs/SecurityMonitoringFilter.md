@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Action** | Pointer to [**SecurityMonitoringFilterAction**](SecurityMonitoringFilterAction.md) |  | [optional] 
-**Query** | Pointer to **string** | Query for selecting logs to apply the filtering action. | [optional] 
+| Name       | Type                                                                               | Description                                             | Notes      |
+| ---------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------- | ---------- |
+| **Action** | Pointer to [**SecurityMonitoringFilterAction**](SecurityMonitoringFilterAction.md) |                                                         | [optional] |
+| **Query**  | Pointer to **string**                                                              | Query for selecting logs to apply the filtering action. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetQuery sets Query field to given value.
 
 HasQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

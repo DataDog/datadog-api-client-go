@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cases** | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md) | Cases for generating signals. | 
-**Filters** | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md) | Additional queries to filter matched events before they are processed. | [optional] 
-**HasExtendedTitle** | Pointer to **bool** | Whether the notifications include the triggering group-by values in their title. | [optional] 
-**IsEnabled** | **bool** | Whether the rule is enabled. | 
-**Message** | **string** | Message for generated signals. | 
-**Name** | **string** | The name of the rule. | 
-**Options** | [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md) |  | 
-**Queries** | [**[]SecurityMonitoringRuleQueryCreate**](SecurityMonitoringRuleQueryCreate.md) | Queries for selecting logs which are part of the rule. | 
-**Tags** | Pointer to **[]string** | Tags for generated signals. | [optional] 
-**Type** | Pointer to [**SecurityMonitoringRuleTypeCreate**](SecurityMonitoringRuleTypeCreate.md) |  | [optional] 
+| Name                 | Type                                                                                   | Description                                                                      | Notes      |
+| -------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------- |
+| **Cases**            | [**[]SecurityMonitoringRuleCaseCreate**](SecurityMonitoringRuleCaseCreate.md)          | Cases for generating signals.                                                    |
+| **Filters**          | Pointer to [**[]SecurityMonitoringFilter**](SecurityMonitoringFilter.md)               | Additional queries to filter matched events before they are processed.           | [optional] |
+| **HasExtendedTitle** | Pointer to **bool**                                                                    | Whether the notifications include the triggering group-by values in their title. | [optional] |
+| **IsEnabled**        | **bool**                                                                               | Whether the rule is enabled.                                                     |
+| **Message**          | **string**                                                                             | Message for generated signals.                                                   |
+| **Name**             | **string**                                                                             | The name of the rule.                                                            |
+| **Options**          | [**SecurityMonitoringRuleOptions**](SecurityMonitoringRuleOptions.md)                  |                                                                                  |
+| **Queries**          | [**[]SecurityMonitoringRuleQueryCreate**](SecurityMonitoringRuleQueryCreate.md)        | Queries for selecting logs which are part of the rule.                           |
+| **Tags**             | Pointer to **[]string**                                                                | Tags for generated signals.                                                      | [optional] |
+| **Type**             | Pointer to [**SecurityMonitoringRuleTypeCreate**](SecurityMonitoringRuleTypeCreate.md) |                                                                                  | [optional] |
 
 ## Methods
 
@@ -52,7 +52,6 @@ and a boolean to check if the value has been set.
 `func (o *SecurityMonitoringRuleCreatePayload) SetCases(v []SecurityMonitoringRuleCaseCreate)`
 
 SetCases sets Cases field to given value.
-
 
 ### GetFilters
 
@@ -123,7 +122,6 @@ and a boolean to check if the value has been set.
 
 SetIsEnabled sets IsEnabled field to given value.
 
-
 ### GetMessage
 
 `func (o *SecurityMonitoringRuleCreatePayload) GetMessage() string`
@@ -142,7 +140,6 @@ and a boolean to check if the value has been set.
 `func (o *SecurityMonitoringRuleCreatePayload) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
-
 
 ### GetName
 
@@ -163,7 +160,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetOptions
 
 `func (o *SecurityMonitoringRuleCreatePayload) GetOptions() SecurityMonitoringRuleOptions`
@@ -183,7 +179,6 @@ and a boolean to check if the value has been set.
 
 SetOptions sets Options field to given value.
 
-
 ### GetQueries
 
 `func (o *SecurityMonitoringRuleCreatePayload) GetQueries() []SecurityMonitoringRuleQueryCreate`
@@ -202,7 +197,6 @@ and a boolean to check if the value has been set.
 `func (o *SecurityMonitoringRuleCreatePayload) SetQueries(v []SecurityMonitoringRuleQueryCreate)`
 
 SetQueries sets Queries field to given value.
-
 
 ### GetTags
 
@@ -254,7 +248,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

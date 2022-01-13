@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Month** | Pointer to **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM]. | [optional] 
-**OrgName** | Pointer to **string** | The name of the organization. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**TagConfigSource** | Pointer to **string** | The source of the usage attribution tag configuration and the selected tags in the format &#x60;&lt;source_org_name&gt;:&lt;selected tag 1&gt;-&lt;selected tag 2&gt;-&lt;selected tag 3&gt;&#x60;. | [optional] 
-**Tags** | Pointer to **map[string][]string** | Usage Summary by tag name. | [optional] 
-**UpdatedAt** | Pointer to **string** | Shows the the most recent hour in the current months for all organizations for which all usages were calculated. | [optional] 
-**Values** | Pointer to [**UsageAttributionValues**](UsageAttributionValues.md) |  | [optional] 
+| Name                | Type                                                               | Description                                                                                                                                                                                         | Notes      |
+| ------------------- | ------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Month**           | Pointer to **time.Time**                                           | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM].                                                                                                                                      | [optional] |
+| **OrgName**         | Pointer to **string**                                              | The name of the organization.                                                                                                                                                                       | [optional] |
+| **PublicId**        | Pointer to **string**                                              | The organization public ID.                                                                                                                                                                         | [optional] |
+| **TagConfigSource** | Pointer to **string**                                              | The source of the usage attribution tag configuration and the selected tags in the format &#x60;&lt;source_org_name&gt;:&lt;selected tag 1&gt;-&lt;selected tag 2&gt;-&lt;selected tag 3&gt;&#x60;. | [optional] |
+| **Tags**            | Pointer to **map[string][]string**                                 | Usage Summary by tag name.                                                                                                                                                                          | [optional] |
+| **UpdatedAt**       | Pointer to **string**                                              | Shows the the most recent hour in the current months for all organizations for which all usages were calculated.                                                                                    | [optional] |
+| **Values**          | Pointer to [**UsageAttributionValues**](UsageAttributionValues.md) |                                                                                                                                                                                                     | [optional] |
 
 ## Methods
 
@@ -206,7 +206,4 @@ SetValues sets Values field to given value.
 
 HasValues returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

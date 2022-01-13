@@ -2,18 +2,14 @@
 
 ## Enum
 
+- `INFO` (value: `"info"`)
 
-* `INFO` (value: `"info"`)
+- `LOW` (value: `"low"`)
 
-* `LOW` (value: `"low"`)
+- `MEDIUM` (value: `"medium"`)
 
-* `MEDIUM` (value: `"medium"`)
+- `HIGH` (value: `"high"`)
 
-* `HIGH` (value: `"high"`)
-
-* `CRITICAL` (value: `"critical"`)
-
+- `CRITICAL` (value: `"critical"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// there is a valid "api_key" in the system
-	API_KEY_DATA_ID := os.Getenv("API_KEY_DATA_ID")
+	APIKeyDataID := os.Getenv("API_KEY_DATA_ID")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.KeyManagementApi.DeleteAPIKey(ctx, API_KEY_DATA_ID)
+	r, err := apiClient.KeyManagementApi.DeleteAPIKey(ctx, APIKeyDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteAPIKey`: %v\n", err)

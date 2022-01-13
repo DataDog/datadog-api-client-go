@@ -921,6 +921,12 @@
       "type": "idempotent"
     }
   },
+  "GetSLOCorrections": {
+    "tag": "Service Level Objectives",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetSLOHistory": {
     "tag": "Service Level Objectives",
     "undo": {
@@ -1004,8 +1010,13 @@
   "CreateSyntheticsBrowserTest": {
     "tag": "Synthetics",
     "undo": {
-      "operationId": "TODO",
-      "parameters": [],
+      "operationId": "DeleteTests",
+      "parameters": [
+        {
+          "name": "body",
+          "template": "{\"public_ids\": [\"{{ public_id }}\"]}"
+        }
+      ],
       "type": "unsafe"
     }
   },
@@ -1213,6 +1224,12 @@
       "type": "safe"
     }
   },
+  "GetHourlyUsageAttribution": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "GetIncidentManagement": {
     "tag": "Usage Metering",
     "undo": {
@@ -1250,6 +1267,12 @@
     }
   },
   "GetUsageLogsByIndex": {
+    "tag": "Usage Metering",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "GetMonthlyUsageAttribution": {
     "tag": "Usage Metering",
     "undo": {
       "type": "safe"

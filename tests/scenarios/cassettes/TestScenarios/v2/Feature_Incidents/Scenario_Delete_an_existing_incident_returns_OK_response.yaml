@@ -5,21 +5,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '144'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
     method: POST
     url: https://api.datadoghq.com/api/v2/incidents
   response:
@@ -27,55 +15,15 @@ interactions:
     code: 201
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '2823'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:01:48 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - gYZcaADwbKcv7Hm19HJx6WsLoKuOijDWAt2viPeCfWqUgyKY+9e1xZdmMJeXV3YV
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '400'
-      X-Ratelimit-Period:
-      - '3600'
-      X-Ratelimit-Remaining:
-      - '398'
-      X-Ratelimit-Reset:
-      - '3493'
     status: 201 Created
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
+      - application/json
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/3002d31f-1c9c-56b5-ae84-8363d9c3ee05
   response:
@@ -83,55 +31,15 @@ interactions:
     code: 204
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '0'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:01:48 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - nLnnBNvlCFDECRnZvzDb0z4sAO35G+IMidcAs8vrCKyjvsKWE8Yd9S3n6OjZ1qRN
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '400'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '398'
-      X-Ratelimit-Reset:
-      - '12'
     status: 204 No Content
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
+      - application/json
     method: DELETE
     url: https://api.datadoghq.com/api/v2/incidents/3002d31f-1c9c-56b5-ae84-8363d9c3ee05
   response:
@@ -139,37 +47,7 @@ interactions:
     code: 404
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '71'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:01:49 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '400'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '397'
-      X-Ratelimit-Reset:
-      - '11'
     status: 404 Not Found
 version: 1

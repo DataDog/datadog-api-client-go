@@ -15,9 +15,9 @@ func main() {
 	body := datadog.SecurityMonitoringRuleCreatePayload{
 		Name: "Example-Create_a_detection_rule_returns_OK_response",
 		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
-			datadog.SecurityMonitoringRuleQueryCreate{
+			{
 				Query:          "@test:true",
-				Aggregation:    datadog.SecurityMonitoringRuleQueryAggregation("count").Ptr(),
+				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
 				GroupByFields:  &[]string{},
 				DistinctFields: &[]string{},
 				Metric:         datadog.PtrString(""),
@@ -25,17 +25,17 @@ func main() {
 		},
 		Filters: &[]datadog.SecurityMonitoringFilter{},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
-			datadog.SecurityMonitoringRuleCaseCreate{
+			{
 				Name:          datadog.PtrString(""),
-				Status:        datadog.SecurityMonitoringRuleSeverity("info"),
+				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
 				Condition:     datadog.PtrString("a > 0"),
 				Notifications: &[]string{},
 			},
 		},
 		Options: datadog.SecurityMonitoringRuleOptions{
-			EvaluationWindow:  datadog.SecurityMonitoringRuleEvaluationWindow(900).Ptr(),
-			KeepAlive:         datadog.SecurityMonitoringRuleKeepAlive(3600).Ptr(),
-			MaxSignalDuration: datadog.SecurityMonitoringRuleMaxSignalDuration(86400).Ptr(),
+			EvaluationWindow:  datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES.Ptr(),
+			KeepAlive:         datadog.SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR.Ptr(),
+			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 		},
 		Message:   "Test rule",
 		Tags:      &[]string{},

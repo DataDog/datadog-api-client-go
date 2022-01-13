@@ -2,22 +2,18 @@
 
 ## Enum
 
+- `ERROR` (value: `"error"`)
 
-* `ERROR` (value: `"error"`)
+- `WARNING` (value: `"warning"`)
 
-* `WARNING` (value: `"warning"`)
+- `INFO` (value: `"info"`)
 
-* `INFO` (value: `"info"`)
+- `SUCCESS` (value: `"success"`)
 
-* `SUCCESS` (value: `"success"`)
+- `USER_UPDATE` (value: `"user_update"`)
 
-* `USER_UPDATE` (value: `"user_update"`)
+- `RECOMMENDATION` (value: `"recommendation"`)
 
-* `RECOMMENDATION` (value: `"recommendation"`)
-
-* `SNAPSHOT` (value: `"snapshot"`)
-
+- `SNAPSHOT` (value: `"snapshot"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. Required for single API tests. | [optional] [default to []]
-**ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test. | [optional] 
-**Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
-**Steps** | Pointer to [**[]SyntheticsAPIStep**](SyntheticsAPIStep.md) | When the test subtype is &#x60;multi&#x60;, the steps of the test. | [optional] 
+| Name                | Type                                                                     | Description                                                           | Notes                      |
+| ------------------- | ------------------------------------------------------------------------ | --------------------------------------------------------------------- | -------------------------- |
+| **Assertions**      | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md)           | Array of assertions used for the test. Required for single API tests. | [optional] [default to []] |
+| **ConfigVariables** | Pointer to [**[]SyntheticsConfigVariable**](SyntheticsConfigVariable.md) | Array of variables used for the test.                                 | [optional]                 |
+| **Request**         | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md)         |                                                                       | [optional]                 |
+| **Steps**           | Pointer to [**[]SyntheticsAPIStep**](SyntheticsAPIStep.md)               | When the test subtype is &#x60;multi&#x60;, the steps of the test.    | [optional]                 |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetSteps sets Steps field to given value.
 
 HasSteps returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

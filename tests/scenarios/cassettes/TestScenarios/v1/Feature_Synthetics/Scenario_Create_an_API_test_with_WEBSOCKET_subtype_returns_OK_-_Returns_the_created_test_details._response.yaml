@@ -1,125 +1,41 @@
 interactions:
 - request:
     body: |
-      {"config":{"assertions":[{"operator":"is","target":"message","type":"receivedMessage"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"configVariables":[],"request":{"message":"message","url":"ws://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"BDD test payload: synthetics_api_test_websocket_payload.json","name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1636999665","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1636999665","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"websocket","tags":["testing:api"],"type":"api"}
+      {"config":{"assertions":[{"operator":"is","target":"message","type":"receivedMessage"},{"operator":"lessThan","target":2000,"type":"responseTime"}],"configVariables":[],"request":{"message":"message","url":"ws://datadoghq.com"}},"locations":["aws:us-east-2"],"message":"BDD test payload: synthetics_api_test_websocket_payload.json","name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1641430275","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1641430275","monitor_priority":5,"retry":{"count":3,"interval":10},"tick_every":60},"subtype":"websocket","tags":["testing:api"],"type":"api"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '844'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '4580709451748564676'
-      X-Datadog-Trace-Id:
-      - '7130359786114391756'
     method: POST
     url: https://api.datadoghq.com/api/v1/synthetics/tests/api
   response:
-    body: '{"status":"live","public_id":"7f2-txy-a7p","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"BDD
-      test payload: synthetics_api_test_websocket_payload.json","deleted_at":null,"name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1636999665","monitor_id":54531314,"type":"api","created_at":"2021-11-15T18:07:46.215484+00:00","modified_at":"2021-11-15T18:07:46.215484+00:00","subtype":"websocket","config":{"request":{"url":"ws://datadoghq.com","message":"message"},"assertions":[{"operator":"is","type":"receivedMessage","target":"message"},{"operator":"lessThan","type":"responseTime","target":2000}],"configVariables":[]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1636999665","tick_every":60}}'
+    body: '{"status":"live","public_id":"hyf-x3m-tie","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"BDD
+      test payload: synthetics_api_test_websocket_payload.json","deleted_at":null,"name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1641430275","monitor_id":59800848,"type":"api","created_at":"2022-01-06T00:51:16.204340+00:00","modified_at":"2022-01-06T00:51:16.204340+00:00","subtype":"websocket","config":{"request":{"url":"ws://datadoghq.com","message":"message"},"assertions":[{"operator":"is","type":"receivedMessage","target":"message"},{"operator":"lessThan","type":"responseTime","target":2000}],"configVariables":[]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":10},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-Create_an_API_test_with_WEBSOCKET_subtype_returns_OK_Returns_the_created_test_details_response-1641430275","tick_every":60}}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '1039'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Mon, 15 Nov 2021 18:07:46 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Envoy-Upstream-Service-Time:
-      - '264'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '12000'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '11999'
-      X-Ratelimit-Reset:
-      - '14'
     status: 200 OK
 - request:
     body: |
-      {"public_ids":["7f2-txy-a7p"]}
+      {"public_ids":["hyf-x3m-tie"]}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '30'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '8010816681933148738'
-      X-Datadog-Trace-Id:
-      - '7130359786114391756'
     method: POST
     url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
   response:
-    body: '{"deleted_tests":[{"deleted_at":"2021-11-15T18:07:46.397039+00:00","public_id":"7f2-txy-a7p"}]}'
+    body: '{"deleted_tests":[{"deleted_at":"2022-01-06T00:51:16.473017+00:00","public_id":"hyf-x3m-tie"}]}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '95'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Mon, 15 Nov 2021 18:07:46 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Envoy-Upstream-Service-Time:
-      - '143'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '12000'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '11999'
-      X-Ratelimit-Reset:
-      - '14'
     status: 200 OK
 version: 1

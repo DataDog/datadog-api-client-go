@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Action** | Pointer to **string** | Action applied to the hosts. | [optional] 
-**End** | Pointer to **int64** | POSIX timestamp in seconds when the host is unmuted. | [optional] 
-**Hostname** | Pointer to **string** | The host name. | [optional] 
-**Message** | Pointer to **string** | Message associated with the mute. | [optional] 
+| Name         | Type                  | Description                                          | Notes      |
+| ------------ | --------------------- | ---------------------------------------------------- | ---------- |
+| **Action**   | Pointer to **string** | Action applied to the hosts.                         | [optional] |
+| **End**      | Pointer to **int64**  | POSIX timestamp in seconds when the host is unmuted. | [optional] |
+| **Hostname** | Pointer to **string** | The host name.                                       | [optional] |
+| **Message**  | Pointer to **string** | Message associated with the mute.                    | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetMessage sets Message field to given value.
 
 HasMessage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

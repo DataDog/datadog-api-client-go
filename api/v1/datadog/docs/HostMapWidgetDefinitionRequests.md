@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Fill** | Pointer to [**HostMapRequest**](HostMapRequest.md) |  | [optional] 
-**Size** | Pointer to [**HostMapRequest**](HostMapRequest.md) |  | [optional] 
+| Name     | Type                                               | Description | Notes      |
+| -------- | -------------------------------------------------- | ----------- | ---------- |
+| **Fill** | Pointer to [**HostMapRequest**](HostMapRequest.md) |             | [optional] |
+| **Size** | Pointer to [**HostMapRequest**](HostMapRequest.md) |             | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetSize sets Size field to given value.
 
 HasSize returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

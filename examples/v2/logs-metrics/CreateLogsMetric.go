@@ -15,10 +15,10 @@ func main() {
 	body := datadog.LogsMetricCreateRequest{
 		Data: datadog.LogsMetricCreateData{
 			Id:   "Example-Create_a_log_based_metric_returns_OK_response",
-			Type: datadog.LogsMetricType("logs_metrics"),
+			Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
 			Attributes: datadog.LogsMetricCreateAttributes{
 				Compute: datadog.LogsMetricCompute{
-					AggregationType: datadog.LogsMetricComputeAggregationType("count"),
+					AggregationType: datadog.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
 				},
 			},
 		},

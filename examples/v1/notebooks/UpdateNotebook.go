@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// there is a valid "notebook" in the system
-	NOTEBOOK_DATA_ID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
+	NotebookDataID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
 
 	body := datadog.NotebookUpdateRequest{
 		Data: datadog.NotebookUpdateData{
@@ -32,10 +32,10 @@ var x, y;
 x = 5;
 y = 6;
 ` + "```",
-										Type: datadog.NotebookMarkdownCellDefinitionType("markdown"),
+										Type: datadog.NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN,
 									},
 								}},
-							Type: datadog.NotebookCellResourceType("notebook_cells"),
+							Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 						}},
 					datadog.NotebookUpdateCell{
 						NotebookCellCreateRequest: &datadog.NotebookCellCreateRequest{
@@ -43,46 +43,46 @@ y = 6;
 								NotebookTimeseriesCellAttributes: &datadog.NotebookTimeseriesCellAttributes{
 									Definition: datadog.TimeseriesWidgetDefinition{
 										Requests: []datadog.TimeseriesWidgetRequest{
-											datadog.TimeseriesWidgetRequest{
-												DisplayType: datadog.WidgetDisplayType("line").Ptr(),
+											{
+												DisplayType: datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
 												Q:           datadog.PtrString("avg:system.load.1{*}"),
 												Style: &datadog.WidgetRequestStyle{
-													LineType:  datadog.WidgetLineType("solid").Ptr(),
-													LineWidth: datadog.WidgetLineWidth("normal").Ptr(),
+													LineType:  datadog.WIDGETLINETYPE_SOLID.Ptr(),
+													LineWidth: datadog.WIDGETLINEWIDTH_NORMAL.Ptr(),
 													Palette:   datadog.PtrString("dog_classic"),
 												},
 											},
 										},
 										ShowLegend: datadog.PtrBool(true),
-										Type:       datadog.TimeseriesWidgetDefinitionType("timeseries"),
+										Type:       datadog.TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 										Yaxis: &datadog.WidgetAxis{
 											Scale: datadog.PtrString("linear"),
 										},
 									},
-									GraphSize: datadog.NotebookGraphSize("m").Ptr(),
+									GraphSize: datadog.NOTEBOOKGRAPHSIZE_MEDIUM.Ptr(),
 									SplitBy: &datadog.NotebookSplitBy{
 										Keys: []string{},
 										Tags: []string{},
 									},
 									Time: *datadog.NewNullableNotebookCellTime(nil),
 								}},
-							Type: datadog.NotebookCellResourceType("notebook_cells"),
+							Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 						}},
 				},
 				Name:   "Example-Update_a_notebook_returns_OK_response-updated",
-				Status: datadog.NotebookStatus("published").Ptr(),
+				Status: datadog.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
 				Time: datadog.NotebookGlobalTime{
 					NotebookRelativeTime: &datadog.NotebookRelativeTime{
-						LiveSpan: datadog.WidgetLiveSpan("1h"),
+						LiveSpan: datadog.WIDGETLIVESPAN_PAST_ONE_HOUR,
 					}},
 			},
-			Type: datadog.NotebookResourceType("notebooks"),
+			Type: datadog.NOTEBOOKRESOURCETYPE_NOTEBOOKS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.UpdateNotebook(ctx, NOTEBOOK_DATA_ID, body)
+	resp, r, err := apiClient.NotebooksApi.UpdateNotebook(ctx, NotebookDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.UpdateNotebook`: %v\n", err)

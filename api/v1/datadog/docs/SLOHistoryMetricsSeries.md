@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Count** | **int64** | Count of submitted metrics. | 
-**Metadata** | Pointer to [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeriesMetadata.md) |  | [optional] 
-**Sum** | **float64** | Total sum of the query. | 
-**Values** | **[]float64** | The query values for each metric. | 
+| Name         | Type                                                                                 | Description                       | Notes      |
+| ------------ | ------------------------------------------------------------------------------------ | --------------------------------- | ---------- |
+| **Count**    | **int64**                                                                            | Count of submitted metrics.       |
+| **Metadata** | Pointer to [**SLOHistoryMetricsSeriesMetadata**](SLOHistoryMetricsSeriesMetadata.md) |                                   | [optional] |
+| **Sum**      | **float64**                                                                          | Total sum of the query.           |
+| **Values**   | **[]float64**                                                                        | The query values for each metric. |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 `func (o *SLOHistoryMetricsSeries) SetCount(v int64)`
 
 SetCount sets Count field to given value.
-
 
 ### GetMetadata
 
@@ -92,7 +91,6 @@ and a boolean to check if the value has been set.
 
 SetSum sets Sum field to given value.
 
-
 ### GetValues
 
 `func (o *SLOHistoryMetricsSeries) GetValues() []float64`
@@ -112,8 +110,4 @@ and a boolean to check if the value has been set.
 
 SetValues sets Values field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

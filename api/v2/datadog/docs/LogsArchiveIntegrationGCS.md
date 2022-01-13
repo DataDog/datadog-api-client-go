@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ClientEmail** | **string** | A client email. | 
-**ProjectId** | **string** | A project ID. | 
+| Name            | Type       | Description     | Notes |
+| --------------- | ---------- | --------------- | ----- |
+| **ClientEmail** | **string** | A client email. |
+| **ProjectId**   | **string** | A project ID.   |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetClientEmail sets ClientEmail field to given value.
 
-
 ### GetProjectId
 
 `func (o *LogsArchiveIntegrationGCS) GetProjectId() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetProjectId sets ProjectId field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ATTRIBUTES_NAME := os.Getenv("ROLE_DATA_ATTRIBUTES_NAME")
+	RoleDataAttributesName := os.Getenv("ROLE_DATA_ATTRIBUTES_NAME")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().WithFilter(ROLE_DATA_ATTRIBUTES_NAME))
+	resp, r, err := apiClient.RolesApi.ListRoles(ctx, *datadog.NewListRolesOptionalParameters().WithFilter(RoleDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRoles`: %v\n", err)

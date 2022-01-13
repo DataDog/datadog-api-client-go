@@ -2,27 +2,27 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request in a multistep test step. | [optional] 
-**BasicAuth** | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md) |  | [optional] 
-**Body** | Pointer to **string** | Body to include in the test. | [optional] 
-**Certificate** | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |  | [optional] 
-**DnsServer** | Pointer to **string** | DNS server to use for DNS tests. | [optional] 
-**DnsServerPort** | Pointer to **int32** | DNS server port to use for DNS tests. | [optional] 
-**FollowRedirects** | Pointer to **bool** | Specifies whether or not the request follows redirects. | [optional] 
-**Headers** | Pointer to **map[string]string** | Headers to include when performing the test. | [optional] 
-**Host** | Pointer to **string** | Host name to perform the test with. | [optional] 
-**Message** | Pointer to **string** | Message to send for UDP or WebSocket tests. | [optional] 
-**Method** | Pointer to [**HTTPMethod**](HTTPMethod.md) |  | [optional] 
-**NoSavingResponseBody** | Pointer to **bool** | Determines whether or not to save the response body. | [optional] 
-**NumberOfPackets** | Pointer to **int32** | Number of pings to use per test. | [optional] 
-**Port** | Pointer to **int64** | Port to use when performing the test. | [optional] 
-**Query** | Pointer to **interface{}** | Query to use for the test. | [optional] 
-**Servername** | Pointer to **string** | For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number. | [optional] 
-**ShouldTrackHops** | Pointer to **bool** | Turns on a traceroute probe to discover all gateways along the path to the host destination. | [optional] 
-**Timeout** | Pointer to **float64** | Timeout in seconds for the test. | [optional] 
-**Url** | Pointer to **string** | URL to perform the test with. | [optional] 
+| Name                     | Type                                                                                   | Description                                                                                                                                                                                          | Notes      |
+| ------------------------ | -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AllowInsecure**        | Pointer to **bool**                                                                    | Allows loading insecure content for an HTTP request in a multistep test step.                                                                                                                        | [optional] |
+| **BasicAuth**            | Pointer to [**SyntheticsBasicAuth**](SyntheticsBasicAuth.md)                           |                                                                                                                                                                                                      | [optional] |
+| **Body**                 | Pointer to **string**                                                                  | Body to include in the test.                                                                                                                                                                         | [optional] |
+| **Certificate**          | Pointer to [**SyntheticsTestRequestCertificate**](SyntheticsTestRequestCertificate.md) |                                                                                                                                                                                                      | [optional] |
+| **DnsServer**            | Pointer to **string**                                                                  | DNS server to use for DNS tests.                                                                                                                                                                     | [optional] |
+| **DnsServerPort**        | Pointer to **int32**                                                                   | DNS server port to use for DNS tests.                                                                                                                                                                | [optional] |
+| **FollowRedirects**      | Pointer to **bool**                                                                    | Specifies whether or not the request follows redirects.                                                                                                                                              | [optional] |
+| **Headers**              | Pointer to **map[string]string**                                                       | Headers to include when performing the test.                                                                                                                                                         | [optional] |
+| **Host**                 | Pointer to **string**                                                                  | Host name to perform the test with.                                                                                                                                                                  | [optional] |
+| **Message**              | Pointer to **string**                                                                  | Message to send for UDP or WebSocket tests.                                                                                                                                                          | [optional] |
+| **Method**               | Pointer to [**HTTPMethod**](HTTPMethod.md)                                             |                                                                                                                                                                                                      | [optional] |
+| **NoSavingResponseBody** | Pointer to **bool**                                                                    | Determines whether or not to save the response body.                                                                                                                                                 | [optional] |
+| **NumberOfPackets**      | Pointer to **int32**                                                                   | Number of pings to use per test.                                                                                                                                                                     | [optional] |
+| **Port**                 | Pointer to **int64**                                                                   | Port to use when performing the test.                                                                                                                                                                | [optional] |
+| **Query**                | Pointer to **interface{}**                                                             | Query to use for the test.                                                                                                                                                                           | [optional] |
+| **Servername**           | Pointer to **string**                                                                  | For SSL tests, it specifies on which server you want to initiate the TLS handshake, allowing the server to present one of multiple possible certificates on the same IP address and TCP port number. | [optional] |
+| **ShouldTrackHops**      | Pointer to **bool**                                                                    | Turns on a traceroute probe to discover all gateways along the path to the host destination.                                                                                                         | [optional] |
+| **Timeout**              | Pointer to **float64**                                                                 | Timeout in seconds for the test.                                                                                                                                                                     | [optional] |
+| **Url**                  | Pointer to **string**                                                                  | URL to perform the test with.                                                                                                                                                                        | [optional] |
 
 ## Methods
 
@@ -518,7 +518,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

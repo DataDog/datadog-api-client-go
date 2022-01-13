@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**PartialApplicationKeyAttributes**](PartialApplicationKeyAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the application key. | [optional] 
-**Relationships** | Pointer to [**ApplicationKeyRelationships**](ApplicationKeyRelationships.md) |  | [optional] 
-**Type** | Pointer to [**ApplicationKeysType**](ApplicationKeysType.md) |  | [optional] [default to APPLICATIONKEYSTYPE_APPLICATION_KEYS]
+| Name              | Type                                                                                 | Description                | Notes                                                        |
+| ----------------- | ------------------------------------------------------------------------------------ | -------------------------- | ------------------------------------------------------------ |
+| **Attributes**    | Pointer to [**PartialApplicationKeyAttributes**](PartialApplicationKeyAttributes.md) |                            | [optional]                                                   |
+| **Id**            | Pointer to **string**                                                                | ID of the application key. | [optional]                                                   |
+| **Relationships** | Pointer to [**ApplicationKeyRelationships**](ApplicationKeyRelationships.md)         |                            | [optional]                                                   |
+| **Type**          | Pointer to [**ApplicationKeysType**](ApplicationKeysType.md)                         |                            | [optional] [default to APPLICATIONKEYSTYPE_APPLICATION_KEYS] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

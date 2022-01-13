@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IdpFile** | ***os.File** | The path to the XML metadata file you wish to upload. | 
+| Name        | Type          | Description                                           | Notes |
+| ----------- | ------------- | ----------------------------------------------------- | ----- |
+| **IdpFile** | **\*os.File** | The path to the XML metadata file you wish to upload. |
 
 ## Methods
 
@@ -44,8 +44,4 @@ and a boolean to check if the value has been set.
 
 SetIdpFile sets IdpFile field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

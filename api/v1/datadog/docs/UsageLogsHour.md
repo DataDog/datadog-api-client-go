@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**BillableIngestedBytes** | Pointer to **int64** | Contains the number of billable log bytes ingested. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**IndexedEventsCount** | Pointer to **int64** | Contains the number of log events indexed. | [optional] 
-**IngestedEventsBytes** | Pointer to **int64** | Contains the number of log bytes ingested. | [optional] 
-**LogsLiveIndexedCount** | Pointer to **int64** | Contains the number of live log events indexed (data available as of December 1, 2020). | [optional] 
-**LogsLiveIngestedBytes** | Pointer to **int64** | Contains the number of live log bytes ingested (data available as of December 1, 2020). | [optional] 
-**LogsRehydratedIndexedCount** | Pointer to **int64** | Contains the number of rehydrated log events indexed (data available as of December 1, 2020). | [optional] 
-**LogsRehydratedIngestedBytes** | Pointer to **int64** | Contains the number of rehydrated log bytes ingested (data available as of December 1, 2020). | [optional] 
+| Name                            | Type                     | Description                                                                                   | Notes      |
+| ------------------------------- | ------------------------ | --------------------------------------------------------------------------------------------- | ---------- |
+| **BillableIngestedBytes**       | Pointer to **int64**     | Contains the number of billable log bytes ingested.                                           | [optional] |
+| **Hour**                        | Pointer to **time.Time** | The hour for the usage.                                                                       | [optional] |
+| **IndexedEventsCount**          | Pointer to **int64**     | Contains the number of log events indexed.                                                    | [optional] |
+| **IngestedEventsBytes**         | Pointer to **int64**     | Contains the number of log bytes ingested.                                                    | [optional] |
+| **LogsLiveIndexedCount**        | Pointer to **int64**     | Contains the number of live log events indexed (data available as of December 1, 2020).       | [optional] |
+| **LogsLiveIngestedBytes**       | Pointer to **int64**     | Contains the number of live log bytes ingested (data available as of December 1, 2020).       | [optional] |
+| **LogsRehydratedIndexedCount**  | Pointer to **int64**     | Contains the number of rehydrated log events indexed (data available as of December 1, 2020). | [optional] |
+| **LogsRehydratedIngestedBytes** | Pointer to **int64**     | Contains the number of rehydrated log bytes ingested (data available as of December 1, 2020). | [optional] |
 
 ## Methods
 
@@ -232,7 +232,4 @@ SetLogsRehydratedIngestedBytes sets LogsRehydratedIngestedBytes field to given v
 
 HasLogsRehydratedIngestedBytes returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

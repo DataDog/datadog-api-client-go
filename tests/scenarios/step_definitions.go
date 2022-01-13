@@ -229,10 +229,26 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 		if code < 300 && err != nil {
 			t.Errorf("unexpected error: %v", err)
 		}
-		// Store the unmarshalled JSON in context
-		responseJSON, err := toJSON(result[0])
+		var responseJSON interface{}
 		if err != nil {
-			t.Errorf("Unable to decode response object to JSON: %v", err)
+			version := GetVersion(ctx)
+			if version == "v1" {
+				err := err.(v1.GenericOpenAPIError)
+				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+					t.Errorf("Unable to decode response object to JSON: %v", newErr)
+				}
+			} else {
+				err := err.(v2.GenericOpenAPIError)
+				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+					t.Errorf("Unable to decode response object to JSON: %v", newErr)
+				}
+			}
+		} else {
+			// Store the unmarshalled JSON in context
+			responseJSON, err = toJSON(result[0])
+			if err != nil {
+				t.Errorf("Unable to decode response object to JSON: %v", err)
+			}
 		}
 		ctx.Set(jsonResponseKey{}, responseJSON)
 	}

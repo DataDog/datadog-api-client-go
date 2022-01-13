@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DailyLimit** | Pointer to **int64** | The number of log events you can send in this index per day before you are rate-limited. | [optional] 
-**ExclusionFilters** | Pointer to [**[]LogsExclusion**](LogsExclusion.md) | An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored. | [optional] 
-**Filter** | [**LogsFilter**](LogsFilter.md) |  | 
-**IsRateLimited** | Pointer to **bool** | A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC. | [optional] [readonly] 
-**Name** | **string** | The name of the index. | 
-**NumRetentionDays** | Pointer to **int64** | The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization&#39;s contract/subscriptions. | [optional] 
+| Name                 | Type                                               | Description                                                                                                                                                                                           | Notes                 |
+| -------------------- | -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **DailyLimit**       | Pointer to **int64**                               | The number of log events you can send in this index per day before you are rate-limited.                                                                                                              | [optional]            |
+| **ExclusionFilters** | Pointer to [**[]LogsExclusion**](LogsExclusion.md) | An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored. | [optional]            |
+| **Filter**           | [**LogsFilter**](LogsFilter.md)                    |                                                                                                                                                                                                       |
+| **IsRateLimited**    | Pointer to **bool**                                | A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC.                                                      | [optional] [readonly] |
+| **Name**             | **string**                                         | The name of the index.                                                                                                                                                                                |
+| **NumRetentionDays** | Pointer to **int64**                               | The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization&#39;s contract/subscriptions.                                   | [optional]            |
 
 ## Methods
 
@@ -99,7 +99,6 @@ and a boolean to check if the value has been set.
 
 SetFilter sets Filter field to given value.
 
-
 ### GetIsRateLimited
 
 `func (o *LogsIndex) GetIsRateLimited() bool`
@@ -144,7 +143,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetNumRetentionDays
 
 `func (o *LogsIndex) GetNumRetentionDays() int64`
@@ -170,7 +168,4 @@ SetNumRetentionDays sets NumRetentionDays field to given value.
 
 HasNumRetentionDays returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

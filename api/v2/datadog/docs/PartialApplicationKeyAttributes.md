@@ -2,11 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **string** | Creation date of the application key. | [optional] [readonly] 
-**Last4** | Pointer to **string** | The last four characters of the application key. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the application key. | [optional] 
+| Name          | Type                    | Description                                                                                                                                               | Notes                 |
+| ------------- | ----------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **CreatedAt** | Pointer to **string**   | Creation date of the application key.                                                                                                                     | [optional] [readonly] |
+| **Last4**     | Pointer to **string**   | The last four characters of the application key.                                                                                                          | [optional] [readonly] |
+| **Name**      | Pointer to **string**   | Name of the application key.                                                                                                                              | [optional]            |
+| **Scopes**    | Pointer to **[]string** | Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys. | [optional]            |
 
 ## Methods
 
@@ -102,7 +103,41 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
+### GetScopes
+
+`func (o *PartialApplicationKeyAttributes) GetScopes() []string`
+
+GetScopes returns the Scopes field if non-nil, zero value otherwise.
+
+### GetScopesOk
+
+`func (o *PartialApplicationKeyAttributes) GetScopesOk() (*[]string, bool)`
+
+GetScopesOk returns a tuple with the Scopes field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetScopes
+
+`func (o *PartialApplicationKeyAttributes) SetScopes(v []string)`
+
+SetScopes sets Scopes field to given value.
+
+### HasScopes
+
+`func (o *PartialApplicationKeyAttributes) HasScopes() bool`
+
+HasScopes returns a boolean if a field has been set.
+
+### SetScopesNil
+
+`func (o *PartialApplicationKeyAttributes) SetScopesNil(b bool)`
+
+SetScopesNil sets the value for Scopes to be an explicit nil
+
+### UnsetScopes
+
+`func (o *PartialApplicationKeyAttributes) UnsetScopes()`
+
+UnsetScopes ensures that no value is present for Scopes, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

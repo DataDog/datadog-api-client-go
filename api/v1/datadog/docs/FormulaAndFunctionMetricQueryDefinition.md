@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregator** | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |  | [optional] 
-**DataSource** | [**FormulaAndFunctionMetricDataSource**](FormulaAndFunctionMetricDataSource.md) |  | 
-**Name** | **string** | Name of the query for use in formulas. | 
-**Query** | **string** | Metrics query definition. | 
+| Name           | Type                                                                                         | Description                            | Notes      |
+| -------------- | -------------------------------------------------------------------------------------------- | -------------------------------------- | ---------- |
+| **Aggregator** | Pointer to [**FormulaAndFunctionMetricAggregation**](FormulaAndFunctionMetricAggregation.md) |                                        | [optional] |
+| **DataSource** | [**FormulaAndFunctionMetricDataSource**](FormulaAndFunctionMetricDataSource.md)              |                                        |
+| **Name**       | **string**                                                                                   | Name of the query for use in formulas. |
+| **Query**      | **string**                                                                                   | Metrics query definition.              |
 
 ## Methods
 
@@ -72,7 +72,6 @@ and a boolean to check if the value has been set.
 
 SetDataSource sets DataSource field to given value.
 
-
 ### GetName
 
 `func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string`
@@ -91,7 +90,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionMetricQueryDefinition) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetQuery
 
@@ -112,8 +110,4 @@ and a boolean to check if the value has been set.
 
 SetQuery sets Query field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

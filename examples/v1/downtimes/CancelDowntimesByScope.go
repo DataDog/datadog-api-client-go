@@ -13,10 +13,10 @@ import (
 
 func main() {
 	// there is a valid "downtime" in the system
-	DOWNTIME_SCOPE_0 := os.Getenv("DOWNTIME_SCOPE_0")
+	DowntimeScope0 := os.Getenv("DOWNTIME_SCOPE_0")
 
 	body := datadog.CancelDowntimesByScopeRequest{
-		Scope: DOWNTIME_SCOPE_0,
+		Scope: DowntimeScope0,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

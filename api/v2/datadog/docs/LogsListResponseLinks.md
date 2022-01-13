@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Next** | Pointer to **string** | Link for the next set of results. Note that the request can also be made using the POST endpoint. | [optional] 
+| Name     | Type                  | Description                                                                                       | Notes      |
+| -------- | --------------------- | ------------------------------------------------------------------------------------------------- | ---------- |
+| **Next** | Pointer to **string** | Link for the next set of results. Note that the request can also be made using the POST endpoint. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetNext sets Next field to given value.
 
 HasNext returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

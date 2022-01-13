@@ -1,104 +1,36 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"email":"Test-Create_a_user_returns_OK_response-1618491771@datadoghq.com","name":"Datadog API Client Python"},"type":"users"}}
+      {"data":{"attributes":{"email":"Test-Create_a_user_returns_OK_response-1641829905@datadoghq.com","name":"Datadog API Client Python"},"type":"users"}}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '149'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
     method: POST
     url: https://api.datadoghq.com/api/v2/users
   response:
-    body: '{"data":{"type":"users","id":"e2fe756a-9dea-11eb-9df5-da7ad0900002","attributes":{"name":"Datadog
-      API Client Python","handle":"test-create_a_user_returns_ok_response-1618491771@datadoghq.com","created_at":"2021-04-15T13:02:52.114306+00:00","modified_at":"2021-04-15T13:02:52.132140+00:00","email":"test-create_a_user_returns_ok_response-1618491771@datadoghq.com","icon":"https://secure.gravatar.com/avatar/ff0b24a42317828ee39033ae2b535712?s=48&d=retro","title":null,"verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
+    body: '{"data":{"type":"users","id":"36d7b6bc-722d-11ec-b5d7-da7ad0900002","attributes":{"name":"Datadog
+      API Client Python","handle":"test-create_a_user_returns_ok_response-1641829905@datadoghq.com","created_at":"2022-01-10T15:51:46.083118+00:00","modified_at":"2022-01-10T15:51:46.099179+00:00","email":"test-create_a_user_returns_ok_response-1641829905@datadoghq.com","icon":"https://secure.gravatar.com/avatar/2600d8773e2e8594a02021d9e03518ee?s=48&d=retro","title":null,"verified":false,"service_account":false,"disabled":false,"allowed_login_methods":[],"status":"Pending"},"relationships":{"roles":{"data":[]},"org":{"data":{"type":"orgs","id":"4dee724d-00cc-11ea-a77b-570c9d03c6c5"}}}}}'
     code: 201
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '685'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:02:52 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - Wjq53IVIwnB4SiR238oOYgHFMq/ZYP0LQ/Dv8C2fFLBwTje/dWJHu6pI6vIOK1zG
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 201 Created
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/users/e2fe756a-9dea-11eb-9df5-da7ad0900002
+    url: https://api.datadoghq.com/api/v2/users/36d7b6bc-722d-11ec-b5d7-da7ad0900002
   response:
     body: ''
     code: 204
     duration: ''
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '0'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Content-Type:
-      - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:02:52 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - L3ULR3HwCWYmEqCWGz2Yob3chcH4pjowBacBXkncP7o+/uPqKt9yGEYf/g1AJPzQ
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
+    headers: {}
     status: 204 No Content
 version: 1

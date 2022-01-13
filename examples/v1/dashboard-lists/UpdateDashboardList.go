@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// there is a valid "dashboard_list" in the system
-	DASHBOARD_LIST_ID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
+	DashboardListID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
 
 	body := datadog.DashboardList{
 		Name: "updated Example-Update_a_dashboard_list_returns_OK_response",
@@ -22,7 +22,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.UpdateDashboardList(ctx, DASHBOARD_LIST_ID, body)
+	resp, r, err := apiClient.DashboardListsApi.UpdateDashboardList(ctx, DashboardListID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList`: %v\n", err)

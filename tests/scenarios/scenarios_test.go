@@ -8,6 +8,7 @@ package scenarios
 
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 	"strings"
@@ -15,6 +16,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
+	msgs "github.com/cucumber/messages-go/v12"
 	"github.com/go-bdd/gobdd"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
@@ -53,24 +55,40 @@ func TestScenarios(t *testing.T) {
 			s := gobdd.NewSuite(
 				t,
 				gobdd.WithFeaturesPath(fmt.Sprintf("features/%s/*.feature", version)),
-				gobdd.WithTags(bddTags),
-				gobdd.WithIgnoredTags(GetIgnoredTags()),
+				gobdd.WithTags(bddTags...),
+				gobdd.WithIgnoredTags(GetIgnoredTags()...),
 				gobdd.WithBeforeScenario(func(ctx gobdd.Context) {
 					SetVersion(ctx, version)
 					ct, _ := ctx.Get(gobdd.TestingTKey{})
 					tt := ct.(*testing.T)
-					testParts := strings.Split(tt.Name(), "/")
-					testName := strings.ReplaceAll(strings.TrimPrefix(testParts[3], "Scenario_"), "_", " ")
+					cf, _ := ctx.Get(gobdd.FeatureKey{})
+					feature := cf.(*msgs.GherkinDocument_Feature)
+					cs, _ := ctx.Get(gobdd.ScenarioKey{})
+					scenario := cs.(*msgs.GherkinDocument_Feature_Scenario)
+
+					// Extract code owners from tags
+					codeowners := make([]string, 0)
+					for _, tag := range append(scenario.Tags, feature.Tags...) {
+						prefix := "@team:"
+						t := string(tag.GetName())
+						if strings.HasPrefix(t, prefix) {
+							codeowners = append(codeowners, fmt.Sprintf("@%s", t[len(prefix):]))
+						}
+					}
+					testCodeowners, _ := json.Marshal(codeowners)
+
 					cctx, closeSpan := ddtesting.StartTestWithContext(
 						datadog.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
 							// Override the default tags set by ddtesting package for bdd
-							tracer.Tag("test.name", testName),
-							tracer.Tag("test.suite", fmt.Sprintf("%s/%s", version, testParts[2])),
+							tracer.Tag("test.name", scenario.Name),
+							tracer.Tag("test.suite", fmt.Sprintf("features/%s/%s.feature", version, strings.ToLower(strings.Replace(feature.Name, " ", "-", -1)))),
 							tracer.Tag("test.framework", "github.com/go-bdd/gobdd"),
 							// Set resource name to TestName
 							tracer.ResourceName(tt.Name()),
+							// Set the codeowners
+							tracer.Tag("test.codeowners", string(testCodeowners)),
 						),
 					)
 					cctx, closeRecorder := ConfigureClients(ctx, cctx)

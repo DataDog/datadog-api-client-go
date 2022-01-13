@@ -2,18 +2,18 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ColorByGroups** | Pointer to **[]string** | List of groups used for colors. | [optional] 
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Requests** | [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinitionRequests.md) |  | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ScatterPlotWidgetDefinitionType**](ScatterPlotWidgetDefinitionType.md) |  | [default to SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT]
-**Xaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
-**Yaxis** | Pointer to [**WidgetAxis**](WidgetAxis.md) |  | [optional] 
+| Name              | Type                                                                              | Description                     | Notes                                                    |
+| ----------------- | --------------------------------------------------------------------------------- | ------------------------------- | -------------------------------------------------------- |
+| **ColorByGroups** | Pointer to **[]string**                                                           | List of groups used for colors. | [optional]                                               |
+| **CustomLinks**   | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)                          | List of custom links.           | [optional]                                               |
+| **Requests**      | [**ScatterPlotWidgetDefinitionRequests**](ScatterPlotWidgetDefinitionRequests.md) |                                 |
+| **Time**          | Pointer to [**WidgetTime**](WidgetTime.md)                                        |                                 | [optional]                                               |
+| **Title**         | Pointer to **string**                                                             | Title of your widget.           | [optional]                                               |
+| **TitleAlign**    | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                              |                                 | [optional]                                               |
+| **TitleSize**     | Pointer to **string**                                                             | Size of the title.              | [optional]                                               |
+| **Type**          | [**ScatterPlotWidgetDefinitionType**](ScatterPlotWidgetDefinitionType.md)         |                                 | [default to SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT] |
+| **Xaxis**         | Pointer to [**WidgetAxis**](WidgetAxis.md)                                        |                                 | [optional]                                               |
+| **Yaxis**         | Pointer to [**WidgetAxis**](WidgetAxis.md)                                        |                                 | [optional]                                               |
 
 ## Methods
 
@@ -102,7 +102,6 @@ and a boolean to check if the value has been set.
 `func (o *ScatterPlotWidgetDefinition) SetRequests(v ScatterPlotWidgetDefinitionRequests)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTime
 
@@ -223,7 +222,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetXaxis
 
 `func (o *ScatterPlotWidgetDefinition) GetXaxis() WidgetAxis`
@@ -274,7 +272,4 @@ SetYaxis sets Yaxis field to given value.
 
 HasYaxis returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

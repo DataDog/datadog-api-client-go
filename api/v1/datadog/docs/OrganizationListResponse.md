@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Orgs** | Pointer to [**[]Organization**](Organization.md) | Array of organization objects. | [optional] 
+| Name     | Type                                             | Description                    | Notes      |
+| -------- | ------------------------------------------------ | ------------------------------ | ---------- |
+| **Orgs** | Pointer to [**[]Organization**](Organization.md) | Array of organization objects. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetOrgs sets Orgs field to given value.
 
 HasOrgs returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

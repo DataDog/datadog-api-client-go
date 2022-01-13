@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AvailableValues** | Pointer to **[]string** | The list of values that the template variable drop-down is limited to. | [optional] 
-**Default** | Pointer to **NullableString** | The default value for the template variable on dashboard load. | [optional] 
-**Name** | **string** | The name of the variable. | 
-**Prefix** | Pointer to **NullableString** | The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down. | [optional] 
+| Name                | Type                          | Description                                                                                               | Notes      |
+| ------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **AvailableValues** | Pointer to **[]string**       | The list of values that the template variable drop-down is limited to.                                    | [optional] |
+| **Default**         | Pointer to **NullableString** | The default value for the template variable on dashboard load.                                            | [optional] |
+| **Name**            | **string**                    | The name of the variable.                                                                                 |
+| **Prefix**          | Pointer to **NullableString** | The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down. | [optional] |
 
 ## Methods
 
@@ -57,12 +57,14 @@ HasAvailableValues returns a boolean if a field has been set.
 
 `func (o *DashboardTemplateVariable) SetAvailableValuesNil(b bool)`
 
- SetAvailableValuesNil sets the value for AvailableValues to be an explicit nil
+SetAvailableValuesNil sets the value for AvailableValues to be an explicit nil
 
 ### UnsetAvailableValues
+
 `func (o *DashboardTemplateVariable) UnsetAvailableValues()`
 
 UnsetAvailableValues ensures that no value is present for AvailableValues, not even an explicit nil
+
 ### GetDefault
 
 `func (o *DashboardTemplateVariable) GetDefault() string`
@@ -92,12 +94,14 @@ HasDefault returns a boolean if a field has been set.
 
 `func (o *DashboardTemplateVariable) SetDefaultNil(b bool)`
 
- SetDefaultNil sets the value for Default to be an explicit nil
+SetDefaultNil sets the value for Default to be an explicit nil
 
 ### UnsetDefault
+
 `func (o *DashboardTemplateVariable) UnsetDefault()`
 
 UnsetDefault ensures that no value is present for Default, not even an explicit nil
+
 ### GetName
 
 `func (o *DashboardTemplateVariable) GetName() string`
@@ -116,7 +120,6 @@ and a boolean to check if the value has been set.
 `func (o *DashboardTemplateVariable) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetPrefix
 
@@ -147,13 +150,12 @@ HasPrefix returns a boolean if a field has been set.
 
 `func (o *DashboardTemplateVariable) SetPrefixNil(b bool)`
 
- SetPrefixNil sets the value for Prefix to be an explicit nil
+SetPrefixNil sets the value for Prefix to be an explicit nil
 
 ### UnsetPrefix
+
 `func (o *DashboardTemplateVariable) UnsetPrefix()`
 
 UnsetPrefix ensures that no value is present for Prefix, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

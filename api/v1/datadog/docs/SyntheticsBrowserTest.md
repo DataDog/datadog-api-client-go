@@ -2,19 +2,19 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Config** | Pointer to [**SyntheticsBrowserTestConfig**](SyntheticsBrowserTestConfig.md) |  | [optional] 
-**Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Message** | **string** | Notification message associated with the test. Message can either be text or an empty string. | 
-**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the test. | [optional] 
-**Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**PublicId** | Pointer to **string** | The public ID of the test. | [optional] [readonly] 
-**Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
-**Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | The steps of the test. | [optional] 
-**Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
-**Type** | Pointer to [**SyntheticsBrowserTestType**](SyntheticsBrowserTestType.md) |  | [optional] [default to SYNTHETICSBROWSERTESTTYPE_BROWSER]
+| Name          | Type                                                                         | Description                                                                                   | Notes                                                     |
+| ------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| **Config**    | Pointer to [**SyntheticsBrowserTestConfig**](SyntheticsBrowserTestConfig.md) |                                                                                               | [optional]                                                |
+| **Locations** | Pointer to **[]string**                                                      | Array of locations used to run the test.                                                      | [optional]                                                |
+| **Message**   | **string**                                                                   | Notification message associated with the test. Message can either be text or an empty string. |
+| **MonitorId** | Pointer to **int64**                                                         | The associated monitor ID.                                                                    | [optional] [readonly]                                     |
+| **Name**      | Pointer to **string**                                                        | Name of the test.                                                                             | [optional]                                                |
+| **Options**   | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md)             |                                                                                               | [optional]                                                |
+| **PublicId**  | Pointer to **string**                                                        | The public ID of the test.                                                                    | [optional] [readonly]                                     |
+| **Status**    | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md)     |                                                                                               | [optional]                                                |
+| **Steps**     | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md)                         | The steps of the test.                                                                        | [optional]                                                |
+| **Tags**      | Pointer to **[]string**                                                      | Array of tags attached to the test.                                                           | [optional]                                                |
+| **Type**      | Pointer to [**SyntheticsBrowserTestType**](SyntheticsBrowserTestType.md)     |                                                                                               | [optional] [default to SYNTHETICSBROWSERTESTTYPE_BROWSER] |
 
 ## Methods
 
@@ -103,7 +103,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsBrowserTest) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
-
 
 ### GetMonitorId
 
@@ -305,7 +304,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IndexedVolume** | Pointer to **int64** | Indexed volume for the given metric. | [optional] 
-**IngestedVolume** | Pointer to **int64** | Ingested volume for the given metric. | [optional] 
+| Name               | Type                 | Description                           | Notes      |
+| ------------------ | -------------------- | ------------------------------------- | ---------- |
+| **IndexedVolume**  | Pointer to **int64** | Indexed volume for the given metric.  | [optional] |
+| **IngestedVolume** | Pointer to **int64** | Ingested volume for the given metric. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetIngestedVolume sets IngestedVolume field to given value.
 
 HasIngestedVolume returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

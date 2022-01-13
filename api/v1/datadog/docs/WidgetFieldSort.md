@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Column** | **string** | Facet path for the column | 
-**Order** | [**WidgetSort**](WidgetSort.md) |  | 
+| Name       | Type                            | Description               | Notes |
+| ---------- | ------------------------------- | ------------------------- | ----- |
+| **Column** | **string**                      | Facet path for the column |
+| **Order**  | [**WidgetSort**](WidgetSort.md) |                           |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetColumn sets Column field to given value.
 
-
 ### GetOrder
 
 `func (o *WidgetFieldSort) GetOrder() WidgetSort`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetOrder sets Order field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

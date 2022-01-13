@@ -2,18 +2,14 @@
 
 ## Enum
 
+- `ELEMENT` (value: `"element"`)
 
-* `ELEMENT` (value: `"element"`)
+- `EMAIL` (value: `"email"`)
 
-* `EMAIL` (value: `"email"`)
+- `GLOBAL` (value: `"global"`)
 
-* `GLOBAL` (value: `"global"`)
+- `JAVASCRIPT` (value: `"javascript"`)
 
-* `JAVASCRIPT` (value: `"javascript"`)
-
-* `TEXT` (value: `"text"`)
-
+- `TEXT` (value: `"text"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

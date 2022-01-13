@@ -1,51 +1,21 @@
 interactions:
 - request:
     body: |
-      {"end":1634659062,"message":"Test-Schedule_a_downtime_with_invalid_type_hours-1634655462","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1634655462,"timezone":"Etc/UTC"}
+      {"end":1641433848,"message":"Test-Schedule_a_downtime_with_invalid_type_hours-1641430248","recurrence":{"period":1,"type":"hours"},"scope":["*"],"start":1641430248,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '185'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '3193569336200454003'
-      X-Datadog-Trace-Id:
-      - '4542455266210127855'
     method: POST
     url: https://api.datadoghq.com/api/v1/downtime
   response:
-    body: '{"errors": ["Invalid recurrence type"]}'
+    body: '{"errors":["Invalid recurrence type"]}'
     code: 400
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '39'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 19 Oct 2021 14:57:42 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 400 Bad Request
 version: 1

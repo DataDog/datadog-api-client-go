@@ -145,7 +145,7 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -155,6 +155,219 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 
 	// Set Operation-ID header for telemetry
 	localVarHeaderParams["DD-OPERATION-ID"] = "GetDailyCustomReports"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetHourlyUsageAttributionRequest struct {
+	ctx              _context.Context
+	ApiService       *UsageMeteringApiService
+	startHr          *time.Time
+	usageType        *HourlyUsageAttributionUsageType
+	endHr            *time.Time
+	nextRecordId     *string
+	tagBreakdownKeys *string
+}
+
+type GetHourlyUsageAttributionOptionalParameters struct {
+	EndHr            *time.Time
+	NextRecordId     *string
+	TagBreakdownKeys *string
+}
+
+func NewGetHourlyUsageAttributionOptionalParameters() *GetHourlyUsageAttributionOptionalParameters {
+	this := GetHourlyUsageAttributionOptionalParameters{}
+	return &this
+}
+func (r *GetHourlyUsageAttributionOptionalParameters) WithEndHr(endHr time.Time) *GetHourlyUsageAttributionOptionalParameters {
+	r.EndHr = &endHr
+	return r
+}
+func (r *GetHourlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetHourlyUsageAttributionOptionalParameters {
+	r.NextRecordId = &nextRecordId
+	return r
+}
+func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetHourlyUsageAttributionOptionalParameters {
+	r.TagBreakdownKeys = &tagBreakdownKeys
+	return r
+}
+
+/*
+ * GetHourlyUsageAttribution Get Hourly Usage Attribution
+ * Get Hourly Usage Attribution.
+ */
+func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+	req := apiGetHourlyUsageAttributionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		startHr:    &startHr,
+		usageType:  &usageType,
+	}
+
+	if len(o) > 1 {
+		var localVarReturnValue HourlyUsageAttributionResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetHourlyUsageAttributionOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.endHr = o[0].EndHr
+		req.nextRecordId = o[0].NextRecordId
+		req.tagBreakdownKeys = o[0].TagBreakdownKeys
+	}
+
+	return req.ApiService.getHourlyUsageAttributionExecute(req)
+}
+
+/*
+ * Execute executes the request
+ * @return HourlyUsageAttributionResponse
+ */
+func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  HourlyUsageAttributionResponse
+	)
+
+	operationId := "GetHourlyUsageAttribution"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetHourlyUsageAttribution")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/usage/hourly-attribution"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.startHr == nil {
+		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
+	}
+	if r.usageType == nil {
+		return localVarReturnValue, nil, reportError("usageType is required and must be specified")
+	}
+
+	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	if r.endHr != nil {
+		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
+	}
+	localVarQueryParams.Add("usage_type", parameterToString(*r.usageType, ""))
+	if r.nextRecordId != nil {
+		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+	}
+	if r.tagBreakdownKeys != nil {
+		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetHourlyUsageAttribution"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -325,7 +538,7 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -515,7 +728,7 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -736,7 +949,7 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -746,6 +959,239 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 
 	// Set Operation-ID header for telemetry
 	localVarHeaderParams["DD-OPERATION-ID"] = "GetMonthlyCustomReports"
+
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+type apiGetMonthlyUsageAttributionRequest struct {
+	ctx              _context.Context
+	ApiService       *UsageMeteringApiService
+	startMonth       *time.Time
+	fields           *MonthlyUsageAttributionSupportedMetrics
+	endMonth         *time.Time
+	sortDirection    *UsageSortDirection
+	sortName         *MonthlyUsageAttributionSupportedMetrics
+	tagBreakdownKeys *string
+	nextRecordId     *string
+}
+
+type GetMonthlyUsageAttributionOptionalParameters struct {
+	EndMonth         *time.Time
+	SortDirection    *UsageSortDirection
+	SortName         *MonthlyUsageAttributionSupportedMetrics
+	TagBreakdownKeys *string
+	NextRecordId     *string
+}
+
+func NewGetMonthlyUsageAttributionOptionalParameters() *GetMonthlyUsageAttributionOptionalParameters {
+	this := GetMonthlyUsageAttributionOptionalParameters{}
+	return &this
+}
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetMonthlyUsageAttributionOptionalParameters {
+	r.EndMonth = &endMonth
+	return r
+}
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortDirection(sortDirection UsageSortDirection) *GetMonthlyUsageAttributionOptionalParameters {
+	r.SortDirection = &sortDirection
+	return r
+}
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortName(sortName MonthlyUsageAttributionSupportedMetrics) *GetMonthlyUsageAttributionOptionalParameters {
+	r.SortName = &sortName
+	return r
+}
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetMonthlyUsageAttributionOptionalParameters {
+	r.TagBreakdownKeys = &tagBreakdownKeys
+	return r
+}
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetMonthlyUsageAttributionOptionalParameters {
+	r.NextRecordId = &nextRecordId
+	return r
+}
+
+/*
+ * GetMonthlyUsageAttribution Get Monthly Usage Attribution
+ * Get Monthly Usage Attribution.
+ */
+func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+	req := apiGetMonthlyUsageAttributionRequest{
+		ApiService: a,
+		ctx:        ctx,
+		startMonth: &startMonth,
+		fields:     &fields,
+	}
+
+	if len(o) > 1 {
+		var localVarReturnValue MonthlyUsageAttributionResponse
+		return localVarReturnValue, nil, reportError("only one argument of type GetMonthlyUsageAttributionOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.endMonth = o[0].EndMonth
+		req.sortDirection = o[0].SortDirection
+		req.sortName = o[0].SortName
+		req.tagBreakdownKeys = o[0].TagBreakdownKeys
+		req.nextRecordId = o[0].NextRecordId
+	}
+
+	return req.ApiService.getMonthlyUsageAttributionExecute(req)
+}
+
+/*
+ * Execute executes the request
+ * @return MonthlyUsageAttributionResponse
+ */
+func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		localVarReturnValue  MonthlyUsageAttributionResponse
+	)
+
+	operationId := "GetMonthlyUsageAttribution"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyUsageAttribution")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/usage/monthly-attribution"
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.startMonth == nil {
+		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
+	}
+	if r.fields == nil {
+		return localVarReturnValue, nil, reportError("fields is required and must be specified")
+	}
+
+	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	if r.endMonth != nil {
+		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
+	}
+	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
+	if r.sortDirection != nil {
+		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
+	}
+	if r.sortName != nil {
+		localVarQueryParams.Add("sort_name", parameterToString(*r.sortName, ""))
+	}
+	if r.tagBreakdownKeys != nil {
+		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
+	}
+	if r.nextRecordId != nil {
+		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+	}
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// Set Operation-ID header for telemetry
+	localVarHeaderParams["DD-OPERATION-ID"] = "GetMonthlyUsageAttribution"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -894,7 +1340,7 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1062,7 +1508,7 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1262,7 +1708,7 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1376,6 +1822,8 @@ type apiGetUsageAttributionRequest struct {
 	sortDirection      *UsageSortDirection
 	sortName           *UsageAttributionSort
 	includeDescendants *bool
+	offset             *int64
+	limit              *int64
 }
 
 type GetUsageAttributionOptionalParameters struct {
@@ -1383,6 +1831,8 @@ type GetUsageAttributionOptionalParameters struct {
 	SortDirection      *UsageSortDirection
 	SortName           *UsageAttributionSort
 	IncludeDescendants *bool
+	Offset             *int64
+	Limit              *int64
 }
 
 func NewGetUsageAttributionOptionalParameters() *GetUsageAttributionOptionalParameters {
@@ -1403,6 +1853,14 @@ func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttri
 }
 func (r *GetUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetUsageAttributionOptionalParameters {
 	r.IncludeDescendants = &includeDescendants
+	return r
+}
+func (r *GetUsageAttributionOptionalParameters) WithOffset(offset int64) *GetUsageAttributionOptionalParameters {
+	r.Offset = &offset
+	return r
+}
+func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsageAttributionOptionalParameters {
+	r.Limit = &limit
 	return r
 }
 
@@ -1428,6 +1886,8 @@ func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, star
 		req.sortDirection = o[0].SortDirection
 		req.sortName = o[0].SortName
 		req.includeDescendants = o[0].IncludeDescendants
+		req.offset = o[0].Offset
+		req.limit = o[0].Limit
 	}
 
 	return req.ApiService.getUsageAttributionExecute(req)
@@ -1485,6 +1945,12 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	if r.includeDescendants != nil {
 		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
 	}
+	if r.offset != nil {
+		localVarQueryParams.Add("offset", parameterToString(*r.offset, ""))
+	}
+	if r.limit != nil {
+		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{}
 
@@ -1495,7 +1961,7 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1675,7 +2141,7 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1859,7 +2325,7 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2049,7 +2515,7 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2239,7 +2705,7 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2429,7 +2895,7 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2619,7 +3085,7 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2809,7 +3275,7 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -2999,7 +3465,7 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3189,7 +3655,7 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3379,7 +3845,7 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3569,7 +4035,7 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3777,7 +4243,7 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -3967,7 +4433,7 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4157,7 +4623,7 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4347,7 +4813,7 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4537,7 +5003,7 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4737,7 +5203,7 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -4927,7 +5393,7 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5117,7 +5583,7 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5307,7 +5773,7 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5507,7 +5973,7 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5697,7 +6163,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -5887,7 +6353,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -6077,7 +6543,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -6267,7 +6733,7 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -6499,7 +6965,7 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339", "application/json"}
+	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)

@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Domains** | Pointer to **[]string** | List of domains where the SAML automated user creation is enabled. | [optional] 
-**Enabled** | Pointer to **bool** | Whether or not the automated user creation based on SAML domain is enabled. | [optional] 
+| Name        | Type                    | Description                                                                 | Notes      |
+| ----------- | ----------------------- | --------------------------------------------------------------------------- | ---------- |
+| **Domains** | Pointer to **[]string** | List of domains where the SAML automated user creation is enabled.          | [optional] |
+| **Enabled** | Pointer to **bool**     | Whether or not the automated user creation based on SAML domain is enabled. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetEnabled sets Enabled field to given value.
 
 HasEnabled returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

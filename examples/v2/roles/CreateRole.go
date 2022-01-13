@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.RoleCreateRequest{
 		Data: datadog.RoleCreateData{
-			Type: datadog.RolesType("roles").Ptr(),
+			Type: datadog.ROLESTYPE_ROLES.Ptr(),
 			Attributes: datadog.RoleCreateAttributes{
 				Name: "Example-Create_role_returns_OK_response",
 			},

@@ -2,32 +2,32 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | Pointer to [**MonitorOptionsAggregation**](MonitorOptionsAggregation.md) |  | [optional] 
-**DeviceIds** | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md) | IDs of the device the Synthetics monitor is running on. | [optional] [readonly] 
-**EnableLogsSample** | Pointer to **bool** | Whether or not to send a log sample when the log monitor triggers. | [optional] 
-**EscalationMessage** | Pointer to **string** | We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab&#x3D;is_alert#renotify), block in the original message instead. A message to include with a re-notification. Supports the &#x60;@username&#x60; notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is &#x60;None&#x60;. | [optional] [default to "none"]
-**EvaluationDelay** | Pointer to **NullableInt64** | Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to &#x60;300&#x60; (5min), the timeframe is set to &#x60;last_5m&#x60; and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation. | [optional] 
-**GroupbySimpleMonitor** | Pointer to **bool** | Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold. | [optional] 
-**IncludeTags** | Pointer to **bool** | A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.  **Examples** - If &#x60;True&#x60;, &#x60;[Triggered on {host:h1}] Monitor Title&#x60; - If &#x60;False&#x60;, &#x60;[Triggered] Monitor Title&#x60; | [optional] [default to true]
-**Locked** | Pointer to **bool** | Whether or not the monitor is locked (only editable by creator and admins). | [optional] 
-**MinFailureDuration** | Pointer to **NullableInt64** | How long the test should be in failure before alerting (integer, number of seconds, max 7200). | [optional] [default to 0]
-**MinLocationFailed** | Pointer to **NullableInt64** | The minimum number of locations in failure at the same time during at least one moment in the &#x60;min_failure_duration&#x60; period (&#x60;min_location_failed&#x60; and &#x60;min_failure_duration&#x60; are part of the advanced alerting rules - integer, &gt;&#x3D; 1). | [optional] [default to 1]
-**NewGroupDelay** | Pointer to **NullableInt64** | Time (in seconds) to skip evaluations for new groups.  For example, this option can be used to skip evaluations for new hosts while they initialize.  Must be a non negative integer. | [optional] 
-**NewHostDelay** | Pointer to **NullableInt64** | Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer.  Use new_group_delay instead. | [optional] [default to 300]
-**NoDataTimeframe** | Pointer to **NullableInt64** | The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks. | [optional] 
-**NotifyAudit** | Pointer to **bool** | A Boolean indicating whether tagged users is notified on changes to this monitor. | [optional] [default to false]
-**NotifyNoData** | Pointer to **bool** | A Boolean indicating whether this monitor notifies when data stops reporting. | [optional] [default to false]
-**RenotifyInterval** | Pointer to **NullableInt64** | The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved. | [optional] 
-**RenotifyOccurrences** | Pointer to **NullableInt64** | The number of times re-notification messages should be sent on the current status at the provided re-notification interval. | [optional] 
-**RenotifyStatuses** | Pointer to [**[]MonitorRenotifyStatusType**](MonitorRenotifyStatusType.md) | The types of monitor statuses for which re-notification messages are sent. | [optional] 
-**RequireFullWindow** | Pointer to **bool** | A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to &#x60;false&#x60; for sparse metrics, otherwise some evaluations are skipped. Default is false. | [optional] 
-**Silenced** | Pointer to **map[string]int64** | Information about the downtime applied to the monitor. | [optional] 
-**SyntheticsCheckId** | Pointer to **NullableString** | ID of the corresponding Synthetic check. | [optional] 
-**ThresholdWindows** | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |  | [optional] 
-**Thresholds** | Pointer to [**MonitorThresholds**](MonitorThresholds.md) |  | [optional] 
-**TimeoutH** | Pointer to **NullableInt64** | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours. | [optional] 
+| Name                     | Type                                                                             | Description                                                                                                                                                                                                                                                                                                                                                           | Notes                          |
+| ------------------------ | -------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| **Aggregation**          | Pointer to [**MonitorOptionsAggregation**](MonitorOptionsAggregation.md)         |                                                                                                                                                                                                                                                                                                                                                                       | [optional]                     |
+| **DeviceIds**            | Pointer to [**[]MonitorDeviceID**](MonitorDeviceID.md)                           | IDs of the device the Synthetics monitor is running on.                                                                                                                                                                                                                                                                                                               | [optional] [readonly]          |
+| **EnableLogsSample**     | Pointer to **bool**                                                              | Whether or not to send a log sample when the log monitor triggers.                                                                                                                                                                                                                                                                                                    | [optional]                     |
+| **EscalationMessage**    | Pointer to **string**                                                            | We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify), block in the original message instead. A message to include with a re-notification. Supports the &#x60;@username&#x60; notification we allow elsewhere. Not applicable if &#x60;renotify_interval&#x60; is &#x60;None&#x60;.                                 | [optional] [default to "none"] |
+| **EvaluationDelay**      | Pointer to **NullableInt64**                                                     | Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to &#x60;300&#x60; (5min), the timeframe is set to &#x60;last_5m&#x60; and the time is 7:00, the monitor evaluates data from 6:50 to 6:55. This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation. | [optional]                     |
+| **GroupbySimpleMonitor** | Pointer to **bool**                                                              | Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.                                                                                                                                                                                                                                                         | [optional]                     |
+| **IncludeTags**          | Pointer to **bool**                                                              | A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title. **Examples** - If &#x60;True&#x60;, &#x60;[Triggered on {host:h1}] Monitor Title&#x60; - If &#x60;False&#x60;, &#x60;[Triggered] Monitor Title&#x60;                                                                                           | [optional] [default to true]   |
+| **Locked**               | Pointer to **bool**                                                              | Whether or not the monitor is locked (only editable by creator and admins).                                                                                                                                                                                                                                                                                           | [optional]                     |
+| **MinFailureDuration**   | Pointer to **NullableInt64**                                                     | How long the test should be in failure before alerting (integer, number of seconds, max 7200).                                                                                                                                                                                                                                                                        | [optional] [default to 0]      |
+| **MinLocationFailed**    | Pointer to **NullableInt64**                                                     | The minimum number of locations in failure at the same time during at least one moment in the &#x60;min_failure_duration&#x60; period (&#x60;min_location_failed&#x60; and &#x60;min_failure_duration&#x60; are part of the advanced alerting rules - integer, &gt;&#x3D; 1).                                                                                         | [optional] [default to 1]      |
+| **NewGroupDelay**        | Pointer to **NullableInt64**                                                     | Time (in seconds) to skip evaluations for new groups. For example, this option can be used to skip evaluations for new hosts while they initialize. Must be a non negative integer.                                                                                                                                                                                   | [optional]                     |
+| **NewHostDelay**         | Pointer to **NullableInt64**                                                     | Time (in seconds) to allow a host to boot and applications to fully start before starting the evaluation of monitor results. Should be a non negative integer. Use new_group_delay instead.                                                                                                                                                                           | [optional] [default to 300]    |
+| **NoDataTimeframe**      | Pointer to **NullableInt64**                                                     | The number of minutes before a monitor notifies after data stops reporting. Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks. If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks.                                                                         | [optional]                     |
+| **NotifyAudit**          | Pointer to **bool**                                                              | A Boolean indicating whether tagged users is notified on changes to this monitor.                                                                                                                                                                                                                                                                                     | [optional] [default to false]  |
+| **NotifyNoData**         | Pointer to **bool**                                                              | A Boolean indicating whether this monitor notifies when data stops reporting.                                                                                                                                                                                                                                                                                         | [optional] [default to false]  |
+| **RenotifyInterval**     | Pointer to **NullableInt64**                                                     | The number of minutes after the last notification before a monitor re-notifies on the current status. It only re-notifies if it’s not resolved.                                                                                                                                                                                                                       | [optional]                     |
+| **RenotifyOccurrences**  | Pointer to **NullableInt64**                                                     | The number of times re-notification messages should be sent on the current status at the provided re-notification interval.                                                                                                                                                                                                                                           | [optional]                     |
+| **RenotifyStatuses**     | Pointer to [**[]MonitorRenotifyStatusType**](MonitorRenotifyStatusType.md)       | The types of monitor statuses for which re-notification messages are sent.                                                                                                                                                                                                                                                                                            | [optional]                     |
+| **RequireFullWindow**    | Pointer to **bool**                                                              | A Boolean indicating whether this monitor needs a full window of data before it’s evaluated. We highly recommend you set this to &#x60;false&#x60; for sparse metrics, otherwise some evaluations are skipped. Default is false.                                                                                                                                      | [optional]                     |
+| **Silenced**             | Pointer to **map[string]int64**                                                  | Information about the downtime applied to the monitor.                                                                                                                                                                                                                                                                                                                | [optional]                     |
+| **SyntheticsCheckId**    | Pointer to **NullableString**                                                    | ID of the corresponding Synthetic check.                                                                                                                                                                                                                                                                                                                              | [optional]                     |
+| **ThresholdWindows**     | Pointer to [**MonitorThresholdWindowOptions**](MonitorThresholdWindowOptions.md) |                                                                                                                                                                                                                                                                                                                                                                       | [optional]                     |
+| **Thresholds**           | Pointer to [**MonitorThresholds**](MonitorThresholds.md)                         |                                                                                                                                                                                                                                                                                                                                                                       | [optional]                     |
+| **TimeoutH**             | Pointer to **NullableInt64**                                                     | The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours.                                                                                                                                                                           | [optional]                     |
 
 ## Methods
 
@@ -177,12 +177,14 @@ HasEvaluationDelay returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetEvaluationDelayNil(b bool)`
 
- SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil
+SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil
 
 ### UnsetEvaluationDelay
+
 `func (o *MonitorOptions) UnsetEvaluationDelay()`
 
 UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil
+
 ### GetGroupbySimpleMonitor
 
 `func (o *MonitorOptions) GetGroupbySimpleMonitor() bool`
@@ -287,12 +289,14 @@ HasMinFailureDuration returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetMinFailureDurationNil(b bool)`
 
- SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil
+SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil
 
 ### UnsetMinFailureDuration
+
 `func (o *MonitorOptions) UnsetMinFailureDuration()`
 
 UnsetMinFailureDuration ensures that no value is present for MinFailureDuration, not even an explicit nil
+
 ### GetMinLocationFailed
 
 `func (o *MonitorOptions) GetMinLocationFailed() int64`
@@ -322,12 +326,14 @@ HasMinLocationFailed returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetMinLocationFailedNil(b bool)`
 
- SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil
+SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil
 
 ### UnsetMinLocationFailed
+
 `func (o *MonitorOptions) UnsetMinLocationFailed()`
 
 UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil
+
 ### GetNewGroupDelay
 
 `func (o *MonitorOptions) GetNewGroupDelay() int64`
@@ -357,12 +363,14 @@ HasNewGroupDelay returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetNewGroupDelayNil(b bool)`
 
- SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil
+SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil
 
 ### UnsetNewGroupDelay
+
 `func (o *MonitorOptions) UnsetNewGroupDelay()`
 
 UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil
+
 ### GetNewHostDelay
 
 `func (o *MonitorOptions) GetNewHostDelay() int64`
@@ -392,12 +400,14 @@ HasNewHostDelay returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetNewHostDelayNil(b bool)`
 
- SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil
+SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil
 
 ### UnsetNewHostDelay
+
 `func (o *MonitorOptions) UnsetNewHostDelay()`
 
 UnsetNewHostDelay ensures that no value is present for NewHostDelay, not even an explicit nil
+
 ### GetNoDataTimeframe
 
 `func (o *MonitorOptions) GetNoDataTimeframe() int64`
@@ -427,12 +437,14 @@ HasNoDataTimeframe returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetNoDataTimeframeNil(b bool)`
 
- SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil
+SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil
 
 ### UnsetNoDataTimeframe
+
 `func (o *MonitorOptions) UnsetNoDataTimeframe()`
 
 UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil
+
 ### GetNotifyAudit
 
 `func (o *MonitorOptions) GetNotifyAudit() bool`
@@ -512,12 +524,14 @@ HasRenotifyInterval returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetRenotifyIntervalNil(b bool)`
 
- SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil
+SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil
 
 ### UnsetRenotifyInterval
+
 `func (o *MonitorOptions) UnsetRenotifyInterval()`
 
 UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil
+
 ### GetRenotifyOccurrences
 
 `func (o *MonitorOptions) GetRenotifyOccurrences() int64`
@@ -547,12 +561,14 @@ HasRenotifyOccurrences returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetRenotifyOccurrencesNil(b bool)`
 
- SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil
+SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil
 
 ### UnsetRenotifyOccurrences
+
 `func (o *MonitorOptions) UnsetRenotifyOccurrences()`
 
 UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil
+
 ### GetRenotifyStatuses
 
 `func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType`
@@ -582,12 +598,14 @@ HasRenotifyStatuses returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetRenotifyStatusesNil(b bool)`
 
- SetRenotifyStatusesNil sets the value for RenotifyStatuses to be an explicit nil
+SetRenotifyStatusesNil sets the value for RenotifyStatuses to be an explicit nil
 
 ### UnsetRenotifyStatuses
+
 `func (o *MonitorOptions) UnsetRenotifyStatuses()`
 
 UnsetRenotifyStatuses ensures that no value is present for RenotifyStatuses, not even an explicit nil
+
 ### GetRequireFullWindow
 
 `func (o *MonitorOptions) GetRequireFullWindow() bool`
@@ -667,12 +685,14 @@ HasSyntheticsCheckId returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetSyntheticsCheckIdNil(b bool)`
 
- SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil
+SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil
 
 ### UnsetSyntheticsCheckId
+
 `func (o *MonitorOptions) UnsetSyntheticsCheckId()`
 
 UnsetSyntheticsCheckId ensures that no value is present for SyntheticsCheckId, not even an explicit nil
+
 ### GetThresholdWindows
 
 `func (o *MonitorOptions) GetThresholdWindows() MonitorThresholdWindowOptions`
@@ -752,13 +772,12 @@ HasTimeoutH returns a boolean if a field has been set.
 
 `func (o *MonitorOptions) SetTimeoutHNil(b bool)`
 
- SetTimeoutHNil sets the value for TimeoutH to be an explicit nil
+SetTimeoutHNil sets the value for TimeoutH to be an explicit nil
 
 ### UnsetTimeoutH
+
 `func (o *MonitorOptions) UnsetTimeoutH()`
 
 UnsetTimeoutH ensures that no value is present for TimeoutH, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

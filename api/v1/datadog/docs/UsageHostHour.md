@@ -2,22 +2,22 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AgentHostCount** | Pointer to **int64** | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent. | [optional] 
-**AlibabaHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog Agent). | [optional] 
-**ApmAzureAppServiceHostCount** | Pointer to **int64** | Contains the total number of Azure App Services hosts using APM. | [optional] 
-**ApmHostCount** | Pointer to **int64** | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods). | [optional] 
-**AwsHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent). | [optional] 
-**AzureHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent). | [optional] 
-**ContainerCount** | Pointer to **int64** | Shows the total number of containers reported by the Docker integration during the hour. | [optional] 
-**GcpHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent). | [optional] 
-**HerokuHostCount** | Pointer to **int64** | Contains the total number of Heroku dynos reported by the Datadog Agent. | [optional] 
-**HostCount** | Pointer to **int64** | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**InfraAzureAppService** | Pointer to **int64** | Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent). | [optional] 
-**OpentelemetryHostCount** | Pointer to **int64** | Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector. | [optional] 
-**VsphereHostCount** | Pointer to **int64** | Contains the total number of hosts that reported via vSphere integration (and were NOT running the Datadog Agent). | [optional] 
+| Name                            | Type                     | Description                                                                                                                                                                                            | Notes      |
+| ------------------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------- |
+| **AgentHostCount**              | Pointer to **int64**     | Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent.                                                                                   | [optional] |
+| **AlibabaHostCount**            | Pointer to **int64**     | Contains the total number of hosts that reported through Alibaba integration (and were NOT running the Datadog Agent).                                                                                 | [optional] |
+| **ApmAzureAppServiceHostCount** | Pointer to **int64**     | Contains the total number of Azure App Services hosts using APM.                                                                                                                                       | [optional] |
+| **ApmHostCount**                | Pointer to **int64**     | Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods).                                                                                | [optional] |
+| **AwsHostCount**                | Pointer to **int64**     | Contains the total number of hosts that reported through the AWS integration (and were NOT running the Datadog Agent).                                                                                 | [optional] |
+| **AzureHostCount**              | Pointer to **int64**     | Contains the total number of hosts that reported through Azure integration (and were NOT running the Datadog Agent).                                                                                   | [optional] |
+| **ContainerCount**              | Pointer to **int64**     | Shows the total number of containers reported by the Docker integration during the hour.                                                                                                               | [optional] |
+| **GcpHostCount**                | Pointer to **int64**     | Contains the total number of hosts that reported through the Google Cloud integration (and were NOT running the Datadog Agent).                                                                        | [optional] |
+| **HerokuHostCount**             | Pointer to **int64**     | Contains the total number of Heroku dynos reported by the Datadog Agent.                                                                                                                               | [optional] |
+| **HostCount**                   | Pointer to **int64**     | Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of &#x60;agent_host_count&#x60;, &#x60;aws_host_count&#x60;, and &#x60;gcp_host_count&#x60;. | [optional] |
+| **Hour**                        | Pointer to **time.Time** | The hour for the usage.                                                                                                                                                                                | [optional] |
+| **InfraAzureAppService**        | Pointer to **int64**     | Contains the total number of hosts that reported through the Azure App Services integration (and were NOT running the Datadog Agent).                                                                  | [optional] |
+| **OpentelemetryHostCount**      | Pointer to **int64**     | Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.                                                                                                       | [optional] |
+| **VsphereHostCount**            | Pointer to **int64**     | Contains the total number of hosts that reported through vSphere integration (and were NOT running the Datadog Agent).                                                                                 | [optional] |
 
 ## Methods
 
@@ -388,7 +388,4 @@ SetVsphereHostCount sets VsphereHostCount field to given value.
 
 HasVsphereHostCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

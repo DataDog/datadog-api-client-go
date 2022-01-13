@@ -14,7 +14,7 @@ import (
 
 func main() {
 	// there is a valid "monitor" in the system
-	MONITOR_ID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
+	MonitorID, _ := strconv.ParseInt(os.Getenv("MONITOR_ID"), 10, 64)
 
 	body := datadog.MonitorUpdateRequest{
 		Name: datadog.PtrString("My monitor-updated"),
@@ -33,7 +33,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, MONITOR_ID, body)
+	resp, r, err := apiClient.MonitorsApi.UpdateMonitor(ctx, MonitorID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.UpdateMonitor`: %v\n", err)

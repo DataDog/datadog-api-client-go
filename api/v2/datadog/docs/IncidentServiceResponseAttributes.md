@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Created** | Pointer to **time.Time** | Timestamp of when the incident service was created. | [optional] [readonly] 
-**Modified** | Pointer to **time.Time** | Timestamp of when the incident service was modified. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the incident service. | [optional] 
+| Name         | Type                     | Description                                          | Notes                 |
+| ------------ | ------------------------ | ---------------------------------------------------- | --------------------- |
+| **Created**  | Pointer to **time.Time** | Timestamp of when the incident service was created.  | [optional] [readonly] |
+| **Modified** | Pointer to **time.Time** | Timestamp of when the incident service was modified. | [optional] [readonly] |
+| **Name**     | Pointer to **string**    | Name of the incident service.                        | [optional]            |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

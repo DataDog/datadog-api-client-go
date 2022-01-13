@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **time.Time** | Creation time of the user invitation. | [optional] 
-**ExpiresAt** | Pointer to **time.Time** | Time of invitation expiration. | [optional] 
-**InviteType** | Pointer to **string** | Type of invitation. | [optional] 
-**Uuid** | Pointer to **string** | UUID of the user invitation. | [optional] 
+| Name           | Type                     | Description                           | Notes      |
+| -------------- | ------------------------ | ------------------------------------- | ---------- |
+| **CreatedAt**  | Pointer to **time.Time** | Creation time of the user invitation. | [optional] |
+| **ExpiresAt**  | Pointer to **time.Time** | Time of invitation expiration.        | [optional] |
+| **InviteType** | Pointer to **string**    | Type of invitation.                   | [optional] |
+| **Uuid**       | Pointer to **string**    | UUID of the user invitation.          | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetUuid sets Uuid field to given value.
 
 HasUuid returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

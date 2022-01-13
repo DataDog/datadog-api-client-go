@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Facet** | **string** | The name of the facet to use (required) | 
-**Histogram** | Pointer to [**LogsGroupByHistogram**](LogsGroupByHistogram.md) |  | [optional] 
-**Limit** | Pointer to **int64** | The maximum buckets to return for this group by | [optional] [default to 10]
-**Missing** | Pointer to [**LogsGroupByMissing**](LogsGroupByMissing.md) |  | [optional] 
-**Sort** | Pointer to [**LogsAggregateSort**](LogsAggregateSort.md) |  | [optional] 
-**Total** | Pointer to [**LogsGroupByTotal**](LogsGroupByTotal.md) |  | [optional] 
+| Name          | Type                                                           | Description                                     | Notes                      |
+| ------------- | -------------------------------------------------------------- | ----------------------------------------------- | -------------------------- |
+| **Facet**     | **string**                                                     | The name of the facet to use (required)         |
+| **Histogram** | Pointer to [**LogsGroupByHistogram**](LogsGroupByHistogram.md) |                                                 | [optional]                 |
+| **Limit**     | Pointer to **int64**                                           | The maximum buckets to return for this group by | [optional] [default to 10] |
+| **Missing**   | Pointer to [**LogsGroupByMissing**](LogsGroupByMissing.md)     |                                                 | [optional]                 |
+| **Sort**      | Pointer to [**LogsAggregateSort**](LogsAggregateSort.md)       |                                                 | [optional]                 |
+| **Total**     | Pointer to [**LogsGroupByTotal**](LogsGroupByTotal.md)         |                                                 | [optional]                 |
 
 ## Methods
 
@@ -48,7 +48,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsGroupBy) SetFacet(v string)`
 
 SetFacet sets Facet field to given value.
-
 
 ### GetHistogram
 
@@ -175,7 +174,4 @@ SetTotal sets Total field to given value.
 
 HasTotal returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

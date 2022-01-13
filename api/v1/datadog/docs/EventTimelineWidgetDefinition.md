@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Query** | **string** | Query to filter the event timeline with. | 
-**TagsExecution** | Pointer to **string** | The execution method for multi-value filters. Can be either and or or. | [optional] 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**EventTimelineWidgetDefinitionType**](EventTimelineWidgetDefinitionType.md) |  | [default to EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE]
+| Name              | Type                                                                          | Description                                                            | Notes                                                         |
+| ----------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **Query**         | **string**                                                                    | Query to filter the event timeline with.                               |
+| **TagsExecution** | Pointer to **string**                                                         | The execution method for multi-value filters. Can be either and or or. | [optional]                                                    |
+| **Time**          | Pointer to [**WidgetTime**](WidgetTime.md)                                    |                                                                        | [optional]                                                    |
+| **Title**         | Pointer to **string**                                                         | Title of the widget.                                                   | [optional]                                                    |
+| **TitleAlign**    | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                          |                                                                        | [optional]                                                    |
+| **TitleSize**     | Pointer to **string**                                                         | Size of the title.                                                     | [optional]                                                    |
+| **Type**          | [**EventTimelineWidgetDefinitionType**](EventTimelineWidgetDefinitionType.md) |                                                                        | [default to EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE] |
 
 ## Methods
 
@@ -49,7 +49,6 @@ and a boolean to check if the value has been set.
 `func (o *EventTimelineWidgetDefinition) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetTagsExecution
 
@@ -195,8 +194,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateIncidentTeam**](IncidentTeamsApi.md#CreateIncidentTeam) | **Post** /api/v2/teams | Create a new incident team
-[**DeleteIncidentTeam**](IncidentTeamsApi.md#DeleteIncidentTeam) | **Delete** /api/v2/teams/{team_id} | Delete an existing incident team
-[**GetIncidentTeam**](IncidentTeamsApi.md#GetIncidentTeam) | **Get** /api/v2/teams/{team_id} | Get details of an incident team
-[**ListIncidentTeams**](IncidentTeamsApi.md#ListIncidentTeams) | **Get** /api/v2/teams | Get a list of all incident teams
-[**UpdateIncidentTeam**](IncidentTeamsApi.md#UpdateIncidentTeam) | **Patch** /api/v2/teams/{team_id} | Update an existing incident team
-
-
+| Method                                                           | HTTP request                       | Description                      |
+| ---------------------------------------------------------------- | ---------------------------------- | -------------------------------- |
+| [**CreateIncidentTeam**](IncidentTeamsApi.md#CreateIncidentTeam) | **Post** /api/v2/teams             | Create a new incident team       |
+| [**DeleteIncidentTeam**](IncidentTeamsApi.md#DeleteIncidentTeam) | **Delete** /api/v2/teams/{team_id} | Delete an existing incident team |
+| [**GetIncidentTeam**](IncidentTeamsApi.md#GetIncidentTeam)       | **Get** /api/v2/teams/{team_id}    | Get details of an incident team  |
+| [**ListIncidentTeams**](IncidentTeamsApi.md#ListIncidentTeams)   | **Get** /api/v2/teams              | Get a list of all incident teams |
+| [**UpdateIncidentTeam**](IncidentTeamsApi.md#UpdateIncidentTeam) | **Patch** /api/v2/teams/{team_id}  | Update an existing incident team |
 
 ## CreateIncidentTeam
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**IncidentTeamCreateRequest**](IncidentTeamCreateRequest.md) | Incident Team Payload. | 
-
+| Name     | Type                                                          | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**IncidentTeamCreateRequest**](IncidentTeamCreateRequest.md) | Incident Team Payload.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteIncidentTeam
 
@@ -120,21 +114,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**teamId** | **string** | The ID of the incident team. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **teamId** | **string**          | The ID of the incident team.                                                |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -148,7 +139,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetIncidentTeam
 
@@ -196,22 +186,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**teamId** | **string** | The ID of the incident team. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **teamId** | **string**          | The ID of the incident team.                                                |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetIncidentTeamOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+| Name        | Type                                                  | Description                                                                  | Notes |
+| ----------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- | ----- |
+| **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
 
 ### Return type
 
@@ -229,7 +215,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListIncidentTeams
 
@@ -281,21 +266,16 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListIncidentTeamsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
-**filter** | **string** | A search query that filters teams by name. | 
+| Name           | Type                                                  | Description                                                                  | Notes           |
+| -------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- | --------------- |
+| **include**    | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
+| **pageSize**   | **int64**                                             | Size for a given page.                                                       | [default to 10] |
+| **pageOffset** | **int64**                                             | Specific offset to use as the beginning of the returned page.                | [default to 0]  |
+| **filter**     | **string**                                            | A search query that filters teams by name.                                   |
 
 ### Return type
 
@@ -313,7 +293,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateIncidentTeam
 
@@ -357,18 +336,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**teamId** | **string** | The ID of the incident team. |  |
-**body** | [**IncidentTeamUpdateRequest**](IncidentTeamUpdateRequest.md) | Incident Team Payload. | 
-
+| Name       | Type                                                          | Description                                                                 | Notes |
+| ---------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **teamId** | **string**                                                    | The ID of the incident team.                                                |       |
+| **body**   | [**IncidentTeamUpdateRequest**](IncidentTeamUpdateRequest.md) | Incident Team Payload.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -386,4 +362,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

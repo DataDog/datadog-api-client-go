@@ -262,8 +262,8 @@ Use this to create an outlier monitor using the following query:
 
 Example: `"check".over(tags).last(count).by(group).count_by_status()`
 
-- **`check`** name of the check, e.g. `datadog.agent.up`
-- **`tags`** one or more quoted tags (comma-separated), or "*". e.g.: `.over("env:prod", "role:db")`; **`over`** cannot be blank.
+- **`check`** name of the check, for example `datadog.agent.up`
+- **`tags`** one or more quoted tags (comma-separated), or "*". for example: `.over("env:prod", "role:db")`; **`over`** cannot be blank.
 - **`count`** must be at greater than or equal to your max threshold (defined in the `options`). It is limited to 100.
 For example, if you've specified to notify on 1 critical, 3 ok, and 2 warn statuses, `count` should be at least 3.
 - **`group`** must be specified for check monitors. Per-check grouping is already explicitly known for some service checks.
@@ -353,6 +353,19 @@ Example: `audits(query).rollup(rollup_method[, measure]).last(time_window) opera
 - **`#`** an integer or decimal number used to set the threshold.
 
 **NOTE** Only available on US1-FED and in closed beta on US1, EU, US3, and US5.
+
+**CI Pipelines Alert Query**
+
+Example: `ci-pipelines(query).rollup(rollup_method[, measure]).last(time_window) operator #`
+
+- **`query`** The search query - following the [Log search syntax](https://docs.datadoghq.com/logs/search_syntax/).
+- **`rollup_method`** The stats roll-up method - supports `count`, `avg`, and `cardinality`.
+- **`measure`** For `avg` and cardinality `rollup_method` - specify the measure or the facet name you want to use.
+- **`time_window`** #m (between 1 and 2880), #h (between 1 and 48).
+- **`operator`** `<`, `<=`, `>`, `>=`, `==`, or `!=`.
+- **`#`** an integer or decimal number used to set the threshold.
+
+**NOTE** Only available in closed beta on US1, EU, US3 and US5.
 */
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
 	req := apiCreateMonitorRequest{

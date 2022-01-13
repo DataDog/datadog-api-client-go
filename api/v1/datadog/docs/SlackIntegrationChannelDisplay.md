@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Message** | Pointer to **bool** | Show the main body of the alert event. | [optional] [default to true]
-**Notified** | Pointer to **bool** | Show the list of @-handles in the alert event. | [optional] [default to true]
-**Snapshot** | Pointer to **bool** | Show the alert event&#39;s snapshot image. | [optional] [default to true]
-**Tags** | Pointer to **bool** | Show the scopes on which the monitor alerted. | [optional] [default to true]
+| Name         | Type                | Description                                    | Notes                        |
+| ------------ | ------------------- | ---------------------------------------------- | ---------------------------- |
+| **Message**  | Pointer to **bool** | Show the main body of the alert event.         | [optional] [default to true] |
+| **Notified** | Pointer to **bool** | Show the list of @-handles in the alert event. | [optional] [default to true] |
+| **Snapshot** | Pointer to **bool** | Show the alert event&#39;s snapshot image.     | [optional] [default to true] |
+| **Tags**     | Pointer to **bool** | Show the scopes on which the monitor alerted.  | [optional] [default to true] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**IncidentTeamResponseAttributes**](IncidentTeamResponseAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The incident team&#39;s ID. | [optional] 
-**Relationships** | Pointer to [**IncidentTeamRelationships**](IncidentTeamRelationships.md) |  | [optional] 
-**Type** | Pointer to [**IncidentTeamType**](IncidentTeamType.md) |  | [optional] [default to INCIDENTTEAMTYPE_TEAMS]
+| Name              | Type                                                                               | Description                 | Notes                                          |
+| ----------------- | ---------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------- |
+| **Attributes**    | Pointer to [**IncidentTeamResponseAttributes**](IncidentTeamResponseAttributes.md) |                             | [optional]                                     |
+| **Id**            | Pointer to **string**                                                              | The incident team&#39;s ID. | [optional]                                     |
+| **Relationships** | Pointer to [**IncidentTeamRelationships**](IncidentTeamRelationships.md)           |                             | [optional]                                     |
+| **Type**          | Pointer to [**IncidentTeamType**](IncidentTeamType.md)                             |                             | [optional] [default to INCIDENTTEAMTYPE_TEAMS] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

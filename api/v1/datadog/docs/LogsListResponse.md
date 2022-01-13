@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Logs** | Pointer to [**[]Log**](Log.md) | Array of logs matching the request and the &#x60;nextLogId&#x60; if sent. | [optional] 
-**NextLogId** | Pointer to **string** | Hash identifier of the next log to return in the list. This parameter is used for the pagination feature. | [optional] 
-**Status** | Pointer to **string** | Status of the response. | [optional] 
+| Name          | Type                           | Description                                                                                               | Notes      |
+| ------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **Logs**      | Pointer to [**[]Log**](Log.md) | Array of logs matching the request and the &#x60;nextLogId&#x60; if sent.                                 | [optional] |
+| **NextLogId** | Pointer to **string**          | Hash identifier of the next log to return in the list. This parameter is used for the pagination feature. | [optional] |
+| **Status**    | Pointer to **string**          | Status of the response.                                                                                   | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

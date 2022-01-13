@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | [**APIKeyUpdateAttributes**](APIKeyUpdateAttributes.md) |  | 
-**Id** | **string** | ID of the API key. | 
-**Type** | [**APIKeysType**](APIKeysType.md) |  | [default to APIKEYSTYPE_API_KEYS]
+| Name           | Type                                                    | Description        | Notes                             |
+| -------------- | ------------------------------------------------------- | ------------------ | --------------------------------- |
+| **Attributes** | [**APIKeyUpdateAttributes**](APIKeyUpdateAttributes.md) |                    |
+| **Id**         | **string**                                              | ID of the API key. |
+| **Type**       | [**APIKeysType**](APIKeysType.md)                       |                    | [default to APIKEYSTYPE_API_KEYS] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetAttributes sets Attributes field to given value.
 
-
 ### GetId
 
 `func (o *APIKeyUpdateData) GetId() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *APIKeyUpdateData) SetId(v string)`
 
 SetId sets Id field to given value.
-
 
 ### GetType
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

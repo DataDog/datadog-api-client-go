@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Url** | Pointer to **string** | URL of the pipeline. | [optional] 
+| Name    | Type                  | Description          | Notes      |
+| ------- | --------------------- | -------------------- | ---------- |
+| **Url** | Pointer to **string** | URL of the pipeline. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ColorPreference** | Pointer to [**WidgetColorPreference**](WidgetColorPreference.md) |  | [optional] 
-**Count** | Pointer to **int64** | The number of monitors to display. | [optional] 
-**DisplayFormat** | Pointer to [**WidgetMonitorSummaryDisplayFormat**](WidgetMonitorSummaryDisplayFormat.md) |  | [optional] 
-**HideZeroCounts** | Pointer to **bool** | Whether to show counts of 0 or not. | [optional] 
-**Query** | **string** | Query to filter the monitors with. | 
-**ShowLastTriggered** | Pointer to **bool** | Whether to show the time that has elapsed since the monitor/group triggered. | [optional] 
-**Sort** | Pointer to [**WidgetMonitorSummarySort**](WidgetMonitorSummarySort.md) |  | [optional] 
-**Start** | Pointer to **int64** | The start of the list. Typically 0. | [optional] 
-**SummaryType** | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of the widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**MonitorSummaryWidgetDefinitionType**](MonitorSummaryWidgetDefinitionType.md) |  | [default to MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS]
+| Name                  | Type                                                                                     | Description                                                                  | Notes                                                         |
+| --------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| **ColorPreference**   | Pointer to [**WidgetColorPreference**](WidgetColorPreference.md)                         |                                                                              | [optional]                                                    |
+| **Count**             | Pointer to **int64**                                                                     | The number of monitors to display.                                           | [optional]                                                    |
+| **DisplayFormat**     | Pointer to [**WidgetMonitorSummaryDisplayFormat**](WidgetMonitorSummaryDisplayFormat.md) |                                                                              | [optional]                                                    |
+| **HideZeroCounts**    | Pointer to **bool**                                                                      | Whether to show counts of 0 or not.                                          | [optional]                                                    |
+| **Query**             | **string**                                                                               | Query to filter the monitors with.                                           |
+| **ShowLastTriggered** | Pointer to **bool**                                                                      | Whether to show the time that has elapsed since the monitor/group triggered. | [optional]                                                    |
+| **Sort**              | Pointer to [**WidgetMonitorSummarySort**](WidgetMonitorSummarySort.md)                   |                                                                              | [optional]                                                    |
+| **Start**             | Pointer to **int64**                                                                     | The start of the list. Typically 0.                                          | [optional]                                                    |
+| **SummaryType**       | Pointer to [**WidgetSummaryType**](WidgetSummaryType.md)                                 |                                                                              | [optional]                                                    |
+| **Title**             | Pointer to **string**                                                                    | Title of the widget.                                                         | [optional]                                                    |
+| **TitleAlign**        | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)                                     |                                                                              | [optional]                                                    |
+| **TitleSize**         | Pointer to **string**                                                                    | Size of the title.                                                           | [optional]                                                    |
+| **Type**              | [**MonitorSummaryWidgetDefinitionType**](MonitorSummaryWidgetDefinitionType.md)          |                                                                              | [default to MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS] |
 
 ## Methods
 
@@ -155,7 +155,6 @@ and a boolean to check if the value has been set.
 `func (o *MonitorSummaryWidgetDefinition) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetShowLastTriggered
 
@@ -351,8 +350,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

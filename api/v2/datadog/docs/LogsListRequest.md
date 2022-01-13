@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md) |  | [optional] 
-**Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md) |  | [optional] 
-**Page** | Pointer to [**LogsListRequestPage**](LogsListRequestPage.md) |  | [optional] 
-**Sort** | Pointer to [**LogsSort**](LogsSort.md) |  | [optional] 
+| Name        | Type                                                         | Description | Notes      |
+| ----------- | ------------------------------------------------------------ | ----------- | ---------- |
+| **Filter**  | Pointer to [**LogsQueryFilter**](LogsQueryFilter.md)         |             | [optional] |
+| **Options** | Pointer to [**LogsQueryOptions**](LogsQueryOptions.md)       |             | [optional] |
+| **Page**    | Pointer to [**LogsListRequestPage**](LogsListRequestPage.md) |             | [optional] |
+| **Sort**    | Pointer to [**LogsSort**](LogsSort.md)                       |             | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetSort sets Sort field to given value.
 
 HasSort returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

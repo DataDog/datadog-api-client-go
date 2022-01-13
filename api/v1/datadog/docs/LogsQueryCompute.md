@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | **string** | The aggregation method. | 
-**Facet** | Pointer to **string** | Facet name. | [optional] 
-**Interval** | Pointer to **int64** | Define a time interval in seconds. | [optional] 
+| Name            | Type                  | Description                        | Notes      |
+| --------------- | --------------------- | ---------------------------------- | ---------- |
+| **Aggregation** | **string**            | The aggregation method.            |
+| **Facet**       | Pointer to **string** | Facet name.                        | [optional] |
+| **Interval**    | Pointer to **int64**  | Define a time interval in seconds. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsQueryCompute) SetAggregation(v string)`
 
 SetAggregation sets Aggregation field to given value.
-
 
 ### GetFacet
 
@@ -97,7 +96,4 @@ SetInterval sets Interval field to given value.
 
 HasInterval returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

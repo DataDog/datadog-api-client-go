@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | Pointer to [**LogsAggregationFunction**](LogsAggregationFunction.md) |  | [optional] 
-**Metric** | Pointer to **string** | The metric to sort by (only used for &#x60;type&#x3D;measure&#x60;) | [optional] 
-**Order** | Pointer to [**LogsSortOrder**](LogsSortOrder.md) |  | [optional] 
-**Type** | Pointer to [**LogsAggregateSortType**](LogsAggregateSortType.md) |  | [optional] [default to LOGSAGGREGATESORTTYPE_ALPHABETICAL]
+| Name            | Type                                                                 | Description                                                         | Notes                                                      |
+| --------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------- | ---------------------------------------------------------- |
+| **Aggregation** | Pointer to [**LogsAggregationFunction**](LogsAggregationFunction.md) |                                                                     | [optional]                                                 |
+| **Metric**      | Pointer to **string**                                                | The metric to sort by (only used for &#x60;type&#x3D;measure&#x60;) | [optional]                                                 |
+| **Order**       | Pointer to [**LogsSortOrder**](LogsSortOrder.md)                     |                                                                     | [optional]                                                 |
+| **Type**        | Pointer to [**LogsAggregateSortType**](LogsAggregateSortType.md)     |                                                                     | [optional] [default to LOGSAGGREGATESORTTYPE_ALPHABETICAL] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

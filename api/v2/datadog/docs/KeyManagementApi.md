@@ -2,24 +2,22 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey) | **Post** /api/v2/api_keys | Create an API key
-[**CreateCurrentUserApplicationKey**](KeyManagementApi.md#CreateCurrentUserApplicationKey) | **Post** /api/v2/current_user/application_keys | Create an application key for current user
-[**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey) | **Delete** /api/v2/api_keys/{api_key_id} | Delete an API key
-[**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey) | **Delete** /api/v2/application_keys/{app_key_id} | Delete an application key
-[**DeleteCurrentUserApplicationKey**](KeyManagementApi.md#DeleteCurrentUserApplicationKey) | **Delete** /api/v2/current_user/application_keys/{app_key_id} | Delete an application key owned by current user
-[**GetAPIKey**](KeyManagementApi.md#GetAPIKey) | **Get** /api/v2/api_keys/{api_key_id} | Get API key
-[**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey) | **Get** /api/v2/application_keys/{app_key_id} | Get an application key
-[**GetCurrentUserApplicationKey**](KeyManagementApi.md#GetCurrentUserApplicationKey) | **Get** /api/v2/current_user/application_keys/{app_key_id} | Get one application key owned by current user
-[**ListAPIKeys**](KeyManagementApi.md#ListAPIKeys) | **Get** /api/v2/api_keys | Get all API keys
-[**ListApplicationKeys**](KeyManagementApi.md#ListApplicationKeys) | **Get** /api/v2/application_keys | Get all application keys
-[**ListCurrentUserApplicationKeys**](KeyManagementApi.md#ListCurrentUserApplicationKeys) | **Get** /api/v2/current_user/application_keys | Get all application keys owned by current user
-[**UpdateAPIKey**](KeyManagementApi.md#UpdateAPIKey) | **Patch** /api/v2/api_keys/{api_key_id} | Edit an API key
-[**UpdateApplicationKey**](KeyManagementApi.md#UpdateApplicationKey) | **Patch** /api/v2/application_keys/{app_key_id} | Edit an application key
-[**UpdateCurrentUserApplicationKey**](KeyManagementApi.md#UpdateCurrentUserApplicationKey) | **Patch** /api/v2/current_user/application_keys/{app_key_id} | Edit an application key owned by current user
-
-
+| Method                                                                                     | HTTP request                                                  | Description                                     |
+| ------------------------------------------------------------------------------------------ | ------------------------------------------------------------- | ----------------------------------------------- |
+| [**CreateAPIKey**](KeyManagementApi.md#CreateAPIKey)                                       | **Post** /api/v2/api_keys                                     | Create an API key                               |
+| [**CreateCurrentUserApplicationKey**](KeyManagementApi.md#CreateCurrentUserApplicationKey) | **Post** /api/v2/current_user/application_keys                | Create an application key for current user      |
+| [**DeleteAPIKey**](KeyManagementApi.md#DeleteAPIKey)                                       | **Delete** /api/v2/api_keys/{api_key_id}                      | Delete an API key                               |
+| [**DeleteApplicationKey**](KeyManagementApi.md#DeleteApplicationKey)                       | **Delete** /api/v2/application_keys/{app_key_id}              | Delete an application key                       |
+| [**DeleteCurrentUserApplicationKey**](KeyManagementApi.md#DeleteCurrentUserApplicationKey) | **Delete** /api/v2/current_user/application_keys/{app_key_id} | Delete an application key owned by current user |
+| [**GetAPIKey**](KeyManagementApi.md#GetAPIKey)                                             | **Get** /api/v2/api_keys/{api_key_id}                         | Get API key                                     |
+| [**GetApplicationKey**](KeyManagementApi.md#GetApplicationKey)                             | **Get** /api/v2/application_keys/{app_key_id}                 | Get an application key                          |
+| [**GetCurrentUserApplicationKey**](KeyManagementApi.md#GetCurrentUserApplicationKey)       | **Get** /api/v2/current_user/application_keys/{app_key_id}    | Get one application key owned by current user   |
+| [**ListAPIKeys**](KeyManagementApi.md#ListAPIKeys)                                         | **Get** /api/v2/api_keys                                      | Get all API keys                                |
+| [**ListApplicationKeys**](KeyManagementApi.md#ListApplicationKeys)                         | **Get** /api/v2/application_keys                              | Get all application keys                        |
+| [**ListCurrentUserApplicationKeys**](KeyManagementApi.md#ListCurrentUserApplicationKeys)   | **Get** /api/v2/current_user/application_keys                 | Get all application keys owned by current user  |
+| [**UpdateAPIKey**](KeyManagementApi.md#UpdateAPIKey)                                       | **Patch** /api/v2/api_keys/{api_key_id}                       | Edit an API key                                 |
+| [**UpdateApplicationKey**](KeyManagementApi.md#UpdateApplicationKey)                       | **Patch** /api/v2/application_keys/{app_key_id}               | Edit an application key                         |
+| [**UpdateCurrentUserApplicationKey**](KeyManagementApi.md#UpdateCurrentUserApplicationKey) | **Patch** /api/v2/current_user/application_keys/{app_key_id}  | Edit an application key owned by current user   |
 
 ## CreateAPIKey
 
@@ -43,7 +41,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewAPIKeyCreateRequest(*datadog.NewAPIKeyCreateData(*datadog.NewAPIKeyCreateAttributes("API Key for submitting metrics"), datadog.APIKeysType("api_keys"))) // APIKeyCreateRequest | 
+    body := *datadog.NewAPIKeyCreateRequest(*datadog.NewAPIKeyCreateData(*datadog.NewAPIKeyCreateAttributes("API Key for submitting metrics"), datadog.APIKeysType("api_keys"))) // APIKeyCreateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -61,17 +59,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**APIKeyCreateRequest**](APIKeyCreateRequest.md) |  | 
-
+| Name     | Type                                              | Description                                                                 | Notes |
+| -------- | ------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**APIKeyCreateRequest**](APIKeyCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -89,7 +84,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateCurrentUserApplicationKey
 
@@ -113,7 +107,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for submitting metrics"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
+    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for managing dashboards"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -131,17 +125,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**ApplicationKeyCreateRequest**](ApplicationKeyCreateRequest.md) |  | 
-
+| Name     | Type                                                              | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**ApplicationKeyCreateRequest**](ApplicationKeyCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -159,7 +150,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteAPIKey
 
@@ -197,21 +187,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**apiKeyId** | **string** | The ID of the API key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **apiKeyId** | **string**          | The ID of the API key.                                                      |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -225,7 +212,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteApplicationKey
 
@@ -263,21 +249,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -291,7 +274,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteCurrentUserApplicationKey
 
@@ -329,21 +311,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -357,7 +336,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetAPIKey
 
@@ -403,22 +381,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**apiKeyId** | **string** | The ID of the API key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **apiKeyId** | **string**          | The ID of the API key.                                                      |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetAPIKeyOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | **string** | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are &#x60;created_by&#x60; and &#x60;modified_by&#x60;. | 
+| Name        | Type       | Description                                                                                                                                                               | Notes |
+| ----------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **include** | **string** | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are &#x60;created_by&#x60; and &#x60;modified_by&#x60;. |
 
 ### Return type
 
@@ -436,7 +410,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetApplicationKey
 
@@ -482,22 +455,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetApplicationKeyOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | **string** | Resource path for related resources to include in the response. Only &#x60;owned_by&#x60; is supported. | 
+| Name        | Type       | Description                                                                                             | Notes |
+| ----------- | ---------- | ------------------------------------------------------------------------------------------------------- | ----- |
+| **include** | **string** | Resource path for related resources to include in the response. Only &#x60;owned_by&#x60; is supported. |
 
 ### Return type
 
@@ -515,7 +484,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetCurrentUserApplicationKey
 
@@ -557,17 +525,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -585,7 +550,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListAPIKeys
 
@@ -646,26 +610,21 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListAPIKeysOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
-**sort** | [**APIKeysSort**](APIKeysSort.md) | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
-**filter** | **string** | Filter API keys by the specified string. | 
-**filterCreatedAtStart** | **string** | Only include API keys created on or after the specified date. | 
-**filterCreatedAtEnd** | **string** | Only include API keys created on or before the specified date. | 
-**filterModifiedAtStart** | **string** | Only include API keys modified on or after the specified date. | 
-**filterModifiedAtEnd** | **string** | Only include API keys modified on or before the specified date. | 
-**include** | **string** | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are &#x60;created_by&#x60; and &#x60;modified_by&#x60;. | 
+| Name                      | Type                              | Description                                                                                                                                                               | Notes                         |
+| ------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **pageSize**              | **int64**                         | Size for a given page.                                                                                                                                                    | [default to 10]               |
+| **pageNumber**            | **int64**                         | Specific page number to return.                                                                                                                                           | [default to 0]                |
+| **sort**                  | [**APIKeysSort**](APIKeysSort.md) | API key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign.                | [default to &quot;name&quot;] |
+| **filter**                | **string**                        | Filter API keys by the specified string.                                                                                                                                  |
+| **filterCreatedAtStart**  | **string**                        | Only include API keys created on or after the specified date.                                                                                                             |
+| **filterCreatedAtEnd**    | **string**                        | Only include API keys created on or before the specified date.                                                                                                            |
+| **filterModifiedAtStart** | **string**                        | Only include API keys modified on or after the specified date.                                                                                                            |
+| **filterModifiedAtEnd**   | **string**                        | Only include API keys modified on or before the specified date.                                                                                                           |
+| **include**               | **string**                        | Comma separated list of resource paths for related resources to include in the response. Supported resource paths are &#x60;created_by&#x60; and &#x60;modified_by&#x60;. |
 
 ### Return type
 
@@ -683,7 +642,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListApplicationKeys
 
@@ -738,23 +696,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListApplicationKeysOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
-**sort** | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
-**filter** | **string** | Filter application keys by the specified string. | 
-**filterCreatedAtStart** | **string** | Only include application keys created on or after the specified date. | 
-**filterCreatedAtEnd** | **string** | Only include application keys created on or before the specified date. | 
+| Name                     | Type                                              | Description                                                                                                                                                        | Notes                         |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **pageSize**             | **int64**                                         | Size for a given page.                                                                                                                                             | [default to 10]               |
+| **pageNumber**           | **int64**                                         | Specific page number to return.                                                                                                                                    | [default to 0]                |
+| **sort**                 | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;] |
+| **filter**               | **string**                                        | Filter application keys by the specified string.                                                                                                                   |
+| **filterCreatedAtStart** | **string**                                        | Only include application keys created on or after the specified date.                                                                                              |
+| **filterCreatedAtEnd**   | **string**                                        | Only include application keys created on or before the specified date.                                                                                             |
 
 ### Return type
 
@@ -772,7 +725,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListCurrentUserApplicationKeys
 
@@ -827,23 +779,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListCurrentUserApplicationKeysOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
-**sort** | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
-**filter** | **string** | Filter application keys by the specified string. | 
-**filterCreatedAtStart** | **string** | Only include application keys created on or after the specified date. | 
-**filterCreatedAtEnd** | **string** | Only include application keys created on or before the specified date. | 
+| Name                     | Type                                              | Description                                                                                                                                                        | Notes                         |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **pageSize**             | **int64**                                         | Size for a given page.                                                                                                                                             | [default to 10]               |
+| **pageNumber**           | **int64**                                         | Specific page number to return.                                                                                                                                    | [default to 0]                |
+| **sort**                 | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;] |
+| **filter**               | **string**                                        | Filter application keys by the specified string.                                                                                                                   |
+| **filterCreatedAtStart** | **string**                                        | Only include application keys created on or after the specified date.                                                                                              |
+| **filterCreatedAtEnd**   | **string**                                        | Only include application keys created on or before the specified date.                                                                                             |
 
 ### Return type
 
@@ -861,7 +808,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAPIKey
 
@@ -886,7 +832,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     apiKeyId := "apiKeyId_example" // string | The ID of the API key.
-    body := *datadog.NewAPIKeyUpdateRequest(*datadog.NewAPIKeyUpdateData(*datadog.NewAPIKeyUpdateAttributes("API Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.APIKeysType("api_keys"))) // APIKeyUpdateRequest | 
+    body := *datadog.NewAPIKeyUpdateRequest(*datadog.NewAPIKeyUpdateData(*datadog.NewAPIKeyUpdateAttributes("API Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.APIKeysType("api_keys"))) // APIKeyUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -904,18 +850,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**apiKeyId** | **string** | The ID of the API key. |  |
-**body** | [**APIKeyUpdateRequest**](APIKeyUpdateRequest.md) |  | 
-
+| Name         | Type                                              | Description                                                                 | Notes |
+| ------------ | ------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **apiKeyId** | **string**                                        | The ID of the API key.                                                      |       |
+| **body**     | [**APIKeyUpdateRequest**](APIKeyUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -933,7 +876,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateApplicationKey
 
@@ -958,7 +900,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
-    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
+    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes(), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -976,18 +918,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. |  |
-**body** | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |  | 
-
+| Name         | Type                                                              | Description                                                                 | Notes |
+| ------------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**                                                        | The ID of the application key.                                              |       |
+| **body**     | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1005,7 +944,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateCurrentUserApplicationKey
 
@@ -1030,7 +968,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     appKeyId := "appKeyId_example" // string | The ID of the application key.
-    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
+    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes(), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -1048,18 +986,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**appKeyId** | **string** | The ID of the application key. |  |
-**body** | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |  | 
-
+| Name         | Type                                                              | Description                                                                 | Notes |
+| ------------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **appKeyId** | **string**                                                        | The ID of the application key.                                              |       |
+| **body**     | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1077,4 +1012,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

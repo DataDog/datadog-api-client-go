@@ -17,7 +17,7 @@ import (
 type SLOThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
 	Target float64 `json:"target"`
-	// A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (e.g. `98.00`).  Always included in service level objective responses. Ignored in create/update requests.
+	// A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (for example `98.00`).  Always included in service level objective responses. Ignored in create/update requests.
 	TargetDisplay *string      `json:"target_display,omitempty"`
 	Timeframe     SLOTimeframe `json:"timeframe"`
 	// The warning value for the service level objective.

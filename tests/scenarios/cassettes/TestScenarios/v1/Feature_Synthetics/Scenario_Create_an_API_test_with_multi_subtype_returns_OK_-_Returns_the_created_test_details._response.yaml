@@ -1,0 +1,42 @@
+interactions:
+- request:
+    body: |
+      {"config":{"configVariables":[{"example":"content-type","name":"PROPERTY","pattern":"content-type","type":"text"}],"steps":[{"allowFailure":true,"assertions":[{"operator":"is","target":200,"type":"statusCode"}],"isCritical":true,"name":"request is sent","request":{"method":"GET","timeout":10,"url":"https://datadoghq.com"},"retry":{"count":5,"interval":1000},"subtype":"http"}]},"locations":["aws:us-east-2"],"message":"BDD test payload: synthetics_api_test_multi_step_payload.json","name":"Test-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response-1641430276","options":{"accept_self_signed":false,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"min_location_failed":1,"monitor_name":"Test-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response-1641430276","monitor_priority":5,"retry":{"count":3,"interval":1000},"tick_every":60},"subtype":"multi","tags":["testing:api"],"type":"api"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/api
+  response:
+    body: '{"status":"live","public_id":"kia-hd8-bct","tags":["testing:api"],"org_id":321813,"locations":["aws:us-east-2"],"message":"BDD
+      test payload: synthetics_api_test_multi_step_payload.json","deleted_at":null,"name":"Test-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response-1641430276","monitor_id":59800856,"type":"api","created_at":"2022-01-06T00:51:16.950611+00:00","modified_at":"2022-01-06T00:51:16.950611+00:00","subtype":"multi","config":{"steps":[{"retry":{"count":5,"interval":1000},"name":"request
+      is sent","request":{"url":"https://datadoghq.com","method":"GET","timeout":10},"subtype":"http","allowFailure":true,"assertions":[{"operator":"is","type":"statusCode","target":200}],"isCritical":true,"id":"st2-8kw-wzc"}],"configVariables":[{"pattern":"content-type","type":"text","example":"content-type","name":"PROPERTY"}]},"options":{"accept_self_signed":false,"retry":{"count":3,"interval":1000},"min_location_failed":1,"allow_insecure":true,"follow_redirects":true,"min_failure_duration":10,"monitor_priority":5,"monitor_name":"Test-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response-1641430276","tick_every":60}}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"public_ids":["kia-hd8-bct"]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/synthetics/tests/delete
+  response:
+    body: '{"deleted_tests":[{"deleted_at":"2022-01-06T00:51:17.196033+00:00","public_id":"kia-hd8-bct"}]}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AcceptSelfSigned** | Pointer to **bool** | For SSL test, whether or not the test should allow self signed certificates. | [optional] 
-**AllowInsecure** | Pointer to **bool** | Allows loading insecure content for an HTTP request. | [optional] 
-**DeviceIds** | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md) | For browser test, array with the different device IDs used to run the test. | [optional] 
-**DisableCors** | Pointer to **bool** | Whether or not to disable CORS mechanism. | [optional] 
-**FollowRedirects** | Pointer to **bool** | For API HTTP test, whether or not the test should follow redirects. | [optional] 
-**MinFailureDuration** | Pointer to **int64** | Minimum amount of time in failure required to trigger an alert. | [optional] 
-**MinLocationFailed** | Pointer to **int64** | Minimum number of locations in failure required to trigger an alert. | [optional] 
-**MonitorName** | Pointer to **string** | The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs. | [optional] 
-**MonitorOptions** | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |  | [optional] 
-**MonitorPriority** | Pointer to **int32** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
-**NoScreenshot** | Pointer to **bool** | Prevents saving screenshots of the steps. | [optional] 
-**Retry** | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |  | [optional] 
-**TickEvery** | Pointer to **int64** | The frequency at which to run the Synthetic test (in seconds). | [optional] 
+| Name                   | Type                                                                                         | Description                                                                                         | Notes      |
+| ---------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------- |
+| **AcceptSelfSigned**   | Pointer to **bool**                                                                          | For SSL test, whether or not the test should allow self signed certificates.                        | [optional] |
+| **AllowInsecure**      | Pointer to **bool**                                                                          | Allows loading insecure content for an HTTP request.                                                | [optional] |
+| **DeviceIds**          | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md)                                 | For browser test, array with the different device IDs used to run the test.                         | [optional] |
+| **DisableCors**        | Pointer to **bool**                                                                          | Whether or not to disable CORS mechanism.                                                           | [optional] |
+| **FollowRedirects**    | Pointer to **bool**                                                                          | For API HTTP test, whether or not the test should follow redirects.                                 | [optional] |
+| **MinFailureDuration** | Pointer to **int64**                                                                         | Minimum amount of time in failure required to trigger an alert.                                     | [optional] |
+| **MinLocationFailed**  | Pointer to **int64**                                                                         | Minimum number of locations in failure required to trigger an alert.                                | [optional] |
+| **MonitorName**        | Pointer to **string**                                                                        | The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs. | [optional] |
+| **MonitorOptions**     | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |                                                                                                     | [optional] |
+| **MonitorPriority**    | Pointer to **int32**                                                                         | Integer from 1 (high) to 5 (low) indicating alert severity.                                         | [optional] |
+| **NoScreenshot**       | Pointer to **bool**                                                                          | Prevents saving screenshots of the steps.                                                           | [optional] |
+| **Retry**              | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md)                   |                                                                                                     | [optional] |
+| **TickEvery**          | Pointer to **int64**                                                                         | The frequency at which to run the Synthetic test (in seconds).                                      | [optional] |
 
 ## Methods
 
@@ -362,7 +362,4 @@ SetTickEvery sets TickEvery field to given value.
 
 HasTickEvery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

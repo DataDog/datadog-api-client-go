@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **time.Time** | Creation time of the role. | [optional] [readonly] 
-**ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] 
-**Name** | **string** | Name of the role. | 
+| Name           | Type                     | Description                     | Notes                 |
+| -------------- | ------------------------ | ------------------------------- | --------------------- |
+| **CreatedAt**  | Pointer to **time.Time** | Creation time of the role.      | [optional] [readonly] |
+| **ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] |
+| **Name**       | **string**               | Name of the role.               |
 
 ## Methods
 
@@ -96,8 +96,4 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

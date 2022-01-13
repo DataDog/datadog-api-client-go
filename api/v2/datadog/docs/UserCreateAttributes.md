@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Email** | **string** | The email of the user. | 
-**Name** | Pointer to **string** | The name of the user. | [optional] 
-**Title** | Pointer to **string** | The title of the user. | [optional] 
+| Name      | Type                  | Description            | Notes      |
+| --------- | --------------------- | ---------------------- | ---------- |
+| **Email** | **string**            | The email of the user. |
+| **Name**  | Pointer to **string** | The name of the user.  | [optional] |
+| **Title** | Pointer to **string** | The title of the user. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *UserCreateAttributes) SetEmail(v string)`
 
 SetEmail sets Email field to given value.
-
 
 ### GetName
 
@@ -97,7 +96,4 @@ SetTitle sets Title field to given value.
 
 HasTitle returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

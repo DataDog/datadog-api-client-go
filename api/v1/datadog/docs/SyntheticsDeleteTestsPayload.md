@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**PublicIds** | Pointer to **[]string** | An array of Synthetic test IDs you want to delete. | [optional] 
+| Name          | Type                    | Description                                        | Notes      |
+| ------------- | ----------------------- | -------------------------------------------------- | ---------- |
+| **PublicIds** | Pointer to **[]string** | An array of Synthetic test IDs you want to delete. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetPublicIds sets PublicIds field to given value.
 
 HasPublicIds returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

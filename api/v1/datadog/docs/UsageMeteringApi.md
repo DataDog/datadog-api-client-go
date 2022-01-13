@@ -2,44 +2,44 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**GetDailyCustomReports**](UsageMeteringApi.md#GetDailyCustomReports) | **Get** /api/v1/daily_custom_reports | Get the list of available daily custom reports
-[**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement) | **Get** /api/v1/usage/incident-management | Get hourly usage for incident management
-[**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans) | **Get** /api/v1/usage/ingested-spans | Get hourly usage for ingested spans
-[**GetMonthlyCustomReports**](UsageMeteringApi.md#GetMonthlyCustomReports) | **Get** /api/v1/monthly_custom_reports | Get the list of available monthly custom reports
-[**GetSpecifiedDailyCustomReports**](UsageMeteringApi.md#GetSpecifiedDailyCustomReports) | **Get** /api/v1/daily_custom_reports/{report_id} | Get specified daily custom reports
-[**GetSpecifiedMonthlyCustomReports**](UsageMeteringApi.md#GetSpecifiedMonthlyCustomReports) | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports
-[**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs) | **Get** /api/v1/usage/analyzed_logs | Get hourly usage for analyzed logs
-[**GetUsageAttribution**](UsageMeteringApi.md#GetUsageAttribution) | **Get** /api/v1/usage/attribution | Get Usage Attribution
-[**GetUsageAuditLogs**](UsageMeteringApi.md#GetUsageAuditLogs) | **Get** /api/v1/usage/audit_logs | Get hourly usage for audit logs
-[**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary) | **Get** /api/v1/usage/billable-summary | Get billable usage across your account
-[**GetUsageCWS**](UsageMeteringApi.md#GetUsageCWS) | **Get** /api/v1/usage/cws | Get hourly usage for Cloud Workload Security
-[**GetUsageCloudSecurityPostureManagement**](UsageMeteringApi.md#GetUsageCloudSecurityPostureManagement) | **Get** /api/v1/usage/cspm | Get hourly usage for CSPM
-[**GetUsageDBM**](UsageMeteringApi.md#GetUsageDBM) | **Get** /api/v1/usage/dbm | Get hourly usage for Database Monitoring
-[**GetUsageFargate**](UsageMeteringApi.md#GetUsageFargate) | **Get** /api/v1/usage/fargate | Get hourly usage for Fargate
-[**GetUsageHosts**](UsageMeteringApi.md#GetUsageHosts) | **Get** /api/v1/usage/hosts | Get hourly usage for hosts and containers
-[**GetUsageIndexedSpans**](UsageMeteringApi.md#GetUsageIndexedSpans) | **Get** /api/v1/usage/indexed-spans | Get hourly usage for indexed spans
-[**GetUsageInternetOfThings**](UsageMeteringApi.md#GetUsageInternetOfThings) | **Get** /api/v1/usage/iot | Get hourly usage for IoT
-[**GetUsageLambda**](UsageMeteringApi.md#GetUsageLambda) | **Get** /api/v1/usage/aws_lambda | Get hourly usage for Lambda
-[**GetUsageLogs**](UsageMeteringApi.md#GetUsageLogs) | **Get** /api/v1/usage/logs | Get hourly usage for Logs
-[**GetUsageLogsByIndex**](UsageMeteringApi.md#GetUsageLogsByIndex) | **Get** /api/v1/usage/logs_by_index | Get hourly usage for Logs by Index
-[**GetUsageLogsByRetention**](UsageMeteringApi.md#GetUsageLogsByRetention) | **Get** /api/v1/usage/logs-by-retention | Get hourly logs usage by retention
-[**GetUsageNetworkFlows**](UsageMeteringApi.md#GetUsageNetworkFlows) | **Get** /api/v1/usage/network_flows | Get hourly usage for Network Flows
-[**GetUsageNetworkHosts**](UsageMeteringApi.md#GetUsageNetworkHosts) | **Get** /api/v1/usage/network_hosts | Get hourly usage for Network Hosts
-[**GetUsageProfiling**](UsageMeteringApi.md#GetUsageProfiling) | **Get** /api/v1/usage/profiling | Get hourly usage for profiled hosts
-[**GetUsageRumSessions**](UsageMeteringApi.md#GetUsageRumSessions) | **Get** /api/v1/usage/rum_sessions | Get hourly usage for RUM Sessions
-[**GetUsageRumUnits**](UsageMeteringApi.md#GetUsageRumUnits) | **Get** /api/v1/usage/rum | Get hourly usage for RUM Units
-[**GetUsageSDS**](UsageMeteringApi.md#GetUsageSDS) | **Get** /api/v1/usage/sds | Get hourly usage for Sensitive Data Scanner
-[**GetUsageSNMP**](UsageMeteringApi.md#GetUsageSNMP) | **Get** /api/v1/usage/snmp | Get hourly usage for SNMP devices
-[**GetUsageSummary**](UsageMeteringApi.md#GetUsageSummary) | **Get** /api/v1/usage/summary | Get usage across your multi-org account
-[**GetUsageSynthetics**](UsageMeteringApi.md#GetUsageSynthetics) | **Get** /api/v1/usage/synthetics | Get hourly usage for Synthetics Checks
-[**GetUsageSyntheticsAPI**](UsageMeteringApi.md#GetUsageSyntheticsAPI) | **Get** /api/v1/usage/synthetics_api | Get hourly usage for Synthetics API Checks
-[**GetUsageSyntheticsBrowser**](UsageMeteringApi.md#GetUsageSyntheticsBrowser) | **Get** /api/v1/usage/synthetics_browser | Get hourly usage for Synthetics Browser Checks
-[**GetUsageTimeseries**](UsageMeteringApi.md#GetUsageTimeseries) | **Get** /api/v1/usage/timeseries | Get hourly usage for custom metrics
-[**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics) | **Get** /api/v1/usage/top_avg_metrics | Get all custom metrics by hourly average
-
-
+| Method                                                                                                   | HTTP request                                       | Description                                      |
+| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ------------------------------------------------ |
+| [**GetDailyCustomReports**](UsageMeteringApi.md#GetDailyCustomReports)                                   | **Get** /api/v1/daily_custom_reports               | Get the list of available daily custom reports   |
+| [**GetHourlyUsageAttribution**](UsageMeteringApi.md#GetHourlyUsageAttribution)                           | **Get** /api/v1/usage/hourly-attribution           | Get Hourly Usage Attribution                     |
+| [**GetIncidentManagement**](UsageMeteringApi.md#GetIncidentManagement)                                   | **Get** /api/v1/usage/incident-management          | Get hourly usage for incident management         |
+| [**GetIngestedSpans**](UsageMeteringApi.md#GetIngestedSpans)                                             | **Get** /api/v1/usage/ingested-spans               | Get hourly usage for ingested spans              |
+| [**GetMonthlyCustomReports**](UsageMeteringApi.md#GetMonthlyCustomReports)                               | **Get** /api/v1/monthly_custom_reports             | Get the list of available monthly custom reports |
+| [**GetMonthlyUsageAttribution**](UsageMeteringApi.md#GetMonthlyUsageAttribution)                         | **Get** /api/v1/usage/monthly-attribution          | Get Monthly Usage Attribution                    |
+| [**GetSpecifiedDailyCustomReports**](UsageMeteringApi.md#GetSpecifiedDailyCustomReports)                 | **Get** /api/v1/daily_custom_reports/{report_id}   | Get specified daily custom reports               |
+| [**GetSpecifiedMonthlyCustomReports**](UsageMeteringApi.md#GetSpecifiedMonthlyCustomReports)             | **Get** /api/v1/monthly_custom_reports/{report_id} | Get specified monthly custom reports             |
+| [**GetUsageAnalyzedLogs**](UsageMeteringApi.md#GetUsageAnalyzedLogs)                                     | **Get** /api/v1/usage/analyzed_logs                | Get hourly usage for analyzed logs               |
+| [**GetUsageAttribution**](UsageMeteringApi.md#GetUsageAttribution)                                       | **Get** /api/v1/usage/attribution                  | Get Usage Attribution                            |
+| [**GetUsageAuditLogs**](UsageMeteringApi.md#GetUsageAuditLogs)                                           | **Get** /api/v1/usage/audit_logs                   | Get hourly usage for audit logs                  |
+| [**GetUsageBillableSummary**](UsageMeteringApi.md#GetUsageBillableSummary)                               | **Get** /api/v1/usage/billable-summary             | Get billable usage across your account           |
+| [**GetUsageCWS**](UsageMeteringApi.md#GetUsageCWS)                                                       | **Get** /api/v1/usage/cws                          | Get hourly usage for Cloud Workload Security     |
+| [**GetUsageCloudSecurityPostureManagement**](UsageMeteringApi.md#GetUsageCloudSecurityPostureManagement) | **Get** /api/v1/usage/cspm                         | Get hourly usage for CSPM                        |
+| [**GetUsageDBM**](UsageMeteringApi.md#GetUsageDBM)                                                       | **Get** /api/v1/usage/dbm                          | Get hourly usage for Database Monitoring         |
+| [**GetUsageFargate**](UsageMeteringApi.md#GetUsageFargate)                                               | **Get** /api/v1/usage/fargate                      | Get hourly usage for Fargate                     |
+| [**GetUsageHosts**](UsageMeteringApi.md#GetUsageHosts)                                                   | **Get** /api/v1/usage/hosts                        | Get hourly usage for hosts and containers        |
+| [**GetUsageIndexedSpans**](UsageMeteringApi.md#GetUsageIndexedSpans)                                     | **Get** /api/v1/usage/indexed-spans                | Get hourly usage for indexed spans               |
+| [**GetUsageInternetOfThings**](UsageMeteringApi.md#GetUsageInternetOfThings)                             | **Get** /api/v1/usage/iot                          | Get hourly usage for IoT                         |
+| [**GetUsageLambda**](UsageMeteringApi.md#GetUsageLambda)                                                 | **Get** /api/v1/usage/aws_lambda                   | Get hourly usage for Lambda                      |
+| [**GetUsageLogs**](UsageMeteringApi.md#GetUsageLogs)                                                     | **Get** /api/v1/usage/logs                         | Get hourly usage for Logs                        |
+| [**GetUsageLogsByIndex**](UsageMeteringApi.md#GetUsageLogsByIndex)                                       | **Get** /api/v1/usage/logs_by_index                | Get hourly usage for Logs by Index               |
+| [**GetUsageLogsByRetention**](UsageMeteringApi.md#GetUsageLogsByRetention)                               | **Get** /api/v1/usage/logs-by-retention            | Get hourly logs usage by retention               |
+| [**GetUsageNetworkFlows**](UsageMeteringApi.md#GetUsageNetworkFlows)                                     | **Get** /api/v1/usage/network_flows                | Get hourly usage for Network Flows               |
+| [**GetUsageNetworkHosts**](UsageMeteringApi.md#GetUsageNetworkHosts)                                     | **Get** /api/v1/usage/network_hosts                | Get hourly usage for Network Hosts               |
+| [**GetUsageProfiling**](UsageMeteringApi.md#GetUsageProfiling)                                           | **Get** /api/v1/usage/profiling                    | Get hourly usage for profiled hosts              |
+| [**GetUsageRumSessions**](UsageMeteringApi.md#GetUsageRumSessions)                                       | **Get** /api/v1/usage/rum_sessions                 | Get hourly usage for RUM Sessions                |
+| [**GetUsageRumUnits**](UsageMeteringApi.md#GetUsageRumUnits)                                             | **Get** /api/v1/usage/rum                          | Get hourly usage for RUM Units                   |
+| [**GetUsageSDS**](UsageMeteringApi.md#GetUsageSDS)                                                       | **Get** /api/v1/usage/sds                          | Get hourly usage for Sensitive Data Scanner      |
+| [**GetUsageSNMP**](UsageMeteringApi.md#GetUsageSNMP)                                                     | **Get** /api/v1/usage/snmp                         | Get hourly usage for SNMP devices                |
+| [**GetUsageSummary**](UsageMeteringApi.md#GetUsageSummary)                                               | **Get** /api/v1/usage/summary                      | Get usage across your multi-org account          |
+| [**GetUsageSynthetics**](UsageMeteringApi.md#GetUsageSynthetics)                                         | **Get** /api/v1/usage/synthetics                   | Get hourly usage for Synthetics Checks           |
+| [**GetUsageSyntheticsAPI**](UsageMeteringApi.md#GetUsageSyntheticsAPI)                                   | **Get** /api/v1/usage/synthetics_api               | Get hourly usage for Synthetics API Checks       |
+| [**GetUsageSyntheticsBrowser**](UsageMeteringApi.md#GetUsageSyntheticsBrowser)                           | **Get** /api/v1/usage/synthetics_browser           | Get hourly usage for Synthetics Browser Checks   |
+| [**GetUsageTimeseries**](UsageMeteringApi.md#GetUsageTimeseries)                                         | **Get** /api/v1/usage/timeseries                   | Get hourly usage for custom metrics              |
+| [**GetUsageTopAvgMetrics**](UsageMeteringApi.md#GetUsageTopAvgMetrics)                                   | **Get** /api/v1/usage/top_avg_metrics              | Get all custom metrics by hourly average         |
 
 ## GetDailyCustomReports
 
@@ -91,21 +91,16 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a GetDailyCustomReportsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | The number of files to return in the response. &#x60;[default&#x3D;60]&#x60;. | 
-**pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
-**sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
-**sort** | [**UsageSort**](UsageSort.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
+| Name           | Type                                            | Description                                                                                                                 | Notes                               |
+| -------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **pageSize**   | **int64**                                       | The number of files to return in the response. &#x60;[default&#x3D;60]&#x60;.                                               |
+| **pageNumber** | **int64**                                       | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. |
+| **sortDir**    | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                                          | [default to &quot;desc&quot;]       |
+| **sort**       | [**UsageSort**](UsageSort.md)                   | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;.                                                | [default to &quot;start_date&quot;] |
 
 ### Return type
 
@@ -118,12 +113,95 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
+## GetHourlyUsageAttribution
+
+> HourlyUsageAttributionResponse GetHourlyUsageAttribution(ctx, startHr, usageType, datadog.GetHourlyUsageAttributionOptionalParameters{})
+
+Get Hourly Usage Attribution.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage beginning at this hour.
+    usageType := datadog.HourlyUsageAttributionUsageType("api_usage") // HourlyUsageAttributionUsageType | Usage type to retrieve.
+    endHr := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to hour: `[YYYY-MM-DDThh]` for usage ending **before** this hour. (optional)
+    nextRecordId := "nextRecordId_example" // string | List following results with a next_record_id provided in the previous query. (optional)
+    tagBreakdownKeys := "tagBreakdownKeys_example" // string | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. (optional)
+    optionalParams := datadog.GetHourlyUsageAttributionOptionalParameters{
+        EndHr: &endHr,
+        NextRecordId: &nextRecordId,
+        TagBreakdownKeys: &tagBreakdownKeys,
+    }
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetHourlyUsageAttribution", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetHourlyUsageAttribution(ctx, startHr, usageType, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetHourlyUsageAttribution`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetHourlyUsageAttribution`: HourlyUsageAttributionResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetHourlyUsageAttribution:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+| Name          | Type                                                                      | Description                                                                                                      | Notes |
+| ------------- | ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context**                                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr**   | **time.Time**                                                             | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |       |
+| **usageType** | [**HourlyUsageAttributionUsageType**](HourlyUsageAttributionUsageType.md) | Usage type to retrieve.                                                                                          |
+
+### Optional Parameters
+
+Other parameters are passed through a pointer to a GetHourlyUsageAttributionOptionalParameters struct.
+
+| Name                 | Type          | Description                                                                                                           | Notes |
+| -------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr**            | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
+| **nextRecordId**     | **string**    | List following results with a next_record_id provided in the previous query.                                          |
+| **tagBreakdownKeys** | **string**    | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags.  |
+
+### Return type
+
+[**HourlyUsageAttributionResponse**](HourlyUsageAttributionResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 ## GetIncidentManagement
 
@@ -170,22 +248,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetIncidentManagementOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -198,12 +272,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetIngestedSpans
 
@@ -250,22 +323,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetIngestedSpansOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -278,12 +347,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetMonthlyCustomReports
 
@@ -335,21 +403,16 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a GetMonthlyCustomReportsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | The number of files to return in the response &#x60;[default&#x3D;60].&#x60; | 
-**pageNumber** | **int64** | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. | 
-**sortDir** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
-**sort** | [**UsageSort**](UsageSort.md) | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;. | [default to &quot;start_date&quot;]
+| Name           | Type                                            | Description                                                                                                                 | Notes                               |
+| -------------- | ----------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| **pageSize**   | **int64**                                       | The number of files to return in the response &#x60;[default&#x3D;60].&#x60;                                                |
+| **pageNumber** | **int64**                                       | The identifier of the first page to return. This parameter is used for the pagination feature &#x60;[default&#x3D;0]&#x60;. |
+| **sortDir**    | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                                          | [default to &quot;desc&quot;]       |
+| **sort**       | [**UsageSort**](UsageSort.md)                   | The field to sort by: &#x60;[computed_on, size, start_date, end_date]&#x60;.                                                | [default to &quot;start_date&quot;] |
 
 ### Return type
 
@@ -362,12 +425,101 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
+## GetMonthlyUsageAttribution
+
+> MonthlyUsageAttributionResponse GetMonthlyUsageAttribution(ctx, startMonth, fields, datadog.GetMonthlyUsageAttributionOptionalParameters{})
+
+Get Monthly Usage Attribution.
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    "time"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    startMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage beginning in this month. Maximum of 15 months ago.
+    fields := datadog.MonthlyUsageAttributionSupportedMetrics("api_usage") // MonthlyUsageAttributionSupportedMetrics | Comma-separated list of usage types to return, or `*` for all usage types.
+    endMonth := time.Now() // time.Time | Datetime in ISO-8601 format, UTC, precise to month: `[YYYY-MM]` for usage ending this month. (optional)
+    sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
+    sortName := datadog.MonthlyUsageAttributionSupportedMetrics("api_usage") // MonthlyUsageAttributionSupportedMetrics | The field to sort by. (optional)
+    tagBreakdownKeys := "tagBreakdownKeys_example" // string | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. (optional)
+    nextRecordId := "nextRecordId_example" // string | List following results with a next_record_id provided in the previous query. (optional)
+    optionalParams := datadog.GetMonthlyUsageAttributionOptionalParameters{
+        EndMonth: &endMonth,
+        SortDirection: &sortDirection,
+        SortName: &sortName,
+        TagBreakdownKeys: &tagBreakdownKeys,
+        NextRecordId: &nextRecordId,
+    }
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetMonthlyUsageAttribution", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.UsageMeteringApi.GetMonthlyUsageAttribution(ctx, startMonth, fields, optionalParams)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyUsageAttribution`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetMonthlyUsageAttribution`: MonthlyUsageAttributionResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from UsageMeteringApi.GetMonthlyUsageAttribution:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+| Name           | Type                                                                                      | Description                                                                                                                            | Notes |
+| -------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                                                       | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                            |
+| **startMonth** | **time.Time**                                                                             | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |       |
+| **fields**     | [**MonthlyUsageAttributionSupportedMetrics**](MonthlyUsageAttributionSupportedMetrics.md) | Comma-separated list of usage types to return, or &#x60;\*&#x60; for all usage types.                                                  |
+
+### Optional Parameters
+
+Other parameters are passed through a pointer to a GetMonthlyUsageAttributionOptionalParameters struct.
+
+| Name                 | Type                                                                                      | Description                                                                                                          | Notes                         |
+| -------------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **endMonth**         | **time.Time**                                                                             | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month.               |
+| **sortDirection**    | [**UsageSortDirection**](UsageSortDirection.md)                                           | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                                   | [default to &quot;desc&quot;] |
+| **sortName**         | [**MonthlyUsageAttributionSupportedMetrics**](MonthlyUsageAttributionSupportedMetrics.md) | The field to sort by.                                                                                                |
+| **tagBreakdownKeys** | **string**                                                                                | Comma separated list of tags used to group usage. If no value is provided the usage will not be broken down by tags. |
+| **nextRecordId**     | **string**                                                                                | List following results with a next_record_id provided in the previous query.                                         |
+
+### Return type
+
+[**MonthlyUsageAttributionResponse**](MonthlyUsageAttributionResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json;datetime-format=rfc3339
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 ## GetSpecifiedDailyCustomReports
 
@@ -410,17 +562,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**reportId** | **string** | Date of the report in the format &#x60;YYYY-MM-DD&#x60;. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **reportId** | **string**          | Date of the report in the format &#x60;YYYY-MM-DD&#x60;.                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -433,12 +582,11 @@ This endpoint does not have optional parameters.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSpecifiedMonthlyCustomReports
 
@@ -481,17 +629,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**reportId** | **string** | Date of the report in the format &#x60;YYYY-MM-DD&#x60;. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **reportId** | **string**          | Date of the report in the format &#x60;YYYY-MM-DD&#x60;.                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -504,12 +649,11 @@ This endpoint does not have optional parameters.
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageAnalyzedLogs
 
@@ -556,22 +700,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageAnalyzedLogsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -584,12 +724,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageAttribution
 
@@ -620,11 +759,15 @@ func main() {
     sortDirection := datadog.UsageSortDirection("desc") // UsageSortDirection | The direction to sort by: `[desc, asc]`. (optional) (default to "desc")
     sortName := datadog.UsageAttributionSort("api_percentage") // UsageAttributionSort | The field to sort by. (optional) (default to "custom_timeseries_usage")
     includeDescendants := true // bool | Include child org usage in the response. Defaults to false. (optional) (default to false)
+    offset := int64(789) // int64 | Number of records to skip before beginning to return. (optional) (default to 0)
+    limit := int64(789) // int64 | Maximum number of records to be returned. (optional) (default to 5000)
     optionalParams := datadog.GetUsageAttributionOptionalParameters{
         EndMonth: &endMonth,
         SortDirection: &sortDirection,
         SortName: &sortName,
         IncludeDescendants: &includeDescendants,
+        Offset: &offset,
+        Limit: &limit,
     }
 
     configuration := datadog.NewConfiguration()
@@ -644,26 +787,24 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |  |
-**fields** | [**UsageAttributionSupportedMetrics**](UsageAttributionSupportedMetrics.md) | Comma-separated list of usage types to return, or &#x60;*&#x60; for all usage types. | 
-
+| Name           | Type                                                                        | Description                                                                                                                            | Notes |
+| -------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                            |
+| **startMonth** | **time.Time**                                                               | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |       |
+| **fields**     | [**UsageAttributionSupportedMetrics**](UsageAttributionSupportedMetrics.md) | Comma-separated list of usage types to return, or &#x60;\*&#x60; for all usage types.                                                  |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageAttributionOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
-**sortDirection** | [**UsageSortDirection**](UsageSortDirection.md) | The direction to sort by: &#x60;[desc, asc]&#x60;. | [default to &quot;desc&quot;]
-**sortName** | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by. | [default to &quot;custom_timeseries_usage&quot;]
-**includeDescendants** | **bool** | Include child org usage in the response. Defaults to false. | [default to false]
+| Name                   | Type                                                | Description                                                                                            | Notes                                            |
+| ---------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| **endMonth**           | **time.Time**                                       | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. |
+| **sortDirection**      | [**UsageSortDirection**](UsageSortDirection.md)     | The direction to sort by: &#x60;[desc, asc]&#x60;.                                                     | [default to &quot;desc&quot;]                    |
+| **sortName**           | [**UsageAttributionSort**](UsageAttributionSort.md) | The field to sort by.                                                                                  | [default to &quot;custom_timeseries_usage&quot;] |
+| **includeDescendants** | **bool**                                            | Include child org usage in the response. Defaults to false.                                            | [default to false]                               |
+| **offset**             | **int64**                                           | Number of records to skip before beginning to return.                                                  | [default to 0]                                   |
+| **limit**              | **int64**                                           | Maximum number of records to be returned.                                                              | [default to 5000]                                |
 
 ### Return type
 
@@ -676,12 +817,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageAuditLogs
 
@@ -728,22 +868,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageAuditLogsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -756,12 +892,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageBillableSummary
 
@@ -807,18 +942,13 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a GetUsageBillableSummaryOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage starting this month. | 
+| Name      | Type          | Description                                                                                              | Notes |
+| --------- | ------------- | -------------------------------------------------------------------------------------------------------- | ----- |
+| **month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage starting this month. |
 
 ### Return type
 
@@ -831,12 +961,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageCWS
 
@@ -883,22 +1012,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageCWSOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -911,12 +1036,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageCloudSecurityPostureManagement
 
@@ -963,22 +1087,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageCloudSecurityPostureManagementOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -991,12 +1111,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageDBM
 
@@ -1043,22 +1162,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageDBMOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1071,12 +1186,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageFargate
 
@@ -1123,22 +1237,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageFargateOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1151,12 +1261,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageHosts
 
@@ -1203,22 +1312,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageHostsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1231,12 +1336,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageIndexedSpans
 
@@ -1283,22 +1387,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageIndexedSpansOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1311,12 +1411,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageInternetOfThings
 
@@ -1363,22 +1462,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageInternetOfThingsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1391,12 +1486,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageLambda
 
@@ -1443,22 +1537,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageLambdaOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1471,12 +1561,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageLogs
 
@@ -1523,22 +1612,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageLogsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1551,12 +1636,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageLogsByIndex
 
@@ -1605,23 +1689,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageLogsByIndexOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
-**indexName** | **[]string** | Comma-separated list of log index names. | 
+| Name          | Type          | Description                                                                                               | Notes |
+| ------------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr**     | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
+| **indexName** | **[]string**  | Comma-separated list of log index names.                                                                  |
 
 ### Return type
 
@@ -1634,12 +1714,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageLogsByRetention
 
@@ -1686,22 +1765,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageLogsByRetentionOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1714,12 +1789,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageNetworkFlows
 
@@ -1766,22 +1840,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageNetworkFlowsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1794,12 +1864,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageNetworkHosts
 
@@ -1846,22 +1915,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageNetworkHostsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1874,12 +1939,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageProfiling
 
@@ -1926,22 +1990,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageProfilingOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -1954,12 +2014,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageRumSessions
 
@@ -2008,23 +2067,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageRumSessionsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
-**type_** | **string** | RUM type: &#x60;[browser, mobile]&#x60;. Defaults to &#x60;browser&#x60;. | 
+| Name       | Type          | Description                                                                                               | Notes |
+| ---------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr**  | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
+| **type\_** | **string**    | RUM type: &#x60;[browser, mobile]&#x60;. Defaults to &#x60;browser&#x60;.                                 |
 
 ### Return type
 
@@ -2037,12 +2092,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageRumUnits
 
@@ -2089,22 +2143,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageRumUnitsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2117,12 +2167,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSDS
 
@@ -2169,22 +2218,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSDSOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2197,12 +2242,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSNMP
 
@@ -2249,22 +2293,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                                      | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                      |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSNMPOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                                           | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: &#x60;[YYYY-MM-DDThh]&#x60; for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2277,12 +2317,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSummary
 
@@ -2331,23 +2370,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. | 
-
+| Name           | Type                | Description                                                                                                                            | Notes |
+| -------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                                                            |
+| **startMonth** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage beginning in this month. Maximum of 15 months ago. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSummaryOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endMonth** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. | 
-**includeOrgDetails** | **bool** | Include usage summaries for each sub-org. | 
+| Name                  | Type          | Description                                                                                            | Notes |
+| --------------------- | ------------- | ------------------------------------------------------------------------------------------------------ | ----- |
+| **endMonth**          | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: &#x60;[YYYY-MM]&#x60; for usage ending this month. |
+| **includeOrgDetails** | **bool**      | Include usage summaries for each sub-org.                                                              |
 
 ### Return type
 
@@ -2360,12 +2395,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSynthetics
 
@@ -2412,22 +2446,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSyntheticsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2440,12 +2470,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSyntheticsAPI
 
@@ -2492,22 +2521,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSyntheticsAPIOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2520,12 +2545,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageSyntheticsBrowser
 
@@ -2572,22 +2596,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageSyntheticsBrowserOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2600,12 +2620,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageTimeseries
 
@@ -2652,22 +2671,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**startHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. | 
-
+| Name        | Type                | Description                                                                                          | Notes |
+| ----------- | ------------------- | ---------------------------------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc.                          |
+| **startHr** | **time.Time**       | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage beginning at this hour. |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetUsageTimeseriesOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. | 
+| Name      | Type          | Description                                                                                               | Notes |
+| --------- | ------------- | --------------------------------------------------------------------------------------------------------- | ----- |
+| **endHr** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to hour: [YYYY-MM-DDThh] for usage ending **before** this hour. |
 
 ### Return type
 
@@ -2680,12 +2695,11 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetUsageTopAvgMetrics
 
@@ -2739,22 +2753,17 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a GetUsageTopAvgMetricsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**month** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
-**day** | **time.Time** | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) | 
-**names** | **[]string** | Comma-separated list of metric names. | 
-**limit** | **int32** | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified. | [default to 500]
-**nextRecordId** | **string** | List following results with a next_record_id provided in the previous query. | 
+| Name             | Type          | Description                                                                                                                                              | Notes            |
+| ---------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| **month**        | **time.Time** | Datetime in ISO-8601 format, UTC, precise to month: [YYYY-MM] for usage beginning at this hour. (Either month or day should be specified, but not both)  |
+| **day**          | **time.Time** | Datetime in ISO-8601 format, UTC, precise to day: [YYYY-MM-DD] for usage beginning at this hour. (Either month or day should be specified, but not both) |
+| **names**        | **[]string**  | Comma-separated list of metric names.                                                                                                                    |
+| **limit**        | **int32**     | Maximum number of results to return (between 1 and 5000) - defaults to 500 results if limit not specified.                                               | [default to 500] |
+| **nextRecordId** | **string**    | List following results with a next_record_id provided in the previous query.                                                                             |
 
 ### Return type
 
@@ -2767,9 +2776,8 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json;datetime-format=rfc3339, application/json
+- **Accept**: application/json;datetime-format=rfc3339
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

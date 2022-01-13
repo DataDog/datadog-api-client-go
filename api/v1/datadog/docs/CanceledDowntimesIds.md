@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CancelledIds** | Pointer to **[]int64** | ID of downtimes that were canceled. | [optional] 
+| Name             | Type                   | Description                         | Notes      |
+| ---------------- | ---------------------- | ----------------------------------- | ---------- |
+| **CancelledIds** | Pointer to **[]int64** | ID of downtimes that were canceled. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetCancelledIds sets CancelledIds field to given value.
 
 HasCancelledIds returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

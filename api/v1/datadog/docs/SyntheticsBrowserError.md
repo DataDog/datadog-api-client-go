@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Description** | **string** | Description of the error. | 
-**Name** | **string** | Name of the error. | 
-**Status** | Pointer to **int64** | Status Code of the error. | [optional] 
-**Type** | [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |  | 
+| Name            | Type                                                            | Description               | Notes      |
+| --------------- | --------------------------------------------------------------- | ------------------------- | ---------- |
+| **Description** | **string**                                                      | Description of the error. |
+| **Name**        | **string**                                                      | Name of the error.        |
+| **Status**      | Pointer to **int64**                                            | Status Code of the error. | [optional] |
+| **Type**        | [**SyntheticsBrowserErrorType**](SyntheticsBrowserErrorType.md) |                           |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-
 ### GetName
 
 `func (o *SyntheticsBrowserError) GetName() string`
@@ -66,7 +65,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsBrowserError) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetStatus
 
@@ -112,8 +110,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

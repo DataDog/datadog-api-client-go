@@ -2,24 +2,24 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Created** | Pointer to **time.Time** | Timestamp of the monitor creation. | [optional] [readonly] 
-**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Deleted** | Pointer to **NullableTime** | Whether or not the monitor is deleted. (Always &#x60;null&#x60;) | [optional] [readonly] 
-**Id** | Pointer to **int64** | ID of this monitor. | [optional] [readonly] 
-**Message** | Pointer to **string** | A message to include with notifications for this monitor. | [optional] 
-**Modified** | Pointer to **time.Time** | Last timestamp when the monitor was edited. | [optional] [readonly] 
-**Multi** | Pointer to **bool** | Whether or not the monitor is broken down on different groups. | [optional] [readonly] 
-**Name** | Pointer to **string** | The monitor name. | [optional] 
-**Options** | Pointer to [**MonitorOptions**](MonitorOptions.md) |  | [optional] 
-**OverallState** | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |  | [optional] 
-**Priority** | Pointer to **NullableInt64** | Integer from 1 (high) to 5 (low) indicating alert severity. | [optional] 
-**Query** | **string** | The monitor query. | 
-**RestrictedRoles** | Pointer to **[]string** | A list of role identifiers that can be pulled from the Roles API. Cannot be used with &#x60;locked&#x60; option. | [optional] 
-**State** | Pointer to [**MonitorState**](MonitorState.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | Tags associated to your monitor. | [optional] 
-**Type** | [**MonitorType**](MonitorType.md) |  | 
+| Name                | Type                                                           | Description                                                                                                      | Notes                 |
+| ------------------- | -------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | --------------------- |
+| **Created**         | Pointer to **time.Time**                                       | Timestamp of the monitor creation.                                                                               | [optional] [readonly] |
+| **Creator**         | Pointer to [**Creator**](Creator.md)                           |                                                                                                                  | [optional]            |
+| **Deleted**         | Pointer to **NullableTime**                                    | Whether or not the monitor is deleted. (Always &#x60;null&#x60;)                                                 | [optional] [readonly] |
+| **Id**              | Pointer to **int64**                                           | ID of this monitor.                                                                                              | [optional] [readonly] |
+| **Message**         | Pointer to **string**                                          | A message to include with notifications for this monitor.                                                        | [optional]            |
+| **Modified**        | Pointer to **time.Time**                                       | Last timestamp when the monitor was edited.                                                                      | [optional] [readonly] |
+| **Multi**           | Pointer to **bool**                                            | Whether or not the monitor is broken down on different groups.                                                   | [optional] [readonly] |
+| **Name**            | Pointer to **string**                                          | The monitor name.                                                                                                | [optional]            |
+| **Options**         | Pointer to [**MonitorOptions**](MonitorOptions.md)             |                                                                                                                  | [optional]            |
+| **OverallState**    | Pointer to [**MonitorOverallStates**](MonitorOverallStates.md) |                                                                                                                  | [optional]            |
+| **Priority**        | Pointer to **NullableInt64**                                   | Integer from 1 (high) to 5 (low) indicating alert severity.                                                      | [optional]            |
+| **Query**           | **string**                                                     | The monitor query.                                                                                               |
+| **RestrictedRoles** | Pointer to **[]string**                                        | A list of role identifiers that can be pulled from the Roles API. Cannot be used with &#x60;locked&#x60; option. | [optional]            |
+| **State**           | Pointer to [**MonitorState**](MonitorState.md)                 |                                                                                                                  | [optional]            |
+| **Tags**            | Pointer to **[]string**                                        | Tags associated to your monitor.                                                                                 | [optional]            |
+| **Type**            | [**MonitorType**](MonitorType.md)                              |                                                                                                                  |
 
 ## Methods
 
@@ -119,12 +119,14 @@ HasDeleted returns a boolean if a field has been set.
 
 `func (o *Monitor) SetDeletedNil(b bool)`
 
- SetDeletedNil sets the value for Deleted to be an explicit nil
+SetDeletedNil sets the value for Deleted to be an explicit nil
 
 ### UnsetDeleted
+
 `func (o *Monitor) UnsetDeleted()`
 
 UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
+
 ### GetId
 
 `func (o *Monitor) GetId() int64`
@@ -329,12 +331,14 @@ HasPriority returns a boolean if a field has been set.
 
 `func (o *Monitor) SetPriorityNil(b bool)`
 
- SetPriorityNil sets the value for Priority to be an explicit nil
+SetPriorityNil sets the value for Priority to be an explicit nil
 
 ### UnsetPriority
+
 `func (o *Monitor) UnsetPriority()`
 
 UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+
 ### GetQuery
 
 `func (o *Monitor) GetQuery() string`
@@ -353,7 +357,6 @@ and a boolean to check if the value has been set.
 `func (o *Monitor) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetRestrictedRoles
 
@@ -384,12 +387,14 @@ HasRestrictedRoles returns a boolean if a field has been set.
 
 `func (o *Monitor) SetRestrictedRolesNil(b bool)`
 
- SetRestrictedRolesNil sets the value for RestrictedRoles to be an explicit nil
+SetRestrictedRolesNil sets the value for RestrictedRoles to be an explicit nil
 
 ### UnsetRestrictedRoles
+
 `func (o *Monitor) UnsetRestrictedRoles()`
 
 UnsetRestrictedRoles ensures that no value is present for RestrictedRoles, not even an explicit nil
+
 ### GetState
 
 `func (o *Monitor) GetState() MonitorState`
@@ -459,8 +464,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

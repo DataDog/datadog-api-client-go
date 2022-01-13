@@ -4,56 +4,16 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '5095942047695828255'
-      X-Datadog-Trace-Id:
-      - '5095942047695828255'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/slo/testdeleteansloreturnsnotfoundresponse1618491680
+    url: https://api.datadoghq.com/api/v1/slo/testdeleteansloreturnsnotfoundresponse1641430270
   response:
-    body: '{"errors": ["SLO not found: testdeleteansloreturnsnotfoundresponse1618491680
+    body: '{"errors":["SLO not found: testdeleteansloreturnsnotfoundresponse1641430270
       not found"]}'
     code: 404
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '89'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 15 Apr 2021 13:01:20 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Version:
-      - '35.4318655'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '3000'
-      X-Ratelimit-Period:
-      - '10'
-      X-Ratelimit-Remaining:
-      - '2998'
-      X-Ratelimit-Reset:
-      - '10'
     status: 404 Not Found
 version: 1

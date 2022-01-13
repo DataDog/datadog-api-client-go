@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Bucket** | **string** | The bucket where the archive will be stored. | 
-**Integration** | [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md) |  | 
-**Path** | Pointer to **string** | The archive path. | [optional] 
-**Type** | [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |  | [default to LOGSARCHIVEDESTINATIONS3TYPE_S3]
+| Name            | Type                                                                | Description                                  | Notes                                        |
+| --------------- | ------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| **Bucket**      | **string**                                                          | The bucket where the archive will be stored. |
+| **Integration** | [**LogsArchiveIntegrationS3**](LogsArchiveIntegrationS3.md)         |                                              |
+| **Path**        | Pointer to **string**                                               | The archive path.                            | [optional]                                   |
+| **Type**        | [**LogsArchiveDestinationS3Type**](LogsArchiveDestinationS3Type.md) |                                              | [default to LOGSARCHIVEDESTINATIONS3TYPE_S3] |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 
 SetBucket sets Bucket field to given value.
 
-
 ### GetIntegration
 
 `func (o *LogsArchiveDestinationS3) GetIntegration() LogsArchiveIntegrationS3`
@@ -66,7 +65,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsArchiveDestinationS3) SetIntegration(v LogsArchiveIntegrationS3)`
 
 SetIntegration sets Integration field to given value.
-
 
 ### GetPath
 
@@ -112,8 +110,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

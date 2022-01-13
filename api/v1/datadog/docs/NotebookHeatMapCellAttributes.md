@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Definition** | [**HeatMapWidgetDefinition**](HeatMapWidgetDefinition.md) |  | 
-**GraphSize** | Pointer to [**NotebookGraphSize**](NotebookGraphSize.md) |  | [optional] 
-**SplitBy** | Pointer to [**NotebookSplitBy**](NotebookSplitBy.md) |  | [optional] 
-**Time** | Pointer to [**NullableNotebookCellTime**](NotebookCellTime.md) |  | [optional] 
+| Name           | Type                                                           | Description | Notes      |
+| -------------- | -------------------------------------------------------------- | ----------- | ---------- |
+| **Definition** | [**HeatMapWidgetDefinition**](HeatMapWidgetDefinition.md)      |             |
+| **GraphSize**  | Pointer to [**NotebookGraphSize**](NotebookGraphSize.md)       |             | [optional] |
+| **SplitBy**    | Pointer to [**NotebookSplitBy**](NotebookSplitBy.md)           |             | [optional] |
+| **Time**       | Pointer to [**NullableNotebookCellTime**](NotebookCellTime.md) |             | [optional] |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 `func (o *NotebookHeatMapCellAttributes) SetDefinition(v HeatMapWidgetDefinition)`
 
 SetDefinition sets Definition field to given value.
-
 
 ### GetGraphSize
 
@@ -127,13 +126,12 @@ HasTime returns a boolean if a field has been set.
 
 `func (o *NotebookHeatMapCellAttributes) SetTimeNil(b bool)`
 
- SetTimeNil sets the value for Time to be an explicit nil
+SetTimeNil sets the value for Time to be an explicit nil
 
 ### UnsetTime
+
 `func (o *NotebookHeatMapCellAttributes) UnsetTime()`
 
 UnsetTime ensures that no value is present for Time, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

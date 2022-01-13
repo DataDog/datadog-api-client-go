@@ -2,18 +2,17 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CheckCanDeleteSLO**](ServiceLevelObjectivesApi.md#CheckCanDeleteSLO) | **Get** /api/v1/slo/can_delete | Check if SLOs can be safely deleted
-[**CreateSLO**](ServiceLevelObjectivesApi.md#CreateSLO) | **Post** /api/v1/slo | Create an SLO object
-[**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO) | **Delete** /api/v1/slo/{slo_id} | Delete an SLO
-[**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete | Bulk Delete SLO Timeframes
-[**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO) | **Get** /api/v1/slo/{slo_id} | Get an SLO&#39;s details
-[**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory) | **Get** /api/v1/slo/{slo_id}/history | Get an SLO&#39;s history
-[**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs) | **Get** /api/v1/slo | Get all SLOs
-[**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO) | **Put** /api/v1/slo/{slo_id} | Update an SLO
-
-
+| Method                                                                                | HTTP request                             | Description                         |
+| ------------------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------- |
+| [**CheckCanDeleteSLO**](ServiceLevelObjectivesApi.md#CheckCanDeleteSLO)               | **Get** /api/v1/slo/can_delete           | Check if SLOs can be safely deleted |
+| [**CreateSLO**](ServiceLevelObjectivesApi.md#CreateSLO)                               | **Post** /api/v1/slo                     | Create an SLO object                |
+| [**DeleteSLO**](ServiceLevelObjectivesApi.md#DeleteSLO)                               | **Delete** /api/v1/slo/{slo_id}          | Delete an SLO                       |
+| [**DeleteSLOTimeframeInBulk**](ServiceLevelObjectivesApi.md#DeleteSLOTimeframeInBulk) | **Post** /api/v1/slo/bulk_delete         | Bulk Delete SLO Timeframes          |
+| [**GetSLO**](ServiceLevelObjectivesApi.md#GetSLO)                                     | **Get** /api/v1/slo/{slo_id}             | Get an SLO&#39;s details            |
+| [**GetSLOCorrections**](ServiceLevelObjectivesApi.md#GetSLOCorrections)               | **Get** /api/v1/slo/{slo_id}/corrections | Get Corrections For an SLO          |
+| [**GetSLOHistory**](ServiceLevelObjectivesApi.md#GetSLOHistory)                       | **Get** /api/v1/slo/{slo_id}/history     | Get an SLO&#39;s history            |
+| [**ListSLOs**](ServiceLevelObjectivesApi.md#ListSLOs)                                 | **Get** /api/v1/slo                      | Get all SLOs                        |
+| [**UpdateSLO**](ServiceLevelObjectivesApi.md#UpdateSLO)                               | **Put** /api/v1/slo/{slo_id}             | Update an SLO                       |
 
 ## CheckCanDeleteSLO
 
@@ -56,17 +55,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
-
+| Name    | Type                | Description                                                                 | Notes |
+| ------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **ids** | **string**          | A comma separated list of the IDs of the service level objectives objects.  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -84,7 +80,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateSLO
 
@@ -126,17 +121,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**ServiceLevelObjectiveRequest**](ServiceLevelObjectiveRequest.md) | Service level objective request object. | 
-
+| Name     | Type                                                                | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**ServiceLevelObjectiveRequest**](ServiceLevelObjectiveRequest.md) | Service level objective request object.                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -154,7 +146,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteSLO
 
@@ -182,7 +173,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     sloId := "sloId_example" // string | The ID of the service level objective.
-    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (e.g. SLO, composite monitor). (optional)
+    force := "force_example" // string | Delete the monitor even if it's referenced by other resources (for example SLO, composite monitor). (optional)
     optionalParams := datadog.DeleteSLOOptionalParameters{
         Force: &force,
     }
@@ -203,22 +194,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloId** | **string** | The ID of the service level objective. | 
-
+| Name      | Type                | Description                                                                 | Notes |
+| --------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**   | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloId** | **string**          | The ID of the service level objective.                                      |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a DeleteSLOOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (e.g. SLO, composite monitor). | 
+| Name      | Type       | Description                                                                                             | Notes |
+| --------- | ---------- | ------------------------------------------------------------------------------------------------------- | ----- |
+| **force** | **string** | Delete the monitor even if it&#39;s referenced by other resources (for example SLO, composite monitor). |
 
 ### Return type
 
@@ -236,7 +223,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteSLOTimeframeInBulk
 
@@ -282,17 +268,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | **map[string][]SLOTimeframe** | Delete multiple service level objective objects request body. | 
-
+| Name     | Type                          | Description                                                                 | Notes |
+| -------- | ----------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | **map[string][]SLOTimeframe** | Delete multiple service level objective objects request body.               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -310,7 +293,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSLO
 
@@ -356,22 +338,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloId** | **string** | The ID of the service level objective object. | 
-
+| Name      | Type                | Description                                                                 | Notes |
+| --------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**   | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloId** | **string**          | The ID of the service level objective object.                               |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetSLOOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**withConfiguredAlertIds** | **bool** | Get the IDs of SLO monitors that reference this SLO. | 
+| Name                       | Type     | Description                                          | Notes |
+| -------------------------- | -------- | ---------------------------------------------------- | ----- |
+| **withConfiguredAlertIds** | **bool** | Get the IDs of SLO monitors that reference this SLO. |
 
 ### Return type
 
@@ -390,6 +368,72 @@ Name | Type | Description  | Notes
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
 
+## GetSLOCorrections
+
+> SLOCorrectionListResponse GetSLOCorrections(ctx, sloId)
+
+Get corrections applied to an SLO
+
+### Example
+
+```go
+package main
+
+import (
+    "context"
+    "encoding/json"
+    "fmt"
+    "os"
+    datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+)
+
+func main() {
+    ctx := datadog.NewDefaultContext(context.Background())
+
+    sloId := "sloId_example" // string | The ID of the service level objective object.
+
+    configuration := datadog.NewConfiguration()
+    configuration.SetUnstableOperationEnabled("GetSLOCorrections", true)
+
+    apiClient := datadog.NewAPIClient(configuration)
+    resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOCorrections(ctx, sloId)
+    if err != nil {
+        fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOCorrections`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+    }
+    // response from `GetSLOCorrections`: SLOCorrectionListResponse
+    responseContent, _ := json.MarshalIndent(resp, "", "  ")
+    fmt.Fprintf(os.Stdout, "Response from ServiceLevelObjectivesApi.GetSLOCorrections:\n%s\n", responseContent)
+}
+```
+
+### Required Parameters
+
+| Name      | Type                | Description                                                                 | Notes |
+| --------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**   | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloId** | **string**          | The ID of the service level objective object.                               |
+
+### Optional Parameters
+
+This endpoint does not have optional parameters.
+
+### Return type
+
+[**SLOCorrectionListResponse**](SLOCorrectionListResponse.md)
+
+### Authorization
+
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
+[[Back to Model list]](../README.md#documentation-for-models)
+[[Back to README]](../README.md)
 
 ## GetSLOHistory
 
@@ -424,8 +468,10 @@ func main() {
     fromTs := int64(789) // int64 | The `from` timestamp for the query window in epoch seconds.
     toTs := int64(789) // int64 | The `to` timestamp for the query window in epoch seconds.
     target := float64(1.2) // float64 | The SLO target. If `target` is passed in, the response will include the remaining error budget and a timeframe value of `custom`. (optional)
+    applyCorrection := true // bool | Defaults to `true`. If any SLO corrections are applied and this parameter is set to `false`, then the corrections will not be applied and the SLI values will not be affected. (optional)
     optionalParams := datadog.GetSLOHistoryOptionalParameters{
         Target: &target,
+        ApplyCorrection: &applyCorrection,
     }
 
     configuration := datadog.NewConfiguration()
@@ -445,24 +491,21 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloId** | **string** | The ID of the service level objective object. |  |
-**fromTs** | **int64** | The &#x60;from&#x60; timestamp for the query window in epoch seconds. |  |
-**toTs** | **int64** | The &#x60;to&#x60; timestamp for the query window in epoch seconds. | 
-
+| Name       | Type                | Description                                                                 | Notes |
+| ---------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**    | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloId**  | **string**          | The ID of the service level objective object.                               |       |
+| **fromTs** | **int64**           | The &#x60;from&#x60; timestamp for the query window in epoch seconds.       |       |
+| **toTs**   | **int64**           | The &#x60;to&#x60; timestamp for the query window in epoch seconds.         |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetSLOHistoryOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**target** | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the remaining error budget and a timeframe value of &#x60;custom&#x60;. | 
+| Name                | Type        | Description                                                                                                                                                                                        | Notes |
+| ------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **target**          | **float64** | The SLO target. If &#x60;target&#x60; is passed in, the response will include the remaining error budget and a timeframe value of &#x60;custom&#x60;.                                              |
+| **applyCorrection** | **bool**    | Defaults to &#x60;true&#x60;. If any SLO corrections are applied and this parameter is set to &#x60;false&#x60;, then the corrections will not be applied and the SLI values will not be affected. |
 
 ### Return type
 
@@ -480,7 +523,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListSLOs
 
@@ -535,23 +577,18 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListSLOsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ids** | **string** | A comma separated list of the IDs of the service level objectives objects. | 
-**query** | **string** | The query string to filter results based on SLO names. | 
-**tagsQuery** | **string** | The query string to filter results based on a single SLO tag. | 
-**metricsQuery** | **string** | The query string to filter results based on SLO numerator and denominator. | 
-**limit** | **int64** | The number of SLOs to return in the response. | 
-**offset** | **int64** | The specific offset to use as the beginning of the returned response. | 
+| Name             | Type       | Description                                                                | Notes |
+| ---------------- | ---------- | -------------------------------------------------------------------------- | ----- |
+| **ids**          | **string** | A comma separated list of the IDs of the service level objectives objects. |
+| **query**        | **string** | The query string to filter results based on SLO names.                     |
+| **tagsQuery**    | **string** | The query string to filter results based on a single SLO tag.              |
+| **metricsQuery** | **string** | The query string to filter results based on SLO numerator and denominator. |
+| **limit**        | **int64**  | The number of SLOs to return in the response.                              |
+| **offset**       | **int64**  | The specific offset to use as the beginning of the returned response.      |
 
 ### Return type
 
@@ -569,7 +606,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateSLO
 
@@ -612,18 +648,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloId** | **string** | The ID of the service level objective object. |  |
-**body** | [**ServiceLevelObjective**](ServiceLevelObjective.md) | The edited service level objective request object. | 
-
+| Name      | Type                                                  | Description                                                                 | Notes |
+| --------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**   | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloId** | **string**                                            | The ID of the service level objective object.                               |       |
+| **body**  | [**ServiceLevelObjective**](ServiceLevelObjective.md) | The edited service level objective request object.                          |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -641,4 +674,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

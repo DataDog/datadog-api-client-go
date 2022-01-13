@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccountId** | **string** | Your AWS Account ID without dashes. | 
-**Services** | **[]string** | Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint. | 
+| Name          | Type         | Description                                                                                                                                                     | Notes |
+| ------------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **AccountId** | **string**   | Your AWS Account ID without dashes.                                                                                                                             |
+| **Services**  | **[]string** | Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAccountId sets AccountId field to given value.
 
-
 ### GetServices
 
 `func (o *AWSLogsServicesRequest) GetServices() []string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetServices sets Services field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

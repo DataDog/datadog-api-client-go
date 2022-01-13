@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cpu** | Pointer to **float64** | The percent of CPU used (everything but idle). | [optional] 
-**Iowait** | Pointer to **float64** | The percent of CPU spent waiting on the IO (not reported for all platforms). | [optional] 
-**Load** | Pointer to **float64** | The system load over the last 15 minutes. | [optional] 
+| Name       | Type                   | Description                                                                  | Notes      |
+| ---------- | ---------------------- | ---------------------------------------------------------------------------- | ---------- |
+| **Cpu**    | Pointer to **float64** | The percent of CPU used (everything but idle).                               | [optional] |
+| **Iowait** | Pointer to **float64** | The percent of CPU spent waiting on the IO (not reported for all platforms). | [optional] |
+| **Load**   | Pointer to **float64** | The system load over the last 15 minutes.                                    | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetLoad sets Load field to given value.
 
 HasLoad returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

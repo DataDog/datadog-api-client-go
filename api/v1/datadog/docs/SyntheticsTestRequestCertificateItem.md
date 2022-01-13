@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Content** | Pointer to **string** | Content of the certificate or key. | [optional] 
-**Filename** | Pointer to **string** | File name for the certificate or key. | [optional] 
-**UpdatedAt** | Pointer to **string** | Date of update of the certificate or key, ISO format. | [optional] 
+| Name          | Type                  | Description                                           | Notes      |
+| ------------- | --------------------- | ----------------------------------------------------- | ---------- |
+| **Content**   | Pointer to **string** | Content of the certificate or key.                    | [optional] |
+| **Filename**  | Pointer to **string** | File name for the certificate or key.                 | [optional] |
+| **UpdatedAt** | Pointer to **string** | Date of update of the certificate or key, ISO format. | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetUpdatedAt sets UpdatedAt field to given value.
 
 HasUpdatedAt returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

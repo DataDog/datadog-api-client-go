@@ -2,15 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AllowFailure** | Pointer to **bool** | Determines whether or not to continue with test if this step fails. | [optional] 
-**Assertions** | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md) | Array of assertions used for the test. | [optional] [default to []]
-**ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md) | Array of values to parse and save as variables from the response. | [optional] 
-**IsCritical** | Pointer to **bool** | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional] 
-**Name** | Pointer to **string** | The name of the step. | [optional] 
-**Request** | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md) |  | [optional] 
-**Subtype** | Pointer to [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md) |  | [optional] 
+| Name                | Type                                                                       | Description                                                                                                                                           | Notes                      |
+| ------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| **AllowFailure**    | Pointer to **bool**                                                        | Determines whether or not to continue with test if this step fails.                                                                                   | [optional]                 |
+| **Assertions**      | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md)             | Array of assertions used for the test.                                                                                                                | [optional] [default to []] |
+| **ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md)   | Array of values to parse and save as variables from the response.                                                                                     | [optional]                 |
+| **IsCritical**      | Pointer to **bool**                                                        | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional]                 |
+| **Name**            | Pointer to **string**                                                      | The name of the step.                                                                                                                                 | [optional]                 |
+| **Request**         | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md)           |                                                                                                                                                       | [optional]                 |
+| **Retry**           | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |                                                                                                                                                       | [optional]                 |
+| **Subtype**         | Pointer to [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md)     |                                                                                                                                                       | [optional]                 |
 
 ## Methods
 
@@ -181,6 +182,31 @@ SetRequest sets Request field to given value.
 
 HasRequest returns a boolean if a field has been set.
 
+### GetRetry
+
+`func (o *SyntheticsAPIStep) GetRetry() SyntheticsTestOptionsRetry`
+
+GetRetry returns the Retry field if non-nil, zero value otherwise.
+
+### GetRetryOk
+
+`func (o *SyntheticsAPIStep) GetRetryOk() (*SyntheticsTestOptionsRetry, bool)`
+
+GetRetryOk returns a tuple with the Retry field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRetry
+
+`func (o *SyntheticsAPIStep) SetRetry(v SyntheticsTestOptionsRetry)`
+
+SetRetry sets Retry field to given value.
+
+### HasRetry
+
+`func (o *SyntheticsAPIStep) HasRetry() bool`
+
+HasRetry returns a boolean if a field has been set.
+
 ### GetSubtype
 
 `func (o *SyntheticsAPIStep) GetSubtype() SyntheticsAPIStepSubtype`
@@ -206,7 +232,4 @@ SetSubtype sets Subtype field to given value.
 
 HasSubtype returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

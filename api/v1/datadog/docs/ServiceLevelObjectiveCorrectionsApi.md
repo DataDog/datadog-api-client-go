@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#CreateSLOCorrection) | **Post** /api/v1/slo/correction | Create an SLO correction
-[**DeleteSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#DeleteSLOCorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO correction
-[**GetSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#GetSLOCorrection) | **Get** /api/v1/slo/correction/{slo_correction_id} | Get an SLO correction for an SLO
-[**ListSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#ListSLOCorrection) | **Get** /api/v1/slo/correction | Get all SLO corrections
-[**UpdateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#UpdateSLOCorrection) | **Patch** /api/v1/slo/correction/{slo_correction_id} | Update an SLO correction
-
-
+| Method                                                                                | HTTP request                                          | Description                      |
+| ------------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------- |
+| [**CreateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#CreateSLOCorrection) | **Post** /api/v1/slo/correction                       | Create an SLO correction         |
+| [**DeleteSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#DeleteSLOCorrection) | **Delete** /api/v1/slo/correction/{slo_correction_id} | Delete an SLO correction         |
+| [**GetSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#GetSLOCorrection)       | **Get** /api/v1/slo/correction/{slo_correction_id}    | Get an SLO correction for an SLO |
+| [**ListSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#ListSLOCorrection)     | **Get** /api/v1/slo/correction                        | Get all SLO corrections          |
+| [**UpdateSLOCorrection**](ServiceLevelObjectiveCorrectionsApi.md#UpdateSLOCorrection) | **Patch** /api/v1/slo/correction/{slo_correction_id}  | Update an SLO correction         |
 
 ## CreateSLOCorrection
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SLOCorrectionCreateRequest**](SLOCorrectionCreateRequest.md) | Create an SLO Correction | 
-
+| Name     | Type                                                            | Description                                                                 | Notes |
+| -------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SLOCorrectionCreateRequest**](SLOCorrectionCreateRequest.md) | Create an SLO Correction                                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteSLOCorrection
 
@@ -120,21 +114,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object. | 
-
+| Name                | Type                | Description                                                                 | Notes |
+| ------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**             | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloCorrectionId** | **string**          | The ID of the SLO correction object.                                        |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -148,7 +139,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSLOCorrection
 
@@ -191,17 +181,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object. | 
-
+| Name                | Type                | Description                                                                 | Notes |
+| ------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**             | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloCorrectionId** | **string**          | The ID of the SLO correction object.                                        |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -219,7 +206,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListSLOCorrection
 
@@ -263,11 +249,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -285,7 +269,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateSLOCorrection
 
@@ -329,18 +312,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**sloCorrectionId** | **string** | The ID of the SLO correction object. |  |
-**body** | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object. | 
-
+| Name                | Type                                                            | Description                                                                 | Notes |
+| ------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**             | **context.Context**                                             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **sloCorrectionId** | **string**                                                      | The ID of the SLO correction object.                                        |       |
+| **body**            | [**SLOCorrectionUpdateRequest**](SLOCorrectionUpdateRequest.md) | The edited SLO correction object.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -358,4 +338,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

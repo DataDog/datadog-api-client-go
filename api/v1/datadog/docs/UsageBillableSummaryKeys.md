@@ -2,40 +2,40 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ApmHostSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**ApmHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**ApmTraceSearchSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**FargateContainerAverage** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**InfraContainerSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**InfraHostSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**InfraHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**IotTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LambdaFunctionAverage** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed15daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed180daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed30daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed3daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed45daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed60daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed7daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexed90daySum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexedCustomRetentionSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIndexedSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**LogsIngestedSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**NetworkDeviceTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**NpmFlowSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**NpmHostSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**NpmHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**ProfContainerSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**ProfHostTop99p** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**RumSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**ServerlessInvocationSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**SiemSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**SyntheticsApiTestsSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**SyntheticsBrowserChecksSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
-**TimeseriesAverage** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |  | [optional] 
+| Name                              | Type                                                                   | Description | Notes      |
+| --------------------------------- | ---------------------------------------------------------------------- | ----------- | ---------- |
+| **ApmHostSum**                    | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **ApmHostTop99p**                 | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **ApmTraceSearchSum**             | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **FargateContainerAverage**       | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **InfraContainerSum**             | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **InfraHostSum**                  | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **InfraHostTop99p**               | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **IotTop99p**                     | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LambdaFunctionAverage**         | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed15daySum**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed180daySum**          | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed30daySum**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed3daySum**            | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed45daySum**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed60daySum**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed7daySum**            | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexed90daySum**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexedCustomRetentionSum** | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIndexedSum**                | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **LogsIngestedSum**               | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **NetworkDeviceTop99p**           | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **NpmFlowSum**                    | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **NpmHostSum**                    | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **NpmHostTop99p**                 | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **ProfContainerSum**              | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **ProfHostTop99p**                | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **RumSum**                        | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **ServerlessInvocationSum**       | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **SiemSum**                       | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **SyntheticsApiTestsSum**         | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **SyntheticsBrowserChecksSum**    | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
+| **TimeseriesAverage**             | Pointer to [**UsageBillableSummaryBody**](UsageBillableSummaryBody.md) |             | [optional] |
 
 ## Methods
 
@@ -856,7 +856,4 @@ SetTimeseriesAverage sets TimeseriesAverage field to given value.
 
 HasTimeseriesAverage returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

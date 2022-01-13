@@ -7,7 +7,7 @@ Feature: Incidents
     And a valid "appKeyAuth" key in the system
     And an instance of "Incidents" API
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Create an incident returns "Bad Request" response
     Given operation "CreateIncident" enabled
     And new "CreateIncident" request
@@ -15,6 +15,7 @@ Feature: Incidents
     When the request is sent
     Then the response status is 400 Bad Request
 
+  @skip @team:DataDog/incident-app
   Scenario: Create an incident returns "CREATED" response
     Given there is a valid "user" in the system
     And operation "CreateIncident" enabled
@@ -23,7 +24,7 @@ Feature: Incidents
     When the request is sent
     Then the response status is 201 CREATED
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Create an incident returns "Not Found" response
     Given operation "CreateIncident" enabled
     And new "CreateIncident" request
@@ -31,22 +32,23 @@ Feature: Incidents
     When the request is sent
     Then the response status is 404 Not Found
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Delete an existing incident returns "Bad Request" response
     Given operation "DeleteIncident" enabled
     And new "DeleteIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Delete an existing incident returns "Not Found" response
     Given operation "DeleteIncident" enabled
     And new "DeleteIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip @team:DataDog/incident-app
   Scenario: Delete an existing incident returns "OK" response
     Given operation "DeleteIncident" enabled
     And there is a valid "incident" in the system
@@ -55,20 +57,21 @@ Feature: Incidents
     When the request is sent
     Then the response status is 204 OK
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Get a list of incidents returns "Bad Request" response
     Given operation "ListIncidents" enabled
     And new "ListIncidents" request
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Get a list of incidents returns "Not Found" response
     Given operation "ListIncidents" enabled
     And new "ListIncidents" request
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip @team:DataDog/incident-app
   Scenario: Get a list of incidents returns "OK" response
     Given operation "ListIncidents" enabled
     And there is a valid "incident" in the system
@@ -76,22 +79,23 @@ Feature: Incidents
     When the request is sent
     Then the response status is 200 OK
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Get the details of an incident returns "Bad Request" response
     Given operation "GetIncident" enabled
     And new "GetIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Get the details of an incident returns "Not Found" response
     Given operation "GetIncident" enabled
     And new "GetIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip @team:DataDog/incident-app
   Scenario: Get the details of an incident returns "OK" response
     Given operation "GetIncident" enabled
     And there is a valid "incident" in the system
@@ -101,24 +105,25 @@ Feature: Incidents
     Then the response status is 200 OK
     And the response "data.attributes.title" has the same value as "incident.data.attributes.title"
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Update an existing incident returns "Bad Request" response
     Given operation "UpdateIncident" enabled
     And new "UpdateIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     And body with value {"data": {"attributes": {"customer_impact_end": null, "customer_impact_scope": "Example customer impact scope", "customer_impact_start": null, "customer_impacted": false, "detected": null, "fields": {"severity": {"type": "dropdown", "value": "SEV-5"}}, "notification_handles": [{"display_name": "Jane Doe", "handle": "@test.user@test.com"}], "resolved": null, "title": "A test incident title"}, "id": "00000000-0000-0000-0000-000000000000", "relationships": {"commander_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "created_by_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "integrations": {"data": [{"id": "00000000-0000-0000-0000-000000000000", "type": "incident_integrations"}, {"id": "00000000-0000-0000-0000-000000000000", "type": "incident_integrations"}]}, "last_modified_by_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "postmortem": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "incident_postmortems"}}}, "type": "incidents"}}
     When the request is sent
     Then the response status is 400 Bad Request
 
-  @generated @skip
+  @generated @skip @team:DataDog/incident-app
   Scenario: Update an existing incident returns "Not Found" response
     Given operation "UpdateIncident" enabled
     And new "UpdateIncident" request
-    And request contains "incident_id" parameter from "<PATH>"
+    And request contains "incident_id" parameter from "REPLACE.ME"
     And body with value {"data": {"attributes": {"customer_impact_end": null, "customer_impact_scope": "Example customer impact scope", "customer_impact_start": null, "customer_impacted": false, "detected": null, "fields": {"severity": {"type": "dropdown", "value": "SEV-5"}}, "notification_handles": [{"display_name": "Jane Doe", "handle": "@test.user@test.com"}], "resolved": null, "title": "A test incident title"}, "id": "00000000-0000-0000-0000-000000000000", "relationships": {"commander_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "created_by_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "integrations": {"data": [{"id": "00000000-0000-0000-0000-000000000000", "type": "incident_integrations"}, {"id": "00000000-0000-0000-0000-000000000000", "type": "incident_integrations"}]}, "last_modified_by_user": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "users"}}, "postmortem": {"data": {"id": "00000000-0000-0000-0000-000000000000", "type": "incident_postmortems"}}}, "type": "incidents"}}
     When the request is sent
     Then the response status is 404 Not Found
 
+  @skip @team:DataDog/incident-app
   Scenario: Update an existing incident returns "OK" response
     Given operation "UpdateIncident" enabled
     And there is a valid "incident" in the system

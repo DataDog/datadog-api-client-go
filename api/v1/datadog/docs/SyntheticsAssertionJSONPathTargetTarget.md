@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**JsonPath** | Pointer to **string** | The JSON path to assert. | [optional] 
-**Operator** | Pointer to **string** | The specific operator to use on the path. | [optional] 
-**TargetValue** | Pointer to **interface{}** | The path target value to compare to. | [optional] 
+| Name            | Type                       | Description                               | Notes      |
+| --------------- | -------------------------- | ----------------------------------------- | ---------- |
+| **JsonPath**    | Pointer to **string**      | The JSON path to assert.                  | [optional] |
+| **Operator**    | Pointer to **string**      | The specific operator to use on the path. | [optional] |
+| **TargetValue** | Pointer to **interface{}** | The path target value to compare to.      | [optional] |
 
 ## Methods
 
@@ -106,13 +106,12 @@ HasTargetValue returns a boolean if a field has been set.
 
 `func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValueNil(b bool)`
 
- SetTargetValueNil sets the value for TargetValue to be an explicit nil
+SetTargetValueNil sets the value for TargetValue to be an explicit nil
 
 ### UnsetTargetValue
+
 `func (o *SyntheticsAssertionJSONPathTargetTarget) UnsetTargetValue()`
 
 UnsetTargetValue ensures that no value is present for TargetValue, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

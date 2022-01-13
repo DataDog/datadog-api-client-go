@@ -384,6 +384,19 @@
       "type": "idempotent"
     }
   },
+  "CloneRole": {
+    "tag": "Roles",
+    "undo": {
+      "operationId": "DeleteRole",
+      "parameters": [
+        {
+          "name": "role_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
   "RemovePermissionFromRole": {
     "tag": "Roles",
     "undo": {
@@ -418,6 +431,49 @@
     "tag": "Roles",
     "undo": {
       "type": "safe"
+    }
+  },
+  "DownloadCloudWorkloadPolicyFile": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListCloudWorkloadSecurityAgentRules": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "CreateCloudWorkloadSecurityAgentRule": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "operationId": "DeleteCloudWorkloadSecurityAgentRule",
+      "parameters": [
+        {
+          "name": "agent_rule_id",
+          "source": "data.id"
+        }
+      ],
+      "type": "unsafe"
+    }
+  },
+  "DeleteCloudWorkloadSecurityAgentRule": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "type": "idempotent"
+    }
+  },
+  "GetCloudWorkloadSecurityAgentRule": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "UpdateCloudWorkloadSecurityAgentRule": {
+    "tag": "Cloud Workload Security",
+    "undo": {
+      "type": "idempotent"
     }
   },
   "ListSecurityFilters": {

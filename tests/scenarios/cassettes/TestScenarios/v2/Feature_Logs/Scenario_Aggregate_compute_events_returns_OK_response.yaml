@@ -5,61 +5,17 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '143'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/0.1.0 (node 15.11.0; os Darwin; arch x64)
-      X-Datadog-Parent-Id:
-      - '2282340330001095403'
-      X-Datadog-Trace-Id:
-      - '2282340330001095403'
     method: POST
     url: https://api.datadoghq.com/api/v2/logs/analytics/aggregate
   response:
-    body: '{"meta":{"status":"done","request_id":"pddv1ChZocmNxWUhOUlM2YVlldlFVVE4weWpnIi0KHZuyJ0Izc6WTvx6409xTlRS_iRRFg3jYVKiLIjbAEgzPt5RlpUdFAOXBR30","elapsed":3},"data":{"buckets":[{"computes":{"c0":[{"value":1,"time":"2021-06-02T10:00:00.000Z"},{"value":6,"time":"2021-06-02T10:05:00.000Z"}]},"by":{}}]}}'
+    body: '{"meta":{"status":"done","request_id":"pddv1ChZ0Y2dJQVlDMVJOYWlYcjNJcDZfSnNnIiwKHJISw_RInEtZkOv0RnvMfFE5pDSf1A5hU7Jf6FISDPKeDBOH5N-0CxRhGA","elapsed":3},"data":{"buckets":[{"computes":{"c0":[{"value":1,"time":"2022-01-06T00:40:00.000Z"},{"value":1,"time":"2022-01-06T00:50:00.000Z"}]},"by":{}}]}}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '297'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Wed, 02 Jun 2021 10:09:20 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Dd-Debug:
-      - vdJ3/nHEY1ioXQ6pQrBVvsQK1s4yyc+wufBMPSoXql71qZVuP/xMdtNo6DafhOAk
-      X-Dd-Version:
-      - '35.4656181'
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '300'
-      X-Ratelimit-Period:
-      - '300'
-      X-Ratelimit-Remaining:
-      - '296'
-      X-Ratelimit-Reset:
-      - '40'
     status: 200 OK
 version: 1

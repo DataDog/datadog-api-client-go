@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**TotalCount** | Pointer to **int64** | Total page count. | [optional] 
+| Name           | Type                 | Description       | Notes      |
+| -------------- | -------------------- | ----------------- | ---------- |
+| **TotalCount** | Pointer to **int64** | Total page count. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetTotalCount sets TotalCount field to given value.
 
 HasTotalCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

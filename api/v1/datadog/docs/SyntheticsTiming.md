@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Dns** | Pointer to **float64** | The duration in millisecond of the DNS lookup. | [optional] 
-**Download** | Pointer to **float64** | The time in millisecond to download the response. | [optional] 
-**FirstByte** | Pointer to **float64** | The time in millisecond to first byte. | [optional] 
-**Handshake** | Pointer to **float64** | The duration in millisecond of the TLS handshake. | [optional] 
-**Redirect** | Pointer to **float64** | The time in millisecond spent during redirections. | [optional] 
-**Ssl** | Pointer to **float64** | The duration in millisecond of the TLS handshake. | [optional] 
-**Tcp** | Pointer to **float64** | Time in millisecond to establish the TCP connection. | [optional] 
-**Total** | Pointer to **float64** | The overall time in millisecond the request took to be processed. | [optional] 
-**Wait** | Pointer to **float64** | Time spent in millisecond waiting for a response. | [optional] 
+| Name          | Type                   | Description                                                       | Notes      |
+| ------------- | ---------------------- | ----------------------------------------------------------------- | ---------- |
+| **Dns**       | Pointer to **float64** | The duration in millisecond of the DNS lookup.                    | [optional] |
+| **Download**  | Pointer to **float64** | The time in millisecond to download the response.                 | [optional] |
+| **FirstByte** | Pointer to **float64** | The time in millisecond to first byte.                            | [optional] |
+| **Handshake** | Pointer to **float64** | The duration in millisecond of the TLS handshake.                 | [optional] |
+| **Redirect**  | Pointer to **float64** | The time in millisecond spent during redirections.                | [optional] |
+| **Ssl**       | Pointer to **float64** | The duration in millisecond of the TLS handshake.                 | [optional] |
+| **Tcp**       | Pointer to **float64** | Time in millisecond to establish the TCP connection.              | [optional] |
+| **Total**     | Pointer to **float64** | The overall time in millisecond the request took to be processed. | [optional] |
+| **Wait**      | Pointer to **float64** | Time spent in millisecond waiting for a response.                 | [optional] |
 
 ## Methods
 
@@ -258,7 +258,4 @@ SetWait sets Wait field to given value.
 
 HasWait returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

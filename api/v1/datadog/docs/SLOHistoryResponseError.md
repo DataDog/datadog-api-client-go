@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Error** | Pointer to **string** | Human readable error. | [optional] 
+| Name      | Type                  | Description           | Notes      |
+| --------- | --------------------- | --------------------- | ---------- |
+| **Error** | Pointer to **string** | Human readable error. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetError sets Error field to given value.
 
 HasError returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

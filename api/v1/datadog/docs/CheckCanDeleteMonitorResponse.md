@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | [**CheckCanDeleteMonitorResponseData**](CheckCanDeleteMonitorResponseData.md) |  | 
-**Errors** | Pointer to **map[string][]string** | A mapping of Monitor ID to strings denoting where it&#39;s used. | [optional] 
+| Name       | Type                                                                          | Description                                                      | Notes      |
+| ---------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------- | ---------- |
+| **Data**   | [**CheckCanDeleteMonitorResponseData**](CheckCanDeleteMonitorResponseData.md) |                                                                  |
+| **Errors** | Pointer to **map[string][]string**                                            | A mapping of Monitor ID to strings denoting where it&#39;s used. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetData sets Data field to given value.
 
-
 ### GetErrors
 
 `func (o *CheckCanDeleteMonitorResponse) GetErrors() map[string][]string`
@@ -71,7 +70,4 @@ SetErrors sets Errors field to given value.
 
 HasErrors returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

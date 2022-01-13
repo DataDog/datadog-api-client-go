@@ -12,12 +12,12 @@ import (
 
 func main() {
 	// there is a valid "webhook" in the system
-	WEBHOOK_NAME := os.Getenv("WEBHOOK_NAME")
+	WebhookName := os.Getenv("WEBHOOK_NAME")
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.WebhooksIntegrationApi.DeleteWebhooksIntegration(ctx, WEBHOOK_NAME)
+	r, err := apiClient.WebhooksIntegrationApi.DeleteWebhooksIntegration(ctx, WebhookName)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.DeleteWebhooksIntegration`: %v\n", err)

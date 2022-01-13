@@ -2,24 +2,24 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Active** | Pointer to **bool** | If a scheduled downtime currently exists. | [optional] [readonly] 
-**Canceled** | Pointer to **NullableInt64** | If a scheduled downtime is canceled. | [optional] [readonly] 
-**CreatorId** | Pointer to **int32** | User ID of the downtime creator. | [optional] [readonly] 
-**Disabled** | Pointer to **bool** | If a downtime has been disabled. | [optional] 
-**DowntimeType** | Pointer to **int32** | &#x60;0&#x60; for a downtime applied on &#x60;*&#x60; or all, &#x60;1&#x60; when the downtime is only scoped to hosts, or &#x60;2&#x60; when the downtime is scoped to anything but hosts. | [optional] [readonly] 
-**End** | Pointer to **NullableInt64** | POSIX timestamp to end the downtime. If not provided, the downtime is in effect indefinitely until you cancel it. | [optional] 
-**Id** | Pointer to **int64** | The downtime ID. | [optional] [readonly] 
-**Message** | Pointer to **string** | A message to include with notifications for this downtime. Email notifications can be sent to specific users by using the same &#x60;@username&#x60; notation as events. | [optional] 
-**MonitorId** | Pointer to **NullableInt64** | A single monitor to which the downtime applies. If not provided, the downtime applies to all monitors. | [optional] 
-**MonitorTags** | Pointer to **[]string** | A comma-separated list of monitor tags. For example, tags that are applied directly to monitors, not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies. The resulting downtime applies to monitors that match ALL provided monitor tags. For example, &#x60;service:postgres&#x60; **AND** &#x60;team:frontend&#x60;. | [optional] 
-**ParentId** | Pointer to **NullableInt64** | ID of the parent Downtime. | [optional] 
-**Recurrence** | Pointer to [**NullableDowntimeRecurrence**](DowntimeRecurrence.md) |  | [optional] 
-**Scope** | Pointer to **[]string** | The scope(s) to which the downtime applies. For example, &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list like &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (&#x60;env:dev&#x60; **AND** &#x60;env:prod&#x60;). | [optional] 
-**Start** | Pointer to **int64** | POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created. | [optional] 
-**Timezone** | Pointer to **string** | The timezone in which to display the downtime&#39;s start and end times in Datadog applications. | [optional] 
-**UpdaterId** | Pointer to **NullableInt32** | ID of the last user that updated the downtime. | [optional] [readonly] 
+| Name             | Type                                                               | Description                                                                                                                                                                                                                                                                                                                                                                          | Notes                 |
+| ---------------- | ------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------- |
+| **Active**       | Pointer to **bool**                                                | If a scheduled downtime currently exists.                                                                                                                                                                                                                                                                                                                                            | [optional] [readonly] |
+| **Canceled**     | Pointer to **NullableInt64**                                       | If a scheduled downtime is canceled.                                                                                                                                                                                                                                                                                                                                                 | [optional] [readonly] |
+| **CreatorId**    | Pointer to **int32**                                               | User ID of the downtime creator.                                                                                                                                                                                                                                                                                                                                                     | [optional] [readonly] |
+| **Disabled**     | Pointer to **bool**                                                | If a downtime has been disabled.                                                                                                                                                                                                                                                                                                                                                     | [optional]            |
+| **DowntimeType** | Pointer to **int32**                                               | &#x60;0&#x60; for a downtime applied on &#x60;\*&#x60; or all, &#x60;1&#x60; when the downtime is only scoped to hosts, or &#x60;2&#x60; when the downtime is scoped to anything but hosts.                                                                                                                                                                                          | [optional] [readonly] |
+| **End**          | Pointer to **NullableInt64**                                       | POSIX timestamp to end the downtime. If not provided, the downtime is in effect indefinitely until you cancel it.                                                                                                                                                                                                                                                                    | [optional]            |
+| **Id**           | Pointer to **int64**                                               | The downtime ID.                                                                                                                                                                                                                                                                                                                                                                     | [optional] [readonly] |
+| **Message**      | Pointer to **string**                                              | A message to include with notifications for this downtime. Email notifications can be sent to specific users by using the same &#x60;@username&#x60; notation as events.                                                                                                                                                                                                             | [optional]            |
+| **MonitorId**    | Pointer to **NullableInt64**                                       | A single monitor to which the downtime applies. If not provided, the downtime applies to all monitors.                                                                                                                                                                                                                                                                               | [optional]            |
+| **MonitorTags**  | Pointer to **[]string**                                            | A comma-separated list of monitor tags. For example, tags that are applied directly to monitors, not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies. The resulting downtime applies to monitors that match ALL provided monitor tags. For example, &#x60;service:postgres&#x60; **AND** &#x60;team:frontend&#x60;. | [optional]            |
+| **ParentId**     | Pointer to **NullableInt64**                                       | ID of the parent Downtime.                                                                                                                                                                                                                                                                                                                                                           | [optional]            |
+| **Recurrence**   | Pointer to [**NullableDowntimeRecurrence**](DowntimeRecurrence.md) |                                                                                                                                                                                                                                                                                                                                                                                      | [optional]            |
+| **Scope**        | Pointer to **[]string**                                            | The scope(s) to which the downtime applies. For example, &#x60;host:app2&#x60;. Provide multiple scopes as a comma-separated list like &#x60;env:dev,env:prod&#x60;. The resulting downtime applies to sources that matches ALL provided scopes (&#x60;env:dev&#x60; **AND** &#x60;env:prod&#x60;).                                                                                  | [optional]            |
+| **Start**        | Pointer to **int64**                                               | POSIX timestamp to start the downtime. If not provided, the downtime starts the moment it is created.                                                                                                                                                                                                                                                                                | [optional]            |
+| **Timezone**     | Pointer to **string**                                              | The timezone in which to display the downtime&#39;s start and end times in Datadog applications.                                                                                                                                                                                                                                                                                     | [optional]            |
+| **UpdaterId**    | Pointer to **NullableInt32**                                       | ID of the last user that updated the downtime.                                                                                                                                                                                                                                                                                                                                       | [optional] [readonly] |
 
 ## Methods
 
@@ -94,12 +94,14 @@ HasCanceled returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetCanceledNil(b bool)`
 
- SetCanceledNil sets the value for Canceled to be an explicit nil
+SetCanceledNil sets the value for Canceled to be an explicit nil
 
 ### UnsetCanceled
+
 `func (o *DowntimeChild) UnsetCanceled()`
 
 UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil
+
 ### GetCreatorId
 
 `func (o *DowntimeChild) GetCreatorId() int32`
@@ -204,12 +206,14 @@ HasEnd returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetEndNil(b bool)`
 
- SetEndNil sets the value for End to be an explicit nil
+SetEndNil sets the value for End to be an explicit nil
 
 ### UnsetEnd
+
 `func (o *DowntimeChild) UnsetEnd()`
 
 UnsetEnd ensures that no value is present for End, not even an explicit nil
+
 ### GetId
 
 `func (o *DowntimeChild) GetId() int64`
@@ -289,12 +293,14 @@ HasMonitorId returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetMonitorIdNil(b bool)`
 
- SetMonitorIdNil sets the value for MonitorId to be an explicit nil
+SetMonitorIdNil sets the value for MonitorId to be an explicit nil
 
 ### UnsetMonitorId
+
 `func (o *DowntimeChild) UnsetMonitorId()`
 
 UnsetMonitorId ensures that no value is present for MonitorId, not even an explicit nil
+
 ### GetMonitorTags
 
 `func (o *DowntimeChild) GetMonitorTags() []string`
@@ -349,12 +355,14 @@ HasParentId returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetParentIdNil(b bool)`
 
- SetParentIdNil sets the value for ParentId to be an explicit nil
+SetParentIdNil sets the value for ParentId to be an explicit nil
 
 ### UnsetParentId
+
 `func (o *DowntimeChild) UnsetParentId()`
 
 UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+
 ### GetRecurrence
 
 `func (o *DowntimeChild) GetRecurrence() DowntimeRecurrence`
@@ -384,12 +392,14 @@ HasRecurrence returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetRecurrenceNil(b bool)`
 
- SetRecurrenceNil sets the value for Recurrence to be an explicit nil
+SetRecurrenceNil sets the value for Recurrence to be an explicit nil
 
 ### UnsetRecurrence
+
 `func (o *DowntimeChild) UnsetRecurrence()`
 
 UnsetRecurrence ensures that no value is present for Recurrence, not even an explicit nil
+
 ### GetScope
 
 `func (o *DowntimeChild) GetScope() []string`
@@ -494,13 +504,12 @@ HasUpdaterId returns a boolean if a field has been set.
 
 `func (o *DowntimeChild) SetUpdaterIdNil(b bool)`
 
- SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil
+SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil
 
 ### UnsetUpdaterId
+
 `func (o *DowntimeChild) UnsetUpdaterId()`
 
 UnsetUpdaterId ensures that no value is present for UpdaterId, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

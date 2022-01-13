@@ -2,21 +2,21 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Config** | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md) |  | [optional] 
-**Creator** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Locations** | Pointer to **[]string** | Array of locations used to run the test. | [optional] 
-**Message** | Pointer to **string** | Notification message associated with the test. | [optional] 
-**MonitorId** | Pointer to **int64** | The associated monitor ID. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the test. | [optional] 
-**Options** | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md) |  | [optional] 
-**PublicId** | Pointer to **string** | The test public ID. | [optional] [readonly] 
-**Status** | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md) |  | [optional] 
-**Steps** | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md) | For browser test, the steps of the test. | [optional] 
-**Subtype** | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |  | [optional] 
-**Tags** | Pointer to **[]string** | Array of tags attached to the test. | [optional] 
-**Type** | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md) |  | [optional] 
+| Name          | Type                                                                           | Description                                    | Notes                 |
+| ------------- | ------------------------------------------------------------------------------ | ---------------------------------------------- | --------------------- |
+| **Config**    | Pointer to [**SyntheticsTestConfig**](SyntheticsTestConfig.md)                 |                                                | [optional]            |
+| **Creator**   | Pointer to [**Creator**](Creator.md)                                           |                                                | [optional]            |
+| **Locations** | Pointer to **[]string**                                                        | Array of locations used to run the test.       | [optional]            |
+| **Message**   | Pointer to **string**                                                          | Notification message associated with the test. | [optional]            |
+| **MonitorId** | Pointer to **int64**                                                           | The associated monitor ID.                     | [optional] [readonly] |
+| **Name**      | Pointer to **string**                                                          | Name of the test.                              | [optional]            |
+| **Options**   | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md)               |                                                | [optional]            |
+| **PublicId**  | Pointer to **string**                                                          | The test public ID.                            | [optional] [readonly] |
+| **Status**    | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md)       |                                                | [optional]            |
+| **Steps**     | Pointer to [**[]SyntheticsStep**](SyntheticsStep.md)                           | For browser test, the steps of the test.       | [optional]            |
+| **Subtype**   | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |                                                | [optional]            |
+| **Tags**      | Pointer to **[]string**                                                        | Array of tags attached to the test.            | [optional]            |
+| **Type**      | Pointer to [**SyntheticsTestDetailsType**](SyntheticsTestDetailsType.md)       |                                                | [optional]            |
 
 ## Methods
 
@@ -362,7 +362,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

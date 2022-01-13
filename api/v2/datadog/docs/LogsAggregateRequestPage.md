@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Cursor** | Pointer to **string** | The returned paging point to use to get the next results | [optional] 
+| Name       | Type                  | Description                                              | Notes      |
+| ---------- | --------------------- | -------------------------------------------------------- | ---------- |
+| **Cursor** | Pointer to **string** | The returned paging point to use to get the next results | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetCursor sets Cursor field to given value.
 
 HasCursor returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

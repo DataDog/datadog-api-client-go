@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**FilterBy** | Pointer to **[]string** | List of processes. | [optional] 
-**Limit** | Pointer to **int64** | Max number of items in the filter list. | [optional] 
-**Metric** | **string** | Your chosen metric. | 
-**SearchBy** | Pointer to **string** | Your chosen search term. | [optional] 
+| Name         | Type                    | Description                             | Notes      |
+| ------------ | ----------------------- | --------------------------------------- | ---------- |
+| **FilterBy** | Pointer to **[]string** | List of processes.                      | [optional] |
+| **Limit**    | Pointer to **int64**    | Max number of items in the filter list. | [optional] |
+| **Metric**   | **string**              | Your chosen metric.                     |
+| **SearchBy** | Pointer to **string**   | Your chosen search term.                | [optional] |
 
 ## Methods
 
@@ -97,7 +97,6 @@ and a boolean to check if the value has been set.
 
 SetMetric sets Metric field to given value.
 
-
 ### GetSearchBy
 
 `func (o *ProcessQueryDefinition) GetSearchBy() string`
@@ -123,7 +122,4 @@ SetSearchBy sets SearchBy field to given value.
 
 HasSearchBy returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

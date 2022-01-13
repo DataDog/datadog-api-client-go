@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Handle** | Pointer to **string** | The email address that received the notification. | [optional] [readonly] 
-**Name** | Pointer to **string** | The username receiving the notification | [optional] [readonly] 
+| Name       | Type                  | Description                                       | Notes                 |
+| ---------- | --------------------- | ------------------------------------------------- | --------------------- |
+| **Handle** | Pointer to **string** | The email address that received the notification. | [optional] [readonly] |
+| **Name**   | Pointer to **string** | The username receiving the notification           | [optional] [readonly] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

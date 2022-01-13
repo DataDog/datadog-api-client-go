@@ -2,15 +2,15 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md) | List of custom links. | [optional] 
-**Requests** | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md) | List of top list widget requests. | 
-**Time** | Pointer to [**WidgetTime**](WidgetTime.md) |  | [optional] 
-**Title** | Pointer to **string** | Title of your widget. | [optional] 
-**TitleAlign** | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md) |  | [optional] 
-**TitleSize** | Pointer to **string** | Size of the title. | [optional] 
-**Type** | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |  | [default to TOPLISTWIDGETDEFINITIONTYPE_TOPLIST]
+| Name            | Type                                                              | Description                       | Notes                                            |
+| --------------- | ----------------------------------------------------------------- | --------------------------------- | ------------------------------------------------ |
+| **CustomLinks** | Pointer to [**[]WidgetCustomLink**](WidgetCustomLink.md)          | List of custom links.             | [optional]                                       |
+| **Requests**    | [**[]ToplistWidgetRequest**](ToplistWidgetRequest.md)             | List of top list widget requests. |
+| **Time**        | Pointer to [**WidgetTime**](WidgetTime.md)                        |                                   | [optional]                                       |
+| **Title**       | Pointer to **string**                                             | Title of your widget.             | [optional]                                       |
+| **TitleAlign**  | Pointer to [**WidgetTextAlign**](WidgetTextAlign.md)              |                                   | [optional]                                       |
+| **TitleSize**   | Pointer to **string**                                             | Size of the title.                | [optional]                                       |
+| **Type**        | [**ToplistWidgetDefinitionType**](ToplistWidgetDefinitionType.md) |                                   | [default to TOPLISTWIDGETDEFINITIONTYPE_TOPLIST] |
 
 ## Methods
 
@@ -74,7 +74,6 @@ and a boolean to check if the value has been set.
 `func (o *ToplistWidgetDefinition) SetRequests(v []ToplistWidgetRequest)`
 
 SetRequests sets Requests field to given value.
-
 
 ### GetTime
 
@@ -195,8 +194,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

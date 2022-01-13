@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**MonthlyActiveUsers** | Pointer to **int64** | Contains the total number monthly active users from the start of the given hour&#39;s month until the given hour. | [optional] 
+| Name                   | Type                     | Description                                                                                                       | Notes      |
+| ---------------------- | ------------------------ | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Hour**               | Pointer to **time.Time** | The hour for the usage.                                                                                           | [optional] |
+| **MonthlyActiveUsers** | Pointer to **int64**     | Contains the total number monthly active users from the start of the given hour&#39;s month until the given hour. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetMonthlyActiveUsers sets MonthlyActiveUsers field to given value.
 
 HasMonthlyActiveUsers returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

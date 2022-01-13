@@ -14,12 +14,12 @@ import (
 
 func main() {
 	// there is a valid "downtime" in the system
-	DOWNTIME_ID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
+	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, DOWNTIME_ID)
+	resp, r, err := apiClient.DowntimesApi.GetDowntime(ctx, DowntimeID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.GetDowntime`: %v\n", err)

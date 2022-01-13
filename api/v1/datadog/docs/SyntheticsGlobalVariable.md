@@ -2,16 +2,16 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**SyntheticsGlobalVariableAttributes**](SyntheticsGlobalVariableAttributes.md) |  | [optional] 
-**Description** | **string** | Description of the global variable. | 
-**Id** | Pointer to **string** | Unique identifier of the global variable. | [optional] [readonly] 
-**Name** | **string** | Name of the global variable. | 
-**ParseTestOptions** | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariableParseTestOptions.md) |  | [optional] 
-**ParseTestPublicId** | Pointer to **string** | A Synthetic test ID to use as a test to generate the variable value. | [optional] 
-**Tags** | **[]string** | Tags of the global variable. | 
-**Value** | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md) |  | 
+| Name                  | Type                                                                                                   | Description                                                             | Notes                 |
+| --------------------- | ------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- | --------------------- |
+| **Attributes**        | Pointer to [**SyntheticsGlobalVariableAttributes**](SyntheticsGlobalVariableAttributes.md)             |                                                                         | [optional]            |
+| **Description**       | **string**                                                                                             | Description of the global variable.                                     |
+| **Id**                | Pointer to **string**                                                                                  | Unique identifier of the global variable.                               | [optional] [readonly] |
+| **Name**              | **string**                                                                                             | Name of the global variable. Unique across Synthetics global variables. |
+| **ParseTestOptions**  | Pointer to [**SyntheticsGlobalVariableParseTestOptions**](SyntheticsGlobalVariableParseTestOptions.md) |                                                                         | [optional]            |
+| **ParseTestPublicId** | Pointer to **string**                                                                                  | A Synthetic test ID to use as a test to generate the variable value.    | [optional]            |
+| **Tags**              | **[]string**                                                                                           | Tags of the global variable.                                            |
+| **Value**             | [**SyntheticsGlobalVariableValue**](SyntheticsGlobalVariableValue.md)                                  |                                                                         |
 
 ## Methods
 
@@ -76,7 +76,6 @@ and a boolean to check if the value has been set.
 
 SetDescription sets Description field to given value.
 
-
 ### GetId
 
 `func (o *SyntheticsGlobalVariable) GetId() string`
@@ -120,7 +119,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsGlobalVariable) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetParseTestOptions
 
@@ -191,7 +189,6 @@ and a boolean to check if the value has been set.
 
 SetTags sets Tags field to given value.
 
-
 ### GetValue
 
 `func (o *SyntheticsGlobalVariable) GetValue() SyntheticsGlobalVariableValue`
@@ -211,8 +208,4 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

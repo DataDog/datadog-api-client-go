@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**IncidentUpdateAttributes**](IncidentUpdateAttributes.md) |  | [optional] 
-**Id** | **string** | The team&#39;s ID. | 
-**Relationships** | Pointer to [**IncidentUpdateRelationships**](IncidentUpdateRelationships.md) |  | [optional] 
-**Type** | [**IncidentType**](IncidentType.md) |  | [default to INCIDENTTYPE_INCIDENTS]
+| Name              | Type                                                                         | Description        | Notes                               |
+| ----------------- | ---------------------------------------------------------------------------- | ------------------ | ----------------------------------- |
+| **Attributes**    | Pointer to [**IncidentUpdateAttributes**](IncidentUpdateAttributes.md)       |                    | [optional]                          |
+| **Id**            | **string**                                                                   | The team&#39;s ID. |
+| **Relationships** | Pointer to [**IncidentUpdateRelationships**](IncidentUpdateRelationships.md) |                    | [optional]                          |
+| **Type**          | [**IncidentType**](IncidentType.md)                                          |                    | [default to INCIDENTTYPE_INCIDENTS] |
 
 ## Methods
 
@@ -72,7 +72,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetRelationships
 
 `func (o *IncidentUpdateData) GetRelationships() IncidentUpdateRelationships`
@@ -117,8 +116,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

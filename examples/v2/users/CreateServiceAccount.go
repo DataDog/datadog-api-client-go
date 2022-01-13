@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// there is a valid "role" in the system
-	ROLE_DATA_ID := os.Getenv("ROLE_DATA_ID")
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
 	body := datadog.ServiceAccountCreateRequest{
 		Data: datadog.ServiceAccountCreateData{
-			Type: datadog.UsersType("users"),
+			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.ServiceAccountCreateAttributes{
 				Name:           datadog.PtrString("Test API Client"),
 				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
@@ -26,9 +26,9 @@ func main() {
 			Relationships: &datadog.UserRelationships{
 				Roles: &datadog.RelationshipToRoles{
 					Data: &[]datadog.RelationshipToRoleData{
-						datadog.RelationshipToRoleData{
-							Id:   datadog.PtrString(ROLE_DATA_ID),
-							Type: datadog.RolesType("roles").Ptr(),
+						{
+							Id:   datadog.PtrString(RoleDataID),
+							Type: datadog.ROLESTYPE_ROLES.Ptr(),
 						},
 					},
 				},

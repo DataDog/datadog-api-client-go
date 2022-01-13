@@ -437,7 +437,13 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return strconv.Unquote(s)
 	case bool:
 		return strconv.ParseBool(s)
-	case map[string]interface{}, []interface{}:
+	case []interface{}:
+		var res []interface{}
+		if err := json.Unmarshal([]byte(s), &res); err != nil {
+			return nil, fmt.Errorf("error converting %s to %T: %v", s, t, err)
+		}
+		return res, nil
+	case map[string]interface{}:
 		var res map[string]interface{}
 		if err := json.Unmarshal([]byte(s), &res); err != nil {
 			return nil, fmt.Errorf("error converting %s to %T: %v", s, t, err)

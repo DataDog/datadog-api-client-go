@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**SecurityMonitoringSignalAttributes**](SecurityMonitoringSignalAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | The unique ID of the security signal. | [optional] 
-**Type** | Pointer to [**SecurityMonitoringSignalType**](SecurityMonitoringSignalType.md) |  | [optional] [default to SECURITYMONITORINGSIGNALTYPE_SIGNAL]
+| Name           | Type                                                                                       | Description                           | Notes                                                       |
+| -------------- | ------------------------------------------------------------------------------------------ | ------------------------------------- | ----------------------------------------------------------- |
+| **Attributes** | Pointer to [**SecurityMonitoringSignalAttributes**](SecurityMonitoringSignalAttributes.md) |                                       | [optional]                                                  |
+| **Id**         | Pointer to **string**                                                                      | The unique ID of the security signal. | [optional]                                                  |
+| **Type**       | Pointer to [**SecurityMonitoringSignalType**](SecurityMonitoringSignalType.md)             |                                       | [optional] [default to SECURITYMONITORINGSIGNALTYPE_SIGNAL] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetType sets Type field to given value.
 
 HasType returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Attributes** | Pointer to [**RoleCreateAttributes**](RoleCreateAttributes.md) |  | [optional] 
-**Id** | Pointer to **string** | ID of the role. | [optional] 
-**Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |  | [optional] 
-**Type** | [**RolesType**](RolesType.md) |  | [default to ROLESTYPE_ROLES]
+| Name              | Type                                                                     | Description     | Notes                        |
+| ----------------- | ------------------------------------------------------------------------ | --------------- | ---------------------------- |
+| **Attributes**    | Pointer to [**RoleCreateAttributes**](RoleCreateAttributes.md)           |                 | [optional]                   |
+| **Id**            | Pointer to **string**                                                    | ID of the role. | [optional]                   |
+| **Relationships** | Pointer to [**RoleResponseRelationships**](RoleResponseRelationships.md) |                 | [optional]                   |
+| **Type**          | [**RolesType**](RolesType.md)                                            |                 | [default to ROLESTYPE_ROLES] |
 
 ## Methods
 
@@ -122,8 +122,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

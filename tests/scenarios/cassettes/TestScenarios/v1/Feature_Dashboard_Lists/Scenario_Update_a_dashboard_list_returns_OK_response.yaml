@@ -1,150 +1,56 @@
 interactions:
 - request:
     body: |
-      {"name":"Test-Update_a_dashboard_list_returns_OK_response-1633076911"}
+      {"name":"Test-Update_a_dashboard_list_returns_OK_response-1641430223"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '70'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '1561967229053730268'
-      X-Datadog-Trace-Id:
-      - '4308174747954421457'
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard/lists/manual
   response:
-    body: '{"is_favorite":false,"name":"Test-Update_a_dashboard_list_returns_OK_response-1633076911","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-10-01T08:28:31.803012+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-10-01T08:28:31.803044+00:00","id":240517}'
+    body: '{"is_favorite":false,"name":"Test-Update_a_dashboard_list_returns_OK_response-1641430223","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-01-06T00:50:23.876774+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-01-06T00:50:23.876799+00:00","id":269882}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '315'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 01 Oct 2021 08:28:31 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: |
-      {"name":"updated Test-Update_a_dashboard_list_returns_OK_response-1633076911"}
+      {"name":"updated Test-Update_a_dashboard_list_returns_OK_response-1641430223"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '78'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '3337924621180360812'
-      X-Datadog-Trace-Id:
-      - '4308174747954421457'
     method: PUT
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/240517
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/269882
   response:
-    body: '{"is_favorite":false,"name":"updated Test-Update_a_dashboard_list_returns_OK_response-1633076911","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2021-10-01T08:28:31.803012+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2021-10-01T08:28:31.924633+00:00","id":240517}'
+    body: '{"is_favorite":false,"name":"updated Test-Update_a_dashboard_list_returns_OK_response-1641430223","dashboard_count":0,"author":{"handle":"frog@datadoghq.com","name":null},"created":"2022-01-06T00:50:23.876774+00:00","type":"manual_dashboard_list","dashboards":null,"modified":"2022-01-06T00:50:24.060886+00:00","id":269882}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '323'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 01 Oct 2021 08:28:31 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.5 (node 14.18.0; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '787504801364382947'
-      X-Datadog-Trace-Id:
-      - '4308174747954421457'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/240517
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/269882
   response:
-    body: '{"deleted_dashboard_list_id":240517}'
+    body: '{"deleted_dashboard_list_id":269882}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '36'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 01 Oct 2021 08:28:32 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1

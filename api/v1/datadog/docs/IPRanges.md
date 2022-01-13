@@ -2,17 +2,17 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Agents** | Pointer to [**IPPrefixesAgents**](IPPrefixesAgents.md) |  | [optional] 
-**Api** | Pointer to [**IPPrefixesAPI**](IPPrefixesAPI.md) |  | [optional] 
-**Apm** | Pointer to [**IPPrefixesAPM**](IPPrefixesAPM.md) |  | [optional] 
-**Logs** | Pointer to [**IPPrefixesLogs**](IPPrefixesLogs.md) |  | [optional] 
-**Modified** | Pointer to **string** | Date when last updated, in the form &#x60;YYYY-MM-DD-hh-mm-ss&#x60;. | [optional] 
-**Process** | Pointer to [**IPPrefixesProcess**](IPPrefixesProcess.md) |  | [optional] 
-**Synthetics** | Pointer to [**IPPrefixesSynthetics**](IPPrefixesSynthetics.md) |  | [optional] 
-**Version** | Pointer to **int64** | Version of the IP list. | [optional] 
-**Webhooks** | Pointer to [**IPPrefixesWebhooks**](IPPrefixesWebhooks.md) |  | [optional] 
+| Name           | Type                                                           | Description                                                          | Notes      |
+| -------------- | -------------------------------------------------------------- | -------------------------------------------------------------------- | ---------- |
+| **Agents**     | Pointer to [**IPPrefixesAgents**](IPPrefixesAgents.md)         |                                                                      | [optional] |
+| **Api**        | Pointer to [**IPPrefixesAPI**](IPPrefixesAPI.md)               |                                                                      | [optional] |
+| **Apm**        | Pointer to [**IPPrefixesAPM**](IPPrefixesAPM.md)               |                                                                      | [optional] |
+| **Logs**       | Pointer to [**IPPrefixesLogs**](IPPrefixesLogs.md)             |                                                                      | [optional] |
+| **Modified**   | Pointer to **string**                                          | Date when last updated, in the form &#x60;YYYY-MM-DD-hh-mm-ss&#x60;. | [optional] |
+| **Process**    | Pointer to [**IPPrefixesProcess**](IPPrefixesProcess.md)       |                                                                      | [optional] |
+| **Synthetics** | Pointer to [**IPPrefixesSynthetics**](IPPrefixesSynthetics.md) |                                                                      | [optional] |
+| **Version**    | Pointer to **int64**                                           | Version of the IP list.                                              | [optional] |
+| **Webhooks**   | Pointer to [**IPPrefixesWebhooks**](IPPrefixesWebhooks.md)     |                                                                      | [optional] |
 
 ## Methods
 
@@ -258,7 +258,4 @@ SetWebhooks sets Webhooks field to given value.
 
 HasWebhooks returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

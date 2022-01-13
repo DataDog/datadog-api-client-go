@@ -7,8 +7,9 @@ require (
 	github.com/DataDog/datadog-go v4.8.2+incompatible // indirect
 	github.com/DataDog/dd-sdk-go-testing v0.0.0-20210929140144-5d69f0a9bd49
 	github.com/Microsoft/go-winio v0.5.1 // indirect
+	github.com/cucumber/messages-go/v12 v12.0.0
 	github.com/dnaeon/go-vcr v1.0.1
-	github.com/go-bdd/gobdd v1.1.3
+	github.com/go-bdd/gobdd v1.1.4-0.20211209204431-ca566a78d075
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0

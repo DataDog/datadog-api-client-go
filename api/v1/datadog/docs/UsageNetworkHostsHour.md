@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**HostCount** | Pointer to **int64** | Contains the number of active NPM hosts. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
+| Name          | Type                     | Description                              | Notes      |
+| ------------- | ------------------------ | ---------------------------------------- | ---------- |
+| **HostCount** | Pointer to **int64**     | Contains the number of active NPM hosts. | [optional] |
+| **Hour**      | Pointer to **time.Time** | The hour for the usage.                  | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetHour sets Hour field to given value.
 
 HasHour returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

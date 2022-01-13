@@ -1,100 +1,38 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1626780778 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1641430236 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '324'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.3; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '6275969018838299015'
-      X-Datadog-Trace-Id:
-      - '2817451468891403962'
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"rtz-4te-n7p","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1626780778
-      with list_stream widget","url":"/dashboard/rtz-4te-n7p/test-createanewdashboardwithliststreamwidget-1626780778-with-liststream-widget","created_at":"2021-07-20T11:32:58.826427+00:00","modified_at":"2021-07-20T11:32:58.826427+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"query":{"query_string":"","data_source":"issue_stream"},"response_format":"event_list","columns":[{"field":"timestamp","width":"auto"}]}],"type":"list_stream"},"id":4221232261759602}],"layout_type":"ordered"}'
+    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"a55-ncv-i3b","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1641430236
+      with list_stream widget","url":"/dashboard/a55-ncv-i3b/test-createanewdashboardwithliststreamwidget-1641430236-with-liststream-widget","created_at":"2022-01-06T00:50:36.516935+00:00","modified_at":"2022-01-06T00:50:36.516935+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"query":{"query_string":"","data_source":"issue_stream"},"response_format":"event_list","columns":[{"field":"timestamp","width":"auto"}]}],"type":"list_stream"},"id":5504795795756241}],"layout_type":"ordered"}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '735'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 20 Jul 2021 11:32:58 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.3; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '9004563642587437511'
-      X-Datadog-Trace-Id:
-      - '2817451468891403962'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/rtz-4te-n7p
+    url: https://api.datadoghq.com/api/v1/dashboard/a55-ncv-i3b
   response:
-    body: '{"deleted_dashboard_id":"rtz-4te-n7p"}'
+    body: '{"deleted_dashboard_id":"a55-ncv-i3b"}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '38'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Tue, 20 Jul 2021 11:32:58 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1

@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Locations** | Pointer to [**[]SyntheticsLocation**](SyntheticsLocation.md) | List of Synthetics locations. | [optional] 
+| Name          | Type                                                         | Description                   | Notes      |
+| ------------- | ------------------------------------------------------------ | ----------------------------- | ---------- |
+| **Locations** | Pointer to [**[]SyntheticsLocation**](SyntheticsLocation.md) | List of Synthetics locations. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetLocations sets Locations field to given value.
 
 HasLocations returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

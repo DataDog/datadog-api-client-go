@@ -2,14 +2,10 @@
 
 ## Enum
 
+- `SMALL` (value: `"small"`)
 
-* `SMALL` (value: `"small"`)
+- `MEDIUM` (value: `"medium"`)
 
-* `MEDIUM` (value: `"medium"`)
-
-* `LARGE` (value: `"large"`)
-
+- `LARGE` (value: `"large"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

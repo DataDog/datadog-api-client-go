@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AggregationType** | Pointer to [**LogsMetricResponseComputeAggregationType**](LogsMetricResponseComputeAggregationType.md) |  | [optional] 
-**Path** | Pointer to **string** | The path to the value the log-based metric will aggregate on (only used if the aggregation type is a \&quot;distribution\&quot;). | [optional] 
+| Name                | Type                                                                                                   | Description                                                                                                                       | Notes      |
+| ------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AggregationType** | Pointer to [**LogsMetricResponseComputeAggregationType**](LogsMetricResponseComputeAggregationType.md) |                                                                                                                                   | [optional] |
+| **Path**            | Pointer to **string**                                                                                  | The path to the value the log-based metric will aggregate on (only used if the aggregation type is a \&quot;distribution\&quot;). | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetPath sets Path field to given value.
 
 HasPath returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

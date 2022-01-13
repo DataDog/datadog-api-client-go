@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateIncidentService**](IncidentServicesApi.md#CreateIncidentService) | **Post** /api/v2/services | Create a new incident service
-[**DeleteIncidentService**](IncidentServicesApi.md#DeleteIncidentService) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service
-[**GetIncidentService**](IncidentServicesApi.md#GetIncidentService) | **Get** /api/v2/services/{service_id} | Get details of an incident service
-[**ListIncidentServices**](IncidentServicesApi.md#ListIncidentServices) | **Get** /api/v2/services | Get a list of all incident services
-[**UpdateIncidentService**](IncidentServicesApi.md#UpdateIncidentService) | **Patch** /api/v2/services/{service_id} | Update an existing incident service
-
-
+| Method                                                                    | HTTP request                             | Description                         |
+| ------------------------------------------------------------------------- | ---------------------------------------- | ----------------------------------- |
+| [**CreateIncidentService**](IncidentServicesApi.md#CreateIncidentService) | **Post** /api/v2/services                | Create a new incident service       |
+| [**DeleteIncidentService**](IncidentServicesApi.md#DeleteIncidentService) | **Delete** /api/v2/services/{service_id} | Delete an existing incident service |
+| [**GetIncidentService**](IncidentServicesApi.md#GetIncidentService)       | **Get** /api/v2/services/{service_id}    | Get details of an incident service  |
+| [**ListIncidentServices**](IncidentServicesApi.md#ListIncidentServices)   | **Get** /api/v2/services                 | Get a list of all incident services |
+| [**UpdateIncidentService**](IncidentServicesApi.md#UpdateIncidentService) | **Patch** /api/v2/services/{service_id}  | Update an existing incident service |
 
 ## CreateIncidentService
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**IncidentServiceCreateRequest**](IncidentServiceCreateRequest.md) | Incident Service Payload. | 
-
+| Name     | Type                                                                | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**IncidentServiceCreateRequest**](IncidentServiceCreateRequest.md) | Incident Service Payload.                                                   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteIncidentService
 
@@ -120,21 +114,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceId** | **string** | The ID of the incident service. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceId** | **string**          | The ID of the incident service.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -148,7 +139,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetIncidentService
 
@@ -196,22 +186,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceId** | **string** | The ID of the incident service. | 
-
+| Name          | Type                | Description                                                                 | Notes |
+| ------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceId** | **string**          | The ID of the incident service.                                             |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetIncidentServiceOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
+| Name        | Type                                                  | Description                                                                  | Notes |
+| ----------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- | ----- |
+| **include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
 
 ### Return type
 
@@ -229,7 +215,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListIncidentServices
 
@@ -281,21 +266,16 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListIncidentServicesOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**include** | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. | 
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageOffset** | **int64** | Specific offset to use as the beginning of the returned page. | [default to 0]
-**filter** | **string** | A search query that filters services by name. | 
+| Name           | Type                                                  | Description                                                                  | Notes           |
+| -------------- | ----------------------------------------------------- | ---------------------------------------------------------------------------- | --------------- |
+| **include**    | [**IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
+| **pageSize**   | **int64**                                             | Size for a given page.                                                       | [default to 10] |
+| **pageOffset** | **int64**                                             | Specific offset to use as the beginning of the returned page.                | [default to 0]  |
+| **filter**     | **string**                                            | A search query that filters services by name.                                |
 
 ### Return type
 
@@ -313,7 +293,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateIncidentService
 
@@ -357,18 +336,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceId** | **string** | The ID of the incident service. |  |
-**body** | [**IncidentServiceUpdateRequest**](IncidentServiceUpdateRequest.md) | Incident Service Payload. | 
-
+| Name          | Type                                                                | Description                                                                 | Notes |
+| ------------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**       | **context.Context**                                                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceId** | **string**                                                          | The ID of the incident service.                                             |       |
+| **body**      | [**IncidentServiceUpdateRequest**](IncidentServiceUpdateRequest.md) | Incident Service Payload.                                                   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -386,4 +362,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

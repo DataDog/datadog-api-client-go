@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Path** | Pointer to **string** | The path to the value the log-based metric will be aggregated over. | [optional] 
-**TagName** | Pointer to **string** | Eventual name of the tag that gets created. By default, the path attribute is used as the tag name. | [optional] 
+| Name        | Type                  | Description                                                                                         | Notes      |
+| ----------- | --------------------- | --------------------------------------------------------------------------------------------------- | ---------- |
+| **Path**    | Pointer to **string** | The path to the value the log-based metric will be aggregated over.                                 | [optional] |
+| **TagName** | Pointer to **string** | Eventual name of the tag that gets created. By default, the path attribute is used as the tag name. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetTagName sets TagName field to given value.
 
 HasTagName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,32 +2,28 @@
 
 ## Enum
 
+- `COUNT` (value: `"count"`)
 
-* `COUNT` (value: `"count"`)
+- `CARDINALITY` (value: `"cardinality"`)
 
-* `CARDINALITY` (value: `"cardinality"`)
+- `MEDIAN` (value: `"median"`)
 
-* `MEDIAN` (value: `"median"`)
+- `PC75` (value: `"pc75"`)
 
-* `PC75` (value: `"pc75"`)
+- `PC90` (value: `"pc90"`)
 
-* `PC90` (value: `"pc90"`)
+- `PC95` (value: `"pc95"`)
 
-* `PC95` (value: `"pc95"`)
+- `PC98` (value: `"pc98"`)
 
-* `PC98` (value: `"pc98"`)
+- `PC99` (value: `"pc99"`)
 
-* `PC99` (value: `"pc99"`)
+- `SUM` (value: `"sum"`)
 
-* `SUM` (value: `"sum"`)
+- `MIN` (value: `"min"`)
 
-* `MIN` (value: `"min"`)
+- `MAX` (value: `"max"`)
 
-* `MAX` (value: `"max"`)
-
-* `AVG` (value: `"avg"`)
-
+- `AVG` (value: `"avg"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

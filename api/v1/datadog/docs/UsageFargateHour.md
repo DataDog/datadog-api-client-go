@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AvgProfiledFargateTasks** | Pointer to **int64** | The average profiled task count for Fargate Profiling. | [optional] 
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**OrgName** | Pointer to **string** | The organization name. | [optional] 
-**PublicId** | Pointer to **string** | The organization public ID. | [optional] 
-**TasksCount** | Pointer to **int64** | The number of Fargate tasks run. | [optional] 
+| Name                        | Type                     | Description                                            | Notes      |
+| --------------------------- | ------------------------ | ------------------------------------------------------ | ---------- |
+| **AvgProfiledFargateTasks** | Pointer to **int64**     | The average profiled task count for Fargate Profiling. | [optional] |
+| **Hour**                    | Pointer to **time.Time** | The hour for the usage.                                | [optional] |
+| **OrgName**                 | Pointer to **string**    | The organization name.                                 | [optional] |
+| **PublicId**                | Pointer to **string**    | The organization public ID.                            | [optional] |
+| **TasksCount**              | Pointer to **int64**     | The number of Fargate tasks run.                       | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetTasksCount sets TasksCount field to given value.
 
 HasTasksCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

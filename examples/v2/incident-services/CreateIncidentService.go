@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.IncidentServiceCreateRequest{
 		Data: datadog.IncidentServiceCreateData{
-			Type: datadog.IncidentServiceType("services"),
+			Type: datadog.INCIDENTSERVICETYPE_SERVICES,
 			Attributes: &datadog.IncidentServiceCreateAttributes{
 				Name: "Example-Create_a_new_incident_service_returns_CREATED_response",
 			},

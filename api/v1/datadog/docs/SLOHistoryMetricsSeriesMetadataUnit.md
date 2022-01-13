@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Family** | Pointer to **string** | The family of metric unit, for example &#x60;bytes&#x60; is the family for &#x60;kibibyte&#x60;, &#x60;byte&#x60;, and &#x60;bit&#x60; units. | [optional] 
-**Id** | Pointer to **int64** | The ID of the metric unit. | [optional] 
-**Name** | Pointer to **string** | The unit of the metric, for instance &#x60;byte&#x60;. | [optional] 
-**Plural** | Pointer to **NullableString** | The plural Unit of metric, for instance &#x60;bytes&#x60;. | [optional] 
-**ScaleFactor** | Pointer to **float64** | The scale factor of metric unit, for instance &#x60;1.0&#x60;. | [optional] 
-**ShortName** | Pointer to **NullableString** | A shorter and abbreviated version of the metric unit, for instance &#x60;B&#x60;. | [optional] 
+| Name            | Type                          | Description                                                                                                                                   | Notes      |
+| --------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Family**      | Pointer to **string**         | The family of metric unit, for example &#x60;bytes&#x60; is the family for &#x60;kibibyte&#x60;, &#x60;byte&#x60;, and &#x60;bit&#x60; units. | [optional] |
+| **Id**          | Pointer to **int64**          | The ID of the metric unit.                                                                                                                    | [optional] |
+| **Name**        | Pointer to **string**         | The unit of the metric, for instance &#x60;byte&#x60;.                                                                                        | [optional] |
+| **Plural**      | Pointer to **NullableString** | The plural Unit of metric, for instance &#x60;bytes&#x60;.                                                                                    | [optional] |
+| **ScaleFactor** | Pointer to **float64**        | The scale factor of metric unit, for instance &#x60;1.0&#x60;.                                                                                | [optional] |
+| **ShortName**   | Pointer to **NullableString** | A shorter and abbreviated version of the metric unit, for instance &#x60;B&#x60;.                                                             | [optional] |
 
 ## Methods
 
@@ -134,12 +134,14 @@ HasPlural returns a boolean if a field has been set.
 
 `func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPluralNil(b bool)`
 
- SetPluralNil sets the value for Plural to be an explicit nil
+SetPluralNil sets the value for Plural to be an explicit nil
 
 ### UnsetPlural
+
 `func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetPlural()`
 
 UnsetPlural ensures that no value is present for Plural, not even an explicit nil
+
 ### GetScaleFactor
 
 `func (o *SLOHistoryMetricsSeriesMetadataUnit) GetScaleFactor() float64`
@@ -194,13 +196,12 @@ HasShortName returns a boolean if a field has been set.
 
 `func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortNameNil(b bool)`
 
- SetShortNameNil sets the value for ShortName to be an explicit nil
+SetShortNameNil sets the value for ShortName to be an explicit nil
 
 ### UnsetShortName
+
 `func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetShortName()`
 
 UnsetShortName ensures that no value is present for ShortName, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

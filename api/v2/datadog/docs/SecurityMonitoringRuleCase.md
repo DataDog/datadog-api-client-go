@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Condition** | Pointer to **string** | A rule case contains logical operations (&#x60;&gt;&#x60;,&#x60;&gt;&#x3D;&#x60;, &#x60;&amp;&amp;&#x60;, &#x60;||&#x60;) to determine if a signal should be generated based on the event counts in the previously defined queries. | [optional] 
-**Name** | Pointer to **string** | Name of the case. | [optional] 
-**Notifications** | Pointer to **[]string** | Notification targets for each rule case. | [optional] 
-**Status** | Pointer to [**SecurityMonitoringRuleSeverity**](SecurityMonitoringRuleSeverity.md) |  | [optional] 
+| Name              | Type                                                                               | Description                                                                                                      | Notes      |
+| ----------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------- | ----------------------------------------------------------------------------------------------------------------- | ---------- |
+| **Condition**     | Pointer to **string**                                                              | A rule case contains logical operations (&#x60;&gt;&#x60;,&#x60;&gt;&#x3D;&#x60;, &#x60;&amp;&amp;&#x60;, &#x60; |            | &#x60;) to determine if a signal should be generated based on the event counts in the previously defined queries. | [optional] |
+| **Name**          | Pointer to **string**                                                              | Name of the case.                                                                                                | [optional] |
+| **Notifications** | Pointer to **[]string**                                                            | Notification targets for each rule case.                                                                         | [optional] |
+| **Status**        | Pointer to [**SecurityMonitoringRuleSeverity**](SecurityMonitoringRuleSeverity.md) |                                                                                                                  | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetStatus sets Status field to given value.
 
 HasStatus returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

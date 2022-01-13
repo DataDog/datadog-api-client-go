@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**DistinctVolume** | Pointer to **int64** | Distinct volume for the given metric. | [optional] 
+| Name               | Type                 | Description                           | Notes      |
+| ------------------ | -------------------- | ------------------------------------- | ---------- |
+| **DistinctVolume** | Pointer to **int64** | Distinct volume for the given metric. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetDistinctVolume sets DistinctVolume field to given value.
 
 HasDistinctVolume returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

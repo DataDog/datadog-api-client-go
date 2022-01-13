@@ -15,7 +15,6 @@ import (
 
 // SecurityMonitoringRuleQueryCreate Query for matching rule.
 type SecurityMonitoringRuleQueryCreate struct {
-	AgentRule   *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"`
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields *[]string `json:"distinctFields,omitempty"`
@@ -47,38 +46,6 @@ func NewSecurityMonitoringRuleQueryCreate(query string) *SecurityMonitoringRuleQ
 func NewSecurityMonitoringRuleQueryCreateWithDefaults() *SecurityMonitoringRuleQueryCreate {
 	this := SecurityMonitoringRuleQueryCreate{}
 	return &this
-}
-
-// GetAgentRule returns the AgentRule field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleQueryCreate) GetAgentRule() SecurityMonitoringRuntimeAgentRule {
-	if o == nil || o.AgentRule == nil {
-		var ret SecurityMonitoringRuntimeAgentRule
-		return ret
-	}
-	return *o.AgentRule
-}
-
-// GetAgentRuleOk returns a tuple with the AgentRule field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleQueryCreate) GetAgentRuleOk() (*SecurityMonitoringRuntimeAgentRule, bool) {
-	if o == nil || o.AgentRule == nil {
-		return nil, false
-	}
-	return o.AgentRule, true
-}
-
-// HasAgentRule returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleQueryCreate) HasAgentRule() bool {
-	if o != nil && o.AgentRule != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAgentRule gets a reference to the given SecurityMonitoringRuntimeAgentRule and assigns it to the AgentRule field.
-func (o *SecurityMonitoringRuleQueryCreate) SetAgentRule(v SecurityMonitoringRuntimeAgentRule) {
-	o.AgentRule = &v
 }
 
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
@@ -270,9 +237,6 @@ func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.AgentRule != nil {
-		toSerialize["agentRule"] = o.AgentRule
-	}
 	if o.Aggregation != nil {
 		toSerialize["aggregation"] = o.Aggregation
 	}
@@ -300,7 +264,6 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 		Query *string `json:"query"`
 	}{}
 	all := struct {
-		AgentRule      *SecurityMonitoringRuntimeAgentRule     `json:"agentRule,omitempty"`
 		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
 		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
@@ -332,7 +295,6 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.AgentRule = all.AgentRule
 	o.Aggregation = all.Aggregation
 	o.DistinctFields = all.DistinctFields
 	o.GroupByFields = all.GroupByFields

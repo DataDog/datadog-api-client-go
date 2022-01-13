@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**[]SecurityFilter**](SecurityFilter.md) | A list of security filters objects. | [optional] 
-**Meta** | Pointer to [**SecurityFilterMeta**](SecurityFilterMeta.md) |  | [optional] 
+| Name     | Type                                                       | Description                         | Notes      |
+| -------- | ---------------------------------------------------------- | ----------------------------------- | ---------- |
+| **Data** | Pointer to [**[]SecurityFilter**](SecurityFilter.md)       | A list of security filters objects. | [optional] |
+| **Meta** | Pointer to [**SecurityFilterMeta**](SecurityFilterMeta.md) |                                     | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetMeta sets Meta field to given value.
 
 HasMeta returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

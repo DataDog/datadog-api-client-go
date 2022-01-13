@@ -1,165 +1,53 @@
 interactions:
 - request:
     body: |
-      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[],"type":"log_detection"}
+      {"cases":[{"condition":"a \u003e 0","name":"","notifications":[],"status":"info"}],"filters":[],"isEnabled":true,"message":"Test rule","name":"Test-Delete_an_existing_rule_returns_OK_response-1641826589","options":{"evaluationWindow":900,"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"count","distinctFields":[],"groupByFields":[],"metric":"","query":"@test:true"}],"tags":[],"type":"log_detection"}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '418'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '4425955630342748850'
-      X-Datadog-Trace-Id:
-      - '4894760210927799586'
     method: POST
     url: https://api.datadoghq.com/api/v2/security_monitoring/rules
   response:
     body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":false,"message":"Test
-      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1629359425373,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
-      > 0"}],"type":"log_detection","id":"zpf-hj4-sl6","isDefault":false,"name":"Test-Delete_an_existing_rule_returns_OK_response-1618572735"}'
+      rule","options":{"detectionMethod":"threshold","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1641826589685,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"","aggregation":"count","groupByFields":[],"query":"@test:true"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":"","condition":"a
+      > 0"}],"type":"log_detection","id":"cas-csx-jwf","isDefault":false,"name":"Test-Delete_an_existing_rule_returns_OK_response-1641826589"}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - '603'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json;charset=utf-8
-      Date:
-      - Thu, 19 Aug 2021 07:50:25 GMT
-      Pragma:
-      - no-cache
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '600'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '597'
-      X-Ratelimit-Reset:
-      - '35'
     status: 200 OK
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '7845847526136989233'
-      X-Datadog-Trace-Id:
-      - '4894760210927799586'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zpf-hj4-sl6
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/cas-csx-jwf
   response:
     body: ''
     code: 204
     duration: ''
-    headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Disposition:
-      - inline
-      Content-Length:
-      - '0'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
-      Date:
-      - Thu, 19 Aug 2021 07:50:25 GMT
-      Pragma:
-      - no-cache
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '600'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '596'
-      X-Ratelimit-Reset:
-      - '35'
+    headers: {}
     status: 204 No Content
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 14.17.5; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '3749099268306567443'
-      X-Datadog-Trace-Id:
-      - '4894760210927799586'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/zpf-hj4-sl6
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/cas-csx-jwf
   response:
-    body: '{"errors":["Threat detection rule not found: zpf-hj4-sl6"]}'
+    body: '{"errors":["Threat detection rule not found: cas-csx-jwf"]}'
     code: 404
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '59'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Thu, 19 Aug 2021 07:50:25 GMT
-      Pragma:
-      - no-cache
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '600'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '595'
-      X-Ratelimit-Reset:
-      - '35'
     status: 404 Not Found
 version: 1

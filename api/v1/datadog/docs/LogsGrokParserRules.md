@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**MatchRules** | **string** | List of match rules for the grok parser, separated by a new line. | 
-**SupportRules** | Pointer to **string** | List of support rules for the grok parser, separated by a new line. | [optional] [default to ""]
+| Name             | Type                  | Description                                                         | Notes                      |
+| ---------------- | --------------------- | ------------------------------------------------------------------- | -------------------------- |
+| **MatchRules**   | **string**            | List of match rules for the grok parser, separated by a new line.   |
+| **SupportRules** | Pointer to **string** | List of support rules for the grok parser, separated by a new line. | [optional] [default to ""] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetMatchRules sets MatchRules field to given value.
 
-
 ### GetSupportRules
 
 `func (o *LogsGrokParserRules) GetSupportRules() string`
@@ -71,7 +70,4 @@ SetSupportRules sets SupportRules field to given value.
 
 HasSupportRules returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

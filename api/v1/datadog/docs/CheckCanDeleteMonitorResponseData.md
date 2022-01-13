@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Ok** | Pointer to **[]int64** | An array of of Monitor IDs that can be safely deleted. | [optional] 
+| Name   | Type                   | Description                                            | Notes      |
+| ------ | ---------------------- | ------------------------------------------------------ | ---------- |
+| **Ok** | Pointer to **[]int64** | An array of of Monitor IDs that can be safely deleted. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetOk sets Ok field to given value.
 
 HasOk returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

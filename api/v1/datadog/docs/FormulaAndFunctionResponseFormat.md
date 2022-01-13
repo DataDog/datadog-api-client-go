@@ -2,12 +2,8 @@
 
 ## Enum
 
+- `TIMESERIES` (value: `"timeseries"`)
 
-* `TIMESERIES` (value: `"timeseries"`)
-
-* `SCALAR` (value: `"scalar"`)
-
+- `SCALAR` (value: `"scalar"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

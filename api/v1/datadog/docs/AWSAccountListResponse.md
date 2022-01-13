@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Accounts** | Pointer to [**[]AWSAccount**](AWSAccount.md) | List of enabled AWS accounts. | [optional] 
+| Name         | Type                                         | Description                   | Notes      |
+| ------------ | -------------------------------------------- | ----------------------------- | ---------- |
+| **Accounts** | Pointer to [**[]AWSAccount**](AWSAccount.md) | List of enabled AWS accounts. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetAccounts sets Accounts field to given value.
 
 HasAccounts returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

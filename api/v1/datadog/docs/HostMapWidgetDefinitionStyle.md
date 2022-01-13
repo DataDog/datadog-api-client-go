@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**FillMax** | Pointer to **string** | Max value to use to color the map. | [optional] 
-**FillMin** | Pointer to **string** | Min value to use to color the map. | [optional] 
-**Palette** | Pointer to **string** | Color palette to apply to the widget. | [optional] 
-**PaletteFlip** | Pointer to **bool** | Whether to flip the palette tones. | [optional] 
+| Name            | Type                  | Description                           | Notes      |
+| --------------- | --------------------- | ------------------------------------- | ---------- |
+| **FillMax**     | Pointer to **string** | Max value to use to color the map.    | [optional] |
+| **FillMin**     | Pointer to **string** | Min value to use to color the map.    | [optional] |
+| **Palette**     | Pointer to **string** | Color palette to apply to the widget. | [optional] |
+| **PaletteFlip** | Pointer to **bool**   | Whether to flip the palette tones.    | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetPaletteFlip sets PaletteFlip field to given value.
 
 HasPaletteFlip returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Tags** | Pointer to **map[string][]string** | A list of tags to apply to the host. | [optional] 
+| Name     | Type                               | Description                          | Notes      |
+| -------- | ---------------------------------- | ------------------------------------ | ---------- |
+| **Tags** | Pointer to **map[string][]string** | A list of tags to apply to the host. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetTags sets Tags field to given value.
 
 HasTags returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

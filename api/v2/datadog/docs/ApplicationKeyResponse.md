@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**FullApplicationKey**](FullApplicationKey.md) |  | [optional] 
-**Included** | Pointer to [**[]ApplicationKeyResponseIncludedItem**](ApplicationKeyResponseIncludedItem.md) | Array of objects related to the application key. | [optional] 
+| Name         | Type                                                                                         | Description                                      | Notes      |
+| ------------ | -------------------------------------------------------------------------------------------- | ------------------------------------------------ | ---------- |
+| **Data**     | Pointer to [**FullApplicationKey**](FullApplicationKey.md)                                   |                                                  | [optional] |
+| **Included** | Pointer to [**[]ApplicationKeyResponseIncludedItem**](ApplicationKeyResponseIncludedItem.md) | Array of objects related to the application key. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetIncluded sets Included field to given value.
 
 HasIncluded returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

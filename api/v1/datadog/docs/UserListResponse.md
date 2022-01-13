@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Users** | Pointer to [**[]User**](User.md) | Array of users. | [optional] 
+| Name      | Type                             | Description     | Notes      |
+| --------- | -------------------------------- | --------------- | ---------- |
+| **Users** | Pointer to [**[]User**](User.md) | Array of users. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetUsers sets Users field to given value.
 
 HasUsers returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

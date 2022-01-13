@@ -14,25 +14,25 @@ import (
 
 func main() {
 	// there is a valid "correction" for "slo"
-	CORRECTION_DATA_ID := os.Getenv("CORRECTION_DATA_ID")
+	CorrectionDataID := os.Getenv("CORRECTION_DATA_ID")
 
 	body := datadog.SLOCorrectionUpdateRequest{
 		Data: &datadog.SLOCorrectionUpdateData{
 			Attributes: &datadog.SLOCorrectionUpdateRequestAttributes{
-				Category:    datadog.SLOCorrectionCategory("Deployment").Ptr(),
+				Category:    datadog.SLOCORRECTIONCATEGORY_DEPLOYMENT.Ptr(),
 				Description: datadog.PtrString("Example-Update_an_SLO_correction_returns_OK_response"),
 				End:         datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix()),
 				Start:       datadog.PtrInt64(time.Now().Unix()),
 				Timezone:    datadog.PtrString("UTC"),
 			},
-			Type: datadog.SLOCorrectionType("correction").Ptr(),
+			Type: datadog.SLOCORRECTIONTYPE_CORRECTION.Ptr(),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateSLOCorrection", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, CORRECTION_DATA_ID, body)
+	resp, r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection(ctx, CorrectionDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.UpdateSLOCorrection`: %v\n", err)

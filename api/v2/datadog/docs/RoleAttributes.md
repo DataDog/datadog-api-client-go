@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CreatedAt** | Pointer to **time.Time** | Creation time of the role. | [optional] [readonly] 
-**ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] 
-**Name** | Pointer to **string** | Name of the role. | [optional] 
-**UserCount** | Pointer to **int64** | Number of users with that role. | [optional] [readonly] 
+| Name           | Type                     | Description                     | Notes                 |
+| -------------- | ------------------------ | ------------------------------- | --------------------- |
+| **CreatedAt**  | Pointer to **time.Time** | Creation time of the role.      | [optional] [readonly] |
+| **ModifiedAt** | Pointer to **time.Time** | Time of last role modification. | [optional] [readonly] |
+| **Name**       | Pointer to **string**    | Name of the role.               | [optional]            |
+| **UserCount**  | Pointer to **int64**     | Number of users with that role. | [optional] [readonly] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetUserCount sets UserCount field to given value.
 
 HasUserCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

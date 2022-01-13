@@ -1,103 +1,37 @@
 interactions:
 - request:
     body: |
-      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget-1636729281","widgets":[{"definition":{"requests":[{"change_type":"absolute","compare_to":"hour_before","formulas":[{"formula":"hour_before(query1)"},{"formula":"query1"}],"increase_good":true,"order_by":"change","order_dir":"desc","queries":[{"compute":{"aggregation":"count"},"data_source":"logs","group_by":[],"indexes":["*"],"name":"query1","search":{"query":""}}],"response_format":"scalar"}],"time":{},"title":"","title_align":"left","title_size":"16","type":"change"},"layout":{"height":4,"width":4,"x":0,"y":0}}]}
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget-1641430224","widgets":[{"definition":{"requests":[{"change_type":"absolute","compare_to":"hour_before","formulas":[{"formula":"hour_before(query1)"},{"formula":"query1"}],"increase_good":true,"order_by":"change","order_dir":"desc","queries":[{"compute":{"aggregation":"count"},"data_source":"logs","group_by":[],"indexes":["*"],"name":"query1","search":{"query":""}}],"response_format":"scalar"}],"time":{},"title":"","title_align":"left","title_size":"16","type":"change"},"layout":{"height":4,"width":4,"x":0,"y":0}}]}
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Content-Length:
-      - '626'
+      - application/json
       Content-Type:
       - application/json
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '8731715351358858124'
-      X-Datadog-Trace-Id:
-      - '5873467306450681742'
     method: POST
     url: https://api.datadoghq.com/api/v1/dashboard
   response:
-    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"dwk-ej2-e2f","title":"Test-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget-1636729281","url":"/dashboard/dwk-ej2-e2f/test-createanewdashboardwithaformulasandfunctionschangewidget-1636729281","created_at":"2021-11-12T15:01:21.989698+00:00","modified_at":"2021-11-12T15:01:21.989698+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"title_size":"16","title":"","title_align":"left","time":{},"requests":[{"formulas":[{"formula":"hour_before(query1)"},{"formula":"query1"}],"order_by":"change","order_dir":"desc","compare_to":"hour_before","response_format":"scalar","increase_good":true,"queries":[{"search":{"query":""},"data_source":"logs","compute":{"aggregation":"count"},"name":"query1","indexes":["*"],"group_by":[]}],"change_type":"absolute"}],"type":"change"},"layout":{"y":0,"width":4,"x":0,"height":4},"id":1892792703041590}],"layout_type":"ordered"}'
+    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"jfv-7es-bv2","title":"Test-Create_a_new_dashboard_with_a_formulas_and_functions_change_widget-1641430224","url":"/dashboard/jfv-7es-bv2/test-createanewdashboardwithaformulasandfunctionschangewidget-1641430224","created_at":"2022-01-06T00:50:25.077294+00:00","modified_at":"2022-01-06T00:50:25.077294+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"title_size":"16","title":"","title_align":"left","time":{},"requests":[{"formulas":[{"formula":"hour_before(query1)"},{"formula":"query1"}],"order_by":"change","order_dir":"desc","compare_to":"hour_before","response_format":"scalar","increase_good":true,"queries":[{"search":{"query":""},"data_source":"logs","compute":{"aggregation":"count"},"name":"query1","indexes":["*"],"group_by":[]}],"change_type":"absolute"}],"type":"change"},"layout":{"y":0,"width":4,"x":0,"height":4},"id":5329680147350539}],"layout_type":"ordered"}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '1031'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 12 Nov 2021 15:01:22 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Envoy-Upstream-Service-Time:
-      - '326'
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 - request:
     body: ''
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.6 (node 14.18.1; os Linux; arch x64)
-      X-Datadog-Parent-Id:
-      - '1167209965635326775'
-      X-Datadog-Trace-Id:
-      - '5873467306450681742'
+      - application/json
     method: DELETE
-    url: https://api.datadoghq.com/api/v1/dashboard/dwk-ej2-e2f
+    url: https://api.datadoghq.com/api/v1/dashboard/jfv-7es-bv2
   response:
-    body: '{"deleted_dashboard_id":"dwk-ej2-e2f"}'
+    body: '{"deleted_dashboard_id":"jfv-7es-bv2"}'
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '38'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 12 Nov 2021 15:01:22 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Envoy-Upstream-Service-Time:
-      - '298'
-      X-Frame-Options:
-      - SAMEORIGIN
     status: 200 OK
 version: 1

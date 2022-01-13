@@ -2,62 +2,63 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AgentHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations. | [optional] 
-**ApmAzureAppServiceHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations. | [optional] 
-**ApmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations. | [optional] 
-**AuditLogsLinesIndexedSum** | Pointer to **int64** | Shows the sum of audit logs lines indexed over all hours in the current date for all organizations. | [optional] 
-**AvgProfiledFargateTasks** | Pointer to **int64** | The average profiled task count for Fargate Profiling. | [optional] 
-**AwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations. | [optional] 
-**AwsLambdaFuncCount** | Pointer to **int64** | Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations. | [optional] 
-**AwsLambdaInvocationsSum** | Pointer to **int64** | Shows the sum of all AWS Lambda invocations over all hours in the current date for all organizations. | [optional] 
-**AzureAppServiceTop99p** | Pointer to **int64** | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations. | [optional] 
-**BillableIngestedBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
-**BrowserRumLiteSessionCountSum** | Pointer to **int64** | Shows the sum of all browser lite sessions over all hours in the current date for all organizations. | [optional] 
-**BrowserRumReplaySessionCountSum** | Pointer to **int64** | Shows the sum of all browser replay sessions over all hours in the current date for all organizations. | [optional] 
-**BrowserRumUnitsSum** | Pointer to **int64** | Shows the sum of all browser RUM units over all hours in the current date for all organizations. | [optional] 
-**ContainerAvg** | Pointer to **int64** | Shows the average of all distinct containers over all hours in the current date for all organizations. | [optional] 
-**ContainerHwm** | Pointer to **int64** | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations. | [optional] 
-**CspmContainerAvg** | Pointer to **int64** | Shows the average number of Cloud Security Posture Management containers over all hours in the current date for all organizations. | [optional] 
-**CspmContainerHwm** | Pointer to **int64** | Shows the high-water mark of Cloud Security Posture Management containers over all hours in the current date for all organizations. | [optional] 
-**CspmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current date for all organizations. | [optional] 
-**CustomTsAvg** | Pointer to **int64** | Shows the average number of distinct custom metrics over all hours in the current date for all organizations. | [optional] 
-**CwsContainerCountAvg** | Pointer to **int64** | Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for all organizations. | [optional] 
-**CwsHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations. | [optional] 
-**Date** | Pointer to **time.Time** | The date for the usage. | [optional] 
-**DbmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Database Monitoring hosts over all hours in the current date for all organizations. | [optional] 
-**DbmQueriesCountAvg** | Pointer to **int64** | Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations. | [optional] 
-**FargateTasksCountAvg** | Pointer to **int64** | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
-**FargateTasksCountHwm** | Pointer to **int64** | Shows the average of all Fargate tasks over all hours in the current date for all organizations. | [optional] 
-**GcpHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations. | [optional] 
-**HerokuHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all Heroku dynos over all hours in the current date for all organizations. | [optional] 
-**IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64** | Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations. | [optional] 
-**IndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all log events indexed over all hours in the current date for all organizations. | [optional] 
-**InfraHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations. | [optional] 
-**IngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all log bytes ingested over all hours in the current date for all organizations. | [optional] 
-**IotDeviceSum** | Pointer to **int64** | Shows the sum of all IoT devices over all hours in the current date for all organizations. | [optional] 
-**IotDeviceTop99p** | Pointer to **int64** | Shows the 99th percentile of all IoT devices over all hours in the current date all organizations. | [optional] 
-**MobileRumLiteSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile lite sessions over all hours in the current date for all organizations. | [optional] 
-**MobileRumSessionCountAndroidSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for all organizations. | [optional] 
-**MobileRumSessionCountIosSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for all organizations. | [optional] 
-**MobileRumSessionCountSum** | Pointer to **int64** | Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations | [optional] 
-**MobileRumUnitsSum** | Pointer to **int64** | Shows the sum of all mobile RUM units over all hours in the current date for all organizations. | [optional] 
-**NetflowIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Network flows indexed over all hours in the current date for all organizations. | [optional] 
-**NpmHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations. | [optional] 
-**OpentelemetryHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations. | [optional] 
-**Orgs** | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user. | [optional] 
-**ProfilingHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations. | [optional] 
-**RumSessionCountSum** | Pointer to **int64** | Shows the sum of all browser RUM Sessions over all hours in the current date for all organizations | [optional] 
-**RumTotalSessionCountSum** | Pointer to **int64** | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations. | [optional] 
-**RumUnitsSum** | Pointer to **int64** | Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations. | [optional] 
-**SdsLogsScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 
-**SdsTotalScannedBytesSum** | Pointer to **int64** | Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations. | [optional] 
-**SyntheticsBrowserCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations. | [optional] 
-**SyntheticsCheckCallsCountSum** | Pointer to **int64** | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations. | [optional] 
-**TraceSearchIndexedEventsCountSum** | Pointer to **int64** | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations. | [optional] 
-**TwolIngestedEventsBytesSum** | Pointer to **int64** | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations. | [optional] 
-**VsphereHostTop99p** | Pointer to **int64** | Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations. | [optional] 
+| Name                                        | Type                                                           | Description                                                                                                                                                       | Notes      |
+| ------------------------------------------- | -------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AgentHostTop99p**                         | Pointer to **int64**                                           | Shows the 99th percentile of all agent hosts over all hours in the current date for all organizations.                                                            | [optional] |
+| **ApmAzureAppServiceHostTop99p**            | Pointer to **int64**                                           | Shows the 99th percentile of all Azure app services using APM over all hours in the current date all organizations.                                               | [optional] |
+| **ApmHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all distinct APM hosts over all hours in the current date for all organizations.                                                     | [optional] |
+| **AuditLogsLinesIndexedSum**                | Pointer to **int64**                                           | Shows the sum of audit logs lines indexed over all hours in the current date for all organizations.                                                               | [optional] |
+| **AvgProfiledFargateTasks**                 | Pointer to **int64**                                           | The average profiled task count for Fargate Profiling.                                                                                                            | [optional] |
+| **AwsHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all AWS hosts over all hours in the current date for all organizations.                                                              | [optional] |
+| **AwsLambdaFuncCount**                      | Pointer to **int64**                                           | Shows the average of the number of functions that executed 1 or more times each hour in the current date for all organizations.                                   | [optional] |
+| **AwsLambdaInvocationsSum**                 | Pointer to **int64**                                           | Shows the sum of all AWS Lambda invocations over all hours in the current date for all organizations.                                                             | [optional] |
+| **AzureAppServiceTop99p**                   | Pointer to **int64**                                           | Shows the 99th percentile of all Azure app services over all hours in the current date for all organizations.                                                     | [optional] |
+| **BillableIngestedBytesSum**                | Pointer to **int64**                                           | Shows the sum of all log bytes ingested over all hours in the current date for all organizations.                                                                 | [optional] |
+| **BrowserRumLiteSessionCountSum**           | Pointer to **int64**                                           | Shows the sum of all browser lite sessions over all hours in the current date for all organizations.                                                              | [optional] |
+| **BrowserRumReplaySessionCountSum**         | Pointer to **int64**                                           | Shows the sum of all browser replay sessions over all hours in the current date for all organizations.                                                            | [optional] |
+| **BrowserRumUnitsSum**                      | Pointer to **int64**                                           | Shows the sum of all browser RUM units over all hours in the current date for all organizations.                                                                  | [optional] |
+| **ContainerAvg**                            | Pointer to **int64**                                           | Shows the average of all distinct containers over all hours in the current date for all organizations.                                                            | [optional] |
+| **ContainerHwm**                            | Pointer to **int64**                                           | Shows the high-water mark of all distinct containers over all hours in the current date for all organizations.                                                    | [optional] |
+| **CspmContainerAvg**                        | Pointer to **int64**                                           | Shows the average number of Cloud Security Posture Management containers over all hours in the current date for all organizations.                                | [optional] |
+| **CspmContainerHwm**                        | Pointer to **int64**                                           | Shows the high-water mark of Cloud Security Posture Management containers over all hours in the current date for all organizations.                               | [optional] |
+| **CspmHostTop99p**                          | Pointer to **int64**                                           | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current date for all organizations.                                | [optional] |
+| **CustomTsAvg**                             | Pointer to **int64**                                           | Shows the average number of distinct custom metrics over all hours in the current date for all organizations.                                                     | [optional] |
+| **CwsContainerCountAvg**                    | Pointer to **int64**                                           | Shows the average of all distinct Cloud Workload Security containers over all hours in the current date for all organizations.                                    | [optional] |
+| **CwsHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all Cloud Workload Security hosts over all hours in the current date for all organizations.                                          | [optional] |
+| **Date**                                    | Pointer to **time.Time**                                       | The date for the usage.                                                                                                                                           | [optional] |
+| **DbmHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all Database Monitoring hosts over all hours in the current date for all organizations.                                              | [optional] |
+| **DbmQueriesCountAvg**                      | Pointer to **int64**                                           | Shows the average of all normalized Database Monitoring queries over all hours in the current date for all organizations.                                         | [optional] |
+| **FargateTasksCountAvg**                    | Pointer to **int64**                                           | Shows the high-watermark of all Fargate tasks over all hours in the current date for all organizations.                                                           | [optional] |
+| **FargateTasksCountHwm**                    | Pointer to **int64**                                           | Shows the average of all Fargate tasks over all hours in the current date for all organizations.                                                                  | [optional] |
+| **GcpHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all GCP hosts over all hours in the current date for all organizations.                                                              | [optional] |
+| **HerokuHostTop99p**                        | Pointer to **int64**                                           | Shows the 99th percentile of all Heroku dynos over all hours in the current date for all organizations.                                                           | [optional] |
+| **IncidentManagementMonthlyActiveUsersHwm** | Pointer to **int64**                                           | Shows the high-water mark of incident management monthly active users over all hours in the current date for all organizations.                                   | [optional] |
+| **IndexedEventsCountSum**                   | Pointer to **int64**                                           | Shows the sum of all log events indexed over all hours in the current date for all organizations.                                                                 | [optional] |
+| **InfraHostTop99p**                         | Pointer to **int64**                                           | Shows the 99th percentile of all distinct infrastructure hosts over all hours in the current date for all organizations.                                          | [optional] |
+| **IngestedEventsBytesSum**                  | Pointer to **int64**                                           | Shows the sum of all log bytes ingested over all hours in the current date for all organizations.                                                                 | [optional] |
+| **IotDeviceSum**                            | Pointer to **int64**                                           | Shows the sum of all IoT devices over all hours in the current date for all organizations.                                                                        | [optional] |
+| **IotDeviceTop99p**                         | Pointer to **int64**                                           | Shows the 99th percentile of all IoT devices over all hours in the current date all organizations.                                                                | [optional] |
+| **MobileRumLiteSessionCountSum**            | Pointer to **int64**                                           | Shows the sum of all mobile lite sessions over all hours in the current date for all organizations.                                                               | [optional] |
+| **MobileRumSessionCountAndroidSum**         | Pointer to **int64**                                           | Shows the sum of all mobile RUM Sessions on Android over all hours in the current date for all organizations.                                                     | [optional] |
+| **MobileRumSessionCountIosSum**             | Pointer to **int64**                                           | Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for all organizations.                                                         | [optional] |
+| **MobileRumSessionCountSum**                | Pointer to **int64**                                           | Shows the sum of all mobile RUM Sessions over all hours in the current date for all organizations                                                                 | [optional] |
+| **MobileRumUnitsSum**                       | Pointer to **int64**                                           | Shows the sum of all mobile RUM units over all hours in the current date for all organizations.                                                                   | [optional] |
+| **NetflowIndexedEventsCountSum**            | Pointer to **int64**                                           | Shows the sum of all Network flows indexed over all hours in the current date for all organizations.                                                              | [optional] |
+| **NpmHostTop99p**                           | Pointer to **int64**                                           | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.                                                | [optional] |
+| **OpentelemetryHostTop99p**                 | Pointer to **int64**                                           | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations. | [optional] |
+| **Orgs**                                    | Pointer to [**[]UsageSummaryDateOrg**](UsageSummaryDateOrg.md) | Organizations associated with a user.                                                                                                                             | [optional] |
+| **ProfilingHostTop99p**                     | Pointer to **int64**                                           | Shows the 99th percentile of all profiled hosts over all hours in the current date for all organizations.                                                         | [optional] |
+| **RumBrowserAndMobileSessionCount**         | Pointer to **int64**                                           | Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current month for all organizations.                          | [optional] |
+| **RumSessionCountSum**                      | Pointer to **int64**                                           | Shows the sum of all browser RUM Lite Sessions over all hours in the current date for all organizations                                                           | [optional] |
+| **RumTotalSessionCountSum**                 | Pointer to **int64**                                           | Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for all organizations.                                                      | [optional] |
+| **RumUnitsSum**                             | Pointer to **int64**                                           | Shows the sum of all browser and mobile RUM units over all hours in the current date for all organizations.                                                       | [optional] |
+| **SdsLogsScannedBytesSum**                  | Pointer to **int64**                                           | Shows the sum of all bytes scanned of logs usage by the Sensitive Data Scanner over all hours in the current month for all organizations.                         | [optional] |
+| **SdsTotalScannedBytesSum**                 | Pointer to **int64**                                           | Shows the sum of all bytes scanned across all usage types by the Sensitive Data Scanner over all hours in the current month for all organizations.                | [optional] |
+| **SyntheticsBrowserCheckCallsCountSum**     | Pointer to **int64**                                           | Shows the sum of all Synthetic browser tests over all hours in the current date for all organizations.                                                            | [optional] |
+| **SyntheticsCheckCallsCountSum**            | Pointer to **int64**                                           | Shows the sum of all Synthetic API tests over all hours in the current date for all organizations.                                                                | [optional] |
+| **TraceSearchIndexedEventsCountSum**        | Pointer to **int64**                                           | Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations.                                                              | [optional] |
+| **TwolIngestedEventsBytesSum**              | Pointer to **int64**                                           | Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations.                                              | [optional] |
+| **VsphereHostTop99p**                       | Pointer to **int64**                                           | Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations.                                                          | [optional] |
 
 ## Methods
 
@@ -1178,6 +1179,31 @@ SetProfilingHostTop99p sets ProfilingHostTop99p field to given value.
 
 HasProfilingHostTop99p returns a boolean if a field has been set.
 
+### GetRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) GetRumBrowserAndMobileSessionCount() int64`
+
+GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field if non-nil, zero value otherwise.
+
+### GetRumBrowserAndMobileSessionCountOk
+
+`func (o *UsageSummaryDate) GetRumBrowserAndMobileSessionCountOk() (*int64, bool)`
+
+GetRumBrowserAndMobileSessionCountOk returns a tuple with the RumBrowserAndMobileSessionCount field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) SetRumBrowserAndMobileSessionCount(v int64)`
+
+SetRumBrowserAndMobileSessionCount sets RumBrowserAndMobileSessionCount field to given value.
+
+### HasRumBrowserAndMobileSessionCount
+
+`func (o *UsageSummaryDate) HasRumBrowserAndMobileSessionCount() bool`
+
+HasRumBrowserAndMobileSessionCount returns a boolean if a field has been set.
+
 ### GetRumSessionCountSum
 
 `func (o *UsageSummaryDate) GetRumSessionCountSum() int64`
@@ -1428,7 +1454,4 @@ SetVsphereHostTop99p sets VsphereHostTop99p field to given value.
 
 HasVsphereHostTop99p returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

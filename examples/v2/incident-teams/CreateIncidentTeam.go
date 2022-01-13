@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.IncidentTeamCreateRequest{
 		Data: datadog.IncidentTeamCreateData{
-			Type: datadog.IncidentTeamType("teams"),
+			Type: datadog.INCIDENTTEAMTYPE_TEAMS,
 			Attributes: &datadog.IncidentTeamCreateAttributes{
 				Name: "Example-Create_a_new_incident_team_returns_CREATED_response",
 			},

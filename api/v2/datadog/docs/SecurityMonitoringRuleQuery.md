@@ -2,15 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AgentRule** | Pointer to [**SecurityMonitoringRuntimeAgentRule**](SecurityMonitoringRuntimeAgentRule.md) |  | [optional] 
-**Aggregation** | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |  | [optional] 
-**DistinctFields** | Pointer to **[]string** | Field for which the cardinality is measured. Sent as an array. | [optional] 
-**GroupByFields** | Pointer to **[]string** | Fields to group by. | [optional] 
-**Metric** | Pointer to **string** | The target field to aggregate over when using the sum or max aggregations. | [optional] 
-**Name** | Pointer to **string** | Name of the query. | [optional] 
-**Query** | Pointer to **string** | Query to run on logs. | [optional] 
+| Name               | Type                                                                                               | Description                                                                | Notes      |
+| ------------------ | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------- |
+| **Aggregation**    | Pointer to [**SecurityMonitoringRuleQueryAggregation**](SecurityMonitoringRuleQueryAggregation.md) |                                                                            | [optional] |
+| **DistinctFields** | Pointer to **[]string**                                                                            | Field for which the cardinality is measured. Sent as an array.             | [optional] |
+| **GroupByFields**  | Pointer to **[]string**                                                                            | Fields to group by.                                                        | [optional] |
+| **Metric**         | Pointer to **string**                                                                              | The target field to aggregate over when using the sum or max aggregations. | [optional] |
+| **Name**           | Pointer to **string**                                                                              | Name of the query.                                                         | [optional] |
+| **Query**          | Pointer to **string**                                                                              | Query to run on logs.                                                      | [optional] |
 
 ## Methods
 
@@ -30,31 +29,6 @@ will change when the set of required properties is changed.
 NewSecurityMonitoringRuleQueryWithDefaults instantiates a new SecurityMonitoringRuleQuery object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
-
-### GetAgentRule
-
-`func (o *SecurityMonitoringRuleQuery) GetAgentRule() SecurityMonitoringRuntimeAgentRule`
-
-GetAgentRule returns the AgentRule field if non-nil, zero value otherwise.
-
-### GetAgentRuleOk
-
-`func (o *SecurityMonitoringRuleQuery) GetAgentRuleOk() (*SecurityMonitoringRuntimeAgentRule, bool)`
-
-GetAgentRuleOk returns a tuple with the AgentRule field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetAgentRule
-
-`func (o *SecurityMonitoringRuleQuery) SetAgentRule(v SecurityMonitoringRuntimeAgentRule)`
-
-SetAgentRule sets AgentRule field to given value.
-
-### HasAgentRule
-
-`func (o *SecurityMonitoringRuleQuery) HasAgentRule() bool`
-
-HasAgentRule returns a boolean if a field has been set.
 
 ### GetAggregation
 
@@ -206,7 +180,4 @@ SetQuery sets Query field to given value.
 
 HasQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

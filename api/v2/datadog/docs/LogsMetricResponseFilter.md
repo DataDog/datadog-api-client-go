@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] 
+| Name      | Type                  | Description                                         | Notes      |
+| --------- | --------------------- | --------------------------------------------------- | ---------- |
+| **Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetQuery sets Query field to given value.
 
 HasQuery returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

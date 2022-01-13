@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// there is a valid "logs_metric" in the system
-	LOGS_METRIC_DATA_ID := os.Getenv("LOGS_METRIC_DATA_ID")
+	LogsMetricDataID := os.Getenv("LOGS_METRIC_DATA_ID")
 
 	body := datadog.LogsMetricUpdateRequest{
 		Data: datadog.LogsMetricUpdateData{
-			Type: datadog.LogsMetricType("logs_metrics"),
+			Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
 			Attributes: datadog.LogsMetricUpdateAttributes{
 				Filter: &datadog.LogsMetricFilter{
 					Query: datadog.PtrString("service:web* AND @http.status_code:[200 TO 299]-updated"),
@@ -28,7 +28,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsMetricsApi.UpdateLogsMetric(ctx, LOGS_METRIC_DATA_ID, body)
+	resp, r, err := apiClient.LogsMetricsApi.UpdateLogsMetric(ctx, LogsMetricDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.UpdateLogsMetric`: %v\n", err)

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AggType** | Pointer to **string** | The aggregate type. | [optional] 
-**Field** | Pointer to **string** | The field. | [optional] 
-**Value** | Pointer to **float64** | The value for a given field. | [optional] 
+| Name        | Type                   | Description                  | Notes      |
+| ----------- | ---------------------- | ---------------------------- | ---------- |
+| **AggType** | Pointer to **string**  | The aggregate type.          | [optional] |
+| **Field**   | Pointer to **string**  | The field.                   | [optional] |
+| **Value**   | Pointer to **float64** | The value for a given field. | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetValue sets Value field to given value.
 
 HasValue returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

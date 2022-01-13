@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**From** | Pointer to **string** | The minimum time for the requested logs, supports date math and regular timestamps | [optional] [default to "now-15m"]
-**Indexes** | Pointer to **[]string** | For customers with multiple indexes, the indexes to search. Defaults to [&#39;*&#39;] which means all indexes. | [optional] [default to ["*"]]
-**Query** | Pointer to **string** | The search query - following the log search syntax. | [optional] [default to "*"]
-**To** | Pointer to **string** | The maximum time for the requested logs, supports date math and regular timestamps | [optional] [default to "now"]
+| Name        | Type                    | Description                                                                                                    | Notes                             |
+| ----------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| **From**    | Pointer to **string**   | The minimum time for the requested logs, supports date math and regular timestamps (milliseconds).             | [optional] [default to "now-15m"] |
+| **Indexes** | Pointer to **[]string** | For customers with multiple indexes, the indexes to search. Defaults to [&#39;*&#39;] which means all indexes. | [optional] [default to ["*"]]     |
+| **Query**   | Pointer to **string**   | The search query - following the log search syntax.                                                            | [optional] [default to "*"]       |
+| **To**      | Pointer to **string**   | The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).             | [optional] [default to "now"]     |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetTo sets To field to given value.
 
 HasTo returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

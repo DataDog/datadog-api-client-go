@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateNotebook**](NotebooksApi.md#CreateNotebook) | **Post** /api/v1/notebooks | Create a notebook
-[**DeleteNotebook**](NotebooksApi.md#DeleteNotebook) | **Delete** /api/v1/notebooks/{notebook_id} | Delete a notebook
-[**GetNotebook**](NotebooksApi.md#GetNotebook) | **Get** /api/v1/notebooks/{notebook_id} | Get a notebook
-[**ListNotebooks**](NotebooksApi.md#ListNotebooks) | **Get** /api/v1/notebooks | Get all notebooks
-[**UpdateNotebook**](NotebooksApi.md#UpdateNotebook) | **Put** /api/v1/notebooks/{notebook_id} | Update a notebook
-
-
+| Method                                               | HTTP request                               | Description       |
+| ---------------------------------------------------- | ------------------------------------------ | ----------------- |
+| [**CreateNotebook**](NotebooksApi.md#CreateNotebook) | **Post** /api/v1/notebooks                 | Create a notebook |
+| [**DeleteNotebook**](NotebooksApi.md#DeleteNotebook) | **Delete** /api/v1/notebooks/{notebook_id} | Delete a notebook |
+| [**GetNotebook**](NotebooksApi.md#GetNotebook)       | **Get** /api/v1/notebooks/{notebook_id}    | Get a notebook    |
+| [**ListNotebooks**](NotebooksApi.md#ListNotebooks)   | **Get** /api/v1/notebooks                  | Get all notebooks |
+| [**UpdateNotebook**](NotebooksApi.md#UpdateNotebook) | **Put** /api/v1/notebooks/{notebook_id}    | Update a notebook |
 
 ## CreateNotebook
 
@@ -53,17 +51,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**NotebookCreateRequest**](NotebookCreateRequest.md) | The JSON description of the notebook you want to create. | 
-
+| Name     | Type                                                  | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**NotebookCreateRequest**](NotebookCreateRequest.md) | The JSON description of the notebook you want to create.                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -81,7 +76,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteNotebook
 
@@ -119,21 +113,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**notebookId** | **int64** | Unique ID, assigned when you create the notebook. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **notebookId** | **int64**           | Unique ID, assigned when you create the notebook.                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -147,7 +138,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetNotebook
 
@@ -189,17 +179,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**notebookId** | **int64** | Unique ID, assigned when you create the notebook. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **notebookId** | **int64**           | Unique ID, assigned when you create the notebook.                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -217,7 +204,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListNotebooks
 
@@ -281,27 +267,22 @@ func main() {
 
 ### Required Parameters
 
-
-
-
 ### Optional Parameters
-
 
 Other parameters are passed through a pointer to a ListNotebooksOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**authorHandle** | **string** | Return notebooks created by the given &#x60;author_handle&#x60;. | 
-**excludeAuthorHandle** | **string** | Return notebooks not created by the given &#x60;author_handle&#x60;. | 
-**start** | **int64** | The index of the first notebook you want returned. | 
-**count** | **int64** | The number of notebooks to be returned. | 
-**sortField** | **string** | Sort by field &#x60;modified&#x60;, &#x60;name&#x60;, or &#x60;created&#x60;. | [default to &quot;modified&quot;]
-**sortDir** | **string** | Sort by direction &#x60;asc&#x60; or &#x60;desc&#x60;. | [default to &quot;desc&quot;]
-**query** | **string** | Return only notebooks with &#x60;query&#x60; string in notebook name or author handle. | 
-**includeCells** | **bool** | Value of &#x60;false&#x60; excludes the &#x60;cells&#x60; and global &#x60;time&#x60; for each notebook. | [default to true]
-**isTemplate** | **bool** | True value returns only template notebooks. Default is false (returns only non-template notebooks). | [default to false]
-**type_** | **string** | If type is provided, returns only notebooks with that metadata type. Default does not have type filtering. | 
+| Name                    | Type       | Description                                                                                                | Notes                             |
+| ----------------------- | ---------- | ---------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| **authorHandle**        | **string** | Return notebooks created by the given &#x60;author_handle&#x60;.                                           |
+| **excludeAuthorHandle** | **string** | Return notebooks not created by the given &#x60;author_handle&#x60;.                                       |
+| **start**               | **int64**  | The index of the first notebook you want returned.                                                         |
+| **count**               | **int64**  | The number of notebooks to be returned.                                                                    |
+| **sortField**           | **string** | Sort by field &#x60;modified&#x60;, &#x60;name&#x60;, or &#x60;created&#x60;.                              | [default to &quot;modified&quot;] |
+| **sortDir**             | **string** | Sort by direction &#x60;asc&#x60; or &#x60;desc&#x60;.                                                     | [default to &quot;desc&quot;]     |
+| **query**               | **string** | Return only notebooks with &#x60;query&#x60; string in notebook name or author handle.                     |
+| **includeCells**        | **bool**   | Value of &#x60;false&#x60; excludes the &#x60;cells&#x60; and global &#x60;time&#x60; for each notebook.   | [default to true]                 |
+| **isTemplate**          | **bool**   | True value returns only template notebooks. Default is false (returns only non-template notebooks).        | [default to false]                |
+| **type\_**              | **string** | If type is provided, returns only notebooks with that metadata type. Default does not have type filtering. |
 
 ### Return type
 
@@ -319,7 +300,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateNotebook
 
@@ -363,18 +343,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**notebookId** | **int64** | Unique ID, assigned when you create the notebook. |  |
-**body** | [**NotebookUpdateRequest**](NotebookUpdateRequest.md) | Update notebook request body. | 
-
+| Name           | Type                                                  | Description                                                                 | Notes |
+| -------------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **notebookId** | **int64**                                             | Unique ID, assigned when you create the notebook.                           |       |
+| **body**       | [**NotebookUpdateRequest**](NotebookUpdateRequest.md) | Update notebook request body.                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -392,4 +369,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

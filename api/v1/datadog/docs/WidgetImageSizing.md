@@ -2,24 +2,20 @@
 
 ## Enum
 
+- `FILL` (value: `"fill"`)
 
-* `FILL` (value: `"fill"`)
+- `CONTAIN` (value: `"contain"`)
 
-* `CONTAIN` (value: `"contain"`)
+- `COVER` (value: `"cover"`)
 
-* `COVER` (value: `"cover"`)
+- `NONE` (value: `"none"`)
 
-* `NONE` (value: `"none"`)
+- `SCALEDOWN` (value: `"scale-down"`)
 
-* `SCALEDOWN` (value: `"scale-down"`)
+- `ZOOM` (value: `"zoom"`)
 
-* `ZOOM` (value: `"zoom"`)
+- `FIT` (value: `"fit"`)
 
-* `FIT` (value: `"fit"`)
-
-* `CENTER` (value: `"center"`)
-
+- `CENTER` (value: `"center"`)
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

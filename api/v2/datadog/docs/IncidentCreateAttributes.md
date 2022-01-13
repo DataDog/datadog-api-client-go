@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomerImpacted** | **bool** | A flag indicating whether the incident caused customer impact. | 
-**Fields** | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md) | A condensed view of the user-defined fields for which to create initial selections. | [optional] 
-**InitialCells** | Pointer to [**[]IncidentTimelineCellCreateAttributes**](IncidentTimelineCellCreateAttributes.md) | An array of initial timeline cells to be placed at the beginning of the incident timeline. | [optional] 
-**NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md) | Notification handles that will be notified of the incident at creation. | [optional] 
-**Title** | **string** | The title of the incident, which summarizes what happened. | 
+| Name                    | Type                                                                                             | Description                                                                                | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ---------- |
+| **CustomerImpacted**    | **bool**                                                                                         | A flag indicating whether the incident caused customer impact.                             |
+| **Fields**              | Pointer to [**map[string]IncidentFieldAttributes**](IncidentFieldAttributes.md)                  | A condensed view of the user-defined fields for which to create initial selections.        | [optional] |
+| **InitialCells**        | Pointer to [**[]IncidentTimelineCellCreateAttributes**](IncidentTimelineCellCreateAttributes.md) | An array of initial timeline cells to be placed at the beginning of the incident timeline. | [optional] |
+| **NotificationHandles** | Pointer to [**[]IncidentNotificationHandle**](IncidentNotificationHandle.md)                     | Notification handles that will be notified of the incident at creation.                    | [optional] |
+| **Title**               | **string**                                                                                       | The title of the incident, which summarizes what happened.                                 |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *IncidentCreateAttributes) SetCustomerImpacted(v bool)`
 
 SetCustomerImpacted sets CustomerImpacted field to given value.
-
 
 ### GetFields
 
@@ -143,8 +142,4 @@ and a boolean to check if the value has been set.
 
 SetTitle sets Title field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

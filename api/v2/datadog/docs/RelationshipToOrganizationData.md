@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Id** | **string** | ID of the organization. | 
-**Type** | [**OrganizationsType**](OrganizationsType.md) |  | [default to ORGANIZATIONSTYPE_ORGS]
+| Name     | Type                                          | Description             | Notes                               |
+| -------- | --------------------------------------------- | ----------------------- | ----------------------------------- |
+| **Id**   | **string**                                    | ID of the organization. |
+| **Type** | [**OrganizationsType**](OrganizationsType.md) |                         | [default to ORGANIZATIONSTYPE_ORGS] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetId sets Id field to given value.
 
-
 ### GetType
 
 `func (o *RelationshipToOrganizationData) GetType() OrganizationsType`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

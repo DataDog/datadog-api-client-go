@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**ApplicationKeys** | Pointer to [**[]ApplicationKey**](ApplicationKey.md) | Array of application keys. | [optional] 
+| Name                | Type                                                 | Description                | Notes      |
+| ------------------- | ---------------------------------------------------- | -------------------------- | ---------- |
+| **ApplicationKeys** | Pointer to [**[]ApplicationKey**](ApplicationKey.md) | Array of application keys. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetApplicationKeys sets ApplicationKeys field to given value.
 
 HasApplicationKeys returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

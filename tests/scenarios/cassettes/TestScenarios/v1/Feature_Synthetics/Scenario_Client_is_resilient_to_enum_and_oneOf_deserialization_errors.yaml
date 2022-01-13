@@ -4,18 +4,7 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json, */*;q=0.8
-      Connection:
-      - close
-      Host:
-      - api.datadoghq.com
-      User-Agent:
-      - datadog-api-client-typescript/1.0.0-beta.4 (node 15.11.0; os Darwin; arch
-        x64)
-      X-Datadog-Parent-Id:
-      - '7301385942137946346'
-      X-Datadog-Trace-Id:
-      - '7301385942137946346'
+      - application/json
     method: GET
     url: https://api.datadoghq.com/api/v1/synthetics/tests
   response:
@@ -34,35 +23,7 @@ interactions:
     code: 200
     duration: ''
     headers:
-      Cache-Control:
-      - no-cache
-      Connection:
-      - close
-      Content-Length:
-      - '4308'
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
-      Date:
-      - Fri, 23 Jul 2021 14:46:29 GMT
-      Pragma:
-      - no-cache
-      Strict-Transport-Security:
-      - max-age=15724800;
-      Vary:
-      - Accept-Encoding
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Ratelimit-Limit:
-      - '120'
-      X-Ratelimit-Period:
-      - '60'
-      X-Ratelimit-Remaining:
-      - '119'
-      X-Ratelimit-Reset:
-      - '31'
     status: 200 OK
 version: 1

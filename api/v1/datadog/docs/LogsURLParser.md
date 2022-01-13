@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**NormalizeEndingSlashes** | Pointer to **NullableBool** | Normalize the ending slashes or not. | [optional] [default to false]
-**Sources** | **[]string** | Array of source attributes. | [default to ["http.url"]]
-**Target** | **string** | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]
-**Type** | [**LogsURLParserType**](LogsURLParserType.md) |  | [default to LOGSURLPARSERTYPE_URL_PARSER]
+| Name                       | Type                                          | Description                                                                                        | Notes                                     |
+| -------------------------- | --------------------------------------------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| **IsEnabled**              | Pointer to **bool**                           | Whether or not the processor is enabled.                                                           | [optional] [default to false]             |
+| **Name**                   | Pointer to **string**                         | Name of the processor.                                                                             | [optional]                                |
+| **NormalizeEndingSlashes** | Pointer to **NullableBool**                   | Normalize the ending slashes or not.                                                               | [optional] [default to false]             |
+| **Sources**                | **[]string**                                  | Array of source attributes.                                                                        | [default to ["http.url"]]                 |
+| **Target**                 | **string**                                    | Name of the parent attribute that contains all the extracted details from the &#x60;sources&#x60;. | [default to "http.url_details"]           |
+| **Type**                   | [**LogsURLParserType**](LogsURLParserType.md) |                                                                                                    | [default to LOGSURLPARSERTYPE_URL_PARSER] |
 
 ## Methods
 
@@ -109,12 +109,14 @@ HasNormalizeEndingSlashes returns a boolean if a field has been set.
 
 `func (o *LogsURLParser) SetNormalizeEndingSlashesNil(b bool)`
 
- SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
+SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
 
 ### UnsetNormalizeEndingSlashes
+
 `func (o *LogsURLParser) UnsetNormalizeEndingSlashes()`
 
 UnsetNormalizeEndingSlashes ensures that no value is present for NormalizeEndingSlashes, not even an explicit nil
+
 ### GetSources
 
 `func (o *LogsURLParser) GetSources() []string`
@@ -133,7 +135,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsURLParser) SetSources(v []string)`
 
 SetSources sets Sources field to given value.
-
 
 ### GetTarget
 
@@ -154,7 +155,6 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
-
 ### GetType
 
 `func (o *LogsURLParser) GetType() LogsURLParserType`
@@ -174,8 +174,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

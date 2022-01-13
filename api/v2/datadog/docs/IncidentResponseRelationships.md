@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CommanderUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
-**CreatedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
-**Integrations** | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |  | [optional] 
-**LastModifiedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md) |  | [optional] 
-**Postmortem** | Pointer to [**RelationshipToIncidentPostmortem**](RelationshipToIncidentPostmortem.md) |  | [optional] 
+| Name                   | Type                                                                                                       | Description | Notes      |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **CommanderUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
+| **CreatedByUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
+| **Integrations**       | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |             | [optional] |
+| **LastModifiedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
+| **Postmortem**         | Pointer to [**RelationshipToIncidentPostmortem**](RelationshipToIncidentPostmortem.md)                     |             | [optional] |
 
 ## Methods
 
@@ -154,7 +154,4 @@ SetPostmortem sets Postmortem field to given value.
 
 HasPostmortem returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

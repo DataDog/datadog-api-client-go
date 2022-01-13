@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Name** | **string** | Exclusion filter name. | 
-**Query** | **string** | Exclusion filter query. Logs that match this query are excluded from the security filter. | 
+| Name      | Type       | Description                                                                               | Notes |
+| --------- | ---------- | ----------------------------------------------------------------------------------------- | ----- |
+| **Name**  | **string** | Exclusion filter name.                                                                    |
+| **Query** | **string** | Exclusion filter query. Logs that match this query are excluded from the security filter. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetQuery
 
 `func (o *SecurityFilterExclusionFilter) GetQuery() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetQuery sets Query field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

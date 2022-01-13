@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Destination** | [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |  | 
-**IncludeTags** | Pointer to **bool** | To store the tags in the archive, set the value \&quot;true\&quot;. If it is set to \&quot;false\&quot;, the tags will be deleted when the logs are sent to the archive. | [optional] [default to false]
-**Name** | **string** | The archive name. | 
-**Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
-**RehydrationTags** | Pointer to **[]string** | An array of tags to add to rehydrated logs from an archive. | [optional] 
-**State** | Pointer to [**LogsArchiveState**](LogsArchiveState.md) |  | [optional] 
+| Name                | Type                                                            | Description                                                                                                                                                              | Notes                         |
+| ------------------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **Destination**     | [**NullableLogsArchiveDestination**](LogsArchiveDestination.md) |                                                                                                                                                                          |
+| **IncludeTags**     | Pointer to **bool**                                             | To store the tags in the archive, set the value \&quot;true\&quot;. If it is set to \&quot;false\&quot;, the tags will be deleted when the logs are sent to the archive. | [optional] [default to false] |
+| **Name**            | **string**                                                      | The archive name.                                                                                                                                                        |
+| **Query**           | **string**                                                      | The archive query/filter. Logs matching this query are included in the archive.                                                                                          |
+| **RehydrationTags** | Pointer to **[]string**                                         | An array of tags to add to rehydrated logs from an archive.                                                                                                              | [optional]                    |
+| **State**           | Pointer to [**LogsArchiveState**](LogsArchiveState.md)          |                                                                                                                                                                          | [optional]                    |
 
 ## Methods
 
@@ -49,17 +49,18 @@ and a boolean to check if the value has been set.
 
 SetDestination sets Destination field to given value.
 
-
 ### SetDestinationNil
 
 `func (o *LogsArchiveAttributes) SetDestinationNil(b bool)`
 
- SetDestinationNil sets the value for Destination to be an explicit nil
+SetDestinationNil sets the value for Destination to be an explicit nil
 
 ### UnsetDestination
+
 `func (o *LogsArchiveAttributes) UnsetDestination()`
 
 UnsetDestination ensures that no value is present for Destination, not even an explicit nil
+
 ### GetIncludeTags
 
 `func (o *LogsArchiveAttributes) GetIncludeTags() bool`
@@ -104,7 +105,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetQuery
 
 `func (o *LogsArchiveAttributes) GetQuery() string`
@@ -123,7 +123,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsArchiveAttributes) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetRehydrationTags
 
@@ -175,7 +174,4 @@ SetState sets State field to given value.
 
 HasState returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

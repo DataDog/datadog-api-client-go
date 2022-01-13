@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**[]UsageCustomReportsData**](UsageCustomReportsData.md) | An array of available custom reports. | [optional] 
-**Meta** | Pointer to [**UsageCustomReportsMeta**](UsageCustomReportsMeta.md) |  | [optional] 
+| Name     | Type                                                                 | Description                           | Notes      |
+| -------- | -------------------------------------------------------------------- | ------------------------------------- | ---------- |
+| **Data** | Pointer to [**[]UsageCustomReportsData**](UsageCustomReportsData.md) | An array of available custom reports. | [optional] |
+| **Meta** | Pointer to [**UsageCustomReportsMeta**](UsageCustomReportsMeta.md)   |                                       | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetMeta sets Meta field to given value.
 
 HasMeta returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

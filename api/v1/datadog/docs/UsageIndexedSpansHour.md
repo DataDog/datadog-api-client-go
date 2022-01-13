@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Hour** | Pointer to **time.Time** | The hour for the usage. | [optional] 
-**IndexedEventsCount** | Pointer to **int64** | Contains the number of spans indexed. | [optional] 
+| Name                   | Type                     | Description                           | Notes      |
+| ---------------------- | ------------------------ | ------------------------------------- | ---------- |
+| **Hour**               | Pointer to **time.Time** | The hour for the usage.               | [optional] |
+| **IndexedEventsCount** | Pointer to **int64**     | Contains the number of spans indexed. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetIndexedEventsCount sets IndexedEventsCount field to given value.
 
 HasIndexedEventsCount returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

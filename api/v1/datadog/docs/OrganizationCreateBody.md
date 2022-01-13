@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Billing** | Pointer to [**OrganizationBilling**](OrganizationBilling.md) |  | [optional] 
-**Name** | **string** | The name of the new child-organization, limited to 32 characters. | 
-**Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |  | [optional] 
+| Name             | Type                                                                   | Description                                                       | Notes      |
+| ---------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------- | ---------- |
+| **Billing**      | Pointer to [**OrganizationBilling**](OrganizationBilling.md)           |                                                                   | [optional] |
+| **Name**         | **string**                                                             | The name of the new child-organization, limited to 32 characters. |
+| **Subscription** | Pointer to [**OrganizationSubscription**](OrganizationSubscription.md) |                                                                   | [optional] |
 
 ## Methods
 
@@ -71,7 +71,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetSubscription
 
 `func (o *OrganizationCreateBody) GetSubscription() OrganizationSubscription`
@@ -97,7 +96,4 @@ SetSubscription sets Subscription field to given value.
 
 HasSubscription returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

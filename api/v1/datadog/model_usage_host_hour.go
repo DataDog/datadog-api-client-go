@@ -17,19 +17,19 @@ import (
 type UsageHostHour struct {
 	// Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent.
 	AgentHostCount *int64 `json:"agent_host_count,omitempty"`
-	// Contains the total number of hosts that reported via Alibaba integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through Alibaba integration (and were NOT running the Datadog Agent).
 	AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
 	// Contains the total number of Azure App Services hosts using APM.
 	ApmAzureAppServiceHostCount *int64 `json:"apm_azure_app_service_host_count,omitempty"`
 	// Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods).
 	ApmHostCount *int64 `json:"apm_host_count,omitempty"`
-	// Contains the total number of hosts that reported via the AWS integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the AWS integration (and were NOT running the Datadog Agent).
 	AwsHostCount *int64 `json:"aws_host_count,omitempty"`
-	// Contains the total number of hosts that reported via Azure integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through Azure integration (and were NOT running the Datadog Agent).
 	AzureHostCount *int64 `json:"azure_host_count,omitempty"`
 	// Shows the total number of containers reported by the Docker integration during the hour.
 	ContainerCount *int64 `json:"container_count,omitempty"`
-	// Contains the total number of hosts that reported via the Google Cloud integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the Google Cloud integration (and were NOT running the Datadog Agent).
 	GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
 	// Contains the total number of Heroku dynos reported by the Datadog Agent.
 	HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
@@ -37,11 +37,11 @@ type UsageHostHour struct {
 	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// Contains the total number of hosts that reported via the Azure App Services integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the Azure App Services integration (and were NOT running the Datadog Agent).
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
-	// Contains the total number of hosts that reported via vSphere integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through vSphere integration (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`

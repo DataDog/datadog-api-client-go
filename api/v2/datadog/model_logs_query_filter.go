@@ -14,13 +14,13 @@ import (
 
 // LogsQueryFilter The search and filter query settings
 type LogsQueryFilter struct {
-	// The minimum time for the requested logs, supports date math and regular timestamps
+	// The minimum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	From *string `json:"from,omitempty"`
 	// For customers with multiple indexes, the indexes to search. Defaults to ['*'] which means all indexes.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// The search query - following the log search syntax.
 	Query *string `json:"query,omitempty"`
-	// The maximum time for the requested logs, supports date math and regular timestamps
+	// The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`

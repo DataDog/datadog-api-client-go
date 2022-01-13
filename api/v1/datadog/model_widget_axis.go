@@ -22,7 +22,7 @@ type WidgetAxis struct {
 	Max *string `json:"max,omitempty"`
 	// Specifies minimum value to show on the y-axis. It takes a number, or auto for default behavior.
 	Min *string `json:"min,omitempty"`
-	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, `pow##` (e.g. `pow2`, `pow0.5` etc.).
+	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, `pow##` (for example `pow2`, `pow0.5` etc.).
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`

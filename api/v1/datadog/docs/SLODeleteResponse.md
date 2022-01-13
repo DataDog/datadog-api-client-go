@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to **[]string** | An array containing the ID of the deleted service level objective object. | [optional] 
-**Errors** | Pointer to **map[string]string** | An dictionary containing the ID of the SLO as key and a deletion error as value. | [optional] 
+| Name       | Type                             | Description                                                                      | Notes      |
+| ---------- | -------------------------------- | -------------------------------------------------------------------------------- | ---------- |
+| **Data**   | Pointer to **[]string**          | An array containing the ID of the deleted service level objective object.        | [optional] |
+| **Errors** | Pointer to **map[string]string** | An dictionary containing the ID of the SLO as key and a deletion error as value. | [optional] |
 
 ## Methods
 
@@ -76,7 +76,4 @@ SetErrors sets Errors field to given value.
 
 HasErrors returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

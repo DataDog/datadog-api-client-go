@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsSecret** | **bool** | Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload. | 
-**Name** | **string** | The name of the variable. It corresponds with &#x60;&lt;CUSTOM_VARIABLE_NAME&gt;&#x60;. | 
-**Value** | **string** | Value of the custom variable. | 
+| Name         | Type       | Description                                                                                                                 | Notes |
+| ------------ | ---------- | --------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **IsSecret** | **bool**   | Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload. |
+| **Name**     | **string** | The name of the variable. It corresponds with &#x60;&lt;CUSTOM_VARIABLE_NAME&gt;&#x60;.                                     |
+| **Value**    | **string** | Value of the custom variable.                                                                                               |
 
 ## Methods
 
@@ -46,7 +46,6 @@ and a boolean to check if the value has been set.
 
 SetIsSecret sets IsSecret field to given value.
 
-
 ### GetName
 
 `func (o *WebhooksIntegrationCustomVariable) GetName() string`
@@ -65,7 +64,6 @@ and a boolean to check if the value has been set.
 `func (o *WebhooksIntegrationCustomVariable) SetName(v string)`
 
 SetName sets Name field to given value.
-
 
 ### GetValue
 
@@ -86,8 +84,4 @@ and a boolean to check if the value has been set.
 
 SetValue sets Value field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

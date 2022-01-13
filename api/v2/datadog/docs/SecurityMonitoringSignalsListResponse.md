@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Data** | Pointer to [**[]SecurityMonitoringSignal**](SecurityMonitoringSignal.md) | An array of security signals matching the request. | [optional] 
-**Links** | Pointer to [**SecurityMonitoringSignalsListResponseLinks**](SecurityMonitoringSignalsListResponseLinks.md) |  | [optional] 
-**Meta** | Pointer to [**SecurityMonitoringSignalsListResponseMeta**](SecurityMonitoringSignalsListResponseMeta.md) |  | [optional] 
+| Name      | Type                                                                                                       | Description                                        | Notes      |
+| --------- | ---------------------------------------------------------------------------------------------------------- | -------------------------------------------------- | ---------- |
+| **Data**  | Pointer to [**[]SecurityMonitoringSignal**](SecurityMonitoringSignal.md)                                   | An array of security signals matching the request. | [optional] |
+| **Links** | Pointer to [**SecurityMonitoringSignalsListResponseLinks**](SecurityMonitoringSignalsListResponseLinks.md) |                                                    | [optional] |
+| **Meta**  | Pointer to [**SecurityMonitoringSignalsListResponseMeta**](SecurityMonitoringSignalsListResponseMeta.md)   |                                                    | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetMeta sets Meta field to given value.
 
 HasMeta returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

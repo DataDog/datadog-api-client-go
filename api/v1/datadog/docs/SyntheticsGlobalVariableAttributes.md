@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**RestrictedRoles** | Pointer to **[]string** | List of role identifiers that can be pulled from the Roles API. | [optional] 
+| Name                | Type                    | Description                                                     | Notes      |
+| ------------------- | ----------------------- | --------------------------------------------------------------- | ---------- |
+| **RestrictedRoles** | Pointer to **[]string** | List of role identifiers that can be pulled from the Roles API. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetRestrictedRoles sets RestrictedRoles field to given value.
 
 HasRestrictedRoles returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

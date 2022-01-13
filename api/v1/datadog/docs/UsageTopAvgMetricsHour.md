@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AvgMetricHour** | Pointer to **int64** | Average number of timeseries per hour in which the metric occurs. | [optional] 
-**MaxMetricHour** | Pointer to **int64** | Maximum number of timeseries per hour in which the metric occurs. | [optional] 
-**MetricCategory** | Pointer to [**UsageMetricCategory**](UsageMetricCategory.md) |  | [optional] 
-**MetricName** | Pointer to **string** | Contains the custom metric name. | [optional] 
+| Name               | Type                                                         | Description                                                       | Notes      |
+| ------------------ | ------------------------------------------------------------ | ----------------------------------------------------------------- | ---------- |
+| **AvgMetricHour**  | Pointer to **int64**                                         | Average number of timeseries per hour in which the metric occurs. | [optional] |
+| **MaxMetricHour**  | Pointer to **int64**                                         | Maximum number of timeseries per hour in which the metric occurs. | [optional] |
+| **MetricCategory** | Pointer to [**UsageMetricCategory**](UsageMetricCategory.md) |                                                                   | [optional] |
+| **MetricName**     | Pointer to **string**                                        | Contains the custom metric name.                                  | [optional] |
 
 ## Methods
 
@@ -128,7 +128,4 @@ SetMetricName sets MetricName field to given value.
 
 HasMetricName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

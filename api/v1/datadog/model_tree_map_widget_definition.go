@@ -15,11 +15,11 @@ import (
 
 // TreeMapWidgetDefinition The treemap visualization found on the Host Dashboards comes from the output of `ps auxww`. This is not continuously run on your hosts. Instead, it’s run once on Agent start/restart. The treemap is only supported for process data on a single host dashboard — this may not be reused in other dashboards or for other metrics.
 type TreeMapWidgetDefinition struct {
-	ColorBy TreeMapColorBy `json:"color_by"`
-	GroupBy TreeMapGroupBy `json:"group_by"`
+	ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
+	GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
 	// List of top list widget requests.
 	Requests []TreeMapWidgetRequest `json:"requests"`
-	SizeBy   TreeMapSizeBy          `json:"size_by"`
+	SizeBy   *TreeMapSizeBy         `json:"size_by,omitempty"`
 	// Title of your widget.
 	Title *string                     `json:"title,omitempty"`
 	Type  TreeMapWidgetDefinitionType `json:"type"`
@@ -31,12 +31,11 @@ type TreeMapWidgetDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewTreeMapWidgetDefinition(colorBy TreeMapColorBy, groupBy TreeMapGroupBy, requests []TreeMapWidgetRequest, sizeBy TreeMapSizeBy, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition {
+func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
-	this.ColorBy = colorBy
-	this.GroupBy = groupBy
+	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
+	this.ColorBy = &colorBy
 	this.Requests = requests
-	this.SizeBy = sizeBy
 	this.Type = type_
 	return &this
 }
@@ -47,58 +46,74 @@ func NewTreeMapWidgetDefinition(colorBy TreeMapColorBy, groupBy TreeMapGroupBy, 
 func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
 	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
-	this.ColorBy = colorBy
+	this.ColorBy = &colorBy
 	var type_ TreeMapWidgetDefinitionType = TREEMAPWIDGETDEFINITIONTYPE_TREEMAP
 	this.Type = type_
 	return &this
 }
 
-// GetColorBy returns the ColorBy field value
+// GetColorBy returns the ColorBy field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetColorBy() TreeMapColorBy {
-	if o == nil {
+	if o == nil || o.ColorBy == nil {
 		var ret TreeMapColorBy
 		return ret
 	}
-
-	return o.ColorBy
+	return *o.ColorBy
 }
 
-// GetColorByOk returns a tuple with the ColorBy field value
+// GetColorByOk returns a tuple with the ColorBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TreeMapWidgetDefinition) GetColorByOk() (*TreeMapColorBy, bool) {
-	if o == nil {
+	if o == nil || o.ColorBy == nil {
 		return nil, false
 	}
-	return &o.ColorBy, true
+	return o.ColorBy, true
 }
 
-// SetColorBy sets field value
+// HasColorBy returns a boolean if a field has been set.
+func (o *TreeMapWidgetDefinition) HasColorBy() bool {
+	if o != nil && o.ColorBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetColorBy gets a reference to the given TreeMapColorBy and assigns it to the ColorBy field.
 func (o *TreeMapWidgetDefinition) SetColorBy(v TreeMapColorBy) {
-	o.ColorBy = v
+	o.ColorBy = &v
 }
 
-// GetGroupBy returns the GroupBy field value
+// GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetGroupBy() TreeMapGroupBy {
-	if o == nil {
+	if o == nil || o.GroupBy == nil {
 		var ret TreeMapGroupBy
 		return ret
 	}
-
-	return o.GroupBy
+	return *o.GroupBy
 }
 
-// GetGroupByOk returns a tuple with the GroupBy field value
+// GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TreeMapWidgetDefinition) GetGroupByOk() (*TreeMapGroupBy, bool) {
-	if o == nil {
+	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return &o.GroupBy, true
+	return o.GroupBy, true
 }
 
-// SetGroupBy sets field value
+// HasGroupBy returns a boolean if a field has been set.
+func (o *TreeMapWidgetDefinition) HasGroupBy() bool {
+	if o != nil && o.GroupBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetGroupBy gets a reference to the given TreeMapGroupBy and assigns it to the GroupBy field.
 func (o *TreeMapWidgetDefinition) SetGroupBy(v TreeMapGroupBy) {
-	o.GroupBy = v
+	o.GroupBy = &v
 }
 
 // GetRequests returns the Requests field value
@@ -125,28 +140,36 @@ func (o *TreeMapWidgetDefinition) SetRequests(v []TreeMapWidgetRequest) {
 	o.Requests = v
 }
 
-// GetSizeBy returns the SizeBy field value
+// GetSizeBy returns the SizeBy field value if set, zero value otherwise.
 func (o *TreeMapWidgetDefinition) GetSizeBy() TreeMapSizeBy {
-	if o == nil {
+	if o == nil || o.SizeBy == nil {
 		var ret TreeMapSizeBy
 		return ret
 	}
-
-	return o.SizeBy
+	return *o.SizeBy
 }
 
-// GetSizeByOk returns a tuple with the SizeBy field value
+// GetSizeByOk returns a tuple with the SizeBy field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *TreeMapWidgetDefinition) GetSizeByOk() (*TreeMapSizeBy, bool) {
-	if o == nil {
+	if o == nil || o.SizeBy == nil {
 		return nil, false
 	}
-	return &o.SizeBy, true
+	return o.SizeBy, true
 }
 
-// SetSizeBy sets field value
+// HasSizeBy returns a boolean if a field has been set.
+func (o *TreeMapWidgetDefinition) HasSizeBy() bool {
+	if o != nil && o.SizeBy != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetSizeBy gets a reference to the given TreeMapSizeBy and assigns it to the SizeBy field.
 func (o *TreeMapWidgetDefinition) SetSizeBy(v TreeMapSizeBy) {
-	o.SizeBy = v
+	o.SizeBy = &v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -210,16 +233,16 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
+	if o.ColorBy != nil {
 		toSerialize["color_by"] = o.ColorBy
 	}
-	if true {
+	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
 	if true {
 		toSerialize["requests"] = o.Requests
 	}
-	if true {
+	if o.SizeBy != nil {
 		toSerialize["size_by"] = o.SizeBy
 	}
 	if o.Title != nil {
@@ -234,17 +257,14 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		ColorBy  *TreeMapColorBy              `json:"color_by"`
-		GroupBy  *TreeMapGroupBy              `json:"group_by"`
 		Requests *[]TreeMapWidgetRequest      `json:"requests"`
-		SizeBy   *TreeMapSizeBy               `json:"size_by"`
 		Type     *TreeMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		ColorBy  TreeMapColorBy              `json:"color_by"`
-		GroupBy  TreeMapGroupBy              `json:"group_by"`
+		ColorBy  *TreeMapColorBy             `json:"color_by,omitempty"`
+		GroupBy  *TreeMapGroupBy             `json:"group_by,omitempty"`
 		Requests []TreeMapWidgetRequest      `json:"requests"`
-		SizeBy   TreeMapSizeBy               `json:"size_by"`
+		SizeBy   *TreeMapSizeBy              `json:"size_by,omitempty"`
 		Title    *string                     `json:"title,omitempty"`
 		Type     TreeMapWidgetDefinitionType `json:"type"`
 	}{}
@@ -252,17 +272,8 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	if err != nil {
 		return err
 	}
-	if required.ColorBy == nil {
-		return fmt.Errorf("Required field color_by missing")
-	}
-	if required.GroupBy == nil {
-		return fmt.Errorf("Required field group_by missing")
-	}
 	if required.Requests == nil {
 		return fmt.Errorf("Required field requests missing")
-	}
-	if required.SizeBy == nil {
-		return fmt.Errorf("Required field size_by missing")
 	}
 	if required.Type == nil {
 		return fmt.Errorf("Required field type missing")
@@ -276,7 +287,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ColorBy; !v.IsValid() {
+	if v := all.ColorBy; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -284,7 +295,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.GroupBy; !v.IsValid() {
+	if v := all.GroupBy; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -292,7 +303,7 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.SizeBy; !v.IsValid() {
+	if v := all.SizeBy; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

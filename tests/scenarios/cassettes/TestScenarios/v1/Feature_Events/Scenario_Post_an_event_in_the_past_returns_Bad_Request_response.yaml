@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"date_happened":1,"tags":["test:TestPostaneventinthepastreturnsBadRequestresponse1641430251"],"text":"A text message.","title":"Test-Post_an_event_in_the_past_returns_Bad_Request_response-1641430251"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/events
+  response:
+    body: '{"errors":["Event too far in the past"]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - text/plain; charset=utf-8
+    status: 400 Bad Request
+version: 1

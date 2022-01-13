@@ -18,18 +18,14 @@ type EventCreateRequest struct {
 	// An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.
 	AggregationKey *string         `json:"aggregation_key,omitempty"`
 	AlertType      *EventAlertType `json:"alert_type,omitempty"`
-	// POSIX timestamp of the event. Must be sent as an integer (i.e. no quotes). Limited to events no older than 7 days.
+	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
 	// Host name to associate with the event. Any tags associated with the host are also applied to this event.
-	Host *string `json:"host,omitempty"`
-	// Integer ID of the event.
-	Id *int64 `json:"id,omitempty"`
-	// Payload of the event.
-	Payload  *string        `json:"payload,omitempty"`
+	Host     *string        `json:"host,omitempty"`
 	Priority *EventPriority `json:"priority,omitempty"`
-	// ID of the parent event. Must be sent as an integer (i.e. no quotes).
+	// ID of the parent event. Must be sent as an integer (that is no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
@@ -39,8 +35,6 @@ type EventCreateRequest struct {
 	Text string `json:"text"`
 	// The event title.
 	Title string `json:"title"`
-	// URL of the event.
-	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -224,70 +218,6 @@ func (o *EventCreateRequest) SetHost(v string) {
 	o.Host = &v
 }
 
-// GetId returns the Id field value if set, zero value otherwise.
-func (o *EventCreateRequest) GetId() int64 {
-	if o == nil || o.Id == nil {
-		var ret int64
-		return ret
-	}
-	return *o.Id
-}
-
-// GetIdOk returns a tuple with the Id field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventCreateRequest) GetIdOk() (*int64, bool) {
-	if o == nil || o.Id == nil {
-		return nil, false
-	}
-	return o.Id, true
-}
-
-// HasId returns a boolean if a field has been set.
-func (o *EventCreateRequest) HasId() bool {
-	if o != nil && o.Id != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetId gets a reference to the given int64 and assigns it to the Id field.
-func (o *EventCreateRequest) SetId(v int64) {
-	o.Id = &v
-}
-
-// GetPayload returns the Payload field value if set, zero value otherwise.
-func (o *EventCreateRequest) GetPayload() string {
-	if o == nil || o.Payload == nil {
-		var ret string
-		return ret
-	}
-	return *o.Payload
-}
-
-// GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventCreateRequest) GetPayloadOk() (*string, bool) {
-	if o == nil || o.Payload == nil {
-		return nil, false
-	}
-	return o.Payload, true
-}
-
-// HasPayload returns a boolean if a field has been set.
-func (o *EventCreateRequest) HasPayload() bool {
-	if o != nil && o.Payload != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetPayload gets a reference to the given string and assigns it to the Payload field.
-func (o *EventCreateRequest) SetPayload(v string) {
-	o.Payload = &v
-}
-
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetPriority() EventPriority {
 	if o == nil || o.Priority == nil {
@@ -464,38 +394,6 @@ func (o *EventCreateRequest) SetTitle(v string) {
 	o.Title = v
 }
 
-// GetUrl returns the Url field value if set, zero value otherwise.
-func (o *EventCreateRequest) GetUrl() string {
-	if o == nil || o.Url == nil {
-		var ret string
-		return ret
-	}
-	return *o.Url
-}
-
-// GetUrlOk returns a tuple with the Url field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *EventCreateRequest) GetUrlOk() (*string, bool) {
-	if o == nil || o.Url == nil {
-		return nil, false
-	}
-	return o.Url, true
-}
-
-// HasUrl returns a boolean if a field has been set.
-func (o *EventCreateRequest) HasUrl() bool {
-	if o != nil && o.Url != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetUrl gets a reference to the given string and assigns it to the Url field.
-func (o *EventCreateRequest) SetUrl(v string) {
-	o.Url = &v
-}
-
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -516,12 +414,6 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
 	}
-	if o.Id != nil {
-		toSerialize["id"] = o.Id
-	}
-	if o.Payload != nil {
-		toSerialize["payload"] = o.Payload
-	}
 	if o.Priority != nil {
 		toSerialize["priority"] = o.Priority
 	}
@@ -540,9 +432,6 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	if true {
 		toSerialize["title"] = o.Title
 	}
-	if o.Url != nil {
-		toSerialize["url"] = o.Url
-	}
 	return json.Marshal(toSerialize)
 }
 
@@ -558,15 +447,12 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		DateHappened   *int64          `json:"date_happened,omitempty"`
 		DeviceName     *string         `json:"device_name,omitempty"`
 		Host           *string         `json:"host,omitempty"`
-		Id             *int64          `json:"id,omitempty"`
-		Payload        *string         `json:"payload,omitempty"`
 		Priority       *EventPriority  `json:"priority,omitempty"`
 		RelatedEventId *int64          `json:"related_event_id,omitempty"`
 		SourceTypeName *string         `json:"source_type_name,omitempty"`
 		Tags           *[]string       `json:"tags,omitempty"`
 		Text           string          `json:"text"`
 		Title          string          `json:"title"`
-		Url            *string         `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -608,15 +494,12 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.DateHappened = all.DateHappened
 	o.DeviceName = all.DeviceName
 	o.Host = all.Host
-	o.Id = all.Id
-	o.Payload = all.Payload
 	o.Priority = all.Priority
 	o.RelatedEventId = all.RelatedEventId
 	o.SourceTypeName = all.SourceTypeName
 	o.Tags = all.Tags
 	o.Text = all.Text
 	o.Title = all.Title
-	o.Url = all.Url
 	return nil
 }
 

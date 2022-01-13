@@ -2,15 +2,13 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateServiceAccountApplicationKey**](ServiceAccountsApi.md#CreateServiceAccountApplicationKey) | **Post** /api/v2/service_accounts/{service_account_id}/application_keys | Create an application key for this service account
-[**DeleteServiceAccountApplicationKey**](ServiceAccountsApi.md#DeleteServiceAccountApplicationKey) | **Delete** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id} | Delete an application key for this service account
-[**GetServiceAccountApplicationKey**](ServiceAccountsApi.md#GetServiceAccountApplicationKey) | **Get** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id} | Get one application key for this service account
-[**ListServiceAccountApplicationKeys**](ServiceAccountsApi.md#ListServiceAccountApplicationKeys) | **Get** /api/v2/service_accounts/{service_account_id}/application_keys | List application keys for this service account
-[**UpdateServiceAccountApplicationKey**](ServiceAccountsApi.md#UpdateServiceAccountApplicationKey) | **Patch** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id} | Edit an application key for this service account
-
-
+| Method                                                                                             | HTTP request                                                                           | Description                                        |
+| -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [**CreateServiceAccountApplicationKey**](ServiceAccountsApi.md#CreateServiceAccountApplicationKey) | **Post** /api/v2/service_accounts/{service_account_id}/application_keys                | Create an application key for this service account |
+| [**DeleteServiceAccountApplicationKey**](ServiceAccountsApi.md#DeleteServiceAccountApplicationKey) | **Delete** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id} | Delete an application key for this service account |
+| [**GetServiceAccountApplicationKey**](ServiceAccountsApi.md#GetServiceAccountApplicationKey)       | **Get** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id}    | Get one application key for this service account   |
+| [**ListServiceAccountApplicationKeys**](ServiceAccountsApi.md#ListServiceAccountApplicationKeys)   | **Get** /api/v2/service_accounts/{service_account_id}/application_keys                 | List application keys for this service account     |
+| [**UpdateServiceAccountApplicationKey**](ServiceAccountsApi.md#UpdateServiceAccountApplicationKey) | **Patch** /api/v2/service_accounts/{service_account_id}/application_keys/{app_key_id}  | Edit an application key for this service account   |
 
 ## CreateServiceAccountApplicationKey
 
@@ -35,7 +33,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
-    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for submitting metrics"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest | 
+    body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for managing dashboards"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -53,18 +51,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceAccountId** | **string** | The ID of the service account. |  |
-**body** | [**ApplicationKeyCreateRequest**](ApplicationKeyCreateRequest.md) |  | 
-
+| Name                 | Type                                                              | Description                                                                 | Notes |
+| -------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceAccountId** | **string**                                                        | The ID of the service account.                                              |       |
+| **body**             | [**ApplicationKeyCreateRequest**](ApplicationKeyCreateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -82,7 +77,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteServiceAccountApplicationKey
 
@@ -121,22 +115,19 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceAccountId** | **string** | The ID of the service account. |  |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name                 | Type                | Description                                                                 | Notes |
+| -------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceAccountId** | **string**          | The ID of the service account.                                              |       |
+| **appKeyId**         | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -150,7 +141,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetServiceAccountApplicationKey
 
@@ -193,18 +183,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceAccountId** | **string** | The ID of the service account. |  |
-**appKeyId** | **string** | The ID of the application key. | 
-
+| Name                 | Type                | Description                                                                 | Notes |
+| -------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceAccountId** | **string**          | The ID of the service account.                                              |       |
+| **appKeyId**         | **string**          | The ID of the application key.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -222,7 +209,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListServiceAccountApplicationKeys
 
@@ -278,27 +264,23 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceAccountId** | **string** | The ID of the service account. | 
-
+| Name                 | Type                | Description                                                                 | Notes |
+| -------------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceAccountId** | **string**          | The ID of the service account.                                              |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a ListServiceAccountApplicationKeysOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**pageSize** | **int64** | Size for a given page. | [default to 10]
-**pageNumber** | **int64** | Specific page number to return. | [default to 0]
-**sort** | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;]
-**filter** | **string** | Filter application keys by the specified string. | 
-**filterCreatedAtStart** | **string** | Only include application keys created on or after the specified date. | 
-**filterCreatedAtEnd** | **string** | Only include application keys created on or before the specified date. | 
+| Name                     | Type                                              | Description                                                                                                                                                        | Notes                         |
+| ------------------------ | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **pageSize**             | **int64**                                         | Size for a given page.                                                                                                                                             | [default to 10]               |
+| **pageNumber**           | **int64**                                         | Specific page number to return.                                                                                                                                    | [default to 0]                |
+| **sort**                 | [**ApplicationKeysSort**](ApplicationKeysSort.md) | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. | [default to &quot;name&quot;] |
+| **filter**               | **string**                                        | Filter application keys by the specified string.                                                                                                                   |
+| **filterCreatedAtStart** | **string**                                        | Only include application keys created on or after the specified date.                                                                                              |
+| **filterCreatedAtEnd**   | **string**                                        | Only include application keys created on or before the specified date.                                                                                             |
 
 ### Return type
 
@@ -316,7 +298,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateServiceAccountApplicationKey
 
@@ -342,7 +323,7 @@ func main() {
 
     serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
     appKeyId := "appKeyId_example" // string | The ID of the application key.
-    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes("Application Key for submitting metrics"), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest | 
+    body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes(), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -360,19 +341,16 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**serviceAccountId** | **string** | The ID of the service account. |  |
-**appKeyId** | **string** | The ID of the application key. |  |
-**body** | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |  | 
-
+| Name                 | Type                                                              | Description                                                                 | Notes |
+| -------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**              | **context.Context**                                               | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **serviceAccountId** | **string**                                                        | The ID of the service account.                                              |       |
+| **appKeyId**         | **string**                                                        | The ID of the application key.                                              |       |
+| **body**             | [**ApplicationKeyUpdateRequest**](ApplicationKeyUpdateRequest.md) |                                                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -390,4 +368,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

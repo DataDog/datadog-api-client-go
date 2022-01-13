@@ -2,14 +2,12 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateGCPIntegration**](GCPIntegrationApi.md#CreateGCPIntegration) | **Post** /api/v1/integration/gcp | Create a GCP integration
-[**DeleteGCPIntegration**](GCPIntegrationApi.md#DeleteGCPIntegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration
-[**ListGCPIntegration**](GCPIntegrationApi.md#ListGCPIntegration) | **Get** /api/v1/integration/gcp | List all GCP integrations
-[**UpdateGCPIntegration**](GCPIntegrationApi.md#UpdateGCPIntegration) | **Put** /api/v1/integration/gcp | Update a GCP integration
-
-
+| Method                                                                | HTTP request                       | Description               |
+| --------------------------------------------------------------------- | ---------------------------------- | ------------------------- |
+| [**CreateGCPIntegration**](GCPIntegrationApi.md#CreateGCPIntegration) | **Post** /api/v1/integration/gcp   | Create a GCP integration  |
+| [**DeleteGCPIntegration**](GCPIntegrationApi.md#DeleteGCPIntegration) | **Delete** /api/v1/integration/gcp | Delete a GCP integration  |
+| [**ListGCPIntegration**](GCPIntegrationApi.md#ListGCPIntegration)     | **Get** /api/v1/integration/gcp    | List all GCP integrations |
+| [**UpdateGCPIntegration**](GCPIntegrationApi.md#UpdateGCPIntegration) | **Put** /api/v1/integration/gcp    | Update a GCP integration  |
 
 ## CreateGCPIntegration
 
@@ -51,17 +49,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**GCPAccount**](GCPAccount.md) | Create a Datadog-GCP integration. | 
-
+| Name     | Type                            | Description                                                                 | Notes |
+| -------- | ------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**GCPAccount**](GCPAccount.md) | Create a Datadog-GCP integration.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -79,7 +74,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteGCPIntegration
 
@@ -121,17 +115,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**GCPAccount**](GCPAccount.md) | Delete a given Datadog-GCP integration. | 
-
+| Name     | Type                            | Description                                                                 | Notes |
+| -------- | ------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**GCPAccount**](GCPAccount.md) | Delete a given Datadog-GCP integration.                                     |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -149,7 +140,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListGCPIntegration
 
@@ -192,11 +182,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -214,7 +202,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateGCPIntegration
 
@@ -259,17 +246,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**GCPAccount**](GCPAccount.md) | Update a Datadog-GCP integration. | 
-
+| Name     | Type                            | Description                                                                 | Notes |
+| -------- | ------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**             | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**GCPAccount**](GCPAccount.md) | Update a Datadog-GCP integration.                                           |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -287,4 +271,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**CustomHeaders** | Pointer to **NullableString** | If &#x60;null&#x60;, uses no header. If given a JSON payload, these will be headers attached to your webhook. | [optional] 
-**EncodeAs** | Pointer to [**WebhooksIntegrationEncoding**](WebhooksIntegrationEncoding.md) |  | [optional] [default to WEBHOOKSINTEGRATIONENCODING_JSON]
-**Name** | **string** | The name of the webhook. It corresponds with &#x60;&lt;WEBHOOK_NAME&gt;&#x60;. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify). | 
-**Payload** | Pointer to **NullableString** | If &#x60;null&#x60;, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage). | [optional] 
-**Url** | **string** | URL of the webhook. | 
+| Name              | Type                                                                         | Description                                                                                                                                                                                                                 | Notes                                                    |
+| ----------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| **CustomHeaders** | Pointer to **NullableString**                                                | If &#x60;null&#x60;, uses no header. If given a JSON payload, these will be headers attached to your webhook.                                                                                                               | [optional]                                               |
+| **EncodeAs**      | Pointer to [**WebhooksIntegrationEncoding**](WebhooksIntegrationEncoding.md) |                                                                                                                                                                                                                             | [optional] [default to WEBHOOKSINTEGRATIONENCODING_JSON] |
+| **Name**          | **string**                                                                   | The name of the webhook. It corresponds with &#x60;&lt;WEBHOOK_NAME&gt;&#x60;. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify).                                          |
+| **Payload**       | Pointer to **NullableString**                                                | If &#x60;null&#x60;, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage). | [optional]                                               |
+| **Url**           | **string**                                                                   | URL of the webhook.                                                                                                                                                                                                         |
 
 ## Methods
 
@@ -58,12 +58,14 @@ HasCustomHeaders returns a boolean if a field has been set.
 
 `func (o *WebhooksIntegration) SetCustomHeadersNil(b bool)`
 
- SetCustomHeadersNil sets the value for CustomHeaders to be an explicit nil
+SetCustomHeadersNil sets the value for CustomHeaders to be an explicit nil
 
 ### UnsetCustomHeaders
+
 `func (o *WebhooksIntegration) UnsetCustomHeaders()`
 
 UnsetCustomHeaders ensures that no value is present for CustomHeaders, not even an explicit nil
+
 ### GetEncodeAs
 
 `func (o *WebhooksIntegration) GetEncodeAs() WebhooksIntegrationEncoding`
@@ -108,7 +110,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetPayload
 
 `func (o *WebhooksIntegration) GetPayload() string`
@@ -138,12 +139,14 @@ HasPayload returns a boolean if a field has been set.
 
 `func (o *WebhooksIntegration) SetPayloadNil(b bool)`
 
- SetPayloadNil sets the value for Payload to be an explicit nil
+SetPayloadNil sets the value for Payload to be an explicit nil
 
 ### UnsetPayload
+
 `func (o *WebhooksIntegration) UnsetPayload()`
 
 UnsetPayload ensures that no value is present for Payload, not even an explicit nil
+
 ### GetUrl
 
 `func (o *WebhooksIntegration) GetUrl() string`
@@ -163,8 +166,4 @@ and a boolean to check if the value has been set.
 
 SetUrl sets Url field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

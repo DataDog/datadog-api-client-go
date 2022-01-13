@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Email** | Pointer to **string** | Email of the creator. | [optional] 
-**Handle** | Pointer to **string** | Handle of the creator. | [optional] 
-**Name** | Pointer to **string** | Name of the creator. | [optional] 
+| Name       | Type                  | Description            | Notes      |
+| ---------- | --------------------- | ---------------------- | ---------- |
+| **Email**  | Pointer to **string** | Email of the creator.  | [optional] |
+| **Handle** | Pointer to **string** | Handle of the creator. | [optional] |
+| **Name**   | Pointer to **string** | Name of the creator.   | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

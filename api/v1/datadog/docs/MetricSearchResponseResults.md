@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Metrics** | Pointer to **[]string** | List of metrics that match the search query. | [optional] 
+| Name        | Type                    | Description                                  | Notes      |
+| ----------- | ----------------------- | -------------------------------------------- | ---------- |
+| **Metrics** | Pointer to **[]string** | List of metrics that match the search query. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetMetrics sets Metrics field to given value.
 
 HasMetrics returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

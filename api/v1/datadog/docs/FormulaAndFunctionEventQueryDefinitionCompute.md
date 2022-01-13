@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |  | 
-**Interval** | Pointer to **int64** | A time interval in milliseconds. | [optional] 
-**Metric** | Pointer to **string** | Measurable attribute to compute. | [optional] 
+| Name            | Type                                                                            | Description                      | Notes      |
+| --------------- | ------------------------------------------------------------------------------- | -------------------------------- | ---------- |
+| **Aggregation** | [**FormulaAndFunctionEventAggregation**](FormulaAndFunctionEventAggregation.md) |                                  |
+| **Interval**    | Pointer to **int64**                                                            | A time interval in milliseconds. | [optional] |
+| **Metric**      | Pointer to **string**                                                           | Measurable attribute to compute. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *FormulaAndFunctionEventQueryDefinitionCompute) SetAggregation(v FormulaAndFunctionEventAggregation)`
 
 SetAggregation sets Aggregation field to given value.
-
 
 ### GetInterval
 
@@ -97,7 +96,4 @@ SetMetric sets Metric field to given value.
 
 HasMetric returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

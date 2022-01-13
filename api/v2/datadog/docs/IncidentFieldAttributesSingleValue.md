@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Type** | Pointer to [**IncidentFieldAttributesSingleValueType**](IncidentFieldAttributesSingleValueType.md) |  | [optional] [default to INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN]
-**Value** | Pointer to **NullableString** | The single value selected for this field. | [optional] 
+| Name      | Type                                                                                               | Description                               | Notes                                                                   |
+| --------- | -------------------------------------------------------------------------------------------------- | ----------------------------------------- | ----------------------------------------------------------------------- |
+| **Type**  | Pointer to [**IncidentFieldAttributesSingleValueType**](IncidentFieldAttributesSingleValueType.md) |                                           | [optional] [default to INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN] |
+| **Value** | Pointer to **NullableString**                                                                      | The single value selected for this field. | [optional]                                                              |
 
 ## Methods
 
@@ -80,13 +80,12 @@ HasValue returns a boolean if a field has been set.
 
 `func (o *IncidentFieldAttributesSingleValue) SetValueNil(b bool)`
 
- SetValueNil sets the value for Value to be an explicit nil
+SetValueNil sets the value for Value to be an explicit nil
 
 ### UnsetValue
+
 `func (o *IncidentFieldAttributesSingleValue) UnsetValue()`
 
 UnsetValue ensures that no value is present for Value, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

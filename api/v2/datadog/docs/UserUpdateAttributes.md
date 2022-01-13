@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Disabled** | Pointer to **bool** | If the user is enabled or disabled. | [optional] 
-**Email** | Pointer to **string** | The email of the user. | [optional] 
-**Name** | Pointer to **string** | The name of the user. | [optional] 
+| Name         | Type                  | Description                         | Notes      |
+| ------------ | --------------------- | ----------------------------------- | ---------- |
+| **Disabled** | Pointer to **bool**   | If the user is enabled or disabled. | [optional] |
+| **Email**    | Pointer to **string** | The email of the user.              | [optional] |
+| **Name**     | Pointer to **string** | The name of the user.               | [optional] |
 
 ## Methods
 
@@ -102,7 +102,4 @@ SetName sets Name field to given value.
 
 HasName returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

@@ -13,12 +13,12 @@ import (
 
 func main() {
 	// there is a valid "notebook" in the system
-	NOTEBOOK_DATA_ID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
+	NotebookDataID, _ := strconv.ParseInt(os.Getenv("NOTEBOOK_DATA_ID"), 10, 64)
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.NotebooksApi.DeleteNotebook(ctx, NOTEBOOK_DATA_ID)
+	r, err := apiClient.NotebooksApi.DeleteNotebook(ctx, NotebookDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.DeleteNotebook`: %v\n", err)

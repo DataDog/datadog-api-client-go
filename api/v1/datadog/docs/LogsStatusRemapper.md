@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**IsEnabled** | Pointer to **bool** | Whether or not the processor is enabled. | [optional] [default to false]
-**Name** | Pointer to **string** | Name of the processor. | [optional] 
-**Sources** | **[]string** | Array of source attributes. | 
-**Type** | [**LogsStatusRemapperType**](LogsStatusRemapperType.md) |  | [default to LOGSSTATUSREMAPPERTYPE_STATUS_REMAPPER]
+| Name          | Type                                                    | Description                              | Notes                                               |
+| ------------- | ------------------------------------------------------- | ---------------------------------------- | --------------------------------------------------- |
+| **IsEnabled** | Pointer to **bool**                                     | Whether or not the processor is enabled. | [optional] [default to false]                       |
+| **Name**      | Pointer to **string**                                   | Name of the processor.                   | [optional]                                          |
+| **Sources**   | **[]string**                                            | Array of source attributes.              |
+| **Type**      | [**LogsStatusRemapperType**](LogsStatusRemapperType.md) |                                          | [default to LOGSSTATUSREMAPPERTYPE_STATUS_REMAPPER] |
 
 ## Methods
 
@@ -97,7 +97,6 @@ and a boolean to check if the value has been set.
 
 SetSources sets Sources field to given value.
 
-
 ### GetType
 
 `func (o *LogsStatusRemapper) GetType() LogsStatusRemapperType`
@@ -117,8 +116,4 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

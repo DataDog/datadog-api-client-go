@@ -2,37 +2,35 @@
 
 All URIs are relative to *https://api.datadoghq.com*
 
-Method | HTTP request | Description
------- | ------------ | ------------
-[**CreateGlobalVariable**](SyntheticsApi.md#CreateGlobalVariable) | **Post** /api/v1/synthetics/variables | Create a global variable
-[**CreatePrivateLocation**](SyntheticsApi.md#CreatePrivateLocation) | **Post** /api/v1/synthetics/private-locations | Create a private location
-[**CreateSyntheticsAPITest**](SyntheticsApi.md#CreateSyntheticsAPITest) | **Post** /api/v1/synthetics/tests/api | Create an API test
-[**CreateSyntheticsBrowserTest**](SyntheticsApi.md#CreateSyntheticsBrowserTest) | **Post** /api/v1/synthetics/tests/browser | Create a browser test
-[**DeleteGlobalVariable**](SyntheticsApi.md#DeleteGlobalVariable) | **Delete** /api/v1/synthetics/variables/{variable_id} | Delete a global variable
-[**DeletePrivateLocation**](SyntheticsApi.md#DeletePrivateLocation) | **Delete** /api/v1/synthetics/private-locations/{location_id} | Delete a private location
-[**DeleteTests**](SyntheticsApi.md#DeleteTests) | **Post** /api/v1/synthetics/tests/delete | Delete tests
-[**EditGlobalVariable**](SyntheticsApi.md#EditGlobalVariable) | **Put** /api/v1/synthetics/variables/{variable_id} | Edit a global variable
-[**GetAPITest**](SyntheticsApi.md#GetAPITest) | **Get** /api/v1/synthetics/tests/api/{public_id} | Get an API test
-[**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults) | **Get** /api/v1/synthetics/tests/{public_id}/results | Get an API test&#39;s latest results summaries
-[**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult) | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id} | Get an API test result
-[**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest) | **Get** /api/v1/synthetics/tests/browser/{public_id} | Get a browser test
-[**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results | Get a browser test&#39;s latest results summaries
-[**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a browser test result
-[**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable) | **Get** /api/v1/synthetics/variables/{variable_id} | Get a global variable
-[**GetPrivateLocation**](SyntheticsApi.md#GetPrivateLocation) | **Get** /api/v1/synthetics/private-locations/{location_id} | Get a private location
-[**GetSyntheticsCIBatch**](SyntheticsApi.md#GetSyntheticsCIBatch) | **Get** /api/v1/synthetics/ci/batch/{batch_id} | Get details of batch
-[**GetTest**](SyntheticsApi.md#GetTest) | **Get** /api/v1/synthetics/tests/{public_id} | Get a test configuration
-[**ListGlobalVariables**](SyntheticsApi.md#ListGlobalVariables) | **Get** /api/v1/synthetics/variables | Get all global variables
-[**ListLocations**](SyntheticsApi.md#ListLocations) | **Get** /api/v1/synthetics/locations | Get all locations (public and private)
-[**ListTests**](SyntheticsApi.md#ListTests) | **Get** /api/v1/synthetics/tests | Get the list of all tests
-[**TriggerCITests**](SyntheticsApi.md#TriggerCITests) | **Post** /api/v1/synthetics/tests/trigger/ci | Trigger tests from CI/CD pipelines
-[**TriggerTests**](SyntheticsApi.md#TriggerTests) | **Post** /api/v1/synthetics/tests/trigger | Trigger some Synthetics tests
-[**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest) | **Put** /api/v1/synthetics/tests/api/{public_id} | Edit an API test
-[**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest) | **Put** /api/v1/synthetics/tests/browser/{public_id} | Edit a browser test
-[**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation) | **Put** /api/v1/synthetics/private-locations/{location_id} | Edit a private location
-[**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus) | **Put** /api/v1/synthetics/tests/{public_id}/status | Pause or start a test
-
-
+| Method                                                                          | HTTP request                                                             | Description                                       |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------ | ------------------------------------------------- |
+| [**CreateGlobalVariable**](SyntheticsApi.md#CreateGlobalVariable)               | **Post** /api/v1/synthetics/variables                                    | Create a global variable                          |
+| [**CreatePrivateLocation**](SyntheticsApi.md#CreatePrivateLocation)             | **Post** /api/v1/synthetics/private-locations                            | Create a private location                         |
+| [**CreateSyntheticsAPITest**](SyntheticsApi.md#CreateSyntheticsAPITest)         | **Post** /api/v1/synthetics/tests/api                                    | Create an API test                                |
+| [**CreateSyntheticsBrowserTest**](SyntheticsApi.md#CreateSyntheticsBrowserTest) | **Post** /api/v1/synthetics/tests/browser                                | Create a browser test                             |
+| [**DeleteGlobalVariable**](SyntheticsApi.md#DeleteGlobalVariable)               | **Delete** /api/v1/synthetics/variables/{variable_id}                    | Delete a global variable                          |
+| [**DeletePrivateLocation**](SyntheticsApi.md#DeletePrivateLocation)             | **Delete** /api/v1/synthetics/private-locations/{location_id}            | Delete a private location                         |
+| [**DeleteTests**](SyntheticsApi.md#DeleteTests)                                 | **Post** /api/v1/synthetics/tests/delete                                 | Delete tests                                      |
+| [**EditGlobalVariable**](SyntheticsApi.md#EditGlobalVariable)                   | **Put** /api/v1/synthetics/variables/{variable_id}                       | Edit a global variable                            |
+| [**GetAPITest**](SyntheticsApi.md#GetAPITest)                                   | **Get** /api/v1/synthetics/tests/api/{public_id}                         | Get an API test                                   |
+| [**GetAPITestLatestResults**](SyntheticsApi.md#GetAPITestLatestResults)         | **Get** /api/v1/synthetics/tests/{public_id}/results                     | Get an API test&#39;s latest results summaries    |
+| [**GetAPITestResult**](SyntheticsApi.md#GetAPITestResult)                       | **Get** /api/v1/synthetics/tests/{public_id}/results/{result_id}         | Get an API test result                            |
+| [**GetBrowserTest**](SyntheticsApi.md#GetBrowserTest)                           | **Get** /api/v1/synthetics/tests/browser/{public_id}                     | Get a browser test                                |
+| [**GetBrowserTestLatestResults**](SyntheticsApi.md#GetBrowserTestLatestResults) | **Get** /api/v1/synthetics/tests/browser/{public_id}/results             | Get a browser test&#39;s latest results summaries |
+| [**GetBrowserTestResult**](SyntheticsApi.md#GetBrowserTestResult)               | **Get** /api/v1/synthetics/tests/browser/{public_id}/results/{result_id} | Get a browser test result                         |
+| [**GetGlobalVariable**](SyntheticsApi.md#GetGlobalVariable)                     | **Get** /api/v1/synthetics/variables/{variable_id}                       | Get a global variable                             |
+| [**GetPrivateLocation**](SyntheticsApi.md#GetPrivateLocation)                   | **Get** /api/v1/synthetics/private-locations/{location_id}               | Get a private location                            |
+| [**GetSyntheticsCIBatch**](SyntheticsApi.md#GetSyntheticsCIBatch)               | **Get** /api/v1/synthetics/ci/batch/{batch_id}                           | Get details of batch                              |
+| [**GetTest**](SyntheticsApi.md#GetTest)                                         | **Get** /api/v1/synthetics/tests/{public_id}                             | Get a test configuration                          |
+| [**ListGlobalVariables**](SyntheticsApi.md#ListGlobalVariables)                 | **Get** /api/v1/synthetics/variables                                     | Get all global variables                          |
+| [**ListLocations**](SyntheticsApi.md#ListLocations)                             | **Get** /api/v1/synthetics/locations                                     | Get all locations (public and private)            |
+| [**ListTests**](SyntheticsApi.md#ListTests)                                     | **Get** /api/v1/synthetics/tests                                         | Get the list of all tests                         |
+| [**TriggerCITests**](SyntheticsApi.md#TriggerCITests)                           | **Post** /api/v1/synthetics/tests/trigger/ci                             | Trigger tests from CI/CD pipelines                |
+| [**TriggerTests**](SyntheticsApi.md#TriggerTests)                               | **Post** /api/v1/synthetics/tests/trigger                                | Trigger Synthetics tests                          |
+| [**UpdateAPITest**](SyntheticsApi.md#UpdateAPITest)                             | **Put** /api/v1/synthetics/tests/api/{public_id}                         | Edit an API test                                  |
+| [**UpdateBrowserTest**](SyntheticsApi.md#UpdateBrowserTest)                     | **Put** /api/v1/synthetics/tests/browser/{public_id}                     | Edit a browser test                               |
+| [**UpdatePrivateLocation**](SyntheticsApi.md#UpdatePrivateLocation)             | **Put** /api/v1/synthetics/private-locations/{location_id}               | Edit a private location                           |
+| [**UpdateTestPauseStatus**](SyntheticsApi.md#UpdateTestPauseStatus)             | **Put** /api/v1/synthetics/tests/{public_id}/status                      | Pause or start a test                             |
 
 ## CreateGlobalVariable
 
@@ -74,17 +72,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to create. | 
-
+| Name     | Type                                                        | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to create.                                   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -102,7 +97,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreatePrivateLocation
 
@@ -144,17 +138,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to create. | 
-
+| Name     | Type                                                          | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to create.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -172,7 +163,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateSyntheticsAPITest
 
@@ -214,17 +204,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | Details of the test to create. | 
-
+| Name     | Type                                          | Description                                                                 | Notes |
+| -------- | --------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | Details of the test to create.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -242,7 +229,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## CreateSyntheticsBrowserTest
 
@@ -284,17 +270,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | Details of the test to create. | 
-
+| Name     | Type                                                  | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | Details of the test to create.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -312,7 +295,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteGlobalVariable
 
@@ -350,21 +332,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**variableId** | **string** | The ID of the global variable. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **variableId** | **string**          | The ID of the global variable.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -378,7 +357,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeletePrivateLocation
 
@@ -416,21 +394,18 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**locationId** | **string** | The ID of the private location. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **locationId** | **string**          | The ID of the private location.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
 
-
 ### Return type
 
- (empty response body)
+(empty response body)
 
 ### Authorization
 
@@ -444,7 +419,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## DeleteTests
 
@@ -486,17 +460,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted. | 
-
+| Name     | Type                                                                | Description                                                                 | Notes |
+| -------- | ------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsDeleteTestsPayload**](SyntheticsDeleteTestsPayload.md) | Public ID list of the Synthetic tests to be deleted.                        |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -514,7 +485,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## EditGlobalVariable
 
@@ -557,18 +527,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**variableId** | **string** | The ID of the global variable. |  |
-**body** | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to update. | 
-
+| Name           | Type                                                        | Description                                                                 | Notes |
+| -------------- | ----------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                         | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **variableId** | **string**                                                  | The ID of the global variable.                                              |       |
+| **body**       | [**SyntheticsGlobalVariable**](SyntheticsGlobalVariable.md) | Details of the global variable to update.                                   |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -586,7 +553,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetAPITest
 
@@ -629,17 +595,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test to get details from. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the test to get details from.                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -657,7 +620,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetAPITestLatestResults
 
@@ -707,24 +669,20 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test for which to search results for. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the test for which to search results for.                  |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetAPITestLatestResultsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**fromTs** | **int64** | Timestamp in milliseconds from which to start querying results. | 
-**toTs** | **int64** | Timestamp in milliseconds up to which to query results. | 
-**probeDc** | **[]string** | Locations for which to query results. | 
+| Name        | Type         | Description                                                     | Notes |
+| ----------- | ------------ | --------------------------------------------------------------- | ----- |
+| **fromTs**  | **int64**    | Timestamp in milliseconds from which to start querying results. |
+| **toTs**    | **int64**    | Timestamp in milliseconds up to which to query results.         |
+| **probeDc** | **[]string** | Locations for which to query results.                           |
 
 ### Return type
 
@@ -742,7 +700,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetAPITestResult
 
@@ -785,18 +742,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the API test to which the target result belongs. |  |
-**resultId** | **string** | The ID of the result to get. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the API test to which the target result belongs.           |       |
+| **resultId** | **string**          | The ID of the result to get.                                                |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -814,7 +768,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetBrowserTest
 
@@ -857,17 +810,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test to get details from. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the test to get details from.                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -885,7 +835,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetBrowserTestLatestResults
 
@@ -935,24 +884,20 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the browser test for which to search results for. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the browser test for which to search results for.          |
 
 ### Optional Parameters
 
-
 Other parameters are passed through a pointer to a GetBrowserTestLatestResultsOptionalParameters struct.
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**fromTs** | **int64** | Timestamp in milliseconds from which to start querying results. | 
-**toTs** | **int64** | Timestamp in milliseconds up to which to query results. | 
-**probeDc** | **[]string** | Locations for which to query results. | 
+| Name        | Type         | Description                                                     | Notes |
+| ----------- | ------------ | --------------------------------------------------------------- | ----- |
+| **fromTs**  | **int64**    | Timestamp in milliseconds from which to start querying results. |
+| **toTs**    | **int64**    | Timestamp in milliseconds up to which to query results.         |
+| **probeDc** | **[]string** | Locations for which to query results.                           |
 
 ### Return type
 
@@ -970,7 +915,6 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetBrowserTestResult
 
@@ -1013,18 +957,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the browser test to which the target result belongs. |  |
-**resultId** | **string** | The ID of the result to get. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the browser test to which the target result belongs.       |       |
+| **resultId** | **string**          | The ID of the result to get.                                                |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1042,7 +983,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetGlobalVariable
 
@@ -1084,17 +1024,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**variableId** | **string** | The ID of the global variable. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **variableId** | **string**          | The ID of the global variable.                                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1112,7 +1049,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetPrivateLocation
 
@@ -1154,17 +1090,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**locationId** | **string** | The ID of the private location. | 
-
+| Name           | Type                | Description                                                                 | Notes |
+| -------------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **locationId** | **string**          | The ID of the private location.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1182,7 +1115,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetSyntheticsCIBatch
 
@@ -1224,17 +1156,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**batchId** | **string** | The ID of the batch. | 
-
+| Name        | Type                | Description                                                                 | Notes |
+| ----------- | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**     | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **batchId** | **string**          | The ID of the batch.                                                        |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1252,7 +1181,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## GetTest
 
@@ -1294,17 +1222,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test to get details from. | 
-
+| Name         | Type                | Description                                                                 | Notes |
+| ------------ | ------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**          | The public ID of the test to get details from.                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1322,7 +1247,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListGlobalVariables
 
@@ -1365,11 +1289,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1387,7 +1309,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListLocations
 
@@ -1431,11 +1352,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1453,7 +1372,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## ListTests
 
@@ -1496,11 +1414,9 @@ func main() {
 
 This endpoint does not need any parameter.
 
-
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1518,7 +1434,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## TriggerCITests
 
@@ -1560,17 +1475,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger. | 
-
+| Name     | Type                                                | Description                                                                 | Notes |
+| -------- | --------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                 | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsCITestBody**](SyntheticsCITestBody.md) | Details of the test to trigger.                                             |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1588,7 +1500,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## TriggerTests
 
@@ -1630,17 +1541,14 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**body** | [**SyntheticsTriggerBody**](SyntheticsTriggerBody.md) | The identifiers of the tests to trigger. | 
-
+| Name     | Type                                                  | Description                                                                 | Notes |
+| -------- | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**  | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **body** | [**SyntheticsTriggerBody**](SyntheticsTriggerBody.md) | The identifiers of the tests to trigger.                                    |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1658,7 +1566,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateAPITest
 
@@ -1701,18 +1608,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test to get details from. |  |
-**body** | [**SyntheticsAPITest**](SyntheticsAPITest.md) | New test details to be saved. | 
-
+| Name         | Type                                          | Description                                                                 | Notes |
+| ------------ | --------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**                                    | The public ID of the test to get details from.                              |       |
+| **body**     | [**SyntheticsAPITest**](SyntheticsAPITest.md) | New test details to be saved.                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1730,7 +1634,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateBrowserTest
 
@@ -1773,18 +1676,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the test to get details from. |  |
-**body** | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | New test details to be saved. | 
-
+| Name         | Type                                                  | Description                                                                 | Notes |
+| ------------ | ----------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                                   | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**                                            | The public ID of the test to get details from.                              |       |
+| **body**     | [**SyntheticsBrowserTest**](SyntheticsBrowserTest.md) | New test details to be saved.                                               |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1802,7 +1702,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdatePrivateLocation
 
@@ -1845,18 +1744,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**locationId** | **string** | The ID of the private location. |  |
-**body** | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to be updated. | 
-
+| Name           | Type                                                          | Description                                                                 | Notes |
+| -------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**        | **context.Context**                                           | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **locationId** | **string**                                                    | The ID of the private location.                                             |       |
+| **body**       | [**SyntheticsPrivateLocation**](SyntheticsPrivateLocation.md) | Details of the private location to be updated.                              |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1874,7 +1770,6 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-
 
 ## UpdateTestPauseStatus
 
@@ -1917,18 +1812,15 @@ func main() {
 
 ### Required Parameters
 
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | ------
-**ctx** | **context.Context** | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
-**publicId** | **string** | The public ID of the Synthetic test to update. |  |
-**body** | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to. | 
-
+| Name         | Type                                                                                    | Description                                                                 | Notes |
+| ------------ | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ----- |
+| **ctx**      | **context.Context**                                                                     | Context for authentication, logging, cancellation, deadlines, tracing, etc. |
+| **publicId** | **string**                                                                              | The public ID of the Synthetic test to update.                              |       |
+| **body**     | [**SyntheticsUpdateTestPauseStatusPayload**](SyntheticsUpdateTestPauseStatusPayload.md) | Status to set the given Synthetic test to.                                  |
 
 ### Optional Parameters
 
 This endpoint does not have optional parameters.
-
 
 ### Return type
 
@@ -1946,4 +1838,3 @@ This endpoint does not have optional parameters.
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)
 [[Back to Model list]](../README.md#documentation-for-models)
 [[Back to README]](../README.md)
-

@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Filter** | Pointer to [**LogsExclusionFilter**](LogsExclusionFilter.md) |  | [optional] 
-**IsEnabled** | Pointer to **bool** | Whether or not the exclusion filter is active. | [optional] 
-**Name** | **string** | Name of the index exclusion filter. | 
+| Name          | Type                                                         | Description                                    | Notes      |
+| ------------- | ------------------------------------------------------------ | ---------------------------------------------- | ---------- |
+| **Filter**    | Pointer to [**LogsExclusionFilter**](LogsExclusionFilter.md) |                                                | [optional] |
+| **IsEnabled** | Pointer to **bool**                                          | Whether or not the exclusion filter is active. | [optional] |
+| **Name**      | **string**                                                   | Name of the index exclusion filter.            |
 
 ## Methods
 
@@ -96,8 +96,4 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

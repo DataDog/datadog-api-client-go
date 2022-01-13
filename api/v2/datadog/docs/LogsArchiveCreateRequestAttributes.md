@@ -2,13 +2,13 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Destination** | [**LogsArchiveCreateRequestDestination**](LogsArchiveCreateRequestDestination.md) |  | 
-**IncludeTags** | Pointer to **bool** | To store the tags in the archive, set the value \&quot;true\&quot;. If it is set to \&quot;false\&quot;, the tags will be deleted when the logs are sent to the archive. | [optional] [default to false]
-**Name** | **string** | The archive name. | 
-**Query** | **string** | The archive query/filter. Logs matching this query are included in the archive. | 
-**RehydrationTags** | Pointer to **[]string** | An array of tags to add to rehydrated logs from an archive. | [optional] 
+| Name                | Type                                                                              | Description                                                                                                                                                              | Notes                         |
+| ------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| **Destination**     | [**LogsArchiveCreateRequestDestination**](LogsArchiveCreateRequestDestination.md) |                                                                                                                                                                          |
+| **IncludeTags**     | Pointer to **bool**                                                               | To store the tags in the archive, set the value \&quot;true\&quot;. If it is set to \&quot;false\&quot;, the tags will be deleted when the logs are sent to the archive. | [optional] [default to false] |
+| **Name**            | **string**                                                                        | The archive name.                                                                                                                                                        |
+| **Query**           | **string**                                                                        | The archive query/filter. Logs matching this query are included in the archive.                                                                                          |
+| **RehydrationTags** | Pointer to **[]string**                                                           | An array of tags to add to rehydrated logs from an archive.                                                                                                              | [optional]                    |
 
 ## Methods
 
@@ -47,7 +47,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsArchiveCreateRequestAttributes) SetDestination(v LogsArchiveCreateRequestDestination)`
 
 SetDestination sets Destination field to given value.
-
 
 ### GetIncludeTags
 
@@ -93,7 +92,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetQuery
 
 `func (o *LogsArchiveCreateRequestAttributes) GetQuery() string`
@@ -112,7 +110,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsArchiveCreateRequestAttributes) SetQuery(v string)`
 
 SetQuery sets Query field to given value.
-
 
 ### GetRehydrationTags
 
@@ -139,7 +136,4 @@ SetRehydrationTags sets RehydrationTags field to given value.
 
 HasRehydrationTags returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

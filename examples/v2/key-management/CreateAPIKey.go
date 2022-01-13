@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.APIKeyCreateRequest{
 		Data: datadog.APIKeyCreateData{
-			Type: datadog.APIKeysType("api_keys"),
+			Type: datadog.APIKEYSTYPE_API_KEYS,
 			Attributes: datadog.APIKeyCreateAttributes{
 				Name: "Example-Create_an_API_key_returns_Created_response",
 			},

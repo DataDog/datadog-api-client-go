@@ -2,14 +2,14 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Critical** | Pointer to **float64** | The monitor &#x60;CRITICAL&#x60; threshold. | [optional] 
-**CriticalRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;CRITICAL&#x60; recovery threshold. | [optional] 
-**Ok** | Pointer to **NullableFloat64** | The monitor &#x60;OK&#x60; threshold. | [optional] 
-**Unknown** | Pointer to **NullableFloat64** | The monitor UNKNOWN threshold. | [optional] 
-**Warning** | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; threshold. | [optional] 
-**WarningRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; recovery threshold. | [optional] 
+| Name                 | Type                           | Description                                          | Notes      |
+| -------------------- | ------------------------------ | ---------------------------------------------------- | ---------- |
+| **Critical**         | Pointer to **float64**         | The monitor &#x60;CRITICAL&#x60; threshold.          | [optional] |
+| **CriticalRecovery** | Pointer to **NullableFloat64** | The monitor &#x60;CRITICAL&#x60; recovery threshold. | [optional] |
+| **Ok**               | Pointer to **NullableFloat64** | The monitor &#x60;OK&#x60; threshold.                | [optional] |
+| **Unknown**          | Pointer to **NullableFloat64** | The monitor UNKNOWN threshold.                       | [optional] |
+| **Warning**          | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; threshold.           | [optional] |
+| **WarningRecovery**  | Pointer to **NullableFloat64** | The monitor &#x60;WARNING&#x60; recovery threshold.  | [optional] |
 
 ## Methods
 
@@ -84,12 +84,14 @@ HasCriticalRecovery returns a boolean if a field has been set.
 
 `func (o *MonitorThresholds) SetCriticalRecoveryNil(b bool)`
 
- SetCriticalRecoveryNil sets the value for CriticalRecovery to be an explicit nil
+SetCriticalRecoveryNil sets the value for CriticalRecovery to be an explicit nil
 
 ### UnsetCriticalRecovery
+
 `func (o *MonitorThresholds) UnsetCriticalRecovery()`
 
 UnsetCriticalRecovery ensures that no value is present for CriticalRecovery, not even an explicit nil
+
 ### GetOk
 
 `func (o *MonitorThresholds) GetOk() float64`
@@ -119,12 +121,14 @@ HasOk returns a boolean if a field has been set.
 
 `func (o *MonitorThresholds) SetOkNil(b bool)`
 
- SetOkNil sets the value for Ok to be an explicit nil
+SetOkNil sets the value for Ok to be an explicit nil
 
 ### UnsetOk
+
 `func (o *MonitorThresholds) UnsetOk()`
 
 UnsetOk ensures that no value is present for Ok, not even an explicit nil
+
 ### GetUnknown
 
 `func (o *MonitorThresholds) GetUnknown() float64`
@@ -154,12 +158,14 @@ HasUnknown returns a boolean if a field has been set.
 
 `func (o *MonitorThresholds) SetUnknownNil(b bool)`
 
- SetUnknownNil sets the value for Unknown to be an explicit nil
+SetUnknownNil sets the value for Unknown to be an explicit nil
 
 ### UnsetUnknown
+
 `func (o *MonitorThresholds) UnsetUnknown()`
 
 UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil
+
 ### GetWarning
 
 `func (o *MonitorThresholds) GetWarning() float64`
@@ -189,12 +195,14 @@ HasWarning returns a boolean if a field has been set.
 
 `func (o *MonitorThresholds) SetWarningNil(b bool)`
 
- SetWarningNil sets the value for Warning to be an explicit nil
+SetWarningNil sets the value for Warning to be an explicit nil
 
 ### UnsetWarning
+
 `func (o *MonitorThresholds) UnsetWarning()`
 
 UnsetWarning ensures that no value is present for Warning, not even an explicit nil
+
 ### GetWarningRecovery
 
 `func (o *MonitorThresholds) GetWarningRecovery() float64`
@@ -224,13 +232,12 @@ HasWarningRecovery returns a boolean if a field has been set.
 
 `func (o *MonitorThresholds) SetWarningRecoveryNil(b bool)`
 
- SetWarningRecoveryNil sets the value for WarningRecovery to be an explicit nil
+SetWarningRecoveryNil sets the value for WarningRecovery to be an explicit nil
 
 ### UnsetWarningRecovery
+
 `func (o *MonitorThresholds) UnsetWarningRecovery()`
 
 UnsetWarningRecovery ensures that no value is present for WarningRecovery, not even an explicit nil
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

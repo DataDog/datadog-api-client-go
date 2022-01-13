@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Enabled** | Pointer to **bool** | Whether or not SAML is enabled for this organization. | [optional] 
+| Name        | Type                | Description                                           | Notes      |
+| ----------- | ------------------- | ----------------------------------------------------- | ---------- |
+| **Enabled** | Pointer to **bool** | Whether or not SAML is enabled for this organization. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetEnabled sets Enabled field to given value.
 
 HasEnabled returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

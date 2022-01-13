@@ -2,11 +2,11 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Compute** | [**LogsMetricCompute**](LogsMetricCompute.md) |  | 
-**Filter** | Pointer to [**LogsMetricFilter**](LogsMetricFilter.md) |  | [optional] 
-**GroupBy** | Pointer to [**[]LogsMetricGroupBy**](LogsMetricGroupBy.md) | The rules for the group by. | [optional] 
+| Name        | Type                                                       | Description                 | Notes      |
+| ----------- | ---------------------------------------------------------- | --------------------------- | ---------- |
+| **Compute** | [**LogsMetricCompute**](LogsMetricCompute.md)              |                             |
+| **Filter**  | Pointer to [**LogsMetricFilter**](LogsMetricFilter.md)     |                             | [optional] |
+| **GroupBy** | Pointer to [**[]LogsMetricGroupBy**](LogsMetricGroupBy.md) | The rules for the group by. | [optional] |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 `func (o *LogsMetricCreateAttributes) SetCompute(v LogsMetricCompute)`
 
 SetCompute sets Compute field to given value.
-
 
 ### GetFilter
 
@@ -97,7 +96,4 @@ SetGroupBy sets GroupBy field to given value.
 
 HasGroupBy returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

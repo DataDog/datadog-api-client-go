@@ -2,9 +2,9 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Content** | Pointer to **string** | The Markdown content of the cell. | [optional] 
+| Name        | Type                  | Description                       | Notes      |
+| ----------- | --------------------- | --------------------------------- | ---------- |
+| **Content** | Pointer to **string** | The Markdown content of the cell. | [optional] |
 
 ## Methods
 
@@ -50,7 +50,4 @@ SetContent sets Content field to given value.
 
 HasContent returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

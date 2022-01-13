@@ -16,17 +16,17 @@ func main() {
 		Data: datadog.SecurityFilterCreateData{
 			Attributes: datadog.SecurityFilterCreateAttributes{
 				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{
-					datadog.SecurityFilterExclusionFilter{
+					{
 						Name:  "Exclude staging",
 						Query: "source:staging",
 					},
 				},
-				FilteredDataType: datadog.SecurityFilterFilteredDataType("logs"),
+				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS,
 				IsEnabled:        true,
 				Name:             "Example-Create_a_security_filter_returns_OK_response",
 				Query:            "service:ExampleCreateasecurityfilterreturnsOKresponse",
 			},
-			Type: datadog.SecurityFilterType("security_filters"),
+			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

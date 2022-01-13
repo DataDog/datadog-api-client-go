@@ -2,12 +2,12 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Alias** | Pointer to **string** | A user-assigned alias for the column. | [optional] 
-**CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |  | [optional] 
-**Name** | **string** | Column name. | 
-**Order** | Pointer to [**WidgetSort**](WidgetSort.md) |  | [optional] 
+| Name                | Type                                                                       | Description                           | Notes      |
+| ------------------- | -------------------------------------------------------------------------- | ------------------------------------- | ---------- |
+| **Alias**           | Pointer to **string**                                                      | A user-assigned alias for the column. | [optional] |
+| **CellDisplayMode** | Pointer to [**TableWidgetCellDisplayMode**](TableWidgetCellDisplayMode.md) |                                       | [optional] |
+| **Name**            | **string**                                                                 | Column name.                          |
+| **Order**           | Pointer to [**WidgetSort**](WidgetSort.md)                                 |                                       | [optional] |
 
 ## Methods
 
@@ -97,7 +97,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-
 ### GetOrder
 
 `func (o *ApmStatsQueryColumnType) GetOrder() WidgetSort`
@@ -123,7 +122,4 @@ SetOrder sets Order field to given value.
 
 HasOrder returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

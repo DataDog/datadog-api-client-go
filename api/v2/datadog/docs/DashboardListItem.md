@@ -2,20 +2,20 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**Author** | Pointer to [**Creator**](Creator.md) |  | [optional] 
-**Created** | Pointer to **time.Time** | Date of creation of the dashboard. | [optional] [readonly] 
-**Icon** | Pointer to **string** | URL to the icon of the dashboard. | [optional] [readonly] 
-**Id** | **string** | ID of the dashboard. | 
-**IsFavorite** | Pointer to **bool** | Whether or not the dashboard is in the favorites. | [optional] [readonly] 
-**IsReadOnly** | Pointer to **bool** | Whether or not the dashboard is read only. | [optional] [readonly] 
-**IsShared** | Pointer to **bool** | Whether the dashboard is publicly shared or not. | [optional] [readonly] 
-**Modified** | Pointer to **time.Time** | Date of last edition of the dashboard. | [optional] [readonly] 
-**Popularity** | Pointer to **int32** | Popularity of the dashboard. | [optional] [readonly] 
-**Title** | Pointer to **string** | Title of the dashboard. | [optional] [readonly] 
-**Type** | [**DashboardType**](DashboardType.md) |  | 
-**Url** | Pointer to **string** | URL path to the dashboard. | [optional] [readonly] 
+| Name           | Type                                  | Description                                       | Notes                 |
+| -------------- | ------------------------------------- | ------------------------------------------------- | --------------------- |
+| **Author**     | Pointer to [**Creator**](Creator.md)  |                                                   | [optional]            |
+| **Created**    | Pointer to **time.Time**              | Date of creation of the dashboard.                | [optional] [readonly] |
+| **Icon**       | Pointer to **string**                 | URL to the icon of the dashboard.                 | [optional] [readonly] |
+| **Id**         | **string**                            | ID of the dashboard.                              |
+| **IsFavorite** | Pointer to **bool**                   | Whether or not the dashboard is in the favorites. | [optional] [readonly] |
+| **IsReadOnly** | Pointer to **bool**                   | Whether or not the dashboard is read only.        | [optional] [readonly] |
+| **IsShared**   | Pointer to **bool**                   | Whether the dashboard is publicly shared or not.  | [optional] [readonly] |
+| **Modified**   | Pointer to **time.Time**              | Date of last edition of the dashboard.            | [optional] [readonly] |
+| **Popularity** | Pointer to **int32**                  | Popularity of the dashboard.                      | [optional] [readonly] |
+| **Title**      | Pointer to **string**                 | Title of the dashboard.                           | [optional] [readonly] |
+| **Type**       | [**DashboardType**](DashboardType.md) |                                                   |
+| **Url**        | Pointer to **string**                 | URL path to the dashboard.                        | [optional] [readonly] |
 
 ## Methods
 
@@ -129,7 +129,6 @@ and a boolean to check if the value has been set.
 `func (o *DashboardListItem) SetId(v string)`
 
 SetId sets Id field to given value.
-
 
 ### GetIsFavorite
 
@@ -300,7 +299,6 @@ and a boolean to check if the value has been set.
 
 SetType sets Type field to given value.
 
-
 ### GetUrl
 
 `func (o *DashboardListItem) GetUrl() string`
@@ -326,7 +324,4 @@ SetUrl sets Url field to given value.
 
 HasUrl returns a boolean if a field has been set.
 
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

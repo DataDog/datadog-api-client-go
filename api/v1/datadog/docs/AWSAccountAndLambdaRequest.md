@@ -2,10 +2,10 @@
 
 ## Properties
 
-Name | Type | Description | Notes
----- | ---- | ----------- | ------
-**AccountId** | **string** | Your AWS Account ID without dashes. | 
-**LambdaArn** | **string** | ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup. | 
+| Name          | Type       | Description                                                                                    | Notes |
+| ------------- | ---------- | ---------------------------------------------------------------------------------------------- | ----- |
+| **AccountId** | **string** | Your AWS Account ID without dashes.                                                            |
+| **LambdaArn** | **string** | ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup. |
 
 ## Methods
 
@@ -45,7 +45,6 @@ and a boolean to check if the value has been set.
 
 SetAccountId sets AccountId field to given value.
 
-
 ### GetLambdaArn
 
 `func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string`
@@ -65,8 +64,4 @@ and a boolean to check if the value has been set.
 
 SetLambdaArn sets LambdaArn field to given value.
 
-
-
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
-
-

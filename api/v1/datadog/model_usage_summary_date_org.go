@@ -104,7 +104,9 @@ type UsageSummaryDateOrg struct {
 	ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
 	// The organization public id.
 	PublicId *string `json:"public_id,omitempty"`
-	// Shows the sum of all browser RUM Sessions over all hours in the current date for the given org.
+	// Shows the sum of all mobile sessions and all browser lite and legacy sessions over all hours in the current date for the given org.
+	RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
+	// Shows the sum of all browser RUM Lite Sessions over all hours in the current date for the given org.
 	RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
 	// Shows the sum of RUM Sessions (browser and mobile) over all hours in the current date for the given org.
 	RumTotalSessionCountSum *int64 `json:"rum_total_session_count_sum,omitempty"`
@@ -1585,6 +1587,38 @@ func (o *UsageSummaryDateOrg) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+// GetRumBrowserAndMobileSessionCount returns the RumBrowserAndMobileSessionCount field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetRumBrowserAndMobileSessionCount() int64 {
+	if o == nil || o.RumBrowserAndMobileSessionCount == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RumBrowserAndMobileSessionCount
+}
+
+// GetRumBrowserAndMobileSessionCountOk returns a tuple with the RumBrowserAndMobileSessionCount field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetRumBrowserAndMobileSessionCountOk() (*int64, bool) {
+	if o == nil || o.RumBrowserAndMobileSessionCount == nil {
+		return nil, false
+	}
+	return o.RumBrowserAndMobileSessionCount, true
+}
+
+// HasRumBrowserAndMobileSessionCount returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasRumBrowserAndMobileSessionCount() bool {
+	if o != nil && o.RumBrowserAndMobileSessionCount != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumBrowserAndMobileSessionCount gets a reference to the given int64 and assigns it to the RumBrowserAndMobileSessionCount field.
+func (o *UsageSummaryDateOrg) SetRumBrowserAndMobileSessionCount(v int64) {
+	o.RumBrowserAndMobileSessionCount = &v
+}
+
 // GetRumSessionCountSum returns the RumSessionCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetRumSessionCountSum() int64 {
 	if o == nil || o.RumSessionCountSum == nil {
@@ -2045,6 +2079,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
+	if o.RumBrowserAndMobileSessionCount != nil {
+		toSerialize["rum_browser_and_mobile_session_count"] = o.RumBrowserAndMobileSessionCount
+	}
 	if o.RumSessionCountSum != nil {
 		toSerialize["rum_session_count_sum"] = o.RumSessionCountSum
 	}
@@ -2126,6 +2163,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		OpentelemetryHostTop99p                 *int64  `json:"opentelemetry_host_top99p,omitempty"`
 		ProfilingHostTop99p                     *int64  `json:"profiling_host_top99p,omitempty"`
 		PublicId                                *string `json:"public_id,omitempty"`
+		RumBrowserAndMobileSessionCount         *int64  `json:"rum_browser_and_mobile_session_count,omitempty"`
 		RumSessionCountSum                      *int64  `json:"rum_session_count_sum,omitempty"`
 		RumTotalSessionCountSum                 *int64  `json:"rum_total_session_count_sum,omitempty"`
 		RumUnitsSum                             *int64  `json:"rum_units_sum,omitempty"`
@@ -2191,6 +2229,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
 	o.PublicId = all.PublicId
+	o.RumBrowserAndMobileSessionCount = all.RumBrowserAndMobileSessionCount
 	o.RumSessionCountSum = all.RumSessionCountSum
 	o.RumTotalSessionCountSum = all.RumTotalSessionCountSum
 	o.RumUnitsSum = all.RumUnitsSum
