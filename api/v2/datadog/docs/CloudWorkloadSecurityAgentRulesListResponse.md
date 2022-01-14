@@ -2,9 +2,9 @@
 
 ## Properties
 
-| Name     | Type                                                                                                     | Description                    | Notes      |
-| -------- | -------------------------------------------------------------------------------------------------------- | ------------------------------ | ---------- |
-| **Data** | Pointer to [**[]CloudWorkloadSecurityAgentRuleAttributes**](CloudWorkloadSecurityAgentRuleAttributes.md) | A list of Agent rules objects. | [optional] |
+| Name     | Type                                                                                         | Description                    | Notes      |
+| -------- | -------------------------------------------------------------------------------------------- | ------------------------------ | ---------- |
+| **Data** | Pointer to [**[]CloudWorkloadSecurityAgentRuleData**](CloudWorkloadSecurityAgentRuleData.md) | A list of Agent rules objects. | [optional] |
 
 ## Methods
 
@@ -27,20 +27,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetData
 
-`func (o *CloudWorkloadSecurityAgentRulesListResponse) GetData() []CloudWorkloadSecurityAgentRuleAttributes`
+`func (o *CloudWorkloadSecurityAgentRulesListResponse) GetData() []CloudWorkloadSecurityAgentRuleData`
 
 GetData returns the Data field if non-nil, zero value otherwise.
 
 ### GetDataOk
 
-`func (o *CloudWorkloadSecurityAgentRulesListResponse) GetDataOk() (*[]CloudWorkloadSecurityAgentRuleAttributes, bool)`
+`func (o *CloudWorkloadSecurityAgentRulesListResponse) GetDataOk() (*[]CloudWorkloadSecurityAgentRuleData, bool)`
 
 GetDataOk returns a tuple with the Data field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetData
 
-`func (o *CloudWorkloadSecurityAgentRulesListResponse) SetData(v []CloudWorkloadSecurityAgentRuleAttributes)`
+`func (o *CloudWorkloadSecurityAgentRulesListResponse) SetData(v []CloudWorkloadSecurityAgentRuleData)`
 
 SetData sets Data field to given value.
 
