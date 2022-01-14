@@ -408,10 +408,11 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 			if strings.Compare(vv, vq[kv]) != 0 {
 				vvnow, verr := time.Parse(time.RFC3339Nano, vv)
 				vqnow, vverr := time.Parse(time.RFC3339Nano, vq[kv])
-				if verr == nil && vverr == nil && vvnow.Unix() != vqnow.Unix() {
-					log.Printf("query param %s does not match %s stored value %s", k, vv, vq[kv])
-					return false
+				if verr == nil && vverr == nil && vvnow.Unix() == vqnow.Unix() {
+					continue
 				}
+				log.Printf("query param %s does not match %s stored value %s", k, vv, vq[kv])
+				return false
 			}
 		}
 	}
