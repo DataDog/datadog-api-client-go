@@ -367,6 +367,30 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	if err != nil {
 		return false
 	}
+
+	for k, v := range i.Headers {
+		if strings.Compare(k, "Content-Type") != 0 {
+			// FIXME enable when Accept headers are correctly generated
+			// if strings.Compare(k, "Accept") != 0 && strings.Compare(k, "Content-Type") != 0 {
+			continue
+		}
+
+		if strings.Compare(k, "Content-Type") == 0 && strings.HasPrefix(i.Headers.Get(k), "multipart/form-data") {
+			continue
+		}
+
+		rv := r.Header.Values(k)
+		if len(v) != len(rv) {
+			return false
+		}
+		for kv, vv := range rv {
+			if strings.Compare(vv, v[kv]) != 0 {
+				log.Printf("header %s %s does not match %s on possition %d", k, v, rv, kv)
+				return false
+			}
+		}
+	}
+
 	if cassetteURL.Path != r.URL.Path {
 		return false
 	}
@@ -374,8 +398,23 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 	q := r.URL.Query()
 	q.Del("api_key")
 	q.Del("application_key")
-	if cassetteURL.Query().Encode() != q.Encode() {
-		return false
+	for k, v := range cassetteURL.Query() {
+		vq, ok := q[k]
+		if !ok {
+			log.Printf("query param %s is missing", k)
+			return false
+		}
+		for kv, vv := range v {
+			if strings.Compare(vv, vq[kv]) != 0 {
+				vvnow, verr := time.Parse(time.RFC3339Nano, vv)
+				vqnow, vverr := time.Parse(time.RFC3339Nano, vq[kv])
+				if verr == nil && vverr == nil && vvnow.Unix() == vqnow.Unix() {
+					continue
+				}
+				log.Printf("query param %s does not match %s stored value %s", k, vv, vq[kv])
+				return false
+			}
+		}
 	}
 
 	// Request does not contain body (e.g. `GET`)

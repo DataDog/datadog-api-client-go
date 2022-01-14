@@ -57,10 +57,9 @@ func relativeTime(iso bool) func(map[string]interface{}, string) string {
 				}
 			}
 			if iso {
-				return ret.Format(time.RFC3339)
-			} else {
-				return strconv.FormatInt(ret.Unix(), 10)
+				return ret.Format("2006-01-02T15:04:05.000Z07:00")
 			}
+			return strconv.FormatInt(ret.Unix(), 10)
 		}
 		return ""
 	}
@@ -129,7 +128,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 }
 
 var matchFirstUpper = regexp.MustCompile("(.)([A-Z][a-z]+)")
-var matchAllUpper = regexp.MustCompile("([a-z0-9])([A-Z])")
+var matchAllUpper = regexp.MustCompile("([a-z0-9])([A-Z][a-z0-9]+)")
 
 // CamelToSnakeCase converts CamelCase to snake_case.
 func CamelToSnakeCase(camel string) string {
