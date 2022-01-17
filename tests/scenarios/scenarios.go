@@ -238,8 +238,8 @@ func GetResponseStatusCode(resp []reflect.Value) (int, error) {
 }
 
 // SetCtx sets Go context in BDD context.
-func SetCtx(ctx gobdd.Context, value context.Context) {
-	ctx.Set(ctxKey{}, value)
+func SetCtx(ctx context.Context, bddCTX gobdd.Context) {
+	bddCTX.Set(ctxKey{}, ctx)
 }
 
 // SetFixtureData sets the fixture data in BDD context
