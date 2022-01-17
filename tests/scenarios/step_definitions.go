@@ -14,6 +14,7 @@ import (
 	"os"
 	"reflect"
 	"strconv"
+	"strings"
 
 	v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -225,6 +226,15 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 			return
 		}
 		code := resp.StatusCode
+
+		contentType := resp.Header.Get("Content-Type")
+		if code < 300 && !strings.Contains(contentType, "application/json") && !strings.Contains(contentType, "text/json") {
+			// We don't care about non-JSON responses
+			t.Logf("Response is not JSON: %s", contentType)
+			ctx.Set(jsonResponseKey{}, result[0])
+			return
+		}
+
 		err := result[len(result)-1].Interface()
 		if code < 300 && err != nil {
 			t.Errorf("unexpected error: %v", err)
@@ -279,7 +289,7 @@ func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
 	responseValue, err := lookup.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
-		t.Errorf("could not lookup response value %s in %+v: %v", responsePath, GetJSONResponse(ctx), err)
+		t.Errorf("could not lookup response value %s in %+v: %v", CamelToSnakeCase(responsePath), GetJSONResponse(ctx), err)
 	}
 
 	templatedValue := Templated(t, GetData(ctx), value)
