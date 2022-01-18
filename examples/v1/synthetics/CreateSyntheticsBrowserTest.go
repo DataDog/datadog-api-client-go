@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.SyntheticsBrowserTest{
-		Config: &datadog.SyntheticsBrowserTestConfig{
+		Config: datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				{
@@ -29,12 +29,12 @@ func main() {
 			},
 			SetCookie: datadog.PtrString("name:test"),
 		},
-		Locations: &[]string{
+		Locations: []string{
 			"aws:us-east-2",
 		},
-		Message: "Test message",
-		Name:    datadog.PtrString("Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response"),
-		Options: &datadog.SyntheticsTestOptions{
+		Message: datadog.PtrString("Test message"),
+		Name:    "Example-Create_a_browser_test_returns_OK_Returns_the_created_test_details_response",
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
 			DeviceIds: &[]datadog.SyntheticsDeviceID{
@@ -54,7 +54,7 @@ func main() {
 		Tags: &[]string{
 			"testing:browser",
 		},
-		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER.Ptr(),
+		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

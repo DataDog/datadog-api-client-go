@@ -2,22 +2,22 @@
 
 ## Properties
 
-| Name                | Type                                                                       | Description                                                                                                                                           | Notes                      |
-| ------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| **AllowFailure**    | Pointer to **bool**                                                        | Determines whether or not to continue with test if this step fails.                                                                                   | [optional]                 |
-| **Assertions**      | Pointer to [**[]SyntheticsAssertion**](SyntheticsAssertion.md)             | Array of assertions used for the test.                                                                                                                | [optional] [default to []] |
-| **ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md)   | Array of values to parse and save as variables from the response.                                                                                     | [optional]                 |
-| **IsCritical**      | Pointer to **bool**                                                        | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional]                 |
-| **Name**            | Pointer to **string**                                                      | The name of the step.                                                                                                                                 | [optional]                 |
-| **Request**         | Pointer to [**SyntheticsTestRequest**](SyntheticsTestRequest.md)           |                                                                                                                                                       | [optional]                 |
-| **Retry**           | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |                                                                                                                                                       | [optional]                 |
-| **Subtype**         | Pointer to [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md)     |                                                                                                                                                       | [optional]                 |
+| Name                | Type                                                                       | Description                                                                                                                                           | Notes           |
+| ------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| **AllowFailure**    | Pointer to **bool**                                                        | Determines whether or not to continue with test if this step fails.                                                                                   | [optional]      |
+| **Assertions**      | [**[]SyntheticsAssertion**](SyntheticsAssertion.md)                        | Array of assertions used for the test.                                                                                                                | [default to []] |
+| **ExtractedValues** | Pointer to [**[]SyntheticsParsingOptions**](SyntheticsParsingOptions.md)   | Array of values to parse and save as variables from the response.                                                                                     | [optional]      |
+| **IsCritical**      | Pointer to **bool**                                                        | Determines whether or not to consider the entire test as failed if this step fails. Can be used only if &#x60;allowFailure&#x60; is &#x60;true&#x60;. | [optional]      |
+| **Name**            | **string**                                                                 | The name of the step.                                                                                                                                 |
+| **Request**         | [**SyntheticsTestRequest**](SyntheticsTestRequest.md)                      |                                                                                                                                                       |
+| **Retry**           | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md) |                                                                                                                                                       | [optional]      |
+| **Subtype**         | [**SyntheticsAPIStepSubtype**](SyntheticsAPIStepSubtype.md)                |                                                                                                                                                       |
 
 ## Methods
 
 ### NewSyntheticsAPIStep
 
-`func NewSyntheticsAPIStep() *SyntheticsAPIStep`
+`func NewSyntheticsAPIStep(assertions []SyntheticsAssertion, name string, request SyntheticsTestRequest, subtype SyntheticsAPIStepSubtype) *SyntheticsAPIStep`
 
 NewSyntheticsAPIStep instantiates a new SyntheticsAPIStep object.
 This constructor will assign default values to properties that have it defined,
@@ -75,12 +75,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPIStep) SetAssertions(v []SyntheticsAssertion)`
 
 SetAssertions sets Assertions field to given value.
-
-### HasAssertions
-
-`func (o *SyntheticsAPIStep) HasAssertions() bool`
-
-HasAssertions returns a boolean if a field has been set.
 
 ### GetExtractedValues
 
@@ -151,12 +145,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *SyntheticsAPIStep) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
 ### GetRequest
 
 `func (o *SyntheticsAPIStep) GetRequest() SyntheticsTestRequest`
@@ -175,12 +163,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPIStep) SetRequest(v SyntheticsTestRequest)`
 
 SetRequest sets Request field to given value.
-
-### HasRequest
-
-`func (o *SyntheticsAPIStep) HasRequest() bool`
-
-HasRequest returns a boolean if a field has been set.
 
 ### GetRetry
 
@@ -225,11 +207,5 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPIStep) SetSubtype(v SyntheticsAPIStepSubtype)`
 
 SetSubtype sets Subtype field to given value.
-
-### HasSubtype
-
-`func (o *SyntheticsAPIStep) HasSubtype() bool`
-
-HasSubtype returns a boolean if a field has been set.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

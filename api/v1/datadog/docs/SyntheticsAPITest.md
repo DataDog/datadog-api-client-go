@@ -2,25 +2,25 @@
 
 ## Properties
 
-| Name          | Type                                                                           | Description                                    | Notes                                             |
-| ------------- | ------------------------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------- |
-| **Config**    | Pointer to [**SyntheticsAPITestConfig**](SyntheticsAPITestConfig.md)           |                                                | [optional]                                        |
-| **Locations** | Pointer to **[]string**                                                        | Array of locations used to run the test.       | [optional]                                        |
-| **Message**   | Pointer to **string**                                                          | Notification message associated with the test. | [optional]                                        |
-| **MonitorId** | Pointer to **int64**                                                           | The associated monitor ID.                     | [optional] [readonly]                             |
-| **Name**      | Pointer to **string**                                                          | Name of the test.                              | [optional]                                        |
-| **Options**   | Pointer to [**SyntheticsTestOptions**](SyntheticsTestOptions.md)               |                                                | [optional]                                        |
-| **PublicId**  | Pointer to **string**                                                          | The public ID for the test.                    | [optional] [readonly]                             |
-| **Status**    | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md)       |                                                | [optional]                                        |
-| **Subtype**   | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |                                                | [optional]                                        |
-| **Tags**      | Pointer to **[]string**                                                        | Array of tags attached to the test.            | [optional]                                        |
-| **Type**      | Pointer to [**SyntheticsAPITestType**](SyntheticsAPITestType.md)               |                                                | [optional] [default to SYNTHETICSAPITESTTYPE_API] |
+| Name          | Type                                                                           | Description                                    | Notes                                  |
+| ------------- | ------------------------------------------------------------------------------ | ---------------------------------------------- | -------------------------------------- |
+| **Config**    | [**SyntheticsAPITestConfig**](SyntheticsAPITestConfig.md)                      |                                                |
+| **Locations** | **[]string**                                                                   | Array of locations used to run the test.       |
+| **Message**   | Pointer to **string**                                                          | Notification message associated with the test. | [optional]                             |
+| **MonitorId** | Pointer to **int64**                                                           | The associated monitor ID.                     | [optional] [readonly]                  |
+| **Name**      | **string**                                                                     | Name of the test.                              |
+| **Options**   | [**SyntheticsTestOptions**](SyntheticsTestOptions.md)                          |                                                |
+| **PublicId**  | Pointer to **string**                                                          | The public ID for the test.                    | [optional] [readonly]                  |
+| **Status**    | Pointer to [**SyntheticsTestPauseStatus**](SyntheticsTestPauseStatus.md)       |                                                | [optional]                             |
+| **Subtype**   | Pointer to [**SyntheticsTestDetailsSubType**](SyntheticsTestDetailsSubType.md) |                                                | [optional]                             |
+| **Tags**      | Pointer to **[]string**                                                        | Array of tags attached to the test.            | [optional]                             |
+| **Type**      | [**SyntheticsAPITestType**](SyntheticsAPITestType.md)                          |                                                | [default to SYNTHETICSAPITESTTYPE_API] |
 
 ## Methods
 
 ### NewSyntheticsAPITest
 
-`func NewSyntheticsAPITest() *SyntheticsAPITest`
+`func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, name string, options SyntheticsTestOptions, type_ SyntheticsAPITestType) *SyntheticsAPITest`
 
 NewSyntheticsAPITest instantiates a new SyntheticsAPITest object.
 This constructor will assign default values to properties that have it defined,
@@ -54,12 +54,6 @@ and a boolean to check if the value has been set.
 
 SetConfig sets Config field to given value.
 
-### HasConfig
-
-`func (o *SyntheticsAPITest) HasConfig() bool`
-
-HasConfig returns a boolean if a field has been set.
-
 ### GetLocations
 
 `func (o *SyntheticsAPITest) GetLocations() []string`
@@ -78,12 +72,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPITest) SetLocations(v []string)`
 
 SetLocations sets Locations field to given value.
-
-### HasLocations
-
-`func (o *SyntheticsAPITest) HasLocations() bool`
-
-HasLocations returns a boolean if a field has been set.
 
 ### GetMessage
 
@@ -154,12 +142,6 @@ and a boolean to check if the value has been set.
 
 SetName sets Name field to given value.
 
-### HasName
-
-`func (o *SyntheticsAPITest) HasName() bool`
-
-HasName returns a boolean if a field has been set.
-
 ### GetOptions
 
 `func (o *SyntheticsAPITest) GetOptions() SyntheticsTestOptions`
@@ -178,12 +160,6 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPITest) SetOptions(v SyntheticsTestOptions)`
 
 SetOptions sets Options field to given value.
-
-### HasOptions
-
-`func (o *SyntheticsAPITest) HasOptions() bool`
-
-HasOptions returns a boolean if a field has been set.
 
 ### GetPublicId
 
@@ -303,11 +279,5 @@ and a boolean to check if the value has been set.
 `func (o *SyntheticsAPITest) SetType(v SyntheticsAPITestType)`
 
 SetType sets Type field to given value.
-
-### HasType
-
-`func (o *SyntheticsAPITest) HasType() bool`
-
-HasType returns a boolean if a field has been set.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

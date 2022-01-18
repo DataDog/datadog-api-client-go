@@ -15,24 +15,24 @@ import (
 
 // SyntheticsBrowserTest Object containing details about a Synthetic browser test.
 type SyntheticsBrowserTest struct {
-	Config *SyntheticsBrowserTestConfig `json:"config,omitempty"`
+	Config SyntheticsBrowserTestConfig `json:"config"`
 	// Array of locations used to run the test.
-	Locations *[]string `json:"locations,omitempty"`
+	Locations []string `json:"locations"`
 	// Notification message associated with the test. Message can either be text or an empty string.
-	Message string `json:"message"`
+	Message *string `json:"message,omitempty"`
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    *string                `json:"name,omitempty"`
-	Options *SyntheticsTestOptions `json:"options,omitempty"`
+	Name    string                `json:"name"`
+	Options SyntheticsTestOptions `json:"options"`
 	// The public ID of the test.
 	PublicId *string                    `json:"public_id,omitempty"`
 	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test.
 	Steps *[]SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string                  `json:"tags,omitempty"`
-	Type *SyntheticsBrowserTestType `json:"type,omitempty"`
+	Tags *[]string                 `json:"tags,omitempty"`
+	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -41,11 +41,13 @@ type SyntheticsBrowserTest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBrowserTest(message string) *SyntheticsBrowserTest {
+func NewSyntheticsBrowserTest(config SyntheticsBrowserTestConfig, locations []string, name string, options SyntheticsTestOptions, type_ SyntheticsBrowserTestType) *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	this.Message = message
-	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
-	this.Type = &type_
+	this.Config = config
+	this.Locations = locations
+	this.Name = name
+	this.Options = options
+	this.Type = type_
 	return &this
 }
 
@@ -55,96 +57,88 @@ func NewSyntheticsBrowserTest(message string) *SyntheticsBrowserTest {
 func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
 	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
-	this.Type = &type_
+	this.Type = type_
 	return &this
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
+// GetConfig returns the Config field value
 func (o *SyntheticsBrowserTest) GetConfig() SyntheticsBrowserTestConfig {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		var ret SyntheticsBrowserTestConfig
 		return ret
 	}
-	return *o.Config
+
+	return o.Config
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetConfigOk() (*SyntheticsBrowserTestConfig, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Config, true
+	return &o.Config, true
 }
 
-// HasConfig returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasConfig() bool {
-	if o != nil && o.Config != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConfig gets a reference to the given SyntheticsBrowserTestConfig and assigns it to the Config field.
+// SetConfig sets field value
 func (o *SyntheticsBrowserTest) SetConfig(v SyntheticsBrowserTestConfig) {
-	o.Config = &v
+	o.Config = v
 }
 
-// GetLocations returns the Locations field value if set, zero value otherwise.
+// GetLocations returns the Locations field value
 func (o *SyntheticsBrowserTest) GetLocations() []string {
-	if o == nil || o.Locations == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Locations
+
+	return o.Locations
 }
 
-// GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
+// GetLocationsOk returns a tuple with the Locations field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetLocationsOk() (*[]string, bool) {
-	if o == nil || o.Locations == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
-// HasLocations returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasLocations() bool {
-	if o != nil && o.Locations != nil {
+// SetLocations sets field value
+func (o *SyntheticsBrowserTest) SetLocations(v []string) {
+	o.Locations = v
+}
+
+// GetMessage returns the Message field value if set, zero value otherwise.
+func (o *SyntheticsBrowserTest) GetMessage() string {
+	if o == nil || o.Message == nil {
+		var ret string
+		return ret
+	}
+	return *o.Message
+}
+
+// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserTest) GetMessageOk() (*string, bool) {
+	if o == nil || o.Message == nil {
+		return nil, false
+	}
+	return o.Message, true
+}
+
+// HasMessage returns a boolean if a field has been set.
+func (o *SyntheticsBrowserTest) HasMessage() bool {
+	if o != nil && o.Message != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetLocations gets a reference to the given []string and assigns it to the Locations field.
-func (o *SyntheticsBrowserTest) SetLocations(v []string) {
-	o.Locations = &v
-}
-
-// GetMessage returns the Message field value
-func (o *SyntheticsBrowserTest) GetMessage() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-
-	return o.Message
-}
-
-// GetMessageOk returns a tuple with the Message field value
-// and a boolean to check if the value has been set.
-func (o *SyntheticsBrowserTest) GetMessageOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.Message, true
-}
-
-// SetMessage sets field value
+// SetMessage gets a reference to the given string and assigns it to the Message field.
 func (o *SyntheticsBrowserTest) SetMessage(v string) {
-	o.Message = v
+	o.Message = &v
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
@@ -179,68 +173,52 @@ func (o *SyntheticsBrowserTest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *SyntheticsBrowserTest) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *SyntheticsBrowserTest) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetOptions returns the Options field value if set, zero value otherwise.
+// GetOptions returns the Options field value
 func (o *SyntheticsBrowserTest) GetOptions() SyntheticsTestOptions {
-	if o == nil || o.Options == nil {
+	if o == nil {
 		var ret SyntheticsTestOptions
 		return ret
 	}
-	return *o.Options
+
+	return o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
-	if o == nil || o.Options == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Options, true
+	return &o.Options, true
 }
 
-// HasOptions returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOptions gets a reference to the given SyntheticsTestOptions and assigns it to the Options field.
+// SetOptions sets field value
 func (o *SyntheticsBrowserTest) SetOptions(v SyntheticsTestOptions) {
-	o.Options = &v
+	o.Options = v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
@@ -371,36 +349,28 @@ func (o *SyntheticsBrowserTest) SetTags(v []string) {
 	o.Tags = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *SyntheticsBrowserTest) GetType() SyntheticsBrowserTestType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret SyntheticsBrowserTestType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetTypeOk() (*SyntheticsBrowserTestType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *SyntheticsBrowserTest) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given SyntheticsBrowserTestType and assigns it to the Type field.
+// SetType sets field value
 func (o *SyntheticsBrowserTest) SetType(v SyntheticsBrowserTestType) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
@@ -408,22 +378,22 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Config != nil {
+	if true {
 		toSerialize["config"] = o.Config
 	}
-	if o.Locations != nil {
+	if true {
 		toSerialize["locations"] = o.Locations
 	}
-	if true {
+	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
 	if o.MonitorId != nil {
 		toSerialize["monitor_id"] = o.MonitorId
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Options != nil {
+	if true {
 		toSerialize["options"] = o.Options
 	}
 	if o.PublicId != nil {
@@ -438,7 +408,7 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
@@ -447,27 +417,43 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Message *string `json:"message"`
+		Config    *SyntheticsBrowserTestConfig `json:"config"`
+		Locations *[]string                    `json:"locations"`
+		Name      *string                      `json:"name"`
+		Options   *SyntheticsTestOptions       `json:"options"`
+		Type      *SyntheticsBrowserTestType   `json:"type"`
 	}{}
 	all := struct {
-		Config    *SyntheticsBrowserTestConfig `json:"config,omitempty"`
-		Locations *[]string                    `json:"locations,omitempty"`
-		Message   string                       `json:"message"`
-		MonitorId *int64                       `json:"monitor_id,omitempty"`
-		Name      *string                      `json:"name,omitempty"`
-		Options   *SyntheticsTestOptions       `json:"options,omitempty"`
-		PublicId  *string                      `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus   `json:"status,omitempty"`
-		Steps     *[]SyntheticsStep            `json:"steps,omitempty"`
-		Tags      *[]string                    `json:"tags,omitempty"`
-		Type      *SyntheticsBrowserTestType   `json:"type,omitempty"`
+		Config    SyntheticsBrowserTestConfig `json:"config"`
+		Locations []string                    `json:"locations"`
+		Message   *string                     `json:"message,omitempty"`
+		MonitorId *int64                      `json:"monitor_id,omitempty"`
+		Name      string                      `json:"name"`
+		Options   SyntheticsTestOptions       `json:"options"`
+		PublicId  *string                     `json:"public_id,omitempty"`
+		Status    *SyntheticsTestPauseStatus  `json:"status,omitempty"`
+		Steps     *[]SyntheticsStep           `json:"steps,omitempty"`
+		Tags      *[]string                   `json:"tags,omitempty"`
+		Type      SyntheticsBrowserTestType   `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
-	if required.Message == nil {
-		return fmt.Errorf("Required field message missing")
+	if required.Config == nil {
+		return fmt.Errorf("Required field config missing")
+	}
+	if required.Locations == nil {
+		return fmt.Errorf("Required field locations missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Options == nil {
+		return fmt.Errorf("Required field options missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -486,7 +472,7 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
