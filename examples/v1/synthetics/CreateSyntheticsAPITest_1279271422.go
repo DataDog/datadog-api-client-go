@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),
@@ -25,7 +25,7 @@ func main() {
 			Steps: &[]datadog.SyntheticsAPIStep{
 				{
 					AllowFailure: datadog.PtrBool(true),
-					Assertions: &[]datadog.SyntheticsAssertion{
+					Assertions: []datadog.SyntheticsAssertion{
 						datadog.SyntheticsAssertion{
 							SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
 								Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
@@ -34,8 +34,8 @@ func main() {
 							}},
 					},
 					IsCritical: datadog.PtrBool(true),
-					Name:       datadog.PtrString("request is sent"),
-					Request: &datadog.SyntheticsTestRequest{
+					Name:       "request is sent",
+					Request: datadog.SyntheticsTestRequest{
 						Method:  datadog.HTTPMETHOD_GET.Ptr(),
 						Timeout: datadog.PtrFloat64(10),
 						Url:     datadog.PtrString("https://datadoghq.com"),
@@ -44,16 +44,16 @@ func main() {
 						Count:    datadog.PtrInt64(5),
 						Interval: datadog.PtrFloat64(1000),
 					},
-					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP.Ptr(),
+					Subtype: datadog.SYNTHETICSAPISTEPSUBTYPE_HTTP,
 				},
 			},
 		},
-		Locations: &[]string{
+		Locations: []string{
 			"aws:us-east-2",
 		},
 		Message: datadog.PtrString("BDD test payload: synthetics_api_test_multi_step_payload.json"),
-		Name:    datadog.PtrString("Example-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response"),
-		Options: &datadog.SyntheticsTestOptions{
+		Name:    "Example-Create_an_API_test_with_multi_subtype_returns_OK_Returns_the_created_test_details_response",
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -71,7 +71,7 @@ func main() {
 		Tags: &[]string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type: datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

@@ -32,7 +32,7 @@ func StartSpanBeforeStep(ctx gobdd.Context) {
 		tracer.SpanType("step"),
 		tracer.ResourceName(parts[len(parts)-1]),
 	)
-	SetCtx(ctx, cctx)
+	SetCtx(cctx, ctx)
 }
 
 // FinishSpanAfterStep finishes the span and set error tags if needed.
@@ -47,7 +47,7 @@ func FinishSpanAfterStep(ctx gobdd.Context) {
 		span.Finish()
 
 		if parent, err := ctx.Get("parentSpan"); err == nil && parent != nil {
-			SetCtx(ctx, tracer.ContextWithSpan(cctx, parent.(ddtrace.Span)))
+			SetCtx(tracer.ContextWithSpan(cctx, parent.(ddtrace.Span)), ctx)
 		}
 	}
 }

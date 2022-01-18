@@ -16,7 +16,7 @@ func main() {
 	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
 	body := datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
@@ -69,12 +69,12 @@ func main() {
 				Url:     datadog.PtrString("https://datadoghq.com"),
 			},
 		},
-		Locations: &[]string{
+		Locations: []string{
 			"aws:us-east-2",
 		},
 		Message: datadog.PtrString("BDD test payload: synthetics_api_test_payload.json"),
-		Name:    datadog.PtrString("Example-Edit_an_API_test_returns_OK_response-updated"),
-		Options: &datadog.SyntheticsTestOptions{
+		Name:    "Example-Edit_an_API_test_returns_OK_response-updated",
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -93,7 +93,7 @@ func main() {
 		Tags: &[]string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type: datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

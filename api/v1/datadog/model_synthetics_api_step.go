@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPIStep The steps used in a Synthetics multistep API test.
@@ -17,16 +18,16 @@ type SyntheticsAPIStep struct {
 	// Determines whether or not to continue with test if this step fails.
 	AllowFailure *bool `json:"allowFailure,omitempty"`
 	// Array of assertions used for the test.
-	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
+	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of values to parse and save as variables from the response.
 	ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
 	// Determines whether or not to consider the entire test as failed if this step fails. Can be used only if `allowFailure` is `true`.
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
-	Name    *string                     `json:"name,omitempty"`
-	Request *SyntheticsTestRequest      `json:"request,omitempty"`
+	Name    string                      `json:"name"`
+	Request SyntheticsTestRequest       `json:"request"`
 	Retry   *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-	Subtype *SyntheticsAPIStepSubtype   `json:"subtype,omitempty"`
+	Subtype SyntheticsAPIStepSubtype    `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -35,8 +36,12 @@ type SyntheticsAPIStep struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAPIStep() *SyntheticsAPIStep {
+func NewSyntheticsAPIStep(assertions []SyntheticsAssertion, name string, request SyntheticsTestRequest, subtype SyntheticsAPIStepSubtype) *SyntheticsAPIStep {
 	this := SyntheticsAPIStep{}
+	this.Assertions = assertions
+	this.Name = name
+	this.Request = request
+	this.Subtype = subtype
 	return &this
 }
 
@@ -80,36 +85,28 @@ func (o *SyntheticsAPIStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
 }
 
-// GetAssertions returns the Assertions field value if set, zero value otherwise.
+// GetAssertions returns the Assertions field value
 func (o *SyntheticsAPIStep) GetAssertions() []SyntheticsAssertion {
-	if o == nil || o.Assertions == nil {
+	if o == nil {
 		var ret []SyntheticsAssertion
 		return ret
 	}
-	return *o.Assertions
+
+	return o.Assertions
 }
 
-// GetAssertionsOk returns a tuple with the Assertions field value if set, nil otherwise
+// GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
-	if o == nil || o.Assertions == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Assertions, true
+	return &o.Assertions, true
 }
 
-// HasAssertions returns a boolean if a field has been set.
-func (o *SyntheticsAPIStep) HasAssertions() bool {
-	if o != nil && o.Assertions != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetAssertions gets a reference to the given []SyntheticsAssertion and assigns it to the Assertions field.
+// SetAssertions sets field value
 func (o *SyntheticsAPIStep) SetAssertions(v []SyntheticsAssertion) {
-	o.Assertions = &v
+	o.Assertions = v
 }
 
 // GetExtractedValues returns the ExtractedValues field value if set, zero value otherwise.
@@ -176,68 +173,52 @@ func (o *SyntheticsAPIStep) SetIsCritical(v bool) {
 	o.IsCritical = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *SyntheticsAPIStep) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *SyntheticsAPIStep) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *SyntheticsAPIStep) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetRequest returns the Request field value if set, zero value otherwise.
+// GetRequest returns the Request field value
 func (o *SyntheticsAPIStep) GetRequest() SyntheticsTestRequest {
-	if o == nil || o.Request == nil {
+	if o == nil {
 		var ret SyntheticsTestRequest
 		return ret
 	}
-	return *o.Request
+
+	return o.Request
 }
 
-// GetRequestOk returns a tuple with the Request field value if set, nil otherwise
+// GetRequestOk returns a tuple with the Request field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil || o.Request == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Request, true
+	return &o.Request, true
 }
 
-// HasRequest returns a boolean if a field has been set.
-func (o *SyntheticsAPIStep) HasRequest() bool {
-	if o != nil && o.Request != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetRequest gets a reference to the given SyntheticsTestRequest and assigns it to the Request field.
+// SetRequest sets field value
 func (o *SyntheticsAPIStep) SetRequest(v SyntheticsTestRequest) {
-	o.Request = &v
+	o.Request = v
 }
 
 // GetRetry returns the Retry field value if set, zero value otherwise.
@@ -272,36 +253,28 @@ func (o *SyntheticsAPIStep) SetRetry(v SyntheticsTestOptionsRetry) {
 	o.Retry = &v
 }
 
-// GetSubtype returns the Subtype field value if set, zero value otherwise.
+// GetSubtype returns the Subtype field value
 func (o *SyntheticsAPIStep) GetSubtype() SyntheticsAPIStepSubtype {
-	if o == nil || o.Subtype == nil {
+	if o == nil {
 		var ret SyntheticsAPIStepSubtype
 		return ret
 	}
-	return *o.Subtype
+
+	return o.Subtype
 }
 
-// GetSubtypeOk returns a tuple with the Subtype field value if set, nil otherwise
+// GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetSubtypeOk() (*SyntheticsAPIStepSubtype, bool) {
-	if o == nil || o.Subtype == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Subtype, true
+	return &o.Subtype, true
 }
 
-// HasSubtype returns a boolean if a field has been set.
-func (o *SyntheticsAPIStep) HasSubtype() bool {
-	if o != nil && o.Subtype != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetSubtype gets a reference to the given SyntheticsAPIStepSubtype and assigns it to the Subtype field.
+// SetSubtype sets field value
 func (o *SyntheticsAPIStep) SetSubtype(v SyntheticsAPIStepSubtype) {
-	o.Subtype = &v
+	o.Subtype = v
 }
 
 func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
@@ -312,7 +285,7 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	if o.AllowFailure != nil {
 		toSerialize["allowFailure"] = o.AllowFailure
 	}
-	if o.Assertions != nil {
+	if true {
 		toSerialize["assertions"] = o.Assertions
 	}
 	if o.ExtractedValues != nil {
@@ -321,16 +294,16 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 	if o.IsCritical != nil {
 		toSerialize["isCritical"] = o.IsCritical
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Request != nil {
+	if true {
 		toSerialize["request"] = o.Request
 	}
 	if o.Retry != nil {
 		toSerialize["retry"] = o.Retry
 	}
-	if o.Subtype != nil {
+	if true {
 		toSerialize["subtype"] = o.Subtype
 	}
 	return json.Marshal(toSerialize)
@@ -338,16 +311,38 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 
 func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+	required := struct {
+		Assertions *[]SyntheticsAssertion    `json:"assertions"`
+		Name       *string                   `json:"name"`
+		Request    *SyntheticsTestRequest    `json:"request"`
+		Subtype    *SyntheticsAPIStepSubtype `json:"subtype"`
+	}{}
 	all := struct {
 		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
-		Assertions      *[]SyntheticsAssertion      `json:"assertions,omitempty"`
+		Assertions      []SyntheticsAssertion       `json:"assertions"`
 		ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
 		IsCritical      *bool                       `json:"isCritical,omitempty"`
-		Name            *string                     `json:"name,omitempty"`
-		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+		Name            string                      `json:"name"`
+		Request         SyntheticsTestRequest       `json:"request"`
 		Retry           *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		Subtype         *SyntheticsAPIStepSubtype   `json:"subtype,omitempty"`
+		Subtype         SyntheticsAPIStepSubtype    `json:"subtype"`
 	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Assertions == nil {
+		return fmt.Errorf("Required field assertions missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Request == nil {
+		return fmt.Errorf("Required field request missing")
+	}
+	if required.Subtype == nil {
+		return fmt.Errorf("Required field subtype missing")
+	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -357,7 +352,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Subtype; v != nil && !v.IsValid() {
+	if v := all.Subtype; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -299,8 +299,10 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     filterShared := true // bool | When `true`, this query only returns shared custom created or cloned dashboards. (optional)
+    filterDeleted := true // bool | When `true`, this query returns only deleted custom-created or cloned dashboards. This parameter is incompatible with `filter[shared]`. (optional)
     optionalParams := datadog.ListDashboardsOptionalParameters{
         FilterShared: &filterShared,
+        FilterDeleted: &filterDeleted,
     }
 
     configuration := datadog.NewConfiguration()
@@ -323,9 +325,10 @@ func main() {
 
 Other parameters are passed through a pointer to a ListDashboardsOptionalParameters struct.
 
-| Name             | Type     | Description                                                                                | Notes |
-| ---------------- | -------- | ------------------------------------------------------------------------------------------ | ----- |
-| **filterShared** | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards. |
+| Name              | Type     | Description                                                                                                                                                 | Notes |
+| ----------------- | -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| **filterShared**  | **bool** | When &#x60;true&#x60;, this query only returns shared custom created or cloned dashboards.                                                                  |
+| **filterDeleted** | **bool** | When &#x60;true&#x60;, this query returns only deleted custom-created or cloned dashboards. This parameter is incompatible with &#x60;filter[shared]&#x60;. |
 
 ### Return type
 
