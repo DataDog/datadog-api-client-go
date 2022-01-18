@@ -10,27 +10,28 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITest Object containing details about a Synthetic API test.
 type SyntheticsAPITest struct {
-	Config *SyntheticsAPITestConfig `json:"config,omitempty"`
+	Config SyntheticsAPITestConfig `json:"config"`
 	// Array of locations used to run the test.
-	Locations *[]string `json:"locations,omitempty"`
+	Locations []string `json:"locations"`
 	// Notification message associated with the test.
 	Message *string `json:"message,omitempty"`
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    *string                `json:"name,omitempty"`
-	Options *SyntheticsTestOptions `json:"options,omitempty"`
+	Name    string                `json:"name"`
+	Options SyntheticsTestOptions `json:"options"`
 	// The public ID for the test.
 	PublicId *string                       `json:"public_id,omitempty"`
 	Status   *SyntheticsTestPauseStatus    `json:"status,omitempty"`
 	Subtype  *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string              `json:"tags,omitempty"`
-	Type *SyntheticsAPITestType `json:"type,omitempty"`
+	Tags *[]string             `json:"tags,omitempty"`
+	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -39,10 +40,13 @@ type SyntheticsAPITest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsAPITest() *SyntheticsAPITest {
+func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, name string, options SyntheticsTestOptions, type_ SyntheticsAPITestType) *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
-	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
-	this.Type = &type_
+	this.Config = config
+	this.Locations = locations
+	this.Name = name
+	this.Options = options
+	this.Type = type_
 	return &this
 }
 
@@ -52,72 +56,56 @@ func NewSyntheticsAPITest() *SyntheticsAPITest {
 func NewSyntheticsAPITestWithDefaults() *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
 	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
-	this.Type = &type_
+	this.Type = type_
 	return &this
 }
 
-// GetConfig returns the Config field value if set, zero value otherwise.
+// GetConfig returns the Config field value
 func (o *SyntheticsAPITest) GetConfig() SyntheticsAPITestConfig {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		var ret SyntheticsAPITestConfig
 		return ret
 	}
-	return *o.Config
+
+	return o.Config
 }
 
-// GetConfigOk returns a tuple with the Config field value if set, nil otherwise
+// GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetConfigOk() (*SyntheticsAPITestConfig, bool) {
-	if o == nil || o.Config == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Config, true
+	return &o.Config, true
 }
 
-// HasConfig returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasConfig() bool {
-	if o != nil && o.Config != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetConfig gets a reference to the given SyntheticsAPITestConfig and assigns it to the Config field.
+// SetConfig sets field value
 func (o *SyntheticsAPITest) SetConfig(v SyntheticsAPITestConfig) {
-	o.Config = &v
+	o.Config = v
 }
 
-// GetLocations returns the Locations field value if set, zero value otherwise.
+// GetLocations returns the Locations field value
 func (o *SyntheticsAPITest) GetLocations() []string {
-	if o == nil || o.Locations == nil {
+	if o == nil {
 		var ret []string
 		return ret
 	}
-	return *o.Locations
+
+	return o.Locations
 }
 
-// GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
+// GetLocationsOk returns a tuple with the Locations field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetLocationsOk() (*[]string, bool) {
-	if o == nil || o.Locations == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
-// HasLocations returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasLocations() bool {
-	if o != nil && o.Locations != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLocations gets a reference to the given []string and assigns it to the Locations field.
+// SetLocations sets field value
 func (o *SyntheticsAPITest) SetLocations(v []string) {
-	o.Locations = &v
+	o.Locations = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -184,68 +172,52 @@ func (o *SyntheticsAPITest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-// GetName returns the Name field value if set, zero value otherwise.
+// GetName returns the Name field value
 func (o *SyntheticsAPITest) GetName() string {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Name
+
+	return o.Name
 }
 
-// GetNameOk returns a tuple with the Name field value if set, nil otherwise
+// GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetNameOk() (*string, bool) {
-	if o == nil || o.Name == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Name, true
+	return &o.Name, true
 }
 
-// HasName returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasName() bool {
-	if o != nil && o.Name != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetName gets a reference to the given string and assigns it to the Name field.
+// SetName sets field value
 func (o *SyntheticsAPITest) SetName(v string) {
-	o.Name = &v
+	o.Name = v
 }
 
-// GetOptions returns the Options field value if set, zero value otherwise.
+// GetOptions returns the Options field value
 func (o *SyntheticsAPITest) GetOptions() SyntheticsTestOptions {
-	if o == nil || o.Options == nil {
+	if o == nil {
 		var ret SyntheticsTestOptions
 		return ret
 	}
-	return *o.Options
+
+	return o.Options
 }
 
-// GetOptionsOk returns a tuple with the Options field value if set, nil otherwise
+// GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
-	if o == nil || o.Options == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Options, true
+	return &o.Options, true
 }
 
-// HasOptions returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasOptions() bool {
-	if o != nil && o.Options != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetOptions gets a reference to the given SyntheticsTestOptions and assigns it to the Options field.
+// SetOptions sets field value
 func (o *SyntheticsAPITest) SetOptions(v SyntheticsTestOptions) {
-	o.Options = &v
+	o.Options = v
 }
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
@@ -376,36 +348,28 @@ func (o *SyntheticsAPITest) SetTags(v []string) {
 	o.Tags = &v
 }
 
-// GetType returns the Type field value if set, zero value otherwise.
+// GetType returns the Type field value
 func (o *SyntheticsAPITest) GetType() SyntheticsAPITestType {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		var ret SyntheticsAPITestType
 		return ret
 	}
-	return *o.Type
+
+	return o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
+// GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetTypeOk() (*SyntheticsAPITestType, bool) {
-	if o == nil || o.Type == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Type, true
+	return &o.Type, true
 }
 
-// HasType returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasType() bool {
-	if o != nil && o.Type != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetType gets a reference to the given SyntheticsAPITestType and assigns it to the Type field.
+// SetType sets field value
 func (o *SyntheticsAPITest) SetType(v SyntheticsAPITestType) {
-	o.Type = &v
+	o.Type = v
 }
 
 func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
@@ -413,10 +377,10 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Config != nil {
+	if true {
 		toSerialize["config"] = o.Config
 	}
-	if o.Locations != nil {
+	if true {
 		toSerialize["locations"] = o.Locations
 	}
 	if o.Message != nil {
@@ -425,10 +389,10 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	if o.MonitorId != nil {
 		toSerialize["monitor_id"] = o.MonitorId
 	}
-	if o.Name != nil {
+	if true {
 		toSerialize["name"] = o.Name
 	}
-	if o.Options != nil {
+	if true {
 		toSerialize["options"] = o.Options
 	}
 	if o.PublicId != nil {
@@ -443,7 +407,7 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if o.Type != nil {
+	if true {
 		toSerialize["type"] = o.Type
 	}
 	return json.Marshal(toSerialize)
@@ -451,19 +415,45 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 
 func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+	required := struct {
+		Config    *SyntheticsAPITestConfig `json:"config"`
+		Locations *[]string                `json:"locations"`
+		Name      *string                  `json:"name"`
+		Options   *SyntheticsTestOptions   `json:"options"`
+		Type      *SyntheticsAPITestType   `json:"type"`
+	}{}
 	all := struct {
-		Config    *SyntheticsAPITestConfig      `json:"config,omitempty"`
-		Locations *[]string                     `json:"locations,omitempty"`
+		Config    SyntheticsAPITestConfig       `json:"config"`
+		Locations []string                      `json:"locations"`
 		Message   *string                       `json:"message,omitempty"`
 		MonitorId *int64                        `json:"monitor_id,omitempty"`
-		Name      *string                       `json:"name,omitempty"`
-		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
+		Name      string                        `json:"name"`
+		Options   SyntheticsTestOptions         `json:"options"`
 		PublicId  *string                       `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
 		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 		Tags      *[]string                     `json:"tags,omitempty"`
-		Type      *SyntheticsAPITestType        `json:"type,omitempty"`
+		Type      SyntheticsAPITestType         `json:"type"`
 	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Config == nil {
+		return fmt.Errorf("Required field config missing")
+	}
+	if required.Locations == nil {
+		return fmt.Errorf("Required field locations missing")
+	}
+	if required.Name == nil {
+		return fmt.Errorf("Required field name missing")
+	}
+	if required.Options == nil {
+		return fmt.Errorf("Required field options missing")
+	}
+	if required.Type == nil {
+		return fmt.Errorf("Required field type missing")
+	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -489,7 +479,7 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
