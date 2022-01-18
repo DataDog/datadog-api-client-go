@@ -2,13 +2,14 @@
 
 ## Properties
 
-| Name                  | Type                                                                                                 | Description | Notes      |
-| --------------------- | ---------------------------------------------------------------------------------------------------- | ----------- | ---------- |
-| **DetectionMethod**   | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md)     |             | [optional] |
-| **EvaluationWindow**  | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md)   |             | [optional] |
-| **KeepAlive**         | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md)                 |             | [optional] |
-| **MaxSignalDuration** | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |             | [optional] |
-| **NewValueOptions**   | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md)     |             | [optional] |
+| Name                      | Type                                                                                                 | Description | Notes      |
+| ------------------------- | ---------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **DetectionMethod**       | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md)     |             | [optional] |
+| **EvaluationWindow**      | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md)   |             | [optional] |
+| **KeepAlive**             | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md)                 |             | [optional] |
+| **MaxSignalDuration**     | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |             | [optional] |
+| **NewValueOptions**       | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md)     |             | [optional] |
+| **ThirdPartyRuleOptions** | Pointer to [**SecurityMonitoringRuleThirdPartyOptions**](SecurityMonitoringRuleThirdPartyOptions.md) |             | [optional] |
 
 ## Methods
 
@@ -153,5 +154,30 @@ SetNewValueOptions sets NewValueOptions field to given value.
 `func (o *SecurityMonitoringRuleOptions) HasNewValueOptions() bool`
 
 HasNewValueOptions returns a boolean if a field has been set.
+
+### GetThirdPartyRuleOptions
+
+`func (o *SecurityMonitoringRuleOptions) GetThirdPartyRuleOptions() SecurityMonitoringRuleThirdPartyOptions`
+
+GetThirdPartyRuleOptions returns the ThirdPartyRuleOptions field if non-nil, zero value otherwise.
+
+### GetThirdPartyRuleOptionsOk
+
+`func (o *SecurityMonitoringRuleOptions) GetThirdPartyRuleOptionsOk() (*SecurityMonitoringRuleThirdPartyOptions, bool)`
+
+GetThirdPartyRuleOptionsOk returns a tuple with the ThirdPartyRuleOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetThirdPartyRuleOptions
+
+`func (o *SecurityMonitoringRuleOptions) SetThirdPartyRuleOptions(v SecurityMonitoringRuleThirdPartyOptions)`
+
+SetThirdPartyRuleOptions sets ThirdPartyRuleOptions field to given value.
+
+### HasThirdPartyRuleOptions
+
+`func (o *SecurityMonitoringRuleOptions) HasThirdPartyRuleOptions() bool`
+
+HasThirdPartyRuleOptions returns a boolean if a field has been set.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
