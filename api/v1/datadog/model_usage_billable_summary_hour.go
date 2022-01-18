@@ -10,7 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
 )
 
 // UsageBillableSummaryHour Response with monthly summary of data billed by Datadog.
@@ -18,7 +17,7 @@ type UsageBillableSummaryHour struct {
 	// The billing plan.
 	BillingPlan *string `json:"billing_plan,omitempty"`
 	// Shows the last date of usage.
-	EndDate *time.Time `json:"end_date,omitempty"`
+	EndDate *string `json:"end_date,omitempty"`
 	// The number of organizations.
 	NumOrgs *int64 `json:"num_orgs,omitempty"`
 	// The organization name.
@@ -28,7 +27,7 @@ type UsageBillableSummaryHour struct {
 	// Shows usage aggregation for a billing period.
 	RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
 	// Shows the first date of usage.
-	StartDate *time.Time                `json:"start_date,omitempty"`
+	StartDate *string                   `json:"start_date,omitempty"`
 	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -84,9 +83,9 @@ func (o *UsageBillableSummaryHour) SetBillingPlan(v string) {
 }
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
-func (o *UsageBillableSummaryHour) GetEndDate() time.Time {
+func (o *UsageBillableSummaryHour) GetEndDate() string {
 	if o == nil || o.EndDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.EndDate
@@ -94,7 +93,7 @@ func (o *UsageBillableSummaryHour) GetEndDate() time.Time {
 
 // GetEndDateOk returns a tuple with the EndDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageBillableSummaryHour) GetEndDateOk() (*time.Time, bool) {
+func (o *UsageBillableSummaryHour) GetEndDateOk() (*string, bool) {
 	if o == nil || o.EndDate == nil {
 		return nil, false
 	}
@@ -110,8 +109,8 @@ func (o *UsageBillableSummaryHour) HasEndDate() bool {
 	return false
 }
 
-// SetEndDate gets a reference to the given time.Time and assigns it to the EndDate field.
-func (o *UsageBillableSummaryHour) SetEndDate(v time.Time) {
+// SetEndDate gets a reference to the given string and assigns it to the EndDate field.
+func (o *UsageBillableSummaryHour) SetEndDate(v string) {
 	o.EndDate = &v
 }
 
@@ -244,9 +243,9 @@ func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
 }
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
-func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
+func (o *UsageBillableSummaryHour) GetStartDate() string {
 	if o == nil || o.StartDate == nil {
-		var ret time.Time
+		var ret string
 		return ret
 	}
 	return *o.StartDate
@@ -254,7 +253,7 @@ func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
 
 // GetStartDateOk returns a tuple with the StartDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageBillableSummaryHour) GetStartDateOk() (*time.Time, bool) {
+func (o *UsageBillableSummaryHour) GetStartDateOk() (*string, bool) {
 	if o == nil || o.StartDate == nil {
 		return nil, false
 	}
@@ -270,8 +269,8 @@ func (o *UsageBillableSummaryHour) HasStartDate() bool {
 	return false
 }
 
-// SetStartDate gets a reference to the given time.Time and assigns it to the StartDate field.
-func (o *UsageBillableSummaryHour) SetStartDate(v time.Time) {
+// SetStartDate gets a reference to the given string and assigns it to the StartDate field.
+func (o *UsageBillableSummaryHour) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
@@ -343,12 +342,12 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		BillingPlan  *string                   `json:"billing_plan,omitempty"`
-		EndDate      *time.Time                `json:"end_date,omitempty"`
+		EndDate      *string                   `json:"end_date,omitempty"`
 		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
 		OrgName      *string                   `json:"org_name,omitempty"`
 		PublicId     *string                   `json:"public_id,omitempty"`
 		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
-		StartDate    *time.Time                `json:"start_date,omitempty"`
+		StartDate    *string                   `json:"start_date,omitempty"`
 		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -5,12 +5,12 @@
 | Name             | Type                                                                   | Description                                   | Notes      |
 | ---------------- | ---------------------------------------------------------------------- | --------------------------------------------- | ---------- |
 | **BillingPlan**  | Pointer to **string**                                                  | The billing plan.                             | [optional] |
-| **EndDate**      | Pointer to **time.Time**                                               | Shows the last date of usage.                 | [optional] |
+| **EndDate**      | Pointer to **string**                                                  | Shows the last date of usage.                 | [optional] |
 | **NumOrgs**      | Pointer to **int64**                                                   | The number of organizations.                  | [optional] |
 | **OrgName**      | Pointer to **string**                                                  | The organization name.                        | [optional] |
 | **PublicId**     | Pointer to **string**                                                  | The organization public ID.                   | [optional] |
 | **RatioInMonth** | Pointer to **float64**                                                 | Shows usage aggregation for a billing period. | [optional] |
-| **StartDate**    | Pointer to **time.Time**                                               | Shows the first date of usage.                | [optional] |
+| **StartDate**    | Pointer to **string**                                                  | Shows the first date of usage.                | [optional] |
 | **Usage**        | Pointer to [**UsageBillableSummaryKeys**](UsageBillableSummaryKeys.md) |                                               | [optional] |
 
 ## Methods
@@ -59,20 +59,20 @@ HasBillingPlan returns a boolean if a field has been set.
 
 ### GetEndDate
 
-`func (o *UsageBillableSummaryHour) GetEndDate() time.Time`
+`func (o *UsageBillableSummaryHour) GetEndDate() string`
 
 GetEndDate returns the EndDate field if non-nil, zero value otherwise.
 
 ### GetEndDateOk
 
-`func (o *UsageBillableSummaryHour) GetEndDateOk() (*time.Time, bool)`
+`func (o *UsageBillableSummaryHour) GetEndDateOk() (*string, bool)`
 
 GetEndDateOk returns a tuple with the EndDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetEndDate
 
-`func (o *UsageBillableSummaryHour) SetEndDate(v time.Time)`
+`func (o *UsageBillableSummaryHour) SetEndDate(v string)`
 
 SetEndDate sets EndDate field to given value.
 
@@ -184,20 +184,20 @@ HasRatioInMonth returns a boolean if a field has been set.
 
 ### GetStartDate
 
-`func (o *UsageBillableSummaryHour) GetStartDate() time.Time`
+`func (o *UsageBillableSummaryHour) GetStartDate() string`
 
 GetStartDate returns the StartDate field if non-nil, zero value otherwise.
 
 ### GetStartDateOk
 
-`func (o *UsageBillableSummaryHour) GetStartDateOk() (*time.Time, bool)`
+`func (o *UsageBillableSummaryHour) GetStartDateOk() (*string, bool)`
 
 GetStartDateOk returns a tuple with the StartDate field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetStartDate
 
-`func (o *UsageBillableSummaryHour) SetStartDate(v time.Time)`
+`func (o *UsageBillableSummaryHour) SetStartDate(v string)`
 
 SetStartDate sets StartDate field to given value.
 
