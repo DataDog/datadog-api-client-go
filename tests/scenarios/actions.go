@@ -109,28 +109,29 @@ func SetRequestsUndo(ctx gobdd.Context, value map[string]map[string]UndoAction) 
 type clientKeys struct{}
 type ctxRequestsUndoKey struct{}
 
-func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context, func()) {
-	t := GetT(ctx)
+// ConfigureClients sets up the Datadog API client for testing
+func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Context, func()) {
+	t := GetT(bddCTX)
 	c1 := v1.NewAPIClient(v1.NewConfiguration())
 	c2 := v2.NewAPIClient(v2.NewConfiguration())
 
-	cctx = context.WithValue(
-		cctx,
+	ctx = context.WithValue(
+		ctx,
 		v1.ContextAPIKeys,
 		map[string]v1.APIKey{},
 	)
-	cctx = context.WithValue(
-		cctx,
+	ctx = context.WithValue(
+		ctx,
 		v2.ContextAPIKeys,
 		map[string]v2.APIKey{},
 	)
 
-	cctx, err := tests.WithClock(cctx, tests.SecurePath(t.Name()))
+	ctx, err := tests.WithClock(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
 		t.Fatalf("could not setup clock: %v", err)
 	}
 
-	r, err := tests.Recorder(cctx, tests.SecurePath(t.Name()))
+	r, err := tests.Recorder(ctx, tests.SecurePath(t.Name()))
 	if err != nil {
 		t.Fatalf("could not setup recorder: %v", err)
 	}
@@ -142,8 +143,8 @@ func ConfigureClients(ctx gobdd.Context, cctx context.Context) (context.Context,
 		"v1": reflect.ValueOf(c1),
 		"v2": reflect.ValueOf(c2),
 	}
-	ctx.Set(clientKeys{}, clients)
-	return cctx, func() {
+	bddCTX.Set(clientKeys{}, clients)
+	return ctx, func() {
 		r.Stop()
 	}
 }
@@ -158,6 +159,7 @@ func getAuthenticatedContext(ctx gobdd.Context) context.Context {
 	)
 }
 
+// GetClientVersion returns the client matching the given version
 func GetClientVersion(ctx gobdd.Context, version string) (reflect.Value, error) {
 	clientInterfaces, err := ctx.Get(clientKeys{})
 	if err != nil {

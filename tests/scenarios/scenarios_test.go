@@ -91,8 +91,8 @@ func TestScenarios(t *testing.T) {
 							tracer.Tag("test.codeowners", string(testCodeowners)),
 						),
 					)
-					cctx, closeRecorder := ConfigureClients(ctx, cctx)
-					SetCtx(ctx, cctx)
+					cctx, closeRecorder := ConfigureClients(cctx, ctx)
+					SetCtx(cctx, ctx)
 					SetRequestsUndo(ctx, requestsUndo)
 					SetData(ctx, make(map[string]interface{}))
 					SetCleanup(ctx, map[string]func(){"99-finish": func() {
