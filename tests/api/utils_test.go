@@ -25,7 +25,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"nested unparsed struct",
-			datadogV1.SyntheticsAPITest{Name: datadogV1.PtrString("foo"), Config: &datadogV1.SyntheticsAPITestConfig{UnparsedObject: map[string]interface{}{"foo": "bar"}}},
+			datadogV1.SyntheticsAPITest{Name: "foo", Config: datadogV1.SyntheticsAPITestConfig{UnparsedObject: map[string]interface{}{"foo": "bar"}}},
 			true,
 			map[string]interface{}{"foo": "bar"},
 		},
@@ -67,7 +67,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"valid struct",
-			datadogV1.SyntheticsAPITest{Name: datadogV1.PtrString("foo"), Config: &datadogV1.SyntheticsAPITestConfig{Assertions: &[]datadogV1.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY, Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_CONTAINS}}}}},
+			datadogV1.SyntheticsAPITest{Name: "foo", Config: datadogV1.SyntheticsAPITestConfig{Assertions: &[]datadogV1.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY, Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_CONTAINS}}}}},
 			false,
 			nil,
 		},
