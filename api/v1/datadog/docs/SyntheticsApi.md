@@ -186,7 +186,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSyntheticsAPITest() // SyntheticsAPITest | Details of the test to create.
+    body := *datadog.NewSyntheticsAPITest(*datadog.NewSyntheticsAPITestConfig(), []string{"Locations_example"}, "Example test name", *datadog.NewSyntheticsTestOptions(), datadog.SyntheticsAPITestType("api")) // SyntheticsAPITest | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -252,7 +252,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | Details of the test to create.
+    body := *datadog.NewSyntheticsBrowserTest(*datadog.NewSyntheticsBrowserTestConfig([]datadog.SyntheticsAssertion{datadog.SyntheticsAssertion{SyntheticsAssertionJSONPathTarget: datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SyntheticsAssertionJSONPathOperator("validatesJSONPath"), datadog.SyntheticsAssertionType("body"))}}, *datadog.NewSyntheticsTestRequest()), []string{"Locations_example"}, "Example test name", *datadog.NewSyntheticsTestOptions(), datadog.SyntheticsBrowserTestType("browser")) // SyntheticsBrowserTest | Details of the test to create.
 
     configuration := datadog.NewConfiguration()
 
@@ -1590,7 +1590,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := *datadog.NewSyntheticsAPITest() // SyntheticsAPITest | New test details to be saved.
+    body := *datadog.NewSyntheticsAPITest(*datadog.NewSyntheticsAPITestConfig(), []string{"Locations_example"}, "Example test name", *datadog.NewSyntheticsTestOptions(), datadog.SyntheticsAPITestType("api")) // SyntheticsAPITest | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
 
@@ -1658,7 +1658,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     publicId := "publicId_example" // string | The public ID of the test to get details from.
-    body := *datadog.NewSyntheticsBrowserTest("Message_example") // SyntheticsBrowserTest | New test details to be saved.
+    body := *datadog.NewSyntheticsBrowserTest(*datadog.NewSyntheticsBrowserTestConfig([]datadog.SyntheticsAssertion{datadog.SyntheticsAssertion{SyntheticsAssertionJSONPathTarget: datadog.NewSyntheticsAssertionJSONPathTarget(datadog.SyntheticsAssertionJSONPathOperator("validatesJSONPath"), datadog.SyntheticsAssertionType("body"))}}, *datadog.NewSyntheticsTestRequest()), []string{"Locations_example"}, "Example test name", *datadog.NewSyntheticsTestOptions(), datadog.SyntheticsBrowserTestType("browser")) // SyntheticsBrowserTest | New test details to be saved.
 
     configuration := datadog.NewConfiguration()
 
