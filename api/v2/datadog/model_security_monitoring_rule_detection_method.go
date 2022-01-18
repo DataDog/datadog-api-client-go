@@ -21,12 +21,14 @@ const (
 	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD         SecurityMonitoringRuleDetectionMethod = "threshold"
 	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE         SecurityMonitoringRuleDetectionMethod = "new_value"
 	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION SecurityMonitoringRuleDetectionMethod = "anomaly_detection"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_NO_DATA           SecurityMonitoringRuleDetectionMethod = "no_data"
 )
 
 var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitoringRuleDetectionMethod{
 	"threshold",
 	"new_value",
 	"anomaly_detection",
+	"no_data",
 }
 
 func (w *SecurityMonitoringRuleDetectionMethod) GetAllowedValues() []SecurityMonitoringRuleDetectionMethod {
