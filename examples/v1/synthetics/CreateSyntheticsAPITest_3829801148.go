@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.SyntheticsAPITest{
-		Config: &datadog.SyntheticsAPITestConfig{
+		Config: datadog.SyntheticsAPITestConfig{
 			Assertions: &[]datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
@@ -35,12 +35,12 @@ func main() {
 				Port:    datadog.PtrInt64(443),
 			},
 		},
-		Locations: &[]string{
+		Locations: []string{
 			"aws:us-east-2",
 		},
 		Message: datadog.PtrString("BDD test payload: synthetics_api_test_udp_payload.json"),
-		Name:    datadog.PtrString("Example-Create_an_API_test_with_UDP_subtype_returns_OK_Returns_the_created_test_details_response"),
-		Options: &datadog.SyntheticsTestOptions{
+		Name:    "Example-Create_an_API_test_with_UDP_subtype_returns_OK_Returns_the_created_test_details_response",
+		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
@@ -58,7 +58,7 @@ func main() {
 		Tags: &[]string{
 			"testing:api",
 		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API.Ptr(),
+		Type: datadog.SYNTHETICSAPITESTTYPE_API,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
