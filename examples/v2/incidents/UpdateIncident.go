@@ -13,11 +13,11 @@ import (
 
 func main() {
 	// there is a valid "incident" in the system
-	INCIDENT_DATA_ID := os.Getenv("INCIDENT_DATA_ID")
+	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
 
 	body := datadog.IncidentUpdateRequest{
 		Data: datadog.IncidentUpdateData{
-			Id:   INCIDENT_DATA_ID,
+			Id:   IncidentDataID,
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Attributes: &datadog.IncidentUpdateAttributes{
 				Fields: &map[string]datadog.IncidentFieldAttributes{
@@ -35,7 +35,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateIncident", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, INCIDENT_DATA_ID, body)
+	resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, IncidentDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)
