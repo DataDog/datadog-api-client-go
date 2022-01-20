@@ -16,7 +16,7 @@ func main() {
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
 	body := datadog.Dashboard{
-		Title:       "Example-Create_a_new_dashboard_with_slo_widget",
+		Title:       "Test-Example-Create_a_new_dashboard_with_slo_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
 		Widgets: []datadog.Widget{
 			{

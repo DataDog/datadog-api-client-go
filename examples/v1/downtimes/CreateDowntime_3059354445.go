@@ -14,7 +14,7 @@ import (
 
 func main() {
 	body := datadog.Downtime{
-		Message: datadog.PtrString("Example-Schedule_a_downtime_once_a_year"),
+		Message: datadog.PtrString("Test-Example-Schedule_a_downtime_once_a_year"),
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
 			Period: datadog.PtrInt32(1),
 			Type:   datadog.PtrString("years"),

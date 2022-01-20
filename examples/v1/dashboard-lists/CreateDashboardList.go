@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.DashboardList{
-		Name: "Example-Create_a_dashboard_list_returns_OK_response",
+		Name: "Test-Example-Create_a_dashboard_list_returns_OK_response",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

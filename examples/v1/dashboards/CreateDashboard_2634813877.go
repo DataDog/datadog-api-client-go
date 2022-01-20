@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		Title:       "Example-Create_a_new_dashboard_with_event_stream_widget",
+		Title:       "Test-Example-Create_a_new_dashboard_with_event_stream_widget",
 		Description: *datadog.NewNullableString(datadog.PtrString("")),
 		Widgets: []datadog.Widget{
 			{

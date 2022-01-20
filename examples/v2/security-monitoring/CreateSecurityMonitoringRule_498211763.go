@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.SecurityMonitoringRuleCreatePayload{
-		Name: "Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
+		Name: "Test-Example-Create_a_detection_rule_with_type_workload_security_returns_OK_response",
 		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
 			{
 				Query:          "@test:true",

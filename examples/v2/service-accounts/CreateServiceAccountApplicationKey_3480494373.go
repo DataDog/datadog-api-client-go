@@ -18,7 +18,7 @@ func main() {
 	body := datadog.ApplicationKeyCreateRequest{
 		Data: datadog.ApplicationKeyCreateData{
 			Attributes: datadog.ApplicationKeyCreateAttributes{
-				Name: "Example-Create_an_application_key_with_scopes_for_this_service_account_returns_Created_response",
+				Name: "Test-Example-Create_an_application_key_with_scopes_for_this_service_account_returns_Created_response",
 				Scopes: []string{
 					"dashboards_read",
 					"dashboards_write",

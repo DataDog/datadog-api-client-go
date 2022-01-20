@@ -18,7 +18,7 @@ func main() {
 				Description: datadog.PtrString("Test Agent rule"),
 				Enabled:     datadog.PtrBool(true),
 				Expression:  `exec.file.name == "sh"`,
-				Name:        "examplecreateacloudworkloadsecurityagentrulereturnsokresponse",
+				Name:        "testexamplecreateacloudworkloadsecurityagentrulereturnsokresponse",
 			},
 			Type: datadog.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},

@@ -63,7 +63,7 @@ y = 6;
 						Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 					},
 				},
-				Name:   "Example-Create_a_notebook_returns_OK_response",
+				Name:   "Test-Example-Create_a_notebook_returns_OK_response",
 				Status: datadog.NOTEBOOKSTATUS_PUBLISHED.Ptr(),
 				Time: datadog.NotebookGlobalTime{
 					NotebookRelativeTime: &datadog.NotebookRelativeTime{

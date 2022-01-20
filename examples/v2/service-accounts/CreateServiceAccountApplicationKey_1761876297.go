@@ -18,7 +18,7 @@ func main() {
 	body := datadog.ApplicationKeyCreateRequest{
 		Data: datadog.ApplicationKeyCreateData{
 			Attributes: datadog.ApplicationKeyCreateAttributes{
-				Name: "Example-Create_an_app_key_for_this_service_account_returns_Created_response",
+				Name: "Test-Example-Create_an_app_key_for_this_service_account_returns_Created_response",
 			},
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 		},

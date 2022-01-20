@@ -20,7 +20,7 @@ func main() {
 		Data: &datadog.SLOCorrectionCreateData{
 			Attributes: &datadog.SLOCorrectionCreateRequestAttributes{
 				Category:    datadog.SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
-				Description: datadog.PtrString("Example-Create_an_SLO_correction_with_rrule_returns_OK_response"),
+				Description: datadog.PtrString("Test-Example-Create_an_SLO_correction_with_rrule_returns_OK_response"),
 				SloId:       SloData0ID,
 				Start:       time.Now().Unix(),
 				Duration:    datadog.PtrInt64(3600),

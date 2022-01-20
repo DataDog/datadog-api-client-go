@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		Title: "Example-Create_a_new_dashboard_with_apm_dependency_stats_widget",
+		Title: "Test-Example-Create_a_new_dashboard_with_apm_dependency_stats_widget",
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{

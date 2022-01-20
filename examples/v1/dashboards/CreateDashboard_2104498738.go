@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		Title: "Example-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget",
+		Title: "Test-Example-Create_a_new_dashboard_with_formulas_and_functions_scatterplot_widget",
 		Widgets: []datadog.Widget{
 			{
 				Id: datadog.PtrInt64(5346764334358972),

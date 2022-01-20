@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.WebhooksIntegrationCustomVariable{
 		IsSecret: true,
-		Name:     "EXAMPLECREATEACUSTOMVARIABLERETURNSOKRESPONSE",
+		Name:     "TESTEXAMPLECREATEACUSTOMVARIABLERETURNSOKRESPONSE",
 		Value:    "CUSTOM_VARIABLE_VALUE",
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

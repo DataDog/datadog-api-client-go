@@ -61,7 +61,7 @@ func main() {
 					},
 				},
 				Headers: &map[string]string{
-					"unique": "examplecreateanapitestreturnsokreturnsthecreatedtestdetailsresponse",
+					"unique": "testexamplecreateanapitestreturnsokreturnsthecreatedtestdetailsresponse",
 				},
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
@@ -76,14 +76,14 @@ func main() {
 			"aws:us-east-2",
 		},
 		Message: datadog.PtrString("BDD test payload: synthetics_api_test_payload.json"),
-		Name:    "Example-Create_an_API_test_returns_OK_Returns_the_created_test_details_response",
+		Name:    "Test-Example-Create_an_API_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),
 			FollowRedirects:    datadog.PtrBool(true),
 			MinFailureDuration: datadog.PtrInt64(10),
 			MinLocationFailed:  datadog.PtrInt64(1),
-			MonitorName:        datadog.PtrString("Example-Create_an_API_test_returns_OK_Returns_the_created_test_details_response"),
+			MonitorName:        datadog.PtrString("Test-Example-Create_an_API_test_returns_OK_Returns_the_created_test_details_response"),
 			MonitorPriority:    datadog.PtrInt32(5),
 			Retry: &datadog.SyntheticsTestOptionsRetry{
 				Count:    datadog.PtrInt64(3),

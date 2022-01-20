@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.IncidentServiceCreateData{
 			Type: datadog.INCIDENTSERVICETYPE_SERVICES,
 			Attributes: &datadog.IncidentServiceCreateAttributes{
-				Name: "Example-Create_a_new_incident_service_returns_CREATED_response",
+				Name: "Test-Example-Create_a_new_incident_service_returns_CREATED_response",
 			},
 		},
 	}

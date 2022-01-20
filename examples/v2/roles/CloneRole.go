@@ -18,7 +18,7 @@ func main() {
 	body := datadog.RoleCloneRequest{
 		Data: datadog.RoleClone{
 			Attributes: datadog.RoleCloneAttributes{
-				Name: "Example-Create_a_new_role_by_cloning_an_existing_role_returns_OK_response clone",
+				Name: "Test-Example-Create_a_new_role_by_cloning_an_existing_role_returns_OK_response clone",
 			},
 			Type: datadog.ROLESTYPE_ROLES,
 		},

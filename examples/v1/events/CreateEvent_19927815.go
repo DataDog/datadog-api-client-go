@@ -13,10 +13,10 @@ import (
 
 func main() {
 	body := datadog.EventCreateRequest{
-		Title: "Example-Post_an_event_with_a_long_title_returns_OK_response very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong title with 100+ characters",
+		Title: "Test-Example-Post_an_event_with_a_long_title_returns_OK_response very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong title with 100+ characters",
 		Text:  "A text message.",
 		Tags: &[]string{
-			"test:ExamplePostaneventwithalongtitlereturnsOKresponse",
+			"test:TestExamplePostaneventwithalongtitlereturnsOKresponse",
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

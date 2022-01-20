@@ -14,8 +14,8 @@ import (
 func main() {
 	body := []datadog.HTTPLogItem{
 		{
-			Message: datadog.PtrString("Example-Send_logs_returns_Response_from_server_always_200_empty_JSON_response"),
-			Ddtags:  datadog.PtrString("host:ExampleSendlogsreturnsResponsefromserveralways200emptyJSONresponse"),
+			Message: datadog.PtrString("Test-Example-Send_logs_returns_Response_from_server_always_200_empty_JSON_response"),
+			Ddtags:  datadog.PtrString("host:TestExampleSendlogsreturnsResponsefromserveralways200emptyJSONresponse"),
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

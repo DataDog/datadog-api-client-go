@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_an_audit_logs_query with Audit Logs Query",
+		Title:      "Test-Example-Create_a_new_dashboard_with_an_audit_logs_query with Audit Logs Query",
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{

@@ -13,12 +13,12 @@ import (
 
 func main() {
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Validate_a_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Test-Example-Validate_a_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
-			"test:examplevalidateamonitorreturnsokresponse",
+			"test:testexamplevalidateamonitorreturnsokresponse",
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),

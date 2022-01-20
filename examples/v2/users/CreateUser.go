@@ -17,7 +17,7 @@ func main() {
 			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.UserCreateAttributes{
 				Name:  datadog.PtrString("Datadog API Client Python"),
-				Email: "Example-Create_a_user_returns_OK_response@datadoghq.com",
+				Email: "Test-Example-Create_a_user_returns_OK_response@datadoghq.com",
 			},
 		},
 	}

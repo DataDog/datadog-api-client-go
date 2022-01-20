@@ -20,7 +20,7 @@ func main() {
 			Type: datadog.USERSTYPE_USERS,
 			Attributes: datadog.ServiceAccountCreateAttributes{
 				Name:           datadog.PtrString("Test API Client"),
-				Email:          "Example-Create_a_service_account_returns_OK_response@datadoghq.com",
+				Email:          "Test-Example-Create_a_service_account_returns_OK_response@datadoghq.com",
 				ServiceAccount: true,
 			},
 			Relationships: &datadog.UserRelationships{

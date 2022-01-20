@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListTagConfigurations", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, *datadog.NewListTagConfigurationsOptionalParameters().WithFilterTags("ExampleListtagconfigurationswithatagfilterreturnsSuccessresponse"))
+	resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, *datadog.NewListTagConfigurationsOptionalParameters().WithFilterTags("TestExampleListtagconfigurationswithatagfilterreturnsSuccessresponse"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations`: %v\n", err)

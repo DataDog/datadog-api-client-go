@@ -62,7 +62,7 @@ func main() {
 					},
 				},
 				Headers: &map[string]string{
-					"unique": "exampleeditanapitestreturnsokresponse",
+					"unique": "testexampleeditanapitestreturnsokresponse",
 				},
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),
 				Timeout: datadog.PtrFloat64(10),
@@ -73,7 +73,7 @@ func main() {
 			"aws:us-east-2",
 		},
 		Message: datadog.PtrString("BDD test payload: synthetics_api_test_payload.json"),
-		Name:    "Example-Edit_an_API_test_returns_OK_response-updated",
+		Name:    "Test-Example-Edit_an_API_test_returns_OK_response-updated",
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
 			AllowInsecure:      datadog.PtrBool(true),

@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.Dashboard{
 		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_returns_OK_response with Profile Metrics Query",
+		Title:      "Test-Example-Create_a_new_dashboard_returns_OK_response with Profile Metrics Query",
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{

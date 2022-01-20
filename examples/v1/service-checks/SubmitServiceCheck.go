@@ -18,7 +18,7 @@ func main() {
 			HostName: "host",
 			Status:   datadog.SERVICECHECKSTATUS_OK,
 			Tags: []string{
-				"test:ExampleSubmitaServiceCheckreturnsPayloadacceptedresponse",
+				"test:TestExampleSubmitaServiceCheckreturnsPayloadacceptedresponse",
 			},
 		},
 	}

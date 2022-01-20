@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.ApplicationKeyCreateData{
 			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 			Attributes: datadog.ApplicationKeyCreateAttributes{
-				Name: "Example-Create_an_Application_key_with_scopes_for_current_user_returns_Created_response",
+				Name: "Test-Example-Create_an_Application_key_with_scopes_for_current_user_returns_Created_response",
 				Scopes: []string{
 					"dashboards_read",
 					"dashboards_write",

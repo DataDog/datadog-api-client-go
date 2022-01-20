@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.APIKeyCreateData{
 			Type: datadog.APIKEYSTYPE_API_KEYS,
 			Attributes: datadog.APIKeyCreateAttributes{
-				Name: "Example-Create_an_API_key_returns_Created_response",
+				Name: "Test-Example-Create_an_API_key_returns_Created_response",
 			},
 		},
 	}

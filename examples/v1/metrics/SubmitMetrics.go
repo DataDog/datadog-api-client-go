@@ -25,7 +25,7 @@ func main() {
 					},
 				},
 				Tags: &[]string{
-					"test:ExampleSubmitmetricsreturnsPayloadacceptedresponse",
+					"test:TestExampleSubmitmetricsreturnsPayloadacceptedresponse",
 				},
 			},
 		},

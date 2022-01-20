@@ -16,7 +16,7 @@ func main() {
 		Data: datadog.IncidentTeamCreateData{
 			Type: datadog.INCIDENTTEAMTYPE_TEAMS,
 			Attributes: &datadog.IncidentTeamCreateAttributes{
-				Name: "Example-Create_a_new_incident_team_returns_CREATED_response",
+				Name: "Test-Example-Create_a_new_incident_team_returns_CREATED_response",
 			},
 		},
 	}

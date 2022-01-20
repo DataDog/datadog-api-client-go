@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		Title: "Example-Create_a_new_dashboard_with_sunburst_widget_and_metrics_data",
+		Title: "Test-Example-Create_a_new_dashboard_with_sunburst_widget_and_metrics_data",
 		Widgets: []datadog.Widget{
 			{
 				Definition: datadog.WidgetDefinition{

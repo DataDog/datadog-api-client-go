@@ -13,12 +13,12 @@ import (
 
 func main() {
 	body := datadog.Monitor{
-		Name:    datadog.PtrString("Example-Create_a_ci_pipelines_monitor_returns_OK_response"),
+		Name:    datadog.PtrString("Test-Example-Create_a_ci_pipelines_monitor_returns_OK_response"),
 		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `ci-pipelines("ci_level:pipeline @git.branch:staging* @ci.status:error").rollup("count").by("@git.branch,@ci.pipeline.name").last("5m") >= 1`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
-			"test:examplecreateacipipelinesmonitorreturnsokresponse",
+			"test:testexamplecreateacipipelinesmonitorreturnsokresponse",
 			"env:ci",
 		},
 		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
