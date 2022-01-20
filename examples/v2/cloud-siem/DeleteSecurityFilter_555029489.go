@@ -17,10 +17,10 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, SecurityFilterDataID)
+	r, err := apiClient.CloudSIEMApi.DeleteSecurityFilter(ctx, SecurityFilterDataID)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.DeleteSecurityFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }

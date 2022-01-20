@@ -1,6 +1,7 @@
 .gitignore
 .travis.yml
 README.md
+api_cloud_siem.go
 api_cloud_workload_security.go
 api_dashboard_lists.go
 api_incident_services.go
@@ -13,7 +14,6 @@ api_logs_metrics.go
 api_metrics.go
 api_processes.go
 api_roles.go
-api_security_monitoring.go
 api_service_accounts.go
 api_users.go
 client.go
@@ -42,6 +42,7 @@ docs/ApplicationKeyUpdateData.md
 docs/ApplicationKeyUpdateRequest.md
 docs/ApplicationKeysSort.md
 docs/ApplicationKeysType.md
+docs/CloudSIEMApi.md
 docs/CloudWorkloadSecurityAgentRuleAttributes.md
 docs/CloudWorkloadSecurityAgentRuleCreateAttributes.md
 docs/CloudWorkloadSecurityAgentRuleCreateData.md
@@ -320,7 +321,6 @@ docs/SecurityFilterUpdateAttributes.md
 docs/SecurityFilterUpdateData.md
 docs/SecurityFilterUpdateRequest.md
 docs/SecurityFiltersResponse.md
-docs/SecurityMonitoringApi.md
 docs/SecurityMonitoringFilter.md
 docs/SecurityMonitoringFilterAction.md
 docs/SecurityMonitoringListRulesResponse.md

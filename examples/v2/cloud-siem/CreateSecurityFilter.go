@@ -32,13 +32,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityFilter(ctx, body)
+	resp, r, err := apiClient.CloudSIEMApi.CreateSecurityFilter(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.CreateSecurityFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.CreateSecurityFilter`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CloudSIEMApi.CreateSecurityFilter`:\n%s\n", responseContent)
 }

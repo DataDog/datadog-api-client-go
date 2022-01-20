@@ -44,13 +44,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
+	resp, r, err := apiClient.CloudSIEMApi.CreateSecurityMonitoringRule(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.CreateSecurityMonitoringRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.CreateSecurityMonitoringRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `CloudSIEMApi.CreateSecurityMonitoringRule`:\n%s\n", responseContent)
 }

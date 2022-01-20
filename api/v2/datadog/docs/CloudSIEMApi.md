@@ -1,21 +1,21 @@
-# SecurityMonitoringApi
+# CloudSIEMApi
 
 All URIs are relative to *https://api.datadoghq.com*
 
-| Method                                                                                          | HTTP request                                                                               | Description                          |
-| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [**CreateSecurityFilter**](SecurityMonitoringApi.md#CreateSecurityFilter)                       | **Post** /api/v2/security_monitoring/configuration/security_filters                        | Create a security filter             |
-| [**CreateSecurityMonitoringRule**](SecurityMonitoringApi.md#CreateSecurityMonitoringRule)       | **Post** /api/v2/security_monitoring/rules                                                 | Create a detection rule              |
-| [**DeleteSecurityFilter**](SecurityMonitoringApi.md#DeleteSecurityFilter)                       | **Delete** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Delete a security filter             |
-| [**DeleteSecurityMonitoringRule**](SecurityMonitoringApi.md#DeleteSecurityMonitoringRule)       | **Delete** /api/v2/security_monitoring/rules/{rule_id}                                     | Delete an existing rule              |
-| [**GetSecurityFilter**](SecurityMonitoringApi.md#GetSecurityFilter)                             | **Get** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}    | Get a security filter                |
-| [**GetSecurityMonitoringRule**](SecurityMonitoringApi.md#GetSecurityMonitoringRule)             | **Get** /api/v2/security_monitoring/rules/{rule_id}                                        | Get a rule&#39;s details             |
-| [**ListSecurityFilters**](SecurityMonitoringApi.md#ListSecurityFilters)                         | **Get** /api/v2/security_monitoring/configuration/security_filters                         | Get all security filters             |
-| [**ListSecurityMonitoringRules**](SecurityMonitoringApi.md#ListSecurityMonitoringRules)         | **Get** /api/v2/security_monitoring/rules                                                  | List rules                           |
-| [**ListSecurityMonitoringSignals**](SecurityMonitoringApi.md#ListSecurityMonitoringSignals)     | **Get** /api/v2/security_monitoring/signals                                                | Get a quick list of security signals |
-| [**SearchSecurityMonitoringSignals**](SecurityMonitoringApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search                                        | Get a list of security signals       |
-| [**UpdateSecurityFilter**](SecurityMonitoringApi.md#UpdateSecurityFilter)                       | **Patch** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}  | Update a security filter             |
-| [**UpdateSecurityMonitoringRule**](SecurityMonitoringApi.md#UpdateSecurityMonitoringRule)       | **Put** /api/v2/security_monitoring/rules/{rule_id}                                        | Update an existing rule              |
+| Method                                                                                 | HTTP request                                                                               | Description                          |
+| -------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------ |
+| [**CreateSecurityFilter**](CloudSIEMApi.md#CreateSecurityFilter)                       | **Post** /api/v2/security_monitoring/configuration/security_filters                        | Create a security filter             |
+| [**CreateSecurityMonitoringRule**](CloudSIEMApi.md#CreateSecurityMonitoringRule)       | **Post** /api/v2/security_monitoring/rules                                                 | Create a detection rule              |
+| [**DeleteSecurityFilter**](CloudSIEMApi.md#DeleteSecurityFilter)                       | **Delete** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id} | Delete a security filter             |
+| [**DeleteSecurityMonitoringRule**](CloudSIEMApi.md#DeleteSecurityMonitoringRule)       | **Delete** /api/v2/security_monitoring/rules/{rule_id}                                     | Delete an existing rule              |
+| [**GetSecurityFilter**](CloudSIEMApi.md#GetSecurityFilter)                             | **Get** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}    | Get a security filter                |
+| [**GetSecurityMonitoringRule**](CloudSIEMApi.md#GetSecurityMonitoringRule)             | **Get** /api/v2/security_monitoring/rules/{rule_id}                                        | Get a rule&#39;s details             |
+| [**ListSecurityFilters**](CloudSIEMApi.md#ListSecurityFilters)                         | **Get** /api/v2/security_monitoring/configuration/security_filters                         | Get all security filters             |
+| [**ListSecurityMonitoringRules**](CloudSIEMApi.md#ListSecurityMonitoringRules)         | **Get** /api/v2/security_monitoring/rules                                                  | List rules                           |
+| [**ListSecurityMonitoringSignals**](CloudSIEMApi.md#ListSecurityMonitoringSignals)     | **Get** /api/v2/security_monitoring/signals                                                | Get a quick list of security signals |
+| [**SearchSecurityMonitoringSignals**](CloudSIEMApi.md#SearchSecurityMonitoringSignals) | **Post** /api/v2/security_monitoring/signals/search                                        | Get a list of security signals       |
+| [**UpdateSecurityFilter**](CloudSIEMApi.md#UpdateSecurityFilter)                       | **Patch** /api/v2/security_monitoring/configuration/security_filters/{security_filter_id}  | Update a security filter             |
+| [**UpdateSecurityMonitoringRule**](CloudSIEMApi.md#UpdateSecurityMonitoringRule)       | **Put** /api/v2/security_monitoring/rules/{rule_id}                                        | Update an existing rule              |
 
 ## CreateSecurityFilter
 
@@ -47,14 +47,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityFilter(ctx, body)
+    resp, r, err := apiClient.CloudSIEMApi.CreateSecurityFilter(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.CreateSecurityFilter`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSecurityFilter`: SecurityFilterResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityFilter:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.CreateSecurityFilter:\n%s\n", responseContent)
 }
 ```
 
@@ -108,19 +108,19 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "My security monitoring rule.", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a > 3")}) // SecurityMonitoringRuleCreatePayload |
+    body := *datadog.NewSecurityMonitoringRuleCreatePayload([]datadog.SecurityMonitoringRuleCaseCreate{*datadog.NewSecurityMonitoringRuleCaseCreate(datadog.SecurityMonitoringRuleSeverity("info"))}, true, "Message_example", "My Cloud SIEM rule.", *datadog.NewSecurityMonitoringRuleOptions(), []datadog.SecurityMonitoringRuleQueryCreate{*datadog.NewSecurityMonitoringRuleQueryCreate("a > 3")}) // SecurityMonitoringRuleCreatePayload |
 
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityMonitoringRule(ctx, body)
+    resp, r, err := apiClient.CloudSIEMApi.CreateSecurityMonitoringRule(ctx, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityMonitoringRule`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.CreateSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `CreateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.CreateSecurityMonitoringRule:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.CreateSecurityMonitoringRule:\n%s\n", responseContent)
 }
 ```
 
@@ -178,9 +178,9 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, securityFilterId)
+    r, err := apiClient.CloudSIEMApi.DeleteSecurityFilter(ctx, securityFilterId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.DeleteSecurityFilter`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -240,9 +240,9 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, ruleId)
+    r, err := apiClient.CloudSIEMApi.DeleteSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.DeleteSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
 }
@@ -306,14 +306,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityFilter(ctx, securityFilterId)
+    resp, r, err := apiClient.CloudSIEMApi.GetSecurityFilter(ctx, securityFilterId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.GetSecurityFilter`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSecurityFilter`: SecurityFilterResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityFilter:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.GetSecurityFilter:\n%s\n", responseContent)
 }
 ```
 
@@ -372,14 +372,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, ruleId)
+    resp, r, err := apiClient.CloudSIEMApi.GetSecurityMonitoringRule(ctx, ruleId)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.GetSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `GetSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.GetSecurityMonitoringRule:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.GetSecurityMonitoringRule:\n%s\n", responseContent)
 }
 ```
 
@@ -437,14 +437,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityFilters(ctx)
+    resp, r, err := apiClient.CloudSIEMApi.ListSecurityFilters(ctx)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityFilters`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.ListSecurityFilters`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityFilters`: SecurityFiltersResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityFilters:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.ListSecurityFilters:\n%s\n", responseContent)
 }
 ```
 
@@ -505,14 +505,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringRules(ctx, optionalParams)
+    resp, r, err := apiClient.CloudSIEMApi.ListSecurityMonitoringRules(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringRules`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.ListSecurityMonitoringRules`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringRules`: SecurityMonitoringListRulesResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringRules:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.ListSecurityMonitoringRules:\n%s\n", responseContent)
 }
 ```
 
@@ -588,14 +588,14 @@ func main() {
     configuration.SetUnstableOperationEnabled("ListSecurityMonitoringSignals", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityMonitoringSignals(ctx, optionalParams)
+    resp, r, err := apiClient.CloudSIEMApi.ListSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityMonitoringSignals`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.ListSecurityMonitoringSignals`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `ListSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.ListSecurityMonitoringSignals:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.ListSecurityMonitoringSignals:\n%s\n", responseContent)
 }
 ```
 
@@ -664,14 +664,14 @@ func main() {
     configuration.SetUnstableOperationEnabled("SearchSecurityMonitoringSignals", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx, optionalParams)
+    resp, r, err := apiClient.CloudSIEMApi.SearchSecurityMonitoringSignals(ctx, optionalParams)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.SearchSecurityMonitoringSignals`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `SearchSecurityMonitoringSignals`: SecurityMonitoringSignalsListResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.SearchSecurityMonitoringSignals:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.SearchSecurityMonitoringSignals:\n%s\n", responseContent)
 }
 ```
 
@@ -731,14 +731,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityFilter(ctx, securityFilterId, body)
+    resp, r, err := apiClient.CloudSIEMApi.UpdateSecurityFilter(ctx, securityFilterId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityFilter`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.UpdateSecurityFilter`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSecurityFilter`: SecurityFilterResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityFilter:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.UpdateSecurityFilter:\n%s\n", responseContent)
 }
 ```
 
@@ -801,14 +801,14 @@ func main() {
     configuration := datadog.NewConfiguration()
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, ruleId, body)
+    resp, r, err := apiClient.CloudSIEMApi.UpdateSecurityMonitoringRule(ctx, ruleId, body)
     if err != nil {
-        fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule`: %v\n", err)
+        fmt.Fprintf(os.Stderr, "Error when calling `CloudSIEMApi.UpdateSecurityMonitoringRule`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
     }
     // response from `UpdateSecurityMonitoringRule`: SecurityMonitoringRuleResponse
     responseContent, _ := json.MarshalIndent(resp, "", "  ")
-    fmt.Fprintf(os.Stdout, "Response from SecurityMonitoringApi.UpdateSecurityMonitoringRule:\n%s\n", responseContent)
+    fmt.Fprintf(os.Stdout, "Response from CloudSIEMApi.UpdateSecurityMonitoringRule:\n%s\n", responseContent)
 }
 ```
 

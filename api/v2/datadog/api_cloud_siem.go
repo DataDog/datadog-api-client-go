@@ -25,12 +25,12 @@ var (
 	_ _context.Context
 )
 
-// SecurityMonitoringApiService SecurityMonitoringApi service
-type SecurityMonitoringApiService service
+// CloudSIEMApiService CloudSIEMApi service
+type CloudSIEMApiService service
 
 type apiCreateSecurityFilterRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	body       *SecurityFilterCreateRequest
 }
 
@@ -41,7 +41,7 @@ type apiCreateSecurityFilterRequest struct {
 See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 for more examples.
 */
-func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiCreateSecurityFilterRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -55,7 +55,7 @@ func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context
  * Execute executes the request
  * @return SecurityFilterResponse
  */
-func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -65,7 +65,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 		localVarReturnValue  SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityFilter")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.CreateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -208,7 +208,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 
 type apiCreateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	body       *SecurityMonitoringRuleCreatePayload
 }
 
@@ -216,7 +216,7 @@ type apiCreateSecurityMonitoringRuleRequest struct {
  * CreateSecurityMonitoringRule Create a detection rule
  * Create a detection rule.
  */
-func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req := apiCreateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -230,7 +230,7 @@ func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -240,7 +240,7 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 		localVarReturnValue  SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityMonitoringRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.CreateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -373,7 +373,7 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 
 type apiDeleteSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ApiService       *CloudSIEMApiService
 	securityFilterId string
 }
 
@@ -381,7 +381,7 @@ type apiDeleteSecurityFilterRequest struct {
  * DeleteSecurityFilter Delete a security filter
  * Delete a specific security filter.
  */
-func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
+func (a *CloudSIEMApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	req := apiDeleteSecurityFilterRequest{
 		ApiService:       a,
 		ctx:              ctx,
@@ -394,7 +394,7 @@ func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context
 /*
  * Execute executes the request
  */
-func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
+func (a *CloudSIEMApiService) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -403,7 +403,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityFilter")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.DeleteSecurityFilter")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -523,7 +523,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 
 type apiDeleteSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	ruleId     string
 }
 
@@ -531,7 +531,7 @@ type apiDeleteSecurityMonitoringRuleRequest struct {
  * DeleteSecurityMonitoringRule Delete an existing rule
  * Delete an existing rule. Default rules cannot be deleted.
  */
-func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
+func (a *CloudSIEMApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
 	req := apiDeleteSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -544,7 +544,7 @@ func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context
 /*
  * Execute executes the request
  */
-func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
+func (a *CloudSIEMApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodDelete
 		localVarPostBody     interface{}
@@ -553,7 +553,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 		localVarFileBytes    []byte
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.DeleteSecurityMonitoringRule")
 	if err != nil {
 		return nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -673,7 +673,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 
 type apiGetSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ApiService       *CloudSIEMApiService
 	securityFilterId string
 }
 
@@ -684,7 +684,7 @@ type apiGetSecurityFilterRequest struct {
 See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
 for more examples.
 */
-func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiGetSecurityFilterRequest{
 		ApiService:       a,
 		ctx:              ctx,
@@ -698,7 +698,7 @@ func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, s
  * Execute executes the request
  * @return SecurityFilterResponse
  */
-func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -708,7 +708,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 		localVarReturnValue  SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityFilter")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.GetSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -837,7 +837,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 
 type apiGetSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	ruleId     string
 }
 
@@ -845,7 +845,7 @@ type apiGetSecurityMonitoringRuleRequest struct {
  * GetSecurityMonitoringRule Get a rule's details
  * Get a rule's details.
  */
-func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req := apiGetSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -859,7 +859,7 @@ func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Co
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -869,7 +869,7 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 		localVarReturnValue  SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityMonitoringRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.GetSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -988,14 +988,14 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 
 type apiListSecurityFiltersRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 }
 
 /*
  * ListSecurityFilters Get all security filters
  * Get the list of configured security filters with their definitions.
  */
-func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	req := apiListSecurityFiltersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1008,7 +1008,7 @@ func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context)
  * Execute executes the request
  * @return SecurityFiltersResponse
  */
-func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1018,7 +1018,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 		localVarReturnValue  SecurityFiltersResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityFilters")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.ListSecurityFilters")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1136,7 +1136,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	pageSize   *int64
 	pageNumber *int64
 }
@@ -1163,7 +1163,7 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
  * ListSecurityMonitoringRules List rules
  * List rules.
  */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	req := apiListSecurityMonitoringRulesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1186,7 +1186,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.
  * Execute executes the request
  * @return SecurityMonitoringListRulesResponse
  */
-func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1196,7 +1196,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 		localVarReturnValue  SecurityMonitoringListRulesResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringRules")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.ListSecurityMonitoringRules")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1320,7 +1320,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 
 type apiListSecurityMonitoringSignalsRequest struct {
 	ctx         _context.Context
-	ApiService  *SecurityMonitoringApiService
+	ApiService  *CloudSIEMApiService
 	filterQuery *string
 	filterFrom  *time.Time
 	filterTo    *time.Time
@@ -1373,7 +1373,7 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 Both this endpoint and the POST endpoint can be used interchangeably when listing
 security signals.
 */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1400,7 +1400,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
  * Execute executes the request
  * @return SecurityMonitoringSignalsListResponse
  */
-func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
@@ -1417,7 +1417,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringSignals")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.ListSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1563,7 +1563,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 
 type apiSearchSecurityMonitoringSignalsRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	body       *SecurityMonitoringSignalListRequest
 }
 
@@ -1586,7 +1586,7 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 Both this endpoint and the GET endpoint can be used interchangeably for listing
 security signals.
 */
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req := apiSearchSecurityMonitoringSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1608,7 +1608,7 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _cont
  * Execute executes the request
  * @return SecurityMonitoringSignalsListResponse
  */
-func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPost
 		localVarPostBody     interface{}
@@ -1625,7 +1625,7 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.SearchSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1755,7 +1755,7 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 
 type apiUpdateSecurityFilterRequest struct {
 	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ApiService       *CloudSIEMApiService
 	securityFilterId string
 	body             *SecurityFilterUpdateRequest
 }
@@ -1765,7 +1765,7 @@ type apiUpdateSecurityFilterRequest struct {
  * Update a specific security filter.
 Returns the security filter object when the request is successful.
 */
-func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiUpdateSecurityFilterRequest{
 		ApiService:       a,
 		ctx:              ctx,
@@ -1780,7 +1780,7 @@ func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context
  * Execute executes the request
  * @return SecurityFilterResponse
  */
-func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPatch
 		localVarPostBody     interface{}
@@ -1790,7 +1790,7 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 		localVarReturnValue  SecurityFilterResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityFilter")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.UpdateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
@@ -1944,7 +1944,7 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 
 type apiUpdateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
-	ApiService *SecurityMonitoringApiService
+	ApiService *CloudSIEMApiService
 	ruleId     string
 	body       *SecurityMonitoringRuleUpdatePayload
 }
@@ -1955,7 +1955,7 @@ type apiUpdateSecurityMonitoringRuleRequest struct {
 must be included. For example, when modifying a query all queries must be included.
 Default rules can only be updated to be enabled and to change notifications.
 */
-func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req := apiUpdateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1970,7 +1970,7 @@ func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context
  * Execute executes the request
  * @return SecurityMonitoringRuleResponse
  */
-func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
+func (a *CloudSIEMApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodPut
 		localVarPostBody     interface{}
@@ -1980,7 +1980,7 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 		localVarReturnValue  SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudSIEMApiService.UpdateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
 	}
