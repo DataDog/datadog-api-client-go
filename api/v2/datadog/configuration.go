@@ -214,6 +214,8 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
+			"ListSecurityMonitoringSignals":   false,
+			"SearchSecurityMonitoringSignals": false,
 			"CreateIncidentService":           false,
 			"DeleteIncidentService":           false,
 			"GetIncidentService":              false,
@@ -234,8 +236,6 @@ func NewConfiguration() *Configuration {
 			"ListTagConfigurationByName":      false,
 			"ListTagConfigurations":           false,
 			"UpdateTagConfiguration":          false,
-			"ListSecurityMonitoringSignals":   false,
-			"SearchSecurityMonitoringSignals": false,
 		},
 	}
 	return cfg

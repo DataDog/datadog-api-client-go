@@ -48,6 +48,8 @@ type APIClient struct {
 
 	// API Services
 
+	CloudSIEMApi *CloudSIEMApiService
+
 	CloudWorkloadSecurityApi *CloudWorkloadSecurityApiService
 
 	DashboardListsApi *DashboardListsApiService
@@ -72,8 +74,6 @@ type APIClient struct {
 
 	RolesApi *RolesApiService
 
-	SecurityMonitoringApi *SecurityMonitoringApiService
-
 	ServiceAccountsApi *ServiceAccountsApiService
 
 	UsersApi *UsersApiService
@@ -95,6 +95,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.CloudSIEMApi = (*CloudSIEMApiService)(&c.common)
 	c.CloudWorkloadSecurityApi = (*CloudWorkloadSecurityApiService)(&c.common)
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
 	c.IncidentServicesApi = (*IncidentServicesApiService)(&c.common)
@@ -107,7 +108,6 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.MetricsApi = (*MetricsApiService)(&c.common)
 	c.ProcessesApi = (*ProcessesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
-	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
 	c.ServiceAccountsApi = (*ServiceAccountsApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)
 
