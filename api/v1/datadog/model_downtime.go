@@ -796,39 +796,3 @@ func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	o.UpdaterId = all.UpdaterId
 	return nil
 }
-
-type NullableDowntime struct {
-	value *Downtime
-	isSet bool
-}
-
-func (v NullableDowntime) Get() *Downtime {
-	return v.value
-}
-
-func (v *NullableDowntime) Set(val *Downtime) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDowntime) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDowntime) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDowntime(val *Downtime) *NullableDowntime {
-	return &NullableDowntime{value: val, isSet: true}
-}
-
-func (v NullableDowntime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDowntime) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

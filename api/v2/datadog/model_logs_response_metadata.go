@@ -259,39 +259,3 @@ func (o *LogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Warnings = all.Warnings
 	return nil
 }
-
-type NullableLogsResponseMetadata struct {
-	value *LogsResponseMetadata
-	isSet bool
-}
-
-func (v NullableLogsResponseMetadata) Get() *LogsResponseMetadata {
-	return v.value
-}
-
-func (v *NullableLogsResponseMetadata) Set(val *LogsResponseMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsResponseMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsResponseMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsResponseMetadata(val *LogsResponseMetadata) *NullableLogsResponseMetadata {
-	return &NullableLogsResponseMetadata{value: val, isSet: true}
-}
-
-func (v NullableLogsResponseMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsResponseMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

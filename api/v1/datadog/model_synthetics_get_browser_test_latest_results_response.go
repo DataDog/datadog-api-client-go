@@ -136,39 +136,3 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []by
 	o.Results = all.Results
 	return nil
 }
-
-type NullableSyntheticsGetBrowserTestLatestResultsResponse struct {
-	value *SyntheticsGetBrowserTestLatestResultsResponse
-	isSet bool
-}
-
-func (v NullableSyntheticsGetBrowserTestLatestResultsResponse) Get() *SyntheticsGetBrowserTestLatestResultsResponse {
-	return v.value
-}
-
-func (v *NullableSyntheticsGetBrowserTestLatestResultsResponse) Set(val *SyntheticsGetBrowserTestLatestResultsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsGetBrowserTestLatestResultsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsGetBrowserTestLatestResultsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsGetBrowserTestLatestResultsResponse(val *SyntheticsGetBrowserTestLatestResultsResponse) *NullableSyntheticsGetBrowserTestLatestResultsResponse {
-	return &NullableSyntheticsGetBrowserTestLatestResultsResponse{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -253,39 +253,3 @@ func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
 	return nil
 }
-
-type NullableUsageAttributionPagination struct {
-	value *UsageAttributionPagination
-	isSet bool
-}
-
-func (v NullableUsageAttributionPagination) Get() *UsageAttributionPagination {
-	return v.value
-}
-
-func (v *NullableUsageAttributionPagination) Set(val *UsageAttributionPagination) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageAttributionPagination) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageAttributionPagination) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageAttributionPagination(val *UsageAttributionPagination) *NullableUsageAttributionPagination {
-	return &NullableUsageAttributionPagination{value: val, isSet: true}
-}
-
-func (v NullableUsageAttributionPagination) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageAttributionPagination) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

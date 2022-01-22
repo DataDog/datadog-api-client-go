@@ -178,39 +178,3 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sort = all.Sort
 	return nil
 }
-
-type NullableLogQueryDefinitionGroupBy struct {
-	value *LogQueryDefinitionGroupBy
-	isSet bool
-}
-
-func (v NullableLogQueryDefinitionGroupBy) Get() *LogQueryDefinitionGroupBy {
-	return v.value
-}
-
-func (v *NullableLogQueryDefinitionGroupBy) Set(val *LogQueryDefinitionGroupBy) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogQueryDefinitionGroupBy) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogQueryDefinitionGroupBy) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogQueryDefinitionGroupBy(val *LogQueryDefinitionGroupBy) *NullableLogQueryDefinitionGroupBy {
-	return &NullableLogQueryDefinitionGroupBy{value: val, isSet: true}
-}
-
-func (v NullableLogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogQueryDefinitionGroupBy) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

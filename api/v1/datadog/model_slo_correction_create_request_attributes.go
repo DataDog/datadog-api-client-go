@@ -375,39 +375,3 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.Timezone = all.Timezone
 	return nil
 }
-
-type NullableSLOCorrectionCreateRequestAttributes struct {
-	value *SLOCorrectionCreateRequestAttributes
-	isSet bool
-}
-
-func (v NullableSLOCorrectionCreateRequestAttributes) Get() *SLOCorrectionCreateRequestAttributes {
-	return v.value
-}
-
-func (v *NullableSLOCorrectionCreateRequestAttributes) Set(val *SLOCorrectionCreateRequestAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOCorrectionCreateRequestAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOCorrectionCreateRequestAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOCorrectionCreateRequestAttributes(val *SLOCorrectionCreateRequestAttributes) *NullableSLOCorrectionCreateRequestAttributes {
-	return &NullableSLOCorrectionCreateRequestAttributes{value: val, isSet: true}
-}
-
-func (v NullableSLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOCorrectionCreateRequestAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

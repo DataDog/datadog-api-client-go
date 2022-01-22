@@ -502,39 +502,3 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
-
-type NullableEventCreateRequest struct {
-	value *EventCreateRequest
-	isSet bool
-}
-
-func (v NullableEventCreateRequest) Get() *EventCreateRequest {
-	return v.value
-}
-
-func (v *NullableEventCreateRequest) Set(val *EventCreateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventCreateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventCreateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventCreateRequest(val *EventCreateRequest) *NullableEventCreateRequest {
-	return &NullableEventCreateRequest{value: val, isSet: true}
-}
-
-func (v NullableEventCreateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventCreateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

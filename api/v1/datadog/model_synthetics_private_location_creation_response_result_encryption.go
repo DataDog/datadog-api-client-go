@@ -136,39 +136,3 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSO
 	o.Key = all.Key
 	return nil
 }
-
-type NullableSyntheticsPrivateLocationCreationResponseResultEncryption struct {
-	value *SyntheticsPrivateLocationCreationResponseResultEncryption
-	isSet bool
-}
-
-func (v NullableSyntheticsPrivateLocationCreationResponseResultEncryption) Get() *SyntheticsPrivateLocationCreationResponseResultEncryption {
-	return v.value
-}
-
-func (v *NullableSyntheticsPrivateLocationCreationResponseResultEncryption) Set(val *SyntheticsPrivateLocationCreationResponseResultEncryption) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsPrivateLocationCreationResponseResultEncryption) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsPrivateLocationCreationResponseResultEncryption) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsPrivateLocationCreationResponseResultEncryption(val *SyntheticsPrivateLocationCreationResponseResultEncryption) *NullableSyntheticsPrivateLocationCreationResponseResultEncryption {
-	return &NullableSyntheticsPrivateLocationCreationResponseResultEncryption{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsPrivateLocationCreationResponseResultEncryption) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

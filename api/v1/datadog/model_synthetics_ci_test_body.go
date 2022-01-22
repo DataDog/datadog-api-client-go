@@ -97,39 +97,3 @@ func (o *SyntheticsCITestBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tests = all.Tests
 	return nil
 }
-
-type NullableSyntheticsCITestBody struct {
-	value *SyntheticsCITestBody
-	isSet bool
-}
-
-func (v NullableSyntheticsCITestBody) Get() *SyntheticsCITestBody {
-	return v.value
-}
-
-func (v *NullableSyntheticsCITestBody) Set(val *SyntheticsCITestBody) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsCITestBody) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsCITestBody) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsCITestBody(val *SyntheticsCITestBody) *NullableSyntheticsCITestBody {
-	return &NullableSyntheticsCITestBody{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsCITestBody) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsCITestBody) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

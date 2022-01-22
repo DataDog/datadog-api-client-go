@@ -225,39 +225,3 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	o.Status = all.Status
 	return nil
 }
-
-type NullableSecurityMonitoringRuleCaseCreate struct {
-	value *SecurityMonitoringRuleCaseCreate
-	isSet bool
-}
-
-func (v NullableSecurityMonitoringRuleCaseCreate) Get() *SecurityMonitoringRuleCaseCreate {
-	return v.value
-}
-
-func (v *NullableSecurityMonitoringRuleCaseCreate) Set(val *SecurityMonitoringRuleCaseCreate) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityMonitoringRuleCaseCreate) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityMonitoringRuleCaseCreate) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityMonitoringRuleCaseCreate(val *SecurityMonitoringRuleCaseCreate) *NullableSecurityMonitoringRuleCaseCreate {
-	return &NullableSecurityMonitoringRuleCaseCreate{value: val, isSet: true}
-}
-
-func (v NullableSecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityMonitoringRuleCaseCreate) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

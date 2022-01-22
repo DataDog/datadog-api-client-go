@@ -393,39 +393,3 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableEventStreamWidgetDefinition struct {
-	value *EventStreamWidgetDefinition
-	isSet bool
-}
-
-func (v NullableEventStreamWidgetDefinition) Get() *EventStreamWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableEventStreamWidgetDefinition) Set(val *EventStreamWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventStreamWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventStreamWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventStreamWidgetDefinition(val *EventStreamWidgetDefinition) *NullableEventStreamWidgetDefinition {
-	return &NullableEventStreamWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableEventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventStreamWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

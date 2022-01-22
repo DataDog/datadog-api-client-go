@@ -185,39 +185,3 @@ func (o *MetricIngestedIndexedVolume) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableMetricIngestedIndexedVolume struct {
-	value *MetricIngestedIndexedVolume
-	isSet bool
-}
-
-func (v NullableMetricIngestedIndexedVolume) Get() *MetricIngestedIndexedVolume {
-	return v.value
-}
-
-func (v *NullableMetricIngestedIndexedVolume) Set(val *MetricIngestedIndexedVolume) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMetricIngestedIndexedVolume) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMetricIngestedIndexedVolume) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMetricIngestedIndexedVolume(val *MetricIngestedIndexedVolume) *NullableMetricIngestedIndexedVolume {
-	return &NullableMetricIngestedIndexedVolume{value: val, isSet: true}
-}
-
-func (v NullableMetricIngestedIndexedVolume) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMetricIngestedIndexedVolume) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

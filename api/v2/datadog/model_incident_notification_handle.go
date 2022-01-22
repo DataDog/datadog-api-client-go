@@ -136,39 +136,3 @@ func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	o.Handle = all.Handle
 	return nil
 }
-
-type NullableIncidentNotificationHandle struct {
-	value *IncidentNotificationHandle
-	isSet bool
-}
-
-func (v NullableIncidentNotificationHandle) Get() *IncidentNotificationHandle {
-	return v.value
-}
-
-func (v *NullableIncidentNotificationHandle) Set(val *IncidentNotificationHandle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentNotificationHandle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentNotificationHandle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentNotificationHandle(val *IncidentNotificationHandle) *NullableIncidentNotificationHandle {
-	return &NullableIncidentNotificationHandle{value: val, isSet: true}
-}
-
-func (v NullableIncidentNotificationHandle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentNotificationHandle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

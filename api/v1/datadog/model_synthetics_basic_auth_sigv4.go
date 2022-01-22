@@ -299,39 +299,3 @@ func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSyntheticsBasicAuthSigv4 struct {
-	value *SyntheticsBasicAuthSigv4
-	isSet bool
-}
-
-func (v NullableSyntheticsBasicAuthSigv4) Get() *SyntheticsBasicAuthSigv4 {
-	return v.value
-}
-
-func (v *NullableSyntheticsBasicAuthSigv4) Set(val *SyntheticsBasicAuthSigv4) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBasicAuthSigv4) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBasicAuthSigv4) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBasicAuthSigv4(val *SyntheticsBasicAuthSigv4) *NullableSyntheticsBasicAuthSigv4 {
-	return &NullableSyntheticsBasicAuthSigv4{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBasicAuthSigv4) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -175,39 +175,3 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
-
-type NullableHTTPLogError struct {
-	value *HTTPLogError
-	isSet bool
-}
-
-func (v NullableHTTPLogError) Get() *HTTPLogError {
-	return v.value
-}
-
-func (v *NullableHTTPLogError) Set(val *HTTPLogError) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHTTPLogError) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHTTPLogError) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHTTPLogError(val *HTTPLogError) *NullableHTTPLogError {
-	return &NullableHTTPLogError{value: val, isSet: true}
-}
-
-func (v NullableHTTPLogError) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHTTPLogError) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

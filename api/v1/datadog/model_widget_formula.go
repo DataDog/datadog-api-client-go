@@ -263,39 +263,3 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	return nil
 }
-
-type NullableWidgetFormula struct {
-	value *WidgetFormula
-	isSet bool
-}
-
-func (v NullableWidgetFormula) Get() *WidgetFormula {
-	return v.value
-}
-
-func (v *NullableWidgetFormula) Set(val *WidgetFormula) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetFormula) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetFormula) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetFormula(val *WidgetFormula) *NullableWidgetFormula {
-	return &NullableWidgetFormula{value: val, isSet: true}
-}
-
-func (v NullableWidgetFormula) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetFormula) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -223,39 +223,3 @@ func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableFullAPIKey struct {
-	value *FullAPIKey
-	isSet bool
-}
-
-func (v NullableFullAPIKey) Get() *FullAPIKey {
-	return v.value
-}
-
-func (v *NullableFullAPIKey) Set(val *FullAPIKey) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFullAPIKey) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFullAPIKey) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFullAPIKey(val *FullAPIKey) *NullableFullAPIKey {
-	return &NullableFullAPIKey{value: val, isSet: true}
-}
-
-func (v NullableFullAPIKey) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFullAPIKey) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

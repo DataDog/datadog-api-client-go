@@ -2242,39 +2242,3 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99p = all.VsphereHostTop99p
 	return nil
 }
-
-type NullableUsageSummaryDateOrg struct {
-	value *UsageSummaryDateOrg
-	isSet bool
-}
-
-func (v NullableUsageSummaryDateOrg) Get() *UsageSummaryDateOrg {
-	return v.value
-}
-
-func (v *NullableUsageSummaryDateOrg) Set(val *UsageSummaryDateOrg) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSummaryDateOrg) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSummaryDateOrg) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSummaryDateOrg(val *UsageSummaryDateOrg) *NullableUsageSummaryDateOrg {
-	return &NullableUsageSummaryDateOrg{value: val, isSet: true}
-}
-
-func (v NullableUsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSummaryDateOrg) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

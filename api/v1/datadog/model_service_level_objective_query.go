@@ -137,39 +137,3 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Numerator = all.Numerator
 	return nil
 }
-
-type NullableServiceLevelObjectiveQuery struct {
-	value *ServiceLevelObjectiveQuery
-	isSet bool
-}
-
-func (v NullableServiceLevelObjectiveQuery) Get() *ServiceLevelObjectiveQuery {
-	return v.value
-}
-
-func (v *NullableServiceLevelObjectiveQuery) Set(val *ServiceLevelObjectiveQuery) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceLevelObjectiveQuery) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceLevelObjectiveQuery) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceLevelObjectiveQuery(val *ServiceLevelObjectiveQuery) *NullableServiceLevelObjectiveQuery {
-	return &NullableServiceLevelObjectiveQuery{value: val, isSet: true}
-}
-
-func (v NullableServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceLevelObjectiveQuery) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

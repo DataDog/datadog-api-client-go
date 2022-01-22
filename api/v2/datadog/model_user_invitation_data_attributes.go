@@ -215,39 +215,3 @@ func (o *UserInvitationDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Uuid = all.Uuid
 	return nil
 }
-
-type NullableUserInvitationDataAttributes struct {
-	value *UserInvitationDataAttributes
-	isSet bool
-}
-
-func (v NullableUserInvitationDataAttributes) Get() *UserInvitationDataAttributes {
-	return v.value
-}
-
-func (v *NullableUserInvitationDataAttributes) Set(val *UserInvitationDataAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserInvitationDataAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserInvitationDataAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserInvitationDataAttributes(val *UserInvitationDataAttributes) *NullableUserInvitationDataAttributes {
-	return &NullableUserInvitationDataAttributes{value: val, isSet: true}
-}
-
-func (v NullableUserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserInvitationDataAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

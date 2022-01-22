@@ -97,39 +97,3 @@ func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err e
 	o.RenotifyInterval = all.RenotifyInterval
 	return nil
 }
-
-type NullableSyntheticsTestOptionsMonitorOptions struct {
-	value *SyntheticsTestOptionsMonitorOptions
-	isSet bool
-}
-
-func (v NullableSyntheticsTestOptionsMonitorOptions) Get() *SyntheticsTestOptionsMonitorOptions {
-	return v.value
-}
-
-func (v *NullableSyntheticsTestOptionsMonitorOptions) Set(val *SyntheticsTestOptionsMonitorOptions) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTestOptionsMonitorOptions) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTestOptionsMonitorOptions) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTestOptionsMonitorOptions(val *SyntheticsTestOptionsMonitorOptions) *NullableSyntheticsTestOptionsMonitorOptions {
-	return &NullableSyntheticsTestOptionsMonitorOptions{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTestOptionsMonitorOptions) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

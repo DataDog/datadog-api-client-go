@@ -509,39 +509,3 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
-
-type NullableDistributionWidgetDefinition struct {
-	value *DistributionWidgetDefinition
-	isSet bool
-}
-
-func (v NullableDistributionWidgetDefinition) Get() *DistributionWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableDistributionWidgetDefinition) Set(val *DistributionWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDistributionWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDistributionWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDistributionWidgetDefinition(val *DistributionWidgetDefinition) *NullableDistributionWidgetDefinition {
-	return &NullableDistributionWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableDistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDistributionWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

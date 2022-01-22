@@ -253,39 +253,3 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	return nil
 }
-
-type NullableHTTPLogItem struct {
-	value *HTTPLogItem
-	isSet bool
-}
-
-func (v NullableHTTPLogItem) Get() *HTTPLogItem {
-	return v.value
-}
-
-func (v *NullableHTTPLogItem) Set(val *HTTPLogItem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHTTPLogItem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHTTPLogItem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHTTPLogItem(val *HTTPLogItem) *NullableHTTPLogItem {
-	return &NullableHTTPLogItem{value: val, isSet: true}
-}
-
-func (v NullableHTTPLogItem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHTTPLogItem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -256,39 +256,3 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NumRetentionDays = all.NumRetentionDays
 	return nil
 }
-
-type NullableLogsIndexUpdateRequest struct {
-	value *LogsIndexUpdateRequest
-	isSet bool
-}
-
-func (v NullableLogsIndexUpdateRequest) Get() *LogsIndexUpdateRequest {
-	return v.value
-}
-
-func (v *NullableLogsIndexUpdateRequest) Set(val *LogsIndexUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsIndexUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsIndexUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsIndexUpdateRequest(val *LogsIndexUpdateRequest) *NullableLogsIndexUpdateRequest {
-	return &NullableLogsIndexUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableLogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsIndexUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

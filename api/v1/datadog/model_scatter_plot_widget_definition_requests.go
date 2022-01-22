@@ -172,39 +172,3 @@ func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err e
 	o.Y = all.Y
 	return nil
 }
-
-type NullableScatterPlotWidgetDefinitionRequests struct {
-	value *ScatterPlotWidgetDefinitionRequests
-	isSet bool
-}
-
-func (v NullableScatterPlotWidgetDefinitionRequests) Get() *ScatterPlotWidgetDefinitionRequests {
-	return v.value
-}
-
-func (v *NullableScatterPlotWidgetDefinitionRequests) Set(val *ScatterPlotWidgetDefinitionRequests) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableScatterPlotWidgetDefinitionRequests) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableScatterPlotWidgetDefinitionRequests) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableScatterPlotWidgetDefinitionRequests(val *ScatterPlotWidgetDefinitionRequests) *NullableScatterPlotWidgetDefinitionRequests {
-	return &NullableScatterPlotWidgetDefinitionRequests{value: val, isSet: true}
-}
-
-func (v NullableScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableScatterPlotWidgetDefinitionRequests) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

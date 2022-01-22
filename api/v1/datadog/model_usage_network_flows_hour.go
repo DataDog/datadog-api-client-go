@@ -137,39 +137,3 @@ func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.IndexedEventsCount = all.IndexedEventsCount
 	return nil
 }
-
-type NullableUsageNetworkFlowsHour struct {
-	value *UsageNetworkFlowsHour
-	isSet bool
-}
-
-func (v NullableUsageNetworkFlowsHour) Get() *UsageNetworkFlowsHour {
-	return v.value
-}
-
-func (v *NullableUsageNetworkFlowsHour) Set(val *UsageNetworkFlowsHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageNetworkFlowsHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageNetworkFlowsHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageNetworkFlowsHour(val *UsageNetworkFlowsHour) *NullableUsageNetworkFlowsHour {
-	return &NullableUsageNetworkFlowsHour{value: val, isSet: true}
-}
-
-func (v NullableUsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageNetworkFlowsHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

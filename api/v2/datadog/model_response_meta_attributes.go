@@ -96,39 +96,3 @@ func (o *ResponseMetaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
-
-type NullableResponseMetaAttributes struct {
-	value *ResponseMetaAttributes
-	isSet bool
-}
-
-func (v NullableResponseMetaAttributes) Get() *ResponseMetaAttributes {
-	return v.value
-}
-
-func (v *NullableResponseMetaAttributes) Set(val *ResponseMetaAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableResponseMetaAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableResponseMetaAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableResponseMetaAttributes(val *ResponseMetaAttributes) *NullableResponseMetaAttributes {
-	return &NullableResponseMetaAttributes{value: val, isSet: true}
-}
-
-func (v NullableResponseMetaAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableResponseMetaAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

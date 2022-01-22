@@ -187,39 +187,3 @@ func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullablePermission struct {
-	value *Permission
-	isSet bool
-}
-
-func (v NullablePermission) Get() *Permission {
-	return v.value
-}
-
-func (v *NullablePermission) Set(val *Permission) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePermission) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePermission) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePermission(val *Permission) *NullablePermission {
-	return &NullablePermission{value: val, isSet: true}
-}
-
-func (v NullablePermission) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePermission) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

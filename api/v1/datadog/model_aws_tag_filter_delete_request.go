@@ -143,39 +143,3 @@ func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Namespace = all.Namespace
 	return nil
 }
-
-type NullableAWSTagFilterDeleteRequest struct {
-	value *AWSTagFilterDeleteRequest
-	isSet bool
-}
-
-func (v NullableAWSTagFilterDeleteRequest) Get() *AWSTagFilterDeleteRequest {
-	return v.value
-}
-
-func (v *NullableAWSTagFilterDeleteRequest) Set(val *AWSTagFilterDeleteRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAWSTagFilterDeleteRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAWSTagFilterDeleteRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAWSTagFilterDeleteRequest(val *AWSTagFilterDeleteRequest) *NullableAWSTagFilterDeleteRequest {
-	return &NullableAWSTagFilterDeleteRequest{value: val, isSet: true}
-}
-
-func (v NullableAWSTagFilterDeleteRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAWSTagFilterDeleteRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

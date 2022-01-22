@@ -135,39 +135,3 @@ func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableHourlyUsageAttributionResponse struct {
-	value *HourlyUsageAttributionResponse
-	isSet bool
-}
-
-func (v NullableHourlyUsageAttributionResponse) Get() *HourlyUsageAttributionResponse {
-	return v.value
-}
-
-func (v *NullableHourlyUsageAttributionResponse) Set(val *HourlyUsageAttributionResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHourlyUsageAttributionResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHourlyUsageAttributionResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHourlyUsageAttributionResponse(val *HourlyUsageAttributionResponse) *NullableHourlyUsageAttributionResponse {
-	return &NullableHourlyUsageAttributionResponse{value: val, isSet: true}
-}
-
-func (v NullableHourlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHourlyUsageAttributionResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

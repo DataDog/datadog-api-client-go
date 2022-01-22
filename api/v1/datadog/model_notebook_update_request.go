@@ -100,39 +100,3 @@ func (o *NotebookUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableNotebookUpdateRequest struct {
-	value *NotebookUpdateRequest
-	isSet bool
-}
-
-func (v NullableNotebookUpdateRequest) Get() *NotebookUpdateRequest {
-	return v.value
-}
-
-func (v *NullableNotebookUpdateRequest) Set(val *NotebookUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookUpdateRequest(val *NotebookUpdateRequest) *NullableNotebookUpdateRequest {
-	return &NullableNotebookUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableNotebookUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

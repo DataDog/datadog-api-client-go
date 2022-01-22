@@ -265,39 +265,3 @@ func (o *WidgetAxis) UnmarshalJSON(bytes []byte) (err error) {
 	o.Scale = all.Scale
 	return nil
 }
-
-type NullableWidgetAxis struct {
-	value *WidgetAxis
-	isSet bool
-}
-
-func (v NullableWidgetAxis) Get() *WidgetAxis {
-	return v.value
-}
-
-func (v *NullableWidgetAxis) Set(val *WidgetAxis) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetAxis) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetAxis) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetAxis(val *WidgetAxis) *NullableWidgetAxis {
-	return &NullableWidgetAxis{value: val, isSet: true}
-}
-
-func (v NullableWidgetAxis) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetAxis) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

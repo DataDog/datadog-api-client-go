@@ -270,39 +270,3 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableFreeTextWidgetDefinition struct {
-	value *FreeTextWidgetDefinition
-	isSet bool
-}
-
-func (v NullableFreeTextWidgetDefinition) Get() *FreeTextWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableFreeTextWidgetDefinition) Set(val *FreeTextWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFreeTextWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFreeTextWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFreeTextWidgetDefinition(val *FreeTextWidgetDefinition) *NullableFreeTextWidgetDefinition {
-	return &NullableFreeTextWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableFreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFreeTextWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -483,39 +483,3 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.VerticalAlign = all.VerticalAlign
 	return nil
 }
-
-type NullableNoteWidgetDefinition struct {
-	value *NoteWidgetDefinition
-	isSet bool
-}
-
-func (v NullableNoteWidgetDefinition) Get() *NoteWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableNoteWidgetDefinition) Set(val *NoteWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNoteWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNoteWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNoteWidgetDefinition(val *NoteWidgetDefinition) *NullableNoteWidgetDefinition {
-	return &NullableNoteWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableNoteWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNoteWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

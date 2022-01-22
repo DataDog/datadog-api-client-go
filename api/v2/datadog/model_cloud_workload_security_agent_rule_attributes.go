@@ -485,39 +485,3 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.Version = all.Version
 	return nil
 }
-
-type NullableCloudWorkloadSecurityAgentRuleAttributes struct {
-	value *CloudWorkloadSecurityAgentRuleAttributes
-	isSet bool
-}
-
-func (v NullableCloudWorkloadSecurityAgentRuleAttributes) Get() *CloudWorkloadSecurityAgentRuleAttributes {
-	return v.value
-}
-
-func (v *NullableCloudWorkloadSecurityAgentRuleAttributes) Set(val *CloudWorkloadSecurityAgentRuleAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCloudWorkloadSecurityAgentRuleAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCloudWorkloadSecurityAgentRuleAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCloudWorkloadSecurityAgentRuleAttributes(val *CloudWorkloadSecurityAgentRuleAttributes) *NullableCloudWorkloadSecurityAgentRuleAttributes {
-	return &NullableCloudWorkloadSecurityAgentRuleAttributes{value: val, isSet: true}
-}
-
-func (v NullableCloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

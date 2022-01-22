@@ -214,39 +214,3 @@ func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Retention = all.Retention
 	return nil
 }
-
-type NullableLogsRetentionSumUsage struct {
-	value *LogsRetentionSumUsage
-	isSet bool
-}
-
-func (v NullableLogsRetentionSumUsage) Get() *LogsRetentionSumUsage {
-	return v.value
-}
-
-func (v *NullableLogsRetentionSumUsage) Set(val *LogsRetentionSumUsage) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsRetentionSumUsage) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsRetentionSumUsage) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsRetentionSumUsage(val *LogsRetentionSumUsage) *NullableLogsRetentionSumUsage {
-	return &NullableLogsRetentionSumUsage{value: val, isSet: true}
-}
-
-func (v NullableLogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsRetentionSumUsage) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

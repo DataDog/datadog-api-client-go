@@ -308,39 +308,3 @@ func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableFunnelWidgetDefinition struct {
-	value *FunnelWidgetDefinition
-	isSet bool
-}
-
-func (v NullableFunnelWidgetDefinition) Get() *FunnelWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableFunnelWidgetDefinition) Set(val *FunnelWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFunnelWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFunnelWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFunnelWidgetDefinition(val *FunnelWidgetDefinition) *NullableFunnelWidgetDefinition {
-	return &NullableFunnelWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableFunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFunnelWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

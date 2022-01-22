@@ -402,39 +402,3 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	o.Webhooks = all.Webhooks
 	return nil
 }
-
-type NullableIPRanges struct {
-	value *IPRanges
-	isSet bool
-}
-
-func (v NullableIPRanges) Get() *IPRanges {
-	return v.value
-}
-
-func (v *NullableIPRanges) Set(val *IPRanges) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIPRanges) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIPRanges) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIPRanges(val *IPRanges) *NullableIPRanges {
-	return &NullableIPRanges{value: val, isSet: true}
-}
-
-func (v NullableIPRanges) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIPRanges) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

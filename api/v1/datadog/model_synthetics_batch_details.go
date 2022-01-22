@@ -96,39 +96,3 @@ func (o *SyntheticsBatchDetails) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableSyntheticsBatchDetails struct {
-	value *SyntheticsBatchDetails
-	isSet bool
-}
-
-func (v NullableSyntheticsBatchDetails) Get() *SyntheticsBatchDetails {
-	return v.value
-}
-
-func (v *NullableSyntheticsBatchDetails) Set(val *SyntheticsBatchDetails) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBatchDetails) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBatchDetails) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBatchDetails(val *SyntheticsBatchDetails) *NullableSyntheticsBatchDetails {
-	return &NullableSyntheticsBatchDetails{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBatchDetails) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBatchDetails) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

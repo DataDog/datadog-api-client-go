@@ -137,39 +137,3 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.PaletteFlip = all.PaletteFlip
 	return nil
 }
-
-type NullableGeomapWidgetDefinitionStyle struct {
-	value *GeomapWidgetDefinitionStyle
-	isSet bool
-}
-
-func (v NullableGeomapWidgetDefinitionStyle) Get() *GeomapWidgetDefinitionStyle {
-	return v.value
-}
-
-func (v *NullableGeomapWidgetDefinitionStyle) Set(val *GeomapWidgetDefinitionStyle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGeomapWidgetDefinitionStyle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGeomapWidgetDefinitionStyle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGeomapWidgetDefinitionStyle(val *GeomapWidgetDefinitionStyle) *NullableGeomapWidgetDefinitionStyle {
-	return &NullableGeomapWidgetDefinitionStyle{value: val, isSet: true}
-}
-
-func (v NullableGeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGeomapWidgetDefinitionStyle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

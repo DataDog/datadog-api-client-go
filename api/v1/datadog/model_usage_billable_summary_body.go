@@ -332,39 +332,3 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.UsageUnit = all.UsageUnit
 	return nil
 }
-
-type NullableUsageBillableSummaryBody struct {
-	value *UsageBillableSummaryBody
-	isSet bool
-}
-
-func (v NullableUsageBillableSummaryBody) Get() *UsageBillableSummaryBody {
-	return v.value
-}
-
-func (v *NullableUsageBillableSummaryBody) Set(val *UsageBillableSummaryBody) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageBillableSummaryBody) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageBillableSummaryBody) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageBillableSummaryBody(val *UsageBillableSummaryBody) *NullableUsageBillableSummaryBody {
-	return &NullableUsageBillableSummaryBody{value: val, isSet: true}
-}
-
-func (v NullableUsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageBillableSummaryBody) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

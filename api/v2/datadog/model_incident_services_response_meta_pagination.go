@@ -175,39 +175,3 @@ func (o *IncidentServicesResponseMetaPagination) UnmarshalJSON(bytes []byte) (er
 	o.Size = all.Size
 	return nil
 }
-
-type NullableIncidentServicesResponseMetaPagination struct {
-	value *IncidentServicesResponseMetaPagination
-	isSet bool
-}
-
-func (v NullableIncidentServicesResponseMetaPagination) Get() *IncidentServicesResponseMetaPagination {
-	return v.value
-}
-
-func (v *NullableIncidentServicesResponseMetaPagination) Set(val *IncidentServicesResponseMetaPagination) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentServicesResponseMetaPagination) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentServicesResponseMetaPagination) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentServicesResponseMetaPagination(val *IncidentServicesResponseMetaPagination) *NullableIncidentServicesResponseMetaPagination {
-	return &NullableIncidentServicesResponseMetaPagination{value: val, isSet: true}
-}
-
-func (v NullableIncidentServicesResponseMetaPagination) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentServicesResponseMetaPagination) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

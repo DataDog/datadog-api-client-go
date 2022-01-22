@@ -97,39 +97,3 @@ func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
-
-type NullableIntakePayloadAccepted struct {
-	value *IntakePayloadAccepted
-	isSet bool
-}
-
-func (v NullableIntakePayloadAccepted) Get() *IntakePayloadAccepted {
-	return v.value
-}
-
-func (v *NullableIntakePayloadAccepted) Set(val *IntakePayloadAccepted) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIntakePayloadAccepted) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIntakePayloadAccepted) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIntakePayloadAccepted(val *IntakePayloadAccepted) *NullableIntakePayloadAccepted {
-	return &NullableIntakePayloadAccepted{value: val, isSet: true}
-}
-
-func (v NullableIntakePayloadAccepted) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIntakePayloadAccepted) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

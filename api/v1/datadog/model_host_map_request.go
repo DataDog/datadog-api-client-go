@@ -401,39 +401,3 @@ func (o *HostMapRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableHostMapRequest struct {
-	value *HostMapRequest
-	isSet bool
-}
-
-func (v NullableHostMapRequest) Get() *HostMapRequest {
-	return v.value
-}
-
-func (v *NullableHostMapRequest) Set(val *HostMapRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMapRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMapRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMapRequest(val *HostMapRequest) *NullableHostMapRequest {
-	return &NullableHostMapRequest{value: val, isSet: true}
-}
-
-func (v NullableHostMapRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMapRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

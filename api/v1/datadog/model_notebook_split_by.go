@@ -137,39 +137,3 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
-
-type NullableNotebookSplitBy struct {
-	value *NotebookSplitBy
-	isSet bool
-}
-
-func (v NullableNotebookSplitBy) Get() *NotebookSplitBy {
-	return v.value
-}
-
-func (v *NullableNotebookSplitBy) Set(val *NotebookSplitBy) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookSplitBy) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookSplitBy) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookSplitBy(val *NotebookSplitBy) *NullableNotebookSplitBy {
-	return &NullableNotebookSplitBy{value: val, isSet: true}
-}
-
-func (v NullableNotebookSplitBy) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookSplitBy) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

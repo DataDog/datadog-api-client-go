@@ -178,39 +178,3 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
-
-type NullableLogsExclusion struct {
-	value *LogsExclusion
-	isSet bool
-}
-
-func (v NullableLogsExclusion) Get() *LogsExclusion {
-	return v.value
-}
-
-func (v *NullableLogsExclusion) Set(val *LogsExclusion) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsExclusion) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsExclusion) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsExclusion(val *LogsExclusion) *NullableLogsExclusion {
-	return &NullableLogsExclusion{value: val, isSet: true}
-}
-
-func (v NullableLogsExclusion) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsExclusion) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

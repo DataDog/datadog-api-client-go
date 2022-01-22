@@ -563,39 +563,3 @@ func (o *SunburstWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableSunburstWidgetRequest struct {
-	value *SunburstWidgetRequest
-	isSet bool
-}
-
-func (v NullableSunburstWidgetRequest) Get() *SunburstWidgetRequest {
-	return v.value
-}
-
-func (v *NullableSunburstWidgetRequest) Set(val *SunburstWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSunburstWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSunburstWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSunburstWidgetRequest(val *SunburstWidgetRequest) *NullableSunburstWidgetRequest {
-	return &NullableSunburstWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableSunburstWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSunburstWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

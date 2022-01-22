@@ -173,39 +173,3 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Monitors = all.Monitors
 	return nil
 }
-
-type NullableMonitorSearchResponse struct {
-	value *MonitorSearchResponse
-	isSet bool
-}
-
-func (v NullableMonitorSearchResponse) Get() *MonitorSearchResponse {
-	return v.value
-}
-
-func (v *NullableMonitorSearchResponse) Set(val *MonitorSearchResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorSearchResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorSearchResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorSearchResponse(val *MonitorSearchResponse) *NullableMonitorSearchResponse {
-	return &NullableMonitorSearchResponse{value: val, isSet: true}
-}
-
-func (v NullableMonitorSearchResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorSearchResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

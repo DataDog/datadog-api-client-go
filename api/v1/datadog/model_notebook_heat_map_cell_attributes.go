@@ -233,39 +233,3 @@ func (o *NotebookHeatMapCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Time = all.Time
 	return nil
 }
-
-type NullableNotebookHeatMapCellAttributes struct {
-	value *NotebookHeatMapCellAttributes
-	isSet bool
-}
-
-func (v NullableNotebookHeatMapCellAttributes) Get() *NotebookHeatMapCellAttributes {
-	return v.value
-}
-
-func (v *NullableNotebookHeatMapCellAttributes) Set(val *NotebookHeatMapCellAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookHeatMapCellAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookHeatMapCellAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookHeatMapCellAttributes(val *NotebookHeatMapCellAttributes) *NullableNotebookHeatMapCellAttributes {
-	return &NullableNotebookHeatMapCellAttributes{value: val, isSet: true}
-}
-
-func (v NullableNotebookHeatMapCellAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookHeatMapCellAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

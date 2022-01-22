@@ -101,39 +101,3 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	o.Focus = all.Focus
 	return nil
 }
-
-type NullableGeomapWidgetDefinitionView struct {
-	value *GeomapWidgetDefinitionView
-	isSet bool
-}
-
-func (v NullableGeomapWidgetDefinitionView) Get() *GeomapWidgetDefinitionView {
-	return v.value
-}
-
-func (v *NullableGeomapWidgetDefinitionView) Set(val *GeomapWidgetDefinitionView) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGeomapWidgetDefinitionView) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGeomapWidgetDefinitionView) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGeomapWidgetDefinitionView(val *GeomapWidgetDefinitionView) *NullableGeomapWidgetDefinitionView {
-	return &NullableGeomapWidgetDefinitionView{value: val, isSet: true}
-}
-
-func (v NullableGeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGeomapWidgetDefinitionView) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

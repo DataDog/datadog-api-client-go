@@ -432,39 +432,3 @@ func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Verified = all.Verified
 	return nil
 }
-
-type NullableNotebookAuthor struct {
-	value *NotebookAuthor
-	isSet bool
-}
-
-func (v NullableNotebookAuthor) Get() *NotebookAuthor {
-	return v.value
-}
-
-func (v *NullableNotebookAuthor) Set(val *NotebookAuthor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookAuthor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookAuthor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookAuthor(val *NotebookAuthor) *NullableNotebookAuthor {
-	return &NullableNotebookAuthor{value: val, isSet: true}
-}
-
-func (v NullableNotebookAuthor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookAuthor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

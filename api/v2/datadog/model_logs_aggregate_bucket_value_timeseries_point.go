@@ -136,39 +136,3 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (e
 	o.Value = all.Value
 	return nil
 }
-
-type NullableLogsAggregateBucketValueTimeseriesPoint struct {
-	value *LogsAggregateBucketValueTimeseriesPoint
-	isSet bool
-}
-
-func (v NullableLogsAggregateBucketValueTimeseriesPoint) Get() *LogsAggregateBucketValueTimeseriesPoint {
-	return v.value
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseriesPoint) Set(val *LogsAggregateBucketValueTimeseriesPoint) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateBucketValueTimeseriesPoint) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseriesPoint) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateBucketValueTimeseriesPoint(val *LogsAggregateBucketValueTimeseriesPoint) *NullableLogsAggregateBucketValueTimeseriesPoint {
-	return &NullableLogsAggregateBucketValueTimeseriesPoint{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

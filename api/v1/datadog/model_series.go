@@ -308,39 +308,3 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSeries struct {
-	value *Series
-	isSet bool
-}
-
-func (v NullableSeries) Get() *Series {
-	return v.value
-}
-
-func (v *NullableSeries) Set(val *Series) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSeries) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSeries) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSeries(val *Series) *NullableSeries {
-	return &NullableSeries{value: val, isSet: true}
-}
-
-func (v NullableSeries) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSeries) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

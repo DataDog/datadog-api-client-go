@@ -97,39 +97,3 @@ func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicIds = all.PublicIds
 	return nil
 }
-
-type NullableSyntheticsDeleteTestsPayload struct {
-	value *SyntheticsDeleteTestsPayload
-	isSet bool
-}
-
-func (v NullableSyntheticsDeleteTestsPayload) Get() *SyntheticsDeleteTestsPayload {
-	return v.value
-}
-
-func (v *NullableSyntheticsDeleteTestsPayload) Set(val *SyntheticsDeleteTestsPayload) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsDeleteTestsPayload) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsDeleteTestsPayload) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsDeleteTestsPayload(val *SyntheticsDeleteTestsPayload) *NullableSyntheticsDeleteTestsPayload {
-	return &NullableSyntheticsDeleteTestsPayload{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsDeleteTestsPayload) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

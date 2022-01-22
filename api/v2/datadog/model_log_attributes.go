@@ -332,39 +332,3 @@ func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timestamp = all.Timestamp
 	return nil
 }
-
-type NullableLogAttributes struct {
-	value *LogAttributes
-	isSet bool
-}
-
-func (v NullableLogAttributes) Get() *LogAttributes {
-	return v.value
-}
-
-func (v *NullableLogAttributes) Set(val *LogAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogAttributes(val *LogAttributes) *NullableLogAttributes {
-	return &NullableLogAttributes{value: val, isSet: true}
-}
-
-func (v NullableLogAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

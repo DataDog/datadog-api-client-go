@@ -186,39 +186,3 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSunburstWidgetLegendInlineAutomatic struct {
-	value *SunburstWidgetLegendInlineAutomatic
-	isSet bool
-}
-
-func (v NullableSunburstWidgetLegendInlineAutomatic) Get() *SunburstWidgetLegendInlineAutomatic {
-	return v.value
-}
-
-func (v *NullableSunburstWidgetLegendInlineAutomatic) Set(val *SunburstWidgetLegendInlineAutomatic) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSunburstWidgetLegendInlineAutomatic) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSunburstWidgetLegendInlineAutomatic) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSunburstWidgetLegendInlineAutomatic(val *SunburstWidgetLegendInlineAutomatic) *NullableSunburstWidgetLegendInlineAutomatic {
-	return &NullableSunburstWidgetLegendInlineAutomatic{value: val, isSet: true}
-}
-
-func (v NullableSunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSunburstWidgetLegendInlineAutomatic) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

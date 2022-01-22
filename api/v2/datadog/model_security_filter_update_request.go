@@ -100,39 +100,3 @@ func (o *SecurityFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableSecurityFilterUpdateRequest struct {
-	value *SecurityFilterUpdateRequest
-	isSet bool
-}
-
-func (v NullableSecurityFilterUpdateRequest) Get() *SecurityFilterUpdateRequest {
-	return v.value
-}
-
-func (v *NullableSecurityFilterUpdateRequest) Set(val *SecurityFilterUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityFilterUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityFilterUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityFilterUpdateRequest(val *SecurityFilterUpdateRequest) *NullableSecurityFilterUpdateRequest {
-	return &NullableSecurityFilterUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableSecurityFilterUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityFilterUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

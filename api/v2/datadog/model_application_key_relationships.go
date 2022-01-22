@@ -96,39 +96,3 @@ func (o *ApplicationKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.OwnedBy = all.OwnedBy
 	return nil
 }
-
-type NullableApplicationKeyRelationships struct {
-	value *ApplicationKeyRelationships
-	isSet bool
-}
-
-func (v NullableApplicationKeyRelationships) Get() *ApplicationKeyRelationships {
-	return v.value
-}
-
-func (v *NullableApplicationKeyRelationships) Set(val *ApplicationKeyRelationships) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableApplicationKeyRelationships) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableApplicationKeyRelationships) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableApplicationKeyRelationships(val *ApplicationKeyRelationships) *NullableApplicationKeyRelationships {
-	return &NullableApplicationKeyRelationships{value: val, isSet: true}
-}
-
-func (v NullableApplicationKeyRelationships) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableApplicationKeyRelationships) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

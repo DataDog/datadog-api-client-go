@@ -97,39 +97,3 @@ func (o *OrganizationSettingsSamlStrictMode) UnmarshalJSON(bytes []byte) (err er
 	o.Enabled = all.Enabled
 	return nil
 }
-
-type NullableOrganizationSettingsSamlStrictMode struct {
-	value *OrganizationSettingsSamlStrictMode
-	isSet bool
-}
-
-func (v NullableOrganizationSettingsSamlStrictMode) Get() *OrganizationSettingsSamlStrictMode {
-	return v.value
-}
-
-func (v *NullableOrganizationSettingsSamlStrictMode) Set(val *OrganizationSettingsSamlStrictMode) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrganizationSettingsSamlStrictMode) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrganizationSettingsSamlStrictMode) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrganizationSettingsSamlStrictMode(val *OrganizationSettingsSamlStrictMode) *NullableOrganizationSettingsSamlStrictMode {
-	return &NullableOrganizationSettingsSamlStrictMode{value: val, isSet: true}
-}
-
-func (v NullableOrganizationSettingsSamlStrictMode) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrganizationSettingsSamlStrictMode) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

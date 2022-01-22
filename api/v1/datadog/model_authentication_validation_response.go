@@ -97,39 +97,3 @@ func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err erro
 	o.Valid = all.Valid
 	return nil
 }
-
-type NullableAuthenticationValidationResponse struct {
-	value *AuthenticationValidationResponse
-	isSet bool
-}
-
-func (v NullableAuthenticationValidationResponse) Get() *AuthenticationValidationResponse {
-	return v.value
-}
-
-func (v *NullableAuthenticationValidationResponse) Set(val *AuthenticationValidationResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAuthenticationValidationResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAuthenticationValidationResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAuthenticationValidationResponse(val *AuthenticationValidationResponse) *NullableAuthenticationValidationResponse {
-	return &NullableAuthenticationValidationResponse{value: val, isSet: true}
-}
-
-func (v NullableAuthenticationValidationResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAuthenticationValidationResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -260,39 +260,3 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSyntheticsStep struct {
-	value *SyntheticsStep
-	isSet bool
-}
-
-func (v NullableSyntheticsStep) Get() *SyntheticsStep {
-	return v.value
-}
-
-func (v *NullableSyntheticsStep) Set(val *SyntheticsStep) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsStep) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsStep) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsStep(val *SyntheticsStep) *NullableSyntheticsStep {
-	return &NullableSyntheticsStep{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsStep) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsStep) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

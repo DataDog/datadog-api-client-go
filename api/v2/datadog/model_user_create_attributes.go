@@ -179,39 +179,3 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
-
-type NullableUserCreateAttributes struct {
-	value *UserCreateAttributes
-	isSet bool
-}
-
-func (v NullableUserCreateAttributes) Get() *UserCreateAttributes {
-	return v.value
-}
-
-func (v *NullableUserCreateAttributes) Set(val *UserCreateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserCreateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserCreateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserCreateAttributes(val *UserCreateAttributes) *NullableUserCreateAttributes {
-	return &NullableUserCreateAttributes{value: val, isSet: true}
-}
-
-func (v NullableUserCreateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserCreateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -97,39 +97,3 @@ func (o *UsageIoTResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageIoTResponse struct {
-	value *UsageIoTResponse
-	isSet bool
-}
-
-func (v NullableUsageIoTResponse) Get() *UsageIoTResponse {
-	return v.value
-}
-
-func (v *NullableUsageIoTResponse) Set(val *UsageIoTResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageIoTResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageIoTResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageIoTResponse(val *UsageIoTResponse) *NullableUsageIoTResponse {
-	return &NullableUsageIoTResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageIoTResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageIoTResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

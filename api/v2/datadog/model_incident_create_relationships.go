@@ -100,39 +100,3 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.Commander = all.Commander
 	return nil
 }
-
-type NullableIncidentCreateRelationships struct {
-	value *IncidentCreateRelationships
-	isSet bool
-}
-
-func (v NullableIncidentCreateRelationships) Get() *IncidentCreateRelationships {
-	return v.value
-}
-
-func (v *NullableIncidentCreateRelationships) Set(val *IncidentCreateRelationships) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentCreateRelationships) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentCreateRelationships) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentCreateRelationships(val *IncidentCreateRelationships) *NullableIncidentCreateRelationships {
-	return &NullableIncidentCreateRelationships{value: val, isSet: true}
-}
-
-func (v NullableIncidentCreateRelationships) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentCreateRelationships) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

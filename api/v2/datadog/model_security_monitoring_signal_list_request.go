@@ -180,39 +180,3 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 	o.Sort = all.Sort
 	return nil
 }
-
-type NullableSecurityMonitoringSignalListRequest struct {
-	value *SecurityMonitoringSignalListRequest
-	isSet bool
-}
-
-func (v NullableSecurityMonitoringSignalListRequest) Get() *SecurityMonitoringSignalListRequest {
-	return v.value
-}
-
-func (v *NullableSecurityMonitoringSignalListRequest) Set(val *SecurityMonitoringSignalListRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityMonitoringSignalListRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityMonitoringSignalListRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityMonitoringSignalListRequest(val *SecurityMonitoringSignalListRequest) *NullableSecurityMonitoringSignalListRequest {
-	return &NullableSecurityMonitoringSignalListRequest{value: val, isSet: true}
-}
-
-func (v NullableSecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityMonitoringSignalListRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -393,39 +393,3 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableTableWidgetDefinition struct {
-	value *TableWidgetDefinition
-	isSet bool
-}
-
-func (v NullableTableWidgetDefinition) Get() *TableWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableTableWidgetDefinition) Set(val *TableWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTableWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTableWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTableWidgetDefinition(val *TableWidgetDefinition) *NullableTableWidgetDefinition {
-	return &NullableTableWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableTableWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTableWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

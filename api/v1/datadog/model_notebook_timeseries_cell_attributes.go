@@ -233,39 +233,3 @@ func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err erro
 	o.Time = all.Time
 	return nil
 }
-
-type NullableNotebookTimeseriesCellAttributes struct {
-	value *NotebookTimeseriesCellAttributes
-	isSet bool
-}
-
-func (v NullableNotebookTimeseriesCellAttributes) Get() *NotebookTimeseriesCellAttributes {
-	return v.value
-}
-
-func (v *NullableNotebookTimeseriesCellAttributes) Set(val *NotebookTimeseriesCellAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookTimeseriesCellAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookTimeseriesCellAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookTimeseriesCellAttributes(val *NotebookTimeseriesCellAttributes) *NullableNotebookTimeseriesCellAttributes {
-	return &NullableNotebookTimeseriesCellAttributes{value: val, isSet: true}
-}
-
-func (v NullableNotebookTimeseriesCellAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookTimeseriesCellAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -137,39 +137,3 @@ func (o *UsageSyntheticsBrowserHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Hour = all.Hour
 	return nil
 }
-
-type NullableUsageSyntheticsBrowserHour struct {
-	value *UsageSyntheticsBrowserHour
-	isSet bool
-}
-
-func (v NullableUsageSyntheticsBrowserHour) Get() *UsageSyntheticsBrowserHour {
-	return v.value
-}
-
-func (v *NullableUsageSyntheticsBrowserHour) Set(val *UsageSyntheticsBrowserHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSyntheticsBrowserHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSyntheticsBrowserHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSyntheticsBrowserHour(val *UsageSyntheticsBrowserHour) *NullableUsageSyntheticsBrowserHour {
-	return &NullableUsageSyntheticsBrowserHour{value: val, isSet: true}
-}
-
-func (v NullableUsageSyntheticsBrowserHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSyntheticsBrowserHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

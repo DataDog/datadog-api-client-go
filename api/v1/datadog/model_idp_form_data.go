@@ -102,39 +102,3 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 	o.IdpFile = all.IdpFile
 	return nil
 }
-
-type NullableIdpFormData struct {
-	value *IdpFormData
-	isSet bool
-}
-
-func (v NullableIdpFormData) Get() *IdpFormData {
-	return v.value
-}
-
-func (v *NullableIdpFormData) Set(val *IdpFormData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIdpFormData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIdpFormData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIdpFormData(val *IdpFormData) *NullableIdpFormData {
-	return &NullableIdpFormData{value: val, isSet: true}
-}
-
-func (v NullableIdpFormData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIdpFormData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

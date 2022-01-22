@@ -97,39 +97,3 @@ func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.RestrictedRoles = all.RestrictedRoles
 	return nil
 }
-
-type NullableSyntheticsGlobalVariableAttributes struct {
-	value *SyntheticsGlobalVariableAttributes
-	isSet bool
-}
-
-func (v NullableSyntheticsGlobalVariableAttributes) Get() *SyntheticsGlobalVariableAttributes {
-	return v.value
-}
-
-func (v *NullableSyntheticsGlobalVariableAttributes) Set(val *SyntheticsGlobalVariableAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsGlobalVariableAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsGlobalVariableAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsGlobalVariableAttributes(val *SyntheticsGlobalVariableAttributes) *NullableSyntheticsGlobalVariableAttributes {
-	return &NullableSyntheticsGlobalVariableAttributes{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsGlobalVariableAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

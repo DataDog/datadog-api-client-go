@@ -139,39 +139,3 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 	o.Errors = all.Errors
 	return nil
 }
-
-type NullableCheckCanDeleteMonitorResponse struct {
-	value *CheckCanDeleteMonitorResponse
-	isSet bool
-}
-
-func (v NullableCheckCanDeleteMonitorResponse) Get() *CheckCanDeleteMonitorResponse {
-	return v.value
-}
-
-func (v *NullableCheckCanDeleteMonitorResponse) Set(val *CheckCanDeleteMonitorResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCheckCanDeleteMonitorResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCheckCanDeleteMonitorResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCheckCanDeleteMonitorResponse(val *CheckCanDeleteMonitorResponse) *NullableCheckCanDeleteMonitorResponse {
-	return &NullableCheckCanDeleteMonitorResponse{value: val, isSet: true}
-}
-
-func (v NullableCheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCheckCanDeleteMonitorResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

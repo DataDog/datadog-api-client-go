@@ -705,39 +705,3 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableMonitorUpdateRequest struct {
-	value *MonitorUpdateRequest
-	isSet bool
-}
-
-func (v NullableMonitorUpdateRequest) Get() *MonitorUpdateRequest {
-	return v.value
-}
-
-func (v *NullableMonitorUpdateRequest) Set(val *MonitorUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorUpdateRequest(val *MonitorUpdateRequest) *NullableMonitorUpdateRequest {
-	return &NullableMonitorUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableMonitorUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

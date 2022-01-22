@@ -706,39 +706,3 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
-
-type NullableServiceSummaryWidgetDefinition struct {
-	value *ServiceSummaryWidgetDefinition
-	isSet bool
-}
-
-func (v NullableServiceSummaryWidgetDefinition) Get() *ServiceSummaryWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableServiceSummaryWidgetDefinition) Set(val *ServiceSummaryWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceSummaryWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceSummaryWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceSummaryWidgetDefinition(val *ServiceSummaryWidgetDefinition) *NullableServiceSummaryWidgetDefinition {
-	return &NullableServiceSummaryWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceSummaryWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

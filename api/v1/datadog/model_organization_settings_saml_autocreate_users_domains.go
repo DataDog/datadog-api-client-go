@@ -136,39 +136,3 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []b
 	o.Enabled = all.Enabled
 	return nil
 }
-
-type NullableOrganizationSettingsSamlAutocreateUsersDomains struct {
-	value *OrganizationSettingsSamlAutocreateUsersDomains
-	isSet bool
-}
-
-func (v NullableOrganizationSettingsSamlAutocreateUsersDomains) Get() *OrganizationSettingsSamlAutocreateUsersDomains {
-	return v.value
-}
-
-func (v *NullableOrganizationSettingsSamlAutocreateUsersDomains) Set(val *OrganizationSettingsSamlAutocreateUsersDomains) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrganizationSettingsSamlAutocreateUsersDomains) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrganizationSettingsSamlAutocreateUsersDomains) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrganizationSettingsSamlAutocreateUsersDomains(val *OrganizationSettingsSamlAutocreateUsersDomains) *NullableOrganizationSettingsSamlAutocreateUsersDomains {
-	return &NullableOrganizationSettingsSamlAutocreateUsersDomains{value: val, isSet: true}
-}
-
-func (v NullableOrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

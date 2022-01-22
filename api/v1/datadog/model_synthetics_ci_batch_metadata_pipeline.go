@@ -97,39 +97,3 @@ func (o *SyntheticsCIBatchMetadataPipeline) UnmarshalJSON(bytes []byte) (err err
 	o.Url = all.Url
 	return nil
 }
-
-type NullableSyntheticsCIBatchMetadataPipeline struct {
-	value *SyntheticsCIBatchMetadataPipeline
-	isSet bool
-}
-
-func (v NullableSyntheticsCIBatchMetadataPipeline) Get() *SyntheticsCIBatchMetadataPipeline {
-	return v.value
-}
-
-func (v *NullableSyntheticsCIBatchMetadataPipeline) Set(val *SyntheticsCIBatchMetadataPipeline) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsCIBatchMetadataPipeline) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsCIBatchMetadataPipeline) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsCIBatchMetadataPipeline(val *SyntheticsCIBatchMetadataPipeline) *NullableSyntheticsCIBatchMetadataPipeline {
-	return &NullableSyntheticsCIBatchMetadataPipeline{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsCIBatchMetadataPipeline) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsCIBatchMetadataPipeline) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

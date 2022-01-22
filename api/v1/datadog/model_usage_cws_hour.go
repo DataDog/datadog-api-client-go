@@ -254,39 +254,3 @@ func (o *UsageCWSHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
-
-type NullableUsageCWSHour struct {
-	value *UsageCWSHour
-	isSet bool
-}
-
-func (v NullableUsageCWSHour) Get() *UsageCWSHour {
-	return v.value
-}
-
-func (v *NullableUsageCWSHour) Set(val *UsageCWSHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageCWSHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageCWSHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageCWSHour(val *UsageCWSHour) *NullableUsageCWSHour {
-	return &NullableUsageCWSHour{value: val, isSet: true}
-}
-
-func (v NullableUsageCWSHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageCWSHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

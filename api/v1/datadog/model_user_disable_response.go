@@ -97,39 +97,3 @@ func (o *UserDisableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
-
-type NullableUserDisableResponse struct {
-	value *UserDisableResponse
-	isSet bool
-}
-
-func (v NullableUserDisableResponse) Get() *UserDisableResponse {
-	return v.value
-}
-
-func (v *NullableUserDisableResponse) Set(val *UserDisableResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserDisableResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserDisableResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserDisableResponse(val *UserDisableResponse) *NullableUserDisableResponse {
-	return &NullableUserDisableResponse{value: val, isSet: true}
-}
-
-func (v NullableUserDisableResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserDisableResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

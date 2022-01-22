@@ -395,39 +395,3 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Widgets = all.Widgets
 	return nil
 }
-
-type NullableGroupWidgetDefinition struct {
-	value *GroupWidgetDefinition
-	isSet bool
-}
-
-func (v NullableGroupWidgetDefinition) Get() *GroupWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableGroupWidgetDefinition) Set(val *GroupWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGroupWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGroupWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGroupWidgetDefinition(val *GroupWidgetDefinition) *NullableGroupWidgetDefinition {
-	return &NullableGroupWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableGroupWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGroupWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -96,39 +96,3 @@ func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
-
-type NullableNotebooksResponseMeta struct {
-	value *NotebooksResponseMeta
-	isSet bool
-}
-
-func (v NullableNotebooksResponseMeta) Get() *NotebooksResponseMeta {
-	return v.value
-}
-
-func (v *NullableNotebooksResponseMeta) Set(val *NotebooksResponseMeta) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebooksResponseMeta) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebooksResponseMeta) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebooksResponseMeta(val *NotebooksResponseMeta) *NullableNotebooksResponseMeta {
-	return &NullableNotebooksResponseMeta{value: val, isSet: true}
-}
-
-func (v NullableNotebooksResponseMeta) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebooksResponseMeta) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

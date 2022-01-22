@@ -101,39 +101,3 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
-
-type NullableIdpResponse struct {
-	value *IdpResponse
-	isSet bool
-}
-
-func (v NullableIdpResponse) Get() *IdpResponse {
-	return v.value
-}
-
-func (v *NullableIdpResponse) Set(val *IdpResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIdpResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIdpResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIdpResponse(val *IdpResponse) *NullableIdpResponse {
-	return &NullableIdpResponse{value: val, isSet: true}
-}
-
-func (v NullableIdpResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIdpResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -254,39 +254,3 @@ func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (e
 	o.PublicId = all.PublicId
 	return nil
 }
-
-type NullableUsageCloudSecurityPostureManagementHour struct {
-	value *UsageCloudSecurityPostureManagementHour
-	isSet bool
-}
-
-func (v NullableUsageCloudSecurityPostureManagementHour) Get() *UsageCloudSecurityPostureManagementHour {
-	return v.value
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementHour) Set(val *UsageCloudSecurityPostureManagementHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageCloudSecurityPostureManagementHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageCloudSecurityPostureManagementHour(val *UsageCloudSecurityPostureManagementHour) *NullableUsageCloudSecurityPostureManagementHour {
-	return &NullableUsageCloudSecurityPostureManagementHour{value: val, isSet: true}
-}
-
-func (v NullableUsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

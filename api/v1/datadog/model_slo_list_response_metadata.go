@@ -96,39 +96,3 @@ func (o *SLOListResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
-
-type NullableSLOListResponseMetadata struct {
-	value *SLOListResponseMetadata
-	isSet bool
-}
-
-func (v NullableSLOListResponseMetadata) Get() *SLOListResponseMetadata {
-	return v.value
-}
-
-func (v *NullableSLOListResponseMetadata) Set(val *SLOListResponseMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOListResponseMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOListResponseMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOListResponseMetadata(val *SLOListResponseMetadata) *NullableSLOListResponseMetadata {
-	return &NullableSLOListResponseMetadata{value: val, isSet: true}
-}
-
-func (v NullableSLOListResponseMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOListResponseMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -97,39 +97,3 @@ func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err erro
 	o.NextRecordId = all.NextRecordId
 	return nil
 }
-
-type NullableHourlyUsageAttributionPagination struct {
-	value *HourlyUsageAttributionPagination
-	isSet bool
-}
-
-func (v NullableHourlyUsageAttributionPagination) Get() *HourlyUsageAttributionPagination {
-	return v.value
-}
-
-func (v *NullableHourlyUsageAttributionPagination) Set(val *HourlyUsageAttributionPagination) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHourlyUsageAttributionPagination) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHourlyUsageAttributionPagination) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHourlyUsageAttributionPagination(val *HourlyUsageAttributionPagination) *NullableHourlyUsageAttributionPagination {
-	return &NullableHourlyUsageAttributionPagination{value: val, isSet: true}
-}
-
-func (v NullableHourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHourlyUsageAttributionPagination) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

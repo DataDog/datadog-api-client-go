@@ -173,39 +173,3 @@ func (o *LogsMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	return nil
 }
-
-type NullableLogsMetricResponseAttributes struct {
-	value *LogsMetricResponseAttributes
-	isSet bool
-}
-
-func (v NullableLogsMetricResponseAttributes) Get() *LogsMetricResponseAttributes {
-	return v.value
-}
-
-func (v *NullableLogsMetricResponseAttributes) Set(val *LogsMetricResponseAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsMetricResponseAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsMetricResponseAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsMetricResponseAttributes(val *LogsMetricResponseAttributes) *NullableLogsMetricResponseAttributes {
-	return &NullableLogsMetricResponseAttributes{value: val, isSet: true}
-}
-
-func (v NullableLogsMetricResponseAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsMetricResponseAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -137,39 +137,3 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	o.RoleName = all.RoleName
 	return nil
 }
-
-type NullableLogsArchiveIntegrationS3 struct {
-	value *LogsArchiveIntegrationS3
-	isSet bool
-}
-
-func (v NullableLogsArchiveIntegrationS3) Get() *LogsArchiveIntegrationS3 {
-	return v.value
-}
-
-func (v *NullableLogsArchiveIntegrationS3) Set(val *LogsArchiveIntegrationS3) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsArchiveIntegrationS3) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsArchiveIntegrationS3) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsArchiveIntegrationS3(val *LogsArchiveIntegrationS3) *NullableLogsArchiveIntegrationS3 {
-	return &NullableLogsArchiveIntegrationS3{value: val, isSet: true}
-}
-
-func (v NullableLogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsArchiveIntegrationS3) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

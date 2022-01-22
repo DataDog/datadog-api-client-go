@@ -564,39 +564,3 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Timezone = all.Timezone
 	return nil
 }
-
-type NullableSLOCorrectionResponseAttributes struct {
-	value *SLOCorrectionResponseAttributes
-	isSet bool
-}
-
-func (v NullableSLOCorrectionResponseAttributes) Get() *SLOCorrectionResponseAttributes {
-	return v.value
-}
-
-func (v *NullableSLOCorrectionResponseAttributes) Set(val *SLOCorrectionResponseAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOCorrectionResponseAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOCorrectionResponseAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOCorrectionResponseAttributes(val *SLOCorrectionResponseAttributes) *NullableSLOCorrectionResponseAttributes {
-	return &NullableSLOCorrectionResponseAttributes{value: val, isSet: true}
-}
-
-func (v NullableSLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOCorrectionResponseAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

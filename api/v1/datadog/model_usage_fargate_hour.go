@@ -254,39 +254,3 @@ func (o *UsageFargateHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.TasksCount = all.TasksCount
 	return nil
 }
-
-type NullableUsageFargateHour struct {
-	value *UsageFargateHour
-	isSet bool
-}
-
-func (v NullableUsageFargateHour) Get() *UsageFargateHour {
-	return v.value
-}
-
-func (v *NullableUsageFargateHour) Set(val *UsageFargateHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageFargateHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageFargateHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageFargateHour(val *UsageFargateHour) *NullableUsageFargateHour {
-	return &NullableUsageFargateHour{value: val, isSet: true}
-}
-
-func (v NullableUsageFargateHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageFargateHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -101,39 +101,3 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	o.IndexNames = all.IndexNames
 	return nil
 }
-
-type NullableLogsIndexesOrder struct {
-	value *LogsIndexesOrder
-	isSet bool
-}
-
-func (v NullableLogsIndexesOrder) Get() *LogsIndexesOrder {
-	return v.value
-}
-
-func (v *NullableLogsIndexesOrder) Set(val *LogsIndexesOrder) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsIndexesOrder) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsIndexesOrder) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsIndexesOrder(val *LogsIndexesOrder) *NullableLogsIndexesOrder {
-	return &NullableLogsIndexesOrder{value: val, isSet: true}
-}
-
-func (v NullableLogsIndexesOrder) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsIndexesOrder) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

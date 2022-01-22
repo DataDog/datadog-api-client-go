@@ -174,39 +174,3 @@ func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
-
-type NullableUsersResponse struct {
-	value *UsersResponse
-	isSet bool
-}
-
-func (v NullableUsersResponse) Get() *UsersResponse {
-	return v.value
-}
-
-func (v *NullableUsersResponse) Set(val *UsersResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsersResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsersResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsersResponse(val *UsersResponse) *NullableUsersResponse {
-	return &NullableUsersResponse{value: val, isSet: true}
-}
-
-func (v NullableUsersResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsersResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

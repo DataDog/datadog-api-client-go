@@ -254,39 +254,3 @@ func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalScannedBytes = all.TotalScannedBytes
 	return nil
 }
-
-type NullableUsageSDSHour struct {
-	value *UsageSDSHour
-	isSet bool
-}
-
-func (v NullableUsageSDSHour) Get() *UsageSDSHour {
-	return v.value
-}
-
-func (v *NullableUsageSDSHour) Set(val *UsageSDSHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSDSHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSDSHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSDSHour(val *UsageSDSHour) *NullableUsageSDSHour {
-	return &NullableUsageSDSHour{value: val, isSet: true}
-}
-
-func (v NullableUsageSDSHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSDSHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -101,39 +101,3 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tests = all.Tests
 	return nil
 }
-
-type NullableSyntheticsTriggerBody struct {
-	value *SyntheticsTriggerBody
-	isSet bool
-}
-
-func (v NullableSyntheticsTriggerBody) Get() *SyntheticsTriggerBody {
-	return v.value
-}
-
-func (v *NullableSyntheticsTriggerBody) Set(val *SyntheticsTriggerBody) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTriggerBody) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTriggerBody) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTriggerBody(val *SyntheticsTriggerBody) *NullableSyntheticsTriggerBody {
-	return &NullableSyntheticsTriggerBody{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTriggerBody) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTriggerBody) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
