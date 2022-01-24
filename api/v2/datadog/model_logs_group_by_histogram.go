@@ -173,39 +173,3 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	o.Min = all.Min
 	return nil
 }
-
-type NullableLogsGroupByHistogram struct {
-	value *LogsGroupByHistogram
-	isSet bool
-}
-
-func (v NullableLogsGroupByHistogram) Get() *LogsGroupByHistogram {
-	return v.value
-}
-
-func (v *NullableLogsGroupByHistogram) Set(val *LogsGroupByHistogram) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsGroupByHistogram) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsGroupByHistogram) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsGroupByHistogram(val *LogsGroupByHistogram) *NullableLogsGroupByHistogram {
-	return &NullableLogsGroupByHistogram{value: val, isSet: true}
-}
-
-func (v NullableLogsGroupByHistogram) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsGroupByHistogram) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

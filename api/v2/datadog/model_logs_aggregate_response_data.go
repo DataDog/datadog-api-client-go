@@ -97,39 +97,3 @@ func (o *LogsAggregateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Buckets = all.Buckets
 	return nil
 }
-
-type NullableLogsAggregateResponseData struct {
-	value *LogsAggregateResponseData
-	isSet bool
-}
-
-func (v NullableLogsAggregateResponseData) Get() *LogsAggregateResponseData {
-	return v.value
-}
-
-func (v *NullableLogsAggregateResponseData) Set(val *LogsAggregateResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateResponseData(val *LogsAggregateResponseData) *NullableLogsAggregateResponseData {
-	return &NullableLogsAggregateResponseData{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

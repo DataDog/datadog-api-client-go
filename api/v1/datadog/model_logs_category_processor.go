@@ -264,39 +264,3 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsCategoryProcessor struct {
-	value *LogsCategoryProcessor
-	isSet bool
-}
-
-func (v NullableLogsCategoryProcessor) Get() *LogsCategoryProcessor {
-	return v.value
-}
-
-func (v *NullableLogsCategoryProcessor) Set(val *LogsCategoryProcessor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsCategoryProcessor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsCategoryProcessor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsCategoryProcessor(val *LogsCategoryProcessor) *NullableLogsCategoryProcessor {
-	return &NullableLogsCategoryProcessor{value: val, isSet: true}
-}
-
-func (v NullableLogsCategoryProcessor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsCategoryProcessor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -214,39 +214,3 @@ func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
-
-type NullablePartialAPIKeyAttributes struct {
-	value *PartialAPIKeyAttributes
-	isSet bool
-}
-
-func (v NullablePartialAPIKeyAttributes) Get() *PartialAPIKeyAttributes {
-	return v.value
-}
-
-func (v *NullablePartialAPIKeyAttributes) Set(val *PartialAPIKeyAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePartialAPIKeyAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePartialAPIKeyAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePartialAPIKeyAttributes(val *PartialAPIKeyAttributes) *NullablePartialAPIKeyAttributes {
-	return &NullablePartialAPIKeyAttributes{value: val, isSet: true}
-}
-
-func (v NullablePartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePartialAPIKeyAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

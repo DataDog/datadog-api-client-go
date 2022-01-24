@@ -97,39 +97,3 @@ func (o *UsageCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalCount = all.TotalCount
 	return nil
 }
-
-type NullableUsageCustomReportsPage struct {
-	value *UsageCustomReportsPage
-	isSet bool
-}
-
-func (v NullableUsageCustomReportsPage) Get() *UsageCustomReportsPage {
-	return v.value
-}
-
-func (v *NullableUsageCustomReportsPage) Set(val *UsageCustomReportsPage) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageCustomReportsPage) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageCustomReportsPage) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageCustomReportsPage(val *UsageCustomReportsPage) *NullableUsageCustomReportsPage {
-	return &NullableUsageCustomReportsPage{value: val, isSet: true}
-}
-
-func (v NullableUsageCustomReportsPage) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageCustomReportsPage) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

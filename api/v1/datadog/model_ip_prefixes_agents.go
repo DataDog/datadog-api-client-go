@@ -136,39 +136,3 @@ func (o *IPPrefixesAgents) UnmarshalJSON(bytes []byte) (err error) {
 	o.PrefixesIpv6 = all.PrefixesIpv6
 	return nil
 }
-
-type NullableIPPrefixesAgents struct {
-	value *IPPrefixesAgents
-	isSet bool
-}
-
-func (v NullableIPPrefixesAgents) Get() *IPPrefixesAgents {
-	return v.value
-}
-
-func (v *NullableIPPrefixesAgents) Set(val *IPPrefixesAgents) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIPPrefixesAgents) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIPPrefixesAgents) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIPPrefixesAgents(val *IPPrefixesAgents) *NullableIPPrefixesAgents {
-	return &NullableIPPrefixesAgents{value: val, isSet: true}
-}
-
-func (v NullableIPPrefixesAgents) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIPPrefixesAgents) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

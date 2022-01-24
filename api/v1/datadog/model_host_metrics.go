@@ -175,39 +175,3 @@ func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.Load = all.Load
 	return nil
 }
-
-type NullableHostMetrics struct {
-	value *HostMetrics
-	isSet bool
-}
-
-func (v NullableHostMetrics) Get() *HostMetrics {
-	return v.value
-}
-
-func (v *NullableHostMetrics) Set(val *HostMetrics) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMetrics) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMetrics) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMetrics(val *HostMetrics) *NullableHostMetrics {
-	return &NullableHostMetrics{value: val, isSet: true}
-}
-
-func (v NullableHostMetrics) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMetrics) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

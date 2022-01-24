@@ -1618,39 +1618,3 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnmpUsage = all.SnmpUsage
 	return nil
 }
-
-type NullableUsageAttributionValues struct {
-	value *UsageAttributionValues
-	isSet bool
-}
-
-func (v NullableUsageAttributionValues) Get() *UsageAttributionValues {
-	return v.value
-}
-
-func (v *NullableUsageAttributionValues) Set(val *UsageAttributionValues) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageAttributionValues) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageAttributionValues) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageAttributionValues(val *UsageAttributionValues) *NullableUsageAttributionValues {
-	return &NullableUsageAttributionValues{value: val, isSet: true}
-}
-
-func (v NullableUsageAttributionValues) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageAttributionValues) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

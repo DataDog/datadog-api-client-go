@@ -97,39 +97,3 @@ func (o *RelationshipToPermissions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableRelationshipToPermissions struct {
-	value *RelationshipToPermissions
-	isSet bool
-}
-
-func (v NullableRelationshipToPermissions) Get() *RelationshipToPermissions {
-	return v.value
-}
-
-func (v *NullableRelationshipToPermissions) Set(val *RelationshipToPermissions) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRelationshipToPermissions) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRelationshipToPermissions) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRelationshipToPermissions(val *RelationshipToPermissions) *NullableRelationshipToPermissions {
-	return &NullableRelationshipToPermissions{value: val, isSet: true}
-}
-
-func (v NullableRelationshipToPermissions) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRelationshipToPermissions) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

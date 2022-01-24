@@ -345,39 +345,3 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableServiceMapWidgetDefinition struct {
-	value *ServiceMapWidgetDefinition
-	isSet bool
-}
-
-func (v NullableServiceMapWidgetDefinition) Get() *ServiceMapWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableServiceMapWidgetDefinition) Set(val *ServiceMapWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceMapWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceMapWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceMapWidgetDefinition(val *ServiceMapWidgetDefinition) *NullableServiceMapWidgetDefinition {
-	return &NullableServiceMapWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceMapWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -250,39 +250,3 @@ func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
-
-type NullableLogsAggregateRequest struct {
-	value *LogsAggregateRequest
-	isSet bool
-}
-
-func (v NullableLogsAggregateRequest) Get() *LogsAggregateRequest {
-	return v.value
-}
-
-func (v *NullableLogsAggregateRequest) Set(val *LogsAggregateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateRequest(val *LogsAggregateRequest) *NullableLogsAggregateRequest {
-	return &NullableLogsAggregateRequest{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

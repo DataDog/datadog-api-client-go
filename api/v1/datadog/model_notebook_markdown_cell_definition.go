@@ -146,39 +146,3 @@ func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
-
-type NullableNotebookMarkdownCellDefinition struct {
-	value *NotebookMarkdownCellDefinition
-	isSet bool
-}
-
-func (v NullableNotebookMarkdownCellDefinition) Get() *NotebookMarkdownCellDefinition {
-	return v.value
-}
-
-func (v *NullableNotebookMarkdownCellDefinition) Set(val *NotebookMarkdownCellDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookMarkdownCellDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookMarkdownCellDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookMarkdownCellDefinition(val *NotebookMarkdownCellDefinition) *NullableNotebookMarkdownCellDefinition {
-	return &NullableNotebookMarkdownCellDefinition{value: val, isSet: true}
-}
-
-func (v NullableNotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookMarkdownCellDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

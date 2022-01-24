@@ -728,39 +728,3 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.Widgets = all.Widgets
 	return nil
 }
-
-type NullableDashboard struct {
-	value *Dashboard
-	isSet bool
-}
-
-func (v NullableDashboard) Get() *Dashboard {
-	return v.value
-}
-
-func (v *NullableDashboard) Set(val *Dashboard) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDashboard) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDashboard) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDashboard(val *Dashboard) *NullableDashboard {
-	return &NullableDashboard{value: val, isSet: true}
-}
-
-func (v NullableDashboard) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDashboard) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

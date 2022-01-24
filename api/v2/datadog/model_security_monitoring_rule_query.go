@@ -299,39 +299,3 @@ func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	return nil
 }
-
-type NullableSecurityMonitoringRuleQuery struct {
-	value *SecurityMonitoringRuleQuery
-	isSet bool
-}
-
-func (v NullableSecurityMonitoringRuleQuery) Get() *SecurityMonitoringRuleQuery {
-	return v.value
-}
-
-func (v *NullableSecurityMonitoringRuleQuery) Set(val *SecurityMonitoringRuleQuery) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityMonitoringRuleQuery) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityMonitoringRuleQuery) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityMonitoringRuleQuery(val *SecurityMonitoringRuleQuery) *NullableSecurityMonitoringRuleQuery {
-	return &NullableSecurityMonitoringRuleQuery{value: val, isSet: true}
-}
-
-func (v NullableSecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityMonitoringRuleQuery) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

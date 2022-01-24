@@ -253,39 +253,3 @@ func (o *UsageCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
-
-type NullableUsageCustomReportsAttributes struct {
-	value *UsageCustomReportsAttributes
-	isSet bool
-}
-
-func (v NullableUsageCustomReportsAttributes) Get() *UsageCustomReportsAttributes {
-	return v.value
-}
-
-func (v *NullableUsageCustomReportsAttributes) Set(val *UsageCustomReportsAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageCustomReportsAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageCustomReportsAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageCustomReportsAttributes(val *UsageCustomReportsAttributes) *NullableUsageCustomReportsAttributes {
-	return &NullableUsageCustomReportsAttributes{value: val, isSet: true}
-}
-
-func (v NullableUsageCustomReportsAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageCustomReportsAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

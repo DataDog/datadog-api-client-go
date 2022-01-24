@@ -255,39 +255,3 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	o.Width = all.Width
 	return nil
 }
-
-type NullableSyntheticsDevice struct {
-	value *SyntheticsDevice
-	isSet bool
-}
-
-func (v NullableSyntheticsDevice) Get() *SyntheticsDevice {
-	return v.value
-}
-
-func (v *NullableSyntheticsDevice) Set(val *SyntheticsDevice) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsDevice) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsDevice) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsDevice(val *SyntheticsDevice) *NullableSyntheticsDevice {
-	return &NullableSyntheticsDevice{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsDevice) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsDevice) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

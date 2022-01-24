@@ -351,39 +351,3 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.VizType = all.VizType
 	return nil
 }
-
-type NullableAlertGraphWidgetDefinition struct {
-	value *AlertGraphWidgetDefinition
-	isSet bool
-}
-
-func (v NullableAlertGraphWidgetDefinition) Get() *AlertGraphWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableAlertGraphWidgetDefinition) Set(val *AlertGraphWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAlertGraphWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAlertGraphWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAlertGraphWidgetDefinition(val *AlertGraphWidgetDefinition) *NullableAlertGraphWidgetDefinition {
-	return &NullableAlertGraphWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableAlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAlertGraphWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

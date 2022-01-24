@@ -175,39 +175,3 @@ func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Pagination = all.Pagination
 	return nil
 }
-
-type NullableUsageTopAvgMetricsMetadata struct {
-	value *UsageTopAvgMetricsMetadata
-	isSet bool
-}
-
-func (v NullableUsageTopAvgMetricsMetadata) Get() *UsageTopAvgMetricsMetadata {
-	return v.value
-}
-
-func (v *NullableUsageTopAvgMetricsMetadata) Set(val *UsageTopAvgMetricsMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageTopAvgMetricsMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageTopAvgMetricsMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageTopAvgMetricsMetadata(val *UsageTopAvgMetricsMetadata) *NullableUsageTopAvgMetricsMetadata {
-	return &NullableUsageTopAvgMetricsMetadata{value: val, isSet: true}
-}
-
-func (v NullableUsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageTopAvgMetricsMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

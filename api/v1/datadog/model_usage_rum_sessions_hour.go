@@ -332,39 +332,3 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.SessionCountIos = all.SessionCountIos
 	return nil
 }
-
-type NullableUsageRumSessionsHour struct {
-	value *UsageRumSessionsHour
-	isSet bool
-}
-
-func (v NullableUsageRumSessionsHour) Get() *UsageRumSessionsHour {
-	return v.value
-}
-
-func (v *NullableUsageRumSessionsHour) Set(val *UsageRumSessionsHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageRumSessionsHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageRumSessionsHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageRumSessionsHour(val *UsageRumSessionsHour) *NullableUsageRumSessionsHour {
-	return &NullableUsageRumSessionsHour{value: val, isSet: true}
-}
-
-func (v NullableUsageRumSessionsHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageRumSessionsHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

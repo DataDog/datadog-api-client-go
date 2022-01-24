@@ -331,39 +331,3 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Values = all.Values
 	return nil
 }
-
-type NullableMonthlyUsageAttributionBody struct {
-	value *MonthlyUsageAttributionBody
-	isSet bool
-}
-
-func (v NullableMonthlyUsageAttributionBody) Get() *MonthlyUsageAttributionBody {
-	return v.value
-}
-
-func (v *NullableMonthlyUsageAttributionBody) Set(val *MonthlyUsageAttributionBody) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonthlyUsageAttributionBody) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonthlyUsageAttributionBody) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonthlyUsageAttributionBody(val *MonthlyUsageAttributionBody) *NullableMonthlyUsageAttributionBody {
-	return &NullableMonthlyUsageAttributionBody{value: val, isSet: true}
-}
-
-func (v NullableMonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonthlyUsageAttributionBody) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

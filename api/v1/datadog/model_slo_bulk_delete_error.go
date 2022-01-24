@@ -180,39 +180,3 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timeframe = all.Timeframe
 	return nil
 }
-
-type NullableSLOBulkDeleteError struct {
-	value *SLOBulkDeleteError
-	isSet bool
-}
-
-func (v NullableSLOBulkDeleteError) Get() *SLOBulkDeleteError {
-	return v.value
-}
-
-func (v *NullableSLOBulkDeleteError) Set(val *SLOBulkDeleteError) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOBulkDeleteError) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOBulkDeleteError) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOBulkDeleteError(val *SLOBulkDeleteError) *NullableSLOBulkDeleteError {
-	return &NullableSLOBulkDeleteError{value: val, isSet: true}
-}
-
-func (v NullableSLOBulkDeleteError) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOBulkDeleteError) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

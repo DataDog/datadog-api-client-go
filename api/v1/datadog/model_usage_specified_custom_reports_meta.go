@@ -96,39 +96,3 @@ func (o *UsageSpecifiedCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error
 	o.Page = all.Page
 	return nil
 }
-
-type NullableUsageSpecifiedCustomReportsMeta struct {
-	value *UsageSpecifiedCustomReportsMeta
-	isSet bool
-}
-
-func (v NullableUsageSpecifiedCustomReportsMeta) Get() *UsageSpecifiedCustomReportsMeta {
-	return v.value
-}
-
-func (v *NullableUsageSpecifiedCustomReportsMeta) Set(val *UsageSpecifiedCustomReportsMeta) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSpecifiedCustomReportsMeta) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSpecifiedCustomReportsMeta) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSpecifiedCustomReportsMeta(val *UsageSpecifiedCustomReportsMeta) *NullableUsageSpecifiedCustomReportsMeta {
-	return &NullableUsageSpecifiedCustomReportsMeta{value: val, isSet: true}
-}
-
-func (v NullableUsageSpecifiedCustomReportsMeta) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSpecifiedCustomReportsMeta) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

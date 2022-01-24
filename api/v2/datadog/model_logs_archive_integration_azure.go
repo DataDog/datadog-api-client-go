@@ -137,39 +137,3 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	o.TenantId = all.TenantId
 	return nil
 }
-
-type NullableLogsArchiveIntegrationAzure struct {
-	value *LogsArchiveIntegrationAzure
-	isSet bool
-}
-
-func (v NullableLogsArchiveIntegrationAzure) Get() *LogsArchiveIntegrationAzure {
-	return v.value
-}
-
-func (v *NullableLogsArchiveIntegrationAzure) Set(val *LogsArchiveIntegrationAzure) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsArchiveIntegrationAzure) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsArchiveIntegrationAzure) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsArchiveIntegrationAzure(val *LogsArchiveIntegrationAzure) *NullableLogsArchiveIntegrationAzure {
-	return &NullableLogsArchiveIntegrationAzure{value: val, isSet: true}
-}
-
-func (v NullableLogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsArchiveIntegrationAzure) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -428,39 +428,3 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableDashboardSummaryDefinition struct {
-	value *DashboardSummaryDefinition
-	isSet bool
-}
-
-func (v NullableDashboardSummaryDefinition) Get() *DashboardSummaryDefinition {
-	return v.value
-}
-
-func (v *NullableDashboardSummaryDefinition) Set(val *DashboardSummaryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDashboardSummaryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDashboardSummaryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDashboardSummaryDefinition(val *DashboardSummaryDefinition) *NullableDashboardSummaryDefinition {
-	return &NullableDashboardSummaryDefinition{value: val, isSet: true}
-}
-
-func (v NullableDashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDashboardSummaryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

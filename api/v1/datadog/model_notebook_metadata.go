@@ -205,39 +205,3 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableNotebookMetadata struct {
-	value *NotebookMetadata
-	isSet bool
-}
-
-func (v NullableNotebookMetadata) Get() *NotebookMetadata {
-	return v.value
-}
-
-func (v *NullableNotebookMetadata) Set(val *NotebookMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookMetadata(val *NotebookMetadata) *NullableNotebookMetadata {
-	return &NullableNotebookMetadata{value: val, isSet: true}
-}
-
-func (v NullableNotebookMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -215,39 +215,3 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Title = all.Title
 	return nil
 }
-
-type NullableServiceAccountCreateAttributes struct {
-	value *ServiceAccountCreateAttributes
-	isSet bool
-}
-
-func (v NullableServiceAccountCreateAttributes) Get() *ServiceAccountCreateAttributes {
-	return v.value
-}
-
-func (v *NullableServiceAccountCreateAttributes) Set(val *ServiceAccountCreateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceAccountCreateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceAccountCreateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceAccountCreateAttributes(val *ServiceAccountCreateAttributes) *NullableServiceAccountCreateAttributes {
-	return &NullableServiceAccountCreateAttributes{value: val, isSet: true}
-}
-
-func (v NullableServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceAccountCreateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -181,39 +181,3 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableNotebookCellUpdateRequest struct {
-	value *NotebookCellUpdateRequest
-	isSet bool
-}
-
-func (v NullableNotebookCellUpdateRequest) Get() *NotebookCellUpdateRequest {
-	return v.value
-}
-
-func (v *NullableNotebookCellUpdateRequest) Set(val *NotebookCellUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookCellUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookCellUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookCellUpdateRequest(val *NotebookCellUpdateRequest) *NullableNotebookCellUpdateRequest {
-	return &NullableNotebookCellUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableNotebookCellUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookCellUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

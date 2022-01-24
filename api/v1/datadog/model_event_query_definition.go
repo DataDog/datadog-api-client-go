@@ -137,39 +137,3 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagsExecution = all.TagsExecution
 	return nil
 }
-
-type NullableEventQueryDefinition struct {
-	value *EventQueryDefinition
-	isSet bool
-}
-
-func (v NullableEventQueryDefinition) Get() *EventQueryDefinition {
-	return v.value
-}
-
-func (v *NullableEventQueryDefinition) Set(val *EventQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventQueryDefinition(val *EventQueryDefinition) *NullableEventQueryDefinition {
-	return &NullableEventQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableEventQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

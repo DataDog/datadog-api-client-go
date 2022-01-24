@@ -299,39 +299,3 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
-
-type NullableMonitorStateGroup struct {
-	value *MonitorStateGroup
-	isSet bool
-}
-
-func (v NullableMonitorStateGroup) Get() *MonitorStateGroup {
-	return v.value
-}
-
-func (v *NullableMonitorStateGroup) Set(val *MonitorStateGroup) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorStateGroup) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorStateGroup) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorStateGroup(val *MonitorStateGroup) *NullableMonitorStateGroup {
-	return &NullableMonitorStateGroup{value: val, isSet: true}
-}
-
-func (v NullableMonitorStateGroup) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorStateGroup) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

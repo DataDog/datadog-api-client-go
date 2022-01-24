@@ -530,39 +530,3 @@ func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Uptime = all.Uptime
 	return nil
 }
-
-type NullableSLOHistorySLIData struct {
-	value *SLOHistorySLIData
-	isSet bool
-}
-
-func (v NullableSLOHistorySLIData) Get() *SLOHistorySLIData {
-	return v.value
-}
-
-func (v *NullableSLOHistorySLIData) Set(val *SLOHistorySLIData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOHistorySLIData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOHistorySLIData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOHistorySLIData(val *SLOHistorySLIData) *NullableSLOHistorySLIData {
-	return &NullableSLOHistorySLIData{value: val, isSet: true}
-}
-
-func (v NullableSLOHistorySLIData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOHistorySLIData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

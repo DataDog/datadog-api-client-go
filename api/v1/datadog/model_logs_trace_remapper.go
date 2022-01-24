@@ -231,39 +231,3 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsTraceRemapper struct {
-	value *LogsTraceRemapper
-	isSet bool
-}
-
-func (v NullableLogsTraceRemapper) Get() *LogsTraceRemapper {
-	return v.value
-}
-
-func (v *NullableLogsTraceRemapper) Set(val *LogsTraceRemapper) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsTraceRemapper) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsTraceRemapper) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsTraceRemapper(val *LogsTraceRemapper) *NullableLogsTraceRemapper {
-	return &NullableLogsTraceRemapper{value: val, isSet: true}
-}
-
-func (v NullableLogsTraceRemapper) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsTraceRemapper) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

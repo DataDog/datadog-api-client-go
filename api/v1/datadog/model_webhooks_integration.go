@@ -287,39 +287,3 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableWebhooksIntegration struct {
-	value *WebhooksIntegration
-	isSet bool
-}
-
-func (v NullableWebhooksIntegration) Get() *WebhooksIntegration {
-	return v.value
-}
-
-func (v *NullableWebhooksIntegration) Set(val *WebhooksIntegration) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWebhooksIntegration) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWebhooksIntegration) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWebhooksIntegration(val *WebhooksIntegration) *NullableWebhooksIntegration {
-	return &NullableWebhooksIntegration{value: val, isSet: true}
-}
-
-func (v NullableWebhooksIntegration) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWebhooksIntegration) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

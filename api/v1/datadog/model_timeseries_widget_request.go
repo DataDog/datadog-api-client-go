@@ -725,39 +725,3 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
-
-type NullableTimeseriesWidgetRequest struct {
-	value *TimeseriesWidgetRequest
-	isSet bool
-}
-
-func (v NullableTimeseriesWidgetRequest) Get() *TimeseriesWidgetRequest {
-	return v.value
-}
-
-func (v *NullableTimeseriesWidgetRequest) Set(val *TimeseriesWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTimeseriesWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTimeseriesWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTimeseriesWidgetRequest(val *TimeseriesWidgetRequest) *NullableTimeseriesWidgetRequest {
-	return &NullableTimeseriesWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableTimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTimeseriesWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

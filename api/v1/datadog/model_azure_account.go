@@ -370,39 +370,3 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.TenantName = all.TenantName
 	return nil
 }
-
-type NullableAzureAccount struct {
-	value *AzureAccount
-	isSet bool
-}
-
-func (v NullableAzureAccount) Get() *AzureAccount {
-	return v.value
-}
-
-func (v *NullableAzureAccount) Set(val *AzureAccount) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAzureAccount) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAzureAccount) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAzureAccount(val *AzureAccount) *NullableAzureAccount {
-	return &NullableAzureAccount{value: val, isSet: true}
-}
-
-func (v NullableAzureAccount) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAzureAccount) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

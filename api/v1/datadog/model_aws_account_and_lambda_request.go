@@ -137,39 +137,3 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.LambdaArn = all.LambdaArn
 	return nil
 }
-
-type NullableAWSAccountAndLambdaRequest struct {
-	value *AWSAccountAndLambdaRequest
-	isSet bool
-}
-
-func (v NullableAWSAccountAndLambdaRequest) Get() *AWSAccountAndLambdaRequest {
-	return v.value
-}
-
-func (v *NullableAWSAccountAndLambdaRequest) Set(val *AWSAccountAndLambdaRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAWSAccountAndLambdaRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAWSAccountAndLambdaRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAWSAccountAndLambdaRequest(val *AWSAccountAndLambdaRequest) *NullableAWSAccountAndLambdaRequest {
-	return &NullableAWSAccountAndLambdaRequest{value: val, isSet: true}
-}
-
-func (v NullableAWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAWSAccountAndLambdaRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -620,39 +620,3 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSLOResponseData struct {
-	value *SLOResponseData
-	isSet bool
-}
-
-func (v NullableSLOResponseData) Get() *SLOResponseData {
-	return v.value
-}
-
-func (v *NullableSLOResponseData) Set(val *SLOResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOResponseData(val *SLOResponseData) *NullableSLOResponseData {
-	return &NullableSLOResponseData{value: val, isSet: true}
-}
-
-func (v NullableSLOResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

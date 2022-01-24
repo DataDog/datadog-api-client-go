@@ -143,39 +143,3 @@ func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.RequestType = all.RequestType
 	return nil
 }
-
-type NullableFunnelWidgetRequest struct {
-	value *FunnelWidgetRequest
-	isSet bool
-}
-
-func (v NullableFunnelWidgetRequest) Get() *FunnelWidgetRequest {
-	return v.value
-}
-
-func (v *NullableFunnelWidgetRequest) Set(val *FunnelWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFunnelWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFunnelWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFunnelWidgetRequest(val *FunnelWidgetRequest) *NullableFunnelWidgetRequest {
-	return &NullableFunnelWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableFunnelWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFunnelWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

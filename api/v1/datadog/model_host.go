@@ -602,39 +602,3 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.Up = all.Up
 	return nil
 }
-
-type NullableHost struct {
-	value *Host
-	isSet bool
-}
-
-func (v NullableHost) Get() *Host {
-	return v.value
-}
-
-func (v *NullableHost) Set(val *Host) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHost) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHost) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHost(val *Host) *NullableHost {
-	return &NullableHost{value: val, isSet: true}
-}
-
-func (v NullableHost) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHost) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

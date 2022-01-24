@@ -175,39 +175,3 @@ func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.RoleName = all.RoleName
 	return nil
 }
-
-type NullableAWSAccountDeleteRequest struct {
-	value *AWSAccountDeleteRequest
-	isSet bool
-}
-
-func (v NullableAWSAccountDeleteRequest) Get() *AWSAccountDeleteRequest {
-	return v.value
-}
-
-func (v *NullableAWSAccountDeleteRequest) Set(val *AWSAccountDeleteRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAWSAccountDeleteRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAWSAccountDeleteRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAWSAccountDeleteRequest(val *AWSAccountDeleteRequest) *NullableAWSAccountDeleteRequest {
-	return &NullableAWSAccountDeleteRequest{value: val, isSet: true}
-}
-
-func (v NullableAWSAccountDeleteRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAWSAccountDeleteRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

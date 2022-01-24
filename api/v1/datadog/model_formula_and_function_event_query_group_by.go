@@ -178,39 +178,3 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 	o.Sort = all.Sort
 	return nil
 }
-
-type NullableFormulaAndFunctionEventQueryGroupBy struct {
-	value *FormulaAndFunctionEventQueryGroupBy
-	isSet bool
-}
-
-func (v NullableFormulaAndFunctionEventQueryGroupBy) Get() *FormulaAndFunctionEventQueryGroupBy {
-	return v.value
-}
-
-func (v *NullableFormulaAndFunctionEventQueryGroupBy) Set(val *FormulaAndFunctionEventQueryGroupBy) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFormulaAndFunctionEventQueryGroupBy) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFormulaAndFunctionEventQueryGroupBy) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFormulaAndFunctionEventQueryGroupBy(val *FormulaAndFunctionEventQueryGroupBy) *NullableFormulaAndFunctionEventQueryGroupBy {
-	return &NullableFormulaAndFunctionEventQueryGroupBy{value: val, isSet: true}
-}
-
-func (v NullableFormulaAndFunctionEventQueryGroupBy) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

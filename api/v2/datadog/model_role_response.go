@@ -96,39 +96,3 @@ func (o *RoleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableRoleResponse struct {
-	value *RoleResponse
-	isSet bool
-}
-
-func (v NullableRoleResponse) Get() *RoleResponse {
-	return v.value
-}
-
-func (v *NullableRoleResponse) Set(val *RoleResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRoleResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRoleResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRoleResponse(val *RoleResponse) *NullableRoleResponse {
-	return &NullableRoleResponse{value: val, isSet: true}
-}
-
-func (v NullableRoleResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRoleResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -177,39 +177,3 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = all.Start
 	return nil
 }
-
-type NullableNotebookAbsoluteTime struct {
-	value *NotebookAbsoluteTime
-	isSet bool
-}
-
-func (v NullableNotebookAbsoluteTime) Get() *NotebookAbsoluteTime {
-	return v.value
-}
-
-func (v *NullableNotebookAbsoluteTime) Set(val *NotebookAbsoluteTime) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookAbsoluteTime) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookAbsoluteTime) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookAbsoluteTime(val *NotebookAbsoluteTime) *NullableNotebookAbsoluteTime {
-	return &NullableNotebookAbsoluteTime{value: val, isSet: true}
-}
-
-func (v NullableNotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookAbsoluteTime) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

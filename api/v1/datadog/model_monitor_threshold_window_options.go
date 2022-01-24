@@ -158,39 +158,3 @@ func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) 
 	o.TriggerWindow = all.TriggerWindow
 	return nil
 }
-
-type NullableMonitorThresholdWindowOptions struct {
-	value *MonitorThresholdWindowOptions
-	isSet bool
-}
-
-func (v NullableMonitorThresholdWindowOptions) Get() *MonitorThresholdWindowOptions {
-	return v.value
-}
-
-func (v *NullableMonitorThresholdWindowOptions) Set(val *MonitorThresholdWindowOptions) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorThresholdWindowOptions) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorThresholdWindowOptions) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorThresholdWindowOptions(val *MonitorThresholdWindowOptions) *NullableMonitorThresholdWindowOptions {
-	return &NullableMonitorThresholdWindowOptions{value: val, isSet: true}
-}
-
-func (v NullableMonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorThresholdWindowOptions) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

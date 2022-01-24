@@ -97,39 +97,3 @@ func (o *UsageSNMPResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageSNMPResponse struct {
-	value *UsageSNMPResponse
-	isSet bool
-}
-
-func (v NullableUsageSNMPResponse) Get() *UsageSNMPResponse {
-	return v.value
-}
-
-func (v *NullableUsageSNMPResponse) Set(val *UsageSNMPResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSNMPResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSNMPResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSNMPResponse(val *UsageSNMPResponse) *NullableUsageSNMPResponse {
-	return &NullableUsageSNMPResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageSNMPResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSNMPResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

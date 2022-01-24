@@ -134,39 +134,3 @@ func (o *IncidentServiceRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastModifiedBy = all.LastModifiedBy
 	return nil
 }
-
-type NullableIncidentServiceRelationships struct {
-	value *IncidentServiceRelationships
-	isSet bool
-}
-
-func (v NullableIncidentServiceRelationships) Get() *IncidentServiceRelationships {
-	return v.value
-}
-
-func (v *NullableIncidentServiceRelationships) Set(val *IncidentServiceRelationships) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentServiceRelationships) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentServiceRelationships) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentServiceRelationships(val *IncidentServiceRelationships) *NullableIncidentServiceRelationships {
-	return &NullableIncidentServiceRelationships{value: val, isSet: true}
-}
-
-func (v NullableIncidentServiceRelationships) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentServiceRelationships) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

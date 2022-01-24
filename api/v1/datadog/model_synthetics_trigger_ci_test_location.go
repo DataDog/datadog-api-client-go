@@ -136,39 +136,3 @@ func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	return nil
 }
-
-type NullableSyntheticsTriggerCITestLocation struct {
-	value *SyntheticsTriggerCITestLocation
-	isSet bool
-}
-
-func (v NullableSyntheticsTriggerCITestLocation) Get() *SyntheticsTriggerCITestLocation {
-	return v.value
-}
-
-func (v *NullableSyntheticsTriggerCITestLocation) Set(val *SyntheticsTriggerCITestLocation) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTriggerCITestLocation) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTriggerCITestLocation) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTriggerCITestLocation(val *SyntheticsTriggerCITestLocation) *NullableSyntheticsTriggerCITestLocation {
-	return &NullableSyntheticsTriggerCITestLocation{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTriggerCITestLocation) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -261,39 +261,3 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSyntheticsConfigVariable struct {
-	value *SyntheticsConfigVariable
-	isSet bool
-}
-
-func (v NullableSyntheticsConfigVariable) Get() *SyntheticsConfigVariable {
-	return v.value
-}
-
-func (v *NullableSyntheticsConfigVariable) Set(val *SyntheticsConfigVariable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsConfigVariable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsConfigVariable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsConfigVariable(val *SyntheticsConfigVariable) *NullableSyntheticsConfigVariable {
-	return &NullableSyntheticsConfigVariable{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsConfigVariable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

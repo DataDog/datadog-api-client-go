@@ -618,39 +618,3 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
-
-type NullableMonitorSummaryWidgetDefinition struct {
-	value *MonitorSummaryWidgetDefinition
-	isSet bool
-}
-
-func (v NullableMonitorSummaryWidgetDefinition) Get() *MonitorSummaryWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableMonitorSummaryWidgetDefinition) Set(val *MonitorSummaryWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorSummaryWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorSummaryWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorSummaryWidgetDefinition(val *MonitorSummaryWidgetDefinition) *NullableMonitorSummaryWidgetDefinition {
-	return &NullableMonitorSummaryWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableMonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorSummaryWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

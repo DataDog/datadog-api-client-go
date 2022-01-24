@@ -260,39 +260,3 @@ func (o *NotebookUpdateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Time = all.Time
 	return nil
 }
-
-type NullableNotebookUpdateDataAttributes struct {
-	value *NotebookUpdateDataAttributes
-	isSet bool
-}
-
-func (v NullableNotebookUpdateDataAttributes) Get() *NotebookUpdateDataAttributes {
-	return v.value
-}
-
-func (v *NullableNotebookUpdateDataAttributes) Set(val *NotebookUpdateDataAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookUpdateDataAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookUpdateDataAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookUpdateDataAttributes(val *NotebookUpdateDataAttributes) *NullableNotebookUpdateDataAttributes {
-	return &NullableNotebookUpdateDataAttributes{value: val, isSet: true}
-}
-
-func (v NullableNotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookUpdateDataAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

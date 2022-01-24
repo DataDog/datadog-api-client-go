@@ -233,39 +233,3 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Time = all.Time
 	return nil
 }
-
-type NullableNotebookToplistCellAttributes struct {
-	value *NotebookToplistCellAttributes
-	isSet bool
-}
-
-func (v NullableNotebookToplistCellAttributes) Get() *NotebookToplistCellAttributes {
-	return v.value
-}
-
-func (v *NullableNotebookToplistCellAttributes) Set(val *NotebookToplistCellAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookToplistCellAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookToplistCellAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookToplistCellAttributes(val *NotebookToplistCellAttributes) *NullableNotebookToplistCellAttributes {
-	return &NullableNotebookToplistCellAttributes{value: val, isSet: true}
-}
-
-func (v NullableNotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookToplistCellAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

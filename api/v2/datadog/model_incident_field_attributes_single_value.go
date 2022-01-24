@@ -158,39 +158,3 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 	o.Value = all.Value
 	return nil
 }
-
-type NullableIncidentFieldAttributesSingleValue struct {
-	value *IncidentFieldAttributesSingleValue
-	isSet bool
-}
-
-func (v NullableIncidentFieldAttributesSingleValue) Get() *IncidentFieldAttributesSingleValue {
-	return v.value
-}
-
-func (v *NullableIncidentFieldAttributesSingleValue) Set(val *IncidentFieldAttributesSingleValue) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentFieldAttributesSingleValue) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentFieldAttributesSingleValue) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentFieldAttributesSingleValue(val *IncidentFieldAttributesSingleValue) *NullableIncidentFieldAttributesSingleValue {
-	return &NullableIncidentFieldAttributesSingleValue{value: val, isSet: true}
-}
-
-func (v NullableIncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentFieldAttributesSingleValue) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

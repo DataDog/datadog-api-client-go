@@ -587,39 +587,3 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableHostMapWidgetDefinition struct {
-	value *HostMapWidgetDefinition
-	isSet bool
-}
-
-func (v NullableHostMapWidgetDefinition) Get() *HostMapWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableHostMapWidgetDefinition) Set(val *HostMapWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMapWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMapWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMapWidgetDefinition(val *HostMapWidgetDefinition) *NullableHostMapWidgetDefinition {
-	return &NullableHostMapWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableHostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMapWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

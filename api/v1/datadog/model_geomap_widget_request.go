@@ -335,39 +335,3 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableGeomapWidgetRequest struct {
-	value *GeomapWidgetRequest
-	isSet bool
-}
-
-func (v NullableGeomapWidgetRequest) Get() *GeomapWidgetRequest {
-	return v.value
-}
-
-func (v *NullableGeomapWidgetRequest) Set(val *GeomapWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGeomapWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGeomapWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGeomapWidgetRequest(val *GeomapWidgetRequest) *NullableGeomapWidgetRequest {
-	return &NullableGeomapWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableGeomapWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGeomapWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

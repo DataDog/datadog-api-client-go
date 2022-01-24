@@ -137,39 +137,3 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 	o.ErrorType = all.ErrorType
 	return nil
 }
-
-type NullableSLOHistoryResponseErrorWithType struct {
-	value *SLOHistoryResponseErrorWithType
-	isSet bool
-}
-
-func (v NullableSLOHistoryResponseErrorWithType) Get() *SLOHistoryResponseErrorWithType {
-	return v.value
-}
-
-func (v *NullableSLOHistoryResponseErrorWithType) Set(val *SLOHistoryResponseErrorWithType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOHistoryResponseErrorWithType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOHistoryResponseErrorWithType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOHistoryResponseErrorWithType(val *SLOHistoryResponseErrorWithType) *NullableSLOHistoryResponseErrorWithType {
-	return &NullableSLOHistoryResponseErrorWithType{value: val, isSet: true}
-}
-
-func (v NullableSLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOHistoryResponseErrorWithType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

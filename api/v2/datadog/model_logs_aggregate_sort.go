@@ -239,39 +239,3 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsAggregateSort struct {
-	value *LogsAggregateSort
-	isSet bool
-}
-
-func (v NullableLogsAggregateSort) Get() *LogsAggregateSort {
-	return v.value
-}
-
-func (v *NullableLogsAggregateSort) Set(val *LogsAggregateSort) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateSort) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateSort) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateSort(val *LogsAggregateSort) *NullableLogsAggregateSort {
-	return &NullableLogsAggregateSort{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateSort) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateSort) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

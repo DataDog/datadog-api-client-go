@@ -136,39 +136,3 @@ func (o *ListApplicationKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Included = all.Included
 	return nil
 }
-
-type NullableListApplicationKeysResponse struct {
-	value *ListApplicationKeysResponse
-	isSet bool
-}
-
-func (v NullableListApplicationKeysResponse) Get() *ListApplicationKeysResponse {
-	return v.value
-}
-
-func (v *NullableListApplicationKeysResponse) Set(val *ListApplicationKeysResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListApplicationKeysResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListApplicationKeysResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListApplicationKeysResponse(val *ListApplicationKeysResponse) *NullableListApplicationKeysResponse {
-	return &NullableListApplicationKeysResponse{value: val, isSet: true}
-}
-
-func (v NullableListApplicationKeysResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListApplicationKeysResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

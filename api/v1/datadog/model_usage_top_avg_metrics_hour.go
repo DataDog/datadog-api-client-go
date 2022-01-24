@@ -221,39 +221,3 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.MetricName = all.MetricName
 	return nil
 }
-
-type NullableUsageTopAvgMetricsHour struct {
-	value *UsageTopAvgMetricsHour
-	isSet bool
-}
-
-func (v NullableUsageTopAvgMetricsHour) Get() *UsageTopAvgMetricsHour {
-	return v.value
-}
-
-func (v *NullableUsageTopAvgMetricsHour) Set(val *UsageTopAvgMetricsHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageTopAvgMetricsHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageTopAvgMetricsHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageTopAvgMetricsHour(val *UsageTopAvgMetricsHour) *NullableUsageTopAvgMetricsHour {
-	return &NullableUsageTopAvgMetricsHour{value: val, isSet: true}
-}
-
-func (v NullableUsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageTopAvgMetricsHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

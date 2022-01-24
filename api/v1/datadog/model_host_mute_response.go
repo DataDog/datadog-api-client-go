@@ -214,39 +214,3 @@ func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
-
-type NullableHostMuteResponse struct {
-	value *HostMuteResponse
-	isSet bool
-}
-
-func (v NullableHostMuteResponse) Get() *HostMuteResponse {
-	return v.value
-}
-
-func (v *NullableHostMuteResponse) Set(val *HostMuteResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMuteResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMuteResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMuteResponse(val *HostMuteResponse) *NullableHostMuteResponse {
-	return &NullableHostMuteResponse{value: val, isSet: true}
-}
-
-func (v NullableHostMuteResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMuteResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

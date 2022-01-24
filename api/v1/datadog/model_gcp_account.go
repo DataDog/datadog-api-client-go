@@ -565,39 +565,3 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableGCPAccount struct {
-	value *GCPAccount
-	isSet bool
-}
-
-func (v NullableGCPAccount) Get() *GCPAccount {
-	return v.value
-}
-
-func (v *NullableGCPAccount) Set(val *GCPAccount) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGCPAccount) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGCPAccount) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGCPAccount(val *GCPAccount) *NullableGCPAccount {
-	return &NullableGCPAccount{value: val, isSet: true}
-}
-
-func (v NullableGCPAccount) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGCPAccount) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

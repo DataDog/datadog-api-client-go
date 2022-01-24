@@ -409,39 +409,3 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	o.Wait = all.Wait
 	return nil
 }
-
-type NullableSyntheticsTiming struct {
-	value *SyntheticsTiming
-	isSet bool
-}
-
-func (v NullableSyntheticsTiming) Get() *SyntheticsTiming {
-	return v.value
-}
-
-func (v *NullableSyntheticsTiming) Set(val *SyntheticsTiming) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTiming) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTiming) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTiming(val *SyntheticsTiming) *NullableSyntheticsTiming {
-	return &NullableSyntheticsTiming{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTiming) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTiming) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

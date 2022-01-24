@@ -241,39 +241,3 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Prefix = all.Prefix
 	return nil
 }
-
-type NullableDashboardTemplateVariable struct {
-	value *DashboardTemplateVariable
-	isSet bool
-}
-
-func (v NullableDashboardTemplateVariable) Get() *DashboardTemplateVariable {
-	return v.value
-}
-
-func (v *NullableDashboardTemplateVariable) Set(val *DashboardTemplateVariable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDashboardTemplateVariable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDashboardTemplateVariable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDashboardTemplateVariable(val *DashboardTemplateVariable) *NullableDashboardTemplateVariable {
-	return &NullableDashboardTemplateVariable{value: val, isSet: true}
-}
-
-func (v NullableDashboardTemplateVariable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDashboardTemplateVariable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

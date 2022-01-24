@@ -96,39 +96,3 @@ func (o *HourlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error)
 	o.Pagination = all.Pagination
 	return nil
 }
-
-type NullableHourlyUsageAttributionMetadata struct {
-	value *HourlyUsageAttributionMetadata
-	isSet bool
-}
-
-func (v NullableHourlyUsageAttributionMetadata) Get() *HourlyUsageAttributionMetadata {
-	return v.value
-}
-
-func (v *NullableHourlyUsageAttributionMetadata) Set(val *HourlyUsageAttributionMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHourlyUsageAttributionMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHourlyUsageAttributionMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHourlyUsageAttributionMetadata(val *HourlyUsageAttributionMetadata) *NullableHourlyUsageAttributionMetadata {
-	return &NullableHourlyUsageAttributionMetadata{value: val, isSet: true}
-}
-
-func (v NullableHourlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHourlyUsageAttributionMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

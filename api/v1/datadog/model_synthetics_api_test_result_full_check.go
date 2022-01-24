@@ -100,39 +100,3 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 	o.Config = all.Config
 	return nil
 }
-
-type NullableSyntheticsAPITestResultFullCheck struct {
-	value *SyntheticsAPITestResultFullCheck
-	isSet bool
-}
-
-func (v NullableSyntheticsAPITestResultFullCheck) Get() *SyntheticsAPITestResultFullCheck {
-	return v.value
-}
-
-func (v *NullableSyntheticsAPITestResultFullCheck) Set(val *SyntheticsAPITestResultFullCheck) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsAPITestResultFullCheck) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsAPITestResultFullCheck) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsAPITestResultFullCheck(val *SyntheticsAPITestResultFullCheck) *NullableSyntheticsAPITestResultFullCheck {
-	return &NullableSyntheticsAPITestResultFullCheck{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsAPITestResultFullCheck) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsAPITestResultFullCheck) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -97,39 +97,3 @@ func (o *DashboardListDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.DeletedDashboardListId = all.DeletedDashboardListId
 	return nil
 }
-
-type NullableDashboardListDeleteResponse struct {
-	value *DashboardListDeleteResponse
-	isSet bool
-}
-
-func (v NullableDashboardListDeleteResponse) Get() *DashboardListDeleteResponse {
-	return v.value
-}
-
-func (v *NullableDashboardListDeleteResponse) Set(val *DashboardListDeleteResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDashboardListDeleteResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDashboardListDeleteResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDashboardListDeleteResponse(val *DashboardListDeleteResponse) *NullableDashboardListDeleteResponse {
-	return &NullableDashboardListDeleteResponse{value: val, isSet: true}
-}
-
-func (v NullableDashboardListDeleteResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDashboardListDeleteResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

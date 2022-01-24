@@ -266,39 +266,3 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	o.Workstation = all.Workstation
 	return nil
 }
-
-type NullableSyntheticsBasicAuthNTLM struct {
-	value *SyntheticsBasicAuthNTLM
-	isSet bool
-}
-
-func (v NullableSyntheticsBasicAuthNTLM) Get() *SyntheticsBasicAuthNTLM {
-	return v.value
-}
-
-func (v *NullableSyntheticsBasicAuthNTLM) Set(val *SyntheticsBasicAuthNTLM) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBasicAuthNTLM) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBasicAuthNTLM) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBasicAuthNTLM(val *SyntheticsBasicAuthNTLM) *NullableSyntheticsBasicAuthNTLM {
-	return &NullableSyntheticsBasicAuthNTLM{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBasicAuthNTLM) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

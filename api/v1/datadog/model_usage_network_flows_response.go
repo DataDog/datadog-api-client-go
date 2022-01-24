@@ -97,39 +97,3 @@ func (o *UsageNetworkFlowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageNetworkFlowsResponse struct {
-	value *UsageNetworkFlowsResponse
-	isSet bool
-}
-
-func (v NullableUsageNetworkFlowsResponse) Get() *UsageNetworkFlowsResponse {
-	return v.value
-}
-
-func (v *NullableUsageNetworkFlowsResponse) Set(val *UsageNetworkFlowsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageNetworkFlowsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageNetworkFlowsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageNetworkFlowsResponse(val *UsageNetworkFlowsResponse) *NullableUsageNetworkFlowsResponse {
-	return &NullableUsageNetworkFlowsResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageNetworkFlowsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

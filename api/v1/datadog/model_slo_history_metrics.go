@@ -354,39 +354,3 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.Times = all.Times
 	return nil
 }
-
-type NullableSLOHistoryMetrics struct {
-	value *SLOHistoryMetrics
-	isSet bool
-}
-
-func (v NullableSLOHistoryMetrics) Get() *SLOHistoryMetrics {
-	return v.value
-}
-
-func (v *NullableSLOHistoryMetrics) Set(val *SLOHistoryMetrics) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOHistoryMetrics) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOHistoryMetrics) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOHistoryMetrics(val *SLOHistoryMetrics) *NullableSLOHistoryMetrics {
-	return &NullableSLOHistoryMetrics{value: val, isSet: true}
-}
-
-func (v NullableSLOHistoryMetrics) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOHistoryMetrics) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

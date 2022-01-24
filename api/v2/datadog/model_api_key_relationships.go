@@ -134,39 +134,3 @@ func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedBy = all.ModifiedBy
 	return nil
 }
-
-type NullableAPIKeyRelationships struct {
-	value *APIKeyRelationships
-	isSet bool
-}
-
-func (v NullableAPIKeyRelationships) Get() *APIKeyRelationships {
-	return v.value
-}
-
-func (v *NullableAPIKeyRelationships) Set(val *APIKeyRelationships) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAPIKeyRelationships) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAPIKeyRelationships) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAPIKeyRelationships(val *APIKeyRelationships) *NullableAPIKeyRelationships {
-	return &NullableAPIKeyRelationships{value: val, isSet: true}
-}
-
-func (v NullableAPIKeyRelationships) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAPIKeyRelationships) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

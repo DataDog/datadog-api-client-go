@@ -525,39 +525,3 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ValidTo = all.ValidTo
 	return nil
 }
-
-type NullableSyntheticsSSLCertificate struct {
-	value *SyntheticsSSLCertificate
-	isSet bool
-}
-
-func (v NullableSyntheticsSSLCertificate) Get() *SyntheticsSSLCertificate {
-	return v.value
-}
-
-func (v *NullableSyntheticsSSLCertificate) Set(val *SyntheticsSSLCertificate) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsSSLCertificate) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsSSLCertificate) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsSSLCertificate(val *SyntheticsSSLCertificate) *NullableSyntheticsSSLCertificate {
-	return &NullableSyntheticsSSLCertificate{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsSSLCertificate) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

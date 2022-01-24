@@ -618,39 +618,3 @@ func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableEventCreateResponse struct {
-	value *EventCreateResponse
-	isSet bool
-}
-
-func (v NullableEventCreateResponse) Get() *EventCreateResponse {
-	return v.value
-}
-
-func (v *NullableEventCreateResponse) Set(val *EventCreateResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventCreateResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventCreateResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventCreateResponse(val *EventCreateResponse) *NullableEventCreateResponse {
-	return &NullableEventCreateResponse{value: val, isSet: true}
-}
-
-func (v NullableEventCreateResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventCreateResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

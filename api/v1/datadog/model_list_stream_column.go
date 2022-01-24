@@ -144,39 +144,3 @@ func (o *ListStreamColumn) UnmarshalJSON(bytes []byte) (err error) {
 	o.Width = all.Width
 	return nil
 }
-
-type NullableListStreamColumn struct {
-	value *ListStreamColumn
-	isSet bool
-}
-
-func (v NullableListStreamColumn) Get() *ListStreamColumn {
-	return v.value
-}
-
-func (v *NullableListStreamColumn) Set(val *ListStreamColumn) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListStreamColumn) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListStreamColumn) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListStreamColumn(val *ListStreamColumn) *NullableListStreamColumn {
-	return &NullableListStreamColumn{value: val, isSet: true}
-}
-
-func (v NullableListStreamColumn) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListStreamColumn) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

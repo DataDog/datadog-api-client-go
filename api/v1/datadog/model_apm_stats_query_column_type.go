@@ -232,39 +232,3 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	o.Order = all.Order
 	return nil
 }
-
-type NullableApmStatsQueryColumnType struct {
-	value *ApmStatsQueryColumnType
-	isSet bool
-}
-
-func (v NullableApmStatsQueryColumnType) Get() *ApmStatsQueryColumnType {
-	return v.value
-}
-
-func (v *NullableApmStatsQueryColumnType) Set(val *ApmStatsQueryColumnType) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableApmStatsQueryColumnType) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableApmStatsQueryColumnType) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableApmStatsQueryColumnType(val *ApmStatsQueryColumnType) *NullableApmStatsQueryColumnType {
-	return &NullableApmStatsQueryColumnType{value: val, isSet: true}
-}
-
-func (v NullableApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableApmStatsQueryColumnType) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

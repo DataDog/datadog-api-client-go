@@ -134,39 +134,3 @@ func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	o.Provider = all.Provider
 	return nil
 }
-
-type NullableSyntheticsCIBatchMetadataCI struct {
-	value *SyntheticsCIBatchMetadataCI
-	isSet bool
-}
-
-func (v NullableSyntheticsCIBatchMetadataCI) Get() *SyntheticsCIBatchMetadataCI {
-	return v.value
-}
-
-func (v *NullableSyntheticsCIBatchMetadataCI) Set(val *SyntheticsCIBatchMetadataCI) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsCIBatchMetadataCI) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsCIBatchMetadataCI) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsCIBatchMetadataCI(val *SyntheticsCIBatchMetadataCI) *NullableSyntheticsCIBatchMetadataCI {
-	return &NullableSyntheticsCIBatchMetadataCI{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsCIBatchMetadataCI) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

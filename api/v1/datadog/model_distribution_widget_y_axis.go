@@ -265,39 +265,3 @@ func (o *DistributionWidgetYAxis) UnmarshalJSON(bytes []byte) (err error) {
 	o.Scale = all.Scale
 	return nil
 }
-
-type NullableDistributionWidgetYAxis struct {
-	value *DistributionWidgetYAxis
-	isSet bool
-}
-
-func (v NullableDistributionWidgetYAxis) Get() *DistributionWidgetYAxis {
-	return v.value
-}
-
-func (v *NullableDistributionWidgetYAxis) Set(val *DistributionWidgetYAxis) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDistributionWidgetYAxis) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDistributionWidgetYAxis) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDistributionWidgetYAxis(val *DistributionWidgetYAxis) *NullableDistributionWidgetYAxis {
-	return &NullableDistributionWidgetYAxis{value: val, isSet: true}
-}
-
-func (v NullableDistributionWidgetYAxis) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDistributionWidgetYAxis) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

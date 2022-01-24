@@ -266,39 +266,3 @@ func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsGeoIPParser struct {
-	value *LogsGeoIPParser
-	isSet bool
-}
-
-func (v NullableLogsGeoIPParser) Get() *LogsGeoIPParser {
-	return v.value
-}
-
-func (v *NullableLogsGeoIPParser) Set(val *LogsGeoIPParser) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsGeoIPParser) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsGeoIPParser) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsGeoIPParser(val *LogsGeoIPParser) *NullableLogsGeoIPParser {
-	return &NullableLogsGeoIPParser{value: val, isSet: true}
-}
-
-func (v NullableLogsGeoIPParser) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsGeoIPParser) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

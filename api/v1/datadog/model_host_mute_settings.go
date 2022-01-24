@@ -175,39 +175,3 @@ func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	o.Override = all.Override
 	return nil
 }
-
-type NullableHostMuteSettings struct {
-	value *HostMuteSettings
-	isSet bool
-}
-
-func (v NullableHostMuteSettings) Get() *HostMuteSettings {
-	return v.value
-}
-
-func (v *NullableHostMuteSettings) Set(val *HostMuteSettings) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMuteSettings) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMuteSettings) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMuteSettings(val *HostMuteSettings) *NullableHostMuteSettings {
-	return &NullableHostMuteSettings{value: val, isSet: true}
-}
-
-func (v NullableHostMuteSettings) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMuteSettings) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

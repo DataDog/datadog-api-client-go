@@ -188,39 +188,3 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	o.Important = all.Important
 	return nil
 }
-
-type NullableIncidentTimelineCellMarkdownCreateAttributes struct {
-	value *IncidentTimelineCellMarkdownCreateAttributes
-	isSet bool
-}
-
-func (v NullableIncidentTimelineCellMarkdownCreateAttributes) Get() *IncidentTimelineCellMarkdownCreateAttributes {
-	return v.value
-}
-
-func (v *NullableIncidentTimelineCellMarkdownCreateAttributes) Set(val *IncidentTimelineCellMarkdownCreateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentTimelineCellMarkdownCreateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentTimelineCellMarkdownCreateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentTimelineCellMarkdownCreateAttributes(val *IncidentTimelineCellMarkdownCreateAttributes) *NullableIncidentTimelineCellMarkdownCreateAttributes {
-	return &NullableIncidentTimelineCellMarkdownCreateAttributes{value: val, isSet: true}
-}
-
-func (v NullableIncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

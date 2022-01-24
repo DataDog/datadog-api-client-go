@@ -100,39 +100,3 @@ func (o *IncidentTeamUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableIncidentTeamUpdateRequest struct {
-	value *IncidentTeamUpdateRequest
-	isSet bool
-}
-
-func (v NullableIncidentTeamUpdateRequest) Get() *IncidentTeamUpdateRequest {
-	return v.value
-}
-
-func (v *NullableIncidentTeamUpdateRequest) Set(val *IncidentTeamUpdateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentTeamUpdateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentTeamUpdateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentTeamUpdateRequest(val *IncidentTeamUpdateRequest) *NullableIncidentTeamUpdateRequest {
-	return &NullableIncidentTeamUpdateRequest{value: val, isSet: true}
-}
-
-func (v NullableIncidentTeamUpdateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentTeamUpdateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

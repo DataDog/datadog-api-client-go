@@ -477,39 +477,3 @@ func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
-
-type NullableDistributionWidgetRequest struct {
-	value *DistributionWidgetRequest
-	isSet bool
-}
-
-func (v NullableDistributionWidgetRequest) Get() *DistributionWidgetRequest {
-	return v.value
-}
-
-func (v *NullableDistributionWidgetRequest) Set(val *DistributionWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDistributionWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDistributionWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDistributionWidgetRequest(val *DistributionWidgetRequest) *NullableDistributionWidgetRequest {
-	return &NullableDistributionWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableDistributionWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDistributionWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

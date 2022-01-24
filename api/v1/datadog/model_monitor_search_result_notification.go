@@ -136,39 +136,3 @@ func (o *MonitorSearchResultNotification) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	return nil
 }
-
-type NullableMonitorSearchResultNotification struct {
-	value *MonitorSearchResultNotification
-	isSet bool
-}
-
-func (v NullableMonitorSearchResultNotification) Get() *MonitorSearchResultNotification {
-	return v.value
-}
-
-func (v *NullableMonitorSearchResultNotification) Set(val *MonitorSearchResultNotification) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorSearchResultNotification) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorSearchResultNotification) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorSearchResultNotification(val *MonitorSearchResultNotification) *NullableMonitorSearchResultNotification {
-	return &NullableMonitorSearchResultNotification{value: val, isSet: true}
-}
-
-func (v NullableMonitorSearchResultNotification) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorSearchResultNotification) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

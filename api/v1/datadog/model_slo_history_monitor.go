@@ -534,39 +534,3 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Uptime = all.Uptime
 	return nil
 }
-
-type NullableSLOHistoryMonitor struct {
-	value *SLOHistoryMonitor
-	isSet bool
-}
-
-func (v NullableSLOHistoryMonitor) Get() *SLOHistoryMonitor {
-	return v.value
-}
-
-func (v *NullableSLOHistoryMonitor) Set(val *SLOHistoryMonitor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOHistoryMonitor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOHistoryMonitor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOHistoryMonitor(val *SLOHistoryMonitor) *NullableSLOHistoryMonitor {
-	return &NullableSLOHistoryMonitor{value: val, isSet: true}
-}
-
-func (v NullableSLOHistoryMonitor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOHistoryMonitor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

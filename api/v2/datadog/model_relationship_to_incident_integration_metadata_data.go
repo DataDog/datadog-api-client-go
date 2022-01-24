@@ -146,39 +146,3 @@ func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []by
 	o.Type = all.Type
 	return nil
 }
-
-type NullableRelationshipToIncidentIntegrationMetadataData struct {
-	value *RelationshipToIncidentIntegrationMetadataData
-	isSet bool
-}
-
-func (v NullableRelationshipToIncidentIntegrationMetadataData) Get() *RelationshipToIncidentIntegrationMetadataData {
-	return v.value
-}
-
-func (v *NullableRelationshipToIncidentIntegrationMetadataData) Set(val *RelationshipToIncidentIntegrationMetadataData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRelationshipToIncidentIntegrationMetadataData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRelationshipToIncidentIntegrationMetadataData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRelationshipToIncidentIntegrationMetadataData(val *RelationshipToIncidentIntegrationMetadataData) *NullableRelationshipToIncidentIntegrationMetadataData {
-	return &NullableRelationshipToIncidentIntegrationMetadataData{value: val, isSet: true}
-}
-
-func (v NullableRelationshipToIncidentIntegrationMetadataData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

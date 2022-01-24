@@ -140,39 +140,3 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.SampleRate = all.SampleRate
 	return nil
 }
-
-type NullableLogsExclusionFilter struct {
-	value *LogsExclusionFilter
-	isSet bool
-}
-
-func (v NullableLogsExclusionFilter) Get() *LogsExclusionFilter {
-	return v.value
-}
-
-func (v *NullableLogsExclusionFilter) Set(val *LogsExclusionFilter) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsExclusionFilter) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsExclusionFilter) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsExclusionFilter(val *LogsExclusionFilter) *NullableLogsExclusionFilter {
-	return &NullableLogsExclusionFilter{value: val, isSet: true}
-}
-
-func (v NullableLogsExclusionFilter) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsExclusionFilter) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

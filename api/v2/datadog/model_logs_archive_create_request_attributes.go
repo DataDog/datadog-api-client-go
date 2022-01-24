@@ -254,39 +254,3 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.RehydrationTags = all.RehydrationTags
 	return nil
 }
-
-type NullableLogsArchiveCreateRequestAttributes struct {
-	value *LogsArchiveCreateRequestAttributes
-	isSet bool
-}
-
-func (v NullableLogsArchiveCreateRequestAttributes) Get() *LogsArchiveCreateRequestAttributes {
-	return v.value
-}
-
-func (v *NullableLogsArchiveCreateRequestAttributes) Set(val *LogsArchiveCreateRequestAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsArchiveCreateRequestAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsArchiveCreateRequestAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsArchiveCreateRequestAttributes(val *LogsArchiveCreateRequestAttributes) *NullableLogsArchiveCreateRequestAttributes {
-	return &NullableLogsArchiveCreateRequestAttributes{value: val, isSet: true}
-}
-
-func (v NullableLogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsArchiveCreateRequestAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

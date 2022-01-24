@@ -144,39 +144,3 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Order = all.Order
 	return nil
 }
-
-type NullableWidgetFieldSort struct {
-	value *WidgetFieldSort
-	isSet bool
-}
-
-func (v NullableWidgetFieldSort) Get() *WidgetFieldSort {
-	return v.value
-}
-
-func (v *NullableWidgetFieldSort) Set(val *WidgetFieldSort) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetFieldSort) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetFieldSort) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetFieldSort(val *WidgetFieldSort) *NullableWidgetFieldSort {
-	return &NullableWidgetFieldSort{value: val, isSet: true}
-}
-
-func (v NullableWidgetFieldSort) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetFieldSort) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

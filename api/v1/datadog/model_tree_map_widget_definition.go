@@ -327,39 +327,3 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableTreeMapWidgetDefinition struct {
-	value *TreeMapWidgetDefinition
-	isSet bool
-}
-
-func (v NullableTreeMapWidgetDefinition) Get() *TreeMapWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableTreeMapWidgetDefinition) Set(val *TreeMapWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTreeMapWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTreeMapWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTreeMapWidgetDefinition(val *TreeMapWidgetDefinition) *NullableTreeMapWidgetDefinition {
-	return &NullableTreeMapWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableTreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTreeMapWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

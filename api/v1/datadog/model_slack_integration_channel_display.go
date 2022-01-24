@@ -230,39 +230,3 @@ func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error)
 	o.Tags = all.Tags
 	return nil
 }
-
-type NullableSlackIntegrationChannelDisplay struct {
-	value *SlackIntegrationChannelDisplay
-	isSet bool
-}
-
-func (v NullableSlackIntegrationChannelDisplay) Get() *SlackIntegrationChannelDisplay {
-	return v.value
-}
-
-func (v *NullableSlackIntegrationChannelDisplay) Set(val *SlackIntegrationChannelDisplay) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSlackIntegrationChannelDisplay) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSlackIntegrationChannelDisplay) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSlackIntegrationChannelDisplay(val *SlackIntegrationChannelDisplay) *NullableSlackIntegrationChannelDisplay {
-	return &NullableSlackIntegrationChannelDisplay{value: val, isSet: true}
-}
-
-func (v NullableSlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSlackIntegrationChannelDisplay) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

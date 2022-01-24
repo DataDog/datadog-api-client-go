@@ -223,39 +223,3 @@ func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableFullApplicationKey struct {
-	value *FullApplicationKey
-	isSet bool
-}
-
-func (v NullableFullApplicationKey) Get() *FullApplicationKey {
-	return v.value
-}
-
-func (v *NullableFullApplicationKey) Set(val *FullApplicationKey) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFullApplicationKey) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFullApplicationKey) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFullApplicationKey(val *FullApplicationKey) *NullableFullApplicationKey {
-	return &NullableFullApplicationKey{value: val, isSet: true}
-}
-
-func (v NullableFullApplicationKey) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFullApplicationKey) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

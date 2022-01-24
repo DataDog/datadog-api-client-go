@@ -499,39 +499,3 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecretAccessKey = all.SecretAccessKey
 	return nil
 }
-
-type NullableAWSAccount struct {
-	value *AWSAccount
-	isSet bool
-}
-
-func (v NullableAWSAccount) Get() *AWSAccount {
-	return v.value
-}
-
-func (v *NullableAWSAccount) Set(val *AWSAccount) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAWSAccount) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAWSAccount) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAWSAccount(val *AWSAccount) *NullableAWSAccount {
-	return &NullableAWSAccount{value: val, isSet: true}
-}
-
-func (v NullableAWSAccount) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAWSAccount) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

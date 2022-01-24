@@ -294,39 +294,3 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timestamp = all.Timestamp
 	return nil
 }
-
-type NullableServiceCheck struct {
-	value *ServiceCheck
-	isSet bool
-}
-
-func (v NullableServiceCheck) Get() *ServiceCheck {
-	return v.value
-}
-
-func (v *NullableServiceCheck) Set(val *ServiceCheck) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceCheck) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceCheck) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceCheck(val *ServiceCheck) *NullableServiceCheck {
-	return &NullableServiceCheck{value: val, isSet: true}
-}
-
-func (v NullableServiceCheck) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceCheck) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

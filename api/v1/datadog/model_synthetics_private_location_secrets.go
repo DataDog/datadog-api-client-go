@@ -134,39 +134,3 @@ func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err erro
 	o.ConfigDecryption = all.ConfigDecryption
 	return nil
 }
-
-type NullableSyntheticsPrivateLocationSecrets struct {
-	value *SyntheticsPrivateLocationSecrets
-	isSet bool
-}
-
-func (v NullableSyntheticsPrivateLocationSecrets) Get() *SyntheticsPrivateLocationSecrets {
-	return v.value
-}
-
-func (v *NullableSyntheticsPrivateLocationSecrets) Set(val *SyntheticsPrivateLocationSecrets) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsPrivateLocationSecrets) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsPrivateLocationSecrets) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsPrivateLocationSecrets(val *SyntheticsPrivateLocationSecrets) *NullableSyntheticsPrivateLocationSecrets {
-	return &NullableSyntheticsPrivateLocationSecrets{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsPrivateLocationSecrets) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

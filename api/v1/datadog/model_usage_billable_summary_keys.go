@@ -1274,39 +1274,3 @@ func (o *UsageBillableSummaryKeys) UnmarshalJSON(bytes []byte) (err error) {
 	o.TimeseriesAverage = all.TimeseriesAverage
 	return nil
 }
-
-type NullableUsageBillableSummaryKeys struct {
-	value *UsageBillableSummaryKeys
-	isSet bool
-}
-
-func (v NullableUsageBillableSummaryKeys) Get() *UsageBillableSummaryKeys {
-	return v.value
-}
-
-func (v *NullableUsageBillableSummaryKeys) Set(val *UsageBillableSummaryKeys) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageBillableSummaryKeys) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageBillableSummaryKeys) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageBillableSummaryKeys(val *UsageBillableSummaryKeys) *NullableUsageBillableSummaryKeys {
-	return &NullableUsageBillableSummaryKeys{value: val, isSet: true}
-}
-
-func (v NullableUsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageBillableSummaryKeys) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

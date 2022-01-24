@@ -145,39 +145,3 @@ func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsArchiveOrderDefinition struct {
-	value *LogsArchiveOrderDefinition
-	isSet bool
-}
-
-func (v NullableLogsArchiveOrderDefinition) Get() *LogsArchiveOrderDefinition {
-	return v.value
-}
-
-func (v *NullableLogsArchiveOrderDefinition) Set(val *LogsArchiveOrderDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsArchiveOrderDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsArchiveOrderDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsArchiveOrderDefinition(val *LogsArchiveOrderDefinition) *NullableLogsArchiveOrderDefinition {
-	return &NullableLogsArchiveOrderDefinition{value: val, isSet: true}
-}
-
-func (v NullableLogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsArchiveOrderDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

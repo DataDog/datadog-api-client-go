@@ -136,39 +136,3 @@ func (o *NotebooksResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalFilteredCount = all.TotalFilteredCount
 	return nil
 }
-
-type NullableNotebooksResponsePage struct {
-	value *NotebooksResponsePage
-	isSet bool
-}
-
-func (v NullableNotebooksResponsePage) Get() *NotebooksResponsePage {
-	return v.value
-}
-
-func (v *NullableNotebooksResponsePage) Set(val *NotebooksResponsePage) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebooksResponsePage) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebooksResponsePage) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebooksResponsePage(val *NotebooksResponsePage) *NullableNotebooksResponsePage {
-	return &NullableNotebooksResponsePage{value: val, isSet: true}
-}
-
-func (v NullableNotebooksResponsePage) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebooksResponsePage) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

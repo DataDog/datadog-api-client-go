@@ -787,39 +787,3 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShowPresent = all.ShowPresent
 	return nil
 }
-
-type NullableChangeWidgetRequest struct {
-	value *ChangeWidgetRequest
-	isSet bool
-}
-
-func (v NullableChangeWidgetRequest) Get() *ChangeWidgetRequest {
-	return v.value
-}
-
-func (v *NullableChangeWidgetRequest) Set(val *ChangeWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableChangeWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableChangeWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableChangeWidgetRequest(val *ChangeWidgetRequest) *NullableChangeWidgetRequest {
-	return &NullableChangeWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableChangeWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableChangeWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

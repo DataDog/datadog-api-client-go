@@ -811,39 +811,3 @@ func (o *TableWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableTableWidgetRequest struct {
-	value *TableWidgetRequest
-	isSet bool
-}
-
-func (v NullableTableWidgetRequest) Get() *TableWidgetRequest {
-	return v.value
-}
-
-func (v *NullableTableWidgetRequest) Set(val *TableWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTableWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTableWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTableWidgetRequest(val *TableWidgetRequest) *NullableTableWidgetRequest {
-	return &NullableTableWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableTableWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTableWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -136,39 +136,3 @@ func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	o.CommitSha = all.CommitSha
 	return nil
 }
-
-type NullableSyntheticsCIBatchMetadataGit struct {
-	value *SyntheticsCIBatchMetadataGit
-	isSet bool
-}
-
-func (v NullableSyntheticsCIBatchMetadataGit) Get() *SyntheticsCIBatchMetadataGit {
-	return v.value
-}
-
-func (v *NullableSyntheticsCIBatchMetadataGit) Set(val *SyntheticsCIBatchMetadataGit) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsCIBatchMetadataGit) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsCIBatchMetadataGit) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsCIBatchMetadataGit(val *SyntheticsCIBatchMetadataGit) *NullableSyntheticsCIBatchMetadataGit {
-	return &NullableSyntheticsCIBatchMetadataGit{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsCIBatchMetadataGit) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

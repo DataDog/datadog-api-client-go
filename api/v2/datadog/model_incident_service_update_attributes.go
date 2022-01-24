@@ -101,39 +101,3 @@ func (o *IncidentServiceUpdateAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	return nil
 }
-
-type NullableIncidentServiceUpdateAttributes struct {
-	value *IncidentServiceUpdateAttributes
-	isSet bool
-}
-
-func (v NullableIncidentServiceUpdateAttributes) Get() *IncidentServiceUpdateAttributes {
-	return v.value
-}
-
-func (v *NullableIncidentServiceUpdateAttributes) Set(val *IncidentServiceUpdateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentServiceUpdateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentServiceUpdateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentServiceUpdateAttributes(val *IncidentServiceUpdateAttributes) *NullableIncidentServiceUpdateAttributes {
-	return &NullableIncidentServiceUpdateAttributes{value: val, isSet: true}
-}
-
-func (v NullableIncidentServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentServiceUpdateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

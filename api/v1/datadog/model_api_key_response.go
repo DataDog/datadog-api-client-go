@@ -96,39 +96,3 @@ func (o *ApiKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApiKey = all.ApiKey
 	return nil
 }
-
-type NullableApiKeyResponse struct {
-	value *ApiKeyResponse
-	isSet bool
-}
-
-func (v NullableApiKeyResponse) Get() *ApiKeyResponse {
-	return v.value
-}
-
-func (v *NullableApiKeyResponse) Set(val *ApiKeyResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableApiKeyResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableApiKeyResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableApiKeyResponse(val *ApiKeyResponse) *NullableApiKeyResponse {
-	return &NullableApiKeyResponse{value: val, isSet: true}
-}
-
-func (v NullableApiKeyResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableApiKeyResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

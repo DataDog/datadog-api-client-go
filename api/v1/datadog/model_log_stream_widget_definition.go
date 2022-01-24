@@ -594,39 +594,3 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogStreamWidgetDefinition struct {
-	value *LogStreamWidgetDefinition
-	isSet bool
-}
-
-func (v NullableLogStreamWidgetDefinition) Get() *LogStreamWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableLogStreamWidgetDefinition) Set(val *LogStreamWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogStreamWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogStreamWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogStreamWidgetDefinition(val *LogStreamWidgetDefinition) *NullableLogStreamWidgetDefinition {
-	return &NullableLogStreamWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableLogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogStreamWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

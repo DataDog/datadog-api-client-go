@@ -222,39 +222,3 @@ func (o *IncidentServiceResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableIncidentServiceResponseData struct {
-	value *IncidentServiceResponseData
-	isSet bool
-}
-
-func (v NullableIncidentServiceResponseData) Get() *IncidentServiceResponseData {
-	return v.value
-}
-
-func (v *NullableIncidentServiceResponseData) Set(val *IncidentServiceResponseData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIncidentServiceResponseData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIncidentServiceResponseData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIncidentServiceResponseData(val *IncidentServiceResponseData) *NullableIncidentServiceResponseData {
-	return &NullableIncidentServiceResponseData{value: val, isSet: true}
-}
-
-func (v NullableIncidentServiceResponseData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIncidentServiceResponseData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

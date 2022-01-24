@@ -179,39 +179,3 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = all.Interval
 	return nil
 }
-
-type NullableLogsQueryCompute struct {
-	value *LogsQueryCompute
-	isSet bool
-}
-
-func (v NullableLogsQueryCompute) Get() *LogsQueryCompute {
-	return v.value
-}
-
-func (v *NullableLogsQueryCompute) Set(val *LogsQueryCompute) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsQueryCompute) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsQueryCompute) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsQueryCompute(val *LogsQueryCompute) *NullableLogsQueryCompute {
-	return &NullableLogsQueryCompute{value: val, isSet: true}
-}
-
-func (v NullableLogsQueryCompute) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsQueryCompute) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

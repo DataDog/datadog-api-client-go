@@ -605,39 +605,3 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostCount = all.VsphereHostCount
 	return nil
 }
-
-type NullableUsageHostHour struct {
-	value *UsageHostHour
-	isSet bool
-}
-
-func (v NullableUsageHostHour) Get() *UsageHostHour {
-	return v.value
-}
-
-func (v *NullableUsageHostHour) Set(val *UsageHostHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageHostHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageHostHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageHostHour(val *UsageHostHour) *NullableUsageHostHour {
-	return &NullableUsageHostHour{value: val, isSet: true}
-}
-
-func (v NullableUsageHostHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageHostHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
