@@ -19,6 +19,8 @@
 | **BrowserRumUnitsSum**                      | Pointer to **int64**  | Shows the sum of all browser RUM units over all hours in the current date for the given org.                                                                  | [optional] |
 | **ContainerAvg**                            | Pointer to **int64**  | Shows the average of all distinct containers over all hours in the current date for the given org.                                                            | [optional] |
 | **ContainerHwm**                            | Pointer to **int64**  | Shows the high-water mark of all distinct containers over all hours in the current date for the given org.                                                    | [optional] |
+| **CspmAasHostTop99p**                       | Pointer to **int64**  | Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current date for the given org.             | [optional] |
+| **CspmAzureHostTop99p**                     | Pointer to **int64**  | Shows the 99th percentile of all Cloud Security Posture Management Azure hosts over all hours in the current date for the given org.                          | [optional] |
 | **CspmContainerAvg**                        | Pointer to **int64**  | Shows the average number of Cloud Security Posture Management containers over all hours in the current date for the given org.                                | [optional] |
 | **CspmContainerHwm**                        | Pointer to **int64**  | Shows the high-water mark of Cloud Security Posture Management containers over all hours in the current date for the given org.                               | [optional] |
 | **CspmHostTop99p**                          | Pointer to **int64**  | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current date for the given org.                                | [optional] |
@@ -454,6 +456,56 @@ SetContainerHwm sets ContainerHwm field to given value.
 `func (o *UsageSummaryDateOrg) HasContainerHwm() bool`
 
 HasContainerHwm returns a boolean if a field has been set.
+
+### GetCspmAasHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetCspmAasHostTop99p() int64`
+
+GetCspmAasHostTop99p returns the CspmAasHostTop99p field if non-nil, zero value otherwise.
+
+### GetCspmAasHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetCspmAasHostTop99pOk() (*int64, bool)`
+
+GetCspmAasHostTop99pOk returns a tuple with the CspmAasHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmAasHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetCspmAasHostTop99p(v int64)`
+
+SetCspmAasHostTop99p sets CspmAasHostTop99p field to given value.
+
+### HasCspmAasHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasCspmAasHostTop99p() bool`
+
+HasCspmAasHostTop99p returns a boolean if a field has been set.
+
+### GetCspmAzureHostTop99p
+
+`func (o *UsageSummaryDateOrg) GetCspmAzureHostTop99p() int64`
+
+GetCspmAzureHostTop99p returns the CspmAzureHostTop99p field if non-nil, zero value otherwise.
+
+### GetCspmAzureHostTop99pOk
+
+`func (o *UsageSummaryDateOrg) GetCspmAzureHostTop99pOk() (*int64, bool)`
+
+GetCspmAzureHostTop99pOk returns a tuple with the CspmAzureHostTop99p field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmAzureHostTop99p
+
+`func (o *UsageSummaryDateOrg) SetCspmAzureHostTop99p(v int64)`
+
+SetCspmAzureHostTop99p sets CspmAzureHostTop99p field to given value.
+
+### HasCspmAzureHostTop99p
+
+`func (o *UsageSummaryDateOrg) HasCspmAzureHostTop99p() bool`
+
+HasCspmAzureHostTop99p returns a boolean if a field has been set.
 
 ### GetCspmContainerAvg
 

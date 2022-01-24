@@ -20,6 +20,8 @@
 | **BrowserRumUnitsAggSum**                      | Pointer to **int64**                                     | Shows the sum of all browser RUM units over all hours in the current months for all organizations.                                                                  | [optional] |
 | **ContainerAvgSum**                            | Pointer to **int64**                                     | Shows the average of all distinct containers over all hours in the current months for all organizations.                                                            | [optional] |
 | **ContainerHwmSum**                            | Pointer to **int64**                                     | Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations.                                        | [optional] |
+| **CspmAasHostTop99pSum**                       | Pointer to **int64**                                     | Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current months for all organizations.             | [optional] |
+| **CspmAzureHostTop99pSum**                     | Pointer to **int64**                                     | Shows the 99th percentile of all Cloud Security Posture Management Azure hosts over all hours in the current months for all organizations.                          | [optional] |
 | **CspmContainerAvgSum**                        | Pointer to **int64**                                     | Shows the average number of Cloud Security Posture Management containers over all hours in the current months for all organizations.                                | [optional] |
 | **CspmContainerHwmSum**                        | Pointer to **int64**                                     | Shows the sum of the the high-water marks of Cloud Security Posture Management containers over all hours in the current months for all organizations.               | [optional] |
 | **CspmHostTop99pSum**                          | Pointer to **int64**                                     | Shows the 99th percentile of all Cloud Security Posture Management hosts over all hours in the current months for all organizations.                                | [optional] |
@@ -487,6 +489,56 @@ SetContainerHwmSum sets ContainerHwmSum field to given value.
 `func (o *UsageSummaryResponse) HasContainerHwmSum() bool`
 
 HasContainerHwmSum returns a boolean if a field has been set.
+
+### GetCspmAasHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetCspmAasHostTop99pSum() int64`
+
+GetCspmAasHostTop99pSum returns the CspmAasHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetCspmAasHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetCspmAasHostTop99pSumOk() (*int64, bool)`
+
+GetCspmAasHostTop99pSumOk returns a tuple with the CspmAasHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmAasHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetCspmAasHostTop99pSum(v int64)`
+
+SetCspmAasHostTop99pSum sets CspmAasHostTop99pSum field to given value.
+
+### HasCspmAasHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasCspmAasHostTop99pSum() bool`
+
+HasCspmAasHostTop99pSum returns a boolean if a field has been set.
+
+### GetCspmAzureHostTop99pSum
+
+`func (o *UsageSummaryResponse) GetCspmAzureHostTop99pSum() int64`
+
+GetCspmAzureHostTop99pSum returns the CspmAzureHostTop99pSum field if non-nil, zero value otherwise.
+
+### GetCspmAzureHostTop99pSumOk
+
+`func (o *UsageSummaryResponse) GetCspmAzureHostTop99pSumOk() (*int64, bool)`
+
+GetCspmAzureHostTop99pSumOk returns a tuple with the CspmAzureHostTop99pSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCspmAzureHostTop99pSum
+
+`func (o *UsageSummaryResponse) SetCspmAzureHostTop99pSum(v int64)`
+
+SetCspmAzureHostTop99pSum sets CspmAzureHostTop99pSum field to given value.
+
+### HasCspmAzureHostTop99pSum
+
+`func (o *UsageSummaryResponse) HasCspmAzureHostTop99pSum() bool`
+
+HasCspmAzureHostTop99pSum returns a boolean if a field has been set.
 
 ### GetCspmContainerAvgSum
 
