@@ -245,6 +245,7 @@ docs/MetricVolumesResponse.md
 docs/MetricsAndMetricTagConfigurations.md
 docs/MetricsAndMetricTagConfigurationsResponse.md
 docs/MetricsApi.md
+docs/NullableRelationshipToUser.md
 docs/Organization.md
 docs/OrganizationAttributes.md
 docs/OrganizationsType.md
@@ -599,6 +600,7 @@ model_metric_volumes.go
 model_metric_volumes_response.go
 model_metrics_and_metric_tag_configurations.go
 model_metrics_and_metric_tag_configurations_response.go
+model_nullable_relationship_to_user.go
 model_organization.go
 model_organization_attributes.go
 model_organizations_type.go

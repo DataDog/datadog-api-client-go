@@ -406,6 +406,7 @@ All URIs are relative to *https://api.datadoghq.com*
 - [MetricVolumesResponse](docs/MetricVolumesResponse.md)
 - [MetricsAndMetricTagConfigurations](docs/MetricsAndMetricTagConfigurations.md)
 - [MetricsAndMetricTagConfigurationsResponse](docs/MetricsAndMetricTagConfigurationsResponse.md)
+- [NullableRelationshipToUser](docs/NullableRelationshipToUser.md)
 - [Organization](docs/Organization.md)
 - [OrganizationAttributes](docs/OrganizationAttributes.md)
 - [OrganizationsType](docs/OrganizationsType.md)

@@ -2,15 +2,15 @@
 
 ## Properties
 
-| Name          | Type                                            | Description | Notes |
-| ------------- | ----------------------------------------------- | ----------- | ----- |
-| **Commander** | [**RelationshipToUser**](RelationshipToUser.md) |             |
+| Name              | Type                                                            | Description | Notes |
+| ----------------- | --------------------------------------------------------------- | ----------- | ----- |
+| **CommanderUser** | [**NullableRelationshipToUser**](NullableRelationshipToUser.md) |             |
 
 ## Methods
 
 ### NewIncidentCreateRelationships
 
-`func NewIncidentCreateRelationships(commander RelationshipToUser) *IncidentCreateRelationships`
+`func NewIncidentCreateRelationships(commanderUser NullableRelationshipToUser) *IncidentCreateRelationships`
 
 NewIncidentCreateRelationships instantiates a new IncidentCreateRelationships object.
 This constructor will assign default values to properties that have it defined,
@@ -25,23 +25,23 @@ NewIncidentCreateRelationshipsWithDefaults instantiates a new IncidentCreateRela
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
-### GetCommander
+### GetCommanderUser
 
-`func (o *IncidentCreateRelationships) GetCommander() RelationshipToUser`
+`func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToUser`
 
-GetCommander returns the Commander field if non-nil, zero value otherwise.
+GetCommanderUser returns the CommanderUser field if non-nil, zero value otherwise.
 
-### GetCommanderOk
+### GetCommanderUserOk
 
-`func (o *IncidentCreateRelationships) GetCommanderOk() (*RelationshipToUser, bool)`
+`func (o *IncidentCreateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool)`
 
-GetCommanderOk returns a tuple with the Commander field if it's non-nil, zero value otherwise
+GetCommanderUserOk returns a tuple with the CommanderUser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
-### SetCommander
+### SetCommanderUser
 
-`func (o *IncidentCreateRelationships) SetCommander(v RelationshipToUser)`
+`func (o *IncidentCreateRelationships) SetCommanderUser(v NullableRelationshipToUser)`
 
-SetCommander sets Commander field to given value.
+SetCommanderUser sets CommanderUser field to given value.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

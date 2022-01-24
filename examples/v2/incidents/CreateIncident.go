@@ -13,7 +13,6 @@ import (
 
 func main() {
 	// there is a valid "user" in the system
-	USER_DATA_ID := os.Getenv("USER_DATA_ID")
 
 	body := datadog.IncidentCreateRequest{
 		Data: datadog.IncidentCreateData{
@@ -30,11 +29,8 @@ func main() {
 				},
 			},
 			Relationships: &datadog.IncidentCreateRelationships{
-				Commander: datadog.RelationshipToUser{
-					Data: datadog.RelationshipToUserData{
-						Type: datadog.USERSTYPE_USERS,
-						Id:   USER_DATA_ID,
-					},
+				CommanderUser: datadog.NullableRelationshipToUser{
+					Data: datadog.NullableRelationshipToUserData{},
 				},
 			},
 		},

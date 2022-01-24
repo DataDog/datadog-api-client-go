@@ -14,7 +14,7 @@ import (
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
-	CommanderUser      *RelationshipToUser                         `json:"commander_user,omitempty"`
+	CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
 	CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
 	Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 	LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
@@ -41,9 +41,9 @@ func NewIncidentResponseRelationshipsWithDefaults() *IncidentResponseRelationshi
 }
 
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
-func (o *IncidentResponseRelationships) GetCommanderUser() RelationshipToUser {
+func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil || o.CommanderUser == nil {
-		var ret RelationshipToUser
+		var ret NullableRelationshipToUser
 		return ret
 	}
 	return *o.CommanderUser
@@ -51,7 +51,7 @@ func (o *IncidentResponseRelationships) GetCommanderUser() RelationshipToUser {
 
 // GetCommanderUserOk returns a tuple with the CommanderUser field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentResponseRelationships) GetCommanderUserOk() (*RelationshipToUser, bool) {
+func (o *IncidentResponseRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
 	if o == nil || o.CommanderUser == nil {
 		return nil, false
 	}
@@ -67,8 +67,8 @@ func (o *IncidentResponseRelationships) HasCommanderUser() bool {
 	return false
 }
 
-// SetCommanderUser gets a reference to the given RelationshipToUser and assigns it to the CommanderUser field.
-func (o *IncidentResponseRelationships) SetCommanderUser(v RelationshipToUser) {
+// SetCommanderUser gets a reference to the given NullableRelationshipToUser and assigns it to the CommanderUser field.
+func (o *IncidentResponseRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser = &v
 }
 
@@ -226,7 +226,7 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CommanderUser      *RelationshipToUser                         `json:"commander_user,omitempty"`
+		CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
 		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
 		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
 		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
