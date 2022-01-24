@@ -252,39 +252,3 @@ func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (er
 	o.StepCountTotal = all.StepCountTotal
 	return nil
 }
-
-type NullableSyntheticsBrowserTestResultShortResult struct {
-	value *SyntheticsBrowserTestResultShortResult
-	isSet bool
-}
-
-func (v NullableSyntheticsBrowserTestResultShortResult) Get() *SyntheticsBrowserTestResultShortResult {
-	return v.value
-}
-
-func (v *NullableSyntheticsBrowserTestResultShortResult) Set(val *SyntheticsBrowserTestResultShortResult) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBrowserTestResultShortResult) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBrowserTestResultShortResult) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBrowserTestResultShortResult(val *SyntheticsBrowserTestResultShortResult) *NullableSyntheticsBrowserTestResultShortResult {
-	return &NullableSyntheticsBrowserTestResultShortResult{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBrowserTestResultShortResult) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

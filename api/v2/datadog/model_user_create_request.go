@@ -100,39 +100,3 @@ func (o *UserCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableUserCreateRequest struct {
-	value *UserCreateRequest
-	isSet bool
-}
-
-func (v NullableUserCreateRequest) Get() *UserCreateRequest {
-	return v.value
-}
-
-func (v *NullableUserCreateRequest) Set(val *UserCreateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserCreateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserCreateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserCreateRequest(val *UserCreateRequest) *NullableUserCreateRequest {
-	return &NullableUserCreateRequest{value: val, isSet: true}
-}
-
-func (v NullableUserCreateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserCreateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -136,39 +136,3 @@ func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	o.Computes = all.Computes
 	return nil
 }
-
-type NullableLogsAggregateBucket struct {
-	value *LogsAggregateBucket
-	isSet bool
-}
-
-func (v NullableLogsAggregateBucket) Get() *LogsAggregateBucket {
-	return v.value
-}
-
-func (v *NullableLogsAggregateBucket) Set(val *LogsAggregateBucket) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateBucket) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateBucket) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateBucket(val *LogsAggregateBucket) *NullableLogsAggregateBucket {
-	return &NullableLogsAggregateBucket{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateBucket) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateBucket) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

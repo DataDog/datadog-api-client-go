@@ -96,39 +96,3 @@ func (o *SLOCorrectionCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableSLOCorrectionCreateRequest struct {
-	value *SLOCorrectionCreateRequest
-	isSet bool
-}
-
-func (v NullableSLOCorrectionCreateRequest) Get() *SLOCorrectionCreateRequest {
-	return v.value
-}
-
-func (v *NullableSLOCorrectionCreateRequest) Set(val *SLOCorrectionCreateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOCorrectionCreateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOCorrectionCreateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOCorrectionCreateRequest(val *SLOCorrectionCreateRequest) *NullableSLOCorrectionCreateRequest {
-	return &NullableSLOCorrectionCreateRequest{value: val, isSet: true}
-}
-
-func (v NullableSLOCorrectionCreateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOCorrectionCreateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

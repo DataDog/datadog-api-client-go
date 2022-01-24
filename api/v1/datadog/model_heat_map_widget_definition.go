@@ -502,39 +502,3 @@ func (o *HeatMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
-
-type NullableHeatMapWidgetDefinition struct {
-	value *HeatMapWidgetDefinition
-	isSet bool
-}
-
-func (v NullableHeatMapWidgetDefinition) Get() *HeatMapWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableHeatMapWidgetDefinition) Set(val *HeatMapWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHeatMapWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHeatMapWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHeatMapWidgetDefinition(val *HeatMapWidgetDefinition) *NullableHeatMapWidgetDefinition {
-	return &NullableHeatMapWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableHeatMapWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHeatMapWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

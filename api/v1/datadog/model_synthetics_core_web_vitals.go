@@ -175,39 +175,3 @@ func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableSyntheticsCoreWebVitals struct {
-	value *SyntheticsCoreWebVitals
-	isSet bool
-}
-
-func (v NullableSyntheticsCoreWebVitals) Get() *SyntheticsCoreWebVitals {
-	return v.value
-}
-
-func (v *NullableSyntheticsCoreWebVitals) Set(val *SyntheticsCoreWebVitals) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsCoreWebVitals) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsCoreWebVitals) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsCoreWebVitals(val *SyntheticsCoreWebVitals) *NullableSyntheticsCoreWebVitals {
-	return &NullableSyntheticsCoreWebVitals{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsCoreWebVitals) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

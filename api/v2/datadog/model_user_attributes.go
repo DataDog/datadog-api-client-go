@@ -510,39 +510,3 @@ func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Verified = all.Verified
 	return nil
 }
-
-type NullableUserAttributes struct {
-	value *UserAttributes
-	isSet bool
-}
-
-func (v NullableUserAttributes) Get() *UserAttributes {
-	return v.value
-}
-
-func (v *NullableUserAttributes) Set(val *UserAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUserAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUserAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUserAttributes(val *UserAttributes) *NullableUserAttributes {
-	return &NullableUserAttributes{value: val, isSet: true}
-}
-
-func (v NullableUserAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUserAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -214,39 +214,3 @@ func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.PaletteFlip = all.PaletteFlip
 	return nil
 }
-
-type NullableHostMapWidgetDefinitionStyle struct {
-	value *HostMapWidgetDefinitionStyle
-	isSet bool
-}
-
-func (v NullableHostMapWidgetDefinitionStyle) Get() *HostMapWidgetDefinitionStyle {
-	return v.value
-}
-
-func (v *NullableHostMapWidgetDefinitionStyle) Set(val *HostMapWidgetDefinitionStyle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMapWidgetDefinitionStyle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMapWidgetDefinitionStyle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMapWidgetDefinitionStyle(val *HostMapWidgetDefinitionStyle) *NullableHostMapWidgetDefinitionStyle {
-	return &NullableHostMapWidgetDefinitionStyle{value: val, isSet: true}
-}
-
-func (v NullableHostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMapWidgetDefinitionStyle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

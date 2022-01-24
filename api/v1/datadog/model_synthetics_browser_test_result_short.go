@@ -259,39 +259,3 @@ func (o *SyntheticsBrowserTestResultShort) UnmarshalJSON(bytes []byte) (err erro
 	o.Status = all.Status
 	return nil
 }
-
-type NullableSyntheticsBrowserTestResultShort struct {
-	value *SyntheticsBrowserTestResultShort
-	isSet bool
-}
-
-func (v NullableSyntheticsBrowserTestResultShort) Get() *SyntheticsBrowserTestResultShort {
-	return v.value
-}
-
-func (v *NullableSyntheticsBrowserTestResultShort) Set(val *SyntheticsBrowserTestResultShort) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBrowserTestResultShort) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBrowserTestResultShort) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBrowserTestResultShort(val *SyntheticsBrowserTestResultShort) *NullableSyntheticsBrowserTestResultShort {
-	return &NullableSyntheticsBrowserTestResultShort{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBrowserTestResultShort) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBrowserTestResultShort) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

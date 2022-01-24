@@ -439,39 +439,3 @@ func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
-
-type NullableHeatMapWidgetRequest struct {
-	value *HeatMapWidgetRequest
-	isSet bool
-}
-
-func (v NullableHeatMapWidgetRequest) Get() *HeatMapWidgetRequest {
-	return v.value
-}
-
-func (v *NullableHeatMapWidgetRequest) Set(val *HeatMapWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHeatMapWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHeatMapWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHeatMapWidgetRequest(val *HeatMapWidgetRequest) *NullableHeatMapWidgetRequest {
-	return &NullableHeatMapWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableHeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHeatMapWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

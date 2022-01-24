@@ -347,39 +347,3 @@ func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) 
 	o.Type = all.Type
 	return nil
 }
-
-type NullableEventTimelineWidgetDefinition struct {
-	value *EventTimelineWidgetDefinition
-	isSet bool
-}
-
-func (v NullableEventTimelineWidgetDefinition) Get() *EventTimelineWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableEventTimelineWidgetDefinition) Set(val *EventTimelineWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableEventTimelineWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableEventTimelineWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableEventTimelineWidgetDefinition(val *EventTimelineWidgetDefinition) *NullableEventTimelineWidgetDefinition {
-	return &NullableEventTimelineWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableEventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableEventTimelineWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

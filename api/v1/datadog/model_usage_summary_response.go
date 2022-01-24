@@ -2554,39 +2554,3 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99pSum = all.VsphereHostTop99pSum
 	return nil
 }
-
-type NullableUsageSummaryResponse struct {
-	value *UsageSummaryResponse
-	isSet bool
-}
-
-func (v NullableUsageSummaryResponse) Get() *UsageSummaryResponse {
-	return v.value
-}
-
-func (v *NullableUsageSummaryResponse) Set(val *UsageSummaryResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSummaryResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSummaryResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSummaryResponse(val *UsageSummaryResponse) *NullableUsageSummaryResponse {
-	return &NullableUsageSummaryResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageSummaryResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSummaryResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

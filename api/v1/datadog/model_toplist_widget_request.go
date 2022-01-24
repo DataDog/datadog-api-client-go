@@ -640,39 +640,3 @@ func (o *ToplistWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
-
-type NullableToplistWidgetRequest struct {
-	value *ToplistWidgetRequest
-	isSet bool
-}
-
-func (v NullableToplistWidgetRequest) Get() *ToplistWidgetRequest {
-	return v.value
-}
-
-func (v *NullableToplistWidgetRequest) Set(val *ToplistWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableToplistWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableToplistWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableToplistWidgetRequest(val *ToplistWidgetRequest) *NullableToplistWidgetRequest {
-	return &NullableToplistWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableToplistWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableToplistWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

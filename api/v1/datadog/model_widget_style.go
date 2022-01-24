@@ -97,39 +97,3 @@ func (o *WidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.Palette = all.Palette
 	return nil
 }
-
-type NullableWidgetStyle struct {
-	value *WidgetStyle
-	isSet bool
-}
-
-func (v NullableWidgetStyle) Get() *WidgetStyle {
-	return v.value
-}
-
-func (v *NullableWidgetStyle) Set(val *WidgetStyle) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetStyle) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetStyle) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetStyle(val *WidgetStyle) *NullableWidgetStyle {
-	return &NullableWidgetStyle{value: val, isSet: true}
-}
-
-func (v NullableWidgetStyle) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetStyle) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

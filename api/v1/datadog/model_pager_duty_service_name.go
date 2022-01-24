@@ -101,39 +101,3 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServiceName = all.ServiceName
 	return nil
 }
-
-type NullablePagerDutyServiceName struct {
-	value *PagerDutyServiceName
-	isSet bool
-}
-
-func (v NullablePagerDutyServiceName) Get() *PagerDutyServiceName {
-	return v.value
-}
-
-func (v *NullablePagerDutyServiceName) Set(val *PagerDutyServiceName) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePagerDutyServiceName) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePagerDutyServiceName) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePagerDutyServiceName(val *PagerDutyServiceName) *NullablePagerDutyServiceName {
-	return &NullablePagerDutyServiceName{value: val, isSet: true}
-}
-
-func (v NullablePagerDutyServiceName) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePagerDutyServiceName) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

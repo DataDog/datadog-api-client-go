@@ -101,39 +101,3 @@ func (o *APIKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
-
-type NullableAPIKeyUpdateAttributes struct {
-	value *APIKeyUpdateAttributes
-	isSet bool
-}
-
-func (v NullableAPIKeyUpdateAttributes) Get() *APIKeyUpdateAttributes {
-	return v.value
-}
-
-func (v *NullableAPIKeyUpdateAttributes) Set(val *APIKeyUpdateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAPIKeyUpdateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAPIKeyUpdateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAPIKeyUpdateAttributes(val *APIKeyUpdateAttributes) *NullableAPIKeyUpdateAttributes {
-	return &NullableAPIKeyUpdateAttributes{value: val, isSet: true}
-}
-
-func (v NullableAPIKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAPIKeyUpdateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

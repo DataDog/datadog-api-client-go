@@ -307,39 +307,3 @@ func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsStringBuilderProcessor struct {
-	value *LogsStringBuilderProcessor
-	isSet bool
-}
-
-func (v NullableLogsStringBuilderProcessor) Get() *LogsStringBuilderProcessor {
-	return v.value
-}
-
-func (v *NullableLogsStringBuilderProcessor) Set(val *LogsStringBuilderProcessor) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsStringBuilderProcessor) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsStringBuilderProcessor) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsStringBuilderProcessor(val *LogsStringBuilderProcessor) *NullableLogsStringBuilderProcessor {
-	return &NullableLogsStringBuilderProcessor{value: val, isSet: true}
-}
-
-func (v NullableLogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsStringBuilderProcessor) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

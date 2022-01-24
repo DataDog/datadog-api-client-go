@@ -228,39 +228,3 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Tags = all.Tags
 	return nil
 }
-
-type NullableMetricTagConfigurationCreateAttributes struct {
-	value *MetricTagConfigurationCreateAttributes
-	isSet bool
-}
-
-func (v NullableMetricTagConfigurationCreateAttributes) Get() *MetricTagConfigurationCreateAttributes {
-	return v.value
-}
-
-func (v *NullableMetricTagConfigurationCreateAttributes) Set(val *MetricTagConfigurationCreateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMetricTagConfigurationCreateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMetricTagConfigurationCreateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMetricTagConfigurationCreateAttributes(val *MetricTagConfigurationCreateAttributes) *NullableMetricTagConfigurationCreateAttributes {
-	return &NullableMetricTagConfigurationCreateAttributes{value: val, isSet: true}
-}
-
-func (v NullableMetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMetricTagConfigurationCreateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

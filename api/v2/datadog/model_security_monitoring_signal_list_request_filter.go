@@ -176,39 +176,3 @@ func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) 
 	o.To = all.To
 	return nil
 }
-
-type NullableSecurityMonitoringSignalListRequestFilter struct {
-	value *SecurityMonitoringSignalListRequestFilter
-	isSet bool
-}
-
-func (v NullableSecurityMonitoringSignalListRequestFilter) Get() *SecurityMonitoringSignalListRequestFilter {
-	return v.value
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestFilter) Set(val *SecurityMonitoringSignalListRequestFilter) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityMonitoringSignalListRequestFilter) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestFilter) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityMonitoringSignalListRequestFilter(val *SecurityMonitoringSignalListRequestFilter) *NullableSecurityMonitoringSignalListRequestFilter {
-	return &NullableSecurityMonitoringSignalListRequestFilter{value: val, isSet: true}
-}
-
-func (v NullableSecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestFilter) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

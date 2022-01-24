@@ -146,39 +146,3 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableIFrameWidgetDefinition struct {
-	value *IFrameWidgetDefinition
-	isSet bool
-}
-
-func (v NullableIFrameWidgetDefinition) Get() *IFrameWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableIFrameWidgetDefinition) Set(val *IFrameWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableIFrameWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableIFrameWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableIFrameWidgetDefinition(val *IFrameWidgetDefinition) *NullableIFrameWidgetDefinition {
-	return &NullableIFrameWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableIFrameWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableIFrameWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

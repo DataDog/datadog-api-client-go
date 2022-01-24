@@ -175,39 +175,3 @@ func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalReturned = all.TotalReturned
 	return nil
 }
-
-type NullableHostListResponse struct {
-	value *HostListResponse
-	isSet bool
-}
-
-func (v NullableHostListResponse) Get() *HostListResponse {
-	return v.value
-}
-
-func (v *NullableHostListResponse) Set(val *HostListResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostListResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostListResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostListResponse(val *HostListResponse) *NullableHostListResponse {
-	return &NullableHostListResponse{value: val, isSet: true}
-}
-
-func (v NullableHostListResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostListResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -309,39 +309,3 @@ func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsUserAgentParser struct {
-	value *LogsUserAgentParser
-	isSet bool
-}
-
-func (v NullableLogsUserAgentParser) Get() *LogsUserAgentParser {
-	return v.value
-}
-
-func (v *NullableLogsUserAgentParser) Set(val *LogsUserAgentParser) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsUserAgentParser) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsUserAgentParser) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsUserAgentParser(val *LogsUserAgentParser) *NullableLogsUserAgentParser {
-	return &NullableLogsUserAgentParser{value: val, isSet: true}
-}
-
-func (v NullableLogsUserAgentParser) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsUserAgentParser) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

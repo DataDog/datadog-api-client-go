@@ -455,39 +455,3 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	o.SamlStrictMode = all.SamlStrictMode
 	return nil
 }
-
-type NullableOrganizationSettings struct {
-	value *OrganizationSettings
-	isSet bool
-}
-
-func (v NullableOrganizationSettings) Get() *OrganizationSettings {
-	return v.value
-}
-
-func (v *NullableOrganizationSettings) Set(val *OrganizationSettings) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrganizationSettings) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrganizationSettings) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrganizationSettings(val *OrganizationSettings) *NullableOrganizationSettings {
-	return &NullableOrganizationSettings{value: val, isSet: true}
-}
-
-func (v NullableOrganizationSettings) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrganizationSettings) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

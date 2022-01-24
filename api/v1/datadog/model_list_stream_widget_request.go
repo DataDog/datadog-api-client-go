@@ -179,39 +179,3 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResponseFormat = all.ResponseFormat
 	return nil
 }
-
-type NullableListStreamWidgetRequest struct {
-	value *ListStreamWidgetRequest
-	isSet bool
-}
-
-func (v NullableListStreamWidgetRequest) Get() *ListStreamWidgetRequest {
-	return v.value
-}
-
-func (v *NullableListStreamWidgetRequest) Set(val *ListStreamWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListStreamWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListStreamWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListStreamWidgetRequest(val *ListStreamWidgetRequest) *NullableListStreamWidgetRequest {
-	return &NullableListStreamWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListStreamWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

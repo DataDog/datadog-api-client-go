@@ -175,39 +175,3 @@ func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnapshotUrl = all.SnapshotUrl
 	return nil
 }
-
-type NullableGraphSnapshot struct {
-	value *GraphSnapshot
-	isSet bool
-}
-
-func (v NullableGraphSnapshot) Get() *GraphSnapshot {
-	return v.value
-}
-
-func (v *NullableGraphSnapshot) Set(val *GraphSnapshot) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableGraphSnapshot) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableGraphSnapshot) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableGraphSnapshot(val *GraphSnapshot) *NullableGraphSnapshot {
-	return &NullableGraphSnapshot{value: val, isSet: true}
-}
-
-func (v NullableGraphSnapshot) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableGraphSnapshot) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

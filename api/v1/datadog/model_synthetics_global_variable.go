@@ -362,39 +362,3 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
-
-type NullableSyntheticsGlobalVariable struct {
-	value *SyntheticsGlobalVariable
-	isSet bool
-}
-
-func (v NullableSyntheticsGlobalVariable) Get() *SyntheticsGlobalVariable {
-	return v.value
-}
-
-func (v *NullableSyntheticsGlobalVariable) Set(val *SyntheticsGlobalVariable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsGlobalVariable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsGlobalVariable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsGlobalVariable(val *SyntheticsGlobalVariable) *NullableSyntheticsGlobalVariable {
-	return &NullableSyntheticsGlobalVariable{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsGlobalVariable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -448,39 +448,3 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	o.Stat = all.Stat
 	return nil
 }
-
-type NullableFormulaAndFunctionApmDependencyStatsQueryDefinition struct {
-	value *FormulaAndFunctionApmDependencyStatsQueryDefinition
-	isSet bool
-}
-
-func (v NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) Get() *FormulaAndFunctionApmDependencyStatsQueryDefinition {
-	return v.value
-}
-
-func (v *NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) Set(val *FormulaAndFunctionApmDependencyStatsQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFormulaAndFunctionApmDependencyStatsQueryDefinition(val *FormulaAndFunctionApmDependencyStatsQueryDefinition) *NullableFormulaAndFunctionApmDependencyStatsQueryDefinition {
-	return &NullableFormulaAndFunctionApmDependencyStatsQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

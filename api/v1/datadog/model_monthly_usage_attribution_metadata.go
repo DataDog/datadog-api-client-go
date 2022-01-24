@@ -135,39 +135,3 @@ func (o *MonthlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error
 	o.Pagination = all.Pagination
 	return nil
 }
-
-type NullableMonthlyUsageAttributionMetadata struct {
-	value *MonthlyUsageAttributionMetadata
-	isSet bool
-}
-
-func (v NullableMonthlyUsageAttributionMetadata) Get() *MonthlyUsageAttributionMetadata {
-	return v.value
-}
-
-func (v *NullableMonthlyUsageAttributionMetadata) Set(val *MonthlyUsageAttributionMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonthlyUsageAttributionMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonthlyUsageAttributionMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonthlyUsageAttributionMetadata(val *MonthlyUsageAttributionMetadata) *NullableMonthlyUsageAttributionMetadata {
-	return &NullableMonthlyUsageAttributionMetadata{value: val, isSet: true}
-}
-
-func (v NullableMonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonthlyUsageAttributionMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

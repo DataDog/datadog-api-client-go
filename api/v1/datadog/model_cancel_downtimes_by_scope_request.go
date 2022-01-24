@@ -101,39 +101,3 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 	o.Scope = all.Scope
 	return nil
 }
-
-type NullableCancelDowntimesByScopeRequest struct {
-	value *CancelDowntimesByScopeRequest
-	isSet bool
-}
-
-func (v NullableCancelDowntimesByScopeRequest) Get() *CancelDowntimesByScopeRequest {
-	return v.value
-}
-
-func (v *NullableCancelDowntimesByScopeRequest) Set(val *CancelDowntimesByScopeRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCancelDowntimesByScopeRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCancelDowntimesByScopeRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCancelDowntimesByScopeRequest(val *CancelDowntimesByScopeRequest) *NullableCancelDowntimesByScopeRequest {
-	return &NullableCancelDowntimesByScopeRequest{value: val, isSet: true}
-}
-
-func (v NullableCancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCancelDowntimesByScopeRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

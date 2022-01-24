@@ -140,39 +140,3 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	o.Expression = all.Expression
 	return nil
 }
-
-type NullableTimeseriesWidgetExpressionAlias struct {
-	value *TimeseriesWidgetExpressionAlias
-	isSet bool
-}
-
-func (v NullableTimeseriesWidgetExpressionAlias) Get() *TimeseriesWidgetExpressionAlias {
-	return v.value
-}
-
-func (v *NullableTimeseriesWidgetExpressionAlias) Set(val *TimeseriesWidgetExpressionAlias) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTimeseriesWidgetExpressionAlias) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTimeseriesWidgetExpressionAlias) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTimeseriesWidgetExpressionAlias(val *TimeseriesWidgetExpressionAlias) *NullableTimeseriesWidgetExpressionAlias {
-	return &NullableTimeseriesWidgetExpressionAlias{value: val, isSet: true}
-}
-
-func (v NullableTimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTimeseriesWidgetExpressionAlias) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

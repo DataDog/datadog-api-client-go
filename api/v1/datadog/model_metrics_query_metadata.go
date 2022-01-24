@@ -576,39 +576,3 @@ func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Unit = all.Unit
 	return nil
 }
-
-type NullableMetricsQueryMetadata struct {
-	value *MetricsQueryMetadata
-	isSet bool
-}
-
-func (v NullableMetricsQueryMetadata) Get() *MetricsQueryMetadata {
-	return v.value
-}
-
-func (v *NullableMetricsQueryMetadata) Set(val *MetricsQueryMetadata) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMetricsQueryMetadata) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMetricsQueryMetadata) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMetricsQueryMetadata(val *MetricsQueryMetadata) *NullableMetricsQueryMetadata {
-	return &NullableMetricsQueryMetadata{value: val, isSet: true}
-}
-
-func (v NullableMetricsQueryMetadata) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMetricsQueryMetadata) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

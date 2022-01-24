@@ -474,39 +474,3 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ViewType = all.ViewType
 	return nil
 }
-
-type NullableSLOWidgetDefinition struct {
-	value *SLOWidgetDefinition
-	isSet bool
-}
-
-func (v NullableSLOWidgetDefinition) Get() *SLOWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableSLOWidgetDefinition) Set(val *SLOWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOWidgetDefinition(val *SLOWidgetDefinition) *NullableSLOWidgetDefinition {
-	return &NullableSLOWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableSLOWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

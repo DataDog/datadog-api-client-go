@@ -223,39 +223,3 @@ func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullablePartialApplicationKey struct {
-	value *PartialApplicationKey
-	isSet bool
-}
-
-func (v NullablePartialApplicationKey) Get() *PartialApplicationKey {
-	return v.value
-}
-
-func (v *NullablePartialApplicationKey) Set(val *PartialApplicationKey) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullablePartialApplicationKey) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullablePartialApplicationKey) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullablePartialApplicationKey(val *PartialApplicationKey) *NullablePartialApplicationKey {
-	return &NullablePartialApplicationKey{value: val, isSet: true}
-}
-
-func (v NullablePartialApplicationKey) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullablePartialApplicationKey) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

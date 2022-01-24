@@ -447,39 +447,3 @@ func (o *ScatterPlotRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableScatterPlotRequest struct {
-	value *ScatterPlotRequest
-	isSet bool
-}
-
-func (v NullableScatterPlotRequest) Get() *ScatterPlotRequest {
-	return v.value
-}
-
-func (v *NullableScatterPlotRequest) Set(val *ScatterPlotRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableScatterPlotRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableScatterPlotRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableScatterPlotRequest(val *ScatterPlotRequest) *NullableScatterPlotRequest {
-	return &NullableScatterPlotRequest{value: val, isSet: true}
-}
-
-func (v NullableScatterPlotRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableScatterPlotRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

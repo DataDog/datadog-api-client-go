@@ -144,39 +144,3 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	o.SupportRules = all.SupportRules
 	return nil
 }
-
-type NullableLogsGrokParserRules struct {
-	value *LogsGrokParserRules
-	isSet bool
-}
-
-func (v NullableLogsGrokParserRules) Get() *LogsGrokParserRules {
-	return v.value
-}
-
-func (v *NullableLogsGrokParserRules) Set(val *LogsGrokParserRules) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsGrokParserRules) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsGrokParserRules) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsGrokParserRules(val *LogsGrokParserRules) *NullableLogsGrokParserRules {
-	return &NullableLogsGrokParserRules{value: val, isSet: true}
-}
-
-func (v NullableLogsGrokParserRules) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsGrokParserRules) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

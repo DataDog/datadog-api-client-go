@@ -251,39 +251,3 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Search = all.Search
 	return nil
 }
-
-type NullableLogQueryDefinition struct {
-	value *LogQueryDefinition
-	isSet bool
-}
-
-func (v NullableLogQueryDefinition) Get() *LogQueryDefinition {
-	return v.value
-}
-
-func (v *NullableLogQueryDefinition) Set(val *LogQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogQueryDefinition(val *LogQueryDefinition) *NullableLogQueryDefinition {
-	return &NullableLogQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableLogQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -182,39 +182,3 @@ func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 	o.Username = all.Username
 	return nil
 }
-
-type NullableSyntheticsBasicAuthWeb struct {
-	value *SyntheticsBasicAuthWeb
-	isSet bool
-}
-
-func (v NullableSyntheticsBasicAuthWeb) Get() *SyntheticsBasicAuthWeb {
-	return v.value
-}
-
-func (v *NullableSyntheticsBasicAuthWeb) Set(val *SyntheticsBasicAuthWeb) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsBasicAuthWeb) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsBasicAuthWeb) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsBasicAuthWeb(val *SyntheticsBasicAuthWeb) *NullableSyntheticsBasicAuthWeb {
-	return &NullableSyntheticsBasicAuthWeb{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsBasicAuthWeb) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -252,39 +252,3 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Query = all.Query
 	return nil
 }
-
-type NullableSecurityFilterCreateAttributes struct {
-	value *SecurityFilterCreateAttributes
-	isSet bool
-}
-
-func (v NullableSecurityFilterCreateAttributes) Get() *SecurityFilterCreateAttributes {
-	return v.value
-}
-
-func (v *NullableSecurityFilterCreateAttributes) Set(val *SecurityFilterCreateAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityFilterCreateAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityFilterCreateAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityFilterCreateAttributes(val *SecurityFilterCreateAttributes) *NullableSecurityFilterCreateAttributes {
-	return &NullableSecurityFilterCreateAttributes{value: val, isSet: true}
-}
-
-func (v NullableSecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityFilterCreateAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

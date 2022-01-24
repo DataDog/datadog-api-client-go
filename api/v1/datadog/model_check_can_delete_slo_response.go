@@ -135,39 +135,3 @@ func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
-
-type NullableCheckCanDeleteSLOResponse struct {
-	value *CheckCanDeleteSLOResponse
-	isSet bool
-}
-
-func (v NullableCheckCanDeleteSLOResponse) Get() *CheckCanDeleteSLOResponse {
-	return v.value
-}
-
-func (v *NullableCheckCanDeleteSLOResponse) Set(val *CheckCanDeleteSLOResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCheckCanDeleteSLOResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCheckCanDeleteSLOResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCheckCanDeleteSLOResponse(val *CheckCanDeleteSLOResponse) *NullableCheckCanDeleteSLOResponse {
-	return &NullableCheckCanDeleteSLOResponse{value: val, isSet: true}
-}
-
-func (v NullableCheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCheckCanDeleteSLOResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

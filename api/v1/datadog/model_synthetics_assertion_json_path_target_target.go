@@ -176,39 +176,3 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (e
 	o.TargetValue = all.TargetValue
 	return nil
 }
-
-type NullableSyntheticsAssertionJSONPathTargetTarget struct {
-	value *SyntheticsAssertionJSONPathTargetTarget
-	isSet bool
-}
-
-func (v NullableSyntheticsAssertionJSONPathTargetTarget) Get() *SyntheticsAssertionJSONPathTargetTarget {
-	return v.value
-}
-
-func (v *NullableSyntheticsAssertionJSONPathTargetTarget) Set(val *SyntheticsAssertionJSONPathTargetTarget) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsAssertionJSONPathTargetTarget) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsAssertionJSONPathTargetTarget) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsAssertionJSONPathTargetTarget(val *SyntheticsAssertionJSONPathTargetTarget) *NullableSyntheticsAssertionJSONPathTargetTarget {
-	return &NullableSyntheticsAssertionJSONPathTargetTarget{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

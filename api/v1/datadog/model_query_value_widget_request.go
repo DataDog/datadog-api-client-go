@@ -648,39 +648,3 @@ func (o *QueryValueWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
-
-type NullableQueryValueWidgetRequest struct {
-	value *QueryValueWidgetRequest
-	isSet bool
-}
-
-func (v NullableQueryValueWidgetRequest) Get() *QueryValueWidgetRequest {
-	return v.value
-}
-
-func (v *NullableQueryValueWidgetRequest) Set(val *QueryValueWidgetRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableQueryValueWidgetRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableQueryValueWidgetRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableQueryValueWidgetRequest(val *QueryValueWidgetRequest) *NullableQueryValueWidgetRequest {
-	return &NullableQueryValueWidgetRequest{value: val, isSet: true}
-}
-
-func (v NullableQueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableQueryValueWidgetRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

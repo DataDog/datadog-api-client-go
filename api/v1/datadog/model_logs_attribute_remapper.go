@@ -482,39 +482,3 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsAttributeRemapper struct {
-	value *LogsAttributeRemapper
-	isSet bool
-}
-
-func (v NullableLogsAttributeRemapper) Get() *LogsAttributeRemapper {
-	return v.value
-}
-
-func (v *NullableLogsAttributeRemapper) Set(val *LogsAttributeRemapper) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAttributeRemapper) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAttributeRemapper) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAttributeRemapper(val *LogsAttributeRemapper) *NullableLogsAttributeRemapper {
-	return &NullableLogsAttributeRemapper{value: val, isSet: true}
-}
-
-func (v NullableLogsAttributeRemapper) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAttributeRemapper) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

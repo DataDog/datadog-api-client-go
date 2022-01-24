@@ -140,39 +140,3 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
-
-type NullableSyntheticsTestRequestProxy struct {
-	value *SyntheticsTestRequestProxy
-	isSet bool
-}
-
-func (v NullableSyntheticsTestRequestProxy) Get() *SyntheticsTestRequestProxy {
-	return v.value
-}
-
-func (v *NullableSyntheticsTestRequestProxy) Set(val *SyntheticsTestRequestProxy) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTestRequestProxy) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTestRequestProxy) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTestRequestProxy(val *SyntheticsTestRequestProxy) *NullableSyntheticsTestRequestProxy {
-	return &NullableSyntheticsTestRequestProxy{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTestRequestProxy) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTestRequestProxy) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

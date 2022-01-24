@@ -101,39 +101,3 @@ func (o *RelationshipToOrganizations) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableRelationshipToOrganizations struct {
-	value *RelationshipToOrganizations
-	isSet bool
-}
-
-func (v NullableRelationshipToOrganizations) Get() *RelationshipToOrganizations {
-	return v.value
-}
-
-func (v *NullableRelationshipToOrganizations) Set(val *RelationshipToOrganizations) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRelationshipToOrganizations) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRelationshipToOrganizations) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRelationshipToOrganizations(val *RelationshipToOrganizations) *NullableRelationshipToOrganizations {
-	return &NullableRelationshipToOrganizations{value: val, isSet: true}
-}
-
-func (v NullableRelationshipToOrganizations) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRelationshipToOrganizations) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

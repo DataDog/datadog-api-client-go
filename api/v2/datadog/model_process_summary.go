@@ -185,39 +185,3 @@ func (o *ProcessSummary) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableProcessSummary struct {
-	value *ProcessSummary
-	isSet bool
-}
-
-func (v NullableProcessSummary) Get() *ProcessSummary {
-	return v.value
-}
-
-func (v *NullableProcessSummary) Set(val *ProcessSummary) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableProcessSummary) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableProcessSummary) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableProcessSummary(val *ProcessSummary) *NullableProcessSummary {
-	return &NullableProcessSummary{value: val, isSet: true}
-}
-
-func (v NullableProcessSummary) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableProcessSummary) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

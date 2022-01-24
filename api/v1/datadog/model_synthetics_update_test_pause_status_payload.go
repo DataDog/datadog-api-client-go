@@ -104,39 +104,3 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 	o.NewStatus = all.NewStatus
 	return nil
 }
-
-type NullableSyntheticsUpdateTestPauseStatusPayload struct {
-	value *SyntheticsUpdateTestPauseStatusPayload
-	isSet bool
-}
-
-func (v NullableSyntheticsUpdateTestPauseStatusPayload) Get() *SyntheticsUpdateTestPauseStatusPayload {
-	return v.value
-}
-
-func (v *NullableSyntheticsUpdateTestPauseStatusPayload) Set(val *SyntheticsUpdateTestPauseStatusPayload) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsUpdateTestPauseStatusPayload) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsUpdateTestPauseStatusPayload) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsUpdateTestPauseStatusPayload(val *SyntheticsUpdateTestPauseStatusPayload) *NullableSyntheticsUpdateTestPauseStatusPayload {
-	return &NullableSyntheticsUpdateTestPauseStatusPayload{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

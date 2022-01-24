@@ -97,39 +97,3 @@ func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageCloudSecurityPostureManagementResponse struct {
-	value *UsageCloudSecurityPostureManagementResponse
-	isSet bool
-}
-
-func (v NullableUsageCloudSecurityPostureManagementResponse) Get() *UsageCloudSecurityPostureManagementResponse {
-	return v.value
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementResponse) Set(val *UsageCloudSecurityPostureManagementResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageCloudSecurityPostureManagementResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageCloudSecurityPostureManagementResponse(val *UsageCloudSecurityPostureManagementResponse) *NullableUsageCloudSecurityPostureManagementResponse {
-	return &NullableUsageCloudSecurityPostureManagementResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageCloudSecurityPostureManagementResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

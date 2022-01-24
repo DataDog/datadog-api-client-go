@@ -220,39 +220,3 @@ func (o *LogsArchiveDestinationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableLogsArchiveDestinationGCS struct {
-	value *LogsArchiveDestinationGCS
-	isSet bool
-}
-
-func (v NullableLogsArchiveDestinationGCS) Get() *LogsArchiveDestinationGCS {
-	return v.value
-}
-
-func (v *NullableLogsArchiveDestinationGCS) Set(val *LogsArchiveDestinationGCS) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsArchiveDestinationGCS) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsArchiveDestinationGCS) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsArchiveDestinationGCS(val *LogsArchiveDestinationGCS) *NullableLogsArchiveDestinationGCS {
-	return &NullableLogsArchiveDestinationGCS{value: val, isSet: true}
-}
-
-func (v NullableLogsArchiveDestinationGCS) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsArchiveDestinationGCS) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

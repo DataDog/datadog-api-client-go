@@ -185,39 +185,3 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.QueryString = all.QueryString
 	return nil
 }
-
-type NullableListStreamQuery struct {
-	value *ListStreamQuery
-	isSet bool
-}
-
-func (v NullableListStreamQuery) Get() *ListStreamQuery {
-	return v.value
-}
-
-func (v *NullableListStreamQuery) Set(val *ListStreamQuery) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableListStreamQuery) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableListStreamQuery) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableListStreamQuery(val *ListStreamQuery) *NullableListStreamQuery {
-	return &NullableListStreamQuery{value: val, isSet: true}
-}
-
-func (v NullableListStreamQuery) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableListStreamQuery) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

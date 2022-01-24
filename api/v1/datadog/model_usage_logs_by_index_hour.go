@@ -254,39 +254,3 @@ func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Retention = all.Retention
 	return nil
 }
-
-type NullableUsageLogsByIndexHour struct {
-	value *UsageLogsByIndexHour
-	isSet bool
-}
-
-func (v NullableUsageLogsByIndexHour) Get() *UsageLogsByIndexHour {
-	return v.value
-}
-
-func (v *NullableUsageLogsByIndexHour) Set(val *UsageLogsByIndexHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageLogsByIndexHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageLogsByIndexHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageLogsByIndexHour(val *UsageLogsByIndexHour) *NullableUsageLogsByIndexHour {
-	return &NullableUsageLogsByIndexHour{value: val, isSet: true}
-}
-
-func (v NullableUsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageLogsByIndexHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

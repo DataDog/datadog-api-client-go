@@ -182,39 +182,3 @@ func (o *ScatterplotTableRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResponseFormat = all.ResponseFormat
 	return nil
 }
-
-type NullableScatterplotTableRequest struct {
-	value *ScatterplotTableRequest
-	isSet bool
-}
-
-func (v NullableScatterplotTableRequest) Get() *ScatterplotTableRequest {
-	return v.value
-}
-
-func (v *NullableScatterplotTableRequest) Set(val *ScatterplotTableRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableScatterplotTableRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableScatterplotTableRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableScatterplotTableRequest(val *ScatterplotTableRequest) *NullableScatterplotTableRequest {
-	return &NullableScatterplotTableRequest{value: val, isSet: true}
-}
-
-func (v NullableScatterplotTableRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableScatterplotTableRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

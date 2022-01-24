@@ -104,39 +104,3 @@ func (o *WidgetTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.LiveSpan = all.LiveSpan
 	return nil
 }
-
-type NullableWidgetTime struct {
-	value *WidgetTime
-	isSet bool
-}
-
-func (v NullableWidgetTime) Get() *WidgetTime {
-	return v.value
-}
-
-func (v *NullableWidgetTime) Set(val *WidgetTime) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetTime) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetTime) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetTime(val *WidgetTime) *NullableWidgetTime {
-	return &NullableWidgetTime{value: val, isSet: true}
-}
-
-func (v NullableWidgetTime) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetTime) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

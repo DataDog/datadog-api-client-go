@@ -195,39 +195,3 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Time = all.Time
 	return nil
 }
-
-type NullableNotebookLogStreamCellAttributes struct {
-	value *NotebookLogStreamCellAttributes
-	isSet bool
-}
-
-func (v NullableNotebookLogStreamCellAttributes) Get() *NotebookLogStreamCellAttributes {
-	return v.value
-}
-
-func (v *NullableNotebookLogStreamCellAttributes) Set(val *NotebookLogStreamCellAttributes) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableNotebookLogStreamCellAttributes) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableNotebookLogStreamCellAttributes) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableNotebookLogStreamCellAttributes(val *NotebookLogStreamCellAttributes) *NullableNotebookLogStreamCellAttributes {
-	return &NullableNotebookLogStreamCellAttributes{value: val, isSet: true}
-}
-
-func (v NullableNotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableNotebookLogStreamCellAttributes) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

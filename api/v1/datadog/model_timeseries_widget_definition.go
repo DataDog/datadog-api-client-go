@@ -664,39 +664,3 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
-
-type NullableTimeseriesWidgetDefinition struct {
-	value *TimeseriesWidgetDefinition
-	isSet bool
-}
-
-func (v NullableTimeseriesWidgetDefinition) Get() *TimeseriesWidgetDefinition {
-	return v.value
-}
-
-func (v *NullableTimeseriesWidgetDefinition) Set(val *TimeseriesWidgetDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableTimeseriesWidgetDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableTimeseriesWidgetDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableTimeseriesWidgetDefinition(val *TimeseriesWidgetDefinition) *NullableTimeseriesWidgetDefinition {
-	return &NullableTimeseriesWidgetDefinition{value: val, isSet: true}
-}
-
-func (v NullableTimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableTimeseriesWidgetDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

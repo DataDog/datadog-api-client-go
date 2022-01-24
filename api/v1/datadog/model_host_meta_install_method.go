@@ -175,39 +175,3 @@ func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 	o.ToolVersion = all.ToolVersion
 	return nil
 }
-
-type NullableHostMetaInstallMethod struct {
-	value *HostMetaInstallMethod
-	isSet bool
-}
-
-func (v NullableHostMetaInstallMethod) Get() *HostMetaInstallMethod {
-	return v.value
-}
-
-func (v *NullableHostMetaInstallMethod) Set(val *HostMetaInstallMethod) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableHostMetaInstallMethod) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableHostMetaInstallMethod) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableHostMetaInstallMethod(val *HostMetaInstallMethod) *NullableHostMetaInstallMethod {
-	return &NullableHostMetaInstallMethod{value: val, isSet: true}
-}
-
-func (v NullableHostMetaInstallMethod) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableHostMetaInstallMethod) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

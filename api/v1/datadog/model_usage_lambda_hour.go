@@ -176,39 +176,3 @@ func (o *UsageLambdaHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.InvocationsSum = all.InvocationsSum
 	return nil
 }
-
-type NullableUsageLambdaHour struct {
-	value *UsageLambdaHour
-	isSet bool
-}
-
-func (v NullableUsageLambdaHour) Get() *UsageLambdaHour {
-	return v.value
-}
-
-func (v *NullableUsageLambdaHour) Set(val *UsageLambdaHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageLambdaHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageLambdaHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageLambdaHour(val *UsageLambdaHour) *NullableUsageLambdaHour {
-	return &NullableUsageLambdaHour{value: val, isSet: true}
-}
-
-func (v NullableUsageLambdaHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageLambdaHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

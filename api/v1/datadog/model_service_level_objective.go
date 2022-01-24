@@ -579,39 +579,3 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableServiceLevelObjective struct {
-	value *ServiceLevelObjective
-	isSet bool
-}
-
-func (v NullableServiceLevelObjective) Get() *ServiceLevelObjective {
-	return v.value
-}
-
-func (v *NullableServiceLevelObjective) Set(val *ServiceLevelObjective) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceLevelObjective) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceLevelObjective) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceLevelObjective(val *ServiceLevelObjective) *NullableServiceLevelObjective {
-	return &NullableServiceLevelObjective{value: val, isSet: true}
-}
-
-func (v NullableServiceLevelObjective) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceLevelObjective) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -136,39 +136,3 @@ func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = all.Interval
 	return nil
 }
-
-type NullableSyntheticsTestOptionsRetry struct {
-	value *SyntheticsTestOptionsRetry
-	isSet bool
-}
-
-func (v NullableSyntheticsTestOptionsRetry) Get() *SyntheticsTestOptionsRetry {
-	return v.value
-}
-
-func (v *NullableSyntheticsTestOptionsRetry) Set(val *SyntheticsTestOptionsRetry) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTestOptionsRetry) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTestOptionsRetry) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTestOptionsRetry(val *SyntheticsTestOptionsRetry) *NullableSyntheticsTestOptionsRetry {
-	return &NullableSyntheticsTestOptionsRetry{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTestOptionsRetry) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

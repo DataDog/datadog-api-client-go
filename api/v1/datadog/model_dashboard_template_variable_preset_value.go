@@ -136,39 +136,3 @@ func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err 
 	o.Value = all.Value
 	return nil
 }
-
-type NullableDashboardTemplateVariablePresetValue struct {
-	value *DashboardTemplateVariablePresetValue
-	isSet bool
-}
-
-func (v NullableDashboardTemplateVariablePresetValue) Get() *DashboardTemplateVariablePresetValue {
-	return v.value
-}
-
-func (v *NullableDashboardTemplateVariablePresetValue) Set(val *DashboardTemplateVariablePresetValue) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableDashboardTemplateVariablePresetValue) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableDashboardTemplateVariablePresetValue) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableDashboardTemplateVariablePresetValue(val *DashboardTemplateVariablePresetValue) *NullableDashboardTemplateVariablePresetValue {
-	return &NullableDashboardTemplateVariablePresetValue{value: val, isSet: true}
-}
-
-func (v NullableDashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableDashboardTemplateVariablePresetValue) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

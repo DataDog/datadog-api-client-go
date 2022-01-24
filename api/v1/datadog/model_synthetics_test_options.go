@@ -563,39 +563,3 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.TickEvery = all.TickEvery
 	return nil
 }
-
-type NullableSyntheticsTestOptions struct {
-	value *SyntheticsTestOptions
-	isSet bool
-}
-
-func (v NullableSyntheticsTestOptions) Get() *SyntheticsTestOptions {
-	return v.value
-}
-
-func (v *NullableSyntheticsTestOptions) Set(val *SyntheticsTestOptions) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTestOptions) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTestOptions) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTestOptions(val *SyntheticsTestOptions) *NullableSyntheticsTestOptions {
-	return &NullableSyntheticsTestOptions{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTestOptions) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTestOptions) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

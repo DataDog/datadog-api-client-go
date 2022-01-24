@@ -218,39 +218,3 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.SearchBy = all.SearchBy
 	return nil
 }
-
-type NullableProcessQueryDefinition struct {
-	value *ProcessQueryDefinition
-	isSet bool
-}
-
-func (v NullableProcessQueryDefinition) Get() *ProcessQueryDefinition {
-	return v.value
-}
-
-func (v *NullableProcessQueryDefinition) Set(val *ProcessQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableProcessQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableProcessQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableProcessQueryDefinition(val *ProcessQueryDefinition) *NullableProcessQueryDefinition {
-	return &NullableProcessQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableProcessQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableProcessQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

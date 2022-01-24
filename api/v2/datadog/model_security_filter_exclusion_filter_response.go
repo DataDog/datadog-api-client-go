@@ -136,39 +136,3 @@ func (o *SecurityFilterExclusionFilterResponse) UnmarshalJSON(bytes []byte) (err
 	o.Query = all.Query
 	return nil
 }
-
-type NullableSecurityFilterExclusionFilterResponse struct {
-	value *SecurityFilterExclusionFilterResponse
-	isSet bool
-}
-
-func (v NullableSecurityFilterExclusionFilterResponse) Get() *SecurityFilterExclusionFilterResponse {
-	return v.value
-}
-
-func (v *NullableSecurityFilterExclusionFilterResponse) Set(val *SecurityFilterExclusionFilterResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityFilterExclusionFilterResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityFilterExclusionFilterResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityFilterExclusionFilterResponse(val *SecurityFilterExclusionFilterResponse) *NullableSecurityFilterExclusionFilterResponse {
-	return &NullableSecurityFilterExclusionFilterResponse{value: val, isSet: true}
-}
-
-func (v NullableSecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityFilterExclusionFilterResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

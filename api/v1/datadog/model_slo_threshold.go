@@ -261,39 +261,3 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	o.WarningDisplay = all.WarningDisplay
 	return nil
 }
-
-type NullableSLOThreshold struct {
-	value *SLOThreshold
-	isSet bool
-}
-
-func (v NullableSLOThreshold) Get() *SLOThreshold {
-	return v.value
-}
-
-func (v *NullableSLOThreshold) Set(val *SLOThreshold) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSLOThreshold) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSLOThreshold) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSLOThreshold(val *SLOThreshold) *NullableSLOThreshold {
-	return &NullableSLOThreshold{value: val, isSet: true}
-}
-
-func (v NullableSLOThreshold) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSLOThreshold) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

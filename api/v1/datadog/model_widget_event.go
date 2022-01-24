@@ -140,39 +140,3 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagsExecution = all.TagsExecution
 	return nil
 }
-
-type NullableWidgetEvent struct {
-	value *WidgetEvent
-	isSet bool
-}
-
-func (v NullableWidgetEvent) Get() *WidgetEvent {
-	return v.value
-}
-
-func (v *NullableWidgetEvent) Set(val *WidgetEvent) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetEvent) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetEvent) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetEvent(val *WidgetEvent) *NullableWidgetEvent {
-	return &NullableWidgetEvent{value: val, isSet: true}
-}
-
-func (v NullableWidgetEvent) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetEvent) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

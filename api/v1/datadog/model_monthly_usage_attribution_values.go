@@ -1150,39 +1150,3 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.SnmpUsage = all.SnmpUsage
 	return nil
 }
-
-type NullableMonthlyUsageAttributionValues struct {
-	value *MonthlyUsageAttributionValues
-	isSet bool
-}
-
-func (v NullableMonthlyUsageAttributionValues) Get() *MonthlyUsageAttributionValues {
-	return v.value
-}
-
-func (v *NullableMonthlyUsageAttributionValues) Set(val *MonthlyUsageAttributionValues) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonthlyUsageAttributionValues) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonthlyUsageAttributionValues) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonthlyUsageAttributionValues(val *MonthlyUsageAttributionValues) *NullableMonthlyUsageAttributionValues {
-	return &NullableMonthlyUsageAttributionValues{value: val, isSet: true}
-}
-
-func (v NullableMonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonthlyUsageAttributionValues) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

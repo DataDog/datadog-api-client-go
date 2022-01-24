@@ -137,39 +137,3 @@ func (o *UsageIoTHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.IotDeviceCount = all.IotDeviceCount
 	return nil
 }
-
-type NullableUsageIoTHour struct {
-	value *UsageIoTHour
-	isSet bool
-}
-
-func (v NullableUsageIoTHour) Get() *UsageIoTHour {
-	return v.value
-}
-
-func (v *NullableUsageIoTHour) Set(val *UsageIoTHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageIoTHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageIoTHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageIoTHour(val *UsageIoTHour) *NullableUsageIoTHour {
-	return &NullableUsageIoTHour{value: val, isSet: true}
-}
-
-func (v NullableUsageIoTHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageIoTHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

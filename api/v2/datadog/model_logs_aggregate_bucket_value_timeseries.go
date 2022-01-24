@@ -54,39 +54,3 @@ func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {
 	return json.Unmarshal(bytes, &o.Items)
 }
-
-type NullableLogsAggregateBucketValueTimeseries struct {
-	value *LogsAggregateBucketValueTimeseries
-	isSet bool
-}
-
-func (v NullableLogsAggregateBucketValueTimeseries) Get() *LogsAggregateBucketValueTimeseries {
-	return v.value
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseries) Set(val *LogsAggregateBucketValueTimeseries) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsAggregateBucketValueTimeseries) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseries) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsAggregateBucketValueTimeseries(val *LogsAggregateBucketValueTimeseries) *NullableLogsAggregateBucketValueTimeseries {
-	return &NullableLogsAggregateBucketValueTimeseries{value: val, isSet: true}
-}
-
-func (v NullableLogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsAggregateBucketValueTimeseries) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -97,39 +97,3 @@ func (o *OrganizationSubscription) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableOrganizationSubscription struct {
-	value *OrganizationSubscription
-	isSet bool
-}
-
-func (v NullableOrganizationSubscription) Get() *OrganizationSubscription {
-	return v.value
-}
-
-func (v *NullableOrganizationSubscription) Set(val *OrganizationSubscription) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrganizationSubscription) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrganizationSubscription) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrganizationSubscription(val *OrganizationSubscription) *NullableOrganizationSubscription {
-	return &NullableOrganizationSubscription{value: val, isSet: true}
-}
-
-func (v NullableOrganizationSubscription) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrganizationSubscription) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

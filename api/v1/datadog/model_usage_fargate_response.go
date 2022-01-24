@@ -97,39 +97,3 @@ func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageFargateResponse struct {
-	value *UsageFargateResponse
-	isSet bool
-}
-
-func (v NullableUsageFargateResponse) Get() *UsageFargateResponse {
-	return v.value
-}
-
-func (v *NullableUsageFargateResponse) Set(val *UsageFargateResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageFargateResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageFargateResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageFargateResponse(val *UsageFargateResponse) *NullableUsageFargateResponse {
-	return &NullableUsageFargateResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageFargateResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageFargateResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

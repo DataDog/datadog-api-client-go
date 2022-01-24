@@ -421,39 +421,3 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
-
-type NullableWidgetConditionalFormat struct {
-	value *WidgetConditionalFormat
-	isSet bool
-}
-
-func (v NullableWidgetConditionalFormat) Get() *WidgetConditionalFormat {
-	return v.value
-}
-
-func (v *NullableWidgetConditionalFormat) Set(val *WidgetConditionalFormat) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWidgetConditionalFormat) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWidgetConditionalFormat) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWidgetConditionalFormat(val *WidgetConditionalFormat) *NullableWidgetConditionalFormat {
-	return &NullableWidgetConditionalFormat{value: val, isSet: true}
-}
-
-func (v NullableWidgetConditionalFormat) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWidgetConditionalFormat) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

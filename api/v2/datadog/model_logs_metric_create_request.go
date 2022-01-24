@@ -100,39 +100,3 @@ func (o *LogsMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
-
-type NullableLogsMetricCreateRequest struct {
-	value *LogsMetricCreateRequest
-	isSet bool
-}
-
-func (v NullableLogsMetricCreateRequest) Get() *LogsMetricCreateRequest {
-	return v.value
-}
-
-func (v *NullableLogsMetricCreateRequest) Set(val *LogsMetricCreateRequest) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableLogsMetricCreateRequest) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableLogsMetricCreateRequest) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableLogsMetricCreateRequest(val *LogsMetricCreateRequest) *NullableLogsMetricCreateRequest {
-	return &NullableLogsMetricCreateRequest{value: val, isSet: true}
-}
-
-func (v NullableLogsMetricCreateRequest) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableLogsMetricCreateRequest) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

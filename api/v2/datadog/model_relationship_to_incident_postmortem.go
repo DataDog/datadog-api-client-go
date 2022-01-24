@@ -100,39 +100,3 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 	o.Data = all.Data
 	return nil
 }
-
-type NullableRelationshipToIncidentPostmortem struct {
-	value *RelationshipToIncidentPostmortem
-	isSet bool
-}
-
-func (v NullableRelationshipToIncidentPostmortem) Get() *RelationshipToIncidentPostmortem {
-	return v.value
-}
-
-func (v *NullableRelationshipToIncidentPostmortem) Set(val *RelationshipToIncidentPostmortem) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableRelationshipToIncidentPostmortem) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableRelationshipToIncidentPostmortem) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableRelationshipToIncidentPostmortem(val *RelationshipToIncidentPostmortem) *NullableRelationshipToIncidentPostmortem {
-	return &NullableRelationshipToIncidentPostmortem{value: val, isSet: true}
-}
-
-func (v NullableRelationshipToIncidentPostmortem) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableRelationshipToIncidentPostmortem) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

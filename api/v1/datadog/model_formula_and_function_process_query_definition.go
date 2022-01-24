@@ -432,39 +432,3 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	o.TextFilter = all.TextFilter
 	return nil
 }
-
-type NullableFormulaAndFunctionProcessQueryDefinition struct {
-	value *FormulaAndFunctionProcessQueryDefinition
-	isSet bool
-}
-
-func (v NullableFormulaAndFunctionProcessQueryDefinition) Get() *FormulaAndFunctionProcessQueryDefinition {
-	return v.value
-}
-
-func (v *NullableFormulaAndFunctionProcessQueryDefinition) Set(val *FormulaAndFunctionProcessQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFormulaAndFunctionProcessQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFormulaAndFunctionProcessQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFormulaAndFunctionProcessQueryDefinition(val *FormulaAndFunctionProcessQueryDefinition) *NullableFormulaAndFunctionProcessQueryDefinition {
-	return &NullableFormulaAndFunctionProcessQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableFormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

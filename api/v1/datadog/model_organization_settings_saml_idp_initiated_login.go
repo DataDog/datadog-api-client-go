@@ -97,39 +97,3 @@ func (o *OrganizationSettingsSamlIdpInitiatedLogin) UnmarshalJSON(bytes []byte) 
 	o.Enabled = all.Enabled
 	return nil
 }
-
-type NullableOrganizationSettingsSamlIdpInitiatedLogin struct {
-	value *OrganizationSettingsSamlIdpInitiatedLogin
-	isSet bool
-}
-
-func (v NullableOrganizationSettingsSamlIdpInitiatedLogin) Get() *OrganizationSettingsSamlIdpInitiatedLogin {
-	return v.value
-}
-
-func (v *NullableOrganizationSettingsSamlIdpInitiatedLogin) Set(val *OrganizationSettingsSamlIdpInitiatedLogin) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableOrganizationSettingsSamlIdpInitiatedLogin) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableOrganizationSettingsSamlIdpInitiatedLogin) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableOrganizationSettingsSamlIdpInitiatedLogin(val *OrganizationSettingsSamlIdpInitiatedLogin) *NullableOrganizationSettingsSamlIdpInitiatedLogin {
-	return &NullableOrganizationSettingsSamlIdpInitiatedLogin{value: val, isSet: true}
-}
-
-func (v NullableOrganizationSettingsSamlIdpInitiatedLogin) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableOrganizationSettingsSamlIdpInitiatedLogin) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

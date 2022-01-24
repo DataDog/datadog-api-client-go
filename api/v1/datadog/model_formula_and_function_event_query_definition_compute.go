@@ -186,39 +186,3 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []by
 	o.Metric = all.Metric
 	return nil
 }
-
-type NullableFormulaAndFunctionEventQueryDefinitionCompute struct {
-	value *FormulaAndFunctionEventQueryDefinitionCompute
-	isSet bool
-}
-
-func (v NullableFormulaAndFunctionEventQueryDefinitionCompute) Get() *FormulaAndFunctionEventQueryDefinitionCompute {
-	return v.value
-}
-
-func (v *NullableFormulaAndFunctionEventQueryDefinitionCompute) Set(val *FormulaAndFunctionEventQueryDefinitionCompute) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFormulaAndFunctionEventQueryDefinitionCompute) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFormulaAndFunctionEventQueryDefinitionCompute) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFormulaAndFunctionEventQueryDefinitionCompute(val *FormulaAndFunctionEventQueryDefinitionCompute) *NullableFormulaAndFunctionEventQueryDefinitionCompute {
-	return &NullableFormulaAndFunctionEventQueryDefinitionCompute{value: val, isSet: true}
-}
-
-func (v NullableFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

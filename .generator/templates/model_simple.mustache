@@ -483,4 +483,6 @@ func (o *{{{classname}}}) UnmarshalJSON(bytes []byte) (err error) {
 }
 
 {{/isArray}}
+{{#isNullable}}
 {{>nullable_model}}
+{{/isNullable}}

@@ -183,39 +183,3 @@ func (o *ServiceAccountCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableServiceAccountCreateData struct {
-	value *ServiceAccountCreateData
-	isSet bool
-}
-
-func (v NullableServiceAccountCreateData) Get() *ServiceAccountCreateData {
-	return v.value
-}
-
-func (v *NullableServiceAccountCreateData) Set(val *ServiceAccountCreateData) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableServiceAccountCreateData) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableServiceAccountCreateData) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableServiceAccountCreateData(val *ServiceAccountCreateData) *NullableServiceAccountCreateData {
-	return &NullableServiceAccountCreateData{value: val, isSet: true}
-}
-
-func (v NullableServiceAccountCreateData) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableServiceAccountCreateData) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -182,39 +182,3 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Steps = all.Steps
 	return nil
 }
-
-type NullableFunnelQuery struct {
-	value *FunnelQuery
-	isSet bool
-}
-
-func (v NullableFunnelQuery) Get() *FunnelQuery {
-	return v.value
-}
-
-func (v *NullableFunnelQuery) Set(val *FunnelQuery) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableFunnelQuery) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableFunnelQuery) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableFunnelQuery(val *FunnelQuery) *NullableFunnelQuery {
-	return &NullableFunnelQuery{value: val, isSet: true}
-}
-
-func (v NullableFunnelQuery) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableFunnelQuery) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

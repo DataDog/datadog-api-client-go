@@ -173,39 +173,3 @@ func (o *WebhooksIntegrationCustomVariable) UnmarshalJSON(bytes []byte) (err err
 	o.Value = all.Value
 	return nil
 }
-
-type NullableWebhooksIntegrationCustomVariable struct {
-	value *WebhooksIntegrationCustomVariable
-	isSet bool
-}
-
-func (v NullableWebhooksIntegrationCustomVariable) Get() *WebhooksIntegrationCustomVariable {
-	return v.value
-}
-
-func (v *NullableWebhooksIntegrationCustomVariable) Set(val *WebhooksIntegrationCustomVariable) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableWebhooksIntegrationCustomVariable) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableWebhooksIntegrationCustomVariable) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableWebhooksIntegrationCustomVariable(val *WebhooksIntegrationCustomVariable) *NullableWebhooksIntegrationCustomVariable {
-	return &NullableWebhooksIntegrationCustomVariable{value: val, isSet: true}
-}
-
-func (v NullableWebhooksIntegrationCustomVariable) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableWebhooksIntegrationCustomVariable) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

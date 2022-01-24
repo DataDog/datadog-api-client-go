@@ -96,39 +96,3 @@ func (o *ProcessSummariesMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
-
-type NullableProcessSummariesMeta struct {
-	value *ProcessSummariesMeta
-	isSet bool
-}
-
-func (v NullableProcessSummariesMeta) Get() *ProcessSummariesMeta {
-	return v.value
-}
-
-func (v *NullableProcessSummariesMeta) Set(val *ProcessSummariesMeta) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableProcessSummariesMeta) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableProcessSummariesMeta) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableProcessSummariesMeta(val *ProcessSummariesMeta) *NullableProcessSummariesMeta {
-	return &NullableProcessSummariesMeta{value: val, isSet: true}
-}
-
-func (v NullableProcessSummariesMeta) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableProcessSummariesMeta) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

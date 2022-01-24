@@ -97,39 +97,3 @@ func (o *UsageNetworkHostsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
-
-type NullableUsageNetworkHostsResponse struct {
-	value *UsageNetworkHostsResponse
-	isSet bool
-}
-
-func (v NullableUsageNetworkHostsResponse) Get() *UsageNetworkHostsResponse {
-	return v.value
-}
-
-func (v *NullableUsageNetworkHostsResponse) Set(val *UsageNetworkHostsResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageNetworkHostsResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageNetworkHostsResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageNetworkHostsResponse(val *UsageNetworkHostsResponse) *NullableUsageNetworkHostsResponse {
-	return &NullableUsageNetworkHostsResponse{value: val, isSet: true}
-}
-
-func (v NullableUsageNetworkHostsResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageNetworkHostsResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -101,39 +101,3 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
-
-type NullableAPIErrorResponse struct {
-	value *APIErrorResponse
-	isSet bool
-}
-
-func (v NullableAPIErrorResponse) Get() *APIErrorResponse {
-	return v.value
-}
-
-func (v *NullableAPIErrorResponse) Set(val *APIErrorResponse) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableAPIErrorResponse) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableAPIErrorResponse) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableAPIErrorResponse(val *APIErrorResponse) *NullableAPIErrorResponse {
-	return &NullableAPIErrorResponse{value: val, isSet: true}
-}
-
-func (v NullableAPIErrorResponse) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableAPIErrorResponse) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

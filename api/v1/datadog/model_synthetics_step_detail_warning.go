@@ -144,39 +144,3 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableSyntheticsStepDetailWarning struct {
-	value *SyntheticsStepDetailWarning
-	isSet bool
-}
-
-func (v NullableSyntheticsStepDetailWarning) Get() *SyntheticsStepDetailWarning {
-	return v.value
-}
-
-func (v *NullableSyntheticsStepDetailWarning) Set(val *SyntheticsStepDetailWarning) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsStepDetailWarning) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsStepDetailWarning) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsStepDetailWarning(val *SyntheticsStepDetailWarning) *NullableSyntheticsStepDetailWarning {
-	return &NullableSyntheticsStepDetailWarning{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsStepDetailWarning) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

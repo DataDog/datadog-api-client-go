@@ -137,39 +137,3 @@ func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnmpDevices = all.SnmpDevices
 	return nil
 }
-
-type NullableUsageSNMPHour struct {
-	value *UsageSNMPHour
-	isSet bool
-}
-
-func (v NullableUsageSNMPHour) Get() *UsageSNMPHour {
-	return v.value
-}
-
-func (v *NullableUsageSNMPHour) Set(val *UsageSNMPHour) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableUsageSNMPHour) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableUsageSNMPHour) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableUsageSNMPHour(val *UsageSNMPHour) *NullableUsageSNMPHour {
-	return &NullableUsageSNMPHour{value: val, isSet: true}
-}
-
-func (v NullableUsageSNMPHour) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableUsageSNMPHour) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

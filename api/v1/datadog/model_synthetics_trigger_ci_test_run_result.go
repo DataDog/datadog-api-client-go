@@ -221,39 +221,3 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 	o.ResultId = all.ResultId
 	return nil
 }
-
-type NullableSyntheticsTriggerCITestRunResult struct {
-	value *SyntheticsTriggerCITestRunResult
-	isSet bool
-}
-
-func (v NullableSyntheticsTriggerCITestRunResult) Get() *SyntheticsTriggerCITestRunResult {
-	return v.value
-}
-
-func (v *NullableSyntheticsTriggerCITestRunResult) Set(val *SyntheticsTriggerCITestRunResult) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSyntheticsTriggerCITestRunResult) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSyntheticsTriggerCITestRunResult) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSyntheticsTriggerCITestRunResult(val *SyntheticsTriggerCITestRunResult) *NullableSyntheticsTriggerCITestRunResult {
-	return &NullableSyntheticsTriggerCITestRunResult{value: val, isSet: true}
-}
-
-func (v NullableSyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSyntheticsTriggerCITestRunResult) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

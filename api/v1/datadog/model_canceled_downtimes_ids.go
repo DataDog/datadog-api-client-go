@@ -97,39 +97,3 @@ func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
 	o.CancelledIds = all.CancelledIds
 	return nil
 }
-
-type NullableCanceledDowntimesIds struct {
-	value *CanceledDowntimesIds
-	isSet bool
-}
-
-func (v NullableCanceledDowntimesIds) Get() *CanceledDowntimesIds {
-	return v.value
-}
-
-func (v *NullableCanceledDowntimesIds) Set(val *CanceledDowntimesIds) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableCanceledDowntimesIds) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableCanceledDowntimesIds) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableCanceledDowntimesIds(val *CanceledDowntimesIds) *NullableCanceledDowntimesIds {
-	return &NullableCanceledDowntimesIds{value: val, isSet: true}
-}
-
-func (v NullableCanceledDowntimesIds) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableCanceledDowntimesIds) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

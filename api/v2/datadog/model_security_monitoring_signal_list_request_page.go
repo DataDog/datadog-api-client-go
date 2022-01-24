@@ -140,39 +140,3 @@ func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (e
 	o.Limit = all.Limit
 	return nil
 }
-
-type NullableSecurityMonitoringSignalListRequestPage struct {
-	value *SecurityMonitoringSignalListRequestPage
-	isSet bool
-}
-
-func (v NullableSecurityMonitoringSignalListRequestPage) Get() *SecurityMonitoringSignalListRequestPage {
-	return v.value
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestPage) Set(val *SecurityMonitoringSignalListRequestPage) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableSecurityMonitoringSignalListRequestPage) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestPage) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableSecurityMonitoringSignalListRequestPage(val *SecurityMonitoringSignalListRequestPage) *NullableSecurityMonitoringSignalListRequestPage {
-	return &NullableSecurityMonitoringSignalListRequestPage{value: val, isSet: true}
-}
-
-func (v NullableSecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableSecurityMonitoringSignalListRequestPage) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

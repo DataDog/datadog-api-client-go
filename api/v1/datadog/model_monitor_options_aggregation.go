@@ -175,39 +175,3 @@ func (o *MonitorOptionsAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
-
-type NullableMonitorOptionsAggregation struct {
-	value *MonitorOptionsAggregation
-	isSet bool
-}
-
-func (v NullableMonitorOptionsAggregation) Get() *MonitorOptionsAggregation {
-	return v.value
-}
-
-func (v *NullableMonitorOptionsAggregation) Set(val *MonitorOptionsAggregation) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableMonitorOptionsAggregation) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableMonitorOptionsAggregation) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableMonitorOptionsAggregation(val *MonitorOptionsAggregation) *NullableMonitorOptionsAggregation {
-	return &NullableMonitorOptionsAggregation{value: val, isSet: true}
-}
-
-func (v NullableMonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableMonitorOptionsAggregation) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}

@@ -330,39 +330,3 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	return nil
 }
-
-type NullableApmStatsQueryDefinition struct {
-	value *ApmStatsQueryDefinition
-	isSet bool
-}
-
-func (v NullableApmStatsQueryDefinition) Get() *ApmStatsQueryDefinition {
-	return v.value
-}
-
-func (v *NullableApmStatsQueryDefinition) Set(val *ApmStatsQueryDefinition) {
-	v.value = val
-	v.isSet = true
-}
-
-func (v NullableApmStatsQueryDefinition) IsSet() bool {
-	return v.isSet
-}
-
-func (v *NullableApmStatsQueryDefinition) Unset() {
-	v.value = nil
-	v.isSet = false
-}
-
-func NewNullableApmStatsQueryDefinition(val *ApmStatsQueryDefinition) *NullableApmStatsQueryDefinition {
-	return &NullableApmStatsQueryDefinition{value: val, isSet: true}
-}
-
-func (v NullableApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
-	return json.Marshal(v.value)
-}
-
-func (v *NullableApmStatsQueryDefinition) UnmarshalJSON(src []byte) error {
-	v.isSet = true
-	return json.Unmarshal(src, &v.value)
-}
