@@ -245,12 +245,12 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 			if version == "v1" {
 				err := err.(v1.GenericOpenAPIError)
 				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-					t.Errorf("Unable to decode response object to JSON: %v", newErr)
+					responseJSON = string(err.Body())
 				}
 			} else {
 				err := err.(v2.GenericOpenAPIError)
 				if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
-					t.Errorf("Unable to decode response object to JSON: %v", newErr)
+					responseJSON = string(err.Body())
 				}
 			}
 		} else {
