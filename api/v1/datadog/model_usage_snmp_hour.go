@@ -17,6 +17,10 @@ import (
 type UsageSNMPHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
+	// The organization name.
+	OrgName *string `json:"org_name,omitempty"`
+	// The organization public ID.
+	PublicId *string `json:"public_id,omitempty"`
 	// Contains the number of SNMP devices.
 	SnmpDevices *int64 `json:"snmp_devices,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -72,6 +76,70 @@ func (o *UsageSNMPHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageSNMPHour) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSNMPHour) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageSNMPHour) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageSNMPHour) SetOrgName(v string) {
+	o.OrgName = &v
+}
+
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *UsageSNMPHour) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSNMPHour) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *UsageSNMPHour) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *UsageSNMPHour) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 // GetSnmpDevices returns the SnmpDevices field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetSnmpDevices() int64 {
 	if o == nil || o.SnmpDevices == nil {
@@ -112,6 +180,12 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	if o.Hour != nil {
 		toSerialize["hour"] = o.Hour
 	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
 	if o.SnmpDevices != nil {
 		toSerialize["snmp_devices"] = o.SnmpDevices
 	}
@@ -122,6 +196,8 @@ func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Hour        *time.Time `json:"hour,omitempty"`
+		OrgName     *string    `json:"org_name,omitempty"`
+		PublicId    *string    `json:"public_id,omitempty"`
 		SnmpDevices *int64     `json:"snmp_devices,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -134,6 +210,8 @@ func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Hour = all.Hour
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
 	o.SnmpDevices = all.SnmpDevices
 	return nil
 }

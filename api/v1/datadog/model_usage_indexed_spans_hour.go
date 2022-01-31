@@ -19,6 +19,10 @@ type UsageIndexedSpansHour struct {
 	Hour *time.Time `json:"hour,omitempty"`
 	// Contains the number of spans indexed.
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+	// The organization name.
+	OrgName *string `json:"org_name,omitempty"`
+	// The organization public ID.
+	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -104,6 +108,70 @@ func (o *UsageIndexedSpansHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
 
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageIndexedSpansHour) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageIndexedSpansHour) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageIndexedSpansHour) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageIndexedSpansHour) SetOrgName(v string) {
+	o.OrgName = &v
+}
+
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *UsageIndexedSpansHour) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageIndexedSpansHour) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *UsageIndexedSpansHour) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *UsageIndexedSpansHour) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -115,6 +183,12 @@ func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 	if o.IndexedEventsCount != nil {
 		toSerialize["indexed_events_count"] = o.IndexedEventsCount
 	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -123,6 +197,8 @@ func (o *UsageIndexedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Hour               *time.Time `json:"hour,omitempty"`
 		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
+		OrgName            *string    `json:"org_name,omitempty"`
+		PublicId           *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,5 +211,7 @@ func (o *UsageIndexedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Hour = all.Hour
 	o.IndexedEventsCount = all.IndexedEventsCount
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
 	return nil
 }
