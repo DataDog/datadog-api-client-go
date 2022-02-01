@@ -19,7 +19,6 @@ func TestTelemetryHeaders(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).
 		Get("dashboard/lists/manual/1234/dashboards").
-		MatchHeader("DD-OPERATION-ID", "GetDashboardListItems").
 		MatchHeader("User-Agent", "^datadog-api-client-go/\\d\\.\\d\\.\\d.*? \\(go .*?; os .*?; arch .*?\\)$").
 		Reply(299)
 	defer gock.Off()
