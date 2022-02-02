@@ -469,6 +469,8 @@ docs/SyntheticsAPITestResultShort.md
 docs/SyntheticsAPITestResultShortResult.md
 docs/SyntheticsAPITestType.md
 docs/SyntheticsApi.md
+docs/SyntheticsApiTestFailureCode.md
+docs/SyntheticsApiTestResultFailure.md
 docs/SyntheticsAssertion.md
 docs/SyntheticsAssertionJSONPathOperator.md
 docs/SyntheticsAssertionJSONPathTarget.md
@@ -490,7 +492,9 @@ docs/SyntheticsBrowserError.md
 docs/SyntheticsBrowserErrorType.md
 docs/SyntheticsBrowserTest.md
 docs/SyntheticsBrowserTestConfig.md
+docs/SyntheticsBrowserTestFailureCode.md
 docs/SyntheticsBrowserTestResultData.md
+docs/SyntheticsBrowserTestResultFailure.md
 docs/SyntheticsBrowserTestResultFull.md
 docs/SyntheticsBrowserTestResultFullCheck.md
 docs/SyntheticsBrowserTestResultShort.md
@@ -514,7 +518,6 @@ docs/SyntheticsDeleteTestsResponse.md
 docs/SyntheticsDeletedTest.md
 docs/SyntheticsDevice.md
 docs/SyntheticsDeviceID.md
-docs/SyntheticsErrorCode.md
 docs/SyntheticsGetAPITestLatestResultsResponse.md
 docs/SyntheticsGetBrowserTestLatestResultsResponse.md
 docs/SyntheticsGlobalVariable.md
@@ -1137,7 +1140,9 @@ model_synthetics_api_step.go
 model_synthetics_api_step_subtype.go
 model_synthetics_api_test_.go
 model_synthetics_api_test_config.go
+model_synthetics_api_test_failure_code.go
 model_synthetics_api_test_result_data.go
+model_synthetics_api_test_result_failure.go
 model_synthetics_api_test_result_full.go
 model_synthetics_api_test_result_full_check.go
 model_synthetics_api_test_result_short.go
@@ -1164,7 +1169,9 @@ model_synthetics_browser_error.go
 model_synthetics_browser_error_type.go
 model_synthetics_browser_test_.go
 model_synthetics_browser_test_config.go
+model_synthetics_browser_test_failure_code.go
 model_synthetics_browser_test_result_data.go
+model_synthetics_browser_test_result_failure.go
 model_synthetics_browser_test_result_full.go
 model_synthetics_browser_test_result_full_check.go
 model_synthetics_browser_test_result_short.go
@@ -1188,7 +1195,6 @@ model_synthetics_delete_tests_response.go
 model_synthetics_deleted_test_.go
 model_synthetics_device.go
 model_synthetics_device_id.go
-model_synthetics_error_code.go
 model_synthetics_get_api_test_latest_results_response.go
 model_synthetics_get_browser_test_latest_results_response.go
 model_synthetics_global_variable.go

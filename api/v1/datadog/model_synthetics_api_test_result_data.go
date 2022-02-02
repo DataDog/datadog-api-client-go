@@ -14,11 +14,9 @@ import (
 
 // SyntheticsAPITestResultData Object containing results for your Synthetic API test.
 type SyntheticsAPITestResultData struct {
-	Cert      *SyntheticsSSLCertificate `json:"cert,omitempty"`
-	ErrorCode *SyntheticsErrorCode      `json:"errorCode,omitempty"`
-	// The API test error message.
-	ErrorMessage *string                      `json:"errorMessage,omitempty"`
-	EventType    *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+	Cert      *SyntheticsSSLCertificate       `json:"cert,omitempty"`
+	EventType *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
+	Failure   *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
 	// The API test HTTP status code.
 	HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
 	// Request header object used for the API test.
@@ -83,70 +81,6 @@ func (o *SyntheticsAPITestResultData) SetCert(v SyntheticsSSLCertificate) {
 	o.Cert = &v
 }
 
-// GetErrorCode returns the ErrorCode field value if set, zero value otherwise.
-func (o *SyntheticsAPITestResultData) GetErrorCode() SyntheticsErrorCode {
-	if o == nil || o.ErrorCode == nil {
-		var ret SyntheticsErrorCode
-		return ret
-	}
-	return *o.ErrorCode
-}
-
-// GetErrorCodeOk returns a tuple with the ErrorCode field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetErrorCodeOk() (*SyntheticsErrorCode, bool) {
-	if o == nil || o.ErrorCode == nil {
-		return nil, false
-	}
-	return o.ErrorCode, true
-}
-
-// HasErrorCode returns a boolean if a field has been set.
-func (o *SyntheticsAPITestResultData) HasErrorCode() bool {
-	if o != nil && o.ErrorCode != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorCode gets a reference to the given SyntheticsErrorCode and assigns it to the ErrorCode field.
-func (o *SyntheticsAPITestResultData) SetErrorCode(v SyntheticsErrorCode) {
-	o.ErrorCode = &v
-}
-
-// GetErrorMessage returns the ErrorMessage field value if set, zero value otherwise.
-func (o *SyntheticsAPITestResultData) GetErrorMessage() string {
-	if o == nil || o.ErrorMessage == nil {
-		var ret string
-		return ret
-	}
-	return *o.ErrorMessage
-}
-
-// GetErrorMessageOk returns a tuple with the ErrorMessage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SyntheticsAPITestResultData) GetErrorMessageOk() (*string, bool) {
-	if o == nil || o.ErrorMessage == nil {
-		return nil, false
-	}
-	return o.ErrorMessage, true
-}
-
-// HasErrorMessage returns a boolean if a field has been set.
-func (o *SyntheticsAPITestResultData) HasErrorMessage() bool {
-	if o != nil && o.ErrorMessage != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetErrorMessage gets a reference to the given string and assigns it to the ErrorMessage field.
-func (o *SyntheticsAPITestResultData) SetErrorMessage(v string) {
-	o.ErrorMessage = &v
-}
-
 // GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetEventType() SyntheticsTestProcessStatus {
 	if o == nil || o.EventType == nil {
@@ -177,6 +111,38 @@ func (o *SyntheticsAPITestResultData) HasEventType() bool {
 // SetEventType gets a reference to the given SyntheticsTestProcessStatus and assigns it to the EventType field.
 func (o *SyntheticsAPITestResultData) SetEventType(v SyntheticsTestProcessStatus) {
 	o.EventType = &v
+}
+
+// GetFailure returns the Failure field value if set, zero value otherwise.
+func (o *SyntheticsAPITestResultData) GetFailure() SyntheticsApiTestResultFailure {
+	if o == nil || o.Failure == nil {
+		var ret SyntheticsApiTestResultFailure
+		return ret
+	}
+	return *o.Failure
+}
+
+// GetFailureOk returns a tuple with the Failure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsAPITestResultData) GetFailureOk() (*SyntheticsApiTestResultFailure, bool) {
+	if o == nil || o.Failure == nil {
+		return nil, false
+	}
+	return o.Failure, true
+}
+
+// HasFailure returns a boolean if a field has been set.
+func (o *SyntheticsAPITestResultData) HasFailure() bool {
+	if o != nil && o.Failure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFailure gets a reference to the given SyntheticsApiTestResultFailure and assigns it to the Failure field.
+func (o *SyntheticsAPITestResultData) SetFailure(v SyntheticsApiTestResultFailure) {
+	o.Failure = &v
 }
 
 // GetHttpStatusCode returns the HttpStatusCode field value if set, zero value otherwise.
@@ -379,14 +345,11 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 	if o.Cert != nil {
 		toSerialize["cert"] = o.Cert
 	}
-	if o.ErrorCode != nil {
-		toSerialize["errorCode"] = o.ErrorCode
-	}
-	if o.ErrorMessage != nil {
-		toSerialize["errorMessage"] = o.ErrorMessage
-	}
 	if o.EventType != nil {
 		toSerialize["eventType"] = o.EventType
+	}
+	if o.Failure != nil {
+		toSerialize["failure"] = o.Failure
 	}
 	if o.HttpStatusCode != nil {
 		toSerialize["httpStatusCode"] = o.HttpStatusCode
@@ -412,27 +375,18 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cert            *SyntheticsSSLCertificate    `json:"cert,omitempty"`
-		ErrorCode       *SyntheticsErrorCode         `json:"errorCode,omitempty"`
-		ErrorMessage    *string                      `json:"errorMessage,omitempty"`
-		EventType       *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
-		HttpStatusCode  *int64                       `json:"httpStatusCode,omitempty"`
-		RequestHeaders  *map[string]interface{}      `json:"requestHeaders,omitempty"`
-		ResponseBody    *string                      `json:"responseBody,omitempty"`
-		ResponseHeaders *map[string]interface{}      `json:"responseHeaders,omitempty"`
-		ResponseSize    *int64                       `json:"responseSize,omitempty"`
-		Timings         *SyntheticsTiming            `json:"timings,omitempty"`
+		Cert            *SyntheticsSSLCertificate       `json:"cert,omitempty"`
+		EventType       *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
+		Failure         *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
+		HttpStatusCode  *int64                          `json:"httpStatusCode,omitempty"`
+		RequestHeaders  *map[string]interface{}         `json:"requestHeaders,omitempty"`
+		ResponseBody    *string                         `json:"responseBody,omitempty"`
+		ResponseHeaders *map[string]interface{}         `json:"responseHeaders,omitempty"`
+		ResponseSize    *int64                          `json:"responseSize,omitempty"`
+		Timings         *SyntheticsTiming               `json:"timings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.ErrorCode; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -449,9 +403,8 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Cert = all.Cert
-	o.ErrorCode = all.ErrorCode
-	o.ErrorMessage = all.ErrorMessage
 	o.EventType = all.EventType
+	o.Failure = all.Failure
 	o.HttpStatusCode = all.HttpStatusCode
 	o.RequestHeaders = all.RequestHeaders
 	o.ResponseBody = all.ResponseBody

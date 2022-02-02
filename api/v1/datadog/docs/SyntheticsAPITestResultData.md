@@ -2,18 +2,17 @@
 
 ## Properties
 
-| Name                | Type                                                                         | Description                                   | Notes      |
-| ------------------- | ---------------------------------------------------------------------------- | --------------------------------------------- | ---------- |
-| **Cert**            | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md)       |                                               | [optional] |
-| **ErrorCode**       | Pointer to [**SyntheticsErrorCode**](SyntheticsErrorCode.md)                 |                                               | [optional] |
-| **ErrorMessage**    | Pointer to **string**                                                        | The API test error message.                   | [optional] |
-| **EventType**       | Pointer to [**SyntheticsTestProcessStatus**](SyntheticsTestProcessStatus.md) |                                               | [optional] |
-| **HttpStatusCode**  | Pointer to **int64**                                                         | The API test HTTP status code.                | [optional] |
-| **RequestHeaders**  | Pointer to **map[string]interface{}**                                        | Request header object used for the API test.  | [optional] |
-| **ResponseBody**    | Pointer to **string**                                                        | Response body returned for the API test.      | [optional] |
-| **ResponseHeaders** | Pointer to **map[string]interface{}**                                        | Response headers returned for the API test.   | [optional] |
-| **ResponseSize**    | Pointer to **int64**                                                         | Global size in byte of the API test response. | [optional] |
-| **Timings**         | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md)                       |                                               | [optional] |
+| Name                | Type                                                                               | Description                                   | Notes      |
+| ------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------- | ---------- |
+| **Cert**            | Pointer to [**SyntheticsSSLCertificate**](SyntheticsSSLCertificate.md)             |                                               | [optional] |
+| **EventType**       | Pointer to [**SyntheticsTestProcessStatus**](SyntheticsTestProcessStatus.md)       |                                               | [optional] |
+| **Failure**         | Pointer to [**SyntheticsApiTestResultFailure**](SyntheticsApiTestResultFailure.md) |                                               | [optional] |
+| **HttpStatusCode**  | Pointer to **int64**                                                               | The API test HTTP status code.                | [optional] |
+| **RequestHeaders**  | Pointer to **map[string]interface{}**                                              | Request header object used for the API test.  | [optional] |
+| **ResponseBody**    | Pointer to **string**                                                              | Response body returned for the API test.      | [optional] |
+| **ResponseHeaders** | Pointer to **map[string]interface{}**                                              | Response headers returned for the API test.   | [optional] |
+| **ResponseSize**    | Pointer to **int64**                                                               | Global size in byte of the API test response. | [optional] |
+| **Timings**         | Pointer to [**SyntheticsTiming**](SyntheticsTiming.md)                             |                                               | [optional] |
 
 ## Methods
 
@@ -59,56 +58,6 @@ SetCert sets Cert field to given value.
 
 HasCert returns a boolean if a field has been set.
 
-### GetErrorCode
-
-`func (o *SyntheticsAPITestResultData) GetErrorCode() SyntheticsErrorCode`
-
-GetErrorCode returns the ErrorCode field if non-nil, zero value otherwise.
-
-### GetErrorCodeOk
-
-`func (o *SyntheticsAPITestResultData) GetErrorCodeOk() (*SyntheticsErrorCode, bool)`
-
-GetErrorCodeOk returns a tuple with the ErrorCode field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetErrorCode
-
-`func (o *SyntheticsAPITestResultData) SetErrorCode(v SyntheticsErrorCode)`
-
-SetErrorCode sets ErrorCode field to given value.
-
-### HasErrorCode
-
-`func (o *SyntheticsAPITestResultData) HasErrorCode() bool`
-
-HasErrorCode returns a boolean if a field has been set.
-
-### GetErrorMessage
-
-`func (o *SyntheticsAPITestResultData) GetErrorMessage() string`
-
-GetErrorMessage returns the ErrorMessage field if non-nil, zero value otherwise.
-
-### GetErrorMessageOk
-
-`func (o *SyntheticsAPITestResultData) GetErrorMessageOk() (*string, bool)`
-
-GetErrorMessageOk returns a tuple with the ErrorMessage field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetErrorMessage
-
-`func (o *SyntheticsAPITestResultData) SetErrorMessage(v string)`
-
-SetErrorMessage sets ErrorMessage field to given value.
-
-### HasErrorMessage
-
-`func (o *SyntheticsAPITestResultData) HasErrorMessage() bool`
-
-HasErrorMessage returns a boolean if a field has been set.
-
 ### GetEventType
 
 `func (o *SyntheticsAPITestResultData) GetEventType() SyntheticsTestProcessStatus`
@@ -133,6 +82,31 @@ SetEventType sets EventType field to given value.
 `func (o *SyntheticsAPITestResultData) HasEventType() bool`
 
 HasEventType returns a boolean if a field has been set.
+
+### GetFailure
+
+`func (o *SyntheticsAPITestResultData) GetFailure() SyntheticsApiTestResultFailure`
+
+GetFailure returns the Failure field if non-nil, zero value otherwise.
+
+### GetFailureOk
+
+`func (o *SyntheticsAPITestResultData) GetFailureOk() (*SyntheticsApiTestResultFailure, bool)`
+
+GetFailureOk returns a tuple with the Failure field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetFailure
+
+`func (o *SyntheticsAPITestResultData) SetFailure(v SyntheticsApiTestResultFailure)`
+
+SetFailure sets Failure field to given value.
+
+### HasFailure
+
+`func (o *SyntheticsAPITestResultData) HasFailure() bool`
+
+HasFailure returns a boolean if a field has been set.
 
 ### GetHttpStatusCode
 
