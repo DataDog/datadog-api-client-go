@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -67,8 +65,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -120,8 +116,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -173,8 +167,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListMonitors
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -784,8 +776,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - CheckCanDeleteMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -834,8 +824,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -876,8 +864,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteMonitor
       User-Agent:
       - datadog-api-client-go/1.2.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:

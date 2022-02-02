@@ -7,8 +7,6 @@ interactions:
     headers:
       Accept:
       - application/json;datetime-format=rfc3339
-      Dd-Operation-Id:
-      - GetUsageTopAvgMetrics
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.23+dev (go go1.16.5; os linux; arch amd64)
       X-Datadog-Parent-Id:

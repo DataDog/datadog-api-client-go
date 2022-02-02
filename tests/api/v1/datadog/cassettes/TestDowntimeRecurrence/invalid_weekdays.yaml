@@ -12,8 +12,6 @@ interactions:
       - "226"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDowntime
       User-Agent:
       - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
