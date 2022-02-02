@@ -100,9 +100,6 @@ func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateInc
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateIncidentService"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -287,9 +284,6 @@ func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteInc
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteIncidentService"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -493,9 +487,6 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetIncidentService"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -735,9 +726,6 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListIncidentServices"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -927,9 +915,6 @@ func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateInc
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateIncidentService"
 
 	// body params
 	localVarPostBody = r.body

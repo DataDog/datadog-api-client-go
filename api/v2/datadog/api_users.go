@@ -91,9 +91,6 @@ func (a *UsersApiService) createServiceAccountExecute(r apiCreateServiceAccountR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateServiceAccount"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -256,9 +253,6 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateUser"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -418,9 +412,6 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DisableUser"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -569,9 +560,6 @@ func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetInvitation"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -730,9 +718,6 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUser"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -893,9 +878,6 @@ func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganization
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUserOrganizations"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1054,9 +1036,6 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUserPermissions"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1290,9 +1269,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListUsers"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1452,9 +1428,6 @@ func (a *UsersApiService) sendInvitationsExecute(r apiSendInvitationsRequest) (U
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SendInvitations"
 
 	// body params
 	localVarPostBody = r.body
@@ -1621,9 +1594,6 @@ func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserRespons
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateUser"
 
 	// body params
 	localVarPostBody = r.body

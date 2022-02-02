@@ -92,9 +92,6 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateEvent"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -233,9 +230,6 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetEvent"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -487,9 +481,6 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListEvents"
 
 	if r.ctx != nil {
 		// API Key Authentication

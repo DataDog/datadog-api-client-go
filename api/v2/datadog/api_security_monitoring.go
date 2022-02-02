@@ -97,9 +97,6 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSecurityFilter"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -272,9 +269,6 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSecurityMonitoringRule"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -433,9 +427,6 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteSecurityFilter"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -582,9 +573,6 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteSecurityMonitoringRule"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -737,9 +725,6 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSecurityFilter"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -899,9 +884,6 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSecurityMonitoringRule"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1046,9 +1028,6 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListSecurityFilters"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1230,9 +1209,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListSecurityMonitoringRules"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1464,9 +1440,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListSecurityMonitoringSignals"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1654,9 +1627,6 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SearchSecurityMonitoringSignals"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1822,9 +1792,6 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateSecurityFilter"
 
 	// body params
 	localVarPostBody = r.body
@@ -2012,9 +1979,6 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateSecurityMonitoringRule"
 
 	// body params
 	localVarPostBody = r.body

@@ -96,9 +96,6 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAzureIntegration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -261,9 +258,6 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAzureIntegration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -420,9 +414,6 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListAzureIntegration"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -583,9 +574,6 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAzureHostFilters"
 
 	// body params
 	localVarPostBody = r.body
@@ -750,9 +738,6 @@ func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAz
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAzureIntegration"
 
 	// body params
 	localVarPostBody = r.body

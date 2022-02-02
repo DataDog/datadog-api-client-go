@@ -91,9 +91,6 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreatePagerDutyIntegrationService"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -252,9 +249,6 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeletePagerDutyIntegrationService"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -403,9 +397,6 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetPagerDutyIntegrationService"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -567,9 +558,6 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdatePagerDutyIntegrationService"
 
 	// body params
 	localVarPostBody = r.body

@@ -94,9 +94,6 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SubmitServiceCheck"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
