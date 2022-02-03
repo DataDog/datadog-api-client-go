@@ -63,6 +63,8 @@ type MonitorOptions struct {
 	Thresholds        *MonitorThresholds             `json:"thresholds,omitempty"`
 	// The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours.
 	TimeoutH NullableInt64 `json:"timeout_h,omitempty"`
+	// List of requests that can be used in the monitor query. **This feature is currently in beta.**
+	Variables *[]MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -1003,6 +1005,38 @@ func (o *MonitorOptions) UnsetTimeoutH() {
 	o.TimeoutH.Unset()
 }
 
+// GetVariables returns the Variables field value if set, zero value otherwise.
+func (o *MonitorOptions) GetVariables() []MonitorFormulaAndFunctionQueryDefinition {
+	if o == nil || o.Variables == nil {
+		var ret []MonitorFormulaAndFunctionQueryDefinition
+		return ret
+	}
+	return *o.Variables
+}
+
+// GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonitorOptions) GetVariablesOk() (*[]MonitorFormulaAndFunctionQueryDefinition, bool) {
+	if o == nil || o.Variables == nil {
+		return nil, false
+	}
+	return o.Variables, true
+}
+
+// HasVariables returns a boolean if a field has been set.
+func (o *MonitorOptions) HasVariables() bool {
+	if o != nil && o.Variables != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetVariables gets a reference to the given []MonitorFormulaAndFunctionQueryDefinition and assigns it to the Variables field.
+func (o *MonitorOptions) SetVariables(v []MonitorFormulaAndFunctionQueryDefinition) {
+	o.Variables = &v
+}
+
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -1080,36 +1114,40 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	if o.TimeoutH.IsSet() {
 		toSerialize["timeout_h"] = o.TimeoutH.Get()
 	}
+	if o.Variables != nil {
+		toSerialize["variables"] = o.Variables
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation          *MonitorOptionsAggregation     `json:"aggregation,omitempty"`
-		DeviceIds            *[]MonitorDeviceID             `json:"device_ids,omitempty"`
-		EnableLogsSample     *bool                          `json:"enable_logs_sample,omitempty"`
-		EscalationMessage    *string                        `json:"escalation_message,omitempty"`
-		EvaluationDelay      NullableInt64                  `json:"evaluation_delay,omitempty"`
-		GroupbySimpleMonitor *bool                          `json:"groupby_simple_monitor,omitempty"`
-		IncludeTags          *bool                          `json:"include_tags,omitempty"`
-		Locked               *bool                          `json:"locked,omitempty"`
-		MinFailureDuration   NullableInt64                  `json:"min_failure_duration,omitempty"`
-		MinLocationFailed    NullableInt64                  `json:"min_location_failed,omitempty"`
-		NewGroupDelay        NullableInt64                  `json:"new_group_delay,omitempty"`
-		NewHostDelay         NullableInt64                  `json:"new_host_delay,omitempty"`
-		NoDataTimeframe      NullableInt64                  `json:"no_data_timeframe,omitempty"`
-		NotifyAudit          *bool                          `json:"notify_audit,omitempty"`
-		NotifyNoData         *bool                          `json:"notify_no_data,omitempty"`
-		RenotifyInterval     NullableInt64                  `json:"renotify_interval,omitempty"`
-		RenotifyOccurrences  NullableInt64                  `json:"renotify_occurrences,omitempty"`
-		RenotifyStatuses     []MonitorRenotifyStatusType    `json:"renotify_statuses,omitempty"`
-		RequireFullWindow    *bool                          `json:"require_full_window,omitempty"`
-		Silenced             *map[string]int64              `json:"silenced,omitempty"`
-		SyntheticsCheckId    NullableString                 `json:"synthetics_check_id,omitempty"`
-		ThresholdWindows     *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
-		Thresholds           *MonitorThresholds             `json:"thresholds,omitempty"`
-		TimeoutH             NullableInt64                  `json:"timeout_h,omitempty"`
+		Aggregation          *MonitorOptionsAggregation                  `json:"aggregation,omitempty"`
+		DeviceIds            *[]MonitorDeviceID                          `json:"device_ids,omitempty"`
+		EnableLogsSample     *bool                                       `json:"enable_logs_sample,omitempty"`
+		EscalationMessage    *string                                     `json:"escalation_message,omitempty"`
+		EvaluationDelay      NullableInt64                               `json:"evaluation_delay,omitempty"`
+		GroupbySimpleMonitor *bool                                       `json:"groupby_simple_monitor,omitempty"`
+		IncludeTags          *bool                                       `json:"include_tags,omitempty"`
+		Locked               *bool                                       `json:"locked,omitempty"`
+		MinFailureDuration   NullableInt64                               `json:"min_failure_duration,omitempty"`
+		MinLocationFailed    NullableInt64                               `json:"min_location_failed,omitempty"`
+		NewGroupDelay        NullableInt64                               `json:"new_group_delay,omitempty"`
+		NewHostDelay         NullableInt64                               `json:"new_host_delay,omitempty"`
+		NoDataTimeframe      NullableInt64                               `json:"no_data_timeframe,omitempty"`
+		NotifyAudit          *bool                                       `json:"notify_audit,omitempty"`
+		NotifyNoData         *bool                                       `json:"notify_no_data,omitempty"`
+		RenotifyInterval     NullableInt64                               `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences  NullableInt64                               `json:"renotify_occurrences,omitempty"`
+		RenotifyStatuses     []MonitorRenotifyStatusType                 `json:"renotify_statuses,omitempty"`
+		RequireFullWindow    *bool                                       `json:"require_full_window,omitempty"`
+		Silenced             *map[string]int64                           `json:"silenced,omitempty"`
+		SyntheticsCheckId    NullableString                              `json:"synthetics_check_id,omitempty"`
+		ThresholdWindows     *MonitorThresholdWindowOptions              `json:"threshold_windows,omitempty"`
+		Thresholds           *MonitorThresholds                          `json:"thresholds,omitempty"`
+		TimeoutH             NullableInt64                               `json:"timeout_h,omitempty"`
+		Variables            *[]MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -1144,5 +1182,6 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.ThresholdWindows = all.ThresholdWindows
 	o.Thresholds = all.Thresholds
 	o.TimeoutH = all.TimeoutH
+	o.Variables = all.Variables
 	return nil
 }
