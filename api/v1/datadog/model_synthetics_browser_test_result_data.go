@@ -22,7 +22,8 @@ type SyntheticsBrowserTestResultData struct {
 	// Global duration in second of the browser test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned for the browser test.
-	Error *string `json:"error,omitempty"`
+	Error   *string                             `json:"error,omitempty"`
+	Failure *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
 	// Whether or not the browser test was conducted.
 	Passed *bool `json:"passed,omitempty"`
 	// The amount of email received during the browser test.
@@ -214,6 +215,38 @@ func (o *SyntheticsBrowserTestResultData) HasError() bool {
 // SetError gets a reference to the given string and assigns it to the Error field.
 func (o *SyntheticsBrowserTestResultData) SetError(v string) {
 	o.Error = &v
+}
+
+// GetFailure returns the Failure field value if set, zero value otherwise.
+func (o *SyntheticsBrowserTestResultData) GetFailure() SyntheticsBrowserTestResultFailure {
+	if o == nil || o.Failure == nil {
+		var ret SyntheticsBrowserTestResultFailure
+		return ret
+	}
+	return *o.Failure
+}
+
+// GetFailureOk returns a tuple with the Failure field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsBrowserTestResultData) GetFailureOk() (*SyntheticsBrowserTestResultFailure, bool) {
+	if o == nil || o.Failure == nil {
+		return nil, false
+	}
+	return o.Failure, true
+}
+
+// HasFailure returns a boolean if a field has been set.
+func (o *SyntheticsBrowserTestResultData) HasFailure() bool {
+	if o != nil && o.Failure != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetFailure gets a reference to the given SyntheticsBrowserTestResultFailure and assigns it to the Failure field.
+func (o *SyntheticsBrowserTestResultData) SetFailure(v SyntheticsBrowserTestResultFailure) {
+	o.Failure = &v
 }
 
 // GetPassed returns the Passed field value if set, zero value otherwise.
@@ -428,6 +461,9 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
 	}
+	if o.Failure != nil {
+		toSerialize["failure"] = o.Failure
+	}
 	if o.Passed != nil {
 		toSerialize["passed"] = o.Passed
 	}
@@ -452,17 +488,18 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserType         *string                 `json:"browserType,omitempty"`
-		BrowserVersion      *string                 `json:"browserVersion,omitempty"`
-		Device              *SyntheticsDevice       `json:"device,omitempty"`
-		Duration            *float64                `json:"duration,omitempty"`
-		Error               *string                 `json:"error,omitempty"`
-		Passed              *bool                   `json:"passed,omitempty"`
-		ReceivedEmailCount  *int64                  `json:"receivedEmailCount,omitempty"`
-		StartUrl            *string                 `json:"startUrl,omitempty"`
-		StepDetails         *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
-		ThumbnailsBucketKey *bool                   `json:"thumbnailsBucketKey,omitempty"`
-		TimeToInteractive   *float64                `json:"timeToInteractive,omitempty"`
+		BrowserType         *string                             `json:"browserType,omitempty"`
+		BrowserVersion      *string                             `json:"browserVersion,omitempty"`
+		Device              *SyntheticsDevice                   `json:"device,omitempty"`
+		Duration            *float64                            `json:"duration,omitempty"`
+		Error               *string                             `json:"error,omitempty"`
+		Failure             *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
+		Passed              *bool                               `json:"passed,omitempty"`
+		ReceivedEmailCount  *int64                              `json:"receivedEmailCount,omitempty"`
+		StartUrl            *string                             `json:"startUrl,omitempty"`
+		StepDetails         *[]SyntheticsStepDetail             `json:"stepDetails,omitempty"`
+		ThumbnailsBucketKey *bool                               `json:"thumbnailsBucketKey,omitempty"`
+		TimeToInteractive   *float64                            `json:"timeToInteractive,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -478,6 +515,7 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 	o.Device = all.Device
 	o.Duration = all.Duration
 	o.Error = all.Error
+	o.Failure = all.Failure
 	o.Passed = all.Passed
 	o.ReceivedEmailCount = all.ReceivedEmailCount
 	o.StartUrl = all.StartUrl
