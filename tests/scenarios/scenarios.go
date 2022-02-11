@@ -23,7 +23,6 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/tests"
 	"github.com/go-bdd/gobdd"
-	"github.com/mcuadros/go-lookup"
 )
 
 var templateFunctions = map[string]func(map[string]interface{}, string) string{
@@ -108,7 +107,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 		if path[0] == '\'' || path[0] == '"' {
 			return path[1 : len(path)-1]
 		}
-		v, err := lookup.LookupStringI(data, path)
+		v, err := Lookup(data, path)
 		if err != nil {
 			t.Fatalf("problem with replacement of %s (%s): %v", source, path, err)
 		}

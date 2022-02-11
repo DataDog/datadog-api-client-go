@@ -48,6 +48,13 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
+func Lookup(data interface{}, path string) (reflect.Value, error) {
+	if path == "" {
+		return reflect.ValueOf(data), nil
+	}
+	return lookup.LookupStringI(data, path)
+}
+
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)
@@ -58,7 +65,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		}
 		return v.Elem()
 	}
-	v, _ := lookup.LookupStringI(GetData(ctx), *p.Source)
+	v, _ := Lookup(GetData(ctx), *p.Source)
 	return v
 }
 
@@ -228,7 +235,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		}
 
 		if s.Source != nil {
-			responseJSON, err = lookup.LookupStringI(responseJSON, *s.Source)
+			responseJSON, err = Lookup(responseJSON, *s.Source)
 			if err != nil {
 				t.Error(err)
 			}
@@ -322,7 +329,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 
 			for i := 1; i < undoOperation.Type().NumIn() && i <= len(undo.Undo.Parameters); i++ {
 				if undo.Undo.Parameters[i-1].Source != "" {
-					object, err := lookup.LookupStringI(responseJSON, undo.Undo.Parameters[i-1].Source)
+					object, err := Lookup(responseJSON, undo.Undo.Parameters[i-1].Source)
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
