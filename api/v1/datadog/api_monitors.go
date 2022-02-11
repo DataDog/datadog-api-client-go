@@ -284,7 +284,7 @@ Example: `events('sources:nagios status:error,warning priority:normal tags: "str
 - **`rollup`** the stats roll-up method. `count` is the only supported method now.
 - **`last`** the timeframe to roll up the counts. Examples: 45m, 4h. Supported timeframes: m, h and d. This value should not exceed 48 hours.
 
-**NOTE** Only available on US1 and EU.
+**NOTE** The Event Alert Query is being deprecated and replaced by the Event V2 Alert Query. For more information, see the [Event Migration guide](https://docs.datadoghq.com/events/guides/migrating_to_new_events_features/).
 
 **Event V2 Alert Query**
 
