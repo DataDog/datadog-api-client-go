@@ -55,6 +55,15 @@ func main() {
 			"testing:browser",
 		},
 		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
+		Steps: &[]datadog.SyntheticsStep{
+			{
+				AllowFailure: datadog.PtrBool(false),
+				IsCritical:   datadog.PtrBool(true),
+				Name:         datadog.PtrString("Refresh page"),
+				Params:       new(interface{}),
+				Type:         datadog.SYNTHETICSSTEPTYPE_REFRESH.Ptr(),
+			},
+		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
