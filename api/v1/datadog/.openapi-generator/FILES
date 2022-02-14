@@ -149,6 +149,7 @@ docs/FreeTextWidgetDefinitionType.md
 docs/FunnelQuery.md
 docs/FunnelRequestType.md
 docs/FunnelSource.md
+docs/FunnelStep.md
 docs/FunnelWidgetDefinition.md
 docs/FunnelWidgetDefinitionType.md
 docs/FunnelWidgetRequest.md
@@ -852,6 +853,7 @@ model_free_text_widget_definition_type.go
 model_funnel_query.go
 model_funnel_request_type.go
 model_funnel_source.go
+model_funnel_step.go
 model_funnel_widget_definition.go
 model_funnel_widget_definition_type.go
 model_funnel_widget_request.go
