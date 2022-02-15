@@ -35,7 +35,7 @@ type UndoAction struct {
 		Type        string `json:"type"`
 		OperationID string `json:"operationId"`
 		Parameters  []struct {
-			Name     string `json:"name"`
+			Name     string  `json:"name"`
 			Source   *string `json:"source"`
 			Template *string `json:"template"`
 		} `json:"parameters"`
