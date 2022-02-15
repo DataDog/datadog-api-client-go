@@ -36,8 +36,8 @@ type UndoAction struct {
 		OperationID string `json:"operationId"`
 		Parameters  []struct {
 			Name     string `json:"name"`
-			Source   string `json:"source"`
-			Template string `json:"template"`
+			Source   *string `json:"source"`
+			Template *string `json:"template"`
 		} `json:"parameters"`
 	} `json:"undo"`
 }
@@ -50,7 +50,7 @@ type operationParameter struct {
 
 func Lookup(data interface{}, path string) (reflect.Value, error) {
 	if path == "" {
-		return reflect.ValueOf(data), nil
+		return lookup.Lookup(data)
 	}
 	return lookup.LookupStringI(data, path)
 }
@@ -328,16 +328,25 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 			}
 
 			for i := 1; i < undoOperation.Type().NumIn() && i <= len(undo.Undo.Parameters); i++ {
-				if undo.Undo.Parameters[i-1].Source != "" {
-					object, err := Lookup(responseJSON, undo.Undo.Parameters[i-1].Source)
+				if undo.Undo.Parameters[i-1].Template != nil {
+					data := Templated(t, responseJSON.(map[string]interface{}), *undo.Undo.Parameters[i-1].Template)
+					object := reflect.New(undoOperation.Type().In(i))
+					err := json.Unmarshal([]byte(data), object.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
-					in[i] = object.Convert(undoOperation.Type().In(i))
-				} else if undo.Undo.Parameters[i-1].Template != "" {
-					data := Templated(t, responseJSON.(map[string]interface{}), undo.Undo.Parameters[i-1].Template)
+					in[i] = object.Elem()
+				} else if undo.Undo.Parameters[i-1].Source != nil {
+					source, err := Lookup(responseJSON, *undo.Undo.Parameters[i-1].Source)
+					if err != nil {
+						t.Fatalf("%v", err)
+					}
+					sourceJSON, err := json.Marshal(source.Interface())
+					if err != nil {
+						t.Fatalf("%v", err)
+					}
 					object := reflect.New(undoOperation.Type().In(i))
-					err := json.Unmarshal([]byte(data), object.Interface())
+					err = json.Unmarshal(sourceJSON, object.Interface())
 					if err != nil {
 						t.Fatalf("%v", err)
 					}
