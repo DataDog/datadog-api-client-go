@@ -25,7 +25,7 @@ func main() {
 								Query: datadog.FunnelQuery{
 									DataSource:  datadog.FUNNELSOURCE_RUM,
 									QueryString: "",
-									Steps:       []interface{}{},
+									Steps:       []datadog.FunnelStep{},
 								},
 								RequestType: datadog.FUNNELREQUESTTYPE_FUNNEL,
 							},

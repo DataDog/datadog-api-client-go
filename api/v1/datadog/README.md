@@ -400,6 +400,7 @@ All URIs are relative to *https://api.datadoghq.com*
 - [FunnelQuery](docs/FunnelQuery.md)
 - [FunnelRequestType](docs/FunnelRequestType.md)
 - [FunnelSource](docs/FunnelSource.md)
+- [FunnelStep](docs/FunnelStep.md)
 - [FunnelWidgetDefinition](docs/FunnelWidgetDefinition.md)
 - [FunnelWidgetDefinitionType](docs/FunnelWidgetDefinitionType.md)
 - [FunnelWidgetRequest](docs/FunnelWidgetRequest.md)
