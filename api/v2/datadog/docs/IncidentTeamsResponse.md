@@ -2,11 +2,11 @@
 
 ## Properties
 
-| Name         | Type                                                                           | Description                                          | Notes                 |
-| ------------ | ------------------------------------------------------------------------------ | ---------------------------------------------------- | --------------------- |
-| **Data**     | [**[]IncidentTeamResponseData**](IncidentTeamResponseData.md)                  | An array of incident teams.                          |
-| **Included** | Pointer to [**[]IncidentTeamIncludedItems**](IncidentTeamIncludedItems.md)     | Included related resources which the user requested. | [optional] [readonly] |
-| **Meta**     | Pointer to [**IncidentServicesResponseMeta**](IncidentServicesResponseMeta.md) |                                                      | [optional]            |
+| Name         | Type                                                                       | Description                                          | Notes                 |
+| ------------ | -------------------------------------------------------------------------- | ---------------------------------------------------- | --------------------- |
+| **Data**     | [**[]IncidentTeamResponseData**](IncidentTeamResponseData.md)              | An array of incident teams.                          |
+| **Included** | Pointer to [**[]IncidentTeamIncludedItems**](IncidentTeamIncludedItems.md) | Included related resources which the user requested. | [optional] [readonly] |
+| **Meta**     | Pointer to [**IncidentResponseMeta**](IncidentResponseMeta.md)             |                                                      | [optional]            |
 
 ## Methods
 
@@ -73,20 +73,20 @@ HasIncluded returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *IncidentTeamsResponse) GetMeta() IncidentServicesResponseMeta`
+`func (o *IncidentTeamsResponse) GetMeta() IncidentResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *IncidentTeamsResponse) GetMetaOk() (*IncidentServicesResponseMeta, bool)`
+`func (o *IncidentTeamsResponse) GetMetaOk() (*IncidentResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *IncidentTeamsResponse) SetMeta(v IncidentServicesResponseMeta)`
+`func (o *IncidentTeamsResponse) SetMeta(v IncidentResponseMeta)`
 
 SetMeta sets Meta field to given value.
 

@@ -18,8 +18,8 @@ type IncidentTeamsResponse struct {
 	// An array of incident teams.
 	Data []IncidentTeamResponseData `json:"data"`
 	// Included related resources which the user requested.
-	Included *[]IncidentTeamIncludedItems  `json:"included,omitempty"`
-	Meta     *IncidentServicesResponseMeta `json:"meta,omitempty"`
+	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
+	Meta     *IncidentResponseMeta        `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -99,9 +99,9 @@ func (o *IncidentTeamsResponse) SetIncluded(v []IncidentTeamIncludedItems) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *IncidentTeamsResponse) GetMeta() IncidentServicesResponseMeta {
+func (o *IncidentTeamsResponse) GetMeta() IncidentResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret IncidentServicesResponseMeta
+		var ret IncidentResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -109,7 +109,7 @@ func (o *IncidentTeamsResponse) GetMeta() IncidentServicesResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentTeamsResponse) GetMetaOk() (*IncidentServicesResponseMeta, bool) {
+func (o *IncidentTeamsResponse) GetMetaOk() (*IncidentResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -125,8 +125,8 @@ func (o *IncidentTeamsResponse) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given IncidentServicesResponseMeta and assigns it to the Meta field.
-func (o *IncidentTeamsResponse) SetMeta(v IncidentServicesResponseMeta) {
+// SetMeta gets a reference to the given IncidentResponseMeta and assigns it to the Meta field.
+func (o *IncidentTeamsResponse) SetMeta(v IncidentResponseMeta) {
 	o.Meta = &v
 }
 
@@ -153,9 +153,9 @@ func (o *IncidentTeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]IncidentTeamResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     []IncidentTeamResponseData    `json:"data"`
-		Included *[]IncidentTeamIncludedItems  `json:"included,omitempty"`
-		Meta     *IncidentServicesResponseMeta `json:"meta,omitempty"`
+		Data     []IncidentTeamResponseData   `json:"data"`
+		Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
+		Meta     *IncidentResponseMeta        `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

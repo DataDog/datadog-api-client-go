@@ -6,7 +6,7 @@
 | ------------ | -------------------------------------------------------------------------------- | ---------------------------------------------------- | --------------------- |
 | **Data**     | [**[]IncidentServiceResponseData**](IncidentServiceResponseData.md)              | An array of incident services.                       |
 | **Included** | Pointer to [**[]IncidentServiceIncludedItems**](IncidentServiceIncludedItems.md) | Included related resources which the user requested. | [optional] [readonly] |
-| **Meta**     | Pointer to [**IncidentServicesResponseMeta**](IncidentServicesResponseMeta.md)   |                                                      | [optional]            |
+| **Meta**     | Pointer to [**IncidentResponseMeta**](IncidentResponseMeta.md)                   |                                                      | [optional]            |
 
 ## Methods
 
@@ -73,20 +73,20 @@ HasIncluded returns a boolean if a field has been set.
 
 ### GetMeta
 
-`func (o *IncidentServicesResponse) GetMeta() IncidentServicesResponseMeta`
+`func (o *IncidentServicesResponse) GetMeta() IncidentResponseMeta`
 
 GetMeta returns the Meta field if non-nil, zero value otherwise.
 
 ### GetMetaOk
 
-`func (o *IncidentServicesResponse) GetMetaOk() (*IncidentServicesResponseMeta, bool)`
+`func (o *IncidentServicesResponse) GetMetaOk() (*IncidentResponseMeta, bool)`
 
 GetMetaOk returns a tuple with the Meta field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetMeta
 
-`func (o *IncidentServicesResponse) SetMeta(v IncidentServicesResponseMeta)`
+`func (o *IncidentServicesResponse) SetMeta(v IncidentResponseMeta)`
 
 SetMeta sets Meta field to given value.
 
