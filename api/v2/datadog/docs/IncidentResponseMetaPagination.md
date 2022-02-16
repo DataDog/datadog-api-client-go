@@ -1,4 +1,4 @@
-# IncidentServicesResponseMetaPagination
+# IncidentResponseMetaPagination
 
 ## Properties
 
@@ -10,95 +10,95 @@
 
 ## Methods
 
-### NewIncidentServicesResponseMetaPagination
+### NewIncidentResponseMetaPagination
 
-`func NewIncidentServicesResponseMetaPagination() *IncidentServicesResponseMetaPagination`
+`func NewIncidentResponseMetaPagination() *IncidentResponseMetaPagination`
 
-NewIncidentServicesResponseMetaPagination instantiates a new IncidentServicesResponseMetaPagination object.
+NewIncidentResponseMetaPagination instantiates a new IncidentResponseMetaPagination object.
 This constructor will assign default values to properties that have it defined,
 and makes sure properties required by API are set, but the set of arguments
 will change when the set of required properties is changed.
 
-### NewIncidentServicesResponseMetaPaginationWithDefaults
+### NewIncidentResponseMetaPaginationWithDefaults
 
-`func NewIncidentServicesResponseMetaPaginationWithDefaults() *IncidentServicesResponseMetaPagination`
+`func NewIncidentResponseMetaPaginationWithDefaults() *IncidentResponseMetaPagination`
 
-NewIncidentServicesResponseMetaPaginationWithDefaults instantiates a new IncidentServicesResponseMetaPagination object.
+NewIncidentResponseMetaPaginationWithDefaults instantiates a new IncidentResponseMetaPagination object.
 This constructor will only assign default values to properties that have it defined,
 but it doesn't guarantee that properties required by API are set.
 
 ### GetNextOffset
 
-`func (o *IncidentServicesResponseMetaPagination) GetNextOffset() int64`
+`func (o *IncidentResponseMetaPagination) GetNextOffset() int64`
 
 GetNextOffset returns the NextOffset field if non-nil, zero value otherwise.
 
 ### GetNextOffsetOk
 
-`func (o *IncidentServicesResponseMetaPagination) GetNextOffsetOk() (*int64, bool)`
+`func (o *IncidentResponseMetaPagination) GetNextOffsetOk() (*int64, bool)`
 
 GetNextOffsetOk returns a tuple with the NextOffset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetNextOffset
 
-`func (o *IncidentServicesResponseMetaPagination) SetNextOffset(v int64)`
+`func (o *IncidentResponseMetaPagination) SetNextOffset(v int64)`
 
 SetNextOffset sets NextOffset field to given value.
 
 ### HasNextOffset
 
-`func (o *IncidentServicesResponseMetaPagination) HasNextOffset() bool`
+`func (o *IncidentResponseMetaPagination) HasNextOffset() bool`
 
 HasNextOffset returns a boolean if a field has been set.
 
 ### GetOffset
 
-`func (o *IncidentServicesResponseMetaPagination) GetOffset() int64`
+`func (o *IncidentResponseMetaPagination) GetOffset() int64`
 
 GetOffset returns the Offset field if non-nil, zero value otherwise.
 
 ### GetOffsetOk
 
-`func (o *IncidentServicesResponseMetaPagination) GetOffsetOk() (*int64, bool)`
+`func (o *IncidentResponseMetaPagination) GetOffsetOk() (*int64, bool)`
 
 GetOffsetOk returns a tuple with the Offset field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetOffset
 
-`func (o *IncidentServicesResponseMetaPagination) SetOffset(v int64)`
+`func (o *IncidentResponseMetaPagination) SetOffset(v int64)`
 
 SetOffset sets Offset field to given value.
 
 ### HasOffset
 
-`func (o *IncidentServicesResponseMetaPagination) HasOffset() bool`
+`func (o *IncidentResponseMetaPagination) HasOffset() bool`
 
 HasOffset returns a boolean if a field has been set.
 
 ### GetSize
 
-`func (o *IncidentServicesResponseMetaPagination) GetSize() int64`
+`func (o *IncidentResponseMetaPagination) GetSize() int64`
 
 GetSize returns the Size field if non-nil, zero value otherwise.
 
 ### GetSizeOk
 
-`func (o *IncidentServicesResponseMetaPagination) GetSizeOk() (*int64, bool)`
+`func (o *IncidentResponseMetaPagination) GetSizeOk() (*int64, bool)`
 
 GetSizeOk returns a tuple with the Size field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSize
 
-`func (o *IncidentServicesResponseMetaPagination) SetSize(v int64)`
+`func (o *IncidentResponseMetaPagination) SetSize(v int64)`
 
 SetSize sets Size field to given value.
 
 ### HasSize
 
-`func (o *IncidentServicesResponseMetaPagination) HasSize() bool`
+`func (o *IncidentResponseMetaPagination) HasSize() bool`
 
 HasSize returns a boolean if a field has been set.
 

@@ -114,6 +114,8 @@ docs/IncidentResponse.md
 docs/IncidentResponseAttributes.md
 docs/IncidentResponseData.md
 docs/IncidentResponseIncludedItem.md
+docs/IncidentResponseMeta.md
+docs/IncidentResponseMetaPagination.md
 docs/IncidentResponseRelationships.md
 docs/IncidentServiceCreateAttributes.md
 docs/IncidentServiceCreateData.md
@@ -129,8 +131,6 @@ docs/IncidentServiceUpdateData.md
 docs/IncidentServiceUpdateRequest.md
 docs/IncidentServicesApi.md
 docs/IncidentServicesResponse.md
-docs/IncidentServicesResponseMeta.md
-docs/IncidentServicesResponseMetaPagination.md
 docs/IncidentTeamCreateAttributes.md
 docs/IncidentTeamCreateData.md
 docs/IncidentTeamCreateRequest.md
@@ -509,6 +509,8 @@ model_incident_response.go
 model_incident_response_attributes.go
 model_incident_response_data.go
 model_incident_response_included_item.go
+model_incident_response_meta.go
+model_incident_response_meta_pagination.go
 model_incident_response_relationships.go
 model_incident_service_create_attributes.go
 model_incident_service_create_data.go
@@ -523,8 +525,6 @@ model_incident_service_update_attributes.go
 model_incident_service_update_data.go
 model_incident_service_update_request.go
 model_incident_services_response.go
-model_incident_services_response_meta.go
-model_incident_services_response_meta_pagination.go
 model_incident_team_create_attributes.go
 model_incident_team_create_data.go
 model_incident_team_create_request.go
