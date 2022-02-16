@@ -1,6 +1,8 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
+api/openapi.yaml
 api_auth_n_mappings.go
 api_cloud_workload_security.go
 api_dashboard_lists.go
@@ -415,6 +417,8 @@ docs/UsersApi.md
 docs/UsersResponse.md
 docs/UsersType.md
 git_push.sh
+go.mod
+go.sum
 model_api_error_response.go
 model_api_key_create_attributes.go
 model_api_key_create_data.go
