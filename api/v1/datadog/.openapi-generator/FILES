@@ -1,6 +1,8 @@
 .gitignore
+.openapi-generator-ignore
 .travis.yml
 README.md
+api/openapi.yaml
 api_authentication.go
 api_aws_integration.go
 api_aws_logs_integration.go
@@ -745,6 +747,8 @@ docs/WidgetVerticalAlign.md
 docs/WidgetViewMode.md
 docs/WidgetVizType.md
 git_push.sh
+go.mod
+go.sum
 model_access_role.go
 model_alert_graph_widget_definition.go
 model_alert_graph_widget_definition_type.go
