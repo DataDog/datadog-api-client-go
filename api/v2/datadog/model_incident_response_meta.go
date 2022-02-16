@@ -12,34 +12,34 @@ import (
 	"encoding/json"
 )
 
-// IncidentServicesResponseMeta The metadata object containing pagination metadata.
-type IncidentServicesResponseMeta struct {
-	Pagination *IncidentServicesResponseMetaPagination `json:"pagination,omitempty"`
+// IncidentResponseMeta The metadata object containing pagination metadata.
+type IncidentResponseMeta struct {
+	Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
 
-// NewIncidentServicesResponseMeta instantiates a new IncidentServicesResponseMeta object
+// NewIncidentResponseMeta instantiates a new IncidentResponseMeta object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIncidentServicesResponseMeta() *IncidentServicesResponseMeta {
-	this := IncidentServicesResponseMeta{}
+func NewIncidentResponseMeta() *IncidentResponseMeta {
+	this := IncidentResponseMeta{}
 	return &this
 }
 
-// NewIncidentServicesResponseMetaWithDefaults instantiates a new IncidentServicesResponseMeta object
+// NewIncidentResponseMetaWithDefaults instantiates a new IncidentResponseMeta object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIncidentServicesResponseMetaWithDefaults() *IncidentServicesResponseMeta {
-	this := IncidentServicesResponseMeta{}
+func NewIncidentResponseMetaWithDefaults() *IncidentResponseMeta {
+	this := IncidentResponseMeta{}
 	return &this
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *IncidentServicesResponseMeta) GetPagination() IncidentServicesResponseMetaPagination {
+func (o *IncidentResponseMeta) GetPagination() IncidentResponseMetaPagination {
 	if o == nil || o.Pagination == nil {
-		var ret IncidentServicesResponseMetaPagination
+		var ret IncidentResponseMetaPagination
 		return ret
 	}
 	return *o.Pagination
@@ -47,7 +47,7 @@ func (o *IncidentServicesResponseMeta) GetPagination() IncidentServicesResponseM
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentServicesResponseMeta) GetPaginationOk() (*IncidentServicesResponseMetaPagination, bool) {
+func (o *IncidentResponseMeta) GetPaginationOk() (*IncidentResponseMetaPagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *IncidentServicesResponseMeta) GetPaginationOk() (*IncidentServicesRespo
 }
 
 // HasPagination returns a boolean if a field has been set.
-func (o *IncidentServicesResponseMeta) HasPagination() bool {
+func (o *IncidentResponseMeta) HasPagination() bool {
 	if o != nil && o.Pagination != nil {
 		return true
 	}
@@ -63,12 +63,12 @@ func (o *IncidentServicesResponseMeta) HasPagination() bool {
 	return false
 }
 
-// SetPagination gets a reference to the given IncidentServicesResponseMetaPagination and assigns it to the Pagination field.
-func (o *IncidentServicesResponseMeta) SetPagination(v IncidentServicesResponseMetaPagination) {
+// SetPagination gets a reference to the given IncidentResponseMetaPagination and assigns it to the Pagination field.
+func (o *IncidentResponseMeta) SetPagination(v IncidentResponseMetaPagination) {
 	o.Pagination = &v
 }
 
-func (o IncidentServicesResponseMeta) MarshalJSON() ([]byte, error) {
+func (o IncidentResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -79,10 +79,10 @@ func (o IncidentServicesResponseMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *IncidentServicesResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Pagination *IncidentServicesResponseMetaPagination `json:"pagination,omitempty"`
+		Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

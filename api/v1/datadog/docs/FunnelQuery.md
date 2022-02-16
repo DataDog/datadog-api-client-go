@@ -6,13 +6,13 @@
 | --------------- | ----------------------------------- | --------------------- | ----------------------------- |
 | **DataSource**  | [**FunnelSource**](FunnelSource.md) |                       | [default to FUNNELSOURCE_RUM] |
 | **QueryString** | **string**                          | The widget query.     |
-| **Steps**       | **[]interface{}**                   | List of funnel steps. |
+| **Steps**       | [**[]FunnelStep**](FunnelStep.md)   | List of funnel steps. |
 
 ## Methods
 
 ### NewFunnelQuery
 
-`func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []interface{}) *FunnelQuery`
+`func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []FunnelStep) *FunnelQuery`
 
 NewFunnelQuery instantiates a new FunnelQuery object.
 This constructor will assign default values to properties that have it defined,
@@ -67,20 +67,20 @@ SetQueryString sets QueryString field to given value.
 
 ### GetSteps
 
-`func (o *FunnelQuery) GetSteps() []interface{}`
+`func (o *FunnelQuery) GetSteps() []FunnelStep`
 
 GetSteps returns the Steps field if non-nil, zero value otherwise.
 
 ### GetStepsOk
 
-`func (o *FunnelQuery) GetStepsOk() (*[]interface{}, bool)`
+`func (o *FunnelQuery) GetStepsOk() (*[]FunnelStep, bool)`
 
 GetStepsOk returns a tuple with the Steps field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetSteps
 
-`func (o *FunnelQuery) SetSteps(v []interface{})`
+`func (o *FunnelQuery) SetSteps(v []FunnelStep)`
 
 SetSteps sets Steps field to given value.
 

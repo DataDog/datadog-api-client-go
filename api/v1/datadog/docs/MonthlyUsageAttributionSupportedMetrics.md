@@ -22,6 +22,10 @@
 
 - `CUSTOM_TIMESERIES_PERCENTAGE` (value: `"custom_timeseries_percentage"`)
 
+- `ESTIMATED_INDEXED_LOGS_USAGE` (value: `"estimated_indexed_logs_usage"`)
+
+- `ESTIMATED_INDEXED_LOGS_PERCENTAGE` (value: `"estimated_indexed_logs_percentage"`)
+
 - `FARGATE_USAGE` (value: `"fargate_usage"`)
 
 - `FARGATE_PERCENTAGE` (value: `"fargate_percentage"`)

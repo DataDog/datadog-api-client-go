@@ -19,7 +19,7 @@ type IncidentsResponse struct {
 	Data []IncidentResponseData `json:"data"`
 	// Included related resources that the user requested.
 	Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
-	Meta     *IncidentServicesResponseMeta   `json:"meta,omitempty"`
+	Meta     *IncidentResponseMeta           `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -99,9 +99,9 @@ func (o *IncidentsResponse) SetIncluded(v []IncidentResponseIncludedItem) {
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
-func (o *IncidentsResponse) GetMeta() IncidentServicesResponseMeta {
+func (o *IncidentsResponse) GetMeta() IncidentResponseMeta {
 	if o == nil || o.Meta == nil {
-		var ret IncidentServicesResponseMeta
+		var ret IncidentResponseMeta
 		return ret
 	}
 	return *o.Meta
@@ -109,7 +109,7 @@ func (o *IncidentsResponse) GetMeta() IncidentServicesResponseMeta {
 
 // GetMetaOk returns a tuple with the Meta field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentsResponse) GetMetaOk() (*IncidentServicesResponseMeta, bool) {
+func (o *IncidentsResponse) GetMetaOk() (*IncidentResponseMeta, bool) {
 	if o == nil || o.Meta == nil {
 		return nil, false
 	}
@@ -125,8 +125,8 @@ func (o *IncidentsResponse) HasMeta() bool {
 	return false
 }
 
-// SetMeta gets a reference to the given IncidentServicesResponseMeta and assigns it to the Meta field.
-func (o *IncidentsResponse) SetMeta(v IncidentServicesResponseMeta) {
+// SetMeta gets a reference to the given IncidentResponseMeta and assigns it to the Meta field.
+func (o *IncidentsResponse) SetMeta(v IncidentResponseMeta) {
 	o.Meta = &v
 }
 
@@ -155,7 +155,7 @@ func (o *IncidentsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Data     []IncidentResponseData          `json:"data"`
 		Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
-		Meta     *IncidentServicesResponseMeta   `json:"meta,omitempty"`
+		Meta     *IncidentResponseMeta           `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

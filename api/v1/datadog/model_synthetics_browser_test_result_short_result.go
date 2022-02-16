@@ -15,7 +15,7 @@ import (
 // SyntheticsBrowserTestResultShortResult Object with the result of the last browser test run.
 type SyntheticsBrowserTestResultShortResult struct {
 	Device *SyntheticsDevice `json:"device,omitempty"`
-	// Length in second of the browser test run.
+	// Length in milliseconds of the browser test run.
 	Duration *float64 `json:"duration,omitempty"`
 	// Amount of errors collected for a single browser test run.
 	ErrorCount *int64 `json:"errorCount,omitempty"`

@@ -19,7 +19,7 @@ type FunnelQuery struct {
 	// The widget query.
 	QueryString string `json:"query_string"`
 	// List of funnel steps.
-	Steps []interface{} `json:"steps"`
+	Steps []FunnelStep `json:"steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -28,7 +28,7 @@ type FunnelQuery struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []interface{}) *FunnelQuery {
+func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []FunnelStep) *FunnelQuery {
 	this := FunnelQuery{}
 	this.DataSource = dataSource
 	this.QueryString = queryString
@@ -95,9 +95,9 @@ func (o *FunnelQuery) SetQueryString(v string) {
 }
 
 // GetSteps returns the Steps field value
-func (o *FunnelQuery) GetSteps() []interface{} {
+func (o *FunnelQuery) GetSteps() []FunnelStep {
 	if o == nil {
-		var ret []interface{}
+		var ret []FunnelStep
 		return ret
 	}
 
@@ -106,7 +106,7 @@ func (o *FunnelQuery) GetSteps() []interface{} {
 
 // GetStepsOk returns a tuple with the Steps field value
 // and a boolean to check if the value has been set.
-func (o *FunnelQuery) GetStepsOk() (*[]interface{}, bool) {
+func (o *FunnelQuery) GetStepsOk() (*[]FunnelStep, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -114,7 +114,7 @@ func (o *FunnelQuery) GetStepsOk() (*[]interface{}, bool) {
 }
 
 // SetSteps sets field value
-func (o *FunnelQuery) SetSteps(v []interface{}) {
+func (o *FunnelQuery) SetSteps(v []FunnelStep) {
 	o.Steps = v
 }
 
@@ -138,14 +138,14 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		DataSource  *FunnelSource  `json:"data_source"`
-		QueryString *string        `json:"query_string"`
-		Steps       *[]interface{} `json:"steps"`
+		DataSource  *FunnelSource `json:"data_source"`
+		QueryString *string       `json:"query_string"`
+		Steps       *[]FunnelStep `json:"steps"`
 	}{}
 	all := struct {
-		DataSource  FunnelSource  `json:"data_source"`
-		QueryString string        `json:"query_string"`
-		Steps       []interface{} `json:"steps"`
+		DataSource  FunnelSource `json:"data_source"`
+		QueryString string       `json:"query_string"`
+		Steps       []FunnelStep `json:"steps"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

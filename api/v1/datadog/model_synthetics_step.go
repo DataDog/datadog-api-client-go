@@ -16,6 +16,8 @@ import (
 type SyntheticsStep struct {
 	// A boolean set to allow this step to fail.
 	AllowFailure *bool `json:"allowFailure,omitempty"`
+	// A boolean to use in addition to `allowFailure` to determine if the test should be marked as failed when the step fails.
+	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
 	Name *string `json:"name,omitempty"`
 	// The parameters of the step.
@@ -74,6 +76,38 @@ func (o *SyntheticsStep) HasAllowFailure() bool {
 // SetAllowFailure gets a reference to the given bool and assigns it to the AllowFailure field.
 func (o *SyntheticsStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
+}
+
+// GetIsCritical returns the IsCritical field value if set, zero value otherwise.
+func (o *SyntheticsStep) GetIsCritical() bool {
+	if o == nil || o.IsCritical == nil {
+		var ret bool
+		return ret
+	}
+	return *o.IsCritical
+}
+
+// GetIsCriticalOk returns a tuple with the IsCritical field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsStep) GetIsCriticalOk() (*bool, bool) {
+	if o == nil || o.IsCritical == nil {
+		return nil, false
+	}
+	return o.IsCritical, true
+}
+
+// HasIsCritical returns a boolean if a field has been set.
+func (o *SyntheticsStep) HasIsCritical() bool {
+	if o != nil && o.IsCritical != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIsCritical gets a reference to the given bool and assigns it to the IsCritical field.
+func (o *SyntheticsStep) SetIsCritical(v bool) {
+	o.IsCritical = &v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -212,6 +246,9 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	if o.AllowFailure != nil {
 		toSerialize["allowFailure"] = o.AllowFailure
 	}
+	if o.IsCritical != nil {
+		toSerialize["isCritical"] = o.IsCritical
+	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
@@ -231,6 +268,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		AllowFailure *bool               `json:"allowFailure,omitempty"`
+		IsCritical   *bool               `json:"isCritical,omitempty"`
 		Name         *string             `json:"name,omitempty"`
 		Params       *interface{}        `json:"params,omitempty"`
 		Timeout      *int64              `json:"timeout,omitempty"`
@@ -254,6 +292,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.AllowFailure = all.AllowFailure
+	o.IsCritical = all.IsCritical
 	o.Name = all.Name
 	o.Params = all.Params
 	o.Timeout = all.Timeout

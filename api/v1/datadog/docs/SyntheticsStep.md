@@ -2,13 +2,14 @@
 
 ## Properties
 
-| Name             | Type                                                       | Description                               | Notes      |
-| ---------------- | ---------------------------------------------------------- | ----------------------------------------- | ---------- |
-| **AllowFailure** | Pointer to **bool**                                        | A boolean set to allow this step to fail. | [optional] |
-| **Name**         | Pointer to **string**                                      | The name of the step.                     | [optional] |
-| **Params**       | Pointer to **interface{}**                                 | The parameters of the step.               | [optional] |
-| **Timeout**      | Pointer to **int64**                                       | The time before declaring a step failed.  | [optional] |
-| **Type**         | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |                                           | [optional] |
+| Name             | Type                                                       | Description                                                                                                                       | Notes      |
+| ---------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AllowFailure** | Pointer to **bool**                                        | A boolean set to allow this step to fail.                                                                                         | [optional] |
+| **IsCritical**   | Pointer to **bool**                                        | A boolean to use in addition to &#x60;allowFailure&#x60; to determine if the test should be marked as failed when the step fails. | [optional] |
+| **Name**         | Pointer to **string**                                      | The name of the step.                                                                                                             | [optional] |
+| **Params**       | Pointer to **interface{}**                                 | The parameters of the step.                                                                                                       | [optional] |
+| **Timeout**      | Pointer to **int64**                                       | The time before declaring a step failed.                                                                                          | [optional] |
+| **Type**         | Pointer to [**SyntheticsStepType**](SyntheticsStepType.md) |                                                                                                                                   | [optional] |
 
 ## Methods
 
@@ -53,6 +54,31 @@ SetAllowFailure sets AllowFailure field to given value.
 `func (o *SyntheticsStep) HasAllowFailure() bool`
 
 HasAllowFailure returns a boolean if a field has been set.
+
+### GetIsCritical
+
+`func (o *SyntheticsStep) GetIsCritical() bool`
+
+GetIsCritical returns the IsCritical field if non-nil, zero value otherwise.
+
+### GetIsCriticalOk
+
+`func (o *SyntheticsStep) GetIsCriticalOk() (*bool, bool)`
+
+GetIsCriticalOk returns a tuple with the IsCritical field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetIsCritical
+
+`func (o *SyntheticsStep) SetIsCritical(v bool)`
+
+SetIsCritical sets IsCritical field to given value.
+
+### HasIsCritical
+
+`func (o *SyntheticsStep) HasIsCritical() bool`
+
+HasIsCritical returns a boolean if a field has been set.
 
 ### GetName
 

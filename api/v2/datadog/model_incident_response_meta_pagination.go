@@ -12,8 +12,8 @@ import (
 	"encoding/json"
 )
 
-// IncidentServicesResponseMetaPagination Pagination properties.
-type IncidentServicesResponseMetaPagination struct {
+// IncidentResponseMetaPagination Pagination properties.
+type IncidentResponseMetaPagination struct {
 	// The index of the first element in the next page of results. Equal to page size added to the current offset.
 	NextOffset *int64 `json:"next_offset,omitempty"`
 	// The index of the first element in the results.
@@ -24,25 +24,25 @@ type IncidentServicesResponseMetaPagination struct {
 	UnparsedObject map[string]interface{} `json:-`
 }
 
-// NewIncidentServicesResponseMetaPagination instantiates a new IncidentServicesResponseMetaPagination object
+// NewIncidentResponseMetaPagination instantiates a new IncidentResponseMetaPagination object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIncidentServicesResponseMetaPagination() *IncidentServicesResponseMetaPagination {
-	this := IncidentServicesResponseMetaPagination{}
+func NewIncidentResponseMetaPagination() *IncidentResponseMetaPagination {
+	this := IncidentResponseMetaPagination{}
 	return &this
 }
 
-// NewIncidentServicesResponseMetaPaginationWithDefaults instantiates a new IncidentServicesResponseMetaPagination object
+// NewIncidentResponseMetaPaginationWithDefaults instantiates a new IncidentResponseMetaPagination object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewIncidentServicesResponseMetaPaginationWithDefaults() *IncidentServicesResponseMetaPagination {
-	this := IncidentServicesResponseMetaPagination{}
+func NewIncidentResponseMetaPaginationWithDefaults() *IncidentResponseMetaPagination {
+	this := IncidentResponseMetaPagination{}
 	return &this
 }
 
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
-func (o *IncidentServicesResponseMetaPagination) GetNextOffset() int64 {
+func (o *IncidentResponseMetaPagination) GetNextOffset() int64 {
 	if o == nil || o.NextOffset == nil {
 		var ret int64
 		return ret
@@ -52,7 +52,7 @@ func (o *IncidentServicesResponseMetaPagination) GetNextOffset() int64 {
 
 // GetNextOffsetOk returns a tuple with the NextOffset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentServicesResponseMetaPagination) GetNextOffsetOk() (*int64, bool) {
+func (o *IncidentResponseMetaPagination) GetNextOffsetOk() (*int64, bool) {
 	if o == nil || o.NextOffset == nil {
 		return nil, false
 	}
@@ -60,7 +60,7 @@ func (o *IncidentServicesResponseMetaPagination) GetNextOffsetOk() (*int64, bool
 }
 
 // HasNextOffset returns a boolean if a field has been set.
-func (o *IncidentServicesResponseMetaPagination) HasNextOffset() bool {
+func (o *IncidentResponseMetaPagination) HasNextOffset() bool {
 	if o != nil && o.NextOffset != nil {
 		return true
 	}
@@ -69,12 +69,12 @@ func (o *IncidentServicesResponseMetaPagination) HasNextOffset() bool {
 }
 
 // SetNextOffset gets a reference to the given int64 and assigns it to the NextOffset field.
-func (o *IncidentServicesResponseMetaPagination) SetNextOffset(v int64) {
+func (o *IncidentResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
 }
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
-func (o *IncidentServicesResponseMetaPagination) GetOffset() int64 {
+func (o *IncidentResponseMetaPagination) GetOffset() int64 {
 	if o == nil || o.Offset == nil {
 		var ret int64
 		return ret
@@ -84,7 +84,7 @@ func (o *IncidentServicesResponseMetaPagination) GetOffset() int64 {
 
 // GetOffsetOk returns a tuple with the Offset field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentServicesResponseMetaPagination) GetOffsetOk() (*int64, bool) {
+func (o *IncidentResponseMetaPagination) GetOffsetOk() (*int64, bool) {
 	if o == nil || o.Offset == nil {
 		return nil, false
 	}
@@ -92,7 +92,7 @@ func (o *IncidentServicesResponseMetaPagination) GetOffsetOk() (*int64, bool) {
 }
 
 // HasOffset returns a boolean if a field has been set.
-func (o *IncidentServicesResponseMetaPagination) HasOffset() bool {
+func (o *IncidentResponseMetaPagination) HasOffset() bool {
 	if o != nil && o.Offset != nil {
 		return true
 	}
@@ -101,12 +101,12 @@ func (o *IncidentServicesResponseMetaPagination) HasOffset() bool {
 }
 
 // SetOffset gets a reference to the given int64 and assigns it to the Offset field.
-func (o *IncidentServicesResponseMetaPagination) SetOffset(v int64) {
+func (o *IncidentResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
 // GetSize returns the Size field value if set, zero value otherwise.
-func (o *IncidentServicesResponseMetaPagination) GetSize() int64 {
+func (o *IncidentResponseMetaPagination) GetSize() int64 {
 	if o == nil || o.Size == nil {
 		var ret int64
 		return ret
@@ -116,7 +116,7 @@ func (o *IncidentServicesResponseMetaPagination) GetSize() int64 {
 
 // GetSizeOk returns a tuple with the Size field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IncidentServicesResponseMetaPagination) GetSizeOk() (*int64, bool) {
+func (o *IncidentResponseMetaPagination) GetSizeOk() (*int64, bool) {
 	if o == nil || o.Size == nil {
 		return nil, false
 	}
@@ -124,7 +124,7 @@ func (o *IncidentServicesResponseMetaPagination) GetSizeOk() (*int64, bool) {
 }
 
 // HasSize returns a boolean if a field has been set.
-func (o *IncidentServicesResponseMetaPagination) HasSize() bool {
+func (o *IncidentResponseMetaPagination) HasSize() bool {
 	if o != nil && o.Size != nil {
 		return true
 	}
@@ -133,11 +133,11 @@ func (o *IncidentServicesResponseMetaPagination) HasSize() bool {
 }
 
 // SetSize gets a reference to the given int64 and assigns it to the Size field.
-func (o *IncidentServicesResponseMetaPagination) SetSize(v int64) {
+func (o *IncidentResponseMetaPagination) SetSize(v int64) {
 	o.Size = &v
 }
 
-func (o IncidentServicesResponseMetaPagination) MarshalJSON() ([]byte, error) {
+func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -154,7 +154,7 @@ func (o IncidentServicesResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *IncidentServicesResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
+func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		NextOffset *int64 `json:"next_offset,omitempty"`
