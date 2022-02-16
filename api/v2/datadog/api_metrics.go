@@ -98,9 +98,6 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateBulkTagsMetricsConfiguration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -460,9 +457,6 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteBulkTagsMetricsConfiguration"
 
 	// body params
 	localVarPostBody = r.body
