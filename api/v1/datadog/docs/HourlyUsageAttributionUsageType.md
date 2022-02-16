@@ -12,6 +12,8 @@
 
 - `CUSTOM_TIMESERIES_USAGE` (value: `"custom_timeseries_usage"`)
 
+- `ESTIMATED_INDEXED_LOGS_USAGE` (value: `"estimated_indexed_logs_usage"`)
+
 - `FARGATE_USAGE` (value: `"fargate_usage"`)
 
 - `FUNCTIONS_USAGE` (value: `"functions_usage"`)
