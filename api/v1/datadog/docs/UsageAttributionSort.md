@@ -46,4 +46,8 @@
 
 - `LAMBDA_PERCENTAGE` (value: `"lambda_percentage"`)
 
+- `ESTIMATED_INDEXED_LOGS_USAGE` (value: `"estimated_indexed_logs_usage"`)
+
+- `ESTIMATED_INDEXED_LOGS_PERCENTAGE` (value: `"estimated_indexed_logs_percentage"`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

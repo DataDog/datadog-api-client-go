@@ -2,36 +2,38 @@
 
 ## Properties
 
-| Name                            | Type                   | Description                                               | Notes      |
-| ------------------------------- | ---------------------- | --------------------------------------------------------- | ---------- |
-| **ApiPercentage**               | Pointer to **float64** | The percentage of synthetic API test usage by tag(s).     | [optional] |
-| **ApiUsage**                    | Pointer to **float64** | The synthetic API test usage by tag(s).                   | [optional] |
-| **ApmHostPercentage**           | Pointer to **float64** | The percentage of APM host usage by tag(s).               | [optional] |
-| **ApmHostUsage**                | Pointer to **float64** | The APM host usage by tag(s).                             | [optional] |
-| **BrowserPercentage**           | Pointer to **float64** | The percentage of synthetic browser test usage by tag(s). | [optional] |
-| **BrowserUsage**                | Pointer to **float64** | The synthetic browser test usage by tag(s).               | [optional] |
-| **ContainerPercentage**         | Pointer to **float64** | The percentage of container usage by tag(s).              | [optional] |
-| **ContainerUsage**              | Pointer to **float64** | The container usage by tag(s).                            | [optional] |
-| **CustomTimeseriesPercentage**  | Pointer to **float64** | The percentage of custom metrics usage by tag(s).         | [optional] |
-| **CustomTimeseriesUsage**       | Pointer to **float64** | The custom metrics usage by tag(s).                       | [optional] |
-| **FargatePercentage**           | Pointer to **float64** | The percentage of Fargate usage by tags.                  | [optional] |
-| **FargateUsage**                | Pointer to **float64** | The Fargate usage by tags.                                | [optional] |
-| **FunctionsPercentage**         | Pointer to **float64** | The percentage of Lambda function usage by tag(s).        | [optional] |
-| **FunctionsUsage**              | Pointer to **float64** | The Lambda function usage by tag(s).                      | [optional] |
-| **IndexedLogsPercentage**       | Pointer to **float64** | The percentage of indexed logs usage by tags.             | [optional] |
-| **IndexedLogsUsage**            | Pointer to **float64** | The indexed logs usage by tags.                           | [optional] |
-| **InfraHostPercentage**         | Pointer to **float64** | The percentage of infrastructure host usage by tag(s).    | [optional] |
-| **InfraHostUsage**              | Pointer to **float64** | The infrastructure host usage by tag(s).                  | [optional] |
-| **InvocationsPercentage**       | Pointer to **float64** | The percentage of Lambda invocation usage by tag(s).      | [optional] |
-| **InvocationsUsage**            | Pointer to **float64** | The Lambda invocation usage by tag(s).                    | [optional] |
-| **NpmHostPercentage**           | Pointer to **float64** | The percentage of network host usage by tag(s).           | [optional] |
-| **NpmHostUsage**                | Pointer to **float64** | The network host usage by tag(s).                         | [optional] |
-| **ProfiledContainerPercentage** | Pointer to **float64** | The percentage of profiled container usage by tag(s).     | [optional] |
-| **ProfiledContainerUsage**      | Pointer to **float64** | The profiled container usage by tag(s).                   | [optional] |
-| **ProfiledHostPercentage**      | Pointer to **float64** | The percentage of profiled hosts usage by tag(s).         | [optional] |
-| **ProfiledHostUsage**           | Pointer to **float64** | The profiled hosts usage by tag(s).                       | [optional] |
-| **SnmpPercentage**              | Pointer to **float64** | The percentage of network device usage by tag(s).         | [optional] |
-| **SnmpUsage**                   | Pointer to **float64** | The network device usage by tag(s).                       | [optional] |
+| Name                               | Type                   | Description                                                                                   | Notes      |
+| ---------------------------------- | ---------------------- | --------------------------------------------------------------------------------------------- | ---------- |
+| **ApiPercentage**                  | Pointer to **float64** | The percentage of synthetic API test usage by tag(s).                                         | [optional] |
+| **ApiUsage**                       | Pointer to **float64** | The synthetic API test usage by tag(s).                                                       | [optional] |
+| **ApmHostPercentage**              | Pointer to **float64** | The percentage of APM host usage by tag(s).                                                   | [optional] |
+| **ApmHostUsage**                   | Pointer to **float64** | The APM host usage by tag(s).                                                                 | [optional] |
+| **BrowserPercentage**              | Pointer to **float64** | The percentage of synthetic browser test usage by tag(s).                                     | [optional] |
+| **BrowserUsage**                   | Pointer to **float64** | The synthetic browser test usage by tag(s).                                                   | [optional] |
+| **ContainerPercentage**            | Pointer to **float64** | The percentage of container usage by tag(s).                                                  | [optional] |
+| **ContainerUsage**                 | Pointer to **float64** | The container usage by tag(s).                                                                | [optional] |
+| **CustomTimeseriesPercentage**     | Pointer to **float64** | The percentage of custom metrics usage by tag(s).                                             | [optional] |
+| **CustomTimeseriesUsage**          | Pointer to **float64** | The custom metrics usage by tag(s).                                                           | [optional] |
+| **EstimatedIndexedLogsPercentage** | Pointer to **float64** | The percentage of estimated live indexed logs usage by tag(s). This field is in private beta. | [optional] |
+| **EstimatedIndexedLogsUsage**      | Pointer to **float64** | The estimated live indexed logs usage by tag(s). This field is in private beta.               | [optional] |
+| **FargatePercentage**              | Pointer to **float64** | The percentage of Fargate usage by tags.                                                      | [optional] |
+| **FargateUsage**                   | Pointer to **float64** | The Fargate usage by tags.                                                                    | [optional] |
+| **FunctionsPercentage**            | Pointer to **float64** | The percentage of Lambda function usage by tag(s).                                            | [optional] |
+| **FunctionsUsage**                 | Pointer to **float64** | The Lambda function usage by tag(s).                                                          | [optional] |
+| **IndexedLogsPercentage**          | Pointer to **float64** | The percentage of indexed logs usage by tags.                                                 | [optional] |
+| **IndexedLogsUsage**               | Pointer to **float64** | The indexed logs usage by tags.                                                               | [optional] |
+| **InfraHostPercentage**            | Pointer to **float64** | The percentage of infrastructure host usage by tag(s).                                        | [optional] |
+| **InfraHostUsage**                 | Pointer to **float64** | The infrastructure host usage by tag(s).                                                      | [optional] |
+| **InvocationsPercentage**          | Pointer to **float64** | The percentage of Lambda invocation usage by tag(s).                                          | [optional] |
+| **InvocationsUsage**               | Pointer to **float64** | The Lambda invocation usage by tag(s).                                                        | [optional] |
+| **NpmHostPercentage**              | Pointer to **float64** | The percentage of network host usage by tag(s).                                               | [optional] |
+| **NpmHostUsage**                   | Pointer to **float64** | The network host usage by tag(s).                                                             | [optional] |
+| **ProfiledContainerPercentage**    | Pointer to **float64** | The percentage of profiled container usage by tag(s).                                         | [optional] |
+| **ProfiledContainerUsage**         | Pointer to **float64** | The profiled container usage by tag(s).                                                       | [optional] |
+| **ProfiledHostPercentage**         | Pointer to **float64** | The percentage of profiled hosts usage by tag(s).                                             | [optional] |
+| **ProfiledHostUsage**              | Pointer to **float64** | The profiled hosts usage by tag(s).                                                           | [optional] |
+| **SnmpPercentage**                 | Pointer to **float64** | The percentage of network device usage by tag(s).                                             | [optional] |
+| **SnmpUsage**                      | Pointer to **float64** | The network device usage by tag(s).                                                           | [optional] |
 
 ## Methods
 
@@ -301,6 +303,56 @@ SetCustomTimeseriesUsage sets CustomTimeseriesUsage field to given value.
 `func (o *MonthlyUsageAttributionValues) HasCustomTimeseriesUsage() bool`
 
 HasCustomTimeseriesUsage returns a boolean if a field has been set.
+
+### GetEstimatedIndexedLogsPercentage
+
+`func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedLogsPercentage() float64`
+
+GetEstimatedIndexedLogsPercentage returns the EstimatedIndexedLogsPercentage field if non-nil, zero value otherwise.
+
+### GetEstimatedIndexedLogsPercentageOk
+
+`func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedLogsPercentageOk() (*float64, bool)`
+
+GetEstimatedIndexedLogsPercentageOk returns a tuple with the EstimatedIndexedLogsPercentage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedIndexedLogsPercentage
+
+`func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedLogsPercentage(v float64)`
+
+SetEstimatedIndexedLogsPercentage sets EstimatedIndexedLogsPercentage field to given value.
+
+### HasEstimatedIndexedLogsPercentage
+
+`func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedLogsPercentage() bool`
+
+HasEstimatedIndexedLogsPercentage returns a boolean if a field has been set.
+
+### GetEstimatedIndexedLogsUsage
+
+`func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedLogsUsage() float64`
+
+GetEstimatedIndexedLogsUsage returns the EstimatedIndexedLogsUsage field if non-nil, zero value otherwise.
+
+### GetEstimatedIndexedLogsUsageOk
+
+`func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedLogsUsageOk() (*float64, bool)`
+
+GetEstimatedIndexedLogsUsageOk returns a tuple with the EstimatedIndexedLogsUsage field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetEstimatedIndexedLogsUsage
+
+`func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedLogsUsage(v float64)`
+
+SetEstimatedIndexedLogsUsage sets EstimatedIndexedLogsUsage field to given value.
+
+### HasEstimatedIndexedLogsUsage
+
+`func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedLogsUsage() bool`
+
+HasEstimatedIndexedLogsUsage returns a boolean if a field has been set.
 
 ### GetFargatePercentage
 
