@@ -8,6 +8,8 @@
 | **Hour**       | Pointer to **time.Time** | The hour for the usage.                                | [optional] |
 | **IndexId**    | Pointer to **string**    | The index ID for this usage.                           | [optional] |
 | **IndexName**  | Pointer to **string**    | The user specified name for this index ID.             | [optional] |
+| **OrgName**    | Pointer to **string**    | The organization name.                                 | [optional] |
+| **PublicId**   | Pointer to **string**    | The organization public ID.                            | [optional] |
 | **Retention**  | Pointer to **int64**     | The retention period (in days) for this index ID.      | [optional] |
 
 ## Methods
@@ -128,6 +130,56 @@ SetIndexName sets IndexName field to given value.
 `func (o *UsageLogsByIndexHour) HasIndexName() bool`
 
 HasIndexName returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageLogsByIndexHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageLogsByIndexHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageLogsByIndexHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageLogsByIndexHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageLogsByIndexHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageLogsByIndexHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageLogsByIndexHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageLogsByIndexHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 ### GetRetention
 

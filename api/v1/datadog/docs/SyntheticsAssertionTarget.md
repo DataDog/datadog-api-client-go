@@ -91,6 +91,18 @@ and a boolean to check if the value has been set.
 
 SetTarget sets Target field to given value.
 
+### SetTargetNil
+
+`func (o *SyntheticsAssertionTarget) SetTargetNil(b bool)`
+
+SetTargetNil sets the value for Target to be an explicit nil
+
+### UnsetTarget
+
+`func (o *SyntheticsAssertionTarget) UnsetTarget()`
+
+UnsetTarget ensures that no value is present for Target, not even an explicit nil
+
 ### GetType
 
 `func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType`

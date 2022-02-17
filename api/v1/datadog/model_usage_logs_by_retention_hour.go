@@ -18,6 +18,10 @@ type UsageLogsByRetentionHour struct {
 	IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
 	// Live logs indexed with this retention period during a given hour.
 	LiveIndexedEventsCount *int64 `json:"live_indexed_events_count,omitempty"`
+	// The organization name.
+	OrgName *string `json:"org_name,omitempty"`
+	// The organization public ID.
+	PublicId *string `json:"public_id,omitempty"`
 	// Rehydrated logs indexed with this retention period during a given hour.
 	RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
 	// The retention period in days or \"custom\" for all custom retention usage.
@@ -107,6 +111,70 @@ func (o *UsageLogsByRetentionHour) SetLiveIndexedEventsCount(v int64) {
 	o.LiveIndexedEventsCount = &v
 }
 
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageLogsByRetentionHour) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageLogsByRetentionHour) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageLogsByRetentionHour) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageLogsByRetentionHour) SetOrgName(v string) {
+	o.OrgName = &v
+}
+
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *UsageLogsByRetentionHour) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageLogsByRetentionHour) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *UsageLogsByRetentionHour) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *UsageLogsByRetentionHour) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 // GetRehydratedIndexedEventsCount returns the RehydratedIndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsByRetentionHour) GetRehydratedIndexedEventsCount() int64 {
 	if o == nil || o.RehydratedIndexedEventsCount == nil {
@@ -182,6 +250,12 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	if o.LiveIndexedEventsCount != nil {
 		toSerialize["live_indexed_events_count"] = o.LiveIndexedEventsCount
 	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
 	if o.RehydratedIndexedEventsCount != nil {
 		toSerialize["rehydrated_indexed_events_count"] = o.RehydratedIndexedEventsCount
 	}
@@ -196,6 +270,8 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		IndexedEventsCount           *int64  `json:"indexed_events_count,omitempty"`
 		LiveIndexedEventsCount       *int64  `json:"live_indexed_events_count,omitempty"`
+		OrgName                      *string `json:"org_name,omitempty"`
+		PublicId                     *string `json:"public_id,omitempty"`
 		RehydratedIndexedEventsCount *int64  `json:"rehydrated_indexed_events_count,omitempty"`
 		Retention                    *string `json:"retention,omitempty"`
 	}{}
@@ -210,6 +286,8 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.IndexedEventsCount = all.IndexedEventsCount
 	o.LiveIndexedEventsCount = all.LiveIndexedEventsCount
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
 	o.RehydratedIndexedEventsCount = all.RehydratedIndexedEventsCount
 	o.Retention = all.Retention
 	return nil

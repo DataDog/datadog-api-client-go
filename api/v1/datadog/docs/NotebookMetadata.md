@@ -2,11 +2,11 @@
 
 ## Properties
 
-| Name              | Type                                                                   | Description                                                                                       | Notes                          |
-| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------ |
-| **IsTemplate**    | Pointer to **bool**                                                    | Whether or not the notebook is a template.                                                        | [optional] [default to false]  |
-| **TakeSnapshots** | Pointer to **bool**                                                    | Whether or not the notebook takes snapshot image backups of the notebook&#39;s fixed-time graphs. | [optional] [default to false]  |
-| **Type**          | Pointer to [**NullableNotebookMetadataType**](NotebookMetadataType.md) |                                                                                                   | [optional] [default to "null"] |
+| Name              | Type                                                                   | Description                                                                                       | Notes                         |
+| ----------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ----------------------------- |
+| **IsTemplate**    | Pointer to **bool**                                                    | Whether or not the notebook is a template.                                                        | [optional] [default to false] |
+| **TakeSnapshots** | Pointer to **bool**                                                    | Whether or not the notebook takes snapshot image backups of the notebook&#39;s fixed-time graphs. | [optional] [default to false] |
+| **Type**          | Pointer to [**NullableNotebookMetadataType**](NotebookMetadataType.md) |                                                                                                   | [optional]                    |
 
 ## Methods
 

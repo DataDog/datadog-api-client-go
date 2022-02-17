@@ -33,8 +33,6 @@ func NewNotebookMetadata() *NotebookMetadata {
 	this.IsTemplate = &isTemplate
 	var takeSnapshots bool = false
 	this.TakeSnapshots = &takeSnapshots
-	var type_ NotebookMetadataType = "null"
-	this.Type = *NewNullableNotebookMetadataType(&type_)
 	return &this
 }
 
@@ -47,8 +45,6 @@ func NewNotebookMetadataWithDefaults() *NotebookMetadata {
 	this.IsTemplate = &isTemplate
 	var takeSnapshots bool = false
 	this.TakeSnapshots = &takeSnapshots
-	var type_ NotebookMetadataType = "null"
-	this.Type = *NewNullableNotebookMetadataType(&type_)
 	return &this
 }
 

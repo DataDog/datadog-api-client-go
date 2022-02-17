@@ -294,7 +294,7 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 		localVarQueryParams.Add("ddtags", parameterToString(*r.ddtags, ""))
 	}
 	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{"application/json", "application/logplex-1", "text/plain"}
+	localVarHTTPContentTypes := []string{"application/json", "application/json;simple", "application/logplex-1", "text/plain"}
 
 	// set Content-Type header
 	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
