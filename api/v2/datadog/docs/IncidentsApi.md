@@ -313,7 +313,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     incidentId := "incidentId_example" // string | The UUID of the incident.
-    body := *datadog.NewIncidentUpdateRequest(*datadog.NewIncidentUpdateData("00000000-0000-0000-0000-000000000000", datadog.IncidentType("incidents"))) // IncidentUpdateRequest | Incident Payload.
+    body := *datadog.NewIncidentUpdateRequest(*datadog.NewIncidentUpdateData("00000000-0000-0000-4567-000000000000", datadog.IncidentType("incidents"))) // IncidentUpdateRequest | Incident Payload.
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncident", true)

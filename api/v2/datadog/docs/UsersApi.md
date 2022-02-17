@@ -169,7 +169,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
+    userId := "00000000-0000-9999-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -232,7 +232,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userInvitationUuid := "00000000-0000-0000-0000-000000000000" // string | The UUID of the user invitation.
+    userInvitationUuid := "00000000-0000-0000-3456-000000000000" // string | The UUID of the user invitation.
 
     configuration := datadog.NewConfiguration()
 
@@ -298,7 +298,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
+    userId := "00000000-0000-9999-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -365,7 +365,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
+    userId := "00000000-0000-9999-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -432,7 +432,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
+    userId := "00000000-0000-9999-0000-000000000000" // string | The ID of the user.
 
     configuration := datadog.NewConfiguration()
 
@@ -582,7 +582,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest |
+    body := *datadog.NewUserInvitationsRequest([]datadog.UserInvitationData{*datadog.NewUserInvitationData(*datadog.NewUserInvitationRelationships(*datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-2345-000000000000", datadog.UsersType("users")))), datadog.UserInvitationsType("user_invitations"))}) // UserInvitationsRequest |
 
     configuration := datadog.NewConfiguration()
 
@@ -649,8 +649,8 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    userId := "00000000-0000-0000-0000-000000000000" // string | The ID of the user.
-    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest |
+    userId := "00000000-0000-9999-0000-000000000000" // string | The ID of the user.
+    body := *datadog.NewUserUpdateRequest(*datadog.NewUserUpdateData(*datadog.NewUserUpdateAttributes(), "00000000-0000-feed-0000-000000000000", datadog.UsersType("users"))) // UserUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 

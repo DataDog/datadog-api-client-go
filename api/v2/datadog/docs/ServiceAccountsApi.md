@@ -32,7 +32,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
+    serviceAccountId := "00000000-0000-1234-0000-000000000000" // string | The ID of the service account.
     body := *datadog.NewApplicationKeyCreateRequest(*datadog.NewApplicationKeyCreateData(*datadog.NewApplicationKeyCreateAttributes("Application Key for managing dashboards"), datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyCreateRequest |
 
     configuration := datadog.NewConfiguration()
@@ -99,7 +99,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
+    serviceAccountId := "00000000-0000-1234-0000-000000000000" // string | The ID of the service account.
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
@@ -164,7 +164,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
+    serviceAccountId := "00000000-0000-1234-0000-000000000000" // string | The ID of the service account.
     appKeyId := "appKeyId_example" // string | The ID of the application key.
 
     configuration := datadog.NewConfiguration()
@@ -232,7 +232,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
+    serviceAccountId := "00000000-0000-1234-0000-000000000000" // string | The ID of the service account.
     pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.ApplicationKeysSort("created_at") // ApplicationKeysSort | Application key attribute used to sort results. Sort order is ascending by default. In order to specify a descending sort, prefix the attribute with a minus sign. (optional) (default to "name")
@@ -321,7 +321,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    serviceAccountId := "00000000-0000-0000-0000-000000000000" // string | The ID of the service account.
+    serviceAccountId := "00000000-0000-1234-0000-000000000000" // string | The ID of the service account.
     appKeyId := "appKeyId_example" // string | The ID of the application key.
     body := *datadog.NewApplicationKeyUpdateRequest(*datadog.NewApplicationKeyUpdateData(*datadog.NewApplicationKeyUpdateAttributes(), "00112233-4455-6677-8899-aabbccddeeff", datadog.ApplicationKeysType("application_keys"))) // ApplicationKeyUpdateRequest |
 

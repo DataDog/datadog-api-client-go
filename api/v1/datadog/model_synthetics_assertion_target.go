@@ -102,6 +102,7 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 }
 
 // GetTarget returns the Target field value
+// If the value is explicit nil, the zero value for interface{} will be returned
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
 	if o == nil {
 		var ret interface{}
@@ -113,8 +114,9 @@ func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
 
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
-	if o == nil {
+	if o == nil || o.Target == nil {
 		return nil, false
 	}
 	return &o.Target, true
@@ -160,7 +162,7 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	if o.Property != nil {
 		toSerialize["property"] = o.Property
 	}
-	if true {
+	if o.Target != nil {
 		toSerialize["target"] = o.Target
 	}
 	if true {
