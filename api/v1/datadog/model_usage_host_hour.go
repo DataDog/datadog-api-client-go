@@ -41,6 +41,10 @@ type UsageHostHour struct {
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
+	// The organization name.
+	OrgName *string `json:"org_name,omitempty"`
+	// The organization public ID.
+	PublicId *string `json:"public_id,omitempty"`
 	// Contains the total number of hosts that reported through vSphere integration (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -480,6 +484,70 @@ func (o *UsageHostHour) SetOpentelemetryHostCount(v int64) {
 	o.OpentelemetryHostCount = &v
 }
 
+// GetOrgName returns the OrgName field value if set, zero value otherwise.
+func (o *UsageHostHour) GetOrgName() string {
+	if o == nil || o.OrgName == nil {
+		var ret string
+		return ret
+	}
+	return *o.OrgName
+}
+
+// GetOrgNameOk returns a tuple with the OrgName field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetOrgNameOk() (*string, bool) {
+	if o == nil || o.OrgName == nil {
+		return nil, false
+	}
+	return o.OrgName, true
+}
+
+// HasOrgName returns a boolean if a field has been set.
+func (o *UsageHostHour) HasOrgName() bool {
+	if o != nil && o.OrgName != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOrgName gets a reference to the given string and assigns it to the OrgName field.
+func (o *UsageHostHour) SetOrgName(v string) {
+	o.OrgName = &v
+}
+
+// GetPublicId returns the PublicId field value if set, zero value otherwise.
+func (o *UsageHostHour) GetPublicId() string {
+	if o == nil || o.PublicId == nil {
+		var ret string
+		return ret
+	}
+	return *o.PublicId
+}
+
+// GetPublicIdOk returns a tuple with the PublicId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageHostHour) GetPublicIdOk() (*string, bool) {
+	if o == nil || o.PublicId == nil {
+		return nil, false
+	}
+	return o.PublicId, true
+}
+
+// HasPublicId returns a boolean if a field has been set.
+func (o *UsageHostHour) HasPublicId() bool {
+	if o != nil && o.PublicId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetPublicId gets a reference to the given string and assigns it to the PublicId field.
+func (o *UsageHostHour) SetPublicId(v string) {
+	o.PublicId = &v
+}
+
 // GetVsphereHostCount returns the VsphereHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetVsphereHostCount() int64 {
 	if o == nil || o.VsphereHostCount == nil {
@@ -556,6 +624,12 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	if o.OpentelemetryHostCount != nil {
 		toSerialize["opentelemetry_host_count"] = o.OpentelemetryHostCount
 	}
+	if o.OrgName != nil {
+		toSerialize["org_name"] = o.OrgName
+	}
+	if o.PublicId != nil {
+		toSerialize["public_id"] = o.PublicId
+	}
 	if o.VsphereHostCount != nil {
 		toSerialize["vsphere_host_count"] = o.VsphereHostCount
 	}
@@ -578,6 +652,8 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 		Hour                        *time.Time `json:"hour,omitempty"`
 		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
 		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
+		OrgName                     *string    `json:"org_name,omitempty"`
+		PublicId                    *string    `json:"public_id,omitempty"`
 		VsphereHostCount            *int64     `json:"vsphere_host_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -602,6 +678,8 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Hour = all.Hour
 	o.InfraAzureAppService = all.InfraAzureAppService
 	o.OpentelemetryHostCount = all.OpentelemetryHostCount
+	o.OrgName = all.OrgName
+	o.PublicId = all.PublicId
 	o.VsphereHostCount = all.VsphereHostCount
 	return nil
 }
