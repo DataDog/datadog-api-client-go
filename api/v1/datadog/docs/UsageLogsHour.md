@@ -12,6 +12,8 @@
 | **LogsLiveIngestedBytes**       | Pointer to **int64**     | Contains the number of live log bytes ingested (data available as of December 1, 2020).       | [optional] |
 | **LogsRehydratedIndexedCount**  | Pointer to **int64**     | Contains the number of rehydrated log events indexed (data available as of December 1, 2020). | [optional] |
 | **LogsRehydratedIngestedBytes** | Pointer to **int64**     | Contains the number of rehydrated log bytes ingested (data available as of December 1, 2020). | [optional] |
+| **OrgName**                     | Pointer to **string**    | The organization name.                                                                        | [optional] |
+| **PublicId**                    | Pointer to **string**    | The organization public ID.                                                                   | [optional] |
 
 ## Methods
 
@@ -231,5 +233,55 @@ SetLogsRehydratedIngestedBytes sets LogsRehydratedIngestedBytes field to given v
 `func (o *UsageLogsHour) HasLogsRehydratedIngestedBytes() bool`
 
 HasLogsRehydratedIngestedBytes returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageLogsHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageLogsHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageLogsHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageLogsHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageLogsHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageLogsHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageLogsHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageLogsHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

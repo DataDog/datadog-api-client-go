@@ -6,6 +6,8 @@
 | -------------------------------- | --------------------- | ------------------------------------------------------------------------------------ | ---------- |
 | **IndexedEventsCount**           | Pointer to **int64**  | Total logs indexed with this retention period during a given hour.                   | [optional] |
 | **LiveIndexedEventsCount**       | Pointer to **int64**  | Live logs indexed with this retention period during a given hour.                    | [optional] |
+| **OrgName**                      | Pointer to **string** | The organization name.                                                               | [optional] |
+| **PublicId**                     | Pointer to **string** | The organization public ID.                                                          | [optional] |
 | **RehydratedIndexedEventsCount** | Pointer to **int64**  | Rehydrated logs indexed with this retention period during a given hour.              | [optional] |
 | **Retention**                    | Pointer to **string** | The retention period in days or \&quot;custom\&quot; for all custom retention usage. | [optional] |
 
@@ -77,6 +79,56 @@ SetLiveIndexedEventsCount sets LiveIndexedEventsCount field to given value.
 `func (o *UsageLogsByRetentionHour) HasLiveIndexedEventsCount() bool`
 
 HasLiveIndexedEventsCount returns a boolean if a field has been set.
+
+### GetOrgName
+
+`func (o *UsageLogsByRetentionHour) GetOrgName() string`
+
+GetOrgName returns the OrgName field if non-nil, zero value otherwise.
+
+### GetOrgNameOk
+
+`func (o *UsageLogsByRetentionHour) GetOrgNameOk() (*string, bool)`
+
+GetOrgNameOk returns a tuple with the OrgName field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOrgName
+
+`func (o *UsageLogsByRetentionHour) SetOrgName(v string)`
+
+SetOrgName sets OrgName field to given value.
+
+### HasOrgName
+
+`func (o *UsageLogsByRetentionHour) HasOrgName() bool`
+
+HasOrgName returns a boolean if a field has been set.
+
+### GetPublicId
+
+`func (o *UsageLogsByRetentionHour) GetPublicId() string`
+
+GetPublicId returns the PublicId field if non-nil, zero value otherwise.
+
+### GetPublicIdOk
+
+`func (o *UsageLogsByRetentionHour) GetPublicIdOk() (*string, bool)`
+
+GetPublicIdOk returns a tuple with the PublicId field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetPublicId
+
+`func (o *UsageLogsByRetentionHour) SetPublicId(v string)`
+
+SetPublicId sets PublicId field to given value.
+
+### HasPublicId
+
+`func (o *UsageLogsByRetentionHour) HasPublicId() bool`
+
+HasPublicId returns a boolean if a field has been set.
 
 ### GetRehydratedIndexedEventsCount
 
