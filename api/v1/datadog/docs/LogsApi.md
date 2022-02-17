@@ -124,7 +124,7 @@ import (
 func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
-    body := []datadog.HTTPLogItem{*datadog.NewHTTPLogItem()} // []HTTPLogItem | Log to send (JSON format).
+    body := []datadog.HTTPLogItem{*datadog.NewHTTPLogItem("2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World")} // []HTTPLogItem | Log to send (JSON format).
     contentEncoding := datadog.ContentEncoding("gzip") // ContentEncoding | HTTP header used to compress the media-type. (optional)
     ddtags := "env:prod,user:my-user" // string | Log tags can be passed as query parameters with `text/plain` content type. (optional)
     optionalParams := datadog.SubmitLogOptionalParameters{
@@ -172,7 +172,7 @@ Other parameters are passed through a pointer to a SubmitLogOptionalParameters s
 
 ### HTTP request headers
 
-- **Content-Type**: application/json, application/logplex-1, text/plain
+- **Content-Type**: application/json, application/json;simple, application/logplex-1, text/plain
 - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints)

@@ -109,7 +109,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-2345-000000000000", datadog.UsersType("users"))) // RelationshipToUser |
 
     configuration := datadog.NewConfiguration()
 
@@ -795,7 +795,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-0000-000000000000", datadog.UsersType("users"))) // RelationshipToUser |
+    body := *datadog.NewRelationshipToUser(*datadog.NewRelationshipToUserData("00000000-0000-0000-2345-000000000000", datadog.UsersType("users"))) // RelationshipToUser |
 
     configuration := datadog.NewConfiguration()
 
@@ -863,7 +863,7 @@ func main() {
     ctx := datadog.NewDefaultContext(context.Background())
 
     roleId := "roleId_example" // string | The ID of the role.
-    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-0000-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest |
+    body := *datadog.NewRoleUpdateRequest(*datadog.NewRoleUpdateData(*datadog.NewRoleUpdateAttributes(), "00000000-0000-1111-0000-000000000000", datadog.RolesType("roles"))) // RoleUpdateRequest |
 
     configuration := datadog.NewConfiguration()
 

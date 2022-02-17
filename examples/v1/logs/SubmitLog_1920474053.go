@@ -14,7 +14,7 @@ import (
 func main() {
 	body := []datadog.HTTPLogItem{
 		{
-			Message: datadog.PtrString("Example-Send_gzip_logs_returns_Response_from_server_always_200_empty_JSON_response"),
+			Message: "Example-Send_gzip_logs_returns_Response_from_server_always_200_empty_JSON_response",
 			Ddtags:  datadog.PtrString("host:ExampleSendgziplogsreturnsResponsefromserveralways200emptyJSONresponse"),
 		},
 	}

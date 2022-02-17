@@ -7,14 +7,14 @@
 | **Ddsource** | Pointer to **string** | The integration name associated with your log: the technology from which the log originated. When it matches an integration name, Datadog automatically installs the corresponding parsers and facets. See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).                   | [optional] |
 | **Ddtags**   | Pointer to **string** | Tags associated with your logs.                                                                                                                                                                                                                                                                                          | [optional] |
 | **Hostname** | Pointer to **string** | The name of the originating host of the log.                                                                                                                                                                                                                                                                             | [optional] |
-| **Message**  | Pointer to **string** | The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search. | [optional] |
+| **Message**  | **string**            | The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes) of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry. That value is then highlighted and displayed in the Logstream, where it is indexed for full text search. |
 | **Service**  | Pointer to **string** | The name of the application or service generating the log events. It is used to switch from Logs to APM, so make sure you define the same value when you use both products. See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).                                              | [optional] |
 
 ## Methods
 
 ### NewHTTPLogItem
 
-`func NewHTTPLogItem() *HTTPLogItem`
+`func NewHTTPLogItem(message string) *HTTPLogItem`
 
 NewHTTPLogItem instantiates a new HTTPLogItem object.
 This constructor will assign default values to properties that have it defined,
@@ -122,12 +122,6 @@ and a boolean to check if the value has been set.
 `func (o *HTTPLogItem) SetMessage(v string)`
 
 SetMessage sets Message field to given value.
-
-### HasMessage
-
-`func (o *HTTPLogItem) HasMessage() bool`
-
-HasMessage returns a boolean if a field has been set.
 
 ### GetService
 

@@ -229,7 +229,7 @@ func main() {
     pageSize := int64(10) // int64 | Size for a given page. (optional) (default to 10)
     pageNumber := int64(0) // int64 | Specific page number to return. (optional) (default to 0)
     sort := datadog.AuthNMappingsSort("created_at") // AuthNMappingsSort | Sort AuthN Mappings depending on the given field. (optional)
-    include := []string{"Inner_example"} // []string |  (optional)
+    include := []string{"Inner_example"} // []string | Include additional information in the response. (optional)
     filter := "filter_example" // string | Filter all mappings by the given string. (optional)
     optionalParams := datadog.ListAuthNMappingsOptionalParameters{
         PageSize: &pageSize,
@@ -264,7 +264,7 @@ Other parameters are passed through a pointer to a ListAuthNMappingsOptionalPara
 | **pageSize**   | **int64**                                     | Size for a given page.                            | [default to 10] |
 | **pageNumber** | **int64**                                     | Specific page number to return.                   | [default to 0]  |
 | **sort**       | [**AuthNMappingsSort**](AuthNMappingsSort.md) | Sort AuthN Mappings depending on the given field. |
-| **include**    | **[]string**                                  |                                                   |
+| **include**    | **[]string**                                  | Include additional information in the response.   |
 | **filter**     | **string**                                    | Filter all mappings by the given string.          |
 
 ### Return type
