@@ -15,7 +15,7 @@ import (
 
 // IncidentCreateRelationships The relationships the incident will have with other resources once created.
 type IncidentCreateRelationships struct {
-	Commander RelationshipToUser `json:"commander"`
+	CommanderUser NullableRelationshipToUser `json:"commander_user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -24,9 +24,9 @@ type IncidentCreateRelationships struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewIncidentCreateRelationships(commander RelationshipToUser) *IncidentCreateRelationships {
+func NewIncidentCreateRelationships(commanderUser NullableRelationshipToUser) *IncidentCreateRelationships {
 	this := IncidentCreateRelationships{}
-	this.Commander = commander
+	this.CommanderUser = commanderUser
 	return &this
 }
 
@@ -38,28 +38,28 @@ func NewIncidentCreateRelationshipsWithDefaults() *IncidentCreateRelationships {
 	return &this
 }
 
-// GetCommander returns the Commander field value
-func (o *IncidentCreateRelationships) GetCommander() RelationshipToUser {
+// GetCommanderUser returns the CommanderUser field value
+func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil {
-		var ret RelationshipToUser
+		var ret NullableRelationshipToUser
 		return ret
 	}
 
-	return o.Commander
+	return o.CommanderUser
 }
 
-// GetCommanderOk returns a tuple with the Commander field value
+// GetCommanderUserOk returns a tuple with the CommanderUser field value
 // and a boolean to check if the value has been set.
-func (o *IncidentCreateRelationships) GetCommanderOk() (*RelationshipToUser, bool) {
+func (o *IncidentCreateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
 	if o == nil {
 		return nil, false
 	}
-	return &o.Commander, true
+	return &o.CommanderUser, true
 }
 
-// SetCommander sets field value
-func (o *IncidentCreateRelationships) SetCommander(v RelationshipToUser) {
-	o.Commander = v
+// SetCommanderUser sets field value
+func (o *IncidentCreateRelationships) SetCommanderUser(v NullableRelationshipToUser) {
+	o.CommanderUser = v
 }
 
 func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
@@ -68,7 +68,7 @@ func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if true {
-		toSerialize["commander"] = o.Commander
+		toSerialize["commander_user"] = o.CommanderUser
 	}
 	return json.Marshal(toSerialize)
 }
@@ -76,17 +76,17 @@ func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Commander *RelationshipToUser `json:"commander"`
+		CommanderUser *NullableRelationshipToUser `json:"commander_user"`
 	}{}
 	all := struct {
-		Commander RelationshipToUser `json:"commander"`
+		CommanderUser NullableRelationshipToUser `json:"commander_user"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
 	}
-	if required.Commander == nil {
-		return fmt.Errorf("Required field commander missing")
+	if required.CommanderUser == nil {
+		return fmt.Errorf("Required field commander_user missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -97,6 +97,6 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Commander = all.Commander
+	o.CommanderUser = all.CommanderUser
 	return nil
 }

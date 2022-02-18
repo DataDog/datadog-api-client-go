@@ -834,18 +834,41 @@ type apiUpdateIncidentRequest struct {
 	ApiService *IncidentsApiService
 	incidentId string
 	body       *IncidentUpdateRequest
+	include    *[]IncidentRelatedObject
+}
+
+type UpdateIncidentOptionalParameters struct {
+	Include *[]IncidentRelatedObject
+}
+
+func NewUpdateIncidentOptionalParameters() *UpdateIncidentOptionalParameters {
+	this := UpdateIncidentOptionalParameters{}
+	return &this
+}
+func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *UpdateIncidentOptionalParameters {
+	r.Include = &include
+	return r
 }
 
 /*
  * UpdateIncident Update an existing incident
  * Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
  */
-func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req := apiUpdateIncidentRequest{
 		ApiService: a,
 		ctx:        ctx,
 		incidentId: incidentId,
 		body:       &body,
+	}
+
+	if len(o) > 1 {
+		var localVarReturnValue IncidentResponse
+		return localVarReturnValue, nil, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.include = o[0].Include
 	}
 
 	return req.ApiService.updateIncidentExecute(req)
@@ -887,6 +910,9 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
 
+	if r.include != nil {
+		localVarQueryParams.Add("include", parameterToString(*r.include, "csv"))
+	}
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

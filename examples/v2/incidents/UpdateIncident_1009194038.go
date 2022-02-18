@@ -1,4 +1,4 @@
-// Update an existing incident returns "OK" response
+// Remove commander from an incident returns "OK" response
 
 package main
 
@@ -19,15 +19,10 @@ func main() {
 		Data: datadog.IncidentUpdateData{
 			Id:   IncidentDataID,
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
-			Attributes: &datadog.IncidentUpdateAttributes{
-				Fields: &map[string]datadog.IncidentFieldAttributes{
-					"state": datadog.IncidentFieldAttributes{
-						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
-							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
-							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
-						}},
+			Relationships: &datadog.IncidentUpdateRelationships{
+				CommanderUser: &datadog.NullableRelationshipToUser{
+					Data: *datadog.NewNullableNullableRelationshipToUserData(nil),
 				},
-				Title: datadog.PtrString("A test incident title-updated"),
 			},
 		},
 	}
