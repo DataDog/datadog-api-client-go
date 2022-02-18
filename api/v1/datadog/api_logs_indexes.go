@@ -91,9 +91,6 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateLogsIndex"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -254,9 +251,6 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetLogsIndex"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -412,9 +406,6 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetLogsIndexOrder"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -560,9 +551,6 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogIndexes"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -720,9 +708,6 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateLogsIndex"
 
 	// body params
 	localVarPostBody = r.body
@@ -886,9 +871,6 @@ func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndex
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateLogsIndexOrder"
 
 	// body params
 	localVarPostBody = r.body

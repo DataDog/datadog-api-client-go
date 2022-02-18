@@ -91,9 +91,6 @@ func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAg
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "AggregateLogs"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -283,9 +280,6 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogs"
 
 	// body params
 	localVarPostBody = r.body
@@ -540,9 +534,6 @@ func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogsGet"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -757,9 +748,6 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SubmitLog"
 
 	if r.contentEncoding != nil {
 		localVarHeaderParams["Content-Encoding"] = parameterToString(*r.contentEncoding, "")

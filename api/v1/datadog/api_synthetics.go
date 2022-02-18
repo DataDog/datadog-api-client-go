@@ -92,9 +92,6 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateGlobalVariable"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -257,9 +254,6 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreatePrivateLocation"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -421,9 +415,6 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSyntheticsAPITest"
 
 	// body params
 	localVarPostBody = r.body
@@ -597,9 +588,6 @@ func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyn
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSyntheticsBrowserTest"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -768,9 +756,6 @@ func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVari
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteGlobalVariable"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -928,9 +913,6 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeletePrivateLocation"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1071,9 +1053,6 @@ func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (Synt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteTests"
 
 	// body params
 	localVarPostBody = r.body
@@ -1250,9 +1229,6 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "EditGlobalVariable"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -1413,9 +1389,6 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPITest"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1629,9 +1602,6 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPITestLatestResults"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1793,9 +1763,6 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPITestResult"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1954,9 +1921,6 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetBrowserTest"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -2170,9 +2134,6 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetBrowserTestLatestResults"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2334,9 +2295,6 @@ func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetBrowserTestResult"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2494,9 +2452,6 @@ func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetGlobalVariable"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -2656,9 +2611,6 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetPrivateLocation"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2807,9 +2759,6 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSyntheticsCIBatch"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2957,9 +2906,6 @@ func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetTest"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -3116,9 +3062,6 @@ func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariabl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListGlobalVariables"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3265,9 +3208,6 @@ func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLocations"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3402,9 +3342,6 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListTests"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -3566,9 +3503,6 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "TriggerCITests"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -3720,9 +3654,6 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "TriggerTests"
 
 	// body params
 	localVarPostBody = r.body
@@ -3878,9 +3809,6 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAPITest"
 
 	// body params
 	localVarPostBody = r.body
@@ -4057,9 +3985,6 @@ func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateBrowserTest"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -4235,9 +4160,6 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdatePrivateLocation"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -4392,9 +4314,6 @@ func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPause
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateTestPauseStatus"
 
 	// body params
 	localVarPostBody = r.body

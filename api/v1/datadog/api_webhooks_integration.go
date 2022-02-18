@@ -91,9 +91,6 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateWebhooksIntegration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -256,9 +253,6 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateWebhooksIntegrationCustomVariable"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -417,9 +411,6 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteWebhooksIntegration"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -566,9 +557,6 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteWebhooksIntegrationCustomVariable"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -718,9 +706,6 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetWebhooksIntegration"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -892,9 +877,6 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetWebhooksIntegrationCustomVariable"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1068,9 +1050,6 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateWebhooksIntegration"
 
 	// body params
 	localVarPostBody = r.body
@@ -1246,9 +1225,6 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateWebhooksIntegrationCustomVariable"
 
 	// body params
 	localVarPostBody = r.body

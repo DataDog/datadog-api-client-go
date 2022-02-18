@@ -94,9 +94,6 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "AddPermissionToRole"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -272,9 +269,6 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "AddUserToRole"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -449,9 +443,6 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CloneRole"
 
 	// body params
 	localVarPostBody = r.body
@@ -635,9 +626,6 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateRole"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -796,9 +784,6 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteRole"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -947,9 +932,6 @@ func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetRole"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1105,9 +1087,6 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListPermissions"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1266,9 +1245,6 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListRolePermissions"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1484,9 +1460,6 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListRoleUsers"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1698,9 +1671,6 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListRoles"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1853,9 +1823,6 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "RemovePermissionFromRole"
 
 	// body params
 	localVarPostBody = r.body
@@ -2032,9 +1999,6 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "RemoveUserFromRole"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -2209,9 +2173,6 @@ func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateRole"
 
 	// body params
 	localVarPostBody = r.body

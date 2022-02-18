@@ -92,9 +92,6 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateLogsMetric"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -263,9 +260,6 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteLogsMetric"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -414,9 +408,6 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetLogsMetric"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -573,9 +564,6 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogsMetrics"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -729,9 +717,6 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateLogsMetric"
 
 	// body params
 	localVarPostBody = r.body

@@ -91,9 +91,6 @@ func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAPIKey"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -255,9 +252,6 @@ func (a *KeyManagementApiService) createApplicationKeyExecute(r apiCreateApplica
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateApplicationKey"
 
 	// body params
 	localVarPostBody = r.body
@@ -429,9 +423,6 @@ func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAPIKey"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -600,9 +591,6 @@ func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplica
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteApplicationKey"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -760,9 +748,6 @@ func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetAPIKey"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -922,9 +907,6 @@ func (a *KeyManagementApiService) getApplicationKeyExecute(r apiGetApplicationKe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetApplicationKey"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1080,9 +1062,6 @@ func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (A
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListAPIKeys"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1227,9 +1206,6 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListApplicationKeys"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1383,9 +1359,6 @@ func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAPIKey"
 
 	// body params
 	localVarPostBody = r.body
@@ -1561,9 +1534,6 @@ func (a *KeyManagementApiService) updateApplicationKeyExecute(r apiUpdateApplica
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateApplicationKey"
 
 	// body params
 	localVarPostBody = r.body

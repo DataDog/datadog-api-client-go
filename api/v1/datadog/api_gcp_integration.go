@@ -90,9 +90,6 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateGCPIntegration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -255,9 +252,6 @@ func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPInt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteGCPIntegration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -414,9 +408,6 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListGCPIntegration"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -580,9 +571,6 @@ func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPInt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateGCPIntegration"
 
 	// body params
 	localVarPostBody = r.body
