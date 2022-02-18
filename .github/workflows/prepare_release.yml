@@ -33,6 +33,7 @@ jobs:
         run: |
           git switch -c "release/${RELEASE_TAG}"
           sed -i 's/".*"/"${RELEASE_TAG#v}"/' version.go
+          git commit -a -m "Version bump ${RELEASE_TAG}"
           git push -f --set-upstream origin "release/${RELEASE_TAG}"
         env:
           RELEASE_TAG: ${{ github.event.inputs.tag }}

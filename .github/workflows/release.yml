@@ -57,6 +57,7 @@ jobs:
         run: |
           git switch -c "${POST_RELEASE_BRANCH}"
           sed  's/"\(.*\)"/"\1+dev"/' version.go
+          git commit -a -m "Post release bump"
           git push -f --set-upstream origin "${POST_RELEASE_BRANCH}"
         env:
           POST_RELEASE_BRANCH: post-${{ github.head_ref }}
