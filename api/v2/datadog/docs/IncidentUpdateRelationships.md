@@ -2,13 +2,11 @@
 
 ## Properties
 
-| Name                   | Type                                                                                                       | Description | Notes      |
-| ---------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
-| **CommanderUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
-| **CreatedByUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
-| **Integrations**       | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |             | [optional] |
-| **LastModifiedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
-| **Postmortem**         | Pointer to [**RelationshipToIncidentPostmortem**](RelationshipToIncidentPostmortem.md)                     |             | [optional] |
+| Name              | Type                                                                                                       | Description | Notes      |
+| ----------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **CommanderUser** | Pointer to [**NullableRelationshipToUser**](NullableRelationshipToUser.md)                                 |             | [optional] |
+| **Integrations**  | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |             | [optional] |
+| **Postmortem**    | Pointer to [**RelationshipToIncidentPostmortem**](RelationshipToIncidentPostmortem.md)                     |             | [optional] |
 
 ## Methods
 
@@ -31,20 +29,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetCommanderUser
 
-`func (o *IncidentUpdateRelationships) GetCommanderUser() RelationshipToUser`
+`func (o *IncidentUpdateRelationships) GetCommanderUser() NullableRelationshipToUser`
 
 GetCommanderUser returns the CommanderUser field if non-nil, zero value otherwise.
 
 ### GetCommanderUserOk
 
-`func (o *IncidentUpdateRelationships) GetCommanderUserOk() (*RelationshipToUser, bool)`
+`func (o *IncidentUpdateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool)`
 
 GetCommanderUserOk returns a tuple with the CommanderUser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommanderUser
 
-`func (o *IncidentUpdateRelationships) SetCommanderUser(v RelationshipToUser)`
+`func (o *IncidentUpdateRelationships) SetCommanderUser(v NullableRelationshipToUser)`
 
 SetCommanderUser sets CommanderUser field to given value.
 
@@ -53,31 +51,6 @@ SetCommanderUser sets CommanderUser field to given value.
 `func (o *IncidentUpdateRelationships) HasCommanderUser() bool`
 
 HasCommanderUser returns a boolean if a field has been set.
-
-### GetCreatedByUser
-
-`func (o *IncidentUpdateRelationships) GetCreatedByUser() RelationshipToUser`
-
-GetCreatedByUser returns the CreatedByUser field if non-nil, zero value otherwise.
-
-### GetCreatedByUserOk
-
-`func (o *IncidentUpdateRelationships) GetCreatedByUserOk() (*RelationshipToUser, bool)`
-
-GetCreatedByUserOk returns a tuple with the CreatedByUser field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetCreatedByUser
-
-`func (o *IncidentUpdateRelationships) SetCreatedByUser(v RelationshipToUser)`
-
-SetCreatedByUser sets CreatedByUser field to given value.
-
-### HasCreatedByUser
-
-`func (o *IncidentUpdateRelationships) HasCreatedByUser() bool`
-
-HasCreatedByUser returns a boolean if a field has been set.
 
 ### GetIntegrations
 
@@ -103,31 +76,6 @@ SetIntegrations sets Integrations field to given value.
 `func (o *IncidentUpdateRelationships) HasIntegrations() bool`
 
 HasIntegrations returns a boolean if a field has been set.
-
-### GetLastModifiedByUser
-
-`func (o *IncidentUpdateRelationships) GetLastModifiedByUser() RelationshipToUser`
-
-GetLastModifiedByUser returns the LastModifiedByUser field if non-nil, zero value otherwise.
-
-### GetLastModifiedByUserOk
-
-`func (o *IncidentUpdateRelationships) GetLastModifiedByUserOk() (*RelationshipToUser, bool)`
-
-GetLastModifiedByUserOk returns a tuple with the LastModifiedByUser field if it's non-nil, zero value otherwise
-and a boolean to check if the value has been set.
-
-### SetLastModifiedByUser
-
-`func (o *IncidentUpdateRelationships) SetLastModifiedByUser(v RelationshipToUser)`
-
-SetLastModifiedByUser sets LastModifiedByUser field to given value.
-
-### HasLastModifiedByUser
-
-`func (o *IncidentUpdateRelationships) HasLastModifiedByUser() bool`
-
-HasLastModifiedByUser returns a boolean if a field has been set.
 
 ### GetPostmortem
 

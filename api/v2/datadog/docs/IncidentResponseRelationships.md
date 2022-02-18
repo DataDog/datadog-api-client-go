@@ -4,7 +4,7 @@
 
 | Name                   | Type                                                                                                       | Description | Notes      |
 | ---------------------- | ---------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
-| **CommanderUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
+| **CommanderUser**      | Pointer to [**NullableRelationshipToUser**](NullableRelationshipToUser.md)                                 |             | [optional] |
 | **CreatedByUser**      | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
 | **Integrations**       | Pointer to [**RelationshipToIncidentIntegrationMetadatas**](RelationshipToIncidentIntegrationMetadatas.md) |             | [optional] |
 | **LastModifiedByUser** | Pointer to [**RelationshipToUser**](RelationshipToUser.md)                                                 |             | [optional] |
@@ -31,20 +31,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetCommanderUser
 
-`func (o *IncidentResponseRelationships) GetCommanderUser() RelationshipToUser`
+`func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipToUser`
 
 GetCommanderUser returns the CommanderUser field if non-nil, zero value otherwise.
 
 ### GetCommanderUserOk
 
-`func (o *IncidentResponseRelationships) GetCommanderUserOk() (*RelationshipToUser, bool)`
+`func (o *IncidentResponseRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool)`
 
 GetCommanderUserOk returns a tuple with the CommanderUser field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetCommanderUser
 
-`func (o *IncidentResponseRelationships) SetCommanderUser(v RelationshipToUser)`
+`func (o *IncidentResponseRelationships) SetCommanderUser(v NullableRelationshipToUser)`
 
 SetCommanderUser sets CommanderUser field to given value.
 
