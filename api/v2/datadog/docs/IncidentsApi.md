@@ -292,7 +292,7 @@ Other parameters are passed through a pointer to a ListIncidentsOptionalParamete
 
 ## UpdateIncident
 
-> IncidentResponse UpdateIncident(ctx, incidentId, body)
+> IncidentResponse UpdateIncident(ctx, incidentId, body, datadog.UpdateIncidentOptionalParameters{})
 
 Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 
@@ -314,12 +314,16 @@ func main() {
 
     incidentId := "incidentId_example" // string | The UUID of the incident.
     body := *datadog.NewIncidentUpdateRequest(*datadog.NewIncidentUpdateData("00000000-0000-0000-4567-000000000000", datadog.IncidentType("incidents"))) // IncidentUpdateRequest | Incident Payload.
+    include := []datadog.IncidentRelatedObject{datadog.IncidentRelatedObject("users")} // []IncidentRelatedObject | Specifies which types of related objects should be included in the response. (optional)
+    optionalParams := datadog.UpdateIncidentOptionalParameters{
+        Include: &include,
+    }
 
     configuration := datadog.NewConfiguration()
     configuration.SetUnstableOperationEnabled("UpdateIncident", true)
 
     apiClient := datadog.NewAPIClient(configuration)
-    resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, incidentId, body)
+    resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, incidentId, body, optionalParams)
     if err != nil {
         fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)
         fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
@@ -340,7 +344,11 @@ func main() {
 
 ### Optional Parameters
 
-This endpoint does not have optional parameters.
+Other parameters are passed through a pointer to a UpdateIncidentOptionalParameters struct.
+
+| Name        | Type                                                    | Description                                                                  | Notes |
+| ----------- | ------------------------------------------------------- | ---------------------------------------------------------------------------- | ----- |
+| **include** | [**[]IncidentRelatedObject**](IncidentRelatedObject.md) | Specifies which types of related objects should be included in the response. |
 
 ### Return type
 

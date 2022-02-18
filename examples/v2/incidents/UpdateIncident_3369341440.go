@@ -1,4 +1,4 @@
-// Update an existing incident returns "OK" response
+// Add commander to an incident returns "OK" response
 
 package main
 
@@ -15,19 +15,20 @@ func main() {
 	// there is a valid "incident" in the system
 	IncidentDataID := os.Getenv("INCIDENT_DATA_ID")
 
+	// there is a valid "user" in the system
+	UserDataID := os.Getenv("USER_DATA_ID")
+
 	body := datadog.IncidentUpdateRequest{
 		Data: datadog.IncidentUpdateData{
 			Id:   IncidentDataID,
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
-			Attributes: &datadog.IncidentUpdateAttributes{
-				Fields: &map[string]datadog.IncidentFieldAttributes{
-					"state": datadog.IncidentFieldAttributes{
-						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
-							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
-							Value: *datadog.NewNullableString(datadog.PtrString("resolved")),
-						}},
+			Relationships: &datadog.IncidentUpdateRelationships{
+				CommanderUser: &datadog.NullableRelationshipToUser{
+					Data: *datadog.NewNullableNullableRelationshipToUserData(&datadog.NullableRelationshipToUserData{
+						Id:   UserDataID,
+						Type: datadog.USERSTYPE_USERS,
+					}),
 				},
-				Title: datadog.PtrString("A test incident title-updated"),
 			},
 		},
 	}
