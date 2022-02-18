@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## v1.9.0 / 2022-02-18
+
+### Fixed
+* Add missing type to `CloudWorkloadSecurityAgentRuleAttributes` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1339
+* Add missing type to enum by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1342
+* Add nullable user relationships to incidents and use this relationship schema for `commander_user` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1311
+### Added
+* Add organization metadata to additional Usage API responses by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1317
+* Add support for formula and function in monitors by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1321
+* Add endpoint for managing SAML AuthN mappings by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1319
+* [Synthetics] Add `isCritical` to browser test steps by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1327
+* Add metrics bulk-config endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1324
+* Add support for "estimated usage attribution" by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1335
+* Add org metadata for all hourly usage endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1341
+### Changed
+* Remove default nullable models by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1312
+* Add CSPM usage fields and change properties to nullable doubles by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1307
+* Add synthetics test result failure field by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1318
+* Fix funnel steps definition by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1330
+* Extract incident meta object by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1333
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.8.0...v1.9.0
+
 ## 1.8.0 / 2022-01-18
 
 * [Added] Add `filter[deleted]` parameter for searching recently deleted dashboards. See [#1296](https://github.com/DataDog/datadog-api-client-go/pull/1296).
