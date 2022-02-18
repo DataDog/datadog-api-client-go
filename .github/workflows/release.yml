@@ -56,7 +56,7 @@ jobs:
       - name: Bump version
         run: |
           git switch -c "${POST_RELEASE_BRANCH}"
-          VERSION=`sed -n 's/const Version = "\(.*\)"/\1/p' version.go  | awk -F. '{OFS="."; $NF+=1; print $0 "+dev"}'`
+          VERSION=$(sed -n 's/const Version = "\(.*\)"/\1/p' version.go  | awk -F. '{OFS="."; $NF+=1; print $0 "+dev"}')
           sed -i 's/".*"/"'$VERSION'"/' version.go
           git commit -a -m "Post release bump"
           git push -f --set-upstream origin "${POST_RELEASE_BRANCH}"
