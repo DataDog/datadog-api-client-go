@@ -52,7 +52,7 @@ jobs:
               tag_name: process.env.RELEASE_TAG,
             });
             const today = new Date().toJSON().slice(0, 10);
-            const header = [`# CHANGELOG\n\n## ${process.env.RELEASE_TAG} / ${today}\n`];
+            const header = [`# CHANGELOG\n\n## ${process.env.RELEASE_TAG.replace(/^v/, '')} / ${today}\n`];
             const changes = header.concat(notes.body.split("\n").slice(3));
             const { data: content } = await github.rest.repos.getContent({
               owner: context.repo.owner,
