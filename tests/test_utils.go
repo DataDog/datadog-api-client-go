@@ -501,9 +501,6 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 	}
 	return ddhttp.WrapRoundTripper(
 		rt,
-		ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
-			span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
-		}),
 		ddhttp.WithAfter(func(r *http.Response, span ddtrace.Span) {
 			if 500 <= r.StatusCode && r.StatusCode < 600 {
 				var b bytes.Buffer

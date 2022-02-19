@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -64,8 +62,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -114,8 +110,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - CheckCanDeleteSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -164,8 +158,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -214,8 +206,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetSLOHistory
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -269,8 +259,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -319,8 +307,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteSLO
       User-Agent:
       - datadog-api-client-go/1.4.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:

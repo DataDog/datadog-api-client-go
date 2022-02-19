@@ -93,9 +93,6 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAWSAccount"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -268,9 +265,6 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateAWSTagFilter"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -433,9 +427,6 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateNewAWSExternalID"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -597,9 +588,6 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAWSAccount"
 
 	// body params
 	localVarPostBody = r.body
@@ -772,9 +760,6 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteAWSTagFilter"
 
 	// body params
 	localVarPostBody = r.body
@@ -979,9 +964,6 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListAWSAccounts"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1143,9 +1125,6 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListAWSTagFilters"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1300,9 +1279,6 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListAvailableAWSNamespaces"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1499,9 +1475,6 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateAWSAccount"
 
 	// body params
 	localVarPostBody = r.body

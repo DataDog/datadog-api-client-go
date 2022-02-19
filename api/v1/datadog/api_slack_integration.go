@@ -94,9 +94,6 @@ func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiC
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateSlackIntegrationChannel"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -270,9 +267,6 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetS
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSlackIntegrationChannel"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -440,9 +434,6 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSlackIntegrationChannels"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -613,9 +604,6 @@ func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiR
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "RemoveSlackIntegrationChannel"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -782,9 +770,6 @@ func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiU
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateSlackIntegrationChannel"
 
 	// body params
 	localVarPostBody = r.body

@@ -98,9 +98,6 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListLogs"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -313,9 +310,6 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "SubmitLog"
 
 	if r.contentEncoding != nil {
 		localVarHeaderParams["Content-Encoding"] = parameterToString(*r.contentEncoding, "")

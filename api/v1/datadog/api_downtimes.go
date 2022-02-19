@@ -87,9 +87,6 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CancelDowntime"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -240,9 +237,6 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CancelDowntimesByScope"
 
 	// body params
 	localVarPostBody = r.body
@@ -416,9 +410,6 @@ func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateDowntime"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -578,9 +569,6 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetDowntime"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -763,9 +751,6 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListDowntimes"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -913,9 +898,6 @@ func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDownti
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListMonitorDowntimes"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1079,9 +1061,6 @@ func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateDowntime"
 
 	// body params
 	localVarPostBody = r.body

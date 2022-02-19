@@ -91,9 +91,6 @@ func (a *DashboardListsApiService) createDashboardListExecute(r apiCreateDashboa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateDashboardList"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -254,9 +251,6 @@ func (a *DashboardListsApiService) deleteDashboardListExecute(r apiDeleteDashboa
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteDashboardList"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -415,9 +409,6 @@ func (a *DashboardListsApiService) getDashboardListExecute(r apiGetDashboardList
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetDashboardList"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -573,9 +564,6 @@ func (a *DashboardListsApiService) listDashboardListsExecute(r apiListDashboardL
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListDashboardLists"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -728,9 +716,6 @@ func (a *DashboardListsApiService) updateDashboardListExecute(r apiUpdateDashboa
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateDashboardList"
 
 	// body params
 	localVarPostBody = r.body

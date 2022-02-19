@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDashboardList
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -59,8 +57,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -108,8 +104,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -154,8 +148,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -203,8 +195,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -252,8 +242,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -298,8 +286,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetDashboardListItems
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -346,8 +332,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteDashboardList
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:

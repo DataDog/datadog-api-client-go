@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateAWSAccount
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -55,8 +53,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateAWSLambdaARN
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -100,8 +96,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - EnableAWSLogServices
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -142,8 +136,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListAWSLogsIntegrations
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -187,8 +179,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteAWSLambdaARN
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -229,8 +219,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListAWSLogsIntegrations
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -274,8 +262,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteAWSAccount
       User-Agent:
       - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:

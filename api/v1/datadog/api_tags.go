@@ -121,9 +121,6 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateHostTags"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -308,9 +305,6 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteHostTags"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -485,9 +479,6 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetHostTags"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -669,9 +660,6 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListHostTags"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -862,9 +850,6 @@ func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (Host
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateHostTags"
 
 	// body params
 	localVarPostBody = r.body

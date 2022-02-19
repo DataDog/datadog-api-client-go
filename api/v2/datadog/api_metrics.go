@@ -98,9 +98,6 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateBulkTagsMetricsConfiguration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -286,9 +283,6 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateTagConfiguration"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -463,9 +457,6 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteBulkTagsMetricsConfiguration"
 
 	// body params
 	localVarPostBody = r.body
@@ -643,9 +634,6 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteTagConfiguration"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -801,9 +789,6 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListTagConfigurationByName"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1044,9 +1029,6 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListTagConfigurations"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1204,9 +1186,6 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListTagsByMetricName"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1379,9 +1358,6 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListVolumesByMetricName"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1564,9 +1540,6 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateTagConfiguration"
 
 	// body params
 	localVarPostBody = r.body

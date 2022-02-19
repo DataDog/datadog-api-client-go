@@ -153,9 +153,6 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetDailyCustomReports"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -366,9 +363,6 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetHourlyUsageAttribution"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -545,9 +539,6 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetIncidentManagement"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -735,9 +726,6 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetIngestedSpans"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -956,9 +944,6 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetMonthlyCustomReports"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1190,9 +1175,6 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetMonthlyUsageAttribution"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1347,9 +1329,6 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSpecifiedDailyCustomReports"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1515,9 +1494,6 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetSpecifiedMonthlyCustomReports"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1715,9 +1691,6 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageAnalyzedLogs"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -1969,9 +1942,6 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageAttribution"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2148,9 +2118,6 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageAuditLogs"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -2332,9 +2299,6 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageBillableSummary"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -2523,9 +2487,6 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageCWS"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2712,9 +2673,6 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageCloudSecurityPostureManagement"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -2903,9 +2861,6 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageDBM"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3092,9 +3047,6 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageFargate"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -3283,9 +3235,6 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageHosts"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3472,9 +3421,6 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageIndexedSpans"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -3663,9 +3609,6 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageInternetOfThings"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3853,9 +3796,6 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageLambda"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4042,9 +3982,6 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageLogs"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -4251,9 +4188,6 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageLogsByIndex"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4440,9 +4374,6 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageLogsByRetention"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -4631,9 +4562,6 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageNetworkFlows"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4821,9 +4749,6 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageNetworkHosts"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5010,9 +4935,6 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageProfiling"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -5211,9 +5133,6 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageRumSessions"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5400,9 +5319,6 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageRumUnits"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -5591,9 +5507,6 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSDS"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5780,9 +5693,6 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSNMP"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -5981,9 +5891,6 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSummary"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6170,9 +6077,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSynthetics"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -6361,9 +6265,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSyntheticsAPI"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6551,9 +6452,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageSyntheticsBrowser"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6740,9 +6638,6 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageTimeseries"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -6972,9 +6867,6 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetUsageTopAvgMetrics"
 
 	if r.ctx != nil {
 		// API Key Authentication

@@ -91,9 +91,6 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "CreateNotebook"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -251,9 +248,6 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "DeleteNotebook"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -413,9 +407,6 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetNotebook"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -699,9 +690,6 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListNotebooks"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -864,9 +852,6 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UpdateNotebook"
 
 	// body params
 	localVarPostBody = r.body

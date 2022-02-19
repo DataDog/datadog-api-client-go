@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateLogsPipeline
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -86,8 +84,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListLogsPipelines
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -333,8 +329,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetLogsPipeline
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -412,8 +406,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateLogsPipeline
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -488,8 +480,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteLogsPipeline
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -544,8 +534,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteLogsPipeline
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:

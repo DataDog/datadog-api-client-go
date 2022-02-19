@@ -113,9 +113,6 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "GetHostTotals"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -370,9 +367,6 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "ListHosts"
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -536,9 +530,6 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "MuteHost"
-
 	// body params
 	localVarPostBody = r.body
 	if r.ctx != nil {
@@ -698,9 +689,6 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	// Set Operation-ID header for telemetry
-	localVarHeaderParams["DD-OPERATION-ID"] = "UnmuteHost"
 
 	if r.ctx != nil {
 		// API Key Authentication

@@ -10,8 +10,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSLO
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -66,8 +64,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -119,8 +115,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -190,8 +184,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - GetSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -246,8 +238,6 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - UpdateSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -298,8 +288,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -350,8 +338,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteSLOCorrection
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
@@ -403,8 +389,6 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - DeleteSLO
       User-Agent:
       - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
       X-Datadog-Parent-Id:
