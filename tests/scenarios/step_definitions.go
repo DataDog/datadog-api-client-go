@@ -292,14 +292,22 @@ func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value
 	}
 
 	templatedValue := Templated(t, GetData(ctx), value)
-	testValue, err := stringToType(templatedValue, responseValue.Interface())
-	if err != nil {
-		t.Errorf("%v", err)
-	}
 
-	cmp := is.DeepEqual(testValue, responseValue.Interface())()
-	if !cmp.Success() {
-		t.Errorf("%v", cmp)
+	if responseValue.Kind() == reflect.Interface && responseValue.IsNil() {
+		cmp := is.DeepEqual(templatedValue, "null")()
+		if !cmp.Success() {
+			t.Errorf("%v", cmp)
+		}
+	} else {
+		testValue, err := stringToType(templatedValue, responseValue.Interface())
+		if err != nil {
+			t.Errorf("%v", err)
+		}
+
+		cmp := is.DeepEqual(testValue, responseValue.Interface())()
+		if !cmp.Success() {
+			t.Errorf("%v", cmp)
+		}
 	}
 }
 

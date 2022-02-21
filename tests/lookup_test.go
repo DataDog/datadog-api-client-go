@@ -22,12 +22,12 @@ func TestLookupStringI_Map(t *testing.T) {
 	assert.Equal(1, value.Interface())
 
 	value, err = LookupStringI(testMap, "foo.spam")
-	assert.Equal(NotFound, err)
+	assert.Equal(ErrNotFound, err)
 
 	value, err = LookupStringI(testMap, "spam[1].egg")
 	assert.Equal(nil, err)
 	assert.Equal(2, value.Interface())
 
 	value, err = LookupStringI(testMap, "spam[2].egg")
-	assert.Equal(NotFound, err)
+	assert.Equal(ErrNotFound, err)
 }

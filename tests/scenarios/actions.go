@@ -47,13 +47,6 @@ type operationParameter struct {
 	Value  *string `json:"value"`
 }
 
-func Lookup(data interface{}, path string) (reflect.Value, error) {
-	if path == "" {
-		return lookup.Lookup(data)
-	}
-	return lookup.LookupStringI(data, path)
-}
-
 func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp reflect.Type) reflect.Value {
 	if p.Value != nil {
 		tpl := Templated(t, GetData(ctx), *p.Value)

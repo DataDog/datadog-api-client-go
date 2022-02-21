@@ -37,5 +37,5 @@ cd tests
 golint ./...
 go mod tidy
 go clean -testcache
+gotestsum --format short-verbose ./...
 cd ..
-gotestsum --format short-verbose --rerun-fails --rerun-fails-max-failures=20000 --raw-command -- ./run-go-tests.sh
