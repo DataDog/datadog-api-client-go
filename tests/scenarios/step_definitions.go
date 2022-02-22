@@ -113,7 +113,7 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 }
 
 func addParameterFrom(t gobdd.StepTest, ctx gobdd.Context, name string, path string) {
-	value, err := Lookup(GetData(ctx), CamelToSnakeCase(path))
+	value, err := tests.LookupStringI(GetData(ctx), CamelToSnakeCase(path))
 	if err != nil {
 		t.Errorf("key %s in %+v: %v", path, GetData(ctx), err)
 	}
@@ -286,29 +286,37 @@ func bodyFromFile(t gobdd.StepTest, ctx gobdd.Context, bodyFile string) {
 }
 
 func expectEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string, value string) {
-	responseValue, err := Lookup(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup response value %s in %+v: %v", CamelToSnakeCase(responsePath), GetJSONResponse(ctx), err)
 	}
 
 	templatedValue := Templated(t, GetData(ctx), value)
-	testValue, err := stringToType(templatedValue, responseValue.Interface())
-	if err != nil {
-		t.Errorf("%v", err)
-	}
 
-	cmp := is.DeepEqual(testValue, responseValue.Interface())()
-	if !cmp.Success() {
-		t.Errorf("%v", cmp)
+	if responseValue.Kind() == reflect.Interface && responseValue.IsNil() {
+		cmp := is.DeepEqual(templatedValue, "null")()
+		if !cmp.Success() {
+			t.Errorf("%v", cmp)
+		}
+	} else {
+		testValue, err := stringToType(templatedValue, responseValue.Interface())
+		if err != nil {
+			t.Errorf("%v", err)
+		}
+
+		cmp := is.DeepEqual(testValue, responseValue.Interface())()
+		if !cmp.Success() {
+			t.Errorf("%v", cmp)
+		}
 	}
 }
 
 func expectEqualValue(t gobdd.StepTest, ctx gobdd.Context, responsePath string, fixturePath string) {
-	fixtureValue, err := Lookup(GetData(ctx), CamelToSnakeCase(fixturePath))
+	fixtureValue, err := tests.LookupStringI(GetData(ctx), CamelToSnakeCase(fixturePath))
 	if err != nil {
 		t.Fatalf("could not lookup fixture value %s in %+v: %v", fixturePath, GetData(ctx), err)
 	}
-	responseValue, err := Lookup(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", SnakeToCamelCase(responsePath), err)
 	}
@@ -327,7 +335,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 	if err != nil {
 		t.Fatalf("assertion length value is not a number %s: %v", fixtureLength, err)
 	}
-	responseValue, err := Lookup(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
 		t.Fatalf("could not lookup response value %s: %v", responsePath, err)
 	}
@@ -338,7 +346,7 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 }
 
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
-	responseValue, err := Lookup(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
+	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
 		t.Errorf("could not lookup value: %v", err)
 	}

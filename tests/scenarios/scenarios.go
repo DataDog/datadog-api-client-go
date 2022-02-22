@@ -107,7 +107,7 @@ func Templated(t gobdd.StepTest, data map[string]interface{}, source string) str
 		if path[0] == '\'' || path[0] == '"' {
 			return path[1 : len(path)-1]
 		}
-		v, err := Lookup(data, path)
+		v, err := tests.LookupStringI(data, path)
 		if err != nil {
 			t.Fatalf("problem with replacement of %s (%s): %v", source, path, err)
 		}
