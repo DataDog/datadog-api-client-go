@@ -2,19 +2,19 @@
 
 ## Properties
 
-| Name               | Type                                               | Description                                                                                                                                                                                                                                                               | Notes      |
-| ------------------ | -------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
-| **AggregationKey** | Pointer to **string**                              | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.                                                                                                          | [optional] |
-| **AlertType**      | Pointer to [**EventAlertType**](EventAlertType.md) |                                                                                                                                                                                                                                                                           | [optional] |
-| **DateHappened**   | Pointer to **int64**                               | POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.                                                                                                                                                     | [optional] |
-| **DeviceName**     | Pointer to **string**                              | A device name.                                                                                                                                                                                                                                                            | [optional] |
-| **Host**           | Pointer to **string**                              | Host name to associate with the event. Any tags associated with the host are also applied to this event.                                                                                                                                                                  | [optional] |
-| **Priority**       | Pointer to [**EventPriority**](EventPriority.md)   |                                                                                                                                                                                                                                                                           | [optional] |
-| **RelatedEventId** | Pointer to **int64**                               | ID of the parent event. Must be sent as an integer (that is no quotes).                                                                                                                                                                                                   | [optional] |
-| **SourceTypeName** | Pointer to **string**                              | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] |
-| **Tags**           | Pointer to **[]string**                            | A list of tags to apply to the event.                                                                                                                                                                                                                                     | [optional] |
-| **Text**           | **string**                                         | The body of the event. Limited to 4000 characters. The text supports markdown. To use markdown in the event text, start the text block with &#x60;%%% \\n&#x60; and end the text block with &#x60;\\n %%%&#x60;. Use &#x60;msg_text&#x60; with the Datadog Ruby library.  |
-| **Title**          | **string**                                         | The event title.                                                                                                                                                                                                                                                          |
+| Name               | Type                                                     | Description                                                                                                                                                                                                                                                               | Notes      |
+| ------------------ | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- |
+| **AggregationKey** | Pointer to **string**                                    | An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.                                                                                                          | [optional] |
+| **AlertType**      | Pointer to [**EventAlertType**](EventAlertType.md)       |                                                                                                                                                                                                                                                                           | [optional] |
+| **DateHappened**   | Pointer to **int64**                                     | POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.                                                                                                                                                     | [optional] |
+| **DeviceName**     | Pointer to **string**                                    | A device name.                                                                                                                                                                                                                                                            | [optional] |
+| **Host**           | Pointer to **string**                                    | Host name to associate with the event. Any tags associated with the host are also applied to this event.                                                                                                                                                                  | [optional] |
+| **Priority**       | Pointer to [**NullableEventPriority**](EventPriority.md) |                                                                                                                                                                                                                                                                           | [optional] |
+| **RelatedEventId** | Pointer to **int64**                                     | ID of the parent event. Must be sent as an integer (that is no quotes).                                                                                                                                                                                                   | [optional] |
+| **SourceTypeName** | Pointer to **string**                                    | The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value). | [optional] |
+| **Tags**           | Pointer to **[]string**                                  | A list of tags to apply to the event.                                                                                                                                                                                                                                     | [optional] |
+| **Text**           | **string**                                               | The body of the event. Limited to 4000 characters. The text supports markdown. To use markdown in the event text, start the text block with &#x60;%%% \\n&#x60; and end the text block with &#x60;\\n %%%&#x60;. Use &#x60;msg_text&#x60; with the Datadog Ruby library.  |
+| **Title**          | **string**                                               | The event title.                                                                                                                                                                                                                                                          |
 
 ## Methods
 
@@ -184,6 +184,18 @@ SetPriority sets Priority field to given value.
 `func (o *EventCreateRequest) HasPriority() bool`
 
 HasPriority returns a boolean if a field has been set.
+
+### SetPriorityNil
+
+`func (o *EventCreateRequest) SetPriorityNil(b bool)`
+
+SetPriorityNil sets the value for Priority to be an explicit nil
+
+### UnsetPriority
+
+`func (o *EventCreateRequest) UnsetPriority()`
+
+UnsetPriority ensures that no value is present for Priority, not even an explicit nil
 
 ### GetRelatedEventId
 
