@@ -13,7 +13,6 @@ require (
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/jonboulle/clockwork v0.1.0
-	github.com/mcuadros/go-lookup v0.0.0-20200831155250-80f87a4fa5ee
 	github.com/opentracing/opentracing-go v1.1.0 // indirect
 	github.com/stretchr/objx v0.1.1 // indirect
 	github.com/stretchr/testify v1.7.0
@@ -25,7 +24,5 @@ require (
 	gopkg.in/h2non/gock.v1 v1.0.15
 	gotest.tools v2.2.0+incompatible
 )
-
-replace github.com/mcuadros/go-lookup => github.com/therve/go-lookup v0.0.0-20210911125823-5508a75dec6f
 
 replace github.com/DataDog/datadog-api-client-go => ../
