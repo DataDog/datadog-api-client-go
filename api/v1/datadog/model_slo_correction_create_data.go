@@ -15,11 +15,16 @@ import (
 
 // SLOCorrectionCreateData The data object associated with the SLO correction to be created.
 type SLOCorrectionCreateData struct {
+	// The attribute object associated with the SLO correction to be created.
 	Attributes *SLOCorrectionCreateRequestAttributes `json:"attributes,omitempty"`
-	Type       SLOCorrectionType                     `json:"type"`
+	// SLO correction resource type.
+	Type SLOCorrectionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionCreateData SLOCorrectionCreateData
 
 // NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +41,7 @@ func NewSLOCorrectionCreateData(type_ SLOCorrectionType) *SLOCorrectionCreateDat
 // but it doesn't guarantee that properties required by API are set
 func NewSLOCorrectionCreateDataWithDefaults() *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
+	var type_ SLOCorrectionType = "correction"
 	this.Type = type_
 	return &this
 }
@@ -79,7 +84,6 @@ func (o *SLOCorrectionCreateData) GetType() SLOCorrectionType {
 		var ret SLOCorrectionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -105,8 +109,10 @@ func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

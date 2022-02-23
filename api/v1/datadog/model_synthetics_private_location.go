@@ -20,13 +20,17 @@ type SyntheticsPrivateLocation struct {
 	// Unique identifier of the private location.
 	Id *string `json:"id,omitempty"`
 	// Name of the private location.
-	Name    string                            `json:"name"`
+	Name string `json:"name"`
+	// Secrets for the private location. Only present in the response when creating the private location.
 	Secrets *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
 	// Array of tags attached to the private location.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsPrivateLocation SyntheticsPrivateLocation
 
 // NewSyntheticsPrivateLocation instantiates a new SyntheticsPrivateLocation object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +58,6 @@ func (o *SyntheticsPrivateLocation) GetDescription() string {
 		var ret string
 		return ret
 	}
-
 	return o.Description
 }
 
@@ -110,7 +113,6 @@ func (o *SyntheticsPrivateLocation) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -166,7 +168,6 @@ func (o *SyntheticsPrivateLocation) GetTags() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
@@ -189,20 +190,18 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["description"] = o.Description
-	}
+	toSerialize["description"] = o.Description
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Secrets != nil {
 		toSerialize["secrets"] = o.Secrets
 	}
-	if true {
-		toSerialize["tags"] = o.Tags
+	toSerialize["tags"] = o.Tags
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,15 +16,21 @@ import (
 // NotebookUpdateDataAttributes The data attributes of a notebook.
 type NotebookUpdateDataAttributes struct {
 	// List of cells to display in the notebook.
-	Cells    []NotebookUpdateCell `json:"cells"`
-	Metadata *NotebookMetadata    `json:"metadata,omitempty"`
+	Cells []NotebookUpdateCell `json:"cells"`
+	// Metadata associated with the notebook.
+	Metadata *NotebookMetadata `json:"metadata,omitempty"`
 	// The name of the notebook.
-	Name   string             `json:"name"`
-	Status *NotebookStatus    `json:"status,omitempty"`
-	Time   NotebookGlobalTime `json:"time"`
+	Name string `json:"name"`
+	// Publication status of the notebook. For now, always "published".
+	Status *NotebookStatus `json:"status,omitempty"`
+	// Notebook global timeframe.
+	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookUpdateDataAttributes NotebookUpdateDataAttributes
 
 // NewNotebookUpdateDataAttributes instantiates a new NotebookUpdateDataAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +40,7 @@ func NewNotebookUpdateDataAttributes(cells []NotebookUpdateCell, name string, ti
 	this := NotebookUpdateDataAttributes{}
 	this.Cells = cells
 	this.Name = name
-	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
+	var status NotebookStatus = "published"
 	this.Status = &status
 	this.Time = time
 	return &this
@@ -45,7 +51,7 @@ func NewNotebookUpdateDataAttributes(cells []NotebookUpdateCell, name string, ti
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookUpdateDataAttributesWithDefaults() *NotebookUpdateDataAttributes {
 	this := NotebookUpdateDataAttributes{}
-	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
+	var status NotebookStatus = "published"
 	this.Status = &status
 	return &this
 }
@@ -56,7 +62,6 @@ func (o *NotebookUpdateDataAttributes) GetCells() []NotebookUpdateCell {
 		var ret []NotebookUpdateCell
 		return ret
 	}
-
 	return o.Cells
 }
 
@@ -112,7 +117,6 @@ func (o *NotebookUpdateDataAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -168,7 +172,6 @@ func (o *NotebookUpdateDataAttributes) GetTime() NotebookGlobalTime {
 		var ret NotebookGlobalTime
 		return ret
 	}
-
 	return o.Time
 }
 
@@ -191,20 +194,18 @@ func (o NotebookUpdateDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["cells"] = o.Cells
-	}
+	toSerialize["cells"] = o.Cells
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
-	if true {
-		toSerialize["time"] = o.Time
+	toSerialize["time"] = o.Time
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

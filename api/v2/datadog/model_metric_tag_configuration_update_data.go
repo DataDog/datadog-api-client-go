@@ -15,13 +15,18 @@ import (
 
 // MetricTagConfigurationUpdateData Object for a single tag configuration to be edited.
 type MetricTagConfigurationUpdateData struct {
+	// Object containing the definition of a metric tag configuration to be updated.
 	Attributes *MetricTagConfigurationUpdateAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   string                     `json:"id"`
+	Id string `json:"id"`
+	// The metric tag configuration resource type.
 	Type MetricTagConfigurationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricTagConfigurationUpdateData MetricTagConfigurationUpdateData
 
 // NewMetricTagConfigurationUpdateData instantiates a new MetricTagConfigurationUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,7 @@ func NewMetricTagConfigurationUpdateData(id string, type_ MetricTagConfiguration
 // but it doesn't guarantee that properties required by API are set
 func NewMetricTagConfigurationUpdateDataWithDefaults() *MetricTagConfigurationUpdateData {
 	this := MetricTagConfigurationUpdateData{}
-	var type_ MetricTagConfigurationType = METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS
+	var type_ MetricTagConfigurationType = "manage_tags"
 	this.Type = type_
 	return &this
 }
@@ -82,7 +87,6 @@ func (o *MetricTagConfigurationUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -106,7 +110,6 @@ func (o *MetricTagConfigurationUpdateData) GetType() MetricTagConfigurationType 
 		var ret MetricTagConfigurationType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -132,11 +135,11 @@ func (o MetricTagConfigurationUpdateData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

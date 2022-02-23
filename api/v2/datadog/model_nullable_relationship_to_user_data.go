@@ -16,11 +16,15 @@ import (
 // NullableRelationshipToUserData Relationship to user object.
 type NullableRelationshipToUserData struct {
 	// A unique identifier that represents the user.
-	Id   string    `json:"id"`
+	Id string `json:"id"`
+	// Users resource type.
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NullableRelationshipToUserData NullableRelationshipToUserData
 
 // NewNullableRelationshipToUserData instantiates a new NullableRelationshipToUserData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewNullableRelationshipToUserData(id string, type_ UsersType) *NullableRela
 // but it doesn't guarantee that properties required by API are set
 func NewNullableRelationshipToUserDataWithDefaults() *NullableRelationshipToUserData {
 	this := NullableRelationshipToUserData{}
-	var type_ UsersType = USERSTYPE_USERS
+	var type_ UsersType = "users"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *NullableRelationshipToUserData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -73,7 +76,6 @@ func (o *NullableRelationshipToUserData) GetType() UsersType {
 		var ret UsersType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -180,5 +182,11 @@ func (v NullableNullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 
 func (v *NullableNullableRelationshipToUserData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

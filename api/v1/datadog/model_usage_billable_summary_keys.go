@@ -14,41 +14,76 @@ import (
 
 // UsageBillableSummaryKeys Response with aggregated usage types.
 type UsageBillableSummaryKeys struct {
-	ApmHostSum                    *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
-	ApmHostTop99p                 *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
-	ApmTraceSearchSum             *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
-	FargateContainerAverage       *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
-	InfraContainerSum             *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
-	InfraHostSum                  *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
-	InfraHostTop99p               *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
-	IotTop99p                     *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
-	LambdaFunctionAverage         *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
-	LogsIndexed15daySum           *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
-	LogsIndexed180daySum          *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
-	LogsIndexed30daySum           *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
-	LogsIndexed3daySum            *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
-	LogsIndexed45daySum           *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
-	LogsIndexed60daySum           *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
-	LogsIndexed7daySum            *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
-	LogsIndexed90daySum           *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ApmHostSum *UsageBillableSummaryBody `json:"apm_host_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ApmHostTop99p *UsageBillableSummaryBody `json:"apm_host_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ApmTraceSearchSum *UsageBillableSummaryBody `json:"apm_trace_search_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	FargateContainerAverage *UsageBillableSummaryBody `json:"fargate_container_average,omitempty"`
+	// Response with properties for each aggregated usage type.
+	InfraContainerSum *UsageBillableSummaryBody `json:"infra_container_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	InfraHostSum *UsageBillableSummaryBody `json:"infra_host_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	InfraHostTop99p *UsageBillableSummaryBody `json:"infra_host_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	IotTop99p *UsageBillableSummaryBody `json:"iot_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LambdaFunctionAverage *UsageBillableSummaryBody `json:"lambda_function_average,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed15daySum *UsageBillableSummaryBody `json:"logs_indexed_15day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed180daySum *UsageBillableSummaryBody `json:"logs_indexed_180day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed30daySum *UsageBillableSummaryBody `json:"logs_indexed_30day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed3daySum *UsageBillableSummaryBody `json:"logs_indexed_3day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed45daySum *UsageBillableSummaryBody `json:"logs_indexed_45day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed60daySum *UsageBillableSummaryBody `json:"logs_indexed_60day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed7daySum *UsageBillableSummaryBody `json:"logs_indexed_7day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexed90daySum *UsageBillableSummaryBody `json:"logs_indexed_90day_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
 	LogsIndexedCustomRetentionSum *UsageBillableSummaryBody `json:"logs_indexed_custom_retention_sum,omitempty"`
-	LogsIndexedSum                *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
-	LogsIngestedSum               *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
-	NetworkDeviceTop99p           *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
-	NpmFlowSum                    *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
-	NpmHostSum                    *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
-	NpmHostTop99p                 *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
-	ProfContainerSum              *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
-	ProfHostTop99p                *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
-	RumSum                        *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
-	ServerlessInvocationSum       *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
-	SiemSum                       *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
-	SyntheticsApiTestsSum         *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
-	SyntheticsBrowserChecksSum    *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
-	TimeseriesAverage             *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIndexedSum *UsageBillableSummaryBody `json:"logs_indexed_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	LogsIngestedSum *UsageBillableSummaryBody `json:"logs_ingested_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	NetworkDeviceTop99p *UsageBillableSummaryBody `json:"network_device_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	NpmFlowSum *UsageBillableSummaryBody `json:"npm_flow_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	NpmHostSum *UsageBillableSummaryBody `json:"npm_host_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	NpmHostTop99p *UsageBillableSummaryBody `json:"npm_host_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ProfContainerSum *UsageBillableSummaryBody `json:"prof_container_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ProfHostTop99p *UsageBillableSummaryBody `json:"prof_host_top99p,omitempty"`
+	// Response with properties for each aggregated usage type.
+	RumSum *UsageBillableSummaryBody `json:"rum_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	ServerlessInvocationSum *UsageBillableSummaryBody `json:"serverless_invocation_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	SiemSum *UsageBillableSummaryBody `json:"siem_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	SyntheticsApiTestsSum *UsageBillableSummaryBody `json:"synthetics_api_tests_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	SyntheticsBrowserChecksSum *UsageBillableSummaryBody `json:"synthetics_browser_checks_sum,omitempty"`
+	// Response with properties for each aggregated usage type.
+	TimeseriesAverage *UsageBillableSummaryBody `json:"timeseries_average,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageBillableSummaryKeys UsageBillableSummaryKeys
 
 // NewUsageBillableSummaryKeys instantiates a new UsageBillableSummaryKeys object
 // This constructor will assign default values to properties that have it defined,
@@ -1191,6 +1226,10 @@ func (o UsageBillableSummaryKeys) MarshalJSON() ([]byte, error) {
 	}
 	if o.TimeseriesAverage != nil {
 		toSerialize["timeseries_average"] = o.TimeseriesAverage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

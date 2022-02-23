@@ -14,10 +14,14 @@ import (
 
 // NotebooksResponseMeta Searches metadata returned by the API.
 type NotebooksResponseMeta struct {
+	// Pagination metadata returned by the API.
 	Page *NotebooksResponsePage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebooksResponseMeta NotebooksResponseMeta
 
 // NewNotebooksResponseMeta instantiates a new NotebooksResponseMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o NotebooksResponseMeta) MarshalJSON() ([]byte, error) {
 	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

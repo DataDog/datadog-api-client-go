@@ -19,8 +19,11 @@ type ApplicationKeyUpdateAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyUpdateAttributes ApplicationKeyUpdateAttributes
 
 // NewApplicationKeyUpdateAttributes instantiates a new ApplicationKeyUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -114,6 +117,10 @@ func (o ApplicationKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Scopes != nil {
 		toSerialize["scopes"] = o.Scopes
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

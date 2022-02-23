@@ -26,7 +26,7 @@ type IncidentUpdateAttributes struct {
 	// Timestamp when the incident was detected.
 	Detected NullableTime `json:"detected,omitempty"`
 	// A condensed view of the user-defined fields for which to update selections.
-	Fields *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Notification handles that will be notified of the incident during update.
 	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
@@ -34,8 +34,11 @@ type IncidentUpdateAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentUpdateAttributes IncidentUpdateAttributes
 
 // NewIncidentUpdateAttributes instantiates a new IncidentUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -253,7 +256,7 @@ func (o *IncidentUpdateAttributes) GetFields() map[string]IncidentFieldAttribute
 		var ret map[string]IncidentFieldAttributes
 		return ret
 	}
-	return *o.Fields
+	return o.Fields
 }
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
@@ -262,7 +265,7 @@ func (o *IncidentUpdateAttributes) GetFieldsOk() (*map[string]IncidentFieldAttri
 	if o == nil || o.Fields == nil {
 		return nil, false
 	}
-	return o.Fields, true
+	return &o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
@@ -276,7 +279,7 @@ func (o *IncidentUpdateAttributes) HasFields() bool {
 
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
 func (o *IncidentUpdateAttributes) SetFields(v map[string]IncidentFieldAttributes) {
-	o.Fields = &v
+	o.Fields = v
 }
 
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
@@ -418,21 +421,25 @@ func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CustomerImpactEnd   NullableTime                        `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope *string                             `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart NullableTime                        `json:"customer_impact_start,omitempty"`
-		CustomerImpacted    *bool                               `json:"customer_impacted,omitempty"`
-		Detected            NullableTime                        `json:"detected,omitempty"`
-		Fields              *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		NotificationHandles *[]IncidentNotificationHandle       `json:"notification_handles,omitempty"`
-		Resolved            NullableTime                        `json:"resolved,omitempty"`
-		Title               *string                             `json:"title,omitempty"`
+		CustomerImpactEnd   NullableTime                       `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope *string                            `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart NullableTime                       `json:"customer_impact_start,omitempty"`
+		CustomerImpacted    *bool                              `json:"customer_impacted,omitempty"`
+		Detected            NullableTime                       `json:"detected,omitempty"`
+		Fields              map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		NotificationHandles *[]IncidentNotificationHandle      `json:"notification_handles,omitempty"`
+		Resolved            NullableTime                       `json:"resolved,omitempty"`
+		Title               *string                            `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

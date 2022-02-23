@@ -15,29 +15,29 @@ import (
 
 // UsageHostHour Number of hosts/containers recorded for each hour for a given organization.
 type UsageHostHour struct {
-	// Contains the total number of infrastructure hosts reporting during a given hour that were running the Datadog Agent.
+	// Contains the total number of infrastructure hosts reporting// during a given hour that were running the Datadog Agent.
 	AgentHostCount *int64 `json:"agent_host_count,omitempty"`
-	// Contains the total number of hosts that reported through Alibaba integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through Alibaba integration// (and were NOT running the Datadog Agent).
 	AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
 	// Contains the total number of Azure App Services hosts using APM.
 	ApmAzureAppServiceHostCount *int64 `json:"apm_azure_app_service_host_count,omitempty"`
-	// Shows the total number of hosts using APM during the hour, these are counted as billable (except during trial periods).
+	// Shows the total number of hosts using APM during the hour,// these are counted as billable (except during trial periods).
 	ApmHostCount *int64 `json:"apm_host_count,omitempty"`
-	// Contains the total number of hosts that reported through the AWS integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the AWS integration// (and were NOT running the Datadog Agent).
 	AwsHostCount *int64 `json:"aws_host_count,omitempty"`
-	// Contains the total number of hosts that reported through Azure integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through Azure integration// (and were NOT running the Datadog Agent).
 	AzureHostCount *int64 `json:"azure_host_count,omitempty"`
 	// Shows the total number of containers reported by the Docker integration during the hour.
 	ContainerCount *int64 `json:"container_count,omitempty"`
-	// Contains the total number of hosts that reported through the Google Cloud integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the Google Cloud integration// (and were NOT running the Datadog Agent).
 	GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
 	// Contains the total number of Heroku dynos reported by the Datadog Agent.
 	HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
-	// Contains the total number of billable infrastructure hosts reporting during a given hour. This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
+	// Contains the total number of billable infrastructure hosts reporting during a given hour.// This is the sum of `agent_host_count`, `aws_host_count`, and `gcp_host_count`.
 	HostCount *int64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// Contains the total number of hosts that reported through the Azure App Services integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through the Azure App Services integration// (and were NOT running the Datadog Agent).
 	InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
 	// Contains the total number of hosts reported by Datadog exporter for the OpenTelemetry Collector.
 	OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
@@ -45,11 +45,14 @@ type UsageHostHour struct {
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
-	// Contains the total number of hosts that reported through vSphere integration (and were NOT running the Datadog Agent).
+	// Contains the total number of hosts that reported through vSphere integration// (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageHostHour UsageHostHour
 
 // NewUsageHostHour instantiates a new UsageHostHour object
 // This constructor will assign default values to properties that have it defined,
@@ -632,6 +635,10 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.VsphereHostCount != nil {
 		toSerialize["vsphere_host_count"] = o.VsphereHostCount
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,12 +14,16 @@ import (
 
 // MonthlyUsageAttributionResponse Response containing the monthly Usage Summary by tag(s).
 type MonthlyUsageAttributionResponse struct {
+	// The object containing document metadata.
 	Metadata *MonthlyUsageAttributionMetadata `json:"metadata,omitempty"`
 	// Get Usage Summary by tag(s).
 	Usage *[]MonthlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonthlyUsageAttributionResponse MonthlyUsageAttributionResponse
 
 // NewMonthlyUsageAttributionResponse instantiates a new MonthlyUsageAttributionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o MonthlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

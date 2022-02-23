@@ -25,8 +25,11 @@ type UsageAttributionPagination struct {
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageAttributionPagination UsageAttributionPagination
 
 // NewUsageAttributionPagination instantiates a new UsageAttributionPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -224,6 +227,10 @@ func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	}
 	if o.TotalNumberOfRecords != nil {
 		toSerialize["total_number_of_records"] = o.TotalNumberOfRecords
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

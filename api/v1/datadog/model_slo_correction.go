@@ -14,13 +14,18 @@ import (
 
 // SLOCorrection The response object of a list of SLO corrections.
 type SLOCorrection struct {
+	// The attribute object associated with the SLO correction.
 	Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
 	// The ID of the SLO correction.
-	Id   *string            `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// SLO correction resource type.
 	Type *SLOCorrectionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrection SLOCorrection
 
 // NewSLOCorrection instantiates a new SLOCorrection object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type SLOCorrection struct {
 // will change when the set of required properties is changed
 func NewSLOCorrection() *SLOCorrection {
 	this := SLOCorrection{}
-	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
+	var type_ SLOCorrectionType = "correction"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewSLOCorrection() *SLOCorrection {
 // but it doesn't guarantee that properties required by API are set
 func NewSLOCorrectionWithDefaults() *SLOCorrection {
 	this := SLOCorrection{}
-	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
+	var type_ SLOCorrectionType = "correction"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o SLOCorrection) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

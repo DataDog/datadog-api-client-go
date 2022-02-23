@@ -14,11 +14,16 @@ import (
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
 type SyntheticsCIBatchMetadataCI struct {
+	// Description of the CI pipeline.
 	Pipeline *SyntheticsCIBatchMetadataPipeline `json:"pipeline,omitempty"`
+	// Description of the CI provider.
 	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsCIBatchMetadataCI SyntheticsCIBatchMetadataCI
 
 // NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 	}
 	if o.Provider != nil {
 		toSerialize["provider"] = o.Provider
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

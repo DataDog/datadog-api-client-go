@@ -15,12 +15,16 @@ import (
 
 // LogsArchiveCreateRequestDefinition The definition of an archive.
 type LogsArchiveCreateRequestDefinition struct {
+	// The attributes associated with the archive.
 	Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"`
 	// The type of the resource. The value should always be archives.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveCreateRequestDefinition LogsArchiveCreateRequestDefinition
 
 // NewLogsArchiveCreateRequestDefinition instantiates a new LogsArchiveCreateRequestDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -80,7 +84,6 @@ func (o *LogsArchiveCreateRequestDefinition) GetType() string {
 		var ret string
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -106,8 +109,10 @@ func (o LogsArchiveCreateRequestDefinition) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

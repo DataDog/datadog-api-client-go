@@ -15,18 +15,28 @@ import (
 
 // SLOThreshold SLO thresholds (target and optionally warning) for a single time window.
 type SLOThreshold struct {
-	// The target value for the service level indicator within the corresponding timeframe.
+	// The target value for the service level indicator within the corresponding// timeframe.
 	Target float64 `json:"target"`
-	// A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (for example `98.00`).  Always included in service level objective responses. Ignored in create/update requests.
-	TargetDisplay *string      `json:"target_display,omitempty"`
-	Timeframe     SLOTimeframe `json:"timeframe"`
+	// A string representation of the target that indicates its precision.// It uses trailing zeros to show significant decimal places (for example `98.00`).
+	//
+	// Always included in service level objective responses. Ignored in
+	// create/update requests.
+	TargetDisplay *string `json:"target_display,omitempty"`
+	// The SLO time window options.
+	Timeframe SLOTimeframe `json:"timeframe"`
 	// The warning value for the service level objective.
 	Warning *float64 `json:"warning,omitempty"`
-	// A string representation of the warning target (see the description of the `target_display` field for details).  Included in service level objective responses if a warning target exists. Ignored in create/update requests.
+	// A string representation of the warning target (see the description of// the `target_display` field for details).
+	//
+	// Included in service level objective responses if a warning target exists.
+	// Ignored in create/update requests.
 	WarningDisplay *string `json:"warning_display,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOThreshold SLOThreshold
 
 // NewSLOThreshold instantiates a new SLOThreshold object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +63,6 @@ func (o *SLOThreshold) GetTarget() float64 {
 		var ret float64
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -109,7 +118,6 @@ func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 		var ret SLOTimeframe
 		return ret
 	}
-
 	return o.Timeframe
 }
 
@@ -196,20 +204,20 @@ func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
+	toSerialize["target"] = o.Target
 	if o.TargetDisplay != nil {
 		toSerialize["target_display"] = o.TargetDisplay
 	}
-	if true {
-		toSerialize["timeframe"] = o.Timeframe
-	}
+	toSerialize["timeframe"] = o.Timeframe
 	if o.Warning != nil {
 		toSerialize["warning"] = o.Warning
 	}
 	if o.WarningDisplay != nil {
 		toSerialize["warning_display"] = o.WarningDisplay
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

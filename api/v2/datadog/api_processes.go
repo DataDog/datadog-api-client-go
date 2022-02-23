@@ -124,7 +124,6 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.search != nil {
 		localVarQueryParams.Add("search", parameterToString(*r.search, ""))
 	}
@@ -143,14 +142,6 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 	if r.pageCursor != nil {
 		localVarQueryParams.Add("page[cursor]", parameterToString(*r.pageCursor, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -160,7 +151,6 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

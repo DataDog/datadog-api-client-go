@@ -16,11 +16,15 @@ import (
 // RelationshipToIncidentPostmortemData The postmortem relationship data.
 type RelationshipToIncidentPostmortemData struct {
 	// A unique identifier that represents the postmortem.
-	Id   string                 `json:"id"`
+	Id string `json:"id"`
+	// Incident postmortem resource type.
 	Type IncidentPostmortemType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToIncidentPostmortemData RelationshipToIncidentPostmortemData
 
 // NewRelationshipToIncidentPostmortemData instantiates a new RelationshipToIncidentPostmortemData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewRelationshipToIncidentPostmortemData(id string, type_ IncidentPostmortem
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToIncidentPostmortemDataWithDefaults() *RelationshipToIncidentPostmortemData {
 	this := RelationshipToIncidentPostmortemData{}
-	var type_ IncidentPostmortemType = INCIDENTPOSTMORTEMTYPE_INCIDENT_POSTMORTEMS
+	var type_ IncidentPostmortemType = "incident_postmortems"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *RelationshipToIncidentPostmortemData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -73,7 +76,6 @@ func (o *RelationshipToIncidentPostmortemData) GetType() IncidentPostmortemType 
 		var ret IncidentPostmortemType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o RelationshipToIncidentPostmortemData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

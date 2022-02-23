@@ -15,13 +15,18 @@ import (
 
 // NotebookResponseData The data for a notebook.
 type NotebookResponseData struct {
+	// The attributes of a notebook.
 	Attributes NotebookResponseDataAttributes `json:"attributes"`
 	// Unique notebook ID, assigned when you create the notebook.
-	Id   int64                `json:"id"`
+	Id int64 `json:"id"`
+	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookResponseData NotebookResponseData
 
 // NewNotebookResponseData instantiates a new NotebookResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewNotebookResponseData(attributes NotebookResponseDataAttributes, id int64
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookResponseDataWithDefaults() *NotebookResponseData {
 	this := NotebookResponseData{}
-	var type_ NotebookResourceType = NOTEBOOKRESOURCETYPE_NOTEBOOKS
+	var type_ NotebookResourceType = "notebooks"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *NotebookResponseData) GetAttributes() NotebookResponseDataAttributes {
 		var ret NotebookResponseDataAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *NotebookResponseData) GetId() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *NotebookResponseData) GetType() NotebookResourceType {
 		var ret NotebookResourceType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o NotebookResponseData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

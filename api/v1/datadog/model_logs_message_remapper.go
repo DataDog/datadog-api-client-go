@@ -13,18 +13,26 @@ import (
 	"fmt"
 )
 
-// LogsMessageRemapper The message is a key attribute in Datadog. It is displayed in the message column of the Log Explorer and you can do full string search on it. Use this Processor to define one or more attributes as the official log message.  **Note:** If multiple log message remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
+// LogsMessageRemapper The message is a key attribute in Datadog.// It is displayed in the message column of the Log Explorer and you can do full string search on it.
+// Use this Processor to define one or more attributes as the official log message.
+//
+// **Note:** If multiple log message remapper processors can be applied to a given log,
+// only the first one (according to the pipeline order) is taken into account.
 type LogsMessageRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources []string                `json:"sources"`
-	Type    LogsMessageRemapperType `json:"type"`
+	Sources []string `json:"sources"`
+	// Type of logs message remapper.
+	Type LogsMessageRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMessageRemapper LogsMessageRemapper
 
 // NewLogsMessageRemapper instantiates a new LogsMessageRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +54,7 @@ func NewLogsMessageRemapperWithDefaults() *LogsMessageRemapper {
 	this := LogsMessageRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsMessageRemapperType = LOGSMESSAGEREMAPPERTYPE_MESSAGE_REMAPPER
+	var type_ LogsMessageRemapperType = "message-remapper"
 	this.Type = type_
 	return &this
 }
@@ -121,7 +129,6 @@ func (o *LogsMessageRemapper) GetSources() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Sources
 }
 
@@ -145,7 +152,6 @@ func (o *LogsMessageRemapper) GetType() LogsMessageRemapperType {
 		var ret LogsMessageRemapperType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -174,11 +180,11 @@ func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["sources"] = o.Sources
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["sources"] = o.Sources
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -33,8 +33,11 @@ type MetricsQueryResponse struct {
 	// End of requested time window, milliseconds since Unix epoch.
 	ToDate *int64 `json:"to_date,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricsQueryResponse MetricsQueryResponse
 
 // NewMetricsQueryResponse instantiates a new MetricsQueryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -372,6 +375,10 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ToDate != nil {
 		toSerialize["to_date"] = o.ToDate
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

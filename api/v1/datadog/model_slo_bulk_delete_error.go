@@ -15,14 +15,18 @@ import (
 
 // SLOBulkDeleteError Object describing the error.
 type SLOBulkDeleteError struct {
-	// The ID of the service level objective object associated with this error.
+	// The ID of the service level objective object associated with// this error.
 	Id string `json:"id"`
 	// The error message.
-	Message   string            `json:"message"`
+	Message string `json:"message"`
+	// The timeframe of the threshold associated with this error// or "all" if all thresholds are affected.
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOBulkDeleteError SLOBulkDeleteError
 
 // NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +54,6 @@ func (o *SLOBulkDeleteError) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -74,7 +77,6 @@ func (o *SLOBulkDeleteError) GetMessage() string {
 		var ret string
 		return ret
 	}
-
 	return o.Message
 }
 
@@ -98,7 +100,6 @@ func (o *SLOBulkDeleteError) GetTimeframe() SLOErrorTimeframe {
 		var ret SLOErrorTimeframe
 		return ret
 	}
-
 	return o.Timeframe
 }
 
@@ -121,14 +122,12 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if true {
-		toSerialize["timeframe"] = o.Timeframe
+	toSerialize["id"] = o.Id
+	toSerialize["message"] = o.Message
+	toSerialize["timeframe"] = o.Timeframe
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

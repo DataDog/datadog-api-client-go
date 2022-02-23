@@ -16,14 +16,19 @@ import (
 // LogsArchiveDestinationS3 The S3 archive destination.
 type LogsArchiveDestinationS3 struct {
 	// The bucket where the archive will be stored.
-	Bucket      string                   `json:"bucket"`
+	Bucket string `json:"bucket"`
+	// The S3 Archive's integration destination.
 	Integration LogsArchiveIntegrationS3 `json:"integration"`
 	// The archive path.
-	Path *string                      `json:"path,omitempty"`
+	Path *string `json:"path,omitempty"`
+	// Type of the S3 archive destination.
 	Type LogsArchiveDestinationS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveDestinationS3 LogsArchiveDestinationS3
 
 // NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,7 @@ func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrati
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDestinationS3WithDefaults() *LogsArchiveDestinationS3 {
 	this := LogsArchiveDestinationS3{}
-	var type_ LogsArchiveDestinationS3Type = LOGSARCHIVEDESTINATIONS3TYPE_S3
+	var type_ LogsArchiveDestinationS3Type = "s3"
 	this.Type = type_
 	return &this
 }
@@ -53,7 +58,6 @@ func (o *LogsArchiveDestinationS3) GetBucket() string {
 		var ret string
 		return ret
 	}
-
 	return o.Bucket
 }
 
@@ -77,7 +81,6 @@ func (o *LogsArchiveDestinationS3) GetIntegration() LogsArchiveIntegrationS3 {
 		var ret LogsArchiveIntegrationS3
 		return ret
 	}
-
 	return o.Integration
 }
 
@@ -133,7 +136,6 @@ func (o *LogsArchiveDestinationS3) GetType() LogsArchiveDestinationS3Type {
 		var ret LogsArchiveDestinationS3Type
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -156,17 +158,15 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["bucket"] = o.Bucket
-	}
-	if true {
-		toSerialize["integration"] = o.Integration
-	}
+	toSerialize["bucket"] = o.Bucket
+	toSerialize["integration"] = o.Integration
 	if o.Path != nil {
 		toSerialize["path"] = o.Path
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

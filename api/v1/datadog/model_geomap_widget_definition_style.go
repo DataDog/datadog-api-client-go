@@ -20,8 +20,11 @@ type GeomapWidgetDefinitionStyle struct {
 	// Whether to flip the palette tones.
 	PaletteFlip bool `json:"palette_flip"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GeomapWidgetDefinitionStyle GeomapWidgetDefinitionStyle
 
 // NewGeomapWidgetDefinitionStyle instantiates a new GeomapWidgetDefinitionStyle object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *GeomapWidgetDefinitionStyle) GetPalette() string {
 		var ret string
 		return ret
 	}
-
 	return o.Palette
 }
 
@@ -72,7 +74,6 @@ func (o *GeomapWidgetDefinitionStyle) GetPaletteFlip() bool {
 		var ret bool
 		return ret
 	}
-
 	return o.PaletteFlip
 }
 
@@ -95,11 +96,11 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["palette"] = o.Palette
-	}
-	if true {
-		toSerialize["palette_flip"] = o.PaletteFlip
+	toSerialize["palette"] = o.Palette
+	toSerialize["palette_flip"] = o.PaletteFlip
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

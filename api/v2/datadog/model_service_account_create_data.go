@@ -15,12 +15,18 @@ import (
 
 // ServiceAccountCreateData Object to create a service account User.
 type ServiceAccountCreateData struct {
-	Attributes    ServiceAccountCreateAttributes `json:"attributes"`
-	Relationships *UserRelationships             `json:"relationships,omitempty"`
-	Type          UsersType                      `json:"type"`
+	// Attributes of the created user.
+	Attributes ServiceAccountCreateAttributes `json:"attributes"`
+	// Relationships of the user object.
+	Relationships *UserRelationships `json:"relationships,omitempty"`
+	// Users resource type.
+	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceAccountCreateData ServiceAccountCreateData
 
 // NewServiceAccountCreateData instantiates a new ServiceAccountCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +44,7 @@ func NewServiceAccountCreateData(attributes ServiceAccountCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewServiceAccountCreateDataWithDefaults() *ServiceAccountCreateData {
 	this := ServiceAccountCreateData{}
-	var type_ UsersType = USERSTYPE_USERS
+	var type_ UsersType = "users"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +55,6 @@ func (o *ServiceAccountCreateData) GetAttributes() ServiceAccountCreateAttribute
 		var ret ServiceAccountCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -105,7 +110,6 @@ func (o *ServiceAccountCreateData) GetType() UsersType {
 		var ret UsersType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -128,14 +132,14 @@ func (o ServiceAccountCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

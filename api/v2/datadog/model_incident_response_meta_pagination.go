@@ -21,8 +21,11 @@ type IncidentResponseMetaPagination struct {
 	// Maximum size of pages to return.
 	Size *int64 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentResponseMetaPagination IncidentResponseMetaPagination
 
 // NewIncidentResponseMetaPagination instantiates a new IncidentResponseMetaPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	}
 	if o.Size != nil {
 		toSerialize["size"] = o.Size
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

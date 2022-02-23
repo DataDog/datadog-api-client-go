@@ -25,8 +25,11 @@ type MetricsQueryUnit struct {
 	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricsQueryUnit MetricsQueryUnit
 
 // NewMetricsQueryUnit instantiates a new MetricsQueryUnit object
 // This constructor will assign default values to properties that have it defined,
@@ -225,6 +228,10 @@ func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 	if o.ShortName != nil {
 		toSerialize["short_name"] = o.ShortName
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -287,5 +294,11 @@ func (v NullableMetricsQueryUnit) MarshalJSON() ([]byte, error) {
 
 func (v *NullableMetricsQueryUnit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

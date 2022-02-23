@@ -14,6 +14,7 @@ import (
 
 // SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated.
 type SLOCorrectionUpdateRequestAttributes struct {
+	// Category the SLO correction belongs to.
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
@@ -21,15 +22,18 @@ type SLOCorrectionUpdateRequestAttributes struct {
 	Duration *int64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
-	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule *string `json:"rrule,omitempty"`
 	// Starting time of the correction in epoch seconds.
 	Start *int64 `json:"start,omitempty"`
-	// The timezone to display in the UI for the correction times (defaults to \"UTC\").
+	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionUpdateRequestAttributes SLOCorrectionUpdateRequestAttributes
 
 // NewSLOCorrectionUpdateRequestAttributes instantiates a new SLOCorrectionUpdateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -297,6 +301,10 @@ func (o SLOCorrectionUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

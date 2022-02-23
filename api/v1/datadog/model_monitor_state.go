@@ -14,11 +14,14 @@ import (
 
 // MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
-	// Dictionary where the keys are groups (comma separated lists of tags) and the values are the list of groups your monitor is broken down on.
-	Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+	// Dictionary where the keys are groups (comma separated lists of tags) and the values are// the list of groups your monitor is broken down on.
+	Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorState MonitorState
 
 // NewMonitorState instantiates a new MonitorState object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +46,7 @@ func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 		var ret map[string]MonitorStateGroup
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
@@ -52,7 +55,7 @@ func (o *MonitorState) GetGroupsOk() (*map[string]MonitorStateGroup, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -66,7 +69,7 @@ func (o *MonitorState) HasGroups() bool {
 
 // SetGroups gets a reference to the given map[string]MonitorStateGroup and assigns it to the Groups field.
 func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 func (o MonitorState) MarshalJSON() ([]byte, error) {
@@ -77,13 +80,17 @@ func (o MonitorState) MarshalJSON() ([]byte, error) {
 	if o.Groups != nil {
 		toSerialize["groups"] = o.Groups
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+		Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

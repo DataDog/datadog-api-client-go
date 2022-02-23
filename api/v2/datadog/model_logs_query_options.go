@@ -12,15 +12,18 @@ import (
 	"encoding/json"
 )
 
-// LogsQueryOptions Global query options that are used during the query. Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+// LogsQueryOptions Global query options that are used during the query.// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
 type LogsQueryOptions struct {
 	// The time offset (in seconds) to apply to the query.
 	TimeOffset *int64 `json:"timeOffset,omitempty"`
-	// The timezone can be specified both as an offset, for example: \"UTC+03:00\".
+	// The timezone can be specified both as an offset, for example: "UTC+03:00".
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsQueryOptions LogsQueryOptions
 
 // NewLogsQueryOptions instantiates a new LogsQueryOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -117,6 +120,10 @@ func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

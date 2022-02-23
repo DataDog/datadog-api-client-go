@@ -15,11 +15,15 @@ import (
 // ProcessSummariesResponse List of process summaries.
 type ProcessSummariesResponse struct {
 	// Array of process summary objects.
-	Data *[]ProcessSummary     `json:"data,omitempty"`
+	Data *[]ProcessSummary `json:"data,omitempty"`
+	// Response metadata object.
 	Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProcessSummariesResponse ProcessSummariesResponse
 
 // NewProcessSummariesResponse instantiates a new ProcessSummariesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o ProcessSummariesResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

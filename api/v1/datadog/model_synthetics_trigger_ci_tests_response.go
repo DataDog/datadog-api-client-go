@@ -23,8 +23,11 @@ type SyntheticsTriggerCITestsResponse struct {
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTriggerCITestsResponse SyntheticsTriggerCITestsResponse
 
 // NewSyntheticsTriggerCITestsResponse instantiates a new SyntheticsTriggerCITestsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -198,6 +201,10 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.TriggeredCheckIds != nil {
 		toSerialize["triggered_check_ids"] = o.TriggeredCheckIds
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

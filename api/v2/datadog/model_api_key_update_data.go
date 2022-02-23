@@ -15,13 +15,18 @@ import (
 
 // APIKeyUpdateData Object used to update an API key.
 type APIKeyUpdateData struct {
+	// Attributes used to update an API Key.
 	Attributes APIKeyUpdateAttributes `json:"attributes"`
 	// ID of the API key.
-	Id   string      `json:"id"`
+	Id string `json:"id"`
+	// API Keys resource type.
 	Type APIKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _APIKeyUpdateData APIKeyUpdateData
 
 // NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewAPIKeyUpdateData(attributes APIKeyUpdateAttributes, id string, type_ API
 // but it doesn't guarantee that properties required by API are set
 func NewAPIKeyUpdateDataWithDefaults() *APIKeyUpdateData {
 	this := APIKeyUpdateData{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
+	var type_ APIKeysType = "api_keys"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *APIKeyUpdateData) GetAttributes() APIKeyUpdateAttributes {
 		var ret APIKeyUpdateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *APIKeyUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *APIKeyUpdateData) GetType() APIKeysType {
 		var ret APIKeysType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,10 +14,14 @@ import (
 
 // LogsArchiveOrder A ordered list of archive IDs.
 type LogsArchiveOrder struct {
+	// The definition of an archive order.
 	Data *LogsArchiveOrderDefinition `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveOrder LogsArchiveOrder
 
 // NewLogsArchiveOrder instantiates a new LogsArchiveOrder object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o LogsArchiveOrder) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

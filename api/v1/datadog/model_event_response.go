@@ -14,12 +14,16 @@ import (
 
 // EventResponse Object containing an event response.
 type EventResponse struct {
+	// Object representing an event.
 	Event *Event `json:"event,omitempty"`
 	// A status.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventResponse EventResponse
 
 // NewEventResponse instantiates a new EventResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o EventResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

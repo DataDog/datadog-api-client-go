@@ -12,32 +12,17 @@ import (
 	"encoding/json"
 )
 
-// NotebookCellCreateRequestAttributes - The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`, `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
+// NotebookCellCreateRequestAttributes - The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 type NotebookCellCreateRequestAttributes struct {
-	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
-	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
-	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
 	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
 	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
 	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
+	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
+	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
+	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
-}
-
-// NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookDistributionCellAttributes wrapped in NotebookCellCreateRequestAttributes
-func NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookDistributionCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookDistributionCellAttributes: v}
-}
-
-// NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookHeatMapCellAttributes wrapped in NotebookCellCreateRequestAttributes
-func NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookHeatMapCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookHeatMapCellAttributes: v}
-}
-
-// NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookLogStreamCellAttributes wrapped in NotebookCellCreateRequestAttributes
-func NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookLogStreamCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookLogStreamCellAttributes: v}
 }
 
 // NotebookMarkdownCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookMarkdownCellAttributes wrapped in NotebookCellCreateRequestAttributes
@@ -53,6 +38,21 @@ func NotebookTimeseriesCellAttributesAsNotebookCellCreateRequestAttributes(v *No
 // NotebookToplistCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookToplistCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookToplistCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookToplistCellAttributes) NotebookCellCreateRequestAttributes {
 	return NotebookCellCreateRequestAttributes{NotebookToplistCellAttributes: v}
+}
+
+// NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookHeatMapCellAttributes wrapped in NotebookCellCreateRequestAttributes
+func NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookHeatMapCellAttributes) NotebookCellCreateRequestAttributes {
+	return NotebookCellCreateRequestAttributes{NotebookHeatMapCellAttributes: v}
+}
+
+// NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookDistributionCellAttributes wrapped in NotebookCellCreateRequestAttributes
+func NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookDistributionCellAttributes) NotebookCellCreateRequestAttributes {
+	return NotebookCellCreateRequestAttributes{NotebookDistributionCellAttributes: v}
+}
+
+// NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookLogStreamCellAttributes wrapped in NotebookCellCreateRequestAttributes
+func NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookLogStreamCellAttributes) NotebookCellCreateRequestAttributes {
+	return NotebookCellCreateRequestAttributes{NotebookLogStreamCellAttributes: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -163,12 +163,12 @@ func (dst *NotebookCellCreateRequestAttributes) UnmarshalJSON(data []byte) error
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.NotebookDistributionCellAttributes = nil
-		dst.NotebookHeatMapCellAttributes = nil
-		dst.NotebookLogStreamCellAttributes = nil
 		dst.NotebookMarkdownCellAttributes = nil
 		dst.NotebookTimeseriesCellAttributes = nil
 		dst.NotebookToplistCellAttributes = nil
+		dst.NotebookHeatMapCellAttributes = nil
+		dst.NotebookDistributionCellAttributes = nil
+		dst.NotebookLogStreamCellAttributes = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -177,18 +177,6 @@ func (dst *NotebookCellCreateRequestAttributes) UnmarshalJSON(data []byte) error
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src NotebookCellCreateRequestAttributes) MarshalJSON() ([]byte, error) {
-	if src.NotebookDistributionCellAttributes != nil {
-		return json.Marshal(&src.NotebookDistributionCellAttributes)
-	}
-
-	if src.NotebookHeatMapCellAttributes != nil {
-		return json.Marshal(&src.NotebookHeatMapCellAttributes)
-	}
-
-	if src.NotebookLogStreamCellAttributes != nil {
-		return json.Marshal(&src.NotebookLogStreamCellAttributes)
-	}
-
 	if src.NotebookMarkdownCellAttributes != nil {
 		return json.Marshal(&src.NotebookMarkdownCellAttributes)
 	}
@@ -201,6 +189,18 @@ func (src NotebookCellCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.NotebookToplistCellAttributes)
 	}
 
+	if src.NotebookHeatMapCellAttributes != nil {
+		return json.Marshal(&src.NotebookHeatMapCellAttributes)
+	}
+
+	if src.NotebookDistributionCellAttributes != nil {
+		return json.Marshal(&src.NotebookDistributionCellAttributes)
+	}
+
+	if src.NotebookLogStreamCellAttributes != nil {
+		return json.Marshal(&src.NotebookLogStreamCellAttributes)
+	}
+
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -209,18 +209,6 @@ func (src NotebookCellCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *NotebookCellCreateRequestAttributes) GetActualInstance() interface{} {
-	if obj.NotebookDistributionCellAttributes != nil {
-		return obj.NotebookDistributionCellAttributes
-	}
-
-	if obj.NotebookHeatMapCellAttributes != nil {
-		return obj.NotebookHeatMapCellAttributes
-	}
-
-	if obj.NotebookLogStreamCellAttributes != nil {
-		return obj.NotebookLogStreamCellAttributes
-	}
-
 	if obj.NotebookMarkdownCellAttributes != nil {
 		return obj.NotebookMarkdownCellAttributes
 	}
@@ -231,6 +219,18 @@ func (obj *NotebookCellCreateRequestAttributes) GetActualInstance() interface{} 
 
 	if obj.NotebookToplistCellAttributes != nil {
 		return obj.NotebookToplistCellAttributes
+	}
+
+	if obj.NotebookHeatMapCellAttributes != nil {
+		return obj.NotebookHeatMapCellAttributes
+	}
+
+	if obj.NotebookDistributionCellAttributes != nil {
+		return obj.NotebookDistributionCellAttributes
+	}
+
+	if obj.NotebookLogStreamCellAttributes != nil {
+		return obj.NotebookLogStreamCellAttributes
 	}
 
 	// all schemas are nil
@@ -270,5 +270,11 @@ func (v NullableNotebookCellCreateRequestAttributes) MarshalJSON() ([]byte, erro
 
 func (v *NullableNotebookCellCreateRequestAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

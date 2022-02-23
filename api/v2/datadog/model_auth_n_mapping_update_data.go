@@ -15,14 +15,20 @@ import (
 
 // AuthNMappingUpdateData Data for updating an AuthN Mapping.
 type AuthNMappingUpdateData struct {
+	// Key/Value pair of attributes used for update request.
 	Attributes *AuthNMappingUpdateAttributes `json:"attributes,omitempty"`
 	// ID of the AuthN Mapping.
-	Id            string                           `json:"id"`
+	Id string `json:"id"`
+	// Relationship of AuthN Mapping update object to Role.
 	Relationships *AuthNMappingUpdateRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType                `json:"type"`
+	// AuthN Mappings resource type.
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingUpdateData AuthNMappingUpdateData
 
 // NewAuthNMappingUpdateData instantiates a new AuthNMappingUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewAuthNMappingUpdateData(id string, type_ AuthNMappingsType) *AuthNMapping
 // but it doesn't guarantee that properties required by API are set
 func NewAuthNMappingUpdateDataWithDefaults() *AuthNMappingUpdateData {
 	this := AuthNMappingUpdateData{}
-	var type_ AuthNMappingsType = AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS
+	var type_ AuthNMappingsType = "authn_mappings"
 	this.Type = type_
 	return &this
 }
@@ -83,7 +89,6 @@ func (o *AuthNMappingUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -139,7 +144,6 @@ func (o *AuthNMappingUpdateData) GetType() AuthNMappingsType {
 		var ret AuthNMappingsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -165,14 +169,14 @@ func (o AuthNMappingUpdateData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

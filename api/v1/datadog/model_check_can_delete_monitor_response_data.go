@@ -17,8 +17,11 @@ type CheckCanDeleteMonitorResponseData struct {
 	// An array of of Monitor IDs that can be safely deleted.
 	Ok *[]int64 `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CheckCanDeleteMonitorResponseData CheckCanDeleteMonitorResponseData
 
 // NewCheckCanDeleteMonitorResponseData instantiates a new CheckCanDeleteMonitorResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Ok != nil {
 		toSerialize["ok"] = o.Ok
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

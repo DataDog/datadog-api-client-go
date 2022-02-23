@@ -20,8 +20,11 @@ type FunnelStep struct {
 	// The value of the step.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FunnelStep FunnelStep
 
 // NewFunnelStep instantiates a new FunnelStep object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *FunnelStep) GetFacet() string {
 		var ret string
 		return ret
 	}
-
 	return o.Facet
 }
 
@@ -72,7 +74,6 @@ func (o *FunnelStep) GetValue() string {
 		var ret string
 		return ret
 	}
-
 	return o.Value
 }
 
@@ -95,11 +96,11 @@ func (o FunnelStep) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["facet"] = o.Facet
-	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize["facet"] = o.Facet
+	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

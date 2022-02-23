@@ -14,14 +14,20 @@ import (
 
 // FullAPIKey Datadog API key.
 type FullAPIKey struct {
+	// Attributes of a full API key.
 	Attributes *FullAPIKeyAttributes `json:"attributes,omitempty"`
 	// ID of the API key.
-	Id            *string              `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Resources related to the API key.
 	Relationships *APIKeyRelationships `json:"relationships,omitempty"`
-	Type          *APIKeysType         `json:"type,omitempty"`
+	// API Keys resource type.
+	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FullAPIKey FullAPIKey
 
 // NewFullAPIKey instantiates a new FullAPIKey object
 // This constructor will assign default values to properties that have it defined,
@@ -29,7 +35,7 @@ type FullAPIKey struct {
 // will change when the set of required properties is changed
 func NewFullAPIKey() *FullAPIKey {
 	this := FullAPIKey{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
+	var type_ APIKeysType = "api_keys"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +45,7 @@ func NewFullAPIKey() *FullAPIKey {
 // but it doesn't guarantee that properties required by API are set
 func NewFullAPIKeyWithDefaults() *FullAPIKey {
 	this := FullAPIKey{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
+	var type_ APIKeysType = "api_keys"
 	this.Type = &type_
 	return &this
 }
@@ -188,6 +194,10 @@ func (o FullAPIKey) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

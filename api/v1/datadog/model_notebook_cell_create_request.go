@@ -15,8 +15,10 @@ import (
 
 // NotebookCellCreateRequest The description of a notebook cell create request.
 type NotebookCellCreateRequest struct {
+	// The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 	Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
-	Type       NotebookCellResourceType            `json:"type"`
+	// Type of the Notebook Cell resource.
+	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -37,7 +39,7 @@ func NewNotebookCellCreateRequest(attributes NotebookCellCreateRequestAttributes
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCellCreateRequestWithDefaults() *NotebookCellCreateRequest {
 	this := NotebookCellCreateRequest{}
-	var type_ NotebookCellResourceType = NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS
+	var type_ NotebookCellResourceType = "notebook_cells"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +50,6 @@ func (o *NotebookCellCreateRequest) GetAttributes() NotebookCellCreateRequestAtt
 		var ret NotebookCellCreateRequestAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +73,6 @@ func (o *NotebookCellCreateRequest) GetType() NotebookCellResourceType {
 		var ret NotebookCellResourceType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,12 +95,8 @@ func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
 	return json.Marshal(toSerialize)
 }
 

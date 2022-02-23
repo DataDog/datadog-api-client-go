@@ -17,8 +17,11 @@ type IncidentTimelineCellMarkdownCreateAttributesContent struct {
 	// The Markdown content of the cell.
 	Content *string `json:"content,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTimelineCellMarkdownCreateAttributesContent IncidentTimelineCellMarkdownCreateAttributesContent
 
 // NewIncidentTimelineCellMarkdownCreateAttributesContent instantiates a new IncidentTimelineCellMarkdownCreateAttributesContent object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o IncidentTimelineCellMarkdownCreateAttributesContent) MarshalJSON() ([]by
 	}
 	if o.Content != nil {
 		toSerialize["content"] = o.Content
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

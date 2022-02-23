@@ -16,21 +16,28 @@ import (
 
 // NotebooksResponseDataAttributes The attributes of a notebook in get all response.
 type NotebooksResponseDataAttributes struct {
+	// Attributes of user object returned by the API.
 	Author *NotebookAuthor `json:"author,omitempty"`
 	// List of cells to display in the notebook.
 	Cells *[]NotebookCellResponse `json:"cells,omitempty"`
 	// UTC time stamp for when the notebook was created.
-	Created  *time.Time        `json:"created,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
+	// Metadata associated with the notebook.
 	Metadata *NotebookMetadata `json:"metadata,omitempty"`
 	// UTC time stamp for when the notebook was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// The name of the notebook.
-	Name   string              `json:"name"`
-	Status *NotebookStatus     `json:"status,omitempty"`
-	Time   *NotebookGlobalTime `json:"time,omitempty"`
+	Name string `json:"name"`
+	// Publication status of the notebook. For now, always "published".
+	Status *NotebookStatus `json:"status,omitempty"`
+	// Notebook global timeframe.
+	Time *NotebookGlobalTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebooksResponseDataAttributes NotebooksResponseDataAttributes
 
 // NewNotebooksResponseDataAttributes instantiates a new NotebooksResponseDataAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +46,7 @@ type NotebooksResponseDataAttributes struct {
 func NewNotebooksResponseDataAttributes(name string) *NotebooksResponseDataAttributes {
 	this := NotebooksResponseDataAttributes{}
 	this.Name = name
-	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
+	var status NotebookStatus = "published"
 	this.Status = &status
 	return &this
 }
@@ -49,7 +56,7 @@ func NewNotebooksResponseDataAttributes(name string) *NotebooksResponseDataAttri
 // but it doesn't guarantee that properties required by API are set
 func NewNotebooksResponseDataAttributesWithDefaults() *NotebooksResponseDataAttributes {
 	this := NotebooksResponseDataAttributes{}
-	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
+	var status NotebookStatus = "published"
 	this.Status = &status
 	return &this
 }
@@ -220,7 +227,6 @@ func (o *NotebooksResponseDataAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -322,14 +328,16 @@ func (o NotebooksResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
 	}
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

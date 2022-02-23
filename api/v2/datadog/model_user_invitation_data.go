@@ -15,11 +15,16 @@ import (
 
 // UserInvitationData Object to create a user invitation.
 type UserInvitationData struct {
+	// Relationships data for user invitation.
 	Relationships UserInvitationRelationships `json:"relationships"`
-	Type          UserInvitationsType         `json:"type"`
+	// User invitations type.
+	Type UserInvitationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserInvitationData UserInvitationData
 
 // NewUserInvitationData instantiates a new UserInvitationData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewUserInvitationData(relationships UserInvitationRelationships, type_ User
 // but it doesn't guarantee that properties required by API are set
 func NewUserInvitationDataWithDefaults() *UserInvitationData {
 	this := UserInvitationData{}
-	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
+	var type_ UserInvitationsType = "user_invitations"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *UserInvitationData) GetRelationships() UserInvitationRelationships {
 		var ret UserInvitationRelationships
 		return ret
 	}
-
 	return o.Relationships
 }
 
@@ -72,7 +76,6 @@ func (o *UserInvitationData) GetType() UserInvitationsType {
 		var ret UserInvitationsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o UserInvitationData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["relationships"] = o.Relationships
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["relationships"] = o.Relationships
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -18,7 +18,7 @@ import (
 type IncidentResponseAttributes struct {
 	// Timestamp when the incident was created.
 	Created *time.Time `json:"created,omitempty"`
-	// Length of the incident's customer impact in seconds. Equals the difference between `customer_impact_start` and `customer_impact_end`.
+	// Length of the incident's customer impact in seconds.// Equals the difference between `customer_impact_start` and `customer_impact_end`.
 	CustomerImpactDuration *int64 `json:"customer_impact_duration,omitempty"`
 	// Timestamp when customers were no longer impacted by the incident.
 	CustomerImpactEnd NullableTime `json:"customer_impact_end,omitempty"`
@@ -31,7 +31,7 @@ type IncidentResponseAttributes struct {
 	// Timestamp when the incident was detected.
 	Detected NullableTime `json:"detected,omitempty"`
 	// A condensed view of the user-defined fields attached to incidents.
-	Fields *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Timestamp when the incident was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// Notification handles that will be notified of the incident during update.
@@ -42,7 +42,7 @@ type IncidentResponseAttributes struct {
 	PublicId *int64 `json:"public_id,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
 	Resolved NullableTime `json:"resolved,omitempty"`
-	// The amount of time in seconds to detect the incident. Equals the difference between `customer_impact_start` and `detected`.
+	// The amount of time in seconds to detect the incident.// Equals the difference between `customer_impact_start` and `detected`.
 	TimeToDetect *int64 `json:"time_to_detect,omitempty"`
 	// The amount of time in seconds to call incident after detection. Equals the difference of `detected` and `created`.
 	TimeToInternalResponse *int64 `json:"time_to_internal_response,omitempty"`
@@ -53,8 +53,11 @@ type IncidentResponseAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentResponseAttributes IncidentResponseAttributes
 
 // NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -348,7 +351,7 @@ func (o *IncidentResponseAttributes) GetFields() map[string]IncidentFieldAttribu
 		var ret map[string]IncidentFieldAttributes
 		return ret
 	}
-	return *o.Fields
+	return o.Fields
 }
 
 // GetFieldsOk returns a tuple with the Fields field value if set, nil otherwise
@@ -357,7 +360,7 @@ func (o *IncidentResponseAttributes) GetFieldsOk() (*map[string]IncidentFieldAtt
 	if o == nil || o.Fields == nil {
 		return nil, false
 	}
-	return o.Fields, true
+	return &o.Fields, true
 }
 
 // HasFields returns a boolean if a field has been set.
@@ -371,7 +374,7 @@ func (o *IncidentResponseAttributes) HasFields() bool {
 
 // SetFields gets a reference to the given map[string]IncidentFieldAttributes and assigns it to the Fields field.
 func (o *IncidentResponseAttributes) SetFields(v map[string]IncidentFieldAttributes) {
-	o.Fields = &v
+	o.Fields = v
 }
 
 // GetModified returns the Modified field value if set, zero value otherwise.
@@ -680,7 +683,6 @@ func (o *IncidentResponseAttributes) GetTitle() string {
 		var ret string
 		return ret
 	}
-
 	return o.Title
 }
 
@@ -754,8 +756,10 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	if o.TimeToResolve != nil {
 		toSerialize["time_to_resolve"] = o.TimeToResolve
 	}
-	if true {
-		toSerialize["title"] = o.Title
+	toSerialize["title"] = o.Title
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -766,24 +770,24 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Title *string `json:"title"`
 	}{}
 	all := struct {
-		Created                *time.Time                          `json:"created,omitempty"`
-		CustomerImpactDuration *int64                              `json:"customer_impact_duration,omitempty"`
-		CustomerImpactEnd      NullableTime                        `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope    NullableString                      `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart    NullableTime                        `json:"customer_impact_start,omitempty"`
-		CustomerImpacted       *bool                               `json:"customer_impacted,omitempty"`
-		Detected               NullableTime                        `json:"detected,omitempty"`
-		Fields                 *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		Modified               *time.Time                          `json:"modified,omitempty"`
-		NotificationHandles    []IncidentNotificationHandle        `json:"notification_handles,omitempty"`
-		PostmortemId           *string                             `json:"postmortem_id,omitempty"`
-		PublicId               *int64                              `json:"public_id,omitempty"`
-		Resolved               NullableTime                        `json:"resolved,omitempty"`
-		TimeToDetect           *int64                              `json:"time_to_detect,omitempty"`
-		TimeToInternalResponse *int64                              `json:"time_to_internal_response,omitempty"`
-		TimeToRepair           *int64                              `json:"time_to_repair,omitempty"`
-		TimeToResolve          *int64                              `json:"time_to_resolve,omitempty"`
-		Title                  string                              `json:"title"`
+		Created                *time.Time                         `json:"created,omitempty"`
+		CustomerImpactDuration *int64                             `json:"customer_impact_duration,omitempty"`
+		CustomerImpactEnd      NullableTime                       `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope    NullableString                     `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart    NullableTime                       `json:"customer_impact_start,omitempty"`
+		CustomerImpacted       *bool                              `json:"customer_impacted,omitempty"`
+		Detected               NullableTime                       `json:"detected,omitempty"`
+		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+		Modified               *time.Time                         `json:"modified,omitempty"`
+		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
+		PostmortemId           *string                            `json:"postmortem_id,omitempty"`
+		PublicId               *int64                             `json:"public_id,omitempty"`
+		Resolved               NullableTime                       `json:"resolved,omitempty"`
+		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
+		TimeToInternalResponse *int64                             `json:"time_to_internal_response,omitempty"`
+		TimeToRepair           *int64                             `json:"time_to_repair,omitempty"`
+		TimeToResolve          *int64                             `json:"time_to_resolve,omitempty"`
+		Title                  string                             `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

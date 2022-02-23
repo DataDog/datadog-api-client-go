@@ -15,12 +15,16 @@ import (
 
 // SyntheticsTriggerTest Test configuration for Synthetics
 type SyntheticsTriggerTest struct {
+	// Metadata for the Synthetics tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// The public ID of the Synthetics test to trigger.
 	PublicId string `json:"public_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTriggerTest SyntheticsTriggerTest
 
 // NewSyntheticsTriggerTest instantiates a new SyntheticsTriggerTest object
 // This constructor will assign default values to properties that have it defined,
@@ -78,7 +82,6 @@ func (o *SyntheticsTriggerTest) GetPublicId() string {
 		var ret string
 		return ret
 	}
-
 	return o.PublicId
 }
 
@@ -104,8 +107,10 @@ func (o SyntheticsTriggerTest) MarshalJSON() ([]byte, error) {
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if true {
-		toSerialize["public_id"] = o.PublicId
+	toSerialize["public_id"] = o.PublicId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

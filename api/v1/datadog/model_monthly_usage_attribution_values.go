@@ -75,8 +75,11 @@ type MonthlyUsageAttributionValues struct {
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonthlyUsageAttributionValues MonthlyUsageAttributionValues
 
 // NewMonthlyUsageAttributionValues instantiates a new MonthlyUsageAttributionValues object
 // This constructor will assign default values to properties that have it defined,
@@ -1149,6 +1152,10 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	}
 	if o.SnmpUsage != nil {
 		toSerialize["snmp_usage"] = o.SnmpUsage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

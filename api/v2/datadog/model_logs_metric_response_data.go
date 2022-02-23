@@ -14,13 +14,18 @@ import (
 
 // LogsMetricResponseData The log-based metric properties.
 type LogsMetricResponseData struct {
+	// The object describing a Datadog log-based metric.
 	Attributes *LogsMetricResponseAttributes `json:"attributes,omitempty"`
 	// The name of the log-based metric.
-	Id   *string         `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The type of the resource. The value should always be logs_metrics.
 	Type *LogsMetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricResponseData LogsMetricResponseData
 
 // NewLogsMetricResponseData instantiates a new LogsMetricResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type LogsMetricResponseData struct {
 // will change when the set of required properties is changed
 func NewLogsMetricResponseData() *LogsMetricResponseData {
 	this := LogsMetricResponseData{}
-	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
+	var type_ LogsMetricType = "logs_metrics"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewLogsMetricResponseData() *LogsMetricResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricResponseDataWithDefaults() *LogsMetricResponseData {
 	this := LogsMetricResponseData{}
-	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
+	var type_ LogsMetricType = "logs_metrics"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o LogsMetricResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

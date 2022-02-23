@@ -14,10 +14,14 @@ import (
 
 // SLOCorrectionUpdateRequest An object that defines a correction to be applied to an SLO.
 type SLOCorrectionUpdateRequest struct {
+	// The data object associated with the SLO correction to be updated.
 	Data *SLOCorrectionUpdateData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionUpdateRequest SLOCorrectionUpdateRequest
 
 // NewSLOCorrectionUpdateRequest instantiates a new SLOCorrectionUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o SLOCorrectionUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

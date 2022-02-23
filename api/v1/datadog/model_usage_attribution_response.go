@@ -14,12 +14,16 @@ import (
 
 // UsageAttributionResponse Response containing the Usage Summary by tag(s).
 type UsageAttributionResponse struct {
+	// The object containing document metadata.
 	Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
 	// Get Usage Summary by tag(s).
 	Usage *[]UsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageAttributionResponse UsageAttributionResponse
 
 // NewUsageAttributionResponse instantiates a new UsageAttributionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -30,8 +30,11 @@ type UsageRumSessionsHour struct {
 	// Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020).
 	SessionCountIos *int64 `json:"session_count_ios,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageRumSessionsHour UsageRumSessionsHour
 
 // NewUsageRumSessionsHour instantiates a new UsageRumSessionsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -299,6 +302,10 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.SessionCountIos != nil {
 		toSerialize["session_count_ios"] = o.SessionCountIos
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

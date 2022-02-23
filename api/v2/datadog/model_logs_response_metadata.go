@@ -15,16 +15,21 @@ import (
 // LogsResponseMetadata The metadata associated with a request
 type LogsResponseMetadata struct {
 	// The time elapsed in milliseconds
-	Elapsed *int64                    `json:"elapsed,omitempty"`
-	Page    *LogsResponseMetadataPage `json:"page,omitempty"`
+	Elapsed *int64 `json:"elapsed,omitempty"`
+	// Paging attributes.
+	Page *LogsResponseMetadataPage `json:"page,omitempty"`
 	// The identifier of the request
-	RequestId *string                      `json:"request_id,omitempty"`
-	Status    *LogsAggregateResponseStatus `json:"status,omitempty"`
-	// A list of warnings (non fatal errors) encountered, partial results might be returned if warnings are present in the response.
+	RequestId *string `json:"request_id,omitempty"`
+	// The status of the response
+	Status *LogsAggregateResponseStatus `json:"status,omitempty"`
+	// A list of warnings (non fatal errors) encountered, partial results might be returned if// warnings are present in the response.
 	Warnings *[]LogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsResponseMetadata LogsResponseMetadata
 
 // NewLogsResponseMetadata instantiates a new LogsResponseMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -222,6 +227,10 @@ func (o LogsResponseMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Warnings != nil {
 		toSerialize["warnings"] = o.Warnings
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

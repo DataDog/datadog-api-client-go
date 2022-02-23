@@ -16,12 +16,17 @@ import (
 // ListStreamWidgetRequest Updated list stream widget.
 type ListStreamWidgetRequest struct {
 	// Widget columns.
-	Columns        []ListStreamColumn       `json:"columns"`
-	Query          ListStreamQuery          `json:"query"`
+	Columns []ListStreamColumn `json:"columns"`
+	// Updated list stream widget.
+	Query ListStreamQuery `json:"query"`
+	// Widget response format.
 	ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListStreamWidgetRequest ListStreamWidgetRequest
 
 // NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func (o *ListStreamWidgetRequest) GetColumns() []ListStreamColumn {
 		var ret []ListStreamColumn
 		return ret
 	}
-
 	return o.Columns
 }
 
@@ -73,7 +77,6 @@ func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery {
 		var ret ListStreamQuery
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -97,7 +100,6 @@ func (o *ListStreamWidgetRequest) GetResponseFormat() ListStreamResponseFormat {
 		var ret ListStreamResponseFormat
 		return ret
 	}
-
 	return o.ResponseFormat
 }
 
@@ -120,14 +122,12 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["columns"] = o.Columns
-	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
-	if true {
-		toSerialize["response_format"] = o.ResponseFormat
+	toSerialize["columns"] = o.Columns
+	toSerialize["query"] = o.Query
+	toSerialize["response_format"] = o.ResponseFormat
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

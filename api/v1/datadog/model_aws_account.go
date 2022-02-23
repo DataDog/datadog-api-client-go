@@ -18,15 +18,20 @@ type AWSAccount struct {
 	AccessKeyId *string `json:"access_key_id,omitempty"`
 	// Your AWS Account ID without dashes.
 	AccountId *string `json:"account_id,omitempty"`
-	// An object, (in the form `{\"namespace1\":true/false, \"namespace2\":true/false}`), that enables or disables metric collection for specific AWS namespaces for this AWS account only.
-	AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+	// An object, (in the form `{"namespace1":true/false, "namespace2":true/false}`),// that enables or disables metric collection for specific AWS namespaces for this
+	// AWS account only.
+	AccountSpecificNamespaceRules map[string]bool `json:"account_specific_namespace_rules,omitempty"`
 	// Whether Datadog collects cloud security posture management resources from your AWS account. This includes additional resources not covered under the general `resource_collection`.
 	CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
 	// An array of AWS regions to exclude from metrics collection.
 	ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
-	// The array of EC2 tags (in the form `key:value`) defines a filter that Datadog uses when collecting metrics from EC2. Wildcards, such as `?` (for single characters) and `*` (for multiple characters) can also be used. Only hosts that match one of the defined tags will be imported into Datadog. The rest will be ignored. Host matching a given tag can also be excluded by adding `!` before the tag. For example, `env:production,instance-type:c1.*,!region:us-east-1`
+	// The array of EC2 tags (in the form `key:value`) defines a filter that Datadog uses when collecting metrics from EC2.// Wildcards, such as `?` (for single characters) and `*` (for multiple characters) can also be used.
+	// Only hosts that match one of the defined tags
+	// will be imported into Datadog. The rest will be ignored.
+	// Host matching a given tag can also be excluded by adding `!` before the tag.
+	// For example, `env:production,instance-type:c1.*,!region:us-east-1`
 	FilterTags *[]string `json:"filter_tags,omitempty"`
-	// Array of tags (in the form `key:value`) to add to all hosts and metrics reporting through this integration.
+	// Array of tags (in the form `key:value`) to add to all hosts// and metrics reporting through this integration.
 	HostTags *[]string `json:"host_tags,omitempty"`
 	// Whether Datadog collects metrics for this AWS account.
 	MetricsCollectionEnabled *bool `json:"metrics_collection_enabled,omitempty"`
@@ -37,8 +42,11 @@ type AWSAccount struct {
 	// Your AWS secret access key. Only required if your AWS account is a GovCloud or China account.
 	SecretAccessKey *string `json:"secret_access_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSAccount AWSAccount
 
 // NewAWSAccount instantiates a new AWSAccount object
 // This constructor will assign default values to properties that have it defined,
@@ -139,7 +147,7 @@ func (o *AWSAccount) GetAccountSpecificNamespaceRules() map[string]bool {
 		var ret map[string]bool
 		return ret
 	}
-	return *o.AccountSpecificNamespaceRules
+	return o.AccountSpecificNamespaceRules
 }
 
 // GetAccountSpecificNamespaceRulesOk returns a tuple with the AccountSpecificNamespaceRules field value if set, nil otherwise
@@ -148,7 +156,7 @@ func (o *AWSAccount) GetAccountSpecificNamespaceRulesOk() (*map[string]bool, boo
 	if o == nil || o.AccountSpecificNamespaceRules == nil {
 		return nil, false
 	}
-	return o.AccountSpecificNamespaceRules, true
+	return &o.AccountSpecificNamespaceRules, true
 }
 
 // HasAccountSpecificNamespaceRules returns a boolean if a field has been set.
@@ -162,7 +170,7 @@ func (o *AWSAccount) HasAccountSpecificNamespaceRules() bool {
 
 // SetAccountSpecificNamespaceRules gets a reference to the given map[string]bool and assigns it to the AccountSpecificNamespaceRules field.
 func (o *AWSAccount) SetAccountSpecificNamespaceRules(v map[string]bool) {
-	o.AccountSpecificNamespaceRules = &v
+	o.AccountSpecificNamespaceRules = v
 }
 
 // GetCspmResourceCollectionEnabled returns the CspmResourceCollectionEnabled field value if set, zero value otherwise.
@@ -459,23 +467,27 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 	if o.SecretAccessKey != nil {
 		toSerialize["secret_access_key"] = o.SecretAccessKey
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccessKeyId                   *string          `json:"access_key_id,omitempty"`
-		AccountId                     *string          `json:"account_id,omitempty"`
-		AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
-		CspmResourceCollectionEnabled *bool            `json:"cspm_resource_collection_enabled,omitempty"`
-		ExcludedRegions               *[]string        `json:"excluded_regions,omitempty"`
-		FilterTags                    *[]string        `json:"filter_tags,omitempty"`
-		HostTags                      *[]string        `json:"host_tags,omitempty"`
-		MetricsCollectionEnabled      *bool            `json:"metrics_collection_enabled,omitempty"`
-		ResourceCollectionEnabled     *bool            `json:"resource_collection_enabled,omitempty"`
-		RoleName                      *string          `json:"role_name,omitempty"`
-		SecretAccessKey               *string          `json:"secret_access_key,omitempty"`
+		AccessKeyId                   *string         `json:"access_key_id,omitempty"`
+		AccountId                     *string         `json:"account_id,omitempty"`
+		AccountSpecificNamespaceRules map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+		CspmResourceCollectionEnabled *bool           `json:"cspm_resource_collection_enabled,omitempty"`
+		ExcludedRegions               *[]string       `json:"excluded_regions,omitempty"`
+		FilterTags                    *[]string       `json:"filter_tags,omitempty"`
+		HostTags                      *[]string       `json:"host_tags,omitempty"`
+		MetricsCollectionEnabled      *bool           `json:"metrics_collection_enabled,omitempty"`
+		ResourceCollectionEnabled     *bool           `json:"resource_collection_enabled,omitempty"`
+		RoleName                      *string         `json:"role_name,omitempty"`
+		SecretAccessKey               *string         `json:"secret_access_key,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

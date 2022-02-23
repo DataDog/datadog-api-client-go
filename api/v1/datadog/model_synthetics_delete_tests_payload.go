@@ -12,13 +12,16 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want to delete.
+// SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want// to delete.
 type SyntheticsDeleteTestsPayload struct {
 	// An array of Synthetic test IDs you want to delete.
 	PublicIds *[]string `json:"public_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsDeleteTestsPayload SyntheticsDeleteTestsPayload
 
 // NewSyntheticsDeleteTestsPayload instantiates a new SyntheticsDeleteTestsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.PublicIds != nil {
 		toSerialize["public_ids"] = o.PublicIds
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -24,8 +24,11 @@ type ProcessQueryDefinition struct {
 	// Your chosen search term.
 	SearchBy *string `json:"search_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProcessQueryDefinition ProcessQueryDefinition
 
 // NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -115,7 +118,6 @@ func (o *ProcessQueryDefinition) GetMetric() string {
 		var ret string
 		return ret
 	}
-
 	return o.Metric
 }
 
@@ -176,11 +178,13 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
-	if true {
-		toSerialize["metric"] = o.Metric
-	}
+	toSerialize["metric"] = o.Metric
 	if o.SearchBy != nil {
 		toSerialize["search_by"] = o.SearchBy
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

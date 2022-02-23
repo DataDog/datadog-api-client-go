@@ -14,11 +14,16 @@ import (
 
 // HostMapWidgetDefinitionRequests List of definitions.
 type HostMapWidgetDefinitionRequests struct {
+	// Updated host map.
 	Fill *HostMapRequest `json:"fill,omitempty"`
+	// Updated host map.
 	Size *HostMapRequest `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostMapWidgetDefinitionRequests HostMapWidgetDefinitionRequests
 
 // NewHostMapWidgetDefinitionRequests instantiates a new HostMapWidgetDefinitionRequests object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	}
 	if o.Size != nil {
 		toSerialize["size"] = o.Size
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

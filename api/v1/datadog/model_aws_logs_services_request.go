@@ -20,8 +20,11 @@ type AWSLogsServicesRequest struct {
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint.
 	Services []string `json:"services"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSLogsServicesRequest AWSLogsServicesRequest
 
 // NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *AWSLogsServicesRequest) GetAccountId() string {
 		var ret string
 		return ret
 	}
-
 	return o.AccountId
 }
 
@@ -72,7 +74,6 @@ func (o *AWSLogsServicesRequest) GetServices() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Services
 }
 
@@ -95,11 +96,11 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["account_id"] = o.AccountId
-	}
-	if true {
-		toSerialize["services"] = o.Services
+	toSerialize["account_id"] = o.AccountId
+	toSerialize["services"] = o.Services
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

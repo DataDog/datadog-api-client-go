@@ -27,8 +27,11 @@ type MonitorThresholds struct {
 	// The monitor `WARNING` recovery threshold.
 	WarningRecovery NullableFloat64 `json:"warning_recovery,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorThresholds MonitorThresholds
 
 // NewMonitorThresholds instantiates a new MonitorThresholds object
 // This constructor will assign default values to properties that have it defined,
@@ -316,6 +319,10 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	}
 	if o.WarningRecovery.IsSet() {
 		toSerialize["warning_recovery"] = o.WarningRecovery.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

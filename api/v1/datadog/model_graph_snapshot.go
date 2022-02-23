@@ -14,15 +14,19 @@ import (
 
 // GraphSnapshot Object representing a graph snapshot.
 type GraphSnapshot struct {
-	// A JSON document defining the graph. `graph_def` can be used instead of `metric_query`. The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar) and should be formatted to a single line then URL encoded.
+	// A JSON document defining the graph. `graph_def` can be used instead of `metric_query`.// The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+	// and should be formatted to a single line then URL encoded.
 	GraphDef *string `json:"graph_def,omitempty"`
 	// The metric query. One of `metric_query` or `graph_def` is required.
 	MetricQuery *string `json:"metric_query,omitempty"`
 	// URL of your [graph snapshot](https://docs.datadoghq.com/metrics/explorer/#snapshot).
 	SnapshotUrl *string `json:"snapshot_url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GraphSnapshot GraphSnapshot
 
 // NewGraphSnapshot instantiates a new GraphSnapshot object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +154,10 @@ func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 	}
 	if o.SnapshotUrl != nil {
 		toSerialize["snapshot_url"] = o.SnapshotUrl
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

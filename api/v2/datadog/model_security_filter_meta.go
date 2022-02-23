@@ -17,8 +17,11 @@ type SecurityFilterMeta struct {
 	// A warning message.
 	Warning *string `json:"warning,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterMeta SecurityFilterMeta
 
 // NewSecurityFilterMeta instantiates a new SecurityFilterMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 	}
 	if o.Warning != nil {
 		toSerialize["warning"] = o.Warning
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

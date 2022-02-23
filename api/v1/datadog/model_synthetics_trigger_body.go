@@ -18,8 +18,11 @@ type SyntheticsTriggerBody struct {
 	// Individual synthetics test.
 	Tests []SyntheticsTriggerTest `json:"tests"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTriggerBody SyntheticsTriggerBody
 
 // NewSyntheticsTriggerBody instantiates a new SyntheticsTriggerBody object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func (o *SyntheticsTriggerBody) GetTests() []SyntheticsTriggerTest {
 		var ret []SyntheticsTriggerTest
 		return ret
 	}
-
 	return o.Tests
 }
 
@@ -68,8 +70,10 @@ func (o SyntheticsTriggerBody) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["tests"] = o.Tests
+	toSerialize["tests"] = o.Tests
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

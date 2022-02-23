@@ -24,13 +24,17 @@ type MonthlyUsageAttributionBody struct {
 	// The source of the usage attribution tag configuration and the selected tags in the format `<source_org_name>:<selected tag 1>///<selected tag 2>///<selected tag 3>`.
 	TagConfigSource *string `json:"tag_config_source,omitempty"`
 	// Usage Summary by tag name.
-	Tags *map[string][]string `json:"tags,omitempty"`
+	Tags map[string][]string `json:"tags,omitempty"`
 	// Datetime of the most recent update to the usage values.
-	UpdatedAt *time.Time                     `json:"updated_at,omitempty"`
-	Values    *MonthlyUsageAttributionValues `json:"values,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	// Fields in Usage Summary by tag(s).
+	Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonthlyUsageAttributionBody MonthlyUsageAttributionBody
 
 // NewMonthlyUsageAttributionBody instantiates a new MonthlyUsageAttributionBody object
 // This constructor will assign default values to properties that have it defined,
@@ -183,7 +187,7 @@ func (o *MonthlyUsageAttributionBody) GetTags() map[string][]string {
 		var ret map[string][]string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -192,7 +196,7 @@ func (o *MonthlyUsageAttributionBody) GetTagsOk() (*map[string][]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -206,7 +210,7 @@ func (o *MonthlyUsageAttributionBody) HasTags() bool {
 
 // SetTags gets a reference to the given map[string][]string and assigns it to the Tags field.
 func (o *MonthlyUsageAttributionBody) SetTags(v map[string][]string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
@@ -299,6 +303,10 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 	if o.Values != nil {
 		toSerialize["values"] = o.Values
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -309,7 +317,7 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 		OrgName         *string                        `json:"org_name,omitempty"`
 		PublicId        *string                        `json:"public_id,omitempty"`
 		TagConfigSource *string                        `json:"tag_config_source,omitempty"`
-		Tags            *map[string][]string           `json:"tags,omitempty"`
+		Tags            map[string][]string            `json:"tags,omitempty"`
 		UpdatedAt       *time.Time                     `json:"updated_at,omitempty"`
 		Values          *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	}{}

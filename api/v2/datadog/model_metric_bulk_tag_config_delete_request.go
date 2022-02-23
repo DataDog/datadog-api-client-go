@@ -15,10 +15,14 @@ import (
 
 // MetricBulkTagConfigDeleteRequest Wrapper object for a single bulk tag deletion request.
 type MetricBulkTagConfigDeleteRequest struct {
+	// Request object to bulk delete all tag configurations for metrics matching the given prefix.
 	Data MetricBulkTagConfigDelete `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricBulkTagConfigDeleteRequest MetricBulkTagConfigDeleteRequest
 
 // NewMetricBulkTagConfigDeleteRequest instantiates a new MetricBulkTagConfigDeleteRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *MetricBulkTagConfigDeleteRequest) GetData() MetricBulkTagConfigDelete {
 		var ret MetricBulkTagConfigDelete
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o MetricBulkTagConfigDeleteRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

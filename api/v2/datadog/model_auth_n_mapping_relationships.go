@@ -14,11 +14,16 @@ import (
 
 // AuthNMappingRelationships All relationships associated with AuthN Mapping.
 type AuthNMappingRelationships struct {
-	Role                   *RelationshipToRole                   `json:"role,omitempty"`
+	// Relationship to role.
+	Role *RelationshipToRole `json:"role,omitempty"`
+	// AuthN Mapping relationship to SAML Assertion Attribute.
 	SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingRelationships AuthNMappingRelationships
 
 // NewAuthNMappingRelationships instantiates a new AuthNMappingRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o AuthNMappingRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.SamlAssertionAttribute != nil {
 		toSerialize["saml_assertion_attribute"] = o.SamlAssertionAttribute
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

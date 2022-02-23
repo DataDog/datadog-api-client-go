@@ -31,8 +31,11 @@ type ProcessSummaryAttributes struct {
 	// Process owner.
 	User *string `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProcessSummaryAttributes ProcessSummaryAttributes
 
 // NewProcessSummaryAttributes instantiates a new ProcessSummaryAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -335,6 +338,10 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

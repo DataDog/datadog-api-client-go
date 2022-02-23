@@ -14,21 +14,21 @@ import (
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
-	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
 	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
+	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesMultipleValue wrapped in IncidentFieldAttributes
-func IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes(v *IncidentFieldAttributesMultipleValue) IncidentFieldAttributes {
-	return IncidentFieldAttributes{IncidentFieldAttributesMultipleValue: v}
-}
-
 // IncidentFieldAttributesSingleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesSingleValue wrapped in IncidentFieldAttributes
 func IncidentFieldAttributesSingleValueAsIncidentFieldAttributes(v *IncidentFieldAttributesSingleValue) IncidentFieldAttributes {
 	return IncidentFieldAttributes{IncidentFieldAttributesSingleValue: v}
+}
+
+// IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesMultipleValue wrapped in IncidentFieldAttributes
+func IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes(v *IncidentFieldAttributesMultipleValue) IncidentFieldAttributes {
+	return IncidentFieldAttributes{IncidentFieldAttributesMultipleValue: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -71,8 +71,8 @@ func (dst *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.IncidentFieldAttributesMultipleValue = nil
 		dst.IncidentFieldAttributesSingleValue = nil
+		dst.IncidentFieldAttributesMultipleValue = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -81,12 +81,12 @@ func (dst *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
-	if src.IncidentFieldAttributesMultipleValue != nil {
-		return json.Marshal(&src.IncidentFieldAttributesMultipleValue)
-	}
-
 	if src.IncidentFieldAttributesSingleValue != nil {
 		return json.Marshal(&src.IncidentFieldAttributesSingleValue)
+	}
+
+	if src.IncidentFieldAttributesMultipleValue != nil {
+		return json.Marshal(&src.IncidentFieldAttributesMultipleValue)
 	}
 
 	if src.UnparsedObject != nil {
@@ -97,12 +97,12 @@ func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *IncidentFieldAttributes) GetActualInstance() interface{} {
-	if obj.IncidentFieldAttributesMultipleValue != nil {
-		return obj.IncidentFieldAttributesMultipleValue
-	}
-
 	if obj.IncidentFieldAttributesSingleValue != nil {
 		return obj.IncidentFieldAttributesSingleValue
+	}
+
+	if obj.IncidentFieldAttributesMultipleValue != nil {
+		return obj.IncidentFieldAttributesMultipleValue
 	}
 
 	// all schemas are nil
@@ -142,5 +142,11 @@ func (v NullableIncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 
 func (v *NullableIncidentFieldAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

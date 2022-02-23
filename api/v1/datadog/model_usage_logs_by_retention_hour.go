@@ -24,11 +24,14 @@ type UsageLogsByRetentionHour struct {
 	PublicId *string `json:"public_id,omitempty"`
 	// Rehydrated logs indexed with this retention period during a given hour.
 	RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
-	// The retention period in days or \"custom\" for all custom retention usage.
+	// The retention period in days or "custom" for all custom retention usage.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageLogsByRetentionHour UsageLogsByRetentionHour
 
 // NewUsageLogsByRetentionHour instantiates a new UsageLogsByRetentionHour object
 // This constructor will assign default values to properties that have it defined,
@@ -261,6 +264,10 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.Retention != nil {
 		toSerialize["retention"] = o.Retention
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

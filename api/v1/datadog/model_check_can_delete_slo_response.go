@@ -14,12 +14,16 @@ import (
 
 // CheckCanDeleteSLOResponse A service level objective response containing the requested object.
 type CheckCanDeleteSLOResponse struct {
+	// An array of service level objective objects.
 	Data *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
 	// A mapping of SLO id to it's current usages.
-	Errors *map[string]string `json:"errors,omitempty"`
+	Errors map[string]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CheckCanDeleteSLOResponse CheckCanDeleteSLOResponse
 
 // NewCheckCanDeleteSLOResponse instantiates a new CheckCanDeleteSLOResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,7 +80,7 @@ func (o *CheckCanDeleteSLOResponse) GetErrors() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -85,7 +89,7 @@ func (o *CheckCanDeleteSLOResponse) GetErrorsOk() (*map[string]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -99,7 +103,7 @@ func (o *CheckCanDeleteSLOResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given map[string]string and assigns it to the Errors field.
 func (o *CheckCanDeleteSLOResponse) SetErrors(v map[string]string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o CheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
@@ -113,6 +117,10 @@ func (o CheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -120,7 +128,7 @@ func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data   *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
-		Errors *map[string]string             `json:"errors,omitempty"`
+		Errors map[string]string              `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

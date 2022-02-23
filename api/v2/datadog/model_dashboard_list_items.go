@@ -20,8 +20,11 @@ type DashboardListItems struct {
 	// Number of dashboards in the dashboard list.
 	Total *int64 `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardListItems DashboardListItems
 
 // NewDashboardListItems instantiates a new DashboardListItems object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +50,6 @@ func (o *DashboardListItems) GetDashboards() []DashboardListItem {
 		var ret []DashboardListItem
 		return ret
 	}
-
 	return o.Dashboards
 }
 
@@ -102,11 +104,13 @@ func (o DashboardListItems) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["dashboards"] = o.Dashboards
-	}
+	toSerialize["dashboards"] = o.Dashboards
 	if o.Total != nil {
 		toSerialize["total"] = o.Total
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

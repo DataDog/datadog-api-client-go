@@ -17,8 +17,11 @@ type UserDisableResponse struct {
 	// Information pertaining to a user disabled for a given organization.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserDisableResponse UserDisableResponse
 
 // NewUserDisableResponse instantiates a new UserDisableResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

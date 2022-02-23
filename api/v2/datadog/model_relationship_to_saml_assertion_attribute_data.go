@@ -16,11 +16,15 @@ import (
 // RelationshipToSAMLAssertionAttributeData Data of AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttributeData struct {
 	// The ID of the SAML assertion attribute.
-	Id   int32                       `json:"id"`
+	Id int32 `json:"id"`
+	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToSAMLAssertionAttributeData RelationshipToSAMLAssertionAttributeData
 
 // NewRelationshipToSAMLAssertionAttributeData instantiates a new RelationshipToSAMLAssertionAttributeData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewRelationshipToSAMLAssertionAttributeData(id int32, type_ SAMLAssertionAt
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSAMLAssertionAttributeData {
 	this := RelationshipToSAMLAssertionAttributeData{}
-	var type_ SAMLAssertionAttributesType = SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES
+	var type_ SAMLAssertionAttributesType = "saml_assertion_attributes"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
 		var ret int32
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -73,7 +76,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetType() SAMLAssertionAttrib
 		var ret SAMLAssertionAttributesType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) 
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

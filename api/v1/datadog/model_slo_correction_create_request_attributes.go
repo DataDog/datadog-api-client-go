@@ -15,6 +15,7 @@ import (
 
 // SLOCorrectionCreateRequestAttributes The attribute object associated with the SLO correction to be created.
 type SLOCorrectionCreateRequestAttributes struct {
+	// Category the SLO correction belongs to.
 	Category SLOCorrectionCategory `json:"category"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
@@ -22,17 +23,20 @@ type SLOCorrectionCreateRequestAttributes struct {
 	Duration *int64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
-	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule *string `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId string `json:"slo_id"`
 	// Starting time of the correction in epoch seconds.
 	Start int64 `json:"start"`
-	// The timezone to display in the UI for the correction times (defaults to \"UTC\").
+	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionCreateRequestAttributes SLOCorrectionCreateRequestAttributes
 
 // NewSLOCorrectionCreateRequestAttributes instantiates a new SLOCorrectionCreateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +64,6 @@ func (o *SLOCorrectionCreateRequestAttributes) GetCategory() SLOCorrectionCatego
 		var ret SLOCorrectionCategory
 		return ret
 	}
-
 	return o.Category
 }
 
@@ -212,7 +215,6 @@ func (o *SLOCorrectionCreateRequestAttributes) GetSloId() string {
 		var ret string
 		return ret
 	}
-
 	return o.SloId
 }
 
@@ -236,7 +238,6 @@ func (o *SLOCorrectionCreateRequestAttributes) GetStart() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Start
 }
 
@@ -291,9 +292,7 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["category"] = o.Category
-	}
+	toSerialize["category"] = o.Category
 	if o.Description != nil {
 		toSerialize["description"] = o.Description
 	}
@@ -306,14 +305,14 @@ func (o SLOCorrectionCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.Rrule != nil {
 		toSerialize["rrule"] = o.Rrule
 	}
-	if true {
-		toSerialize["slo_id"] = o.SloId
-	}
-	if true {
-		toSerialize["start"] = o.Start
-	}
+	toSerialize["slo_id"] = o.SloId
+	toSerialize["start"] = o.Start
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

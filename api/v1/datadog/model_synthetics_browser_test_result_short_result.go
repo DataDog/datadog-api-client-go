@@ -14,6 +14,7 @@ import (
 
 // SyntheticsBrowserTestResultShortResult Object with the result of the last browser test run.
 type SyntheticsBrowserTestResultShortResult struct {
+	// Object describing the device used to perform the Synthetic test.
 	Device *SyntheticsDevice `json:"device,omitempty"`
 	// Length in milliseconds of the browser test run.
 	Duration *float64 `json:"duration,omitempty"`
@@ -24,8 +25,11 @@ type SyntheticsBrowserTestResultShortResult struct {
 	// Total amount of browser test steps.
 	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBrowserTestResultShortResult SyntheticsBrowserTestResultShortResult
 
 // NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object
 // This constructor will assign default values to properties that have it defined,
@@ -223,6 +227,10 @@ func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.StepCountTotal != nil {
 		toSerialize["stepCountTotal"] = o.StepCountTotal
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

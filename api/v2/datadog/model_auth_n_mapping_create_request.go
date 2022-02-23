@@ -15,10 +15,14 @@ import (
 
 // AuthNMappingCreateRequest Request for creating an AuthN Mapping.
 type AuthNMappingCreateRequest struct {
+	// Data for creating an AuthN Mapping.
 	Data AuthNMappingCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingCreateRequest AuthNMappingCreateRequest
 
 // NewAuthNMappingCreateRequest instantiates a new AuthNMappingCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *AuthNMappingCreateRequest) GetData() AuthNMappingCreateData {
 		var ret AuthNMappingCreateData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o AuthNMappingCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

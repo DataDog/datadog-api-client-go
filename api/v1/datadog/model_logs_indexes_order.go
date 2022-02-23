@@ -15,11 +15,15 @@ import (
 
 // LogsIndexesOrder Object containing the ordered list of log index names.
 type LogsIndexesOrder struct {
-	// Array of strings identifying by their name(s) the index(es) of your organization. Logs are tested against the query filter of each index one by one, following the order of the array. Logs are eventually stored in the first matching index.
+	// Array of strings identifying by their name(s) the index(es) of your organization.// Logs are tested against the query filter of each index one by one, following the order of the array.
+	// Logs are eventually stored in the first matching index.
 	IndexNames []string `json:"index_names"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsIndexesOrder LogsIndexesOrder
 
 // NewLogsIndexesOrder instantiates a new LogsIndexesOrder object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +49,6 @@ func (o *LogsIndexesOrder) GetIndexNames() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.IndexNames
 }
 
@@ -68,8 +71,10 @@ func (o LogsIndexesOrder) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["index_names"] = o.IndexNames
+	toSerialize["index_names"] = o.IndexNames
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,13 +15,18 @@ import (
 
 // RoleUpdateData Data related to the update of a role.
 type RoleUpdateData struct {
+	// Attributes of the role.
 	Attributes RoleUpdateAttributes `json:"attributes"`
 	// ID of the role.
-	Id   string    `json:"id"`
+	Id string `json:"id"`
+	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RoleUpdateData RoleUpdateData
 
 // NewRoleUpdateData instantiates a new RoleUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewRoleUpdateData(attributes RoleUpdateAttributes, id string, type_ RolesTy
 // but it doesn't guarantee that properties required by API are set
 func NewRoleUpdateDataWithDefaults() *RoleUpdateData {
 	this := RoleUpdateData{}
-	var type_ RolesType = ROLESTYPE_ROLES
+	var type_ RolesType = "roles"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *RoleUpdateData) GetAttributes() RoleUpdateAttributes {
 		var ret RoleUpdateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *RoleUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *RoleUpdateData) GetType() RolesType {
 		var ret RolesType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

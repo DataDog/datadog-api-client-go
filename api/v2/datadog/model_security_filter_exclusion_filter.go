@@ -20,8 +20,11 @@ type SecurityFilterExclusionFilter struct {
 	// Exclusion filter query. Logs that match this query are excluded from the security filter.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterExclusionFilter SecurityFilterExclusionFilter
 
 // NewSecurityFilterExclusionFilter instantiates a new SecurityFilterExclusionFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *SecurityFilterExclusionFilter) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -72,7 +74,6 @@ func (o *SecurityFilterExclusionFilter) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -95,11 +96,11 @@ func (o SecurityFilterExclusionFilter) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["query"] = o.Query
+	toSerialize["name"] = o.Name
+	toSerialize["query"] = o.Query
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

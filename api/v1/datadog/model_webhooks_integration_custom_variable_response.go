@@ -15,15 +15,18 @@ import (
 
 // WebhooksIntegrationCustomVariableResponse Custom variable for Webhook integration.
 type WebhooksIntegrationCustomVariableResponse struct {
-	// Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload.
+	// Make custom variable is secret or not.// If the custom variable is secret, the value is not returned in the response payload.
 	IsSecret bool `json:"is_secret"`
 	// The name of the variable. It corresponds with `<CUSTOM_VARIABLE_NAME>`. It must only contains upper-case characters, integers or underscores.
 	Name string `json:"name"`
 	// Value of the custom variable. It won't be returned if the variable is secret.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhooksIntegrationCustomVariableResponse WebhooksIntegrationCustomVariableResponse
 
 // NewWebhooksIntegrationCustomVariableResponse instantiates a new WebhooksIntegrationCustomVariableResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +53,6 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetIsSecret() bool {
 		var ret bool
 		return ret
 	}
-
 	return o.IsSecret
 }
 
@@ -74,7 +76,6 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -129,14 +130,14 @@ func (o WebhooksIntegrationCustomVariableResponse) MarshalJSON() ([]byte, error)
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["is_secret"] = o.IsSecret
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["is_secret"] = o.IsSecret
+	toSerialize["name"] = o.Name
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

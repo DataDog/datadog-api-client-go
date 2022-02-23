@@ -24,11 +24,15 @@ type LogsURLParser struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
-	Target string            `json:"target"`
-	Type   LogsURLParserType `json:"type"`
+	Target string `json:"target"`
+	// Type of logs URL parser.
+	Type LogsURLParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsURLParser LogsURLParser
 
 // NewLogsURLParser instantiates a new LogsURLParser object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +61,7 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	var target string = "http.url_details"
 	this.Target = target
-	var type_ LogsURLParserType = LOGSURLPARSERTYPE_URL_PARSER
+	var type_ LogsURLParserType = "url-parser"
 	this.Type = type_
 	return &this
 }
@@ -175,7 +179,6 @@ func (o *LogsURLParser) GetSources() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Sources
 }
 
@@ -199,7 +202,6 @@ func (o *LogsURLParser) GetTarget() string {
 		var ret string
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -223,7 +225,6 @@ func (o *LogsURLParser) GetType() LogsURLParserType {
 		var ret LogsURLParserType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -255,14 +256,12 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 	if o.NormalizeEndingSlashes.IsSet() {
 		toSerialize["normalize_ending_slashes"] = o.NormalizeEndingSlashes.Get()
 	}
-	if true {
-		toSerialize["sources"] = o.Sources
-	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["sources"] = o.Sources
+	toSerialize["target"] = o.Target
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

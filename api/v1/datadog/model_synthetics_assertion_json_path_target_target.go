@@ -21,8 +21,11 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	// The path target value to compare to.
 	TargetValue interface{} `json:"targetValue,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAssertionJSONPathTargetTarget SyntheticsAssertionJSONPathTargetTarget
 
 // NewSyntheticsAssertionJSONPathTargetTarget instantiates a new SyntheticsAssertionJSONPathTargetTarget object
 // This constructor will assign default values to properties that have it defined,
@@ -105,9 +108,9 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetOperator(v string) {
 	o.Operator = &v
 }
 
-// GetTargetValue returns the TargetValue field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetTargetValue returns the TargetValue field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
-	if o == nil {
+	if o == nil || o.TargetValue == nil {
 		var ret interface{}
 		return ret
 	}
@@ -116,8 +119,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
 
 // GetTargetValueOk returns a tuple with the TargetValue field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (interface{}, bool) {
+func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValueOk() (*interface{}, bool) {
 	if o == nil || o.TargetValue == nil {
 		return nil, false
 	}
@@ -151,6 +153,10 @@ func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 	}
 	if o.TargetValue != nil {
 		toSerialize["targetValue"] = o.TargetValue
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,12 +16,15 @@ import (
 // SyntheticsTestRequestProxy The proxy to perform the test.
 type SyntheticsTestRequestProxy struct {
 	// Headers to include when performing the test.
-	Headers *map[string]string `json:"headers,omitempty"`
+	Headers map[string]string `json:"headers,omitempty"`
 	// URL of the proxy to perform the test.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTestRequestProxy SyntheticsTestRequestProxy
 
 // NewSyntheticsTestRequestProxy instantiates a new SyntheticsTestRequestProxy object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +50,7 @@ func (o *SyntheticsTestRequestProxy) GetHeaders() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Headers
+	return o.Headers
 }
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
@@ -56,7 +59,7 @@ func (o *SyntheticsTestRequestProxy) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
 		return nil, false
 	}
-	return o.Headers, true
+	return &o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
@@ -70,7 +73,7 @@ func (o *SyntheticsTestRequestProxy) HasHeaders() bool {
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
 func (o *SyntheticsTestRequestProxy) SetHeaders(v map[string]string) {
-	o.Headers = &v
+	o.Headers = v
 }
 
 // GetUrl returns the Url field value
@@ -79,7 +82,6 @@ func (o *SyntheticsTestRequestProxy) GetUrl() string {
 		var ret string
 		return ret
 	}
-
 	return o.Url
 }
 
@@ -105,8 +107,10 @@ func (o SyntheticsTestRequestProxy) MarshalJSON() ([]byte, error) {
 	if o.Headers != nil {
 		toSerialize["headers"] = o.Headers
 	}
-	if true {
-		toSerialize["url"] = o.Url
+	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -117,8 +121,8 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 		Url *string `json:"url"`
 	}{}
 	all := struct {
-		Headers *map[string]string `json:"headers,omitempty"`
-		Url     string             `json:"url"`
+		Headers map[string]string `json:"headers,omitempty"`
+		Url     string            `json:"url"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

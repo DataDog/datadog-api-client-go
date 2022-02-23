@@ -15,11 +15,15 @@ import (
 // Metric Object for a single metric tag configuration.
 type Metric struct {
 	// The metric name for this resource.
-	Id   *string     `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The metric resource type.
 	Type *MetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Metric Metric
 
 // NewMetric instantiates a new Metric object
 // This constructor will assign default values to properties that have it defined,
@@ -27,7 +31,7 @@ type Metric struct {
 // will change when the set of required properties is changed
 func NewMetric() *Metric {
 	this := Metric{}
-	var type_ MetricType = METRICTYPE_METRICS
+	var type_ MetricType = "metrics"
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +41,7 @@ func NewMetric() *Metric {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricWithDefaults() *Metric {
 	this := Metric{}
-	var type_ MetricType = METRICTYPE_METRICS
+	var type_ MetricType = "metrics"
 	this.Type = &type_
 	return &this
 }
@@ -116,6 +120,10 @@ func (o Metric) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

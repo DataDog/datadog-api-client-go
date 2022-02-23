@@ -15,15 +15,20 @@ import (
 
 // FormulaAndFunctionMetricQueryDefinition A formula and functions metrics query.
 type FormulaAndFunctionMetricQueryDefinition struct {
+	// The aggregation methods available for metrics queries.
 	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-	DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
+	// Data source for metrics queries.
+	DataSource FormulaAndFunctionMetricDataSource `json:"data_source"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
 	// Metrics query definition.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionMetricQueryDefinition FormulaAndFunctionMetricQueryDefinition
 
 // NewFormulaAndFunctionMetricQueryDefinition instantiates a new FormulaAndFunctionMetricQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -83,7 +88,6 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSource() FormulaAndFunc
 		var ret FormulaAndFunctionMetricDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -107,7 +111,6 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -131,7 +134,6 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -157,14 +159,12 @@ func (o FormulaAndFunctionMetricQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.Aggregator != nil {
 		toSerialize["aggregator"] = o.Aggregator
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["query"] = o.Query
+	toSerialize["data_source"] = o.DataSource
+	toSerialize["name"] = o.Name
+	toSerialize["query"] = o.Query
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -22,11 +22,15 @@ type SyntheticsConfigVariable struct {
 	// Name of the variable.
 	Name string `json:"name"`
 	// Pattern of the variable.
-	Pattern *string                      `json:"pattern,omitempty"`
-	Type    SyntheticsConfigVariableType `json:"type"`
+	Pattern *string `json:"pattern,omitempty"`
+	// Type of the configuration variable.
+	Type SyntheticsConfigVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsConfigVariable SyntheticsConfigVariable
 
 // NewSyntheticsConfigVariable instantiates a new SyntheticsConfigVariable object
 // This constructor will assign default values to properties that have it defined,
@@ -117,7 +121,6 @@ func (o *SyntheticsConfigVariable) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -173,7 +176,6 @@ func (o *SyntheticsConfigVariable) GetType() SyntheticsConfigVariableType {
 		var ret SyntheticsConfigVariableType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -202,14 +204,14 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

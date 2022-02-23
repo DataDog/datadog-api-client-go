@@ -13,24 +13,32 @@ import (
 	"fmt"
 )
 
-// LogsLookupProcessor Use the Lookup Processor to define a mapping between a log attribute and a human readable value saved in the processors mapping table. For example, you can use the Lookup Processor to map an internal service ID into a human readable service name. Alternatively, you could also use it to check if the MAC address that just attempted to connect to the production environment belongs to your list of stolen machines.
+// LogsLookupProcessor Use the Lookup Processor to define a mapping between a log attribute// and a human readable value saved in the processors mapping table.
+// For example, you can use the Lookup Processor to map an internal service ID
+// into a human readable service name. Alternatively, you could also use it to check
+// if the MAC address that just attempted to connect to the production
+// environment belongs to your list of stolen machines.
 type LogsLookupProcessor struct {
 	// Value to set the target attribute if the source value is not found in the list.
 	DefaultLookup *string `json:"default_lookup,omitempty"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// Mapping table of values for the source attribute and their associated target attribute values, formatted as `[\"source_key1,target_value1\", \"source_key2,target_value2\"]`
+	// Mapping table of values for the source attribute and their associated target attribute values,// formatted as `["source_key1,target_value1", "source_key2,target_value2"]`
 	LookupTable []string `json:"lookup_table"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Source attribute used to perform the lookup.
 	Source string `json:"source"`
-	// Name of the attribute that contains the corresponding value in the mapping list or the `default_lookup` if not found in the mapping list.
-	Target string                  `json:"target"`
-	Type   LogsLookupProcessorType `json:"type"`
+	// Name of the attribute that contains the corresponding value in the mapping list// or the `default_lookup` if not found in the mapping list.
+	Target string `json:"target"`
+	// Type of logs lookup processor.
+	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsLookupProcessor LogsLookupProcessor
 
 // NewLogsLookupProcessor instantiates a new LogsLookupProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +62,7 @@ func NewLogsLookupProcessorWithDefaults() *LogsLookupProcessor {
 	this := LogsLookupProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsLookupProcessorType = LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR
+	var type_ LogsLookupProcessorType = "lookup-processor"
 	this.Type = type_
 	return &this
 }
@@ -129,7 +137,6 @@ func (o *LogsLookupProcessor) GetLookupTable() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.LookupTable
 }
 
@@ -185,7 +192,6 @@ func (o *LogsLookupProcessor) GetSource() string {
 		var ret string
 		return ret
 	}
-
 	return o.Source
 }
 
@@ -209,7 +215,6 @@ func (o *LogsLookupProcessor) GetTarget() string {
 		var ret string
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -233,7 +238,6 @@ func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType {
 		var ret LogsLookupProcessorType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -262,20 +266,16 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
-	if true {
-		toSerialize["lookup_table"] = o.LookupTable
-	}
+	toSerialize["lookup_table"] = o.LookupTable
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["source"] = o.Source
+	toSerialize["target"] = o.Target
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

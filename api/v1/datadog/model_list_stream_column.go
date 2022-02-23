@@ -16,11 +16,15 @@ import (
 // ListStreamColumn Widget column.
 type ListStreamColumn struct {
 	// Widget column field.
-	Field string                `json:"field"`
+	Field string `json:"field"`
+	// Widget column width.
 	Width ListStreamColumnWidth `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListStreamColumn ListStreamColumn
 
 // NewListStreamColumn instantiates a new ListStreamColumn object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func (o *ListStreamColumn) GetField() string {
 		var ret string
 		return ret
 	}
-
 	return o.Field
 }
 
@@ -71,7 +74,6 @@ func (o *ListStreamColumn) GetWidth() ListStreamColumnWidth {
 		var ret ListStreamColumnWidth
 		return ret
 	}
-
 	return o.Width
 }
 
@@ -94,11 +96,11 @@ func (o ListStreamColumn) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["field"] = o.Field
-	}
-	if true {
-		toSerialize["width"] = o.Width
+	toSerialize["field"] = o.Field
+	toSerialize["width"] = o.Width
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

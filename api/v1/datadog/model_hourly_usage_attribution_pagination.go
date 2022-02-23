@@ -17,8 +17,11 @@ type HourlyUsageAttributionPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
 	NextRecordId *string `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HourlyUsageAttributionPagination HourlyUsageAttributionPagination
 
 // NewHourlyUsageAttributionPagination instantiates a new HourlyUsageAttributionPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	}
 	if o.NextRecordId != nil {
 		toSerialize["next_record_id"] = o.NextRecordId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

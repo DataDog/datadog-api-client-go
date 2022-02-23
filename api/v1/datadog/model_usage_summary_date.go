@@ -138,8 +138,11 @@ type UsageSummaryDate struct {
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations.
 	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSummaryDate UsageSummaryDate
 
 // NewUsageSummaryDate instantiates a new UsageSummaryDate object
 // This constructor will assign default values to properties that have it defined,
@@ -2297,6 +2300,10 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	}
 	if o.VsphereHostTop99p != nil {
 		toSerialize["vsphere_host_top99p"] = o.VsphereHostTop99p
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

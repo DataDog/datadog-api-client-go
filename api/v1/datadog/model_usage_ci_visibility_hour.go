@@ -27,8 +27,11 @@ type UsageCIVisibilityHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageCIVisibilityHour UsageCIVisibilityHour
 
 // NewUsageCIVisibilityHour instantiates a new UsageCIVisibilityHour object
 // This constructor will assign default values to properties that have it defined,
@@ -261,6 +264,10 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

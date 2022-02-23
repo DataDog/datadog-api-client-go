@@ -14,11 +14,14 @@ import (
 
 // LogsResponseMetadataPage Paging attributes.
 type LogsResponseMetadataPage struct {
-	// The cursor to use to get the next results, if any. To make the next request, use the same. parameters with the addition of the `page[cursor]`.
+	// The cursor to use to get the next results, if any. To make the next request, use the same.// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsResponseMetadataPage LogsResponseMetadataPage
 
 // NewLogsResponseMetadataPage instantiates a new LogsResponseMetadataPage object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o LogsResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	}
 	if o.After != nil {
 		toSerialize["after"] = o.After
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

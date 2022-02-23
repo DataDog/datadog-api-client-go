@@ -1,0 +1,91 @@
+// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}
+type {{ name }} {{ model|simple_type }}
+
+// List of {{ name }}
+const (
+	{%- for index, value in enumerate(model.enum) %}
+	{{ name|upper }}_{{ model["x-enum-varnames"][index] or value.upper() }} {{ name }} = {{ value|format_value(quotes='"') }}
+{%- endfor %}
+)
+
+var allowed{{ name }}EnumValues = []{{ name }}{
+	{%- for index, value in enumerate(model.enum) %}
+	{{ value|format_value(quotes='"') }},
+	{%- endfor %}
+}
+
+func (w *{{ name }}) GetAllowedValues() []{{ name }} {
+	return allowed{{ name }}EnumValues
+}
+
+func (v *{{ name }}) UnmarshalJSON(src []byte) error {
+	var value {{ model|simple_type }}
+	err := json.Unmarshal(src, &value)
+	if err != nil {
+		return err
+	}
+	*v = {{ name }}(value)
+	return nil
+}
+
+// New{{ name }}FromValue returns a pointer to a valid {{ name }}
+// for the value passed as argument, or an error if the value passed is not allowed by the enum
+func New{{ name }}FromValue(v {{ model|simple_type }}) (*{{ name }}, error) {
+	ev := {{ name }}(v)
+	if ev.IsValid() {
+		return &ev, nil
+	} else {
+		return nil, fmt.Errorf("invalid value '%v' for {{ name }}: valid values are %v", v, allowed{{ name }}EnumValues)
+	}
+}
+
+// IsValid return true if the value is valid for the enum, false otherwise
+func (v {{ name }}) IsValid() bool {
+	for _, existing := range allowed{{ name }}EnumValues {
+		if existing == v {
+			return true
+		}
+	}
+	return false
+}
+
+// Ptr returns reference to {{ name }} value
+func (v {{ name }}) Ptr() *{{ name }} {
+	return &v
+}
+
+type Nullable{{ name }} struct {
+	value *{{ name }}
+	isSet bool
+}
+
+func (v Nullable{{ name }}) Get() *{{ name }} {
+	return v.value
+}
+
+func (v *Nullable{{ name }}) Set(val *{{ name }}) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v Nullable{{ name }}) IsSet() bool {
+	return v.isSet
+}
+
+func (v *Nullable{{ name }}) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullable{{ name }}(val *{{ name }}) *Nullable{{ name }} {
+	return &Nullable{{ name }}{value: val, isSet: true}
+}
+
+func (v Nullable{{ name }}) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *Nullable{{ name }}) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+	return json.Unmarshal(src, &v.value)
+}

@@ -15,11 +15,16 @@ import (
 
 // RoleClone Data for the clone role request.
 type RoleClone struct {
+	// Attributes required to create a new role by cloning an existing one.
 	Attributes RoleCloneAttributes `json:"attributes"`
-	Type       RolesType           `json:"type"`
+	// Roles type.
+	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RoleClone RoleClone
 
 // NewRoleClone instantiates a new RoleClone object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewRoleClone(attributes RoleCloneAttributes, type_ RolesType) *RoleClone {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleCloneWithDefaults() *RoleClone {
 	this := RoleClone{}
-	var type_ RolesType = ROLESTYPE_ROLES
+	var type_ RolesType = "roles"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *RoleClone) GetAttributes() RoleCloneAttributes {
 		var ret RoleCloneAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *RoleClone) GetType() RolesType {
 		var ret RolesType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o RoleClone) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

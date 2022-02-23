@@ -15,11 +15,15 @@ import (
 // SyntheticsAPITestResultShortResult Result of the last API test run.
 type SyntheticsAPITestResultShortResult struct {
 	// Describes if the test run has passed or failed.
-	Passed  *bool             `json:"passed,omitempty"`
+	Passed *bool `json:"passed,omitempty"`
+	// Object containing all metrics and their values collected for a Synthetic API test.// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAPITestResultShortResult SyntheticsAPITestResultShortResult
 
 // NewSyntheticsAPITestResultShortResult instantiates a new SyntheticsAPITestResultShortResult object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.Timings != nil {
 		toSerialize["timings"] = o.Timings
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

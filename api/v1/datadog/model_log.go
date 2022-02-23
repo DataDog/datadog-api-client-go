@@ -14,12 +14,16 @@ import (
 
 // Log Object describing a log after being processed and stored by Datadog.
 type Log struct {
+	// JSON object containing all log attributes and their associated values.
 	Content *LogContent `json:"content,omitempty"`
 	// Unique ID of the Log.
 	Id *string `json:"id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Log Log
 
 // NewLog instantiates a new Log object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o Log) MarshalJSON() ([]byte, error) {
 	}
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

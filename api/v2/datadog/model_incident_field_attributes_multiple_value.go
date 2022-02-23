@@ -14,12 +14,16 @@ import (
 
 // IncidentFieldAttributesMultipleValue A field with potentially multiple values selected.
 type IncidentFieldAttributesMultipleValue struct {
+	// Type of the multiple value field definitions.
 	Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
 	// The multiple values selected for this field.
 	Value []string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentFieldAttributesMultipleValue IncidentFieldAttributesMultipleValue
 
 // NewIncidentFieldAttributesMultipleValue instantiates a new IncidentFieldAttributesMultipleValue object
 // This constructor will assign default values to properties that have it defined,
@@ -27,7 +31,7 @@ type IncidentFieldAttributesMultipleValue struct {
 // will change when the set of required properties is changed
 func NewIncidentFieldAttributesMultipleValue() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
+	var type_ IncidentFieldAttributesValueType = "multiselect"
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +41,7 @@ func NewIncidentFieldAttributesMultipleValue() *IncidentFieldAttributesMultipleV
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentFieldAttributesMultipleValueWithDefaults() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
+	var type_ IncidentFieldAttributesValueType = "multiselect"
 	this.Type = &type_
 	return &this
 }
@@ -117,6 +121,10 @@ func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

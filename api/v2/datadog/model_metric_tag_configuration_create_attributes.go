@@ -15,16 +15,34 @@ import (
 
 // MetricTagConfigurationCreateAttributes Object containing the definition of a metric tag configuration to be created.
 type MetricTagConfigurationCreateAttributes struct {
-	// A list of queryable aggregation combinations for a count, rate, or gauge metric. By default, count and rate metrics require the (time: sum, space: sum) aggregation and Gauge metrics require the (time: avg, space: avg) aggregation. Additional time & space combinations are also available:  - time: avg, space: avg - time: avg, space: max - time: avg, space: min - time: avg, space: sum - time: count, space: sum - time: max, space: max - time: min, space: min - time: sum, space: avg - time: sum, space: sum  Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
+	// A list of queryable aggregation combinations for a count, rate, or gauge metric.// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
+	// Gauge metrics require the (time: avg, space: avg) aggregation.
+	// Additional time & space combinations are also available:
+	//
+	// - time: avg, space: avg
+	// - time: avg, space: max
+	// - time: avg, space: min
+	// - time: avg, space: sum
+	// - time: count, space: sum
+	// - time: max, space: max
+	// - time: min, space: min
+	// - time: sum, space: avg
+	// - time: sum, space: sum
+	//
+	// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
 	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-	// Toggle to include/exclude percentiles for a distribution metric. Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
-	IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-	MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
+	// Toggle to include/exclude percentiles for a distribution metric.// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+	// The metric's type.
+	MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricTagConfigurationCreateAttributes MetricTagConfigurationCreateAttributes
 
 // NewMetricTagConfigurationCreateAttributes instantiates a new MetricTagConfigurationCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +64,7 @@ func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigura
 	this := MetricTagConfigurationCreateAttributes{}
 	var includePercentiles bool = false
 	this.IncludePercentiles = &includePercentiles
-	var metricType MetricTagConfigurationMetricTypes = METRICTAGCONFIGURATIONMETRICTYPES_GAUGE
+	var metricType MetricTagConfigurationMetricTypes = "gauge"
 	this.MetricType = metricType
 	return &this
 }
@@ -121,7 +139,6 @@ func (o *MetricTagConfigurationCreateAttributes) GetMetricType() MetricTagConfig
 		var ret MetricTagConfigurationMetricTypes
 		return ret
 	}
-
 	return o.MetricType
 }
 
@@ -145,7 +162,6 @@ func (o *MetricTagConfigurationCreateAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
@@ -174,11 +190,11 @@ func (o MetricTagConfigurationCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.IncludePercentiles != nil {
 		toSerialize["include_percentiles"] = o.IncludePercentiles
 	}
-	if true {
-		toSerialize["metric_type"] = o.MetricType
-	}
-	if true {
-		toSerialize["tags"] = o.Tags
+	toSerialize["metric_type"] = o.MetricType
+	toSerialize["tags"] = o.Tags
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,13 +14,18 @@ import (
 
 // ProcessSummary Process summary object.
 type ProcessSummary struct {
+	// Attributes for a process summary.
 	Attributes *ProcessSummaryAttributes `json:"attributes,omitempty"`
 	// Process ID.
-	Id   *string             `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Type of process summary.
 	Type *ProcessSummaryType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ProcessSummary ProcessSummary
 
 // NewProcessSummary instantiates a new ProcessSummary object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type ProcessSummary struct {
 // will change when the set of required properties is changed
 func NewProcessSummary() *ProcessSummary {
 	this := ProcessSummary{}
-	var type_ ProcessSummaryType = PROCESSSUMMARYTYPE_PROCESS
+	var type_ ProcessSummaryType = "process"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewProcessSummary() *ProcessSummary {
 // but it doesn't guarantee that properties required by API are set
 func NewProcessSummaryWithDefaults() *ProcessSummary {
 	this := ProcessSummary{}
-	var type_ ProcessSummaryType = PROCESSSUMMARYTYPE_PROCESS
+	var type_ ProcessSummaryType = "process"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o ProcessSummary) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

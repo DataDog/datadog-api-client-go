@@ -114,7 +114,7 @@ func NewConfiguration() *Configuration {
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
-					"site": ServerVariable{
+					"site": {
 						Description:  "The regional site for Datadog customers.",
 						DefaultValue: "datadoghq.com",
 						EnumValues: []string{
@@ -125,7 +125,7 @@ func NewConfiguration() *Configuration {
 							"ddog-gov.com",
 						},
 					},
-					"subdomain": ServerVariable{
+					"subdomain": {
 						Description:  "The subdomain where the API is deployed.",
 						DefaultValue: "api",
 					},
@@ -135,11 +135,11 @@ func NewConfiguration() *Configuration {
 				URL:         "{protocol}://{name}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
-					"name": ServerVariable{
+					"name": {
 						Description:  "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
 					},
-					"protocol": ServerVariable{
+					"protocol": {
 						Description:  "The protocol for accessing the API.",
 						DefaultValue: "https",
 					},
@@ -149,11 +149,11 @@ func NewConfiguration() *Configuration {
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
-					"site": ServerVariable{
+					"site": {
 						Description:  "Any Datadog deployment.",
 						DefaultValue: "datadoghq.com",
 					},
-					"subdomain": ServerVariable{
+					"subdomain": {
 						Description:  "The subdomain where the API is deployed.",
 						DefaultValue: "api",
 					},
@@ -166,7 +166,7 @@ func NewConfiguration() *Configuration {
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
-						"site": ServerVariable{
+						"site": {
 							Description:  "The regional site for customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
@@ -177,7 +177,7 @@ func NewConfiguration() *Configuration {
 								"ddog-gov.com",
 							},
 						},
-						"subdomain": ServerVariable{
+						"subdomain": {
 							Description:  "The subdomain where the API is deployed.",
 							DefaultValue: "http-intake.logs",
 						},
@@ -187,11 +187,11 @@ func NewConfiguration() *Configuration {
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
-						"name": ServerVariable{
+						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
 						},
-						"protocol": ServerVariable{
+						"protocol": {
 							Description:  "The protocol for accessing the API.",
 							DefaultValue: "https",
 						},
@@ -201,11 +201,11 @@ func NewConfiguration() *Configuration {
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
-						"site": ServerVariable{
+						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
 						},
-						"subdomain": ServerVariable{
+						"subdomain": {
 							Description:  "The subdomain where the API is deployed.",
 							DefaultValue: "http-intake.logs",
 						},
@@ -214,28 +214,28 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"CreateIncidentService":           false,
-			"DeleteIncidentService":           false,
-			"GetIncidentService":              false,
-			"ListIncidentServices":            false,
-			"UpdateIncidentService":           false,
-			"CreateIncidentTeam":              false,
-			"DeleteIncidentTeam":              false,
-			"GetIncidentTeam":                 false,
-			"ListIncidentTeams":               false,
-			"UpdateIncidentTeam":              false,
+			"ListIncidents":                   false,
 			"CreateIncident":                  false,
 			"DeleteIncident":                  false,
 			"GetIncident":                     false,
-			"ListIncidents":                   false,
 			"UpdateIncident":                  false,
-			"CreateTagConfiguration":          false,
+			"ListTagConfigurations":           false,
 			"DeleteTagConfiguration":          false,
 			"ListTagConfigurationByName":      false,
-			"ListTagConfigurations":           false,
 			"UpdateTagConfiguration":          false,
+			"CreateTagConfiguration":          false,
 			"ListSecurityMonitoringSignals":   false,
 			"SearchSecurityMonitoringSignals": false,
+			"ListIncidentServices":            false,
+			"CreateIncidentService":           false,
+			"DeleteIncidentService":           false,
+			"GetIncidentService":              false,
+			"UpdateIncidentService":           false,
+			"ListIncidentTeams":               false,
+			"CreateIncidentTeam":              false,
+			"DeleteIncidentTeam":              false,
+			"GetIncidentTeam":                 false,
+			"UpdateIncidentTeam":              false,
 		},
 	}
 	return cfg

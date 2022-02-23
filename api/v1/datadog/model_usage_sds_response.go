@@ -17,8 +17,11 @@ type UsageSDSResponse struct {
 	// Get hourly usage for Sensitive Data Scanner.
 	Usage *[]UsageSDSHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSDSResponse UsageSDSResponse
 
 // NewUsageSDSResponse instantiates a new UsageSDSResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageSDSResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

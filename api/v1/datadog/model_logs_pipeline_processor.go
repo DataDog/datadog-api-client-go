@@ -13,19 +13,27 @@ import (
 	"fmt"
 )
 
-// LogsPipelineProcessor Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps. For example, first use a high-level filtering such as team and then a second level of filtering based on the integration, service, or any other tag or attribute.  A pipeline can contain Nested Pipelines and Processors whereas a Nested Pipeline can only contain Processors.
+// LogsPipelineProcessor Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps.// For example, first use a high-level filtering such as team and then a second level of filtering based on the
+// integration, service, or any other tag or attribute.
+//
+// A pipeline can contain Nested Pipelines and Processors whereas a Nested Pipeline can only contain Processors.
 type LogsPipelineProcessor struct {
+	// Filter for logs.
 	Filter *LogsFilter `json:"filter,omitempty"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Ordered list of processors in this pipeline.
-	Processors *[]LogsProcessor          `json:"processors,omitempty"`
-	Type       LogsPipelineProcessorType `json:"type"`
+	Processors *[]LogsProcessor `json:"processors,omitempty"`
+	// Type of logs pipeline processor.
+	Type LogsPipelineProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsPipelineProcessor LogsPipelineProcessor
 
 // NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +54,7 @@ func NewLogsPipelineProcessorWithDefaults() *LogsPipelineProcessor {
 	this := LogsPipelineProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsPipelineProcessorType = LOGSPIPELINEPROCESSORTYPE_PIPELINE
+	var type_ LogsPipelineProcessorType = "pipeline"
 	this.Type = type_
 	return &this
 }
@@ -185,7 +193,6 @@ func (o *LogsPipelineProcessor) GetType() LogsPipelineProcessorType {
 		var ret LogsPipelineProcessorType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -220,8 +227,10 @@ func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 	if o.Processors != nil {
 		toSerialize["processors"] = o.Processors
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

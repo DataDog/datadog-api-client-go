@@ -15,11 +15,16 @@ import (
 
 // ApplicationKeyCreateData Object used to create an application key.
 type ApplicationKeyCreateData struct {
+	// Attributes used to create an application Key.
 	Attributes ApplicationKeyCreateAttributes `json:"attributes"`
-	Type       ApplicationKeysType            `json:"type"`
+	// Application Keys resource type.
+	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyCreateData ApplicationKeyCreateData
 
 // NewApplicationKeyCreateData instantiates a new ApplicationKeyCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewApplicationKeyCreateData(attributes ApplicationKeyCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewApplicationKeyCreateDataWithDefaults() *ApplicationKeyCreateData {
 	this := ApplicationKeyCreateData{}
-	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
+	var type_ ApplicationKeysType = "application_keys"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *ApplicationKeyCreateData) GetAttributes() ApplicationKeyCreateAttribute
 		var ret ApplicationKeyCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *ApplicationKeyCreateData) GetType() ApplicationKeysType {
 		var ret ApplicationKeysType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o ApplicationKeyCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

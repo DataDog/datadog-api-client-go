@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// NotebookStatus Publication status of the notebook. For now, always \"published\".
+// NotebookStatus Publication status of the notebook. For now, always "published".
 type NotebookStatus string
 
 // List of NotebookStatus

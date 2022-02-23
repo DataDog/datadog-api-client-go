@@ -16,13 +16,17 @@ import (
 // SyntheticsBasicAuthWeb Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuthWeb struct {
 	// Password to use for the basic authentication.
-	Password string                     `json:"password"`
-	Type     SyntheticsBasicAuthWebType `json:"type"`
+	Password string `json:"password"`
+	// The type of basic authentication to use when performing the test.
+	Type SyntheticsBasicAuthWebType `json:"type"`
 	// Username to use for the basic authentication.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBasicAuthWeb SyntheticsBasicAuthWeb
 
 // NewSyntheticsBasicAuthWeb instantiates a new SyntheticsBasicAuthWeb object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +45,7 @@ func NewSyntheticsBasicAuthWeb(password string, type_ SyntheticsBasicAuthWebType
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthWebWithDefaults() *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
-	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
+	var type_ SyntheticsBasicAuthWebType = "web"
 	this.Type = type_
 	return &this
 }
@@ -52,7 +56,6 @@ func (o *SyntheticsBasicAuthWeb) GetPassword() string {
 		var ret string
 		return ret
 	}
-
 	return o.Password
 }
 
@@ -76,7 +79,6 @@ func (o *SyntheticsBasicAuthWeb) GetType() SyntheticsBasicAuthWebType {
 		var ret SyntheticsBasicAuthWebType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -100,7 +102,6 @@ func (o *SyntheticsBasicAuthWeb) GetUsername() string {
 		var ret string
 		return ret
 	}
-
 	return o.Username
 }
 
@@ -123,14 +124,12 @@ func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["password"] = o.Password
-	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["username"] = o.Username
+	toSerialize["password"] = o.Password
+	toSerialize["type"] = o.Type
+	toSerialize["username"] = o.Username
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

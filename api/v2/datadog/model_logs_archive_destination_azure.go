@@ -16,18 +16,23 @@ import (
 // LogsArchiveDestinationAzure The Azure archive destination.
 type LogsArchiveDestinationAzure struct {
 	// The container where the archive will be stored.
-	Container   string                      `json:"container"`
+	Container string `json:"container"`
+	// The Azure archive's integration destination.
 	Integration LogsArchiveIntegrationAzure `json:"integration"`
 	// The archive path.
 	Path *string `json:"path,omitempty"`
 	// The region where the archive will be stored.
 	Region *string `json:"region,omitempty"`
 	// The associated storage account.
-	StorageAccount string                          `json:"storage_account"`
-	Type           LogsArchiveDestinationAzureType `json:"type"`
+	StorageAccount string `json:"storage_account"`
+	// Type of the Azure archive destination.
+	Type LogsArchiveDestinationAzureType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveDestinationAzure LogsArchiveDestinationAzure
 
 // NewLogsArchiveDestinationAzure instantiates a new LogsArchiveDestinationAzure object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,7 @@ func NewLogsArchiveDestinationAzure(container string, integration LogsArchiveInt
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveDestinationAzureWithDefaults() *LogsArchiveDestinationAzure {
 	this := LogsArchiveDestinationAzure{}
-	var type_ LogsArchiveDestinationAzureType = LOGSARCHIVEDESTINATIONAZURETYPE_AZURE
+	var type_ LogsArchiveDestinationAzureType = "azure"
 	this.Type = type_
 	return &this
 }
@@ -58,7 +63,6 @@ func (o *LogsArchiveDestinationAzure) GetContainer() string {
 		var ret string
 		return ret
 	}
-
 	return o.Container
 }
 
@@ -82,7 +86,6 @@ func (o *LogsArchiveDestinationAzure) GetIntegration() LogsArchiveIntegrationAzu
 		var ret LogsArchiveIntegrationAzure
 		return ret
 	}
-
 	return o.Integration
 }
 
@@ -170,7 +173,6 @@ func (o *LogsArchiveDestinationAzure) GetStorageAccount() string {
 		var ret string
 		return ret
 	}
-
 	return o.StorageAccount
 }
 
@@ -194,7 +196,6 @@ func (o *LogsArchiveDestinationAzure) GetType() LogsArchiveDestinationAzureType 
 		var ret LogsArchiveDestinationAzureType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -217,23 +218,19 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["container"] = o.Container
-	}
-	if true {
-		toSerialize["integration"] = o.Integration
-	}
+	toSerialize["container"] = o.Container
+	toSerialize["integration"] = o.Integration
 	if o.Path != nil {
 		toSerialize["path"] = o.Path
 	}
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
-	if true {
-		toSerialize["storage_account"] = o.StorageAccount
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["storage_account"] = o.StorageAccount
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

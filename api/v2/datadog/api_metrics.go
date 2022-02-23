@@ -36,12 +36,12 @@ type apiCreateBulkTagsMetricsConfigurationRequest struct {
 /*
  * CreateBulkTagsMetricsConfiguration Configure tags for multiple metrics
  * Create and define a list of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
-Metrics are selected by passing a metric name prefix. Use the Delete method of this API path to remove tag configurations.
-Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
-If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
-expect deterministic ordering of concurrent calls.
-Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-*/
+ * Metrics are selected by passing a metric name prefix. Use the Delete method of this API path to remove tag configurations.
+ * Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
+ * If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
+ * expect deterministic ordering of concurrent calls.
+ * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+ */
 func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req := apiCreateBulkTagsMetricsConfigurationRequest{
 		ApiService: a,
@@ -214,10 +214,10 @@ type apiCreateTagConfigurationRequest struct {
 /*
  * CreateTagConfiguration Create a tag configuration
  * Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
-Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
-on any count, rate, or gauge metric.
-Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-*/
+ * Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
+ * on any count, rate, or gauge metric.
+ * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+ */
 func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req := apiCreateTagConfigurationRequest{
 		ApiService: a,
@@ -398,10 +398,10 @@ type apiDeleteBulkTagsMetricsConfigurationRequest struct {
 /*
  * DeleteBulkTagsMetricsConfiguration Configure tags for multiple metrics
  * Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
-Metrics are selected by passing a metric name prefix.
-Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
-Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
-*/
+ * Metrics are selected by passing a metric name prefix.
+ * Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
+ * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
+ */
 func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req := apiDeleteBulkTagsMetricsConfigurationRequest{
 		ApiService: a,
@@ -573,8 +573,8 @@ type apiDeleteTagConfigurationRequest struct {
 /*
  * DeleteTagConfiguration Delete a tag configuration
  * Deletes a metric's tag configuration. Can only be used with application
-keys from users with the `Manage Tags for Metrics` permission.
-*/
+ * keys from users with the `Manage Tags for Metrics` permission.
+ */
 func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
 	req := apiDeleteTagConfigurationRequest{
 		ApiService: a,
@@ -616,24 +616,14 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -772,15 +762,6 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -789,7 +770,6 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -936,8 +916,8 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 /*
  * ListTagConfigurations List tag configurations
  * Returns all configured count/gauge/rate/distribution metric names
-(with additional filters if specified).
-*/
+ * (with additional filters if specified).
+ */
 func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	req := apiListTagConfigurationsRequest{
 		ApiService: a,
@@ -992,7 +972,6 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.filterConfigured != nil {
 		localVarQueryParams.Add("filter[configured]", parameterToString(*r.filterConfigured, ""))
 	}
@@ -1011,14 +990,6 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	if r.windowSeconds != nil {
 		localVarQueryParams.Add("window[seconds]", parameterToString(*r.windowSeconds, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -1028,7 +999,6 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1169,15 +1139,6 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1186,7 +1147,6 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1300,11 +1260,11 @@ type apiListVolumesByMetricNameRequest struct {
 /*
  * ListVolumesByMetricName List distinct metric volumes by metric name
  * View distinct metrics volumes for the given metric name.
-
-Custom distribution metrics will return both ingested and indexed custom metric volumes.
-For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
-Custom metrics generated in-app from other products will return `null` for ingested volumes.
-*/
+ *
+ * Custom distribution metrics will return both ingested and indexed custom metric volumes.
+ * For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
+ * Custom metrics generated in-app from other products will return `null` for ingested volumes.
+ */
 func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
 	req := apiListVolumesByMetricNameRequest{
 		ApiService: a,
@@ -1341,15 +1301,6 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1358,7 +1309,6 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1473,9 +1423,9 @@ type apiUpdateTagConfigurationRequest struct {
 /*
  * UpdateTagConfiguration Update a tag configuration
  * Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
-of a count, rate, or gauge metric.
-Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
-*/
+ * of a count, rate, or gauge metric.
+ * Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
+ */
 func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req := apiUpdateTagConfigurationRequest{
 		ApiService: a,

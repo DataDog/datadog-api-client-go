@@ -14,21 +14,21 @@ import (
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
 type ApplicationKeyResponseIncludedItem struct {
-	Role *Role
 	User *User
+	Role *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem
-func RoleAsApplicationKeyResponseIncludedItem(v *Role) ApplicationKeyResponseIncludedItem {
-	return ApplicationKeyResponseIncludedItem{Role: v}
-}
-
 // UserAsApplicationKeyResponseIncludedItem is a convenience function that returns User wrapped in ApplicationKeyResponseIncludedItem
 func UserAsApplicationKeyResponseIncludedItem(v *User) ApplicationKeyResponseIncludedItem {
 	return ApplicationKeyResponseIncludedItem{User: v}
+}
+
+// RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem
+func RoleAsApplicationKeyResponseIncludedItem(v *Role) ApplicationKeyResponseIncludedItem {
+	return ApplicationKeyResponseIncludedItem{Role: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -71,8 +71,8 @@ func (dst *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error 
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.Role = nil
 		dst.User = nil
+		dst.Role = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -81,12 +81,12 @@ func (dst *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error 
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
-	if src.Role != nil {
-		return json.Marshal(&src.Role)
-	}
-
 	if src.User != nil {
 		return json.Marshal(&src.User)
+	}
+
+	if src.Role != nil {
+		return json.Marshal(&src.Role)
 	}
 
 	if src.UnparsedObject != nil {
@@ -97,12 +97,12 @@ func (src ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
-	if obj.Role != nil {
-		return obj.Role
-	}
-
 	if obj.User != nil {
 		return obj.User
+	}
+
+	if obj.Role != nil {
+		return obj.Role
 	}
 
 	// all schemas are nil
@@ -142,5 +142,11 @@ func (v NullableApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error
 
 func (v *NullableApplicationKeyResponseIncludedItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

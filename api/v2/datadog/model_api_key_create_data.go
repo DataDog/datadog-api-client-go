@@ -15,11 +15,16 @@ import (
 
 // APIKeyCreateData Object used to create an API key.
 type APIKeyCreateData struct {
+	// Attributes used to create an API Key.
 	Attributes APIKeyCreateAttributes `json:"attributes"`
-	Type       APIKeysType            `json:"type"`
+	// API Keys resource type.
+	Type APIKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _APIKeyCreateData APIKeyCreateData
 
 // NewAPIKeyCreateData instantiates a new APIKeyCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewAPIKeyCreateData(attributes APIKeyCreateAttributes, type_ APIKeysType) *
 // but it doesn't guarantee that properties required by API are set
 func NewAPIKeyCreateDataWithDefaults() *APIKeyCreateData {
 	this := APIKeyCreateData{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
+	var type_ APIKeysType = "api_keys"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *APIKeyCreateData) GetAttributes() APIKeyCreateAttributes {
 		var ret APIKeyCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *APIKeyCreateData) GetType() APIKeysType {
 		var ret APIKeysType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o APIKeyCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

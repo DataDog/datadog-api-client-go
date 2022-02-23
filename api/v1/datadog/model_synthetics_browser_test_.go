@@ -15,6 +15,7 @@ import (
 
 // SyntheticsBrowserTest Object containing details about a Synthetic browser test.
 type SyntheticsBrowserTest struct {
+	// Configuration object for a Synthetic browser test.
 	Config SyntheticsBrowserTestConfig `json:"config"`
 	// Array of locations used to run the test.
 	Locations []string `json:"locations"`
@@ -23,19 +24,25 @@ type SyntheticsBrowserTest struct {
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    string                `json:"name"`
+	Name string `json:"name"`
+	// Object describing the extra options for a Synthetic test.
 	Options SyntheticsTestOptions `json:"options"`
 	// The public ID of the test.
-	PublicId *string                    `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	// Define whether you want to start (`live`) or pause (`paused`) a// Synthetic test.
+	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test.
 	Steps *[]SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string                 `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	// Type of the Synthetic test, `browser`.
 	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBrowserTest SyntheticsBrowserTest
 
 // NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +63,7 @@ func NewSyntheticsBrowserTest(config SyntheticsBrowserTestConfig, locations []st
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
+	var type_ SyntheticsBrowserTestType = "browser"
 	this.Type = type_
 	return &this
 }
@@ -67,7 +74,6 @@ func (o *SyntheticsBrowserTest) GetConfig() SyntheticsBrowserTestConfig {
 		var ret SyntheticsBrowserTestConfig
 		return ret
 	}
-
 	return o.Config
 }
 
@@ -91,7 +97,6 @@ func (o *SyntheticsBrowserTest) GetLocations() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Locations
 }
 
@@ -179,7 +184,6 @@ func (o *SyntheticsBrowserTest) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -203,7 +207,6 @@ func (o *SyntheticsBrowserTest) GetOptions() SyntheticsTestOptions {
 		var ret SyntheticsTestOptions
 		return ret
 	}
-
 	return o.Options
 }
 
@@ -355,7 +358,6 @@ func (o *SyntheticsBrowserTest) GetType() SyntheticsBrowserTestType {
 		var ret SyntheticsBrowserTestType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -378,24 +380,16 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["config"] = o.Config
-	}
-	if true {
-		toSerialize["locations"] = o.Locations
-	}
+	toSerialize["config"] = o.Config
+	toSerialize["locations"] = o.Locations
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
 	if o.MonitorId != nil {
 		toSerialize["monitor_id"] = o.MonitorId
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["options"] = o.Options
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["options"] = o.Options
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
 	}
@@ -408,8 +402,10 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,11 +20,14 @@ type LogsRetentionAggSumUsage struct {
 	LogsLiveIndexedLogsUsageAggSum *int64 `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
 	// Rehydrated indexed logs for this retention period.
 	LogsRehydratedIndexedLogsUsageAggSum *int64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
-	// The retention period in days or \"custom\" for all custom retention periods.
+	// The retention period in days or "custom" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsRetentionAggSumUsage LogsRetentionAggSumUsage
 
 // NewLogsRetentionAggSumUsage instantiates a new LogsRetentionAggSumUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -187,6 +190,10 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 	}
 	if o.Retention != nil {
 		toSerialize["retention"] = o.Retention
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type AWSLogsLambda struct {
 	// Available ARN IDs.
 	Arn *string `json:"arn,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSLogsLambda AWSLogsLambda
 
 // NewAWSLogsLambda instantiates a new AWSLogsLambda object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o AWSLogsLambda) MarshalJSON() ([]byte, error) {
 	}
 	if o.Arn != nil {
 		toSerialize["arn"] = o.Arn
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

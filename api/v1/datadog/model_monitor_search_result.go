@@ -15,8 +15,9 @@ import (
 // MonitorSearchResult Holds search results.
 type MonitorSearchResult struct {
 	// Classification of the monitor.
-	Classification *string  `json:"classification,omitempty"`
-	Creator        *Creator `json:"creator,omitempty"`
+	Classification *string `json:"classification,omitempty"`
+	// Object describing the creator of the shared element.
+	Creator *Creator `json:"creator,omitempty"`
 	// ID of the monitor.
 	Id *int64 `json:"id,omitempty"`
 	// Latest timestamp the monitor triggered.
@@ -31,15 +32,22 @@ type MonitorSearchResult struct {
 	OrgId *int64 `json:"org_id,omitempty"`
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
-	// The scope(s) to which the downtime applies, for example `host:app2`. Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (that is `env:dev AND env:prod`), NOT any of them.
-	Scopes *[]string             `json:"scopes,omitempty"`
+	// The scope(s) to which the downtime applies, for example `host:app2`.// Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`.
+	// The resulting downtime applies to sources that matches ALL provided scopes
+	// (that is `env:dev AND env:prod`), NOT any of them.
+	Scopes *[]string `json:"scopes,omitempty"`
+	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// Tags associated with the monitor.
-	Tags *[]string    `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorSearchResult MonitorSearchResult
 
 // NewMonitorSearchResult instantiates a new MonitorSearchResult object
 // This constructor will assign default values to properties that have it defined,
@@ -528,6 +536,10 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

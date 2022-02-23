@@ -22,14 +22,19 @@ type ServiceMapWidgetDefinition struct {
 	// The ID of the service you want to map.
 	Service string `json:"service"`
 	// The title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      ServiceMapWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the service map widget.
+	Type ServiceMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceMapWidgetDefinition ServiceMapWidgetDefinition
 
 // NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,7 @@ func NewServiceMapWidgetDefinition(filters []string, service string, type_ Servi
 // but it doesn't guarantee that properties required by API are set
 func NewServiceMapWidgetDefinitionWithDefaults() *ServiceMapWidgetDefinition {
 	this := ServiceMapWidgetDefinition{}
-	var type_ ServiceMapWidgetDefinitionType = SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP
+	var type_ ServiceMapWidgetDefinitionType = "servicemap"
 	this.Type = type_
 	return &this
 }
@@ -91,7 +96,6 @@ func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Filters
 }
 
@@ -115,7 +119,6 @@ func (o *ServiceMapWidgetDefinition) GetService() string {
 		var ret string
 		return ret
 	}
-
 	return o.Service
 }
 
@@ -235,7 +238,6 @@ func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
 		var ret ServiceMapWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -261,12 +263,8 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
-	if true {
-		toSerialize["filters"] = o.Filters
-	}
-	if true {
-		toSerialize["service"] = o.Service
-	}
+	toSerialize["filters"] = o.Filters
+	toSerialize["service"] = o.Service
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
@@ -276,8 +274,10 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -13,8 +13,12 @@ import (
 	"fmt"
 )
 
-// LogsPipeline Pipelines and processors operate on incoming logs, parsing and transforming them into structured attributes for easier querying.  **Note**: These endpoints are only available for admin users. Make sure to use an application key created by an admin.
+// LogsPipeline Pipelines and processors operate on incoming logs,// parsing and transforming them into structured attributes for easier querying.
+//
+// **Note**: These endpoints are only available for admin users.
+// Make sure to use an application key created by an admin.
 type LogsPipeline struct {
+	// Filter for logs.
 	Filter *LogsFilter `json:"filter,omitempty"`
 	// ID of the pipeline.
 	Id *string `json:"id,omitempty"`
@@ -29,8 +33,11 @@ type LogsPipeline struct {
 	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsPipeline LogsPipeline
 
 // NewLogsPipeline instantiates a new LogsPipeline object
 // This constructor will assign default values to properties that have it defined,
@@ -184,7 +191,6 @@ func (o *LogsPipeline) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -283,14 +289,16 @@ func (o LogsPipeline) MarshalJSON() ([]byte, error) {
 	if o.IsReadOnly != nil {
 		toSerialize["is_read_only"] = o.IsReadOnly
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Processors != nil {
 		toSerialize["processors"] = o.Processors
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

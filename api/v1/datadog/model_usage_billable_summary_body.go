@@ -30,8 +30,11 @@ type UsageBillableSummaryBody struct {
 	// Units pertaining to the usage.
 	UsageUnit *string `json:"usage_unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageBillableSummaryBody UsageBillableSummaryBody
 
 // NewUsageBillableSummaryBody instantiates a new UsageBillableSummaryBody object
 // This constructor will assign default values to properties that have it defined,
@@ -299,6 +302,10 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	}
 	if o.UsageUnit != nil {
 		toSerialize["usage_unit"] = o.UsageUnit
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

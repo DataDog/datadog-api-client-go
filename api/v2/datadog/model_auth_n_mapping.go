@@ -15,16 +15,22 @@ import (
 
 // AuthNMapping The AuthN Mapping object returned by API.
 type AuthNMapping struct {
+	// Attributes of AuthN Mapping.
 	Attributes *AuthNMappingAttributes `json:"attributes,omitempty"`
 	// ID of the AuthN Mapping.
 	Id string `json:"id"`
 	// Included data in the AuthN Mapping response.
-	Included      *[]AuthNMappingIncluded    `json:"included,omitempty"`
+	Included *[]AuthNMappingIncluded `json:"included,omitempty"`
+	// All relationships associated with AuthN Mapping.
 	Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType          `json:"type"`
+	// AuthN Mappings resource type.
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMapping AuthNMapping
 
 // NewAuthNMapping instantiates a new AuthNMapping object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,7 @@ func NewAuthNMapping(id string, type_ AuthNMappingsType) *AuthNMapping {
 // but it doesn't guarantee that properties required by API are set
 func NewAuthNMappingWithDefaults() *AuthNMapping {
 	this := AuthNMapping{}
-	var type_ AuthNMappingsType = AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS
+	var type_ AuthNMappingsType = "authn_mappings"
 	this.Type = type_
 	return &this
 }
@@ -85,7 +91,6 @@ func (o *AuthNMapping) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -173,7 +178,6 @@ func (o *AuthNMapping) GetType() AuthNMappingsType {
 		var ret AuthNMappingsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -199,17 +203,17 @@ func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
 	}
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

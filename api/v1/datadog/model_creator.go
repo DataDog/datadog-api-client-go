@@ -21,8 +21,11 @@ type Creator struct {
 	// Name of the creator.
 	Name NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Creator Creator
 
 // NewCreator instantiates a new Creator object
 // This constructor will assign default values to properties that have it defined,
@@ -161,6 +164,10 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

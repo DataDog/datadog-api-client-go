@@ -14,10 +14,14 @@ import (
 
 // MetricVolumesResponse Response object which includes a single metric's volume.
 type MetricVolumesResponse struct {
+	// Possible response objects for a metric's volume.
 	Data *MetricVolumes `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricVolumesResponse MetricVolumesResponse
 
 // NewMetricVolumesResponse instantiates a new MetricVolumesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o MetricVolumesResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

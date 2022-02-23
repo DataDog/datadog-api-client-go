@@ -47,8 +47,8 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 /*
  * GetHostTotals Get the total number of active hosts
  * This endpoint returns the total number of active and up hosts in your Datadog account.
-Active means the host has reported in the past hour, and up means it has reported in the past two hours.
-*/
+ * Active means the host has reported in the past hour, and up means it has reported in the past two hours.
+ */
 func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
 	req := apiGetHostTotalsRequest{
 		ApiService: a,
@@ -91,17 +91,8 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.from != nil {
 		localVarQueryParams.Add("from", parameterToString(*r.from, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -112,7 +103,6 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -271,10 +261,10 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 /*
  * ListHosts Get all hosts for your organization
  * This endpoint allows searching for hosts by name, alias, or tag.
-Hosts live within the past 3 hours are included by default.
-Retention is 7 days.
-Results are paginated with a max of 1000 results at a time.
-*/
+ * Hosts live within the past 3 hours are included by default.
+ * Retention is 7 days.
+ * Results are paginated with a max of 1000 results at a time.
+ */
 func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
 	req := apiListHostsRequest{
 		ApiService: a,
@@ -324,7 +314,6 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.filter != nil {
 		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
 	}
@@ -349,14 +338,6 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 	if r.includeHostsMetadata != nil {
 		localVarQueryParams.Add("include_hosts_metadata", parameterToString(*r.includeHostsMetadata, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -366,7 +347,6 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -672,15 +652,6 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -689,7 +660,6 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

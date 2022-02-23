@@ -24,16 +24,23 @@ type NoteWidgetDefinition struct {
 	// Whether to add padding or not.
 	HasPadding *bool `json:"has_padding,omitempty"`
 	// Whether to show a tick or not.
-	ShowTick  *bool            `json:"show_tick,omitempty"`
+	ShowTick *bool `json:"show_tick,omitempty"`
+	// How to align the text on the widget.
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-	TickEdge  *WidgetTickEdge  `json:"tick_edge,omitempty"`
+	// Define how you want to align the text on the widget.
+	TickEdge *WidgetTickEdge `json:"tick_edge,omitempty"`
 	// Where to position the tick on an edge.
-	TickPos       *string                  `json:"tick_pos,omitempty"`
-	Type          NoteWidgetDefinitionType `json:"type"`
-	VerticalAlign *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
+	TickPos *string `json:"tick_pos,omitempty"`
+	// Type of the note widget.
+	Type NoteWidgetDefinitionType `json:"type"`
+	// Vertical alignment.
+	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NoteWidgetDefinition NoteWidgetDefinition
 
 // NewNoteWidgetDefinition instantiates a new NoteWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +62,7 @@ func NewNoteWidgetDefinitionWithDefaults() *NoteWidgetDefinition {
 	this := NoteWidgetDefinition{}
 	var hasPadding bool = true
 	this.HasPadding = &hasPadding
-	var type_ NoteWidgetDefinitionType = NOTEWIDGETDEFINITIONTYPE_NOTE
+	var type_ NoteWidgetDefinitionType = "note"
 	this.Type = type_
 	return &this
 }
@@ -98,7 +105,6 @@ func (o *NoteWidgetDefinition) GetContent() string {
 		var ret string
 		return ret
 	}
-
 	return o.Content
 }
 
@@ -314,7 +320,6 @@ func (o *NoteWidgetDefinition) GetType() NoteWidgetDefinitionType {
 		var ret NoteWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -372,9 +377,7 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.BackgroundColor != nil {
 		toSerialize["background_color"] = o.BackgroundColor
 	}
-	if true {
-		toSerialize["content"] = o.Content
-	}
+	toSerialize["content"] = o.Content
 	if o.FontSize != nil {
 		toSerialize["font_size"] = o.FontSize
 	}
@@ -393,11 +396,13 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TickPos != nil {
 		toSerialize["tick_pos"] = o.TickPos
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.VerticalAlign != nil {
 		toSerialize["vertical_align"] = o.VerticalAlign
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

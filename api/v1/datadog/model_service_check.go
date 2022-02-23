@@ -20,15 +20,19 @@ type ServiceCheck struct {
 	// The host name correlated with the check.
 	HostName string `json:"host_name"`
 	// Message containing check status.
-	Message *string            `json:"message,omitempty"`
-	Status  ServiceCheckStatus `json:"status"`
+	Message *string `json:"message,omitempty"`
+	// The status of a service check.
+	Status ServiceCheckStatus `json:"status"`
 	// Tags related to a check.
 	Tags []string `json:"tags"`
 	// Time of check.
 	Timestamp *int64 `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceCheck ServiceCheck
 
 // NewServiceCheck instantiates a new ServiceCheck object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +61,6 @@ func (o *ServiceCheck) GetCheck() string {
 		var ret string
 		return ret
 	}
-
 	return o.Check
 }
 
@@ -81,7 +84,6 @@ func (o *ServiceCheck) GetHostName() string {
 		var ret string
 		return ret
 	}
-
 	return o.HostName
 }
 
@@ -137,7 +139,6 @@ func (o *ServiceCheck) GetStatus() ServiceCheckStatus {
 		var ret ServiceCheckStatus
 		return ret
 	}
-
 	return o.Status
 }
 
@@ -161,7 +162,6 @@ func (o *ServiceCheck) GetTags() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Tags
 }
 
@@ -216,23 +216,19 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["check"] = o.Check
-	}
-	if true {
-		toSerialize["host_name"] = o.HostName
-	}
+	toSerialize["check"] = o.Check
+	toSerialize["host_name"] = o.HostName
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
-	if true {
-		toSerialize["status"] = o.Status
-	}
-	if true {
-		toSerialize["tags"] = o.Tags
-	}
+	toSerialize["status"] = o.Status
+	toSerialize["tags"] = o.Tags
 	if o.Timestamp != nil {
 		toSerialize["timestamp"] = o.Timestamp
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

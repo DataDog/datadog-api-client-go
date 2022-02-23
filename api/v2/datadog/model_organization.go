@@ -15,13 +15,18 @@ import (
 
 // Organization Organization object.
 type Organization struct {
+	// Attributes of the organization.
 	Attributes *OrganizationAttributes `json:"attributes,omitempty"`
 	// ID of the organization.
-	Id   *string           `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Organizations resource type.
 	Type OrganizationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Organization Organization
 
 // NewOrganization instantiates a new Organization object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,7 @@ func NewOrganization(type_ OrganizationsType) *Organization {
 // but it doesn't guarantee that properties required by API are set
 func NewOrganizationWithDefaults() *Organization {
 	this := Organization{}
-	var type_ OrganizationsType = ORGANIZATIONSTYPE_ORGS
+	var type_ OrganizationsType = "orgs"
 	this.Type = type_
 	return &this
 }
@@ -113,7 +118,6 @@ func (o *Organization) GetType() OrganizationsType {
 		var ret OrganizationsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -142,8 +146,10 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,12 +20,17 @@ type FreeTextWidgetDefinition struct {
 	// Size of the text.
 	FontSize *string `json:"font_size,omitempty"`
 	// Text to display.
-	Text      string                       `json:"text"`
-	TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
-	Type      FreeTextWidgetDefinitionType `json:"type"`
+	Text string `json:"text"`
+	// How to align the text on the widget.
+	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+	// Type of the free text widget.
+	Type FreeTextWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FreeTextWidgetDefinition FreeTextWidgetDefinition
 
 // NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,7 @@ func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType
 // but it doesn't guarantee that properties required by API are set
 func NewFreeTextWidgetDefinitionWithDefaults() *FreeTextWidgetDefinition {
 	this := FreeTextWidgetDefinition{}
-	var type_ FreeTextWidgetDefinitionType = FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT
+	var type_ FreeTextWidgetDefinitionType = "free_text"
 	this.Type = type_
 	return &this
 }
@@ -118,7 +123,6 @@ func (o *FreeTextWidgetDefinition) GetText() string {
 		var ret string
 		return ret
 	}
-
 	return o.Text
 }
 
@@ -174,7 +178,6 @@ func (o *FreeTextWidgetDefinition) GetType() FreeTextWidgetDefinitionType {
 		var ret FreeTextWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -203,14 +206,14 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.FontSize != nil {
 		toSerialize["font_size"] = o.FontSize
 	}
-	if true {
-		toSerialize["text"] = o.Text
-	}
+	toSerialize["text"] = o.Text
 	if o.TextAlign != nil {
 		toSerialize["text_align"] = o.TextAlign
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

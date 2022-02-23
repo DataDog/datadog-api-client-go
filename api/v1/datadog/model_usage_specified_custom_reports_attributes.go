@@ -27,8 +27,11 @@ type UsageSpecifiedCustomReportsAttributes struct {
 	// A list of tags to apply to specified custom reports.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSpecifiedCustomReportsAttributes UsageSpecifiedCustomReportsAttributes
 
 // NewUsageSpecifiedCustomReportsAttributes instantiates a new UsageSpecifiedCustomReportsAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -261,6 +264,10 @@ func (o UsageSpecifiedCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

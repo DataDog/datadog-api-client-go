@@ -15,15 +15,20 @@ import (
 
 // OrganizationCreateBody Object describing an organization to create.
 type OrganizationCreateBody struct {
+	// A JSON array of billing type.
 	// Deprecated
 	Billing *OrganizationBilling `json:"billing,omitempty"`
 	// The name of the new child-organization, limited to 32 characters.
 	Name string `json:"name"`
+	// Subscription definition.
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationCreateBody OrganizationCreateBody
 
 // NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
 // This constructor will assign default values to properties that have it defined,
@@ -84,7 +89,6 @@ func (o *OrganizationCreateBody) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -145,11 +149,13 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	if o.Billing != nil {
 		toSerialize["billing"] = o.Billing
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Subscription != nil {
 		toSerialize["subscription"] = o.Subscription
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

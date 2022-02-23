@@ -13,20 +13,26 @@ import (
 	"fmt"
 )
 
-// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
+// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.//
 type FunnelWidgetDefinition struct {
 	// Request payload used to query items.
 	Requests []FunnelWidgetRequest `json:"requests"`
-	Time     *WidgetTime           `json:"time,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// The title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// The size of the title.
-	TitleSize *string                    `json:"title_size,omitempty"`
-	Type      FunnelWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of funnel widget.
+	Type FunnelWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FunnelWidgetDefinition FunnelWidgetDefinition
 
 // NewFunnelWidgetDefinition instantiates a new FunnelWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +50,7 @@ func NewFunnelWidgetDefinition(requests []FunnelWidgetRequest, type_ FunnelWidge
 // but it doesn't guarantee that properties required by API are set
 func NewFunnelWidgetDefinitionWithDefaults() *FunnelWidgetDefinition {
 	this := FunnelWidgetDefinition{}
-	var type_ FunnelWidgetDefinitionType = FUNNELWIDGETDEFINITIONTYPE_FUNNEL
+	var type_ FunnelWidgetDefinitionType = "funnel"
 	this.Type = type_
 	return &this
 }
@@ -55,7 +61,6 @@ func (o *FunnelWidgetDefinition) GetRequests() []FunnelWidgetRequest {
 		var ret []FunnelWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -207,7 +212,6 @@ func (o *FunnelWidgetDefinition) GetType() FunnelWidgetDefinitionType {
 		var ret FunnelWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -230,9 +234,7 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -245,8 +247,10 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

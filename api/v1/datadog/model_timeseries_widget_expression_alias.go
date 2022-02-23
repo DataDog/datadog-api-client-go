@@ -20,8 +20,11 @@ type TimeseriesWidgetExpressionAlias struct {
 	// Expression name.
 	Expression string `json:"expression"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TimeseriesWidgetExpressionAlias TimeseriesWidgetExpressionAlias
 
 // NewTimeseriesWidgetExpressionAlias instantiates a new TimeseriesWidgetExpressionAlias object
 // This constructor will assign default values to properties that have it defined,
@@ -79,7 +82,6 @@ func (o *TimeseriesWidgetExpressionAlias) GetExpression() string {
 		var ret string
 		return ret
 	}
-
 	return o.Expression
 }
 
@@ -105,8 +107,10 @@ func (o TimeseriesWidgetExpressionAlias) MarshalJSON() ([]byte, error) {
 	if o.AliasName != nil {
 		toSerialize["alias_name"] = o.AliasName
 	}
-	if true {
-		toSerialize["expression"] = o.Expression
+	toSerialize["expression"] = o.Expression
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

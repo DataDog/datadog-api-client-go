@@ -18,8 +18,11 @@ type MetricsPayload struct {
 	// A list of time series to submit to Datadog.
 	Series []Series `json:"series"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricsPayload MetricsPayload
 
 // NewMetricsPayload instantiates a new MetricsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func (o *MetricsPayload) GetSeries() []Series {
 		var ret []Series
 		return ret
 	}
-
 	return o.Series
 }
 
@@ -68,8 +70,10 @@ func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["series"] = o.Series
+	toSerialize["series"] = o.Series
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

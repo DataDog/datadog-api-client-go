@@ -14,12 +14,16 @@ import (
 
 // LogsMetricUpdateAttributes The log-based metric properties that will be updated.
 type LogsMetricUpdateAttributes struct {
+	// The log-based metric filter. Logs matching this filter will be aggregated in this metric.
 	Filter *LogsMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricUpdateAttributes LogsMetricUpdateAttributes
 
 // NewLogsMetricUpdateAttributes instantiates a new LogsMetricUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

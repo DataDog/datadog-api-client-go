@@ -84,7 +84,7 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -395,24 +395,14 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -554,15 +544,6 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -571,7 +552,6 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -684,8 +664,8 @@ type apiGetLogsArchiveOrderRequest struct {
 /*
  * GetLogsArchiveOrder Get archive order
  * Get the current order of your archives.
-This endpoint takes no JSON arguments.
-*/
+ * This endpoint takes no JSON arguments.
+ */
 func (a *LogsArchivesApiService) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req := apiGetLogsArchiveOrderRequest{
 		ApiService: a,
@@ -720,15 +700,6 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -737,7 +708,6 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -868,15 +838,6 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -885,7 +846,6 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1033,15 +993,6 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1050,7 +1001,6 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1194,7 +1144,7 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 	}
 
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
@@ -1309,10 +1259,10 @@ type apiUpdateLogsArchiveRequest struct {
 /*
  * UpdateLogsArchive Update an archive
  * Update a given archive configuration.
-
-**Note**: Using this method updates your archive configuration by **replacing**
-your current configuration with the new one sent to your Datadog organization.
-*/
+ *
+ * **Note**: Using this method updates your archive configuration by **replacing**
+ * your current configuration with the new one sent to your Datadog organization.
+ */
 func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	req := apiUpdateLogsArchiveRequest{
 		ApiService: a,
@@ -1486,11 +1436,11 @@ type apiUpdateLogsArchiveOrderRequest struct {
 /*
  * UpdateLogsArchiveOrder Update archive order
  * Update the order of your archives. Since logs are processed sequentially, reordering an archive may change
-the structure and content of the data processed by other archives.
-
-**Note**: Using the `PUT` method updates your archive's order by replacing the current order
-with the new one.
-*/
+ * the structure and content of the data processed by other archives.
+ *
+ * **Note**: Using the `PUT` method updates your archive's order by replacing the current order
+ * with the new one.
+ */
 func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req := apiUpdateLogsArchiveOrderRequest{
 		ApiService: a,

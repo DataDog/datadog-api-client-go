@@ -24,18 +24,25 @@ type QueryValueWidgetDefinition struct {
 	// Number of decimals to show. If not defined, the widget uses the raw value.
 	Precision *int64 `json:"precision,omitempty"`
 	// Widget definition.
-	Requests  []QueryValueWidgetRequest `json:"requests"`
-	TextAlign *WidgetTextAlign          `json:"text_align,omitempty"`
-	Time      *WidgetTime               `json:"time,omitempty"`
+	Requests []QueryValueWidgetRequest `json:"requests"`
+	// How to align the text on the widget.
+	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      QueryValueWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the query value widget.
+	Type QueryValueWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _QueryValueWidgetDefinition QueryValueWidgetDefinition
 
 // NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +60,7 @@ func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, type_ Que
 // but it doesn't guarantee that properties required by API are set
 func NewQueryValueWidgetDefinitionWithDefaults() *QueryValueWidgetDefinition {
 	this := QueryValueWidgetDefinition{}
-	var type_ QueryValueWidgetDefinitionType = QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE
+	var type_ QueryValueWidgetDefinitionType = "query_value"
 	this.Type = type_
 	return &this
 }
@@ -192,7 +199,6 @@ func (o *QueryValueWidgetDefinition) GetRequests() []QueryValueWidgetRequest {
 		var ret []QueryValueWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -376,7 +382,6 @@ func (o *QueryValueWidgetDefinition) GetType() QueryValueWidgetDefinitionType {
 		var ret QueryValueWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -411,9 +416,7 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Precision != nil {
 		toSerialize["precision"] = o.Precision
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.TextAlign != nil {
 		toSerialize["text_align"] = o.TextAlign
 	}
@@ -429,8 +432,10 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

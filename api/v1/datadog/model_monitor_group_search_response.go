@@ -14,13 +14,18 @@ import (
 
 // MonitorGroupSearchResponse The response of a monitor group search.
 type MonitorGroupSearchResponse struct {
+	// The counts of monitor groups per different criteria.
 	Counts *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
 	// The list of found monitor groups.
-	Groups   *[]MonitorGroupSearchResult    `json:"groups,omitempty"`
+	Groups *[]MonitorGroupSearchResult `json:"groups,omitempty"`
+	// Metadata about the response.
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorGroupSearchResponse MonitorGroupSearchResponse
 
 // NewMonitorGroupSearchResponse instantiates a new MonitorGroupSearchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

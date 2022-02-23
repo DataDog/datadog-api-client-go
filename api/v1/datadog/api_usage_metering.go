@@ -122,7 +122,6 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
 	}
@@ -135,14 +134,6 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	if r.sort != nil {
 		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -152,7 +143,6 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -333,25 +323,16 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	if r.usageType == nil {
 		return localVarReturnValue, nil, reportError("usageType is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
+	localVarQueryParams.Add("usage_type", parameterToString(*r.usageType, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
 	}
-	localVarQueryParams.Add("usage_type", parameterToString(*r.usageType, ""))
 	if r.nextRecordId != nil {
 		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
 	}
 	if r.tagBreakdownKeys != nil {
 		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -362,7 +343,6 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -517,18 +497,9 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -539,7 +510,6 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -704,18 +674,9 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -726,7 +687,6 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -914,7 +874,6 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
 	}
@@ -927,14 +886,6 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	if r.sort != nil {
 		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -944,7 +895,6 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1139,12 +1089,11 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	if r.fields == nil {
 		return localVarReturnValue, nil, reportError("fields is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
+	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
 	}
-	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
 	if r.sortDirection != nil {
 		localVarQueryParams.Add("sort_direction", parameterToString(*r.sortDirection, ""))
 	}
@@ -1157,14 +1106,6 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	if r.nextRecordId != nil {
 		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -1174,7 +1115,6 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1312,15 +1252,6 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
@@ -1329,7 +1260,6 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1477,15 +1407,6 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
 
@@ -1494,7 +1415,6 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1669,18 +1589,9 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -1691,7 +1602,6 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1903,7 +1813,6 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	if r.fields == nil {
 		return localVarReturnValue, nil, reportError("fields is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
 	localVarQueryParams.Add("fields", parameterToString(*r.fields, ""))
 	if r.endMonth != nil {
@@ -1924,14 +1833,6 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	if r.limit != nil {
 		localVarQueryParams.Add("limit", parameterToString(*r.limit, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -1941,7 +1842,6 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2096,18 +1996,9 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -2118,7 +2009,6 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2278,17 +2168,8 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.month != nil {
 		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -2299,7 +2180,6 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2464,18 +2344,9 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -2486,7 +2357,6 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2651,18 +2521,9 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -2673,7 +2534,6 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -2838,18 +2698,9 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -2860,7 +2711,6 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3025,18 +2875,9 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3047,7 +2888,6 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3212,18 +3052,9 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3234,7 +3065,6 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3399,18 +3229,9 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3421,7 +3242,6 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3586,18 +3406,9 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3608,7 +3419,6 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3773,18 +3583,9 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3795,7 +3596,6 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -3960,18 +3760,9 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -3982,7 +3773,6 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4147,18 +3937,9 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -4169,7 +3950,6 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4341,7 +4121,6 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
@@ -4357,14 +4136,6 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 			localVarQueryParams.Add("index_name", parameterToString(t, "multi"))
 		}
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -4374,7 +4145,6 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4539,18 +4309,9 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -4561,7 +4322,6 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4726,18 +4486,9 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -4748,7 +4499,6 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -4913,18 +4663,9 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -4935,7 +4676,6 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5100,18 +4840,9 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -5122,7 +4853,6 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5227,7 +4957,7 @@ type apiGetUsageRumSessionsRequest struct {
 
 type GetUsageRumSessionsOptionalParameters struct {
 	EndHr *time.Time
-	Type_ *string
+	Type  *string
 }
 
 func NewGetUsageRumSessionsOptionalParameters() *GetUsageRumSessionsOptionalParameters {
@@ -5238,8 +4968,8 @@ func (r *GetUsageRumSessionsOptionalParameters) WithEndHr(endHr time.Time) *GetU
 	r.EndHr = &endHr
 	return r
 }
-func (r *GetUsageRumSessionsOptionalParameters) WithType_(type_ string) *GetUsageRumSessionsOptionalParameters {
-	r.Type_ = &type_
+func (r *GetUsageRumSessionsOptionalParameters) WithType(type_ string) *GetUsageRumSessionsOptionalParameters {
+	r.Type = &type_
 	return r
 }
 
@@ -5261,7 +4991,7 @@ func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, star
 
 	if o != nil {
 		req.endHr = o[0].EndHr
-		req.type_ = o[0].Type_
+		req.type_ = o[0].Type
 	}
 
 	return req.ApiService.getUsageRumSessionsExecute(req)
@@ -5294,21 +5024,12 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
 	}
 	if r.type_ != nil {
 		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -5319,7 +5040,6 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5484,18 +5204,9 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -5506,7 +5217,6 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5671,18 +5381,9 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -5693,7 +5394,6 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -5858,18 +5558,9 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -5880,7 +5571,6 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6052,21 +5742,12 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	if r.startMonth == nil {
 		return localVarReturnValue, nil, reportError("startMonth is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_month", parameterToString(*r.startMonth, ""))
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", parameterToString(*r.endMonth, ""))
 	}
 	if r.includeOrgDetails != nil {
 		localVarQueryParams.Add("include_org_details", parameterToString(*r.includeOrgDetails, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -6077,7 +5758,6 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6242,18 +5922,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -6264,7 +5935,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6429,18 +6099,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -6451,7 +6112,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6616,18 +6276,9 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -6638,7 +6289,6 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -6803,18 +6453,9 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	if r.startHr == nil {
 		return localVarReturnValue, nil, reportError("startHr is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start_hr", parameterToString(*r.startHr, ""))
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -6825,7 +6466,6 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -7013,7 +6653,6 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.month != nil {
 		localVarQueryParams.Add("month", parameterToString(*r.month, ""))
 	}
@@ -7037,14 +6676,6 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	if r.nextRecordId != nil {
 		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
@@ -7054,7 +6685,6 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -34,8 +34,8 @@ type apiCreateEventRequest struct {
 /*
  * CreateEvent Post an event
  * This endpoint allows you to post events to the stream.
-Tag them, set priority and event aggregate them with other events.
-*/
+ * Tag them, set priority and event aggregate them with other events.
+ */
 func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateEventRequest{
 		ApiService: a,
@@ -173,10 +173,10 @@ type apiGetEventRequest struct {
 /*
  * GetEvent Get an event
  * This endpoint allows you to query for event details.
-
-**Note**: If the event you’re querying contains markdown formatting of any kind,
-you may see characters such as `%`,`\`,`n` in your output.
-*/
+ *
+ * **Note**: If the event you’re querying contains markdown formatting of any kind,
+ * you may see characters such as `%`,`\`,`n` in your output.
+ */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
 	req := apiGetEventRequest{
 		ApiService: a,
@@ -213,15 +213,6 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -230,7 +221,6 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -379,15 +369,15 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 /*
  * ListEvents Query the event stream
  * The event stream can be queried and filtered by time, priority, sources and tags.
-
-**Notes**:
-- If the event you’re querying contains markdown formatting of any kind,
-you may see characters such as `%`,`\`,`n` in your output.
-
-- This endpoint returns a maximum of `1000` most recent results. To return additional results,
-identify the last timestamp of the last result and set that as the `end` query time to
-paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
-*/
+ *
+ * **Notes**:
+ * - If the event you’re querying contains markdown formatting of any kind,
+ * you may see characters such as `%`,`\`,`n` in your output.
+ *
+ * - This endpoint returns a maximum of `1000` most recent results. To return additional results,
+ * identify the last timestamp of the last result and set that as the `end` query time to
+ * paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
+ */
 func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
 	req := apiListEventsRequest{
 		ApiService: a,
@@ -443,7 +433,6 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	if r.end == nil {
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
-
 	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
 	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.priority != nil {
@@ -464,14 +453,6 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	if r.page != nil {
 		localVarQueryParams.Add("page", parameterToString(*r.page, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -481,7 +462,6 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

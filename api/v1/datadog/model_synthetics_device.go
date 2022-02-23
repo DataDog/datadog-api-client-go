@@ -16,8 +16,9 @@ import (
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
 type SyntheticsDevice struct {
 	// Screen height of the device.
-	Height int64              `json:"height"`
-	Id     SyntheticsDeviceID `json:"id"`
+	Height int64 `json:"height"`
+	// The device ID.
+	Id SyntheticsDeviceID `json:"id"`
 	// Whether or not the device is a mobile.
 	IsMobile *bool `json:"isMobile,omitempty"`
 	// The device name.
@@ -25,8 +26,11 @@ type SyntheticsDevice struct {
 	// Screen width of the device.
 	Width int64 `json:"width"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsDevice SyntheticsDevice
 
 // NewSyntheticsDevice instantiates a new SyntheticsDevice object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +59,6 @@ func (o *SyntheticsDevice) GetHeight() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Height
 }
 
@@ -79,7 +82,6 @@ func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
 		var ret SyntheticsDeviceID
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -135,7 +137,6 @@ func (o *SyntheticsDevice) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -159,7 +160,6 @@ func (o *SyntheticsDevice) GetWidth() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Width
 }
 
@@ -182,20 +182,16 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["height"] = o.Height
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["height"] = o.Height
+	toSerialize["id"] = o.Id
 	if o.IsMobile != nil {
 		toSerialize["isMobile"] = o.IsMobile
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["width"] = o.Width
+	toSerialize["name"] = o.Name
+	toSerialize["width"] = o.Width
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

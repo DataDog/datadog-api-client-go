@@ -15,10 +15,14 @@ import (
 
 // RelationshipToSAMLAssertionAttribute AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttribute struct {
+	// Data of AuthN Mapping relationship to SAML Assertion Attribute.
 	Data RelationshipToSAMLAssertionAttributeData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToSAMLAssertionAttribute RelationshipToSAMLAssertionAttribute
 
 // NewRelationshipToSAMLAssertionAttribute instantiates a new RelationshipToSAMLAssertionAttribute object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *RelationshipToSAMLAssertionAttribute) GetData() RelationshipToSAMLAsser
 		var ret RelationshipToSAMLAssertionAttributeData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o RelationshipToSAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -13,15 +13,24 @@ import (
 	"fmt"
 )
 
-// Widget Information about widget.  **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.       - If `reflow_type` is `fixed`, `layout` is required.       - If `reflow_type` is `auto`, `layout` should not be set.
+// Widget Information about widget.//
+// **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.
+//       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
+//       - If `reflow_type` is `fixed`, `layout` is required.
+//       - If `reflow_type` is `auto`, `layout` should not be set.
 type Widget struct {
+	// [Definition of the widget](https://docs.datadoghq.com/dashboards/widgets/).
 	Definition WidgetDefinition `json:"definition"`
 	// ID of the widget.
-	Id     *int64        `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
+	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Widget Widget
 
 // NewWidget instantiates a new Widget object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +56,6 @@ func (o *Widget) GetDefinition() WidgetDefinition {
 		var ret WidgetDefinition
 		return ret
 	}
-
 	return o.Definition
 }
 
@@ -134,14 +142,16 @@ func (o Widget) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["definition"] = o.Definition
-	}
+	toSerialize["definition"] = o.Definition
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
 	if o.Layout != nil {
 		toSerialize["layout"] = o.Layout
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

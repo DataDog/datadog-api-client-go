@@ -19,8 +19,11 @@ type IPPrefixesWebhooks struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPPrefixesWebhooks IPPrefixesWebhooks
 
 // NewIPPrefixesWebhooks instantiates a new IPPrefixesWebhooks object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o IPPrefixesWebhooks) MarshalJSON() ([]byte, error) {
 	}
 	if o.PrefixesIpv6 != nil {
 		toSerialize["prefixes_ipv6"] = o.PrefixesIpv6
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

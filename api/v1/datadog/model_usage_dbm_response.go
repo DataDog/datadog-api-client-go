@@ -17,8 +17,11 @@ type UsageDBMResponse struct {
 	// Get hourly usage for Database Monitoring
 	Usage *[]UsageDBMHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageDBMResponse UsageDBMResponse
 
 // NewUsageDBMResponse instantiates a new UsageDBMResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

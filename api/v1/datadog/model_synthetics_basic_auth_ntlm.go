@@ -18,15 +18,19 @@ type SyntheticsBasicAuthNTLM struct {
 	// Domain for the authentication to use when performing the test.
 	Domain *string `json:"domain,omitempty"`
 	// Password for the authentication to use when performing the test.
-	Password *string                     `json:"password,omitempty"`
-	Type     SyntheticsBasicAuthNTLMType `json:"type"`
+	Password *string `json:"password,omitempty"`
+	// The type of authentication to use when performing the test.
+	Type SyntheticsBasicAuthNTLMType `json:"type"`
 	// Username for the authentication to use when performing the test.
 	Username *string `json:"username,omitempty"`
 	// Workstation for the authentication to use when performing the test.
 	Workstation *string `json:"workstation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBasicAuthNTLM SyntheticsBasicAuthNTLM
 
 // NewSyntheticsBasicAuthNTLM instantiates a new SyntheticsBasicAuthNTLM object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,7 @@ func NewSyntheticsBasicAuthNTLM(type_ SyntheticsBasicAuthNTLMType) *SyntheticsBa
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthNTLMWithDefaults() *SyntheticsBasicAuthNTLM {
 	this := SyntheticsBasicAuthNTLM{}
-	var type_ SyntheticsBasicAuthNTLMType = SYNTHETICSBASICAUTHNTLMTYPE_NTLM
+	var type_ SyntheticsBasicAuthNTLMType = "ntlm"
 	this.Type = type_
 	return &this
 }
@@ -118,7 +122,6 @@ func (o *SyntheticsBasicAuthNTLM) GetType() SyntheticsBasicAuthNTLMType {
 		var ret SyntheticsBasicAuthNTLMType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -211,14 +214,16 @@ func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 	if o.Password != nil {
 		toSerialize["password"] = o.Password
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Username != nil {
 		toSerialize["username"] = o.Username
 	}
 	if o.Workstation != nil {
 		toSerialize["workstation"] = o.Workstation
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

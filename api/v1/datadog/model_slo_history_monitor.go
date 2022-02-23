@@ -12,10 +12,10 @@ import (
 	"encoding/json"
 )
 
-// SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+// SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 type SLOHistoryMonitor struct {
 	// A mapping of threshold `timeframe` to the remaining error budget.
-	ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
+	ErrorBudgetRemaining map[string]float64 `json:"error_budget_remaining,omitempty"`
 	// An array of error objects returned while querying the history data for the service level objective.
 	Errors *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
 	// For groups in a grouped SLO, this is the group name.
@@ -31,7 +31,7 @@ type SLOHistoryMonitor struct {
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp. Use `span_precision` instead.
 	// Deprecated
 	Precision *float64 `json:"precision,omitempty"`
-	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
+	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime// calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
 	SliValue *float64 `json:"sli_value,omitempty"`
@@ -41,8 +41,11 @@ type SLOHistoryMonitor struct {
 	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOHistoryMonitor SLOHistoryMonitor
 
 // NewSLOHistoryMonitor instantiates a new SLOHistoryMonitor object
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +70,7 @@ func (o *SLOHistoryMonitor) GetErrorBudgetRemaining() map[string]float64 {
 		var ret map[string]float64
 		return ret
 	}
-	return *o.ErrorBudgetRemaining
+	return o.ErrorBudgetRemaining
 }
 
 // GetErrorBudgetRemainingOk returns a tuple with the ErrorBudgetRemaining field value if set, nil otherwise
@@ -76,7 +79,7 @@ func (o *SLOHistoryMonitor) GetErrorBudgetRemainingOk() (*map[string]float64, bo
 	if o == nil || o.ErrorBudgetRemaining == nil {
 		return nil, false
 	}
-	return o.ErrorBudgetRemaining, true
+	return &o.ErrorBudgetRemaining, true
 }
 
 // HasErrorBudgetRemaining returns a boolean if a field has been set.
@@ -90,7 +93,7 @@ func (o *SLOHistoryMonitor) HasErrorBudgetRemaining() bool {
 
 // SetErrorBudgetRemaining gets a reference to the given map[string]float64 and assigns it to the ErrorBudgetRemaining field.
 func (o *SLOHistoryMonitor) SetErrorBudgetRemaining(v map[string]float64) {
-	o.ErrorBudgetRemaining = &v
+	o.ErrorBudgetRemaining = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -492,13 +495,17 @@ func (o SLOHistoryMonitor) MarshalJSON() ([]byte, error) {
 	if o.Uptime != nil {
 		toSerialize["uptime"] = o.Uptime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ErrorBudgetRemaining *map[string]float64                `json:"error_budget_remaining,omitempty"`
+		ErrorBudgetRemaining map[string]float64                 `json:"error_budget_remaining,omitempty"`
 		Errors               *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
 		Group                *string                            `json:"group,omitempty"`
 		History              *[][]float64                       `json:"history,omitempty"`

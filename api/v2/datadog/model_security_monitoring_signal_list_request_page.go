@@ -19,8 +19,11 @@ type SecurityMonitoringSignalListRequestPage struct {
 	// The maximum number of security signals in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringSignalListRequestPage SecurityMonitoringSignalListRequestPage
 
 // NewSecurityMonitoringSignalListRequestPage instantiates a new SecurityMonitoringSignalListRequestPage object
 // This constructor will assign default values to properties that have it defined,
@@ -117,6 +120,10 @@ func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

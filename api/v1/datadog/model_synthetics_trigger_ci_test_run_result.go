@@ -14,6 +14,7 @@ import (
 
 // SyntheticsTriggerCITestRunResult Information about a single test run.
 type SyntheticsTriggerCITestRunResult struct {
+	// The device ID.
 	Device *SyntheticsDeviceID `json:"device,omitempty"`
 	// The location ID of the test run.
 	Location *int64 `json:"location,omitempty"`
@@ -22,8 +23,11 @@ type SyntheticsTriggerCITestRunResult struct {
 	// ID of the result.
 	ResultId *string `json:"result_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTriggerCITestRunResult SyntheticsTriggerCITestRunResult
 
 // NewSyntheticsTriggerCITestRunResult instantiates a new SyntheticsTriggerCITestRunResult object
 // This constructor will assign default values to properties that have it defined,
@@ -186,6 +190,10 @@ func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.ResultId != nil {
 		toSerialize["result_id"] = o.ResultId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,18 +15,24 @@ import (
 
 // FormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type FormulaAndFunctionEventQueryDefinition struct {
-	Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-	DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
+	// Compute options.
+	Compute FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+	// Data source for event platform-based queries.
+	DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
 	GroupBy *[]FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
-	Name   string                                        `json:"name"`
+	Name string `json:"name"`
+	// Search options.
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionEventQueryDefinition FormulaAndFunctionEventQueryDefinition
 
 // NewFormulaAndFunctionEventQueryDefinition instantiates a new FormulaAndFunctionEventQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +60,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetCompute() FormulaAndFunction
 		var ret FormulaAndFunctionEventQueryDefinitionCompute
 		return ret
 	}
-
 	return o.Compute
 }
 
@@ -78,7 +83,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetDataSource() FormulaAndFunct
 		var ret FormulaAndFunctionEventsDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -166,7 +170,6 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -221,23 +224,21 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["compute"] = o.Compute
-	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
+	toSerialize["compute"] = o.Compute
+	toSerialize["data_source"] = o.DataSource
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Search != nil {
 		toSerialize["search"] = o.Search
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

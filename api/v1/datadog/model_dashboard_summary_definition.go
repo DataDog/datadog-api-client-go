@@ -24,7 +24,8 @@ type DashboardSummaryDefinition struct {
 	// Dashboard identifier.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
-	IsReadOnly *bool                `json:"is_read_only,omitempty"`
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
+	// Layout type of the dashboard.
 	LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
@@ -33,8 +34,11 @@ type DashboardSummaryDefinition struct {
 	// URL of the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardSummaryDefinition DashboardSummaryDefinition
 
 // NewDashboardSummaryDefinition instantiates a new DashboardSummaryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -383,6 +387,10 @@ func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 	}
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

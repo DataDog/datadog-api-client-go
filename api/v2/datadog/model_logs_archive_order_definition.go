@@ -15,11 +15,16 @@ import (
 
 // LogsArchiveOrderDefinition The definition of an archive order.
 type LogsArchiveOrderDefinition struct {
-	Attributes LogsArchiveOrderAttributes     `json:"attributes"`
-	Type       LogsArchiveOrderDefinitionType `json:"type"`
+	// The attributes associated with the archive order.
+	Attributes LogsArchiveOrderAttributes `json:"attributes"`
+	// Type of the archive order definition.
+	Type LogsArchiveOrderDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveOrderDefinition LogsArchiveOrderDefinition
 
 // NewLogsArchiveOrderDefinition instantiates a new LogsArchiveOrderDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewLogsArchiveOrderDefinition(attributes LogsArchiveOrderAttributes, type_ 
 // but it doesn't guarantee that properties required by API are set
 func NewLogsArchiveOrderDefinitionWithDefaults() *LogsArchiveOrderDefinition {
 	this := LogsArchiveOrderDefinition{}
-	var type_ LogsArchiveOrderDefinitionType = LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER
+	var type_ LogsArchiveOrderDefinitionType = "archive_order"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *LogsArchiveOrderDefinition) GetAttributes() LogsArchiveOrderAttributes 
 		var ret LogsArchiveOrderAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *LogsArchiveOrderDefinition) GetType() LogsArchiveOrderDefinitionType {
 		var ret LogsArchiveOrderDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,10 +14,14 @@ import (
 
 // MetricBulkTagConfigResponse Wrapper for a single bulk tag configuration status response.
 type MetricBulkTagConfigResponse struct {
+	// The status of a request to bulk configure metric tags.// It contains the fields from the original request for reference.
 	Data *MetricBulkTagConfigStatus `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricBulkTagConfigResponse MetricBulkTagConfigResponse
 
 // NewMetricBulkTagConfigResponse instantiates a new MetricBulkTagConfigResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o MetricBulkTagConfigResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

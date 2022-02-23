@@ -17,8 +17,11 @@ type ApplicationKeyListResponse struct {
 	// Array of application keys.
 	ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyListResponse ApplicationKeyListResponse
 
 // NewApplicationKeyListResponse instantiates a new ApplicationKeyListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ApplicationKeys != nil {
 		toSerialize["application_keys"] = o.ApplicationKeys
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

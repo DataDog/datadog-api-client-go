@@ -15,10 +15,14 @@ import (
 
 // IncidentTeamCreateRequest Create request with an incident team payload.
 type IncidentTeamCreateRequest struct {
+	// Incident Team data for a create request.
 	Data IncidentTeamCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamCreateRequest IncidentTeamCreateRequest
 
 // NewIncidentTeamCreateRequest instantiates a new IncidentTeamCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *IncidentTeamCreateRequest) GetData() IncidentTeamCreateData {
 		var ret IncidentTeamCreateData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o IncidentTeamCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -12,13 +12,16 @@ import (
 	"encoding/json"
 )
 
-// UsageLambdaResponse Response containing the number of lambda functions and sum of the invocations of all lambda functions for each hour for a given organization.
+// UsageLambdaResponse Response containing the number of lambda functions and sum of the invocations of all lambda functions// for each hour for a given organization.
 type UsageLambdaResponse struct {
 	// Get hourly usage for Lambda.
 	Usage *[]UsageLambdaHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageLambdaResponse UsageLambdaResponse
 
 // NewUsageLambdaResponse instantiates a new UsageLambdaResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageLambdaResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

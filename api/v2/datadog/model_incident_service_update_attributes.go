@@ -18,8 +18,11 @@ type IncidentServiceUpdateAttributes struct {
 	// Name of the incident service.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentServiceUpdateAttributes IncidentServiceUpdateAttributes
 
 // NewIncidentServiceUpdateAttributes instantiates a new IncidentServiceUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func (o *IncidentServiceUpdateAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -68,8 +70,10 @@ func (o IncidentServiceUpdateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

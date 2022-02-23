@@ -14,14 +14,20 @@ import (
 
 // LogsAggregateSort A sort rule
 type LogsAggregateSort struct {
+	// An aggregation function
 	Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
 	// The metric to sort by (only used for `type=measure`)
-	Metric *string                `json:"metric,omitempty"`
-	Order  *LogsSortOrder         `json:"order,omitempty"`
-	Type   *LogsAggregateSortType `json:"type,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	// The order to use, ascending or descending
+	Order *LogsSortOrder `json:"order,omitempty"`
+	// The type of sorting algorithm
+	Type *LogsAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateSort LogsAggregateSort
 
 // NewLogsAggregateSort instantiates a new LogsAggregateSort object
 // This constructor will assign default values to properties that have it defined,
@@ -29,7 +35,7 @@ type LogsAggregateSort struct {
 // will change when the set of required properties is changed
 func NewLogsAggregateSort() *LogsAggregateSort {
 	this := LogsAggregateSort{}
-	var type_ LogsAggregateSortType = LOGSAGGREGATESORTTYPE_ALPHABETICAL
+	var type_ LogsAggregateSortType = "alphabetical"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +45,7 @@ func NewLogsAggregateSort() *LogsAggregateSort {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsAggregateSortWithDefaults() *LogsAggregateSort {
 	this := LogsAggregateSort{}
-	var type_ LogsAggregateSortType = LOGSAGGREGATESORTTYPE_ALPHABETICAL
+	var type_ LogsAggregateSortType = "alphabetical"
 	this.Type = &type_
 	return &this
 }
@@ -188,6 +194,10 @@ func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

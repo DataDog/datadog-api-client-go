@@ -14,13 +14,18 @@ import (
 
 // SecurityMonitoringSignal Object description of a security signal.
 type SecurityMonitoringSignal struct {
+	// The object containing all signal attributes and their// associated values.
 	Attributes *SecurityMonitoringSignalAttributes `json:"attributes,omitempty"`
 	// The unique ID of the security signal.
-	Id   *string                       `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The type of event.
 	Type *SecurityMonitoringSignalType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringSignal SecurityMonitoringSignal
 
 // NewSecurityMonitoringSignal instantiates a new SecurityMonitoringSignal object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type SecurityMonitoringSignal struct {
 // will change when the set of required properties is changed
 func NewSecurityMonitoringSignal() *SecurityMonitoringSignal {
 	this := SecurityMonitoringSignal{}
-	var type_ SecurityMonitoringSignalType = SECURITYMONITORINGSIGNALTYPE_SIGNAL
+	var type_ SecurityMonitoringSignalType = "signal"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewSecurityMonitoringSignal() *SecurityMonitoringSignal {
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityMonitoringSignalWithDefaults() *SecurityMonitoringSignal {
 	this := SecurityMonitoringSignal{}
-	var type_ SecurityMonitoringSignalType = SECURITYMONITORINGSIGNALTYPE_SIGNAL
+	var type_ SecurityMonitoringSignalType = "signal"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o SecurityMonitoringSignal) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

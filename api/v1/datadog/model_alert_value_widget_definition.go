@@ -18,19 +18,25 @@ type AlertValueWidgetDefinition struct {
 	// ID of the alert to use in the widget.
 	AlertId string `json:"alert_id"`
 	// Number of decimal to show. If not defined, will use the raw value.
-	Precision *int64           `json:"precision,omitempty"`
+	Precision *int64 `json:"precision,omitempty"`
+	// How to align the text on the widget.
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of value in the widget.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      AlertValueWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the alert value widget.
+	Type AlertValueWidgetDefinitionType `json:"type"`
 	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AlertValueWidgetDefinition AlertValueWidgetDefinition
 
 // NewAlertValueWidgetDefinition instantiates a new AlertValueWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +54,7 @@ func NewAlertValueWidgetDefinition(alertId string, type_ AlertValueWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewAlertValueWidgetDefinitionWithDefaults() *AlertValueWidgetDefinition {
 	this := AlertValueWidgetDefinition{}
-	var type_ AlertValueWidgetDefinitionType = ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE
+	var type_ AlertValueWidgetDefinitionType = "alert_value"
 	this.Type = type_
 	return &this
 }
@@ -59,7 +65,6 @@ func (o *AlertValueWidgetDefinition) GetAlertId() string {
 		var ret string
 		return ret
 	}
-
 	return o.AlertId
 }
 
@@ -243,7 +248,6 @@ func (o *AlertValueWidgetDefinition) GetType() AlertValueWidgetDefinitionType {
 		var ret AlertValueWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -298,9 +302,7 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["alert_id"] = o.AlertId
-	}
+	toSerialize["alert_id"] = o.AlertId
 	if o.Precision != nil {
 		toSerialize["precision"] = o.Precision
 	}
@@ -316,11 +318,13 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Unit != nil {
 		toSerialize["unit"] = o.Unit
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,7 +17,8 @@ import (
 type MonitorUpdateRequest struct {
 	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
-	Creator *Creator   `json:"creator,omitempty"`
+	// Object describing the creator of the shared element.
+	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
@@ -29,22 +30,29 @@ type MonitorUpdateRequest struct {
 	// Whether or not the monitor is broken down on different groups.
 	Multi *bool `json:"multi,omitempty"`
 	// The monitor name.
-	Name         *string               `json:"name,omitempty"`
-	Options      *MonitorOptions       `json:"options,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// List of options associated with your monitor.
+	Options *MonitorOptions `json:"options,omitempty"`
+	// The different states your monitor can be in.
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	Priority *int64 `json:"priority,omitempty"`
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
 	// A list of role identifiers that can be pulled from the Roles API. Cannot be used with `locked` option.
-	RestrictedRoles *[]string     `json:"restricted_roles,omitempty"`
-	State           *MonitorState `json:"state,omitempty"`
+	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	// Wrapper object with the different monitor states.
+	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string    `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorUpdateRequest MonitorUpdateRequest
 
 // NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -638,6 +646,10 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

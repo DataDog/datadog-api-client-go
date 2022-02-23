@@ -13,8 +13,9 @@ import (
 	"fmt"
 )
 
-// LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings). For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
+// LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).// For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
 type LogsGrokParser struct {
+	// Set of rules for the grok parser.
 	Grok LogsGrokParserRules `json:"grok"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -23,11 +24,15 @@ type LogsGrokParser struct {
 	// List of sample logs to test this grok parser.
 	Samples *[]string `json:"samples,omitempty"`
 	// Name of the log attribute to parse.
-	Source string             `json:"source"`
-	Type   LogsGrokParserType `json:"type"`
+	Source string `json:"source"`
+	// Type of logs grok parser.
+	Type LogsGrokParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsGrokParser LogsGrokParser
 
 // NewLogsGrokParser instantiates a new LogsGrokParser object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,7 @@ func NewLogsGrokParserWithDefaults() *LogsGrokParser {
 	this.IsEnabled = &isEnabled
 	var source string = "message"
 	this.Source = source
-	var type_ LogsGrokParserType = LOGSGROKPARSERTYPE_GROK_PARSER
+	var type_ LogsGrokParserType = "grok-parser"
 	this.Type = type_
 	return &this
 }
@@ -63,7 +68,6 @@ func (o *LogsGrokParser) GetGrok() LogsGrokParserRules {
 		var ret LogsGrokParserRules
 		return ret
 	}
-
 	return o.Grok
 }
 
@@ -183,7 +187,6 @@ func (o *LogsGrokParser) GetSource() string {
 		var ret string
 		return ret
 	}
-
 	return o.Source
 }
 
@@ -207,7 +210,6 @@ func (o *LogsGrokParser) GetType() LogsGrokParserType {
 		var ret LogsGrokParserType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -230,9 +232,7 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["grok"] = o.Grok
-	}
+	toSerialize["grok"] = o.Grok
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
@@ -242,11 +242,11 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 	if o.Samples != nil {
 		toSerialize["samples"] = o.Samples
 	}
-	if true {
-		toSerialize["source"] = o.Source
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["source"] = o.Source
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -12,17 +12,21 @@ import (
 	"encoding/json"
 )
 
-// WebhooksIntegrationCustomVariableUpdateRequest Update request of a custom variable object.  *All properties are optional.*
+// WebhooksIntegrationCustomVariableUpdateRequest Update request of a custom variable object.//
+// *All properties are optional.*
 type WebhooksIntegrationCustomVariableUpdateRequest struct {
-	// Make custom variable is secret or not. If the custom variable is secret, the value is not returned in the response payload.
+	// Make custom variable is secret or not.// If the custom variable is secret, the value is not returned in the response payload.
 	IsSecret *bool `json:"is_secret,omitempty"`
 	// The name of the variable. It corresponds with `<CUSTOM_VARIABLE_NAME>`. It must only contains upper-case characters, integers or underscores.
 	Name *string `json:"name,omitempty"`
 	// Value of the custom variable.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhooksIntegrationCustomVariableUpdateRequest WebhooksIntegrationCustomVariableUpdateRequest
 
 // NewWebhooksIntegrationCustomVariableUpdateRequest instantiates a new WebhooksIntegrationCustomVariableUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +154,10 @@ func (o WebhooksIntegrationCustomVariableUpdateRequest) MarshalJSON() ([]byte, e
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

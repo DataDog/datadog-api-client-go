@@ -14,12 +14,18 @@ import (
 
 // IncidentUpdateRelationships The incident's relationships for an update request.
 type IncidentUpdateRelationships struct {
-	CommanderUser *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-	Integrations  *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-	Postmortem    *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+	// Relationship to user.
+	CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+	// A relationship reference for multiple integration metadata objects.
+	Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+	// A relationship reference for postmortems.
+	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentUpdateRelationships IncidentUpdateRelationships
 
 // NewIncidentUpdateRelationships instantiates a new IncidentUpdateRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +153,10 @@ func (o IncidentUpdateRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.Postmortem != nil {
 		toSerialize["postmortem"] = o.Postmortem
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type OrganizationSubscription struct {
 	// The subscription type. Types available are `trial`, `free`, and `pro`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationSubscription OrganizationSubscription
 
 // NewOrganizationSubscription instantiates a new OrganizationSubscription object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o OrganizationSubscription) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -102,8 +102,9 @@ type UsageSummaryResponse struct {
 	// Shows the sum of all live logs indexed over all hours in the current months for all organizations (data available as of December 1, 2020).
 	LiveIndexedEventsAggSum *int64 `json:"live_indexed_events_agg_sum,omitempty"`
 	// Shows the sum of all live logs bytes ingested over all hours in the current months for all organizations (data available as of December 1, 2020).
-	LiveIngestedBytesAggSum *int64           `json:"live_ingested_bytes_agg_sum,omitempty"`
-	LogsByRetention         *LogsByRetention `json:"logs_by_retention,omitempty"`
+	LiveIngestedBytesAggSum *int64 `json:"live_ingested_bytes_agg_sum,omitempty"`
+	// Object containing logs usage data broken down by retention period.
+	LogsByRetention *LogsByRetention `json:"logs_by_retention,omitempty"`
 	// Shows the sum of all mobile lite sessions over all hours in the current months for all organizations.
 	MobileRumLiteSessionCountAggSum *int64 `json:"mobile_rum_lite_session_count_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions over all hours in the current months for all organizations.
@@ -155,8 +156,11 @@ type UsageSummaryResponse struct {
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current months for all organizations.
 	VsphereHostTop99pSum *int64 `json:"vsphere_host_top99p_sum,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSummaryResponse UsageSummaryResponse
 
 // NewUsageSummaryResponse instantiates a new UsageSummaryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -2629,6 +2633,10 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.VsphereHostTop99pSum != nil {
 		toSerialize["vsphere_host_top99p_sum"] = o.VsphereHostTop99pSum
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

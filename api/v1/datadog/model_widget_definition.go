@@ -22,20 +22,18 @@ type WidgetDefinition struct {
 	EventStreamWidgetDefinition    *EventStreamWidgetDefinition
 	EventTimelineWidgetDefinition  *EventTimelineWidgetDefinition
 	FreeTextWidgetDefinition       *FreeTextWidgetDefinition
-	FunnelWidgetDefinition         *FunnelWidgetDefinition
 	GeomapWidgetDefinition         *GeomapWidgetDefinition
 	GroupWidgetDefinition          *GroupWidgetDefinition
 	HeatMapWidgetDefinition        *HeatMapWidgetDefinition
 	HostMapWidgetDefinition        *HostMapWidgetDefinition
 	IFrameWidgetDefinition         *IFrameWidgetDefinition
 	ImageWidgetDefinition          *ImageWidgetDefinition
-	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
 	LogStreamWidgetDefinition      *LogStreamWidgetDefinition
 	MonitorSummaryWidgetDefinition *MonitorSummaryWidgetDefinition
 	NoteWidgetDefinition           *NoteWidgetDefinition
 	QueryValueWidgetDefinition     *QueryValueWidgetDefinition
-	SLOWidgetDefinition            *SLOWidgetDefinition
 	ScatterPlotWidgetDefinition    *ScatterPlotWidgetDefinition
+	SLOWidgetDefinition            *SLOWidgetDefinition
 	ServiceMapWidgetDefinition     *ServiceMapWidgetDefinition
 	ServiceSummaryWidgetDefinition *ServiceSummaryWidgetDefinition
 	SunburstWidgetDefinition       *SunburstWidgetDefinition
@@ -43,6 +41,8 @@ type WidgetDefinition struct {
 	TimeseriesWidgetDefinition     *TimeseriesWidgetDefinition
 	ToplistWidgetDefinition        *ToplistWidgetDefinition
 	TreeMapWidgetDefinition        *TreeMapWidgetDefinition
+	ListStreamWidgetDefinition     *ListStreamWidgetDefinition
+	FunnelWidgetDefinition         *FunnelWidgetDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -88,11 +88,6 @@ func FreeTextWidgetDefinitionAsWidgetDefinition(v *FreeTextWidgetDefinition) Wid
 	return WidgetDefinition{FreeTextWidgetDefinition: v}
 }
 
-// FunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns FunnelWidgetDefinition wrapped in WidgetDefinition
-func FunnelWidgetDefinitionAsWidgetDefinition(v *FunnelWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{FunnelWidgetDefinition: v}
-}
-
 // GeomapWidgetDefinitionAsWidgetDefinition is a convenience function that returns GeomapWidgetDefinition wrapped in WidgetDefinition
 func GeomapWidgetDefinitionAsWidgetDefinition(v *GeomapWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{GeomapWidgetDefinition: v}
@@ -123,11 +118,6 @@ func ImageWidgetDefinitionAsWidgetDefinition(v *ImageWidgetDefinition) WidgetDef
 	return WidgetDefinition{ImageWidgetDefinition: v}
 }
 
-// ListStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns ListStreamWidgetDefinition wrapped in WidgetDefinition
-func ListStreamWidgetDefinitionAsWidgetDefinition(v *ListStreamWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{ListStreamWidgetDefinition: v}
-}
-
 // LogStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns LogStreamWidgetDefinition wrapped in WidgetDefinition
 func LogStreamWidgetDefinitionAsWidgetDefinition(v *LogStreamWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{LogStreamWidgetDefinition: v}
@@ -148,14 +138,14 @@ func QueryValueWidgetDefinitionAsWidgetDefinition(v *QueryValueWidgetDefinition)
 	return WidgetDefinition{QueryValueWidgetDefinition: v}
 }
 
-// SLOWidgetDefinitionAsWidgetDefinition is a convenience function that returns SLOWidgetDefinition wrapped in WidgetDefinition
-func SLOWidgetDefinitionAsWidgetDefinition(v *SLOWidgetDefinition) WidgetDefinition {
-	return WidgetDefinition{SLOWidgetDefinition: v}
-}
-
 // ScatterPlotWidgetDefinitionAsWidgetDefinition is a convenience function that returns ScatterPlotWidgetDefinition wrapped in WidgetDefinition
 func ScatterPlotWidgetDefinitionAsWidgetDefinition(v *ScatterPlotWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{ScatterPlotWidgetDefinition: v}
+}
+
+// SLOWidgetDefinitionAsWidgetDefinition is a convenience function that returns SLOWidgetDefinition wrapped in WidgetDefinition
+func SLOWidgetDefinitionAsWidgetDefinition(v *SLOWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{SLOWidgetDefinition: v}
 }
 
 // ServiceMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns ServiceMapWidgetDefinition wrapped in WidgetDefinition
@@ -191,6 +181,16 @@ func ToplistWidgetDefinitionAsWidgetDefinition(v *ToplistWidgetDefinition) Widge
 // TreeMapWidgetDefinitionAsWidgetDefinition is a convenience function that returns TreeMapWidgetDefinition wrapped in WidgetDefinition
 func TreeMapWidgetDefinitionAsWidgetDefinition(v *TreeMapWidgetDefinition) WidgetDefinition {
 	return WidgetDefinition{TreeMapWidgetDefinition: v}
+}
+
+// ListStreamWidgetDefinitionAsWidgetDefinition is a convenience function that returns ListStreamWidgetDefinition wrapped in WidgetDefinition
+func ListStreamWidgetDefinitionAsWidgetDefinition(v *ListStreamWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{ListStreamWidgetDefinition: v}
+}
+
+// FunnelWidgetDefinitionAsWidgetDefinition is a convenience function that returns FunnelWidgetDefinition wrapped in WidgetDefinition
+func FunnelWidgetDefinitionAsWidgetDefinition(v *FunnelWidgetDefinition) WidgetDefinition {
+	return WidgetDefinition{FunnelWidgetDefinition: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -700,20 +700,18 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.EventStreamWidgetDefinition = nil
 		dst.EventTimelineWidgetDefinition = nil
 		dst.FreeTextWidgetDefinition = nil
-		dst.FunnelWidgetDefinition = nil
 		dst.GeomapWidgetDefinition = nil
 		dst.GroupWidgetDefinition = nil
 		dst.HeatMapWidgetDefinition = nil
 		dst.HostMapWidgetDefinition = nil
 		dst.IFrameWidgetDefinition = nil
 		dst.ImageWidgetDefinition = nil
-		dst.ListStreamWidgetDefinition = nil
 		dst.LogStreamWidgetDefinition = nil
 		dst.MonitorSummaryWidgetDefinition = nil
 		dst.NoteWidgetDefinition = nil
 		dst.QueryValueWidgetDefinition = nil
-		dst.SLOWidgetDefinition = nil
 		dst.ScatterPlotWidgetDefinition = nil
+		dst.SLOWidgetDefinition = nil
 		dst.ServiceMapWidgetDefinition = nil
 		dst.ServiceSummaryWidgetDefinition = nil
 		dst.SunburstWidgetDefinition = nil
@@ -721,6 +719,8 @@ func (dst *WidgetDefinition) UnmarshalJSON(data []byte) error {
 		dst.TimeseriesWidgetDefinition = nil
 		dst.ToplistWidgetDefinition = nil
 		dst.TreeMapWidgetDefinition = nil
+		dst.ListStreamWidgetDefinition = nil
+		dst.FunnelWidgetDefinition = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -761,10 +761,6 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.FreeTextWidgetDefinition)
 	}
 
-	if src.FunnelWidgetDefinition != nil {
-		return json.Marshal(&src.FunnelWidgetDefinition)
-	}
-
 	if src.GeomapWidgetDefinition != nil {
 		return json.Marshal(&src.GeomapWidgetDefinition)
 	}
@@ -789,10 +785,6 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.ImageWidgetDefinition)
 	}
 
-	if src.ListStreamWidgetDefinition != nil {
-		return json.Marshal(&src.ListStreamWidgetDefinition)
-	}
-
 	if src.LogStreamWidgetDefinition != nil {
 		return json.Marshal(&src.LogStreamWidgetDefinition)
 	}
@@ -809,12 +801,12 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.QueryValueWidgetDefinition)
 	}
 
-	if src.SLOWidgetDefinition != nil {
-		return json.Marshal(&src.SLOWidgetDefinition)
-	}
-
 	if src.ScatterPlotWidgetDefinition != nil {
 		return json.Marshal(&src.ScatterPlotWidgetDefinition)
+	}
+
+	if src.SLOWidgetDefinition != nil {
+		return json.Marshal(&src.SLOWidgetDefinition)
 	}
 
 	if src.ServiceMapWidgetDefinition != nil {
@@ -843,6 +835,14 @@ func (src WidgetDefinition) MarshalJSON() ([]byte, error) {
 
 	if src.TreeMapWidgetDefinition != nil {
 		return json.Marshal(&src.TreeMapWidgetDefinition)
+	}
+
+	if src.ListStreamWidgetDefinition != nil {
+		return json.Marshal(&src.ListStreamWidgetDefinition)
+	}
+
+	if src.FunnelWidgetDefinition != nil {
+		return json.Marshal(&src.FunnelWidgetDefinition)
 	}
 
 	if src.UnparsedObject != nil {
@@ -885,10 +885,6 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 		return obj.FreeTextWidgetDefinition
 	}
 
-	if obj.FunnelWidgetDefinition != nil {
-		return obj.FunnelWidgetDefinition
-	}
-
 	if obj.GeomapWidgetDefinition != nil {
 		return obj.GeomapWidgetDefinition
 	}
@@ -913,10 +909,6 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 		return obj.ImageWidgetDefinition
 	}
 
-	if obj.ListStreamWidgetDefinition != nil {
-		return obj.ListStreamWidgetDefinition
-	}
-
 	if obj.LogStreamWidgetDefinition != nil {
 		return obj.LogStreamWidgetDefinition
 	}
@@ -933,12 +925,12 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 		return obj.QueryValueWidgetDefinition
 	}
 
-	if obj.SLOWidgetDefinition != nil {
-		return obj.SLOWidgetDefinition
-	}
-
 	if obj.ScatterPlotWidgetDefinition != nil {
 		return obj.ScatterPlotWidgetDefinition
+	}
+
+	if obj.SLOWidgetDefinition != nil {
+		return obj.SLOWidgetDefinition
 	}
 
 	if obj.ServiceMapWidgetDefinition != nil {
@@ -967,6 +959,14 @@ func (obj *WidgetDefinition) GetActualInstance() interface{} {
 
 	if obj.TreeMapWidgetDefinition != nil {
 		return obj.TreeMapWidgetDefinition
+	}
+
+	if obj.ListStreamWidgetDefinition != nil {
+		return obj.ListStreamWidgetDefinition
+	}
+
+	if obj.FunnelWidgetDefinition != nil {
+		return obj.FunnelWidgetDefinition
 	}
 
 	// all schemas are nil
@@ -1006,5 +1006,11 @@ func (v NullableWidgetDefinition) MarshalJSON() ([]byte, error) {
 
 func (v *NullableWidgetDefinition) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

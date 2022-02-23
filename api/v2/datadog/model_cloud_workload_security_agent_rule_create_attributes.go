@@ -24,8 +24,11 @@ type CloudWorkloadSecurityAgentRuleCreateAttributes struct {
 	// The name of the Agent rule.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloudWorkloadSecurityAgentRuleCreateAttributes CloudWorkloadSecurityAgentRuleCreateAttributes
 
 // NewCloudWorkloadSecurityAgentRuleCreateAttributes instantiates a new CloudWorkloadSecurityAgentRuleCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -116,7 +119,6 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetExpression() string 
 		var ret string
 		return ret
 	}
-
 	return o.Expression
 }
 
@@ -140,7 +142,6 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -169,11 +170,11 @@ func (o CloudWorkloadSecurityAgentRuleCreateAttributes) MarshalJSON() ([]byte, e
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
 	}
-	if true {
-		toSerialize["expression"] = o.Expression
-	}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize["expression"] = o.Expression
+	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

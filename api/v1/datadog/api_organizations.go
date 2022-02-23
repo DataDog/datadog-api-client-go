@@ -35,16 +35,16 @@ type apiCreateChildOrgRequest struct {
 /*
  * CreateChildOrg Create a child organization
  * Create a child organization.
-
-This endpoint requires the
-[multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
-feature and must be enabled by
-[contacting support](https://docs.datadoghq.com/help/).
-
-Once a new child organization is created, you can interact with it
-by using the `org.public_id`, `api_key.key`, and
-`application_key.hash` provided in the response.
-*/
+ *
+ * This endpoint requires the
+ * [multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
+ * feature and must be enabled by
+ * [contacting support](https://docs.datadoghq.com/help/).
+ *
+ * Once a new child organization is created, you can interact with it
+ * by using the `org.public_id`, `api_key.key`, and
+ * `application_key.hash` provided in the response.
+ */
 func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateChildOrgRequest{
 		ApiService: a,
@@ -243,15 +243,6 @@ func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (Organizatio
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -260,7 +251,6 @@ func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (Organizatio
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -398,15 +388,6 @@ func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (Organiz
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -415,7 +396,6 @@ func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (Organiz
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -675,12 +655,12 @@ type apiUploadIdPForOrgRequest struct {
 /*
  * UploadIdPForOrg Upload IdP metadata
  * There are a couple of options for updating the Identity Provider (IdP)
-metadata from your SAML IdP.
-
-* **Multipart Form-Data**: Post the IdP metadata file using a form post.
-
-* **XML Body:** Post the IdP metadata file as the body of the request.
-*/
+ * metadata from your SAML IdP.
+ *
+ * * **Multipart Form-Data**: Post the IdP metadata file using a form post.
+ *
+ * * **XML Body:** Post the IdP metadata file as the body of the request.
+ */
 func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
 	req := apiUploadIdPForOrgRequest{
 		ApiService: a,
@@ -747,6 +727,7 @@ func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgReq
 		localVarFileName = localVarFile.Name()
 		localVarFile.Close()
 	}
+
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

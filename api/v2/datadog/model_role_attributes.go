@@ -24,8 +24,11 @@ type RoleAttributes struct {
 	// Number of users with that role.
 	UserCount *int64 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RoleAttributes RoleAttributes
 
 // NewRoleAttributes instantiates a new RoleAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -188,6 +191,10 @@ func (o RoleAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.UserCount != nil {
 		toSerialize["user_count"] = o.UserCount
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

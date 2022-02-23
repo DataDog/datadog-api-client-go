@@ -14,13 +14,18 @@ import (
 
 // MonitorSearchResponse The response form a monitor search.
 type MonitorSearchResponse struct {
-	Counts   *MonitorSearchResponseCounts   `json:"counts,omitempty"`
+	// The counts of monitors per different criteria.
+	Counts *MonitorSearchResponseCounts `json:"counts,omitempty"`
+	// Metadata about the response.
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// The list of found monitors.
 	Monitors *[]MonitorSearchResult `json:"monitors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorSearchResponse MonitorSearchResponse
 
 // NewMonitorSearchResponse instantiates a new MonitorSearchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o MonitorSearchResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Monitors != nil {
 		toSerialize["monitors"] = o.Monitors
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

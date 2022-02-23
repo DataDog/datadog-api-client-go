@@ -15,14 +15,20 @@ import (
 
 // SyntheticsAssertionJSONPathTarget An assertion for the `validatesJSONPath` operator.
 type SyntheticsAssertionJSONPathTarget struct {
+	// Assertion operator to apply.
 	Operator SyntheticsAssertionJSONPathOperator `json:"operator"`
 	// The associated assertion property.
-	Property *string                                  `json:"property,omitempty"`
-	Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-	Type     SyntheticsAssertionType                  `json:"type"`
+	Property *string `json:"property,omitempty"`
+	// Composed target for `validatesJSONPath` operator.
+	Target *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+	// Type of the assertion.
+	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAssertionJSONPathTarget SyntheticsAssertionJSONPathTarget
 
 // NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +55,6 @@ func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSO
 		var ret SyntheticsAssertionJSONPathOperator
 		return ret
 	}
-
 	return o.Operator
 }
 
@@ -137,7 +142,6 @@ func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
 		var ret SyntheticsAssertionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -160,17 +164,17 @@ func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["operator"] = o.Operator
-	}
+	toSerialize["operator"] = o.Operator
 	if o.Property != nil {
 		toSerialize["property"] = o.Property
 	}
 	if o.Target != nil {
 		toSerialize["target"] = o.Target
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -22,8 +22,11 @@ type UserCreateAttributes struct {
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserCreateAttributes UserCreateAttributes
 
 // NewUserCreateAttributes instantiates a new UserCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +52,6 @@ func (o *UserCreateAttributes) GetEmail() string {
 		var ret string
 		return ret
 	}
-
 	return o.Email
 }
 
@@ -136,14 +138,16 @@ func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["email"] = o.Email
-	}
+	toSerialize["email"] = o.Email
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

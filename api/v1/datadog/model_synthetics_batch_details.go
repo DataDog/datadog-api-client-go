@@ -14,10 +14,14 @@ import (
 
 // SyntheticsBatchDetails Details about a batch response.
 type SyntheticsBatchDetails struct {
+	// Wrapper object that contains the details of a batch.
 	Data *SyntheticsBatchDetailsData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBatchDetails SyntheticsBatchDetails
 
 // NewSyntheticsBatchDetails instantiates a new SyntheticsBatchDetails object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o SyntheticsBatchDetails) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

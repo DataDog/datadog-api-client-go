@@ -15,31 +15,40 @@ import (
 
 // MonitorSummaryWidgetDefinition The monitor summary widget displays a summary view of all your Datadog monitors, or a subset based on a query. Only available on FREE layout dashboards.
 type MonitorSummaryWidgetDefinition struct {
+	// Which color to use on the widget.
 	ColorPreference *WidgetColorPreference `json:"color_preference,omitempty"`
 	// The number of monitors to display.
 	// Deprecated
-	Count         *int64                             `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
+	// What to display on the widget.
 	DisplayFormat *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
 	// Whether to show counts of 0 or not.
 	HideZeroCounts *bool `json:"hide_zero_counts,omitempty"`
 	// Query to filter the monitors with.
 	Query string `json:"query"`
 	// Whether to show the time that has elapsed since the monitor/group triggered.
-	ShowLastTriggered *bool                     `json:"show_last_triggered,omitempty"`
-	Sort              *WidgetMonitorSummarySort `json:"sort,omitempty"`
+	ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
+	// Widget sorting methods.
+	Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
 	// Deprecated
-	Start       *int64             `json:"start,omitempty"`
+	Start *int64 `json:"start,omitempty"`
+	// Which summary type should be used.
 	SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                            `json:"title_size,omitempty"`
-	Type      MonitorSummaryWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the monitor summary widget.
+	Type MonitorSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorSummaryWidgetDefinition MonitorSummaryWidgetDefinition
 
 // NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +66,7 @@ func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetD
 // but it doesn't guarantee that properties required by API are set
 func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
-	var type_ MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
+	var type_ MonitorSummaryWidgetDefinitionType = "manage_status"
 	this.Type = type_
 	return &this
 }
@@ -199,7 +208,6 @@ func (o *MonitorSummaryWidgetDefinition) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -450,7 +458,6 @@ func (o *MonitorSummaryWidgetDefinition) GetType() MonitorSummaryWidgetDefinitio
 		var ret MonitorSummaryWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -485,9 +492,7 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.HideZeroCounts != nil {
 		toSerialize["hide_zero_counts"] = o.HideZeroCounts
 	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
+	toSerialize["query"] = o.Query
 	if o.ShowLastTriggered != nil {
 		toSerialize["show_last_triggered"] = o.ShowLastTriggered
 	}
@@ -509,8 +514,10 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

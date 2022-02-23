@@ -14,21 +14,34 @@ import (
 
 // DistributionWidgetRequest Updated distribution widget.
 type DistributionWidgetRequest struct {
-	ApmQuery            *LogQueryDefinition      `json:"apm_query,omitempty"`
-	ApmStatsQuery       *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
-	EventQuery          *LogQueryDefinition      `json:"event_query,omitempty"`
-	LogQuery            *LogQueryDefinition      `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition      `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition  `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition      `json:"profile_metrics_query,omitempty"`
+	// The log query.
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	// The APM stats query for table and distributions widgets.
+	ApmStatsQuery *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
+	// The log query.
+	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+	// The log query.
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	// The log query.
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	// The process query to use in the widget.
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	// The log query.
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	// The log query.
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-	Style         *WidgetStyle        `json:"style,omitempty"`
+	// Widget style definition.
+	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DistributionWidgetRequest DistributionWidgetRequest
 
 // NewDistributionWidgetRequest instantiates a new DistributionWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -436,6 +449,10 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Style != nil {
 		toSerialize["style"] = o.Style
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

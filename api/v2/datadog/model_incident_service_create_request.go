@@ -15,10 +15,14 @@ import (
 
 // IncidentServiceCreateRequest Create request with an incident service payload.
 type IncidentServiceCreateRequest struct {
+	// Incident Service payload for create requests.
 	Data IncidentServiceCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentServiceCreateRequest IncidentServiceCreateRequest
 
 // NewIncidentServiceCreateRequest instantiates a new IncidentServiceCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *IncidentServiceCreateRequest) GetData() IncidentServiceCreateData {
 		var ret IncidentServiceCreateData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o IncidentServiceCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

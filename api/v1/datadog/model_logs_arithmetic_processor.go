@@ -13,22 +13,45 @@ import (
 	"fmt"
 )
 
-// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters in the new attribute name) to a log with the result of the provided formula. This enables you to remap different time attributes with different units into a single attribute, or to compute operations on attributes within the same log.  The formula can use parentheses and the basic arithmetic operators `-`, `+`, `*`, `/`.  By default, the calculation is skipped if an attribute is missing. Select “Replace missing attribute by 0” to automatically populate missing attribute values with 0 to ensure that the calculation is done. An attribute is missing if it is not found in the log attributes, or if it cannot be converted to a number.  *Notes*:  - The operator `-` needs to be space split in the formula as it can also be contained in attribute names. - If the target attribute already exists, it is overwritten by the result of the formula. - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,   the actual value stored for the attribute is `0.123456789`. - If you need to scale a unit of measure,   see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
+// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters// in the new attribute name) to a log with the result of the provided formula.
+// This enables you to remap different time attributes with different units into a single attribute,
+// or to compute operations on attributes within the same log.
+//
+// The formula can use parentheses and the basic arithmetic operators `-`, `+`, `*`, `/`.
+//
+// By default, the calculation is skipped if an attribute is missing.
+// Select “Replace missing attribute by 0” to automatically populate
+// missing attribute values with 0 to ensure that the calculation is done.
+// An attribute is missing if it is not found in the log attributes,
+// or if it cannot be converted to a number.
+//
+// *Notes*:
+//
+// - The operator `-` needs to be space split in the formula as it can also be contained in attribute names.
+// - If the target attribute already exists, it is overwritten by the result of the formula.
+// - Results are rounded up to the 9th decimal. For example, if the result of the formula is `0.1234567891`,
+//   the actual value stored for the attribute is `0.123456789`.
+// - If you need to scale a unit of measure,
+//   see [Scale Filter](https://docs.datadoghq.com/logs/log_configuration/parsing/?tab=filter#matcher-and-filter).
 type LogsArithmeticProcessor struct {
 	// Arithmetic operation between one or more log attributes.
 	Expression string `json:"expression"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// If `true`, it replaces all missing attributes of expression by `0`, `false` skip the operation if an attribute is missing.
+	// If `true`, it replaces all missing attributes of expression by `0`, `false`// skip the operation if an attribute is missing.
 	IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Name of the attribute that contains the result of the arithmetic operation.
-	Target string                      `json:"target"`
-	Type   LogsArithmeticProcessorType `json:"type"`
+	Target string `json:"target"`
+	// Type of logs arithmetic processor.
+	Type LogsArithmeticProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArithmeticProcessor LogsArithmeticProcessor
 
 // NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +78,7 @@ func NewLogsArithmeticProcessorWithDefaults() *LogsArithmeticProcessor {
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsArithmeticProcessorType = LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR
+	var type_ LogsArithmeticProcessorType = "arithmetic-processor"
 	this.Type = type_
 	return &this
 }
@@ -66,7 +89,6 @@ func (o *LogsArithmeticProcessor) GetExpression() string {
 		var ret string
 		return ret
 	}
-
 	return o.Expression
 }
 
@@ -186,7 +208,6 @@ func (o *LogsArithmeticProcessor) GetTarget() string {
 		var ret string
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -210,7 +231,6 @@ func (o *LogsArithmeticProcessor) GetType() LogsArithmeticProcessorType {
 		var ret LogsArithmeticProcessorType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -233,9 +253,7 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["expression"] = o.Expression
-	}
+	toSerialize["expression"] = o.Expression
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
@@ -245,11 +263,11 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["target"] = o.Target
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

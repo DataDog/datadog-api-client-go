@@ -15,6 +15,7 @@ import (
 
 // FormulaAndFunctionApmResourceStatsQueryDefinition APM resource stats query using formulas and functions.
 type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
+	// Data source for APM resource stats queries.
 	DataSource FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
 	// APM environment.
 	Env string `json:"env"`
@@ -31,11 +32,15 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM resource name.
 	ResourceName *string `json:"resource_name,omitempty"`
 	// APM service name.
-	Service string                                `json:"service"`
-	Stat    FormulaAndFunctionApmResourceStatName `json:"stat"`
+	Service string `json:"service"`
+	// APM resource stat name.
+	Stat FormulaAndFunctionApmResourceStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionApmResourceStatsQueryDefinition FormulaAndFunctionApmResourceStatsQueryDefinition
 
 // NewFormulaAndFunctionApmResourceStatsQueryDefinition instantiates a new FormulaAndFunctionApmResourceStatsQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -65,7 +70,6 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetDataSource() Form
 		var ret FormulaAndFunctionApmResourceStatsDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -89,7 +93,6 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnv() string {
 		var ret string
 		return ret
 	}
-
 	return o.Env
 }
 
@@ -145,7 +148,6 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -297,7 +299,6 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetService() string 
 		var ret string
 		return ret
 	}
-
 	return o.Service
 }
 
@@ -321,7 +322,6 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStat() FormulaAnd
 		var ret FormulaAndFunctionApmResourceStatName
 		return ret
 	}
-
 	return o.Stat
 }
 
@@ -344,18 +344,12 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
-	if true {
-		toSerialize["env"] = o.Env
-	}
+	toSerialize["data_source"] = o.DataSource
+	toSerialize["env"] = o.Env
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.OperationName != nil {
 		toSerialize["operation_name"] = o.OperationName
 	}
@@ -368,11 +362,11 @@ func (o FormulaAndFunctionApmResourceStatsQueryDefinition) MarshalJSON() ([]byte
 	if o.ResourceName != nil {
 		toSerialize["resource_name"] = o.ResourceName
 	}
-	if true {
-		toSerialize["service"] = o.Service
-	}
-	if true {
-		toSerialize["stat"] = o.Stat
+	toSerialize["service"] = o.Service
+	toSerialize["stat"] = o.Stat
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

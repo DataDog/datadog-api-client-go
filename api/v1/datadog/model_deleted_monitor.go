@@ -17,8 +17,11 @@ type DeletedMonitor struct {
 	// ID of the deleted monitor.
 	DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DeletedMonitor DeletedMonitor
 
 // NewDeletedMonitor instantiates a new DeletedMonitor object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeletedMonitorId != nil {
 		toSerialize["deleted_monitor_id"] = o.DeletedMonitorId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

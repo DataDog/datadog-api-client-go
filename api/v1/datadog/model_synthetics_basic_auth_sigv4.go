@@ -24,11 +24,15 @@ type SyntheticsBasicAuthSigv4 struct {
 	// Service name for the `SIGV4` authentication.
 	ServiceName *string `json:"serviceName,omitempty"`
 	// Session token for the `SIGV4` authentication.
-	SessionToken *string                      `json:"sessionToken,omitempty"`
-	Type         SyntheticsBasicAuthSigv4Type `json:"type"`
+	SessionToken *string `json:"sessionToken,omitempty"`
+	// The type of authentication to use when performing the test.
+	Type SyntheticsBasicAuthSigv4Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBasicAuthSigv4 SyntheticsBasicAuthSigv4
 
 // NewSyntheticsBasicAuthSigv4 instantiates a new SyntheticsBasicAuthSigv4 object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,7 @@ func NewSyntheticsBasicAuthSigv4(accessKey string, secretKey string, type_ Synth
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthSigv4WithDefaults() *SyntheticsBasicAuthSigv4 {
 	this := SyntheticsBasicAuthSigv4{}
-	var type_ SyntheticsBasicAuthSigv4Type = SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4
+	var type_ SyntheticsBasicAuthSigv4Type = "sigv4"
 	this.Type = type_
 	return &this
 }
@@ -58,7 +62,6 @@ func (o *SyntheticsBasicAuthSigv4) GetAccessKey() string {
 		var ret string
 		return ret
 	}
-
 	return o.AccessKey
 }
 
@@ -114,7 +117,6 @@ func (o *SyntheticsBasicAuthSigv4) GetSecretKey() string {
 		var ret string
 		return ret
 	}
-
 	return o.SecretKey
 }
 
@@ -202,7 +204,6 @@ func (o *SyntheticsBasicAuthSigv4) GetType() SyntheticsBasicAuthSigv4Type {
 		var ret SyntheticsBasicAuthSigv4Type
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -225,23 +226,21 @@ func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["accessKey"] = o.AccessKey
-	}
+	toSerialize["accessKey"] = o.AccessKey
 	if o.Region != nil {
 		toSerialize["region"] = o.Region
 	}
-	if true {
-		toSerialize["secretKey"] = o.SecretKey
-	}
+	toSerialize["secretKey"] = o.SecretKey
 	if o.ServiceName != nil {
 		toSerialize["serviceName"] = o.ServiceName
 	}
 	if o.SessionToken != nil {
 		toSerialize["sessionToken"] = o.SessionToken
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

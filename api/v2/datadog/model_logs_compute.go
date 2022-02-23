@@ -15,15 +15,20 @@ import (
 
 // LogsCompute A compute rule to compute metrics or timeseries
 type LogsCompute struct {
+	// An aggregation function
 	Aggregation LogsAggregationFunction `json:"aggregation"`
-	// The time buckets' size (only used for type=timeseries) Defaults to a resolution of 150 points
+	// The time buckets' size (only used for type=timeseries)// Defaults to a resolution of 150 points
 	Interval *string `json:"interval,omitempty"`
 	// The metric to use
-	Metric *string          `json:"metric,omitempty"`
-	Type   *LogsComputeType `json:"type,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	// The type of compute
+	Type *LogsComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsCompute LogsCompute
 
 // NewLogsCompute instantiates a new LogsCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -32,7 +37,7 @@ type LogsCompute struct {
 func NewLogsCompute(aggregation LogsAggregationFunction) *LogsCompute {
 	this := LogsCompute{}
 	this.Aggregation = aggregation
-	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
+	var type_ LogsComputeType = "total"
 	this.Type = &type_
 	return &this
 }
@@ -42,7 +47,7 @@ func NewLogsCompute(aggregation LogsAggregationFunction) *LogsCompute {
 // but it doesn't guarantee that properties required by API are set
 func NewLogsComputeWithDefaults() *LogsCompute {
 	this := LogsCompute{}
-	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
+	var type_ LogsComputeType = "total"
 	this.Type = &type_
 	return &this
 }
@@ -53,7 +58,6 @@ func (o *LogsCompute) GetAggregation() LogsAggregationFunction {
 		var ret LogsAggregationFunction
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -172,9 +176,7 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
 	}
@@ -183,6 +185,10 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

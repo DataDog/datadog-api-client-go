@@ -19,16 +19,22 @@ type ToplistWidgetDefinition struct {
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of top list widget requests.
 	Requests []ToplistWidgetRequest `json:"requests"`
-	Time     *WidgetTime            `json:"time,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                     `json:"title_size,omitempty"`
-	Type      ToplistWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the top list widget.
+	Type ToplistWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ToplistWidgetDefinition ToplistWidgetDefinition
 
 // NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +52,7 @@ func NewToplistWidgetDefinition(requests []ToplistWidgetRequest, type_ ToplistWi
 // but it doesn't guarantee that properties required by API are set
 func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition {
 	this := ToplistWidgetDefinition{}
-	var type_ ToplistWidgetDefinitionType = TOPLISTWIDGETDEFINITIONTYPE_TOPLIST
+	var type_ ToplistWidgetDefinitionType = "toplist"
 	this.Type = type_
 	return &this
 }
@@ -89,7 +95,6 @@ func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
 		var ret []ToplistWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -241,7 +246,6 @@ func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
 		var ret ToplistWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -267,9 +271,7 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -282,8 +284,10 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,12 +14,16 @@ import (
 
 // SLOResponse A service level objective response containing a single service level objective.
 type SLOResponse struct {
+	// A service level objective object includes a service level indicator, thresholds// for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 	Data *SLOResponseData `json:"data,omitempty"`
-	// An array of error messages. Each endpoint documents how/whether this field is used.
+	// An array of error messages. Each endpoint documents how/whether this field is// used.
 	Errors *[]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOResponse SLOResponse
 
 // NewSLOResponse instantiates a new SLOResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o SLOResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

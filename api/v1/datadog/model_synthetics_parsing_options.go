@@ -17,12 +17,17 @@ type SyntheticsParsingOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
 	Field *string `json:"field,omitempty"`
 	// Name of the variable to extract.
-	Name   *string                                       `json:"name,omitempty"`
-	Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
-	Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Details of the parser to use for the global variable.
+	Parser *SyntheticsVariableParser `json:"parser,omitempty"`
+	// Property of the Synthetics Test Response to use for a Synthetics global variable.
+	Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsParsingOptions SyntheticsParsingOptions
 
 // NewSyntheticsParsingOptions instantiates a new SyntheticsParsingOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -185,6 +190,10 @@ func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

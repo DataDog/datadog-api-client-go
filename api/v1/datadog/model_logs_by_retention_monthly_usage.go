@@ -20,8 +20,11 @@ type LogsByRetentionMonthlyUsage struct {
 	// Indexed logs usage for each active retention for the month.
 	Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsByRetentionMonthlyUsage LogsByRetentionMonthlyUsage
 
 // NewLogsByRetentionMonthlyUsage instantiates a new LogsByRetentionMonthlyUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -114,6 +117,10 @@ func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

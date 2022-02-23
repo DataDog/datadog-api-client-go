@@ -15,12 +15,18 @@ import (
 
 // RoleCreateData Data related to the creation of a role.
 type RoleCreateData struct {
-	Attributes    RoleCreateAttributes `json:"attributes"`
-	Relationships *RoleRelationships   `json:"relationships,omitempty"`
-	Type          *RolesType           `json:"type,omitempty"`
+	// Attributes of the created role.
+	Attributes RoleCreateAttributes `json:"attributes"`
+	// Relationships of the role object.
+	Relationships *RoleRelationships `json:"relationships,omitempty"`
+	// Roles type.
+	Type *RolesType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RoleCreateData RoleCreateData
 
 // NewRoleCreateData instantiates a new RoleCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -29,7 +35,7 @@ type RoleCreateData struct {
 func NewRoleCreateData(attributes RoleCreateAttributes) *RoleCreateData {
 	this := RoleCreateData{}
 	this.Attributes = attributes
-	var type_ RolesType = ROLESTYPE_ROLES
+	var type_ RolesType = "roles"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +45,7 @@ func NewRoleCreateData(attributes RoleCreateAttributes) *RoleCreateData {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleCreateDataWithDefaults() *RoleCreateData {
 	this := RoleCreateData{}
-	var type_ RolesType = ROLESTYPE_ROLES
+	var type_ RolesType = "roles"
 	this.Type = &type_
 	return &this
 }
@@ -50,7 +56,6 @@ func (o *RoleCreateData) GetAttributes() RoleCreateAttributes {
 		var ret RoleCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -137,14 +142,16 @@ func (o RoleCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
+	toSerialize["attributes"] = o.Attributes
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

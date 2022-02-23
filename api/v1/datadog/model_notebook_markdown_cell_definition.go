@@ -16,11 +16,15 @@ import (
 // NotebookMarkdownCellDefinition Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 type NotebookMarkdownCellDefinition struct {
 	// The markdown content.
-	Text string                             `json:"text"`
+	Text string `json:"text"`
+	// Type of the markdown cell.
 	Type NotebookMarkdownCellDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookMarkdownCellDefinition NotebookMarkdownCellDefinition
 
 // NewNotebookMarkdownCellDefinition instantiates a new NotebookMarkdownCellDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewNotebookMarkdownCellDefinition(text string, type_ NotebookMarkdownCellDe
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookMarkdownCellDefinitionWithDefaults() *NotebookMarkdownCellDefinition {
 	this := NotebookMarkdownCellDefinition{}
-	var type_ NotebookMarkdownCellDefinitionType = NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN
+	var type_ NotebookMarkdownCellDefinitionType = "markdown"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *NotebookMarkdownCellDefinition) GetText() string {
 		var ret string
 		return ret
 	}
-
 	return o.Text
 }
 
@@ -73,7 +76,6 @@ func (o *NotebookMarkdownCellDefinition) GetType() NotebookMarkdownCellDefinitio
 		var ret NotebookMarkdownCellDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["text"] = o.Text
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["text"] = o.Text
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

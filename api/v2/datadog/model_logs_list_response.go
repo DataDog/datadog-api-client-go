@@ -15,12 +15,17 @@ import (
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
 	// Array of logs matching the request.
-	Data  *[]Log                 `json:"data,omitempty"`
+	Data *[]Log `json:"data,omitempty"`
+	// Links attributes.
 	Links *LogsListResponseLinks `json:"links,omitempty"`
-	Meta  *LogsResponseMetadata  `json:"meta,omitempty"`
+	// The metadata associated with a request
+	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsListResponse LogsListResponse
 
 // NewLogsListResponse instantiates a new LogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

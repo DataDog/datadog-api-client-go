@@ -17,8 +17,11 @@ type UsageRumUnitsResponse struct {
 	// Get hourly usage for RUM Units.
 	Usage *[]UsageRumUnitsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageRumUnitsResponse UsageRumUnitsResponse
 
 // NewUsageRumUnitsResponse instantiates a new UsageRumUnitsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageRumUnitsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

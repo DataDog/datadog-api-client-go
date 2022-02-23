@@ -15,10 +15,14 @@ import (
 
 // NotebookRelativeTime Relative timeframe.
 type NotebookRelativeTime struct {
+	// The available timeframes depend on the widget you are using.
 	LiveSpan WidgetLiveSpan `json:"live_span"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookRelativeTime NotebookRelativeTime
 
 // NewNotebookRelativeTime instantiates a new NotebookRelativeTime object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *NotebookRelativeTime) GetLiveSpan() WidgetLiveSpan {
 		var ret WidgetLiveSpan
 		return ret
 	}
-
 	return o.LiveSpan
 }
 
@@ -67,8 +70,10 @@ func (o NotebookRelativeTime) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["live_span"] = o.LiveSpan
+	toSerialize["live_span"] = o.LiveSpan
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -142,5 +147,11 @@ func (v NullableNotebookRelativeTime) MarshalJSON() ([]byte, error) {
 
 func (v *NullableNotebookRelativeTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

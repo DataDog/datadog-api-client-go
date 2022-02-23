@@ -15,15 +15,20 @@ import (
 
 // SyntheticsAssertionTarget An assertion which uses a simple target.
 type SyntheticsAssertionTarget struct {
+	// Assertion operator to apply.
 	Operator SyntheticsAssertionOperator `json:"operator"`
 	// The associated assertion property.
 	Property *string `json:"property,omitempty"`
 	// Value used by the operator.
-	Target interface{}             `json:"target"`
-	Type   SyntheticsAssertionType `json:"type"`
+	Target interface{} `json:"target"`
+	// Type of the assertion.
+	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAssertionTarget SyntheticsAssertionTarget
 
 // NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
 		var ret SyntheticsAssertionOperator
 		return ret
 	}
-
 	return o.Operator
 }
 
@@ -102,21 +106,18 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 }
 
 // GetTarget returns the Target field value
-// If the value is explicit nil, the zero value for interface{} will be returned
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
 	if o == nil {
 		var ret interface{}
 		return ret
 	}
-
 	return o.Target
 }
 
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
-	if o == nil || o.Target == nil {
+	if o == nil {
 		return nil, false
 	}
 	return &o.Target, true
@@ -133,7 +134,6 @@ func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
 		var ret SyntheticsAssertionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -156,17 +156,15 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["operator"] = o.Operator
-	}
+	toSerialize["operator"] = o.Operator
 	if o.Property != nil {
 		toSerialize["property"] = o.Property
 	}
-	if o.Target != nil {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["target"] = o.Target
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

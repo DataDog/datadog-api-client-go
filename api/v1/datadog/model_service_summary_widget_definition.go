@@ -15,6 +15,7 @@ import (
 
 // ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
 type ServiceSummaryWidgetDefinition struct {
+	// Number of columns to display.
 	DisplayFormat *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
 	// APM environment.
 	Env string `json:"env"`
@@ -31,20 +32,27 @@ type ServiceSummaryWidgetDefinition struct {
 	// Whether to show the latency metrics or not.
 	ShowLatency *bool `json:"show_latency,omitempty"`
 	// Whether to show the resource list or not.
-	ShowResourceList *bool             `json:"show_resource_list,omitempty"`
-	SizeFormat       *WidgetSizeFormat `json:"size_format,omitempty"`
+	ShowResourceList *bool `json:"show_resource_list,omitempty"`
+	// Size of the widget.
+	SizeFormat *WidgetSizeFormat `json:"size_format,omitempty"`
 	// APM span name.
-	SpanName string      `json:"span_name"`
-	Time     *WidgetTime `json:"time,omitempty"`
+	SpanName string `json:"span_name"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                            `json:"title_size,omitempty"`
-	Type      ServiceSummaryWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the service summary widget.
+	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceSummaryWidgetDefinition ServiceSummaryWidgetDefinition
 
 // NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +72,7 @@ func NewServiceSummaryWidgetDefinition(env string, service string, spanName stri
 // but it doesn't guarantee that properties required by API are set
 func NewServiceSummaryWidgetDefinitionWithDefaults() *ServiceSummaryWidgetDefinition {
 	this := ServiceSummaryWidgetDefinition{}
-	var type_ ServiceSummaryWidgetDefinitionType = SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE
+	var type_ ServiceSummaryWidgetDefinitionType = "trace_service"
 	this.Type = type_
 	return &this
 }
@@ -107,7 +115,6 @@ func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 		var ret string
 		return ret
 	}
-
 	return o.Env
 }
 
@@ -131,7 +138,6 @@ func (o *ServiceSummaryWidgetDefinition) GetService() string {
 		var ret string
 		return ret
 	}
-
 	return o.Service
 }
 
@@ -379,7 +385,6 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 		var ret string
 		return ret
 	}
-
 	return o.SpanName
 }
 
@@ -531,7 +536,6 @@ func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitio
 		var ret ServiceSummaryWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -557,12 +561,8 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.DisplayFormat != nil {
 		toSerialize["display_format"] = o.DisplayFormat
 	}
-	if true {
-		toSerialize["env"] = o.Env
-	}
-	if true {
-		toSerialize["service"] = o.Service
-	}
+	toSerialize["env"] = o.Env
+	toSerialize["service"] = o.Service
 	if o.ShowBreakdown != nil {
 		toSerialize["show_breakdown"] = o.ShowBreakdown
 	}
@@ -584,9 +584,7 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.SizeFormat != nil {
 		toSerialize["size_format"] = o.SizeFormat
 	}
-	if true {
-		toSerialize["span_name"] = o.SpanName
-	}
+	toSerialize["span_name"] = o.SpanName
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -599,8 +597,10 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

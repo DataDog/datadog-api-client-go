@@ -16,20 +16,27 @@ import (
 // TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
 type TableWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks  *[]WidgetCustomLink      `json:"custom_links,omitempty"`
+	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	// Controls the display of the search bar.
 	HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
 	// Widget definition.
 	Requests []TableWidgetRequest `json:"requests"`
-	Time     *WidgetTime          `json:"time,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                   `json:"title_size,omitempty"`
-	Type      TableWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the table widget.
+	Type TableWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TableWidgetDefinition TableWidgetDefinition
 
 // NewTableWidgetDefinition instantiates a new TableWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,7 @@ func NewTableWidgetDefinition(requests []TableWidgetRequest, type_ TableWidgetDe
 // but it doesn't guarantee that properties required by API are set
 func NewTableWidgetDefinitionWithDefaults() *TableWidgetDefinition {
 	this := TableWidgetDefinition{}
-	var type_ TableWidgetDefinitionType = TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE
+	var type_ TableWidgetDefinitionType = "query_table"
 	this.Type = type_
 	return &this
 }
@@ -122,7 +129,6 @@ func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 		var ret []TableWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -274,7 +280,6 @@ func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType {
 		var ret TableWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -303,9 +308,7 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.HasSearchBar != nil {
 		toSerialize["has_search_bar"] = o.HasSearchBar
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -318,8 +321,10 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

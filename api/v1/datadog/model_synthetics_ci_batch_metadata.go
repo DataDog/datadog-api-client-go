@@ -14,11 +14,16 @@ import (
 
 // SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
 type SyntheticsCIBatchMetadata struct {
-	Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+	// Description of the CI provider.
+	Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`
+	// Git information.
 	Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsCIBatchMetadata SyntheticsCIBatchMetadata
 
 // NewSyntheticsCIBatchMetadata instantiates a new SyntheticsCIBatchMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Git != nil {
 		toSerialize["git"] = o.Git
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

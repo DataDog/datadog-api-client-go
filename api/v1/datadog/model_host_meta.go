@@ -23,7 +23,8 @@ type HostMeta struct {
 	// An array of Mac versions.
 	FbsdV *[]string `json:"fbsdV,omitempty"`
 	// JSON string containing system information.
-	Gohai         *string                `json:"gohai,omitempty"`
+	Gohai *string `json:"gohai,omitempty"`
+	// Agent install method.
 	InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
 	// An array of Mac versions.
 	MacV *[]string `json:"macV,omitempty"`
@@ -44,8 +45,11 @@ type HostMeta struct {
 	// An array of Windows versions.
 	WinV *[]string `json:"winV,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostMeta HostMeta
 
 // NewHostMeta instantiates a new HostMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -593,6 +597,10 @@ func (o HostMeta) MarshalJSON() ([]byte, error) {
 	}
 	if o.WinV != nil {
 		toSerialize["winV"] = o.WinV
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

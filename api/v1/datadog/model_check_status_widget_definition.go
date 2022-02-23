@@ -20,20 +20,27 @@ type CheckStatusWidgetDefinition struct {
 	// Group reporting a single check.
 	Group *string `json:"group,omitempty"`
 	// List of tag prefixes to group by in the case of a cluster check.
-	GroupBy  *[]string      `json:"group_by,omitempty"`
+	GroupBy *[]string `json:"group_by,omitempty"`
+	// The kind of grouping to use.
 	Grouping WidgetGrouping `json:"grouping"`
 	// List of tags used to filter the groups reporting a cluster check.
-	Tags *[]string   `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	// Time setting for the widget.
 	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      CheckStatusWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the check status widget.
+	Type CheckStatusWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CheckStatusWidgetDefinition CheckStatusWidgetDefinition
 
 // NewCheckStatusWidgetDefinition instantiates a new CheckStatusWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +59,7 @@ func NewCheckStatusWidgetDefinition(check string, grouping WidgetGrouping, type_
 // but it doesn't guarantee that properties required by API are set
 func NewCheckStatusWidgetDefinitionWithDefaults() *CheckStatusWidgetDefinition {
 	this := CheckStatusWidgetDefinition{}
-	var type_ CheckStatusWidgetDefinitionType = CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS
+	var type_ CheckStatusWidgetDefinitionType = "check_status"
 	this.Type = type_
 	return &this
 }
@@ -63,7 +70,6 @@ func (o *CheckStatusWidgetDefinition) GetCheck() string {
 		var ret string
 		return ret
 	}
-
 	return o.Check
 }
 
@@ -151,7 +157,6 @@ func (o *CheckStatusWidgetDefinition) GetGrouping() WidgetGrouping {
 		var ret WidgetGrouping
 		return ret
 	}
-
 	return o.Grouping
 }
 
@@ -335,7 +340,6 @@ func (o *CheckStatusWidgetDefinition) GetType() CheckStatusWidgetDefinitionType 
 		var ret CheckStatusWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -358,18 +362,14 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["check"] = o.Check
-	}
+	toSerialize["check"] = o.Check
 	if o.Group != nil {
 		toSerialize["group"] = o.Group
 	}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
-	if true {
-		toSerialize["grouping"] = o.Grouping
-	}
+	toSerialize["grouping"] = o.Grouping
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
 	}
@@ -385,8 +385,10 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

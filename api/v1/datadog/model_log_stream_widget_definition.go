@@ -21,25 +21,33 @@ type LogStreamWidgetDefinition struct {
 	Indexes *[]string `json:"indexes,omitempty"`
 	// ID of the log set to use.
 	// Deprecated
-	Logset         *string               `json:"logset,omitempty"`
+	Logset *string `json:"logset,omitempty"`
+	// Amount of log lines to display
 	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
 	// Query to filter the log stream with.
 	Query *string `json:"query,omitempty"`
 	// Whether to show the date column or not
 	ShowDateColumn *bool `json:"show_date_column,omitempty"`
 	// Whether to show the message column or not
-	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
-	Sort              *WidgetFieldSort `json:"sort,omitempty"`
-	Time              *WidgetTime      `json:"time,omitempty"`
+	ShowMessageColumn *bool `json:"show_message_column,omitempty"`
+	// Which column and order to sort by
+	Sort *WidgetFieldSort `json:"sort,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                       `json:"title_size,omitempty"`
-	Type      LogStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the log stream widget.
+	Type LogStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogStreamWidgetDefinition LogStreamWidgetDefinition
 
 // NewLogStreamWidgetDefinition instantiates a new LogStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +64,7 @@ func NewLogStreamWidgetDefinition(type_ LogStreamWidgetDefinitionType) *LogStrea
 // but it doesn't guarantee that properties required by API are set
 func NewLogStreamWidgetDefinitionWithDefaults() *LogStreamWidgetDefinition {
 	this := LogStreamWidgetDefinition{}
-	var type_ LogStreamWidgetDefinitionType = LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM
+	var type_ LogStreamWidgetDefinitionType = "log_stream"
 	this.Type = type_
 	return &this
 }
@@ -454,7 +462,6 @@ func (o *LogStreamWidgetDefinition) GetType() LogStreamWidgetDefinitionType {
 		var ret LogStreamWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -513,8 +520,10 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

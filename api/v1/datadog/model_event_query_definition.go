@@ -20,8 +20,11 @@ type EventQueryDefinition struct {
 	// The execution method for multi-value filters. Can be either and or or.
 	TagsExecution string `json:"tags_execution"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventQueryDefinition EventQueryDefinition
 
 // NewEventQueryDefinition instantiates a new EventQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *EventQueryDefinition) GetSearch() string {
 		var ret string
 		return ret
 	}
-
 	return o.Search
 }
 
@@ -72,7 +74,6 @@ func (o *EventQueryDefinition) GetTagsExecution() string {
 		var ret string
 		return ret
 	}
-
 	return o.TagsExecution
 }
 
@@ -95,11 +96,11 @@ func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["search"] = o.Search
-	}
-	if true {
-		toSerialize["tags_execution"] = o.TagsExecution
+	toSerialize["search"] = o.Search
+	toSerialize["tags_execution"] = o.TagsExecution
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

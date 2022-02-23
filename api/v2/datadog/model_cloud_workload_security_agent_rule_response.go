@@ -14,10 +14,14 @@ import (
 
 // CloudWorkloadSecurityAgentRuleResponse Response object that includes an Agent rule.
 type CloudWorkloadSecurityAgentRuleResponse struct {
+	// Object for a single Agent rule.
 	Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloudWorkloadSecurityAgentRuleResponse CloudWorkloadSecurityAgentRuleResponse
 
 // NewCloudWorkloadSecurityAgentRuleResponse instantiates a new CloudWorkloadSecurityAgentRuleResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

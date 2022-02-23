@@ -33,13 +33,13 @@ type apiCreateAzureIntegrationRequest struct {
 /*
  * CreateAzureIntegration Create an Azure integration
  * Create a Datadog-Azure integration.
-
-Using the `POST` method updates your integration configuration by adding your new
-configuration to the existing one in your Datadog organization.
-
-Using the `PUT` method updates your integration configuration by replacing your
-current configuration with the new one sent to your Datadog organization.
-*/
+ *
+ * Using the `POST` method updates your integration configuration by adding your new
+ * configuration to the existing one in your Datadog organization.
+ *
+ * Using the `PUT` method updates your integration configuration by replacing your
+ * current configuration with the new one sent to your Datadog organization.
+ */
 func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiCreateAzureIntegrationRequest{
 		ApiService: a,
@@ -397,15 +397,6 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -414,7 +405,6 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -680,9 +670,9 @@ type apiUpdateAzureIntegrationRequest struct {
 /*
  * UpdateAzureIntegration Update an Azure integration
  * Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
-Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
-use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
-*/
+ * Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
+ * use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
+ */
 func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateAzureIntegrationRequest{
 		ApiService: a,

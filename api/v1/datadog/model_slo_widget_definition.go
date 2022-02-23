@@ -24,17 +24,23 @@ type SLOWidgetDefinition struct {
 	// Times being monitored.
 	TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                 `json:"title_size,omitempty"`
-	Type      SLOWidgetDefinitionType `json:"type"`
-	ViewMode  *WidgetViewMode         `json:"view_mode,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the SLO widget.
+	Type SLOWidgetDefinitionType `json:"type"`
+	// Define how you want the SLO to be displayed.
+	ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOWidgetDefinition SLOWidgetDefinition
 
 // NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +58,7 @@ func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string) *SLO
 // but it doesn't guarantee that properties required by API are set
 func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	this := SLOWidgetDefinition{}
-	var type_ SLOWidgetDefinitionType = SLOWIDGETDEFINITIONTYPE_SLO
+	var type_ SLOWidgetDefinitionType = "slo"
 	this.Type = type_
 	var viewType string = "detail"
 	this.ViewType = viewType
@@ -289,7 +295,6 @@ func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 		var ret SLOWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -345,7 +350,6 @@ func (o *SLOWidgetDefinition) GetViewType() string {
 		var ret string
 		return ret
 	}
-
 	return o.ViewType
 }
 
@@ -389,14 +393,14 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.ViewMode != nil {
 		toSerialize["view_mode"] = o.ViewMode
 	}
-	if true {
-		toSerialize["view_type"] = o.ViewType
+	toSerialize["view_type"] = o.ViewType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

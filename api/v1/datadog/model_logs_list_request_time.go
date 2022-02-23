@@ -18,13 +18,16 @@ import (
 type LogsListRequestTime struct {
 	// Minimum timestamp for requested logs.
 	From time.Time `json:"from"`
-	// Timezone can be specified both as an offset (for example \"UTC+03:00\") or a regional zone (for example \"Europe/Paris\").
+	// Timezone can be specified both as an offset (for example "UTC+03:00")// or a regional zone (for example "Europe/Paris").
 	Timezone *string `json:"timezone,omitempty"`
 	// Maximum timestamp for requested logs.
 	To time.Time `json:"to"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsListRequestTime LogsListRequestTime
 
 // NewLogsListRequestTime instantiates a new LogsListRequestTime object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +54,6 @@ func (o *LogsListRequestTime) GetFrom() time.Time {
 		var ret time.Time
 		return ret
 	}
-
 	return o.From
 }
 
@@ -107,7 +109,6 @@ func (o *LogsListRequestTime) GetTo() time.Time {
 		var ret time.Time
 		return ret
 	}
-
 	return o.To
 }
 
@@ -130,14 +131,14 @@ func (o LogsListRequestTime) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["from"] = o.From
-	}
+	toSerialize["from"] = o.From
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
 	}
-	if true {
-		toSerialize["to"] = o.To
+	toSerialize["to"] = o.To
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

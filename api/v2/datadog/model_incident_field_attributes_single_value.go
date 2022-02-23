@@ -14,12 +14,16 @@ import (
 
 // IncidentFieldAttributesSingleValue A field with a single value selected.
 type IncidentFieldAttributesSingleValue struct {
+	// Type of the single value field definitions.
 	Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
 	// The single value selected for this field.
 	Value NullableString `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentFieldAttributesSingleValue IncidentFieldAttributesSingleValue
 
 // NewIncidentFieldAttributesSingleValue instantiates a new IncidentFieldAttributesSingleValue object
 // This constructor will assign default values to properties that have it defined,
@@ -27,7 +31,7 @@ type IncidentFieldAttributesSingleValue struct {
 // will change when the set of required properties is changed
 func NewIncidentFieldAttributesSingleValue() *IncidentFieldAttributesSingleValue {
 	this := IncidentFieldAttributesSingleValue{}
-	var type_ IncidentFieldAttributesSingleValueType = INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN
+	var type_ IncidentFieldAttributesSingleValueType = "dropdown"
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +41,7 @@ func NewIncidentFieldAttributesSingleValue() *IncidentFieldAttributesSingleValue
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentFieldAttributesSingleValueWithDefaults() *IncidentFieldAttributesSingleValue {
 	this := IncidentFieldAttributesSingleValue{}
-	var type_ IncidentFieldAttributesSingleValueType = INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN
+	var type_ IncidentFieldAttributesSingleValueType = "dropdown"
 	this.Type = &type_
 	return &this
 }
@@ -127,6 +131,10 @@ func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 	}
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

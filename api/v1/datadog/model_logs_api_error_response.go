@@ -14,10 +14,14 @@ import (
 
 // LogsAPIErrorResponse Response returned by the Logs API when errors occur.
 type LogsAPIErrorResponse struct {
+	// Error returned by the Logs API
 	Error *LogsAPIError `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAPIErrorResponse LogsAPIErrorResponse
 
 // NewLogsAPIErrorResponse instantiates a new LogsAPIErrorResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o LogsAPIErrorResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Error != nil {
 		toSerialize["error"] = o.Error
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

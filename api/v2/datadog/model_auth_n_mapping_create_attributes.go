@@ -19,8 +19,11 @@ type AuthNMappingCreateAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingCreateAttributes AuthNMappingCreateAttributes
 
 // NewAuthNMappingCreateAttributes instantiates a new AuthNMappingCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o AuthNMappingCreateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.AttributeValue != nil {
 		toSerialize["attribute_value"] = o.AttributeValue
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

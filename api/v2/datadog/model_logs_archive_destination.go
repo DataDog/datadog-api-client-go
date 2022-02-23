@@ -40,11 +40,6 @@ func LogsArchiveDestinationS3AsLogsArchiveDestination(v *LogsArchiveDestinationS
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
 	var err error
-	// this object is nullable so check if the payload is null or empty string
-	if string(data) == "" || string(data) == "{}" {
-		return nil
-	}
-
 	match := 0
 	// try to unmarshal data into LogsArchiveDestinationAzure
 	err = json.Unmarshal(data, &dst.LogsArchiveDestinationAzure)
@@ -179,5 +174,11 @@ func (v NullableLogsArchiveDestination) MarshalJSON() ([]byte, error) {
 
 func (v *NullableLogsArchiveDestination) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

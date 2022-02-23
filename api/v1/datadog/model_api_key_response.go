@@ -14,10 +14,14 @@ import (
 
 // ApiKeyResponse An API key with its associated metadata.
 type ApiKeyResponse struct {
+	// Datadog API key.
 	ApiKey *ApiKey `json:"api_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiKeyResponse ApiKeyResponse
 
 // NewApiKeyResponse instantiates a new ApiKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o ApiKeyResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ApiKey != nil {
 		toSerialize["api_key"] = o.ApiKey
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

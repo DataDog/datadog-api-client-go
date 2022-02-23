@@ -15,10 +15,14 @@ import (
 
 // MetricTagConfigurationCreateRequest Request object that includes the metric that you would like to configure tags for.
 type MetricTagConfigurationCreateRequest struct {
+	// Object for a single metric to be configure tags on.
 	Data MetricTagConfigurationCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricTagConfigurationCreateRequest MetricTagConfigurationCreateRequest
 
 // NewMetricTagConfigurationCreateRequest instantiates a new MetricTagConfigurationCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *MetricTagConfigurationCreateRequest) GetData() MetricTagConfigurationCr
 		var ret MetricTagConfigurationCreateData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o MetricTagConfigurationCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -18,8 +18,11 @@ type GeomapWidgetDefinitionView struct {
 	// The 2-letter ISO code of a country to focus the map on. Or `WORLD`.
 	Focus string `json:"focus"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GeomapWidgetDefinitionView GeomapWidgetDefinitionView
 
 // NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func (o *GeomapWidgetDefinitionView) GetFocus() string {
 		var ret string
 		return ret
 	}
-
 	return o.Focus
 }
 
@@ -68,8 +70,10 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["focus"] = o.Focus
+	toSerialize["focus"] = o.Focus
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

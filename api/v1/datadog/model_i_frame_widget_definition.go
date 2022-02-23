@@ -15,12 +15,16 @@ import (
 
 // IFrameWidgetDefinition The iframe widget allows you to embed a portion of any other web page on your dashboard. Only available on FREE layout dashboards.
 type IFrameWidgetDefinition struct {
+	// Type of the iframe widget.
 	Type IFrameWidgetDefinitionType `json:"type"`
 	// URL of the iframe.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IFrameWidgetDefinition IFrameWidgetDefinition
 
 // NewIFrameWidgetDefinition instantiates a new IFrameWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewIFrameWidgetDefinition(type_ IFrameWidgetDefinitionType, url string) *IF
 // but it doesn't guarantee that properties required by API are set
 func NewIFrameWidgetDefinitionWithDefaults() *IFrameWidgetDefinition {
 	this := IFrameWidgetDefinition{}
-	var type_ IFrameWidgetDefinitionType = IFRAMEWIDGETDEFINITIONTYPE_IFRAME
+	var type_ IFrameWidgetDefinitionType = "iframe"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *IFrameWidgetDefinition) GetType() IFrameWidgetDefinitionType {
 		var ret IFrameWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -73,7 +76,6 @@ func (o *IFrameWidgetDefinition) GetUrl() string {
 		var ret string
 		return ret
 	}
-
 	return o.Url
 }
 
@@ -96,11 +98,11 @@ func (o IFrameWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["url"] = o.Url
+	toSerialize["type"] = o.Type
+	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

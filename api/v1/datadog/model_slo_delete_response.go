@@ -17,10 +17,13 @@ type SLODeleteResponse struct {
 	// An array containing the ID of the deleted service level objective object.
 	Data *[]string `json:"data,omitempty"`
 	// An dictionary containing the ID of the SLO as key and a deletion error as value.
-	Errors *map[string]string `json:"errors,omitempty"`
+	Errors map[string]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLODeleteResponse SLODeleteResponse
 
 // NewSLODeleteResponse instantiates a new SLODeleteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -77,7 +80,7 @@ func (o *SLODeleteResponse) GetErrors() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -86,7 +89,7 @@ func (o *SLODeleteResponse) GetErrorsOk() (*map[string]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -100,7 +103,7 @@ func (o *SLODeleteResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given map[string]string and assigns it to the Errors field.
 func (o *SLODeleteResponse) SetErrors(v map[string]string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
@@ -114,14 +117,18 @@ func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *[]string          `json:"data,omitempty"`
-		Errors *map[string]string `json:"errors,omitempty"`
+		Data   *[]string         `json:"data,omitempty"`
+		Errors map[string]string `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

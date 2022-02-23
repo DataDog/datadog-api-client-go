@@ -42,12 +42,6 @@ func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	for i, item := range o.Items {
-		toSerialize[i] = item
-	}
-	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
-	}
 	return json.Marshal(toSerialize)
 }
 

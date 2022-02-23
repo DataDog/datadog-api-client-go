@@ -21,8 +21,11 @@ type SLOCorrectionResponseAttributesModifier struct {
 	// Name of the Modifier.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionResponseAttributesModifier SLOCorrectionResponseAttributesModifier
 
 // NewSLOCorrectionResponseAttributesModifier instantiates a new SLOCorrectionResponseAttributesModifier object
 // This constructor will assign default values to properties that have it defined,
@@ -151,6 +154,10 @@ func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -209,5 +216,11 @@ func (v NullableSLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, 
 
 func (v *NullableSLOCorrectionResponseAttributesModifier) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

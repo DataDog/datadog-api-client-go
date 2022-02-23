@@ -15,14 +15,20 @@ import (
 
 // IncidentTeamUpdateData Incident Team data for an update request.
 type IncidentTeamUpdateData struct {
+	// The incident team's attributes for an update request.
 	Attributes *IncidentTeamUpdateAttributes `json:"attributes,omitempty"`
 	// The incident team's ID.
-	Id            *string                    `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The incident team's relationships.
 	Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
-	Type          IncidentTeamType           `json:"type"`
+	// Incident Team resource type.
+	Type IncidentTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamUpdateData IncidentTeamUpdateData
 
 // NewIncidentTeamUpdateData instantiates a new IncidentTeamUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewIncidentTeamUpdateData(type_ IncidentTeamType) *IncidentTeamUpdateData {
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTeamUpdateDataWithDefaults() *IncidentTeamUpdateData {
 	this := IncidentTeamUpdateData{}
-	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
+	var type_ IncidentTeamType = "teams"
 	this.Type = type_
 	return &this
 }
@@ -146,7 +152,6 @@ func (o *IncidentTeamUpdateData) GetType() IncidentTeamType {
 		var ret IncidentTeamType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -178,8 +183,10 @@ func (o IncidentTeamUpdateData) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type SyntheticsGlobalVariableAttributes struct {
 	// List of role identifiers that can be pulled from the Roles API.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsGlobalVariableAttributes SyntheticsGlobalVariableAttributes
 
 // NewSyntheticsGlobalVariableAttributes instantiates a new SyntheticsGlobalVariableAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.RestrictedRoles != nil {
 		toSerialize["restricted_roles"] = o.RestrictedRoles
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

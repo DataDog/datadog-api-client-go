@@ -14,13 +14,18 @@ import (
 
 // UserInvitationResponseData Object of a user invitation returned by the API.
 type UserInvitationResponseData struct {
+	// Attributes of a user invitation.
 	Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
 	// ID of the user invitation.
-	Id   *string              `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// User invitations type.
 	Type *UserInvitationsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserInvitationResponseData UserInvitationResponseData
 
 // NewUserInvitationResponseData instantiates a new UserInvitationResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type UserInvitationResponseData struct {
 // will change when the set of required properties is changed
 func NewUserInvitationResponseData() *UserInvitationResponseData {
 	this := UserInvitationResponseData{}
-	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
+	var type_ UserInvitationsType = "user_invitations"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewUserInvitationResponseData() *UserInvitationResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewUserInvitationResponseDataWithDefaults() *UserInvitationResponseData {
 	this := UserInvitationResponseData{}
-	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
+	var type_ UserInvitationsType = "user_invitations"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

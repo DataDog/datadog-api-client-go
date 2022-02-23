@@ -14,17 +14,17 @@ import (
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
-	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
-	Float64                            *float64
 	String                             *string
+	Float64                            *float64
+	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue is a convenience function that returns LogsAggregateBucketValueTimeseries wrapped in LogsAggregateBucketValue
-func LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue(v *LogsAggregateBucketValueTimeseries) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{LogsAggregateBucketValueTimeseries: v}
+// StringAsLogsAggregateBucketValue is a convenience function that returns string wrapped in LogsAggregateBucketValue
+func StringAsLogsAggregateBucketValue(v *string) LogsAggregateBucketValue {
+	return LogsAggregateBucketValue{String: v}
 }
 
 // Float64AsLogsAggregateBucketValue is a convenience function that returns float64 wrapped in LogsAggregateBucketValue
@@ -32,9 +32,9 @@ func Float64AsLogsAggregateBucketValue(v *float64) LogsAggregateBucketValue {
 	return LogsAggregateBucketValue{Float64: v}
 }
 
-// StringAsLogsAggregateBucketValue is a convenience function that returns string wrapped in LogsAggregateBucketValue
-func StringAsLogsAggregateBucketValue(v *string) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{String: v}
+// LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue is a convenience function that returns LogsAggregateBucketValueTimeseries wrapped in LogsAggregateBucketValue
+func LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue(v *LogsAggregateBucketValueTimeseries) LogsAggregateBucketValue {
+	return LogsAggregateBucketValue{LogsAggregateBucketValueTimeseries: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -94,9 +94,9 @@ func (dst *LogsAggregateBucketValue) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.LogsAggregateBucketValueTimeseries = nil
-		dst.Float64 = nil
 		dst.String = nil
+		dst.Float64 = nil
+		dst.LogsAggregateBucketValueTimeseries = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -105,16 +105,16 @@ func (dst *LogsAggregateBucketValue) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
-	if src.LogsAggregateBucketValueTimeseries != nil {
-		return json.Marshal(&src.LogsAggregateBucketValueTimeseries)
+	if src.String != nil {
+		return json.Marshal(&src.String)
 	}
 
 	if src.Float64 != nil {
 		return json.Marshal(&src.Float64)
 	}
 
-	if src.String != nil {
-		return json.Marshal(&src.String)
+	if src.LogsAggregateBucketValueTimeseries != nil {
+		return json.Marshal(&src.LogsAggregateBucketValueTimeseries)
 	}
 
 	if src.UnparsedObject != nil {
@@ -125,16 +125,16 @@ func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *LogsAggregateBucketValue) GetActualInstance() interface{} {
-	if obj.LogsAggregateBucketValueTimeseries != nil {
-		return obj.LogsAggregateBucketValueTimeseries
+	if obj.String != nil {
+		return obj.String
 	}
 
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
 
-	if obj.String != nil {
-		return obj.String
+	if obj.LogsAggregateBucketValueTimeseries != nil {
+		return obj.LogsAggregateBucketValueTimeseries
 	}
 
 	// all schemas are nil
@@ -174,5 +174,11 @@ func (v NullableLogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 
 func (v *NullableLogsAggregateBucketValue) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

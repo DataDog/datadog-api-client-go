@@ -16,12 +16,16 @@ import (
 type SLOListResponse struct {
 	// An array of service level objective objects.
 	Data *[]ServiceLevelObjective `json:"data,omitempty"`
-	// An array of error messages. Each endpoint documents how/whether this field is used.
-	Errors   *[]string                `json:"errors,omitempty"`
+	// An array of error messages. Each endpoint documents how/whether this field is// used.
+	Errors *[]string `json:"errors,omitempty"`
+	// The metadata object containing additional information about the list of SLOs.
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOListResponse SLOListResponse
 
 // NewSLOListResponse instantiates a new SLOListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -149,6 +153,10 @@ func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

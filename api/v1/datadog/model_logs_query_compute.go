@@ -22,8 +22,11 @@ type LogsQueryCompute struct {
 	// Define a time interval in seconds.
 	Interval *int64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsQueryCompute LogsQueryCompute
 
 // NewLogsQueryCompute instantiates a new LogsQueryCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +52,6 @@ func (o *LogsQueryCompute) GetAggregation() string {
 		var ret string
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -136,14 +138,16 @@ func (o LogsQueryCompute) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Facet != nil {
 		toSerialize["facet"] = o.Facet
 	}
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

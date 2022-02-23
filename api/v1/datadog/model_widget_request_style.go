@@ -14,13 +14,18 @@ import (
 
 // WidgetRequestStyle Define request widget style.
 type WidgetRequestStyle struct {
-	LineType  *WidgetLineType  `json:"line_type,omitempty"`
+	// Type of lines displayed.
+	LineType *WidgetLineType `json:"line_type,omitempty"`
+	// Width of line displayed.
 	LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetRequestStyle WidgetRequestStyle
 
 // NewWidgetRequestStyle instantiates a new WidgetRequestStyle object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	}
 	if o.Palette != nil {
 		toSerialize["palette"] = o.Palette
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

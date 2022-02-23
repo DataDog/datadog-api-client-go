@@ -17,8 +17,11 @@ type MetricDistinctVolumeAttributes struct {
 	// Distinct volume for the given metric.
 	DistinctVolume *int64 `json:"distinct_volume,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricDistinctVolumeAttributes MetricDistinctVolumeAttributes
 
 // NewMetricDistinctVolumeAttributes instantiates a new MetricDistinctVolumeAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o MetricDistinctVolumeAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.DistinctVolume != nil {
 		toSerialize["distinct_volume"] = o.DistinctVolume
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

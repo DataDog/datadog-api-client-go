@@ -14,15 +14,24 @@ import (
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
-	DetectionMethod         *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
-	EvaluationWindow        *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+	// The detection method.
+	DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
+	// A time window is specified to match when at least one of the cases matches true. This is a sliding window// and evaluates in real time.
+	EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
+	// Options on impossible travel rules.
 	ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
-	KeepAlive               *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
-	MaxSignalDuration       *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
-	NewValueOptions         *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
+	// Once a signal is generated, the signal will remain “open” if a case is matched at least once within// this keep alive window.
+	KeepAlive *SecurityMonitoringRuleKeepAlive `json:"keepAlive,omitempty"`
+	// A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.// This time is calculated from the first seen timestamp.
+	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
+	// Options on new value rules.
+	NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringRuleOptions SecurityMonitoringRuleOptions
 
 // NewSecurityMonitoringRuleOptions instantiates a new SecurityMonitoringRuleOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -255,6 +264,10 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.NewValueOptions != nil {
 		toSerialize["newValueOptions"] = o.NewValueOptions
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

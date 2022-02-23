@@ -15,10 +15,14 @@ import (
 
 // UserInvitationRelationships Relationships data for user invitation.
 type UserInvitationRelationships struct {
+	// Relationship to user.
 	User RelationshipToUser `json:"user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserInvitationRelationships UserInvitationRelationships
 
 // NewUserInvitationRelationships instantiates a new UserInvitationRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *UserInvitationRelationships) GetUser() RelationshipToUser {
 		var ret RelationshipToUser
 		return ret
 	}
-
 	return o.User
 }
 
@@ -67,8 +70,10 @@ func (o UserInvitationRelationships) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["user"] = o.User
+	toSerialize["user"] = o.User
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

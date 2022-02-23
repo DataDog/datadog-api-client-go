@@ -17,7 +17,7 @@ import (
 type WidgetLayout struct {
 	// The height of the widget. Should be a non-negative integer.
 	Height int64 `json:"height"`
-	// Whether the widget should be the first one on the second column in high density or not. **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to `true`.
+	// Whether the widget should be the first one on the second column in high density or not.// **Note**: Only for the **new dashboard layout** and only one widget in the dashboard should have this property set to `true`.
 	IsColumnBreak *bool `json:"is_column_break,omitempty"`
 	// The width of the widget. Should be a non-negative integer.
 	Width int64 `json:"width"`
@@ -26,8 +26,11 @@ type WidgetLayout struct {
 	// The position of the widget on the y (vertical) axis. Should be a non-negative integer.
 	Y int64 `json:"y"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetLayout WidgetLayout
 
 // NewWidgetLayout instantiates a new WidgetLayout object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +59,6 @@ func (o *WidgetLayout) GetHeight() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Height
 }
 
@@ -112,7 +114,6 @@ func (o *WidgetLayout) GetWidth() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Width
 }
 
@@ -136,7 +137,6 @@ func (o *WidgetLayout) GetX() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.X
 }
 
@@ -160,7 +160,6 @@ func (o *WidgetLayout) GetY() int64 {
 		var ret int64
 		return ret
 	}
-
 	return o.Y
 }
 
@@ -183,20 +182,16 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["height"] = o.Height
-	}
+	toSerialize["height"] = o.Height
 	if o.IsColumnBreak != nil {
 		toSerialize["is_column_break"] = o.IsColumnBreak
 	}
-	if true {
-		toSerialize["width"] = o.Width
-	}
-	if true {
-		toSerialize["x"] = o.X
-	}
-	if true {
-		toSerialize["y"] = o.Y
+	toSerialize["width"] = o.Width
+	toSerialize["x"] = o.X
+	toSerialize["y"] = o.Y
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,12 +16,17 @@ import (
 // SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
 type SyntheticsGlobalVariableParseTestOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
-	Field  *string                                      `json:"field,omitempty"`
-	Parser SyntheticsVariableParser                     `json:"parser"`
-	Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+	Field *string `json:"field,omitempty"`
+	// Details of the parser to use for the global variable.
+	Parser SyntheticsVariableParser `json:"parser"`
+	// Property of the Synthetics Test Response to use for a Synthetics global variable.
+	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsGlobalVariableParseTestOptions SyntheticsGlobalVariableParseTestOptions
 
 // NewSyntheticsGlobalVariableParseTestOptions instantiates a new SyntheticsGlobalVariableParseTestOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -80,7 +85,6 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariabl
 		var ret SyntheticsVariableParser
 		return ret
 	}
-
 	return o.Parser
 }
 
@@ -104,7 +108,6 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetType() SyntheticsGlobalVar
 		var ret SyntheticsGlobalVariableParseTestOptionsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -130,11 +133,11 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 	if o.Field != nil {
 		toSerialize["field"] = o.Field
 	}
-	if true {
-		toSerialize["parser"] = o.Parser
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["parser"] = o.Parser
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

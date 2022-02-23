@@ -15,12 +15,16 @@ import (
 
 // LogsMetricCompute The compute rule to compute the log-based metric.
 type LogsMetricCompute struct {
+	// The type of aggregation to use.
 	AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"`
-	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a \"distribution\").
+	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricCompute LogsMetricCompute
 
 // NewLogsMetricCompute instantiates a new LogsMetricCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func (o *LogsMetricCompute) GetAggregationType() LogsMetricComputeAggregationTyp
 		var ret LogsMetricComputeAggregationType
 		return ret
 	}
-
 	return o.AggregationType
 }
 
@@ -101,11 +104,13 @@ func (o LogsMetricCompute) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation_type"] = o.AggregationType
-	}
+	toSerialize["aggregation_type"] = o.AggregationType
 	if o.Path != nil {
 		toSerialize["path"] = o.Path
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

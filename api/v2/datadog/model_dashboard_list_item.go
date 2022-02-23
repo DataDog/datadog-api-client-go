@@ -16,6 +16,7 @@ import (
 
 // DashboardListItem A dashboard within a list.
 type DashboardListItem struct {
+	// Creator of the object.
 	Author *Creator `json:"author,omitempty"`
 	// Date of creation of the dashboard.
 	Created *time.Time `json:"created,omitempty"`
@@ -34,13 +35,17 @@ type DashboardListItem struct {
 	// Popularity of the dashboard.
 	Popularity *int32 `json:"popularity,omitempty"`
 	// Title of the dashboard.
-	Title *string       `json:"title,omitempty"`
-	Type  DashboardType `json:"type"`
+	Title *string `json:"title,omitempty"`
+	// The type of the dashboard.
+	Type DashboardType `json:"type"`
 	// URL path to the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardListItem DashboardListItem
 
 // NewDashboardListItem instantiates a new DashboardListItem object
 // This constructor will assign default values to properties that have it defined,
@@ -163,7 +168,6 @@ func (o *DashboardListItem) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -379,7 +383,6 @@ func (o *DashboardListItem) GetType() DashboardType {
 		var ret DashboardType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -443,9 +446,7 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 	if o.Icon != nil {
 		toSerialize["icon"] = o.Icon
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.IsFavorite != nil {
 		toSerialize["is_favorite"] = o.IsFavorite
 	}
@@ -464,11 +465,13 @@ func (o DashboardListItem) MarshalJSON() ([]byte, error) {
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

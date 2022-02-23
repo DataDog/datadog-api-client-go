@@ -14,10 +14,14 @@ import (
 
 // ApplicationKeyResponse An application key response.
 type ApplicationKeyResponse struct {
+	// An application key with its associated metadata.
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyResponse ApplicationKeyResponse
 
 // NewApplicationKeyResponse instantiates a new ApplicationKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ApplicationKey != nil {
 		toSerialize["application_key"] = o.ApplicationKey
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,12 +14,16 @@ import (
 
 // SyntheticsApiTestResultFailure The API test failure details.
 type SyntheticsApiTestResultFailure struct {
+	// Error code that can be returned by a Synthetic test.
 	Code *SyntheticsApiTestFailureCode `json:"code,omitempty"`
 	// The API test error message.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsApiTestResultFailure SyntheticsApiTestResultFailure
 
 // NewSyntheticsApiTestResultFailure instantiates a new SyntheticsApiTestResultFailure object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o SyntheticsApiTestResultFailure) MarshalJSON() ([]byte, error) {
 	}
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

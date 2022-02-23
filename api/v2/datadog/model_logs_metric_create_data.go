@@ -15,13 +15,18 @@ import (
 
 // LogsMetricCreateData The new log-based metric properties.
 type LogsMetricCreateData struct {
+	// The object describing the Datadog log-based metric to create.
 	Attributes LogsMetricCreateAttributes `json:"attributes"`
 	// The name of the log-based metric.
-	Id   string         `json:"id"`
+	Id string `json:"id"`
+	// The type of the resource. The value should always be logs_metrics.
 	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricCreateData LogsMetricCreateData
 
 // NewLogsMetricCreateData instantiates a new LogsMetricCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewLogsMetricCreateData(attributes LogsMetricCreateAttributes, id string, t
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricCreateDataWithDefaults() *LogsMetricCreateData {
 	this := LogsMetricCreateData{}
-	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
+	var type_ LogsMetricType = "logs_metrics"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *LogsMetricCreateData) GetAttributes() LogsMetricCreateAttributes {
 		var ret LogsMetricCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *LogsMetricCreateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *LogsMetricCreateData) GetType() LogsMetricType {
 		var ret LogsMetricType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o LogsMetricCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

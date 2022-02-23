@@ -19,8 +19,11 @@ type MetricIngestedIndexedVolumeAttributes struct {
 	// Ingested volume for the given metric.
 	IngestedVolume *int64 `json:"ingested_volume,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricIngestedIndexedVolumeAttributes MetricIngestedIndexedVolumeAttributes
 
 // NewMetricIngestedIndexedVolumeAttributes instantiates a new MetricIngestedIndexedVolumeAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.IngestedVolume != nil {
 		toSerialize["ingested_volume"] = o.IngestedVolume
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

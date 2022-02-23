@@ -15,12 +15,17 @@ import (
 // SyntheticsPrivateLocationCreationResponse Object that contains the new private location, the public key for result encryption, and the configuration skeleton.
 type SyntheticsPrivateLocationCreationResponse struct {
 	// Configuration skeleton for the private location. See installation instructions of the private location on how to use this configuration.
-	Config           *interface{}                                               `json:"config,omitempty"`
-	PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
+	Config interface{} `json:"config,omitempty"`
+	// Object containing information about the private location to create.
+	PrivateLocation *SyntheticsPrivateLocation `json:"private_location,omitempty"`
+	// Public key for the result encryption.
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsPrivateLocationCreationResponse SyntheticsPrivateLocationCreationResponse
 
 // NewSyntheticsPrivateLocationCreationResponse instantiates a new SyntheticsPrivateLocationCreationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) GetConfig() interface{} {
 		var ret interface{}
 		return ret
 	}
-	return *o.Config
+	return o.Config
 }
 
 // GetConfigOk returns a tuple with the Config field value if set, nil otherwise
@@ -54,7 +59,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) GetConfigOk() (*interface{},
 	if o == nil || o.Config == nil {
 		return nil, false
 	}
-	return o.Config, true
+	return &o.Config, true
 }
 
 // HasConfig returns a boolean if a field has been set.
@@ -68,7 +73,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) HasConfig() bool {
 
 // SetConfig gets a reference to the given interface{} and assigns it to the Config field.
 func (o *SyntheticsPrivateLocationCreationResponse) SetConfig(v interface{}) {
-	o.Config = &v
+	o.Config = v
 }
 
 // GetPrivateLocation returns the PrivateLocation field value if set, zero value otherwise.
@@ -149,13 +154,17 @@ func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error)
 	if o.ResultEncryption != nil {
 		toSerialize["result_encryption"] = o.ResultEncryption
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Config           *interface{}                                               `json:"config,omitempty"`
+		Config           interface{}                                                `json:"config,omitempty"`
 		PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
 		ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	}{}

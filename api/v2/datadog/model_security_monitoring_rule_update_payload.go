@@ -25,7 +25,8 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	// Message for generated signals.
 	Message *string `json:"message,omitempty"`
 	// Name of the rule.
-	Name    *string                        `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Options on rules.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
@@ -34,8 +35,11 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	// The version of the rule being updated.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringRuleUpdatePayload SecurityMonitoringRuleUpdatePayload
 
 // NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -408,6 +412,10 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,11 +17,15 @@ type NotebookMetadata struct {
 	// Whether or not the notebook is a template.
 	IsTemplate *bool `json:"is_template,omitempty"`
 	// Whether or not the notebook takes snapshot image backups of the notebook's fixed-time graphs.
-	TakeSnapshots *bool                        `json:"take_snapshots,omitempty"`
-	Type          NullableNotebookMetadataType `json:"type,omitempty"`
+	TakeSnapshots *bool `json:"take_snapshots,omitempty"`
+	// Metadata type of the notebook.
+	Type NullableNotebookMetadataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookMetadata NotebookMetadata
 
 // NewNotebookMetadata instantiates a new NotebookMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -168,6 +172,10 @@ func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type.IsSet() {
 		toSerialize["type"] = o.Type.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

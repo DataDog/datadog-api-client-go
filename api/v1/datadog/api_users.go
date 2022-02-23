@@ -34,10 +34,10 @@ type apiCreateUserRequest struct {
 /*
  * CreateUser Create a user
  * Create a user for your organization.
-
-**Note**: Users can only be created with the admin access role
-if application keys belong to administrators.
-*/
+ *
+ * **Note**: Users can only be created with the admin access role
+ * if application keys belong to administrators.
+ */
 func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
 	req := apiCreateUserRequest{
 		ApiService: a,
@@ -209,10 +209,10 @@ type apiDisableUserRequest struct {
 /*
  * DisableUser Disable a user
  * Delete a user from an organization.
-
-**Note**: This endpoint can only be used with application keys belonging to
-administrators.
-*/
+ *
+ * **Note**: This endpoint can only be used with application keys belonging to
+ * administrators.
+ */
 func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	req := apiDisableUserRequest{
 		ApiService: a,
@@ -249,15 +249,6 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisab
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -266,7 +257,6 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisab
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -417,15 +407,6 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -434,7 +415,6 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -572,15 +552,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListRespo
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -589,7 +560,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListRespo
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -684,9 +654,9 @@ type apiUpdateUserRequest struct {
 /*
  * UpdateUser Update a user
  * Update a user information.
-
-**Note**: It can only be used with application keys belonging to administrators.
-*/
+ *
+ * **Note**: It can only be used with application keys belonging to administrators.
+ */
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
 	req := apiUpdateUserRequest{
 		ApiService: a,

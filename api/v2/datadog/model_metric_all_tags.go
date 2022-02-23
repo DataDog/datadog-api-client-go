@@ -14,13 +14,18 @@ import (
 
 // MetricAllTags Object for a single metric's indexed tags.
 type MetricAllTags struct {
+	// Object containing the definition of a metric's tags.
 	Attributes *MetricAllTagsAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   *string     `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The metric resource type.
 	Type *MetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricAllTags MetricAllTags
 
 // NewMetricAllTags instantiates a new MetricAllTags object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type MetricAllTags struct {
 // will change when the set of required properties is changed
 func NewMetricAllTags() *MetricAllTags {
 	this := MetricAllTags{}
-	var type_ MetricType = METRICTYPE_METRICS
+	var type_ MetricType = "metrics"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewMetricAllTags() *MetricAllTags {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricAllTagsWithDefaults() *MetricAllTags {
 	this := MetricAllTags{}
-	var type_ MetricType = METRICTYPE_METRICS
+	var type_ MetricType = "metrics"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o MetricAllTags) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type LogsIndexListResponse struct {
 	// Array of Log index configurations.
 	Indexes *[]LogsIndex `json:"indexes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsIndexListResponse LogsIndexListResponse
 
 // NewLogsIndexListResponse instantiates a new LogsIndexListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

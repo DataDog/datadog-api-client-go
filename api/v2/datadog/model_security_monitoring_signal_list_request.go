@@ -14,12 +14,18 @@ import (
 
 // SecurityMonitoringSignalListRequest The request for a security signal list.
 type SecurityMonitoringSignalListRequest struct {
+	// Search filters for listing security signals.
 	Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
-	Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
-	Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+	// The paging attributes for listing security signals.
+	Page *SecurityMonitoringSignalListRequestPage `json:"page,omitempty"`
+	// The sort parameters used for querying security signals.
+	Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringSignalListRequest SecurityMonitoringSignalListRequest
 
 // NewSecurityMonitoringSignalListRequest instantiates a new SecurityMonitoringSignalListRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +153,10 @@ func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -24,8 +24,11 @@ type UserInvitationDataAttributes struct {
 	// UUID of the user invitation.
 	Uuid *string `json:"uuid,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserInvitationDataAttributes UserInvitationDataAttributes
 
 // NewUserInvitationDataAttributes instantiates a new UserInvitationDataAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -188,6 +191,10 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Uuid != nil {
 		toSerialize["uuid"] = o.Uuid
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

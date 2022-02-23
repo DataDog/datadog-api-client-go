@@ -13,18 +13,39 @@ import (
 	"fmt"
 )
 
-// LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.    - `timestamp`   - `date`   - `_timestamp`   - `Timestamp`   - `eventTime`   - `published_date`    If your logs put their dates in an attribute not in this list,   use the log date Remapper Processor to define their date attribute as the official log timestamp.   The recognized date formats are ISO8601, UNIX (the milliseconds EPOCH format), and RFC3164.    **Note:** If your logs don’t contain any of the default attributes   and you haven’t defined your own date attribute, Datadog timestamps   the logs with the date it received them.    If multiple log date remapper processors can be applied to a given log,   only the first one (according to the pipelines order) is taken into account.
+// LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.//
+//   - `timestamp`
+//   - `date`
+//   - `_timestamp`
+//   - `Timestamp`
+//   - `eventTime`
+//   - `published_date`
+//
+//   If your logs put their dates in an attribute not in this list,
+//   use the log date Remapper Processor to define their date attribute as the official log timestamp.
+//   The recognized date formats are ISO8601, UNIX (the milliseconds EPOCH format), and RFC3164.
+//
+//   **Note:** If your logs don’t contain any of the default attributes
+//   and you haven’t defined your own date attribute, Datadog timestamps
+//   the logs with the date it received them.
+//
+//   If multiple log date remapper processors can be applied to a given log,
+//   only the first one (according to the pipelines order) is taken into account.
 type LogsDateRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources []string             `json:"sources"`
-	Type    LogsDateRemapperType `json:"type"`
+	Sources []string `json:"sources"`
+	// Type of logs date remapper.
+	Type LogsDateRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsDateRemapper LogsDateRemapper
 
 // NewLogsDateRemapper instantiates a new LogsDateRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +67,7 @@ func NewLogsDateRemapperWithDefaults() *LogsDateRemapper {
 	this := LogsDateRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsDateRemapperType = LOGSDATEREMAPPERTYPE_DATE_REMAPPER
+	var type_ LogsDateRemapperType = "date-remapper"
 	this.Type = type_
 	return &this
 }
@@ -121,7 +142,6 @@ func (o *LogsDateRemapper) GetSources() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Sources
 }
 
@@ -145,7 +165,6 @@ func (o *LogsDateRemapper) GetType() LogsDateRemapperType {
 		var ret LogsDateRemapperType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -174,11 +193,11 @@ func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["sources"] = o.Sources
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["sources"] = o.Sources
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

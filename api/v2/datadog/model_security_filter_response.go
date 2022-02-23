@@ -14,11 +14,16 @@ import (
 
 // SecurityFilterResponse Response object which includes a single security filter.
 type SecurityFilterResponse struct {
-	Data *SecurityFilter     `json:"data,omitempty"`
+	// The security filter's properties.
+	Data *SecurityFilter `json:"data,omitempty"`
+	// Optional metadata associated to the response.
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterResponse SecurityFilterResponse
 
 // NewSecurityFilterResponse instantiates a new SecurityFilterResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

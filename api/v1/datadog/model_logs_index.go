@@ -17,18 +17,23 @@ import (
 type LogsIndex struct {
 	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
-	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
+	// An array of exclusion objects. The logs are tested against the query of each filter,// following the order of the array. Only the first matching active exclusion matters,
+	// others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-	Filter           LogsFilter       `json:"filter"`
-	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent. Rate limit is reset every-day at 2pm UTC.
+	// Filter for logs.
+	Filter LogsFilter `json:"filter"`
+	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent.// Rate limit is reset every-day at 2pm UTC.
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
 	Name string `json:"name"`
-	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.
+	// The number of days before logs are deleted from this index. Available values depend on// retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsIndex LogsIndex
 
 // NewLogsIndex instantiates a new LogsIndex object
 // This constructor will assign default values to properties that have it defined,
@@ -119,7 +124,6 @@ func (o *LogsIndex) GetFilter() LogsFilter {
 		var ret LogsFilter
 		return ret
 	}
-
 	return o.Filter
 }
 
@@ -175,7 +179,6 @@ func (o *LogsIndex) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -236,17 +239,17 @@ func (o LogsIndex) MarshalJSON() ([]byte, error) {
 	if o.ExclusionFilters != nil {
 		toSerialize["exclusion_filters"] = o.ExclusionFilters
 	}
-	if true {
-		toSerialize["filter"] = o.Filter
-	}
+	toSerialize["filter"] = o.Filter
 	if o.IsRateLimited != nil {
 		toSerialize["is_rate_limited"] = o.IsRateLimited
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.NumRetentionDays != nil {
 		toSerialize["num_retention_days"] = o.NumRetentionDays
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

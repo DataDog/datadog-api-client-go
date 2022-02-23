@@ -14,13 +14,18 @@ import (
 
 // UsageSpecifiedCustomReportsData Response containing date and type for specified custom reports.
 type UsageSpecifiedCustomReportsData struct {
+	// The response containing attributes for specified custom reports.
 	Attributes *UsageSpecifiedCustomReportsAttributes `json:"attributes,omitempty"`
 	// The date for specified custom reports.
-	Id   *string           `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The type of reports.
 	Type *UsageReportsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSpecifiedCustomReportsData UsageSpecifiedCustomReportsData
 
 // NewUsageSpecifiedCustomReportsData instantiates a new UsageSpecifiedCustomReportsData object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type UsageSpecifiedCustomReportsData struct {
 // will change when the set of required properties is changed
 func NewUsageSpecifiedCustomReportsData() *UsageSpecifiedCustomReportsData {
 	this := UsageSpecifiedCustomReportsData{}
-	var type_ UsageReportsType = USAGEREPORTSTYPE_REPORTS
+	var type_ UsageReportsType = "reports"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewUsageSpecifiedCustomReportsData() *UsageSpecifiedCustomReportsData {
 // but it doesn't guarantee that properties required by API are set
 func NewUsageSpecifiedCustomReportsDataWithDefaults() *UsageSpecifiedCustomReportsData {
 	this := UsageSpecifiedCustomReportsData{}
-	var type_ UsageReportsType = USAGEREPORTSTYPE_REPORTS
+	var type_ UsageReportsType = "reports"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o UsageSpecifiedCustomReportsData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

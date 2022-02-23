@@ -16,16 +16,21 @@ import (
 // WidgetFormula Formula to be used in a widget query.
 type WidgetFormula struct {
 	// Expression alias.
-	Alias           *string                     `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	// Define a display mode for the table cell.
 	CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	// String expression built from queries, formulas, and functions.
-	Formula string              `json:"formula"`
-	Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
+	Formula string `json:"formula"`
+	// Options for limiting results returned.
+	Limit *WidgetFormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetFormula WidgetFormula
 
 // NewWidgetFormula instantiates a new WidgetFormula object
 // This constructor will assign default values to properties that have it defined,
@@ -147,7 +152,6 @@ func (o *WidgetFormula) GetFormula() string {
 		var ret string
 		return ret
 	}
-
 	return o.Formula
 }
 
@@ -211,11 +215,13 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	if o.ConditionalFormats != nil {
 		toSerialize["conditional_formats"] = o.ConditionalFormats
 	}
-	if true {
-		toSerialize["formula"] = o.Formula
-	}
+	toSerialize["formula"] = o.Formula
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

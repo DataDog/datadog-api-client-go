@@ -13,18 +13,24 @@ import (
 	"fmt"
 )
 
-// LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.  **Note:** If multiple service remapper processors can be applied to a given log, only the first one (according to the pipeline order) is taken into account.
+// LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.//
+// **Note:** If multiple service remapper processors can be applied to a given log,
+// only the first one (according to the pipeline order) is taken into account.
 type LogsServiceRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources []string                `json:"sources"`
-	Type    LogsServiceRemapperType `json:"type"`
+	Sources []string `json:"sources"`
+	// Type of logs service remapper.
+	Type LogsServiceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsServiceRemapper LogsServiceRemapper
 
 // NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +52,7 @@ func NewLogsServiceRemapperWithDefaults() *LogsServiceRemapper {
 	this := LogsServiceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsServiceRemapperType = LOGSSERVICEREMAPPERTYPE_SERVICE_REMAPPER
+	var type_ LogsServiceRemapperType = "service-remapper"
 	this.Type = type_
 	return &this
 }
@@ -121,7 +127,6 @@ func (o *LogsServiceRemapper) GetSources() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Sources
 }
 
@@ -145,7 +150,6 @@ func (o *LogsServiceRemapper) GetType() LogsServiceRemapperType {
 		var ret LogsServiceRemapperType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -174,11 +178,11 @@ func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["sources"] = o.Sources
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["sources"] = o.Sources
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,13 +15,18 @@ import (
 
 // ApplicationKeyUpdateData Object used to update an application key.
 type ApplicationKeyUpdateData struct {
+	// Attributes used to update an application Key.
 	Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
 	// ID of the application key.
-	Id   string              `json:"id"`
+	Id string `json:"id"`
+	// Application Keys resource type.
 	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyUpdateData ApplicationKeyUpdateData
 
 // NewApplicationKeyUpdateData instantiates a new ApplicationKeyUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewApplicationKeyUpdateData(attributes ApplicationKeyUpdateAttributes, id s
 // but it doesn't guarantee that properties required by API are set
 func NewApplicationKeyUpdateDataWithDefaults() *ApplicationKeyUpdateData {
 	this := ApplicationKeyUpdateData{}
-	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
+	var type_ ApplicationKeysType = "application_keys"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *ApplicationKeyUpdateData) GetAttributes() ApplicationKeyUpdateAttribute
 		var ret ApplicationKeyUpdateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *ApplicationKeyUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *ApplicationKeyUpdateData) GetType() ApplicationKeysType {
 		var ret ApplicationKeysType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

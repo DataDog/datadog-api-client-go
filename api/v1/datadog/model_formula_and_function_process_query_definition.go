@@ -15,7 +15,9 @@ import (
 
 // FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
 type FormulaAndFunctionProcessQueryDefinition struct {
-	Aggregator *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
+	// The aggregation methods available for metrics queries.
+	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
+	// Data sources that rely on the process backend.
 	DataSource FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
 	// Whether to normalize the CPU percentages.
 	IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
@@ -24,15 +26,19 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Process metric name.
 	Metric string `json:"metric"`
 	// Name of query for use in formulas.
-	Name string          `json:"name"`
+	Name string `json:"name"`
+	// Direction of sort.
 	Sort *QuerySortOrder `json:"sort,omitempty"`
 	// An array of tags to filter by.
 	TagFilters *[]string `json:"tag_filters,omitempty"`
 	// Text to use as filter.
 	TextFilter *string `json:"text_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionProcessQueryDefinition FormulaAndFunctionProcessQueryDefinition
 
 // NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,7 @@ func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionPr
 	this.DataSource = dataSource
 	this.Metric = metric
 	this.Name = name
-	var sort QuerySortOrder = QUERYSORTORDER_DESC
+	var sort QuerySortOrder = "desc"
 	this.Sort = &sort
 	return &this
 }
@@ -53,7 +59,7 @@ func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionPr
 // but it doesn't guarantee that properties required by API are set
 func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFunctionProcessQueryDefinition {
 	this := FormulaAndFunctionProcessQueryDefinition{}
-	var sort QuerySortOrder = QUERYSORTORDER_DESC
+	var sort QuerySortOrder = "desc"
 	this.Sort = &sort
 	return &this
 }
@@ -96,7 +102,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFun
 		var ret FormulaAndFunctionProcessQueryDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -184,7 +189,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 		var ret string
 		return ret
 	}
-
 	return o.Metric
 }
 
@@ -208,7 +212,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -330,21 +333,15 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 	if o.Aggregator != nil {
 		toSerialize["aggregator"] = o.Aggregator
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
+	toSerialize["data_source"] = o.DataSource
 	if o.IsNormalizedCpu != nil {
 		toSerialize["is_normalized_cpu"] = o.IsNormalizedCpu
 	}
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
-	if true {
-		toSerialize["metric"] = o.Metric
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["metric"] = o.Metric
+	toSerialize["name"] = o.Name
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
 	}
@@ -353,6 +350,10 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 	}
 	if o.TextFilter != nil {
 		toSerialize["text_filter"] = o.TextFilter
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

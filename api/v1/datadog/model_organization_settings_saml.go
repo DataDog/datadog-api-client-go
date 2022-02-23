@@ -12,13 +12,16 @@ import (
 	"encoding/json"
 )
 
-// OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML. See the SAML documentation for more information about all SAML settings.
+// OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML.// See the SAML documentation for more information about all SAML settings.
 type OrganizationSettingsSaml struct {
 	// Whether or not SAML is enabled for this organization.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationSettingsSaml OrganizationSettingsSaml
 
 // NewOrganizationSettingsSaml instantiates a new OrganizationSettingsSaml object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type LogsAggregateRequestPage struct {
 	// The returned paging point to use to get the next results
 	Cursor *string `json:"cursor,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateRequestPage LogsAggregateRequestPage
 
 // NewLogsAggregateRequestPage instantiates a new LogsAggregateRequestPage object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o LogsAggregateRequestPage) MarshalJSON() ([]byte, error) {
 	}
 	if o.Cursor != nil {
 		toSerialize["cursor"] = o.Cursor
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

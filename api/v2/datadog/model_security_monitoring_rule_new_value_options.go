@@ -14,11 +14,16 @@ import (
 
 // SecurityMonitoringRuleNewValueOptions Options on new value rules.
 type SecurityMonitoringRuleNewValueOptions struct {
-	ForgetAfter      *SecurityMonitoringRuleNewValueOptionsForgetAfter      `json:"forgetAfter,omitempty"`
+	// The duration in days after which a learned value is forgotten.
+	ForgetAfter *SecurityMonitoringRuleNewValueOptionsForgetAfter `json:"forgetAfter,omitempty"`
+	// The duration in days during which values are learned, and after which signals will be generated for values that// weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
 	LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringRuleNewValueOptions SecurityMonitoringRuleNewValueOptions
 
 // NewSecurityMonitoringRuleNewValueOptions instantiates a new SecurityMonitoringRuleNewValueOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 	}
 	if o.LearningDuration != nil {
 		toSerialize["learningDuration"] = o.LearningDuration
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

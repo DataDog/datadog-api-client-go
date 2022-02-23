@@ -14,10 +14,14 @@ import (
 
 // RelationshipToPermission Relationship to a permissions object.
 type RelationshipToPermission struct {
+	// Relationship to permission object.
 	Data *RelationshipToPermissionData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToPermission RelationshipToPermission
 
 // NewRelationshipToPermission instantiates a new RelationshipToPermission object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o RelationshipToPermission) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

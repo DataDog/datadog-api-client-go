@@ -17,13 +17,17 @@ type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
 	// Maximum number of timeseries per hour in which the metric occurs.
-	MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
+	MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
+	// Contains the metric category.
 	MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageTopAvgMetricsHour UsageTopAvgMetricsHour
 
 // NewUsageTopAvgMetricsHour instantiates a new UsageTopAvgMetricsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -186,6 +190,10 @@ func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.MetricName != nil {
 		toSerialize["metric_name"] = o.MetricName
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -20,8 +20,11 @@ type LogsGrokParserRules struct {
 	// List of support rules for the grok parser, separated by a new line.
 	SupportRules *string `json:"support_rules,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsGrokParserRules LogsGrokParserRules
 
 // NewLogsGrokParserRules instantiates a new LogsGrokParserRules object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +54,6 @@ func (o *LogsGrokParserRules) GetMatchRules() string {
 		var ret string
 		return ret
 	}
-
 	return o.MatchRules
 }
 
@@ -106,11 +108,13 @@ func (o LogsGrokParserRules) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["match_rules"] = o.MatchRules
-	}
+	toSerialize["match_rules"] = o.MatchRules
 	if o.SupportRules != nil {
 		toSerialize["support_rules"] = o.SupportRules
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

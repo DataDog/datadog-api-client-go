@@ -15,20 +15,24 @@ import (
 
 // SecurityMonitoringRuleQueryCreate Query for matching rule.
 type SecurityMonitoringRuleQueryCreate struct {
+	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
 	DistinctFields *[]string `json:"distinctFields,omitempty"`
 	// Fields to group by.
 	GroupByFields *[]string `json:"groupByFields,omitempty"`
-	// The target field to aggregate over when using the sum or max aggregations.
+	// The target field to aggregate over when using the sum or max// aggregations.
 	Metric *string `json:"metric,omitempty"`
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
 	// Query to run on logs.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringRuleQueryCreate SecurityMonitoringRuleQueryCreate
 
 // NewSecurityMonitoringRuleQueryCreate instantiates a new SecurityMonitoringRuleQueryCreate object
 // This constructor will assign default values to properties that have it defined,
@@ -214,7 +218,6 @@ func (o *SecurityMonitoringRuleQueryCreate) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -252,8 +255,10 @@ func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["query"] = o.Query
+	toSerialize["query"] = o.Query
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

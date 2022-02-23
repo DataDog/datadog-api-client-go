@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-// Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying key performance metrics, which enable you to monitor the health of your infrastructure.
+// Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying// key performance metrics, which enable you to monitor the health of your infrastructure.
 type Dashboard struct {
 	// Identifier of the dashboard author.
 	AuthorHandle *string `json:"author_handle,omitempty"`
@@ -28,12 +28,15 @@ type Dashboard struct {
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using `restricted_roles` to manage write authorization.
 	// Deprecated
-	IsReadOnly *bool               `json:"is_read_only,omitempty"`
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
+	// Layout type of the dashboard.
 	LayoutType DashboardLayoutType `json:"layout_type"`
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList []string             `json:"notify_list,omitempty"`
+	NotifyList []string `json:"notify_list,omitempty"`
+	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
+	// widgets should not have layouts.
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
@@ -48,8 +51,11 @@ type Dashboard struct {
 	// List of widgets to display on the dashboard.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Dashboard Dashboard
 
 // NewDashboard instantiates a new Dashboard object
 // This constructor will assign default values to properties that have it defined,
@@ -298,7 +304,6 @@ func (o *Dashboard) GetLayoutType() DashboardLayoutType {
 		var ret DashboardLayoutType
 		return ret
 	}
-
 	return o.LayoutType
 }
 
@@ -517,7 +522,6 @@ func (o *Dashboard) GetTitle() string {
 		var ret string
 		return ret
 	}
-
 	return o.Title
 }
 
@@ -573,7 +577,6 @@ func (o *Dashboard) GetWidgets() []Widget {
 		var ret []Widget
 		return ret
 	}
-
 	return o.Widgets
 }
 
@@ -614,9 +617,7 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.IsReadOnly != nil {
 		toSerialize["is_read_only"] = o.IsReadOnly
 	}
-	if true {
-		toSerialize["layout_type"] = o.LayoutType
-	}
+	toSerialize["layout_type"] = o.LayoutType
 	if o.ModifiedAt != nil {
 		toSerialize["modified_at"] = o.ModifiedAt
 	}
@@ -635,14 +636,14 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	if o.TemplateVariables != nil {
 		toSerialize["template_variables"] = o.TemplateVariables
 	}
-	if true {
-		toSerialize["title"] = o.Title
-	}
+	toSerialize["title"] = o.Title
 	if o.Url != nil {
 		toSerialize["url"] = o.Url
 	}
-	if true {
-		toSerialize["widgets"] = o.Widgets
+	toSerialize["widgets"] = o.Widgets
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -21,8 +21,11 @@ type AWSLogsListResponse struct {
 	// Array of services IDs.
 	Services *[]string `json:"services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSLogsListResponse AWSLogsListResponse
 
 // NewAWSLogsListResponse instantiates a new AWSLogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Services != nil {
 		toSerialize["services"] = o.Services
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

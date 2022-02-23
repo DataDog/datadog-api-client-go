@@ -19,10 +19,14 @@ type IncidentTeamsResponse struct {
 	Data []IncidentTeamResponseData `json:"data"`
 	// Included related resources which the user requested.
 	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
-	Meta     *IncidentResponseMeta        `json:"meta,omitempty"`
+	// The metadata object containing pagination metadata.
+	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamsResponse IncidentTeamsResponse
 
 // NewIncidentTeamsResponse instantiates a new IncidentTeamsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func (o *IncidentTeamsResponse) GetData() []IncidentTeamResponseData {
 		var ret []IncidentTeamResponseData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -135,14 +138,16 @@ func (o IncidentTeamsResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

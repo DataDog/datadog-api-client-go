@@ -14,14 +14,20 @@ import (
 
 // PartialApplicationKey Partial Datadog application key.
 type PartialApplicationKey struct {
+	// Attributes of a partial application key.
 	Attributes *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
 	// ID of the application key.
-	Id            *string                      `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Resources related to the application key.
 	Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
-	Type          *ApplicationKeysType         `json:"type,omitempty"`
+	// Application Keys resource type.
+	Type *ApplicationKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PartialApplicationKey PartialApplicationKey
 
 // NewPartialApplicationKey instantiates a new PartialApplicationKey object
 // This constructor will assign default values to properties that have it defined,
@@ -29,7 +35,7 @@ type PartialApplicationKey struct {
 // will change when the set of required properties is changed
 func NewPartialApplicationKey() *PartialApplicationKey {
 	this := PartialApplicationKey{}
-	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
+	var type_ ApplicationKeysType = "application_keys"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +45,7 @@ func NewPartialApplicationKey() *PartialApplicationKey {
 // but it doesn't guarantee that properties required by API are set
 func NewPartialApplicationKeyWithDefaults() *PartialApplicationKey {
 	this := PartialApplicationKey{}
-	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
+	var type_ ApplicationKeysType = "application_keys"
 	this.Type = &type_
 	return &this
 }
@@ -188,6 +194,10 @@ func (o PartialApplicationKey) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

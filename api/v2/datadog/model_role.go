@@ -15,14 +15,20 @@ import (
 
 // Role Role object returned by the API.
 type Role struct {
+	// Attributes of the role.
 	Attributes *RoleAttributes `json:"attributes,omitempty"`
 	// ID of the role.
-	Id            *string                    `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Relationships of the role object returned by the API.
 	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-	Type          RolesType                  `json:"type"`
+	// Roles type.
+	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Role Role
 
 // NewRole instantiates a new Role object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,7 @@ func NewRole(type_ RolesType) *Role {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleWithDefaults() *Role {
 	this := Role{}
-	var type_ RolesType = ROLESTYPE_ROLES
+	var type_ RolesType = "roles"
 	this.Type = type_
 	return &this
 }
@@ -146,7 +152,6 @@ func (o *Role) GetType() RolesType {
 		var ret RolesType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -178,8 +183,10 @@ func (o Role) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

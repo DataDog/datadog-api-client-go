@@ -17,8 +17,11 @@ type AWSAccountCreateResponse struct {
 	// AWS external_id.
 	ExternalId *string `json:"external_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSAccountCreateResponse AWSAccountCreateResponse
 
 // NewAWSAccountCreateResponse instantiates a new AWSAccountCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ExternalId != nil {
 		toSerialize["external_id"] = o.ExternalId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

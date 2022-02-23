@@ -14,11 +14,16 @@ import (
 
 // LogsAggregateResponse The response object for the logs aggregate API endpoint
 type LogsAggregateResponse struct {
+	// The query results
 	Data *LogsAggregateResponseData `json:"data,omitempty"`
-	Meta *LogsResponseMetadata      `json:"meta,omitempty"`
+	// The metadata associated with a request
+	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateResponse LogsAggregateResponse
 
 // NewLogsAggregateResponse instantiates a new LogsAggregateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

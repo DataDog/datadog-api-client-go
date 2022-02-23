@@ -17,8 +17,11 @@ type OrganizationListResponse struct {
 	// Array of organization objects.
 	Orgs *[]Organization `json:"orgs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationListResponse OrganizationListResponse
 
 // NewOrganizationListResponse instantiates a new OrganizationListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Orgs != nil {
 		toSerialize["orgs"] = o.Orgs
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

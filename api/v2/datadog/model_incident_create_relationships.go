@@ -15,10 +15,14 @@ import (
 
 // IncidentCreateRelationships The relationships the incident will have with other resources once created.
 type IncidentCreateRelationships struct {
+	// Relationship to user.
 	CommanderUser NullableRelationshipToUser `json:"commander_user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentCreateRelationships IncidentCreateRelationships
 
 // NewIncidentCreateRelationships instantiates a new IncidentCreateRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToU
 		var ret NullableRelationshipToUser
 		return ret
 	}
-
 	return o.CommanderUser
 }
 
@@ -67,8 +70,10 @@ func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["commander_user"] = o.CommanderUser
+	toSerialize["commander_user"] = o.CommanderUser
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

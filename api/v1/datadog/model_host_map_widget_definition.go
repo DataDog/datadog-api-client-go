@@ -22,23 +22,31 @@ type HostMapWidgetDefinition struct {
 	// Whether to show the hosts that don’t fit in a group.
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
 	// Whether to show the hosts with no metrics.
-	NoMetricHosts *bool           `json:"no_metric_hosts,omitempty"`
-	NodeType      *WidgetNodeType `json:"node_type,omitempty"`
+	NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
+	// Which type of node to use in the map.
+	NodeType *WidgetNodeType `json:"node_type,omitempty"`
 	// Notes on the title.
-	Notes    *string                         `json:"notes,omitempty"`
+	Notes *string `json:"notes,omitempty"`
+	// List of definitions.
 	Requests HostMapWidgetDefinitionRequests `json:"requests"`
 	// List of tags used to filter the map.
-	Scope *[]string                     `json:"scope,omitempty"`
+	Scope *[]string `json:"scope,omitempty"`
+	// The style to apply to the widget.
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                     `json:"title_size,omitempty"`
-	Type      HostMapWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the host map widget.
+	Type HostMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostMapWidgetDefinition HostMapWidgetDefinition
 
 // NewHostMapWidgetDefinition instantiates a new HostMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +64,7 @@ func NewHostMapWidgetDefinition(requests HostMapWidgetDefinitionRequests, type_ 
 // but it doesn't guarantee that properties required by API are set
 func NewHostMapWidgetDefinitionWithDefaults() *HostMapWidgetDefinition {
 	this := HostMapWidgetDefinition{}
-	var type_ HostMapWidgetDefinitionType = HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP
+	var type_ HostMapWidgetDefinitionType = "hostmap"
 	this.Type = type_
 	return &this
 }
@@ -259,7 +267,6 @@ func (o *HostMapWidgetDefinition) GetRequests() HostMapWidgetDefinitionRequests 
 		var ret HostMapWidgetDefinitionRequests
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -443,7 +450,6 @@ func (o *HostMapWidgetDefinition) GetType() HostMapWidgetDefinitionType {
 		var ret HostMapWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -484,9 +490,7 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Notes != nil {
 		toSerialize["notes"] = o.Notes
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Scope != nil {
 		toSerialize["scope"] = o.Scope
 	}
@@ -502,8 +506,10 @@ func (o HostMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

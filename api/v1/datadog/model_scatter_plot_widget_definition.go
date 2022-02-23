@@ -18,20 +18,29 @@ type ScatterPlotWidgetDefinition struct {
 	// List of groups used for colors.
 	ColorByGroups *[]string `json:"color_by_groups,omitempty"`
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink                 `json:"custom_links,omitempty"`
-	Requests    ScatterPlotWidgetDefinitionRequests `json:"requests"`
-	Time        *WidgetTime                         `json:"time,omitempty"`
+	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	// Widget definition.
+	Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      ScatterPlotWidgetDefinitionType `json:"type"`
-	Xaxis     *WidgetAxis                     `json:"xaxis,omitempty"`
-	Yaxis     *WidgetAxis                     `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the scatter plot widget.
+	Type ScatterPlotWidgetDefinitionType `json:"type"`
+	// Axis controls for the widget.
+	Xaxis *WidgetAxis `json:"xaxis,omitempty"`
+	// Axis controls for the widget.
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ScatterPlotWidgetDefinition ScatterPlotWidgetDefinition
 
 // NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +58,7 @@ func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests
 // but it doesn't guarantee that properties required by API are set
 func NewScatterPlotWidgetDefinitionWithDefaults() *ScatterPlotWidgetDefinition {
 	this := ScatterPlotWidgetDefinition{}
-	var type_ ScatterPlotWidgetDefinitionType = SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT
+	var type_ ScatterPlotWidgetDefinitionType = "scatterplot"
 	this.Type = type_
 	return &this
 }
@@ -124,7 +133,6 @@ func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionR
 		var ret ScatterPlotWidgetDefinitionRequests
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -276,7 +284,6 @@ func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType 
 		var ret ScatterPlotWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -369,9 +376,7 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -384,14 +389,16 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Xaxis != nil {
 		toSerialize["xaxis"] = o.Xaxis
 	}
 	if o.Yaxis != nil {
 		toSerialize["yaxis"] = o.Yaxis
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -21,8 +21,11 @@ type HostMuteSettings struct {
 	// If true and the host is already muted, replaces existing host mute settings.
 	Override *bool `json:"override,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostMuteSettings HostMuteSettings
 
 // NewHostMuteSettings instantiates a new HostMuteSettings object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 	}
 	if o.Override != nil {
 		toSerialize["override"] = o.Override
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

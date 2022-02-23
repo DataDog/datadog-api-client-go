@@ -18,19 +18,25 @@ type GroupWidgetDefinition struct {
 	// Background color of the group title.
 	BackgroundColor *string `json:"background_color,omitempty"`
 	// URL of image to display as a banner for the group.
-	BannerImg  *string          `json:"banner_img,omitempty"`
+	BannerImg *string `json:"banner_img,omitempty"`
+	// Layout type of the group.
 	LayoutType WidgetLayoutType `json:"layout_type"`
 	// Whether to show the title or not.
 	ShowTitle *bool `json:"show_title,omitempty"`
 	// Title of the widget.
-	Title      *string                   `json:"title,omitempty"`
-	TitleAlign *WidgetTextAlign          `json:"title_align,omitempty"`
-	Type       GroupWidgetDefinitionType `json:"type"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
+	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+	// Type of the group widget.
+	Type GroupWidgetDefinitionType `json:"type"`
 	// List of widget groups.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GroupWidgetDefinition GroupWidgetDefinition
 
 // NewGroupWidgetDefinition instantiates a new GroupWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +59,7 @@ func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
 	var showTitle bool = true
 	this.ShowTitle = &showTitle
-	var type_ GroupWidgetDefinitionType = GROUPWIDGETDEFINITIONTYPE_GROUP
+	var type_ GroupWidgetDefinitionType = "group"
 	this.Type = type_
 	return &this
 }
@@ -128,7 +134,6 @@ func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType {
 		var ret WidgetLayoutType
 		return ret
 	}
-
 	return o.LayoutType
 }
 
@@ -248,7 +253,6 @@ func (o *GroupWidgetDefinition) GetType() GroupWidgetDefinitionType {
 		var ret GroupWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -272,7 +276,6 @@ func (o *GroupWidgetDefinition) GetWidgets() []Widget {
 		var ret []Widget
 		return ret
 	}
-
 	return o.Widgets
 }
 
@@ -301,9 +304,7 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.BannerImg != nil {
 		toSerialize["banner_img"] = o.BannerImg
 	}
-	if true {
-		toSerialize["layout_type"] = o.LayoutType
-	}
+	toSerialize["layout_type"] = o.LayoutType
 	if o.ShowTitle != nil {
 		toSerialize["show_title"] = o.ShowTitle
 	}
@@ -313,11 +314,11 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleAlign != nil {
 		toSerialize["title_align"] = o.TitleAlign
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["widgets"] = o.Widgets
+	toSerialize["type"] = o.Type
+	toSerialize["widgets"] = o.Widgets
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

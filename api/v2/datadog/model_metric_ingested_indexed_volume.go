@@ -14,13 +14,18 @@ import (
 
 // MetricIngestedIndexedVolume Object for a single metric's ingested and indexed volume.
 type MetricIngestedIndexedVolume struct {
+	// Object containing the definition of a metric's ingested and indexed volume.
 	Attributes *MetricIngestedIndexedVolumeAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   *string                          `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The metric ingested and indexed volume type.
 	Type *MetricIngestedIndexedVolumeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricIngestedIndexedVolume MetricIngestedIndexedVolume
 
 // NewMetricIngestedIndexedVolume instantiates a new MetricIngestedIndexedVolume object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type MetricIngestedIndexedVolume struct {
 // will change when the set of required properties is changed
 func NewMetricIngestedIndexedVolume() *MetricIngestedIndexedVolume {
 	this := MetricIngestedIndexedVolume{}
-	var type_ MetricIngestedIndexedVolumeType = METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES
+	var type_ MetricIngestedIndexedVolumeType = "metric_volumes"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewMetricIngestedIndexedVolume() *MetricIngestedIndexedVolume {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricIngestedIndexedVolumeWithDefaults() *MetricIngestedIndexedVolume {
 	this := MetricIngestedIndexedVolume{}
-	var type_ MetricIngestedIndexedVolumeType = METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES
+	var type_ MetricIngestedIndexedVolumeType = "metric_volumes"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o MetricIngestedIndexedVolume) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

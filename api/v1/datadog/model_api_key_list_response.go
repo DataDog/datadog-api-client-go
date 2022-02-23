@@ -17,8 +17,11 @@ type ApiKeyListResponse struct {
 	// Array of API keys.
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApiKeyListResponse ApiKeyListResponse
 
 // NewApiKeyListResponse instantiates a new ApiKeyListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.ApiKeys != nil {
 		toSerialize["api_keys"] = o.ApiKeys
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

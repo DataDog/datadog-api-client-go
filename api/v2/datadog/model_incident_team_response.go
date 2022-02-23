@@ -15,12 +15,16 @@ import (
 
 // IncidentTeamResponse Response with an incident team payload.
 type IncidentTeamResponse struct {
+	// Incident Team data from a response.
 	Data IncidentTeamResponseData `json:"data"`
 	// Included objects from relationships.
 	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamResponse IncidentTeamResponse
 
 // NewIncidentTeamResponse instantiates a new IncidentTeamResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func (o *IncidentTeamResponse) GetData() IncidentTeamResponseData {
 		var ret IncidentTeamResponseData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -101,11 +104,13 @@ func (o IncidentTeamResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

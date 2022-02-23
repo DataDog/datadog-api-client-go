@@ -16,13 +16,16 @@ import (
 type LogsListResponse struct {
 	// Array of logs matching the request and the `nextLogId` if sent.
 	Logs *[]Log `json:"logs,omitempty"`
-	// Hash identifier of the next log to return in the list. This parameter is used for the pagination feature.
+	// Hash identifier of the next log to return in the list.// This parameter is used for the pagination feature.
 	NextLogId *string `json:"nextLogId,omitempty"`
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsListResponse LogsListResponse
 
 // NewLogsListResponse instantiates a new LogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

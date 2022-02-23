@@ -14,16 +14,11 @@ import (
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
 type NotebookCellTime struct {
-	NotebookAbsoluteTime *NotebookAbsoluteTime
 	NotebookRelativeTime *NotebookRelativeTime
+	NotebookAbsoluteTime *NotebookAbsoluteTime
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
-}
-
-// NotebookAbsoluteTimeAsNotebookCellTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookCellTime
-func NotebookAbsoluteTimeAsNotebookCellTime(v *NotebookAbsoluteTime) NotebookCellTime {
-	return NotebookCellTime{NotebookAbsoluteTime: v}
 }
 
 // NotebookRelativeTimeAsNotebookCellTime is a convenience function that returns NotebookRelativeTime wrapped in NotebookCellTime
@@ -31,14 +26,14 @@ func NotebookRelativeTimeAsNotebookCellTime(v *NotebookRelativeTime) NotebookCel
 	return NotebookCellTime{NotebookRelativeTime: v}
 }
 
+// NotebookAbsoluteTimeAsNotebookCellTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookCellTime
+func NotebookAbsoluteTimeAsNotebookCellTime(v *NotebookAbsoluteTime) NotebookCellTime {
+	return NotebookCellTime{NotebookAbsoluteTime: v}
+}
+
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookCellTime) UnmarshalJSON(data []byte) error {
 	var err error
-	// this object is nullable so check if the payload is null or empty string
-	if string(data) == "" || string(data) == "{}" {
-		return nil
-	}
-
 	match := 0
 	// try to unmarshal data into NotebookRelativeTime
 	err = json.Unmarshal(data, &dst.NotebookRelativeTime)
@@ -76,8 +71,8 @@ func (dst *NotebookCellTime) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.NotebookAbsoluteTime = nil
 		dst.NotebookRelativeTime = nil
+		dst.NotebookAbsoluteTime = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -86,12 +81,12 @@ func (dst *NotebookCellTime) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
-	if src.NotebookAbsoluteTime != nil {
-		return json.Marshal(&src.NotebookAbsoluteTime)
-	}
-
 	if src.NotebookRelativeTime != nil {
 		return json.Marshal(&src.NotebookRelativeTime)
+	}
+
+	if src.NotebookAbsoluteTime != nil {
+		return json.Marshal(&src.NotebookAbsoluteTime)
 	}
 
 	if src.UnparsedObject != nil {
@@ -102,12 +97,12 @@ func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *NotebookCellTime) GetActualInstance() interface{} {
-	if obj.NotebookAbsoluteTime != nil {
-		return obj.NotebookAbsoluteTime
-	}
-
 	if obj.NotebookRelativeTime != nil {
 		return obj.NotebookRelativeTime
+	}
+
+	if obj.NotebookAbsoluteTime != nil {
+		return obj.NotebookAbsoluteTime
 	}
 
 	// all schemas are nil
@@ -147,5 +142,11 @@ func (v NullableNotebookCellTime) MarshalJSON() ([]byte, error) {
 
 func (v *NullableNotebookCellTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

@@ -21,8 +21,11 @@ type HostListResponse struct {
 	// Number of host returned.
 	TotalReturned *int64 `json:"total_returned,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HostListResponse HostListResponse
 
 // NewHostListResponse instantiates a new HostListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.TotalReturned != nil {
 		toSerialize["total_returned"] = o.TotalReturned
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

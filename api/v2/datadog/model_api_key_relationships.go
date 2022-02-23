@@ -14,11 +14,16 @@ import (
 
 // APIKeyRelationships Resources related to the API key.
 type APIKeyRelationships struct {
-	CreatedBy  *RelationshipToUser `json:"created_by,omitempty"`
+	// Relationship to user.
+	CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+	// Relationship to user.
 	ModifiedBy *RelationshipToUser `json:"modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _APIKeyRelationships APIKeyRelationships
 
 // NewAPIKeyRelationships instantiates a new APIKeyRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o APIKeyRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.ModifiedBy != nil {
 		toSerialize["modified_by"] = o.ModifiedBy
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

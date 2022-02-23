@@ -27,8 +27,11 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	// A shorter and abbreviated version of the metric unit, for instance `B`.
 	ShortName NullableString `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOHistoryMetricsSeriesMetadataUnit SLOHistoryMetricsSeriesMetadataUnit
 
 // NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
 // This constructor will assign default values to properties that have it defined,
@@ -284,6 +287,10 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	if o.ShortName.IsSet() {
 		toSerialize["short_name"] = o.ShortName.Get()
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -348,5 +355,11 @@ func (v NullableSLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, erro
 
 func (v *NullableSLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

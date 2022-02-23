@@ -17,14 +17,21 @@ type SyntheticsAPITestResultShort struct {
 	// Last time the API test was performed.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Location from which the API test was performed.
-	ProbeDc *string                             `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	// Result of the last API test run.
+	Result *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	// The status of your Synthetic monitor.// * `O` for not triggered
+	// * `1` for triggered
+	// * `2` for no data
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAPITestResultShort SyntheticsAPITestResultShort
 
 // NewSyntheticsAPITestResultShort instantiates a new SyntheticsAPITestResultShort object
 // This constructor will assign default values to properties that have it defined,
@@ -222,6 +229,10 @@ func (o SyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

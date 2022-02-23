@@ -17,20 +17,23 @@ type SyntheticsSSLCertificateSubject struct {
 	// Country Name associated with the certificate.
 	C *string `json:"C,omitempty"`
 	// Common Name that associated with the certificate.
-	CN *string `json:"CN,omitempty"`
+	Cn *string `json:"CN,omitempty"`
 	// Locality associated with the certificate.
 	L *string `json:"L,omitempty"`
 	// Organization associated with the certificate.
 	O *string `json:"O,omitempty"`
 	// Organizational Unit associated with the certificate.
-	OU *string `json:"OU,omitempty"`
+	Ou *string `json:"OU,omitempty"`
 	// State Or Province Name associated with the certificate.
-	ST *string `json:"ST,omitempty"`
+	St *string `json:"ST,omitempty"`
 	// Subject Alternative Name associated with the certificate.
 	AltName *string `json:"altName,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsSSLCertificateSubject SyntheticsSSLCertificateSubject
 
 // NewSyntheticsSSLCertificateSubject instantiates a new SyntheticsSSLCertificateSubject object
 // This constructor will assign default values to properties that have it defined,
@@ -81,36 +84,36 @@ func (o *SyntheticsSSLCertificateSubject) SetC(v string) {
 	o.C = &v
 }
 
-// GetCN returns the CN field value if set, zero value otherwise.
-func (o *SyntheticsSSLCertificateSubject) GetCN() string {
-	if o == nil || o.CN == nil {
+// GetCn returns the Cn field value if set, zero value otherwise.
+func (o *SyntheticsSSLCertificateSubject) GetCn() string {
+	if o == nil || o.Cn == nil {
 		var ret string
 		return ret
 	}
-	return *o.CN
+	return *o.Cn
 }
 
-// GetCNOk returns a tuple with the CN field value if set, nil otherwise
+// GetCnOk returns a tuple with the Cn field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateSubject) GetCNOk() (*string, bool) {
-	if o == nil || o.CN == nil {
+func (o *SyntheticsSSLCertificateSubject) GetCnOk() (*string, bool) {
+	if o == nil || o.Cn == nil {
 		return nil, false
 	}
-	return o.CN, true
+	return o.Cn, true
 }
 
-// HasCN returns a boolean if a field has been set.
-func (o *SyntheticsSSLCertificateSubject) HasCN() bool {
-	if o != nil && o.CN != nil {
+// HasCn returns a boolean if a field has been set.
+func (o *SyntheticsSSLCertificateSubject) HasCn() bool {
+	if o != nil && o.Cn != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetCN gets a reference to the given string and assigns it to the CN field.
-func (o *SyntheticsSSLCertificateSubject) SetCN(v string) {
-	o.CN = &v
+// SetCn gets a reference to the given string and assigns it to the Cn field.
+func (o *SyntheticsSSLCertificateSubject) SetCn(v string) {
+	o.Cn = &v
 }
 
 // GetL returns the L field value if set, zero value otherwise.
@@ -177,68 +180,68 @@ func (o *SyntheticsSSLCertificateSubject) SetO(v string) {
 	o.O = &v
 }
 
-// GetOU returns the OU field value if set, zero value otherwise.
-func (o *SyntheticsSSLCertificateSubject) GetOU() string {
-	if o == nil || o.OU == nil {
+// GetOu returns the Ou field value if set, zero value otherwise.
+func (o *SyntheticsSSLCertificateSubject) GetOu() string {
+	if o == nil || o.Ou == nil {
 		var ret string
 		return ret
 	}
-	return *o.OU
+	return *o.Ou
 }
 
-// GetOUOk returns a tuple with the OU field value if set, nil otherwise
+// GetOuOk returns a tuple with the Ou field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateSubject) GetOUOk() (*string, bool) {
-	if o == nil || o.OU == nil {
+func (o *SyntheticsSSLCertificateSubject) GetOuOk() (*string, bool) {
+	if o == nil || o.Ou == nil {
 		return nil, false
 	}
-	return o.OU, true
+	return o.Ou, true
 }
 
-// HasOU returns a boolean if a field has been set.
-func (o *SyntheticsSSLCertificateSubject) HasOU() bool {
-	if o != nil && o.OU != nil {
+// HasOu returns a boolean if a field has been set.
+func (o *SyntheticsSSLCertificateSubject) HasOu() bool {
+	if o != nil && o.Ou != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetOU gets a reference to the given string and assigns it to the OU field.
-func (o *SyntheticsSSLCertificateSubject) SetOU(v string) {
-	o.OU = &v
+// SetOu gets a reference to the given string and assigns it to the Ou field.
+func (o *SyntheticsSSLCertificateSubject) SetOu(v string) {
+	o.Ou = &v
 }
 
-// GetST returns the ST field value if set, zero value otherwise.
-func (o *SyntheticsSSLCertificateSubject) GetST() string {
-	if o == nil || o.ST == nil {
+// GetSt returns the St field value if set, zero value otherwise.
+func (o *SyntheticsSSLCertificateSubject) GetSt() string {
+	if o == nil || o.St == nil {
 		var ret string
 		return ret
 	}
-	return *o.ST
+	return *o.St
 }
 
-// GetSTOk returns a tuple with the ST field value if set, nil otherwise
+// GetStOk returns a tuple with the St field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsSSLCertificateSubject) GetSTOk() (*string, bool) {
-	if o == nil || o.ST == nil {
+func (o *SyntheticsSSLCertificateSubject) GetStOk() (*string, bool) {
+	if o == nil || o.St == nil {
 		return nil, false
 	}
-	return o.ST, true
+	return o.St, true
 }
 
-// HasST returns a boolean if a field has been set.
-func (o *SyntheticsSSLCertificateSubject) HasST() bool {
-	if o != nil && o.ST != nil {
+// HasSt returns a boolean if a field has been set.
+func (o *SyntheticsSSLCertificateSubject) HasSt() bool {
+	if o != nil && o.St != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetST gets a reference to the given string and assigns it to the ST field.
-func (o *SyntheticsSSLCertificateSubject) SetST(v string) {
-	o.ST = &v
+// SetSt gets a reference to the given string and assigns it to the St field.
+func (o *SyntheticsSSLCertificateSubject) SetSt(v string) {
+	o.St = &v
 }
 
 // GetAltName returns the AltName field value if set, zero value otherwise.
@@ -281,8 +284,8 @@ func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 	if o.C != nil {
 		toSerialize["C"] = o.C
 	}
-	if o.CN != nil {
-		toSerialize["CN"] = o.CN
+	if o.Cn != nil {
+		toSerialize["CN"] = o.Cn
 	}
 	if o.L != nil {
 		toSerialize["L"] = o.L
@@ -290,14 +293,18 @@ func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 	if o.O != nil {
 		toSerialize["O"] = o.O
 	}
-	if o.OU != nil {
-		toSerialize["OU"] = o.OU
+	if o.Ou != nil {
+		toSerialize["OU"] = o.Ou
 	}
-	if o.ST != nil {
-		toSerialize["ST"] = o.ST
+	if o.St != nil {
+		toSerialize["ST"] = o.St
 	}
 	if o.AltName != nil {
 		toSerialize["altName"] = o.AltName
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -306,11 +313,11 @@ func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	all := struct {
 		C       *string `json:"C,omitempty"`
-		CN      *string `json:"CN,omitempty"`
+		Cn      *string `json:"CN,omitempty"`
 		L       *string `json:"L,omitempty"`
 		O       *string `json:"O,omitempty"`
-		OU      *string `json:"OU,omitempty"`
-		ST      *string `json:"ST,omitempty"`
+		Ou      *string `json:"OU,omitempty"`
+		St      *string `json:"ST,omitempty"`
 		AltName *string `json:"altName,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -323,11 +330,11 @@ func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error
 		return nil
 	}
 	o.C = all.C
-	o.CN = all.CN
+	o.Cn = all.Cn
 	o.L = all.L
 	o.O = all.O
-	o.OU = all.OU
-	o.ST = all.ST
+	o.Ou = all.Ou
+	o.St = all.St
 	o.AltName = all.AltName
 	return nil
 }

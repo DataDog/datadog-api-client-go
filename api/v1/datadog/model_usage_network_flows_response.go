@@ -17,8 +17,11 @@ type UsageNetworkFlowsResponse struct {
 	// Get hourly usage for Network Flows.
 	Usage *[]UsageNetworkFlowsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageNetworkFlowsResponse UsageNetworkFlowsResponse
 
 // NewUsageNetworkFlowsResponse instantiates a new UsageNetworkFlowsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

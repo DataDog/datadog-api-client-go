@@ -14,15 +14,32 @@ import (
 
 // MetricTagConfigurationUpdateAttributes Object containing the definition of a metric tag configuration to be updated.
 type MetricTagConfigurationUpdateAttributes struct {
-	// A list of queryable aggregation combinations for a count, rate, or gauge metric. By default, count and rate metrics require the (time: sum, space: sum) aggregation and Gauge metrics require the (time: avg, space: avg) aggregation. Additional time & space combinations are also available:  - time: avg, space: avg - time: avg, space: max - time: avg, space: min - time: avg, space: sum - time: count, space: sum - time: max, space: max - time: min, space: min - time: sum, space: avg - time: sum, space: sum  Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
+	// A list of queryable aggregation combinations for a count, rate, or gauge metric.// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
+	// Gauge metrics require the (time: avg, space: avg) aggregation.
+	// Additional time & space combinations are also available:
+	//
+	// - time: avg, space: avg
+	// - time: avg, space: max
+	// - time: avg, space: min
+	// - time: avg, space: sum
+	// - time: count, space: sum
+	// - time: max, space: max
+	// - time: min, space: min
+	// - time: sum, space: avg
+	// - time: sum, space: sum
+	//
+	// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
 	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-	// Toggle to include/exclude percentiles for a distribution metric. Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+	// Toggle to include/exclude percentiles for a distribution metric.// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricTagConfigurationUpdateAttributes MetricTagConfigurationUpdateAttributes
 
 // NewMetricTagConfigurationUpdateAttributes instantiates a new MetricTagConfigurationUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -154,6 +171,10 @@ func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tags != nil {
 		toSerialize["tags"] = o.Tags
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,10 +14,14 @@ import (
 
 // WidgetTime Time setting for the widget.
 type WidgetTime struct {
+	// The available timeframes depend on the widget you are using.
 	LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetTime WidgetTime
 
 // NewWidgetTime instantiates a new WidgetTime object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o WidgetTime) MarshalJSON() ([]byte, error) {
 	}
 	if o.LiveSpan != nil {
 		toSerialize["live_span"] = o.LiveSpan
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

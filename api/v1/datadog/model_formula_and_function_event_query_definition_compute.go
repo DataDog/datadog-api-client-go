@@ -15,14 +15,18 @@ import (
 
 // FormulaAndFunctionEventQueryDefinitionCompute Compute options.
 type FormulaAndFunctionEventQueryDefinitionCompute struct {
+	// Aggregation methods for event platform queries.
 	Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
 	// A time interval in milliseconds.
 	Interval *int64 `json:"interval,omitempty"`
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionEventQueryDefinitionCompute FormulaAndFunctionEventQueryDefinitionCompute
 
 // NewFormulaAndFunctionEventQueryDefinitionCompute instantiates a new FormulaAndFunctionEventQueryDefinitionCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func (o *FormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() Formula
 		var ret FormulaAndFunctionEventAggregation
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -135,14 +138,16 @@ func (o FormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
 	}
 	if o.Metric != nil {
 		toSerialize["metric"] = o.Metric
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

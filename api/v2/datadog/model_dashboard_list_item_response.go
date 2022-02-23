@@ -16,11 +16,15 @@ import (
 // DashboardListItemResponse A dashboard within a list.
 type DashboardListItemResponse struct {
 	// ID of the dashboard.
-	Id   string        `json:"id"`
+	Id string `json:"id"`
+	// The type of the dashboard.
 	Type DashboardType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardListItemResponse DashboardListItemResponse
 
 // NewDashboardListItemResponse instantiates a new DashboardListItemResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func (o *DashboardListItemResponse) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -71,7 +74,6 @@ func (o *DashboardListItemResponse) GetType() DashboardType {
 		var ret DashboardType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -94,11 +96,11 @@ func (o DashboardListItemResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

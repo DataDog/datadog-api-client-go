@@ -18,17 +18,23 @@ type EventTimelineWidgetDefinition struct {
 	// Query to filter the event timeline with.
 	Query string `json:"query"`
 	// The execution method for multi-value filters. Can be either and or or.
-	TagsExecution *string     `json:"tags_execution,omitempty"`
-	Time          *WidgetTime `json:"time,omitempty"`
+	TagsExecution *string `json:"tags_execution,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                           `json:"title_size,omitempty"`
-	Type      EventTimelineWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the event timeline widget.
+	Type EventTimelineWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventTimelineWidgetDefinition EventTimelineWidgetDefinition
 
 // NewEventTimelineWidgetDefinition instantiates a new EventTimelineWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +52,7 @@ func NewEventTimelineWidgetDefinition(query string, type_ EventTimelineWidgetDef
 // but it doesn't guarantee that properties required by API are set
 func NewEventTimelineWidgetDefinitionWithDefaults() *EventTimelineWidgetDefinition {
 	this := EventTimelineWidgetDefinition{}
-	var type_ EventTimelineWidgetDefinitionType = EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE
+	var type_ EventTimelineWidgetDefinitionType = "event_timeline"
 	this.Type = type_
 	return &this
 }
@@ -57,7 +63,6 @@ func (o *EventTimelineWidgetDefinition) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -241,7 +246,6 @@ func (o *EventTimelineWidgetDefinition) GetType() EventTimelineWidgetDefinitionT
 		var ret EventTimelineWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -264,9 +268,7 @@ func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
+	toSerialize["query"] = o.Query
 	if o.TagsExecution != nil {
 		toSerialize["tags_execution"] = o.TagsExecution
 	}
@@ -282,8 +284,10 @@ func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -18,11 +18,15 @@ type LogQueryDefinitionGroupBySort struct {
 	// The aggregation method.
 	Aggregation string `json:"aggregation"`
 	// Facet name.
-	Facet *string    `json:"facet,omitempty"`
+	Facet *string `json:"facet,omitempty"`
+	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogQueryDefinitionGroupBySort LogQueryDefinitionGroupBySort
 
 // NewLogQueryDefinitionGroupBySort instantiates a new LogQueryDefinitionGroupBySort object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +53,6 @@ func (o *LogQueryDefinitionGroupBySort) GetAggregation() string {
 		var ret string
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -105,7 +108,6 @@ func (o *LogQueryDefinitionGroupBySort) GetOrder() WidgetSort {
 		var ret WidgetSort
 		return ret
 	}
-
 	return o.Order
 }
 
@@ -128,14 +130,14 @@ func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Facet != nil {
 		toSerialize["facet"] = o.Facet
 	}
-	if true {
-		toSerialize["order"] = o.Order
+	toSerialize["order"] = o.Order
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

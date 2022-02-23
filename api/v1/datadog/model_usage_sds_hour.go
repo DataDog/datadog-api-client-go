@@ -26,8 +26,11 @@ type UsageSDSHour struct {
 	// The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
 	TotalScannedBytes *int64 `json:"total_scanned_bytes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSDSHour UsageSDSHour
 
 // NewUsageSDSHour instantiates a new UsageSDSHour object
 // This constructor will assign default values to properties that have it defined,
@@ -225,6 +228,10 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.TotalScannedBytes != nil {
 		toSerialize["total_scanned_bytes"] = o.TotalScannedBytes
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

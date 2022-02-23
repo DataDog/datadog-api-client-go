@@ -14,10 +14,14 @@ import (
 
 // MetricSearchResponse Object containing the list of metrics matching the search query.
 type MetricSearchResponse struct {
+	// Search result.
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricSearchResponse MetricSearchResponse
 
 // NewMetricSearchResponse instantiates a new MetricSearchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Results != nil {
 		toSerialize["results"] = o.Results
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

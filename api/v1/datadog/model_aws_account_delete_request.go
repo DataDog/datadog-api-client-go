@@ -21,8 +21,11 @@ type AWSAccountDeleteRequest struct {
 	// Your Datadog role delegation name.
 	RoleName *string `json:"role_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSAccountDeleteRequest AWSAccountDeleteRequest
 
 // NewAWSAccountDeleteRequest instantiates a new AWSAccountDeleteRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o AWSAccountDeleteRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.RoleName != nil {
 		toSerialize["role_name"] = o.RoleName
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

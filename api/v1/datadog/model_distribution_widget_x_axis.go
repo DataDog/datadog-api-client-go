@@ -23,8 +23,11 @@ type DistributionWidgetXAxis struct {
 	// Specifies the scale type. Possible values are `linear`.
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DistributionWidgetXAxis DistributionWidgetXAxis
 
 // NewDistributionWidgetXAxis instantiates a new DistributionWidgetXAxis object
 // This constructor will assign default values to properties that have it defined,
@@ -199,6 +202,10 @@ func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 	}
 	if o.Scale != nil {
 		toSerialize["scale"] = o.Scale
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

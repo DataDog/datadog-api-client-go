@@ -14,13 +14,18 @@ import (
 
 // MetricDistinctVolume Object for a single metric's distinct volume.
 type MetricDistinctVolume struct {
+	// Object containing the definition of a metric's distinct volume.
 	Attributes *MetricDistinctVolumeAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   *string                   `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The metric distinct volume type.
 	Type *MetricDistinctVolumeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricDistinctVolume MetricDistinctVolume
 
 // NewMetricDistinctVolume instantiates a new MetricDistinctVolume object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type MetricDistinctVolume struct {
 // will change when the set of required properties is changed
 func NewMetricDistinctVolume() *MetricDistinctVolume {
 	this := MetricDistinctVolume{}
-	var type_ MetricDistinctVolumeType = METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES
+	var type_ MetricDistinctVolumeType = "distinct_metric_volumes"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewMetricDistinctVolume() *MetricDistinctVolume {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricDistinctVolumeWithDefaults() *MetricDistinctVolume {
 	this := MetricDistinctVolume{}
-	var type_ MetricDistinctVolumeType = METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES
+	var type_ MetricDistinctVolumeType = "distinct_metric_volumes"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o MetricDistinctVolume) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

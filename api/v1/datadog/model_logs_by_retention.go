@@ -14,13 +14,18 @@ import (
 
 // LogsByRetention Object containing logs usage data broken down by retention period.
 type LogsByRetention struct {
+	// Indexed logs usage summary for each organization for each retention period with usage.
 	Orgs *LogsByRetentionOrgs `json:"orgs,omitempty"`
 	// Aggregated index logs usage for each retention period with usage.
-	Usage        *[]LogsRetentionAggSumUsage  `json:"usage,omitempty"`
+	Usage *[]LogsRetentionAggSumUsage `json:"usage,omitempty"`
+	// Object containing a summary of indexed logs usage by retention period for a single month.
 	UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsByRetention LogsByRetention
 
 // NewLogsByRetention instantiates a new LogsByRetention object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 	}
 	if o.UsageByMonth != nil {
 		toSerialize["usage_by_month"] = o.UsageByMonth
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -233,15 +233,6 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -250,7 +241,6 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -388,15 +378,6 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -405,7 +386,6 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -498,8 +478,8 @@ type apiListLogIndexesRequest struct {
 /*
  * ListLogIndexes Get all indexes
  * The Index object describes the configuration of a log index.
-This endpoint returns an array of the `LogIndex` objects of your organization.
-*/
+ * This endpoint returns an array of the `LogIndex` objects of your organization.
+ */
 func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
 	req := apiListLogIndexesRequest{
 		ApiService: a,
@@ -534,15 +514,6 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -551,7 +522,6 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -646,11 +616,11 @@ type apiUpdateLogsIndexRequest struct {
 /*
  * UpdateLogsIndex Update an index
  * Update an index as identified by its name.
-Returns the Index object passed in the request body when the request is successful.
-
-Using the `PUT` method updates your index’s configuration by **replacing**
-your current configuration with the new one sent to your Datadog organization.
-*/
+ * Returns the Index object passed in the request body when the request is successful.
+ *
+ * Using the `PUT` method updates your index’s configuration by **replacing**
+ * your current configuration with the new one sent to your Datadog organization.
+ */
 func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
 	req := apiUpdateLogsIndexRequest{
 		ApiService: a,
@@ -814,8 +784,8 @@ type apiUpdateLogsIndexOrderRequest struct {
 /*
  * UpdateLogsIndexOrder Update indexes order
  * This endpoint updates the index order of your organization.
-It returns the index order object passed in the request body when the request is successful.
-*/
+ * It returns the index order object passed in the request body when the request is successful.
+ */
 func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
 	req := apiUpdateLogsIndexOrderRequest{
 		ApiService: a,

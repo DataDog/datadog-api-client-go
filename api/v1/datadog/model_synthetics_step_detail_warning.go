@@ -16,11 +16,15 @@ import (
 // SyntheticsStepDetailWarning Object collecting warnings for a given step.
 type SyntheticsStepDetailWarning struct {
 	// Message for the warning.
-	Message string                `json:"message"`
-	Type    SyntheticsWarningType `json:"type"`
+	Message string `json:"message"`
+	// User locator used.
+	Type SyntheticsWarningType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsStepDetailWarning SyntheticsStepDetailWarning
 
 // NewSyntheticsStepDetailWarning instantiates a new SyntheticsStepDetailWarning object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func (o *SyntheticsStepDetailWarning) GetMessage() string {
 		var ret string
 		return ret
 	}
-
 	return o.Message
 }
 
@@ -71,7 +74,6 @@ func (o *SyntheticsStepDetailWarning) GetType() SyntheticsWarningType {
 		var ret SyntheticsWarningType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -94,11 +96,11 @@ func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["message"] = o.Message
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["message"] = o.Message
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

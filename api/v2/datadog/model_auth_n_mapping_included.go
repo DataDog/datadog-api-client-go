@@ -14,21 +14,21 @@ import (
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.
 type AuthNMappingIncluded struct {
-	Role                   *Role
 	SAMLAssertionAttribute *SAMLAssertionAttribute
+	Role                   *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// RoleAsAuthNMappingIncluded is a convenience function that returns Role wrapped in AuthNMappingIncluded
-func RoleAsAuthNMappingIncluded(v *Role) AuthNMappingIncluded {
-	return AuthNMappingIncluded{Role: v}
-}
-
 // SAMLAssertionAttributeAsAuthNMappingIncluded is a convenience function that returns SAMLAssertionAttribute wrapped in AuthNMappingIncluded
 func SAMLAssertionAttributeAsAuthNMappingIncluded(v *SAMLAssertionAttribute) AuthNMappingIncluded {
 	return AuthNMappingIncluded{SAMLAssertionAttribute: v}
+}
+
+// RoleAsAuthNMappingIncluded is a convenience function that returns Role wrapped in AuthNMappingIncluded
+func RoleAsAuthNMappingIncluded(v *Role) AuthNMappingIncluded {
+	return AuthNMappingIncluded{Role: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -71,8 +71,8 @@ func (dst *AuthNMappingIncluded) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.Role = nil
 		dst.SAMLAssertionAttribute = nil
+		dst.Role = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -81,12 +81,12 @@ func (dst *AuthNMappingIncluded) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
-	if src.Role != nil {
-		return json.Marshal(&src.Role)
-	}
-
 	if src.SAMLAssertionAttribute != nil {
 		return json.Marshal(&src.SAMLAssertionAttribute)
+	}
+
+	if src.Role != nil {
+		return json.Marshal(&src.Role)
 	}
 
 	if src.UnparsedObject != nil {
@@ -97,12 +97,12 @@ func (src AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *AuthNMappingIncluded) GetActualInstance() interface{} {
-	if obj.Role != nil {
-		return obj.Role
-	}
-
 	if obj.SAMLAssertionAttribute != nil {
 		return obj.SAMLAssertionAttribute
+	}
+
+	if obj.Role != nil {
+		return obj.Role
 	}
 
 	// all schemas are nil
@@ -142,5 +142,11 @@ func (v NullableAuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 
 func (v *NullableAuthNMappingIncluded) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

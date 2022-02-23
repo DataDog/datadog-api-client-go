@@ -19,8 +19,11 @@ type IdpFormData struct {
 	// The path to the XML metadata file you wish to upload.
 	IdpFile *os.File `json:"idp_file"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IdpFormData IdpFormData
 
 // NewIdpFormData instantiates a new IdpFormData object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +49,6 @@ func (o *IdpFormData) GetIdpFile() *os.File {
 		var ret *os.File
 		return ret
 	}
-
 	return o.IdpFile
 }
 
@@ -69,8 +71,10 @@ func (o IdpFormData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["idp_file"] = o.IdpFile
+	toSerialize["idp_file"] = o.IdpFile
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

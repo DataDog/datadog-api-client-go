@@ -16,7 +16,8 @@ import (
 type SecurityFilterAttributes struct {
 	// The list of exclusion filters applied in this security filter.
 	ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
-	FilteredDataType *SecurityFilterFilteredDataType          `json:"filtered_data_type,omitempty"`
+	// The filtered data type.
+	FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
 	// Whether the security filter is the built-in filter.
 	IsBuiltin *bool `json:"is_builtin,omitempty"`
 	// Whether the security filter is enabled.
@@ -28,8 +29,11 @@ type SecurityFilterAttributes struct {
 	// The version of the security filter.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterAttributes SecurityFilterAttributes
 
 // NewSecurityFilterAttributes instantiates a new SecurityFilterAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -297,6 +301,10 @@ func (o SecurityFilterAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

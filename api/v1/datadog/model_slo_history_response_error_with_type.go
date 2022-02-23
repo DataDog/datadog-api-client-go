@@ -20,8 +20,11 @@ type SLOHistoryResponseErrorWithType struct {
 	// Type of the error.
 	ErrorType string `json:"error_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOHistoryResponseErrorWithType SLOHistoryResponseErrorWithType
 
 // NewSLOHistoryResponseErrorWithType instantiates a new SLOHistoryResponseErrorWithType object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorMessage() string {
 		var ret string
 		return ret
 	}
-
 	return o.ErrorMessage
 }
 
@@ -72,7 +74,6 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorType() string {
 		var ret string
 		return ret
 	}
-
 	return o.ErrorType
 }
 
@@ -95,11 +96,11 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["error_message"] = o.ErrorMessage
-	}
-	if true {
-		toSerialize["error_type"] = o.ErrorType
+	toSerialize["error_message"] = o.ErrorMessage
+	toSerialize["error_type"] = o.ErrorType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

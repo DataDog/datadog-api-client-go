@@ -14,12 +14,18 @@ import (
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
 type ScatterPlotWidgetDefinitionRequests struct {
+	// Scatterplot request containing formulas and functions.
 	Table *ScatterplotTableRequest `json:"table,omitempty"`
-	X     *ScatterPlotRequest      `json:"x,omitempty"`
-	Y     *ScatterPlotRequest      `json:"y,omitempty"`
+	// Updated scatter plot.
+	X *ScatterPlotRequest `json:"x,omitempty"`
+	// Updated scatter plot.
+	Y *ScatterPlotRequest `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ScatterPlotWidgetDefinitionRequests ScatterPlotWidgetDefinitionRequests
 
 // NewScatterPlotWidgetDefinitionRequests instantiates a new ScatterPlotWidgetDefinitionRequests object
 // This constructor will assign default values to properties that have it defined,
@@ -147,6 +153,10 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	}
 	if o.Y != nil {
 		toSerialize["y"] = o.Y
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

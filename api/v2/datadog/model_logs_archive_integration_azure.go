@@ -20,8 +20,11 @@ type LogsArchiveIntegrationAzure struct {
 	// A tenant ID.
 	TenantId string `json:"tenant_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveIntegrationAzure LogsArchiveIntegrationAzure
 
 // NewLogsArchiveIntegrationAzure instantiates a new LogsArchiveIntegrationAzure object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *LogsArchiveIntegrationAzure) GetClientId() string {
 		var ret string
 		return ret
 	}
-
 	return o.ClientId
 }
 
@@ -72,7 +74,6 @@ func (o *LogsArchiveIntegrationAzure) GetTenantId() string {
 		var ret string
 		return ret
 	}
-
 	return o.TenantId
 }
 
@@ -95,11 +96,11 @@ func (o LogsArchiveIntegrationAzure) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["client_id"] = o.ClientId
-	}
-	if true {
-		toSerialize["tenant_id"] = o.TenantId
+	toSerialize["client_id"] = o.ClientId
+	toSerialize["tenant_id"] = o.TenantId
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

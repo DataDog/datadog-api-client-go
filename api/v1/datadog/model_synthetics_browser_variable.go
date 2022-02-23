@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-// SyntheticsBrowserVariable Object defining a variable that can be used in your browser test. Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
+// SyntheticsBrowserVariable Object defining a variable that can be used in your browser test.// Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
 type SyntheticsBrowserVariable struct {
 	// Example for the variable.
 	Example *string `json:"example,omitempty"`
@@ -22,11 +22,15 @@ type SyntheticsBrowserVariable struct {
 	// Name of the variable.
 	Name string `json:"name"`
 	// Pattern of the variable.
-	Pattern *string                       `json:"pattern,omitempty"`
-	Type    SyntheticsBrowserVariableType `json:"type"`
+	Pattern *string `json:"pattern,omitempty"`
+	// Type of browser test variable.
+	Type SyntheticsBrowserVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBrowserVariable SyntheticsBrowserVariable
 
 // NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
 // This constructor will assign default values to properties that have it defined,
@@ -117,7 +121,6 @@ func (o *SyntheticsBrowserVariable) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -173,7 +176,6 @@ func (o *SyntheticsBrowserVariable) GetType() SyntheticsBrowserVariableType {
 		var ret SyntheticsBrowserVariableType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -202,14 +204,14 @@ func (o SyntheticsBrowserVariable) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Pattern != nil {
 		toSerialize["pattern"] = o.Pattern
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

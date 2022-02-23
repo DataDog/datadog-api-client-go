@@ -13,22 +13,37 @@ import (
 	"fmt"
 )
 
-// LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters) to a log with the result of the provided template. This enables aggregation of different attributes or raw strings into a single attribute.  The template is defined by both raw text and blocks with the syntax `%{attribute_path}`.  **Notes**:  - The processor only accepts attributes with values or an array of values in the blocks. - If an attribute cannot be used (object or array of object),   it is replaced by an empty string or the entire operation is skipped depending on your selection. - If the target attribute already exists, it is overwritten by the result of the template. - Results of the template cannot exceed 256 characters.
+// LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters)// to a log with the result of the provided template.
+// This enables aggregation of different attributes or raw strings into a single attribute.
+//
+// The template is defined by both raw text and blocks with the syntax `%{attribute_path}`.
+//
+// **Notes**:
+//
+// - The processor only accepts attributes with values or an array of values in the blocks.
+// - If an attribute cannot be used (object or array of object),
+//   it is replaced by an empty string or the entire operation is skipped depending on your selection.
+// - If the target attribute already exists, it is overwritten by the result of the template.
+// - Results of the template cannot exceed 256 characters.
 type LogsStringBuilderProcessor struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// If true, it replaces all missing attributes of `template` by an empty string. If `false` (default), skips the operation for missing attributes.
+	// If true, it replaces all missing attributes of `template` by an empty string.// If `false` (default), skips the operation for missing attributes.
 	IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// The name of the attribute that contains the result of the template.
 	Target string `json:"target"`
 	// A formula with one or more attributes and raw text.
-	Template string                         `json:"template"`
-	Type     LogsStringBuilderProcessorType `json:"type"`
+	Template string `json:"template"`
+	// Type of logs string builder processor.
+	Type LogsStringBuilderProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsStringBuilderProcessor LogsStringBuilderProcessor
 
 // NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +70,7 @@ func NewLogsStringBuilderProcessorWithDefaults() *LogsStringBuilderProcessor {
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsStringBuilderProcessorType = LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR
+	var type_ LogsStringBuilderProcessorType = "string-builder-processor"
 	this.Type = type_
 	return &this
 }
@@ -162,7 +177,6 @@ func (o *LogsStringBuilderProcessor) GetTarget() string {
 		var ret string
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -186,7 +200,6 @@ func (o *LogsStringBuilderProcessor) GetTemplate() string {
 		var ret string
 		return ret
 	}
-
 	return o.Template
 }
 
@@ -210,7 +223,6 @@ func (o *LogsStringBuilderProcessor) GetType() LogsStringBuilderProcessorType {
 		var ret LogsStringBuilderProcessorType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -242,14 +254,12 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
 	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
-	if true {
-		toSerialize["template"] = o.Template
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["target"] = o.Target
+	toSerialize["template"] = o.Template
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

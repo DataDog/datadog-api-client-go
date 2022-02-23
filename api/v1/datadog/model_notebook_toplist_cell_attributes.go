@@ -15,13 +15,20 @@ import (
 
 // NotebookToplistCellAttributes The attributes of a notebook `toplist` cell.
 type NotebookToplistCellAttributes struct {
-	Definition ToplistWidgetDefinition  `json:"definition"`
-	GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
-	SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
-	Time       NullableNotebookCellTime `json:"time,omitempty"`
+	// The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
+	Definition ToplistWidgetDefinition `json:"definition"`
+	// The size of the graph.
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	// Object describing how to split the graph to display multiple visualizations per request.
+	SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookToplistCellAttributes NotebookToplistCellAttributes
 
 // NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,6 @@ func (o *NotebookToplistCellAttributes) GetDefinition() ToplistWidgetDefinition 
 		var ret ToplistWidgetDefinition
 		return ret
 	}
-
 	return o.Definition
 }
 
@@ -177,9 +183,7 @@ func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["definition"] = o.Definition
-	}
+	toSerialize["definition"] = o.Definition
 	if o.GraphSize != nil {
 		toSerialize["graph_size"] = o.GraphSize
 	}
@@ -188,6 +192,10 @@ func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Time.IsSet() {
 		toSerialize["time"] = o.Time.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

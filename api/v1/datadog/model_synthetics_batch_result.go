@@ -14,25 +14,32 @@ import (
 
 // SyntheticsBatchResult Object with the results of a Synthetics batch.
 type SyntheticsBatchResult struct {
+	// The device ID.
 	Device *SyntheticsDeviceID `json:"device,omitempty"`
 	// Total duration in millisecond of the test.
-	Duration      *float64                     `json:"duration,omitempty"`
+	Duration *float64 `json:"duration,omitempty"`
+	// Execution rule for a Synthetics test.
 	ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
 	// Name of the location.
 	Location *string `json:"location,omitempty"`
 	// The ID of the result to get.
 	ResultId *string `json:"result_id,omitempty"`
 	// Total duration in millisecond of the test.
-	Retries *float64          `json:"retries,omitempty"`
-	Status  *SyntheticsStatus `json:"status,omitempty"`
+	Retries *float64 `json:"retries,omitempty"`
+	// Determines whether or not the batch has passed, failed, or is in progress.
+	Status *SyntheticsStatus `json:"status,omitempty"`
 	// Name of the test.
 	TestName *string `json:"test_name,omitempty"`
 	// The public ID of the Synthetic test.
-	TestPublicId *string                    `json:"test_public_id,omitempty"`
-	TestType     *SyntheticsTestDetailsType `json:"test_type,omitempty"`
+	TestPublicId *string `json:"test_public_id,omitempty"`
+	// Type of the Synthetic test, either `api` or `browser`.
+	TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBatchResult SyntheticsBatchResult
 
 // NewSyntheticsBatchResult instantiates a new SyntheticsBatchResult object
 // This constructor will assign default values to properties that have it defined,
@@ -405,6 +412,10 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 	}
 	if o.TestType != nil {
 		toSerialize["test_type"] = o.TestType
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

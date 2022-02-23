@@ -20,8 +20,11 @@ type LogsArchiveIntegrationS3 struct {
 	// The path of the integration.
 	RoleName string `json:"role_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveIntegrationS3 LogsArchiveIntegrationS3
 
 // NewLogsArchiveIntegrationS3 instantiates a new LogsArchiveIntegrationS3 object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *LogsArchiveIntegrationS3) GetAccountId() string {
 		var ret string
 		return ret
 	}
-
 	return o.AccountId
 }
 
@@ -72,7 +74,6 @@ func (o *LogsArchiveIntegrationS3) GetRoleName() string {
 		var ret string
 		return ret
 	}
-
 	return o.RoleName
 }
 
@@ -95,11 +96,11 @@ func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["account_id"] = o.AccountId
-	}
-	if true {
-		toSerialize["role_name"] = o.RoleName
+	toSerialize["account_id"] = o.AccountId
+	toSerialize["role_name"] = o.RoleName
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

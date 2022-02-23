@@ -15,12 +15,15 @@ import (
 // LogsAggregateBucket A bucket values
 type LogsAggregateBucket struct {
 	// The key, value pairs for each group by
-	By *map[string]string `json:"by,omitempty"`
+	By map[string]string `json:"by,omitempty"`
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
-	Computes *map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
+	Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateBucket LogsAggregateBucket
 
 // NewLogsAggregateBucket instantiates a new LogsAggregateBucket object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,7 @@ func (o *LogsAggregateBucket) GetBy() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.By
+	return o.By
 }
 
 // GetByOk returns a tuple with the By field value if set, nil otherwise
@@ -54,7 +57,7 @@ func (o *LogsAggregateBucket) GetByOk() (*map[string]string, bool) {
 	if o == nil || o.By == nil {
 		return nil, false
 	}
-	return o.By, true
+	return &o.By, true
 }
 
 // HasBy returns a boolean if a field has been set.
@@ -68,7 +71,7 @@ func (o *LogsAggregateBucket) HasBy() bool {
 
 // SetBy gets a reference to the given map[string]string and assigns it to the By field.
 func (o *LogsAggregateBucket) SetBy(v map[string]string) {
-	o.By = &v
+	o.By = v
 }
 
 // GetComputes returns the Computes field value if set, zero value otherwise.
@@ -77,7 +80,7 @@ func (o *LogsAggregateBucket) GetComputes() map[string]LogsAggregateBucketValue 
 		var ret map[string]LogsAggregateBucketValue
 		return ret
 	}
-	return *o.Computes
+	return o.Computes
 }
 
 // GetComputesOk returns a tuple with the Computes field value if set, nil otherwise
@@ -86,7 +89,7 @@ func (o *LogsAggregateBucket) GetComputesOk() (*map[string]LogsAggregateBucketVa
 	if o == nil || o.Computes == nil {
 		return nil, false
 	}
-	return o.Computes, true
+	return &o.Computes, true
 }
 
 // HasComputes returns a boolean if a field has been set.
@@ -100,7 +103,7 @@ func (o *LogsAggregateBucket) HasComputes() bool {
 
 // SetComputes gets a reference to the given map[string]LogsAggregateBucketValue and assigns it to the Computes field.
 func (o *LogsAggregateBucket) SetComputes(v map[string]LogsAggregateBucketValue) {
-	o.Computes = &v
+	o.Computes = v
 }
 
 func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
@@ -114,14 +117,18 @@ func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 	if o.Computes != nil {
 		toSerialize["computes"] = o.Computes
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		By       *map[string]string                   `json:"by,omitempty"`
-		Computes *map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
+		By       map[string]string                   `json:"by,omitempty"`
+		Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

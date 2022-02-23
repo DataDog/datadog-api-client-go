@@ -14,14 +14,20 @@ import (
 
 // IncidentTeamResponseData Incident Team data from a response.
 type IncidentTeamResponseData struct {
+	// The incident team's attributes from a response.
 	Attributes *IncidentTeamResponseAttributes `json:"attributes,omitempty"`
 	// The incident team's ID.
-	Id            *string                    `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The incident team's relationships.
 	Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
-	Type          *IncidentTeamType          `json:"type,omitempty"`
+	// Incident Team resource type.
+	Type *IncidentTeamType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamResponseData IncidentTeamResponseData
 
 // NewIncidentTeamResponseData instantiates a new IncidentTeamResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -29,7 +35,7 @@ type IncidentTeamResponseData struct {
 // will change when the set of required properties is changed
 func NewIncidentTeamResponseData() *IncidentTeamResponseData {
 	this := IncidentTeamResponseData{}
-	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
+	var type_ IncidentTeamType = "teams"
 	this.Type = &type_
 	return &this
 }
@@ -39,7 +45,7 @@ func NewIncidentTeamResponseData() *IncidentTeamResponseData {
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTeamResponseDataWithDefaults() *IncidentTeamResponseData {
 	this := IncidentTeamResponseData{}
-	var type_ IncidentTeamType = INCIDENTTEAMTYPE_TEAMS
+	var type_ IncidentTeamType = "teams"
 	this.Type = &type_
 	return &this
 }
@@ -188,6 +194,10 @@ func (o IncidentTeamResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -33,10 +33,10 @@ type apiCreateAWSAccountRequest struct {
 /*
  * CreateAWSAccount Create an AWS integration
  * Create a Datadog-Amazon Web Services integration.
-Using the `POST` method updates your integration configuration
-by adding your new configuration to the existing one in your Datadog organization.
-A unique AWS Account ID for role based authentication.
-*/
+ * Using the `POST` method updates your integration configuration
+ * by adding your new configuration to the existing one in your Datadog organization.
+ * A unique AWS Account ID for role based authentication.
+ */
 func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateAWSAccountRequest{
 		ApiService: a,
@@ -936,7 +936,6 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.accountId != nil {
 		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}
@@ -945,14 +944,6 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	}
 	if r.accessKeyId != nil {
 		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -963,7 +954,6 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1105,16 +1095,7 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 	if r.accountId == nil {
 		return localVarReturnValue, nil, reportError("accountId is required and must be specified")
 	}
-
 	localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -1124,7 +1105,6 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1262,15 +1242,6 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1279,7 +1250,6 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1448,7 +1418,6 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	if r.body == nil {
 		return localVarReturnValue, nil, reportError("body is required and must be specified")
 	}
-
 	if r.accountId != nil {
 		localVarQueryParams.Add("account_id", parameterToString(*r.accountId, ""))
 	}
@@ -1458,6 +1427,7 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 	if r.accessKeyId != nil {
 		localVarQueryParams.Add("access_key_id", parameterToString(*r.accessKeyId, ""))
 	}
+
 	// to determine the Content-Type header
 	localVarHTTPContentTypes := []string{"application/json"}
 

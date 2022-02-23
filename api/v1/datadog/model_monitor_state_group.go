@@ -23,11 +23,15 @@ type MonitorStateGroup struct {
 	// Latest timestamp the monitor group triggered.
 	LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
 	// The name of the monitor.
-	Name   *string               `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorStateGroup MonitorStateGroup
 
 // NewMonitorStateGroup instantiates a new MonitorStateGroup object
 // This constructor will assign default values to properties that have it defined,
@@ -260,6 +264,10 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

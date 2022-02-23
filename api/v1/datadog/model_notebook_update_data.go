@@ -15,11 +15,16 @@ import (
 
 // NotebookUpdateData The data for a notebook update request.
 type NotebookUpdateData struct {
+	// The data attributes of a notebook.
 	Attributes NotebookUpdateDataAttributes `json:"attributes"`
-	Type       NotebookResourceType         `json:"type"`
+	// Type of the Notebook resource.
+	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookUpdateData NotebookUpdateData
 
 // NewNotebookUpdateData instantiates a new NotebookUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewNotebookUpdateData(attributes NotebookUpdateDataAttributes, type_ Notebo
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookUpdateDataWithDefaults() *NotebookUpdateData {
 	this := NotebookUpdateData{}
-	var type_ NotebookResourceType = NOTEBOOKRESOURCETYPE_NOTEBOOKS
+	var type_ NotebookResourceType = "notebooks"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *NotebookUpdateData) GetAttributes() NotebookUpdateDataAttributes {
 		var ret NotebookUpdateDataAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *NotebookUpdateData) GetType() NotebookResourceType {
 		var ret NotebookResourceType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o NotebookUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

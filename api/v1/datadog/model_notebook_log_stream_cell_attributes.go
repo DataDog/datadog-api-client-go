@@ -15,12 +15,18 @@ import (
 
 // NotebookLogStreamCellAttributes The attributes of a notebook `log_stream` cell.
 type NotebookLogStreamCellAttributes struct {
+	// The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
 	Definition LogStreamWidgetDefinition `json:"definition"`
-	GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
-	Time       NullableNotebookCellTime  `json:"time,omitempty"`
+	// The size of the graph.
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookLogStreamCellAttributes NotebookLogStreamCellAttributes
 
 // NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +52,6 @@ func (o *NotebookLogStreamCellAttributes) GetDefinition() LogStreamWidgetDefinit
 		var ret LogStreamWidgetDefinition
 		return ret
 	}
-
 	return o.Definition
 }
 
@@ -144,14 +149,16 @@ func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["definition"] = o.Definition
-	}
+	toSerialize["definition"] = o.Definition
 	if o.GraphSize != nil {
 		toSerialize["graph_size"] = o.GraphSize
 	}
 	if o.Time.IsSet() {
 		toSerialize["time"] = o.Time.Get()
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

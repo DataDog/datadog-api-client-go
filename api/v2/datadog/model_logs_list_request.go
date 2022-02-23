@@ -14,13 +14,20 @@ import (
 
 // LogsListRequest The request for a logs list.
 type LogsListRequest struct {
-	Filter  *LogsQueryFilter     `json:"filter,omitempty"`
-	Options *LogsQueryOptions    `json:"options,omitempty"`
-	Page    *LogsListRequestPage `json:"page,omitempty"`
-	Sort    *LogsSort            `json:"sort,omitempty"`
+	// The search and filter query settings
+	Filter *LogsQueryFilter `json:"filter,omitempty"`
+	// Global query options that are used during the query.// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+	Options *LogsQueryOptions `json:"options,omitempty"`
+	// Paging attributes for listing logs.
+	Page *LogsListRequestPage `json:"page,omitempty"`
+	// Sort parameters when querying logs.
+	Sort *LogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsListRequest LogsListRequest
 
 // NewLogsListRequest instantiates a new LogsListRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -183,6 +190,10 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,23 +14,30 @@ import (
 
 // SyntheticsAPITestResultData Object containing results for your Synthetic API test.
 type SyntheticsAPITestResultData struct {
-	Cert      *SyntheticsSSLCertificate       `json:"cert,omitempty"`
-	EventType *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
-	Failure   *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
+	// Object describing the SSL certificate used for a Synthetic test.
+	Cert *SyntheticsSSLCertificate `json:"cert,omitempty"`
+	// Status of a Synthetic test.
+	EventType *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+	// The API test failure details.
+	Failure *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
 	// The API test HTTP status code.
 	HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
 	// Request header object used for the API test.
-	RequestHeaders *map[string]interface{} `json:"requestHeaders,omitempty"`
+	RequestHeaders map[string]interface{} `json:"requestHeaders,omitempty"`
 	// Response body returned for the API test.
 	ResponseBody *string `json:"responseBody,omitempty"`
 	// Response headers returned for the API test.
-	ResponseHeaders *map[string]interface{} `json:"responseHeaders,omitempty"`
+	ResponseHeaders map[string]interface{} `json:"responseHeaders,omitempty"`
 	// Global size in byte of the API test response.
-	ResponseSize *int64            `json:"responseSize,omitempty"`
-	Timings      *SyntheticsTiming `json:"timings,omitempty"`
+	ResponseSize *int64 `json:"responseSize,omitempty"`
+	// Object containing all metrics and their values collected for a Synthetic API test.// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
+	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAPITestResultData SyntheticsAPITestResultData
 
 // NewSyntheticsAPITestResultData instantiates a new SyntheticsAPITestResultData object
 // This constructor will assign default values to properties that have it defined,
@@ -183,7 +190,7 @@ func (o *SyntheticsAPITestResultData) GetRequestHeaders() map[string]interface{}
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.RequestHeaders
+	return o.RequestHeaders
 }
 
 // GetRequestHeadersOk returns a tuple with the RequestHeaders field value if set, nil otherwise
@@ -192,7 +199,7 @@ func (o *SyntheticsAPITestResultData) GetRequestHeadersOk() (*map[string]interfa
 	if o == nil || o.RequestHeaders == nil {
 		return nil, false
 	}
-	return o.RequestHeaders, true
+	return &o.RequestHeaders, true
 }
 
 // HasRequestHeaders returns a boolean if a field has been set.
@@ -206,7 +213,7 @@ func (o *SyntheticsAPITestResultData) HasRequestHeaders() bool {
 
 // SetRequestHeaders gets a reference to the given map[string]interface{} and assigns it to the RequestHeaders field.
 func (o *SyntheticsAPITestResultData) SetRequestHeaders(v map[string]interface{}) {
-	o.RequestHeaders = &v
+	o.RequestHeaders = v
 }
 
 // GetResponseBody returns the ResponseBody field value if set, zero value otherwise.
@@ -247,7 +254,7 @@ func (o *SyntheticsAPITestResultData) GetResponseHeaders() map[string]interface{
 		var ret map[string]interface{}
 		return ret
 	}
-	return *o.ResponseHeaders
+	return o.ResponseHeaders
 }
 
 // GetResponseHeadersOk returns a tuple with the ResponseHeaders field value if set, nil otherwise
@@ -256,7 +263,7 @@ func (o *SyntheticsAPITestResultData) GetResponseHeadersOk() (*map[string]interf
 	if o == nil || o.ResponseHeaders == nil {
 		return nil, false
 	}
-	return o.ResponseHeaders, true
+	return &o.ResponseHeaders, true
 }
 
 // HasResponseHeaders returns a boolean if a field has been set.
@@ -270,7 +277,7 @@ func (o *SyntheticsAPITestResultData) HasResponseHeaders() bool {
 
 // SetResponseHeaders gets a reference to the given map[string]interface{} and assigns it to the ResponseHeaders field.
 func (o *SyntheticsAPITestResultData) SetResponseHeaders(v map[string]interface{}) {
-	o.ResponseHeaders = &v
+	o.ResponseHeaders = v
 }
 
 // GetResponseSize returns the ResponseSize field value if set, zero value otherwise.
@@ -369,6 +376,10 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 	if o.Timings != nil {
 		toSerialize["timings"] = o.Timings
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
@@ -379,9 +390,9 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 		EventType       *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
 		Failure         *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
 		HttpStatusCode  *int64                          `json:"httpStatusCode,omitempty"`
-		RequestHeaders  *map[string]interface{}         `json:"requestHeaders,omitempty"`
+		RequestHeaders  map[string]interface{}          `json:"requestHeaders,omitempty"`
 		ResponseBody    *string                         `json:"responseBody,omitempty"`
-		ResponseHeaders *map[string]interface{}         `json:"responseHeaders,omitempty"`
+		ResponseHeaders map[string]interface{}          `json:"responseHeaders,omitempty"`
 		ResponseSize    *int64                          `json:"responseSize,omitempty"`
 		Timings         *SyntheticsTiming               `json:"timings,omitempty"`
 	}{}

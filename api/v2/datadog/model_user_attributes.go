@@ -38,8 +38,11 @@ type UserAttributes struct {
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserAttributes UserAttributes
 
 // NewUserAttributes instantiates a new UserAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -469,6 +472,10 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Verified != nil {
 		toSerialize["verified"] = o.Verified
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

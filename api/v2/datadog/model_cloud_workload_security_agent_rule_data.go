@@ -14,13 +14,18 @@ import (
 
 // CloudWorkloadSecurityAgentRuleData Object for a single Agent rule.
 type CloudWorkloadSecurityAgentRuleData struct {
+	// A Cloud Workload Security Agent rule returned by the API.
 	Attributes *CloudWorkloadSecurityAgentRuleAttributes `json:"attributes,omitempty"`
 	// The ID of the Agent rule.
-	Id   *string                             `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The type of the resource. The value should always be `agent_rule`.
 	Type *CloudWorkloadSecurityAgentRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CloudWorkloadSecurityAgentRuleData CloudWorkloadSecurityAgentRuleData
 
 // NewCloudWorkloadSecurityAgentRuleData instantiates a new CloudWorkloadSecurityAgentRuleData object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type CloudWorkloadSecurityAgentRuleData struct {
 // will change when the set of required properties is changed
 func NewCloudWorkloadSecurityAgentRuleData() *CloudWorkloadSecurityAgentRuleData {
 	this := CloudWorkloadSecurityAgentRuleData{}
-	var type_ CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
+	var type_ CloudWorkloadSecurityAgentRuleType = "agent_rule"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewCloudWorkloadSecurityAgentRuleData() *CloudWorkloadSecurityAgentRuleData
 // but it doesn't guarantee that properties required by API are set
 func NewCloudWorkloadSecurityAgentRuleDataWithDefaults() *CloudWorkloadSecurityAgentRuleData {
 	this := CloudWorkloadSecurityAgentRuleData{}
-	var type_ CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
+	var type_ CloudWorkloadSecurityAgentRuleType = "agent_rule"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o CloudWorkloadSecurityAgentRuleData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

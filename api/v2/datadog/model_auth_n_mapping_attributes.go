@@ -26,8 +26,11 @@ type AuthNMappingAttributes struct {
 	// The ID of the SAML assertion attribute.
 	SamlAssertionAttributeId *int32 `json:"saml_assertion_attribute_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingAttributes AuthNMappingAttributes
 
 // NewAuthNMappingAttributes instantiates a new AuthNMappingAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -225,6 +228,10 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.SamlAssertionAttributeId != nil {
 		toSerialize["saml_assertion_attribute_id"] = o.SamlAssertionAttributeId
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

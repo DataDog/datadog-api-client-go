@@ -14,10 +14,12 @@ import (
 
 // SLOCorrectionResponseAttributes The attribute object associated with the SLO correction.
 type SLOCorrectionResponseAttributes struct {
+	// Category the SLO correction belongs to.
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// The epoch timestamp of when the correction was created at
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	// Object describing the creator of the shared element.
+	Creator *Creator `json:"creator,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
 	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
@@ -25,19 +27,23 @@ type SLOCorrectionResponseAttributes struct {
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
 	// The epoch timestamp of when the correction was modified at
-	ModifiedAt *int64                                          `json:"modified_at,omitempty"`
-	Modifier   NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
+	ModifiedAt *int64 `json:"modified_at,omitempty"`
+	// Modifier of the object.
+	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds.
 	Start *int64 `json:"start,omitempty"`
-	// The timezone to display in the UI for the correction times (defaults to \"UTC\").
+	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOCorrectionResponseAttributes SLOCorrectionResponseAttributes
 
 // NewSLOCorrectionResponseAttributes instantiates a new SLOCorrectionResponseAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -513,6 +519,10 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Timezone != nil {
 		toSerialize["timezone"] = o.Timezone
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

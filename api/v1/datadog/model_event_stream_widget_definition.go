@@ -13,23 +13,30 @@ import (
 	"fmt"
 )
 
-// EventStreamWidgetDefinition The event stream is a widget version of the stream of events on the Event Stream view. Only available on FREE layout dashboards.
+// EventStreamWidgetDefinition The event stream is a widget version of the stream of events// on the Event Stream view. Only available on FREE layout dashboards.
 type EventStreamWidgetDefinition struct {
+	// Size to use to display an event.
 	EventSize *WidgetEventSize `json:"event_size,omitempty"`
 	// Query to filter the event stream with.
 	Query string `json:"query"`
 	// The execution method for multi-value filters. Can be either and or or.
-	TagsExecution *string     `json:"tags_execution,omitempty"`
-	Time          *WidgetTime `json:"time,omitempty"`
+	TagsExecution *string `json:"tags_execution,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      EventStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the event stream widget.
+	Type EventStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _EventStreamWidgetDefinition EventStreamWidgetDefinition
 
 // NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +54,7 @@ func NewEventStreamWidgetDefinition(query string, type_ EventStreamWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewEventStreamWidgetDefinitionWithDefaults() *EventStreamWidgetDefinition {
 	this := EventStreamWidgetDefinition{}
-	var type_ EventStreamWidgetDefinitionType = EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM
+	var type_ EventStreamWidgetDefinitionType = "event_stream"
 	this.Type = type_
 	return &this
 }
@@ -90,7 +97,6 @@ func (o *EventStreamWidgetDefinition) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -274,7 +280,6 @@ func (o *EventStreamWidgetDefinition) GetType() EventStreamWidgetDefinitionType 
 		var ret EventStreamWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -300,9 +305,7 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.EventSize != nil {
 		toSerialize["event_size"] = o.EventSize
 	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
+	toSerialize["query"] = o.Query
 	if o.TagsExecution != nil {
 		toSerialize["tags_execution"] = o.TagsExecution
 	}
@@ -318,8 +321,10 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

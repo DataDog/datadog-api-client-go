@@ -15,7 +15,10 @@ import (
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
 type WidgetMarker struct {
-	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
+	// Combination of://   - A severity error, warning, ok, or info
+	//   - A line type: dashed, solid, or bold
+	// In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
+	//
 	DisplayType *string `json:"display_type,omitempty"`
 	// Label to display over the marker.
 	Label *string `json:"label,omitempty"`
@@ -24,8 +27,11 @@ type WidgetMarker struct {
 	// Value to apply. Can be a single value y = 15 or a range of values 0 < y < 10.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetMarker WidgetMarker
 
 // NewWidgetMarker instantiates a new WidgetMarker object
 // This constructor will assign default values to properties that have it defined,
@@ -147,7 +153,6 @@ func (o *WidgetMarker) GetValue() string {
 		var ret string
 		return ret
 	}
-
 	return o.Value
 }
 
@@ -179,8 +184,10 @@ func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
-	if true {
-		toSerialize["value"] = o.Value
+	toSerialize["value"] = o.Value
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

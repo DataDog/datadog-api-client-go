@@ -15,17 +15,24 @@ import (
 
 // TreeMapWidgetDefinition The treemap visualization found on the Host Dashboards comes from the output of `ps auxww`. This is not continuously run on your hosts. Instead, it’s run once on Agent start/restart. The treemap is only supported for process data on a single host dashboard — this may not be reused in other dashboards or for other metrics.
 type TreeMapWidgetDefinition struct {
+	// The attribute used to determine color in the widget.
 	ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
+	// The attribute used to group elements in the widget.
 	GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
 	// List of top list widget requests.
 	Requests []TreeMapWidgetRequest `json:"requests"`
-	SizeBy   *TreeMapSizeBy         `json:"size_by,omitempty"`
+	// The attribute used to determine size in the widget.
+	SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
 	// Title of your widget.
-	Title *string                     `json:"title,omitempty"`
-	Type  TreeMapWidgetDefinitionType `json:"type"`
+	Title *string `json:"title,omitempty"`
+	// Type of the treemap widget.
+	Type TreeMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TreeMapWidgetDefinition TreeMapWidgetDefinition
 
 // NewTreeMapWidgetDefinition instantiates a new TreeMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -33,7 +40,7 @@ type TreeMapWidgetDefinition struct {
 // will change when the set of required properties is changed
 func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
-	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
+	var colorBy TreeMapColorBy = "user"
 	this.ColorBy = &colorBy
 	this.Requests = requests
 	this.Type = type_
@@ -45,9 +52,9 @@ func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWi
 // but it doesn't guarantee that properties required by API are set
 func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
-	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
+	var colorBy TreeMapColorBy = "user"
 	this.ColorBy = &colorBy
-	var type_ TreeMapWidgetDefinitionType = TREEMAPWIDGETDEFINITIONTYPE_TREEMAP
+	var type_ TreeMapWidgetDefinitionType = "treemap"
 	this.Type = type_
 	return &this
 }
@@ -122,7 +129,6 @@ func (o *TreeMapWidgetDefinition) GetRequests() []TreeMapWidgetRequest {
 		var ret []TreeMapWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -210,7 +216,6 @@ func (o *TreeMapWidgetDefinition) GetType() TreeMapWidgetDefinitionType {
 		var ret TreeMapWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -239,17 +244,17 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.SizeBy != nil {
 		toSerialize["size_by"] = o.SizeBy
 	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -13,24 +13,31 @@ import (
 	"fmt"
 )
 
-// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that match a search criteria using user-defined columns.
+// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that// match a search criteria using user-defined columns.
+//
 type ListStreamWidgetDefinition struct {
-	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
+	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// Request payload used to query items.
 	Requests []ListStreamWidgetRequest `json:"requests"`
 	// Whether or not to display the legend on this widget.
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      ListStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the list stream widget.
+	Type ListStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListStreamWidgetDefinition ListStreamWidgetDefinition
 
 // NewListStreamWidgetDefinition instantiates a new ListStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +55,7 @@ func NewListStreamWidgetDefinition(requests []ListStreamWidgetRequest, type_ Lis
 // but it doesn't guarantee that properties required by API are set
 func NewListStreamWidgetDefinitionWithDefaults() *ListStreamWidgetDefinition {
 	this := ListStreamWidgetDefinition{}
-	var type_ ListStreamWidgetDefinitionType = LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM
+	var type_ ListStreamWidgetDefinitionType = "list_stream"
 	this.Type = type_
 	return &this
 }
@@ -91,7 +98,6 @@ func (o *ListStreamWidgetDefinition) GetRequests() []ListStreamWidgetRequest {
 		var ret []ListStreamWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -275,7 +281,6 @@ func (o *ListStreamWidgetDefinition) GetType() ListStreamWidgetDefinitionType {
 		var ret ListStreamWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -301,9 +306,7 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.LegendSize != nil {
 		toSerialize["legend_size"] = o.LegendSize
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.ShowLegend != nil {
 		toSerialize["show_legend"] = o.ShowLegend
 	}
@@ -319,8 +322,10 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

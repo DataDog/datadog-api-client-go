@@ -1,0 +1,41 @@
+type Nullable{{ name }} struct {
+	value *{{ name }}
+	isSet bool
+}
+
+func (v Nullable{{ name }}) Get() *{{ name }} {
+	return v.value
+}
+
+func (v *Nullable{{ name }}) Set(val *{{ name }}) {
+	v.value = val
+	v.isSet = true
+}
+
+func (v Nullable{{ name }}) IsSet() bool {
+	return v.isSet
+}
+
+func (v *Nullable{{ name }}) Unset() {
+	v.value = nil
+	v.isSet = false
+}
+
+func NewNullable{{ name }}(val *{{ name }}) *Nullable{{ name }} {
+	return &Nullable{{ name }}{value: val, isSet: true}
+}
+
+func (v Nullable{{ name }}) MarshalJSON() ([]byte, error) {
+	return json.Marshal(v.value)
+}
+
+func (v *Nullable{{ name }}) UnmarshalJSON(src []byte) error {
+	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
+	return json.Unmarshal(src, &v.value)
+}

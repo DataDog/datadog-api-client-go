@@ -267,24 +267,14 @@ func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteInc
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -413,8 +403,8 @@ func (r *GetIncidentServiceOptionalParameters) WithInclude(include IncidentRelat
 /*
  * GetIncidentService Get details of an incident service
  * Get details of an incident service. If the `include[users]` query parameter is provided,
-the included attribute will contain the users related to these incident services.
-*/
+ * the included attribute will contain the users related to these incident services.
+ */
 func (a *IncidentServicesApiService) GetIncidentService(ctx _context.Context, serviceId string, o ...GetIncidentServiceOptionalParameters) (IncidentServiceResponse, *_nethttp.Response, error) {
 	req := apiGetIncidentServiceRequest{
 		ApiService: a,
@@ -466,17 +456,8 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -487,7 +468,6 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -695,7 +675,6 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.include != nil {
 		localVarQueryParams.Add("include", parameterToString(*r.include, ""))
 	}
@@ -708,14 +687,6 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 	if r.filter != nil {
 		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -725,7 +696,6 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

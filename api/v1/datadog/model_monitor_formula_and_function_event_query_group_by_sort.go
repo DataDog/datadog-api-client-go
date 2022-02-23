@@ -15,13 +15,18 @@ import (
 
 // MonitorFormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
 type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
+	// Aggregation methods for event platform queries.
 	Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
 	// Metric used for sorting group by results.
-	Metric *string         `json:"metric,omitempty"`
-	Order  *QuerySortOrder `json:"order,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	// Direction of sort.
+	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorFormulaAndFunctionEventQueryGroupBySort MonitorFormulaAndFunctionEventQueryGroupBySort
 
 // NewMonitorFormulaAndFunctionEventQueryGroupBySort instantiates a new MonitorFormulaAndFunctionEventQueryGroupBySort object
 // This constructor will assign default values to properties that have it defined,
@@ -30,7 +35,7 @@ type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
 func NewMonitorFormulaAndFunctionEventQueryGroupBySort(aggregation MonitorFormulaAndFunctionEventAggregation) *MonitorFormulaAndFunctionEventQueryGroupBySort {
 	this := MonitorFormulaAndFunctionEventQueryGroupBySort{}
 	this.Aggregation = aggregation
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -40,7 +45,7 @@ func NewMonitorFormulaAndFunctionEventQueryGroupBySort(aggregation MonitorFormul
 // but it doesn't guarantee that properties required by API are set
 func NewMonitorFormulaAndFunctionEventQueryGroupBySortWithDefaults() *MonitorFormulaAndFunctionEventQueryGroupBySort {
 	this := MonitorFormulaAndFunctionEventQueryGroupBySort{}
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetAggregation() Monito
 		var ret MonitorFormulaAndFunctionEventAggregation
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -138,14 +142,16 @@ func (o MonitorFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, e
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Metric != nil {
 		toSerialize["metric"] = o.Metric
 	}
 	if o.Order != nil {
 		toSerialize["order"] = o.Order
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

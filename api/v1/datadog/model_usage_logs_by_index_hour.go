@@ -30,8 +30,11 @@ type UsageLogsByIndexHour struct {
 	// The retention period (in days) for this index ID.
 	Retention *int64 `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageLogsByIndexHour UsageLogsByIndexHour
 
 // NewUsageLogsByIndexHour instantiates a new UsageLogsByIndexHour object
 // This constructor will assign default values to properties that have it defined,
@@ -299,6 +302,10 @@ func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.Retention != nil {
 		toSerialize["retention"] = o.Retention
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

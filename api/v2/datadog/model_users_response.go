@@ -18,10 +18,14 @@ type UsersResponse struct {
 	Data *[]User `json:"data,omitempty"`
 	// Array of objects related to the users.
 	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
-	Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
+	// Object describing meta attributes of response.
+	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsersResponse UsersResponse
 
 // NewUsersResponse instantiates a new UsersResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -149,6 +153,10 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,19 +15,24 @@ import (
 
 // LogsArchiveAttributes The attributes associated with the archive.
 type LogsArchiveAttributes struct {
+	// An archive's destination.
 	Destination NullableLogsArchiveDestination `json:"destination"`
-	// To store the tags in the archive, set the value \"true\". If it is set to \"false\", the tags will be deleted when the logs are sent to the archive.
+	// To store the tags in the archive, set the value "true".// If it is set to "false", the tags will be deleted when the logs are sent to the archive.
 	IncludeTags *bool `json:"include_tags,omitempty"`
 	// The archive name.
 	Name string `json:"name"`
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// An array of tags to add to rehydrated logs from an archive.
-	RehydrationTags *[]string         `json:"rehydration_tags,omitempty"`
-	State           *LogsArchiveState `json:"state,omitempty"`
+	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+	// The state of the archive.
+	State *LogsArchiveState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveAttributes LogsArchiveAttributes
 
 // NewLogsArchiveAttributes instantiates a new LogsArchiveAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -60,7 +65,6 @@ func (o *LogsArchiveAttributes) GetDestination() LogsArchiveDestination {
 		var ret LogsArchiveDestination
 		return ret
 	}
-
 	return *o.Destination.Get()
 }
 
@@ -117,7 +121,6 @@ func (o *LogsArchiveAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -141,7 +144,6 @@ func (o *LogsArchiveAttributes) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -228,23 +230,21 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["destination"] = o.Destination.Get()
-	}
+	toSerialize["destination"] = o.Destination.Get()
 	if o.IncludeTags != nil {
 		toSerialize["include_tags"] = o.IncludeTags
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["query"] = o.Query
 	if o.RehydrationTags != nil {
 		toSerialize["rehydration_tags"] = o.RehydrationTags
 	}
 	if o.State != nil {
 		toSerialize["state"] = o.State
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

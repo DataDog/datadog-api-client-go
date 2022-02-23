@@ -13,18 +13,26 @@ import (
 	"fmt"
 )
 
-// LogsTraceRemapper There are two ways to improve correlation between application traces and logs.    1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)   and by default log integrations take care of all the rest of the setup.    2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
+// LogsTraceRemapper There are two ways to improve correlation between application traces and logs.//
+//   1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)
+//   and by default log integrations take care of all the rest of the setup.
+//
+//   2. Use the Trace remapper processor to define a log attribute as its associated trace ID.
 type LogsTraceRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources *[]string             `json:"sources,omitempty"`
-	Type    LogsTraceRemapperType `json:"type"`
+	Sources *[]string `json:"sources,omitempty"`
+	// Type of logs trace remapper.
+	Type LogsTraceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsTraceRemapper LogsTraceRemapper
 
 // NewLogsTraceRemapper instantiates a new LogsTraceRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +53,7 @@ func NewLogsTraceRemapperWithDefaults() *LogsTraceRemapper {
 	this := LogsTraceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsTraceRemapperType = LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER
+	var type_ LogsTraceRemapperType = "trace-id-remapper"
 	this.Type = type_
 	return &this
 }
@@ -152,7 +160,6 @@ func (o *LogsTraceRemapper) GetType() LogsTraceRemapperType {
 		var ret LogsTraceRemapperType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -184,8 +191,10 @@ func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 	if o.Sources != nil {
 		toSerialize["sources"] = o.Sources
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

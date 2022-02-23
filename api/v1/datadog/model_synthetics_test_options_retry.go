@@ -14,13 +14,16 @@ import (
 
 // SyntheticsTestOptionsRetry Object describing the retry strategy to apply to a Synthetic test.
 type SyntheticsTestOptionsRetry struct {
-	// Number of times a test needs to be retried before marking a location as failed. Defaults to 0.
+	// Number of times a test needs to be retried before marking a// location as failed. Defaults to 0.
 	Count *int64 `json:"count,omitempty"`
-	// Time interval between retries (in milliseconds). Defaults to 300ms.
+	// Time interval between retries (in milliseconds). Defaults to// 300ms.
 	Interval *float64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTestOptionsRetry SyntheticsTestOptionsRetry
 
 // NewSyntheticsTestOptionsRetry instantiates a new SyntheticsTestOptionsRetry object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 	}
 	if o.Interval != nil {
 		toSerialize["interval"] = o.Interval
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

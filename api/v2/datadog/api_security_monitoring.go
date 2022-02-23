@@ -37,10 +37,10 @@ type apiCreateSecurityFilterRequest struct {
 /*
  * CreateSecurityFilter Create a security filter
  * Create a security filter.
-
-See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
-for more examples.
-*/
+ *
+ * See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+ * for more examples.
+ */
 func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiCreateSecurityFilterRequest{
 		ApiService: a,
@@ -409,24 +409,14 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -556,24 +546,14 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -668,10 +648,10 @@ type apiGetSecurityFilterRequest struct {
 /*
  * GetSecurityFilter Get a security filter
  * Get the details of a specific security filter.
-
-See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
-for more examples.
-*/
+ *
+ * See the [security filter guide](https://docs.datadoghq.com/security_platform/guide/how-to-setup-security-filters-using-security-monitoring-api/)
+ * for more examples.
+ */
 func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiGetSecurityFilterRequest{
 		ApiService:       a,
@@ -708,15 +688,6 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -725,7 +696,6 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -866,15 +836,6 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -883,7 +844,6 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1011,15 +971,6 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1028,7 +979,6 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1185,20 +1135,11 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
 	}
 	if r.pageNumber != nil {
 		localVarQueryParams.Add("page[number]", parameterToString(*r.pageNumber, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -1209,7 +1150,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1346,9 +1286,9 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 /*
  * ListSecurityMonitoringSignals Get a quick list of security signals
  * The list endpoint returns security signals that match a search query.
-Both this endpoint and the POST endpoint can be used interchangeably when listing
-security signals.
-*/
+ * Both this endpoint and the POST endpoint can be used interchangeably when listing
+ * security signals.
+ */
 func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
 		ApiService: a,
@@ -1403,7 +1343,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.filterQuery != nil {
 		localVarQueryParams.Add("filter[query]", parameterToString(*r.filterQuery, ""))
 	}
@@ -1422,14 +1361,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	if r.pageLimit != nil {
 		localVarQueryParams.Add("page[limit]", parameterToString(*r.pageLimit, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -1439,7 +1370,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1556,9 +1486,9 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 /*
  * SearchSecurityMonitoringSignals Get a list of security signals
  * Returns security signals that match a search query.
-Both this endpoint and the GET endpoint can be used interchangeably for listing
-security signals.
-*/
+ * Both this endpoint and the GET endpoint can be used interchangeably for listing
+ * security signals.
+ */
 func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	req := apiSearchSecurityMonitoringSignalsRequest{
 		ApiService: a,
@@ -1733,8 +1663,8 @@ type apiUpdateSecurityFilterRequest struct {
 /*
  * UpdateSecurityFilter Update a security filter
  * Update a specific security filter.
-Returns the security filter object when the request is successful.
-*/
+ * Returns the security filter object when the request is successful.
+ */
 func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiUpdateSecurityFilterRequest{
 		ApiService:       a,
@@ -1919,9 +1849,9 @@ type apiUpdateSecurityMonitoringRuleRequest struct {
 /*
  * UpdateSecurityMonitoringRule Update an existing rule
  * Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
-must be included. For example, when modifying a query all queries must be included.
-Default rules can only be updated to be enabled and to change notifications.
-*/
+ * must be included. For example, when modifying a query all queries must be included.
+ * Default rules can only be updated to be enabled and to change notifications.
+ */
 func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	req := apiUpdateSecurityMonitoringRuleRequest{
 		ApiService: a,

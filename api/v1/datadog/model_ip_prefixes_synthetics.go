@@ -17,14 +17,17 @@ type IPPrefixesSynthetics struct {
 	// List of IPv4 prefixes.
 	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
 	// List of IPv4 prefixes by location.
-	PrefixesIpv4ByLocation *map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
+	PrefixesIpv4ByLocation map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 	// List of IPv6 prefixes by location.
-	PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
+	PrefixesIpv6ByLocation map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IPPrefixesSynthetics IPPrefixesSynthetics
 
 // NewIPPrefixesSynthetics instantiates a new IPPrefixesSynthetics object
 // This constructor will assign default values to properties that have it defined,
@@ -81,7 +84,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv4ByLocation() map[string][]string {
 		var ret map[string][]string
 		return ret
 	}
-	return *o.PrefixesIpv4ByLocation
+	return o.PrefixesIpv4ByLocation
 }
 
 // GetPrefixesIpv4ByLocationOk returns a tuple with the PrefixesIpv4ByLocation field value if set, nil otherwise
@@ -90,7 +93,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv4ByLocationOk() (*map[string][]stri
 	if o == nil || o.PrefixesIpv4ByLocation == nil {
 		return nil, false
 	}
-	return o.PrefixesIpv4ByLocation, true
+	return &o.PrefixesIpv4ByLocation, true
 }
 
 // HasPrefixesIpv4ByLocation returns a boolean if a field has been set.
@@ -104,7 +107,7 @@ func (o *IPPrefixesSynthetics) HasPrefixesIpv4ByLocation() bool {
 
 // SetPrefixesIpv4ByLocation gets a reference to the given map[string][]string and assigns it to the PrefixesIpv4ByLocation field.
 func (o *IPPrefixesSynthetics) SetPrefixesIpv4ByLocation(v map[string][]string) {
-	o.PrefixesIpv4ByLocation = &v
+	o.PrefixesIpv4ByLocation = v
 }
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
@@ -145,7 +148,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv6ByLocation() map[string][]string {
 		var ret map[string][]string
 		return ret
 	}
-	return *o.PrefixesIpv6ByLocation
+	return o.PrefixesIpv6ByLocation
 }
 
 // GetPrefixesIpv6ByLocationOk returns a tuple with the PrefixesIpv6ByLocation field value if set, nil otherwise
@@ -154,7 +157,7 @@ func (o *IPPrefixesSynthetics) GetPrefixesIpv6ByLocationOk() (*map[string][]stri
 	if o == nil || o.PrefixesIpv6ByLocation == nil {
 		return nil, false
 	}
-	return o.PrefixesIpv6ByLocation, true
+	return &o.PrefixesIpv6ByLocation, true
 }
 
 // HasPrefixesIpv6ByLocation returns a boolean if a field has been set.
@@ -168,7 +171,7 @@ func (o *IPPrefixesSynthetics) HasPrefixesIpv6ByLocation() bool {
 
 // SetPrefixesIpv6ByLocation gets a reference to the given map[string][]string and assigns it to the PrefixesIpv6ByLocation field.
 func (o *IPPrefixesSynthetics) SetPrefixesIpv6ByLocation(v map[string][]string) {
-	o.PrefixesIpv6ByLocation = &v
+	o.PrefixesIpv6ByLocation = v
 }
 
 func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
@@ -188,16 +191,20 @@ func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 	if o.PrefixesIpv6ByLocation != nil {
 		toSerialize["prefixes_ipv6_by_location"] = o.PrefixesIpv6ByLocation
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PrefixesIpv4           *[]string            `json:"prefixes_ipv4,omitempty"`
-		PrefixesIpv4ByLocation *map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
-		PrefixesIpv6           *[]string            `json:"prefixes_ipv6,omitempty"`
-		PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
+		PrefixesIpv4           *[]string           `json:"prefixes_ipv4,omitempty"`
+		PrefixesIpv4ByLocation map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
+		PrefixesIpv6           *[]string           `json:"prefixes_ipv6,omitempty"`
+		PrefixesIpv6ByLocation map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

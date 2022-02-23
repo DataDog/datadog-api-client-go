@@ -19,8 +19,11 @@ type SyntheticsCIBatchMetadataGit struct {
 	// The commit SHA.
 	CommitSha *string `json:"commitSha,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsCIBatchMetadataGit SyntheticsCIBatchMetadataGit
 
 // NewSyntheticsCIBatchMetadataGit instantiates a new SyntheticsCIBatchMetadataGit object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 	}
 	if o.CommitSha != nil {
 		toSerialize["commitSha"] = o.CommitSha
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

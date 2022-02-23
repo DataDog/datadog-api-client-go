@@ -14,12 +14,16 @@ import (
 
 // AWSTagFilter A tag filter.
 type AWSTagFilter struct {
+	// The namespace associated with the tag filter entry.
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSTagFilter AWSTagFilter
 
 // NewAWSTagFilter instantiates a new AWSTagFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o AWSTagFilter) MarshalJSON() ([]byte, error) {
 	}
 	if o.TagFilterStr != nil {
 		toSerialize["tag_filter_str"] = o.TagFilterStr
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

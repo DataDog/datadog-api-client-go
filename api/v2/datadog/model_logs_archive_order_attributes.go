@@ -15,11 +15,14 @@ import (
 
 // LogsArchiveOrderAttributes The attributes associated with the archive order.
 type LogsArchiveOrderAttributes struct {
-	// An ordered array of `<ARCHIVE_ID>` strings, the order of archive IDs in the array define the overall archives order for Datadog.
+	// An ordered array of `<ARCHIVE_ID>` strings, the order of archive IDs in the array// define the overall archives order for Datadog.
 	ArchiveIds []string `json:"archive_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveOrderAttributes LogsArchiveOrderAttributes
 
 // NewLogsArchiveOrderAttributes instantiates a new LogsArchiveOrderAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +48,6 @@ func (o *LogsArchiveOrderAttributes) GetArchiveIds() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.ArchiveIds
 }
 
@@ -68,8 +70,10 @@ func (o LogsArchiveOrderAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["archive_ids"] = o.ArchiveIds
+	toSerialize["archive_ids"] = o.ArchiveIds
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

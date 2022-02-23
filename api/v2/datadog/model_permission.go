@@ -15,13 +15,18 @@ import (
 
 // Permission Permission object.
 type Permission struct {
+	// Attributes of a permission.
 	Attributes *PermissionAttributes `json:"attributes,omitempty"`
 	// ID of the permission.
-	Id   *string         `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Permissions resource type.
 	Type PermissionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Permission Permission
 
 // NewPermission instantiates a new Permission object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,7 @@ func NewPermission(type_ PermissionsType) *Permission {
 // but it doesn't guarantee that properties required by API are set
 func NewPermissionWithDefaults() *Permission {
 	this := Permission{}
-	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
+	var type_ PermissionsType = "permissions"
 	this.Type = type_
 	return &this
 }
@@ -113,7 +118,6 @@ func (o *Permission) GetType() PermissionsType {
 		var ret PermissionsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -142,8 +146,10 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

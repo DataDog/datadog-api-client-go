@@ -24,8 +24,11 @@ type UsageSNMPHour struct {
 	// Contains the number of SNMP devices.
 	SnmpDevices *int64 `json:"snmp_devices,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageSNMPHour UsageSNMPHour
 
 // NewUsageSNMPHour instantiates a new UsageSNMPHour object
 // This constructor will assign default values to properties that have it defined,
@@ -188,6 +191,10 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.SnmpDevices != nil {
 		toSerialize["snmp_devices"] = o.SnmpDevices
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -17,8 +17,11 @@ type UsageBillableSummaryResponse struct {
 	// An array of objects regarding usage of billable summary.
 	Usage *[]UsageBillableSummaryHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageBillableSummaryResponse UsageBillableSummaryResponse
 
 // NewUsageBillableSummaryResponse instantiates a new UsageBillableSummaryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o UsageBillableSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

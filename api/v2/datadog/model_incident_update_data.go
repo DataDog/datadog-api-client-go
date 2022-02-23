@@ -15,14 +15,20 @@ import (
 
 // IncidentUpdateData Incident data for an update request.
 type IncidentUpdateData struct {
+	// The incident's attributes for an update request.
 	Attributes *IncidentUpdateAttributes `json:"attributes,omitempty"`
 	// The team's ID.
-	Id            string                       `json:"id"`
+	Id string `json:"id"`
+	// The incident's relationships for an update request.
 	Relationships *IncidentUpdateRelationships `json:"relationships,omitempty"`
-	Type          IncidentType                 `json:"type"`
+	// Incident resource type.
+	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentUpdateData IncidentUpdateData
 
 // NewIncidentUpdateData instantiates a new IncidentUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewIncidentUpdateData(id string, type_ IncidentType) *IncidentUpdateData {
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentUpdateDataWithDefaults() *IncidentUpdateData {
 	this := IncidentUpdateData{}
-	var type_ IncidentType = INCIDENTTYPE_INCIDENTS
+	var type_ IncidentType = "incidents"
 	this.Type = type_
 	return &this
 }
@@ -83,7 +89,6 @@ func (o *IncidentUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -139,7 +144,6 @@ func (o *IncidentUpdateData) GetType() IncidentType {
 		var ret IncidentType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -165,14 +169,14 @@ func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

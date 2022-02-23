@@ -242,24 +242,14 @@ func (a *CloudWorkloadSecurityApiService) deleteCloudWorkloadSecurityAgentRuleEx
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -353,9 +343,9 @@ type apiDownloadCloudWorkloadPolicyFileRequest struct {
 /*
  * DownloadCloudWorkloadPolicyFile Get the latest Cloud Workload Security policy
  * The download endpoint generates a Cloud Workload Security policy file from your currently active
-Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
-your agents to update the policy running in your environment.
-*/
+ * Cloud Workload Security rules, and downloads them as a .policy file. This file can then be deployed to
+ * your agents to update the policy running in your environment.
+ */
 func (a *CloudWorkloadSecurityApiService) DownloadCloudWorkloadPolicyFile(ctx _context.Context) (*os.File, *_nethttp.Response, error) {
 	req := apiDownloadCloudWorkloadPolicyFileRequest{
 		ApiService: a,
@@ -390,15 +380,6 @@ func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/yaml", "application/json"}
 
@@ -407,7 +388,6 @@ func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -538,15 +518,6 @@ func (a *CloudWorkloadSecurityApiService) getCloudWorkloadSecurityAgentRuleExecu
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -555,7 +526,6 @@ func (a *CloudWorkloadSecurityApiService) getCloudWorkloadSecurityAgentRuleExecu
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -693,15 +663,6 @@ func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExe
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -710,7 +671,6 @@ func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExe
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -805,8 +765,8 @@ type apiUpdateCloudWorkloadSecurityAgentRuleRequest struct {
 /*
  * UpdateCloudWorkloadSecurityAgentRule Update a Cloud Workload Security Agent rule
  * Update a specific Agent rule.
-Returns the Agent rule object when the request is successful.
-*/
+ * Returns the Agent rule object when the request is successful.
+ */
 func (a *CloudWorkloadSecurityApiService) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	req := apiUpdateCloudWorkloadSecurityAgentRuleRequest{
 		ApiService:  a,

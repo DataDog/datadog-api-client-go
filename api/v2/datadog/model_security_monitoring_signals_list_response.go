@@ -12,15 +12,20 @@ import (
 	"encoding/json"
 )
 
-// SecurityMonitoringSignalsListResponse The response object with all security signals matching the request and pagination information.
+// SecurityMonitoringSignalsListResponse The response object with all security signals matching the request// and pagination information.
 type SecurityMonitoringSignalsListResponse struct {
 	// An array of security signals matching the request.
-	Data  *[]SecurityMonitoringSignal                 `json:"data,omitempty"`
+	Data *[]SecurityMonitoringSignal `json:"data,omitempty"`
+	// Links attributes.
 	Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
-	Meta  *SecurityMonitoringSignalsListResponseMeta  `json:"meta,omitempty"`
+	// Meta attributes.
+	Meta *SecurityMonitoringSignalsListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringSignalsListResponse SecurityMonitoringSignalsListResponse
 
 // NewSecurityMonitoringSignalsListResponse instantiates a new SecurityMonitoringSignalsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o SecurityMonitoringSignalsListResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

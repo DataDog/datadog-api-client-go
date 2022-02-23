@@ -14,21 +14,21 @@ import (
 
 // SunburstWidgetLegend - Configuration of the legend.
 type SunburstWidgetLegend struct {
-	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
 	SunburstWidgetLegendTable           *SunburstWidgetLegendTable
+	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
 }
 
-// SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend is a convenience function that returns SunburstWidgetLegendInlineAutomatic wrapped in SunburstWidgetLegend
-func SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend(v *SunburstWidgetLegendInlineAutomatic) SunburstWidgetLegend {
-	return SunburstWidgetLegend{SunburstWidgetLegendInlineAutomatic: v}
-}
-
 // SunburstWidgetLegendTableAsSunburstWidgetLegend is a convenience function that returns SunburstWidgetLegendTable wrapped in SunburstWidgetLegend
 func SunburstWidgetLegendTableAsSunburstWidgetLegend(v *SunburstWidgetLegendTable) SunburstWidgetLegend {
 	return SunburstWidgetLegend{SunburstWidgetLegendTable: v}
+}
+
+// SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend is a convenience function that returns SunburstWidgetLegendInlineAutomatic wrapped in SunburstWidgetLegend
+func SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend(v *SunburstWidgetLegendInlineAutomatic) SunburstWidgetLegend {
+	return SunburstWidgetLegend{SunburstWidgetLegendInlineAutomatic: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -71,8 +71,8 @@ func (dst *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.SunburstWidgetLegendInlineAutomatic = nil
 		dst.SunburstWidgetLegendTable = nil
+		dst.SunburstWidgetLegendInlineAutomatic = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -81,12 +81,12 @@ func (dst *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
 
 // Marshal data from the first non-nil pointers in the struct to JSON
 func (src SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
-	if src.SunburstWidgetLegendInlineAutomatic != nil {
-		return json.Marshal(&src.SunburstWidgetLegendInlineAutomatic)
-	}
-
 	if src.SunburstWidgetLegendTable != nil {
 		return json.Marshal(&src.SunburstWidgetLegendTable)
+	}
+
+	if src.SunburstWidgetLegendInlineAutomatic != nil {
+		return json.Marshal(&src.SunburstWidgetLegendInlineAutomatic)
 	}
 
 	if src.UnparsedObject != nil {
@@ -97,12 +97,12 @@ func (src SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 
 // Get the actual instance
 func (obj *SunburstWidgetLegend) GetActualInstance() interface{} {
-	if obj.SunburstWidgetLegendInlineAutomatic != nil {
-		return obj.SunburstWidgetLegendInlineAutomatic
-	}
-
 	if obj.SunburstWidgetLegendTable != nil {
 		return obj.SunburstWidgetLegendTable
+	}
+
+	if obj.SunburstWidgetLegendInlineAutomatic != nil {
+		return obj.SunburstWidgetLegendInlineAutomatic
 	}
 
 	// all schemas are nil
@@ -142,5 +142,11 @@ func (v NullableSunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 
 func (v *NullableSunburstWidgetLegend) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

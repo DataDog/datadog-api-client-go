@@ -28,11 +28,15 @@ type UsageBillableSummaryHour struct {
 	// Shows usage aggregation for a billing period.
 	RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
 	// Shows the first date of usage.
-	StartDate *time.Time                `json:"start_date,omitempty"`
-	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
+	StartDate *time.Time `json:"start_date,omitempty"`
+	// Response with aggregated usage types.
+	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageBillableSummaryHour UsageBillableSummaryHour
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object
 // This constructor will assign default values to properties that have it defined,
@@ -335,6 +339,10 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

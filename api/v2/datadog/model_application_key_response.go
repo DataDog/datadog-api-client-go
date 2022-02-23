@@ -14,12 +14,16 @@ import (
 
 // ApplicationKeyResponse Response for retrieving an application key.
 type ApplicationKeyResponse struct {
+	// Datadog application key.
 	Data *FullApplicationKey `json:"data,omitempty"`
 	// Array of objects related to the application key.
 	Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKeyResponse ApplicationKeyResponse
 
 // NewApplicationKeyResponse instantiates a new ApplicationKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Included != nil {
 		toSerialize["included"] = o.Included
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -12,7 +12,7 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test. Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
+// SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test.// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 type SyntheticsTiming struct {
 	// The duration in millisecond of the DNS lookup.
 	Dns *float64 `json:"dns,omitempty"`
@@ -33,8 +33,11 @@ type SyntheticsTiming struct {
 	// Time spent in millisecond waiting for a response.
 	Wait *float64 `json:"wait,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTiming SyntheticsTiming
 
 // NewSyntheticsTiming instantiates a new SyntheticsTiming object
 // This constructor will assign default values to properties that have it defined,
@@ -372,6 +375,10 @@ func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 	}
 	if o.Wait != nil {
 		toSerialize["wait"] = o.Wait
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

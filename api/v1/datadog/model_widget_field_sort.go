@@ -16,11 +16,15 @@ import (
 // WidgetFieldSort Which column and order to sort by
 type WidgetFieldSort struct {
 	// Facet path for the column
-	Column string     `json:"column"`
-	Order  WidgetSort `json:"order"`
+	Column string `json:"column"`
+	// Widget sorting methods.
+	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetFieldSort WidgetFieldSort
 
 // NewWidgetFieldSort instantiates a new WidgetFieldSort object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func (o *WidgetFieldSort) GetColumn() string {
 		var ret string
 		return ret
 	}
-
 	return o.Column
 }
 
@@ -71,7 +74,6 @@ func (o *WidgetFieldSort) GetOrder() WidgetSort {
 		var ret WidgetSort
 		return ret
 	}
-
 	return o.Order
 }
 
@@ -94,11 +96,11 @@ func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["column"] = o.Column
-	}
-	if true {
-		toSerialize["order"] = o.Order
+	toSerialize["column"] = o.Column
+	toSerialize["order"] = o.Order
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

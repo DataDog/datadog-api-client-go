@@ -15,11 +15,15 @@ import (
 // AuthNMappingsResponse Array of AuthN Mappings response.
 type AuthNMappingsResponse struct {
 	// Array of returned AuthN Mappings.
-	Data *[]AuthNMapping         `json:"data,omitempty"`
+	Data *[]AuthNMapping `json:"data,omitempty"`
+	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingsResponse AuthNMappingsResponse
 
 // NewAuthNMappingsResponse instantiates a new AuthNMappingsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o AuthNMappingsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Meta != nil {
 		toSerialize["meta"] = o.Meta
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

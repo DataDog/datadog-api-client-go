@@ -15,12 +15,16 @@ import (
 
 // CheckCanDeleteMonitorResponse Response of monitor IDs that can or can't be safely deleted.
 type CheckCanDeleteMonitorResponse struct {
+	// Wrapper object with the list of monitor IDs.
 	Data CheckCanDeleteMonitorResponseData `json:"data"`
 	// A mapping of Monitor ID to strings denoting where it's used.
-	Errors *map[string][]string `json:"errors,omitempty"`
+	Errors map[string][]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _CheckCanDeleteMonitorResponse CheckCanDeleteMonitorResponse
 
 // NewCheckCanDeleteMonitorResponse instantiates a new CheckCanDeleteMonitorResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func (o *CheckCanDeleteMonitorResponse) GetData() CheckCanDeleteMonitorResponseD
 		var ret CheckCanDeleteMonitorResponseData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -70,7 +73,7 @@ func (o *CheckCanDeleteMonitorResponse) GetErrors() map[string][]string {
 		var ret map[string][]string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -79,7 +82,7 @@ func (o *CheckCanDeleteMonitorResponse) GetErrorsOk() (*map[string][]string, boo
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -93,7 +96,7 @@ func (o *CheckCanDeleteMonitorResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given map[string][]string and assigns it to the Errors field.
 func (o *CheckCanDeleteMonitorResponse) SetErrors(v map[string][]string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o CheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
@@ -101,11 +104,13 @@ func (o CheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
-	}
+	toSerialize["data"] = o.Data
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -117,7 +122,7 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 	}{}
 	all := struct {
 		Data   CheckCanDeleteMonitorResponseData `json:"data"`
-		Errors *map[string][]string              `json:"errors,omitempty"`
+		Errors map[string][]string               `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

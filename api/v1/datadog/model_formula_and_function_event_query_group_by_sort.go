@@ -15,13 +15,18 @@ import (
 
 // FormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
 type FormulaAndFunctionEventQueryGroupBySort struct {
+	// Aggregation methods for event platform queries.
 	Aggregation FormulaAndFunctionEventAggregation `json:"aggregation"`
 	// Metric used for sorting group by results.
-	Metric *string         `json:"metric,omitempty"`
-	Order  *QuerySortOrder `json:"order,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	// Direction of sort.
+	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionEventQueryGroupBySort FormulaAndFunctionEventQueryGroupBySort
 
 // NewFormulaAndFunctionEventQueryGroupBySort instantiates a new FormulaAndFunctionEventQueryGroupBySort object
 // This constructor will assign default values to properties that have it defined,
@@ -30,7 +35,7 @@ type FormulaAndFunctionEventQueryGroupBySort struct {
 func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEventAggregation) *FormulaAndFunctionEventQueryGroupBySort {
 	this := FormulaAndFunctionEventQueryGroupBySort{}
 	this.Aggregation = aggregation
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -40,7 +45,7 @@ func NewFormulaAndFunctionEventQueryGroupBySort(aggregation FormulaAndFunctionEv
 // but it doesn't guarantee that properties required by API are set
 func NewFormulaAndFunctionEventQueryGroupBySortWithDefaults() *FormulaAndFunctionEventQueryGroupBySort {
 	this := FormulaAndFunctionEventQueryGroupBySort{}
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *FormulaAndFunctionEventQueryGroupBySort) GetAggregation() FormulaAndFun
 		var ret FormulaAndFunctionEventAggregation
 		return ret
 	}
-
 	return o.Aggregation
 }
 
@@ -138,14 +142,16 @@ func (o FormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["aggregation"] = o.Aggregation
-	}
+	toSerialize["aggregation"] = o.Aggregation
 	if o.Metric != nil {
 		toSerialize["metric"] = o.Metric
 	}
 	if o.Order != nil {
 		toSerialize["order"] = o.Order
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

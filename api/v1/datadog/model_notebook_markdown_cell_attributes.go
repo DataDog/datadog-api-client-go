@@ -15,10 +15,14 @@ import (
 
 // NotebookMarkdownCellAttributes The attributes of a notebook `markdown` cell.
 type NotebookMarkdownCellAttributes struct {
+	// Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 	Definition NotebookMarkdownCellDefinition `json:"definition"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookMarkdownCellAttributes NotebookMarkdownCellAttributes
 
 // NewNotebookMarkdownCellAttributes instantiates a new NotebookMarkdownCellAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *NotebookMarkdownCellAttributes) GetDefinition() NotebookMarkdownCellDef
 		var ret NotebookMarkdownCellDefinition
 		return ret
 	}
-
 	return o.Definition
 }
 
@@ -67,8 +70,10 @@ func (o NotebookMarkdownCellAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["definition"] = o.Definition
+	toSerialize["definition"] = o.Definition
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

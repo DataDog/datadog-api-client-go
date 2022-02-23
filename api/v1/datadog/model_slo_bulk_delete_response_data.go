@@ -14,13 +14,17 @@ import (
 
 // SLOBulkDeleteResponseData An array of service level objective objects.
 type SLOBulkDeleteResponseData struct {
-	// An array of service level objective object IDs that indicates which objects that were completely deleted.
+	// An array of service level objective object IDs that indicates// which objects that were completely deleted.
 	Deleted *[]string `json:"deleted,omitempty"`
-	// An array of service level objective object IDs that indicates which objects that were modified (objects for which at least one threshold was deleted, but that were not completely deleted).
+	// An array of service level objective object IDs that indicates// which objects that were modified (objects for which at least one
+	// threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOBulkDeleteResponseData SLOBulkDeleteResponseData
 
 // NewSLOBulkDeleteResponseData instantiates a new SLOBulkDeleteResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +117,10 @@ func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Updated != nil {
 		toSerialize["updated"] = o.Updated
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

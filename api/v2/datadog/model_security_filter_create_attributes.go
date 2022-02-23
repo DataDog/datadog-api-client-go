@@ -17,7 +17,8 @@ import (
 type SecurityFilterCreateAttributes struct {
 	// Exclusion filters to exclude some logs from the security filter.
 	ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
-	FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
+	// The filtered data type.
+	FilteredDataType SecurityFilterFilteredDataType `json:"filtered_data_type"`
 	// Whether the security filter is enabled.
 	IsEnabled bool `json:"is_enabled"`
 	// The name of the security filter.
@@ -25,8 +26,11 @@ type SecurityFilterCreateAttributes struct {
 	// The query of the security filter.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterCreateAttributes SecurityFilterCreateAttributes
 
 // NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +60,6 @@ func (o *SecurityFilterCreateAttributes) GetExclusionFilters() []SecurityFilterE
 		var ret []SecurityFilterExclusionFilter
 		return ret
 	}
-
 	return o.ExclusionFilters
 }
 
@@ -80,7 +83,6 @@ func (o *SecurityFilterCreateAttributes) GetFilteredDataType() SecurityFilterFil
 		var ret SecurityFilterFilteredDataType
 		return ret
 	}
-
 	return o.FilteredDataType
 }
 
@@ -104,7 +106,6 @@ func (o *SecurityFilterCreateAttributes) GetIsEnabled() bool {
 		var ret bool
 		return ret
 	}
-
 	return o.IsEnabled
 }
 
@@ -128,7 +129,6 @@ func (o *SecurityFilterCreateAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -152,7 +152,6 @@ func (o *SecurityFilterCreateAttributes) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -175,20 +174,14 @@ func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["exclusion_filters"] = o.ExclusionFilters
-	}
-	if true {
-		toSerialize["filtered_data_type"] = o.FilteredDataType
-	}
-	if true {
-		toSerialize["is_enabled"] = o.IsEnabled
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["query"] = o.Query
+	toSerialize["exclusion_filters"] = o.ExclusionFilters
+	toSerialize["filtered_data_type"] = o.FilteredDataType
+	toSerialize["is_enabled"] = o.IsEnabled
+	toSerialize["name"] = o.Name
+	toSerialize["query"] = o.Query
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

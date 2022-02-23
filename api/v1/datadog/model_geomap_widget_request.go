@@ -15,18 +15,25 @@ import (
 // GeomapWidgetRequest An updated geomap widget.
 type GeomapWidgetRequest struct {
 	// List of formulas that operate on queries. **This feature is currently in beta.**
-	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
+	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	// The log query.
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// The widget metrics query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	// Timeseries or Scalar response. **This feature is currently in beta.**
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+	// The log query.
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	// The log query.
+	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _GeomapWidgetRequest GeomapWidgetRequest
 
 // NewGeomapWidgetRequest instantiates a new GeomapWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -294,6 +301,10 @@ func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.SecurityQuery != nil {
 		toSerialize["security_query"] = o.SecurityQuery
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

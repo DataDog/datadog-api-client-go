@@ -26,8 +26,11 @@ type UsageFargateHour struct {
 	// The number of Fargate tasks run.
 	TasksCount *int64 `json:"tasks_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageFargateHour UsageFargateHour
 
 // NewUsageFargateHour instantiates a new UsageFargateHour object
 // This constructor will assign default values to properties that have it defined,
@@ -225,6 +228,10 @@ func (o UsageFargateHour) MarshalJSON() ([]byte, error) {
 	}
 	if o.TasksCount != nil {
 		toSerialize["tasks_count"] = o.TasksCount
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

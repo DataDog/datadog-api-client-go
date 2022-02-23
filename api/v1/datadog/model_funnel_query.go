@@ -15,14 +15,18 @@ import (
 
 // FunnelQuery Updated funnel widget.
 type FunnelQuery struct {
+	// Source from which to query items to display in the funnel.
 	DataSource FunnelSource `json:"data_source"`
 	// The widget query.
 	QueryString string `json:"query_string"`
 	// List of funnel steps.
 	Steps []FunnelStep `json:"steps"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FunnelQuery FunnelQuery
 
 // NewFunnelQuery instantiates a new FunnelQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +45,7 @@ func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []FunnelS
 // but it doesn't guarantee that properties required by API are set
 func NewFunnelQueryWithDefaults() *FunnelQuery {
 	this := FunnelQuery{}
-	var dataSource FunnelSource = FUNNELSOURCE_RUM
+	var dataSource FunnelSource = "rum"
 	this.DataSource = dataSource
 	return &this
 }
@@ -52,7 +56,6 @@ func (o *FunnelQuery) GetDataSource() FunnelSource {
 		var ret FunnelSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -76,7 +79,6 @@ func (o *FunnelQuery) GetQueryString() string {
 		var ret string
 		return ret
 	}
-
 	return o.QueryString
 }
 
@@ -100,7 +102,6 @@ func (o *FunnelQuery) GetSteps() []FunnelStep {
 		var ret []FunnelStep
 		return ret
 	}
-
 	return o.Steps
 }
 
@@ -123,14 +124,12 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
-	if true {
-		toSerialize["query_string"] = o.QueryString
-	}
-	if true {
-		toSerialize["steps"] = o.Steps
+	toSerialize["data_source"] = o.DataSource
+	toSerialize["query_string"] = o.QueryString
+	toSerialize["steps"] = o.Steps
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

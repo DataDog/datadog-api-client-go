@@ -14,13 +14,20 @@ import (
 
 // OrganizationCreateResponse Response object for an organization creation.
 type OrganizationCreateResponse struct {
-	ApiKey         *ApiKey         `json:"api_key,omitempty"`
+	// Datadog API key.
+	ApiKey *ApiKey `json:"api_key,omitempty"`
+	// An application key with its associated metadata.
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
-	Org            *Organization   `json:"org,omitempty"`
-	User           *User           `json:"user,omitempty"`
+	// Create, edit, and manage organizations.
+	Org *Organization `json:"org,omitempty"`
+	// Create, edit, and disable users.
+	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationCreateResponse OrganizationCreateResponse
 
 // NewOrganizationCreateResponse instantiates a new OrganizationCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -183,6 +190,10 @@ func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

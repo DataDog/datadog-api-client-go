@@ -17,8 +17,11 @@ type SyntheticsCITestBody struct {
 	// Individual synthetics test.
 	Tests *[]SyntheticsCITest `json:"tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsCITestBody SyntheticsCITestBody
 
 // NewSyntheticsCITestBody instantiates a new SyntheticsCITestBody object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o SyntheticsCITestBody) MarshalJSON() ([]byte, error) {
 	}
 	if o.Tests != nil {
 		toSerialize["tests"] = o.Tests
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

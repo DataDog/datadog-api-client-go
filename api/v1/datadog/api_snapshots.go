@@ -66,8 +66,8 @@ func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSn
 /*
  * GetGraphSnapshot Take graph snapshots
  * Take graph snapshots.
-**Note**: When a snapshot is created, there is some delay before it is available.
-*/
+ * **Note**: When a snapshot is created, there is some delay before it is available.
+ */
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
 	req := apiGetGraphSnapshotRequest{
 		ApiService: a,
@@ -121,12 +121,11 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	if r.end == nil {
 		return localVarReturnValue, nil, reportError("end is required and must be specified")
 	}
-
+	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
+	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.metricQuery != nil {
 		localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
 	}
-	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
-	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
 	if r.eventQuery != nil {
 		localVarQueryParams.Add("event_query", parameterToString(*r.eventQuery, ""))
 	}
@@ -135,14 +134,6 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	}
 	if r.title != nil {
 		localVarQueryParams.Add("title", parameterToString(*r.title, ""))
-	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
 	}
 
 	// to determine the Accept header
@@ -153,7 +144,6 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

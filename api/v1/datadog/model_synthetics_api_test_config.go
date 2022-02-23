@@ -18,12 +18,16 @@ type SyntheticsAPITestConfig struct {
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+	// Object describing the Synthetic test request.
+	Request *SyntheticsTestRequest `json:"request,omitempty"`
 	// When the test subtype is `multi`, the steps of the test.
 	Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAPITestConfig SyntheticsAPITestConfig
 
 // NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -186,6 +190,10 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 	}
 	if o.Steps != nil {
 		toSerialize["steps"] = o.Steps
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

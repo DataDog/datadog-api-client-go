@@ -231,24 +231,14 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -390,15 +380,6 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -407,7 +388,6 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -537,7 +517,7 @@ type ListNotebooksOptionalParameters struct {
 	Query               *string
 	IncludeCells        *bool
 	IsTemplate          *bool
-	Type_               *string
+	Type                *string
 }
 
 func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
@@ -580,16 +560,16 @@ func (r *ListNotebooksOptionalParameters) WithIsTemplate(isTemplate bool) *ListN
 	r.IsTemplate = &isTemplate
 	return r
 }
-func (r *ListNotebooksOptionalParameters) WithType_(type_ string) *ListNotebooksOptionalParameters {
-	r.Type_ = &type_
+func (r *ListNotebooksOptionalParameters) WithType(type_ string) *ListNotebooksOptionalParameters {
+	r.Type = &type_
 	return r
 }
 
 /*
  * ListNotebooks Get all notebooks
  * Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
-`name` or author `handle`.
-*/
+ * `name` or author `handle`.
+ */
 func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	req := apiListNotebooksRequest{
 		ApiService: a,
@@ -611,7 +591,7 @@ func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNoteb
 		req.query = o[0].Query
 		req.includeCells = o[0].IncludeCells
 		req.isTemplate = o[0].IsTemplate
-		req.type_ = o[0].Type_
+		req.type_ = o[0].Type
 	}
 
 	return req.ApiService.listNotebooksExecute(req)
@@ -641,7 +621,6 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.authorHandle != nil {
 		localVarQueryParams.Add("author_handle", parameterToString(*r.authorHandle, ""))
 	}
@@ -672,14 +651,6 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	if r.type_ != nil {
 		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -689,7 +660,6 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {

@@ -22,7 +22,7 @@ func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAcco
 	return datadog.AWSAccount{
 		AccountId:                     tests.UniqueEntityName(ctx, t),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
-		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
+		AccountSpecificNamespaceRules: map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
 		ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},
@@ -31,14 +31,14 @@ func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAcco
 
 var TESTUPDATEAWSACC = datadog.AWSAccount{
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
-	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
+	AccountSpecificNamespaceRules: map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
 }
 
 var TESTUPDATEAWSACCWITHEXCLUDEDREGION = datadog.AWSAccount{
 	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
-	AccountSpecificNamespaceRules: &map[string]bool{"opsworks": false},
+	AccountSpecificNamespaceRules: map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
 	ExcludedRegions:               &[]string{"us-east-1", "us-west-1"},

@@ -74,9 +74,11 @@ type UsageAttributionValues struct {
 	LambdaInvocationsPercentage *float64 `json:"lambda_invocations_percentage,omitempty"`
 	// The Lambda invocation usage by tag(s).
 	LambdaInvocationsUsage *float64 `json:"lambda_invocations_usage,omitempty"`
-	// The percentage of Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_percentage instead.
+	// The percentage of Lambda function usage by tag(s).//
+	// **Note** this field is deprecated. Use lambda_functions_percentage instead.
 	LambdaPercentage *float64 `json:"lambda_percentage,omitempty"`
-	// The Lambda function usage by tag(s).  **Note** this field is deprecated. Use lambda_functions_usage instead.
+	// The Lambda function usage by tag(s).//
+	// **Note** this field is deprecated. Use lambda_functions_usage instead.
 	LambdaUsage *float64 `json:"lambda_usage,omitempty"`
 	// The percentage of network host usage by tag(s).
 	NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
@@ -95,8 +97,11 @@ type UsageAttributionValues struct {
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageAttributionValues UsageAttributionValues
 
 // NewUsageAttributionValues instantiates a new UsageAttributionValues object
 // This constructor will assign default values to properties that have it defined,
@@ -1519,6 +1524,10 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	}
 	if o.SnmpUsage != nil {
 		toSerialize["snmp_usage"] = o.SnmpUsage
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

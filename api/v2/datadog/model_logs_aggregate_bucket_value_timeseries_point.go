@@ -19,8 +19,11 @@ type LogsAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateBucketValueTimeseriesPoint LogsAggregateBucketValueTimeseriesPoint
 
 // NewLogsAggregateBucketValueTimeseriesPoint instantiates a new LogsAggregateBucketValueTimeseriesPoint object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -21,8 +21,11 @@ type SyntheticsTestRequestCertificateItem struct {
 	// Date of update of the certificate or key, ISO format.
 	UpdatedAt *string `json:"updatedAt,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsTestRequestCertificateItem SyntheticsTestRequestCertificateItem
 
 // NewSyntheticsTestRequestCertificateItem instantiates a new SyntheticsTestRequestCertificateItem object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 	}
 	if o.UpdatedAt != nil {
 		toSerialize["updatedAt"] = o.UpdatedAt
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

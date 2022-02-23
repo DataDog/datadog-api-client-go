@@ -391,15 +391,6 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -408,7 +399,6 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -512,10 +502,10 @@ type apiUpdateGCPIntegrationRequest struct {
 /*
  * UpdateGCPIntegration Update a GCP integration
  * Update a Datadog-GCP integrations host_filters and/or auto-mute.
-Requires a `project_id` and `client_email`, however these fields cannot be updated.
-If you need to update these fields, delete and use the create (`POST`) endpoint.
-The unspecified fields will keep their original values.
-*/
+ * Requires a `project_id` and `client_email`, however these fields cannot be updated.
+ * If you need to update these fields, delete and use the create (`POST`) endpoint.
+ * The unspecified fields will keep their original values.
+ */
 func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateGCPIntegrationRequest{
 		ApiService: a,

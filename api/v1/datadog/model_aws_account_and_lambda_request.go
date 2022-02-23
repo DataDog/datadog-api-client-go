@@ -20,8 +20,11 @@ type AWSAccountAndLambdaRequest struct {
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AWSAccountAndLambdaRequest AWSAccountAndLambdaRequest
 
 // NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +51,6 @@ func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 		var ret string
 		return ret
 	}
-
 	return o.AccountId
 }
 
@@ -72,7 +74,6 @@ func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 		var ret string
 		return ret
 	}
-
 	return o.LambdaArn
 }
 
@@ -95,11 +96,11 @@ func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["account_id"] = o.AccountId
-	}
-	if true {
-		toSerialize["lambda_arn"] = o.LambdaArn
+	toSerialize["account_id"] = o.AccountId
+	toSerialize["lambda_arn"] = o.LambdaArn
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

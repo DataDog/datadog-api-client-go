@@ -17,12 +17,14 @@ type SyntheticsBrowserTestResultData struct {
 	// Type of browser device used for the browser test.
 	BrowserType *string `json:"browserType,omitempty"`
 	// Browser version used for the browser test.
-	BrowserVersion *string           `json:"browserVersion,omitempty"`
-	Device         *SyntheticsDevice `json:"device,omitempty"`
+	BrowserVersion *string `json:"browserVersion,omitempty"`
+	// Object describing the device used to perform the Synthetic test.
+	Device *SyntheticsDevice `json:"device,omitempty"`
 	// Global duration in second of the browser test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned for the browser test.
-	Error   *string                             `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
+	// The browser test failure details.
 	Failure *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
 	// Whether or not the browser test was conducted.
 	Passed *bool `json:"passed,omitempty"`
@@ -34,11 +36,14 @@ type SyntheticsBrowserTestResultData struct {
 	StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
 	// Whether or not a thumbnail is associated with the browser test.
 	ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
-	// Time in second to wait before the browser test starts after reaching the start URL.
+	// Time in second to wait before the browser test starts after// reaching the start URL.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBrowserTestResultData SyntheticsBrowserTestResultData
 
 // NewSyntheticsBrowserTestResultData instantiates a new SyntheticsBrowserTestResultData object
 // This constructor will assign default values to properties that have it defined,
@@ -481,6 +486,10 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 	}
 	if o.TimeToInteractive != nil {
 		toSerialize["timeToInteractive"] = o.TimeToInteractive
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

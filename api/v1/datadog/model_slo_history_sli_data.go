@@ -12,10 +12,10 @@ import (
 	"encoding/json"
 )
 
-// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+// SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 type SLOHistorySLIData struct {
 	// A mapping of threshold `timeframe` to the remaining error budget.
-	ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
+	ErrorBudgetRemaining map[string]float64 `json:"error_budget_remaining,omitempty"`
 	// An array of error objects returned while querying the history data for the service level objective.
 	Errors *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
 	// For groups in a grouped SLO, this is the group name.
@@ -29,8 +29,8 @@ type SLOHistorySLIData struct {
 	// For groups in a grouped SLO, this is the group name. For monitors in a multi-monitor SLO, this is the monitor name.
 	Name *string `json:"name,omitempty"`
 	// A mapping of threshold `timeframe` to number of accurate decimals, regardless of the from && to timestamp.
-	Precision *map[string]float64 `json:"precision,omitempty"`
-	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime calculation.
+	Precision map[string]float64 `json:"precision,omitempty"`
+	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime// calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
 	SliValue *float64 `json:"sli_value,omitempty"`
@@ -40,8 +40,11 @@ type SLOHistorySLIData struct {
 	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOHistorySLIData SLOHistorySLIData
 
 // NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
 // This constructor will assign default values to properties that have it defined,
@@ -66,7 +69,7 @@ func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
 		var ret map[string]float64
 		return ret
 	}
-	return *o.ErrorBudgetRemaining
+	return o.ErrorBudgetRemaining
 }
 
 // GetErrorBudgetRemainingOk returns a tuple with the ErrorBudgetRemaining field value if set, nil otherwise
@@ -75,7 +78,7 @@ func (o *SLOHistorySLIData) GetErrorBudgetRemainingOk() (*map[string]float64, bo
 	if o == nil || o.ErrorBudgetRemaining == nil {
 		return nil, false
 	}
-	return o.ErrorBudgetRemaining, true
+	return &o.ErrorBudgetRemaining, true
 }
 
 // HasErrorBudgetRemaining returns a boolean if a field has been set.
@@ -89,7 +92,7 @@ func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
 
 // SetErrorBudgetRemaining gets a reference to the given map[string]float64 and assigns it to the ErrorBudgetRemaining field.
 func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
-	o.ErrorBudgetRemaining = &v
+	o.ErrorBudgetRemaining = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -290,7 +293,7 @@ func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
 		var ret map[string]float64
 		return ret
 	}
-	return *o.Precision
+	return o.Precision
 }
 
 // GetPrecisionOk returns a tuple with the Precision field value if set, nil otherwise
@@ -299,7 +302,7 @@ func (o *SLOHistorySLIData) GetPrecisionOk() (*map[string]float64, bool) {
 	if o == nil || o.Precision == nil {
 		return nil, false
 	}
-	return o.Precision, true
+	return &o.Precision, true
 }
 
 // HasPrecision returns a boolean if a field has been set.
@@ -313,7 +316,7 @@ func (o *SLOHistorySLIData) HasPrecision() bool {
 
 // SetPrecision gets a reference to the given map[string]float64 and assigns it to the Precision field.
 func (o *SLOHistorySLIData) SetPrecision(v map[string]float64) {
-	o.Precision = &v
+	o.Precision = v
 }
 
 // GetPreview returns the Preview field value if set, zero value otherwise.
@@ -488,20 +491,24 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	if o.Uptime != nil {
 		toSerialize["uptime"] = o.Uptime
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ErrorBudgetRemaining *map[string]float64                `json:"error_budget_remaining,omitempty"`
+		ErrorBudgetRemaining map[string]float64                 `json:"error_budget_remaining,omitempty"`
 		Errors               *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
 		Group                *string                            `json:"group,omitempty"`
 		History              *[][]float64                       `json:"history,omitempty"`
 		MonitorModified      *int64                             `json:"monitor_modified,omitempty"`
 		MonitorType          *string                            `json:"monitor_type,omitempty"`
 		Name                 *string                            `json:"name,omitempty"`
-		Precision            *map[string]float64                `json:"precision,omitempty"`
+		Precision            map[string]float64                 `json:"precision,omitempty"`
 		Preview              *bool                              `json:"preview,omitempty"`
 		SliValue             *float64                           `json:"sli_value,omitempty"`
 		SpanPrecision        *float64                           `json:"span_precision,omitempty"`

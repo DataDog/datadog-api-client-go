@@ -15,15 +15,21 @@ import (
 // LogsAggregateRequest The object sent with the request to retrieve a list of logs from your organization.
 type LogsAggregateRequest struct {
 	// The list of metrics or timeseries to compute for the retrieved buckets.
-	Compute *[]LogsCompute   `json:"compute,omitempty"`
-	Filter  *LogsQueryFilter `json:"filter,omitempty"`
+	Compute *[]LogsCompute `json:"compute,omitempty"`
+	// The search and filter query settings
+	Filter *LogsQueryFilter `json:"filter,omitempty"`
 	// The rules for the group by
-	GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
-	Options *LogsQueryOptions         `json:"options,omitempty"`
-	Page    *LogsAggregateRequestPage `json:"page,omitempty"`
+	GroupBy *[]LogsGroupBy `json:"group_by,omitempty"`
+	// Global query options that are used during the query.// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+	Options *LogsQueryOptions `json:"options,omitempty"`
+	// Paging settings
+	Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAggregateRequest LogsAggregateRequest
 
 // NewLogsAggregateRequest instantiates a new LogsAggregateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -221,6 +227,10 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Page != nil {
 		toSerialize["page"] = o.Page
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

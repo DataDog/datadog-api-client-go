@@ -18,11 +18,15 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	// Whether to hide the percentages of the groups.
 	HidePercent *bool `json:"hide_percent,omitempty"`
 	// Whether to hide the values of the groups.
-	HideValue *bool                                   `json:"hide_value,omitempty"`
-	Type      SunburstWidgetLegendInlineAutomaticType `json:"type"`
+	HideValue *bool `json:"hide_value,omitempty"`
+	// Whether to show the legend inline or let it be automatically generated.
+	Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SunburstWidgetLegendInlineAutomatic SunburstWidgetLegendInlineAutomatic
 
 // NewSunburstWidgetLegendInlineAutomatic instantiates a new SunburstWidgetLegendInlineAutomatic object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +116,6 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetType() SunburstWidgetLegendInli
 		var ret SunburstWidgetLegendInlineAutomaticType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -141,8 +144,10 @@ func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 	if o.HideValue != nil {
 		toSerialize["hide_value"] = o.HideValue
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

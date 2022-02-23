@@ -18,19 +18,27 @@ type ImageWidgetDefinition struct {
 	// Whether to display a background or not.
 	HasBackground *bool `json:"has_background,omitempty"`
 	// Whether to display a border or not.
-	HasBorder       *bool                     `json:"has_border,omitempty"`
-	HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
-	Margin          *WidgetMargin             `json:"margin,omitempty"`
-	Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
-	Type            ImageWidgetDefinitionType `json:"type"`
+	HasBorder *bool `json:"has_border,omitempty"`
+	// Horizontal alignment.
+	HorizontalAlign *WidgetHorizontalAlign `json:"horizontal_align,omitempty"`
+	// Size of the margins around the image.// **Note**: `small` and `large` values are deprecated.
+	Margin *WidgetMargin `json:"margin,omitempty"`
+	// How to size the image on the widget. The values are based on the image `object-fit` CSS properties.// **Note**: `zoom`, `fit` and `center` values are deprecated.
+	Sizing *WidgetImageSizing `json:"sizing,omitempty"`
+	// Type of the image widget.
+	Type ImageWidgetDefinitionType `json:"type"`
 	// URL of the image.
 	Url string `json:"url"`
 	// URL of the image in dark mode.
-	UrlDarkTheme  *string              `json:"url_dark_theme,omitempty"`
+	UrlDarkTheme *string `json:"url_dark_theme,omitempty"`
+	// Vertical alignment.
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ImageWidgetDefinition ImageWidgetDefinition
 
 // NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +64,7 @@ func NewImageWidgetDefinitionWithDefaults() *ImageWidgetDefinition {
 	this.HasBackground = &hasBackground
 	var hasBorder bool = true
 	this.HasBorder = &hasBorder
-	var type_ ImageWidgetDefinitionType = IMAGEWIDGETDEFINITIONTYPE_IMAGE
+	var type_ ImageWidgetDefinitionType = "image"
 	this.Type = type_
 	return &this
 }
@@ -227,7 +235,6 @@ func (o *ImageWidgetDefinition) GetType() ImageWidgetDefinitionType {
 		var ret ImageWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -251,7 +258,6 @@ func (o *ImageWidgetDefinition) GetUrl() string {
 		var ret string
 		return ret
 	}
-
 	return o.Url
 }
 
@@ -353,17 +359,17 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Sizing != nil {
 		toSerialize["sizing"] = o.Sizing
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["url"] = o.Url
-	}
+	toSerialize["type"] = o.Type
+	toSerialize["url"] = o.Url
 	if o.UrlDarkTheme != nil {
 		toSerialize["url_dark_theme"] = o.UrlDarkTheme
 	}
 	if o.VerticalAlign != nil {
 		toSerialize["vertical_align"] = o.VerticalAlign
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

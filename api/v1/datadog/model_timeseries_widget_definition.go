@@ -21,27 +21,36 @@ type TimeseriesWidgetDefinition struct {
 	Events *[]WidgetEvent `json:"events,omitempty"`
 	// Columns displayed in the legend.
 	LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
-	LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
-	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
+	// Layout of the legend.
+	LegendLayout *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
+	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
-	Requests   []TimeseriesWidgetRequest `json:"requests"`
-	RightYaxis *WidgetAxis               `json:"right_yaxis,omitempty"`
+	Requests []TimeseriesWidgetRequest `json:"requests"`
+	// Axis controls for the widget.
+	RightYaxis *WidgetAxis `json:"right_yaxis,omitempty"`
 	// (screenboard only) Show the legend for this widget.
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      TimeseriesWidgetDefinitionType `json:"type"`
-	Yaxis     *WidgetAxis                    `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the timeseries widget.
+	Type TimeseriesWidgetDefinitionType `json:"type"`
+	// Axis controls for the widget.
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TimeseriesWidgetDefinition TimeseriesWidgetDefinition
 
 // NewTimeseriesWidgetDefinition instantiates a new TimeseriesWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +68,7 @@ func NewTimeseriesWidgetDefinition(requests []TimeseriesWidgetRequest, type_ Tim
 // but it doesn't guarantee that properties required by API are set
 func NewTimeseriesWidgetDefinitionWithDefaults() *TimeseriesWidgetDefinition {
 	this := TimeseriesWidgetDefinition{}
-	var type_ TimeseriesWidgetDefinitionType = TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES
+	var type_ TimeseriesWidgetDefinitionType = "timeseries"
 	this.Type = type_
 	return &this
 }
@@ -262,7 +271,6 @@ func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
 		var ret []TimeseriesWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -478,7 +486,6 @@ func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType {
 		var ret TimeseriesWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -551,9 +558,7 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Markers != nil {
 		toSerialize["markers"] = o.Markers
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.RightYaxis != nil {
 		toSerialize["right_yaxis"] = o.RightYaxis
 	}
@@ -572,11 +577,13 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
+	toSerialize["type"] = o.Type
 	if o.Yaxis != nil {
 		toSerialize["yaxis"] = o.Yaxis
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -18,11 +18,15 @@ type FormulaAndFunctionEventQueryGroupBy struct {
 	// Event facet.
 	Facet string `json:"facet"`
 	// Number of groups to return.
-	Limit *int64                                   `json:"limit,omitempty"`
-	Sort  *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
+	// Options for sorting group by results.
+	Sort *FormulaAndFunctionEventQueryGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionEventQueryGroupBy FormulaAndFunctionEventQueryGroupBy
 
 // NewFormulaAndFunctionEventQueryGroupBy instantiates a new FormulaAndFunctionEventQueryGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func (o *FormulaAndFunctionEventQueryGroupBy) GetFacet() string {
 		var ret string
 		return ret
 	}
-
 	return o.Facet
 }
 
@@ -135,14 +138,16 @@ func (o FormulaAndFunctionEventQueryGroupBy) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["facet"] = o.Facet
-	}
+	toSerialize["facet"] = o.Facet
 	if o.Limit != nil {
 		toSerialize["limit"] = o.Limit
 	}
 	if o.Sort != nil {
 		toSerialize["sort"] = o.Sort
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

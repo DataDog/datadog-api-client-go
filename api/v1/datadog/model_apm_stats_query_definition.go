@@ -24,13 +24,17 @@ type ApmStatsQueryDefinition struct {
 	// The organization's host group name and value.
 	PrimaryTag string `json:"primary_tag"`
 	// Resource name.
-	Resource *string              `json:"resource,omitempty"`
-	RowType  ApmStatsQueryRowType `json:"row_type"`
+	Resource *string `json:"resource,omitempty"`
+	// The level of detail for the request.
+	RowType ApmStatsQueryRowType `json:"row_type"`
 	// Service name.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApmStatsQueryDefinition ApmStatsQueryDefinition
 
 // NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -92,7 +96,6 @@ func (o *ApmStatsQueryDefinition) GetEnv() string {
 		var ret string
 		return ret
 	}
-
 	return o.Env
 }
 
@@ -116,7 +119,6 @@ func (o *ApmStatsQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -140,7 +142,6 @@ func (o *ApmStatsQueryDefinition) GetPrimaryTag() string {
 		var ret string
 		return ret
 	}
-
 	return o.PrimaryTag
 }
 
@@ -196,7 +197,6 @@ func (o *ApmStatsQueryDefinition) GetRowType() ApmStatsQueryRowType {
 		var ret ApmStatsQueryRowType
 		return ret
 	}
-
 	return o.RowType
 }
 
@@ -220,7 +220,6 @@ func (o *ApmStatsQueryDefinition) GetService() string {
 		var ret string
 		return ret
 	}
-
 	return o.Service
 }
 
@@ -246,23 +245,17 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	if o.Columns != nil {
 		toSerialize["columns"] = o.Columns
 	}
-	if true {
-		toSerialize["env"] = o.Env
-	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["primary_tag"] = o.PrimaryTag
-	}
+	toSerialize["env"] = o.Env
+	toSerialize["name"] = o.Name
+	toSerialize["primary_tag"] = o.PrimaryTag
 	if o.Resource != nil {
 		toSerialize["resource"] = o.Resource
 	}
-	if true {
-		toSerialize["row_type"] = o.RowType
-	}
-	if true {
-		toSerialize["service"] = o.Service
+	toSerialize["row_type"] = o.RowType
+	toSerialize["service"] = o.Service
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

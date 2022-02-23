@@ -15,11 +15,16 @@ import (
 
 // SecurityFilterCreateData Object for a single security filter.
 type SecurityFilterCreateData struct {
+	// Object containing the attributes of the security filter to be created.
 	Attributes SecurityFilterCreateAttributes `json:"attributes"`
-	Type       SecurityFilterType             `json:"type"`
+	// The type of the resource. The value should always be `security_filters`.
+	Type SecurityFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterCreateData SecurityFilterCreateData
 
 // NewSecurityFilterCreateData instantiates a new SecurityFilterCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewSecurityFilterCreateData(attributes SecurityFilterCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityFilterCreateDataWithDefaults() *SecurityFilterCreateData {
 	this := SecurityFilterCreateData{}
-	var type_ SecurityFilterType = SECURITYFILTERTYPE_SECURITY_FILTERS
+	var type_ SecurityFilterType = "security_filters"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *SecurityFilterCreateData) GetAttributes() SecurityFilterCreateAttribute
 		var ret SecurityFilterCreateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *SecurityFilterCreateData) GetType() SecurityFilterType {
 		var ret SecurityFilterType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o SecurityFilterCreateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

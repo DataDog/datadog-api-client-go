@@ -15,13 +15,18 @@ import (
 
 // UserUpdateData Object to update a user.
 type UserUpdateData struct {
+	// Attributes of the edited user.
 	Attributes UserUpdateAttributes `json:"attributes"`
 	// ID of the user.
-	Id   string    `json:"id"`
+	Id string `json:"id"`
+	// Users resource type.
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserUpdateData UserUpdateData
 
 // NewUserUpdateData instantiates a new UserUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewUserUpdateData(attributes UserUpdateAttributes, id string, type_ UsersTy
 // but it doesn't guarantee that properties required by API are set
 func NewUserUpdateDataWithDefaults() *UserUpdateData {
 	this := UserUpdateData{}
-	var type_ UsersType = USERSTYPE_USERS
+	var type_ UsersType = "users"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *UserUpdateData) GetAttributes() UserUpdateAttributes {
 		var ret UserUpdateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *UserUpdateData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *UserUpdateData) GetType() UsersType {
 		var ret UsersType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o UserUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

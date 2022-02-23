@@ -15,11 +15,15 @@ import (
 // RelationshipToPermissionData Relationship to permission object.
 type RelationshipToPermissionData struct {
 	// ID of the permission.
-	Id   *string          `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// Permissions resource type.
 	Type *PermissionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToPermissionData RelationshipToPermissionData
 
 // NewRelationshipToPermissionData instantiates a new RelationshipToPermissionData object
 // This constructor will assign default values to properties that have it defined,
@@ -27,7 +31,7 @@ type RelationshipToPermissionData struct {
 // will change when the set of required properties is changed
 func NewRelationshipToPermissionData() *RelationshipToPermissionData {
 	this := RelationshipToPermissionData{}
-	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
+	var type_ PermissionsType = "permissions"
 	this.Type = &type_
 	return &this
 }
@@ -37,7 +41,7 @@ func NewRelationshipToPermissionData() *RelationshipToPermissionData {
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToPermissionDataWithDefaults() *RelationshipToPermissionData {
 	this := RelationshipToPermissionData{}
-	var type_ PermissionsType = PERMISSIONSTYPE_PERMISSIONS
+	var type_ PermissionsType = "permissions"
 	this.Type = &type_
 	return &this
 }
@@ -116,6 +120,10 @@ func (o RelationshipToPermissionData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

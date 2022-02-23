@@ -16,13 +16,17 @@ import (
 // ScatterplotWidgetFormula Formula to be used in a Scatterplot widget query.
 type ScatterplotWidgetFormula struct {
 	// Expression alias.
-	Alias     *string              `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
+	// Dimension of the Scatterplot.
 	Dimension ScatterplotDimension `json:"dimension"`
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ScatterplotWidgetFormula ScatterplotWidgetFormula
 
 // NewScatterplotWidgetFormula instantiates a new ScatterplotWidgetFormula object
 // This constructor will assign default values to properties that have it defined,
@@ -81,7 +85,6 @@ func (o *ScatterplotWidgetFormula) GetDimension() ScatterplotDimension {
 		var ret ScatterplotDimension
 		return ret
 	}
-
 	return o.Dimension
 }
 
@@ -105,7 +108,6 @@ func (o *ScatterplotWidgetFormula) GetFormula() string {
 		var ret string
 		return ret
 	}
-
 	return o.Formula
 }
 
@@ -131,11 +133,11 @@ func (o ScatterplotWidgetFormula) MarshalJSON() ([]byte, error) {
 	if o.Alias != nil {
 		toSerialize["alias"] = o.Alias
 	}
-	if true {
-		toSerialize["dimension"] = o.Dimension
-	}
-	if true {
-		toSerialize["formula"] = o.Formula
+	toSerialize["dimension"] = o.Dimension
+	toSerialize["formula"] = o.Formula
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

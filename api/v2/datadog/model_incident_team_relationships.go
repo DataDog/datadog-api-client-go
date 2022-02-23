@@ -14,11 +14,16 @@ import (
 
 // IncidentTeamRelationships The incident team's relationships.
 type IncidentTeamRelationships struct {
-	CreatedBy      *RelationshipToUser `json:"created_by,omitempty"`
+	// Relationship to user.
+	CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+	// Relationship to user.
 	LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTeamRelationships IncidentTeamRelationships
 
 // NewIncidentTeamRelationships instantiates a new IncidentTeamRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o IncidentTeamRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.LastModifiedBy != nil {
 		toSerialize["last_modified_by"] = o.LastModifiedBy
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

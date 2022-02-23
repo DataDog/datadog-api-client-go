@@ -16,11 +16,15 @@ import (
 // RelationshipToOrganizationData Relationship to organization object.
 type RelationshipToOrganizationData struct {
 	// ID of the organization.
-	Id   string            `json:"id"`
+	Id string `json:"id"`
+	// Organizations resource type.
 	Type OrganizationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _RelationshipToOrganizationData RelationshipToOrganizationData
 
 // NewRelationshipToOrganizationData instantiates a new RelationshipToOrganizationData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewRelationshipToOrganizationData(id string, type_ OrganizationsType) *Rela
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToOrganizationDataWithDefaults() *RelationshipToOrganizationData {
 	this := RelationshipToOrganizationData{}
-	var type_ OrganizationsType = ORGANIZATIONSTYPE_ORGS
+	var type_ OrganizationsType = "orgs"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *RelationshipToOrganizationData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -73,7 +76,6 @@ func (o *RelationshipToOrganizationData) GetType() OrganizationsType {
 		var ret OrganizationsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o RelationshipToOrganizationData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

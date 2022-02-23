@@ -13,15 +13,19 @@ import (
 	"fmt"
 )
 
-// ServiceLevelObjectiveQuery A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator to be used because this will sum up all request counts instead of averaging them, or taking the max or min of all of those requests.
+// ServiceLevelObjectiveQuery A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator// to be used because this will sum up all request counts instead of averaging them, or taking the max or
+// min of all of those requests.
 type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for total (valid) events.
 	Denominator string `json:"denominator"`
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ServiceLevelObjectiveQuery ServiceLevelObjectiveQuery
 
 // NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +52,6 @@ func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 		var ret string
 		return ret
 	}
-
 	return o.Denominator
 }
 
@@ -72,7 +75,6 @@ func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
 		var ret string
 		return ret
 	}
-
 	return o.Numerator
 }
 
@@ -95,11 +97,11 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["denominator"] = o.Denominator
-	}
-	if true {
-		toSerialize["numerator"] = o.Numerator
+	toSerialize["denominator"] = o.Denominator
+	toSerialize["numerator"] = o.Numerator
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

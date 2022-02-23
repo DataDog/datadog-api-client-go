@@ -15,14 +15,18 @@ import (
 
 // ListStreamQuery Updated list stream widget.
 type ListStreamQuery struct {
+	// Source from which to query items to display in the stream.
 	DataSource ListStreamSource `json:"data_source"`
 	// List of indexes.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ListStreamQuery ListStreamQuery
 
 // NewListStreamQuery instantiates a new ListStreamQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +44,7 @@ func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListSt
 // but it doesn't guarantee that properties required by API are set
 func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this := ListStreamQuery{}
-	var dataSource ListStreamSource = LISTSTREAMSOURCE_ISSUE_STREAM
+	var dataSource ListStreamSource = "issue_stream"
 	this.DataSource = dataSource
 	return &this
 }
@@ -51,7 +55,6 @@ func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 		var ret ListStreamSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -107,7 +110,6 @@ func (o *ListStreamQuery) GetQueryString() string {
 		var ret string
 		return ret
 	}
-
 	return o.QueryString
 }
 
@@ -130,14 +132,14 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
+	toSerialize["data_source"] = o.DataSource
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
-	if true {
-		toSerialize["query_string"] = o.QueryString
+	toSerialize["query_string"] = o.QueryString
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

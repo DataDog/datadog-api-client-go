@@ -15,18 +15,25 @@ import (
 
 // WebhooksIntegration Datadog-Webhooks integration.
 type WebhooksIntegration struct {
-	// If `null`, uses no header. If given a JSON payload, these will be headers attached to your webhook.
-	CustomHeaders NullableString               `json:"custom_headers,omitempty"`
-	EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
-	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify).
+	// If `null`, uses no header.// If given a JSON payload, these will be headers attached to your webhook.
+	CustomHeaders NullableString `json:"custom_headers,omitempty"`
+	// Encoding type. Can be given either `json` or `form`.
+	EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.// Learn more on how to use it in
+	// [monitor notifications](https://docs.datadoghq.com/monitors/notify).
 	Name string `json:"name"`
-	// If `null`, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
+	// If `null`, uses the default payload.// If given a JSON payload, the webhook returns the payload
+	// specified by the given payload.
+	// [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
 	Payload NullableString `json:"payload,omitempty"`
 	// URL of the webhook.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WebhooksIntegration WebhooksIntegration
 
 // NewWebhooksIntegration instantiates a new WebhooksIntegration object
 // This constructor will assign default values to properties that have it defined,
@@ -34,7 +41,7 @@ type WebhooksIntegration struct {
 // will change when the set of required properties is changed
 func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 	this := WebhooksIntegration{}
-	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
+	var encodeAs WebhooksIntegrationEncoding = "json"
 	this.EncodeAs = &encodeAs
 	this.Name = name
 	this.Url = url
@@ -46,7 +53,7 @@ func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 // but it doesn't guarantee that properties required by API are set
 func NewWebhooksIntegrationWithDefaults() *WebhooksIntegration {
 	this := WebhooksIntegration{}
-	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
+	var encodeAs WebhooksIntegrationEncoding = "json"
 	this.EncodeAs = &encodeAs
 	return &this
 }
@@ -132,7 +139,6 @@ func (o *WebhooksIntegration) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -199,7 +205,6 @@ func (o *WebhooksIntegration) GetUrl() string {
 		var ret string
 		return ret
 	}
-
 	return o.Url
 }
 
@@ -228,14 +233,14 @@ func (o WebhooksIntegration) MarshalJSON() ([]byte, error) {
 	if o.EncodeAs != nil {
 		toSerialize["encode_as"] = o.EncodeAs
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Payload.IsSet() {
 		toSerialize["payload"] = o.Payload.Get()
 	}
-	if true {
-		toSerialize["url"] = o.Url
+	toSerialize["url"] = o.Url
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

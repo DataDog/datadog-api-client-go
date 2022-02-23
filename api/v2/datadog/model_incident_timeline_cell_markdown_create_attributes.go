@@ -15,13 +15,18 @@ import (
 
 // IncidentTimelineCellMarkdownCreateAttributes Timeline cell data for Markdown timeline cells for a create request.
 type IncidentTimelineCellMarkdownCreateAttributes struct {
-	CellType IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-	Content  IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+	// Type of the Markdown timeline cell.
+	CellType IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+	// The Markdown timeline cell contents.
+	Content IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentTimelineCellMarkdownCreateAttributes IncidentTimelineCellMarkdownCreateAttributes
 
 // NewIncidentTimelineCellMarkdownCreateAttributes instantiates a new IncidentTimelineCellMarkdownCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,7 @@ func NewIncidentTimelineCellMarkdownCreateAttributes(cellType IncidentTimelineCe
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentTimelineCellMarkdownCreateAttributesWithDefaults() *IncidentTimelineCellMarkdownCreateAttributes {
 	this := IncidentTimelineCellMarkdownCreateAttributes{}
-	var cellType IncidentTimelineCellMarkdownContentType = INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN
+	var cellType IncidentTimelineCellMarkdownContentType = "markdown"
 	this.CellType = cellType
 	var important bool = false
 	this.Important = &important
@@ -54,7 +59,6 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetCellType() IncidentTim
 		var ret IncidentTimelineCellMarkdownContentType
 		return ret
 	}
-
 	return o.CellType
 }
 
@@ -78,7 +82,6 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContent() IncidentTime
 		var ret IncidentTimelineCellMarkdownCreateAttributesContent
 		return ret
 	}
-
 	return o.Content
 }
 
@@ -133,14 +136,14 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["cell_type"] = o.CellType
-	}
-	if true {
-		toSerialize["content"] = o.Content
-	}
+	toSerialize["cell_type"] = o.CellType
+	toSerialize["content"] = o.Content
 	if o.Important != nil {
 		toSerialize["important"] = o.Important
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

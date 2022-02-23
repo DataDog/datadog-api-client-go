@@ -17,18 +17,26 @@ import (
 type ChangeWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
-	// Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the `REQUEST_SCHEMA`.
+	// Array of one request object to display in the widget.//
+	// See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
+	//  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []ChangeWidgetRequest `json:"requests"`
-	Time     *WidgetTime           `json:"time,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                    `json:"title_size,omitempty"`
-	Type      ChangeWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the change widget.
+	Type ChangeWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ChangeWidgetDefinition ChangeWidgetDefinition
 
 // NewChangeWidgetDefinition instantiates a new ChangeWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +54,7 @@ func NewChangeWidgetDefinition(requests []ChangeWidgetRequest, type_ ChangeWidge
 // but it doesn't guarantee that properties required by API are set
 func NewChangeWidgetDefinitionWithDefaults() *ChangeWidgetDefinition {
 	this := ChangeWidgetDefinition{}
-	var type_ ChangeWidgetDefinitionType = CHANGEWIDGETDEFINITIONTYPE_CHANGE
+	var type_ ChangeWidgetDefinitionType = "change"
 	this.Type = type_
 	return &this
 }
@@ -89,7 +97,6 @@ func (o *ChangeWidgetDefinition) GetRequests() []ChangeWidgetRequest {
 		var ret []ChangeWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -241,7 +248,6 @@ func (o *ChangeWidgetDefinition) GetType() ChangeWidgetDefinitionType {
 		var ret ChangeWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -267,9 +273,7 @@ func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.CustomLinks != nil {
 		toSerialize["custom_links"] = o.CustomLinks
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -282,8 +286,10 @@ func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

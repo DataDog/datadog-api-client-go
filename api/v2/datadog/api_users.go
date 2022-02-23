@@ -358,8 +358,8 @@ type apiDisableUserRequest struct {
 /*
  * DisableUser Disable a user
  * Disable a user. Can only be used with an application key belonging
-to an administrator user.
-*/
+ * to an administrator user.
+ */
 func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	req := apiDisableUserRequest{
 		ApiService: a,
@@ -394,24 +394,14 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json"}
+	localVarHTTPHeaderAccepts := []string{"*/*"}
 
 	// set Accept header
 	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -543,15 +533,6 @@ func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserI
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -560,7 +541,6 @@ func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserI
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -701,15 +681,6 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -718,7 +689,6 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -822,8 +792,8 @@ type apiListUserOrganizationsRequest struct {
 /*
  * ListUserOrganizations Get a user organization
  * Get a user organization. Returns the user information and all organizations
-joined by this user.
-*/
+ * joined by this user.
+ */
 func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	req := apiListUserOrganizationsRequest{
 		ApiService: a,
@@ -860,15 +830,6 @@ func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganization
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -877,7 +838,6 @@ func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganization
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -981,8 +941,8 @@ type apiListUserPermissionsRequest struct {
 /*
  * ListUserPermissions Get a user permissions
  * Get a user permission set. Returns a list of the user’s permissions
-granted by the associated user's roles.
-*/
+ * granted by the associated user's roles.
+ */
 func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
 	req := apiListUserPermissionsRequest{
 		ApiService: a,
@@ -1019,15 +979,6 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
-
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
@@ -1036,7 +987,6 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1183,8 +1133,8 @@ func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *Lis
 /*
  * ListUsers List all users
  * Get the list of all users in the organization. This list includes
-all users even if they are deactivated or unverified.
-*/
+ * all users even if they are deactivated or unverified.
+ */
 func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	req := apiListUsersRequest{
 		ApiService: a,
@@ -1232,7 +1182,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 	localVarHeaderParams := make(map[string]string)
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
-
 	if r.pageSize != nil {
 		localVarQueryParams.Add("page[size]", parameterToString(*r.pageSize, ""))
 	}
@@ -1251,14 +1200,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 	if r.filterStatus != nil {
 		localVarQueryParams.Add("filter[status]", parameterToString(*r.filterStatus, ""))
 	}
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{}
-
-	// set Content-Type header
-	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
@@ -1268,7 +1209,6 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -1535,8 +1475,8 @@ type apiUpdateUserRequest struct {
 /*
  * UpdateUser Update a user
  * Edit a user. Can only be used with an application key belonging
-to an administrator user.
-*/
+ * to an administrator user.
+ */
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
 	req := apiUpdateUserRequest{
 		ApiService: a,

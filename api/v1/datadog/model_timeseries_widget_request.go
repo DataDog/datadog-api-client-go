@@ -14,31 +14,46 @@ import (
 
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
-	ApmQuery    *LogQueryDefinition `json:"apm_query,omitempty"`
-	AuditQuery  *LogQueryDefinition `json:"audit_query,omitempty"`
-	DisplayType *WidgetDisplayType  `json:"display_type,omitempty"`
-	EventQuery  *LogQueryDefinition `json:"event_query,omitempty"`
+	// The log query.
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	// The log query.
+	AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+	// Type of display to use for the request.
+	DisplayType *WidgetDisplayType `json:"display_type,omitempty"`
+	// The log query.
+	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries. **This feature is currently in beta.**
-	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
+	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	// The log query.
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
-	Metadata     *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
-	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
+	Metadata *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
+	// The log query.
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
 	// Whether or not to display a second y-axis on the right.
-	OnRightYaxis        *bool                   `json:"on_right_yaxis,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	OnRightYaxis *bool `json:"on_right_yaxis,omitempty"`
+	// The process query to use in the widget.
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	// The log query.
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
-	Style          *WidgetRequestStyle                  `json:"style,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	// Timeseries or Scalar response. **This feature is currently in beta.**
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+	// The log query.
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	// The log query.
+	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	// Define request widget style.
+	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _TimeseriesWidgetRequest TimeseriesWidgetRequest
 
 // NewTimeseriesWidgetRequest instantiates a new TimeseriesWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -656,6 +671,10 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Style != nil {
 		toSerialize["style"] = o.Style
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

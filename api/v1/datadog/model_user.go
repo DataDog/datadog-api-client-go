@@ -14,6 +14,7 @@ import (
 
 // User Create, edit, and disable users.
 type User struct {
+	// The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 	AccessRole *AccessRole `json:"access_role,omitempty"`
 	// The new disabled status of the user.
 	Disabled *bool `json:"disabled,omitempty"`
@@ -28,8 +29,11 @@ type User struct {
 	// Whether or not the user logged in Datadog at least once.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _User User
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +41,7 @@ type User struct {
 // will change when the set of required properties is changed
 func NewUser() *User {
 	this := User{}
-	var accessRole AccessRole = ACCESSROLE_STANDARD
+	var accessRole AccessRole = "st"
 	this.AccessRole = &accessRole
 	return &this
 }
@@ -47,7 +51,7 @@ func NewUser() *User {
 // but it doesn't guarantee that properties required by API are set
 func NewUserWithDefaults() *User {
 	this := User{}
-	var accessRole AccessRole = ACCESSROLE_STANDARD
+	var accessRole AccessRole = "st"
 	this.AccessRole = &accessRole
 	return &this
 }
@@ -301,6 +305,10 @@ func (o User) MarshalJSON() ([]byte, error) {
 	}
 	if o.Verified != nil {
 		toSerialize["verified"] = o.Verified
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

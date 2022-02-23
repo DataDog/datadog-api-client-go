@@ -35,20 +35,25 @@ type SecurityMonitoringRuleResponse struct {
 	// Message for generated signals.
 	Message *string `json:"message,omitempty"`
 	// The name of the rule.
-	Name    *string                        `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
+	// Options on rules.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
-	Tags *[]string                       `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
+	// The rule type.
 	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 	// User ID of the user who updated the rule.
 	UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
 	// The version of the rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityMonitoringRuleResponse SecurityMonitoringRuleResponse
 
 // NewSecurityMonitoringRuleResponse instantiates a new SecurityMonitoringRuleResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -666,6 +671,10 @@ func (o SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Version != nil {
 		toSerialize["version"] = o.Version
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

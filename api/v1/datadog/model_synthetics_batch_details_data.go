@@ -14,13 +14,18 @@ import (
 
 // SyntheticsBatchDetailsData Wrapper object that contains the details of a batch.
 type SyntheticsBatchDetailsData struct {
+	// Metadata for the Synthetics tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// List of results for the batch.
 	Results *[]SyntheticsBatchResult `json:"results,omitempty"`
-	Status  *SyntheticsStatus        `json:"status,omitempty"`
+	// Determines whether or not the batch has passed, failed, or is in progress.
+	Status *SyntheticsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBatchDetailsData SyntheticsBatchDetailsData
 
 // NewSyntheticsBatchDetailsData instantiates a new SyntheticsBatchDetailsData object
 // This constructor will assign default values to properties that have it defined,
@@ -148,6 +153,10 @@ func (o SyntheticsBatchDetailsData) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

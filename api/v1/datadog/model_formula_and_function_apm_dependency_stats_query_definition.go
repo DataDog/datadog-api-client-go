@@ -15,6 +15,7 @@ import (
 
 // FormulaAndFunctionApmDependencyStatsQueryDefinition A formula and functions APM dependency stats query.
 type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
+	// Data source for APM dependency stats queries.
 	DataSource FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
 	// APM environment.
 	Env string `json:"env"`
@@ -31,11 +32,15 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	// APM resource.
 	ResourceName string `json:"resource_name"`
 	// APM service.
-	Service string                                  `json:"service"`
-	Stat    FormulaAndFunctionApmDependencyStatName `json:"stat"`
+	Service string `json:"service"`
+	// APM statistic.
+	Stat FormulaAndFunctionApmDependencyStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _FormulaAndFunctionApmDependencyStatsQueryDefinition FormulaAndFunctionApmDependencyStatsQueryDefinition
 
 // NewFormulaAndFunctionApmDependencyStatsQueryDefinition instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -67,7 +72,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetDataSource() Fo
 		var ret FormulaAndFunctionApmDependencyStatsDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -91,7 +95,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnv() string {
 		var ret string
 		return ret
 	}
-
 	return o.Env
 }
 
@@ -147,7 +150,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -171,7 +173,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationName()
 		var ret string
 		return ret
 	}
-
 	return o.OperationName
 }
 
@@ -259,7 +260,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetResourceName() 
 		var ret string
 		return ret
 	}
-
 	return o.ResourceName
 }
 
@@ -283,7 +283,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetService() strin
 		var ret string
 		return ret
 	}
-
 	return o.Service
 }
 
@@ -307,7 +306,6 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetStat() FormulaA
 		var ret FormulaAndFunctionApmDependencyStatName
 		return ret
 	}
-
 	return o.Stat
 }
 
@@ -330,35 +328,25 @@ func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]by
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
-	if true {
-		toSerialize["env"] = o.Env
-	}
+	toSerialize["data_source"] = o.DataSource
+	toSerialize["env"] = o.Env
 	if o.IsUpstream != nil {
 		toSerialize["is_upstream"] = o.IsUpstream
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["operation_name"] = o.OperationName
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["operation_name"] = o.OperationName
 	if o.PrimaryTagName != nil {
 		toSerialize["primary_tag_name"] = o.PrimaryTagName
 	}
 	if o.PrimaryTagValue != nil {
 		toSerialize["primary_tag_value"] = o.PrimaryTagValue
 	}
-	if true {
-		toSerialize["resource_name"] = o.ResourceName
-	}
-	if true {
-		toSerialize["service"] = o.Service
-	}
-	if true {
-		toSerialize["stat"] = o.Stat
+	toSerialize["resource_name"] = o.ResourceName
+	toSerialize["service"] = o.Service
+	toSerialize["stat"] = o.Stat
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

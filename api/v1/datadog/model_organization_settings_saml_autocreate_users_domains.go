@@ -19,8 +19,11 @@ type OrganizationSettingsSamlAutocreateUsersDomains struct {
 	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _OrganizationSettingsSamlAutocreateUsersDomains OrganizationSettingsSamlAutocreateUsersDomains
 
 // NewOrganizationSettingsSamlAutocreateUsersDomains instantiates a new OrganizationSettingsSamlAutocreateUsersDomains object
 // This constructor will assign default values to properties that have it defined,
@@ -113,6 +116,10 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 	}
 	if o.Enabled != nil {
 		toSerialize["enabled"] = o.Enabled
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

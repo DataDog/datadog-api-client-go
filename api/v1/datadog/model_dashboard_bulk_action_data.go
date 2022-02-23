@@ -16,11 +16,15 @@ import (
 // DashboardBulkActionData Dashboard bulk action request data.
 type DashboardBulkActionData struct {
 	// Dashboard resource ID.
-	Id   string                `json:"id"`
+	Id string `json:"id"`
+	// Dashboard resource type.
 	Type DashboardResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardBulkActionData DashboardBulkActionData
 
 // NewDashboardBulkActionData instantiates a new DashboardBulkActionData object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +42,7 @@ func NewDashboardBulkActionData(id string, type_ DashboardResourceType) *Dashboa
 // but it doesn't guarantee that properties required by API are set
 func NewDashboardBulkActionDataWithDefaults() *DashboardBulkActionData {
 	this := DashboardBulkActionData{}
-	var type_ DashboardResourceType = DASHBOARDRESOURCETYPE_DASHBOARD
+	var type_ DashboardResourceType = "dashboard"
 	this.Type = type_
 	return &this
 }
@@ -49,7 +53,6 @@ func (o *DashboardBulkActionData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -73,7 +76,6 @@ func (o *DashboardBulkActionData) GetType() DashboardResourceType {
 		var ret DashboardResourceType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -96,11 +98,11 @@ func (o DashboardBulkActionData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

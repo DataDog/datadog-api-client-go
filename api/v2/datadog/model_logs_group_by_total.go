@@ -15,8 +15,8 @@ import (
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
 	Bool    *bool
-	Float64 *float64
 	String  *string
+	Float64 *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -27,14 +27,14 @@ func BoolAsLogsGroupByTotal(v *bool) LogsGroupByTotal {
 	return LogsGroupByTotal{Bool: v}
 }
 
-// Float64AsLogsGroupByTotal is a convenience function that returns float64 wrapped in LogsGroupByTotal
-func Float64AsLogsGroupByTotal(v *float64) LogsGroupByTotal {
-	return LogsGroupByTotal{Float64: v}
-}
-
 // StringAsLogsGroupByTotal is a convenience function that returns string wrapped in LogsGroupByTotal
 func StringAsLogsGroupByTotal(v *string) LogsGroupByTotal {
 	return LogsGroupByTotal{String: v}
+}
+
+// Float64AsLogsGroupByTotal is a convenience function that returns float64 wrapped in LogsGroupByTotal
+func Float64AsLogsGroupByTotal(v *float64) LogsGroupByTotal {
+	return LogsGroupByTotal{Float64: v}
 }
 
 // Unmarshal JSON data into one of the pointers in the struct
@@ -95,8 +95,8 @@ func (dst *LogsGroupByTotal) UnmarshalJSON(data []byte) error {
 	if match != 1 { // more than 1 match
 		// reset to nil
 		dst.Bool = nil
-		dst.Float64 = nil
 		dst.String = nil
+		dst.Float64 = nil
 		return json.Unmarshal(data, &dst.UnparsedObject)
 	} else {
 		return nil // exactly one match
@@ -109,12 +109,12 @@ func (src LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.Bool)
 	}
 
-	if src.Float64 != nil {
-		return json.Marshal(&src.Float64)
-	}
-
 	if src.String != nil {
 		return json.Marshal(&src.String)
+	}
+
+	if src.Float64 != nil {
+		return json.Marshal(&src.Float64)
 	}
 
 	if src.UnparsedObject != nil {
@@ -129,12 +129,12 @@ func (obj *LogsGroupByTotal) GetActualInstance() interface{} {
 		return obj.Bool
 	}
 
-	if obj.Float64 != nil {
-		return obj.Float64
-	}
-
 	if obj.String != nil {
 		return obj.String
+	}
+
+	if obj.Float64 != nil {
+		return obj.Float64
 	}
 
 	// all schemas are nil
@@ -174,5 +174,11 @@ func (v NullableLogsGroupByTotal) MarshalJSON() ([]byte, error) {
 
 func (v *NullableLogsGroupByTotal) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

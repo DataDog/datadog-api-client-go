@@ -14,20 +14,28 @@ import (
 
 // SyntheticsBrowserTestResultFull Object returned describing a browser test result.
 type SyntheticsBrowserTestResultFull struct {
+	// Object describing the browser test configuration.
 	Check *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
 	// When the browser test was conducted.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Version of the browser test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Location from which the browser test was performed.
-	ProbeDc *string                          `json:"probe_dc,omitempty"`
-	Result  *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	// Object containing results for your Synthetic browser test.
+	Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
 	// ID of the browser test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	// The status of your Synthetic monitor.// * `O` for not triggered
+	// * `1` for triggered
+	// * `2` for no data
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsBrowserTestResultFull SyntheticsBrowserTestResultFull
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
 // This constructor will assign default values to properties that have it defined,
@@ -295,6 +303,10 @@ func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

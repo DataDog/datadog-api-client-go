@@ -15,14 +15,18 @@ import (
 
 // LogsExclusion Represents the index exclusion filter object from configuration API.
 type LogsExclusion struct {
+	// Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
 	Filter *LogsExclusionFilter `json:"filter,omitempty"`
 	// Whether or not the exclusion filter is active.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// Name of the index exclusion filter.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsExclusion LogsExclusion
 
 // NewLogsExclusion instantiates a new LogsExclusion object
 // This constructor will assign default values to properties that have it defined,
@@ -112,7 +116,6 @@ func (o *LogsExclusion) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -141,8 +144,10 @@ func (o LogsExclusion) MarshalJSON() ([]byte, error) {
 	if o.IsEnabled != nil {
 		toSerialize["is_enabled"] = o.IsEnabled
 	}
-	if true {
-		toSerialize["name"] = o.Name
+	toSerialize["name"] = o.Name
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -15,8 +15,9 @@ import (
 
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
 type LogsArchiveCreateRequestAttributes struct {
+	// An archive's destination.
 	Destination LogsArchiveCreateRequestDestination `json:"destination"`
-	// To store the tags in the archive, set the value \"true\". If it is set to \"false\", the tags will be deleted when the logs are sent to the archive.
+	// To store the tags in the archive, set the value "true".// If it is set to "false", the tags will be deleted when the logs are sent to the archive.
 	IncludeTags *bool `json:"include_tags,omitempty"`
 	// The archive name.
 	Name string `json:"name"`
@@ -25,8 +26,11 @@ type LogsArchiveCreateRequestAttributes struct {
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsArchiveCreateRequestAttributes LogsArchiveCreateRequestAttributes
 
 // NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +62,6 @@ func (o *LogsArchiveCreateRequestAttributes) GetDestination() LogsArchiveCreateR
 		var ret LogsArchiveCreateRequestDestination
 		return ret
 	}
-
 	return o.Destination
 }
 
@@ -114,7 +117,6 @@ func (o *LogsArchiveCreateRequestAttributes) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -138,7 +140,6 @@ func (o *LogsArchiveCreateRequestAttributes) GetQuery() string {
 		var ret string
 		return ret
 	}
-
 	return o.Query
 }
 
@@ -193,20 +194,18 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["destination"] = o.Destination
-	}
+	toSerialize["destination"] = o.Destination
 	if o.IncludeTags != nil {
 		toSerialize["include_tags"] = o.IncludeTags
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
-	if true {
-		toSerialize["query"] = o.Query
-	}
+	toSerialize["name"] = o.Name
+	toSerialize["query"] = o.Query
 	if o.RehydrationTags != nil {
 		toSerialize["rehydration_tags"] = o.RehydrationTags
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,10 +14,14 @@ import (
 
 // UserRelationships Relationships of the user object.
 type UserRelationships struct {
+	// Relationship to roles.
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserRelationships UserRelationships
 
 // NewUserRelationships instantiates a new UserRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o UserRelationships) MarshalJSON() ([]byte, error) {
 	}
 	if o.Roles != nil {
 		toSerialize["roles"] = o.Roles
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

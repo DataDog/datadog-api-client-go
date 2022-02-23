@@ -16,16 +16,23 @@ import (
 // LogsGroupBy A group by rule
 type LogsGroupBy struct {
 	// The name of the facet to use (required)
-	Facet     string                `json:"facet"`
+	Facet string `json:"facet"`
+	// Used to perform a histogram computation (only for measure facets).// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 	Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
 	// The maximum buckets to return for this group by
-	Limit   *int64              `json:"limit,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
+	// The value to use for logs that don't have the facet used to group by
 	Missing *LogsGroupByMissing `json:"missing,omitempty"`
-	Sort    *LogsAggregateSort  `json:"sort,omitempty"`
-	Total   *LogsGroupByTotal   `json:"total,omitempty"`
+	// A sort rule
+	Sort *LogsAggregateSort `json:"sort,omitempty"`
+	// A resulting object to put the given computes in over all the matching records.
+	Total *LogsGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsGroupBy LogsGroupBy
 
 // NewLogsGroupBy instantiates a new LogsGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +62,6 @@ func (o *LogsGroupBy) GetFacet() string {
 		var ret string
 		return ret
 	}
-
 	return o.Facet
 }
 
@@ -238,9 +244,7 @@ func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["facet"] = o.Facet
-	}
+	toSerialize["facet"] = o.Facet
 	if o.Histogram != nil {
 		toSerialize["histogram"] = o.Histogram
 	}
@@ -255,6 +259,10 @@ func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 	}
 	if o.Total != nil {
 		toSerialize["total"] = o.Total
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

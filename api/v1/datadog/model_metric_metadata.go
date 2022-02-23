@@ -29,8 +29,11 @@ type MetricMetadata struct {
 	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricMetadata MetricMetadata
 
 // NewMetricMetadata instantiates a new MetricMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -298,6 +301,10 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Unit != nil {
 		toSerialize["unit"] = o.Unit
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

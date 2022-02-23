@@ -15,11 +15,16 @@ import (
 
 // LogsMetricUpdateData The new log-based metric properties.
 type LogsMetricUpdateData struct {
+	// The log-based metric properties that will be updated.
 	Attributes LogsMetricUpdateAttributes `json:"attributes"`
-	Type       LogsMetricType             `json:"type"`
+	// The type of the resource. The value should always be logs_metrics.
+	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricUpdateData LogsMetricUpdateData
 
 // NewLogsMetricUpdateData instantiates a new LogsMetricUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,7 @@ func NewLogsMetricUpdateData(attributes LogsMetricUpdateAttributes, type_ LogsMe
 // but it doesn't guarantee that properties required by API are set
 func NewLogsMetricUpdateDataWithDefaults() *LogsMetricUpdateData {
 	this := LogsMetricUpdateData{}
-	var type_ LogsMetricType = LOGSMETRICTYPE_LOGS_METRICS
+	var type_ LogsMetricType = "logs_metrics"
 	this.Type = type_
 	return &this
 }
@@ -48,7 +53,6 @@ func (o *LogsMetricUpdateData) GetAttributes() LogsMetricUpdateAttributes {
 		var ret LogsMetricUpdateAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -72,7 +76,6 @@ func (o *LogsMetricUpdateData) GetType() LogsMetricType {
 		var ret LogsMetricType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -95,11 +98,11 @@ func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

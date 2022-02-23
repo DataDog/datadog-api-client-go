@@ -14,6 +14,7 @@ import (
 
 // Organization Create, edit, and manage organizations.
 type Organization struct {
+	// A JSON array of billing type.
 	// Deprecated
 	Billing *OrganizationBilling `json:"billing,omitempty"`
 	// Date of the organization creation.
@@ -23,13 +24,18 @@ type Organization struct {
 	// The name of the new child-organization, limited to 32 characters.
 	Name *string `json:"name,omitempty"`
 	// The `public_id` of the organization you are operating within.
-	PublicId *string               `json:"public_id,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	// A JSON array of settings.
 	Settings *OrganizationSettings `json:"settings,omitempty"`
+	// Subscription definition.
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Organization Organization
 
 // NewOrganization instantiates a new Organization object
 // This constructor will assign default values to properties that have it defined,
@@ -303,6 +309,10 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	}
 	if o.Subscription != nil {
 		toSerialize["subscription"] = o.Subscription
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

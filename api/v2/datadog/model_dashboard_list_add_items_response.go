@@ -17,8 +17,11 @@ type DashboardListAddItemsResponse struct {
 	// List of dashboards added to the dashboard list.
 	AddedDashboardsToList *[]DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardListAddItemsResponse DashboardListAddItemsResponse
 
 // NewDashboardListAddItemsResponse instantiates a new DashboardListAddItemsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o DashboardListAddItemsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.AddedDashboardsToList != nil {
 		toSerialize["added_dashboards_to_list"] = o.AddedDashboardsToList
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

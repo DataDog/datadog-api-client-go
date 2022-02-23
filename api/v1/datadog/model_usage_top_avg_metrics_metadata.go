@@ -18,11 +18,15 @@ type UsageTopAvgMetricsMetadata struct {
 	// The day value from the user request that contains the returned usage data. (If day was used the request)
 	Day *time.Time `json:"day,omitempty"`
 	// The month value from the user request that contains the returned usage data. (If month was used the request)
-	Month      *time.Time                  `json:"month,omitempty"`
+	Month *time.Time `json:"month,omitempty"`
+	// The metadata for the current pagination.
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UsageTopAvgMetricsMetadata UsageTopAvgMetricsMetadata
 
 // NewUsageTopAvgMetricsMetadata instantiates a new UsageTopAvgMetricsMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +154,10 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -14,13 +14,18 @@ import (
 
 // MetricTagConfiguration Object for a single metric tag configuration.
 type MetricTagConfiguration struct {
+	// Object containing the definition of a metric tag configuration attributes.
 	Attributes *MetricTagConfigurationAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   *string                     `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
+	// The metric tag configuration resource type.
 	Type *MetricTagConfigurationType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricTagConfiguration MetricTagConfiguration
 
 // NewMetricTagConfiguration instantiates a new MetricTagConfiguration object
 // This constructor will assign default values to properties that have it defined,
@@ -28,7 +33,7 @@ type MetricTagConfiguration struct {
 // will change when the set of required properties is changed
 func NewMetricTagConfiguration() *MetricTagConfiguration {
 	this := MetricTagConfiguration{}
-	var type_ MetricTagConfigurationType = METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS
+	var type_ MetricTagConfigurationType = "manage_tags"
 	this.Type = &type_
 	return &this
 }
@@ -38,7 +43,7 @@ func NewMetricTagConfiguration() *MetricTagConfiguration {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricTagConfigurationWithDefaults() *MetricTagConfiguration {
 	this := MetricTagConfiguration{}
-	var type_ MetricTagConfigurationType = METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS
+	var type_ MetricTagConfigurationType = "manage_tags"
 	this.Type = &type_
 	return &this
 }
@@ -152,6 +157,10 @@ func (o MetricTagConfiguration) MarshalJSON() ([]byte, error) {
 	}
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

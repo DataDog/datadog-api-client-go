@@ -13,15 +13,20 @@ import (
 	"fmt"
 )
 
-// MetricBulkTagConfigStatus The status of a request to bulk configure metric tags. It contains the fields from the original request for reference.
+// MetricBulkTagConfigStatus The status of a request to bulk configure metric tags.// It contains the fields from the original request for reference.
 type MetricBulkTagConfigStatus struct {
+	// Optional attributes for the status of a bulk tag configuration request.
 	Attributes *MetricBulkTagConfigStatusAttributes `json:"attributes,omitempty"`
 	// A text prefix to match against metric names.
-	Id   string                      `json:"id"`
+	Id string `json:"id"`
+	// The metric bulk configure tags resource.
 	Type MetricBulkConfigureTagsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MetricBulkTagConfigStatus MetricBulkTagConfigStatus
 
 // NewMetricBulkTagConfigStatus instantiates a new MetricBulkTagConfigStatus object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,7 @@ func NewMetricBulkTagConfigStatus(id string, type_ MetricBulkConfigureTagsType) 
 // but it doesn't guarantee that properties required by API are set
 func NewMetricBulkTagConfigStatusWithDefaults() *MetricBulkTagConfigStatus {
 	this := MetricBulkTagConfigStatus{}
-	var type_ MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
+	var type_ MetricBulkConfigureTagsType = "metric_bulk_configure_tags"
 	this.Type = type_
 	return &this
 }
@@ -82,7 +87,6 @@ func (o *MetricBulkTagConfigStatus) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -106,7 +110,6 @@ func (o *MetricBulkTagConfigStatus) GetType() MetricBulkConfigureTagsType {
 		var ret MetricBulkConfigureTagsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -132,11 +135,11 @@ func (o MetricBulkTagConfigStatus) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

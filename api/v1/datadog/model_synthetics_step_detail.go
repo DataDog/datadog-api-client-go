@@ -16,13 +16,15 @@ import (
 type SyntheticsStepDetail struct {
 	// Array of errors collected for a browser test.
 	BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
-	CheckType     *SyntheticsCheckType      `json:"checkType,omitempty"`
+	// Type of assertion to apply in an API test.
+	CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
 	// Description of the test.
 	Description *string `json:"description,omitempty"`
 	// Total duration in millisecond of the test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned by the test.
-	Error      *string               `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
+	// Navigate between different tabs for your browser test.
 	PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
 	// Whether or not screenshots where collected by the test.
 	ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
@@ -32,11 +34,12 @@ type SyntheticsStepDetail struct {
 	SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
 	// The step ID.
 	StepId *int64 `json:"stepId,omitempty"`
-	// If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
+	// If this steps include a sub-test.// [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
 	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.
-	TimeToInteractive *float64            `json:"timeToInteractive,omitempty"`
-	Type              *SyntheticsStepType `json:"type,omitempty"`
+	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+	// Step type used in your Synthetic test.
+	Type *SyntheticsStepType `json:"type,omitempty"`
 	// URL to perform the step against.
 	Url *string `json:"url,omitempty"`
 	// Value for the step.
@@ -46,8 +49,11 @@ type SyntheticsStepDetail struct {
 	// Warning collected that didn't failed the step.
 	Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsStepDetail SyntheticsStepDetail
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object
 // This constructor will assign default values to properties that have it defined,
@@ -514,9 +520,9 @@ func (o *SyntheticsStepDetail) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsStepDetail) GetValue() interface{} {
-	if o == nil {
+	if o == nil || o.Value == nil {
 		var ret interface{}
 		return ret
 	}
@@ -525,8 +531,7 @@ func (o *SyntheticsStepDetail) GetValue() interface{} {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
-func (o *SyntheticsStepDetail) GetValueOk() (interface{}, bool) {
+func (o *SyntheticsStepDetail) GetValueOk() (*interface{}, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
 	}
@@ -666,6 +671,10 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 	}
 	if o.Warnings != nil {
 		toSerialize["warnings"] = o.Warnings
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

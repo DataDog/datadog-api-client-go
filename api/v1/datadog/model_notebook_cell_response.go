@@ -15,13 +15,18 @@ import (
 
 // NotebookCellResponse The description of a notebook cell response.
 type NotebookCellResponse struct {
+	// The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 	Attributes NotebookCellResponseAttributes `json:"attributes"`
 	// Notebook cell ID.
-	Id   string                   `json:"id"`
+	Id string `json:"id"`
+	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _NotebookCellResponse NotebookCellResponse
 
 // NewNotebookCellResponse instantiates a new NotebookCellResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,7 @@ func NewNotebookCellResponse(attributes NotebookCellResponseAttributes, id strin
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCellResponseWithDefaults() *NotebookCellResponse {
 	this := NotebookCellResponse{}
-	var type_ NotebookCellResourceType = NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS
+	var type_ NotebookCellResourceType = "notebook_cells"
 	this.Type = type_
 	return &this
 }
@@ -51,7 +56,6 @@ func (o *NotebookCellResponse) GetAttributes() NotebookCellResponseAttributes {
 		var ret NotebookCellResponseAttributes
 		return ret
 	}
-
 	return o.Attributes
 }
 
@@ -75,7 +79,6 @@ func (o *NotebookCellResponse) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -99,7 +102,6 @@ func (o *NotebookCellResponse) GetType() NotebookCellResourceType {
 		var ret NotebookCellResourceType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -122,14 +124,12 @@ func (o NotebookCellResponse) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["attributes"] = o.Attributes
-	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["attributes"] = o.Attributes
+	toSerialize["id"] = o.Id
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

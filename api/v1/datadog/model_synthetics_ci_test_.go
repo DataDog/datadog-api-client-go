@@ -16,8 +16,9 @@ import (
 // SyntheticsCITest Test configuration for Synthetics CI
 type SyntheticsCITest struct {
 	// Disable certificate checks in API tests.
-	AllowInsecureCertificates *bool                `json:"allowInsecureCertificates,omitempty"`
-	BasicAuth                 *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+	AllowInsecureCertificates *bool `json:"allowInsecureCertificates,omitempty"`
+	// Object to handle basic authentication when performing the test.
+	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
 	// Type of the data sent in a synthetics API test.
@@ -29,20 +30,25 @@ type SyntheticsCITest struct {
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"followRedirects,omitempty"`
 	// Headers to include when performing the test.
-	Headers *map[string]string `json:"headers,omitempty"`
+	Headers map[string]string `json:"headers,omitempty"`
 	// Array of locations used to run the test.
-	Locations *[]string                  `json:"locations,omitempty"`
-	Metadata  *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+	Locations *[]string `json:"locations,omitempty"`
+	// Metadata for the Synthetics tests run.
+	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// The public ID of the Synthetics test to trigger.
-	PublicId string                      `json:"public_id"`
-	Retry    *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	PublicId string `json:"public_id"`
+	// Object describing the retry strategy to apply to a Synthetic test.
+	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// Starting URL for the browser test.
 	StartUrl *string `json:"startUrl,omitempty"`
 	// Variables to replace in the test.
-	Variables *map[string]string `json:"variables,omitempty"`
+	Variables map[string]string `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsCITest SyntheticsCITest
 
 // NewSyntheticsCITest instantiates a new SyntheticsCITest object
 // This constructor will assign default values to properties that have it defined,
@@ -292,7 +298,7 @@ func (o *SyntheticsCITest) GetHeaders() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Headers
+	return o.Headers
 }
 
 // GetHeadersOk returns a tuple with the Headers field value if set, nil otherwise
@@ -301,7 +307,7 @@ func (o *SyntheticsCITest) GetHeadersOk() (*map[string]string, bool) {
 	if o == nil || o.Headers == nil {
 		return nil, false
 	}
-	return o.Headers, true
+	return &o.Headers, true
 }
 
 // HasHeaders returns a boolean if a field has been set.
@@ -315,7 +321,7 @@ func (o *SyntheticsCITest) HasHeaders() bool {
 
 // SetHeaders gets a reference to the given map[string]string and assigns it to the Headers field.
 func (o *SyntheticsCITest) SetHeaders(v map[string]string) {
-	o.Headers = &v
+	o.Headers = v
 }
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
@@ -388,7 +394,6 @@ func (o *SyntheticsCITest) GetPublicId() string {
 		var ret string
 		return ret
 	}
-
 	return o.PublicId
 }
 
@@ -476,7 +481,7 @@ func (o *SyntheticsCITest) GetVariables() map[string]string {
 		var ret map[string]string
 		return ret
 	}
-	return *o.Variables
+	return o.Variables
 }
 
 // GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
@@ -485,7 +490,7 @@ func (o *SyntheticsCITest) GetVariablesOk() (*map[string]string, bool) {
 	if o == nil || o.Variables == nil {
 		return nil, false
 	}
-	return o.Variables, true
+	return &o.Variables, true
 }
 
 // HasVariables returns a boolean if a field has been set.
@@ -499,7 +504,7 @@ func (o *SyntheticsCITest) HasVariables() bool {
 
 // SetVariables gets a reference to the given map[string]string and assigns it to the Variables field.
 func (o *SyntheticsCITest) SetVariables(v map[string]string) {
-	o.Variables = &v
+	o.Variables = v
 }
 
 func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
@@ -537,9 +542,7 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 	if o.Metadata != nil {
 		toSerialize["metadata"] = o.Metadata
 	}
-	if true {
-		toSerialize["public_id"] = o.PublicId
-	}
+	toSerialize["public_id"] = o.PublicId
 	if o.Retry != nil {
 		toSerialize["retry"] = o.Retry
 	}
@@ -548,6 +551,10 @@ func (o SyntheticsCITest) MarshalJSON() ([]byte, error) {
 	}
 	if o.Variables != nil {
 		toSerialize["variables"] = o.Variables
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
@@ -565,13 +572,13 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		Cookies                   *string                     `json:"cookies,omitempty"`
 		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"`
 		FollowRedirects           *bool                       `json:"followRedirects,omitempty"`
-		Headers                   *map[string]string          `json:"headers,omitempty"`
+		Headers                   map[string]string           `json:"headers,omitempty"`
 		Locations                 *[]string                   `json:"locations,omitempty"`
 		Metadata                  *SyntheticsCIBatchMetadata  `json:"metadata,omitempty"`
 		PublicId                  string                      `json:"public_id"`
 		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 		StartUrl                  *string                     `json:"startUrl,omitempty"`
-		Variables                 *map[string]string          `json:"variables,omitempty"`
+		Variables                 map[string]string           `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -17,8 +17,11 @@ type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
 	DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardListDeleteItemsResponse DashboardListDeleteItemsResponse
 
 // NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -76,6 +79,10 @@ func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.DeletedDashboardsFromList != nil {
 		toSerialize["deleted_dashboards_from_list"] = o.DeletedDashboardsFromList
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

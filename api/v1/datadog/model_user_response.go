@@ -14,10 +14,14 @@ import (
 
 // UserResponse A Datadog User.
 type UserResponse struct {
+	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _UserResponse UserResponse
 
 // NewUserResponse instantiates a new UserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o UserResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.User != nil {
 		toSerialize["user"] = o.User
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -16,18 +16,25 @@ import (
 // AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
 type AlertGraphWidgetDefinition struct {
 	// ID of the alert to use in the widget.
-	AlertId string      `json:"alert_id"`
-	Time    *WidgetTime `json:"time,omitempty"`
+	AlertId string `json:"alert_id"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// The title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      AlertGraphWidgetDefinitionType `json:"type"`
-	VizType   WidgetVizType                  `json:"viz_type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the alert graph widget.
+	Type AlertGraphWidgetDefinitionType `json:"type"`
+	// Whether to display the Alert Graph as a timeseries or a top list.
+	VizType WidgetVizType `json:"viz_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AlertGraphWidgetDefinition AlertGraphWidgetDefinition
 
 // NewAlertGraphWidgetDefinition instantiates a new AlertGraphWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +53,7 @@ func NewAlertGraphWidgetDefinition(alertId string, type_ AlertGraphWidgetDefinit
 // but it doesn't guarantee that properties required by API are set
 func NewAlertGraphWidgetDefinitionWithDefaults() *AlertGraphWidgetDefinition {
 	this := AlertGraphWidgetDefinition{}
-	var type_ AlertGraphWidgetDefinitionType = ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH
+	var type_ AlertGraphWidgetDefinitionType = "alert_graph"
 	this.Type = type_
 	return &this
 }
@@ -57,7 +64,6 @@ func (o *AlertGraphWidgetDefinition) GetAlertId() string {
 		var ret string
 		return ret
 	}
-
 	return o.AlertId
 }
 
@@ -209,7 +215,6 @@ func (o *AlertGraphWidgetDefinition) GetType() AlertGraphWidgetDefinitionType {
 		var ret AlertGraphWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -233,7 +238,6 @@ func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType {
 		var ret WidgetVizType
 		return ret
 	}
-
 	return o.VizType
 }
 
@@ -256,9 +260,7 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["alert_id"] = o.AlertId
-	}
+	toSerialize["alert_id"] = o.AlertId
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -271,11 +273,11 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
-	}
-	if true {
-		toSerialize["viz_type"] = o.VizType
+	toSerialize["type"] = o.Type
+	toSerialize["viz_type"] = o.VizType
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -18,20 +18,27 @@ type SunburstWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// Show the total value in this widget.
-	HideTotal *bool                 `json:"hide_total,omitempty"`
-	Legend    *SunburstWidgetLegend `json:"legend,omitempty"`
+	HideTotal *bool `json:"hide_total,omitempty"`
+	// Configuration of the legend.
+	Legend *SunburstWidgetLegend `json:"legend,omitempty"`
 	// List of sunburst widget requests.
 	Requests []SunburstWidgetRequest `json:"requests"`
-	Time     *WidgetTime             `json:"time,omitempty"`
+	// Time setting for the widget.
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
+	// How to align the text on the widget.
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                      `json:"title_size,omitempty"`
-	Type      SunburstWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	// Type of the Sunburst widget.
+	Type SunburstWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SunburstWidgetDefinition SunburstWidgetDefinition
 
 // NewSunburstWidgetDefinition instantiates a new SunburstWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +56,7 @@ func NewSunburstWidgetDefinition(requests []SunburstWidgetRequest, type_ Sunburs
 // but it doesn't guarantee that properties required by API are set
 func NewSunburstWidgetDefinitionWithDefaults() *SunburstWidgetDefinition {
 	this := SunburstWidgetDefinition{}
-	var type_ SunburstWidgetDefinitionType = SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST
+	var type_ SunburstWidgetDefinitionType = "sunburst"
 	this.Type = type_
 	return &this
 }
@@ -156,7 +163,6 @@ func (o *SunburstWidgetDefinition) GetRequests() []SunburstWidgetRequest {
 		var ret []SunburstWidgetRequest
 		return ret
 	}
-
 	return o.Requests
 }
 
@@ -308,7 +314,6 @@ func (o *SunburstWidgetDefinition) GetType() SunburstWidgetDefinitionType {
 		var ret SunburstWidgetDefinitionType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -340,9 +345,7 @@ func (o SunburstWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Legend != nil {
 		toSerialize["legend"] = o.Legend
 	}
-	if true {
-		toSerialize["requests"] = o.Requests
-	}
+	toSerialize["requests"] = o.Requests
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
@@ -355,8 +358,10 @@ func (o SunburstWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.TitleSize != nil {
 		toSerialize["title_size"] = o.TitleSize
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

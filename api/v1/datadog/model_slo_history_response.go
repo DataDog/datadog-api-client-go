@@ -14,12 +14,16 @@ import (
 
 // SLOHistoryResponse A service level objective history response.
 type SLOHistoryResponse struct {
+	// An array of service level objective objects.
 	Data *SLOHistoryResponseData `json:"data,omitempty"`
 	// A list of errors while querying the history data for the service level objective.
 	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SLOHistoryResponse SLOHistoryResponse
 
 // NewSLOHistoryResponse instantiates a new SLOHistoryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Errors != nil {
 		toSerialize["errors"] = o.Errors
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

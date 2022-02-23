@@ -15,11 +15,15 @@ import (
 // WidgetFormulaLimit Options for limiting results returned.
 type WidgetFormulaLimit struct {
 	// Number of results to return.
-	Count *int64          `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
+	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _WidgetFormulaLimit WidgetFormulaLimit
 
 // NewWidgetFormulaLimit instantiates a new WidgetFormulaLimit object
 // This constructor will assign default values to properties that have it defined,
@@ -27,7 +31,7 @@ type WidgetFormulaLimit struct {
 // will change when the set of required properties is changed
 func NewWidgetFormulaLimit() *WidgetFormulaLimit {
 	this := WidgetFormulaLimit{}
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -37,7 +41,7 @@ func NewWidgetFormulaLimit() *WidgetFormulaLimit {
 // but it doesn't guarantee that properties required by API are set
 func NewWidgetFormulaLimitWithDefaults() *WidgetFormulaLimit {
 	this := WidgetFormulaLimit{}
-	var order QuerySortOrder = QUERYSORTORDER_DESC
+	var order QuerySortOrder = "desc"
 	this.Order = &order
 	return &this
 }
@@ -116,6 +120,10 @@ func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 	}
 	if o.Order != nil {
 		toSerialize["order"] = o.Order
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

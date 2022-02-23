@@ -27,9 +27,11 @@ type Host struct {
 	// If a host is muted or unmuted.
 	IsMuted *bool `json:"is_muted,omitempty"`
 	// Last time the host reported a metric data point.
-	LastReportedTime *int64       `json:"last_reported_time,omitempty"`
-	Meta             *HostMeta    `json:"meta,omitempty"`
-	Metrics          *HostMetrics `json:"metrics,omitempty"`
+	LastReportedTime *int64 `json:"last_reported_time,omitempty"`
+	// Metadata associated with your host.
+	Meta *HostMeta `json:"meta,omitempty"`
+	// Host Metrics collected.
+	Metrics *HostMetrics `json:"metrics,omitempty"`
 	// Timeout of the mute applied to your host.
 	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
 	// The host name.
@@ -37,12 +39,15 @@ type Host struct {
 	// Source or cloud provider associated with your host.
 	Sources *[]string `json:"sources,omitempty"`
 	// List of tags for each source (AWS, Datadog Agent, Chef..).
-	TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
+	TagsBySource map[string][]string `json:"tags_by_source,omitempty"`
 	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
 	Up *bool `json:"up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _Host Host
 
 // NewHost instantiates a new Host object
 // This constructor will assign default values to properties that have it defined,
@@ -451,7 +456,7 @@ func (o *Host) GetTagsBySource() map[string][]string {
 		var ret map[string][]string
 		return ret
 	}
-	return *o.TagsBySource
+	return o.TagsBySource
 }
 
 // GetTagsBySourceOk returns a tuple with the TagsBySource field value if set, nil otherwise
@@ -460,7 +465,7 @@ func (o *Host) GetTagsBySourceOk() (*map[string][]string, bool) {
 	if o == nil || o.TagsBySource == nil {
 		return nil, false
 	}
-	return o.TagsBySource, true
+	return &o.TagsBySource, true
 }
 
 // HasTagsBySource returns a boolean if a field has been set.
@@ -474,7 +479,7 @@ func (o *Host) HasTagsBySource() bool {
 
 // SetTagsBySource gets a reference to the given map[string][]string and assigns it to the TagsBySource field.
 func (o *Host) SetTagsBySource(v map[string][]string) {
-	o.TagsBySource = &v
+	o.TagsBySource = v
 }
 
 // GetUp returns the Up field value if set, zero value otherwise.
@@ -556,26 +561,30 @@ func (o Host) MarshalJSON() ([]byte, error) {
 	if o.Up != nil {
 		toSerialize["up"] = o.Up
 	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
 	return json.Marshal(toSerialize)
 }
 
 func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aliases          *[]string            `json:"aliases,omitempty"`
-		Apps             *[]string            `json:"apps,omitempty"`
-		AwsName          *string              `json:"aws_name,omitempty"`
-		HostName         *string              `json:"host_name,omitempty"`
-		Id               *int64               `json:"id,omitempty"`
-		IsMuted          *bool                `json:"is_muted,omitempty"`
-		LastReportedTime *int64               `json:"last_reported_time,omitempty"`
-		Meta             *HostMeta            `json:"meta,omitempty"`
-		Metrics          *HostMetrics         `json:"metrics,omitempty"`
-		MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
-		Name             *string              `json:"name,omitempty"`
-		Sources          *[]string            `json:"sources,omitempty"`
-		TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
-		Up               *bool                `json:"up,omitempty"`
+		Aliases          *[]string           `json:"aliases,omitempty"`
+		Apps             *[]string           `json:"apps,omitempty"`
+		AwsName          *string             `json:"aws_name,omitempty"`
+		HostName         *string             `json:"host_name,omitempty"`
+		Id               *int64              `json:"id,omitempty"`
+		IsMuted          *bool               `json:"is_muted,omitempty"`
+		LastReportedTime *int64              `json:"last_reported_time,omitempty"`
+		Meta             *HostMeta           `json:"meta,omitempty"`
+		Metrics          *HostMetrics        `json:"metrics,omitempty"`
+		MuteTimeout      *int64              `json:"mute_timeout,omitempty"`
+		Name             *string             `json:"name,omitempty"`
+		Sources          *[]string           `json:"sources,omitempty"`
+		TagsBySource     map[string][]string `json:"tags_by_source,omitempty"`
+		Up               *bool               `json:"up,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -30,8 +30,11 @@ type PermissionAttributes struct {
 	// Whether or not the permission is restricted.
 	Restricted *bool `json:"restricted,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _PermissionAttributes PermissionAttributes
 
 // NewPermissionAttributes instantiates a new PermissionAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -299,6 +302,10 @@ func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 	}
 	if o.Restricted != nil {
 		toSerialize["restricted"] = o.Restricted
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

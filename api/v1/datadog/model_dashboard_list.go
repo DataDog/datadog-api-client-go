@@ -16,6 +16,7 @@ import (
 
 // DashboardList Your Datadog Dashboards.
 type DashboardList struct {
+	// Object describing the creator of the shared element.
 	Author *Creator `json:"author,omitempty"`
 	// Date of creation of the dashboard list.
 	Created *time.Time `json:"created,omitempty"`
@@ -32,8 +33,11 @@ type DashboardList struct {
 	// The type of dashboard list.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _DashboardList DashboardList
 
 // NewDashboardList instantiates a new DashboardList object
 // This constructor will assign default values to properties that have it defined,
@@ -251,7 +255,6 @@ func (o *DashboardList) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -324,11 +327,13 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 	if o.Modified != nil {
 		toSerialize["modified"] = o.Modified
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Type != nil {
 		toSerialize["type"] = o.Type
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -21,8 +21,11 @@ type ApplicationKey struct {
 	// Owner of an application key.
 	Owner *string `json:"owner,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _ApplicationKey ApplicationKey
 
 // NewApplicationKey instantiates a new ApplicationKey object
 // This constructor will assign default values to properties that have it defined,
@@ -150,6 +153,10 @@ func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 	}
 	if o.Owner != nil {
 		toSerialize["owner"] = o.Owner
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

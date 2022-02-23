@@ -15,12 +15,18 @@ import (
 
 // AuthNMappingCreateData Data for creating an AuthN Mapping.
 type AuthNMappingCreateData struct {
-	Attributes    *AuthNMappingCreateAttributes    `json:"attributes,omitempty"`
+	// Key/Value pair of attributes used for create request.
+	Attributes *AuthNMappingCreateAttributes `json:"attributes,omitempty"`
+	// Relationship of AuthN Mapping create object to Role.
 	Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType                `json:"type"`
+	// AuthN Mappings resource type.
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _AuthNMappingCreateData AuthNMappingCreateData
 
 // NewAuthNMappingCreateData instantiates a new AuthNMappingCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,7 @@ func NewAuthNMappingCreateData(type_ AuthNMappingsType) *AuthNMappingCreateData 
 // but it doesn't guarantee that properties required by API are set
 func NewAuthNMappingCreateDataWithDefaults() *AuthNMappingCreateData {
 	this := AuthNMappingCreateData{}
-	var type_ AuthNMappingsType = AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS
+	var type_ AuthNMappingsType = "authn_mappings"
 	this.Type = type_
 	return &this
 }
@@ -112,7 +118,6 @@ func (o *AuthNMappingCreateData) GetType() AuthNMappingsType {
 		var ret AuthNMappingsType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -141,8 +146,10 @@ func (o AuthNMappingCreateData) MarshalJSON() ([]byte, error) {
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

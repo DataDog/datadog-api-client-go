@@ -14,11 +14,16 @@ import (
 
 // SyntheticsPrivateLocationSecrets Secrets for the private location. Only present in the response when creating the private location.
 type SyntheticsPrivateLocationSecrets struct {
-	Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
+	// Authentication part of the secrets.
+	Authentication *SyntheticsPrivateLocationSecretsAuthentication `json:"authentication,omitempty"`
+	// Private key for the private location.
 	ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsPrivateLocationSecrets SyntheticsPrivateLocationSecrets
 
 // NewSyntheticsPrivateLocationSecrets instantiates a new SyntheticsPrivateLocationSecrets object
 // This constructor will assign default values to properties that have it defined,
@@ -111,6 +116,10 @@ func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 	}
 	if o.ConfigDecryption != nil {
 		toSerialize["config_decryption"] = o.ConfigDecryption
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag. Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice). Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
+// LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.// Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
+// Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
 type LogsAttributeRemapper struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -28,14 +29,20 @@ type LogsAttributeRemapper struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Final attribute or tag name to remap the sources to.
-	Target       string            `json:"target"`
+	Target string `json:"target"`
+	// If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.// If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
+	// If the `target_type` is `tag`, this parameter may not be specified.
 	TargetFormat *TargetFormatType `json:"target_format,omitempty"`
 	// Defines if the final attribute or tag name is from log `attribute` or `tag`.
-	TargetType *string                   `json:"target_type,omitempty"`
-	Type       LogsAttributeRemapperType `json:"type"`
+	TargetType *string `json:"target_type,omitempty"`
+	// Type of logs attribute remapper.
+	Type LogsAttributeRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsAttributeRemapper LogsAttributeRemapper
 
 // NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -74,7 +81,7 @@ func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
 	this.SourceType = &sourceType
 	var targetType string = "attribute"
 	this.TargetType = &targetType
-	var type_ LogsAttributeRemapperType = LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER
+	var type_ LogsAttributeRemapperType = "attribute-remapper"
 	this.Type = type_
 	return &this
 }
@@ -245,7 +252,6 @@ func (o *LogsAttributeRemapper) GetSources() []string {
 		var ret []string
 		return ret
 	}
-
 	return o.Sources
 }
 
@@ -269,7 +275,6 @@ func (o *LogsAttributeRemapper) GetTarget() string {
 		var ret string
 		return ret
 	}
-
 	return o.Target
 }
 
@@ -357,7 +362,6 @@ func (o *LogsAttributeRemapper) GetType() LogsAttributeRemapperType {
 		var ret LogsAttributeRemapperType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -395,20 +399,18 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	if o.SourceType != nil {
 		toSerialize["source_type"] = o.SourceType
 	}
-	if true {
-		toSerialize["sources"] = o.Sources
-	}
-	if true {
-		toSerialize["target"] = o.Target
-	}
+	toSerialize["sources"] = o.Sources
+	toSerialize["target"] = o.Target
 	if o.TargetFormat != nil {
 		toSerialize["target_format"] = o.TargetFormat
 	}
 	if o.TargetType != nil {
 		toSerialize["target_type"] = o.TargetType
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

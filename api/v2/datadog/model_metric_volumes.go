@@ -142,5 +142,11 @@ func (v NullableMetricVolumes) MarshalJSON() ([]byte, error) {
 
 func (v *NullableMetricVolumes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
+
+	// this object is nullable so check if the payload is null or empty string
+	if string(src) == "" || string(src) == "{}" {
+		return nil
+	}
+
 	return json.Unmarshal(src, &v.value)
 }

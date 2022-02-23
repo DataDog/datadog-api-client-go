@@ -15,14 +15,20 @@ import (
 
 // IncidentResponseData Incident data from a response.
 type IncidentResponseData struct {
+	// The incident's attributes from a response.
 	Attributes *IncidentResponseAttributes `json:"attributes,omitempty"`
 	// The incident's ID.
-	Id            string                         `json:"id"`
+	Id string `json:"id"`
+	// The incident's relationships from a response.
 	Relationships *IncidentResponseRelationships `json:"relationships,omitempty"`
-	Type          IncidentType                   `json:"type"`
+	// Incident resource type.
+	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _IncidentResponseData IncidentResponseData
 
 // NewIncidentResponseData instantiates a new IncidentResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,7 @@ func NewIncidentResponseData(id string, type_ IncidentType) *IncidentResponseDat
 // but it doesn't guarantee that properties required by API are set
 func NewIncidentResponseDataWithDefaults() *IncidentResponseData {
 	this := IncidentResponseData{}
-	var type_ IncidentType = INCIDENTTYPE_INCIDENTS
+	var type_ IncidentType = "incidents"
 	this.Type = type_
 	return &this
 }
@@ -83,7 +89,6 @@ func (o *IncidentResponseData) GetId() string {
 		var ret string
 		return ret
 	}
-
 	return o.Id
 }
 
@@ -139,7 +144,6 @@ func (o *IncidentResponseData) GetType() IncidentType {
 		var ret IncidentType
 		return ret
 	}
-
 	return o.Type
 }
 
@@ -165,14 +169,14 @@ func (o IncidentResponseData) MarshalJSON() ([]byte, error) {
 	if o.Attributes != nil {
 		toSerialize["attributes"] = o.Attributes
 	}
-	if true {
-		toSerialize["id"] = o.Id
-	}
+	toSerialize["id"] = o.Id
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
-	if true {
-		toSerialize["type"] = o.Type
+	toSerialize["type"] = o.Type
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

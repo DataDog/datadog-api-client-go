@@ -15,10 +15,14 @@ import (
 
 // SecurityFilterCreateRequest Request object that includes the security filter that you would like to create.
 type SecurityFilterCreateRequest struct {
+	// Object for a single security filter.
 	Data SecurityFilterCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SecurityFilterCreateRequest SecurityFilterCreateRequest
 
 // NewSecurityFilterCreateRequest instantiates a new SecurityFilterCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func (o *SecurityFilterCreateRequest) GetData() SecurityFilterCreateData {
 		var ret SecurityFilterCreateData
 		return ret
 	}
-
 	return o.Data
 }
 
@@ -67,8 +70,10 @@ func (o SecurityFilterCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["data"] = o.Data
+	toSerialize["data"] = o.Data
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

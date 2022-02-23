@@ -14,10 +14,14 @@ import (
 
 // HourlyUsageAttributionMetadata The object containing document metadata.
 type HourlyUsageAttributionMetadata struct {
+	// The metadata for the current pagination.
 	Pagination *HourlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _HourlyUsageAttributionMetadata HourlyUsageAttributionMetadata
 
 // NewHourlyUsageAttributionMetadata instantiates a new HourlyUsageAttributionMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -75,6 +79,10 @@ func (o HourlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

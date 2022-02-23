@@ -15,18 +15,24 @@ import (
 
 // MonitorFormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type MonitorFormulaAndFunctionEventQueryDefinition struct {
-	Compute    MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-	DataSource MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
+	// Compute options.
+	Compute MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+	// Data source for event platform-based queries.
+	DataSource MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
 	GroupBy *[]MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
-	Name   string                                               `json:"name"`
+	Name string `json:"name"`
+	// Search options.
 	Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonitorFormulaAndFunctionEventQueryDefinition MonitorFormulaAndFunctionEventQueryDefinition
 
 // NewMonitorFormulaAndFunctionEventQueryDefinition instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +60,6 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetCompute() MonitorForm
 		var ret MonitorFormulaAndFunctionEventQueryDefinitionCompute
 		return ret
 	}
-
 	return o.Compute
 }
 
@@ -78,7 +83,6 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSource() MonitorF
 		var ret MonitorFormulaAndFunctionEventsDataSource
 		return ret
 	}
-
 	return o.DataSource
 }
 
@@ -166,7 +170,6 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetName() string {
 		var ret string
 		return ret
 	}
-
 	return o.Name
 }
 
@@ -221,23 +224,21 @@ func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, er
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["compute"] = o.Compute
-	}
-	if true {
-		toSerialize["data_source"] = o.DataSource
-	}
+	toSerialize["compute"] = o.Compute
+	toSerialize["data_source"] = o.DataSource
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
 	}
 	if o.Indexes != nil {
 		toSerialize["indexes"] = o.Indexes
 	}
-	if true {
-		toSerialize["name"] = o.Name
-	}
+	toSerialize["name"] = o.Name
 	if o.Search != nil {
 		toSerialize["search"] = o.Search
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

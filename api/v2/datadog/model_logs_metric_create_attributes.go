@@ -15,13 +15,18 @@ import (
 
 // LogsMetricCreateAttributes The object describing the Datadog log-based metric to create.
 type LogsMetricCreateAttributes struct {
+	// The compute rule to compute the log-based metric.
 	Compute LogsMetricCompute `json:"compute"`
-	Filter  *LogsMetricFilter `json:"filter,omitempty"`
+	// The log-based metric filter. Logs matching this filter will be aggregated in this metric.
+	Filter *LogsMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _LogsMetricCreateAttributes LogsMetricCreateAttributes
 
 // NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func (o *LogsMetricCreateAttributes) GetCompute() LogsMetricCompute {
 		var ret LogsMetricCompute
 		return ret
 	}
-
 	return o.Compute
 }
 
@@ -134,14 +138,16 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if true {
-		toSerialize["compute"] = o.Compute
-	}
+	toSerialize["compute"] = o.Compute
 	if o.Filter != nil {
 		toSerialize["filter"] = o.Filter
 	}
 	if o.GroupBy != nil {
 		toSerialize["group_by"] = o.GroupBy
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

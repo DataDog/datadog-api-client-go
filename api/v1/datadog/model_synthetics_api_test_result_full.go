@@ -14,20 +14,28 @@ import (
 
 // SyntheticsAPITestResultFull Object returned describing a API test result.
 type SyntheticsAPITestResultFull struct {
+	// Object describing the API test configuration.
 	Check *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
 	// When the API test was conducted.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Version of the API test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Locations for which to query the API test results.
-	ProbeDc *string                      `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	// Object containing results for your Synthetic API test.
+	Result *SyntheticsAPITestResultData `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	// The status of your Synthetic monitor.// * `O` for not triggered
+	// * `1` for triggered
+	// * `2` for no data
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _SyntheticsAPITestResultFull SyntheticsAPITestResultFull
 
 // NewSyntheticsAPITestResultFull instantiates a new SyntheticsAPITestResultFull object
 // This constructor will assign default values to properties that have it defined,
@@ -295,6 +303,10 @@ func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 	}
 	if o.Status != nil {
 		toSerialize["status"] = o.Status
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }

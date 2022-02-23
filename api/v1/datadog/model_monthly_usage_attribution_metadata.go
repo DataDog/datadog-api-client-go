@@ -15,11 +15,15 @@ import (
 // MonthlyUsageAttributionMetadata The object containing document metadata.
 type MonthlyUsageAttributionMetadata struct {
 	// An array of available aggregates.
-	Aggregates *[]UsageAttributionAggregatesBody  `json:"aggregates,omitempty"`
+	Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+	// The metadata for the current pagination.
 	Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
+	AdditionalProperties map[string]interface{}
 }
+
+type _MonthlyUsageAttributionMetadata MonthlyUsageAttributionMetadata
 
 // NewMonthlyUsageAttributionMetadata instantiates a new MonthlyUsageAttributionMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -112,6 +116,10 @@ func (o MonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination
+	}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
 	}
 	return json.Marshal(toSerialize)
 }
