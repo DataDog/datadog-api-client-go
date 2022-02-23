@@ -23,7 +23,7 @@ var testEvent = datadog.Event{
 		"test",
 		"client:go",
 	},
-	Priority:       datadog.EVENTPRIORITY_NORMAL.Ptr(),
+	Priority:       *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
 	SourceTypeName: datadog.PtrString("datadog-api-client-go"),
 }
 
