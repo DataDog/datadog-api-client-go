@@ -23,8 +23,8 @@ type EventCreateRequest struct {
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
 	// Host name to associate with the event. Any tags associated with the host are also applied to this event.
-	Host     *string        `json:"host,omitempty"`
-	Priority *EventPriority `json:"priority,omitempty"`
+	Host     *string               `json:"host,omitempty"`
+	Priority NullableEventPriority `json:"priority,omitempty"`
 	// ID of the parent event. Must be sent as an integer (that is no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
@@ -218,36 +218,47 @@ func (o *EventCreateRequest) SetHost(v string) {
 	o.Host = &v
 }
 
-// GetPriority returns the Priority field value if set, zero value otherwise.
+// GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventCreateRequest) GetPriority() EventPriority {
-	if o == nil || o.Priority == nil {
+	if o == nil || o.Priority.Get() == nil {
 		var ret EventPriority
 		return ret
 	}
-	return *o.Priority
+	return *o.Priority.Get()
 }
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EventCreateRequest) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil || o.Priority == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Priority, true
+	return o.Priority.Get(), o.Priority.IsSet()
 }
 
 // HasPriority returns a boolean if a field has been set.
 func (o *EventCreateRequest) HasPriority() bool {
-	if o != nil && o.Priority != nil {
+	if o != nil && o.Priority.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPriority gets a reference to the given EventPriority and assigns it to the Priority field.
+// SetPriority gets a reference to the given NullableEventPriority and assigns it to the Priority field.
 func (o *EventCreateRequest) SetPriority(v EventPriority) {
-	o.Priority = &v
+	o.Priority.Set(&v)
+}
+
+// SetPriorityNil sets the value for Priority to be an explicit nil
+func (o *EventCreateRequest) SetPriorityNil() {
+	o.Priority.Set(nil)
+}
+
+// UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+func (o *EventCreateRequest) UnsetPriority() {
+	o.Priority.Unset()
 }
 
 // GetRelatedEventId returns the RelatedEventId field value if set, zero value otherwise.
@@ -414,8 +425,8 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	if o.Host != nil {
 		toSerialize["host"] = o.Host
 	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
+	if o.Priority.IsSet() {
+		toSerialize["priority"] = o.Priority.Get()
 	}
 	if o.RelatedEventId != nil {
 		toSerialize["related_event_id"] = o.RelatedEventId
@@ -442,17 +453,17 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Title *string `json:"title"`
 	}{}
 	all := struct {
-		AggregationKey *string         `json:"aggregation_key,omitempty"`
-		AlertType      *EventAlertType `json:"alert_type,omitempty"`
-		DateHappened   *int64          `json:"date_happened,omitempty"`
-		DeviceName     *string         `json:"device_name,omitempty"`
-		Host           *string         `json:"host,omitempty"`
-		Priority       *EventPriority  `json:"priority,omitempty"`
-		RelatedEventId *int64          `json:"related_event_id,omitempty"`
-		SourceTypeName *string         `json:"source_type_name,omitempty"`
-		Tags           *[]string       `json:"tags,omitempty"`
-		Text           string          `json:"text"`
-		Title          string          `json:"title"`
+		AggregationKey *string               `json:"aggregation_key,omitempty"`
+		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
+		DateHappened   *int64                `json:"date_happened,omitempty"`
+		DeviceName     *string               `json:"device_name,omitempty"`
+		Host           *string               `json:"host,omitempty"`
+		Priority       NullableEventPriority `json:"priority,omitempty"`
+		RelatedEventId *int64                `json:"related_event_id,omitempty"`
+		SourceTypeName *string               `json:"source_type_name,omitempty"`
+		Tags           *[]string             `json:"tags,omitempty"`
+		Text           string                `json:"text"`
+		Title          string                `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -481,7 +492,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Priority; v != nil && !v.IsValid() {
+	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -26,8 +26,8 @@ type Event struct {
 	// Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages. Instead, use the string representation of the Event ID to avoid losing accuracy.
 	IdStr *string `json:"id_str,omitempty"`
 	// Payload of the event.
-	Payload  *string        `json:"payload,omitempty"`
-	Priority *EventPriority `json:"priority,omitempty"`
+	Payload  *string               `json:"payload,omitempty"`
+	Priority NullableEventPriority `json:"priority,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags to apply to the event.
@@ -283,36 +283,47 @@ func (o *Event) SetPayload(v string) {
 	o.Payload = &v
 }
 
-// GetPriority returns the Priority field value if set, zero value otherwise.
+// GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Event) GetPriority() EventPriority {
-	if o == nil || o.Priority == nil {
+	if o == nil || o.Priority.Get() == nil {
 		var ret EventPriority
 		return ret
 	}
-	return *o.Priority
+	return *o.Priority.Get()
 }
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Event) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil || o.Priority == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Priority, true
+	return o.Priority.Get(), o.Priority.IsSet()
 }
 
 // HasPriority returns a boolean if a field has been set.
 func (o *Event) HasPriority() bool {
-	if o != nil && o.Priority != nil {
+	if o != nil && o.Priority.IsSet() {
 		return true
 	}
 
 	return false
 }
 
-// SetPriority gets a reference to the given EventPriority and assigns it to the Priority field.
+// SetPriority gets a reference to the given NullableEventPriority and assigns it to the Priority field.
 func (o *Event) SetPriority(v EventPriority) {
-	o.Priority = &v
+	o.Priority.Set(&v)
+}
+
+// SetPriorityNil sets the value for Priority to be an explicit nil
+func (o *Event) SetPriorityNil() {
+	o.Priority.Set(nil)
+}
+
+// UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+func (o *Event) UnsetPriority() {
+	o.Priority.Unset()
 }
 
 // GetSourceTypeName returns the SourceTypeName field value if set, zero value otherwise.
@@ -501,8 +512,8 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	if o.Payload != nil {
 		toSerialize["payload"] = o.Payload
 	}
-	if o.Priority != nil {
-		toSerialize["priority"] = o.Priority
+	if o.Priority.IsSet() {
+		toSerialize["priority"] = o.Priority.Get()
 	}
 	if o.SourceTypeName != nil {
 		toSerialize["source_type_name"] = o.SourceTypeName
@@ -525,19 +536,19 @@ func (o Event) MarshalJSON() ([]byte, error) {
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AlertType      *EventAlertType `json:"alert_type,omitempty"`
-		DateHappened   *int64          `json:"date_happened,omitempty"`
-		DeviceName     *string         `json:"device_name,omitempty"`
-		Host           *string         `json:"host,omitempty"`
-		Id             *int64          `json:"id,omitempty"`
-		IdStr          *string         `json:"id_str,omitempty"`
-		Payload        *string         `json:"payload,omitempty"`
-		Priority       *EventPriority  `json:"priority,omitempty"`
-		SourceTypeName *string         `json:"source_type_name,omitempty"`
-		Tags           *[]string       `json:"tags,omitempty"`
-		Text           *string         `json:"text,omitempty"`
-		Title          *string         `json:"title,omitempty"`
-		Url            *string         `json:"url,omitempty"`
+		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
+		DateHappened   *int64                `json:"date_happened,omitempty"`
+		DeviceName     *string               `json:"device_name,omitempty"`
+		Host           *string               `json:"host,omitempty"`
+		Id             *int64                `json:"id,omitempty"`
+		IdStr          *string               `json:"id_str,omitempty"`
+		Payload        *string               `json:"payload,omitempty"`
+		Priority       NullableEventPriority `json:"priority,omitempty"`
+		SourceTypeName *string               `json:"source_type_name,omitempty"`
+		Tags           *[]string             `json:"tags,omitempty"`
+		Text           *string               `json:"text,omitempty"`
+		Title          *string               `json:"title,omitempty"`
+		Url            *string               `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -556,7 +567,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Priority; v != nil && !v.IsValid() {
+	if v := all.Priority; v.Get() != nil && !v.Get().IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
