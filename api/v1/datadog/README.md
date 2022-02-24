@@ -252,6 +252,7 @@ All URIs are relative to *https://api.datadoghq.com*
 | _UsageMeteringApi_                    | [**GetUsageAttribution**](docs/UsageMeteringApi.md#getusageattribution)                                               | **Get** /api/v1/usage/attribution                                                                  | Get Usage Attribution                             |
 | _UsageMeteringApi_                    | [**GetUsageAuditLogs**](docs/UsageMeteringApi.md#getusageauditlogs)                                                   | **Get** /api/v1/usage/audit_logs                                                                   | Get hourly usage for audit logs                   |
 | _UsageMeteringApi_                    | [**GetUsageBillableSummary**](docs/UsageMeteringApi.md#getusagebillablesummary)                                       | **Get** /api/v1/usage/billable-summary                                                             | Get billable usage across your account            |
+| _UsageMeteringApi_                    | [**GetUsageCIApp**](docs/UsageMeteringApi.md#getusageciapp)                                                           | **Get** /api/v1/usage/ci-app                                                                       | Get hourly usage for CI Visibility                |
 | _UsageMeteringApi_                    | [**GetUsageCWS**](docs/UsageMeteringApi.md#getusagecws)                                                               | **Get** /api/v1/usage/cws                                                                          | Get hourly usage for Cloud Workload Security      |
 | _UsageMeteringApi_                    | [**GetUsageCloudSecurityPostureManagement**](docs/UsageMeteringApi.md#getusagecloudsecurityposturemanagement)         | **Get** /api/v1/usage/cspm                                                                         | Get hourly usage for CSPM                         |
 | _UsageMeteringApi_                    | [**GetUsageDBM**](docs/UsageMeteringApi.md#getusagedbm)                                                               | **Get** /api/v1/usage/dbm                                                                          | Get hourly usage for Database Monitoring          |
@@ -850,6 +851,8 @@ All URIs are relative to *https://api.datadoghq.com*
 - [UsageBillableSummaryHour](docs/UsageBillableSummaryHour.md)
 - [UsageBillableSummaryKeys](docs/UsageBillableSummaryKeys.md)
 - [UsageBillableSummaryResponse](docs/UsageBillableSummaryResponse.md)
+- [UsageCIVisibilityHour](docs/UsageCIVisibilityHour.md)
+- [UsageCIVisibilityResponse](docs/UsageCIVisibilityResponse.md)
 - [UsageCWSHour](docs/UsageCWSHour.md)
 - [UsageCWSResponse](docs/UsageCWSResponse.md)
 - [UsageCloudSecurityPostureManagementHour](docs/UsageCloudSecurityPostureManagementHour.md)

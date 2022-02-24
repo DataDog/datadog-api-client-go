@@ -620,6 +620,8 @@ docs/UsageBillableSummaryBody.md
 docs/UsageBillableSummaryHour.md
 docs/UsageBillableSummaryKeys.md
 docs/UsageBillableSummaryResponse.md
+docs/UsageCIVisibilityHour.md
+docs/UsageCIVisibilityResponse.md
 docs/UsageCWSHour.md
 docs/UsageCWSResponse.md
 docs/UsageCloudSecurityPostureManagementHour.md
@@ -1307,6 +1309,8 @@ model_usage_billable_summary_body.go
 model_usage_billable_summary_hour.go
 model_usage_billable_summary_keys.go
 model_usage_billable_summary_response.go
+model_usage_ci_visibility_hour.go
+model_usage_ci_visibility_response.go
 model_usage_cloud_security_posture_management_hour.go
 model_usage_cloud_security_posture_management_response.go
 model_usage_custom_reports_attributes.go
