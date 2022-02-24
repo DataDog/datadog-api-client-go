@@ -18,6 +18,8 @@ type SyntheticsTestOptions struct {
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// Allows loading insecure content for an HTTP request.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
+	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
+	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
 	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to disable CORS mechanism.
@@ -121,6 +123,38 @@ func (o *SyntheticsTestOptions) HasAllowInsecure() bool {
 // SetAllowInsecure gets a reference to the given bool and assigns it to the AllowInsecure field.
 func (o *SyntheticsTestOptions) SetAllowInsecure(v bool) {
 	o.AllowInsecure = &v
+}
+
+// GetCheckCertificateRevocation returns the CheckCertificateRevocation field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetCheckCertificateRevocation() bool {
+	if o == nil || o.CheckCertificateRevocation == nil {
+		var ret bool
+		return ret
+	}
+	return *o.CheckCertificateRevocation
+}
+
+// GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool) {
+	if o == nil || o.CheckCertificateRevocation == nil {
+		return nil, false
+	}
+	return o.CheckCertificateRevocation, true
+}
+
+// HasCheckCertificateRevocation returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
+	if o != nil && o.CheckCertificateRevocation != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.
+func (o *SyntheticsTestOptions) SetCheckCertificateRevocation(v bool) {
+	o.CheckCertificateRevocation = &v
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
@@ -486,6 +520,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.AllowInsecure != nil {
 		toSerialize["allow_insecure"] = o.AllowInsecure
 	}
+	if o.CheckCertificateRevocation != nil {
+		toSerialize["checkCertificateRevocation"] = o.CheckCertificateRevocation
+	}
 	if o.DeviceIds != nil {
 		toSerialize["device_ids"] = o.DeviceIds
 	}
@@ -525,19 +562,20 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AcceptSelfSigned   *bool                                `json:"accept_self_signed,omitempty"`
-		AllowInsecure      *bool                                `json:"allow_insecure,omitempty"`
-		DeviceIds          *[]SyntheticsDeviceID                `json:"device_ids,omitempty"`
-		DisableCors        *bool                                `json:"disableCors,omitempty"`
-		FollowRedirects    *bool                                `json:"follow_redirects,omitempty"`
-		MinFailureDuration *int64                               `json:"min_failure_duration,omitempty"`
-		MinLocationFailed  *int64                               `json:"min_location_failed,omitempty"`
-		MonitorName        *string                              `json:"monitor_name,omitempty"`
-		MonitorOptions     *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
-		MonitorPriority    *int32                               `json:"monitor_priority,omitempty"`
-		NoScreenshot       *bool                                `json:"noScreenshot,omitempty"`
-		Retry              *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
-		TickEvery          *int64                               `json:"tick_every,omitempty"`
+		AcceptSelfSigned           *bool                                `json:"accept_self_signed,omitempty"`
+		AllowInsecure              *bool                                `json:"allow_insecure,omitempty"`
+		CheckCertificateRevocation *bool                                `json:"checkCertificateRevocation,omitempty"`
+		DeviceIds                  *[]SyntheticsDeviceID                `json:"device_ids,omitempty"`
+		DisableCors                *bool                                `json:"disableCors,omitempty"`
+		FollowRedirects            *bool                                `json:"follow_redirects,omitempty"`
+		MinFailureDuration         *int64                               `json:"min_failure_duration,omitempty"`
+		MinLocationFailed          *int64                               `json:"min_location_failed,omitempty"`
+		MonitorName                *string                              `json:"monitor_name,omitempty"`
+		MonitorOptions             *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+		MonitorPriority            *int32                               `json:"monitor_priority,omitempty"`
+		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
+		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
+		TickEvery                  *int64                               `json:"tick_every,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -550,6 +588,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.AcceptSelfSigned = all.AcceptSelfSigned
 	o.AllowInsecure = all.AllowInsecure
+	o.CheckCertificateRevocation = all.CheckCertificateRevocation
 	o.DeviceIds = all.DeviceIds
 	o.DisableCors = all.DisableCors
 	o.FollowRedirects = all.FollowRedirects

@@ -2,21 +2,22 @@
 
 ## Properties
 
-| Name                   | Type                                                                                         | Description                                                                                         | Notes      |
-| ---------------------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------- |
-| **AcceptSelfSigned**   | Pointer to **bool**                                                                          | For SSL test, whether or not the test should allow self signed certificates.                        | [optional] |
-| **AllowInsecure**      | Pointer to **bool**                                                                          | Allows loading insecure content for an HTTP request.                                                | [optional] |
-| **DeviceIds**          | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md)                                 | For browser test, array with the different device IDs used to run the test.                         | [optional] |
-| **DisableCors**        | Pointer to **bool**                                                                          | Whether or not to disable CORS mechanism.                                                           | [optional] |
-| **FollowRedirects**    | Pointer to **bool**                                                                          | For API HTTP test, whether or not the test should follow redirects.                                 | [optional] |
-| **MinFailureDuration** | Pointer to **int64**                                                                         | Minimum amount of time in failure required to trigger an alert.                                     | [optional] |
-| **MinLocationFailed**  | Pointer to **int64**                                                                         | Minimum number of locations in failure required to trigger an alert.                                | [optional] |
-| **MonitorName**        | Pointer to **string**                                                                        | The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs. | [optional] |
-| **MonitorOptions**     | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |                                                                                                     | [optional] |
-| **MonitorPriority**    | Pointer to **int32**                                                                         | Integer from 1 (high) to 5 (low) indicating alert severity.                                         | [optional] |
-| **NoScreenshot**       | Pointer to **bool**                                                                          | Prevents saving screenshots of the steps.                                                           | [optional] |
-| **Retry**              | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md)                   |                                                                                                     | [optional] |
-| **TickEvery**          | Pointer to **int64**                                                                         | The frequency at which to run the Synthetic test (in seconds).                                      | [optional] |
+| Name                           | Type                                                                                         | Description                                                                                         | Notes      |
+| ------------------------------ | -------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | ---------- |
+| **AcceptSelfSigned**           | Pointer to **bool**                                                                          | For SSL test, whether or not the test should allow self signed certificates.                        | [optional] |
+| **AllowInsecure**              | Pointer to **bool**                                                                          | Allows loading insecure content for an HTTP request.                                                | [optional] |
+| **CheckCertificateRevocation** | Pointer to **bool**                                                                          | For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.           | [optional] |
+| **DeviceIds**                  | Pointer to [**[]SyntheticsDeviceID**](SyntheticsDeviceID.md)                                 | For browser test, array with the different device IDs used to run the test.                         | [optional] |
+| **DisableCors**                | Pointer to **bool**                                                                          | Whether or not to disable CORS mechanism.                                                           | [optional] |
+| **FollowRedirects**            | Pointer to **bool**                                                                          | For API HTTP test, whether or not the test should follow redirects.                                 | [optional] |
+| **MinFailureDuration**         | Pointer to **int64**                                                                         | Minimum amount of time in failure required to trigger an alert.                                     | [optional] |
+| **MinLocationFailed**          | Pointer to **int64**                                                                         | Minimum number of locations in failure required to trigger an alert.                                | [optional] |
+| **MonitorName**                | Pointer to **string**                                                                        | The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs. | [optional] |
+| **MonitorOptions**             | Pointer to [**SyntheticsTestOptionsMonitorOptions**](SyntheticsTestOptionsMonitorOptions.md) |                                                                                                     | [optional] |
+| **MonitorPriority**            | Pointer to **int32**                                                                         | Integer from 1 (high) to 5 (low) indicating alert severity.                                         | [optional] |
+| **NoScreenshot**               | Pointer to **bool**                                                                          | Prevents saving screenshots of the steps.                                                           | [optional] |
+| **Retry**                      | Pointer to [**SyntheticsTestOptionsRetry**](SyntheticsTestOptionsRetry.md)                   |                                                                                                     | [optional] |
+| **TickEvery**                  | Pointer to **int64**                                                                         | The frequency at which to run the Synthetic test (in seconds).                                      | [optional] |
 
 ## Methods
 
@@ -86,6 +87,31 @@ SetAllowInsecure sets AllowInsecure field to given value.
 `func (o *SyntheticsTestOptions) HasAllowInsecure() bool`
 
 HasAllowInsecure returns a boolean if a field has been set.
+
+### GetCheckCertificateRevocation
+
+`func (o *SyntheticsTestOptions) GetCheckCertificateRevocation() bool`
+
+GetCheckCertificateRevocation returns the CheckCertificateRevocation field if non-nil, zero value otherwise.
+
+### GetCheckCertificateRevocationOk
+
+`func (o *SyntheticsTestOptions) GetCheckCertificateRevocationOk() (*bool, bool)`
+
+GetCheckCertificateRevocationOk returns a tuple with the CheckCertificateRevocation field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCheckCertificateRevocation
+
+`func (o *SyntheticsTestOptions) SetCheckCertificateRevocation(v bool)`
+
+SetCheckCertificateRevocation sets CheckCertificateRevocation field to given value.
+
+### HasCheckCertificateRevocation
+
+`func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool`
+
+HasCheckCertificateRevocation returns a boolean if a field has been set.
 
 ### GetDeviceIds
 
