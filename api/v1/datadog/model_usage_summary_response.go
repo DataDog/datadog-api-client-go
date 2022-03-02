@@ -43,6 +43,14 @@ type UsageSummaryResponse struct {
 	BrowserRumReplaySessionCountAggSum *int64 `json:"browser_rum_replay_session_count_agg_sum,omitempty"`
 	// Shows the sum of all browser RUM units over all hours in the current months for all organizations.
 	BrowserRumUnitsAggSum *int64 `json:"browser_rum_units_agg_sum,omitempty"`
+	// Shows the sum of all CI pipeline indexed spans over all hours in the current months for all organizations.
+	CiPipelineIndexedSpansAggSum *int64 `json:"ci_pipeline_indexed_spans_agg_sum,omitempty"`
+	// Shows the sum of all CI test indexed spans over all hours in the current months for all organizations.
+	CiTestIndexedSpansAggSum *int64 `json:"ci_test_indexed_spans_agg_sum,omitempty"`
+	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current months for all organizations.
+	CiVisibilityPipelineCommittersHwmSum *int64 `json:"ci_visibility_pipeline_committers_hwm_sum,omitempty"`
+	// Shows the high-water mark of all CI visibility test committers over all hours in the current months for all organizations.
+	CiVisibilityTestCommittersHwmSum *int64 `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current months for all organizations.
 	ContainerAvgSum *int64 `json:"container_avg_sum,omitempty"`
 	// Shows the sum of the high-water marks of all distinct containers over all hours in the current months for all organizations.
@@ -613,6 +621,134 @@ func (o *UsageSummaryResponse) HasBrowserRumUnitsAggSum() bool {
 // SetBrowserRumUnitsAggSum gets a reference to the given int64 and assigns it to the BrowserRumUnitsAggSum field.
 func (o *UsageSummaryResponse) SetBrowserRumUnitsAggSum(v int64) {
 	o.BrowserRumUnitsAggSum = &v
+}
+
+// GetCiPipelineIndexedSpansAggSum returns the CiPipelineIndexedSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCiPipelineIndexedSpansAggSum() int64 {
+	if o == nil || o.CiPipelineIndexedSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiPipelineIndexedSpansAggSum
+}
+
+// GetCiPipelineIndexedSpansAggSumOk returns a tuple with the CiPipelineIndexedSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCiPipelineIndexedSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.CiPipelineIndexedSpansAggSum == nil {
+		return nil, false
+	}
+	return o.CiPipelineIndexedSpansAggSum, true
+}
+
+// HasCiPipelineIndexedSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCiPipelineIndexedSpansAggSum() bool {
+	if o != nil && o.CiPipelineIndexedSpansAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiPipelineIndexedSpansAggSum gets a reference to the given int64 and assigns it to the CiPipelineIndexedSpansAggSum field.
+func (o *UsageSummaryResponse) SetCiPipelineIndexedSpansAggSum(v int64) {
+	o.CiPipelineIndexedSpansAggSum = &v
+}
+
+// GetCiTestIndexedSpansAggSum returns the CiTestIndexedSpansAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCiTestIndexedSpansAggSum() int64 {
+	if o == nil || o.CiTestIndexedSpansAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiTestIndexedSpansAggSum
+}
+
+// GetCiTestIndexedSpansAggSumOk returns a tuple with the CiTestIndexedSpansAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCiTestIndexedSpansAggSumOk() (*int64, bool) {
+	if o == nil || o.CiTestIndexedSpansAggSum == nil {
+		return nil, false
+	}
+	return o.CiTestIndexedSpansAggSum, true
+}
+
+// HasCiTestIndexedSpansAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCiTestIndexedSpansAggSum() bool {
+	if o != nil && o.CiTestIndexedSpansAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiTestIndexedSpansAggSum gets a reference to the given int64 and assigns it to the CiTestIndexedSpansAggSum field.
+func (o *UsageSummaryResponse) SetCiTestIndexedSpansAggSum(v int64) {
+	o.CiTestIndexedSpansAggSum = &v
+}
+
+// GetCiVisibilityPipelineCommittersHwmSum returns the CiVisibilityPipelineCommittersHwmSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCiVisibilityPipelineCommittersHwmSum() int64 {
+	if o == nil || o.CiVisibilityPipelineCommittersHwmSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiVisibilityPipelineCommittersHwmSum
+}
+
+// GetCiVisibilityPipelineCommittersHwmSumOk returns a tuple with the CiVisibilityPipelineCommittersHwmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCiVisibilityPipelineCommittersHwmSumOk() (*int64, bool) {
+	if o == nil || o.CiVisibilityPipelineCommittersHwmSum == nil {
+		return nil, false
+	}
+	return o.CiVisibilityPipelineCommittersHwmSum, true
+}
+
+// HasCiVisibilityPipelineCommittersHwmSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCiVisibilityPipelineCommittersHwmSum() bool {
+	if o != nil && o.CiVisibilityPipelineCommittersHwmSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiVisibilityPipelineCommittersHwmSum gets a reference to the given int64 and assigns it to the CiVisibilityPipelineCommittersHwmSum field.
+func (o *UsageSummaryResponse) SetCiVisibilityPipelineCommittersHwmSum(v int64) {
+	o.CiVisibilityPipelineCommittersHwmSum = &v
+}
+
+// GetCiVisibilityTestCommittersHwmSum returns the CiVisibilityTestCommittersHwmSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetCiVisibilityTestCommittersHwmSum() int64 {
+	if o == nil || o.CiVisibilityTestCommittersHwmSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiVisibilityTestCommittersHwmSum
+}
+
+// GetCiVisibilityTestCommittersHwmSumOk returns a tuple with the CiVisibilityTestCommittersHwmSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetCiVisibilityTestCommittersHwmSumOk() (*int64, bool) {
+	if o == nil || o.CiVisibilityTestCommittersHwmSum == nil {
+		return nil, false
+	}
+	return o.CiVisibilityTestCommittersHwmSum, true
+}
+
+// HasCiVisibilityTestCommittersHwmSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasCiVisibilityTestCommittersHwmSum() bool {
+	if o != nil && o.CiVisibilityTestCommittersHwmSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiVisibilityTestCommittersHwmSum gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwmSum field.
+func (o *UsageSummaryResponse) SetCiVisibilityTestCommittersHwmSum(v int64) {
+	o.CiVisibilityTestCommittersHwmSum = &v
 }
 
 // GetContainerAvgSum returns the ContainerAvgSum field value if set, zero value otherwise.
@@ -2326,6 +2462,18 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.BrowserRumUnitsAggSum != nil {
 		toSerialize["browser_rum_units_agg_sum"] = o.BrowserRumUnitsAggSum
 	}
+	if o.CiPipelineIndexedSpansAggSum != nil {
+		toSerialize["ci_pipeline_indexed_spans_agg_sum"] = o.CiPipelineIndexedSpansAggSum
+	}
+	if o.CiTestIndexedSpansAggSum != nil {
+		toSerialize["ci_test_indexed_spans_agg_sum"] = o.CiTestIndexedSpansAggSum
+	}
+	if o.CiVisibilityPipelineCommittersHwmSum != nil {
+		toSerialize["ci_visibility_pipeline_committers_hwm_sum"] = o.CiVisibilityPipelineCommittersHwmSum
+	}
+	if o.CiVisibilityTestCommittersHwmSum != nil {
+		toSerialize["ci_visibility_test_committers_hwm_sum"] = o.CiVisibilityTestCommittersHwmSum
+	}
 	if o.ContainerAvgSum != nil {
 		toSerialize["container_avg_sum"] = o.ContainerAvgSum
 	}
@@ -2502,6 +2650,10 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		BrowserRumLiteSessionCountAggSum           *int64              `json:"browser_rum_lite_session_count_agg_sum,omitempty"`
 		BrowserRumReplaySessionCountAggSum         *int64              `json:"browser_rum_replay_session_count_agg_sum,omitempty"`
 		BrowserRumUnitsAggSum                      *int64              `json:"browser_rum_units_agg_sum,omitempty"`
+		CiPipelineIndexedSpansAggSum               *int64              `json:"ci_pipeline_indexed_spans_agg_sum,omitempty"`
+		CiTestIndexedSpansAggSum                   *int64              `json:"ci_test_indexed_spans_agg_sum,omitempty"`
+		CiVisibilityPipelineCommittersHwmSum       *int64              `json:"ci_visibility_pipeline_committers_hwm_sum,omitempty"`
+		CiVisibilityTestCommittersHwmSum           *int64              `json:"ci_visibility_test_committers_hwm_sum,omitempty"`
 		ContainerAvgSum                            *int64              `json:"container_avg_sum,omitempty"`
 		ContainerHwmSum                            *int64              `json:"container_hwm_sum,omitempty"`
 		CspmAasHostTop99pSum                       *int64              `json:"cspm_aas_host_top99p_sum,omitempty"`
@@ -2578,6 +2730,10 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.BrowserRumLiteSessionCountAggSum = all.BrowserRumLiteSessionCountAggSum
 	o.BrowserRumReplaySessionCountAggSum = all.BrowserRumReplaySessionCountAggSum
 	o.BrowserRumUnitsAggSum = all.BrowserRumUnitsAggSum
+	o.CiPipelineIndexedSpansAggSum = all.CiPipelineIndexedSpansAggSum
+	o.CiTestIndexedSpansAggSum = all.CiTestIndexedSpansAggSum
+	o.CiVisibilityPipelineCommittersHwmSum = all.CiVisibilityPipelineCommittersHwmSum
+	o.CiVisibilityTestCommittersHwmSum = all.CiVisibilityTestCommittersHwmSum
 	o.ContainerAvgSum = all.ContainerAvgSum
 	o.ContainerHwmSum = all.ContainerHwmSum
 	o.CspmAasHostTop99pSum = all.CspmAasHostTop99pSum

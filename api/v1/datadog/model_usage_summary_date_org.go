@@ -40,6 +40,14 @@ type UsageSummaryDateOrg struct {
 	BrowserRumReplaySessionCountSum *int64 `json:"browser_rum_replay_session_count_sum,omitempty"`
 	// Shows the sum of all browser RUM units over all hours in the current date for the given org.
 	BrowserRumUnitsSum *int64 `json:"browser_rum_units_sum,omitempty"`
+	// Shows the sum of all CI pipeline indexed spans over all hours in the current date for the given org.
+	CiPipelineIndexedSpansSum *int64 `json:"ci_pipeline_indexed_spans_sum,omitempty"`
+	// Shows the sum of all CI test indexed spans over all hours in the current date for the given org.
+	CiTestIndexedSpansSum *int64 `json:"ci_test_indexed_spans_sum,omitempty"`
+	// Shows the high-water mark of all CI visibility pipeline committers over all hours in the current date for the given org.
+	CiVisibilityPipelineCommittersHwm *int64 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
+	// Shows the high-water mark of all CI visibility test committers over all hours in the current date for the given org.
+	CiVisibilityTestCommittersHwm *int64 `json:"ci_visibility_test_committers_hwm,omitempty"`
 	// Shows the average of all distinct containers over all hours in the current date for the given org.
 	ContainerAvg *int64 `json:"container_avg,omitempty"`
 	// Shows the high-water mark of all distinct containers over all hours in the current date for the given org.
@@ -565,6 +573,134 @@ func (o *UsageSummaryDateOrg) HasBrowserRumUnitsSum() bool {
 // SetBrowserRumUnitsSum gets a reference to the given int64 and assigns it to the BrowserRumUnitsSum field.
 func (o *UsageSummaryDateOrg) SetBrowserRumUnitsSum(v int64) {
 	o.BrowserRumUnitsSum = &v
+}
+
+// GetCiPipelineIndexedSpansSum returns the CiPipelineIndexedSpansSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCiPipelineIndexedSpansSum() int64 {
+	if o == nil || o.CiPipelineIndexedSpansSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiPipelineIndexedSpansSum
+}
+
+// GetCiPipelineIndexedSpansSumOk returns a tuple with the CiPipelineIndexedSpansSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCiPipelineIndexedSpansSumOk() (*int64, bool) {
+	if o == nil || o.CiPipelineIndexedSpansSum == nil {
+		return nil, false
+	}
+	return o.CiPipelineIndexedSpansSum, true
+}
+
+// HasCiPipelineIndexedSpansSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCiPipelineIndexedSpansSum() bool {
+	if o != nil && o.CiPipelineIndexedSpansSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiPipelineIndexedSpansSum gets a reference to the given int64 and assigns it to the CiPipelineIndexedSpansSum field.
+func (o *UsageSummaryDateOrg) SetCiPipelineIndexedSpansSum(v int64) {
+	o.CiPipelineIndexedSpansSum = &v
+}
+
+// GetCiTestIndexedSpansSum returns the CiTestIndexedSpansSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCiTestIndexedSpansSum() int64 {
+	if o == nil || o.CiTestIndexedSpansSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiTestIndexedSpansSum
+}
+
+// GetCiTestIndexedSpansSumOk returns a tuple with the CiTestIndexedSpansSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCiTestIndexedSpansSumOk() (*int64, bool) {
+	if o == nil || o.CiTestIndexedSpansSum == nil {
+		return nil, false
+	}
+	return o.CiTestIndexedSpansSum, true
+}
+
+// HasCiTestIndexedSpansSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCiTestIndexedSpansSum() bool {
+	if o != nil && o.CiTestIndexedSpansSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiTestIndexedSpansSum gets a reference to the given int64 and assigns it to the CiTestIndexedSpansSum field.
+func (o *UsageSummaryDateOrg) SetCiTestIndexedSpansSum(v int64) {
+	o.CiTestIndexedSpansSum = &v
+}
+
+// GetCiVisibilityPipelineCommittersHwm returns the CiVisibilityPipelineCommittersHwm field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCiVisibilityPipelineCommittersHwm() int64 {
+	if o == nil || o.CiVisibilityPipelineCommittersHwm == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiVisibilityPipelineCommittersHwm
+}
+
+// GetCiVisibilityPipelineCommittersHwmOk returns a tuple with the CiVisibilityPipelineCommittersHwm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCiVisibilityPipelineCommittersHwmOk() (*int64, bool) {
+	if o == nil || o.CiVisibilityPipelineCommittersHwm == nil {
+		return nil, false
+	}
+	return o.CiVisibilityPipelineCommittersHwm, true
+}
+
+// HasCiVisibilityPipelineCommittersHwm returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCiVisibilityPipelineCommittersHwm() bool {
+	if o != nil && o.CiVisibilityPipelineCommittersHwm != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiVisibilityPipelineCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityPipelineCommittersHwm field.
+func (o *UsageSummaryDateOrg) SetCiVisibilityPipelineCommittersHwm(v int64) {
+	o.CiVisibilityPipelineCommittersHwm = &v
+}
+
+// GetCiVisibilityTestCommittersHwm returns the CiVisibilityTestCommittersHwm field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetCiVisibilityTestCommittersHwm() int64 {
+	if o == nil || o.CiVisibilityTestCommittersHwm == nil {
+		var ret int64
+		return ret
+	}
+	return *o.CiVisibilityTestCommittersHwm
+}
+
+// GetCiVisibilityTestCommittersHwmOk returns a tuple with the CiVisibilityTestCommittersHwm field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetCiVisibilityTestCommittersHwmOk() (*int64, bool) {
+	if o == nil || o.CiVisibilityTestCommittersHwm == nil {
+		return nil, false
+	}
+	return o.CiVisibilityTestCommittersHwm, true
+}
+
+// HasCiVisibilityTestCommittersHwm returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasCiVisibilityTestCommittersHwm() bool {
+	if o != nil && o.CiVisibilityTestCommittersHwm != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCiVisibilityTestCommittersHwm gets a reference to the given int64 and assigns it to the CiVisibilityTestCommittersHwm field.
+func (o *UsageSummaryDateOrg) SetCiVisibilityTestCommittersHwm(v int64) {
+	o.CiVisibilityTestCommittersHwm = &v
 }
 
 // GetContainerAvg returns the ContainerAvg field value if set, zero value otherwise.
@@ -2051,6 +2187,18 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.BrowserRumUnitsSum != nil {
 		toSerialize["browser_rum_units_sum"] = o.BrowserRumUnitsSum
 	}
+	if o.CiPipelineIndexedSpansSum != nil {
+		toSerialize["ci_pipeline_indexed_spans_sum"] = o.CiPipelineIndexedSpansSum
+	}
+	if o.CiTestIndexedSpansSum != nil {
+		toSerialize["ci_test_indexed_spans_sum"] = o.CiTestIndexedSpansSum
+	}
+	if o.CiVisibilityPipelineCommittersHwm != nil {
+		toSerialize["ci_visibility_pipeline_committers_hwm"] = o.CiVisibilityPipelineCommittersHwm
+	}
+	if o.CiVisibilityTestCommittersHwm != nil {
+		toSerialize["ci_visibility_test_committers_hwm"] = o.CiVisibilityTestCommittersHwm
+	}
 	if o.ContainerAvg != nil {
 		toSerialize["container_avg"] = o.ContainerAvg
 	}
@@ -2205,6 +2353,10 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		BrowserRumLiteSessionCountSum           *int64  `json:"browser_rum_lite_session_count_sum,omitempty"`
 		BrowserRumReplaySessionCountSum         *int64  `json:"browser_rum_replay_session_count_sum,omitempty"`
 		BrowserRumUnitsSum                      *int64  `json:"browser_rum_units_sum,omitempty"`
+		CiPipelineIndexedSpansSum               *int64  `json:"ci_pipeline_indexed_spans_sum,omitempty"`
+		CiTestIndexedSpansSum                   *int64  `json:"ci_test_indexed_spans_sum,omitempty"`
+		CiVisibilityPipelineCommittersHwm       *int64  `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
+		CiVisibilityTestCommittersHwm           *int64  `json:"ci_visibility_test_committers_hwm,omitempty"`
 		ContainerAvg                            *int64  `json:"container_avg,omitempty"`
 		ContainerHwm                            *int64  `json:"container_hwm,omitempty"`
 		CspmAasHostTop99p                       *int64  `json:"cspm_aas_host_top99p,omitempty"`
@@ -2273,6 +2425,10 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.BrowserRumLiteSessionCountSum = all.BrowserRumLiteSessionCountSum
 	o.BrowserRumReplaySessionCountSum = all.BrowserRumReplaySessionCountSum
 	o.BrowserRumUnitsSum = all.BrowserRumUnitsSum
+	o.CiPipelineIndexedSpansSum = all.CiPipelineIndexedSpansSum
+	o.CiTestIndexedSpansSum = all.CiTestIndexedSpansSum
+	o.CiVisibilityPipelineCommittersHwm = all.CiVisibilityPipelineCommittersHwm
+	o.CiVisibilityTestCommittersHwm = all.CiVisibilityTestCommittersHwm
 	o.ContainerAvg = all.ContainerAvg
 	o.ContainerHwm = all.ContainerHwm
 	o.CspmAasHostTop99p = all.CspmAasHostTop99p

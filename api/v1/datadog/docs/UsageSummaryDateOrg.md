@@ -17,6 +17,10 @@
 | **BrowserRumLiteSessionCountSum**           | Pointer to **int64**  | Shows the sum of all browser lite sessions over all hours in the current date for the given org.                                                              | [optional] |
 | **BrowserRumReplaySessionCountSum**         | Pointer to **int64**  | Shows the sum of all browser replay sessions over all hours in the current date for the given org.                                                            | [optional] |
 | **BrowserRumUnitsSum**                      | Pointer to **int64**  | Shows the sum of all browser RUM units over all hours in the current date for the given org.                                                                  | [optional] |
+| **CiPipelineIndexedSpansSum**               | Pointer to **int64**  | Shows the sum of all CI pipeline indexed spans over all hours in the current date for the given org.                                                          | [optional] |
+| **CiTestIndexedSpansSum**                   | Pointer to **int64**  | Shows the sum of all CI test indexed spans over all hours in the current date for the given org.                                                              | [optional] |
+| **CiVisibilityPipelineCommittersHwm**       | Pointer to **int64**  | Shows the high-water mark of all CI visibility pipeline committers over all hours in the current date for the given org.                                      | [optional] |
+| **CiVisibilityTestCommittersHwm**           | Pointer to **int64**  | Shows the high-water mark of all CI visibility test committers over all hours in the current date for the given org.                                          | [optional] |
 | **ContainerAvg**                            | Pointer to **int64**  | Shows the average of all distinct containers over all hours in the current date for the given org.                                                            | [optional] |
 | **ContainerHwm**                            | Pointer to **int64**  | Shows the high-water mark of all distinct containers over all hours in the current date for the given org.                                                    | [optional] |
 | **CspmAasHostTop99p**                       | Pointer to **int64**  | Shows the 99th percentile of all Cloud Security Posture Management Azure app services hosts over all hours in the current date for the given org.             | [optional] |
@@ -406,6 +410,106 @@ SetBrowserRumUnitsSum sets BrowserRumUnitsSum field to given value.
 `func (o *UsageSummaryDateOrg) HasBrowserRumUnitsSum() bool`
 
 HasBrowserRumUnitsSum returns a boolean if a field has been set.
+
+### GetCiPipelineIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) GetCiPipelineIndexedSpansSum() int64`
+
+GetCiPipelineIndexedSpansSum returns the CiPipelineIndexedSpansSum field if non-nil, zero value otherwise.
+
+### GetCiPipelineIndexedSpansSumOk
+
+`func (o *UsageSummaryDateOrg) GetCiPipelineIndexedSpansSumOk() (*int64, bool)`
+
+GetCiPipelineIndexedSpansSumOk returns a tuple with the CiPipelineIndexedSpansSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCiPipelineIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) SetCiPipelineIndexedSpansSum(v int64)`
+
+SetCiPipelineIndexedSpansSum sets CiPipelineIndexedSpansSum field to given value.
+
+### HasCiPipelineIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) HasCiPipelineIndexedSpansSum() bool`
+
+HasCiPipelineIndexedSpansSum returns a boolean if a field has been set.
+
+### GetCiTestIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) GetCiTestIndexedSpansSum() int64`
+
+GetCiTestIndexedSpansSum returns the CiTestIndexedSpansSum field if non-nil, zero value otherwise.
+
+### GetCiTestIndexedSpansSumOk
+
+`func (o *UsageSummaryDateOrg) GetCiTestIndexedSpansSumOk() (*int64, bool)`
+
+GetCiTestIndexedSpansSumOk returns a tuple with the CiTestIndexedSpansSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCiTestIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) SetCiTestIndexedSpansSum(v int64)`
+
+SetCiTestIndexedSpansSum sets CiTestIndexedSpansSum field to given value.
+
+### HasCiTestIndexedSpansSum
+
+`func (o *UsageSummaryDateOrg) HasCiTestIndexedSpansSum() bool`
+
+HasCiTestIndexedSpansSum returns a boolean if a field has been set.
+
+### GetCiVisibilityPipelineCommittersHwm
+
+`func (o *UsageSummaryDateOrg) GetCiVisibilityPipelineCommittersHwm() int64`
+
+GetCiVisibilityPipelineCommittersHwm returns the CiVisibilityPipelineCommittersHwm field if non-nil, zero value otherwise.
+
+### GetCiVisibilityPipelineCommittersHwmOk
+
+`func (o *UsageSummaryDateOrg) GetCiVisibilityPipelineCommittersHwmOk() (*int64, bool)`
+
+GetCiVisibilityPipelineCommittersHwmOk returns a tuple with the CiVisibilityPipelineCommittersHwm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCiVisibilityPipelineCommittersHwm
+
+`func (o *UsageSummaryDateOrg) SetCiVisibilityPipelineCommittersHwm(v int64)`
+
+SetCiVisibilityPipelineCommittersHwm sets CiVisibilityPipelineCommittersHwm field to given value.
+
+### HasCiVisibilityPipelineCommittersHwm
+
+`func (o *UsageSummaryDateOrg) HasCiVisibilityPipelineCommittersHwm() bool`
+
+HasCiVisibilityPipelineCommittersHwm returns a boolean if a field has been set.
+
+### GetCiVisibilityTestCommittersHwm
+
+`func (o *UsageSummaryDateOrg) GetCiVisibilityTestCommittersHwm() int64`
+
+GetCiVisibilityTestCommittersHwm returns the CiVisibilityTestCommittersHwm field if non-nil, zero value otherwise.
+
+### GetCiVisibilityTestCommittersHwmOk
+
+`func (o *UsageSummaryDateOrg) GetCiVisibilityTestCommittersHwmOk() (*int64, bool)`
+
+GetCiVisibilityTestCommittersHwmOk returns a tuple with the CiVisibilityTestCommittersHwm field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetCiVisibilityTestCommittersHwm
+
+`func (o *UsageSummaryDateOrg) SetCiVisibilityTestCommittersHwm(v int64)`
+
+SetCiVisibilityTestCommittersHwm sets CiVisibilityTestCommittersHwm field to given value.
+
+### HasCiVisibilityTestCommittersHwm
+
+`func (o *UsageSummaryDateOrg) HasCiVisibilityTestCommittersHwm() bool`
+
+HasCiVisibilityTestCommittersHwm returns a boolean if a field has been set.
 
 ### GetContainerAvg
 
