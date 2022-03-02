@@ -23,6 +23,7 @@ const (
 	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM         SecurityMonitoringRuleQueryAggregation = "sum"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX         SecurityMonitoringRuleQueryAggregation = "max"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE   SecurityMonitoringRuleQueryAggregation = "new_value"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA    SecurityMonitoringRuleQueryAggregation = "geo_data"
 )
 
 var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitoringRuleQueryAggregation{
@@ -31,6 +32,7 @@ var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitori
 	"sum",
 	"max",
 	"new_value",
+	"geo_data",
 }
 
 func (w *SecurityMonitoringRuleQueryAggregation) GetAllowedValues() []SecurityMonitoringRuleQueryAggregation {

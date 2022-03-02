@@ -14,11 +14,12 @@ import (
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
-	DetectionMethod   *SecurityMonitoringRuleDetectionMethod   `json:"detectionMethod,omitempty"`
-	EvaluationWindow  *SecurityMonitoringRuleEvaluationWindow  `json:"evaluationWindow,omitempty"`
-	KeepAlive         *SecurityMonitoringRuleKeepAlive         `json:"keepAlive,omitempty"`
-	MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
-	NewValueOptions   *SecurityMonitoringRuleNewValueOptions   `json:"newValueOptions,omitempty"`
+	DetectionMethod         *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
+	EvaluationWindow        *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+	ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
+	KeepAlive               *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
+	MaxSignalDuration       *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
+	NewValueOptions         *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -102,6 +103,38 @@ func (o *SecurityMonitoringRuleOptions) HasEvaluationWindow() bool {
 // SetEvaluationWindow gets a reference to the given SecurityMonitoringRuleEvaluationWindow and assigns it to the EvaluationWindow field.
 func (o *SecurityMonitoringRuleOptions) SetEvaluationWindow(v SecurityMonitoringRuleEvaluationWindow) {
 	o.EvaluationWindow = &v
+}
+
+// GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
+	if o == nil || o.ImpossibleTravelOptions == nil {
+		var ret SecurityMonitoringRuleImpossibleTravelOptions
+		return ret
+	}
+	return *o.ImpossibleTravelOptions
+}
+
+// GetImpossibleTravelOptionsOk returns a tuple with the ImpossibleTravelOptions field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptionsOk() (*SecurityMonitoringRuleImpossibleTravelOptions, bool) {
+	if o == nil || o.ImpossibleTravelOptions == nil {
+		return nil, false
+	}
+	return o.ImpossibleTravelOptions, true
+}
+
+// HasImpossibleTravelOptions returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasImpossibleTravelOptions() bool {
+	if o != nil && o.ImpossibleTravelOptions != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetImpossibleTravelOptions gets a reference to the given SecurityMonitoringRuleImpossibleTravelOptions and assigns it to the ImpossibleTravelOptions field.
+func (o *SecurityMonitoringRuleOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions) {
+	o.ImpossibleTravelOptions = &v
 }
 
 // GetKeepAlive returns the KeepAlive field value if set, zero value otherwise.
@@ -211,6 +244,9 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.EvaluationWindow != nil {
 		toSerialize["evaluationWindow"] = o.EvaluationWindow
 	}
+	if o.ImpossibleTravelOptions != nil {
+		toSerialize["impossibleTravelOptions"] = o.ImpossibleTravelOptions
+	}
 	if o.KeepAlive != nil {
 		toSerialize["keepAlive"] = o.KeepAlive
 	}
@@ -226,11 +262,12 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DetectionMethod   *SecurityMonitoringRuleDetectionMethod   `json:"detectionMethod,omitempty"`
-		EvaluationWindow  *SecurityMonitoringRuleEvaluationWindow  `json:"evaluationWindow,omitempty"`
-		KeepAlive         *SecurityMonitoringRuleKeepAlive         `json:"keepAlive,omitempty"`
-		MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
-		NewValueOptions   *SecurityMonitoringRuleNewValueOptions   `json:"newValueOptions,omitempty"`
+		DetectionMethod         *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
+		EvaluationWindow        *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+		ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
+		KeepAlive               *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
+		MaxSignalDuration       *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
+		NewValueOptions         *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -275,6 +312,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.DetectionMethod = all.DetectionMethod
 	o.EvaluationWindow = all.EvaluationWindow
+	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
 	o.KeepAlive = all.KeepAlive
 	o.MaxSignalDuration = all.MaxSignalDuration
 	o.NewValueOptions = all.NewValueOptions
