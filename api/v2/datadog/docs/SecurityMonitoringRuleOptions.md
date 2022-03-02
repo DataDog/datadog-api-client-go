@@ -2,13 +2,14 @@
 
 ## Properties
 
-| Name                  | Type                                                                                                 | Description | Notes      |
-| --------------------- | ---------------------------------------------------------------------------------------------------- | ----------- | ---------- |
-| **DetectionMethod**   | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md)     |             | [optional] |
-| **EvaluationWindow**  | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md)   |             | [optional] |
-| **KeepAlive**         | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md)                 |             | [optional] |
-| **MaxSignalDuration** | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md) |             | [optional] |
-| **NewValueOptions**   | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md)     |             | [optional] |
+| Name                        | Type                                                                                                             | Description | Notes      |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------- | ---------- |
+| **DetectionMethod**         | Pointer to [**SecurityMonitoringRuleDetectionMethod**](SecurityMonitoringRuleDetectionMethod.md)                 |             | [optional] |
+| **EvaluationWindow**        | Pointer to [**SecurityMonitoringRuleEvaluationWindow**](SecurityMonitoringRuleEvaluationWindow.md)               |             | [optional] |
+| **ImpossibleTravelOptions** | Pointer to [**SecurityMonitoringRuleImpossibleTravelOptions**](SecurityMonitoringRuleImpossibleTravelOptions.md) |             | [optional] |
+| **KeepAlive**               | Pointer to [**SecurityMonitoringRuleKeepAlive**](SecurityMonitoringRuleKeepAlive.md)                             |             | [optional] |
+| **MaxSignalDuration**       | Pointer to [**SecurityMonitoringRuleMaxSignalDuration**](SecurityMonitoringRuleMaxSignalDuration.md)             |             | [optional] |
+| **NewValueOptions**         | Pointer to [**SecurityMonitoringRuleNewValueOptions**](SecurityMonitoringRuleNewValueOptions.md)                 |             | [optional] |
 
 ## Methods
 
@@ -78,6 +79,31 @@ SetEvaluationWindow sets EvaluationWindow field to given value.
 `func (o *SecurityMonitoringRuleOptions) HasEvaluationWindow() bool`
 
 HasEvaluationWindow returns a boolean if a field has been set.
+
+### GetImpossibleTravelOptions
+
+`func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions`
+
+GetImpossibleTravelOptions returns the ImpossibleTravelOptions field if non-nil, zero value otherwise.
+
+### GetImpossibleTravelOptionsOk
+
+`func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptionsOk() (*SecurityMonitoringRuleImpossibleTravelOptions, bool)`
+
+GetImpossibleTravelOptionsOk returns a tuple with the ImpossibleTravelOptions field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetImpossibleTravelOptions
+
+`func (o *SecurityMonitoringRuleOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions)`
+
+SetImpossibleTravelOptions sets ImpossibleTravelOptions field to given value.
+
+### HasImpossibleTravelOptions
+
+`func (o *SecurityMonitoringRuleOptions) HasImpossibleTravelOptions() bool`
+
+HasImpossibleTravelOptions returns a boolean if a field has been set.
 
 ### GetKeepAlive
 
