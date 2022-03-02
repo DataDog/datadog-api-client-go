@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"time"
 )
 
 // LogsByRetentionMonthlyUsage Object containing a summary of indexed logs usage by retention period for a single month.
 type LogsByRetentionMonthlyUsage struct {
 	// The month for the usage.
-	Date *string `json:"date,omitempty"`
+	Date *time.Time `json:"date,omitempty"`
 	// Indexed logs usage for each active retention for the month.
 	Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -40,9 +41,9 @@ func NewLogsByRetentionMonthlyUsageWithDefaults() *LogsByRetentionMonthlyUsage {
 }
 
 // GetDate returns the Date field value if set, zero value otherwise.
-func (o *LogsByRetentionMonthlyUsage) GetDate() string {
+func (o *LogsByRetentionMonthlyUsage) GetDate() time.Time {
 	if o == nil || o.Date == nil {
-		var ret string
+		var ret time.Time
 		return ret
 	}
 	return *o.Date
@@ -50,7 +51,7 @@ func (o *LogsByRetentionMonthlyUsage) GetDate() string {
 
 // GetDateOk returns a tuple with the Date field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogsByRetentionMonthlyUsage) GetDateOk() (*string, bool) {
+func (o *LogsByRetentionMonthlyUsage) GetDateOk() (*time.Time, bool) {
 	if o == nil || o.Date == nil {
 		return nil, false
 	}
@@ -66,8 +67,8 @@ func (o *LogsByRetentionMonthlyUsage) HasDate() bool {
 	return false
 }
 
-// SetDate gets a reference to the given string and assigns it to the Date field.
-func (o *LogsByRetentionMonthlyUsage) SetDate(v string) {
+// SetDate gets a reference to the given time.Time and assigns it to the Date field.
+func (o *LogsByRetentionMonthlyUsage) SetDate(v time.Time) {
 	o.Date = &v
 }
 
@@ -120,7 +121,7 @@ func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsByRetentionMonthlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Date  *string                  `json:"date,omitempty"`
+		Date  *time.Time               `json:"date,omitempty"`
 		Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
