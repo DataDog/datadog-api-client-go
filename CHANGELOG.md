@@ -1,5 +1,18 @@
 # CHANGELOG
 
+## 1.10.0 / 2022-03-03
+
+### Fixed
+* Fix event intake response by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1350
+* Fix type for `date` field in `LogsByRetentionMonthlyUsage` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1362
+### Added
+* [Synthetics] Add missing option for SSL tests by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1354
+* Add impossible travel detection method by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1357
+* Add CI App usage endpoint and usage summary columns by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1361
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.9.0...v1.10.0
+
 ## 1.9.0 / 2022-02-18
 
 ### Fixed
