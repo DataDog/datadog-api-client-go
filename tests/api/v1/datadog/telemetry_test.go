@@ -19,7 +19,7 @@ func TestTelemetryHeaders(t *testing.T) {
 	assert.NoError(err)
 	gock.New(URL).
 		Get("integration/aws").
-		MatchHeader("User-Agent", "^datadog-api-client-go/\\d\\.\\d\\.\\d.*? \\(go .*?; os .*?; arch .*?\\)$").
+		MatchHeader("User-Agent", "^datadog-api-client-go\\/\\d+\\.\\d+\\.\\d+.*? \\(go .*?; os .*?; arch .*?\\)$").
 		Reply(299)
 	defer gock.Off()
 
