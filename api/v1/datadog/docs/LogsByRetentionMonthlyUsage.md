@@ -4,7 +4,7 @@
 
 | Name      | Type                                                               | Description                                                 | Notes      |
 | --------- | ------------------------------------------------------------------ | ----------------------------------------------------------- | ---------- |
-| **Date**  | Pointer to **string**                                              | The month for the usage.                                    | [optional] |
+| **Date**  | Pointer to **time.Time**                                           | The month for the usage.                                    | [optional] |
 | **Usage** | Pointer to [**[]LogsRetentionSumUsage**](LogsRetentionSumUsage.md) | Indexed logs usage for each active retention for the month. | [optional] |
 
 ## Methods
@@ -28,20 +28,20 @@ but it doesn't guarantee that properties required by API are set.
 
 ### GetDate
 
-`func (o *LogsByRetentionMonthlyUsage) GetDate() string`
+`func (o *LogsByRetentionMonthlyUsage) GetDate() time.Time`
 
 GetDate returns the Date field if non-nil, zero value otherwise.
 
 ### GetDateOk
 
-`func (o *LogsByRetentionMonthlyUsage) GetDateOk() (*string, bool)`
+`func (o *LogsByRetentionMonthlyUsage) GetDateOk() (*time.Time, bool)`
 
 GetDateOk returns a tuple with the Date field if it's non-nil, zero value otherwise
 and a boolean to check if the value has been set.
 
 ### SetDate
 
-`func (o *LogsByRetentionMonthlyUsage) SetDate(v string)`
+`func (o *LogsByRetentionMonthlyUsage) SetDate(v time.Time)`
 
 SetDate sets Date field to given value.
 
