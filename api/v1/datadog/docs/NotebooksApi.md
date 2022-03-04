@@ -194,7 +194,7 @@ This endpoint does not have optional parameters.
 
 ### Authorization
 
-[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
 
 ### HTTP request headers
 
@@ -290,7 +290,7 @@ Other parameters are passed through a pointer to a ListNotebooksOptionalParamete
 
 ### Authorization
 
-[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
 
 ### HTTP request headers
 
