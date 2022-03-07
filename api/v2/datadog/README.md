@@ -153,6 +153,8 @@ All URIs are relative to *https://api.datadoghq.com*
 | _MetricsApi_               | [**ListVolumesByMetricName**](docs/MetricsApi.md#listvolumesbymetricname)                                         | **Get** /api/v2/metrics/{metric_name}/volumes                                              | List distinct metric volumes by metric name        |
 | _MetricsApi_               | [**UpdateTagConfiguration**](docs/MetricsApi.md#updatetagconfiguration)                                           | **Patch** /api/v2/metrics/{metric_name}/tags                                               | Update a tag configuration                         |
 | _ProcessesApi_             | [**ListProcesses**](docs/ProcessesApi.md#listprocesses)                                                           | **Get** /api/v2/processes                                                                  | Get all processes                                  |
+| _RUMApi_                   | [**ListRUMEvents**](docs/RUMApi.md#listrumevents)                                                                 | **Get** /api/v2/rum/events                                                                 | Get a list of RUM events                           |
+| _RUMApi_                   | [**SearchRUMEvents**](docs/RUMApi.md#searchrumevents)                                                             | **Post** /api/v2/rum/events/search                                                         | Search RUM events                                  |
 | _RolesApi_                 | [**AddPermissionToRole**](docs/RolesApi.md#addpermissiontorole)                                                   | **Post** /api/v2/roles/{role_id}/permissions                                               | Grant permission to a role                         |
 | _RolesApi_                 | [**AddUserToRole**](docs/RolesApi.md#addusertorole)                                                               | **Post** /api/v2/roles/{role_id}/users                                                     | Add a user to a role                               |
 | _RolesApi_                 | [**CloneRole**](docs/RolesApi.md#clonerole)                                                                       | **Post** /api/v2/roles/{role_id}/clone                                                     | Create a new role by cloning an existing role      |
@@ -461,6 +463,20 @@ All URIs are relative to *https://api.datadoghq.com*
 - [ProcessSummaryAttributes](docs/ProcessSummaryAttributes.md)
 - [ProcessSummaryType](docs/ProcessSummaryType.md)
 - [QuerySortOrder](docs/QuerySortOrder.md)
+- [RUMEvent](docs/RUMEvent.md)
+- [RUMEventAttributes](docs/RUMEventAttributes.md)
+- [RUMEventType](docs/RUMEventType.md)
+- [RUMEventsResponse](docs/RUMEventsResponse.md)
+- [RUMQueryFilter](docs/RUMQueryFilter.md)
+- [RUMQueryOptions](docs/RUMQueryOptions.md)
+- [RUMQueryPageOptions](docs/RUMQueryPageOptions.md)
+- [RUMResponseLinks](docs/RUMResponseLinks.md)
+- [RUMResponseMetadata](docs/RUMResponseMetadata.md)
+- [RUMResponsePage](docs/RUMResponsePage.md)
+- [RUMResponseStatus](docs/RUMResponseStatus.md)
+- [RUMSearchEventsRequest](docs/RUMSearchEventsRequest.md)
+- [RUMSort](docs/RUMSort.md)
+- [RUMWarning](docs/RUMWarning.md)
 - [RelationshipToIncidentIntegrationMetadataData](docs/RelationshipToIncidentIntegrationMetadataData.md)
 - [RelationshipToIncidentIntegrationMetadatas](docs/RelationshipToIncidentIntegrationMetadatas.md)
 - [RelationshipToIncidentPostmortem](docs/RelationshipToIncidentPostmortem.md)
