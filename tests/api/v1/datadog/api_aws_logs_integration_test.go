@@ -8,6 +8,7 @@ package test
 
 import (
 	"context"
+	"fmt"
 	"testing"
 	"time"
 
@@ -18,8 +19,9 @@ import (
 )
 
 func generateUniqueAWSLambdaAccounts(ctx context.Context, t *testing.T) (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
+	accountID := fmt.Sprintf("66%d", tests.ClockFromContext(ctx).Now().Unix())
 	var uniqueAWSAccount = datadog.AWSAccount{
-		AccountId:                     tests.UniqueEntityName(ctx, t),
+		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: &map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},

@@ -3,25 +3,27 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1626196285","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"661646648270","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "200"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3288730646790076341"
+      - "8772264479463705326"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "474292710025225247"
+      - "1685018203202654020"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"775c15c1119649d399b955dfd7c3553a"}'
+    body: '{"external_id":"94d6ca4ff5214b64aa53190969cad49f"}'
     headers:
       Cache-Control:
       - no-cache
@@ -30,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Jul 2021 17:11:27 GMT
+      - Mon, 07 Mar 2022 10:17:51 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,31 +43,41 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11982"
+      X-Ratelimit-Reset:
+      - "10"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1626196285","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
+      {"account_id":"661646648270","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "95"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7726716694861181918"
+      - "8739925925164914710"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "474292710025225247"
+      - "1685018203202654020"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/services_async
     method: POST
   response:
-    body: '{"status":"error","errors":[{"message":"AWS account Test-TestCheckServicesAsync-1626196285
-      has no lambda config to update","code":"no_such_config"}]}'
+    body: '{"status":"error","errors":[{"message":"AWS account 661646648270 has no
+      lambda config to update","code":"no_such_config"}]}'
     headers:
       Cache-Control:
       - no-cache
@@ -74,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Jul 2021 17:11:27 GMT
+      - Mon, 07 Mar 2022 10:17:51 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -85,26 +97,36 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11981"
+      X-Ratelimit-Reset:
+      - "9"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestCheckServicesAsync-1626196285","role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"661646648270","role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "70"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "974165631309992262"
+      - "4544650504767184778"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "474292710025225247"
+      - "1685018203202654020"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -119,7 +141,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Jul 2021 17:11:28 GMT
+      - Mon, 07 Mar 2022 10:17:51 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -128,6 +150,14 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11980"
+      X-Ratelimit-Reset:
+      - "9"
     status: 200 OK
     code: 200
     duration: ""
