@@ -85,7 +85,7 @@ Other parameters are passed through a pointer to a ListRUMEventsOptionalParamete
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
 
 ### HTTP request headers
 
@@ -158,7 +158,7 @@ Other parameters are passed through a pointer to a SearchRUMEventsOptionalParame
 
 ### Authorization
 
-[apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
+[AuthZ](../README.md#AuthZ), [apiKeyAuth](../README.md#apiKeyAuth), [appKeyAuth](../README.md#appKeyAuth)
 
 ### HTTP request headers
 
