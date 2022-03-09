@@ -659,6 +659,8 @@ docs/UsageNetworkFlowsHour.md
 docs/UsageNetworkFlowsResponse.md
 docs/UsageNetworkHostsHour.md
 docs/UsageNetworkHostsResponse.md
+docs/UsageOnlineArchiveHour.md
+docs/UsageOnlineArchiveResponse.md
 docs/UsageProfilingHour.md
 docs/UsageProfilingResponse.md
 docs/UsageReportsType.md
@@ -1347,6 +1349,8 @@ model_usage_network_flows_hour.go
 model_usage_network_flows_response.go
 model_usage_network_hosts_hour.go
 model_usage_network_hosts_response.go
+model_usage_online_archive_hour.go
+model_usage_online_archive_response.go
 model_usage_profiling_hour.go
 model_usage_profiling_response.go
 model_usage_reports_type.go

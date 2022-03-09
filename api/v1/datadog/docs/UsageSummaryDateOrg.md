@@ -52,6 +52,7 @@
 | **Name**                                    | Pointer to **string** | The organization name.                                                                                                                                        | [optional] |
 | **NetflowIndexedEventsCountSum**            | Pointer to **int64**  | Shows the sum of all Network flows indexed over all hours in the current date for the given org.                                                              | [optional] |
 | **NpmHostTop99p**                           | Pointer to **int64**  | Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for the given org.                                                | [optional] |
+| **OnlineArchiveEventsCountSum**             | Pointer to **int64**  | Sum of all online archived events over all hours in the current date for the given org.                                                                       | [optional] |
 | **OpentelemetryHostTop99p**                 | Pointer to **int64**  | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for the given org. | [optional] |
 | **ProfilingHostTop99p**                     | Pointer to **int64**  | Shows the 99th percentile of all profiled hosts over all hours in the current date for the given org.                                                         | [optional] |
 | **PublicId**                                | Pointer to **string** | The organization public id.                                                                                                                                   | [optional] |
@@ -1285,6 +1286,31 @@ SetNpmHostTop99p sets NpmHostTop99p field to given value.
 `func (o *UsageSummaryDateOrg) HasNpmHostTop99p() bool`
 
 HasNpmHostTop99p returns a boolean if a field has been set.
+
+### GetOnlineArchiveEventsCountSum
+
+`func (o *UsageSummaryDateOrg) GetOnlineArchiveEventsCountSum() int64`
+
+GetOnlineArchiveEventsCountSum returns the OnlineArchiveEventsCountSum field if non-nil, zero value otherwise.
+
+### GetOnlineArchiveEventsCountSumOk
+
+`func (o *UsageSummaryDateOrg) GetOnlineArchiveEventsCountSumOk() (*int64, bool)`
+
+GetOnlineArchiveEventsCountSumOk returns a tuple with the OnlineArchiveEventsCountSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnlineArchiveEventsCountSum
+
+`func (o *UsageSummaryDateOrg) SetOnlineArchiveEventsCountSum(v int64)`
+
+SetOnlineArchiveEventsCountSum sets OnlineArchiveEventsCountSum field to given value.
+
+### HasOnlineArchiveEventsCountSum
+
+`func (o *UsageSummaryDateOrg) HasOnlineArchiveEventsCountSum() bool`
+
+HasOnlineArchiveEventsCountSum returns a boolean if a field has been set.
 
 ### GetOpentelemetryHostTop99p
 

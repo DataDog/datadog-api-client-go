@@ -109,6 +109,8 @@ type UsageSummaryDate struct {
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+	// Sum of all online archived events over all hours in the current date for all organizations.
+	OnlineArchiveEventsCountSum *int64 `json:"online_archive_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
 	OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
 	// Organizations associated with a user.
@@ -1662,6 +1664,38 @@ func (o *UsageSummaryDate) SetNpmHostTop99p(v int64) {
 	o.NpmHostTop99p = &v
 }
 
+// GetOnlineArchiveEventsCountSum returns the OnlineArchiveEventsCountSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetOnlineArchiveEventsCountSum() int64 {
+	if o == nil || o.OnlineArchiveEventsCountSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.OnlineArchiveEventsCountSum
+}
+
+// GetOnlineArchiveEventsCountSumOk returns a tuple with the OnlineArchiveEventsCountSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetOnlineArchiveEventsCountSumOk() (*int64, bool) {
+	if o == nil || o.OnlineArchiveEventsCountSum == nil {
+		return nil, false
+	}
+	return o.OnlineArchiveEventsCountSum, true
+}
+
+// HasOnlineArchiveEventsCountSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasOnlineArchiveEventsCountSum() bool {
+	if o != nil && o.OnlineArchiveEventsCountSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetOnlineArchiveEventsCountSum gets a reference to the given int64 and assigns it to the OnlineArchiveEventsCountSum field.
+func (o *UsageSummaryDate) SetOnlineArchiveEventsCountSum(v int64) {
+	o.OnlineArchiveEventsCountSum = &v
+}
+
 // GetOpentelemetryHostTop99p returns the OpentelemetryHostTop99p field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetOpentelemetryHostTop99p() int64 {
 	if o == nil || o.OpentelemetryHostTop99p == nil {
@@ -2256,6 +2290,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
 	}
+	if o.OnlineArchiveEventsCountSum != nil {
+		toSerialize["online_archive_events_count_sum"] = o.OnlineArchiveEventsCountSum
+	}
 	if o.OpentelemetryHostTop99p != nil {
 		toSerialize["opentelemetry_host_top99p"] = o.OpentelemetryHostTop99p
 	}
@@ -2351,6 +2388,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumUnitsSum                       *int64                 `json:"mobile_rum_units_sum,omitempty"`
 		NetflowIndexedEventsCountSum            *int64                 `json:"netflow_indexed_events_count_sum,omitempty"`
 		NpmHostTop99p                           *int64                 `json:"npm_host_top99p,omitempty"`
+		OnlineArchiveEventsCountSum             *int64                 `json:"online_archive_events_count_sum,omitempty"`
 		OpentelemetryHostTop99p                 *int64                 `json:"opentelemetry_host_top99p,omitempty"`
 		Orgs                                    *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
 		ProfilingHostTop99p                     *int64                 `json:"profiling_host_top99p,omitempty"`
@@ -2422,6 +2460,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumUnitsSum = all.MobileRumUnitsSum
 	o.NetflowIndexedEventsCountSum = all.NetflowIndexedEventsCountSum
 	o.NpmHostTop99p = all.NpmHostTop99p
+	o.OnlineArchiveEventsCountSum = all.OnlineArchiveEventsCountSum
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.Orgs = all.Orgs
 	o.ProfilingHostTop99p = all.ProfilingHostTop99p
