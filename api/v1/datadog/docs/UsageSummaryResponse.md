@@ -56,6 +56,7 @@
 | **MobileRumUnitsAggSum**                       | Pointer to **int64**                                     | Shows the sum of all mobile RUM units over all hours in the current months for all organizations.                                                                   | [optional] |
 | **NetflowIndexedEventsCountAggSum**            | Pointer to **int64**                                     | Shows the sum of all Network flows indexed over all hours in the current months for all organizations.                                                              | [optional] |
 | **NpmHostTop99pSum**                           | Pointer to **int64**                                     | Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.                                                | [optional] |
+| **OnlineArchiveEventsCountAggSum**             | Pointer to **int64**                                     | Sum of all online archived events over all hours in the current months for all organizations.                                                                       | [optional] |
 | **OpentelemetryHostTop99pSum**                 | Pointer to **int64**                                     | Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations. | [optional] |
 | **ProfilingContainerAgentCountAvg**            | Pointer to **int64**                                     | Shows the average number of profiled containers over all hours in the current months for all organizations.                                                         | [optional] |
 | **ProfilingHostCountTop99pSum**                | Pointer to **int64**                                     | Shows the 99th percentile of all profiled hosts over all hours in the current months for all organizations.                                                         | [optional] |
@@ -1393,6 +1394,31 @@ SetNpmHostTop99pSum sets NpmHostTop99pSum field to given value.
 `func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool`
 
 HasNpmHostTop99pSum returns a boolean if a field has been set.
+
+### GetOnlineArchiveEventsCountAggSum
+
+`func (o *UsageSummaryResponse) GetOnlineArchiveEventsCountAggSum() int64`
+
+GetOnlineArchiveEventsCountAggSum returns the OnlineArchiveEventsCountAggSum field if non-nil, zero value otherwise.
+
+### GetOnlineArchiveEventsCountAggSumOk
+
+`func (o *UsageSummaryResponse) GetOnlineArchiveEventsCountAggSumOk() (*int64, bool)`
+
+GetOnlineArchiveEventsCountAggSumOk returns a tuple with the OnlineArchiveEventsCountAggSum field if it's non-nil, zero value otherwise
+and a boolean to check if the value has been set.
+
+### SetOnlineArchiveEventsCountAggSum
+
+`func (o *UsageSummaryResponse) SetOnlineArchiveEventsCountAggSum(v int64)`
+
+SetOnlineArchiveEventsCountAggSum sets OnlineArchiveEventsCountAggSum field to given value.
+
+### HasOnlineArchiveEventsCountAggSum
+
+`func (o *UsageSummaryResponse) HasOnlineArchiveEventsCountAggSum() bool`
+
+HasOnlineArchiveEventsCountAggSum returns a boolean if a field has been set.
 
 ### GetOpentelemetryHostTop99pSum
 
