@@ -1,0 +1,53 @@
+interactions:
+- request:
+    body: |
+      {"name":"Test-Get_an_SLO_s_details_returns_OK_response-1646747470","query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"thresholds":[{"target":95,"timeframe":"7d","warning":98}],"type":"metric"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/slo
+  response:
+    body: '{"data":[{"description":"","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"152e72d970e15e799e4b195d7193ed18","name":"Test-Get_an_SLO_s_details_returns_OK_response-1646747470","created_at":1646747471,"tags":[],"modified_at":1646747471,"type":"metric"}],"error":null}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v1/slo/152e72d970e15e799e4b195d7193ed18
+  response:
+    body: '{"data":{"description":"","monitor_tags":[],"creator":{"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"thresholds":[{"warning":98.0,"warning_display":"98.","target":95.0,"target_display":"95.","timeframe":"7d"}],"type_id":1,"query":{"denominator":"sum:httpservice.hits{!code:3xx}.as_count()","numerator":"sum:httpservice.hits{code:2xx}.as_count()"},"id":"152e72d970e15e799e4b195d7193ed18","name":"Test-Get_an_SLO_s_details_returns_OK_response-1646747470","created_at":1646747471,"tags":[],"modified_at":1646747471,"type":"metric"},"error":null}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/slo/152e72d970e15e799e4b195d7193ed18
+  response:
+    body: '{"data":["152e72d970e15e799e4b195d7193ed18"],"error":null}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1
