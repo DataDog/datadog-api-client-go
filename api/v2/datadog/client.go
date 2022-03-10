@@ -48,6 +48,8 @@ type APIClient struct {
 
 	// API Services
 
+	AuditApi *AuditApiService
+
 	AuthNMappingsApi *AuthNMappingsApiService
 
 	CloudWorkloadSecurityApi *CloudWorkloadSecurityApiService
@@ -99,6 +101,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.common.client = c
 
 	// API Services
+	c.AuditApi = (*AuditApiService)(&c.common)
 	c.AuthNMappingsApi = (*AuthNMappingsApiService)(&c.common)
 	c.CloudWorkloadSecurityApi = (*CloudWorkloadSecurityApiService)(&c.common)
 	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
