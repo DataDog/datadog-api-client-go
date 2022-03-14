@@ -22,7 +22,7 @@ const (
 )
 
 var allowedEventStreamWidgetDefinitionTypeEnumValues = []EventStreamWidgetDefinitionType{
-	"event_stream",
+	EVENTSTREAMWIDGETDEFINITIONTYPE_EVENT_STREAM,
 }
 
 func (w *EventStreamWidgetDefinitionType) GetAllowedValues() []EventStreamWidgetDefinitionType {

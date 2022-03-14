@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFunnelSourceEnumValues = []FunnelSource{
-	"rum",
+	FUNNELSOURCE_RUM,
 }
 
 func (w *FunnelSource) GetAllowedValues() []FunnelSource {

@@ -23,8 +23,8 @@ const (
 )
 
 var allowedFormulaAndFunctionResponseFormatEnumValues = []FormulaAndFunctionResponseFormat{
-	"timeseries",
-	"scalar",
+	FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES,
+	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR,
 }
 
 func (w *FormulaAndFunctionResponseFormat) GetAllowedValues() []FormulaAndFunctionResponseFormat {

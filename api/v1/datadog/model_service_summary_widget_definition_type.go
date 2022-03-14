@@ -22,7 +22,7 @@ const (
 )
 
 var allowedServiceSummaryWidgetDefinitionTypeEnumValues = []ServiceSummaryWidgetDefinitionType{
-	"trace_service",
+	SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE,
 }
 
 func (w *ServiceSummaryWidgetDefinitionType) GetAllowedValues() []ServiceSummaryWidgetDefinitionType {

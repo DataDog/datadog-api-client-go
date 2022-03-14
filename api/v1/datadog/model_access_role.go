@@ -25,10 +25,10 @@ const (
 )
 
 var allowedAccessRoleEnumValues = []AccessRole{
-	"st",
-	"adm",
-	"ro",
-	"ERROR",
+	ACCESSROLE_STANDARD,
+	ACCESSROLE_ADMIN,
+	ACCESSROLE_READ_ONLY,
+	ACCESSROLE_ERROR,
 }
 
 func (w *AccessRole) GetAllowedValues() []AccessRole {

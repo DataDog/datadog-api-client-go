@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsBasicAuthSigv4TypeEnumValues = []SyntheticsBasicAuthSigv4Type{
-	"sigv4",
+	SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4,
 }
 
 func (w *SyntheticsBasicAuthSigv4Type) GetAllowedValues() []SyntheticsBasicAuthSigv4Type {

@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSunburstWidgetLegendInlineAutomaticTypeEnumValues = []SunburstWidgetLegendInlineAutomaticType{
-	"inline",
-	"automatic",
+	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_INLINE,
+	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_AUTOMATIC,
 }
 
 func (w *SunburstWidgetLegendInlineAutomaticType) GetAllowedValues() []SunburstWidgetLegendInlineAutomaticType {

@@ -26,11 +26,11 @@ const (
 )
 
 var allowedScatterplotWidgetAggregatorEnumValues = []ScatterplotWidgetAggregator{
-	"avg",
-	"last",
-	"max",
-	"min",
-	"sum",
+	SCATTERPLOTWIDGETAGGREGATOR_AVERAGE,
+	SCATTERPLOTWIDGETAGGREGATOR_LAST,
+	SCATTERPLOTWIDGETAGGREGATOR_MAXIMUM,
+	SCATTERPLOTWIDGETAGGREGATOR_MINIMUM,
+	SCATTERPLOTWIDGETAGGREGATOR_SUM,
 }
 
 func (w *ScatterplotWidgetAggregator) GetAllowedValues() []ScatterplotWidgetAggregator {

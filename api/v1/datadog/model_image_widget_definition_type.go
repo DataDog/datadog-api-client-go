@@ -22,7 +22,7 @@ const (
 )
 
 var allowedImageWidgetDefinitionTypeEnumValues = []ImageWidgetDefinitionType{
-	"image",
+	IMAGEWIDGETDEFINITIONTYPE_IMAGE,
 }
 
 func (w *ImageWidgetDefinitionType) GetAllowedValues() []ImageWidgetDefinitionType {

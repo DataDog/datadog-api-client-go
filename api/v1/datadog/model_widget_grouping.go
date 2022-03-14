@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetGroupingEnumValues = []WidgetGrouping{
-	"check",
-	"cluster",
+	WIDGETGROUPING_CHECK,
+	WIDGETGROUPING_CLUSTER,
 }
 
 func (w *WidgetGrouping) GetAllowedValues() []WidgetGrouping {

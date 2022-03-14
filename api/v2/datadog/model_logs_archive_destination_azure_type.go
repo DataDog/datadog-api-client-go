@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsArchiveDestinationAzureTypeEnumValues = []LogsArchiveDestinationAzureType{
-	"azure",
+	LOGSARCHIVEDESTINATIONAZURETYPE_AZURE,
 }
 
 func (w *LogsArchiveDestinationAzureType) GetAllowedValues() []LogsArchiveDestinationAzureType {

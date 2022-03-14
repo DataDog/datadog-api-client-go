@@ -22,7 +22,7 @@ const (
 )
 
 var allowedApplicationKeysTypeEnumValues = []ApplicationKeysType{
-	"application_keys",
+	APPLICATIONKEYSTYPE_APPLICATION_KEYS,
 }
 
 func (w *ApplicationKeysType) GetAllowedValues() []ApplicationKeysType {

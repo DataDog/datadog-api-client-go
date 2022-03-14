@@ -40,7 +40,7 @@ func NewNotebookUpdateData(attributes NotebookUpdateDataAttributes, type_ Notebo
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookUpdateDataWithDefaults() *NotebookUpdateData {
 	this := NotebookUpdateData{}
-	var type_ NotebookResourceType = "notebooks"
+	var type_ NotebookResourceType = NOTEBOOKRESOURCETYPE_NOTEBOOKS
 	this.Type = type_
 	return &this
 }

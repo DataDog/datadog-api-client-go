@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsArchiveOrderDefinitionTypeEnumValues = []LogsArchiveOrderDefinitionType{
-	"archive_order",
+	LOGSARCHIVEORDERDEFINITIONTYPE_ARCHIVE_ORDER,
 }
 
 func (w *LogsArchiveOrderDefinitionType) GetAllowedValues() []LogsArchiveOrderDefinitionType {

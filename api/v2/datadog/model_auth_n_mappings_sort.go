@@ -33,18 +33,18 @@ const (
 )
 
 var allowedAuthNMappingsSortEnumValues = []AuthNMappingsSort{
-	"created_at",
-	"-created_at",
-	"role_id",
-	"-role_id",
-	"saml_assertion_attribute_id",
-	"-saml_assertion_attribute_id",
-	"role.name",
-	"-role.name",
-	"saml_assertion_attribute.attribute_key",
-	"-saml_assertion_attribute.attribute_key",
-	"saml_assertion_attribute.attribute_value",
-	"-saml_assertion_attribute.attribute_value",
+	AUTHNMAPPINGSSORT_CREATED_AT_ASCENDING,
+	AUTHNMAPPINGSSORT_CREATED_AT_DESCENDING,
+	AUTHNMAPPINGSSORT_ROLE_ID_ASCENDING,
+	AUTHNMAPPINGSSORT_ROLE_ID_DESCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_ASCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_DESCENDING,
+	AUTHNMAPPINGSSORT_ROLE_NAME_ASCENDING,
+	AUTHNMAPPINGSSORT_ROLE_NAME_DESCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_ASCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_DESCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_ASCENDING,
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_DESCENDING,
 }
 
 func (w *AuthNMappingsSort) GetAllowedValues() []AuthNMappingsSort {

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetSummaryTypeEnumValues = []WidgetSummaryType{
-	"monitors",
-	"groups",
-	"combined",
+	WIDGETSUMMARYTYPE_MONITORS,
+	WIDGETSUMMARYTYPE_GROUPS,
+	WIDGETSUMMARYTYPE_COMBINED,
 }
 
 func (w *WidgetSummaryType) GetAllowedValues() []WidgetSummaryType {

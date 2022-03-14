@@ -40,7 +40,7 @@ func NewNullableRelationshipToUserData(id string, type_ UsersType) *NullableRela
 // but it doesn't guarantee that properties required by API are set
 func NewNullableRelationshipToUserDataWithDefaults() *NullableRelationshipToUserData {
 	this := NullableRelationshipToUserData{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = type_
 	return &this
 }

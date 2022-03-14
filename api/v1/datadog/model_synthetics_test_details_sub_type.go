@@ -30,14 +30,14 @@ const (
 )
 
 var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubType{
-	"http",
-	"ssl",
-	"tcp",
-	"dns",
-	"multi",
-	"icmp",
-	"udp",
-	"websocket",
+	SYNTHETICSTESTDETAILSSUBTYPE_HTTP,
+	SYNTHETICSTESTDETAILSSUBTYPE_SSL,
+	SYNTHETICSTESTDETAILSSUBTYPE_TCP,
+	SYNTHETICSTESTDETAILSSUBTYPE_DNS,
+	SYNTHETICSTESTDETAILSSUBTYPE_MULTI,
+	SYNTHETICSTESTDETAILSSUBTYPE_ICMP,
+	SYNTHETICSTESTDETAILSSUBTYPE_UDP,
+	SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET,
 }
 
 func (w *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetTextAlignEnumValues = []WidgetTextAlign{
-	"center",
-	"left",
-	"right",
+	WIDGETTEXTALIGN_CENTER,
+	WIDGETTEXTALIGN_LEFT,
+	WIDGETTEXTALIGN_RIGHT,
 }
 
 func (w *WidgetTextAlign) GetAllowedValues() []WidgetTextAlign {

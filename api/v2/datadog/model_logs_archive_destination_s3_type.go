@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsArchiveDestinationS3TypeEnumValues = []LogsArchiveDestinationS3Type{
-	"s3",
+	LOGSARCHIVEDESTINATIONS3TYPE_S3,
 }
 
 func (w *LogsArchiveDestinationS3Type) GetAllowedValues() []LogsArchiveDestinationS3Type {

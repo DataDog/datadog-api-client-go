@@ -22,7 +22,7 @@ const (
 )
 
 var allowedTreeMapWidgetDefinitionTypeEnumValues = []TreeMapWidgetDefinitionType{
-	"treemap",
+	TREEMAPWIDGETDEFINITIONTYPE_TREEMAP,
 }
 
 func (w *TreeMapWidgetDefinitionType) GetAllowedValues() []TreeMapWidgetDefinitionType {

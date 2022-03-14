@@ -25,10 +25,10 @@ const (
 )
 
 var allowedScatterplotDimensionEnumValues = []ScatterplotDimension{
-	"x",
-	"y",
-	"radius",
-	"color",
+	SCATTERPLOTDIMENSION_X,
+	SCATTERPLOTDIMENSION_Y,
+	SCATTERPLOTDIMENSION_RADIUS,
+	SCATTERPLOTDIMENSION_COLOR,
 }
 
 func (w *ScatterplotDimension) GetAllowedValues() []ScatterplotDimension {

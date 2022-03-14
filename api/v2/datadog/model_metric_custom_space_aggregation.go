@@ -25,10 +25,10 @@ const (
 )
 
 var allowedMetricCustomSpaceAggregationEnumValues = []MetricCustomSpaceAggregation{
-	"avg",
-	"max",
-	"min",
-	"sum",
+	METRICCUSTOMSPACEAGGREGATION_AVG,
+	METRICCUSTOMSPACEAGGREGATION_MAX,
+	METRICCUSTOMSPACEAGGREGATION_MIN,
+	METRICCUSTOMSPACEAGGREGATION_SUM,
 }
 
 func (w *MetricCustomSpaceAggregation) GetAllowedValues() []MetricCustomSpaceAggregation {

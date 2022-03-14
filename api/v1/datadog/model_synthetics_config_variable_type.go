@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{
-	"global",
-	"text",
+	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL,
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 }
 
 func (w *SyntheticsConfigVariableType) GetAllowedValues() []SyntheticsConfigVariableType {

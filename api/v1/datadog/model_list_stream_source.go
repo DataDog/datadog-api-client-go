@@ -24,9 +24,9 @@ const (
 )
 
 var allowedListStreamSourceEnumValues = []ListStreamSource{
-	"issue_stream",
-	"logs_stream",
-	"audit_stream",
+	LISTSTREAMSOURCE_ISSUE_STREAM,
+	LISTSTREAMSOURCE_LOGS_STREAM,
+	LISTSTREAMSOURCE_AUDIT_STREAM,
 }
 
 func (w *ListStreamSource) GetAllowedValues() []ListStreamSource {

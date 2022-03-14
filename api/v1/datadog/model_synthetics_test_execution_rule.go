@@ -24,9 +24,9 @@ const (
 )
 
 var allowedSyntheticsTestExecutionRuleEnumValues = []SyntheticsTestExecutionRule{
-	"blocking",
-	"non_blocking",
-	"skipped",
+	SYNTHETICSTESTEXECUTIONRULE_BLOCKING,
+	SYNTHETICSTESTEXECUTIONRULE_NON_BLOCKING,
+	SYNTHETICSTESTEXECUTIONRULE_SKIPPED,
 }
 
 func (w *SyntheticsTestExecutionRule) GetAllowedValues() []SyntheticsTestExecutionRule {

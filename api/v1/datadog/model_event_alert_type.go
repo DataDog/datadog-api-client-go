@@ -30,13 +30,13 @@ const (
 )
 
 var allowedEventAlertTypeEnumValues = []EventAlertType{
-	"error",
-	"warning",
-	"info",
-	"success",
-	"user_update",
-	"recommendation",
-	"snapshot",
+	EVENTALERTTYPE_ERROR,
+	EVENTALERTTYPE_WARNING,
+	EVENTALERTTYPE_INFO,
+	EVENTALERTTYPE_SUCCESS,
+	EVENTALERTTYPE_USER_UPDATE,
+	EVENTALERTTYPE_RECOMMENDATION,
+	EVENTALERTTYPE_SNAPSHOT,
 }
 
 func (w *EventAlertType) GetAllowedValues() []EventAlertType {

@@ -31,7 +31,7 @@ type MetricDistinctVolume struct {
 // will change when the set of required properties is changed
 func NewMetricDistinctVolume() *MetricDistinctVolume {
 	this := MetricDistinctVolume{}
-	var type_ MetricDistinctVolumeType = "distinct_metric_volumes"
+	var type_ MetricDistinctVolumeType = METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES
 	this.Type = &type_
 	return &this
 }
@@ -41,7 +41,7 @@ func NewMetricDistinctVolume() *MetricDistinctVolume {
 // but it doesn't guarantee that properties required by API are set
 func NewMetricDistinctVolumeWithDefaults() *MetricDistinctVolume {
 	this := MetricDistinctVolume{}
-	var type_ MetricDistinctVolumeType = "distinct_metric_volumes"
+	var type_ MetricDistinctVolumeType = METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES
 	this.Type = &type_
 	return &this
 }

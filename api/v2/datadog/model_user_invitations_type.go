@@ -22,7 +22,7 @@ const (
 )
 
 var allowedUserInvitationsTypeEnumValues = []UserInvitationsType{
-	"user_invitations",
+	USERINVITATIONSTYPE_USER_INVITATIONS,
 }
 
 func (w *UserInvitationsType) GetAllowedValues() []UserInvitationsType {

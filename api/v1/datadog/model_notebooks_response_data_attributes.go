@@ -44,7 +44,7 @@ type NotebooksResponseDataAttributes struct {
 func NewNotebooksResponseDataAttributes(name string) *NotebooksResponseDataAttributes {
 	this := NotebooksResponseDataAttributes{}
 	this.Name = name
-	var status NotebookStatus = "published"
+	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
 	return &this
 }
@@ -54,7 +54,7 @@ func NewNotebooksResponseDataAttributes(name string) *NotebooksResponseDataAttri
 // but it doesn't guarantee that properties required by API are set
 func NewNotebooksResponseDataAttributesWithDefaults() *NotebooksResponseDataAttributes {
 	this := NotebooksResponseDataAttributes{}
-	var status NotebookStatus = "published"
+	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
 	return &this
 }

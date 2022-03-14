@@ -25,10 +25,10 @@ const (
 )
 
 var allowedWidgetOrderByEnumValues = []WidgetOrderBy{
-	"change",
-	"name",
-	"present",
-	"past",
+	WIDGETORDERBY_CHANGE,
+	WIDGETORDERBY_NAME,
+	WIDGETORDERBY_PRESENT,
+	WIDGETORDERBY_PAST,
 }
 
 func (w *WidgetOrderBy) GetAllowedValues() []WidgetOrderBy {

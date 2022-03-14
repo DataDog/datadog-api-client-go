@@ -54,7 +54,7 @@ func NewSunburstWidgetDefinition(requests []SunburstWidgetRequest, type_ Sunburs
 // but it doesn't guarantee that properties required by API are set
 func NewSunburstWidgetDefinitionWithDefaults() *SunburstWidgetDefinition {
 	this := SunburstWidgetDefinition{}
-	var type_ SunburstWidgetDefinitionType = "sunburst"
+	var type_ SunburstWidgetDefinitionType = SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST
 	this.Type = type_
 	return &this
 }

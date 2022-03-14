@@ -23,8 +23,8 @@ const (
 )
 
 var allowedFormulaAndFunctionProcessQueryDataSourceEnumValues = []FormulaAndFunctionProcessQueryDataSource{
-	"process",
-	"container",
+	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
+	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_CONTAINER,
 }
 
 func (w *FormulaAndFunctionProcessQueryDataSource) GetAllowedValues() []FormulaAndFunctionProcessQueryDataSource {

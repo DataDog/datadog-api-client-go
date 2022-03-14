@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSAMLAssertionAttributesTypeEnumValues = []SAMLAssertionAttributesType{
-	"saml_assertion_attributes",
+	SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES,
 }
 
 func (w *SAMLAssertionAttributesType) GetAllowedValues() []SAMLAssertionAttributesType {

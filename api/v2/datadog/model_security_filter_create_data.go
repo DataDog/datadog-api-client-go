@@ -40,7 +40,7 @@ func NewSecurityFilterCreateData(attributes SecurityFilterCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityFilterCreateDataWithDefaults() *SecurityFilterCreateData {
 	this := SecurityFilterCreateData{}
-	var type_ SecurityFilterType = "security_filters"
+	var type_ SecurityFilterType = SECURITYFILTERTYPE_SECURITY_FILTERS
 	this.Type = type_
 	return &this
 }

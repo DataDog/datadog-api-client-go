@@ -27,9 +27,9 @@ const (
 )
 
 var allowedSyntheticsTestMonitorStatusEnumValues = []SyntheticsTestMonitorStatus{
-	0,
-	1,
-	2,
+	SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED,
+	SYNTHETICSTESTMONITORSTATUS_TRIGGERED,
+	SYNTHETICSTESTMONITORSTATUS_NO_DATA,
 }
 
 func (w *SyntheticsTestMonitorStatus) GetAllowedValues() []SyntheticsTestMonitorStatus {

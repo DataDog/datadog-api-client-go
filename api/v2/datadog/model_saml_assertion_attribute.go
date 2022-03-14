@@ -42,7 +42,7 @@ func NewSAMLAssertionAttribute(id int32, type_ SAMLAssertionAttributesType) *SAM
 // but it doesn't guarantee that properties required by API are set
 func NewSAMLAssertionAttributeWithDefaults() *SAMLAssertionAttribute {
 	this := SAMLAssertionAttribute{}
-	var type_ SAMLAssertionAttributesType = "saml_assertion_attributes"
+	var type_ SAMLAssertionAttributesType = SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES
 	this.Type = type_
 	return &this
 }

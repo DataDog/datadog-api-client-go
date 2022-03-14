@@ -22,7 +22,7 @@ const (
 )
 
 var allowedAuthNMappingsTypeEnumValues = []AuthNMappingsType{
-	"authn_mappings",
+	AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS,
 }
 
 func (w *AuthNMappingsType) GetAllowedValues() []AuthNMappingsType {

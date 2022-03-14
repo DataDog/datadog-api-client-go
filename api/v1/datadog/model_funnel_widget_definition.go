@@ -49,7 +49,7 @@ func NewFunnelWidgetDefinition(requests []FunnelWidgetRequest, type_ FunnelWidge
 // but it doesn't guarantee that properties required by API are set
 func NewFunnelWidgetDefinitionWithDefaults() *FunnelWidgetDefinition {
 	this := FunnelWidgetDefinition{}
-	var type_ FunnelWidgetDefinitionType = "funnel"
+	var type_ FunnelWidgetDefinitionType = FUNNELWIDGETDEFINITIONTYPE_FUNNEL
 	this.Type = type_
 	return &this
 }

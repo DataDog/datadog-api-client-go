@@ -22,7 +22,7 @@ const (
 )
 
 var allowedNotebookResourceTypeEnumValues = []NotebookResourceType{
-	"notebooks",
+	NOTEBOOKRESOURCETYPE_NOTEBOOKS,
 }
 
 func (w *NotebookResourceType) GetAllowedValues() []NotebookResourceType {

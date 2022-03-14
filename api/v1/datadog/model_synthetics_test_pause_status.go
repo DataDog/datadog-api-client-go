@@ -24,8 +24,8 @@ const (
 )
 
 var allowedSyntheticsTestPauseStatusEnumValues = []SyntheticsTestPauseStatus{
-	"live",
-	"paused",
+	SYNTHETICSTESTPAUSESTATUS_LIVE,
+	SYNTHETICSTESTPAUSESTATUS_PAUSED,
 }
 
 func (w *SyntheticsTestPauseStatus) GetAllowedValues() []SyntheticsTestPauseStatus {

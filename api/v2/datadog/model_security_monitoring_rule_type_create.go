@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSecurityMonitoringRuleTypeCreateEnumValues = []SecurityMonitoringRuleTypeCreate{
-	"log_detection",
-	"workload_security",
+	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION,
+	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY,
 }
 
 func (w *SecurityMonitoringRuleTypeCreate) GetAllowedValues() []SecurityMonitoringRuleTypeCreate {

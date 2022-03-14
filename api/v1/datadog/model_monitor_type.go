@@ -35,20 +35,20 @@ const (
 )
 
 var allowedMonitorTypeEnumValues = []MonitorType{
-	"composite",
-	"event alert",
-	"log alert",
-	"metric alert",
-	"process alert",
-	"query alert",
-	"rum alert",
-	"service check",
-	"synthetics alert",
-	"trace-analytics alert",
-	"slo alert",
-	"event-v2 alert",
-	"audit alert",
-	"ci-pipelines alert",
+	MONITORTYPE_COMPOSITE,
+	MONITORTYPE_EVENT_ALERT,
+	MONITORTYPE_LOG_ALERT,
+	MONITORTYPE_METRIC_ALERT,
+	MONITORTYPE_PROCESS_ALERT,
+	MONITORTYPE_QUERY_ALERT,
+	MONITORTYPE_RUM_ALERT,
+	MONITORTYPE_SERVICE_CHECK,
+	MONITORTYPE_SYNTHETICS_ALERT,
+	MONITORTYPE_TRACE_ANALYTICS_ALERT,
+	MONITORTYPE_SLO_ALERT,
+	MONITORTYPE_EVENT_V2_ALERT,
+	MONITORTYPE_AUDIT_ALERT,
+	MONITORTYPE_CI_PIPELINES_ALERT,
 }
 
 func (w *MonitorType) GetAllowedValues() []MonitorType {

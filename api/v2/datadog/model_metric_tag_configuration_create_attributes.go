@@ -64,7 +64,7 @@ func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigura
 	this := MetricTagConfigurationCreateAttributes{}
 	var includePercentiles bool = false
 	this.IncludePercentiles = &includePercentiles
-	var metricType MetricTagConfigurationMetricTypes = "gauge"
+	var metricType MetricTagConfigurationMetricTypes = METRICTAGCONFIGURATIONMETRICTYPES_GAUGE
 	this.MetricType = metricType
 	return &this
 }

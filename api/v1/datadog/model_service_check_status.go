@@ -25,10 +25,10 @@ const (
 )
 
 var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{
-	0,
-	1,
-	2,
-	3,
+	SERVICECHECKSTATUS_OK,
+	SERVICECHECKSTATUS_WARNING,
+	SERVICECHECKSTATUS_CRITICAL,
+	SERVICECHECKSTATUS_UNKNOWN,
 }
 
 func (w *ServiceCheckStatus) GetAllowedValues() []ServiceCheckStatus {

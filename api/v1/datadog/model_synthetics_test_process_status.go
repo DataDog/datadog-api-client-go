@@ -26,11 +26,11 @@ const (
 )
 
 var allowedSyntheticsTestProcessStatusEnumValues = []SyntheticsTestProcessStatus{
-	"not_scheduled",
-	"scheduled",
-	"started",
-	"finished",
-	"finished_with_error",
+	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED,
+	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED,
+	SYNTHETICSTESTPROCESSSTATUS_STARTED,
+	SYNTHETICSTESTPROCESSSTATUS_FINISHED,
+	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR,
 }
 
 func (w *SyntheticsTestProcessStatus) GetAllowedValues() []SyntheticsTestProcessStatus {

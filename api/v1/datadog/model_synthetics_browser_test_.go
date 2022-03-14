@@ -62,7 +62,7 @@ func NewSyntheticsBrowserTest(config SyntheticsBrowserTestConfig, locations []st
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	var type_ SyntheticsBrowserTestType = "browser"
+	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
 	this.Type = type_
 	return &this
 }

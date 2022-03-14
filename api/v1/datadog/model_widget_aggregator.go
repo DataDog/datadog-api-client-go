@@ -27,12 +27,12 @@ const (
 )
 
 var allowedWidgetAggregatorEnumValues = []WidgetAggregator{
-	"avg",
-	"last",
-	"max",
-	"min",
-	"sum",
-	"percentile",
+	WIDGETAGGREGATOR_AVERAGE,
+	WIDGETAGGREGATOR_LAST,
+	WIDGETAGGREGATOR_MAXIMUM,
+	WIDGETAGGREGATOR_MINIMUM,
+	WIDGETAGGREGATOR_SUM,
+	WIDGETAGGREGATOR_PERCENTILE,
 }
 
 func (w *WidgetAggregator) GetAllowedValues() []WidgetAggregator {

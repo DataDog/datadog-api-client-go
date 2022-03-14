@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsArithmeticProcessorTypeEnumValues = []LogsArithmeticProcessorType{
-	"arithmetic-processor",
+	LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR,
 }
 
 func (w *LogsArithmeticProcessorType) GetAllowedValues() []LogsArithmeticProcessorType {

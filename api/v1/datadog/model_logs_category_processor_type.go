@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsCategoryProcessorTypeEnumValues = []LogsCategoryProcessorType{
-	"category-processor",
+	LOGSCATEGORYPROCESSORTYPE_CATEGORY_PROCESSOR,
 }
 
 func (w *LogsCategoryProcessorType) GetAllowedValues() []LogsCategoryProcessorType {

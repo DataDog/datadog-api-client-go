@@ -23,8 +23,8 @@ const (
 )
 
 var allowedTreeMapSizeByEnumValues = []TreeMapSizeBy{
-	"pct_cpu",
-	"pct_mem",
+	TREEMAPSIZEBY_PCT_CPU,
+	TREEMAPSIZEBY_PCT_MEM,
 }
 
 func (w *TreeMapSizeBy) GetAllowedValues() []TreeMapSizeBy {

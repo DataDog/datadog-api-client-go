@@ -23,8 +23,8 @@ const (
 )
 
 var allowedIncidentFieldAttributesSingleValueTypeEnumValues = []IncidentFieldAttributesSingleValueType{
-	"dropdown",
-	"textbox",
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN,
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX,
 }
 
 func (w *IncidentFieldAttributesSingleValueType) GetAllowedValues() []IncidentFieldAttributesSingleValueType {

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetViewModeEnumValues = []WidgetViewMode{
-	"overall",
-	"component",
-	"both",
+	WIDGETVIEWMODE_OVERALL,
+	WIDGETVIEWMODE_COMPONENT,
+	WIDGETVIEWMODE_BOTH,
 }
 
 func (w *WidgetViewMode) GetAllowedValues() []WidgetViewMode {

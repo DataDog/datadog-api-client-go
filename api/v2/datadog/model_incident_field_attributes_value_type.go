@@ -25,10 +25,10 @@ const (
 )
 
 var allowedIncidentFieldAttributesValueTypeEnumValues = []IncidentFieldAttributesValueType{
-	"multiselect",
-	"textarray",
-	"metrictag",
-	"autocomplete",
+	INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT,
+	INCIDENTFIELDATTRIBUTESVALUETYPE_TEXTARRAY,
+	INCIDENTFIELDATTRIBUTESVALUETYPE_METRICTAG,
+	INCIDENTFIELDATTRIBUTESVALUETYPE_AUTOCOMPLETE,
 }
 
 func (w *IncidentFieldAttributesValueType) GetAllowedValues() []IncidentFieldAttributesValueType {

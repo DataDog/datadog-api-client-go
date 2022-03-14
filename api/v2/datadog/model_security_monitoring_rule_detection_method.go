@@ -25,10 +25,10 @@ const (
 )
 
 var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitoringRuleDetectionMethod{
-	"threshold",
-	"new_value",
-	"anomaly_detection",
-	"impossible_travel",
+	SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD,
+	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE,
+	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION,
+	SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL,
 }
 
 func (w *SecurityMonitoringRuleDetectionMethod) GetAllowedValues() []SecurityMonitoringRuleDetectionMethod {

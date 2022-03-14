@@ -23,8 +23,8 @@ const (
 )
 
 var allowedContentEncodingEnumValues = []ContentEncoding{
-	"gzip",
-	"deflate",
+	CONTENTENCODING_GZIP,
+	CONTENTENCODING_DEFLATE,
 }
 
 func (w *ContentEncoding) GetAllowedValues() []ContentEncoding {

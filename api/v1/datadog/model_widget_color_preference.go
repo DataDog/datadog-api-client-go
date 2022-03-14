@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetColorPreferenceEnumValues = []WidgetColorPreference{
-	"background",
-	"text",
+	WIDGETCOLORPREFERENCE_BACKGROUND,
+	WIDGETCOLORPREFERENCE_TEXT,
 }
 
 func (w *WidgetColorPreference) GetAllowedValues() []WidgetColorPreference {

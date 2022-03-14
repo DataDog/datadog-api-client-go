@@ -26,10 +26,10 @@ const (
 )
 
 var allowedSLOErrorTimeframeEnumValues = []SLOErrorTimeframe{
-	"7d",
-	"30d",
-	"90d",
-	"all",
+	SLOERRORTIMEFRAME_SEVEN_DAYS,
+	SLOERRORTIMEFRAME_THIRTY_DAYS,
+	SLOERRORTIMEFRAME_NINETY_DAYS,
+	SLOERRORTIMEFRAME_ALL,
 }
 
 func (w *SLOErrorTimeframe) GetAllowedValues() []SLOErrorTimeframe {

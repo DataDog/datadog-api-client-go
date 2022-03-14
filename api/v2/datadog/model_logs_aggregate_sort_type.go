@@ -23,8 +23,8 @@ const (
 )
 
 var allowedLogsAggregateSortTypeEnumValues = []LogsAggregateSortType{
-	"alphabetical",
-	"measure",
+	LOGSAGGREGATESORTTYPE_ALPHABETICAL,
+	LOGSAGGREGATESORTTYPE_MEASURE,
 }
 
 func (w *LogsAggregateSortType) GetAllowedValues() []LogsAggregateSortType {

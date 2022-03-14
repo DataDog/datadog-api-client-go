@@ -52,11 +52,11 @@ func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if 
 	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
 	{%- else %}
 {#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
-	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value }}
+	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
 	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
 	{%- endif %}
 	{%- else %}
-	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value }}
+	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
 	this.{{ attr|attribute_name }} = &{{ attr|variable_name }}
 	{%- endif %}
 {%- endif %}
@@ -78,11 +78,11 @@ func New{{ name }}WithDefaults() *{{ name }} {
 	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
 	{%- else %}
 {#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
-	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value }}
+	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
 	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
 	{%- endif %}
 	{%- else %}
-	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value }}
+	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
 	this.{{ attr|attribute_name }} = {% if attr not in model.get("required", []) %}&{% endif %}{{ attr|variable_name }}
 	{%- endif %}
 {%- endif %}

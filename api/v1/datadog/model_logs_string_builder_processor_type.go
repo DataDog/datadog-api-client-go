@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsStringBuilderProcessorTypeEnumValues = []LogsStringBuilderProcessorType{
-	"string-builder-processor",
+	LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR,
 }
 
 func (w *LogsStringBuilderProcessorType) GetAllowedValues() []LogsStringBuilderProcessorType {

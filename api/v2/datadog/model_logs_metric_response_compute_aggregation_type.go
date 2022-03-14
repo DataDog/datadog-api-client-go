@@ -23,8 +23,8 @@ const (
 )
 
 var allowedLogsMetricResponseComputeAggregationTypeEnumValues = []LogsMetricResponseComputeAggregationType{
-	"count",
-	"distribution",
+	LOGSMETRICRESPONSECOMPUTEAGGREGATIONTYPE_COUNT,
+	LOGSMETRICRESPONSECOMPUTEAGGREGATIONTYPE_DISTRIBUTION,
 }
 
 func (w *LogsMetricResponseComputeAggregationType) GetAllowedValues() []LogsMetricResponseComputeAggregationType {

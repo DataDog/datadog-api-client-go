@@ -44,7 +44,7 @@ func NewAuthNMappingUpdateData(id string, type_ AuthNMappingsType) *AuthNMapping
 // but it doesn't guarantee that properties required by API are set
 func NewAuthNMappingUpdateDataWithDefaults() *AuthNMappingUpdateData {
 	this := AuthNMappingUpdateData{}
-	var type_ AuthNMappingsType = "authn_mappings"
+	var type_ AuthNMappingsType = AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS
 	this.Type = type_
 	return &this
 }

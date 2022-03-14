@@ -43,7 +43,7 @@ func NewSyntheticsBasicAuthWeb(password string, type_ SyntheticsBasicAuthWebType
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthWebWithDefaults() *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
-	var type_ SyntheticsBasicAuthWebType = "web"
+	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
 	this.Type = type_
 	return &this
 }

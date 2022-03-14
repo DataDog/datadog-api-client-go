@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogStreamWidgetDefinitionTypeEnumValues = []LogStreamWidgetDefinitionType{
-	"log_stream",
+	LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM,
 }
 
 func (w *LogStreamWidgetDefinitionType) GetAllowedValues() []LogStreamWidgetDefinitionType {

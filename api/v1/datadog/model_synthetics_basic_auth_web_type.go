@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsBasicAuthWebTypeEnumValues = []SyntheticsBasicAuthWebType{
-	"web",
+	SYNTHETICSBASICAUTHWEBTYPE_WEB,
 }
 
 func (w *SyntheticsBasicAuthWebType) GetAllowedValues() []SyntheticsBasicAuthWebType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsAttributeRemapperTypeEnumValues = []LogsAttributeRemapperType{
-	"attribute-remapper",
+	LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER,
 }
 
 func (w *LogsAttributeRemapperType) GetAllowedValues() []LogsAttributeRemapperType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsGeoIPParserTypeEnumValues = []LogsGeoIPParserType{
-	"geo-ip-parser",
+	LOGSGEOIPPARSERTYPE_GEO_IP_PARSER,
 }
 
 func (w *LogsGeoIPParserType) GetAllowedValues() []LogsGeoIPParserType {

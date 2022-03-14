@@ -25,10 +25,10 @@ const (
 )
 
 var allowedWidgetComparatorEnumValues = []WidgetComparator{
-	">",
-	">=",
-	"<",
-	"<=",
+	WIDGETCOMPARATOR_GREATER_THAN,
+	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO,
+	WIDGETCOMPARATOR_LESS_THAN,
+	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO,
 }
 
 func (w *WidgetComparator) GetAllowedValues() []WidgetComparator {

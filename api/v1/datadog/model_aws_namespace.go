@@ -28,13 +28,13 @@ const (
 )
 
 var allowedAWSNamespaceEnumValues = []AWSNamespace{
-	"elb",
-	"application_elb",
-	"sqs",
-	"rds",
-	"custom",
-	"network_elb",
-	"lambda",
+	AWSNAMESPACE_ELB,
+	AWSNAMESPACE_APPLICATION_ELB,
+	AWSNAMESPACE_SQS,
+	AWSNAMESPACE_RDS,
+	AWSNAMESPACE_CUSTOM,
+	AWSNAMESPACE_NETWORK_ELB,
+	AWSNAMESPACE_LAMBDA,
 }
 
 func (w *AWSNamespace) GetAllowedValues() []AWSNamespace {

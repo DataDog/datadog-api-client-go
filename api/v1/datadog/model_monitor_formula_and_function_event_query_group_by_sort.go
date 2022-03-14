@@ -33,7 +33,7 @@ type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
 func NewMonitorFormulaAndFunctionEventQueryGroupBySort(aggregation MonitorFormulaAndFunctionEventAggregation) *MonitorFormulaAndFunctionEventQueryGroupBySort {
 	this := MonitorFormulaAndFunctionEventQueryGroupBySort{}
 	this.Aggregation = aggregation
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }
@@ -43,7 +43,7 @@ func NewMonitorFormulaAndFunctionEventQueryGroupBySort(aggregation MonitorFormul
 // but it doesn't guarantee that properties required by API are set
 func NewMonitorFormulaAndFunctionEventQueryGroupBySortWithDefaults() *MonitorFormulaAndFunctionEventQueryGroupBySort {
 	this := MonitorFormulaAndFunctionEventQueryGroupBySort{}
-	var order QuerySortOrder = "desc"
+	var order QuerySortOrder = QUERYSORTORDER_DESC
 	this.Order = &order
 	return &this
 }

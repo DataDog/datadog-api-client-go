@@ -64,7 +64,7 @@ func NewImageWidgetDefinitionWithDefaults() *ImageWidgetDefinition {
 	this.HasBackground = &hasBackground
 	var hasBorder bool = true
 	this.HasBorder = &hasBorder
-	var type_ ImageWidgetDefinitionType = "image"
+	var type_ ImageWidgetDefinitionType = IMAGEWIDGETDEFINITIONTYPE_IMAGE
 	this.Type = type_
 	return &this
 }

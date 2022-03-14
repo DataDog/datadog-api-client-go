@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSunburstWidgetDefinitionTypeEnumValues = []SunburstWidgetDefinitionType{
-	"sunburst",
+	SUNBURSTWIDGETDEFINITIONTYPE_SUNBURST,
 }
 
 func (w *SunburstWidgetDefinitionType) GetAllowedValues() []SunburstWidgetDefinitionType {

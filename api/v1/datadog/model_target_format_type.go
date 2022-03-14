@@ -27,10 +27,10 @@ const (
 )
 
 var allowedTargetFormatTypeEnumValues = []TargetFormatType{
-	"auto",
-	"string",
-	"integer",
-	"double",
+	TARGETFORMATTYPE_AUTO,
+	TARGETFORMATTYPE_STRING,
+	TARGETFORMATTYPE_INTEGER,
+	TARGETFORMATTYPE_DOUBLE,
 }
 
 func (w *TargetFormatType) GetAllowedValues() []TargetFormatType {

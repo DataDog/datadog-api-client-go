@@ -25,10 +25,10 @@ const (
 )
 
 var allowedWidgetCompareToEnumValues = []WidgetCompareTo{
-	"hour_before",
-	"day_before",
-	"week_before",
-	"month_before",
+	WIDGETCOMPARETO_HOUR_BEFORE,
+	WIDGETCOMPARETO_DAY_BEFORE,
+	WIDGETCOMPARETO_WEEK_BEFORE,
+	WIDGETCOMPARETO_MONTH_BEFORE,
 }
 
 func (w *WidgetCompareTo) GetAllowedValues() []WidgetCompareTo {

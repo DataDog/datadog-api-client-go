@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetEventSizeEnumValues = []WidgetEventSize{
-	"s",
-	"l",
+	WIDGETEVENTSIZE_SMALL,
+	WIDGETEVENTSIZE_LARGE,
 }
 
 func (w *WidgetEventSize) GetAllowedValues() []WidgetEventSize {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormulaAndFunctionEventsDataSource{
-	"rum",
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
 }
 
 func (w *MonitorFormulaAndFunctionEventsDataSource) GetAllowedValues() []MonitorFormulaAndFunctionEventsDataSource {

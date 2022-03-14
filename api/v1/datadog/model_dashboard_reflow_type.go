@@ -25,8 +25,8 @@ const (
 )
 
 var allowedDashboardReflowTypeEnumValues = []DashboardReflowType{
-	"auto",
-	"fixed",
+	DASHBOARDREFLOWTYPE_AUTO,
+	DASHBOARDREFLOWTYPE_FIXED,
 }
 
 func (w *DashboardReflowType) GetAllowedValues() []DashboardReflowType {

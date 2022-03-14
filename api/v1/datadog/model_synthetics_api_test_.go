@@ -63,7 +63,7 @@ func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, na
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsAPITestWithDefaults() *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
-	var type_ SyntheticsAPITestType = "api"
+	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
 	this.Type = type_
 	return &this
 }

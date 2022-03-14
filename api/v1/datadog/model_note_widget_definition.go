@@ -60,7 +60,7 @@ func NewNoteWidgetDefinitionWithDefaults() *NoteWidgetDefinition {
 	this := NoteWidgetDefinition{}
 	var hasPadding bool = true
 	this.HasPadding = &hasPadding
-	var type_ NoteWidgetDefinitionType = "note"
+	var type_ NoteWidgetDefinitionType = NOTEWIDGETDEFINITIONTYPE_NOTE
 	this.Type = type_
 	return &this
 }

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedDashboardResourceTypeEnumValues = []DashboardResourceType{
-	"dashboard",
+	DASHBOARDRESOURCETYPE_DASHBOARD,
 }
 
 func (w *DashboardResourceType) GetAllowedValues() []DashboardResourceType {

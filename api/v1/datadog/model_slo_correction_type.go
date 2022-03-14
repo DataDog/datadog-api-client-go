@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSLOCorrectionTypeEnumValues = []SLOCorrectionType{
-	"correction",
+	SLOCORRECTIONTYPE_CORRECTION,
 }
 
 func (w *SLOCorrectionType) GetAllowedValues() []SLOCorrectionType {

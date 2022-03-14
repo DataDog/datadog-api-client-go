@@ -24,9 +24,9 @@ const (
 )
 
 var allowedMonitorRenotifyStatusTypeEnumValues = []MonitorRenotifyStatusType{
-	"alert",
-	"warn",
-	"no data",
+	MONITORRENOTIFYSTATUSTYPE_ALERT,
+	MONITORRENOTIFYSTATUSTYPE_WARN,
+	MONITORRENOTIFYSTATUSTYPE_NO_DATA,
 }
 
 func (w *MonitorRenotifyStatusType) GetAllowedValues() []MonitorRenotifyStatusType {

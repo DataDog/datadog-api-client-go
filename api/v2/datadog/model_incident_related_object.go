@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentRelatedObjectEnumValues = []IncidentRelatedObject{
-	"users",
+	INCIDENTRELATEDOBJECT_USERS,
 }
 
 func (w *IncidentRelatedObject) GetAllowedValues() []IncidentRelatedObject {

@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSecurityMonitoringSignalsSortEnumValues = []SecurityMonitoringSignalsSort{
-	"timestamp",
-	"-timestamp",
+	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING,
+	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING,
 }
 
 func (w *SecurityMonitoringSignalsSort) GetAllowedValues() []SecurityMonitoringSignalsSort {

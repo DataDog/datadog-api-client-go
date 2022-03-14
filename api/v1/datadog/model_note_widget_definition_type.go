@@ -22,7 +22,7 @@ const (
 )
 
 var allowedNoteWidgetDefinitionTypeEnumValues = []NoteWidgetDefinitionType{
-	"note",
+	NOTEWIDGETDEFINITIONTYPE_NOTE,
 }
 
 func (w *NoteWidgetDefinitionType) GetAllowedValues() []NoteWidgetDefinitionType {

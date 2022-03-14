@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetChangeTypeEnumValues = []WidgetChangeType{
-	"absolute",
-	"relative",
+	WIDGETCHANGETYPE_ABSOLUTE,
+	WIDGETCHANGETYPE_RELATIVE,
 }
 
 func (w *WidgetChangeType) GetAllowedValues() []WidgetChangeType {

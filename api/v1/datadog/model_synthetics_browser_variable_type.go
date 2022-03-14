@@ -26,11 +26,11 @@ const (
 )
 
 var allowedSyntheticsBrowserVariableTypeEnumValues = []SyntheticsBrowserVariableType{
-	"element",
-	"email",
-	"global",
-	"javascript",
-	"text",
+	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT,
+	SYNTHETICSBROWSERVARIABLETYPE_EMAIL,
+	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL,
+	SYNTHETICSBROWSERVARIABLETYPE_JAVASCRIPT,
+	SYNTHETICSBROWSERVARIABLETYPE_TEXT,
 }
 
 func (w *SyntheticsBrowserVariableType) GetAllowedValues() []SyntheticsBrowserVariableType {

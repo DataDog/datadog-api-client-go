@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsLookupProcessorTypeEnumValues = []LogsLookupProcessorType{
-	"lookup-processor",
+	LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR,
 }
 
 func (w *LogsLookupProcessorType) GetAllowedValues() []LogsLookupProcessorType {

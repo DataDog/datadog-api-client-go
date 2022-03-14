@@ -23,8 +23,8 @@ const (
 )
 
 var allowedTableWidgetCellDisplayModeEnumValues = []TableWidgetCellDisplayMode{
-	"number",
-	"bar",
+	TABLEWIDGETCELLDISPLAYMODE_NUMBER,
+	TABLEWIDGETCELLDISPLAYMODE_BAR,
 }
 
 func (w *TableWidgetCellDisplayMode) GetAllowedValues() []TableWidgetCellDisplayMode {

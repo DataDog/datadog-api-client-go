@@ -23,8 +23,8 @@ const (
 )
 
 var allowedUsageSortDirectionEnumValues = []UsageSortDirection{
-	"desc",
-	"asc",
+	USAGESORTDIRECTION_DESC,
+	USAGESORTDIRECTION_ASC,
 }
 
 func (w *UsageSortDirection) GetAllowedValues() []UsageSortDirection {

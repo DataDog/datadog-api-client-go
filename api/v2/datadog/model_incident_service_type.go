@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentServiceTypeEnumValues = []IncidentServiceType{
-	"services",
+	INCIDENTSERVICETYPE_SERVICES,
 }
 
 func (w *IncidentServiceType) GetAllowedValues() []IncidentServiceType {

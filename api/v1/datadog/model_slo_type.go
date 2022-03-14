@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSLOTypeEnumValues = []SLOType{
-	"metric",
-	"monitor",
+	SLOTYPE_METRIC,
+	SLOTYPE_MONITOR,
 }
 
 func (w *SLOType) GetAllowedValues() []SLOType {

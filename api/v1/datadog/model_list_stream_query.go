@@ -42,7 +42,7 @@ func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListSt
 // but it doesn't guarantee that properties required by API are set
 func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this := ListStreamQuery{}
-	var dataSource ListStreamSource = "issue_stream"
+	var dataSource ListStreamSource = LISTSTREAMSOURCE_ISSUE_STREAM
 	this.DataSource = dataSource
 	return &this
 }

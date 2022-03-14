@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSyntheticsTestDetailsTypeEnumValues = []SyntheticsTestDetailsType{
-	"api",
-	"browser",
+	SYNTHETICSTESTDETAILSTYPE_API,
+	SYNTHETICSTESTDETAILSTYPE_BROWSER,
 }
 
 func (w *SyntheticsTestDetailsType) GetAllowedValues() []SyntheticsTestDetailsType {

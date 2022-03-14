@@ -40,7 +40,7 @@ func NewSecurityFilterUpdateData(attributes SecurityFilterUpdateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityFilterUpdateDataWithDefaults() *SecurityFilterUpdateData {
 	this := SecurityFilterUpdateData{}
-	var type_ SecurityFilterType = "security_filters"
+	var type_ SecurityFilterType = SECURITYFILTERTYPE_SECURITY_FILTERS
 	this.Type = type_
 	return &this
 }

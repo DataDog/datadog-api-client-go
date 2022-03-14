@@ -43,7 +43,7 @@ func NewNotebooksResponseData(attributes NotebooksResponseDataAttributes, id int
 // but it doesn't guarantee that properties required by API are set
 func NewNotebooksResponseDataWithDefaults() *NotebooksResponseData {
 	this := NotebooksResponseData{}
-	var type_ NotebookResourceType = "notebooks"
+	var type_ NotebookResourceType = NOTEBOOKRESOURCETYPE_NOTEBOOKS
 	this.Type = type_
 	return &this
 }

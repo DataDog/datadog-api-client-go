@@ -43,7 +43,7 @@ func NewFunnelQuery(dataSource FunnelSource, queryString string, steps []FunnelS
 // but it doesn't guarantee that properties required by API are set
 func NewFunnelQueryWithDefaults() *FunnelQuery {
 	this := FunnelQuery{}
-	var dataSource FunnelSource = "rum"
+	var dataSource FunnelSource = FUNNELSOURCE_RUM
 	this.DataSource = dataSource
 	return &this
 }

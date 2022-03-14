@@ -31,7 +31,7 @@ type Log struct {
 // will change when the set of required properties is changed
 func NewLog() *Log {
 	this := Log{}
-	var type_ LogType = "log"
+	var type_ LogType = LOGTYPE_LOG
 	this.Type = &type_
 	return &this
 }
@@ -41,7 +41,7 @@ func NewLog() *Log {
 // but it doesn't guarantee that properties required by API are set
 func NewLogWithDefaults() *Log {
 	this := Log{}
-	var type_ LogType = "log"
+	var type_ LogType = LOGTYPE_LOG
 	this.Type = &type_
 	return &this
 }

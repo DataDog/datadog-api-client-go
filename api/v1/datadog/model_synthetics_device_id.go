@@ -33,18 +33,18 @@ const (
 )
 
 var allowedSyntheticsDeviceIDEnumValues = []SyntheticsDeviceID{
-	"laptop_large",
-	"tablet",
-	"mobile_small",
-	"chrome.laptop_large",
-	"chrome.tablet",
-	"chrome.mobile_small",
-	"firefox.laptop_large",
-	"firefox.tablet",
-	"firefox.mobile_small",
-	"edge.laptop_large",
-	"edge.tablet",
-	"edge.mobile_small",
+	SYNTHETICSDEVICEID_LAPTOP_LARGE,
+	SYNTHETICSDEVICEID_TABLET,
+	SYNTHETICSDEVICEID_MOBILE_SMALL,
+	SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE,
+	SYNTHETICSDEVICEID_CHROME_TABLET,
+	SYNTHETICSDEVICEID_CHROME_MOBILE_SMALL,
+	SYNTHETICSDEVICEID_FIREFOX_LAPTOP_LARGE,
+	SYNTHETICSDEVICEID_FIREFOX_TABLET,
+	SYNTHETICSDEVICEID_FIREFOX_MOBILE_SMALL,
+	SYNTHETICSDEVICEID_EDGE_LAPTOP_LARGE,
+	SYNTHETICSDEVICEID_EDGE_TABLET,
+	SYNTHETICSDEVICEID_EDGE_MOBILE_SMALL,
 }
 
 func (w *SyntheticsDeviceID) GetAllowedValues() []SyntheticsDeviceID {

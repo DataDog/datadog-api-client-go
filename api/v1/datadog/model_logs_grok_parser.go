@@ -56,7 +56,7 @@ func NewLogsGrokParserWithDefaults() *LogsGrokParser {
 	this.IsEnabled = &isEnabled
 	var source string = "message"
 	this.Source = source
-	var type_ LogsGrokParserType = "grok-parser"
+	var type_ LogsGrokParserType = LOGSGROKPARSERTYPE_GROK_PARSER
 	this.Type = type_
 	return &this
 }

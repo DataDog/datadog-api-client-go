@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricContentEncodingEnumValues = []MetricContentEncoding{
-	"deflate",
+	METRICCONTENTENCODING_DEFLATE,
 }
 
 func (w *MetricContentEncoding) GetAllowedValues() []MetricContentEncoding {

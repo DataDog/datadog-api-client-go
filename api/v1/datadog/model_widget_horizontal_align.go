@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{
-	"center",
-	"left",
-	"right",
+	WIDGETHORIZONTALALIGN_CENTER,
+	WIDGETHORIZONTALALIGN_LEFT,
+	WIDGETHORIZONTALALIGN_RIGHT,
 }
 
 func (w *WidgetHorizontalAlign) GetAllowedValues() []WidgetHorizontalAlign {

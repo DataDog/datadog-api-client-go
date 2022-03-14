@@ -40,7 +40,7 @@ func NewNotebookMarkdownCellDefinition(text string, type_ NotebookMarkdownCellDe
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookMarkdownCellDefinitionWithDefaults() *NotebookMarkdownCellDefinition {
 	this := NotebookMarkdownCellDefinition{}
-	var type_ NotebookMarkdownCellDefinitionType = "markdown"
+	var type_ NotebookMarkdownCellDefinitionType = NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN
 	this.Type = type_
 	return &this
 }

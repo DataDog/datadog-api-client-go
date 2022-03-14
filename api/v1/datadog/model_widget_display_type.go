@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetDisplayTypeEnumValues = []WidgetDisplayType{
-	"area",
-	"bars",
-	"line",
+	WIDGETDISPLAYTYPE_AREA,
+	WIDGETDISPLAYTYPE_BARS,
+	WIDGETDISPLAYTYPE_LINE,
 }
 
 func (w *WidgetDisplayType) GetAllowedValues() []WidgetDisplayType {

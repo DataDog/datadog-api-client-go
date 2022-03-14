@@ -23,8 +23,8 @@ const (
 )
 
 var allowedLogsAggregateResponseStatusEnumValues = []LogsAggregateResponseStatus{
-	"done",
-	"timeout",
+	LOGSAGGREGATERESPONSESTATUS_DONE,
+	LOGSAGGREGATERESPONSESTATUS_TIMEOUT,
 }
 
 func (w *LogsAggregateResponseStatus) GetAllowedValues() []LogsAggregateResponseStatus {

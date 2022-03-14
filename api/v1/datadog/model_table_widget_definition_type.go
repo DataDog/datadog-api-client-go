@@ -22,7 +22,7 @@ const (
 )
 
 var allowedTableWidgetDefinitionTypeEnumValues = []TableWidgetDefinitionType{
-	"query_table",
+	TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
 }
 
 func (w *TableWidgetDefinitionType) GetAllowedValues() []TableWidgetDefinitionType {

@@ -43,7 +43,7 @@ func NewMetricBulkTagConfigStatus(id string, type_ MetricBulkConfigureTagsType) 
 // but it doesn't guarantee that properties required by API are set
 func NewMetricBulkTagConfigStatusWithDefaults() *MetricBulkTagConfigStatus {
 	this := MetricBulkTagConfigStatus{}
-	var type_ MetricBulkConfigureTagsType = "metric_bulk_configure_tags"
+	var type_ MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
 	this.Type = type_
 	return &this
 }

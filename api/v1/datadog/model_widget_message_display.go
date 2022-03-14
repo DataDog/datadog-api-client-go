@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{
-	"inline",
-	"expanded-md",
-	"expanded-lg",
+	WIDGETMESSAGEDISPLAY_INLINE,
+	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM,
+	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE,
 }
 
 func (w *WidgetMessageDisplay) GetAllowedValues() []WidgetMessageDisplay {

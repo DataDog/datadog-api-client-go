@@ -22,7 +22,7 @@ const (
 )
 
 var allowedHostMapWidgetDefinitionTypeEnumValues = []HostMapWidgetDefinitionType{
-	"hostmap",
+	HOSTMAPWIDGETDEFINITIONTYPE_HOSTMAP,
 }
 
 func (w *HostMapWidgetDefinitionType) GetAllowedValues() []HostMapWidgetDefinitionType {

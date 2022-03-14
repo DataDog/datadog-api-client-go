@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetSortEnumValues = []WidgetSort{
-	"asc",
-	"desc",
+	WIDGETSORT_ASCENDING,
+	WIDGETSORT_DESCENDING,
 }
 
 func (w *WidgetSort) GetAllowedValues() []WidgetSort {

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{
-	"always",
-	"never",
-	"auto",
+	TABLEWIDGETHASSEARCHBAR_ALWAYS,
+	TABLEWIDGETHASSEARCHBAR_NEVER,
+	TABLEWIDGETHASSEARCHBAR_AUTO,
 }
 
 func (w *TableWidgetHasSearchBar) GetAllowedValues() []TableWidgetHasSearchBar {

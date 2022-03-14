@@ -22,7 +22,7 @@ const (
 )
 
 var allowedTimeseriesWidgetDefinitionTypeEnumValues = []TimeseriesWidgetDefinitionType{
-	"timeseries",
+	TIMESERIESWIDGETDEFINITIONTYPE_TIMESERIES,
 }
 
 func (w *TimeseriesWidgetDefinitionType) GetAllowedValues() []TimeseriesWidgetDefinitionType {

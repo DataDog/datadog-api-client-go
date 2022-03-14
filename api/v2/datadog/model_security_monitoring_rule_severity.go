@@ -26,11 +26,11 @@ const (
 )
 
 var allowedSecurityMonitoringRuleSeverityEnumValues = []SecurityMonitoringRuleSeverity{
-	"info",
-	"low",
-	"medium",
-	"high",
-	"critical",
+	SECURITYMONITORINGRULESEVERITY_INFO,
+	SECURITYMONITORINGRULESEVERITY_LOW,
+	SECURITYMONITORINGRULESEVERITY_MEDIUM,
+	SECURITYMONITORINGRULESEVERITY_HIGH,
+	SECURITYMONITORINGRULESEVERITY_CRITICAL,
 }
 
 func (w *SecurityMonitoringRuleSeverity) GetAllowedValues() []SecurityMonitoringRuleSeverity {

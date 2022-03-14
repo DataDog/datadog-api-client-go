@@ -22,7 +22,7 @@ const (
 )
 
 var allowedNotebookStatusEnumValues = []NotebookStatus{
-	"published",
+	NOTEBOOKSTATUS_PUBLISHED,
 }
 
 func (w *NotebookStatus) GetAllowedValues() []NotebookStatus {

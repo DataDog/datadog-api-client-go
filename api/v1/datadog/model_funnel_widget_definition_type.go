@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFunnelWidgetDefinitionTypeEnumValues = []FunnelWidgetDefinitionType{
-	"funnel",
+	FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
 }
 
 func (w *FunnelWidgetDefinitionType) GetAllowedValues() []FunnelWidgetDefinitionType {

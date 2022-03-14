@@ -31,7 +31,7 @@ type CloudWorkloadSecurityAgentRuleData struct {
 // will change when the set of required properties is changed
 func NewCloudWorkloadSecurityAgentRuleData() *CloudWorkloadSecurityAgentRuleData {
 	this := CloudWorkloadSecurityAgentRuleData{}
-	var type_ CloudWorkloadSecurityAgentRuleType = "agent_rule"
+	var type_ CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
 	this.Type = &type_
 	return &this
 }
@@ -41,7 +41,7 @@ func NewCloudWorkloadSecurityAgentRuleData() *CloudWorkloadSecurityAgentRuleData
 // but it doesn't guarantee that properties required by API are set
 func NewCloudWorkloadSecurityAgentRuleDataWithDefaults() *CloudWorkloadSecurityAgentRuleData {
 	this := CloudWorkloadSecurityAgentRuleData{}
-	var type_ CloudWorkloadSecurityAgentRuleType = "agent_rule"
+	var type_ CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
 	this.Type = &type_
 	return &this
 }

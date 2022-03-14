@@ -22,7 +22,7 @@ const (
 )
 
 var allowedEventTimelineWidgetDefinitionTypeEnumValues = []EventTimelineWidgetDefinitionType{
-	"event_timeline",
+	EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE,
 }
 
 func (w *EventTimelineWidgetDefinitionType) GetAllowedValues() []EventTimelineWidgetDefinitionType {

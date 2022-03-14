@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsArchiveDestinationGCSTypeEnumValues = []LogsArchiveDestinationGCSType{
-	"gcs",
+	LOGSARCHIVEDESTINATIONGCSTYPE_GCS,
 }
 
 func (w *LogsArchiveDestinationGCSType) GetAllowedValues() []LogsArchiveDestinationGCSType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentTeamTypeEnumValues = []IncidentTeamType{
-	"teams",
+	INCIDENTTEAMTYPE_TEAMS,
 }
 
 func (w *IncidentTeamType) GetAllowedValues() []IncidentTeamType {

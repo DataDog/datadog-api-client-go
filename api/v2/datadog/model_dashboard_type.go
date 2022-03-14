@@ -26,11 +26,11 @@ const (
 )
 
 var allowedDashboardTypeEnumValues = []DashboardType{
-	"custom_timeboard",
-	"custom_screenboard",
-	"integration_screenboard",
-	"integration_timeboard",
-	"host_timeboard",
+	DASHBOARDTYPE_CUSTOM_TIMEBOARD,
+	DASHBOARDTYPE_CUSTOM_SCREENBOARD,
+	DASHBOARDTYPE_INTEGRATION_SCREENBOARD,
+	DASHBOARDTYPE_INTEGRATION_TIMEBOARD,
+	DASHBOARDTYPE_HOST_TIMEBOARD,
 }
 
 func (w *DashboardType) GetAllowedValues() []DashboardType {

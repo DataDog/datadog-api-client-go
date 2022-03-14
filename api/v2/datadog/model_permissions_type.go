@@ -22,7 +22,7 @@ const (
 )
 
 var allowedPermissionsTypeEnumValues = []PermissionsType{
-	"permissions",
+	PERMISSIONSTYPE_PERMISSIONS,
 }
 
 func (w *PermissionsType) GetAllowedValues() []PermissionsType {

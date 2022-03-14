@@ -22,7 +22,7 @@ const (
 )
 
 var allowedOrganizationsTypeEnumValues = []OrganizationsType{
-	"orgs",
+	ORGANIZATIONSTYPE_ORGS,
 }
 
 func (w *OrganizationsType) GetAllowedValues() []OrganizationsType {

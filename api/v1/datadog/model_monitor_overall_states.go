@@ -28,13 +28,13 @@ const (
 )
 
 var allowedMonitorOverallStatesEnumValues = []MonitorOverallStates{
-	"Alert",
-	"Ignored",
-	"No Data",
-	"OK",
-	"Skipped",
-	"Unknown",
-	"Warn",
+	MONITOROVERALLSTATES_ALERT,
+	MONITOROVERALLSTATES_IGNORED,
+	MONITOROVERALLSTATES_NO_DATA,
+	MONITOROVERALLSTATES_OK,
+	MONITOROVERALLSTATES_SKIPPED,
+	MONITOROVERALLSTATES_UNKNOWN,
+	MONITOROVERALLSTATES_WARN,
 }
 
 func (w *MonitorOverallStates) GetAllowedValues() []MonitorOverallStates {

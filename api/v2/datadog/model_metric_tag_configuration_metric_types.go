@@ -25,10 +25,10 @@ const (
 )
 
 var allowedMetricTagConfigurationMetricTypesEnumValues = []MetricTagConfigurationMetricTypes{
-	"gauge",
-	"count",
-	"rate",
-	"distribution",
+	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
+	METRICTAGCONFIGURATIONMETRICTYPES_COUNT,
+	METRICTAGCONFIGURATIONMETRICTYPES_RATE,
+	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION,
 }
 
 func (w *MetricTagConfigurationMetricTypes) GetAllowedValues() []MetricTagConfigurationMetricTypes {

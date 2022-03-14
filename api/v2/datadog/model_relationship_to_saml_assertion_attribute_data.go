@@ -40,7 +40,7 @@ func NewRelationshipToSAMLAssertionAttributeData(id int32, type_ SAMLAssertionAt
 // but it doesn't guarantee that properties required by API are set
 func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSAMLAssertionAttributeData {
 	this := RelationshipToSAMLAssertionAttributeData{}
-	var type_ SAMLAssertionAttributesType = "saml_assertion_attributes"
+	var type_ SAMLAssertionAttributesType = SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES
 	this.Type = type_
 	return &this
 }

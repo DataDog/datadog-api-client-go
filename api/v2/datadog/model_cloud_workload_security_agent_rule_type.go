@@ -22,7 +22,7 @@ const (
 )
 
 var allowedCloudWorkloadSecurityAgentRuleTypeEnumValues = []CloudWorkloadSecurityAgentRuleType{
-	"agent_rule",
+	CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 }
 
 func (w *CloudWorkloadSecurityAgentRuleType) GetAllowedValues() []CloudWorkloadSecurityAgentRuleType {

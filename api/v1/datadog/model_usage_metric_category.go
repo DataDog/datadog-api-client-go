@@ -23,8 +23,8 @@ const (
 )
 
 var allowedUsageMetricCategoryEnumValues = []UsageMetricCategory{
-	"standard",
-	"custom",
+	USAGEMETRICCATEGORY_STANDARD,
+	USAGEMETRICCATEGORY_CUSTOM,
 }
 
 func (w *UsageMetricCategory) GetAllowedValues() []UsageMetricCategory {

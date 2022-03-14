@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentIntegrationMetadataTypeEnumValues = []IncidentIntegrationMetadataType{
-	"incident_integrations",
+	INCIDENTINTEGRATIONMETADATATYPE_INCIDENT_INTEGRATIONS,
 }
 
 func (w *IncidentIntegrationMetadataType) GetAllowedValues() []IncidentIntegrationMetadataType {

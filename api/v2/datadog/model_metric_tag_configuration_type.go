@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricTagConfigurationTypeEnumValues = []MetricTagConfigurationType{
-	"manage_tags",
+	METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
 }
 
 func (w *MetricTagConfigurationType) GetAllowedValues() []MetricTagConfigurationType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFormulaAndFunctionApmResourceStatsDataSourceEnumValues = []FormulaAndFunctionApmResourceStatsDataSource{
-	"apm_resource_stats",
+	FORMULAANDFUNCTIONAPMRESOURCESTATSDATASOURCE_APM_RESOURCE_STATS,
 }
 
 func (w *FormulaAndFunctionApmResourceStatsDataSource) GetAllowedValues() []FormulaAndFunctionApmResourceStatsDataSource {

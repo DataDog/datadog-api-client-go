@@ -26,11 +26,11 @@ const (
 )
 
 var allowedMetricCustomTimeAggregationEnumValues = []MetricCustomTimeAggregation{
-	"avg",
-	"count",
-	"max",
-	"min",
-	"sum",
+	METRICCUSTOMTIMEAGGREGATION_AVG,
+	METRICCUSTOMTIMEAGGREGATION_COUNT,
+	METRICCUSTOMTIMEAGGREGATION_MAX,
+	METRICCUSTOMTIMEAGGREGATION_MIN,
+	METRICCUSTOMTIMEAGGREGATION_SUM,
 }
 
 func (w *MetricCustomTimeAggregation) GetAllowedValues() []MetricCustomTimeAggregation {

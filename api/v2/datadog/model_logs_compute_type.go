@@ -23,8 +23,8 @@ const (
 )
 
 var allowedLogsComputeTypeEnumValues = []LogsComputeType{
-	"timeseries",
-	"total",
+	LOGSCOMPUTETYPE_TIMESERIES,
+	LOGSCOMPUTETYPE_TOTAL,
 }
 
 func (w *LogsComputeType) GetAllowedValues() []LogsComputeType {

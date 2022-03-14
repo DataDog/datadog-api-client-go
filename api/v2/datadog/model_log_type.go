@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogTypeEnumValues = []LogType{
-	"log",
+	LOGTYPE_LOG,
 }
 
 func (w *LogType) GetAllowedValues() []LogType {

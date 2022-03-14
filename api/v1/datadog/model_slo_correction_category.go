@@ -25,10 +25,10 @@ const (
 )
 
 var allowedSLOCorrectionCategoryEnumValues = []SLOCorrectionCategory{
-	"Scheduled Maintenance",
-	"Outside Business Hours",
-	"Deployment",
-	"Other",
+	SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE,
+	SLOCORRECTIONCATEGORY_OUTSIDE_BUSINESS_HOURS,
+	SLOCORRECTIONCATEGORY_DEPLOYMENT,
+	SLOCORRECTIONCATEGORY_OTHER,
 }
 
 func (w *SLOCorrectionCategory) GetAllowedValues() []SLOCorrectionCategory {

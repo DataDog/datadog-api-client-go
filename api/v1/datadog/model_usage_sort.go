@@ -25,10 +25,10 @@ const (
 )
 
 var allowedUsageSortEnumValues = []UsageSort{
-	"computed_on",
-	"size",
-	"start_date",
-	"end_date",
+	USAGESORT_COMPUTED_ON,
+	USAGESORT_SIZE,
+	USAGESORT_START_DATE,
+	USAGESORT_END_DATE,
 }
 
 func (w *UsageSort) GetAllowedValues() []UsageSort {

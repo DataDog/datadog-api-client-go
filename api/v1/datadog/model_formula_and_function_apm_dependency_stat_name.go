@@ -28,13 +28,13 @@ const (
 )
 
 var allowedFormulaAndFunctionApmDependencyStatNameEnumValues = []FormulaAndFunctionApmDependencyStatName{
-	"avg_duration",
-	"avg_root_duration",
-	"avg_spans_per_trace",
-	"error_rate",
-	"pct_exec_time",
-	"pct_of_traces",
-	"total_traces_count",
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_ROOT_DURATION,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_SPANS_PER_TRACE,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_ERROR_RATE,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_EXEC_TIME,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_OF_TRACES,
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_TOTAL_TRACES_COUNT,
 }
 
 func (w *FormulaAndFunctionApmDependencyStatName) GetAllowedValues() []FormulaAndFunctionApmDependencyStatName {

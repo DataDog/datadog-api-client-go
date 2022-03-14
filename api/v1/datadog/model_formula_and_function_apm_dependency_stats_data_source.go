@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFormulaAndFunctionApmDependencyStatsDataSourceEnumValues = []FormulaAndFunctionApmDependencyStatsDataSource{
-	"apm_dependency_stats",
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATSDATASOURCE_APM_DEPENDENCY_STATS,
 }
 
 func (w *FormulaAndFunctionApmDependencyStatsDataSource) GetAllowedValues() []FormulaAndFunctionApmDependencyStatsDataSource {

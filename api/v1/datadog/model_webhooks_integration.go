@@ -42,7 +42,7 @@ type WebhooksIntegration struct {
 // will change when the set of required properties is changed
 func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 	this := WebhooksIntegration{}
-	var encodeAs WebhooksIntegrationEncoding = "json"
+	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
 	this.EncodeAs = &encodeAs
 	this.Name = name
 	this.Url = url
@@ -54,7 +54,7 @@ func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 // but it doesn't guarantee that properties required by API are set
 func NewWebhooksIntegrationWithDefaults() *WebhooksIntegration {
 	this := WebhooksIntegration{}
-	var encodeAs WebhooksIntegrationEncoding = "json"
+	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
 	this.EncodeAs = &encodeAs
 	return &this
 }

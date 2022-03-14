@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetVerticalAlignEnumValues = []WidgetVerticalAlign{
-	"center",
-	"top",
-	"bottom",
+	WIDGETVERTICALALIGN_CENTER,
+	WIDGETVERTICALALIGN_TOP,
+	WIDGETVERTICALALIGN_BOTTOM,
 }
 
 func (w *WidgetVerticalAlign) GetAllowedValues() []WidgetVerticalAlign {

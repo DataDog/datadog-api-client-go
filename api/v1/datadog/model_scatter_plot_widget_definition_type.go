@@ -22,7 +22,7 @@ const (
 )
 
 var allowedScatterPlotWidgetDefinitionTypeEnumValues = []ScatterPlotWidgetDefinitionType{
-	"scatterplot",
+	SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 }
 
 func (w *ScatterPlotWidgetDefinitionType) GetAllowedValues() []ScatterPlotWidgetDefinitionType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedToplistWidgetDefinitionTypeEnumValues = []ToplistWidgetDefinitionType{
-	"toplist",
+	TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
 }
 
 func (w *ToplistWidgetDefinitionType) GetAllowedValues() []ToplistWidgetDefinitionType {

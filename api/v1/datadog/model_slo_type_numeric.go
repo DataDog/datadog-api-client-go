@@ -25,8 +25,8 @@ const (
 )
 
 var allowedSLOTypeNumericEnumValues = []SLOTypeNumeric{
-	0,
-	1,
+	SLOTYPENUMERIC_MONITOR,
+	SLOTYPENUMERIC_METRIC,
 }
 
 func (w *SLOTypeNumeric) GetAllowedValues() []SLOTypeNumeric {

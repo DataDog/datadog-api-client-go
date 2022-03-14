@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetMonitorSummaryDisplayFormatEnumValues = []WidgetMonitorSummaryDisplayFormat{
-	"counts",
-	"countsAndList",
-	"list",
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS,
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS_AND_LIST,
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_LIST,
 }
 
 func (w *WidgetMonitorSummaryDisplayFormat) GetAllowedValues() []WidgetMonitorSummaryDisplayFormat {

@@ -25,9 +25,9 @@ const (
 )
 
 var allowedSecurityMonitoringRuleNewValueOptionsLearningDurationEnumValues = []SecurityMonitoringRuleNewValueOptionsLearningDuration{
-	0,
-	1,
-	7,
+	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS,
+	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ONE_DAY,
+	SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_SEVEN_DAYS,
 }
 
 func (w *SecurityMonitoringRuleNewValueOptionsLearningDuration) GetAllowedValues() []SecurityMonitoringRuleNewValueOptionsLearningDuration {

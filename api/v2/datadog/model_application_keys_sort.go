@@ -27,12 +27,12 @@ const (
 )
 
 var allowedApplicationKeysSortEnumValues = []ApplicationKeysSort{
-	"created_at",
-	"-created_at",
-	"last4",
-	"-last4",
-	"name",
-	"-name",
+	APPLICATIONKEYSSORT_CREATED_AT_ASCENDING,
+	APPLICATIONKEYSSORT_CREATED_AT_DESCENDING,
+	APPLICATIONKEYSSORT_LAST4_ASCENDING,
+	APPLICATIONKEYSSORT_LAST4_DESCENDING,
+	APPLICATIONKEYSSORT_NAME_ASCENDING,
+	APPLICATIONKEYSSORT_NAME_DESCENDING,
 }
 
 func (w *ApplicationKeysSort) GetAllowedValues() []ApplicationKeysSort {

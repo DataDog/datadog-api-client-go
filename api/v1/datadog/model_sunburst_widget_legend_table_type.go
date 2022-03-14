@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSunburstWidgetLegendTableTypeEnumValues = []SunburstWidgetLegendTableType{
-	"table",
-	"none",
+	SUNBURSTWIDGETLEGENDTABLETYPE_TABLE,
+	SUNBURSTWIDGETLEGENDTABLETYPE_NONE,
 }
 
 func (w *SunburstWidgetLegendTableType) GetAllowedValues() []SunburstWidgetLegendTableType {

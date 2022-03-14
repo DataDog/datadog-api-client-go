@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsMessageRemapperTypeEnumValues = []LogsMessageRemapperType{
-	"message-remapper",
+	LOGSMESSAGEREMAPPERTYPE_MESSAGE_REMAPPER,
 }
 
 func (w *LogsMessageRemapperType) GetAllowedValues() []LogsMessageRemapperType {

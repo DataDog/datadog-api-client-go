@@ -45,7 +45,7 @@ func NewSyntheticsBasicAuthNTLM(type_ SyntheticsBasicAuthNTLMType) *SyntheticsBa
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthNTLMWithDefaults() *SyntheticsBasicAuthNTLM {
 	this := SyntheticsBasicAuthNTLM{}
-	var type_ SyntheticsBasicAuthNTLMType = "ntlm"
+	var type_ SyntheticsBasicAuthNTLMType = SYNTHETICSBASICAUTHNTLMTYPE_NTLM
 	this.Type = type_
 	return &this
 }

@@ -44,7 +44,7 @@ func NewNotebookCellResponse(attributes NotebookCellResponseAttributes, id strin
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCellResponseWithDefaults() *NotebookCellResponse {
 	this := NotebookCellResponse{}
-	var type_ NotebookCellResourceType = "notebook_cells"
+	var type_ NotebookCellResourceType = NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS
 	this.Type = type_
 	return &this
 }

@@ -27,12 +27,12 @@ const (
 )
 
 var allowedRolesSortEnumValues = []RolesSort{
-	"name",
-	"-name",
-	"modified_at",
-	"-modified_at",
-	"user_count",
-	"-user_count",
+	ROLESSORT_NAME_ASCENDING,
+	ROLESSORT_NAME_DESCENDING,
+	ROLESSORT_MODIFIED_AT_ASCENDING,
+	ROLESSORT_MODIFIED_AT_DESCENDING,
+	ROLESSORT_USER_COUNT_ASCENDING,
+	ROLESSORT_USER_COUNT_DESCENDING,
 }
 
 func (w *RolesSort) GetAllowedValues() []RolesSort {

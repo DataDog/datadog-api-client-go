@@ -28,13 +28,13 @@ const (
 )
 
 var allowedHTTPMethodEnumValues = []HTTPMethod{
-	"GET",
-	"POST",
-	"PATCH",
-	"PUT",
-	"DELETE",
-	"HEAD",
-	"OPTIONS",
+	HTTPMETHOD_GET,
+	HTTPMETHOD_POST,
+	HTTPMETHOD_PATCH,
+	HTTPMETHOD_PUT,
+	HTTPMETHOD_DELETE,
+	HTTPMETHOD_HEAD,
+	HTTPMETHOD_OPTIONS,
 }
 
 func (w *HTTPMethod) GetAllowedValues() []HTTPMethod {

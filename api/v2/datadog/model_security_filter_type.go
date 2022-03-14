@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSecurityFilterTypeEnumValues = []SecurityFilterType{
-	"security_filters",
+	SECURITYFILTERTYPE_SECURITY_FILTERS,
 }
 
 func (w *SecurityFilterType) GetAllowedValues() []SecurityFilterType {

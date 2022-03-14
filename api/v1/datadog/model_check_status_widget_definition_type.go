@@ -22,7 +22,7 @@ const (
 )
 
 var allowedCheckStatusWidgetDefinitionTypeEnumValues = []CheckStatusWidgetDefinitionType{
-	"check_status",
+	CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS,
 }
 
 func (w *CheckStatusWidgetDefinitionType) GetAllowedValues() []CheckStatusWidgetDefinitionType {

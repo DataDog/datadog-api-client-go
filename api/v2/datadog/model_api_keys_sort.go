@@ -29,14 +29,14 @@ const (
 )
 
 var allowedAPIKeysSortEnumValues = []APIKeysSort{
-	"created_at",
-	"-created_at",
-	"last4",
-	"-last4",
-	"modified_at",
-	"-modified_at",
-	"name",
-	"-name",
+	APIKEYSSORT_CREATED_AT_ASCENDING,
+	APIKEYSSORT_CREATED_AT_DESCENDING,
+	APIKEYSSORT_LAST4_ASCENDING,
+	APIKEYSSORT_LAST4_DESCENDING,
+	APIKEYSSORT_MODIFIED_AT_ASCENDING,
+	APIKEYSSORT_MODIFIED_AT_DESCENDING,
+	APIKEYSSORT_NAME_ASCENDING,
+	APIKEYSSORT_NAME_DESCENDING,
 }
 
 func (w *APIKeysSort) GetAllowedValues() []APIKeysSort {

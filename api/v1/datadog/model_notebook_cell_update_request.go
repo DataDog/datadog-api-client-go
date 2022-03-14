@@ -44,7 +44,7 @@ func NewNotebookCellUpdateRequest(attributes NotebookCellUpdateRequestAttributes
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCellUpdateRequestWithDefaults() *NotebookCellUpdateRequest {
 	this := NotebookCellUpdateRequest{}
-	var type_ NotebookCellResourceType = "notebook_cells"
+	var type_ NotebookCellResourceType = NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS
 	this.Type = type_
 	return &this
 }

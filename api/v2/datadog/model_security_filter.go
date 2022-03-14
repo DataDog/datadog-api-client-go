@@ -31,7 +31,7 @@ type SecurityFilter struct {
 // will change when the set of required properties is changed
 func NewSecurityFilter() *SecurityFilter {
 	this := SecurityFilter{}
-	var type_ SecurityFilterType = "security_filters"
+	var type_ SecurityFilterType = SECURITYFILTERTYPE_SECURITY_FILTERS
 	this.Type = &type_
 	return &this
 }
@@ -41,7 +41,7 @@ func NewSecurityFilter() *SecurityFilter {
 // but it doesn't guarantee that properties required by API are set
 func NewSecurityFilterWithDefaults() *SecurityFilter {
 	this := SecurityFilter{}
-	var type_ SecurityFilterType = "security_filters"
+	var type_ SecurityFilterType = SECURITYFILTERTYPE_SECURITY_FILTERS
 	this.Type = &type_
 	return &this
 }

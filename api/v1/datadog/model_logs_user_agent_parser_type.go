@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsUserAgentParserTypeEnumValues = []LogsUserAgentParserType{
-	"user-agent-parser",
+	LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER,
 }
 
 func (w *LogsUserAgentParserType) GetAllowedValues() []LogsUserAgentParserType {

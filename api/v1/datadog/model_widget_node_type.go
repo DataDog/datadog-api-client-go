@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetNodeTypeEnumValues = []WidgetNodeType{
-	"host",
-	"container",
+	WIDGETNODETYPE_HOST,
+	WIDGETNODETYPE_CONTAINER,
 }
 
 func (w *WidgetNodeType) GetAllowedValues() []WidgetNodeType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedHeatMapWidgetDefinitionTypeEnumValues = []HeatMapWidgetDefinitionType{
-	"heatmap",
+	HEATMAPWIDGETDEFINITIONTYPE_HEATMAP,
 }
 
 func (w *HeatMapWidgetDefinitionType) GetAllowedValues() []HeatMapWidgetDefinitionType {

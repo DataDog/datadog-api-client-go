@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWidgetVizTypeEnumValues = []WidgetVizType{
-	"timeseries",
-	"toplist",
+	WIDGETVIZTYPE_TIMESERIES,
+	WIDGETVIZTYPE_TOPLIST,
 }
 
 func (w *WidgetVizType) GetAllowedValues() []WidgetVizType {

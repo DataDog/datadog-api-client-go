@@ -22,7 +22,7 @@ const (
 )
 
 var allowedNotebookMarkdownCellDefinitionTypeEnumValues = []NotebookMarkdownCellDefinitionType{
-	"markdown",
+	NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN,
 }
 
 func (w *NotebookMarkdownCellDefinitionType) GetAllowedValues() []NotebookMarkdownCellDefinitionType {

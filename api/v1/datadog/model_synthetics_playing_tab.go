@@ -26,11 +26,11 @@ const (
 )
 
 var allowedSyntheticsPlayingTabEnumValues = []SyntheticsPlayingTab{
-	-1,
-	0,
-	1,
-	2,
-	3,
+	SYNTHETICSPLAYINGTAB_MAIN_TAB,
+	SYNTHETICSPLAYINGTAB_NEW_TAB,
+	SYNTHETICSPLAYINGTAB_TAB_1,
+	SYNTHETICSPLAYINGTAB_TAB_2,
+	SYNTHETICSPLAYINGTAB_TAB_3,
 }
 
 func (w *SyntheticsPlayingTab) GetAllowedValues() []SyntheticsPlayingTab {

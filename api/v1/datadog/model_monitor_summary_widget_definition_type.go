@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMonitorSummaryWidgetDefinitionTypeEnumValues = []MonitorSummaryWidgetDefinitionType{
-	"manage_status",
+	MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS,
 }
 
 func (w *MonitorSummaryWidgetDefinitionType) GetAllowedValues() []MonitorSummaryWidgetDefinitionType {

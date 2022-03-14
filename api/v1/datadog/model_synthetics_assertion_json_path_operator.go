@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsAssertionJSONPathOperatorEnumValues = []SyntheticsAssertionJSONPathOperator{
-	"validatesJSONPath",
+	SYNTHETICSASSERTIONJSONPATHOPERATOR_VALIDATES_JSON_PATH,
 }
 
 func (w *SyntheticsAssertionJSONPathOperator) GetAllowedValues() []SyntheticsAssertionJSONPathOperator {

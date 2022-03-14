@@ -22,7 +22,7 @@ const (
 )
 
 var allowedUsageReportsTypeEnumValues = []UsageReportsType{
-	"reports",
+	USAGEREPORTSTYPE_REPORTS,
 }
 
 func (w *UsageReportsType) GetAllowedValues() []UsageReportsType {

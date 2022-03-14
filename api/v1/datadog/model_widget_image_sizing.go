@@ -30,14 +30,14 @@ const (
 )
 
 var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{
-	"fill",
-	"contain",
-	"cover",
-	"none",
-	"scale-down",
-	"zoom",
-	"fit",
-	"center",
+	WIDGETIMAGESIZING_FILL,
+	WIDGETIMAGESIZING_CONTAIN,
+	WIDGETIMAGESIZING_COVER,
+	WIDGETIMAGESIZING_NONE,
+	WIDGETIMAGESIZING_SCALEDOWN,
+	WIDGETIMAGESIZING_ZOOM,
+	WIDGETIMAGESIZING_FIT,
+	WIDGETIMAGESIZING_CENTER,
 }
 
 func (w *WidgetImageSizing) GetAllowedValues() []WidgetImageSizing {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentTypeEnumValues = []IncidentType{
-	"incidents",
+	INCIDENTTYPE_INCIDENTS,
 }
 
 func (w *IncidentType) GetAllowedValues() []IncidentType {

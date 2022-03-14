@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsAPIStepSubtypeEnumValues = []SyntheticsAPIStepSubtype{
-	"http",
+	SYNTHETICSAPISTEPSUBTYPE_HTTP,
 }
 
 func (w *SyntheticsAPIStepSubtype) GetAllowedValues() []SyntheticsAPIStepSubtype {

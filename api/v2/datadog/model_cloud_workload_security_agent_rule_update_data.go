@@ -40,7 +40,7 @@ func NewCloudWorkloadSecurityAgentRuleUpdateData(attributes CloudWorkloadSecurit
 // but it doesn't guarantee that properties required by API are set
 func NewCloudWorkloadSecurityAgentRuleUpdateDataWithDefaults() *CloudWorkloadSecurityAgentRuleUpdateData {
 	this := CloudWorkloadSecurityAgentRuleUpdateData{}
-	var type_ CloudWorkloadSecurityAgentRuleType = "agent_rule"
+	var type_ CloudWorkloadSecurityAgentRuleType = CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE
 	this.Type = type_
 	return &this
 }

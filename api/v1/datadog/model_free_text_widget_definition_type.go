@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFreeTextWidgetDefinitionTypeEnumValues = []FreeTextWidgetDefinitionType{
-	"free_text",
+	FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT,
 }
 
 func (w *FreeTextWidgetDefinitionType) GetAllowedValues() []FreeTextWidgetDefinitionType {

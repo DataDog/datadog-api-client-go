@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSecurityMonitoringFilterActionEnumValues = []SecurityMonitoringFilterAction{
-	"require",
-	"suppress",
+	SECURITYMONITORINGFILTERACTION_REQUIRE,
+	SECURITYMONITORINGFILTERACTION_SUPPRESS,
 }
 
 func (w *SecurityMonitoringFilterAction) GetAllowedValues() []SecurityMonitoringFilterAction {

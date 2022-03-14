@@ -38,7 +38,7 @@ type TreeMapWidgetDefinition struct {
 // will change when the set of required properties is changed
 func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWidgetDefinitionType) *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
-	var colorBy TreeMapColorBy = "user"
+	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
 	this.ColorBy = &colorBy
 	this.Requests = requests
 	this.Type = type_
@@ -50,9 +50,9 @@ func NewTreeMapWidgetDefinition(requests []TreeMapWidgetRequest, type_ TreeMapWi
 // but it doesn't guarantee that properties required by API are set
 func NewTreeMapWidgetDefinitionWithDefaults() *TreeMapWidgetDefinition {
 	this := TreeMapWidgetDefinition{}
-	var colorBy TreeMapColorBy = "user"
+	var colorBy TreeMapColorBy = TREEMAPCOLORBY_USER
 	this.ColorBy = &colorBy
-	var type_ TreeMapWidgetDefinitionType = "treemap"
+	var type_ TreeMapWidgetDefinitionType = TREEMAPWIDGETDEFINITIONTYPE_TREEMAP
 	this.Type = type_
 	return &this
 }

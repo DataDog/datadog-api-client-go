@@ -38,7 +38,7 @@ func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name str
 	this := NotebookCreateDataAttributes{}
 	this.Cells = cells
 	this.Name = name
-	var status NotebookStatus = "published"
+	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
 	this.Time = time
 	return &this
@@ -49,7 +49,7 @@ func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name str
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCreateDataAttributesWithDefaults() *NotebookCreateDataAttributes {
 	this := NotebookCreateDataAttributes{}
-	var status NotebookStatus = "published"
+	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
 	this.Status = &status
 	return &this
 }

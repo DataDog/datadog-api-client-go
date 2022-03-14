@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricDistinctVolumeTypeEnumValues = []MetricDistinctVolumeType{
-	"distinct_metric_volumes",
+	METRICDISTINCTVOLUMETYPE_DISTINCT_METRIC_VOLUMES,
 }
 
 func (w *MetricDistinctVolumeType) GetAllowedValues() []MetricDistinctVolumeType {

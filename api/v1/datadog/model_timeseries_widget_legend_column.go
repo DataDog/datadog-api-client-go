@@ -26,11 +26,11 @@ const (
 )
 
 var allowedTimeseriesWidgetLegendColumnEnumValues = []TimeseriesWidgetLegendColumn{
-	"value",
-	"avg",
-	"sum",
-	"min",
-	"max",
+	TIMESERIESWIDGETLEGENDCOLUMN_VALUE,
+	TIMESERIESWIDGETLEGENDCOLUMN_AVG,
+	TIMESERIESWIDGETLEGENDCOLUMN_SUM,
+	TIMESERIESWIDGETLEGENDCOLUMN_MIN,
+	TIMESERIESWIDGETLEGENDCOLUMN_MAX,
 }
 
 func (w *TimeseriesWidgetLegendColumn) GetAllowedValues() []TimeseriesWidgetLegendColumn {

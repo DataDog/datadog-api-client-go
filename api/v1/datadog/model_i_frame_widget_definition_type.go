@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIFrameWidgetDefinitionTypeEnumValues = []IFrameWidgetDefinitionType{
-	"iframe",
+	IFRAMEWIDGETDEFINITIONTYPE_IFRAME,
 }
 
 func (w *IFrameWidgetDefinitionType) GetAllowedValues() []IFrameWidgetDefinitionType {

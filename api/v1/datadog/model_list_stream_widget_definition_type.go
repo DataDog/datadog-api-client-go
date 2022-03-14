@@ -22,7 +22,7 @@ const (
 )
 
 var allowedListStreamWidgetDefinitionTypeEnumValues = []ListStreamWidgetDefinitionType{
-	"list_stream",
+	LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM,
 }
 
 func (w *ListStreamWidgetDefinitionType) GetAllowedValues() []ListStreamWidgetDefinitionType {

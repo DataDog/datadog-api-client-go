@@ -23,8 +23,8 @@ const (
 )
 
 var allowedQuerySortOrderEnumValues = []QuerySortOrder{
-	"asc",
-	"desc",
+	QUERYSORTORDER_ASC,
+	QUERYSORTORDER_DESC,
 }
 
 func (w *QuerySortOrder) GetAllowedValues() []QuerySortOrder {

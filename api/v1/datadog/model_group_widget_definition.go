@@ -57,7 +57,7 @@ func NewGroupWidgetDefinitionWithDefaults() *GroupWidgetDefinition {
 	this := GroupWidgetDefinition{}
 	var showTitle bool = true
 	this.ShowTitle = &showTitle
-	var type_ GroupWidgetDefinitionType = "group"
+	var type_ GroupWidgetDefinitionType = GROUPWIDGETDEFINITIONTYPE_GROUP
 	this.Type = type_
 	return &this
 }

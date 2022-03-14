@@ -40,7 +40,7 @@ func NewNotebookCellCreateRequest(attributes NotebookCellCreateRequestAttributes
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCellCreateRequestWithDefaults() *NotebookCellCreateRequest {
 	this := NotebookCellCreateRequest{}
-	var type_ NotebookCellResourceType = "notebook_cells"
+	var type_ NotebookCellResourceType = NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS
 	this.Type = type_
 	return &this
 }

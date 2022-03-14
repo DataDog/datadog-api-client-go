@@ -54,7 +54,7 @@ func NewListStreamWidgetDefinition(requests []ListStreamWidgetRequest, type_ Lis
 // but it doesn't guarantee that properties required by API are set
 func NewListStreamWidgetDefinitionWithDefaults() *ListStreamWidgetDefinition {
 	this := ListStreamWidgetDefinition{}
-	var type_ ListStreamWidgetDefinitionType = "list_stream"
+	var type_ ListStreamWidgetDefinitionType = LISTSTREAMWIDGETDEFINITIONTYPE_LIST_STREAM
 	this.Type = type_
 	return &this
 }

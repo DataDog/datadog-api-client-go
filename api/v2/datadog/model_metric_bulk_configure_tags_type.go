@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricBulkConfigureTagsTypeEnumValues = []MetricBulkConfigureTagsType{
-	"metric_bulk_configure_tags",
+	METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS,
 }
 
 func (w *MetricBulkConfigureTagsType) GetAllowedValues() []MetricBulkConfigureTagsType {

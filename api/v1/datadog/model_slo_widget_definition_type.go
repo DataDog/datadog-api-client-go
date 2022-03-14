@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSLOWidgetDefinitionTypeEnumValues = []SLOWidgetDefinitionType{
-	"slo",
+	SLOWIDGETDEFINITIONTYPE_SLO,
 }
 
 func (w *SLOWidgetDefinitionType) GetAllowedValues() []SLOWidgetDefinitionType {

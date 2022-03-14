@@ -22,7 +22,7 @@ const (
 )
 
 var allowedProcessSummaryTypeEnumValues = []ProcessSummaryType{
-	"process",
+	PROCESSSUMMARYTYPE_PROCESS,
 }
 
 func (w *ProcessSummaryType) GetAllowedValues() []ProcessSummaryType {

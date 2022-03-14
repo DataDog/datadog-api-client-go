@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricTypeEnumValues = []MetricType{
-	"metrics",
+	METRICTYPE_METRICS,
 }
 
 func (w *MetricType) GetAllowedValues() []MetricType {

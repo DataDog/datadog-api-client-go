@@ -26,11 +26,11 @@ const (
 )
 
 var allowedNotebookMetadataTypeEnumValues = []NotebookMetadataType{
-	"postmortem",
-	"runbook",
-	"investigation",
-	"documentation",
-	"report",
+	NOTEBOOKMETADATATYPE_POSTMORTEM,
+	NOTEBOOKMETADATATYPE_RUNBOOK,
+	NOTEBOOKMETADATATYPE_INVESTIGATION,
+	NOTEBOOKMETADATATYPE_DOCUMENTATION,
+	NOTEBOOKMETADATATYPE_REPORT,
 }
 
 func (w *NotebookMetadataType) GetAllowedValues() []NotebookMetadataType {

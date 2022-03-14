@@ -39,7 +39,7 @@ type User struct {
 // will change when the set of required properties is changed
 func NewUser() *User {
 	this := User{}
-	var accessRole AccessRole = "st"
+	var accessRole AccessRole = ACCESSROLE_STANDARD
 	this.AccessRole = &accessRole
 	return &this
 }
@@ -49,7 +49,7 @@ func NewUser() *User {
 // but it doesn't guarantee that properties required by API are set
 func NewUserWithDefaults() *User {
 	this := User{}
-	var accessRole AccessRole = "st"
+	var accessRole AccessRole = ACCESSROLE_STANDARD
 	this.AccessRole = &accessRole
 	return &this
 }

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedSyntheticsStatusEnumValues = []SyntheticsStatus{
-	"passed",
-	"skipped",
-	"failed",
+	SYNTHETICSSTATUS_PASSED,
+	SYNTHETICSSTATUS_skipped,
+	SYNTHETICSSTATUS_failed,
 }
 
 func (w *SyntheticsStatus) GetAllowedValues() []SyntheticsStatus {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSecurityMonitoringSignalTypeEnumValues = []SecurityMonitoringSignalType{
-	"signal",
+	SECURITYMONITORINGSIGNALTYPE_SIGNAL,
 }
 
 func (w *SecurityMonitoringSignalType) GetAllowedValues() []SecurityMonitoringSignalType {

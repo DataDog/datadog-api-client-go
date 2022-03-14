@@ -24,9 +24,9 @@ const (
 )
 
 var allowedApmStatsQueryRowTypeEnumValues = []ApmStatsQueryRowType{
-	"service",
-	"resource",
-	"span",
+	APMSTATSQUERYROWTYPE_SERVICE,
+	APMSTATSQUERYROWTYPE_RESOURCE,
+	APMSTATSQUERYROWTYPE_SPAN,
 }
 
 func (w *ApmStatsQueryRowType) GetAllowedValues() []ApmStatsQueryRowType {

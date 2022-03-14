@@ -40,7 +40,7 @@ func NewDashboardBulkActionData(id string, type_ DashboardResourceType) *Dashboa
 // but it doesn't guarantee that properties required by API are set
 func NewDashboardBulkActionDataWithDefaults() *DashboardBulkActionData {
 	this := DashboardBulkActionData{}
-	var type_ DashboardResourceType = "dashboard"
+	var type_ DashboardResourceType = DASHBOARDRESOURCETYPE_DASHBOARD
 	this.Type = type_
 	return &this
 }

@@ -42,7 +42,7 @@ func NewServiceAccountCreateData(attributes ServiceAccountCreateAttributes, type
 // but it doesn't guarantee that properties required by API are set
 func NewServiceAccountCreateDataWithDefaults() *ServiceAccountCreateData {
 	this := ServiceAccountCreateData{}
-	var type_ UsersType = "users"
+	var type_ UsersType = USERSTYPE_USERS
 	this.Type = type_
 	return &this
 }

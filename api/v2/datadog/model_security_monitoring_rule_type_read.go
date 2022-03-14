@@ -25,10 +25,10 @@ const (
 )
 
 var allowedSecurityMonitoringRuleTypeReadEnumValues = []SecurityMonitoringRuleTypeRead{
-	"log_detection",
-	"infrastructure_configuration",
-	"workload_security",
-	"cloud_configuration",
+	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION,
+	SECURITYMONITORINGRULETYPEREAD_INFRASTRUCTURE_CONFIGURATION,
+	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY,
+	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION,
 }
 
 func (w *SecurityMonitoringRuleTypeRead) GetAllowedValues() []SecurityMonitoringRuleTypeRead {

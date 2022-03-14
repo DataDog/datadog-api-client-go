@@ -23,8 +23,8 @@ const (
 )
 
 var allowedWebhooksIntegrationEncodingEnumValues = []WebhooksIntegrationEncoding{
-	"json",
-	"form",
+	WEBHOOKSINTEGRATIONENCODING_JSON,
+	WEBHOOKSINTEGRATIONENCODING_FORM,
 }
 
 func (w *WebhooksIntegrationEncoding) GetAllowedValues() []WebhooksIntegrationEncoding {

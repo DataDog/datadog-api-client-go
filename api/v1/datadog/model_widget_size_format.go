@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetSizeFormatEnumValues = []WidgetSizeFormat{
-	"small",
-	"medium",
-	"large",
+	WIDGETSIZEFORMAT_SMALL,
+	WIDGETSIZEFORMAT_MEDIUM,
+	WIDGETSIZEFORMAT_LARGE,
 }
 
 func (w *WidgetSizeFormat) GetAllowedValues() []WidgetSizeFormat {

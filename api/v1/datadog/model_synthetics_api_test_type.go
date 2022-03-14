@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsAPITestTypeEnumValues = []SyntheticsAPITestType{
-	"api",
+	SYNTHETICSAPITESTTYPE_API,
 }
 
 func (w *SyntheticsAPITestType) GetAllowedValues() []SyntheticsAPITestType {

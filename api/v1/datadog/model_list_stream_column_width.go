@@ -24,9 +24,9 @@ const (
 )
 
 var allowedListStreamColumnWidthEnumValues = []ListStreamColumnWidth{
-	"auto",
-	"compact",
-	"full",
+	LISTSTREAMCOLUMNWIDTH_AUTO,
+	LISTSTREAMCOLUMNWIDTH_COMPACT,
+	LISTSTREAMCOLUMNWIDTH_FULL,
 }
 
 func (w *ListStreamColumnWidth) GetAllowedValues() []ListStreamColumnWidth {

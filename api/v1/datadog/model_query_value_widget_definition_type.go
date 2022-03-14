@@ -22,7 +22,7 @@ const (
 )
 
 var allowedQueryValueWidgetDefinitionTypeEnumValues = []QueryValueWidgetDefinitionType{
-	"query_value",
+	QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
 }
 
 func (w *QueryValueWidgetDefinitionType) GetAllowedValues() []QueryValueWidgetDefinitionType {

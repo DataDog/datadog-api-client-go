@@ -22,7 +22,7 @@ const (
 )
 
 var allowedChangeWidgetDefinitionTypeEnumValues = []ChangeWidgetDefinitionType{
-	"change",
+	CHANGEWIDGETDEFINITIONTYPE_CHANGE,
 }
 
 func (w *ChangeWidgetDefinitionType) GetAllowedValues() []ChangeWidgetDefinitionType {

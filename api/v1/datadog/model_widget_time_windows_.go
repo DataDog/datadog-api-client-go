@@ -29,14 +29,14 @@ const (
 )
 
 var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
-	"7d",
-	"30d",
-	"90d",
-	"week_to_date",
-	"previous_week",
-	"month_to_date",
-	"previous_month",
-	"global_time",
+	WIDGETTIMEWINDOWS_SEVEN_DAYS,
+	WIDGETTIMEWINDOWS_THIRTY_DAYS,
+	WIDGETTIMEWINDOWS_NINETY_DAYS,
+	WIDGETTIMEWINDOWS_WEEK_TO_DATE,
+	WIDGETTIMEWINDOWS_PREVIOUS_WEEK,
+	WIDGETTIMEWINDOWS_MONTH_TO_DATE,
+	WIDGETTIMEWINDOWS_PREVIOUS_MONTH,
+	WIDGETTIMEWINDOWS_GLOBAL_TIME,
 }
 
 func (w *WidgetTimeWindows) GetAllowedValues() []WidgetTimeWindows {

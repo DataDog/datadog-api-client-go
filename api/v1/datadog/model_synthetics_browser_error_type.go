@@ -23,8 +23,8 @@ const (
 )
 
 var allowedSyntheticsBrowserErrorTypeEnumValues = []SyntheticsBrowserErrorType{
-	"network",
-	"js",
+	SYNTHETICSBROWSERERRORTYPE_NETWORK,
+	SYNTHETICSBROWSERERRORTYPE_JS,
 }
 
 func (w *SyntheticsBrowserErrorType) GetAllowedValues() []SyntheticsBrowserErrorType {

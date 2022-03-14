@@ -22,7 +22,7 @@ const (
 )
 
 var allowedRolesTypeEnumValues = []RolesType{
-	"roles",
+	ROLESTYPE_ROLES,
 }
 
 func (w *RolesType) GetAllowedValues() []RolesType {

@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetLineTypeEnumValues = []WidgetLineType{
-	"dashed",
-	"dotted",
-	"solid",
+	WIDGETLINETYPE_DASHED,
+	WIDGETLINETYPE_DOTTED,
+	WIDGETLINETYPE_SOLID,
 }
 
 func (w *WidgetLineType) GetAllowedValues() []WidgetLineType {

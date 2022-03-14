@@ -22,7 +22,7 @@ const (
 )
 
 var allowedWidgetLayoutTypeEnumValues = []WidgetLayoutType{
-	"ordered",
+	WIDGETLAYOUTTYPE_ORDERED,
 }
 
 func (w *WidgetLayoutType) GetAllowedValues() []WidgetLayoutType {

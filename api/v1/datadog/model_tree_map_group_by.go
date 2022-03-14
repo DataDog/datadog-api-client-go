@@ -24,9 +24,9 @@ const (
 )
 
 var allowedTreeMapGroupByEnumValues = []TreeMapGroupBy{
-	"user",
-	"family",
-	"process",
+	TREEMAPGROUPBY_USER,
+	TREEMAPGROUPBY_FAMILY,
+	TREEMAPGROUPBY_PROCESS,
 }
 
 func (w *TreeMapGroupBy) GetAllowedValues() []TreeMapGroupBy {

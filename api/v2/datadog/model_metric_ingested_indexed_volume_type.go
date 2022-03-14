@@ -22,7 +22,7 @@ const (
 )
 
 var allowedMetricIngestedIndexedVolumeTypeEnumValues = []MetricIngestedIndexedVolumeType{
-	"metric_volumes",
+	METRICINGESTEDINDEXEDVOLUMETYPE_METRIC_VOLUMES,
 }
 
 func (w *MetricIngestedIndexedVolumeType) GetAllowedValues() []MetricIngestedIndexedVolumeType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFormulaAndFunctionMetricDataSourceEnumValues = []FormulaAndFunctionMetricDataSource{
-	"metrics",
+	FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 }
 
 func (w *FormulaAndFunctionMetricDataSource) GetAllowedValues() []FormulaAndFunctionMetricDataSource {

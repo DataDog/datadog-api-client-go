@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsGrokParserTypeEnumValues = []LogsGrokParserType{
-	"grok-parser",
+	LOGSGROKPARSERTYPE_GROK_PARSER,
 }
 
 func (w *LogsGrokParserType) GetAllowedValues() []LogsGrokParserType {

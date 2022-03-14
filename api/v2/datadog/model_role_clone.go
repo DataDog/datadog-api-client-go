@@ -40,7 +40,7 @@ func NewRoleClone(attributes RoleCloneAttributes, type_ RolesType) *RoleClone {
 // but it doesn't guarantee that properties required by API are set
 func NewRoleCloneWithDefaults() *RoleClone {
 	this := RoleClone{}
-	var type_ RolesType = "roles"
+	var type_ RolesType = ROLESTYPE_ROLES
 	this.Type = type_
 	return &this
 }

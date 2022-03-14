@@ -27,11 +27,11 @@ const (
 )
 
 var allowedWidgetMarginEnumValues = []WidgetMargin{
-	"sm",
-	"md",
-	"lg",
-	"small",
-	"large",
+	WIDGETMARGIN_SM,
+	WIDGETMARGIN_MD,
+	WIDGETMARGIN_LG,
+	WIDGETMARGIN_SMALL,
+	WIDGETMARGIN_LARGE,
 }
 
 func (w *WidgetMargin) GetAllowedValues() []WidgetMargin {

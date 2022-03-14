@@ -25,10 +25,10 @@ const (
 )
 
 var allowedLogsArchiveStateEnumValues = []LogsArchiveState{
-	"UNKNOWN",
-	"WORKING",
-	"FAILING",
-	"WORKING_AUTH_LEGACY",
+	LOGSARCHIVESTATE_UNKNOWN,
+	LOGSARCHIVESTATE_WORKING,
+	LOGSARCHIVESTATE_FAILING,
+	LOGSARCHIVESTATE_WORKING_AUTH_LEGACY,
 }
 
 func (w *LogsArchiveState) GetAllowedValues() []LogsArchiveState {

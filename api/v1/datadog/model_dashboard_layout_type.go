@@ -23,8 +23,8 @@ const (
 )
 
 var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{
-	"ordered",
-	"free",
+	DASHBOARDLAYOUTTYPE_ORDERED,
+	DASHBOARDLAYOUTTYPE_FREE,
 }
 
 func (w *DashboardLayoutType) GetAllowedValues() []DashboardLayoutType {

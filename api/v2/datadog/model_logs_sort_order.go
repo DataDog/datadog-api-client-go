@@ -23,8 +23,8 @@ const (
 )
 
 var allowedLogsSortOrderEnumValues = []LogsSortOrder{
-	"asc",
-	"desc",
+	LOGSSORTORDER_ASCENDING,
+	LOGSSORTORDER_DESCENDING,
 }
 
 func (w *LogsSortOrder) GetAllowedValues() []LogsSortOrder {

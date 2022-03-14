@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetLineWidthEnumValues = []WidgetLineWidth{
-	"normal",
-	"thick",
-	"thin",
+	WIDGETLINEWIDTH_NORMAL,
+	WIDGETLINEWIDTH_THICK,
+	WIDGETLINEWIDTH_THIN,
 }
 
 func (w *WidgetLineWidth) GetAllowedValues() []WidgetLineWidth {

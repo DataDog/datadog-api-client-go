@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentPostmortemTypeEnumValues = []IncidentPostmortemType{
-	"incident_postmortems",
+	INCIDENTPOSTMORTEMTYPE_INCIDENT_POSTMORTEMS,
 }
 
 func (w *IncidentPostmortemType) GetAllowedValues() []IncidentPostmortemType {

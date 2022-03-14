@@ -22,7 +22,7 @@ const (
 )
 
 var allowedServiceMapWidgetDefinitionTypeEnumValues = []ServiceMapWidgetDefinitionType{
-	"servicemap",
+	SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
 }
 
 func (w *ServiceMapWidgetDefinitionType) GetAllowedValues() []ServiceMapWidgetDefinitionType {

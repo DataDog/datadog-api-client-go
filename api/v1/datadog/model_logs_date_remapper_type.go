@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsDateRemapperTypeEnumValues = []LogsDateRemapperType{
-	"date-remapper",
+	LOGSDATEREMAPPERTYPE_DATE_REMAPPER,
 }
 
 func (w *LogsDateRemapperType) GetAllowedValues() []LogsDateRemapperType {

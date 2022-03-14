@@ -22,7 +22,7 @@ const (
 )
 
 var allowedTreeMapColorByEnumValues = []TreeMapColorBy{
-	"user",
+	TREEMAPCOLORBY_USER,
 }
 
 func (w *TreeMapColorBy) GetAllowedValues() []TreeMapColorBy {

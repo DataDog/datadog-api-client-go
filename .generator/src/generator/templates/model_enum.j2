@@ -4,13 +4,13 @@ type {{ name }} {{ model|simple_type }}
 // List of {{ name }}
 const (
 	{%- for index, value in enumerate(model.enum) %}
-	{{ name|upper }}_{{ model["x-enum-varnames"][index] or value.upper() }} {{ name }} = {{ value|format_value(quotes='"') }}
+	{{ name|upper }}_{{ model["x-enum-varnames"][index] or value.upper() }} {{ name }} = {{ value|format_value }}
 {%- endfor %}
 )
 
 var allowed{{ name }}EnumValues = []{{ name }}{
 	{%- for index, value in enumerate(model.enum) %}
-	{{ value|format_value(quotes='"') }},
+	{{ value|format_value(schema=model) }},
 	{%- endfor %}
 }
 

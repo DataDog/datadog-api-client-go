@@ -24,9 +24,9 @@ const (
 )
 
 var allowedWidgetServiceSummaryDisplayFormatEnumValues = []WidgetServiceSummaryDisplayFormat{
-	"one_column",
-	"two_column",
-	"three_column",
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_ONE_COLUMN,
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_TWO_COLUMN,
+	WIDGETSERVICESUMMARYDISPLAYFORMAT_THREE_COLUMN,
 }
 
 func (w *WidgetServiceSummaryDisplayFormat) GetAllowedValues() []WidgetServiceSummaryDisplayFormat {

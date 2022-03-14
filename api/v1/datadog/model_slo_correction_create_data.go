@@ -39,7 +39,7 @@ func NewSLOCorrectionCreateData(type_ SLOCorrectionType) *SLOCorrectionCreateDat
 // but it doesn't guarantee that properties required by API are set
 func NewSLOCorrectionCreateDataWithDefaults() *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	var type_ SLOCorrectionType = "correction"
+	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
 	this.Type = type_
 	return &this
 }

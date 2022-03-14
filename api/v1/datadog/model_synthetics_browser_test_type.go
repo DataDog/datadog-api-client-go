@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsBrowserTestTypeEnumValues = []SyntheticsBrowserTestType{
-	"browser",
+	SYNTHETICSBROWSERTESTTYPE_BROWSER,
 }
 
 func (w *SyntheticsBrowserTestType) GetAllowedValues() []SyntheticsBrowserTestType {

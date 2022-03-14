@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsWarningTypeEnumValues = []SyntheticsWarningType{
-	"user_locator",
+	SYNTHETICSWARNINGTYPE_USER_LOCATOR,
 }
 
 func (w *SyntheticsWarningType) GetAllowedValues() []SyntheticsWarningType {

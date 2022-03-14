@@ -26,11 +26,11 @@ const (
 )
 
 var allowedNotebookGraphSizeEnumValues = []NotebookGraphSize{
-	"xs",
-	"s",
-	"m",
-	"l",
-	"xl",
+	NOTEBOOKGRAPHSIZE_EXTRA_SMALL,
+	NOTEBOOKGRAPHSIZE_SMALL,
+	NOTEBOOKGRAPHSIZE_MEDIUM,
+	NOTEBOOKGRAPHSIZE_LARGE,
+	NOTEBOOKGRAPHSIZE_EXTRA_LARGE,
 }
 
 func (w *NotebookGraphSize) GetAllowedValues() []NotebookGraphSize {

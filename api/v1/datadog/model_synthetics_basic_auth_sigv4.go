@@ -49,7 +49,7 @@ func NewSyntheticsBasicAuthSigv4(accessKey string, secretKey string, type_ Synth
 // but it doesn't guarantee that properties required by API are set
 func NewSyntheticsBasicAuthSigv4WithDefaults() *SyntheticsBasicAuthSigv4 {
 	this := SyntheticsBasicAuthSigv4{}
-	var type_ SyntheticsBasicAuthSigv4Type = "sigv4"
+	var type_ SyntheticsBasicAuthSigv4Type = SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4
 	this.Type = type_
 	return &this
 }

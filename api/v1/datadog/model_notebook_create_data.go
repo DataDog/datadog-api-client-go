@@ -40,7 +40,7 @@ func NewNotebookCreateData(attributes NotebookCreateDataAttributes, type_ Notebo
 // but it doesn't guarantee that properties required by API are set
 func NewNotebookCreateDataWithDefaults() *NotebookCreateData {
 	this := NotebookCreateData{}
-	var type_ NotebookResourceType = "notebooks"
+	var type_ NotebookResourceType = NOTEBOOKRESOURCETYPE_NOTEBOOKS
 	this.Type = type_
 	return &this
 }

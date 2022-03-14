@@ -22,7 +22,7 @@ const (
 )
 
 var allowedUsersTypeEnumValues = []UsersType{
-	"users",
+	USERSTYPE_USERS,
 }
 
 func (w *UsersType) GetAllowedValues() []UsersType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedSyntheticsBasicAuthNTLMTypeEnumValues = []SyntheticsBasicAuthNTLMType{
-	"ntlm",
+	SYNTHETICSBASICAUTHNTLMTYPE_NTLM,
 }
 
 func (w *SyntheticsBasicAuthNTLMType) GetAllowedValues() []SyntheticsBasicAuthNTLMType {

@@ -27,12 +27,12 @@ const (
 )
 
 var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitoringRuleQueryAggregation{
-	"count",
-	"cardinality",
-	"sum",
-	"max",
-	"new_value",
-	"geo_data",
+	SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_CARDINALITY,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE,
+	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA,
 }
 
 func (w *SecurityMonitoringRuleQueryAggregation) GetAllowedValues() []SecurityMonitoringRuleQueryAggregation {

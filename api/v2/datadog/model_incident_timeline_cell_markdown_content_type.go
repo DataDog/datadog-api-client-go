@@ -22,7 +22,7 @@ const (
 )
 
 var allowedIncidentTimelineCellMarkdownContentTypeEnumValues = []IncidentTimelineCellMarkdownContentType{
-	"markdown",
+	INCIDENTTIMELINECELLMARKDOWNCONTENTTYPE_MARKDOWN,
 }
 
 func (w *IncidentTimelineCellMarkdownContentType) GetAllowedValues() []IncidentTimelineCellMarkdownContentType {

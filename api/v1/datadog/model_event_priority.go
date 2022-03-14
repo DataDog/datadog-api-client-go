@@ -23,8 +23,8 @@ const (
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{
-	"normal",
-	"low",
+	EVENTPRIORITY_NORMAL,
+	EVENTPRIORITY_LOW,
 }
 
 func (w *EventPriority) GetAllowedValues() []EventPriority {

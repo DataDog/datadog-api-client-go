@@ -22,7 +22,7 @@ const (
 )
 
 var allowedDistributionWidgetDefinitionTypeEnumValues = []DistributionWidgetDefinitionType{
-	"distribution",
+	DISTRIBUTIONWIDGETDEFINITIONTYPE_DISTRIBUTION,
 }
 
 func (w *DistributionWidgetDefinitionType) GetAllowedValues() []DistributionWidgetDefinitionType {

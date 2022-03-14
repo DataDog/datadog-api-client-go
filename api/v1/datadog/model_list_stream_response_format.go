@@ -22,7 +22,7 @@ const (
 )
 
 var allowedListStreamResponseFormatEnumValues = []ListStreamResponseFormat{
-	"event_list",
+	LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
 }
 
 func (w *ListStreamResponseFormat) GetAllowedValues() []ListStreamResponseFormat {

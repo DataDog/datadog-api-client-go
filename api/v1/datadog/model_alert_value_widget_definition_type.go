@@ -22,7 +22,7 @@ const (
 )
 
 var allowedAlertValueWidgetDefinitionTypeEnumValues = []AlertValueWidgetDefinitionType{
-	"alert_value",
+	ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE,
 }
 
 func (w *AlertValueWidgetDefinitionType) GetAllowedValues() []AlertValueWidgetDefinitionType {

@@ -22,7 +22,7 @@ const (
 )
 
 var allowedLogsMetricTypeEnumValues = []LogsMetricType{
-	"logs_metrics",
+	LOGSMETRICTYPE_LOGS_METRICS,
 }
 
 func (w *LogsMetricType) GetAllowedValues() []LogsMetricType {

@@ -25,10 +25,10 @@ const (
 )
 
 var allowedWidgetTickEdgeEnumValues = []WidgetTickEdge{
-	"bottom",
-	"left",
-	"right",
-	"top",
+	WIDGETTICKEDGE_BOTTOM,
+	WIDGETTICKEDGE_LEFT,
+	WIDGETTICKEDGE_RIGHT,
+	WIDGETTICKEDGE_TOP,
 }
 
 func (w *WidgetTickEdge) GetAllowedValues() []WidgetTickEdge {

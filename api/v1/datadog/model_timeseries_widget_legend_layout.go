@@ -24,9 +24,9 @@ const (
 )
 
 var allowedTimeseriesWidgetLegendLayoutEnumValues = []TimeseriesWidgetLegendLayout{
-	"auto",
-	"horizontal",
-	"vertical",
+	TIMESERIESWIDGETLEGENDLAYOUT_AUTO,
+	TIMESERIESWIDGETLEGENDLAYOUT_HORIZONTAL,
+	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL,
 }
 
 func (w *TimeseriesWidgetLegendLayout) GetAllowedValues() []TimeseriesWidgetLegendLayout {

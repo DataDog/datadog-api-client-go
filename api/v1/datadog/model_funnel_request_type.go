@@ -22,7 +22,7 @@ const (
 )
 
 var allowedFunnelRequestTypeEnumValues = []FunnelRequestType{
-	"funnel",
+	FUNNELREQUESTTYPE_FUNNEL,
 }
 
 func (w *FunnelRequestType) GetAllowedValues() []FunnelRequestType {
