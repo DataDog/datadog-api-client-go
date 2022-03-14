@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UserCreateAttributes Attributes of the created user.
 type UserCreateAttributes struct {
@@ -22,9 +24,11 @@ type UserCreateAttributes struct {
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserCreateAttributes instantiates a new UserCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewUserCreateAttributesWithDefaults() *UserCreateAttributes {
 	this := UserCreateAttributes{}
 	return &this
 }
-
 // GetEmail returns the Email field value
 func (o *UserCreateAttributes) GetEmail() string {
 	if o == nil {
@@ -66,6 +69,7 @@ func (o *UserCreateAttributes) GetEmailOk() (*string, bool) {
 func (o *UserCreateAttributes) SetEmail(v string) {
 	o.Email = v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UserCreateAttributes) GetName() string {
@@ -99,6 +103,7 @@ func (o *UserCreateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *UserCreateAttributes) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -131,6 +136,8 @@ func (o *UserCreateAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+
+
 func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -150,14 +157,15 @@ func (o UserCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Email *string `json:"email"`
 	}{}
 	all := struct {
-		Email string  `json:"email"`
-		Name  *string `json:"name,omitempty"`
+		Email string `json:"email"`
+		Name *string `json:"name,omitempty"`
 		Title *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

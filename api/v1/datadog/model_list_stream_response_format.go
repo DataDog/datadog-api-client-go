@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ListStreamResponseFormat Widget response format.
 type ListStreamResponseFormat string

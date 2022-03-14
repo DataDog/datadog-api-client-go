@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricContentEncoding HTTP header used to compress the media-type.
 type MetricContentEncoding string

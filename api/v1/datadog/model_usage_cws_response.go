@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageCWSResponse Response containing the Cloud Workload Security usage for each hour for a given organization.
 type UsageCWSResponse struct {
 	// Get hourly usage for Cloud Workload Security.
 	Usage *[]UsageCWSHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCWSResponse instantiates a new UsageCWSResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageCWSResponseWithDefaults() *UsageCWSResponse {
 	this := UsageCWSResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageCWSResponse) GetUsage() []UsageCWSHour {
 	if o == nil || o.Usage == nil {
@@ -70,6 +74,8 @@ func (o *UsageCWSResponse) SetUsage(v []UsageCWSHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageCWSResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UsageCWSResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageCWSResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

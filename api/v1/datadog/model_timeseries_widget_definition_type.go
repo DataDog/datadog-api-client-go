@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TimeseriesWidgetDefinitionType Type of the timeseries widget.
 type TimeseriesWidgetDefinitionType string

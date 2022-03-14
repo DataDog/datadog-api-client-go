@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMEventType Type of the event.
 type RUMEventType string

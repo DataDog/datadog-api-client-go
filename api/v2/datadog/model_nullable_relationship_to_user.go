@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NullableRelationshipToUser Relationship to user.
 type NullableRelationshipToUser struct {
 	// Relationship to user object.
 	Data NullableNullableRelationshipToUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNullableRelationshipToUser instantiates a new NullableRelationshipToUser object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewNullableRelationshipToUserWithDefaults() *NullableRelationshipToUser {
 	this := NullableRelationshipToUser{}
 	return &this
 }
-
 // GetData returns the Data field value
 // If the value is explicit nil, the zero value for NullableRelationshipToUserData will be returned
 func (o *NullableRelationshipToUser) GetData() NullableRelationshipToUserData {
@@ -65,6 +68,8 @@ func (o *NullableRelationshipToUser) SetData(v NullableRelationshipToUserData) {
 	o.Data.Set(&v)
 }
 
+
+
 func (o NullableRelationshipToUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -77,6 +82,7 @@ func (o NullableRelationshipToUser) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

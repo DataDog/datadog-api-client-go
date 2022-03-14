@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityFilterResponse Response object which includes a single security filter.
 type SecurityFilterResponse struct {
@@ -19,9 +22,11 @@ type SecurityFilterResponse struct {
 	// Optional metadata associated to the response.
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterResponse instantiates a new SecurityFilterResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSecurityFilterResponseWithDefaults() *SecurityFilterResponse {
 	this := SecurityFilterResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SecurityFilterResponse) GetData() SecurityFilter {
 	if o == nil || o.Data == nil {
@@ -71,6 +75,7 @@ func (o *SecurityFilterResponse) HasData() bool {
 func (o *SecurityFilterResponse) SetData(v SecurityFilter) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SecurityFilterResponse) GetMeta() SecurityFilterMeta {
@@ -104,6 +109,8 @@ func (o *SecurityFilterResponse) SetMeta(v SecurityFilterMeta) {
 	o.Meta = &v
 }
 
+
+
 func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *SecurityFilter     `json:"data,omitempty"`
+		Data *SecurityFilter `json:"data,omitempty"`
 		Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

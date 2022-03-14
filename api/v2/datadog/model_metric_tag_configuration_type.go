@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricTagConfigurationType The metric tag configuration resource type.
 type MetricTagConfigurationType string

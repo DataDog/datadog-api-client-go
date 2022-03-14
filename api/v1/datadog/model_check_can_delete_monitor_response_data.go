@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CheckCanDeleteMonitorResponseData Wrapper object with the list of monitor IDs.
 type CheckCanDeleteMonitorResponseData struct {
 	// An array of of Monitor IDs that can be safely deleted.
 	Ok *[]int64 `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCheckCanDeleteMonitorResponseData instantiates a new CheckCanDeleteMonitorResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewCheckCanDeleteMonitorResponseDataWithDefaults() *CheckCanDeleteMonitorRe
 	this := CheckCanDeleteMonitorResponseData{}
 	return &this
 }
-
 // GetOk returns the Ok field value if set, zero value otherwise.
 func (o *CheckCanDeleteMonitorResponseData) GetOk() []int64 {
 	if o == nil || o.Ok == nil {
@@ -70,6 +74,8 @@ func (o *CheckCanDeleteMonitorResponseData) SetOk(v []int64) {
 	o.Ok = &v
 }
 
+
+
 func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

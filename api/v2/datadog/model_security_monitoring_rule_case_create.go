@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleCaseCreate Case when signal is generated.
 type SecurityMonitoringRuleCaseCreate struct {
@@ -25,9 +27,11 @@ type SecurityMonitoringRuleCaseCreate struct {
 	// Severity of the Security Signal.
 	Status SecurityMonitoringRuleSeverity `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func NewSecurityMonitoringRuleCaseCreateWithDefaults() *SecurityMonitoringRuleCa
 	this := SecurityMonitoringRuleCaseCreate{}
 	return &this
 }
-
 // GetCondition returns the Condition field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetCondition() string {
 	if o == nil || o.Condition == nil {
@@ -78,6 +81,7 @@ func (o *SecurityMonitoringRuleCaseCreate) HasCondition() bool {
 func (o *SecurityMonitoringRuleCaseCreate) SetCondition(v string) {
 	o.Condition = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetName() string {
@@ -111,6 +115,7 @@ func (o *SecurityMonitoringRuleCaseCreate) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleCaseCreate) GetNotifications() []string {
 	if o == nil || o.Notifications == nil {
@@ -143,6 +148,7 @@ func (o *SecurityMonitoringRuleCaseCreate) SetNotifications(v []string) {
 	o.Notifications = &v
 }
 
+
 // GetStatus returns the Status field value
 func (o *SecurityMonitoringRuleCaseCreate) GetStatus() SecurityMonitoringRuleSeverity {
 	if o == nil {
@@ -166,6 +172,8 @@ func (o *SecurityMonitoringRuleCaseCreate) SetStatus(v SecurityMonitoringRuleSev
 	o.Status = v
 }
 
+
+
 func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -188,16 +196,17 @@ func (o SecurityMonitoringRuleCaseCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Status *SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	all := struct {
-		Condition     *string                        `json:"condition,omitempty"`
-		Name          *string                        `json:"name,omitempty"`
-		Notifications *[]string                      `json:"notifications,omitempty"`
-		Status        SecurityMonitoringRuleSeverity `json:"status"`
+		Condition *string `json:"condition,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Notifications *[]string `json:"notifications,omitempty"`
+		Status SecurityMonitoringRuleSeverity `json:"status"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

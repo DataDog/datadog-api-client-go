@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOHistoryResponseError A list of errors while querying the history data for the service level objective.
 type SLOHistoryResponseError struct {
 	// Human readable error.
 	Error *string `json:"error,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOHistoryResponseError instantiates a new SLOHistoryResponseError object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewSLOHistoryResponseErrorWithDefaults() *SLOHistoryResponseError {
 	this := SLOHistoryResponseError{}
 	return &this
 }
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *SLOHistoryResponseError) GetError() string {
 	if o == nil || o.Error == nil {
@@ -70,6 +74,8 @@ func (o *SLOHistoryResponseError) SetError(v string) {
 	o.Error = &v
 }
 
+
+
 func (o SLOHistoryResponseError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o SLOHistoryResponseError) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SLOHistoryResponseError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

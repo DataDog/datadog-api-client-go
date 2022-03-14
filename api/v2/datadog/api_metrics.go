@@ -16,7 +16,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -30,7 +29,7 @@ type MetricsApiService service
 type apiCreateBulkTagsMetricsConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigCreateRequest
+	body *MetricBulkTagConfigCreateRequest
 }
 
 /*
@@ -46,7 +45,7 @@ func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Cont
 	req := apiCreateBulkTagsMetricsConfigurationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createBulkTagsMetricsConfigurationExecute(req)
@@ -208,7 +207,7 @@ type apiCreateTagConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
-	body       *MetricTagConfigurationCreateRequest
+	body *MetricTagConfigurationCreateRequest
 }
 
 /*
@@ -223,7 +222,7 @@ func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricN
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createTagConfigurationExecute(req)
@@ -242,12 +241,12 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricTagConfigurationResponse
 	)
-
+	
 	operationId := "CreateTagConfiguration"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateTagConfiguration")
@@ -392,7 +391,7 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 type apiDeleteBulkTagsMetricsConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
-	body       *MetricBulkTagConfigDeleteRequest
+	body *MetricBulkTagConfigDeleteRequest
 }
 
 /*
@@ -406,7 +405,7 @@ func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Cont
 	req := apiDeleteBulkTagsMetricsConfigurationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteBulkTagsMetricsConfigurationExecute(req)
@@ -596,10 +595,10 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
-
+	
 	operationId := "DeleteTagConfiguration"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
 		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -742,12 +741,12 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricTagConfigurationResponse
 	)
-
+	
 	operationId := "ListTagConfigurationByName"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurationByName")
@@ -865,23 +864,23 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 }
 
 type apiListTagConfigurationsRequest struct {
-	ctx                      _context.Context
-	ApiService               *MetricsApiService
-	filterConfigured         *bool
-	filterTagsConfigured     *string
-	filterMetricType         *MetricTagConfigurationMetricTypes
+	ctx        _context.Context
+	ApiService *MetricsApiService
+	filterConfigured *bool
+	filterTagsConfigured *string
+	filterMetricType *MetricTagConfigurationMetricTypes
 	filterIncludePercentiles *bool
-	filterTags               *string
-	windowSeconds            *int64
+	filterTags *string
+	windowSeconds *int64
 }
 
 type ListTagConfigurationsOptionalParameters struct {
-	FilterConfigured         *bool
-	FilterTagsConfigured     *string
-	FilterMetricType         *MetricTagConfigurationMetricTypes
+	FilterConfigured *bool
+	FilterTagsConfigured *string
+	FilterMetricType *MetricTagConfigurationMetricTypes
 	FilterIncludePercentiles *bool
-	FilterTags               *string
-	WindowSeconds            *int64
+	FilterTags *string
+	WindowSeconds *int64
 }
 
 func NewListTagConfigurationsOptionalParameters() *ListTagConfigurationsOptionalParameters {
@@ -954,12 +953,12 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricsAndMetricTagConfigurationsResponse
 	)
-
+	
 	operationId := "ListTagConfigurations"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurations")
@@ -1417,7 +1416,7 @@ type apiUpdateTagConfigurationRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
-	body       *MetricTagConfigurationUpdateRequest
+	body *MetricTagConfigurationUpdateRequest
 }
 
 /*
@@ -1431,7 +1430,7 @@ func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricN
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateTagConfigurationExecute(req)
@@ -1450,12 +1449,12 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricTagConfigurationResponse
 	)
-
+	
 	operationId := "UpdateTagConfiguration"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateTagConfiguration")

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetColorPreference Which color to use on the widget.
 type WidgetColorPreference string
@@ -19,7 +21,7 @@ type WidgetColorPreference string
 // List of WidgetColorPreference
 const (
 	WIDGETCOLORPREFERENCE_BACKGROUND WidgetColorPreference = "background"
-	WIDGETCOLORPREFERENCE_TEXT       WidgetColorPreference = "text"
+	WIDGETCOLORPREFERENCE_TEXT WidgetColorPreference = "text"
 )
 
 var allowedWidgetColorPreferenceEnumValues = []WidgetColorPreference{

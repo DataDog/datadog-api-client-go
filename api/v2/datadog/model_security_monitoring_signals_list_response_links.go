@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalsListResponseLinks Links attributes.
 type SecurityMonitoringSignalsListResponseLinks struct {
@@ -18,9 +21,11 @@ type SecurityMonitoringSignalsListResponseLinks struct {
 	// POST endpoint.
 	Next *string `json:"next,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalsListResponseLinks instantiates a new SecurityMonitoringSignalsListResponseLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSecurityMonitoringSignalsListResponseLinksWithDefaults() *SecurityMonito
 	this := SecurityMonitoringSignalsListResponseLinks{}
 	return &this
 }
-
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalsListResponseLinks) GetNext() string {
 	if o == nil || o.Next == nil {
@@ -71,6 +75,8 @@ func (o *SecurityMonitoringSignalsListResponseLinks) SetNext(v string) {
 	o.Next = &v
 }
 
+
+
 func (o SecurityMonitoringSignalsListResponseLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -85,6 +91,7 @@ func (o SecurityMonitoringSignalsListResponseLinks) MarshalJSON() ([]byte, error
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SecurityMonitoringSignalsListResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMQueryFilter The search and filter query settings.
 type RUMQueryFilter struct {
@@ -21,9 +24,11 @@ type RUMQueryFilter struct {
 	// The maximum time for the requested events; supports date, math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMQueryFilter instantiates a new RUMQueryFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewRUMQueryFilterWithDefaults() *RUMQueryFilter {
 	this.To = &to
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -85,6 +89,7 @@ func (o *RUMQueryFilter) HasFrom() bool {
 func (o *RUMQueryFilter) SetFrom(v string) {
 	o.From = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetQuery() string {
@@ -118,6 +123,7 @@ func (o *RUMQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *RUMQueryFilter) GetTo() string {
 	if o == nil || o.To == nil {
@@ -150,6 +156,8 @@ func (o *RUMQueryFilter) SetTo(v string) {
 	o.To = &v
 }
 
+
+
 func (o RUMQueryFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -171,12 +179,13 @@ func (o RUMQueryFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From  *string `json:"from,omitempty"`
+		From *string `json:"from,omitempty"`
 		Query *string `json:"query,omitempty"`
-		To    *string `json:"to,omitempty"`
+		To *string `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

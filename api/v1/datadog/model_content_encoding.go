@@ -11,14 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ContentEncoding HTTP header used to compress the media-type.
 type ContentEncoding string
 
 // List of ContentEncoding
 const (
-	CONTENTENCODING_GZIP    ContentEncoding = "gzip"
+	CONTENTENCODING_GZIP ContentEncoding = "gzip"
 	CONTENTENCODING_DEFLATE ContentEncoding = "deflate"
 )
 

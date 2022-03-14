@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceSummaryWidgetDefinitionType Type of the service summary widget.
 type ServiceSummaryWidgetDefinitionType string

@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,21 +27,21 @@ var (
 type SnapshotsApiService service
 
 type apiGetGraphSnapshotRequest struct {
-	ctx         _context.Context
-	ApiService  *SnapshotsApiService
-	start       *int64
-	end         *int64
+	ctx        _context.Context
+	ApiService *SnapshotsApiService
+	start *int64
+	end *int64
 	metricQuery *string
-	eventQuery  *string
-	graphDef    *string
-	title       *string
+	eventQuery *string
+	graphDef *string
+	title *string
 }
 
 type GetGraphSnapshotOptionalParameters struct {
 	MetricQuery *string
-	EventQuery  *string
-	GraphDef    *string
-	Title       *string
+	EventQuery *string
+	GraphDef *string
+	Title *string
 }
 
 func NewGetGraphSnapshotOptionalParameters() *GetGraphSnapshotOptionalParameters {
@@ -72,8 +74,8 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64
 	req := apiGetGraphSnapshotRequest{
 		ApiService: a,
 		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		start: &start,
+		end: &end,
 	}
 
 	if len(o) > 1 {

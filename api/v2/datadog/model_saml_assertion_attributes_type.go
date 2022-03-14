@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SAMLAssertionAttributesType SAML assertion attributes resource type.
 type SAMLAssertionAttributesType string

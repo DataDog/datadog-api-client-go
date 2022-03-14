@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageTopAvgMetricsResponse Response containing the number of hourly recorded custom metrics for a given organization.
 type UsageTopAvgMetricsResponse struct {
@@ -19,9 +22,11 @@ type UsageTopAvgMetricsResponse struct {
 	// Number of hourly recorded custom metrics for a given organization.
 	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageTopAvgMetricsResponse instantiates a new UsageTopAvgMetricsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewUsageTopAvgMetricsResponseWithDefaults() *UsageTopAvgMetricsResponse {
 	this := UsageTopAvgMetricsResponse{}
 	return &this
 }
-
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsResponse) GetMetadata() UsageTopAvgMetricsMetadata {
 	if o == nil || o.Metadata == nil {
@@ -71,6 +75,7 @@ func (o *UsageTopAvgMetricsResponse) HasMetadata() bool {
 func (o *UsageTopAvgMetricsResponse) SetMetadata(v UsageTopAvgMetricsMetadata) {
 	o.Metadata = &v
 }
+
 
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsResponse) GetUsage() []UsageTopAvgMetricsHour {
@@ -104,6 +109,8 @@ func (o *UsageTopAvgMetricsResponse) SetUsage(v []UsageTopAvgMetricsHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
-		Usage    *[]UsageTopAvgMetricsHour   `json:"usage,omitempty"`
+		Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

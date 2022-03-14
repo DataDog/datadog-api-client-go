@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorFormulaAndFunctionEventQueryDefinitionCompute Compute options.
 type MonitorFormulaAndFunctionEventQueryDefinitionCompute struct {
@@ -22,9 +24,11 @@ type MonitorFormulaAndFunctionEventQueryDefinitionCompute struct {
 	// Measurable attribute to compute.
 	Metric *string `json:"metric,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorFormulaAndFunctionEventQueryDefinitionCompute instantiates a new MonitorFormulaAndFunctionEventQueryDefinitionCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewMonitorFormulaAndFunctionEventQueryDefinitionComputeWithDefaults() *Moni
 	this := MonitorFormulaAndFunctionEventQueryDefinitionCompute{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() MonitorFormulaAndFunctionEventAggregation {
 	if o == nil {
@@ -66,6 +69,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregationOk(
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) SetAggregation(v MonitorFormulaAndFunctionEventAggregation) {
 	o.Aggregation = v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetInterval() int64 {
@@ -99,6 +103,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) SetInterval(v int
 	o.Interval = &v
 }
 
+
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -131,6 +136,8 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v strin
 	o.Metric = &v
 }
 
+
+
 func (o MonitorFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -150,6 +157,7 @@ func (o MonitorFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]b
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -157,8 +165,8 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 	}{}
 	all := struct {
 		Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-		Interval    *int64                                    `json:"interval,omitempty"`
-		Metric      *string                                   `json:"metric,omitempty"`
+		Interval *int64 `json:"interval,omitempty"`
+		Metric *string `json:"metric,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

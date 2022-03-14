@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // MonitorUpdateRequest Object describing a monitor update request.
 type MonitorUpdateRequest struct {
@@ -48,9 +50,11 @@ type MonitorUpdateRequest struct {
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +72,6 @@ func NewMonitorUpdateRequestWithDefaults() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -100,6 +103,7 @@ func (o *MonitorUpdateRequest) HasCreated() bool {
 func (o *MonitorUpdateRequest) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetCreator() Creator {
@@ -133,6 +137,7 @@ func (o *MonitorUpdateRequest) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
+
 // GetDeleted returns the Deleted field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 	if o == nil || o.Deleted.Get() == nil {
@@ -146,7 +151,7 @@ func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorUpdateRequest) GetDeletedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Deleted.Get(), o.Deleted.IsSet()
@@ -165,7 +170,6 @@ func (o *MonitorUpdateRequest) HasDeleted() bool {
 func (o *MonitorUpdateRequest) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
-
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *MonitorUpdateRequest) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -175,6 +179,7 @@ func (o *MonitorUpdateRequest) SetDeletedNil() {
 func (o *MonitorUpdateRequest) UnsetDeleted() {
 	o.Deleted.Unset()
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetId() int64 {
@@ -208,6 +213,7 @@ func (o *MonitorUpdateRequest) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -239,6 +245,7 @@ func (o *MonitorUpdateRequest) HasMessage() bool {
 func (o *MonitorUpdateRequest) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetModified() time.Time {
@@ -272,6 +279,7 @@ func (o *MonitorUpdateRequest) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetMulti returns the Multi field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetMulti() bool {
 	if o == nil || o.Multi == nil {
@@ -303,6 +311,7 @@ func (o *MonitorUpdateRequest) HasMulti() bool {
 func (o *MonitorUpdateRequest) SetMulti(v bool) {
 	o.Multi = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetName() string {
@@ -336,6 +345,7 @@ func (o *MonitorUpdateRequest) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetOptions() MonitorOptions {
 	if o == nil || o.Options == nil {
@@ -367,6 +377,7 @@ func (o *MonitorUpdateRequest) HasOptions() bool {
 func (o *MonitorUpdateRequest) SetOptions(v MonitorOptions) {
 	o.Options = &v
 }
+
 
 // GetOverallState returns the OverallState field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetOverallState() MonitorOverallStates {
@@ -400,6 +411,7 @@ func (o *MonitorUpdateRequest) SetOverallState(v MonitorOverallStates) {
 	o.OverallState = &v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetPriority() int64 {
 	if o == nil || o.Priority == nil {
@@ -431,6 +443,7 @@ func (o *MonitorUpdateRequest) HasPriority() bool {
 func (o *MonitorUpdateRequest) SetPriority(v int64) {
 	o.Priority = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetQuery() string {
@@ -464,6 +477,7 @@ func (o *MonitorUpdateRequest) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles == nil {
@@ -495,6 +509,7 @@ func (o *MonitorUpdateRequest) HasRestrictedRoles() bool {
 func (o *MonitorUpdateRequest) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = &v
 }
+
 
 // GetState returns the State field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetState() MonitorState {
@@ -528,6 +543,7 @@ func (o *MonitorUpdateRequest) SetState(v MonitorState) {
 	o.State = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -560,6 +576,7 @@ func (o *MonitorUpdateRequest) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorUpdateRequest) GetType() MonitorType {
 	if o == nil || o.Type == nil {
@@ -591,6 +608,8 @@ func (o *MonitorUpdateRequest) HasType() bool {
 func (o *MonitorUpdateRequest) SetType(v MonitorType) {
 	o.Type = &v
 }
+
+
 
 func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -652,25 +671,26 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created         *time.Time            `json:"created,omitempty"`
-		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         NullableTime          `json:"deleted,omitempty"`
-		Id              *int64                `json:"id,omitempty"`
-		Message         *string               `json:"message,omitempty"`
-		Modified        *time.Time            `json:"modified,omitempty"`
-		Multi           *bool                 `json:"multi,omitempty"`
-		Name            *string               `json:"name,omitempty"`
-		Options         *MonitorOptions       `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
-		Priority        *int64                `json:"priority,omitempty"`
-		Query           *string               `json:"query,omitempty"`
-		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"`
-		State           *MonitorState         `json:"state,omitempty"`
-		Tags            *[]string             `json:"tags,omitempty"`
-		Type            *MonitorType          `json:"type,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Deleted NullableTime `json:"deleted,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Multi *bool `json:"multi,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Options *MonitorOptions `json:"options,omitempty"`
+		OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
+		Priority *int64 `json:"priority,omitempty"`
+		Query *string `json:"query,omitempty"`
+		RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+		State *MonitorState `json:"state,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Type *MonitorType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -681,7 +701,7 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.OverallState; v != nil && !v.IsValid() {
+	if v := all.OverallState; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -689,7 +709,7 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

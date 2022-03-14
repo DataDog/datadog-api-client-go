@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterPlotWidgetDefinitionType Type of the scatter plot widget.
 type ScatterPlotWidgetDefinitionType string

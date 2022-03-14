@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorSearchResult Holds search results.
 type MonitorSearchResult struct {
@@ -44,9 +47,11 @@ type MonitorSearchResult struct {
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorSearchResult instantiates a new MonitorSearchResult object
 // This constructor will assign default values to properties that have it defined,
@@ -64,7 +69,6 @@ func NewMonitorSearchResultWithDefaults() *MonitorSearchResult {
 	this := MonitorSearchResult{}
 	return &this
 }
-
 // GetClassification returns the Classification field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetClassification() string {
 	if o == nil || o.Classification == nil {
@@ -96,6 +100,7 @@ func (o *MonitorSearchResult) HasClassification() bool {
 func (o *MonitorSearchResult) SetClassification(v string) {
 	o.Classification = &v
 }
+
 
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetCreator() Creator {
@@ -129,6 +134,7 @@ func (o *MonitorSearchResult) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetId() int64 {
 	if o == nil || o.Id == nil {
@@ -161,6 +167,7 @@ func (o *MonitorSearchResult) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetLastTriggeredTs returns the LastTriggeredTs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorSearchResult) GetLastTriggeredTs() int64 {
 	if o == nil || o.LastTriggeredTs.Get() == nil {
@@ -174,7 +181,7 @@ func (o *MonitorSearchResult) GetLastTriggeredTs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorSearchResult) GetLastTriggeredTsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LastTriggeredTs.Get(), o.LastTriggeredTs.IsSet()
@@ -193,7 +200,6 @@ func (o *MonitorSearchResult) HasLastTriggeredTs() bool {
 func (o *MonitorSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
-
 // SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 func (o *MonitorSearchResult) SetLastTriggeredTsNil() {
 	o.LastTriggeredTs.Set(nil)
@@ -203,6 +209,7 @@ func (o *MonitorSearchResult) SetLastTriggeredTsNil() {
 func (o *MonitorSearchResult) UnsetLastTriggeredTs() {
 	o.LastTriggeredTs.Unset()
 }
+
 
 // GetMetrics returns the Metrics field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetMetrics() []string {
@@ -236,6 +243,7 @@ func (o *MonitorSearchResult) SetMetrics(v []string) {
 	o.Metrics = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetName() string {
 	if o == nil || o.Name == nil {
@@ -267,6 +275,7 @@ func (o *MonitorSearchResult) HasName() bool {
 func (o *MonitorSearchResult) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetNotifications returns the Notifications field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetNotifications() []MonitorSearchResultNotification {
@@ -300,6 +309,7 @@ func (o *MonitorSearchResult) SetNotifications(v []MonitorSearchResultNotificati
 	o.Notifications = &v
 }
 
+
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetOrgId() int64 {
 	if o == nil || o.OrgId == nil {
@@ -331,6 +341,7 @@ func (o *MonitorSearchResult) HasOrgId() bool {
 func (o *MonitorSearchResult) SetOrgId(v int64) {
 	o.OrgId = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetQuery() string {
@@ -364,6 +375,7 @@ func (o *MonitorSearchResult) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetScopes() []string {
 	if o == nil || o.Scopes == nil {
@@ -395,6 +407,7 @@ func (o *MonitorSearchResult) HasScopes() bool {
 func (o *MonitorSearchResult) SetScopes(v []string) {
 	o.Scopes = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetStatus() MonitorOverallStates {
@@ -428,6 +441,7 @@ func (o *MonitorSearchResult) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -460,6 +474,7 @@ func (o *MonitorSearchResult) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorSearchResult) GetType() MonitorType {
 	if o == nil || o.Type == nil {
@@ -491,6 +506,8 @@ func (o *MonitorSearchResult) HasType() bool {
 func (o *MonitorSearchResult) SetType(v MonitorType) {
 	o.Type = &v
 }
+
+
 
 func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -543,22 +560,23 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Classification  *string                            `json:"classification,omitempty"`
-		Creator         *Creator                           `json:"creator,omitempty"`
-		Id              *int64                             `json:"id,omitempty"`
-		LastTriggeredTs NullableInt64                      `json:"last_triggered_ts,omitempty"`
-		Metrics         *[]string                          `json:"metrics,omitempty"`
-		Name            *string                            `json:"name,omitempty"`
-		Notifications   *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
-		OrgId           *int64                             `json:"org_id,omitempty"`
-		Query           *string                            `json:"query,omitempty"`
-		Scopes          *[]string                          `json:"scopes,omitempty"`
-		Status          *MonitorOverallStates              `json:"status,omitempty"`
-		Tags            *[]string                          `json:"tags,omitempty"`
-		Type            *MonitorType                       `json:"type,omitempty"`
+		Classification *string `json:"classification,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
+		Metrics *[]string `json:"metrics,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Notifications *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
+		OrgId *int64 `json:"org_id,omitempty"`
+		Query *string `json:"query,omitempty"`
+		Scopes *[]string `json:"scopes,omitempty"`
+		Status *MonitorOverallStates `json:"status,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Type *MonitorType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -569,7 +587,7 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -577,7 +595,7 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

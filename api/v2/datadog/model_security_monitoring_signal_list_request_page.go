@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalListRequestPage The paging attributes for listing security signals.
 type SecurityMonitoringSignalListRequestPage struct {
@@ -19,9 +22,11 @@ type SecurityMonitoringSignalListRequestPage struct {
 	// The maximum number of security signals in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalListRequestPage instantiates a new SecurityMonitoringSignalListRequestPage object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSecurityMonitoringSignalListRequestPageWithDefaults() *SecurityMonitorin
 	this.Limit = &limit
 	return &this
 }
-
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestPage) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -75,6 +79,7 @@ func (o *SecurityMonitoringSignalListRequestPage) HasCursor() bool {
 func (o *SecurityMonitoringSignalListRequestPage) SetCursor(v string) {
 	o.Cursor = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestPage) GetLimit() int32 {
@@ -108,6 +113,8 @@ func (o *SecurityMonitoringSignalListRequestPage) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
+
 func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -126,11 +133,12 @@ func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Cursor *string `json:"cursor,omitempty"`
-		Limit  *int32  `json:"limit,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

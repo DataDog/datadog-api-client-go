@@ -11,20 +11,22 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorOverallStates The different states your monitor can be in.
 type MonitorOverallStates string
 
 // List of MonitorOverallStates
 const (
-	MONITOROVERALLSTATES_ALERT   MonitorOverallStates = "Alert"
+	MONITOROVERALLSTATES_ALERT MonitorOverallStates = "Alert"
 	MONITOROVERALLSTATES_IGNORED MonitorOverallStates = "Ignored"
 	MONITOROVERALLSTATES_NO_DATA MonitorOverallStates = "No Data"
-	MONITOROVERALLSTATES_OK      MonitorOverallStates = "OK"
+	MONITOROVERALLSTATES_OK MonitorOverallStates = "OK"
 	MONITOROVERALLSTATES_SKIPPED MonitorOverallStates = "Skipped"
 	MONITOROVERALLSTATES_UNKNOWN MonitorOverallStates = "Unknown"
-	MONITOROVERALLSTATES_WARN    MonitorOverallStates = "Warn"
+	MONITOROVERALLSTATES_WARN MonitorOverallStates = "Warn"
 )
 
 var allowedMonitorOverallStatesEnumValues = []MonitorOverallStates{

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DistributionWidgetDefinitionType Type of the distribution widget.
 type DistributionWidgetDefinitionType string

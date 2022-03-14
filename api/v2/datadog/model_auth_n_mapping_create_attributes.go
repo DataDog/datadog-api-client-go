@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingCreateAttributes Key/Value pair of attributes used for create request.
 type AuthNMappingCreateAttributes struct {
@@ -19,9 +22,11 @@ type AuthNMappingCreateAttributes struct {
 	// Value portion of a key/value pair of the attribute sent from the Identity Provider.
 	AttributeValue *string `json:"attribute_value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingCreateAttributes instantiates a new AuthNMappingCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAuthNMappingCreateAttributesWithDefaults() *AuthNMappingCreateAttributes
 	this := AuthNMappingCreateAttributes{}
 	return &this
 }
-
 // GetAttributeKey returns the AttributeKey field value if set, zero value otherwise.
 func (o *AuthNMappingCreateAttributes) GetAttributeKey() string {
 	if o == nil || o.AttributeKey == nil {
@@ -71,6 +75,7 @@ func (o *AuthNMappingCreateAttributes) HasAttributeKey() bool {
 func (o *AuthNMappingCreateAttributes) SetAttributeKey(v string) {
 	o.AttributeKey = &v
 }
+
 
 // GetAttributeValue returns the AttributeValue field value if set, zero value otherwise.
 func (o *AuthNMappingCreateAttributes) GetAttributeValue() string {
@@ -104,6 +109,8 @@ func (o *AuthNMappingCreateAttributes) SetAttributeValue(v string) {
 	o.AttributeValue = &v
 }
 
+
+
 func (o AuthNMappingCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o AuthNMappingCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuthNMappingCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey   *string `json:"attribute_key,omitempty"`
+		AttributeKey *string `json:"attribute_key,omitempty"`
 		AttributeValue *string `json:"attribute_value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // EventPriority The priority of the event. For example, `normal` or `low`.
 type EventPriority string
@@ -19,7 +21,7 @@ type EventPriority string
 // List of EventPriority
 const (
 	EVENTPRIORITY_NORMAL EventPriority = "normal"
-	EVENTPRIORITY_LOW    EventPriority = "low"
+	EVENTPRIORITY_LOW EventPriority = "low"
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{

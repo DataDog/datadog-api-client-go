@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TreeMapWidgetDefinitionType Type of the treemap widget.
 type TreeMapWidgetDefinitionType string

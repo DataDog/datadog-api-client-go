@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingCreateRelationships Relationship of AuthN Mapping create object to Role.
 type AuthNMappingCreateRelationships struct {
 	// Relationship to role.
 	Role *RelationshipToRole `json:"role,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingCreateRelationships instantiates a new AuthNMappingCreateRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewAuthNMappingCreateRelationshipsWithDefaults() *AuthNMappingCreateRelatio
 	this := AuthNMappingCreateRelationships{}
 	return &this
 }
-
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *AuthNMappingCreateRelationships) GetRole() RelationshipToRole {
 	if o == nil || o.Role == nil {
@@ -70,6 +74,8 @@ func (o *AuthNMappingCreateRelationships) SetRole(v RelationshipToRole) {
 	o.Role = &v
 }
 
+
+
 func (o AuthNMappingCreateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o AuthNMappingCreateRelationships) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AuthNMappingCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

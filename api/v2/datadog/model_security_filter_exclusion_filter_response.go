@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityFilterExclusionFilterResponse A single exclusion filter.
 type SecurityFilterExclusionFilterResponse struct {
@@ -19,9 +22,11 @@ type SecurityFilterExclusionFilterResponse struct {
 	// The exclusion filter query.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterExclusionFilterResponse instantiates a new SecurityFilterExclusionFilterResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSecurityFilterExclusionFilterResponseWithDefaults() *SecurityFilterExclu
 	this := SecurityFilterExclusionFilterResponse{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityFilterExclusionFilterResponse) GetName() string {
 	if o == nil || o.Name == nil {
@@ -71,6 +75,7 @@ func (o *SecurityFilterExclusionFilterResponse) HasName() bool {
 func (o *SecurityFilterExclusionFilterResponse) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityFilterExclusionFilterResponse) GetQuery() string {
@@ -104,6 +109,8 @@ func (o *SecurityFilterExclusionFilterResponse) SetQuery(v string) {
 	o.Query = &v
 }
 
+
+
 func (o SecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityFilterExclusionFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name  *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Query *string `json:"query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

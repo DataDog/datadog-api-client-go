@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UserCreateRequest Create a user.
 type UserCreateRequest struct {
 	// Object to create a user.
 	Data UserCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserCreateRequest instantiates a new UserCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewUserCreateRequestWithDefaults() *UserCreateRequest {
 	this := UserCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *UserCreateRequest) GetData() UserCreateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *UserCreateRequest) SetData(v UserCreateData) {
 	o.Data = v
 }
 
+
+
 func (o UserCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o UserCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UserCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleQueryCreate Query for matching rule.
 type SecurityMonitoringRuleQueryCreate struct {
@@ -29,9 +31,11 @@ type SecurityMonitoringRuleQueryCreate struct {
 	// Query to run on logs.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringRuleQueryCreate instantiates a new SecurityMonitoringRuleQueryCreate object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +54,6 @@ func NewSecurityMonitoringRuleQueryCreateWithDefaults() *SecurityMonitoringRuleQ
 	this := SecurityMonitoringRuleQueryCreate{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryCreate) GetAggregation() SecurityMonitoringRuleQueryAggregation {
 	if o == nil || o.Aggregation == nil {
@@ -82,6 +85,7 @@ func (o *SecurityMonitoringRuleQueryCreate) HasAggregation() bool {
 func (o *SecurityMonitoringRuleQueryCreate) SetAggregation(v SecurityMonitoringRuleQueryAggregation) {
 	o.Aggregation = &v
 }
+
 
 // GetDistinctFields returns the DistinctFields field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFields() []string {
@@ -115,6 +119,7 @@ func (o *SecurityMonitoringRuleQueryCreate) SetDistinctFields(v []string) {
 	o.DistinctFields = &v
 }
 
+
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFields() []string {
 	if o == nil || o.GroupByFields == nil {
@@ -146,6 +151,7 @@ func (o *SecurityMonitoringRuleQueryCreate) HasGroupByFields() bool {
 func (o *SecurityMonitoringRuleQueryCreate) SetGroupByFields(v []string) {
 	o.GroupByFields = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryCreate) GetMetric() string {
@@ -179,6 +185,7 @@ func (o *SecurityMonitoringRuleQueryCreate) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleQueryCreate) GetName() string {
 	if o == nil || o.Name == nil {
@@ -211,6 +218,7 @@ func (o *SecurityMonitoringRuleQueryCreate) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetQuery returns the Query field value
 func (o *SecurityMonitoringRuleQueryCreate) GetQuery() string {
 	if o == nil {
@@ -233,6 +241,8 @@ func (o *SecurityMonitoringRuleQueryCreate) GetQueryOk() (*string, bool) {
 func (o *SecurityMonitoringRuleQueryCreate) SetQuery(v string) {
 	o.Query = v
 }
+
+
 
 func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -262,18 +272,19 @@ func (o SecurityMonitoringRuleQueryCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Query *string `json:"query"`
 	}{}
 	all := struct {
-		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
-		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
-		Metric         *string                                 `json:"metric,omitempty"`
-		Name           *string                                 `json:"name,omitempty"`
-		Query          string                                  `json:"query"`
+		Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+		DistinctFields *[]string `json:"distinctFields,omitempty"`
+		GroupByFields *[]string `json:"groupByFields,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query string `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -291,7 +302,7 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregation; v != nil && !v.IsValid() {
+	if v := all.Aggregation; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

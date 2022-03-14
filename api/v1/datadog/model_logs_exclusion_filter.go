@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsExclusionFilter Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
 type LogsExclusionFilter struct {
@@ -22,9 +24,11 @@ type LogsExclusionFilter struct {
 	// a value of 1.0 excludes all logs matching the query.
 	SampleRate float64 `json:"sample_rate"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsExclusionFilter instantiates a new LogsExclusionFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewLogsExclusionFilterWithDefaults() *LogsExclusionFilter {
 	this := LogsExclusionFilter{}
 	return &this
 }
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsExclusionFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -76,6 +79,7 @@ func (o *LogsExclusionFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetSampleRate returns the SampleRate field value
 func (o *LogsExclusionFilter) GetSampleRate() float64 {
 	if o == nil {
@@ -99,6 +103,8 @@ func (o *LogsExclusionFilter) SetSampleRate(v float64) {
 	o.SampleRate = v
 }
 
+
+
 func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -115,13 +121,14 @@ func (o LogsExclusionFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		SampleRate *float64 `json:"sample_rate"`
 	}{}
 	all := struct {
-		Query      *string `json:"query,omitempty"`
+		Query *string `json:"query,omitempty"`
 		SampleRate float64 `json:"sample_rate"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

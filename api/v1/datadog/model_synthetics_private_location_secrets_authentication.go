@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsPrivateLocationSecretsAuthentication Authentication part of the secrets.
 type SyntheticsPrivateLocationSecretsAuthentication struct {
@@ -19,9 +22,11 @@ type SyntheticsPrivateLocationSecretsAuthentication struct {
 	// Secret access key for the private location.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsPrivateLocationSecretsAuthentication instantiates a new SyntheticsPrivateLocationSecretsAuthentication object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsPrivateLocationSecretsAuthenticationWithDefaults() *Synthetics
 	this := SyntheticsPrivateLocationSecretsAuthentication{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) GetId() string {
 	if o == nil || o.Id == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) HasId() bool {
 func (o *SyntheticsPrivateLocationSecretsAuthentication) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsAuthentication) GetKey() string {
@@ -104,6 +109,8 @@ func (o *SyntheticsPrivateLocationSecretsAuthentication) SetKey(v string) {
 	o.Key = &v
 }
 
+
+
 func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SyntheticsPrivateLocationSecretsAuthentication) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsPrivateLocationSecretsAuthentication) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id  *string `json:"id,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Key *string `json:"key,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

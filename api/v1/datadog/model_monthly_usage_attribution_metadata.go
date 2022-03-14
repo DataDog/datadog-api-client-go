@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonthlyUsageAttributionMetadata The object containing document metadata.
 type MonthlyUsageAttributionMetadata struct {
@@ -19,9 +22,11 @@ type MonthlyUsageAttributionMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonthlyUsageAttributionMetadata instantiates a new MonthlyUsageAttributionMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMonthlyUsageAttributionMetadataWithDefaults() *MonthlyUsageAttributionMe
 	this := MonthlyUsageAttributionMetadata{}
 	return &this
 }
-
 // GetAggregates returns the Aggregates field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionMetadata) GetAggregates() []UsageAttributionAggregatesBody {
 	if o == nil || o.Aggregates == nil {
@@ -71,6 +75,7 @@ func (o *MonthlyUsageAttributionMetadata) HasAggregates() bool {
 func (o *MonthlyUsageAttributionMetadata) SetAggregates(v []UsageAttributionAggregatesBody) {
 	o.Aggregates = &v
 }
+
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionMetadata) GetPagination() MonthlyUsageAttributionPagination {
@@ -104,6 +109,8 @@ func (o *MonthlyUsageAttributionMetadata) SetPagination(v MonthlyUsageAttributio
 	o.Pagination = &v
 }
 
+
+
 func (o MonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o MonthlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonthlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregates *[]UsageAttributionAggregatesBody  `json:"aggregates,omitempty"`
+		Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
 		Pagination *MonthlyUsageAttributionPagination `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

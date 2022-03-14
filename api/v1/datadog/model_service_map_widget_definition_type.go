@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceMapWidgetDefinitionType Type of the service map widget.
 type ServiceMapWidgetDefinitionType string

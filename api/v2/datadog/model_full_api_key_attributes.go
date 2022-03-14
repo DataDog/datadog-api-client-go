@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // FullAPIKeyAttributes Attributes of a full API key.
 type FullAPIKeyAttributes struct {
@@ -25,9 +28,11 @@ type FullAPIKeyAttributes struct {
 	// Name of the API key.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFullAPIKeyAttributes instantiates a new FullAPIKeyAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewFullAPIKeyAttributesWithDefaults() *FullAPIKeyAttributes {
 	this := FullAPIKeyAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -77,6 +81,7 @@ func (o *FullAPIKeyAttributes) HasCreatedAt() bool {
 func (o *FullAPIKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetKey() string {
@@ -110,6 +115,7 @@ func (o *FullAPIKeyAttributes) SetKey(v string) {
 	o.Key = &v
 }
 
+
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetLast4() string {
 	if o == nil || o.Last4 == nil {
@@ -141,6 +147,7 @@ func (o *FullAPIKeyAttributes) HasLast4() bool {
 func (o *FullAPIKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetModifiedAt() string {
@@ -174,6 +181,7 @@ func (o *FullAPIKeyAttributes) SetModifiedAt(v string) {
 	o.ModifiedAt = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *FullAPIKeyAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -206,6 +214,8 @@ func (o *FullAPIKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -233,14 +243,15 @@ func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *string `json:"created_at,omitempty"`
-		Key        *string `json:"key,omitempty"`
-		Last4      *string `json:"last4,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Key *string `json:"key,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
 		ModifiedAt *string `json:"modified_at,omitempty"`
-		Name       *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

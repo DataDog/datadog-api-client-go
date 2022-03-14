@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageDBMResponse Response containing the Database Monitoring usage for each hour for a given organization.
 type UsageDBMResponse struct {
 	// Get hourly usage for Database Monitoring
 	Usage *[]UsageDBMHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageDBMResponse instantiates a new UsageDBMResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageDBMResponseWithDefaults() *UsageDBMResponse {
 	this := UsageDBMResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageDBMResponse) GetUsage() []UsageDBMHour {
 	if o == nil || o.Usage == nil {
@@ -70,6 +74,8 @@ func (o *UsageDBMResponse) SetUsage(v []UsageDBMHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageDBMResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

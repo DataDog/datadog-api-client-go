@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceLevelObjectiveQuery A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 // to be used because this will sum up all request counts instead of averaging them, or taking the max or
@@ -22,9 +24,11 @@ type ServiceLevelObjectiveQuery struct {
 	// A Datadog metric query for good events.
 	Numerator string `json:"numerator"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceLevelObjectiveQuery instantiates a new ServiceLevelObjectiveQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewServiceLevelObjectiveQueryWithDefaults() *ServiceLevelObjectiveQuery {
 	this := ServiceLevelObjectiveQuery{}
 	return &this
 }
-
 // GetDenominator returns the Denominator field value
 func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 	if o == nil {
@@ -67,6 +70,7 @@ func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (*string, bool) {
 func (o *ServiceLevelObjectiveQuery) SetDenominator(v string) {
 	o.Denominator = v
 }
+
 
 // GetNumerator returns the Numerator field value
 func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
@@ -91,6 +95,8 @@ func (o *ServiceLevelObjectiveQuery) SetNumerator(v string) {
 	o.Numerator = v
 }
 
+
+
 func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -105,15 +111,16 @@ func (o ServiceLevelObjectiveQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *string `json:"denominator"`
-		Numerator   *string `json:"numerator"`
+		Numerator *string `json:"numerator"`
 	}{}
 	all := struct {
 		Denominator string `json:"denominator"`
-		Numerator   string `json:"numerator"`
+		Numerator string `json:"numerator"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

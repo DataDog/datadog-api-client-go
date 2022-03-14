@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveCreateRequestDefinition The definition of an archive.
 type LogsArchiveCreateRequestDefinition struct {
@@ -20,9 +22,11 @@ type LogsArchiveCreateRequestDefinition struct {
 	// The type of the resource. The value should always be archives.
 	Type string `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveCreateRequestDefinition instantiates a new LogsArchiveCreateRequestDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewLogsArchiveCreateRequestDefinitionWithDefaults() *LogsArchiveCreateReque
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestDefinition) GetAttributes() LogsArchiveCreateRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -76,6 +79,7 @@ func (o *LogsArchiveCreateRequestDefinition) SetAttributes(v LogsArchiveCreateRe
 	o.Attributes = &v
 }
 
+
 // GetType returns the Type field value
 func (o *LogsArchiveCreateRequestDefinition) GetType() string {
 	if o == nil {
@@ -99,6 +103,8 @@ func (o *LogsArchiveCreateRequestDefinition) SetType(v string) {
 	o.Type = v
 }
 
+
+
 func (o LogsArchiveCreateRequestDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -115,6 +121,7 @@ func (o LogsArchiveCreateRequestDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -122,7 +129,7 @@ func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err er
 	}{}
 	all := struct {
 		Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"`
-		Type       string                              `json:"type"`
+		Type string `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToSAMLAssertionAttribute AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttribute struct {
 	// Data of AuthN Mapping relationship to SAML Assertion Attribute.
 	Data RelationshipToSAMLAssertionAttributeData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToSAMLAssertionAttribute instantiates a new RelationshipToSAMLAssertionAttribute object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewRelationshipToSAMLAssertionAttributeWithDefaults() *RelationshipToSAMLAs
 	this := RelationshipToSAMLAssertionAttribute{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *RelationshipToSAMLAssertionAttribute) GetData() RelationshipToSAMLAssertionAttributeData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *RelationshipToSAMLAssertionAttribute) SetData(v RelationshipToSAMLAsser
 	o.Data = v
 }
 
+
+
 func (o RelationshipToSAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o RelationshipToSAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RelationshipToSAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

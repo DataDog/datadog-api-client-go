@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveDestinationGCSType Type of the GCS archive destination.
 type LogsArchiveDestinationGCSType string

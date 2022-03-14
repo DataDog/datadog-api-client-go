@@ -11,10 +11,11 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -28,8 +29,8 @@ type LogsArchivesApiService service
 type apiAddReadRoleToArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	archiveId string
+	body *RelationshipToRole
 }
 
 /*
@@ -40,8 +41,8 @@ func (a *LogsArchivesApiService) AddReadRoleToArchive(ctx _context.Context, arch
 	req := apiAddReadRoleToArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		archiveId: archiveId,
+		body: &body,
 	}
 
 	return req.ApiService.addReadRoleToArchiveExecute(req)
@@ -192,7 +193,7 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 type apiCreateLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	body       *LogsArchiveCreateRequest
+	body *LogsArchiveCreateRequest
 }
 
 /*
@@ -203,7 +204,7 @@ func (a *LogsArchivesApiService) CreateLogsArchive(ctx _context.Context, body Lo
 	req := apiCreateLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createLogsArchiveExecute(req)
@@ -354,7 +355,7 @@ func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchive
 type apiDeleteLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
 
 /*
@@ -365,7 +366,7 @@ func (a *LogsArchivesApiService) DeleteLogsArchive(ctx _context.Context, archive
 	req := apiDeleteLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
+		archiveId: archiveId,
 	}
 
 	return req.ApiService.deleteLogsArchiveExecute(req)
@@ -501,7 +502,7 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 type apiGetLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
 
 /*
@@ -512,7 +513,7 @@ func (a *LogsArchivesApiService) GetLogsArchive(ctx _context.Context, archiveId 
 	req := apiGetLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
+		archiveId: archiveId,
 	}
 
 	return req.ApiService.getLogsArchiveExecute(req)
@@ -795,7 +796,7 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 type apiListArchiveReadRolesRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
 
 /*
@@ -806,7 +807,7 @@ func (a *LogsArchivesApiService) ListArchiveReadRoles(ctx _context.Context, arch
 	req := apiListArchiveReadRolesRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
+		archiveId: archiveId,
 	}
 
 	return req.ApiService.listArchiveReadRolesExecute(req)
@@ -1088,8 +1089,8 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 type apiRemoveRoleFromArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	archiveId string
+	body *RelationshipToRole
 }
 
 /*
@@ -1100,8 +1101,8 @@ func (a *LogsArchivesApiService) RemoveRoleFromArchive(ctx _context.Context, arc
 	req := apiRemoveRoleFromArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		archiveId: archiveId,
+		body: &body,
 	}
 
 	return req.ApiService.removeRoleFromArchiveExecute(req)
@@ -1252,8 +1253,8 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 type apiUpdateLogsArchiveRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *LogsArchiveCreateRequest
+	archiveId string
+	body *LogsArchiveCreateRequest
 }
 
 /*
@@ -1267,8 +1268,8 @@ func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archive
 	req := apiUpdateLogsArchiveRequest{
 		ApiService: a,
 		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		archiveId: archiveId,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsArchiveExecute(req)
@@ -1430,7 +1431,7 @@ func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchive
 type apiUpdateLogsArchiveOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsArchivesApiService
-	body       *LogsArchiveOrder
+	body *LogsArchiveOrder
 }
 
 /*
@@ -1445,7 +1446,7 @@ func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context, bo
 	req := apiUpdateLogsArchiveOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsArchiveOrderExecute(req)

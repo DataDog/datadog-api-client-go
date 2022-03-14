@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CheckStatusWidgetDefinition Check status shows the current status or number of results for any check performed.
 type CheckStatusWidgetDefinition struct {
@@ -36,9 +38,11 @@ type CheckStatusWidgetDefinition struct {
 	// Type of the check status widget.
 	Type CheckStatusWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCheckStatusWidgetDefinition instantiates a new CheckStatusWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +65,6 @@ func NewCheckStatusWidgetDefinitionWithDefaults() *CheckStatusWidgetDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetCheck returns the Check field value
 func (o *CheckStatusWidgetDefinition) GetCheck() string {
 	if o == nil {
@@ -84,6 +87,7 @@ func (o *CheckStatusWidgetDefinition) GetCheckOk() (*string, bool) {
 func (o *CheckStatusWidgetDefinition) SetCheck(v string) {
 	o.Check = v
 }
+
 
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetGroup() string {
@@ -117,6 +121,7 @@ func (o *CheckStatusWidgetDefinition) SetGroup(v string) {
 	o.Group = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetGroupBy() []string {
 	if o == nil || o.GroupBy == nil {
@@ -149,6 +154,7 @@ func (o *CheckStatusWidgetDefinition) SetGroupBy(v []string) {
 	o.GroupBy = &v
 }
 
+
 // GetGrouping returns the Grouping field value
 func (o *CheckStatusWidgetDefinition) GetGrouping() WidgetGrouping {
 	if o == nil {
@@ -171,6 +177,7 @@ func (o *CheckStatusWidgetDefinition) GetGroupingOk() (*WidgetGrouping, bool) {
 func (o *CheckStatusWidgetDefinition) SetGrouping(v WidgetGrouping) {
 	o.Grouping = v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetTags() []string {
@@ -204,6 +211,7 @@ func (o *CheckStatusWidgetDefinition) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -235,6 +243,7 @@ func (o *CheckStatusWidgetDefinition) HasTime() bool {
 func (o *CheckStatusWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetTitle() string {
@@ -268,6 +277,7 @@ func (o *CheckStatusWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -299,6 +309,7 @@ func (o *CheckStatusWidgetDefinition) HasTitleAlign() bool {
 func (o *CheckStatusWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *CheckStatusWidgetDefinition) GetTitleSize() string {
@@ -332,6 +343,7 @@ func (o *CheckStatusWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *CheckStatusWidgetDefinition) GetType() CheckStatusWidgetDefinitionType {
 	if o == nil {
@@ -354,6 +366,8 @@ func (o *CheckStatusWidgetDefinition) GetTypeOk() (*CheckStatusWidgetDefinitionT
 func (o *CheckStatusWidgetDefinition) SetType(v CheckStatusWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -391,24 +405,25 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Check    *string                          `json:"check"`
-		Grouping *WidgetGrouping                  `json:"grouping"`
-		Type     *CheckStatusWidgetDefinitionType `json:"type"`
+		Check *string `json:"check"`
+		Grouping *WidgetGrouping `json:"grouping"`
+		Type *CheckStatusWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Check      string                          `json:"check"`
-		Group      *string                         `json:"group,omitempty"`
-		GroupBy    *[]string                       `json:"group_by,omitempty"`
-		Grouping   WidgetGrouping                  `json:"grouping"`
-		Tags       *[]string                       `json:"tags,omitempty"`
-		Time       *WidgetTime                     `json:"time,omitempty"`
-		Title      *string                         `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize  *string                         `json:"title_size,omitempty"`
-		Type       CheckStatusWidgetDefinitionType `json:"type"`
+		Check string `json:"check"`
+		Group *string `json:"group,omitempty"`
+		GroupBy *[]string `json:"group_by,omitempty"`
+		Grouping WidgetGrouping `json:"grouping"`
+		Tags *[]string `json:"tags,omitempty"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type CheckStatusWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -440,7 +455,7 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

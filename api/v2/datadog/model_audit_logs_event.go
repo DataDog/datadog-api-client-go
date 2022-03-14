@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuditLogsEvent Object description of an Audit Logs event after it is processed and stored by Datadog.
 type AuditLogsEvent struct {
@@ -21,9 +24,11 @@ type AuditLogsEvent struct {
 	// Type of the event.
 	Type *AuditLogsEventType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsEvent instantiates a new AuditLogsEvent object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewAuditLogsEventWithDefaults() *AuditLogsEvent {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuditLogsEvent) GetAttributes() AuditLogsEventAttributes {
 	if o == nil || o.Attributes == nil {
@@ -77,6 +81,7 @@ func (o *AuditLogsEvent) HasAttributes() bool {
 func (o *AuditLogsEvent) SetAttributes(v AuditLogsEventAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AuditLogsEvent) GetId() string {
@@ -110,6 +115,7 @@ func (o *AuditLogsEvent) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *AuditLogsEvent) GetType() AuditLogsEventType {
 	if o == nil || o.Type == nil {
@@ -142,6 +148,8 @@ func (o *AuditLogsEvent) SetType(v AuditLogsEventType) {
 	o.Type = &v
 }
 
+
+
 func (o AuditLogsEvent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -163,12 +171,13 @@ func (o AuditLogsEvent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuditLogsEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *AuditLogsEventAttributes `json:"attributes,omitempty"`
-		Id         *string                   `json:"id,omitempty"`
-		Type       *AuditLogsEventType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *AuditLogsEventType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -179,7 +188,7 @@ func (o *AuditLogsEvent) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

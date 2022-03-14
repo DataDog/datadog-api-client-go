@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsGlobalVariableAttributes Attributes of the global variable.
 type SyntheticsGlobalVariableAttributes struct {
 	// List of role identifiers that can be pulled from the Roles API.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsGlobalVariableAttributes instantiates a new SyntheticsGlobalVariableAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewSyntheticsGlobalVariableAttributesWithDefaults() *SyntheticsGlobalVariab
 	this := SyntheticsGlobalVariableAttributes{}
 	return &this
 }
-
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles == nil {
@@ -70,6 +74,8 @@ func (o *SyntheticsGlobalVariableAttributes) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = &v
 }
 
+
+
 func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

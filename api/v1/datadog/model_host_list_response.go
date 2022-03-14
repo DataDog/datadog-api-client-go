@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HostListResponse Response with Host information from Datadog.
 type HostListResponse struct {
@@ -21,9 +24,11 @@ type HostListResponse struct {
 	// Number of host returned.
 	TotalReturned *int64 `json:"total_returned,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHostListResponse instantiates a new HostListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewHostListResponseWithDefaults() *HostListResponse {
 	this := HostListResponse{}
 	return &this
 }
-
 // GetHostList returns the HostList field value if set, zero value otherwise.
 func (o *HostListResponse) GetHostList() []Host {
 	if o == nil || o.HostList == nil {
@@ -73,6 +77,7 @@ func (o *HostListResponse) HasHostList() bool {
 func (o *HostListResponse) SetHostList(v []Host) {
 	o.HostList = &v
 }
+
 
 // GetTotalMatching returns the TotalMatching field value if set, zero value otherwise.
 func (o *HostListResponse) GetTotalMatching() int64 {
@@ -106,6 +111,7 @@ func (o *HostListResponse) SetTotalMatching(v int64) {
 	o.TotalMatching = &v
 }
 
+
 // GetTotalReturned returns the TotalReturned field value if set, zero value otherwise.
 func (o *HostListResponse) GetTotalReturned() int64 {
 	if o == nil || o.TotalReturned == nil {
@@ -138,6 +144,8 @@ func (o *HostListResponse) SetTotalReturned(v int64) {
 	o.TotalReturned = &v
 }
 
+
+
 func (o HostListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostList      *[]Host `json:"host_list,omitempty"`
-		TotalMatching *int64  `json:"total_matching,omitempty"`
-		TotalReturned *int64  `json:"total_returned,omitempty"`
+		HostList *[]Host `json:"host_list,omitempty"`
+		TotalMatching *int64 `json:"total_matching,omitempty"`
+		TotalReturned *int64 `json:"total_returned,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingResponse AuthN Mapping response from the API.
 type AuthNMappingResponse struct {
 	// The AuthN Mapping object returned by API.
 	Data *AuthNMapping `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingResponse instantiates a new AuthNMappingResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewAuthNMappingResponseWithDefaults() *AuthNMappingResponse {
 	this := AuthNMappingResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AuthNMappingResponse) GetData() AuthNMapping {
 	if o == nil || o.Data == nil {
@@ -70,6 +74,8 @@ func (o *AuthNMappingResponse) SetData(v AuthNMapping) {
 	o.Data = &v
 }
 
+
+
 func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

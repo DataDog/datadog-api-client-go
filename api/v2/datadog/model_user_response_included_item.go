@@ -10,13 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserResponseIncludedItem - An object related to a user.
 type UserResponseIncludedItem struct {
 	Organization *Organization
-	Permission   *Permission
-	Role         *Role
+	Permission *Permission
+	Role *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -109,13 +112,16 @@ func (src UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.Organization)
 	}
 
+
 	if src.Permission != nil {
 		return json.Marshal(&src.Permission)
 	}
 
+
 	if src.Role != nil {
 		return json.Marshal(&src.Role)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -124,18 +130,21 @@ func (src UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *UserResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *UserResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.Organization != nil {
 		return obj.Organization
 	}
+
 
 	if obj.Permission != nil {
 		return obj.Permission
 	}
 
+
 	if obj.Role != nil {
 		return obj.Role
 	}
+
 
 	// all schemas are nil
 	return nil

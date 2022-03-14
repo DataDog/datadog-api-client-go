@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // LogContent JSON object containing all log attributes and their associated values.
 type LogContent struct {
@@ -32,9 +34,11 @@ type LogContent struct {
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogContent instantiates a new LogContent object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewLogContentWithDefaults() *LogContent {
 	this := LogContent{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *LogContent) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -84,6 +87,7 @@ func (o *LogContent) HasAttributes() bool {
 func (o *LogContent) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *LogContent) GetHost() string {
@@ -117,6 +121,7 @@ func (o *LogContent) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *LogContent) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -148,6 +153,7 @@ func (o *LogContent) HasMessage() bool {
 func (o *LogContent) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *LogContent) GetService() string {
@@ -181,6 +187,7 @@ func (o *LogContent) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *LogContent) GetTags() []interface{} {
 	if o == nil || o.Tags == nil {
@@ -212,6 +219,7 @@ func (o *LogContent) HasTags() bool {
 func (o *LogContent) SetTags(v []interface{}) {
 	o.Tags = v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *LogContent) GetTimestamp() time.Time {
@@ -245,6 +253,8 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+
+
 func (o LogContent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -275,15 +285,16 @@ func (o LogContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Host       *string                `json:"host,omitempty"`
-		Message    *string                `json:"message,omitempty"`
-		Service    *string                `json:"service,omitempty"`
-		Tags       []interface{}          `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Host *string `json:"host,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Tags []interface{} `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

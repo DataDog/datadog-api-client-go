@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RoleCloneRequest Request to create a role by cloning an existing role.
 type RoleCloneRequest struct {
 	// Data for the clone role request.
 	Data RoleClone `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleCloneRequest instantiates a new RoleCloneRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewRoleCloneRequestWithDefaults() *RoleCloneRequest {
 	this := RoleCloneRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *RoleCloneRequest) GetData() RoleClone {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *RoleCloneRequest) SetData(v RoleClone) {
 	o.Data = v
 }
 
+
+
 func (o RoleCloneRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o RoleCloneRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RoleCloneRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

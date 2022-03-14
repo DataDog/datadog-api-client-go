@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SunburstWidgetLegendInlineAutomatic Configuration of inline or automatic legends.
 type SunburstWidgetLegendInlineAutomatic struct {
@@ -22,9 +24,11 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	// Whether to show the legend inline or let it be automatically generated.
 	Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSunburstWidgetLegendInlineAutomatic instantiates a new SunburstWidgetLegendInlineAutomatic object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewSunburstWidgetLegendInlineAutomaticWithDefaults() *SunburstWidgetLegendI
 	this := SunburstWidgetLegendInlineAutomatic{}
 	return &this
 }
-
 // GetHidePercent returns the HidePercent field value if set, zero value otherwise.
 func (o *SunburstWidgetLegendInlineAutomatic) GetHidePercent() bool {
 	if o == nil || o.HidePercent == nil {
@@ -75,6 +78,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) HasHidePercent() bool {
 func (o *SunburstWidgetLegendInlineAutomatic) SetHidePercent(v bool) {
 	o.HidePercent = &v
 }
+
 
 // GetHideValue returns the HideValue field value if set, zero value otherwise.
 func (o *SunburstWidgetLegendInlineAutomatic) GetHideValue() bool {
@@ -108,6 +112,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) SetHideValue(v bool) {
 	o.HideValue = &v
 }
 
+
 // GetType returns the Type field value
 func (o *SunburstWidgetLegendInlineAutomatic) GetType() SunburstWidgetLegendInlineAutomaticType {
 	if o == nil {
@@ -131,6 +136,8 @@ func (o *SunburstWidgetLegendInlineAutomatic) SetType(v SunburstWidgetLegendInli
 	o.Type = v
 }
 
+
+
 func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -150,15 +157,16 @@ func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	}{}
 	all := struct {
-		HidePercent *bool                                   `json:"hide_percent,omitempty"`
-		HideValue   *bool                                   `json:"hide_value,omitempty"`
-		Type        SunburstWidgetLegendInlineAutomaticType `json:"type"`
+		HidePercent *bool `json:"hide_percent,omitempty"`
+		HideValue *bool `json:"hide_value,omitempty"`
+		Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

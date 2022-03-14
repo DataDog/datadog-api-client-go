@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
 type SyntheticsGlobalVariableParseTestOptions struct {
@@ -22,9 +24,11 @@ type SyntheticsGlobalVariableParseTestOptions struct {
 	// Property of the Synthetics Test Response to use for a Synthetics global variable.
 	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsGlobalVariableParseTestOptions instantiates a new SyntheticsGlobalVariableParseTestOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewSyntheticsGlobalVariableParseTestOptionsWithDefaults() *SyntheticsGlobal
 	this := SyntheticsGlobalVariableParseTestOptions{}
 	return &this
 }
-
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableParseTestOptions) GetField() string {
 	if o == nil || o.Field == nil {
@@ -77,6 +80,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) SetField(v string) {
 	o.Field = &v
 }
 
+
 // GetParser returns the Parser field value
 func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariableParser {
 	if o == nil {
@@ -99,6 +103,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVar
 func (o *SyntheticsGlobalVariableParseTestOptions) SetParser(v SyntheticsVariableParser) {
 	o.Parser = v
 }
+
 
 // GetType returns the Type field value
 func (o *SyntheticsGlobalVariableParseTestOptions) GetType() SyntheticsGlobalVariableParseTestOptionsType {
@@ -123,6 +128,8 @@ func (o *SyntheticsGlobalVariableParseTestOptions) SetType(v SyntheticsGlobalVar
 	o.Type = v
 }
 
+
+
 func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,16 +147,17 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Parser *SyntheticsVariableParser                     `json:"parser"`
-		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		Parser *SyntheticsVariableParser `json:"parser"`
+		Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	all := struct {
-		Field  *string                                      `json:"field,omitempty"`
-		Parser SyntheticsVariableParser                     `json:"parser"`
-		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		Field *string `json:"field,omitempty"`
+		Parser SyntheticsVariableParser `json:"parser"`
+		Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

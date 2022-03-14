@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RelationshipToPermissions Relationship to multiple permissions objects.
 type RelationshipToPermissions struct {
 	// Relationships to permission objects.
 	Data *[]RelationshipToPermissionData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToPermissions instantiates a new RelationshipToPermissions object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewRelationshipToPermissionsWithDefaults() *RelationshipToPermissions {
 	this := RelationshipToPermissions{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RelationshipToPermissions) GetData() []RelationshipToPermissionData {
 	if o == nil || o.Data == nil {
@@ -70,6 +74,8 @@ func (o *RelationshipToPermissions) SetData(v []RelationshipToPermissionData) {
 	o.Data = &v
 }
 
+
+
 func (o RelationshipToPermissions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o RelationshipToPermissions) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RelationshipToPermissions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

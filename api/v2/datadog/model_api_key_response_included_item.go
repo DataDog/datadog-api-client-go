@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // APIKeyResponseIncludedItem - An object related to an API key.
 type APIKeyResponseIncludedItem struct {
@@ -61,6 +64,7 @@ func (src APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.User)
 	}
 
+
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -68,10 +72,11 @@ func (src APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *APIKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *APIKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	// all schemas are nil
 	return nil

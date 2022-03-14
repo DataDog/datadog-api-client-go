@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // OrganizationSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
 type OrganizationSettingsSamlAutocreateUsersDomains struct {
@@ -19,9 +22,11 @@ type OrganizationSettingsSamlAutocreateUsersDomains struct {
 	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationSettingsSamlAutocreateUsersDomains instantiates a new OrganizationSettingsSamlAutocreateUsersDomains object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewOrganizationSettingsSamlAutocreateUsersDomainsWithDefaults() *Organizati
 	this := OrganizationSettingsSamlAutocreateUsersDomains{}
 	return &this
 }
-
 // GetDomains returns the Domains field value if set, zero value otherwise.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetDomains() []string {
 	if o == nil || o.Domains == nil {
@@ -71,6 +75,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) HasDomains() bool {
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetDomains(v []string) {
 	o.Domains = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetEnabled() bool {
@@ -104,6 +109,8 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
+
 func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Domains *[]string `json:"domains,omitempty"`
-		Enabled *bool     `json:"enabled,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // APIErrorResponse Error response object.
 type APIErrorResponse struct {
 	// Array of errors returned by the API.
 	Errors []string `json:"errors"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAPIErrorResponse instantiates a new APIErrorResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewAPIErrorResponseWithDefaults() *APIErrorResponse {
 	this := APIErrorResponse{}
 	return &this
 }
-
 // GetErrors returns the Errors field value
 func (o *APIErrorResponse) GetErrors() []string {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *APIErrorResponse) SetErrors(v []string) {
 	o.Errors = v
 }
 
+
+
 func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o APIErrorResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

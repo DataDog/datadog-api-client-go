@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsGlobalVariable Synthetics global variable.
 type SyntheticsGlobalVariable struct {
@@ -32,9 +34,11 @@ type SyntheticsGlobalVariable struct {
 	// Value of the global variable.
 	Value SyntheticsGlobalVariableValue `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsGlobalVariable instantiates a new SyntheticsGlobalVariable object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +60,6 @@ func NewSyntheticsGlobalVariableWithDefaults() *SyntheticsGlobalVariable {
 	this := SyntheticsGlobalVariable{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariable) GetAttributes() SyntheticsGlobalVariableAttributes {
 	if o == nil || o.Attributes == nil {
@@ -89,6 +92,7 @@ func (o *SyntheticsGlobalVariable) SetAttributes(v SyntheticsGlobalVariableAttri
 	o.Attributes = &v
 }
 
+
 // GetDescription returns the Description field value
 func (o *SyntheticsGlobalVariable) GetDescription() string {
 	if o == nil {
@@ -111,6 +115,7 @@ func (o *SyntheticsGlobalVariable) GetDescriptionOk() (*string, bool) {
 func (o *SyntheticsGlobalVariable) SetDescription(v string) {
 	o.Description = v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariable) GetId() string {
@@ -144,6 +149,7 @@ func (o *SyntheticsGlobalVariable) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetName returns the Name field value
 func (o *SyntheticsGlobalVariable) GetName() string {
 	if o == nil {
@@ -166,6 +172,7 @@ func (o *SyntheticsGlobalVariable) GetNameOk() (*string, bool) {
 func (o *SyntheticsGlobalVariable) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetParseTestOptions returns the ParseTestOptions field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariable) GetParseTestOptions() SyntheticsGlobalVariableParseTestOptions {
@@ -199,6 +206,7 @@ func (o *SyntheticsGlobalVariable) SetParseTestOptions(v SyntheticsGlobalVariabl
 	o.ParseTestOptions = &v
 }
 
+
 // GetParseTestPublicId returns the ParseTestPublicId field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariable) GetParseTestPublicId() string {
 	if o == nil || o.ParseTestPublicId == nil {
@@ -231,6 +239,7 @@ func (o *SyntheticsGlobalVariable) SetParseTestPublicId(v string) {
 	o.ParseTestPublicId = &v
 }
 
+
 // GetTags returns the Tags field value
 func (o *SyntheticsGlobalVariable) GetTags() []string {
 	if o == nil {
@@ -254,6 +263,7 @@ func (o *SyntheticsGlobalVariable) SetTags(v []string) {
 	o.Tags = v
 }
 
+
 // GetValue returns the Value field value
 func (o *SyntheticsGlobalVariable) GetValue() SyntheticsGlobalVariableValue {
 	if o == nil {
@@ -276,6 +286,8 @@ func (o *SyntheticsGlobalVariable) GetValueOk() (*SyntheticsGlobalVariableValue,
 func (o *SyntheticsGlobalVariable) SetValue(v SyntheticsGlobalVariableValue) {
 	o.Value = v
 }
+
+
 
 func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -305,23 +317,24 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Description *string                        `json:"description"`
-		Name        *string                        `json:"name"`
-		Tags        *[]string                      `json:"tags"`
-		Value       *SyntheticsGlobalVariableValue `json:"value"`
+		Description *string `json:"description"`
+		Name *string `json:"name"`
+		Tags *[]string `json:"tags"`
+		Value *SyntheticsGlobalVariableValue `json:"value"`
 	}{}
 	all := struct {
-		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
-		Description       string                                    `json:"description"`
-		Id                *string                                   `json:"id,omitempty"`
-		Name              string                                    `json:"name"`
-		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
-		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
-		Tags              []string                                  `json:"tags"`
-		Value             SyntheticsGlobalVariableValue             `json:"value"`
+		Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
+		Description string `json:"description"`
+		Id *string `json:"id,omitempty"`
+		Name string `json:"name"`
+		ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
+		ParseTestPublicId *string `json:"parse_test_public_id,omitempty"`
+		Tags []string `json:"tags"`
+		Value SyntheticsGlobalVariableValue `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

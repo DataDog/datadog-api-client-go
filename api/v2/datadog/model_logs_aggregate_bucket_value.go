@@ -10,12 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
-	String                             *string
-	Float64                            *float64
+	String *string
+	Float64 *float64
 	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -109,13 +112,16 @@ func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.String)
 	}
 
+
 	if src.Float64 != nil {
 		return json.Marshal(&src.Float64)
 	}
 
+
 	if src.LogsAggregateBucketValueTimeseries != nil {
 		return json.Marshal(&src.LogsAggregateBucketValueTimeseries)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -124,18 +130,21 @@ func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsAggregateBucketValue) GetActualInstance() interface{} {
+func (obj *LogsAggregateBucketValue) GetActualInstance() (interface{}) {
 	if obj.String != nil {
 		return obj.String
 	}
+
 
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
 
+
 	if obj.LogsAggregateBucketValueTimeseries != nil {
 		return obj.LogsAggregateBucketValueTimeseries
 	}
+
 
 	// all schemas are nil
 	return nil

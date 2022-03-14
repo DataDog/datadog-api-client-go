@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCorrection The response object of a list of SLO corrections.
 type SLOCorrection struct {
@@ -21,9 +24,11 @@ type SLOCorrection struct {
 	// SLO correction resource type.
 	Type *SLOCorrectionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrection instantiates a new SLOCorrection object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewSLOCorrectionWithDefaults() *SLOCorrection {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SLOCorrection) GetAttributes() SLOCorrectionResponseAttributes {
 	if o == nil || o.Attributes == nil {
@@ -77,6 +81,7 @@ func (o *SLOCorrection) HasAttributes() bool {
 func (o *SLOCorrection) SetAttributes(v SLOCorrectionResponseAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SLOCorrection) GetId() string {
@@ -110,6 +115,7 @@ func (o *SLOCorrection) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SLOCorrection) GetType() SLOCorrectionType {
 	if o == nil || o.Type == nil {
@@ -142,6 +148,8 @@ func (o *SLOCorrection) SetType(v SLOCorrectionType) {
 	o.Type = &v
 }
 
+
+
 func (o SLOCorrection) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -163,12 +171,13 @@ func (o SLOCorrection) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOCorrection) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                          `json:"id,omitempty"`
-		Type       *SLOCorrectionType               `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *SLOCorrectionType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -179,7 +188,7 @@ func (o *SLOCorrection) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

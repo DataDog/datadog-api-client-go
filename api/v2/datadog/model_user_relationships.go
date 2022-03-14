@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserRelationships Relationships of the user object.
 type UserRelationships struct {
 	// Relationship to roles.
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserRelationships instantiates a new UserRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUserRelationshipsWithDefaults() *UserRelationships {
 	this := UserRelationships{}
 	return &this
 }
-
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *UserRelationships) GetRoles() RelationshipToRoles {
 	if o == nil || o.Roles == nil {
@@ -70,6 +74,8 @@ func (o *UserRelationships) SetRoles(v RelationshipToRoles) {
 	o.Roles = &v
 }
 
+
+
 func (o UserRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UserRelationships) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UserRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

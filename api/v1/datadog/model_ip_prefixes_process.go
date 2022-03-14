@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IPPrefixesProcess Available prefix information for the Process endpoints.
 type IPPrefixesProcess struct {
@@ -19,9 +22,11 @@ type IPPrefixesProcess struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIPPrefixesProcess instantiates a new IPPrefixesProcess object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIPPrefixesProcessWithDefaults() *IPPrefixesProcess {
 	this := IPPrefixesProcess{}
 	return &this
 }
-
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesProcess) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -71,6 +75,7 @@ func (o *IPPrefixesProcess) HasPrefixesIpv4() bool {
 func (o *IPPrefixesProcess) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = &v
 }
+
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesProcess) GetPrefixesIpv6() []string {
@@ -104,6 +109,8 @@ func (o *IPPrefixesProcess) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = &v
 }
 
+
+
 func (o IPPrefixesProcess) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -121,6 +128,7 @@ func (o IPPrefixesProcess) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *IPPrefixesProcess) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

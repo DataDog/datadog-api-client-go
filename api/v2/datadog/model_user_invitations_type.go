@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UserInvitationsType User invitations type.
 type UserInvitationsType string

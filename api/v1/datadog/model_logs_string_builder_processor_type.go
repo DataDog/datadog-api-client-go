@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsStringBuilderProcessorType Type of logs string builder processor.
 type LogsStringBuilderProcessorType string

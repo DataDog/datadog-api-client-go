@@ -10,9 +10,9 @@ package datadog
 
 import (
 	"bytes"
-	"compress/gzip"
-	"compress/zlib"
 	"context"
+	"compress/zlib"
+	"compress/gzip"
 	"encoding/json"
 	"encoding/xml"
 	"errors"

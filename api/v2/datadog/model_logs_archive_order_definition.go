@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveOrderDefinition The definition of an archive order.
 type LogsArchiveOrderDefinition struct {
@@ -20,9 +22,11 @@ type LogsArchiveOrderDefinition struct {
 	// Type of the archive order definition.
 	Type LogsArchiveOrderDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveOrderDefinition instantiates a new LogsArchiveOrderDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewLogsArchiveOrderDefinitionWithDefaults() *LogsArchiveOrderDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *LogsArchiveOrderDefinition) GetAttributes() LogsArchiveOrderAttributes {
 	if o == nil {
@@ -67,6 +70,7 @@ func (o *LogsArchiveOrderDefinition) GetAttributesOk() (*LogsArchiveOrderAttribu
 func (o *LogsArchiveOrderDefinition) SetAttributes(v LogsArchiveOrderAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value
 func (o *LogsArchiveOrderDefinition) GetType() LogsArchiveOrderDefinitionType {
@@ -91,6 +95,8 @@ func (o *LogsArchiveOrderDefinition) SetType(v LogsArchiveOrderDefinitionType) {
 	o.Type = v
 }
 
+
+
 func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -105,15 +111,16 @@ func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Attributes *LogsArchiveOrderAttributes     `json:"attributes"`
-		Type       *LogsArchiveOrderDefinitionType `json:"type"`
+		Attributes *LogsArchiveOrderAttributes `json:"attributes"`
+		Type *LogsArchiveOrderDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Attributes LogsArchiveOrderAttributes     `json:"attributes"`
-		Type       LogsArchiveOrderDefinitionType `json:"type"`
+		Attributes LogsArchiveOrderAttributes `json:"attributes"`
+		Type LogsArchiveOrderDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

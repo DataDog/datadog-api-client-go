@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricTagConfigurationCreateRequest Request object that includes the metric that you would like to configure tags for.
 type MetricTagConfigurationCreateRequest struct {
 	// Object for a single metric to be configure tags on.
 	Data MetricTagConfigurationCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricTagConfigurationCreateRequest instantiates a new MetricTagConfigurationCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewMetricTagConfigurationCreateRequestWithDefaults() *MetricTagConfiguratio
 	this := MetricTagConfigurationCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *MetricTagConfigurationCreateRequest) GetData() MetricTagConfigurationCreateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *MetricTagConfigurationCreateRequest) SetData(v MetricTagConfigurationCr
 	o.Data = v
 }
 
+
+
 func (o MetricTagConfigurationCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o MetricTagConfigurationCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *MetricTagConfigurationCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

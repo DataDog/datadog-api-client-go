@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsListRequest The request for a logs list.
 type LogsListRequest struct {
@@ -24,9 +27,11 @@ type LogsListRequest struct {
 	// Sort parameters when querying logs.
 	Sort *LogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsListRequest instantiates a new LogsListRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewLogsListRequestWithDefaults() *LogsListRequest {
 	this := LogsListRequest{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsListRequest) GetFilter() LogsQueryFilter {
 	if o == nil || o.Filter == nil {
@@ -76,6 +80,7 @@ func (o *LogsListRequest) HasFilter() bool {
 func (o *LogsListRequest) SetFilter(v LogsQueryFilter) {
 	o.Filter = &v
 }
+
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *LogsListRequest) GetOptions() LogsQueryOptions {
@@ -109,6 +114,7 @@ func (o *LogsListRequest) SetOptions(v LogsQueryOptions) {
 	o.Options = &v
 }
 
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *LogsListRequest) GetPage() LogsListRequestPage {
 	if o == nil || o.Page == nil {
@@ -140,6 +146,7 @@ func (o *LogsListRequest) HasPage() bool {
 func (o *LogsListRequest) SetPage(v LogsListRequestPage) {
 	o.Page = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogsListRequest) GetSort() LogsSort {
@@ -173,6 +180,8 @@ func (o *LogsListRequest) SetSort(v LogsSort) {
 	o.Sort = &v
 }
 
+
+
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -197,13 +206,14 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *LogsQueryFilter     `json:"filter,omitempty"`
-		Options *LogsQueryOptions    `json:"options,omitempty"`
-		Page    *LogsListRequestPage `json:"page,omitempty"`
-		Sort    *LogsSort            `json:"sort,omitempty"`
+		Filter *LogsQueryFilter `json:"filter,omitempty"`
+		Options *LogsQueryOptions `json:"options,omitempty"`
+		Page *LogsListRequestPage `json:"page,omitempty"`
+		Sort *LogsSort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -214,7 +224,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if v := all.Sort; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

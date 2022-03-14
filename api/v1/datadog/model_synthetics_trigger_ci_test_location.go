@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTriggerCITestLocation Synthetics location.
 type SyntheticsTriggerCITestLocation struct {
@@ -19,9 +22,11 @@ type SyntheticsTriggerCITestLocation struct {
 	// Name of the location.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTriggerCITestLocation instantiates a new SyntheticsTriggerCITestLocation object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsTriggerCITestLocationWithDefaults() *SyntheticsTriggerCITestLo
 	this := SyntheticsTriggerCITestLocation{}
 	return &this
 }
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestLocation) GetId() int64 {
 	if o == nil || o.Id == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsTriggerCITestLocation) HasId() bool {
 func (o *SyntheticsTriggerCITestLocation) SetId(v int64) {
 	o.Id = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestLocation) GetName() string {
@@ -104,6 +109,8 @@ func (o *SyntheticsTriggerCITestLocation) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o SyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id   *int64  `json:"id,omitempty"`
+		Id *int64 `json:"id,omitempty"`
 		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

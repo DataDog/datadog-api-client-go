@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetLineType Type of lines displayed.
 type WidgetLineType string
@@ -20,7 +22,7 @@ type WidgetLineType string
 const (
 	WIDGETLINETYPE_DASHED WidgetLineType = "dashed"
 	WIDGETLINETYPE_DOTTED WidgetLineType = "dotted"
-	WIDGETLINETYPE_SOLID  WidgetLineType = "solid"
+	WIDGETLINETYPE_SOLID WidgetLineType = "solid"
 )
 
 var allowedWidgetLineTypeEnumValues = []WidgetLineType{

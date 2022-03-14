@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AWSTagFilterCreateRequest The objects used to set an AWS tag filter.
 type AWSTagFilterCreateRequest struct {
@@ -21,9 +24,11 @@ type AWSTagFilterCreateRequest struct {
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSTagFilterCreateRequest instantiates a new AWSTagFilterCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewAWSTagFilterCreateRequestWithDefaults() *AWSTagFilterCreateRequest {
 	this := AWSTagFilterCreateRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -73,6 +77,7 @@ func (o *AWSTagFilterCreateRequest) HasAccountId() bool {
 func (o *AWSTagFilterCreateRequest) SetAccountId(v string) {
 	o.AccountId = &v
 }
+
 
 // GetNamespace returns the Namespace field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetNamespace() AWSNamespace {
@@ -106,6 +111,7 @@ func (o *AWSTagFilterCreateRequest) SetNamespace(v AWSNamespace) {
 	o.Namespace = &v
 }
 
+
 // GetTagFilterStr returns the TagFilterStr field value if set, zero value otherwise.
 func (o *AWSTagFilterCreateRequest) GetTagFilterStr() string {
 	if o == nil || o.TagFilterStr == nil {
@@ -138,6 +144,8 @@ func (o *AWSTagFilterCreateRequest) SetTagFilterStr(v string) {
 	o.TagFilterStr = &v
 }
 
+
+
 func (o AWSTagFilterCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o AWSTagFilterCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId    *string       `json:"account_id,omitempty"`
-		Namespace    *AWSNamespace `json:"namespace,omitempty"`
-		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
+		AccountId *string `json:"account_id,omitempty"`
+		Namespace *AWSNamespace `json:"namespace,omitempty"`
+		TagFilterStr *string `json:"tag_filter_str,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -175,7 +184,7 @@ func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Namespace; v != nil && !v.IsValid() {
+	if v := all.Namespace; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

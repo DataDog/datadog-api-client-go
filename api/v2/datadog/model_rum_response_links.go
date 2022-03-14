@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMResponseLinks Links attributes.
 type RUMResponseLinks struct {
@@ -18,9 +21,11 @@ type RUMResponseLinks struct {
 	// POST endpoint.
 	Next *string `json:"next,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMResponseLinks instantiates a new RUMResponseLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewRUMResponseLinksWithDefaults() *RUMResponseLinks {
 	this := RUMResponseLinks{}
 	return &this
 }
-
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *RUMResponseLinks) GetNext() string {
 	if o == nil || o.Next == nil {
@@ -71,6 +75,8 @@ func (o *RUMResponseLinks) SetNext(v string) {
 	o.Next = &v
 }
 
+
+
 func (o RUMResponseLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -85,6 +91,7 @@ func (o RUMResponseLinks) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RUMResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

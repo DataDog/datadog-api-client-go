@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // IncidentServiceResponseAttributes The incident service's attributes from a response.
 type IncidentServiceResponseAttributes struct {
@@ -22,9 +24,11 @@ type IncidentServiceResponseAttributes struct {
 	// Name of the incident service.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentServiceResponseAttributes instantiates a new IncidentServiceResponseAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewIncidentServiceResponseAttributesWithDefaults() *IncidentServiceResponse
 	this := IncidentServiceResponseAttributes{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *IncidentServiceResponseAttributes) GetCreated() time.Time {
 	if o == nil || o.Created == nil {
@@ -74,6 +77,7 @@ func (o *IncidentServiceResponseAttributes) HasCreated() bool {
 func (o *IncidentServiceResponseAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IncidentServiceResponseAttributes) GetModified() time.Time {
@@ -107,6 +111,7 @@ func (o *IncidentServiceResponseAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *IncidentServiceResponseAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -139,6 +144,8 @@ func (o *IncidentServiceResponseAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o IncidentServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -160,12 +167,13 @@ func (o IncidentServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created  *time.Time `json:"created,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
 		Modified *time.Time `json:"modified,omitempty"`
-		Name     *string    `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

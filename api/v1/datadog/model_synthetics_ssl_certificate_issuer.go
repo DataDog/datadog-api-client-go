@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsSSLCertificateIssuer Object describing the issuer of a SSL certificate.
 type SyntheticsSSLCertificateIssuer struct {
@@ -27,9 +30,11 @@ type SyntheticsSSLCertificateIssuer struct {
 	// State Or Province Name that issued the certificate.
 	St *string `json:"ST,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsSSLCertificateIssuer instantiates a new SyntheticsSSLCertificateIssuer object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSyntheticsSSLCertificateIssuerWithDefaults() *SyntheticsSSLCertificateIs
 	this := SyntheticsSSLCertificateIssuer{}
 	return &this
 }
-
 // GetC returns the C field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetC() string {
 	if o == nil || o.C == nil {
@@ -79,6 +83,7 @@ func (o *SyntheticsSSLCertificateIssuer) HasC() bool {
 func (o *SyntheticsSSLCertificateIssuer) SetC(v string) {
 	o.C = &v
 }
+
 
 // GetCn returns the Cn field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetCn() string {
@@ -112,6 +117,7 @@ func (o *SyntheticsSSLCertificateIssuer) SetCn(v string) {
 	o.Cn = &v
 }
 
+
 // GetL returns the L field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetL() string {
 	if o == nil || o.L == nil {
@@ -143,6 +149,7 @@ func (o *SyntheticsSSLCertificateIssuer) HasL() bool {
 func (o *SyntheticsSSLCertificateIssuer) SetL(v string) {
 	o.L = &v
 }
+
 
 // GetO returns the O field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetO() string {
@@ -176,6 +183,7 @@ func (o *SyntheticsSSLCertificateIssuer) SetO(v string) {
 	o.O = &v
 }
 
+
 // GetOu returns the Ou field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetOu() string {
 	if o == nil || o.Ou == nil {
@@ -207,6 +215,7 @@ func (o *SyntheticsSSLCertificateIssuer) HasOu() bool {
 func (o *SyntheticsSSLCertificateIssuer) SetOu(v string) {
 	o.Ou = &v
 }
+
 
 // GetSt returns the St field value if set, zero value otherwise.
 func (o *SyntheticsSSLCertificateIssuer) GetSt() string {
@@ -240,6 +249,8 @@ func (o *SyntheticsSSLCertificateIssuer) SetSt(v string) {
 	o.St = &v
 }
 
+
+
 func (o SyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -270,13 +281,14 @@ func (o SyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsSSLCertificateIssuer) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		C  *string `json:"C,omitempty"`
+		C *string `json:"C,omitempty"`
 		Cn *string `json:"CN,omitempty"`
-		L  *string `json:"L,omitempty"`
-		O  *string `json:"O,omitempty"`
+		L *string `json:"L,omitempty"`
+		O *string `json:"O,omitempty"`
 		Ou *string `json:"OU,omitempty"`
 		St *string `json:"ST,omitempty"`
 	}{}

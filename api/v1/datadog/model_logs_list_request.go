@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsListRequest Object to send with the request to retrieve a list of logs from your Organization.
 type LogsListRequest struct {
@@ -33,9 +35,11 @@ type LogsListRequest struct {
 	// Timeframe to retrieve the log from.
 	Time LogsListRequestTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsListRequest instantiates a new LogsListRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +58,6 @@ func NewLogsListRequestWithDefaults() *LogsListRequest {
 	this := LogsListRequest{}
 	return &this
 }
-
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *LogsListRequest) GetIndex() string {
 	if o == nil || o.Index == nil {
@@ -86,6 +89,7 @@ func (o *LogsListRequest) HasIndex() bool {
 func (o *LogsListRequest) SetIndex(v string) {
 	o.Index = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogsListRequest) GetLimit() int32 {
@@ -119,6 +123,7 @@ func (o *LogsListRequest) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsListRequest) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -150,6 +155,7 @@ func (o *LogsListRequest) HasQuery() bool {
 func (o *LogsListRequest) SetQuery(v string) {
 	o.Query = &v
 }
+
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogsListRequest) GetSort() LogsSort {
@@ -183,6 +189,7 @@ func (o *LogsListRequest) SetSort(v LogsSort) {
 	o.Sort = &v
 }
 
+
 // GetStartAt returns the StartAt field value if set, zero value otherwise.
 func (o *LogsListRequest) GetStartAt() string {
 	if o == nil || o.StartAt == nil {
@@ -215,6 +222,7 @@ func (o *LogsListRequest) SetStartAt(v string) {
 	o.StartAt = &v
 }
 
+
 // GetTime returns the Time field value
 func (o *LogsListRequest) GetTime() LogsListRequestTime {
 	if o == nil {
@@ -237,6 +245,8 @@ func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool) {
 func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 	o.Time = v
 }
+
+
 
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -266,18 +276,19 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Time *LogsListRequestTime `json:"time"`
 	}{}
 	all := struct {
-		Index   *string             `json:"index,omitempty"`
-		Limit   *int32              `json:"limit,omitempty"`
-		Query   *string             `json:"query,omitempty"`
-		Sort    *LogsSort           `json:"sort,omitempty"`
-		StartAt *string             `json:"startAt,omitempty"`
-		Time    LogsListRequestTime `json:"time"`
+		Index *string `json:"index,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
+		Query *string `json:"query,omitempty"`
+		Sort *LogsSort `json:"sort,omitempty"`
+		StartAt *string `json:"startAt,omitempty"`
+		Time LogsListRequestTime `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -295,7 +306,7 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if v := all.Sort; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

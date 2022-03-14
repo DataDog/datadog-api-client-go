@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageSpecifiedCustomReportsResponse Returns available specified custom reports.
 type UsageSpecifiedCustomReportsResponse struct {
@@ -19,9 +22,11 @@ type UsageSpecifiedCustomReportsResponse struct {
 	// The object containing document metadata.
 	Meta *UsageSpecifiedCustomReportsMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSpecifiedCustomReportsResponse instantiates a new UsageSpecifiedCustomReportsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewUsageSpecifiedCustomReportsResponseWithDefaults() *UsageSpecifiedCustomR
 	this := UsageSpecifiedCustomReportsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UsageSpecifiedCustomReportsResponse) GetData() UsageSpecifiedCustomReportsData {
 	if o == nil || o.Data == nil {
@@ -71,6 +75,7 @@ func (o *UsageSpecifiedCustomReportsResponse) HasData() bool {
 func (o *UsageSpecifiedCustomReportsResponse) SetData(v UsageSpecifiedCustomReportsData) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UsageSpecifiedCustomReportsResponse) GetMeta() UsageSpecifiedCustomReportsMeta {
@@ -104,6 +109,8 @@ func (o *UsageSpecifiedCustomReportsResponse) SetMeta(v UsageSpecifiedCustomRepo
 	o.Meta = &v
 }
 
+
+
 func (o UsageSpecifiedCustomReportsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -121,6 +128,7 @@ func (o UsageSpecifiedCustomReportsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageSpecifiedCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

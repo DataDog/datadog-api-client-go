@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApmStatsQueryColumnType Column properties.
 type ApmStatsQueryColumnType struct {
@@ -24,9 +26,11 @@ type ApmStatsQueryColumnType struct {
 	// Widget sorting methods.
 	Order *WidgetSort `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApmStatsQueryColumnType instantiates a new ApmStatsQueryColumnType object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +49,6 @@ func NewApmStatsQueryColumnTypeWithDefaults() *ApmStatsQueryColumnType {
 	this := ApmStatsQueryColumnType{}
 	return &this
 }
-
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -77,6 +80,7 @@ func (o *ApmStatsQueryColumnType) HasAlias() bool {
 func (o *ApmStatsQueryColumnType) SetAlias(v string) {
 	o.Alias = &v
 }
+
 
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetCellDisplayMode() TableWidgetCellDisplayMode {
@@ -110,6 +114,7 @@ func (o *ApmStatsQueryColumnType) SetCellDisplayMode(v TableWidgetCellDisplayMod
 	o.CellDisplayMode = &v
 }
 
+
 // GetName returns the Name field value
 func (o *ApmStatsQueryColumnType) GetName() string {
 	if o == nil {
@@ -132,6 +137,7 @@ func (o *ApmStatsQueryColumnType) GetNameOk() (*string, bool) {
 func (o *ApmStatsQueryColumnType) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *ApmStatsQueryColumnType) GetOrder() WidgetSort {
@@ -165,6 +171,8 @@ func (o *ApmStatsQueryColumnType) SetOrder(v WidgetSort) {
 	o.Order = &v
 }
 
+
+
 func (o ApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -187,16 +195,17 @@ func (o ApmStatsQueryColumnType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Alias           *string                     `json:"alias,omitempty"`
+		Alias *string `json:"alias,omitempty"`
 		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		Name            string                      `json:"name"`
-		Order           *WidgetSort                 `json:"order,omitempty"`
+		Name string `json:"name"`
+		Order *WidgetSort `json:"order,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -214,7 +223,7 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+	if v := all.CellDisplayMode; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -222,7 +231,7 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
+	if v := all.Order; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

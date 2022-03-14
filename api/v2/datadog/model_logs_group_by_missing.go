@@ -10,11 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsGroupByMissing - The value to use for logs that don't have the facet used to group by
 type LogsGroupByMissing struct {
-	String  *string
+	String *string
 	Float64 *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -85,9 +88,11 @@ func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.String)
 	}
 
+
 	if src.Float64 != nil {
 		return json.Marshal(&src.Float64)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -96,14 +101,16 @@ func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsGroupByMissing) GetActualInstance() interface{} {
+func (obj *LogsGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.String != nil {
 		return obj.String
 	}
 
+
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
+
 
 	// all schemas are nil
 	return nil

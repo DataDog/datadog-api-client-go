@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
 type SyntheticsCIBatchMetadata struct {
@@ -19,9 +22,11 @@ type SyntheticsCIBatchMetadata struct {
 	// Git information.
 	Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsCIBatchMetadata instantiates a new SyntheticsCIBatchMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsCIBatchMetadataWithDefaults() *SyntheticsCIBatchMetadata {
 	this := SyntheticsCIBatchMetadata{}
 	return &this
 }
-
 // GetCi returns the Ci field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadata) GetCi() SyntheticsCIBatchMetadataCI {
 	if o == nil || o.Ci == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsCIBatchMetadata) HasCi() bool {
 func (o *SyntheticsCIBatchMetadata) SetCi(v SyntheticsCIBatchMetadataCI) {
 	o.Ci = &v
 }
+
 
 // GetGit returns the Git field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadata) GetGit() SyntheticsCIBatchMetadataGit {
@@ -104,6 +109,8 @@ func (o *SyntheticsCIBatchMetadata) SetGit(v SyntheticsCIBatchMetadataGit) {
 	o.Git = &v
 }
 
+
+
 func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+		Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`
 		Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

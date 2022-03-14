@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsDeleteTestsResponse Response object for deleting Synthetic tests.
 type SyntheticsDeleteTestsResponse struct {
@@ -18,9 +21,11 @@ type SyntheticsDeleteTestsResponse struct {
 	// the associated deletion timestamp.
 	DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsDeleteTestsResponse instantiates a new SyntheticsDeleteTestsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewSyntheticsDeleteTestsResponseWithDefaults() *SyntheticsDeleteTestsRespon
 	this := SyntheticsDeleteTestsResponse{}
 	return &this
 }
-
 // GetDeletedTests returns the DeletedTests field value if set, zero value otherwise.
 func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeletedTest {
 	if o == nil || o.DeletedTests == nil {
@@ -71,6 +75,8 @@ func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeletedTes
 	o.DeletedTests = &v
 }
 
+
+
 func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -85,6 +91,7 @@ func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SyntheticsDeleteTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

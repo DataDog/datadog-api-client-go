@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsMetricResponseCompute The compute rule to compute the log-based metric.
 type LogsMetricResponseCompute struct {
@@ -19,9 +22,11 @@ type LogsMetricResponseCompute struct {
 	// The path to the value the log-based metric will aggregate on (only used if the aggregation type is a "distribution").
 	Path *string `json:"path,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricResponseCompute instantiates a new LogsMetricResponseCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLogsMetricResponseComputeWithDefaults() *LogsMetricResponseCompute {
 	this := LogsMetricResponseCompute{}
 	return &this
 }
-
 // GetAggregationType returns the AggregationType field value if set, zero value otherwise.
 func (o *LogsMetricResponseCompute) GetAggregationType() LogsMetricResponseComputeAggregationType {
 	if o == nil || o.AggregationType == nil {
@@ -71,6 +75,7 @@ func (o *LogsMetricResponseCompute) HasAggregationType() bool {
 func (o *LogsMetricResponseCompute) SetAggregationType(v LogsMetricResponseComputeAggregationType) {
 	o.AggregationType = &v
 }
+
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsMetricResponseCompute) GetPath() string {
@@ -104,6 +109,8 @@ func (o *LogsMetricResponseCompute) SetPath(v string) {
 	o.Path = &v
 }
 
+
+
 func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
-		Path            *string                                   `json:"path,omitempty"`
+		Path *string `json:"path,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -137,7 +145,7 @@ func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.AggregationType; v != nil && !v.IsValid() {
+	if v := all.AggregationType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleUpdateAttributes Update an existing Cloud Workload Security Agent rule.
 type CloudWorkloadSecurityAgentRuleUpdateAttributes struct {
@@ -21,9 +24,11 @@ type CloudWorkloadSecurityAgentRuleUpdateAttributes struct {
 	// The SECL expression of the Agent rule.
 	Expression *string `json:"expression,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleUpdateAttributes instantiates a new CloudWorkloadSecurityAgentRuleUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewCloudWorkloadSecurityAgentRuleUpdateAttributesWithDefaults() *CloudWorkl
 	this := CloudWorkloadSecurityAgentRuleUpdateAttributes{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -73,6 +77,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) HasDescription() bool {
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetEnabled() bool {
@@ -106,6 +111,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) GetExpression() string {
 	if o == nil || o.Expression == nil {
@@ -138,6 +144,8 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) SetExpression(v string)
 	o.Expression = &v
 }
 
+
+
 func (o CloudWorkloadSecurityAgentRuleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o CloudWorkloadSecurityAgentRuleUpdateAttributes) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Description *string `json:"description,omitempty"`
-		Enabled     *bool   `json:"enabled,omitempty"`
-		Expression  *string `json:"expression,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Expression *string `json:"expression,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

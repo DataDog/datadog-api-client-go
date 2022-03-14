@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageCloudSecurityPostureManagementHour Cloud Security Posture Management usage for a given organization for a given hour.
 type UsageCloudSecurityPostureManagementHour struct {
@@ -32,9 +34,11 @@ type UsageCloudSecurityPostureManagementHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCloudSecurityPostureManagementHour instantiates a new UsageCloudSecurityPostureManagementHour object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewUsageCloudSecurityPostureManagementHourWithDefaults() *UsageCloudSecurit
 	this := UsageCloudSecurityPostureManagementHour{}
 	return &this
 }
-
 // GetAasHostCount returns the AasHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetAasHostCount() float64 {
 	if o == nil || o.AasHostCount.Get() == nil {
@@ -66,7 +69,7 @@ func (o *UsageCloudSecurityPostureManagementHour) GetAasHostCount() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageCloudSecurityPostureManagementHour) GetAasHostCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AasHostCount.Get(), o.AasHostCount.IsSet()
@@ -85,7 +88,6 @@ func (o *UsageCloudSecurityPostureManagementHour) HasAasHostCount() bool {
 func (o *UsageCloudSecurityPostureManagementHour) SetAasHostCount(v float64) {
 	o.AasHostCount.Set(&v)
 }
-
 // SetAasHostCountNil sets the value for AasHostCount to be an explicit nil
 func (o *UsageCloudSecurityPostureManagementHour) SetAasHostCountNil() {
 	o.AasHostCount.Set(nil)
@@ -95,6 +97,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetAasHostCountNil() {
 func (o *UsageCloudSecurityPostureManagementHour) UnsetAasHostCount() {
 	o.AasHostCount.Unset()
 }
+
 
 // GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetAzureHostCount() float64 {
@@ -109,7 +112,7 @@ func (o *UsageCloudSecurityPostureManagementHour) GetAzureHostCount() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageCloudSecurityPostureManagementHour) GetAzureHostCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AzureHostCount.Get(), o.AzureHostCount.IsSet()
@@ -128,7 +131,6 @@ func (o *UsageCloudSecurityPostureManagementHour) HasAzureHostCount() bool {
 func (o *UsageCloudSecurityPostureManagementHour) SetAzureHostCount(v float64) {
 	o.AzureHostCount.Set(&v)
 }
-
 // SetAzureHostCountNil sets the value for AzureHostCount to be an explicit nil
 func (o *UsageCloudSecurityPostureManagementHour) SetAzureHostCountNil() {
 	o.AzureHostCount.Set(nil)
@@ -138,6 +140,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetAzureHostCountNil() {
 func (o *UsageCloudSecurityPostureManagementHour) UnsetAzureHostCount() {
 	o.AzureHostCount.Unset()
 }
+
 
 // GetComplianceHostCount returns the ComplianceHostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetComplianceHostCount() float64 {
@@ -152,7 +155,7 @@ func (o *UsageCloudSecurityPostureManagementHour) GetComplianceHostCount() float
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageCloudSecurityPostureManagementHour) GetComplianceHostCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ComplianceHostCount.Get(), o.ComplianceHostCount.IsSet()
@@ -171,7 +174,6 @@ func (o *UsageCloudSecurityPostureManagementHour) HasComplianceHostCount() bool 
 func (o *UsageCloudSecurityPostureManagementHour) SetComplianceHostCount(v float64) {
 	o.ComplianceHostCount.Set(&v)
 }
-
 // SetComplianceHostCountNil sets the value for ComplianceHostCount to be an explicit nil
 func (o *UsageCloudSecurityPostureManagementHour) SetComplianceHostCountNil() {
 	o.ComplianceHostCount.Set(nil)
@@ -181,6 +183,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetComplianceHostCountNil() {
 func (o *UsageCloudSecurityPostureManagementHour) UnsetComplianceHostCount() {
 	o.ComplianceHostCount.Unset()
 }
+
 
 // GetContainerCount returns the ContainerCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetContainerCount() float64 {
@@ -195,7 +198,7 @@ func (o *UsageCloudSecurityPostureManagementHour) GetContainerCount() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageCloudSecurityPostureManagementHour) GetContainerCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ContainerCount.Get(), o.ContainerCount.IsSet()
@@ -214,7 +217,6 @@ func (o *UsageCloudSecurityPostureManagementHour) HasContainerCount() bool {
 func (o *UsageCloudSecurityPostureManagementHour) SetContainerCount(v float64) {
 	o.ContainerCount.Set(&v)
 }
-
 // SetContainerCountNil sets the value for ContainerCount to be an explicit nil
 func (o *UsageCloudSecurityPostureManagementHour) SetContainerCountNil() {
 	o.ContainerCount.Set(nil)
@@ -224,6 +226,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetContainerCountNil() {
 func (o *UsageCloudSecurityPostureManagementHour) UnsetContainerCount() {
 	o.ContainerCount.Unset()
 }
+
 
 // GetHostCount returns the HostCount field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageCloudSecurityPostureManagementHour) GetHostCount() float64 {
@@ -238,7 +241,7 @@ func (o *UsageCloudSecurityPostureManagementHour) GetHostCount() float64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageCloudSecurityPostureManagementHour) GetHostCountOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.HostCount.Get(), o.HostCount.IsSet()
@@ -257,7 +260,6 @@ func (o *UsageCloudSecurityPostureManagementHour) HasHostCount() bool {
 func (o *UsageCloudSecurityPostureManagementHour) SetHostCount(v float64) {
 	o.HostCount.Set(&v)
 }
-
 // SetHostCountNil sets the value for HostCount to be an explicit nil
 func (o *UsageCloudSecurityPostureManagementHour) SetHostCountNil() {
 	o.HostCount.Set(nil)
@@ -267,6 +269,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetHostCountNil() {
 func (o *UsageCloudSecurityPostureManagementHour) UnsetHostCount() {
 	o.HostCount.Unset()
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageCloudSecurityPostureManagementHour) GetHour() time.Time {
@@ -300,6 +303,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageCloudSecurityPostureManagementHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -332,6 +336,7 @@ func (o *UsageCloudSecurityPostureManagementHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageCloudSecurityPostureManagementHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -363,6 +368,8 @@ func (o *UsageCloudSecurityPostureManagementHour) HasPublicId() bool {
 func (o *UsageCloudSecurityPostureManagementHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -400,17 +407,18 @@ func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AasHostCount        NullableFloat64 `json:"aas_host_count,omitempty"`
-		AzureHostCount      NullableFloat64 `json:"azure_host_count,omitempty"`
+		AasHostCount NullableFloat64 `json:"aas_host_count,omitempty"`
+		AzureHostCount NullableFloat64 `json:"azure_host_count,omitempty"`
 		ComplianceHostCount NullableFloat64 `json:"compliance_host_count,omitempty"`
-		ContainerCount      NullableFloat64 `json:"container_count,omitempty"`
-		HostCount           NullableFloat64 `json:"host_count,omitempty"`
-		Hour                *time.Time      `json:"hour,omitempty"`
-		OrgName             *string         `json:"org_name,omitempty"`
-		PublicId            *string         `json:"public_id,omitempty"`
+		ContainerCount NullableFloat64 `json:"container_count,omitempty"`
+		HostCount NullableFloat64 `json:"host_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetStyle Widget style definition.
 type WidgetStyle struct {
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetStyle instantiates a new WidgetStyle object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewWidgetStyleWithDefaults() *WidgetStyle {
 	this := WidgetStyle{}
 	return &this
 }
-
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *WidgetStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -70,6 +74,8 @@ func (o *WidgetStyle) SetPalette(v string) {
 	o.Palette = &v
 }
 
+
+
 func (o WidgetStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o WidgetStyle) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *WidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

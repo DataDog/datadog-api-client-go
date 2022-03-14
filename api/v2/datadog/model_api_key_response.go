@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // APIKeyResponse Response for retrieving an API key.
 type APIKeyResponse struct {
@@ -19,9 +22,11 @@ type APIKeyResponse struct {
 	// Array of objects related to the API key.
 	Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAPIKeyResponse instantiates a new APIKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAPIKeyResponseWithDefaults() *APIKeyResponse {
 	this := APIKeyResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *APIKeyResponse) GetData() FullAPIKey {
 	if o == nil || o.Data == nil {
@@ -71,6 +75,7 @@ func (o *APIKeyResponse) HasData() bool {
 func (o *APIKeyResponse) SetData(v FullAPIKey) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *APIKeyResponse) GetIncluded() []APIKeyResponseIncludedItem {
@@ -104,6 +109,8 @@ func (o *APIKeyResponse) SetIncluded(v []APIKeyResponseIncludedItem) {
 	o.Included = &v
 }
 
+
+
 func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *APIKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *FullAPIKey                   `json:"data,omitempty"`
+		Data *FullAPIKey `json:"data,omitempty"`
 		Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

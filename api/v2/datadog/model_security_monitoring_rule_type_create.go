@@ -11,14 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleTypeCreate The rule type.
 type SecurityMonitoringRuleTypeCreate string
 
 // List of SecurityMonitoringRuleTypeCreate
 const (
-	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION     SecurityMonitoringRuleTypeCreate = "log_detection"
+	SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION SecurityMonitoringRuleTypeCreate = "log_detection"
 	SECURITYMONITORINGRULETYPECREATE_WORKLOAD_SECURITY SecurityMonitoringRuleTypeCreate = "workload_security"
 )
 

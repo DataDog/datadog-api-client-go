@@ -101,7 +101,6 @@ type Configuration struct {
 	HTTPClient         *http.Client
 	unstableOperations map[string]bool
 }
-
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
@@ -109,15 +108,15 @@ func NewConfiguration() *Configuration {
 		UserAgent:     getUserAgent(),
 		Debug:         false,
 		Compress:      true,
-		Servers: ServerConfigurations{
+		Servers:       ServerConfigurations{
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"site": {
 						Description:  "The regional site for Datadog customers.",
 						DefaultValue: "datadoghq.com",
-						EnumValues: []string{
+						EnumValues:   []string{
 							"datadoghq.com",
 							"us3.datadoghq.com",
 							"us5.datadoghq.com",
@@ -134,7 +133,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "{protocol}://{name}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"name": {
 						Description:  "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
@@ -148,7 +147,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables: map[string]ServerVariable{
+				Variables:   map[string]ServerVariable{
 					"site": {
 						Description:  "Any Datadog deployment.",
 						DefaultValue: "datadoghq.com",
@@ -165,11 +164,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
+							EnumValues:   []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -186,7 +185,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
@@ -200,7 +199,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables: map[string]ServerVariable{
+					Variables:   map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -214,28 +213,28 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"ListIncidents":                   false,
-			"CreateIncident":                  false,
-			"DeleteIncident":                  false,
-			"GetIncident":                     false,
-			"UpdateIncident":                  false,
-			"ListTagConfigurations":           false,
-			"DeleteTagConfiguration":          false,
-			"ListTagConfigurationByName":      false,
-			"UpdateTagConfiguration":          false,
-			"CreateTagConfiguration":          false,
-			"ListSecurityMonitoringSignals":   false,
+			"ListIncidents": false,
+			"CreateIncident": false,
+			"DeleteIncident": false,
+			"GetIncident": false,
+			"UpdateIncident": false,
+			"ListTagConfigurations": false,
+			"DeleteTagConfiguration": false,
+			"ListTagConfigurationByName": false,
+			"UpdateTagConfiguration": false,
+			"CreateTagConfiguration": false,
+			"ListSecurityMonitoringSignals": false,
 			"SearchSecurityMonitoringSignals": false,
-			"ListIncidentServices":            false,
-			"CreateIncidentService":           false,
-			"DeleteIncidentService":           false,
-			"GetIncidentService":              false,
-			"UpdateIncidentService":           false,
-			"ListIncidentTeams":               false,
-			"CreateIncidentTeam":              false,
-			"DeleteIncidentTeam":              false,
-			"GetIncidentTeam":                 false,
-			"UpdateIncidentTeam":              false,
+			"ListIncidentServices": false,
+			"CreateIncidentService": false,
+			"DeleteIncidentService": false,
+			"GetIncidentService": false,
+			"UpdateIncidentService": false,
+			"ListIncidentTeams": false,
+			"CreateIncidentTeam": false,
+			"DeleteIncidentTeam": false,
+			"GetIncidentTeam": false,
+			"UpdateIncidentTeam": false,
 		},
 	}
 	return cfg

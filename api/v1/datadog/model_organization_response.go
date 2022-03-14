@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // OrganizationResponse Response with an organization.
 type OrganizationResponse struct {
 	// Create, edit, and manage organizations.
 	Org *Organization `json:"org,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationResponse instantiates a new OrganizationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewOrganizationResponseWithDefaults() *OrganizationResponse {
 	this := OrganizationResponse{}
 	return &this
 }
-
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *OrganizationResponse) GetOrg() Organization {
 	if o == nil || o.Org == nil {
@@ -70,6 +74,8 @@ func (o *OrganizationResponse) SetOrg(v Organization) {
 	o.Org = &v
 }
 
+
+
 func (o OrganizationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o OrganizationResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *OrganizationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

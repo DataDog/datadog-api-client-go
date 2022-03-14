@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageBillableSummaryHour Response with monthly summary of data billed by Datadog.
 type UsageBillableSummaryHour struct {
@@ -32,9 +34,11 @@ type UsageBillableSummaryHour struct {
 	// Response with aggregated usage types.
 	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageBillableSummaryHour instantiates a new UsageBillableSummaryHour object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewUsageBillableSummaryHourWithDefaults() *UsageBillableSummaryHour {
 	this := UsageBillableSummaryHour{}
 	return &this
 }
-
 // GetBillingPlan returns the BillingPlan field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetBillingPlan() string {
 	if o == nil || o.BillingPlan == nil {
@@ -84,6 +87,7 @@ func (o *UsageBillableSummaryHour) HasBillingPlan() bool {
 func (o *UsageBillableSummaryHour) SetBillingPlan(v string) {
 	o.BillingPlan = &v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetEndDate() time.Time {
@@ -117,6 +121,7 @@ func (o *UsageBillableSummaryHour) SetEndDate(v time.Time) {
 	o.EndDate = &v
 }
 
+
 // GetNumOrgs returns the NumOrgs field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetNumOrgs() int64 {
 	if o == nil || o.NumOrgs == nil {
@@ -148,6 +153,7 @@ func (o *UsageBillableSummaryHour) HasNumOrgs() bool {
 func (o *UsageBillableSummaryHour) SetNumOrgs(v int64) {
 	o.NumOrgs = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetOrgName() string {
@@ -181,6 +187,7 @@ func (o *UsageBillableSummaryHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -212,6 +219,7 @@ func (o *UsageBillableSummaryHour) HasPublicId() bool {
 func (o *UsageBillableSummaryHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetRatioInMonth returns the RatioInMonth field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetRatioInMonth() float64 {
@@ -245,6 +253,7 @@ func (o *UsageBillableSummaryHour) SetRatioInMonth(v float64) {
 	o.RatioInMonth = &v
 }
 
+
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetStartDate() time.Time {
 	if o == nil || o.StartDate == nil {
@@ -277,6 +286,7 @@ func (o *UsageBillableSummaryHour) SetStartDate(v time.Time) {
 	o.StartDate = &v
 }
 
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryHour) GetUsage() UsageBillableSummaryKeys {
 	if o == nil || o.Usage == nil {
@@ -308,6 +318,8 @@ func (o *UsageBillableSummaryHour) HasUsage() bool {
 func (o *UsageBillableSummaryHour) SetUsage(v UsageBillableSummaryKeys) {
 	o.Usage = &v
 }
+
+
 
 func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -345,17 +357,18 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BillingPlan  *string                   `json:"billing_plan,omitempty"`
-		EndDate      *time.Time                `json:"end_date,omitempty"`
-		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
-		OrgName      *string                   `json:"org_name,omitempty"`
-		PublicId     *string                   `json:"public_id,omitempty"`
-		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
-		StartDate    *time.Time                `json:"start_date,omitempty"`
-		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
+		BillingPlan *string `json:"billing_plan,omitempty"`
+		EndDate *time.Time `json:"end_date,omitempty"`
+		NumOrgs *int64 `json:"num_orgs,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+		StartDate *time.Time `json:"start_date,omitempty"`
+		Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // PagerDutyService The PagerDuty service that is available for integration with Datadog.
 type PagerDutyService struct {
@@ -20,9 +22,11 @@ type PagerDutyService struct {
 	// Your service name associated with a service key in PagerDuty.
 	ServiceName string `json:"service_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPagerDutyService instantiates a new PagerDutyService object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewPagerDutyServiceWithDefaults() *PagerDutyService {
 	this := PagerDutyService{}
 	return &this
 }
-
 // GetServiceKey returns the ServiceKey field value
 func (o *PagerDutyService) GetServiceKey() string {
 	if o == nil {
@@ -65,6 +68,7 @@ func (o *PagerDutyService) GetServiceKeyOk() (*string, bool) {
 func (o *PagerDutyService) SetServiceKey(v string) {
 	o.ServiceKey = v
 }
+
 
 // GetServiceName returns the ServiceName field value
 func (o *PagerDutyService) GetServiceName() string {
@@ -89,6 +93,8 @@ func (o *PagerDutyService) SetServiceName(v string) {
 	o.ServiceName = v
 }
 
+
+
 func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,14 +109,15 @@ func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		ServiceKey  *string `json:"service_key"`
+		ServiceKey *string `json:"service_key"`
 		ServiceName *string `json:"service_name"`
 	}{}
 	all := struct {
-		ServiceKey  string `json:"service_key"`
+		ServiceKey string `json:"service_key"`
 		ServiceName string `json:"service_name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

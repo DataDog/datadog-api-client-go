@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RoleUpdateResponseData Role object returned by the API.
 type RoleUpdateResponseData struct {
@@ -24,9 +26,11 @@ type RoleUpdateResponseData struct {
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleUpdateResponseData instantiates a new RoleUpdateResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func NewRoleUpdateResponseDataWithDefaults() *RoleUpdateResponseData {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetAttributes() RoleUpdateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -79,6 +82,7 @@ func (o *RoleUpdateResponseData) HasAttributes() bool {
 func (o *RoleUpdateResponseData) SetAttributes(v RoleUpdateAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetId() string {
@@ -112,6 +116,7 @@ func (o *RoleUpdateResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *RoleUpdateResponseData) GetRelationships() RoleResponseRelationships {
 	if o == nil || o.Relationships == nil {
@@ -144,6 +149,7 @@ func (o *RoleUpdateResponseData) SetRelationships(v RoleResponseRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value
 func (o *RoleUpdateResponseData) GetType() RolesType {
 	if o == nil {
@@ -167,6 +173,8 @@ func (o *RoleUpdateResponseData) SetType(v RolesType) {
 	o.Type = v
 }
 
+
+
 func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -189,16 +197,17 @@ func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *RolesType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *RoleUpdateAttributes      `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
+		Attributes *RoleUpdateAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-		Type          RolesType                  `json:"type"`
+		Type RolesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.
 type MonitorFormulaAndFunctionQueryDefinition struct {
@@ -61,6 +64,7 @@ func (src MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 		return json.Marshal(&src.MonitorFormulaAndFunctionEventQueryDefinition)
 	}
 
+
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -68,10 +72,11 @@ func (src MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 }
 
 // Get the actual instance
-func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionEventQueryDefinition
 	}
+
 
 	// all schemas are nil
 	return nil

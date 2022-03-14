@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOResponseData A service level objective object includes a service level indicator, thresholds
 // for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -68,9 +71,11 @@ type SLOResponseData struct {
 	// The type of the service level objective.
 	Type *SLOType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOResponseData instantiates a new SLOResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -88,7 +93,6 @@ func NewSLOResponseDataWithDefaults() *SLOResponseData {
 	this := SLOResponseData{}
 	return &this
 }
-
 // GetConfiguredAlertIds returns the ConfiguredAlertIds field value if set, zero value otherwise.
 func (o *SLOResponseData) GetConfiguredAlertIds() []int64 {
 	if o == nil || o.ConfiguredAlertIds == nil {
@@ -120,6 +124,7 @@ func (o *SLOResponseData) HasConfiguredAlertIds() bool {
 func (o *SLOResponseData) SetConfiguredAlertIds(v []int64) {
 	o.ConfiguredAlertIds = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SLOResponseData) GetCreatedAt() int64 {
@@ -153,6 +158,7 @@ func (o *SLOResponseData) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *SLOResponseData) GetCreator() Creator {
 	if o == nil || o.Creator == nil {
@@ -185,6 +191,7 @@ func (o *SLOResponseData) SetCreator(v Creator) {
 	o.Creator = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOResponseData) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -198,7 +205,7 @@ func (o *SLOResponseData) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOResponseData) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -217,7 +224,6 @@ func (o *SLOResponseData) HasDescription() bool {
 func (o *SLOResponseData) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *SLOResponseData) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -227,6 +233,7 @@ func (o *SLOResponseData) SetDescriptionNil() {
 func (o *SLOResponseData) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *SLOResponseData) GetGroups() []string {
@@ -260,6 +267,7 @@ func (o *SLOResponseData) SetGroups(v []string) {
 	o.Groups = &v
 }
 
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SLOResponseData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -291,6 +299,7 @@ func (o *SLOResponseData) HasId() bool {
 func (o *SLOResponseData) SetId(v string) {
 	o.Id = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *SLOResponseData) GetModifiedAt() int64 {
@@ -324,6 +333,7 @@ func (o *SLOResponseData) SetModifiedAt(v int64) {
 	o.ModifiedAt = &v
 }
 
+
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise.
 func (o *SLOResponseData) GetMonitorIds() []int64 {
 	if o == nil || o.MonitorIds == nil {
@@ -355,6 +365,7 @@ func (o *SLOResponseData) HasMonitorIds() bool {
 func (o *SLOResponseData) SetMonitorIds(v []int64) {
 	o.MonitorIds = &v
 }
+
 
 // GetMonitorTags returns the MonitorTags field value if set, zero value otherwise.
 func (o *SLOResponseData) GetMonitorTags() []string {
@@ -388,6 +399,7 @@ func (o *SLOResponseData) SetMonitorTags(v []string) {
 	o.MonitorTags = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOResponseData) GetName() string {
 	if o == nil || o.Name == nil {
@@ -419,6 +431,7 @@ func (o *SLOResponseData) HasName() bool {
 func (o *SLOResponseData) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SLOResponseData) GetQuery() ServiceLevelObjectiveQuery {
@@ -452,6 +465,7 @@ func (o *SLOResponseData) SetQuery(v ServiceLevelObjectiveQuery) {
 	o.Query = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SLOResponseData) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -483,6 +497,7 @@ func (o *SLOResponseData) HasTags() bool {
 func (o *SLOResponseData) SetTags(v []string) {
 	o.Tags = &v
 }
+
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *SLOResponseData) GetThresholds() []SLOThreshold {
@@ -516,6 +531,7 @@ func (o *SLOResponseData) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SLOResponseData) GetType() SLOType {
 	if o == nil || o.Type == nil {
@@ -547,6 +563,8 @@ func (o *SLOResponseData) HasType() bool {
 func (o *SLOResponseData) SetType(v SLOType) {
 	o.Type = &v
 }
+
+
 
 func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -602,23 +620,24 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ConfiguredAlertIds *[]int64                    `json:"configured_alert_ids,omitempty"`
-		CreatedAt          *int64                      `json:"created_at,omitempty"`
-		Creator            *Creator                    `json:"creator,omitempty"`
-		Description        NullableString              `json:"description,omitempty"`
-		Groups             *[]string                   `json:"groups,omitempty"`
-		Id                 *string                     `json:"id,omitempty"`
-		ModifiedAt         *int64                      `json:"modified_at,omitempty"`
-		MonitorIds         *[]int64                    `json:"monitor_ids,omitempty"`
-		MonitorTags        *[]string                   `json:"monitor_tags,omitempty"`
-		Name               *string                     `json:"name,omitempty"`
-		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags               *[]string                   `json:"tags,omitempty"`
-		Thresholds         *[]SLOThreshold             `json:"thresholds,omitempty"`
-		Type               *SLOType                    `json:"type,omitempty"`
+		ConfiguredAlertIds *[]int64 `json:"configured_alert_ids,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Description NullableString `json:"description,omitempty"`
+		Groups *[]string `json:"groups,omitempty"`
+		Id *string `json:"id,omitempty"`
+		ModifiedAt *int64 `json:"modified_at,omitempty"`
+		MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+		MonitorTags *[]string `json:"monitor_tags,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Thresholds *[]SLOThreshold `json:"thresholds,omitempty"`
+		Type *SLOType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -629,7 +648,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

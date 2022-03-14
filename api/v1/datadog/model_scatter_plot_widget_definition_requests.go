@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
 type ScatterPlotWidgetDefinitionRequests struct {
@@ -21,9 +24,11 @@ type ScatterPlotWidgetDefinitionRequests struct {
 	// Updated scatter plot.
 	Y *ScatterPlotRequest `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewScatterPlotWidgetDefinitionRequests instantiates a new ScatterPlotWidgetDefinitionRequests object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewScatterPlotWidgetDefinitionRequestsWithDefaults() *ScatterPlotWidgetDefi
 	this := ScatterPlotWidgetDefinitionRequests{}
 	return &this
 }
-
 // GetTable returns the Table field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinitionRequests) GetTable() ScatterplotTableRequest {
 	if o == nil || o.Table == nil {
@@ -73,6 +77,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) HasTable() bool {
 func (o *ScatterPlotWidgetDefinitionRequests) SetTable(v ScatterplotTableRequest) {
 	o.Table = &v
 }
+
 
 // GetX returns the X field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinitionRequests) GetX() ScatterPlotRequest {
@@ -106,6 +111,7 @@ func (o *ScatterPlotWidgetDefinitionRequests) SetX(v ScatterPlotRequest) {
 	o.X = &v
 }
 
+
 // GetY returns the Y field value if set, zero value otherwise.
 func (o *ScatterPlotWidgetDefinitionRequests) GetY() ScatterPlotRequest {
 	if o == nil || o.Y == nil {
@@ -138,6 +144,8 @@ func (o *ScatterPlotWidgetDefinitionRequests) SetY(v ScatterPlotRequest) {
 	o.Y = &v
 }
 
+
+
 func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Table *ScatterplotTableRequest `json:"table,omitempty"`
-		X     *ScatterPlotRequest      `json:"x,omitempty"`
-		Y     *ScatterPlotRequest      `json:"y,omitempty"`
+		X *ScatterPlotRequest `json:"x,omitempty"`
+		Y *ScatterPlotRequest `json:"y,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

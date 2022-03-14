@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsPrivateLocationSecrets Secrets for the private location. Only present in the response when creating the private location.
 type SyntheticsPrivateLocationSecrets struct {
@@ -19,9 +22,11 @@ type SyntheticsPrivateLocationSecrets struct {
 	// Private key for the private location.
 	ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsPrivateLocationSecrets instantiates a new SyntheticsPrivateLocationSecrets object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsPrivateLocationSecretsWithDefaults() *SyntheticsPrivateLocatio
 	this := SyntheticsPrivateLocationSecrets{}
 	return &this
 }
-
 // GetAuthentication returns the Authentication field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecrets) GetAuthentication() SyntheticsPrivateLocationSecretsAuthentication {
 	if o == nil || o.Authentication == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsPrivateLocationSecrets) HasAuthentication() bool {
 func (o *SyntheticsPrivateLocationSecrets) SetAuthentication(v SyntheticsPrivateLocationSecretsAuthentication) {
 	o.Authentication = &v
 }
+
 
 // GetConfigDecryption returns the ConfigDecryption field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecrets) GetConfigDecryption() SyntheticsPrivateLocationSecretsConfigDecryption {
@@ -104,6 +109,8 @@ func (o *SyntheticsPrivateLocationSecrets) SetConfigDecryption(v SyntheticsPriva
 	o.ConfigDecryption = &v
 }
 
+
+
 func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SyntheticsPrivateLocationSecrets) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsPrivateLocationSecrets) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Authentication   *SyntheticsPrivateLocationSecretsAuthentication   `json:"authentication,omitempty"`
+		Authentication *SyntheticsPrivateLocationSecretsAuthentication `json:"authentication,omitempty"`
 		ConfigDecryption *SyntheticsPrivateLocationSecretsConfigDecryption `json:"config_decryption,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

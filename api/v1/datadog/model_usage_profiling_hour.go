@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageProfilingHour The number of profiled hosts for each hour for a given organization.
 type UsageProfilingHour struct {
@@ -26,9 +28,11 @@ type UsageProfilingHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageProfilingHour instantiates a new UsageProfilingHour object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func NewUsageProfilingHourWithDefaults() *UsageProfilingHour {
 	this := UsageProfilingHour{}
 	return &this
 }
-
 // GetAvgContainerAgentCount returns the AvgContainerAgentCount field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetAvgContainerAgentCount() int64 {
 	if o == nil || o.AvgContainerAgentCount == nil {
@@ -78,6 +81,7 @@ func (o *UsageProfilingHour) HasAvgContainerAgentCount() bool {
 func (o *UsageProfilingHour) SetAvgContainerAgentCount(v int64) {
 	o.AvgContainerAgentCount = &v
 }
+
 
 // GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetHostCount() int64 {
@@ -111,6 +115,7 @@ func (o *UsageProfilingHour) SetHostCount(v int64) {
 	o.HostCount = &v
 }
 
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -142,6 +147,7 @@ func (o *UsageProfilingHour) HasHour() bool {
 func (o *UsageProfilingHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetOrgName() string {
@@ -175,6 +181,7 @@ func (o *UsageProfilingHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageProfilingHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -207,6 +214,8 @@ func (o *UsageProfilingHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
+
 func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -234,14 +243,15 @@ func (o UsageProfilingHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageProfilingHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AvgContainerAgentCount *int64     `json:"avg_container_agent_count,omitempty"`
-		HostCount              *int64     `json:"host_count,omitempty"`
-		Hour                   *time.Time `json:"hour,omitempty"`
-		OrgName                *string    `json:"org_name,omitempty"`
-		PublicId               *string    `json:"public_id,omitempty"`
+		AvgContainerAgentCount *int64 `json:"avg_container_agent_count,omitempty"`
+		HostCount *int64 `json:"host_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

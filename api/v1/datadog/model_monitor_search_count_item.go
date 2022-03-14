@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorSearchCountItem A facet item.
 type MonitorSearchCountItem struct {
@@ -19,9 +22,11 @@ type MonitorSearchCountItem struct {
 	// The facet value.
 	Name interface{} `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorSearchCountItem instantiates a new MonitorSearchCountItem object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMonitorSearchCountItemWithDefaults() *MonitorSearchCountItem {
 	this := MonitorSearchCountItem{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *MonitorSearchCountItem) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -71,6 +75,7 @@ func (o *MonitorSearchCountItem) HasCount() bool {
 func (o *MonitorSearchCountItem) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorSearchCountItem) GetName() interface{} {
@@ -104,6 +109,8 @@ func (o *MonitorSearchCountItem) SetName(v interface{}) {
 	o.Name = v
 }
 
+
+
 func (o MonitorSearchCountItem) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o MonitorSearchCountItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorSearchCountItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Count *int64      `json:"count,omitempty"`
-		Name  interface{} `json:"name,omitempty"`
+		Count *int64 `json:"count,omitempty"`
+		Name interface{} `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

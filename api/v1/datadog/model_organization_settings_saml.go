@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML.
 // See the SAML documentation for more information about all SAML settings.
@@ -18,9 +21,11 @@ type OrganizationSettingsSaml struct {
 	// Whether or not SAML is enabled for this organization.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationSettingsSaml instantiates a new OrganizationSettingsSaml object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +43,6 @@ func NewOrganizationSettingsSamlWithDefaults() *OrganizationSettingsSaml {
 	this := OrganizationSettingsSaml{}
 	return &this
 }
-
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *OrganizationSettingsSaml) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -71,6 +75,8 @@ func (o *OrganizationSettingsSaml) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
+
 func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -85,6 +91,7 @@ func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

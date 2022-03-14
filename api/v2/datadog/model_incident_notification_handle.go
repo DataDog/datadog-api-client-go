@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentNotificationHandle A notification handle that will be notified at incident creation.
 type IncidentNotificationHandle struct {
@@ -19,9 +22,11 @@ type IncidentNotificationHandle struct {
 	// The email address used for the notification.
 	Handle *string `json:"handle,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentNotificationHandle instantiates a new IncidentNotificationHandle object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIncidentNotificationHandleWithDefaults() *IncidentNotificationHandle {
 	this := IncidentNotificationHandle{}
 	return &this
 }
-
 // GetDisplayName returns the DisplayName field value if set, zero value otherwise.
 func (o *IncidentNotificationHandle) GetDisplayName() string {
 	if o == nil || o.DisplayName == nil {
@@ -71,6 +75,7 @@ func (o *IncidentNotificationHandle) HasDisplayName() bool {
 func (o *IncidentNotificationHandle) SetDisplayName(v string) {
 	o.DisplayName = &v
 }
+
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *IncidentNotificationHandle) GetHandle() string {
@@ -104,6 +109,8 @@ func (o *IncidentNotificationHandle) SetHandle(v string) {
 	o.Handle = &v
 }
 
+
+
 func (o IncidentNotificationHandle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o IncidentNotificationHandle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		DisplayName *string `json:"display_name,omitempty"`
-		Handle      *string `json:"handle,omitempty"`
+		Handle *string `json:"handle,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

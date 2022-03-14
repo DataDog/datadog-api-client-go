@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleUpdateData Object for a single Agent rule.
 type CloudWorkloadSecurityAgentRuleUpdateData struct {
@@ -20,9 +22,11 @@ type CloudWorkloadSecurityAgentRuleUpdateData struct {
 	// The type of the resource. The value should always be `agent_rule`.
 	Type CloudWorkloadSecurityAgentRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleUpdateData instantiates a new CloudWorkloadSecurityAgentRuleUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewCloudWorkloadSecurityAgentRuleUpdateDataWithDefaults() *CloudWorkloadSec
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetAttributes() CloudWorkloadSecurityAgentRuleUpdateAttributes {
 	if o == nil {
@@ -67,6 +70,7 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetAttributesOk() (*CloudWork
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) SetAttributes(v CloudWorkloadSecurityAgentRuleUpdateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) GetType() CloudWorkloadSecurityAgentRuleType {
@@ -91,6 +95,8 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateData) SetType(v CloudWorkloadSecuri
 	o.Type = v
 }
 
+
+
 func (o CloudWorkloadSecurityAgentRuleUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -105,15 +111,16 @@ func (o CloudWorkloadSecurityAgentRuleUpdateData) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *CloudWorkloadSecurityAgentRuleUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *CloudWorkloadSecurityAgentRuleUpdateAttributes `json:"attributes"`
-		Type       *CloudWorkloadSecurityAgentRuleType             `json:"type"`
+		Type *CloudWorkloadSecurityAgentRuleType `json:"type"`
 	}{}
 	all := struct {
 		Attributes CloudWorkloadSecurityAgentRuleUpdateAttributes `json:"attributes"`
-		Type       CloudWorkloadSecurityAgentRuleType             `json:"type"`
+		Type CloudWorkloadSecurityAgentRuleType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

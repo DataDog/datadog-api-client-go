@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic browser test run.
 type SyntheticsGetBrowserTestLatestResultsResponse struct {
@@ -19,9 +22,11 @@ type SyntheticsGetBrowserTestLatestResultsResponse struct {
 	// Result of the latest browser test run.
 	Results *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsGetBrowserTestLatestResultsResponse instantiates a new SyntheticsGetBrowserTestLatestResultsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsGetBrowserTestLatestResultsResponseWithDefaults() *SyntheticsG
 	this := SyntheticsGetBrowserTestLatestResultsResponse{}
 	return &this
 }
-
 // GetLastTimestampFetched returns the LastTimestampFetched field value if set, zero value otherwise.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetLastTimestampFetched() int64 {
 	if o == nil || o.LastTimestampFetched == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) HasLastTimestampFetched(
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) SetLastTimestampFetched(v int64) {
 	o.LastTimestampFetched = &v
 }
+
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) GetResults() []SyntheticsBrowserTestResultShort {
@@ -104,6 +109,8 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) SetResults(v []Synthetic
 	o.Results = &v
 }
 
+
+
 func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, er
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LastTimestampFetched *int64                              `json:"last_timestamp_fetched,omitempty"`
-		Results              *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
+		LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
+		Results *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

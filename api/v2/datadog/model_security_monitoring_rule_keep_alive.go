@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleKeepAlive Once a signal is generated, the signal will remain “open” if a case is matched at least once within
 // this keep alive window.
@@ -19,16 +21,16 @@ type SecurityMonitoringRuleKeepAlive int32
 
 // List of SecurityMonitoringRuleKeepAlive
 const (
-	SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES    SecurityMonitoringRuleKeepAlive = 0
-	SECURITYMONITORINGRULEKEEPALIVE_ONE_MINUTE      SecurityMonitoringRuleKeepAlive = 60
-	SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES    SecurityMonitoringRuleKeepAlive = 300
-	SECURITYMONITORINGRULEKEEPALIVE_TEN_MINUTES     SecurityMonitoringRuleKeepAlive = 600
+	SECURITYMONITORINGRULEKEEPALIVE_ZERO_MINUTES SecurityMonitoringRuleKeepAlive = 0
+	SECURITYMONITORINGRULEKEEPALIVE_ONE_MINUTE SecurityMonitoringRuleKeepAlive = 60
+	SECURITYMONITORINGRULEKEEPALIVE_FIVE_MINUTES SecurityMonitoringRuleKeepAlive = 300
+	SECURITYMONITORINGRULEKEEPALIVE_TEN_MINUTES SecurityMonitoringRuleKeepAlive = 600
 	SECURITYMONITORINGRULEKEEPALIVE_FIFTEEN_MINUTES SecurityMonitoringRuleKeepAlive = 900
-	SECURITYMONITORINGRULEKEEPALIVE_THIRTY_MINUTES  SecurityMonitoringRuleKeepAlive = 1800
-	SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR        SecurityMonitoringRuleKeepAlive = 3600
-	SECURITYMONITORINGRULEKEEPALIVE_TWO_HOURS       SecurityMonitoringRuleKeepAlive = 7200
-	SECURITYMONITORINGRULEKEEPALIVE_THREE_HOURS     SecurityMonitoringRuleKeepAlive = 10800
-	SECURITYMONITORINGRULEKEEPALIVE_SIX_HOURS       SecurityMonitoringRuleKeepAlive = 21600
+	SECURITYMONITORINGRULEKEEPALIVE_THIRTY_MINUTES SecurityMonitoringRuleKeepAlive = 1800
+	SECURITYMONITORINGRULEKEEPALIVE_ONE_HOUR SecurityMonitoringRuleKeepAlive = 3600
+	SECURITYMONITORINGRULEKEEPALIVE_TWO_HOURS SecurityMonitoringRuleKeepAlive = 7200
+	SECURITYMONITORINGRULEKEEPALIVE_THREE_HOURS SecurityMonitoringRuleKeepAlive = 10800
+	SECURITYMONITORINGRULEKEEPALIVE_SIX_HOURS SecurityMonitoringRuleKeepAlive = 21600
 )
 
 var allowedSecurityMonitoringRuleKeepAliveEnumValues = []SecurityMonitoringRuleKeepAlive{

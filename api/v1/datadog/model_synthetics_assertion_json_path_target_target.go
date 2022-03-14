@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsAssertionJSONPathTargetTarget Composed target for `validatesJSONPath` operator.
 type SyntheticsAssertionJSONPathTargetTarget struct {
@@ -21,9 +24,11 @@ type SyntheticsAssertionJSONPathTargetTarget struct {
 	// The path target value to compare to.
 	TargetValue interface{} `json:"targetValue,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAssertionJSONPathTargetTarget instantiates a new SyntheticsAssertionJSONPathTargetTarget object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSyntheticsAssertionJSONPathTargetTargetWithDefaults() *SyntheticsAsserti
 	this := SyntheticsAssertionJSONPathTargetTarget{}
 	return &this
 }
-
 // GetJsonPath returns the JsonPath field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetJsonPath() string {
 	if o == nil || o.JsonPath == nil {
@@ -73,6 +77,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) HasJsonPath() bool {
 func (o *SyntheticsAssertionJSONPathTargetTarget) SetJsonPath(v string) {
 	o.JsonPath = &v
 }
+
 
 // GetOperator returns the Operator field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetOperator() string {
@@ -106,6 +111,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetOperator(v string) {
 	o.Operator = &v
 }
 
+
 // GetTargetValue returns the TargetValue field value if set, zero value otherwise.
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
 	if o == nil || o.TargetValue == nil {
@@ -138,6 +144,8 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetTargetValue(v interface{}) 
 	o.TargetValue = v
 }
 
+
+
 func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,11 +167,12 @@ func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		JsonPath    *string     `json:"jsonPath,omitempty"`
-		Operator    *string     `json:"operator,omitempty"`
+		JsonPath *string `json:"jsonPath,omitempty"`
+		Operator *string `json:"operator,omitempty"`
 		TargetValue interface{} `json:"targetValue,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApplicationKeyUpdateRequest Request used to update an application key.
 type ApplicationKeyUpdateRequest struct {
 	// Object used to update an application key.
 	Data ApplicationKeyUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApplicationKeyUpdateRequest instantiates a new ApplicationKeyUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewApplicationKeyUpdateRequestWithDefaults() *ApplicationKeyUpdateRequest {
 	this := ApplicationKeyUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *ApplicationKeyUpdateRequest) GetData() ApplicationKeyUpdateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *ApplicationKeyUpdateRequest) SetData(v ApplicationKeyUpdateData) {
 	o.Data = v
 }
 
+
+
 func (o ApplicationKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o ApplicationKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *ApplicationKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

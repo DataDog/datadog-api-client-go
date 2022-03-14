@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsGeoIPParserType Type of GeoIP parser.
 type LogsGeoIPParserType string

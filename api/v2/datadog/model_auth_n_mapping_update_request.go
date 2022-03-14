@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuthNMappingUpdateRequest Request to update an AuthN Mapping.
 type AuthNMappingUpdateRequest struct {
 	// Data for updating an AuthN Mapping.
 	Data AuthNMappingUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingUpdateRequest instantiates a new AuthNMappingUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewAuthNMappingUpdateRequestWithDefaults() *AuthNMappingUpdateRequest {
 	this := AuthNMappingUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *AuthNMappingUpdateRequest) GetData() AuthNMappingUpdateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *AuthNMappingUpdateRequest) SetData(v AuthNMappingUpdateData) {
 	o.Data = v
 }
 
+
+
 func (o AuthNMappingUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o AuthNMappingUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AuthNMappingUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

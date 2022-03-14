@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceAccountCreateData Object to create a service account User.
 type ServiceAccountCreateData struct {
@@ -22,9 +24,11 @@ type ServiceAccountCreateData struct {
 	// Users resource type.
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceAccountCreateData instantiates a new ServiceAccountCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func NewServiceAccountCreateDataWithDefaults() *ServiceAccountCreateData {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *ServiceAccountCreateData) GetAttributes() ServiceAccountCreateAttributes {
 	if o == nil {
@@ -69,6 +72,7 @@ func (o *ServiceAccountCreateData) GetAttributesOk() (*ServiceAccountCreateAttri
 func (o *ServiceAccountCreateData) SetAttributes(v ServiceAccountCreateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *ServiceAccountCreateData) GetRelationships() UserRelationships {
@@ -102,6 +106,7 @@ func (o *ServiceAccountCreateData) SetRelationships(v UserRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value
 func (o *ServiceAccountCreateData) GetType() UsersType {
 	if o == nil {
@@ -125,6 +130,8 @@ func (o *ServiceAccountCreateData) SetType(v UsersType) {
 	o.Type = v
 }
 
+
+
 func (o ServiceAccountCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -142,16 +149,17 @@ func (o ServiceAccountCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ServiceAccountCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *ServiceAccountCreateAttributes `json:"attributes"`
-		Type       *UsersType                      `json:"type"`
+		Type *UsersType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    ServiceAccountCreateAttributes `json:"attributes"`
-		Relationships *UserRelationships             `json:"relationships,omitempty"`
-		Type          UsersType                      `json:"type"`
+		Attributes ServiceAccountCreateAttributes `json:"attributes"`
+		Relationships *UserRelationships `json:"relationships,omitempty"`
+		Type UsersType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

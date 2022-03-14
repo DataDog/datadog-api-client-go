@@ -11,16 +11,18 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetMonitorSummaryDisplayFormat What to display on the widget.
 type WidgetMonitorSummaryDisplayFormat string
 
 // List of WidgetMonitorSummaryDisplayFormat
 const (
-	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS          WidgetMonitorSummaryDisplayFormat = "counts"
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS WidgetMonitorSummaryDisplayFormat = "counts"
 	WIDGETMONITORSUMMARYDISPLAYFORMAT_COUNTS_AND_LIST WidgetMonitorSummaryDisplayFormat = "countsAndList"
-	WIDGETMONITORSUMMARYDISPLAYFORMAT_LIST            WidgetMonitorSummaryDisplayFormat = "list"
+	WIDGETMONITORSUMMARYDISPLAYFORMAT_LIST WidgetMonitorSummaryDisplayFormat = "list"
 )
 
 var allowedWidgetMonitorSummaryDisplayFormatEnumValues = []WidgetMonitorSummaryDisplayFormat{

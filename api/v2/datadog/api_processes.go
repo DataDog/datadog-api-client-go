@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -27,20 +29,20 @@ type ProcessesApiService service
 type apiListProcessesRequest struct {
 	ctx        _context.Context
 	ApiService *ProcessesApiService
-	search     *string
-	tags       *string
-	from       *int64
-	to         *int64
-	pageLimit  *int32
+	search *string
+	tags *string
+	from *int64
+	to *int64
+	pageLimit *int32
 	pageCursor *string
 }
 
 type ListProcessesOptionalParameters struct {
-	Search     *string
-	Tags       *string
-	From       *int64
-	To         *int64
-	PageLimit  *int32
+	Search *string
+	Tags *string
+	From *int64
+	To *int64
+	PageLimit *int32
 	PageCursor *string
 }
 

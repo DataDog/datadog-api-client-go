@@ -10,11 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
-	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
+	IncidentFieldAttributesSingleValue *IncidentFieldAttributesSingleValue
 	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -85,9 +88,11 @@ func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.IncidentFieldAttributesSingleValue)
 	}
 
+
 	if src.IncidentFieldAttributesMultipleValue != nil {
 		return json.Marshal(&src.IncidentFieldAttributesMultipleValue)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -96,14 +101,16 @@ func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentFieldAttributes) GetActualInstance() interface{} {
+func (obj *IncidentFieldAttributes) GetActualInstance() (interface{}) {
 	if obj.IncidentFieldAttributesSingleValue != nil {
 		return obj.IncidentFieldAttributesSingleValue
 	}
 
+
 	if obj.IncidentFieldAttributesMultipleValue != nil {
 		return obj.IncidentFieldAttributesMultipleValue
 	}
+
 
 	// all schemas are nil
 	return nil

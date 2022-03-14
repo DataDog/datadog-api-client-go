@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AlertValueWidgetDefinitionType Type of the alert value widget.
 type AlertValueWidgetDefinitionType string

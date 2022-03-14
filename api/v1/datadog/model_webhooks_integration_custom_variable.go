@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WebhooksIntegrationCustomVariable Custom variable for Webhook integration.
 type WebhooksIntegrationCustomVariable struct {
@@ -23,9 +25,11 @@ type WebhooksIntegrationCustomVariable struct {
 	// Value of the custom variable.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWebhooksIntegrationCustomVariable instantiates a new WebhooksIntegrationCustomVariable object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +50,6 @@ func NewWebhooksIntegrationCustomVariableWithDefaults() *WebhooksIntegrationCust
 	this := WebhooksIntegrationCustomVariable{}
 	return &this
 }
-
 // GetIsSecret returns the IsSecret field value
 func (o *WebhooksIntegrationCustomVariable) GetIsSecret() bool {
 	if o == nil {
@@ -69,6 +72,7 @@ func (o *WebhooksIntegrationCustomVariable) GetIsSecretOk() (*bool, bool) {
 func (o *WebhooksIntegrationCustomVariable) SetIsSecret(v bool) {
 	o.IsSecret = v
 }
+
 
 // GetName returns the Name field value
 func (o *WebhooksIntegrationCustomVariable) GetName() string {
@@ -93,6 +97,7 @@ func (o *WebhooksIntegrationCustomVariable) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetValue returns the Value field value
 func (o *WebhooksIntegrationCustomVariable) GetValue() string {
 	if o == nil {
@@ -116,6 +121,8 @@ func (o *WebhooksIntegrationCustomVariable) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 func (o WebhooksIntegrationCustomVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -131,17 +138,18 @@ func (o WebhooksIntegrationCustomVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WebhooksIntegrationCustomVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		IsSecret *bool   `json:"is_secret"`
-		Name     *string `json:"name"`
-		Value    *string `json:"value"`
+		IsSecret *bool `json:"is_secret"`
+		Name *string `json:"name"`
+		Value *string `json:"value"`
 	}{}
 	all := struct {
-		IsSecret bool   `json:"is_secret"`
-		Name     string `json:"name"`
-		Value    string `json:"value"`
+		IsSecret bool `json:"is_secret"`
+		Name string `json:"name"`
+		Value string `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

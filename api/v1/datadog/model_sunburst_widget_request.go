@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SunburstWidgetRequest Request definition of sunburst widget.
 type SunburstWidgetRequest struct {
@@ -41,9 +44,11 @@ type SunburstWidgetRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSunburstWidgetRequest instantiates a new SunburstWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -61,7 +66,6 @@ func NewSunburstWidgetRequestWithDefaults() *SunburstWidgetRequest {
 	this := SunburstWidgetRequest{}
 	return &this
 }
-
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -93,6 +97,7 @@ func (o *SunburstWidgetRequest) HasApmQuery() bool {
 func (o *SunburstWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetAuditQuery() LogQueryDefinition {
@@ -126,6 +131,7 @@ func (o *SunburstWidgetRequest) SetAuditQuery(v LogQueryDefinition) {
 	o.AuditQuery = &v
 }
 
+
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
@@ -157,6 +163,7 @@ func (o *SunburstWidgetRequest) HasEventQuery() bool {
 func (o *SunburstWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
+
 
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetFormulas() []WidgetFormula {
@@ -190,6 +197,7 @@ func (o *SunburstWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = &v
 }
 
+
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -221,6 +229,7 @@ func (o *SunburstWidgetRequest) HasLogQuery() bool {
 func (o *SunburstWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
+
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetNetworkQuery() LogQueryDefinition {
@@ -254,6 +263,7 @@ func (o *SunburstWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
+
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -285,6 +295,7 @@ func (o *SunburstWidgetRequest) HasProcessQuery() bool {
 func (o *SunburstWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
+
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -318,6 +329,7 @@ func (o *SunburstWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -349,6 +361,7 @@ func (o *SunburstWidgetRequest) HasQ() bool {
 func (o *SunburstWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -382,6 +395,7 @@ func (o *SunburstWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition
 	o.Queries = &v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -413,6 +427,7 @@ func (o *SunburstWidgetRequest) HasResponseFormat() bool {
 func (o *SunburstWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -446,6 +461,7 @@ func (o *SunburstWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *SunburstWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -477,6 +493,8 @@ func (o *SunburstWidgetRequest) HasSecurityQuery() bool {
 func (o *SunburstWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
+
+
 
 func (o SunburstWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -529,22 +547,23 @@ func (o SunburstWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SunburstWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -555,7 +574,7 @@ func (o *SunburstWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

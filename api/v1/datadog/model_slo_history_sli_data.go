@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOHistorySLIData An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
 // This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
@@ -42,9 +45,11 @@ type SLOHistorySLIData struct {
 	// Deprecated
 	Uptime *float64 `json:"uptime,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOHistorySLIData instantiates a new SLOHistorySLIData object
 // This constructor will assign default values to properties that have it defined,
@@ -62,7 +67,6 @@ func NewSLOHistorySLIDataWithDefaults() *SLOHistorySLIData {
 	this := SLOHistorySLIData{}
 	return &this
 }
-
 // GetErrorBudgetRemaining returns the ErrorBudgetRemaining field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetErrorBudgetRemaining() map[string]float64 {
 	if o == nil || o.ErrorBudgetRemaining == nil {
@@ -94,6 +98,7 @@ func (o *SLOHistorySLIData) HasErrorBudgetRemaining() bool {
 func (o *SLOHistorySLIData) SetErrorBudgetRemaining(v map[string]float64) {
 	o.ErrorBudgetRemaining = v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetErrors() []SLOHistoryResponseErrorWithType {
@@ -127,6 +132,7 @@ func (o *SLOHistorySLIData) SetErrors(v []SLOHistoryResponseErrorWithType) {
 	o.Errors = &v
 }
 
+
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetGroup() string {
 	if o == nil || o.Group == nil {
@@ -158,6 +164,7 @@ func (o *SLOHistorySLIData) HasGroup() bool {
 func (o *SLOHistorySLIData) SetGroup(v string) {
 	o.Group = &v
 }
+
 
 // GetHistory returns the History field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetHistory() [][]float64 {
@@ -191,6 +198,7 @@ func (o *SLOHistorySLIData) SetHistory(v [][]float64) {
 	o.History = &v
 }
 
+
 // GetMonitorModified returns the MonitorModified field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetMonitorModified() int64 {
 	if o == nil || o.MonitorModified == nil {
@@ -222,6 +230,7 @@ func (o *SLOHistorySLIData) HasMonitorModified() bool {
 func (o *SLOHistorySLIData) SetMonitorModified(v int64) {
 	o.MonitorModified = &v
 }
+
 
 // GetMonitorType returns the MonitorType field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetMonitorType() string {
@@ -255,6 +264,7 @@ func (o *SLOHistorySLIData) SetMonitorType(v string) {
 	o.MonitorType = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetName() string {
 	if o == nil || o.Name == nil {
@@ -286,6 +296,7 @@ func (o *SLOHistorySLIData) HasName() bool {
 func (o *SLOHistorySLIData) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetPrecision() map[string]float64 {
@@ -319,6 +330,7 @@ func (o *SLOHistorySLIData) SetPrecision(v map[string]float64) {
 	o.Precision = v
 }
 
+
 // GetPreview returns the Preview field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetPreview() bool {
 	if o == nil || o.Preview == nil {
@@ -350,6 +362,7 @@ func (o *SLOHistorySLIData) HasPreview() bool {
 func (o *SLOHistorySLIData) SetPreview(v bool) {
 	o.Preview = &v
 }
+
 
 // GetSliValue returns the SliValue field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetSliValue() float64 {
@@ -383,6 +396,7 @@ func (o *SLOHistorySLIData) SetSliValue(v float64) {
 	o.SliValue = &v
 }
 
+
 // GetSpanPrecision returns the SpanPrecision field value if set, zero value otherwise.
 func (o *SLOHistorySLIData) GetSpanPrecision() float64 {
 	if o == nil || o.SpanPrecision == nil {
@@ -414,6 +428,7 @@ func (o *SLOHistorySLIData) HasSpanPrecision() bool {
 func (o *SLOHistorySLIData) SetSpanPrecision(v float64) {
 	o.SpanPrecision = &v
 }
+
 
 // GetUptime returns the Uptime field value if set, zero value otherwise.
 // Deprecated
@@ -449,6 +464,8 @@ func (o *SLOHistorySLIData) HasUptime() bool {
 func (o *SLOHistorySLIData) SetUptime(v float64) {
 	o.Uptime = &v
 }
+
+
 
 func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -498,21 +515,22 @@ func (o SLOHistorySLIData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOHistorySLIData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ErrorBudgetRemaining map[string]float64                 `json:"error_budget_remaining,omitempty"`
-		Errors               *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
-		Group                *string                            `json:"group,omitempty"`
-		History              *[][]float64                       `json:"history,omitempty"`
-		MonitorModified      *int64                             `json:"monitor_modified,omitempty"`
-		MonitorType          *string                            `json:"monitor_type,omitempty"`
-		Name                 *string                            `json:"name,omitempty"`
-		Precision            map[string]float64                 `json:"precision,omitempty"`
-		Preview              *bool                              `json:"preview,omitempty"`
-		SliValue             *float64                           `json:"sli_value,omitempty"`
-		SpanPrecision        *float64                           `json:"span_precision,omitempty"`
-		Uptime               *float64                           `json:"uptime,omitempty"`
+		ErrorBudgetRemaining map[string]float64 `json:"error_budget_remaining,omitempty"`
+		Errors *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
+		Group *string `json:"group,omitempty"`
+		History *[][]float64 `json:"history,omitempty"`
+		MonitorModified *int64 `json:"monitor_modified,omitempty"`
+		MonitorType *string `json:"monitor_type,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Precision map[string]float64 `json:"precision,omitempty"`
+		Preview *bool `json:"preview,omitempty"`
+		SliValue *float64 `json:"sli_value,omitempty"`
+		SpanPrecision *float64 `json:"span_precision,omitempty"`
+		Uptime *float64 `json:"uptime,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

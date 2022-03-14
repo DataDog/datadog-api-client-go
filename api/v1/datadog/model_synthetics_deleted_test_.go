@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // SyntheticsDeletedTest Object containing a deleted Synthetic test ID with the associated
 // deletion timestamp.
@@ -21,9 +23,11 @@ type SyntheticsDeletedTest struct {
 	// The Synthetic test ID deleted.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +45,6 @@ func NewSyntheticsDeletedTestWithDefaults() *SyntheticsDeletedTest {
 	this := SyntheticsDeletedTest{}
 	return &this
 }
-
 // GetDeletedAt returns the DeletedAt field value if set, zero value otherwise.
 func (o *SyntheticsDeletedTest) GetDeletedAt() time.Time {
 	if o == nil || o.DeletedAt == nil {
@@ -73,6 +76,7 @@ func (o *SyntheticsDeletedTest) HasDeletedAt() bool {
 func (o *SyntheticsDeletedTest) SetDeletedAt(v time.Time) {
 	o.DeletedAt = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsDeletedTest) GetPublicId() string {
@@ -106,6 +110,8 @@ func (o *SyntheticsDeletedTest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
+
 func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -124,11 +130,12 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		DeletedAt *time.Time `json:"deleted_at,omitempty"`
-		PublicId  *string    `json:"public_id,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

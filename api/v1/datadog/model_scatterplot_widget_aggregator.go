@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterplotWidgetAggregator Aggregator used for the request.
 type ScatterplotWidgetAggregator string
@@ -19,10 +21,10 @@ type ScatterplotWidgetAggregator string
 // List of ScatterplotWidgetAggregator
 const (
 	SCATTERPLOTWIDGETAGGREGATOR_AVERAGE ScatterplotWidgetAggregator = "avg"
-	SCATTERPLOTWIDGETAGGREGATOR_LAST    ScatterplotWidgetAggregator = "last"
+	SCATTERPLOTWIDGETAGGREGATOR_LAST ScatterplotWidgetAggregator = "last"
 	SCATTERPLOTWIDGETAGGREGATOR_MAXIMUM ScatterplotWidgetAggregator = "max"
 	SCATTERPLOTWIDGETAGGREGATOR_MINIMUM ScatterplotWidgetAggregator = "min"
-	SCATTERPLOTWIDGETAGGREGATOR_SUM     ScatterplotWidgetAggregator = "sum"
+	SCATTERPLOTWIDGETAGGREGATOR_SUM ScatterplotWidgetAggregator = "sum"
 )
 
 var allowedScatterplotWidgetAggregatorEnumValues = []ScatterplotWidgetAggregator{

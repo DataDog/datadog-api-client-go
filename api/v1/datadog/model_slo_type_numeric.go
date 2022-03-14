@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOTypeNumeric A numeric representation of the type of the service level objective (`0` for
 // monitor, `1` for metric). Always included in service level objective responses.
@@ -21,7 +23,7 @@ type SLOTypeNumeric int32
 // List of SLOTypeNumeric
 const (
 	SLOTYPENUMERIC_MONITOR SLOTypeNumeric = 0
-	SLOTYPENUMERIC_METRIC  SLOTypeNumeric = 1
+	SLOTYPENUMERIC_METRIC SLOTypeNumeric = 1
 )
 
 var allowedSLOTypeNumericEnumValues = []SLOTypeNumeric{

@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // PartialAPIKey Partial Datadog API key.
 type PartialAPIKey struct {
@@ -23,9 +26,11 @@ type PartialAPIKey struct {
 	// API Keys resource type.
 	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPartialAPIKey instantiates a new PartialAPIKey object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewPartialAPIKeyWithDefaults() *PartialAPIKey {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *PartialAPIKey) GetAttributes() PartialAPIKeyAttributes {
 	if o == nil || o.Attributes == nil {
@@ -79,6 +83,7 @@ func (o *PartialAPIKey) HasAttributes() bool {
 func (o *PartialAPIKey) SetAttributes(v PartialAPIKeyAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PartialAPIKey) GetId() string {
@@ -112,6 +117,7 @@ func (o *PartialAPIKey) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *PartialAPIKey) GetRelationships() APIKeyRelationships {
 	if o == nil || o.Relationships == nil {
@@ -143,6 +149,7 @@ func (o *PartialAPIKey) HasRelationships() bool {
 func (o *PartialAPIKey) SetRelationships(v APIKeyRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PartialAPIKey) GetType() APIKeysType {
@@ -176,6 +183,8 @@ func (o *PartialAPIKey) SetType(v APIKeysType) {
 	o.Type = &v
 }
 
+
+
 func (o PartialAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -200,13 +209,14 @@ func (o PartialAPIKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *PartialAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *PartialAPIKeyAttributes `json:"attributes,omitempty"`
-		Id            *string                  `json:"id,omitempty"`
-		Relationships *APIKeyRelationships     `json:"relationships,omitempty"`
-		Type          *APIKeysType             `json:"type,omitempty"`
+		Attributes *PartialAPIKeyAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Relationships *APIKeyRelationships `json:"relationships,omitempty"`
+		Type *APIKeysType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -217,7 +227,7 @@ func (o *PartialAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

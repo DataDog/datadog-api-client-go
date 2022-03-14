@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsGetAPITestLatestResultsResponse Object with the latest Synthetic API test run.
 type SyntheticsGetAPITestLatestResultsResponse struct {
@@ -19,9 +22,11 @@ type SyntheticsGetAPITestLatestResultsResponse struct {
 	// Result of the latest API test run.
 	Results *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsGetAPITestLatestResultsResponse instantiates a new SyntheticsGetAPITestLatestResultsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSyntheticsGetAPITestLatestResultsResponseWithDefaults() *SyntheticsGetAP
 	this := SyntheticsGetAPITestLatestResultsResponse{}
 	return &this
 }
-
 // GetLastTimestampFetched returns the LastTimestampFetched field value if set, zero value otherwise.
 func (o *SyntheticsGetAPITestLatestResultsResponse) GetLastTimestampFetched() int64 {
 	if o == nil || o.LastTimestampFetched == nil {
@@ -71,6 +75,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) HasLastTimestampFetched() bo
 func (o *SyntheticsGetAPITestLatestResultsResponse) SetLastTimestampFetched(v int64) {
 	o.LastTimestampFetched = &v
 }
+
 
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *SyntheticsGetAPITestLatestResultsResponse) GetResults() []SyntheticsAPITestResultShort {
@@ -104,6 +109,8 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPI
 	o.Results = &v
 }
 
+
+
 func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsGetAPITestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LastTimestampFetched *int64                          `json:"last_timestamp_fetched,omitempty"`
-		Results              *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+		LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
+		Results *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

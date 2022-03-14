@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuthNMappingRelationships All relationships associated with AuthN Mapping.
 type AuthNMappingRelationships struct {
@@ -19,9 +22,11 @@ type AuthNMappingRelationships struct {
 	// AuthN Mapping relationship to SAML Assertion Attribute.
 	SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingRelationships instantiates a new AuthNMappingRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewAuthNMappingRelationshipsWithDefaults() *AuthNMappingRelationships {
 	this := AuthNMappingRelationships{}
 	return &this
 }
-
 // GetRole returns the Role field value if set, zero value otherwise.
 func (o *AuthNMappingRelationships) GetRole() RelationshipToRole {
 	if o == nil || o.Role == nil {
@@ -71,6 +75,7 @@ func (o *AuthNMappingRelationships) HasRole() bool {
 func (o *AuthNMappingRelationships) SetRole(v RelationshipToRole) {
 	o.Role = &v
 }
+
 
 // GetSamlAssertionAttribute returns the SamlAssertionAttribute field value if set, zero value otherwise.
 func (o *AuthNMappingRelationships) GetSamlAssertionAttribute() RelationshipToSAMLAssertionAttribute {
@@ -104,6 +109,8 @@ func (o *AuthNMappingRelationships) SetSamlAssertionAttribute(v RelationshipToSA
 	o.SamlAssertionAttribute = &v
 }
 
+
+
 func (o AuthNMappingRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o AuthNMappingRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Role                   *RelationshipToRole                   `json:"role,omitempty"`
+		Role *RelationshipToRole `json:"role,omitempty"`
 		SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

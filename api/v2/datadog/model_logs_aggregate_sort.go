@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateSort A sort rule
 type LogsAggregateSort struct {
@@ -23,9 +26,11 @@ type LogsAggregateSort struct {
 	// The type of sorting algorithm
 	Type *LogsAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAggregateSort instantiates a new LogsAggregateSort object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewLogsAggregateSortWithDefaults() *LogsAggregateSort {
 	this.Type = &type_
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *LogsAggregateSort) GetAggregation() LogsAggregationFunction {
 	if o == nil || o.Aggregation == nil {
@@ -79,6 +83,7 @@ func (o *LogsAggregateSort) HasAggregation() bool {
 func (o *LogsAggregateSort) SetAggregation(v LogsAggregationFunction) {
 	o.Aggregation = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *LogsAggregateSort) GetMetric() string {
@@ -112,6 +117,7 @@ func (o *LogsAggregateSort) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *LogsAggregateSort) GetOrder() LogsSortOrder {
 	if o == nil || o.Order == nil {
@@ -143,6 +149,7 @@ func (o *LogsAggregateSort) HasOrder() bool {
 func (o *LogsAggregateSort) SetOrder(v LogsSortOrder) {
 	o.Order = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *LogsAggregateSort) GetType() LogsAggregateSortType {
@@ -176,6 +183,8 @@ func (o *LogsAggregateSort) SetType(v LogsAggregateSortType) {
 	o.Type = &v
 }
 
+
+
 func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -200,13 +209,14 @@ func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
-		Metric      *string                  `json:"metric,omitempty"`
-		Order       *LogsSortOrder           `json:"order,omitempty"`
-		Type        *LogsAggregateSortType   `json:"type,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Order *LogsSortOrder `json:"order,omitempty"`
+		Type *LogsAggregateSortType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -217,7 +227,7 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregation; v != nil && !v.IsValid() {
+	if v := all.Aggregation; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -225,7 +235,7 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
+	if v := all.Order; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -233,7 +243,7 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

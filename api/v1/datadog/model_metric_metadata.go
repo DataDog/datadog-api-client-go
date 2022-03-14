@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricMetadata Object with all metric related metadata.
 type MetricMetadata struct {
@@ -29,9 +32,11 @@ type MetricMetadata struct {
 	// Primary unit of the metric such as `byte` or `operation`.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricMetadata instantiates a new MetricMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -49,7 +54,6 @@ func NewMetricMetadataWithDefaults() *MetricMetadata {
 	this := MetricMetadata{}
 	return &this
 }
-
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *MetricMetadata) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -81,6 +85,7 @@ func (o *MetricMetadata) HasDescription() bool {
 func (o *MetricMetadata) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetIntegration returns the Integration field value if set, zero value otherwise.
 func (o *MetricMetadata) GetIntegration() string {
@@ -114,6 +119,7 @@ func (o *MetricMetadata) SetIntegration(v string) {
 	o.Integration = &v
 }
 
+
 // GetPerUnit returns the PerUnit field value if set, zero value otherwise.
 func (o *MetricMetadata) GetPerUnit() string {
 	if o == nil || o.PerUnit == nil {
@@ -145,6 +151,7 @@ func (o *MetricMetadata) HasPerUnit() bool {
 func (o *MetricMetadata) SetPerUnit(v string) {
 	o.PerUnit = &v
 }
+
 
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *MetricMetadata) GetShortName() string {
@@ -178,6 +185,7 @@ func (o *MetricMetadata) SetShortName(v string) {
 	o.ShortName = &v
 }
 
+
 // GetStatsdInterval returns the StatsdInterval field value if set, zero value otherwise.
 func (o *MetricMetadata) GetStatsdInterval() int64 {
 	if o == nil || o.StatsdInterval == nil {
@@ -209,6 +217,7 @@ func (o *MetricMetadata) HasStatsdInterval() bool {
 func (o *MetricMetadata) SetStatsdInterval(v int64) {
 	o.StatsdInterval = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricMetadata) GetType() string {
@@ -242,6 +251,7 @@ func (o *MetricMetadata) SetType(v string) {
 	o.Type = &v
 }
 
+
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *MetricMetadata) GetUnit() string {
 	if o == nil || o.Unit == nil {
@@ -273,6 +283,8 @@ func (o *MetricMetadata) HasUnit() bool {
 func (o *MetricMetadata) SetUnit(v string) {
 	o.Unit = &v
 }
+
+
 
 func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -307,16 +319,17 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Description    *string `json:"description,omitempty"`
-		Integration    *string `json:"integration,omitempty"`
-		PerUnit        *string `json:"per_unit,omitempty"`
-		ShortName      *string `json:"short_name,omitempty"`
-		StatsdInterval *int64  `json:"statsd_interval,omitempty"`
-		Type           *string `json:"type,omitempty"`
-		Unit           *string `json:"unit,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Integration *string `json:"integration,omitempty"`
+		PerUnit *string `json:"per_unit,omitempty"`
+		ShortName *string `json:"short_name,omitempty"`
+		StatsdInterval *int64 `json:"statsd_interval,omitempty"`
+		Type *string `json:"type,omitempty"`
+		Unit *string `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

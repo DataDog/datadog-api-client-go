@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UsageReportsType The type of reports.
 type UsageReportsType string

@@ -11,14 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMSort Sort parameters when querying events.
 type RUMSort string
 
 // List of RUMSort
 const (
-	RUMSORT_TIMESTAMP_ASCENDING  RUMSort = "timestamp"
+	RUMSORT_TIMESTAMP_ASCENDING RUMSort = "timestamp"
 	RUMSORT_TIMESTAMP_DESCENDING RUMSort = "-timestamp"
 )
 

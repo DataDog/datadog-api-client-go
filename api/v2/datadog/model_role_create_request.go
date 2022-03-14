@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RoleCreateRequest Create a role.
 type RoleCreateRequest struct {
 	// Data related to the creation of a role.
 	Data RoleCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleCreateRequest instantiates a new RoleCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewRoleCreateRequestWithDefaults() *RoleCreateRequest {
 	this := RoleCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *RoleCreateRequest) GetData() RoleCreateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *RoleCreateRequest) SetData(v RoleCreateData) {
 	o.Data = v
 }
 
+
+
 func (o RoleCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o RoleCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RoleCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

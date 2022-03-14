@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOWidgetDefinition Use the SLO and uptime widget to track your SLOs (Service Level Objectives) and uptime on screenboards and timeboards.
 type SLOWidgetDefinition struct {
@@ -36,9 +38,11 @@ type SLOWidgetDefinition struct {
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -62,7 +66,6 @@ func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	this.ViewType = viewType
 	return &this
 }
-
 // GetGlobalTimeTarget returns the GlobalTimeTarget field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetGlobalTimeTarget() string {
 	if o == nil || o.GlobalTimeTarget == nil {
@@ -94,6 +97,7 @@ func (o *SLOWidgetDefinition) HasGlobalTimeTarget() bool {
 func (o *SLOWidgetDefinition) SetGlobalTimeTarget(v string) {
 	o.GlobalTimeTarget = &v
 }
+
 
 // GetShowErrorBudget returns the ShowErrorBudget field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetShowErrorBudget() bool {
@@ -127,6 +131,7 @@ func (o *SLOWidgetDefinition) SetShowErrorBudget(v bool) {
 	o.ShowErrorBudget = &v
 }
 
+
 // GetSloId returns the SloId field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetSloId() string {
 	if o == nil || o.SloId == nil {
@@ -158,6 +163,7 @@ func (o *SLOWidgetDefinition) HasSloId() bool {
 func (o *SLOWidgetDefinition) SetSloId(v string) {
 	o.SloId = &v
 }
+
 
 // GetTimeWindows returns the TimeWindows field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTimeWindows() []WidgetTimeWindows {
@@ -191,6 +197,7 @@ func (o *SLOWidgetDefinition) SetTimeWindows(v []WidgetTimeWindows) {
 	o.TimeWindows = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -222,6 +229,7 @@ func (o *SLOWidgetDefinition) HasTitle() bool {
 func (o *SLOWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -255,6 +263,7 @@ func (o *SLOWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -287,6 +296,7 @@ func (o *SLOWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 	if o == nil {
@@ -309,6 +319,7 @@ func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool) {
 func (o *SLOWidgetDefinition) SetType(v SLOWidgetDefinitionType) {
 	o.Type = v
 }
+
 
 // GetViewMode returns the ViewMode field value if set, zero value otherwise.
 func (o *SLOWidgetDefinition) GetViewMode() WidgetViewMode {
@@ -342,6 +353,7 @@ func (o *SLOWidgetDefinition) SetViewMode(v WidgetViewMode) {
 	o.ViewMode = &v
 }
 
+
 // GetViewType returns the ViewType field value
 func (o *SLOWidgetDefinition) GetViewType() string {
 	if o == nil {
@@ -364,6 +376,8 @@ func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
 func (o *SLOWidgetDefinition) SetViewType(v string) {
 	o.ViewType = v
 }
+
+
 
 func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -403,23 +417,24 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Type     *SLOWidgetDefinitionType `json:"type"`
-		ViewType *string                  `json:"view_type"`
+		Type *SLOWidgetDefinitionType `json:"type"`
+		ViewType *string `json:"view_type"`
 	}{}
 	all := struct {
-		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"`
-		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"`
-		SloId            *string                 `json:"slo_id,omitempty"`
-		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"`
-		Title            *string                 `json:"title,omitempty"`
-		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"`
-		TitleSize        *string                 `json:"title_size,omitempty"`
-		Type             SLOWidgetDefinitionType `json:"type"`
-		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"`
-		ViewType         string                  `json:"view_type"`
+		GlobalTimeTarget *string `json:"global_time_target,omitempty"`
+		ShowErrorBudget *bool `json:"show_error_budget,omitempty"`
+		SloId *string `json:"slo_id,omitempty"`
+		TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type SLOWidgetDefinitionType `json:"type"`
+		ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
+		ViewType string `json:"view_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -440,7 +455,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -456,7 +471,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ViewMode; v != nil && !v.IsValid() {
+	if v := all.ViewMode; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -10,12 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
-	Bool    *bool
-	String  *string
+	Bool *bool
+	String *string
 	Float64 *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -109,13 +112,16 @@ func (src LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.Bool)
 	}
 
+
 	if src.String != nil {
 		return json.Marshal(&src.String)
 	}
 
+
 	if src.Float64 != nil {
 		return json.Marshal(&src.Float64)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -124,18 +130,21 @@ func (src LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsGroupByTotal) GetActualInstance() interface{} {
+func (obj *LogsGroupByTotal) GetActualInstance() (interface{}) {
 	if obj.Bool != nil {
 		return obj.Bool
 	}
+
 
 	if obj.String != nil {
 		return obj.String
 	}
 
+
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
+
 
 	// all schemas are nil
 	return nil

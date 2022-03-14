@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // APIKeyCreateRequest Request used to create an API key.
 type APIKeyCreateRequest struct {
 	// Object used to create an API key.
 	Data APIKeyCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAPIKeyCreateRequest instantiates a new APIKeyCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewAPIKeyCreateRequestWithDefaults() *APIKeyCreateRequest {
 	this := APIKeyCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *APIKeyCreateRequest) GetData() APIKeyCreateData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *APIKeyCreateRequest) SetData(v APIKeyCreateData) {
 	o.Data = v
 }
 
+
+
 func (o APIKeyCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o APIKeyCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *APIKeyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

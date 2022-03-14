@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ImageWidgetDefinitionType Type of the image widget.
 type ImageWidgetDefinitionType string

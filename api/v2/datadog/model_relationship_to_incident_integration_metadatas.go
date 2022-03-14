@@ -11,16 +11,20 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToIncidentIntegrationMetadatas A relationship reference for multiple integration metadata objects.
 type RelationshipToIncidentIntegrationMetadatas struct {
 	// The integration metadata relationship array
 	Data []RelationshipToIncidentIntegrationMetadataData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToIncidentIntegrationMetadatas instantiates a new RelationshipToIncidentIntegrationMetadatas object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +43,6 @@ func NewRelationshipToIncidentIntegrationMetadatasWithDefaults() *RelationshipTo
 	this := RelationshipToIncidentIntegrationMetadatas{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *RelationshipToIncidentIntegrationMetadatas) GetData() []RelationshipToIncidentIntegrationMetadataData {
 	if o == nil {
@@ -63,6 +66,8 @@ func (o *RelationshipToIncidentIntegrationMetadatas) SetData(v []RelationshipToI
 	o.Data = v
 }
 
+
+
 func (o RelationshipToIncidentIntegrationMetadatas) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +80,7 @@ func (o RelationshipToIncidentIntegrationMetadatas) MarshalJSON() ([]byte, error
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RelationshipToIncidentIntegrationMetadatas) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

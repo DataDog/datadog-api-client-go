@@ -11,15 +11,17 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorRenotifyStatusType The different statuses for which renotification is supported.
 type MonitorRenotifyStatusType string
 
 // List of MonitorRenotifyStatusType
 const (
-	MONITORRENOTIFYSTATUSTYPE_ALERT   MonitorRenotifyStatusType = "alert"
-	MONITORRENOTIFYSTATUSTYPE_WARN    MonitorRenotifyStatusType = "warn"
+	MONITORRENOTIFYSTATUSTYPE_ALERT MonitorRenotifyStatusType = "alert"
+	MONITORRENOTIFYSTATUSTYPE_WARN MonitorRenotifyStatusType = "warn"
 	MONITORRENOTIFYSTATUSTYPE_NO_DATA MonitorRenotifyStatusType = "no data"
 )
 

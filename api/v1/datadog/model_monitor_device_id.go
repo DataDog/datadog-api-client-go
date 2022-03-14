@@ -11,21 +11,23 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorDeviceID ID of the device the Synthetics monitor is running on. Same as `SyntheticsDeviceID`.
 type MonitorDeviceID string
 
 // List of MonitorDeviceID
 const (
-	MONITORDEVICEID_LAPTOP_LARGE         MonitorDeviceID = "laptop_large"
-	MONITORDEVICEID_TABLET               MonitorDeviceID = "tablet"
-	MONITORDEVICEID_MOBILE_SMALL         MonitorDeviceID = "mobile_small"
-	MONITORDEVICEID_CHROME_LAPTOP_LARGE  MonitorDeviceID = "chrome.laptop_large"
-	MONITORDEVICEID_CHROME_TABLET        MonitorDeviceID = "chrome.tablet"
-	MONITORDEVICEID_CHROME_MOBILE_SMALL  MonitorDeviceID = "chrome.mobile_small"
+	MONITORDEVICEID_LAPTOP_LARGE MonitorDeviceID = "laptop_large"
+	MONITORDEVICEID_TABLET MonitorDeviceID = "tablet"
+	MONITORDEVICEID_MOBILE_SMALL MonitorDeviceID = "mobile_small"
+	MONITORDEVICEID_CHROME_LAPTOP_LARGE MonitorDeviceID = "chrome.laptop_large"
+	MONITORDEVICEID_CHROME_TABLET MonitorDeviceID = "chrome.tablet"
+	MONITORDEVICEID_CHROME_MOBILE_SMALL MonitorDeviceID = "chrome.mobile_small"
 	MONITORDEVICEID_FIREFOX_LAPTOP_LARGE MonitorDeviceID = "firefox.laptop_large"
-	MONITORDEVICEID_FIREFOX_TABLET       MonitorDeviceID = "firefox.tablet"
+	MONITORDEVICEID_FIREFOX_TABLET MonitorDeviceID = "firefox.tablet"
 	MONITORDEVICEID_FIREFOX_MOBILE_SMALL MonitorDeviceID = "firefox.mobile_small"
 )
 

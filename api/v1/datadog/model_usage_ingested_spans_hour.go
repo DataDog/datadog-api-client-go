@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageIngestedSpansHour Ingested spans usage for a given organization for a given hour.
 type UsageIngestedSpansHour struct {
@@ -24,9 +26,11 @@ type UsageIngestedSpansHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageIngestedSpansHour instantiates a new UsageIngestedSpansHour object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +48,6 @@ func NewUsageIngestedSpansHourWithDefaults() *UsageIngestedSpansHour {
 	this := UsageIngestedSpansHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -76,6 +79,7 @@ func (o *UsageIngestedSpansHour) HasHour() bool {
 func (o *UsageIngestedSpansHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
@@ -109,6 +113,7 @@ func (o *UsageIngestedSpansHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -140,6 +145,7 @@ func (o *UsageIngestedSpansHour) HasOrgName() bool {
 func (o *UsageIngestedSpansHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageIngestedSpansHour) GetPublicId() string {
@@ -173,6 +179,8 @@ func (o *UsageIngestedSpansHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
+
 func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -197,13 +205,14 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                *time.Time `json:"hour,omitempty"`
-		IngestedEventsBytes *int64     `json:"ingested_events_bytes,omitempty"`
-		OrgName             *string    `json:"org_name,omitempty"`
-		PublicId            *string    `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

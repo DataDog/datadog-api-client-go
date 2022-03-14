@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOWidgetDefinitionType Type of the SLO widget.
 type SLOWidgetDefinitionType string

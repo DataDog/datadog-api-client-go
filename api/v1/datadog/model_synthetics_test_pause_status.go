@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestPauseStatus Define whether you want to start (`live`) or pause (`paused`) a
 // Synthetic test.
@@ -19,7 +21,7 @@ type SyntheticsTestPauseStatus string
 
 // List of SyntheticsTestPauseStatus
 const (
-	SYNTHETICSTESTPAUSESTATUS_LIVE   SyntheticsTestPauseStatus = "live"
+	SYNTHETICSTESTPAUSESTATUS_LIVE SyntheticsTestPauseStatus = "live"
 	SYNTHETICSTESTPAUSESTATUS_PAUSED SyntheticsTestPauseStatus = "paused"
 )
 

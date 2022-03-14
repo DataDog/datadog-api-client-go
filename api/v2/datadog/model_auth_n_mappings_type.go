@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuthNMappingsType AuthN Mappings resource type.
 type AuthNMappingsType string

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBasicAuthWebType The type of basic authentication to use when performing the test.
 type SyntheticsBasicAuthWebType string

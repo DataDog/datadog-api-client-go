@@ -11,11 +11,11 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
-	"strings"
 )
 
 // Linger please
@@ -29,7 +29,7 @@ type SyntheticsApiService service
 type apiCreateGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsGlobalVariable
+	body *SyntheticsGlobalVariable
 }
 
 /*
@@ -40,7 +40,7 @@ func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body S
 	req := apiCreateGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createGlobalVariableExecute(req)
@@ -191,7 +191,7 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 type apiCreatePrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsPrivateLocation
+	body *SyntheticsPrivateLocation
 }
 
 /*
@@ -202,7 +202,7 @@ func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body 
 	req := apiCreatePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createPrivateLocationExecute(req)
@@ -353,7 +353,7 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 type apiCreateSyntheticsAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsAPITest
+	body *SyntheticsAPITest
 }
 
 /*
@@ -364,7 +364,7 @@ func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, bod
 	req := apiCreateSyntheticsAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSyntheticsAPITestExecute(req)
@@ -525,7 +525,7 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 type apiCreateSyntheticsBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsBrowserTest
+	body *SyntheticsBrowserTest
 }
 
 /*
@@ -536,7 +536,7 @@ func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context,
 	req := apiCreateSyntheticsBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSyntheticsBrowserTestExecute(req)
@@ -971,7 +971,7 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 type apiDeleteTestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsDeleteTestsPayload
+	body *SyntheticsDeleteTestsPayload
 }
 
 /*
@@ -982,7 +982,7 @@ func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body Synthetics
 	req := apiDeleteTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteTestsExecute(req)
@@ -1144,7 +1144,7 @@ type apiEditGlobalVariableRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
-	body       *SyntheticsGlobalVariable
+	body *SyntheticsGlobalVariable
 }
 
 /*
@@ -1156,7 +1156,7 @@ func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variable
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.editGlobalVariableExecute(req)
@@ -1308,7 +1308,7 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 type apiGetAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
 
 /*
@@ -1320,7 +1320,7 @@ func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string)
 	req := apiGetAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
+		publicId: publicId,
 	}
 
 	return req.ApiService.getAPITestExecute(req)
@@ -1457,15 +1457,15 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 type apiGetAPITestLatestResultsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 type GetAPITestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
+	FromTs *int64
+	ToTs *int64
 	ProbeDc *[]string
 }
 
@@ -1494,7 +1494,7 @@ func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, pub
 	req := apiGetAPITestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
+		publicId: publicId,
 	}
 
 	if len(o) > 1 {
@@ -1659,8 +1659,8 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 type apiGetAPITestResultRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
 
 /*
@@ -1671,8 +1671,8 @@ func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId s
 	req := apiGetAPITestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		publicId: publicId,
+		resultId: resultId,
 	}
 
 	return req.ApiService.getAPITestResultExecute(req)
@@ -1810,7 +1810,7 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 type apiGetBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
 
 /*
@@ -1822,7 +1822,7 @@ func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId str
 	req := apiGetBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
+		publicId: publicId,
 	}
 
 	return req.ApiService.getBrowserTestExecute(req)
@@ -1959,15 +1959,15 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 type apiGetBrowserTestLatestResultsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 type GetBrowserTestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
+	FromTs *int64
+	ToTs *int64
 	ProbeDc *[]string
 }
 
@@ -1996,7 +1996,7 @@ func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context,
 	req := apiGetBrowserTestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
+		publicId: publicId,
 	}
 
 	if len(o) > 1 {
@@ -2161,8 +2161,8 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 type apiGetBrowserTestResultRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
 
 /*
@@ -2173,8 +2173,8 @@ func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, public
 	req := apiGetBrowserTestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		publicId: publicId,
+		resultId: resultId,
 	}
 
 	return req.ApiService.getBrowserTestResultExecute(req)
@@ -2598,7 +2598,7 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 type apiGetSyntheticsCIBatchRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	batchId    string
+	batchId string
 }
 
 /*
@@ -2609,7 +2609,7 @@ func (a *SyntheticsApiService) GetSyntheticsCIBatch(ctx _context.Context, batchI
 	req := apiGetSyntheticsCIBatchRequest{
 		ApiService: a,
 		ctx:        ctx,
-		batchId:    batchId,
+		batchId: batchId,
 	}
 
 	return req.ApiService.getSyntheticsCIBatchExecute(req)
@@ -2736,7 +2736,7 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 type apiGetTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
 
 /*
@@ -2747,7 +2747,7 @@ func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (S
 	req := apiGetTestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
+		publicId: publicId,
 	}
 
 	return req.ApiService.getTestExecute(req)
@@ -3290,7 +3290,7 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 type apiTriggerCITestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsCITestBody
+	body *SyntheticsCITestBody
 }
 
 /*
@@ -3301,7 +3301,7 @@ func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body Synthet
 	req := apiTriggerCITestsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.triggerCITestsExecute(req)
@@ -3442,7 +3442,7 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 type apiTriggerTestsRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsTriggerBody
+	body *SyntheticsTriggerBody
 }
 
 /*
@@ -3453,7 +3453,7 @@ func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body Synthetic
 	req := apiTriggerTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.triggerTestsExecute(req)
@@ -3594,8 +3594,8 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 type apiUpdateAPITestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsAPITest
+	publicId string
+	body *SyntheticsAPITest
 }
 
 /*
@@ -3606,8 +3606,8 @@ func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId stri
 	req := apiUpdateAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		publicId: publicId,
+		body: &body,
 	}
 
 	return req.ApiService.updateAPITestExecute(req)
@@ -3769,8 +3769,8 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 type apiUpdateBrowserTestRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsBrowserTest
+	publicId string
+	body *SyntheticsBrowserTest
 }
 
 /*
@@ -3781,8 +3781,8 @@ func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId 
 	req := apiUpdateBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		publicId: publicId,
+		body: &body,
 	}
 
 	return req.ApiService.updateBrowserTestExecute(req)
@@ -3945,7 +3945,7 @@ type apiUpdatePrivateLocationRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
-	body       *SyntheticsPrivateLocation
+	body *SyntheticsPrivateLocation
 }
 
 /*
@@ -3957,7 +3957,7 @@ func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locat
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updatePrivateLocationExecute(req)
@@ -4099,8 +4099,8 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 type apiUpdateTestPauseStatusRequest struct {
 	ctx        _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsUpdateTestPauseStatusPayload
+	publicId string
+	body *SyntheticsUpdateTestPauseStatusPayload
 }
 
 /*
@@ -4111,8 +4111,8 @@ func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publi
 	req := apiUpdateTestPauseStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		publicId: publicId,
+		body: &body,
 	}
 
 	return req.ApiService.updateTestPauseStatusExecute(req)

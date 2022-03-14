@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DashboardListDeleteItemsResponse Response containing a list of deleted dashboards.
 type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
 	DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardListDeleteItemsResponse instantiates a new DashboardListDeleteItemsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewDashboardListDeleteItemsResponseWithDefaults() *DashboardListDeleteItems
 	this := DashboardListDeleteItemsResponse{}
 	return &this
 }
-
 // GetDeletedDashboardsFromList returns the DeletedDashboardsFromList field value if set, zero value otherwise.
 func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromList() []DashboardListItemResponse {
 	if o == nil || o.DeletedDashboardsFromList == nil {
@@ -70,6 +74,8 @@ func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []Dash
 	o.DeletedDashboardsFromList = &v
 }
 
+
+
 func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *DashboardListDeleteItemsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

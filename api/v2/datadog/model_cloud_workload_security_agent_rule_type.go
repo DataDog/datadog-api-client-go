@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleType The type of the resource. The value should always be `agent_rule`.
 type CloudWorkloadSecurityAgentRuleType string

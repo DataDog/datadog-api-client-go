@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageTimeseriesResponse Response containing hourly usage of timeseries.
 type UsageTimeseriesResponse struct {
 	// An array of objects regarding hourly usage of timeseries.
 	Usage *[]UsageTimeseriesHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageTimeseriesResponse instantiates a new UsageTimeseriesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageTimeseriesResponseWithDefaults() *UsageTimeseriesResponse {
 	this := UsageTimeseriesResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageTimeseriesResponse) GetUsage() []UsageTimeseriesHour {
 	if o == nil || o.Usage == nil {
@@ -70,6 +74,8 @@ func (o *UsageTimeseriesResponse) SetUsage(v []UsageTimeseriesHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageTimeseriesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UsageTimeseriesResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageTimeseriesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ListStreamWidgetDefinitionType Type of the list stream widget.
 type ListStreamWidgetDefinitionType string

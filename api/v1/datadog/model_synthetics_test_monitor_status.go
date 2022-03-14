@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsTestMonitorStatus The status of your Synthetic monitor.
 // * `O` for not triggered
@@ -22,8 +24,8 @@ type SyntheticsTestMonitorStatus int64
 // List of SyntheticsTestMonitorStatus
 const (
 	SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED SyntheticsTestMonitorStatus = 0
-	SYNTHETICSTESTMONITORSTATUS_TRIGGERED   SyntheticsTestMonitorStatus = 1
-	SYNTHETICSTESTMONITORSTATUS_NO_DATA     SyntheticsTestMonitorStatus = 2
+	SYNTHETICSTESTMONITORSTATUS_TRIGGERED SyntheticsTestMonitorStatus = 1
+	SYNTHETICSTESTMONITORSTATUS_NO_DATA SyntheticsTestMonitorStatus = 2
 )
 
 var allowedSyntheticsTestMonitorStatusEnumValues = []SyntheticsTestMonitorStatus{

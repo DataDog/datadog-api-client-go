@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // User User object returned by the API.
 type User struct {
@@ -23,9 +26,11 @@ type User struct {
 	// Users resource type.
 	Type *UsersType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUser instantiates a new User object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewUserWithDefaults() *User {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *User) GetAttributes() UserAttributes {
 	if o == nil || o.Attributes == nil {
@@ -79,6 +83,7 @@ func (o *User) HasAttributes() bool {
 func (o *User) SetAttributes(v UserAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *User) GetId() string {
@@ -112,6 +117,7 @@ func (o *User) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *User) GetRelationships() UserResponseRelationships {
 	if o == nil || o.Relationships == nil {
@@ -143,6 +149,7 @@ func (o *User) HasRelationships() bool {
 func (o *User) SetRelationships(v UserResponseRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *User) GetType() UsersType {
@@ -176,6 +183,8 @@ func (o *User) SetType(v UsersType) {
 	o.Type = &v
 }
 
+
+
 func (o User) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -200,13 +209,14 @@ func (o User) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *UserAttributes            `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
+		Attributes *UserAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
 		Relationships *UserResponseRelationships `json:"relationships,omitempty"`
-		Type          *UsersType                 `json:"type,omitempty"`
+		Type *UsersType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -217,7 +227,7 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsGrokParserType Type of logs grok parser.
 type LogsGrokParserType string

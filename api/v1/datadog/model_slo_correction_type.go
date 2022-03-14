@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOCorrectionType SLO correction resource type.
 type SLOCorrectionType string

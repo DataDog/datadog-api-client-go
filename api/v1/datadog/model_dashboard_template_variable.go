@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardTemplateVariable Template variable.
 type DashboardTemplateVariable struct {
@@ -24,9 +26,11 @@ type DashboardTemplateVariable struct {
 	// The tag prefix associated with the variable. Only tags with this prefix appear in the variable drop-down.
 	Prefix NullableString `json:"prefix,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardTemplateVariable instantiates a new DashboardTemplateVariable object
 // This constructor will assign default values to properties that have it defined,
@@ -45,10 +49,9 @@ func NewDashboardTemplateVariableWithDefaults() *DashboardTemplateVariable {
 	this := DashboardTemplateVariable{}
 	return &this
 }
-
 // GetAvailableValues returns the AvailableValues field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardTemplateVariable) GetAvailableValues() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -79,6 +82,7 @@ func (o *DashboardTemplateVariable) SetAvailableValues(v []string) {
 	o.AvailableValues = v
 }
 
+
 // GetDefault returns the Default field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardTemplateVariable) GetDefault() string {
 	if o == nil || o.Default.Get() == nil {
@@ -92,7 +96,7 @@ func (o *DashboardTemplateVariable) GetDefault() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardTemplateVariable) GetDefaultOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Default.Get(), o.Default.IsSet()
@@ -111,7 +115,6 @@ func (o *DashboardTemplateVariable) HasDefault() bool {
 func (o *DashboardTemplateVariable) SetDefault(v string) {
 	o.Default.Set(&v)
 }
-
 // SetDefaultNil sets the value for Default to be an explicit nil
 func (o *DashboardTemplateVariable) SetDefaultNil() {
 	o.Default.Set(nil)
@@ -121,6 +124,7 @@ func (o *DashboardTemplateVariable) SetDefaultNil() {
 func (o *DashboardTemplateVariable) UnsetDefault() {
 	o.Default.Unset()
 }
+
 
 // GetName returns the Name field value
 func (o *DashboardTemplateVariable) GetName() string {
@@ -145,6 +149,7 @@ func (o *DashboardTemplateVariable) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetPrefix returns the Prefix field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardTemplateVariable) GetPrefix() string {
 	if o == nil || o.Prefix.Get() == nil {
@@ -158,7 +163,7 @@ func (o *DashboardTemplateVariable) GetPrefix() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardTemplateVariable) GetPrefixOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Prefix.Get(), o.Prefix.IsSet()
@@ -177,7 +182,6 @@ func (o *DashboardTemplateVariable) HasPrefix() bool {
 func (o *DashboardTemplateVariable) SetPrefix(v string) {
 	o.Prefix.Set(&v)
 }
-
 // SetPrefixNil sets the value for Prefix to be an explicit nil
 func (o *DashboardTemplateVariable) SetPrefixNil() {
 	o.Prefix.Set(nil)
@@ -187,6 +191,8 @@ func (o *DashboardTemplateVariable) SetPrefixNil() {
 func (o *DashboardTemplateVariable) UnsetPrefix() {
 	o.Prefix.Unset()
 }
+
+
 
 func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -210,16 +216,17 @@ func (o DashboardTemplateVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		AvailableValues []string       `json:"available_values,omitempty"`
-		Default         NullableString `json:"default,omitempty"`
-		Name            string         `json:"name"`
-		Prefix          NullableString `json:"prefix,omitempty"`
+		AvailableValues []string `json:"available_values,omitempty"`
+		Default NullableString `json:"default,omitempty"`
+		Name string `json:"name"`
+		Prefix NullableString `json:"prefix,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

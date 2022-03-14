@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
@@ -21,9 +24,11 @@ type LogsListResponse struct {
 	// The metadata associated with a request
 	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsListResponse instantiates a new LogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewLogsListResponseWithDefaults() *LogsListResponse {
 	this := LogsListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsListResponse) GetData() []Log {
 	if o == nil || o.Data == nil {
@@ -73,6 +77,7 @@ func (o *LogsListResponse) HasData() bool {
 func (o *LogsListResponse) SetData(v []Log) {
 	o.Data = &v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *LogsListResponse) GetLinks() LogsListResponseLinks {
@@ -106,6 +111,7 @@ func (o *LogsListResponse) SetLinks(v LogsListResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *LogsListResponse) GetMeta() LogsResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -138,6 +144,8 @@ func (o *LogsListResponse) SetMeta(v LogsResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]Log                 `json:"data,omitempty"`
+		Data *[]Log `json:"data,omitempty"`
 		Links *LogsListResponseLinks `json:"links,omitempty"`
-		Meta  *LogsResponseMetadata  `json:"meta,omitempty"`
+		Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

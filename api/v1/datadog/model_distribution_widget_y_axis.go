@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DistributionWidgetYAxis Y Axis controls for the distribution widget.
 type DistributionWidgetYAxis struct {
@@ -25,9 +28,11 @@ type DistributionWidgetYAxis struct {
 	// Specifies the scale type. Possible values are `linear` or `log`.
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDistributionWidgetYAxis instantiates a new DistributionWidgetYAxis object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +62,6 @@ func NewDistributionWidgetYAxisWithDefaults() *DistributionWidgetYAxis {
 	this.Scale = &scale
 	return &this
 }
-
 // GetIncludeZero returns the IncludeZero field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetIncludeZero() bool {
 	if o == nil || o.IncludeZero == nil {
@@ -89,6 +93,7 @@ func (o *DistributionWidgetYAxis) HasIncludeZero() bool {
 func (o *DistributionWidgetYAxis) SetIncludeZero(v bool) {
 	o.IncludeZero = &v
 }
+
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetLabel() string {
@@ -122,6 +127,7 @@ func (o *DistributionWidgetYAxis) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetMax() string {
 	if o == nil || o.Max == nil {
@@ -153,6 +159,7 @@ func (o *DistributionWidgetYAxis) HasMax() bool {
 func (o *DistributionWidgetYAxis) SetMax(v string) {
 	o.Max = &v
 }
+
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetMin() string {
@@ -186,6 +193,7 @@ func (o *DistributionWidgetYAxis) SetMin(v string) {
 	o.Min = &v
 }
 
+
 // GetScale returns the Scale field value if set, zero value otherwise.
 func (o *DistributionWidgetYAxis) GetScale() string {
 	if o == nil || o.Scale == nil {
@@ -218,6 +226,8 @@ func (o *DistributionWidgetYAxis) SetScale(v string) {
 	o.Scale = &v
 }
 
+
+
 func (o DistributionWidgetYAxis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -245,14 +255,15 @@ func (o DistributionWidgetYAxis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DistributionWidgetYAxis) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IncludeZero *bool   `json:"include_zero,omitempty"`
-		Label       *string `json:"label,omitempty"`
-		Max         *string `json:"max,omitempty"`
-		Min         *string `json:"min,omitempty"`
-		Scale       *string `json:"scale,omitempty"`
+		IncludeZero *bool `json:"include_zero,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Max *string `json:"max,omitempty"`
+		Min *string `json:"min,omitempty"`
+		Scale *string `json:"scale,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

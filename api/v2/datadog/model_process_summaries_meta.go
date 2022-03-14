@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ProcessSummariesMeta Response metadata object.
 type ProcessSummariesMeta struct {
 	// Paging attributes.
 	Page *ProcessSummariesMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewProcessSummariesMeta instantiates a new ProcessSummariesMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewProcessSummariesMetaWithDefaults() *ProcessSummariesMeta {
 	this := ProcessSummariesMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *ProcessSummariesMeta) GetPage() ProcessSummariesMetaPage {
 	if o == nil || o.Page == nil {
@@ -70,6 +74,8 @@ func (o *ProcessSummariesMeta) SetPage(v ProcessSummariesMetaPage) {
 	o.Page = &v
 }
 
+
+
 func (o ProcessSummariesMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o ProcessSummariesMeta) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *ProcessSummariesMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

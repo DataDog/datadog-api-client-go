@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveIntegrationS3 The S3 Archive's integration destination.
 type LogsArchiveIntegrationS3 struct {
@@ -20,9 +22,11 @@ type LogsArchiveIntegrationS3 struct {
 	// The path of the integration.
 	RoleName string `json:"role_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveIntegrationS3 instantiates a new LogsArchiveIntegrationS3 object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewLogsArchiveIntegrationS3WithDefaults() *LogsArchiveIntegrationS3 {
 	this := LogsArchiveIntegrationS3{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value
 func (o *LogsArchiveIntegrationS3) GetAccountId() string {
 	if o == nil {
@@ -65,6 +68,7 @@ func (o *LogsArchiveIntegrationS3) GetAccountIdOk() (*string, bool) {
 func (o *LogsArchiveIntegrationS3) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetRoleName returns the RoleName field value
 func (o *LogsArchiveIntegrationS3) GetRoleName() string {
@@ -89,6 +93,8 @@ func (o *LogsArchiveIntegrationS3) SetRoleName(v string) {
 	o.RoleName = v
 }
 
+
+
 func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,15 +109,16 @@ func (o LogsArchiveIntegrationS3) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		AccountId *string `json:"account_id"`
-		RoleName  *string `json:"role_name"`
+		RoleName *string `json:"role_name"`
 	}{}
 	all := struct {
 		AccountId string `json:"account_id"`
-		RoleName  string `json:"role_name"`
+		RoleName string `json:"role_name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

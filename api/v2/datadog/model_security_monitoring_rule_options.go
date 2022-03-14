@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
@@ -30,9 +33,11 @@ type SecurityMonitoringRuleOptions struct {
 	// Options on new value rules.
 	NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringRuleOptions instantiates a new SecurityMonitoringRuleOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewSecurityMonitoringRuleOptionsWithDefaults() *SecurityMonitoringRuleOptio
 	this := SecurityMonitoringRuleOptions{}
 	return &this
 }
-
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetDetectionMethod() SecurityMonitoringRuleDetectionMethod {
 	if o == nil || o.DetectionMethod == nil {
@@ -82,6 +86,7 @@ func (o *SecurityMonitoringRuleOptions) HasDetectionMethod() bool {
 func (o *SecurityMonitoringRuleOptions) SetDetectionMethod(v SecurityMonitoringRuleDetectionMethod) {
 	o.DetectionMethod = &v
 }
+
 
 // GetEvaluationWindow returns the EvaluationWindow field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetEvaluationWindow() SecurityMonitoringRuleEvaluationWindow {
@@ -115,6 +120,7 @@ func (o *SecurityMonitoringRuleOptions) SetEvaluationWindow(v SecurityMonitoring
 	o.EvaluationWindow = &v
 }
 
+
 // GetImpossibleTravelOptions returns the ImpossibleTravelOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetImpossibleTravelOptions() SecurityMonitoringRuleImpossibleTravelOptions {
 	if o == nil || o.ImpossibleTravelOptions == nil {
@@ -146,6 +152,7 @@ func (o *SecurityMonitoringRuleOptions) HasImpossibleTravelOptions() bool {
 func (o *SecurityMonitoringRuleOptions) SetImpossibleTravelOptions(v SecurityMonitoringRuleImpossibleTravelOptions) {
 	o.ImpossibleTravelOptions = &v
 }
+
 
 // GetKeepAlive returns the KeepAlive field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetKeepAlive() SecurityMonitoringRuleKeepAlive {
@@ -179,6 +186,7 @@ func (o *SecurityMonitoringRuleOptions) SetKeepAlive(v SecurityMonitoringRuleKee
 	o.KeepAlive = &v
 }
 
+
 // GetMaxSignalDuration returns the MaxSignalDuration field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetMaxSignalDuration() SecurityMonitoringRuleMaxSignalDuration {
 	if o == nil || o.MaxSignalDuration == nil {
@@ -210,6 +218,7 @@ func (o *SecurityMonitoringRuleOptions) HasMaxSignalDuration() bool {
 func (o *SecurityMonitoringRuleOptions) SetMaxSignalDuration(v SecurityMonitoringRuleMaxSignalDuration) {
 	o.MaxSignalDuration = &v
 }
+
 
 // GetNewValueOptions returns the NewValueOptions field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleOptions) GetNewValueOptions() SecurityMonitoringRuleNewValueOptions {
@@ -243,6 +252,8 @@ func (o *SecurityMonitoringRuleOptions) SetNewValueOptions(v SecurityMonitoringR
 	o.NewValueOptions = &v
 }
 
+
+
 func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -273,15 +284,16 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DetectionMethod         *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
-		EvaluationWindow        *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+		DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
+		EvaluationWindow *SecurityMonitoringRuleEvaluationWindow `json:"evaluationWindow,omitempty"`
 		ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
-		KeepAlive               *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
-		MaxSignalDuration       *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
-		NewValueOptions         *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
+		KeepAlive *SecurityMonitoringRuleKeepAlive `json:"keepAlive,omitempty"`
+		MaxSignalDuration *SecurityMonitoringRuleMaxSignalDuration `json:"maxSignalDuration,omitempty"`
+		NewValueOptions *SecurityMonitoringRuleNewValueOptions `json:"newValueOptions,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -292,7 +304,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.DetectionMethod; v != nil && !v.IsValid() {
+	if v := all.DetectionMethod; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -300,7 +312,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.EvaluationWindow; v != nil && !v.IsValid() {
+	if v := all.EvaluationWindow; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -308,7 +320,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.KeepAlive; v != nil && !v.IsValid() {
+	if v := all.KeepAlive; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -316,7 +328,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.MaxSignalDuration; v != nil && !v.IsValid() {
+	if v := all.MaxSignalDuration; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

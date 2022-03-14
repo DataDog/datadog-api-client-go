@@ -10,8 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalListRequestFilter Search filters for listing security signals.
 type SecurityMonitoringSignalListRequestFilter struct {
@@ -22,9 +24,11 @@ type SecurityMonitoringSignalListRequestFilter struct {
 	// The maximum timestamp for requested security signals.
 	To *time.Time `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalListRequestFilter instantiates a new SecurityMonitoringSignalListRequestFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewSecurityMonitoringSignalListRequestFilterWithDefaults() *SecurityMonitor
 	this := SecurityMonitoringSignalListRequestFilter{}
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetFrom() time.Time {
 	if o == nil || o.From == nil {
@@ -74,6 +77,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) HasFrom() bool {
 func (o *SecurityMonitoringSignalListRequestFilter) SetFrom(v time.Time) {
 	o.From = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetQuery() string {
@@ -107,6 +111,7 @@ func (o *SecurityMonitoringSignalListRequestFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequestFilter) GetTo() time.Time {
 	if o == nil || o.To == nil {
@@ -139,6 +144,8 @@ func (o *SecurityMonitoringSignalListRequestFilter) SetTo(v time.Time) {
 	o.To = &v
 }
 
+
+
 func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -160,12 +167,13 @@ func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From  *time.Time `json:"from,omitempty"`
-		Query *string    `json:"query,omitempty"`
-		To    *time.Time `json:"to,omitempty"`
+		From *time.Time `json:"from,omitempty"`
+		Query *string `json:"query,omitempty"`
+		To *time.Time `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

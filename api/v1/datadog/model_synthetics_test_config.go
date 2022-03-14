@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTestConfig Configuration object for a Synthetic test.
 type SyntheticsTestConfig struct {
@@ -23,9 +26,11 @@ type SyntheticsTestConfig struct {
 	// Browser tests only - array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTestConfig instantiates a new SyntheticsTestConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSyntheticsTestConfigWithDefaults() *SyntheticsTestConfig {
 	this := SyntheticsTestConfig{}
 	return &this
 }
-
 // GetAssertions returns the Assertions field value if set, zero value otherwise.
 func (o *SyntheticsTestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil || o.Assertions == nil {
@@ -75,6 +79,7 @@ func (o *SyntheticsTestConfig) HasAssertions() bool {
 func (o *SyntheticsTestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = &v
 }
+
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
 func (o *SyntheticsTestConfig) GetConfigVariables() []SyntheticsConfigVariable {
@@ -108,6 +113,7 @@ func (o *SyntheticsTestConfig) SetConfigVariables(v []SyntheticsConfigVariable) 
 	o.ConfigVariables = &v
 }
 
+
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *SyntheticsTestConfig) GetRequest() SyntheticsTestRequest {
 	if o == nil || o.Request == nil {
@@ -139,6 +145,7 @@ func (o *SyntheticsTestConfig) HasRequest() bool {
 func (o *SyntheticsTestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = &v
 }
+
 
 // GetVariables returns the Variables field value if set, zero value otherwise.
 func (o *SyntheticsTestConfig) GetVariables() []SyntheticsBrowserVariable {
@@ -172,6 +179,8 @@ func (o *SyntheticsTestConfig) SetVariables(v []SyntheticsBrowserVariable) {
 	o.Variables = &v
 }
 
+
+
 func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,13 +205,14 @@ func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Assertions      *[]SyntheticsAssertion       `json:"assertions,omitempty"`
-		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest       `json:"request,omitempty"`
-		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+		Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
+		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+		Request *SyntheticsTestRequest `json:"request,omitempty"`
+		Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

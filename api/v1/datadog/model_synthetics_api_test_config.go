@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
 type SyntheticsAPITestConfig struct {
@@ -23,9 +26,11 @@ type SyntheticsAPITestConfig struct {
 	// When the test subtype is `multi`, the steps of the test.
 	Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAPITestConfig instantiates a new SyntheticsAPITestConfig object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSyntheticsAPITestConfigWithDefaults() *SyntheticsAPITestConfig {
 	this := SyntheticsAPITestConfig{}
 	return &this
 }
-
 // GetAssertions returns the Assertions field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetAssertions() []SyntheticsAssertion {
 	if o == nil || o.Assertions == nil {
@@ -75,6 +79,7 @@ func (o *SyntheticsAPITestConfig) HasAssertions() bool {
 func (o *SyntheticsAPITestConfig) SetAssertions(v []SyntheticsAssertion) {
 	o.Assertions = &v
 }
+
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetConfigVariables() []SyntheticsConfigVariable {
@@ -108,6 +113,7 @@ func (o *SyntheticsAPITestConfig) SetConfigVariables(v []SyntheticsConfigVariabl
 	o.ConfigVariables = &v
 }
 
+
 // GetRequest returns the Request field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetRequest() SyntheticsTestRequest {
 	if o == nil || o.Request == nil {
@@ -139,6 +145,7 @@ func (o *SyntheticsAPITestConfig) HasRequest() bool {
 func (o *SyntheticsAPITestConfig) SetRequest(v SyntheticsTestRequest) {
 	o.Request = &v
 }
+
 
 // GetSteps returns the Steps field value if set, zero value otherwise.
 func (o *SyntheticsAPITestConfig) GetSteps() []SyntheticsAPIStep {
@@ -172,6 +179,8 @@ func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep) {
 	o.Steps = &v
 }
 
+
+
 func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,13 +205,14 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Assertions      *[]SyntheticsAssertion      `json:"assertions,omitempty"`
+		Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
-		Steps           *[]SyntheticsAPIStep        `json:"steps,omitempty"`
+		Request *SyntheticsTestRequest `json:"request,omitempty"`
+		Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageCloudSecurityPostureManagementResponse The response containing the Cloud Security Posture Management usage for each hour for a given organization.
 type UsageCloudSecurityPostureManagementResponse struct {
 	// Get hourly usage for Cloud Security Posture Management.
 	Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCloudSecurityPostureManagementResponse instantiates a new UsageCloudSecurityPostureManagementResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageCloudSecurityPostureManagementResponseWithDefaults() *UsageCloudSec
 	this := UsageCloudSecurityPostureManagementResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageCloudSecurityPostureManagementResponse) GetUsage() []UsageCloudSecurityPostureManagementHour {
 	if o == nil || o.Usage == nil {
@@ -70,6 +74,8 @@ func (o *UsageCloudSecurityPostureManagementResponse) SetUsage(v []UsageCloudSec
 	o.Usage = &v
 }
 
+
+
 func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, erro
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentIntegrationMetadataType Integration metadata resource type.
 type IncidentIntegrationMetadataType string

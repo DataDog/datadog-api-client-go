@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag.
 type TagToHosts struct {
 	// A list of tags to apply to the host.
 	Tags map[string][]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTagToHosts instantiates a new TagToHosts object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewTagToHostsWithDefaults() *TagToHosts {
 	this := TagToHosts{}
 	return &this
 }
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *TagToHosts) GetTags() map[string][]string {
 	if o == nil || o.Tags == nil {
@@ -70,6 +74,8 @@ func (o *TagToHosts) SetTags(v map[string][]string) {
 	o.Tags = v
 }
 
+
+
 func (o TagToHosts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o TagToHosts) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *TagToHosts) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

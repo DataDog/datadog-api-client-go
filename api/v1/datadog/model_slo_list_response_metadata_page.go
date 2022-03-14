@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOListResponseMetadataPage The object containing information about the pages of the list of SLOs.
 type SLOListResponseMetadataPage struct {
@@ -19,9 +22,11 @@ type SLOListResponseMetadataPage struct {
 	// The total number of resources that match the parameters and filters in the request. This attribute can be used by a client to determine the total number of pages.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOListResponseMetadataPage instantiates a new SLOListResponseMetadataPage object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSLOListResponseMetadataPageWithDefaults() *SLOListResponseMetadataPage {
 	this := SLOListResponseMetadataPage{}
 	return &this
 }
-
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *SLOListResponseMetadataPage) GetTotalCount() int64 {
 	if o == nil || o.TotalCount == nil {
@@ -71,6 +75,7 @@ func (o *SLOListResponseMetadataPage) HasTotalCount() bool {
 func (o *SLOListResponseMetadataPage) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
+
 
 // GetTotalFilteredCount returns the TotalFilteredCount field value if set, zero value otherwise.
 func (o *SLOListResponseMetadataPage) GetTotalFilteredCount() int64 {
@@ -104,6 +109,8 @@ func (o *SLOListResponseMetadataPage) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = &v
 }
 
+
+
 func (o SLOListResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SLOListResponseMetadataPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOListResponseMetadataPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalCount         *int64 `json:"total_count,omitempty"`
+		TotalCount *int64 `json:"total_count,omitempty"`
 		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

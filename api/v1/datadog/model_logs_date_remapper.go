@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.
 //
@@ -42,9 +44,11 @@ type LogsDateRemapper struct {
 	// Type of logs date remapper.
 	Type LogsDateRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsDateRemapper instantiates a new LogsDateRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -70,7 +74,6 @@ func NewLogsDateRemapperWithDefaults() *LogsDateRemapper {
 	this.Type = type_
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsDateRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -102,6 +105,7 @@ func (o *LogsDateRemapper) HasIsEnabled() bool {
 func (o *LogsDateRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsDateRemapper) GetName() string {
@@ -135,6 +139,7 @@ func (o *LogsDateRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value
 func (o *LogsDateRemapper) GetSources() []string {
 	if o == nil {
@@ -157,6 +162,7 @@ func (o *LogsDateRemapper) GetSourcesOk() (*[]string, bool) {
 func (o *LogsDateRemapper) SetSources(v []string) {
 	o.Sources = v
 }
+
 
 // GetType returns the Type field value
 func (o *LogsDateRemapper) GetType() LogsDateRemapperType {
@@ -181,6 +187,8 @@ func (o *LogsDateRemapper) SetType(v LogsDateRemapperType) {
 	o.Type = v
 }
 
+
+
 func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -201,17 +209,18 @@ func (o LogsDateRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsDateRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string             `json:"sources"`
-		Type    *LogsDateRemapperType `json:"type"`
+		Sources *[]string `json:"sources"`
+		Type *LogsDateRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool                `json:"is_enabled,omitempty"`
-		Name      *string              `json:"name,omitempty"`
-		Sources   []string             `json:"sources"`
-		Type      LogsDateRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources"`
+		Type LogsDateRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

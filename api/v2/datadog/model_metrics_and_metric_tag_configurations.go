@@ -10,11 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurations struct {
-	Metric                 *Metric
+	Metric *Metric
 	MetricTagConfiguration *MetricTagConfiguration
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -85,9 +88,11 @@ func (src MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.Metric)
 	}
 
+
 	if src.MetricTagConfiguration != nil {
 		return json.Marshal(&src.MetricTagConfiguration)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -96,14 +101,16 @@ func (src MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
+func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() (interface{}) {
 	if obj.Metric != nil {
 		return obj.Metric
 	}
 
+
 	if obj.MetricTagConfiguration != nil {
 		return obj.MetricTagConfiguration
 	}
+
 
 	// all schemas are nil
 	return nil

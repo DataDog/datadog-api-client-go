@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTriggerCITestRunResult Information about a single test run.
 type SyntheticsTriggerCITestRunResult struct {
@@ -23,9 +26,11 @@ type SyntheticsTriggerCITestRunResult struct {
 	// ID of the result.
 	ResultId *string `json:"result_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTriggerCITestRunResult instantiates a new SyntheticsTriggerCITestRunResult object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSyntheticsTriggerCITestRunResultWithDefaults() *SyntheticsTriggerCITestR
 	this := SyntheticsTriggerCITestRunResult{}
 	return &this
 }
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetDevice() SyntheticsDeviceID {
 	if o == nil || o.Device == nil {
@@ -75,6 +79,7 @@ func (o *SyntheticsTriggerCITestRunResult) HasDevice() bool {
 func (o *SyntheticsTriggerCITestRunResult) SetDevice(v SyntheticsDeviceID) {
 	o.Device = &v
 }
+
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetLocation() int64 {
@@ -108,6 +113,7 @@ func (o *SyntheticsTriggerCITestRunResult) SetLocation(v int64) {
 	o.Location = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -139,6 +145,7 @@ func (o *SyntheticsTriggerCITestRunResult) HasPublicId() bool {
 func (o *SyntheticsTriggerCITestRunResult) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestRunResult) GetResultId() string {
@@ -172,6 +179,8 @@ func (o *SyntheticsTriggerCITestRunResult) SetResultId(v string) {
 	o.ResultId = &v
 }
 
+
+
 func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,13 +205,14 @@ func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Device   *SyntheticsDeviceID `json:"device,omitempty"`
-		Location *int64              `json:"location,omitempty"`
-		PublicId *string             `json:"public_id,omitempty"`
-		ResultId *string             `json:"result_id,omitempty"`
+		Device *SyntheticsDeviceID `json:"device,omitempty"`
+		Location *int64 `json:"location,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		ResultId *string `json:"result_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -213,7 +223,7 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Device; v != nil && !v.IsValid() {
+	if v := all.Device; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsArchiveOrder A ordered list of archive IDs.
 type LogsArchiveOrder struct {
 	// The definition of an archive order.
 	Data *LogsArchiveOrderDefinition `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveOrder instantiates a new LogsArchiveOrder object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewLogsArchiveOrderWithDefaults() *LogsArchiveOrder {
 	this := LogsArchiveOrder{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsArchiveOrder) GetData() LogsArchiveOrderDefinition {
 	if o == nil || o.Data == nil {
@@ -70,6 +74,8 @@ func (o *LogsArchiveOrder) SetData(v LogsArchiveOrderDefinition) {
 	o.Data = &v
 }
 
+
+
 func (o LogsArchiveOrder) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o LogsArchiveOrder) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *LogsArchiveOrder) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

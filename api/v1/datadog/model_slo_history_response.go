@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOHistoryResponse A service level objective history response.
 type SLOHistoryResponse struct {
@@ -19,9 +22,11 @@ type SLOHistoryResponse struct {
 	// A list of errors while querying the history data for the service level objective.
 	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOHistoryResponse instantiates a new SLOHistoryResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewSLOHistoryResponseWithDefaults() *SLOHistoryResponse {
 	this := SLOHistoryResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOHistoryResponse) GetData() SLOHistoryResponseData {
 	if o == nil || o.Data == nil {
@@ -71,6 +75,7 @@ func (o *SLOHistoryResponse) HasData() bool {
 func (o *SLOHistoryResponse) SetData(v SLOHistoryResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError {
@@ -104,6 +109,8 @@ func (o *SLOHistoryResponse) SetErrors(v []SLOHistoryResponseError) {
 	o.Errors = &v
 }
 
+
+
 func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOHistoryResponseData    `json:"data,omitempty"`
+		Data *SLOHistoryResponseData `json:"data,omitempty"`
 		Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

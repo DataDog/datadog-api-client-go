@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsPrivateLocationCreationResponse Object that contains the new private location, the public key for result encryption, and the configuration skeleton.
 type SyntheticsPrivateLocationCreationResponse struct {
@@ -21,9 +24,11 @@ type SyntheticsPrivateLocationCreationResponse struct {
 	// Public key for the result encryption.
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsPrivateLocationCreationResponse instantiates a new SyntheticsPrivateLocationCreationResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSyntheticsPrivateLocationCreationResponseWithDefaults() *SyntheticsPriva
 	this := SyntheticsPrivateLocationCreationResponse{}
 	return &this
 }
-
 // GetConfig returns the Config field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetConfig() interface{} {
 	if o == nil || o.Config == nil {
@@ -73,6 +77,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) HasConfig() bool {
 func (o *SyntheticsPrivateLocationCreationResponse) SetConfig(v interface{}) {
 	o.Config = v
 }
+
 
 // GetPrivateLocation returns the PrivateLocation field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetPrivateLocation() SyntheticsPrivateLocation {
@@ -106,6 +111,7 @@ func (o *SyntheticsPrivateLocationCreationResponse) SetPrivateLocation(v Synthet
 	o.PrivateLocation = &v
 }
 
+
 // GetResultEncryption returns the ResultEncryption field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponse) GetResultEncryption() SyntheticsPrivateLocationCreationResponseResultEncryption {
 	if o == nil || o.ResultEncryption == nil {
@@ -138,6 +144,8 @@ func (o *SyntheticsPrivateLocationCreationResponse) SetResultEncryption(v Synthe
 	o.ResultEncryption = &v
 }
 
+
+
 func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,11 +167,12 @@ func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error)
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Config           interface{}                                                `json:"config,omitempty"`
-		PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
+		Config interface{} `json:"config,omitempty"`
+		PrivateLocation *SyntheticsPrivateLocation `json:"private_location,omitempty"`
 		ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

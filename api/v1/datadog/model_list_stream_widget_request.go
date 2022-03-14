@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ListStreamWidgetRequest Updated list stream widget.
 type ListStreamWidgetRequest struct {
@@ -22,9 +24,11 @@ type ListStreamWidgetRequest struct {
 	// Widget response format.
 	ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +49,6 @@ func NewListStreamWidgetRequestWithDefaults() *ListStreamWidgetRequest {
 	this := ListStreamWidgetRequest{}
 	return &this
 }
-
 // GetColumns returns the Columns field value
 func (o *ListStreamWidgetRequest) GetColumns() []ListStreamColumn {
 	if o == nil {
@@ -68,6 +71,7 @@ func (o *ListStreamWidgetRequest) GetColumnsOk() (*[]ListStreamColumn, bool) {
 func (o *ListStreamWidgetRequest) SetColumns(v []ListStreamColumn) {
 	o.Columns = v
 }
+
 
 // GetQuery returns the Query field value
 func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery {
@@ -92,6 +96,7 @@ func (o *ListStreamWidgetRequest) SetQuery(v ListStreamQuery) {
 	o.Query = v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value
 func (o *ListStreamWidgetRequest) GetResponseFormat() ListStreamResponseFormat {
 	if o == nil {
@@ -115,6 +120,8 @@ func (o *ListStreamWidgetRequest) SetResponseFormat(v ListStreamResponseFormat) 
 	o.ResponseFormat = v
 }
 
+
+
 func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -130,16 +137,17 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Columns        *[]ListStreamColumn       `json:"columns"`
-		Query          *ListStreamQuery          `json:"query"`
+		Columns *[]ListStreamColumn `json:"columns"`
+		Query *ListStreamQuery `json:"query"`
 		ResponseFormat *ListStreamResponseFormat `json:"response_format"`
 	}{}
 	all := struct {
-		Columns        []ListStreamColumn       `json:"columns"`
-		Query          ListStreamQuery          `json:"query"`
+		Columns []ListStreamColumn `json:"columns"`
+		Query ListStreamQuery `json:"query"`
 		ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

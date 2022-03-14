@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HostMuteSettings Combination of settings to mute a host.
 type HostMuteSettings struct {
@@ -21,9 +24,11 @@ type HostMuteSettings struct {
 	// If true and the host is already muted, replaces existing host mute settings.
 	Override *bool `json:"override,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHostMuteSettings instantiates a new HostMuteSettings object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewHostMuteSettingsWithDefaults() *HostMuteSettings {
 	this := HostMuteSettings{}
 	return &this
 }
-
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetEnd() int64 {
 	if o == nil || o.End == nil {
@@ -73,6 +77,7 @@ func (o *HostMuteSettings) HasEnd() bool {
 func (o *HostMuteSettings) SetEnd(v int64) {
 	o.End = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetMessage() string {
@@ -106,6 +111,7 @@ func (o *HostMuteSettings) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetOverride returns the Override field value if set, zero value otherwise.
 func (o *HostMuteSettings) GetOverride() bool {
 	if o == nil || o.Override == nil {
@@ -138,6 +144,8 @@ func (o *HostMuteSettings) SetOverride(v bool) {
 	o.Override = &v
 }
 
+
+
 func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,12 +167,13 @@ func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		End      *int64  `json:"end,omitempty"`
-		Message  *string `json:"message,omitempty"`
-		Override *bool   `json:"override,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Override *bool `json:"override,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

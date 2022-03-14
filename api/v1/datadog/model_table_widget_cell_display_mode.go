@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TableWidgetCellDisplayMode Define a display mode for the table cell.
 type TableWidgetCellDisplayMode string
@@ -19,7 +21,7 @@ type TableWidgetCellDisplayMode string
 // List of TableWidgetCellDisplayMode
 const (
 	TABLEWIDGETCELLDISPLAYMODE_NUMBER TableWidgetCellDisplayMode = "number"
-	TABLEWIDGETCELLDISPLAYMODE_BAR    TableWidgetCellDisplayMode = "bar"
+	TABLEWIDGETCELLDISPLAYMODE_BAR TableWidgetCellDisplayMode = "bar"
 )
 
 var allowedTableWidgetCellDisplayModeEnumValues = []TableWidgetCellDisplayMode{

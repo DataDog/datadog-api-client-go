@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // GroupWidgetDefinitionType Type of the group widget.
 type GroupWidgetDefinitionType string

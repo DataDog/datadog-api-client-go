@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuditLogsQueryPageOptions Paging attributes for listing events.
 type AuditLogsQueryPageOptions struct {
@@ -19,9 +22,11 @@ type AuditLogsQueryPageOptions struct {
 	// Maximum number of events in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsQueryPageOptions instantiates a new AuditLogsQueryPageOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewAuditLogsQueryPageOptionsWithDefaults() *AuditLogsQueryPageOptions {
 	this.Limit = &limit
 	return &this
 }
-
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *AuditLogsQueryPageOptions) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -75,6 +79,7 @@ func (o *AuditLogsQueryPageOptions) HasCursor() bool {
 func (o *AuditLogsQueryPageOptions) SetCursor(v string) {
 	o.Cursor = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *AuditLogsQueryPageOptions) GetLimit() int32 {
@@ -108,6 +113,8 @@ func (o *AuditLogsQueryPageOptions) SetLimit(v int32) {
 	o.Limit = &v
 }
 
+
+
 func (o AuditLogsQueryPageOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -126,11 +133,12 @@ func (o AuditLogsQueryPageOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuditLogsQueryPageOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Cursor *string `json:"cursor,omitempty"`
-		Limit  *int32  `json:"limit,omitempty"`
+		Limit *int32 `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

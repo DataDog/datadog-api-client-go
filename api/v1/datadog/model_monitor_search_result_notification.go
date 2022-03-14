@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorSearchResultNotification A notification triggered by the monitor.
 type MonitorSearchResultNotification struct {
@@ -19,9 +22,11 @@ type MonitorSearchResultNotification struct {
 	// The username receiving the notification
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorSearchResultNotification instantiates a new MonitorSearchResultNotification object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewMonitorSearchResultNotificationWithDefaults() *MonitorSearchResultNotifi
 	this := MonitorSearchResultNotification{}
 	return &this
 }
-
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *MonitorSearchResultNotification) GetHandle() string {
 	if o == nil || o.Handle == nil {
@@ -71,6 +75,7 @@ func (o *MonitorSearchResultNotification) HasHandle() bool {
 func (o *MonitorSearchResultNotification) SetHandle(v string) {
 	o.Handle = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorSearchResultNotification) GetName() string {
@@ -104,6 +109,8 @@ func (o *MonitorSearchResultNotification) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o MonitorSearchResultNotification) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o MonitorSearchResultNotification) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorSearchResultNotification) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

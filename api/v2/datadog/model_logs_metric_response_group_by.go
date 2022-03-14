@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsMetricResponseGroupBy A group by rule.
 type LogsMetricResponseGroupBy struct {
@@ -19,9 +22,11 @@ type LogsMetricResponseGroupBy struct {
 	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricResponseGroupBy instantiates a new LogsMetricResponseGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewLogsMetricResponseGroupByWithDefaults() *LogsMetricResponseGroupBy {
 	this := LogsMetricResponseGroupBy{}
 	return &this
 }
-
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsMetricResponseGroupBy) GetPath() string {
 	if o == nil || o.Path == nil {
@@ -71,6 +75,7 @@ func (o *LogsMetricResponseGroupBy) HasPath() bool {
 func (o *LogsMetricResponseGroupBy) SetPath(v string) {
 	o.Path = &v
 }
+
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
 func (o *LogsMetricResponseGroupBy) GetTagName() string {
@@ -104,6 +109,8 @@ func (o *LogsMetricResponseGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
+
+
 func (o LogsMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +129,11 @@ func (o LogsMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Path    *string `json:"path,omitempty"`
+		Path *string `json:"path,omitempty"`
 		TagName *string `json:"tag_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

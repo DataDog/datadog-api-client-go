@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentServiceType Incident service resource type.
 type IncidentServiceType string

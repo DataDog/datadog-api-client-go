@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceMapWidgetDefinition This widget displays a map of a service to all of the services that call it, and all of the services that it calls.
 type ServiceMapWidgetDefinition struct {
@@ -30,9 +32,11 @@ type ServiceMapWidgetDefinition struct {
 	// Type of the service map widget.
 	Type ServiceMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +59,6 @@ func NewServiceMapWidgetDefinitionWithDefaults() *ServiceMapWidgetDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *ServiceMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -88,6 +91,7 @@ func (o *ServiceMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = &v
 }
 
+
 // GetFilters returns the Filters field value
 func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 	if o == nil {
@@ -111,6 +115,7 @@ func (o *ServiceMapWidgetDefinition) SetFilters(v []string) {
 	o.Filters = v
 }
 
+
 // GetService returns the Service field value
 func (o *ServiceMapWidgetDefinition) GetService() string {
 	if o == nil {
@@ -133,6 +138,7 @@ func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool) {
 func (o *ServiceMapWidgetDefinition) SetService(v string) {
 	o.Service = v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ServiceMapWidgetDefinition) GetTitle() string {
@@ -166,6 +172,7 @@ func (o *ServiceMapWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ServiceMapWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -197,6 +204,7 @@ func (o *ServiceMapWidgetDefinition) HasTitleAlign() bool {
 func (o *ServiceMapWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
+
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ServiceMapWidgetDefinition) GetTitleSize() string {
@@ -230,6 +238,7 @@ func (o *ServiceMapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
 	if o == nil {
@@ -252,6 +261,8 @@ func (o *ServiceMapWidgetDefinition) GetTypeOk() (*ServiceMapWidgetDefinitionTyp
 func (o *ServiceMapWidgetDefinition) SetType(v ServiceMapWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -280,21 +291,22 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Filters *[]string                       `json:"filters"`
-		Service *string                         `json:"service"`
-		Type    *ServiceMapWidgetDefinitionType `json:"type"`
+		Filters *[]string `json:"filters"`
+		Service *string `json:"service"`
+		Type *ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
-		Filters     []string                       `json:"filters"`
-		Service     string                         `json:"service"`
-		Title       *string                        `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize   *string                        `json:"title_size,omitempty"`
-		Type        ServiceMapWidgetDefinitionType `json:"type"`
+		CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+		Filters []string `json:"filters"`
+		Service string `json:"service"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -318,7 +330,7 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

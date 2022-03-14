@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseMeta The metadata object containing pagination metadata.
 type IncidentResponseMeta struct {
 	// Pagination properties.
 	Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentResponseMeta instantiates a new IncidentResponseMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewIncidentResponseMetaWithDefaults() *IncidentResponseMeta {
 	this := IncidentResponseMeta{}
 	return &this
 }
-
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *IncidentResponseMeta) GetPagination() IncidentResponseMetaPagination {
 	if o == nil || o.Pagination == nil {
@@ -70,6 +74,8 @@ func (o *IncidentResponseMeta) SetPagination(v IncidentResponseMetaPagination) {
 	o.Pagination = &v
 }
 
+
+
 func (o IncidentResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o IncidentResponseMeta) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *IncidentResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

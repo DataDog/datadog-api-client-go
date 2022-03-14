@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // EventCreateRequest Object representing an event.
 type EventCreateRequest struct {
@@ -46,9 +48,11 @@ type EventCreateRequest struct {
 	// The event title.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewEventCreateRequest instantiates a new EventCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -68,7 +72,6 @@ func NewEventCreateRequestWithDefaults() *EventCreateRequest {
 	this := EventCreateRequest{}
 	return &this
 }
-
 // GetAggregationKey returns the AggregationKey field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetAggregationKey() string {
 	if o == nil || o.AggregationKey == nil {
@@ -100,6 +103,7 @@ func (o *EventCreateRequest) HasAggregationKey() bool {
 func (o *EventCreateRequest) SetAggregationKey(v string) {
 	o.AggregationKey = &v
 }
+
 
 // GetAlertType returns the AlertType field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetAlertType() EventAlertType {
@@ -133,6 +137,7 @@ func (o *EventCreateRequest) SetAlertType(v EventAlertType) {
 	o.AlertType = &v
 }
 
+
 // GetDateHappened returns the DateHappened field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetDateHappened() int64 {
 	if o == nil || o.DateHappened == nil {
@@ -164,6 +169,7 @@ func (o *EventCreateRequest) HasDateHappened() bool {
 func (o *EventCreateRequest) SetDateHappened(v int64) {
 	o.DateHappened = &v
 }
+
 
 // GetDeviceName returns the DeviceName field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetDeviceName() string {
@@ -197,6 +203,7 @@ func (o *EventCreateRequest) SetDeviceName(v string) {
 	o.DeviceName = &v
 }
 
+
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetHost() string {
 	if o == nil || o.Host == nil {
@@ -229,6 +236,7 @@ func (o *EventCreateRequest) SetHost(v string) {
 	o.Host = &v
 }
 
+
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *EventCreateRequest) GetPriority() EventPriority {
 	if o == nil || o.Priority.Get() == nil {
@@ -242,7 +250,7 @@ func (o *EventCreateRequest) GetPriority() EventPriority {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EventCreateRequest) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -261,7 +269,6 @@ func (o *EventCreateRequest) HasPriority() bool {
 func (o *EventCreateRequest) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil
 func (o *EventCreateRequest) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -271,6 +278,7 @@ func (o *EventCreateRequest) SetPriorityNil() {
 func (o *EventCreateRequest) UnsetPriority() {
 	o.Priority.Unset()
 }
+
 
 // GetRelatedEventId returns the RelatedEventId field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetRelatedEventId() int64 {
@@ -304,6 +312,7 @@ func (o *EventCreateRequest) SetRelatedEventId(v int64) {
 	o.RelatedEventId = &v
 }
 
+
 // GetSourceTypeName returns the SourceTypeName field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetSourceTypeName() string {
 	if o == nil || o.SourceTypeName == nil {
@@ -335,6 +344,7 @@ func (o *EventCreateRequest) HasSourceTypeName() bool {
 func (o *EventCreateRequest) SetSourceTypeName(v string) {
 	o.SourceTypeName = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *EventCreateRequest) GetTags() []string {
@@ -368,6 +378,7 @@ func (o *EventCreateRequest) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
 // GetText returns the Text field value
 func (o *EventCreateRequest) GetText() string {
 	if o == nil {
@@ -391,6 +402,7 @@ func (o *EventCreateRequest) SetText(v string) {
 	o.Text = v
 }
 
+
 // GetTitle returns the Title field value
 func (o *EventCreateRequest) GetTitle() string {
 	if o == nil {
@@ -413,6 +425,8 @@ func (o *EventCreateRequest) GetTitleOk() (*string, bool) {
 func (o *EventCreateRequest) SetTitle(v string) {
 	o.Title = v
 }
+
+
 
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -455,24 +469,25 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text  *string `json:"text"`
+		Text *string `json:"text"`
 		Title *string `json:"title"`
 	}{}
 	all := struct {
-		AggregationKey *string               `json:"aggregation_key,omitempty"`
-		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
-		DateHappened   *int64                `json:"date_happened,omitempty"`
-		DeviceName     *string               `json:"device_name,omitempty"`
-		Host           *string               `json:"host,omitempty"`
-		Priority       NullableEventPriority `json:"priority,omitempty"`
-		RelatedEventId *int64                `json:"related_event_id,omitempty"`
-		SourceTypeName *string               `json:"source_type_name,omitempty"`
-		Tags           *[]string             `json:"tags,omitempty"`
-		Text           string                `json:"text"`
-		Title          string                `json:"title"`
+		AggregationKey *string `json:"aggregation_key,omitempty"`
+		AlertType *EventAlertType `json:"alert_type,omitempty"`
+		DateHappened *int64 `json:"date_happened,omitempty"`
+		DeviceName *string `json:"device_name,omitempty"`
+		Host *string `json:"host,omitempty"`
+		Priority NullableEventPriority `json:"priority,omitempty"`
+		RelatedEventId *int64 `json:"related_event_id,omitempty"`
+		SourceTypeName *string `json:"source_type_name,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Text string `json:"text"`
+		Title string `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -493,7 +508,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.AlertType; v != nil && !v.IsValid() {
+	if v := all.AlertType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

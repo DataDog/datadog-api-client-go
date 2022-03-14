@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageCustomReportsAttributes The response containing attributes for custom reports.
 type UsageCustomReportsAttributes struct {
@@ -25,9 +28,11 @@ type UsageCustomReportsAttributes struct {
 	// A list of tags to apply to custom reports.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCustomReportsAttributes instantiates a new UsageCustomReportsAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +50,6 @@ func NewUsageCustomReportsAttributesWithDefaults() *UsageCustomReportsAttributes
 	this := UsageCustomReportsAttributes{}
 	return &this
 }
-
 // GetComputedOn returns the ComputedOn field value if set, zero value otherwise.
 func (o *UsageCustomReportsAttributes) GetComputedOn() string {
 	if o == nil || o.ComputedOn == nil {
@@ -77,6 +81,7 @@ func (o *UsageCustomReportsAttributes) HasComputedOn() bool {
 func (o *UsageCustomReportsAttributes) SetComputedOn(v string) {
 	o.ComputedOn = &v
 }
+
 
 // GetEndDate returns the EndDate field value if set, zero value otherwise.
 func (o *UsageCustomReportsAttributes) GetEndDate() string {
@@ -110,6 +115,7 @@ func (o *UsageCustomReportsAttributes) SetEndDate(v string) {
 	o.EndDate = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *UsageCustomReportsAttributes) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -141,6 +147,7 @@ func (o *UsageCustomReportsAttributes) HasSize() bool {
 func (o *UsageCustomReportsAttributes) SetSize(v int64) {
 	o.Size = &v
 }
+
 
 // GetStartDate returns the StartDate field value if set, zero value otherwise.
 func (o *UsageCustomReportsAttributes) GetStartDate() string {
@@ -174,6 +181,7 @@ func (o *UsageCustomReportsAttributes) SetStartDate(v string) {
 	o.StartDate = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UsageCustomReportsAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -206,6 +214,8 @@ func (o *UsageCustomReportsAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
+
 func (o UsageCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -233,14 +243,15 @@ func (o UsageCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ComputedOn *string   `json:"computed_on,omitempty"`
-		EndDate    *string   `json:"end_date,omitempty"`
-		Size       *int64    `json:"size,omitempty"`
-		StartDate  *string   `json:"start_date,omitempty"`
-		Tags       *[]string `json:"tags,omitempty"`
+		ComputedOn *string `json:"computed_on,omitempty"`
+		EndDate *string `json:"end_date,omitempty"`
+		Size *int64 `json:"size,omitempty"`
+		StartDate *string `json:"start_date,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsPipelineProcessorType Type of logs pipeline processor.
 type LogsPipelineProcessorType string

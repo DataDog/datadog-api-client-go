@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetFormula Formula to be used in a widget query.
 type WidgetFormula struct {
@@ -26,9 +28,11 @@ type WidgetFormula struct {
 	// Options for limiting results returned.
 	Limit *WidgetFormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetFormula instantiates a new WidgetFormula object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +51,6 @@ func NewWidgetFormulaWithDefaults() *WidgetFormula {
 	this := WidgetFormula{}
 	return &this
 }
-
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *WidgetFormula) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -79,6 +82,7 @@ func (o *WidgetFormula) HasAlias() bool {
 func (o *WidgetFormula) SetAlias(v string) {
 	o.Alias = &v
 }
+
 
 // GetCellDisplayMode returns the CellDisplayMode field value if set, zero value otherwise.
 func (o *WidgetFormula) GetCellDisplayMode() TableWidgetCellDisplayMode {
@@ -112,6 +116,7 @@ func (o *WidgetFormula) SetCellDisplayMode(v TableWidgetCellDisplayMode) {
 	o.CellDisplayMode = &v
 }
 
+
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
 func (o *WidgetFormula) GetConditionalFormats() []WidgetConditionalFormat {
 	if o == nil || o.ConditionalFormats == nil {
@@ -144,6 +149,7 @@ func (o *WidgetFormula) SetConditionalFormats(v []WidgetConditionalFormat) {
 	o.ConditionalFormats = &v
 }
 
+
 // GetFormula returns the Formula field value
 func (o *WidgetFormula) GetFormula() string {
 	if o == nil {
@@ -166,6 +172,7 @@ func (o *WidgetFormula) GetFormulaOk() (*string, bool) {
 func (o *WidgetFormula) SetFormula(v string) {
 	o.Formula = v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *WidgetFormula) GetLimit() WidgetFormulaLimit {
@@ -199,6 +206,8 @@ func (o *WidgetFormula) SetLimit(v WidgetFormulaLimit) {
 	o.Limit = &v
 }
 
+
+
 func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -224,17 +233,18 @@ func (o WidgetFormula) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Formula *string `json:"formula"`
 	}{}
 	all := struct {
-		Alias              *string                     `json:"alias,omitempty"`
-		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		ConditionalFormats *[]WidgetConditionalFormat  `json:"conditional_formats,omitempty"`
-		Formula            string                      `json:"formula"`
-		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
+		Alias *string `json:"alias,omitempty"`
+		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+		ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+		Formula string `json:"formula"`
+		Limit *WidgetFormulaLimit `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -252,7 +262,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.CellDisplayMode; v != nil && !v.IsValid() {
+	if v := all.CellDisplayMode; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

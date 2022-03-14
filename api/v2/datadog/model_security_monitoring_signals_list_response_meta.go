@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalsListResponseMeta Meta attributes.
 type SecurityMonitoringSignalsListResponseMeta struct {
 	// Paging attributes.
 	Page *SecurityMonitoringSignalsListResponseMetaPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalsListResponseMeta instantiates a new SecurityMonitoringSignalsListResponseMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewSecurityMonitoringSignalsListResponseMetaWithDefaults() *SecurityMonitor
 	this := SecurityMonitoringSignalsListResponseMeta{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalsListResponseMeta) GetPage() SecurityMonitoringSignalsListResponseMetaPage {
 	if o == nil || o.Page == nil {
@@ -70,6 +74,8 @@ func (o *SecurityMonitoringSignalsListResponseMeta) SetPage(v SecurityMonitoring
 	o.Page = &v
 }
 
+
+
 func (o SecurityMonitoringSignalsListResponseMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o SecurityMonitoringSignalsListResponseMeta) MarshalJSON() ([]byte, error)
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SecurityMonitoringSignalsListResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

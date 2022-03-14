@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
@@ -19,9 +22,11 @@ type NotebooksResponse struct {
 	// Searches metadata returned by the API.
 	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebooksResponse instantiates a new NotebooksResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewNotebooksResponseWithDefaults() *NotebooksResponse {
 	this := NotebooksResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetData() []NotebooksResponseData {
 	if o == nil || o.Data == nil {
@@ -71,6 +75,7 @@ func (o *NotebooksResponse) HasData() bool {
 func (o *NotebooksResponse) SetData(v []NotebooksResponseData) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *NotebooksResponse) GetMeta() NotebooksResponseMeta {
@@ -104,6 +109,8 @@ func (o *NotebooksResponse) SetMeta(v NotebooksResponseMeta) {
 	o.Meta = &v
 }
 
+
+
 func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,11 +129,12 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data *[]NotebooksResponseData `json:"data,omitempty"`
-		Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
+		Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FunnelWidgetRequest Updated funnel widget.
 type FunnelWidgetRequest struct {
@@ -20,9 +22,11 @@ type FunnelWidgetRequest struct {
 	// Widget request type.
 	RequestType FunnelRequestType `json:"request_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFunnelWidgetRequest instantiates a new FunnelWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewFunnelWidgetRequestWithDefaults() *FunnelWidgetRequest {
 	this := FunnelWidgetRequest{}
 	return &this
 }
-
 // GetQuery returns the Query field value
 func (o *FunnelWidgetRequest) GetQuery() FunnelQuery {
 	if o == nil {
@@ -65,6 +68,7 @@ func (o *FunnelWidgetRequest) GetQueryOk() (*FunnelQuery, bool) {
 func (o *FunnelWidgetRequest) SetQuery(v FunnelQuery) {
 	o.Query = v
 }
+
 
 // GetRequestType returns the RequestType field value
 func (o *FunnelWidgetRequest) GetRequestType() FunnelRequestType {
@@ -89,6 +93,8 @@ func (o *FunnelWidgetRequest) SetRequestType(v FunnelRequestType) {
 	o.RequestType = v
 }
 
+
+
 func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,14 +109,15 @@ func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query       *FunnelQuery       `json:"query"`
+		Query *FunnelQuery `json:"query"`
 		RequestType *FunnelRequestType `json:"request_type"`
 	}{}
 	all := struct {
-		Query       FunnelQuery       `json:"query"`
+		Query FunnelQuery `json:"query"`
 		RequestType FunnelRequestType `json:"request_type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
