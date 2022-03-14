@@ -23,7 +23,7 @@ type Series struct {
 	// The name of the timeseries.
 	Metric string `json:"metric"`
 	// Points relating to a metric. All points must be tuples with timestamp and a scalar value (cannot be a string). Timestamps should be in POSIX time in seconds, and cannot be more than ten minutes in the future or more than one hour in the past.
-	Points [][]float64 `json:"points"`
+	Points [][]*float64 `json:"points"`
 	// A list of tags associated with the metric.
 	Tags *[]string `json:"tags,omitempty"`
 	// The type of the metric either `count`, `gauge`, or `rate`.
@@ -37,7 +37,7 @@ type Series struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSeries(metric string, points [][]float64) *Series {
+func NewSeries(metric string, points [][]*float64) *Series {
 	this := Series{}
 	this.Interval = *NewNullableInt64(nil)
 	this.Metric = metric
@@ -157,9 +157,9 @@ func (o *Series) SetMetric(v string) {
 }
 
 // GetPoints returns the Points field value
-func (o *Series) GetPoints() [][]float64 {
+func (o *Series) GetPoints() [][]*float64 {
 	if o == nil {
-		var ret [][]float64
+		var ret [][]*float64
 		return ret
 	}
 	return o.Points
@@ -167,7 +167,7 @@ func (o *Series) GetPoints() [][]float64 {
 
 // GetPointsOk returns a tuple with the Points field value
 // and a boolean to check if the value has been set.
-func (o *Series) GetPointsOk() (*[][]float64, bool) {
+func (o *Series) GetPointsOk() (*[][]*float64, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -175,7 +175,7 @@ func (o *Series) GetPointsOk() (*[][]float64, bool) {
 }
 
 // SetPoints sets field value
-func (o *Series) SetPoints(v [][]float64) {
+func (o *Series) SetPoints(v [][]*float64) {
 	o.Points = v
 }
 
@@ -272,14 +272,14 @@ func (o Series) MarshalJSON() ([]byte, error) {
 func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Metric *string      `json:"metric"`
-		Points *[][]float64 `json:"points"`
+		Metric *string       `json:"metric"`
+		Points *[][]*float64 `json:"points"`
 	}{}
 	all := struct {
 		Host     *string       `json:"host,omitempty"`
 		Interval NullableInt64 `json:"interval,omitempty"`
 		Metric   string        `json:"metric"`
-		Points   [][]float64   `json:"points"`
+		Points   [][]*float64  `json:"points"`
 		Tags     *[]string     `json:"tags,omitempty"`
 		Type     *string       `json:"type,omitempty"`
 	}{}

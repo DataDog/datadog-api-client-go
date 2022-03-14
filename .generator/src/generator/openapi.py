@@ -61,7 +61,13 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
             )
 
     if type_ == "array":
-        return prefix + name if name and schema.get("x-generate-alias-as-model", False) else "[]{}".format(type_to_go(schema["items"]))
+        if name and schema.get("x-generate-alias-as-model", False):
+            return prefix + name
+        name = type_to_go(schema["items"])
+        # handle nullable arrays
+        if formatter.simple_type(schema["items"]) and schema["items"].get("nullable"):
+            name = "*" + name
+        return "[]{}".format(name)
     elif type_ == "object":
         if "additionalProperties" in schema:
             return "map[string]{}".format(type_to_go(schema["additionalProperties"]))
