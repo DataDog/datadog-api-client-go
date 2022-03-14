@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // AlertValueWidgetDefinition Alert values are query values showing the current value of the metric in any monitor defined on your system.
 type AlertValueWidgetDefinition struct {
@@ -34,11 +32,9 @@ type AlertValueWidgetDefinition struct {
 	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAlertValueWidgetDefinition instantiates a new AlertValueWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +56,7 @@ func NewAlertValueWidgetDefinitionWithDefaults() *AlertValueWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetAlertId returns the AlertId field value
 func (o *AlertValueWidgetDefinition) GetAlertId() string {
 	if o == nil {
@@ -82,7 +79,6 @@ func (o *AlertValueWidgetDefinition) GetAlertIdOk() (*string, bool) {
 func (o *AlertValueWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
 }
-
 
 // GetPrecision returns the Precision field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetPrecision() int64 {
@@ -116,7 +112,6 @@ func (o *AlertValueWidgetDefinition) SetPrecision(v int64) {
 	o.Precision = &v
 }
 
-
 // GetTextAlign returns the TextAlign field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	if o == nil || o.TextAlign == nil {
@@ -148,7 +143,6 @@ func (o *AlertValueWidgetDefinition) HasTextAlign() bool {
 func (o *AlertValueWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitle() string {
@@ -182,7 +176,6 @@ func (o *AlertValueWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -214,7 +207,6 @@ func (o *AlertValueWidgetDefinition) HasTitleAlign() bool {
 func (o *AlertValueWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetTitleSize() string {
@@ -248,7 +240,6 @@ func (o *AlertValueWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value
 func (o *AlertValueWidgetDefinition) GetType() AlertValueWidgetDefinitionType {
 	if o == nil {
@@ -271,7 +262,6 @@ func (o *AlertValueWidgetDefinition) GetTypeOk() (*AlertValueWidgetDefinitionTyp
 func (o *AlertValueWidgetDefinition) SetType(v AlertValueWidgetDefinitionType) {
 	o.Type = v
 }
-
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
 func (o *AlertValueWidgetDefinition) GetUnit() string {
@@ -305,8 +295,6 @@ func (o *AlertValueWidgetDefinition) SetUnit(v string) {
 	o.Unit = &v
 }
 
-
-
 func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -339,22 +327,21 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AlertId *string `json:"alert_id"`
-		Type *AlertValueWidgetDefinitionType `json:"type"`
+		AlertId *string                         `json:"alert_id"`
+		Type    *AlertValueWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		AlertId string `json:"alert_id"`
-		Precision *int64 `json:"precision,omitempty"`
-		TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type AlertValueWidgetDefinitionType `json:"type"`
-		Unit *string `json:"unit,omitempty"`
+		AlertId    string                         `json:"alert_id"`
+		Precision  *int64                         `json:"precision,omitempty"`
+		TextAlign  *WidgetTextAlign               `json:"text_align,omitempty"`
+		Title      *string                        `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize  *string                        `json:"title_size,omitempty"`
+		Type       AlertValueWidgetDefinitionType `json:"type"`
+		Unit       *string                        `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -375,7 +362,7 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TextAlign; v != nil &&!v.IsValid() {
+	if v := all.TextAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -383,7 +370,7 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil &&!v.IsValid() {
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

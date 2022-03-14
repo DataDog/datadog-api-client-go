@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // DashboardResourceType Dashboard resource type.
 type DashboardResourceType string

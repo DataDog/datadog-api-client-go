@@ -101,6 +101,7 @@ type Configuration struct {
 	HTTPClient         *http.Client
 	unstableOperations map[string]bool
 }
+
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
@@ -108,15 +109,15 @@ func NewConfiguration() *Configuration {
 		UserAgent:     getUserAgent(),
 		Debug:         false,
 		Compress:      true,
-		Servers:       ServerConfigurations{
+		Servers: ServerConfigurations{
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables:   map[string]ServerVariable{
+				Variables: map[string]ServerVariable{
 					"site": {
 						Description:  "The regional site for a Datadog customer.",
 						DefaultValue: "datadoghq.com",
-						EnumValues:   []string{
+						EnumValues: []string{
 							"datadoghq.com",
 							"us3.datadoghq.com",
 							"us5.datadoghq.com",
@@ -133,7 +134,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "{protocol}://{name}",
 				Description: "No description provided",
-				Variables:   map[string]ServerVariable{
+				Variables: map[string]ServerVariable{
 					"name": {
 						Description:  "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
@@ -147,7 +148,7 @@ func NewConfiguration() *Configuration {
 			{
 				URL:         "https://{subdomain}.{site}",
 				Description: "No description provided",
-				Variables:   map[string]ServerVariable{
+				Variables: map[string]ServerVariable{
 					"site": {
 						Description:  "Any Datadog deployment.",
 						DefaultValue: "datadoghq.com",
@@ -164,11 +165,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues:   []string{
+							EnumValues: []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -185,7 +186,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "ip-ranges.datadoghq.com",
@@ -199,7 +200,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.datadoghq.com",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"subdomain": {
 							Description:  "The subdomain where the API is deployed.",
 							DefaultValue: "ip-ranges",
@@ -211,11 +212,11 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"site": {
 							Description:  "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
-							EnumValues:   []string{
+							EnumValues: []string{
 								"datadoghq.com",
 								"us3.datadoghq.com",
 								"us5.datadoghq.com",
@@ -232,7 +233,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "{protocol}://{name}",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"name": {
 							Description:  "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
@@ -246,7 +247,7 @@ func NewConfiguration() *Configuration {
 				{
 					URL:         "https://{subdomain}.{site}",
 					Description: "No description provided",
-					Variables:   map[string]ServerVariable{
+					Variables: map[string]ServerVariable{
 						"site": {
 							Description:  "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
@@ -260,20 +261,20 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"GetDailyCustomReports": false,
-			"GetSpecifiedDailyCustomReports": false,
-			"GetMonthlyCustomReports": false,
+			"GetDailyCustomReports":            false,
+			"GetSpecifiedDailyCustomReports":   false,
+			"GetMonthlyCustomReports":          false,
 			"GetSpecifiedMonthlyCustomReports": false,
-			"ListSLOCorrection": false,
-			"CreateSLOCorrection": false,
-			"DeleteSLOCorrection": false,
-			"GetSLOCorrection": false,
-			"UpdateSLOCorrection": false,
-			"GetSLOCorrections": false,
-			"GetSLOHistory": false,
-			"GetUsageAttribution": false,
-			"GetHourlyUsageAttribution": false,
-			"GetMonthlyUsageAttribution": false,
+			"ListSLOCorrection":                false,
+			"CreateSLOCorrection":              false,
+			"DeleteSLOCorrection":              false,
+			"GetSLOCorrection":                 false,
+			"UpdateSLOCorrection":              false,
+			"GetSLOCorrections":                false,
+			"GetSLOHistory":                    false,
+			"GetUsageAttribution":              false,
+			"GetHourlyUsageAttribution":        false,
+			"GetMonthlyUsageAttribution":       false,
 		},
 	}
 	return cfg

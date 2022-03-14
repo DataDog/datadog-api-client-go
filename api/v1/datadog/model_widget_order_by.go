@@ -11,19 +11,17 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetOrderBy What to order by.
 type WidgetOrderBy string
 
 // List of WidgetOrderBy
 const (
-	WIDGETORDERBY_CHANGE WidgetOrderBy = "change"
-	WIDGETORDERBY_NAME WidgetOrderBy = "name"
+	WIDGETORDERBY_CHANGE  WidgetOrderBy = "change"
+	WIDGETORDERBY_NAME    WidgetOrderBy = "name"
 	WIDGETORDERBY_PRESENT WidgetOrderBy = "present"
-	WIDGETORDERBY_PAST WidgetOrderBy = "past"
+	WIDGETORDERBY_PAST    WidgetOrderBy = "past"
 )
 
 var allowedWidgetOrderByEnumValues = []WidgetOrderBy{

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetTextAlign How to align the text on the widget.
 type WidgetTextAlign string
@@ -21,8 +19,8 @@ type WidgetTextAlign string
 // List of WidgetTextAlign
 const (
 	WIDGETTEXTALIGN_CENTER WidgetTextAlign = "center"
-	WIDGETTEXTALIGN_LEFT WidgetTextAlign = "left"
-	WIDGETTEXTALIGN_RIGHT WidgetTextAlign = "right"
+	WIDGETTEXTALIGN_LEFT   WidgetTextAlign = "left"
+	WIDGETTEXTALIGN_RIGHT  WidgetTextAlign = "right"
 )
 
 var allowedWidgetTextAlignEnumValues = []WidgetTextAlign{

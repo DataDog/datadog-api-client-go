@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // IntakePayloadAccepted The payload accepted for intake.
 type IntakePayloadAccepted struct {
 	// The status of the intake payload.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIntakePayloadAccepted instantiates a new IntakePayloadAccepted object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewIntakePayloadAcceptedWithDefaults() *IntakePayloadAccepted {
 	this := IntakePayloadAccepted{}
 	return &this
 }
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *IntakePayloadAccepted) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -74,8 +70,6 @@ func (o *IntakePayloadAccepted) SetStatus(v string) {
 	o.Status = &v
 }
 
-
-
 func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // UsageCustomReportsMeta The object containing document metadata.
 type UsageCustomReportsMeta struct {
 	// The object containing page total count.
 	Page *UsageCustomReportsPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageCustomReportsMeta instantiates a new UsageCustomReportsMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewUsageCustomReportsMetaWithDefaults() *UsageCustomReportsMeta {
 	this := UsageCustomReportsMeta{}
 	return &this
 }
+
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *UsageCustomReportsMeta) GetPage() UsageCustomReportsPage {
 	if o == nil || o.Page == nil {
@@ -74,8 +70,6 @@ func (o *UsageCustomReportsMeta) SetPage(v UsageCustomReportsPage) {
 	o.Page = &v
 }
 
-
-
 func (o UsageCustomReportsMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o UsageCustomReportsMeta) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *UsageCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
