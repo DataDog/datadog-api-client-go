@@ -89,10 +89,10 @@ func TestMetrics(t *testing.T) {
 	assert.Equal("avg", series.GetAggr())
 	assert.Equal(testMetric, series.GetDisplayName())
 	assert.Equal(testMetric, series.GetMetric())
-	assert.Equal(series.GetPointlist()[0][0], float64(series.GetStart()))
-	assert.Equal(series.GetPointlist()[1][0], float64(series.GetEnd()))
-	assert.Equal(10.5, series.GetPointlist()[0][1])
-	assert.Equal(11., series.GetPointlist()[1][1])
+	assert.Equal(series.GetPointlist()[0][0], datadog.PtrFloat64(float64(series.GetStart())))
+	assert.Equal(series.GetPointlist()[1][0], datadog.PtrFloat64(float64(series.GetEnd())))
+	assert.Equal(10.5, *series.GetPointlist()[0][1])
+	assert.Equal(11., *series.GetPointlist()[1][1])
 
 	// Test search
 	searchQuery := fmt.Sprintf("metrics:%s", testMetric)
