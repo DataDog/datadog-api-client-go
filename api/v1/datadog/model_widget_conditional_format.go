@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetConditionalFormat Define a conditional format for the widget.
 type WidgetConditionalFormat struct {
@@ -34,9 +36,11 @@ type WidgetConditionalFormat struct {
 	// Value for the comparator.
 	Value float64 `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetConditionalFormat instantiates a new WidgetConditionalFormat object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +61,6 @@ func NewWidgetConditionalFormatWithDefaults() *WidgetConditionalFormat {
 	this := WidgetConditionalFormat{}
 	return &this
 }
-
 // GetComparator returns the Comparator field value
 func (o *WidgetConditionalFormat) GetComparator() WidgetComparator {
 	if o == nil {
@@ -80,6 +83,7 @@ func (o *WidgetConditionalFormat) GetComparatorOk() (*WidgetComparator, bool) {
 func (o *WidgetConditionalFormat) SetComparator(v WidgetComparator) {
 	o.Comparator = v
 }
+
 
 // GetCustomBgColor returns the CustomBgColor field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetCustomBgColor() string {
@@ -113,6 +117,7 @@ func (o *WidgetConditionalFormat) SetCustomBgColor(v string) {
 	o.CustomBgColor = &v
 }
 
+
 // GetCustomFgColor returns the CustomFgColor field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetCustomFgColor() string {
 	if o == nil || o.CustomFgColor == nil {
@@ -144,6 +149,7 @@ func (o *WidgetConditionalFormat) HasCustomFgColor() bool {
 func (o *WidgetConditionalFormat) SetCustomFgColor(v string) {
 	o.CustomFgColor = &v
 }
+
 
 // GetHideValue returns the HideValue field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetHideValue() bool {
@@ -177,6 +183,7 @@ func (o *WidgetConditionalFormat) SetHideValue(v bool) {
 	o.HideValue = &v
 }
 
+
 // GetImageUrl returns the ImageUrl field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetImageUrl() string {
 	if o == nil || o.ImageUrl == nil {
@@ -208,6 +215,7 @@ func (o *WidgetConditionalFormat) HasImageUrl() bool {
 func (o *WidgetConditionalFormat) SetImageUrl(v string) {
 	o.ImageUrl = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetMetric() string {
@@ -241,6 +249,7 @@ func (o *WidgetConditionalFormat) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetPalette returns the Palette field value
 func (o *WidgetConditionalFormat) GetPalette() WidgetPalette {
 	if o == nil {
@@ -263,6 +272,7 @@ func (o *WidgetConditionalFormat) GetPaletteOk() (*WidgetPalette, bool) {
 func (o *WidgetConditionalFormat) SetPalette(v WidgetPalette) {
 	o.Palette = v
 }
+
 
 // GetTimeframe returns the Timeframe field value if set, zero value otherwise.
 func (o *WidgetConditionalFormat) GetTimeframe() string {
@@ -296,6 +306,7 @@ func (o *WidgetConditionalFormat) SetTimeframe(v string) {
 	o.Timeframe = &v
 }
 
+
 // GetValue returns the Value field value
 func (o *WidgetConditionalFormat) GetValue() float64 {
 	if o == nil {
@@ -318,6 +329,8 @@ func (o *WidgetConditionalFormat) GetValueOk() (*float64, bool) {
 func (o *WidgetConditionalFormat) SetValue(v float64) {
 	o.Value = v
 }
+
+
 
 func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -352,23 +365,24 @@ func (o WidgetConditionalFormat) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Comparator *WidgetComparator `json:"comparator"`
-		Palette    *WidgetPalette    `json:"palette"`
-		Value      *float64          `json:"value"`
+		Palette *WidgetPalette `json:"palette"`
+		Value *float64 `json:"value"`
 	}{}
 	all := struct {
-		Comparator    WidgetComparator `json:"comparator"`
-		CustomBgColor *string          `json:"custom_bg_color,omitempty"`
-		CustomFgColor *string          `json:"custom_fg_color,omitempty"`
-		HideValue     *bool            `json:"hide_value,omitempty"`
-		ImageUrl      *string          `json:"image_url,omitempty"`
-		Metric        *string          `json:"metric,omitempty"`
-		Palette       WidgetPalette    `json:"palette"`
-		Timeframe     *string          `json:"timeframe,omitempty"`
-		Value         float64          `json:"value"`
+		Comparator WidgetComparator `json:"comparator"`
+		CustomBgColor *string `json:"custom_bg_color,omitempty"`
+		CustomFgColor *string `json:"custom_fg_color,omitempty"`
+		HideValue *bool `json:"hide_value,omitempty"`
+		ImageUrl *string `json:"image_url,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Palette WidgetPalette `json:"palette"`
+		Timeframe *string `json:"timeframe,omitempty"`
+		Value float64 `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

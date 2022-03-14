@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogQueryDefinitionGroupBy Defined items in the group.
 type LogQueryDefinitionGroupBy struct {
@@ -22,9 +24,11 @@ type LogQueryDefinitionGroupBy struct {
 	// Define a sorting method.
 	Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogQueryDefinitionGroupBy instantiates a new LogQueryDefinitionGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +47,6 @@ func NewLogQueryDefinitionGroupByWithDefaults() *LogQueryDefinitionGroupBy {
 	this := LogQueryDefinitionGroupBy{}
 	return &this
 }
-
 // GetFacet returns the Facet field value
 func (o *LogQueryDefinitionGroupBy) GetFacet() string {
 	if o == nil {
@@ -66,6 +69,7 @@ func (o *LogQueryDefinitionGroupBy) GetFacetOk() (*string, bool) {
 func (o *LogQueryDefinitionGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBy) GetLimit() int64 {
@@ -99,6 +103,7 @@ func (o *LogQueryDefinitionGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBy) GetSort() LogQueryDefinitionGroupBySort {
 	if o == nil || o.Sort == nil {
@@ -131,6 +136,8 @@ func (o *LogQueryDefinitionGroupBy) SetSort(v LogQueryDefinitionGroupBySort) {
 	o.Sort = &v
 }
 
+
+
 func (o LogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -150,15 +157,16 @@ func (o LogQueryDefinitionGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet string                         `json:"facet"`
-		Limit *int64                         `json:"limit,omitempty"`
-		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
+		Facet string `json:"facet"`
+		Limit *int64 `json:"limit,omitempty"`
+		Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

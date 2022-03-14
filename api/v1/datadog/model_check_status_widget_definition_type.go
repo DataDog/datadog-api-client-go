@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CheckStatusWidgetDefinitionType Type of the check status widget.
 type CheckStatusWidgetDefinitionType string

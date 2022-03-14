@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IPRanges IP ranges.
 type IPRanges struct {
@@ -33,9 +36,11 @@ type IPRanges struct {
 	// Available prefix information for the Webhook endpoints.
 	Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIPRanges instantiates a new IPRanges object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewIPRangesWithDefaults() *IPRanges {
 	this := IPRanges{}
 	return &this
 }
-
 // GetAgents returns the Agents field value if set, zero value otherwise.
 func (o *IPRanges) GetAgents() IPPrefixesAgents {
 	if o == nil || o.Agents == nil {
@@ -85,6 +89,7 @@ func (o *IPRanges) HasAgents() bool {
 func (o *IPRanges) SetAgents(v IPPrefixesAgents) {
 	o.Agents = &v
 }
+
 
 // GetApi returns the Api field value if set, zero value otherwise.
 func (o *IPRanges) GetApi() IPPrefixesAPI {
@@ -118,6 +123,7 @@ func (o *IPRanges) SetApi(v IPPrefixesAPI) {
 	o.Api = &v
 }
 
+
 // GetApm returns the Apm field value if set, zero value otherwise.
 func (o *IPRanges) GetApm() IPPrefixesAPM {
 	if o == nil || o.Apm == nil {
@@ -149,6 +155,7 @@ func (o *IPRanges) HasApm() bool {
 func (o *IPRanges) SetApm(v IPPrefixesAPM) {
 	o.Apm = &v
 }
+
 
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *IPRanges) GetLogs() IPPrefixesLogs {
@@ -182,6 +189,7 @@ func (o *IPRanges) SetLogs(v IPPrefixesLogs) {
 	o.Logs = &v
 }
 
+
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *IPRanges) GetModified() string {
 	if o == nil || o.Modified == nil {
@@ -213,6 +221,7 @@ func (o *IPRanges) HasModified() bool {
 func (o *IPRanges) SetModified(v string) {
 	o.Modified = &v
 }
+
 
 // GetProcess returns the Process field value if set, zero value otherwise.
 func (o *IPRanges) GetProcess() IPPrefixesProcess {
@@ -246,6 +255,7 @@ func (o *IPRanges) SetProcess(v IPPrefixesProcess) {
 	o.Process = &v
 }
 
+
 // GetSynthetics returns the Synthetics field value if set, zero value otherwise.
 func (o *IPRanges) GetSynthetics() IPPrefixesSynthetics {
 	if o == nil || o.Synthetics == nil {
@@ -277,6 +287,7 @@ func (o *IPRanges) HasSynthetics() bool {
 func (o *IPRanges) SetSynthetics(v IPPrefixesSynthetics) {
 	o.Synthetics = &v
 }
+
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *IPRanges) GetVersion() int64 {
@@ -310,6 +321,7 @@ func (o *IPRanges) SetVersion(v int64) {
 	o.Version = &v
 }
 
+
 // GetWebhooks returns the Webhooks field value if set, zero value otherwise.
 func (o *IPRanges) GetWebhooks() IPPrefixesWebhooks {
 	if o == nil || o.Webhooks == nil {
@@ -341,6 +353,8 @@ func (o *IPRanges) HasWebhooks() bool {
 func (o *IPRanges) SetWebhooks(v IPPrefixesWebhooks) {
 	o.Webhooks = &v
 }
+
+
 
 func (o IPRanges) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -381,18 +395,19 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Agents     *IPPrefixesAgents     `json:"agents,omitempty"`
-		Api        *IPPrefixesAPI        `json:"api,omitempty"`
-		Apm        *IPPrefixesAPM        `json:"apm,omitempty"`
-		Logs       *IPPrefixesLogs       `json:"logs,omitempty"`
-		Modified   *string               `json:"modified,omitempty"`
-		Process    *IPPrefixesProcess    `json:"process,omitempty"`
+		Agents *IPPrefixesAgents `json:"agents,omitempty"`
+		Api *IPPrefixesAPI `json:"api,omitempty"`
+		Apm *IPPrefixesAPM `json:"apm,omitempty"`
+		Logs *IPPrefixesLogs `json:"logs,omitempty"`
+		Modified *string `json:"modified,omitempty"`
+		Process *IPPrefixesProcess `json:"process,omitempty"`
 		Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
-		Version    *int64                `json:"version,omitempty"`
-		Webhooks   *IPPrefixesWebhooks   `json:"webhooks,omitempty"`
+		Version *int64 `json:"version,omitempty"`
+		Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

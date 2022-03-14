@@ -145,16 +145,16 @@ def child_models(schema, alternative_name=None, seen=None, parent=None):
 
         yield from child_models(
             schema["items"],
-            alternative_name=name + "Item"
-            if name is not None
-            else None,
+            alternative_name=name + "Item" if name is not None else None,
             seen=seen,
             parent=schema,
         )
 
     if (
         schema.get("type") == "object" or "properties" in schema or has_sub_models
-    ) and ("additionalProperties" not in schema or schema["additionalProperties"] is False):
+    ) and (
+        "additionalProperties" not in schema or schema["additionalProperties"] is False
+    ):
         if not has_sub_models and name is None:
             # this is a basic map object so we don't need a type
             return

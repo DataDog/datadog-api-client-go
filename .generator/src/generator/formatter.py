@@ -82,9 +82,12 @@ def snake_case(value):
 def block_comment(comment, prefix="#", first_line=True):
     lines = comment.split("\n")
     start = "" if first_line else lines[0] + "\n"
-    return (start + "\n".join(
-        f"{prefix} {line}".rstrip() for line in lines[(0 if first_line else 1) :]
-    )).rstrip()
+    return (
+        start
+        + "\n".join(
+            f"{prefix} {line}".rstrip() for line in lines[(0 if first_line else 1) :]
+        )
+    ).rstrip()
 
 
 def camel_case(value):

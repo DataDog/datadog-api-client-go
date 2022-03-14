@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type FormulaAndFunctionEventQueryDefinition struct {
@@ -28,9 +30,11 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// Search options.
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFormulaAndFunctionEventQueryDefinition instantiates a new FormulaAndFunctionEventQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +55,6 @@ func NewFormulaAndFunctionEventQueryDefinitionWithDefaults() *FormulaAndFunction
 	this := FormulaAndFunctionEventQueryDefinition{}
 	return &this
 }
-
 // GetCompute returns the Compute field value
 func (o *FormulaAndFunctionEventQueryDefinition) GetCompute() FormulaAndFunctionEventQueryDefinitionCompute {
 	if o == nil {
@@ -75,6 +78,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetCompute(v FormulaAndFunction
 	o.Compute = v
 }
 
+
 // GetDataSource returns the DataSource field value
 func (o *FormulaAndFunctionEventQueryDefinition) GetDataSource() FormulaAndFunctionEventsDataSource {
 	if o == nil {
@@ -97,6 +101,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*FormulaAndF
 func (o *FormulaAndFunctionEventQueryDefinition) SetDataSource(v FormulaAndFunctionEventsDataSource) {
 	o.DataSource = v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetGroupBy() []FormulaAndFunctionEventQueryGroupBy {
@@ -130,6 +135,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetGroupBy(v []FormulaAndFuncti
 	o.GroupBy = &v
 }
 
+
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -162,6 +168,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
 	o.Indexes = &v
 }
 
+
 // GetName returns the Name field value
 func (o *FormulaAndFunctionEventQueryDefinition) GetName() string {
 	if o == nil {
@@ -184,6 +191,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bool) {
 func (o *FormulaAndFunctionEventQueryDefinition) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *FormulaAndFunctionEventQueryDefinition) GetSearch() FormulaAndFunctionEventQueryDefinitionSearch {
@@ -217,6 +225,8 @@ func (o *FormulaAndFunctionEventQueryDefinition) SetSearch(v FormulaAndFunctionE
 	o.Search = &v
 }
 
+
+
 func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -241,20 +251,21 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Compute    *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource *FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		Name       *string                                        `json:"name"`
+		Compute *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource *FormulaAndFunctionEventsDataSource `json:"data_source"`
+		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
-		Indexes    *[]string                                     `json:"indexes,omitempty"`
-		Name       string                                        `json:"name"`
-		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+		Compute FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
+		GroupBy *[]FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+		Indexes *[]string `json:"indexes,omitempty"`
+		Name string `json:"name"`
+		Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

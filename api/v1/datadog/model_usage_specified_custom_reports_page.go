@@ -10,16 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageSpecifiedCustomReportsPage The object containing page total count for specified ID.
 type UsageSpecifiedCustomReportsPage struct {
 	// Total page count.
 	TotalCount *int64 `json:"total_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSpecifiedCustomReportsPage instantiates a new UsageSpecifiedCustomReportsPage object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewUsageSpecifiedCustomReportsPageWithDefaults() *UsageSpecifiedCustomRepor
 	this := UsageSpecifiedCustomReportsPage{}
 	return &this
 }
-
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *UsageSpecifiedCustomReportsPage) GetTotalCount() int64 {
 	if o == nil || o.TotalCount == nil {
@@ -70,6 +74,8 @@ func (o *UsageSpecifiedCustomReportsPage) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
 
+
+
 func (o UsageSpecifiedCustomReportsPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +90,7 @@ func (o UsageSpecifiedCustomReportsPage) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageSpecifiedCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,14 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetGrouping The kind of grouping to use.
 type WidgetGrouping string
 
 // List of WidgetGrouping
 const (
-	WIDGETGROUPING_CHECK   WidgetGrouping = "check"
+	WIDGETGROUPING_CHECK WidgetGrouping = "check"
 	WIDGETGROUPING_CLUSTER WidgetGrouping = "cluster"
 )
 

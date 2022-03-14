@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceCheck An object containing service check and status.
 type ServiceCheck struct {
@@ -28,9 +30,11 @@ type ServiceCheck struct {
 	// Time of check.
 	Timestamp *int64 `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceCheck instantiates a new ServiceCheck object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewServiceCheckWithDefaults() *ServiceCheck {
 	this := ServiceCheck{}
 	return &this
 }
-
 // GetCheck returns the Check field value
 func (o *ServiceCheck) GetCheck() string {
 	if o == nil {
@@ -76,6 +79,7 @@ func (o *ServiceCheck) SetCheck(v string) {
 	o.Check = v
 }
 
+
 // GetHostName returns the HostName field value
 func (o *ServiceCheck) GetHostName() string {
 	if o == nil {
@@ -98,6 +102,7 @@ func (o *ServiceCheck) GetHostNameOk() (*string, bool) {
 func (o *ServiceCheck) SetHostName(v string) {
 	o.HostName = v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *ServiceCheck) GetMessage() string {
@@ -131,6 +136,7 @@ func (o *ServiceCheck) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetStatus returns the Status field value
 func (o *ServiceCheck) GetStatus() ServiceCheckStatus {
 	if o == nil {
@@ -154,6 +160,7 @@ func (o *ServiceCheck) SetStatus(v ServiceCheckStatus) {
 	o.Status = v
 }
 
+
 // GetTags returns the Tags field value
 func (o *ServiceCheck) GetTags() []string {
 	if o == nil {
@@ -176,6 +183,7 @@ func (o *ServiceCheck) GetTagsOk() (*[]string, bool) {
 func (o *ServiceCheck) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *ServiceCheck) GetTimestamp() int64 {
@@ -209,6 +217,8 @@ func (o *ServiceCheck) SetTimestamp(v int64) {
 	o.Timestamp = &v
 }
 
+
+
 func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -231,21 +241,22 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Check    *string             `json:"check"`
-		HostName *string             `json:"host_name"`
-		Status   *ServiceCheckStatus `json:"status"`
-		Tags     *[]string           `json:"tags"`
+		Check *string `json:"check"`
+		HostName *string `json:"host_name"`
+		Status *ServiceCheckStatus `json:"status"`
+		Tags *[]string `json:"tags"`
 	}{}
 	all := struct {
-		Check     string             `json:"check"`
-		HostName  string             `json:"host_name"`
-		Message   *string            `json:"message,omitempty"`
-		Status    ServiceCheckStatus `json:"status"`
-		Tags      []string           `json:"tags"`
-		Timestamp *int64             `json:"timestamp,omitempty"`
+		Check string `json:"check"`
+		HostName string `json:"host_name"`
+		Message *string `json:"message,omitempty"`
+		Status ServiceCheckStatus `json:"status"`
+		Tags []string `json:"tags"`
+		Timestamp *int64 `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

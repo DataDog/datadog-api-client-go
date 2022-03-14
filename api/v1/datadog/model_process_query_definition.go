@@ -11,7 +11,9 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ProcessQueryDefinition The process query to use in the widget.
 type ProcessQueryDefinition struct {
@@ -24,9 +26,11 @@ type ProcessQueryDefinition struct {
 	// Your chosen search term.
 	SearchBy *string `json:"search_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +49,6 @@ func NewProcessQueryDefinitionWithDefaults() *ProcessQueryDefinition {
 	this := ProcessQueryDefinition{}
 	return &this
 }
-
 // GetFilterBy returns the FilterBy field value if set, zero value otherwise.
 func (o *ProcessQueryDefinition) GetFilterBy() []string {
 	if o == nil || o.FilterBy == nil {
@@ -77,6 +80,7 @@ func (o *ProcessQueryDefinition) HasFilterBy() bool {
 func (o *ProcessQueryDefinition) SetFilterBy(v []string) {
 	o.FilterBy = &v
 }
+
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *ProcessQueryDefinition) GetLimit() int64 {
@@ -110,6 +114,7 @@ func (o *ProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+
 // GetMetric returns the Metric field value
 func (o *ProcessQueryDefinition) GetMetric() string {
 	if o == nil {
@@ -132,6 +137,7 @@ func (o *ProcessQueryDefinition) GetMetricOk() (*string, bool) {
 func (o *ProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
+
 
 // GetSearchBy returns the SearchBy field value if set, zero value otherwise.
 func (o *ProcessQueryDefinition) GetSearchBy() string {
@@ -165,6 +171,8 @@ func (o *ProcessQueryDefinition) SetSearchBy(v string) {
 	o.SearchBy = &v
 }
 
+
+
 func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -187,6 +195,7 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -194,9 +203,9 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		FilterBy *[]string `json:"filter_by,omitempty"`
-		Limit    *int64    `json:"limit,omitempty"`
-		Metric   string    `json:"metric"`
-		SearchBy *string   `json:"search_by,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Metric string `json:"metric"`
+		SearchBy *string `json:"search_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

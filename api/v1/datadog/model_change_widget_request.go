@@ -10,7 +10,10 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ChangeWidgetRequest Updated change widget.
 type ChangeWidgetRequest struct {
@@ -51,9 +54,11 @@ type ChangeWidgetRequest struct {
 	// Whether to show the present value.
 	ShowPresent *bool `json:"show_present,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewChangeWidgetRequest instantiates a new ChangeWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -71,7 +76,6 @@ func NewChangeWidgetRequestWithDefaults() *ChangeWidgetRequest {
 	this := ChangeWidgetRequest{}
 	return &this
 }
-
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -103,6 +107,7 @@ func (o *ChangeWidgetRequest) HasApmQuery() bool {
 func (o *ChangeWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetChangeType returns the ChangeType field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetChangeType() WidgetChangeType {
@@ -136,6 +141,7 @@ func (o *ChangeWidgetRequest) SetChangeType(v WidgetChangeType) {
 	o.ChangeType = &v
 }
 
+
 // GetCompareTo returns the CompareTo field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetCompareTo() WidgetCompareTo {
 	if o == nil || o.CompareTo == nil {
@@ -167,6 +173,7 @@ func (o *ChangeWidgetRequest) HasCompareTo() bool {
 func (o *ChangeWidgetRequest) SetCompareTo(v WidgetCompareTo) {
 	o.CompareTo = &v
 }
+
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetEventQuery() LogQueryDefinition {
@@ -200,6 +207,7 @@ func (o *ChangeWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
 
+
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -231,6 +239,7 @@ func (o *ChangeWidgetRequest) HasFormulas() bool {
 func (o *ChangeWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = &v
 }
+
 
 // GetIncreaseGood returns the IncreaseGood field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetIncreaseGood() bool {
@@ -264,6 +273,7 @@ func (o *ChangeWidgetRequest) SetIncreaseGood(v bool) {
 	o.IncreaseGood = &v
 }
 
+
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -295,6 +305,7 @@ func (o *ChangeWidgetRequest) HasLogQuery() bool {
 func (o *ChangeWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
+
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetNetworkQuery() LogQueryDefinition {
@@ -328,6 +339,7 @@ func (o *ChangeWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
+
 // GetOrderBy returns the OrderBy field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetOrderBy() WidgetOrderBy {
 	if o == nil || o.OrderBy == nil {
@@ -359,6 +371,7 @@ func (o *ChangeWidgetRequest) HasOrderBy() bool {
 func (o *ChangeWidgetRequest) SetOrderBy(v WidgetOrderBy) {
 	o.OrderBy = &v
 }
+
 
 // GetOrderDir returns the OrderDir field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetOrderDir() WidgetSort {
@@ -392,6 +405,7 @@ func (o *ChangeWidgetRequest) SetOrderDir(v WidgetSort) {
 	o.OrderDir = &v
 }
 
+
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -423,6 +437,7 @@ func (o *ChangeWidgetRequest) HasProcessQuery() bool {
 func (o *ChangeWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
+
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -456,6 +471,7 @@ func (o *ChangeWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -487,6 +503,7 @@ func (o *ChangeWidgetRequest) HasQ() bool {
 func (o *ChangeWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -520,6 +537,7 @@ func (o *ChangeWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) 
 	o.Queries = &v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -551,6 +569,7 @@ func (o *ChangeWidgetRequest) HasResponseFormat() bool {
 func (o *ChangeWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -584,6 +603,7 @@ func (o *ChangeWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -616,6 +636,7 @@ func (o *ChangeWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
+
 // GetShowPresent returns the ShowPresent field value if set, zero value otherwise.
 func (o *ChangeWidgetRequest) GetShowPresent() bool {
 	if o == nil || o.ShowPresent == nil {
@@ -647,6 +668,8 @@ func (o *ChangeWidgetRequest) HasShowPresent() bool {
 func (o *ChangeWidgetRequest) SetShowPresent(v bool) {
 	o.ShowPresent = &v
 }
+
+
 
 func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -714,27 +737,28 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		ChangeType          *WidgetChangeType                    `json:"change_type,omitempty"`
-		CompareTo           *WidgetCompareTo                     `json:"compare_to,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		IncreaseGood        *bool                                `json:"increase_good,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		OrderBy             *WidgetOrderBy                       `json:"order_by,omitempty"`
-		OrderDir            *WidgetSort                          `json:"order_dir,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
-		ShowPresent         *bool                                `json:"show_present,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		ChangeType *WidgetChangeType `json:"change_type,omitempty"`
+		CompareTo *WidgetCompareTo `json:"compare_to,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+		IncreaseGood *bool `json:"increase_good,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		OrderBy *WidgetOrderBy `json:"order_by,omitempty"`
+		OrderDir *WidgetSort `json:"order_dir,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		ShowPresent *bool `json:"show_present,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -745,7 +769,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ChangeType; v != nil && !v.IsValid() {
+	if v := all.ChangeType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -753,7 +777,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.CompareTo; v != nil && !v.IsValid() {
+	if v := all.CompareTo; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -761,7 +785,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.OrderBy; v != nil && !v.IsValid() {
+	if v := all.OrderBy; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -769,7 +793,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.OrderDir; v != nil && !v.IsValid() {
+	if v := all.OrderDir; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -777,7 +801,7 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
