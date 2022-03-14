@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCIBatchMetadataPipeline Description of the CI pipeline.
@@ -83,8 +84,8 @@ func (o SyntheticsCIBatchMetadataPipeline) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCIBatchMetadataPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Url *string `json:"url,omitempty"`
-	}{}
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsCIBatchMetadataPipeline) UnmarshalJSON(bytes []byte) (err err
 	o.Url = all.Url
 	return nil
 }
+
+

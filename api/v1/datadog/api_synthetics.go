@@ -11,11 +11,13 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -27,10 +29,11 @@ var (
 type SyntheticsApiService service
 
 type apiCreateGlobalVariableRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsGlobalVariable
+	body *SyntheticsGlobalVariable
 }
+
 
 /*
  * CreateGlobalVariable Create a global variable
@@ -39,11 +42,12 @@ type apiCreateGlobalVariableRequest struct {
 func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	req := apiCreateGlobalVariableRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createGlobalVariableExecute(req)
+
+    return req.ApiService.createGlobalVariableExecute(req)
 }
 
 /*
@@ -59,6 +63,7 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsGlobalVariable
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateGlobalVariable")
 	if err != nil {
@@ -189,10 +194,11 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 }
 
 type apiCreatePrivateLocationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsPrivateLocation
+	body *SyntheticsPrivateLocation
 }
+
 
 /*
  * CreatePrivateLocation Create a private location
@@ -201,11 +207,12 @@ type apiCreatePrivateLocationRequest struct {
 func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	req := apiCreatePrivateLocationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createPrivateLocationExecute(req)
+
+    return req.ApiService.createPrivateLocationExecute(req)
 }
 
 /*
@@ -221,6 +228,7 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsPrivateLocationCreationResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreatePrivateLocation")
 	if err != nil {
@@ -351,10 +359,11 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 }
 
 type apiCreateSyntheticsAPITestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsAPITest
+	body *SyntheticsAPITest
 }
+
 
 /*
  * CreateSyntheticsAPITest Create an API test
@@ -363,11 +372,12 @@ type apiCreateSyntheticsAPITestRequest struct {
 func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	req := apiCreateSyntheticsAPITestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createSyntheticsAPITestExecute(req)
+
+    return req.ApiService.createSyntheticsAPITestExecute(req)
 }
 
 /*
@@ -383,6 +393,7 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsAPITest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsAPITest")
 	if err != nil {
@@ -523,10 +534,11 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 }
 
 type apiCreateSyntheticsBrowserTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsBrowserTest
+	body *SyntheticsBrowserTest
 }
+
 
 /*
  * CreateSyntheticsBrowserTest Create a browser test
@@ -535,11 +547,12 @@ type apiCreateSyntheticsBrowserTestRequest struct {
 func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	req := apiCreateSyntheticsBrowserTestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createSyntheticsBrowserTestExecute(req)
+
+    return req.ApiService.createSyntheticsBrowserTestExecute(req)
 }
 
 /*
@@ -555,6 +568,7 @@ func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyn
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsBrowserTest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsBrowserTest")
 	if err != nil {
@@ -695,10 +709,11 @@ func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyn
 }
 
 type apiDeleteGlobalVariableRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
 }
+
 
 /*
  * DeleteGlobalVariable Delete a global variable
@@ -707,11 +722,12 @@ type apiDeleteGlobalVariableRequest struct {
 func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
 	req := apiDeleteGlobalVariableRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		variableId: variableId,
 	}
 
-	return req.ApiService.deleteGlobalVariableExecute(req)
+
+    return req.ApiService.deleteGlobalVariableExecute(req)
 }
 
 /*
@@ -725,6 +741,7 @@ func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVari
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteGlobalVariable")
 	if err != nil {
@@ -852,10 +869,11 @@ func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVari
 }
 
 type apiDeletePrivateLocationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
 }
+
 
 /*
  * DeletePrivateLocation Delete a private location
@@ -864,11 +882,12 @@ type apiDeletePrivateLocationRequest struct {
 func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
 	req := apiDeletePrivateLocationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		locationId: locationId,
 	}
 
-	return req.ApiService.deletePrivateLocationExecute(req)
+
+    return req.ApiService.deletePrivateLocationExecute(req)
 }
 
 /*
@@ -882,6 +901,7 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeletePrivateLocation")
 	if err != nil {
@@ -989,10 +1009,11 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 }
 
 type apiDeleteTestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsDeleteTestsPayload
+	body *SyntheticsDeleteTestsPayload
 }
+
 
 /*
  * DeleteTests Delete tests
@@ -1001,11 +1022,12 @@ type apiDeleteTestsRequest struct {
 func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body SyntheticsDeleteTestsPayload) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
 	req := apiDeleteTestsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteTestsExecute(req)
+
+    return req.ApiService.deleteTestsExecute(req)
 }
 
 /*
@@ -1021,6 +1043,7 @@ func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (Synt
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsDeleteTestsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteTests")
 	if err != nil {
@@ -1161,11 +1184,12 @@ func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (Synt
 }
 
 type apiEditGlobalVariableRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
-	body       *SyntheticsGlobalVariable
+	body *SyntheticsGlobalVariable
 }
+
 
 /*
  * EditGlobalVariable Edit a global variable
@@ -1174,12 +1198,13 @@ type apiEditGlobalVariableRequest struct {
 func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	req := apiEditGlobalVariableRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		variableId: variableId,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.editGlobalVariableExecute(req)
+
+    return req.ApiService.editGlobalVariableExecute(req)
 }
 
 /*
@@ -1195,6 +1220,7 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsGlobalVariable
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.EditGlobalVariable")
 	if err != nil {
@@ -1326,24 +1352,26 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 }
 
 type apiGetAPITestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
  * GetAPITest Get an API test
  * Get the detailed configuration associated with
 a Synthetic API test.
-*/
+ */
 func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
 	req := apiGetAPITestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 
-	return req.ApiService.getAPITestExecute(req)
+
+    return req.ApiService.getAPITestExecute(req)
 }
 
 /*
@@ -1359,6 +1387,7 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsAPITest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITest")
 	if err != nil {
@@ -1485,35 +1514,35 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 }
 
 type apiGetAPITestLatestResultsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 type GetAPITestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
-	ProbeDc *[]string
+    FromTs *int64
+    ToTs *int64
+    ProbeDc *[]string
 }
 
 func NewGetAPITestLatestResultsOptionalParameters() *GetAPITestLatestResultsOptionalParameters {
-	this := GetAPITestLatestResultsOptionalParameters{}
-	return &this
+    this := GetAPITestLatestResultsOptionalParameters{}
+    return &this
 }
 func (r *GetAPITestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetAPITestLatestResultsOptionalParameters {
-	r.FromTs = &fromTs
-	return r
+    r.FromTs = &fromTs
+    return r
 }
 func (r *GetAPITestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetAPITestLatestResultsOptionalParameters {
-	r.ToTs = &toTs
-	return r
+    r.ToTs = &toTs
+    return r
 }
 func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetAPITestLatestResultsOptionalParameters {
-	r.ProbeDc = &probeDc
-	return r
+    r.ProbeDc = &probeDc
+    return r
 }
 
 /*
@@ -1523,22 +1552,22 @@ func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string
 func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	req := apiGetAPITestLatestResultsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetAPITestLatestResultsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetAPITestLatestResultsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.fromTs = o[0].FromTs
-		req.toTs = o[0].ToTs
-		req.probeDc = o[0].ProbeDc
-	}
+    if o != nil {
+        req.fromTs = o[0].FromTs
+        req.toTs = o[0].ToTs
+        req.probeDc = o[0].ProbeDc
+    }
 
-	return req.ApiService.getAPITestLatestResultsExecute(req)
+    return req.ApiService.getAPITestLatestResultsExecute(req)
 }
 
 /*
@@ -1554,6 +1583,7 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsGetAPITestLatestResultsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestLatestResults")
 	if err != nil {
@@ -1697,11 +1727,12 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 }
 
 type apiGetAPITestResultRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
+
 
 /*
  * GetAPITestResult Get an API test result
@@ -1710,12 +1741,13 @@ type apiGetAPITestResultRequest struct {
 func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	req := apiGetAPITestResultRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		ctx: ctx,
+		publicId: publicId,
+		resultId: resultId,
 	}
 
-	return req.ApiService.getAPITestResultExecute(req)
+
+    return req.ApiService.getAPITestResultExecute(req)
 }
 
 /*
@@ -1731,6 +1763,7 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsAPITestResultFull
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestResult")
 	if err != nil {
@@ -1858,24 +1891,26 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 }
 
 type apiGetBrowserTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
  * GetBrowserTest Get a browser test
  * Get the detailed configuration (including steps) associated with
 a Synthetic browser test.
-*/
+ */
 func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	req := apiGetBrowserTestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 
-	return req.ApiService.getBrowserTestExecute(req)
+
+    return req.ApiService.getBrowserTestExecute(req)
 }
 
 /*
@@ -1891,6 +1926,7 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsBrowserTest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTest")
 	if err != nil {
@@ -2017,35 +2053,35 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 }
 
 type apiGetBrowserTestLatestResultsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	fromTs     *int64
-	toTs       *int64
-	probeDc    *[]string
+	publicId string
+	fromTs *int64
+	toTs *int64
+	probeDc *[]string
 }
 
 type GetBrowserTestLatestResultsOptionalParameters struct {
-	FromTs  *int64
-	ToTs    *int64
-	ProbeDc *[]string
+    FromTs *int64
+    ToTs *int64
+    ProbeDc *[]string
 }
 
 func NewGetBrowserTestLatestResultsOptionalParameters() *GetBrowserTestLatestResultsOptionalParameters {
-	this := GetBrowserTestLatestResultsOptionalParameters{}
-	return &this
+    this := GetBrowserTestLatestResultsOptionalParameters{}
+    return &this
 }
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetBrowserTestLatestResultsOptionalParameters {
-	r.FromTs = &fromTs
-	return r
+    r.FromTs = &fromTs
+    return r
 }
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetBrowserTestLatestResultsOptionalParameters {
-	r.ToTs = &toTs
-	return r
+    r.ToTs = &toTs
+    return r
 }
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetBrowserTestLatestResultsOptionalParameters {
-	r.ProbeDc = &probeDc
-	return r
+    r.ProbeDc = &probeDc
+    return r
 }
 
 /*
@@ -2055,22 +2091,22 @@ func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []st
 func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	req := apiGetBrowserTestLatestResultsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetBrowserTestLatestResultsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetBrowserTestLatestResultsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.fromTs = o[0].FromTs
-		req.toTs = o[0].ToTs
-		req.probeDc = o[0].ProbeDc
-	}
+    if o != nil {
+        req.fromTs = o[0].FromTs
+        req.toTs = o[0].ToTs
+        req.probeDc = o[0].ProbeDc
+    }
 
-	return req.ApiService.getBrowserTestLatestResultsExecute(req)
+    return req.ApiService.getBrowserTestLatestResultsExecute(req)
 }
 
 /*
@@ -2086,6 +2122,7 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsGetBrowserTestLatestResultsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestLatestResults")
 	if err != nil {
@@ -2229,11 +2266,12 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 }
 
 type apiGetBrowserTestResultRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	resultId   string
+	publicId string
+	resultId string
 }
+
 
 /*
  * GetBrowserTestResult Get a browser test result
@@ -2242,12 +2280,13 @@ type apiGetBrowserTestResultRequest struct {
 func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	req := apiGetBrowserTestResultRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		resultId:   resultId,
+		ctx: ctx,
+		publicId: publicId,
+		resultId: resultId,
 	}
 
-	return req.ApiService.getBrowserTestResultExecute(req)
+
+    return req.ApiService.getBrowserTestResultExecute(req)
 }
 
 /*
@@ -2263,6 +2302,7 @@ func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestRe
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsBrowserTestResultFull
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestResult")
 	if err != nil {
@@ -2390,10 +2430,11 @@ func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestRe
 }
 
 type apiGetGlobalVariableRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	variableId string
 }
+
 
 /*
  * GetGlobalVariable Get a global variable
@@ -2402,11 +2443,12 @@ type apiGetGlobalVariableRequest struct {
 func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableId string) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	req := apiGetGlobalVariableRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		variableId: variableId,
 	}
 
-	return req.ApiService.getGlobalVariableExecute(req)
+
+    return req.ApiService.getGlobalVariableExecute(req)
 }
 
 /*
@@ -2422,6 +2464,7 @@ func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRe
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsGlobalVariable
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetGlobalVariable")
 	if err != nil {
@@ -2548,10 +2591,11 @@ func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRe
 }
 
 type apiGetPrivateLocationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
 }
+
 
 /*
  * GetPrivateLocation Get a private location
@@ -2560,11 +2604,12 @@ type apiGetPrivateLocationRequest struct {
 func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	req := apiGetPrivateLocationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		locationId: locationId,
 	}
 
-	return req.ApiService.getPrivateLocationExecute(req)
+
+    return req.ApiService.getPrivateLocationExecute(req)
 }
 
 /*
@@ -2580,6 +2625,7 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsPrivateLocation
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetPrivateLocation")
 	if err != nil {
@@ -2696,10 +2742,11 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 }
 
 type apiGetSyntheticsCIBatchRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	batchId    string
+	batchId string
 }
+
 
 /*
  * GetSyntheticsCIBatch Get details of batch
@@ -2708,11 +2755,12 @@ type apiGetSyntheticsCIBatchRequest struct {
 func (a *SyntheticsApiService) GetSyntheticsCIBatch(ctx _context.Context, batchId string) (SyntheticsBatchDetails, *_nethttp.Response, error) {
 	req := apiGetSyntheticsCIBatchRequest{
 		ApiService: a,
-		ctx:        ctx,
-		batchId:    batchId,
+		ctx: ctx,
+		batchId: batchId,
 	}
 
-	return req.ApiService.getSyntheticsCIBatchExecute(req)
+
+    return req.ApiService.getSyntheticsCIBatchExecute(req)
 }
 
 /*
@@ -2728,6 +2776,7 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsBatchDetails
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetSyntheticsCIBatch")
 	if err != nil {
@@ -2844,10 +2893,11 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 }
 
 type apiGetTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
+	publicId string
 }
+
 
 /*
  * GetTest Get a test configuration
@@ -2856,11 +2906,12 @@ type apiGetTestRequest struct {
 func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	req := apiGetTestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+		ctx: ctx,
+		publicId: publicId,
 	}
 
-	return req.ApiService.getTestExecute(req)
+
+    return req.ApiService.getTestExecute(req)
 }
 
 /*
@@ -2876,6 +2927,7 @@ func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTe
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsTestDetails
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetTest")
 	if err != nil {
@@ -3002,9 +3054,10 @@ func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTe
 }
 
 type apiListGlobalVariablesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 }
+
 
 /*
  * ListGlobalVariables Get all global variables
@@ -3013,10 +3066,11 @@ type apiListGlobalVariablesRequest struct {
 func (a *SyntheticsApiService) ListGlobalVariables(ctx _context.Context) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
 	req := apiListGlobalVariablesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listGlobalVariablesExecute(req)
+
+    return req.ApiService.listGlobalVariablesExecute(req)
 }
 
 /*
@@ -3032,6 +3086,7 @@ func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariabl
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsListGlobalVariablesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListGlobalVariables")
 	if err != nil {
@@ -3147,22 +3202,24 @@ func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariabl
 }
 
 type apiListLocationsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 }
+
 
 /*
  * ListLocations Get all locations (public and private)
  * Get the list of public and private locations available for Synthetic
 tests. No arguments required.
-*/
+ */
 func (a *SyntheticsApiService) ListLocations(ctx _context.Context) (SyntheticsLocations, *_nethttp.Response, error) {
 	req := apiListLocationsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listLocationsExecute(req)
+
+    return req.ApiService.listLocationsExecute(req)
 }
 
 /*
@@ -3178,6 +3235,7 @@ func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsLocations
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListLocations")
 	if err != nil {
@@ -3283,9 +3341,10 @@ func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (
 }
 
 type apiListTestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 }
+
 
 /*
  * ListTests Get the list of all tests
@@ -3294,10 +3353,11 @@ type apiListTestsRequest struct {
 func (a *SyntheticsApiService) ListTests(ctx _context.Context) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	req := apiListTestsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listTestsExecute(req)
+
+    return req.ApiService.listTestsExecute(req)
 }
 
 /*
@@ -3313,6 +3373,7 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsListTestsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListTests")
 	if err != nil {
@@ -3438,10 +3499,11 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 }
 
 type apiTriggerCITestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsCITestBody
+	body *SyntheticsCITestBody
 }
+
 
 /*
  * TriggerCITests Trigger tests from CI/CD pipelines
@@ -3450,11 +3512,12 @@ type apiTriggerCITestsRequest struct {
 func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	req := apiTriggerCITestsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.triggerCITestsExecute(req)
+
+    return req.ApiService.triggerCITestsExecute(req)
 }
 
 /*
@@ -3470,6 +3533,7 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsTriggerCITestsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerCITests")
 	if err != nil {
@@ -3590,10 +3654,11 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 }
 
 type apiTriggerTestsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	body       *SyntheticsTriggerBody
+	body *SyntheticsTriggerBody
 }
+
 
 /*
  * TriggerTests Trigger Synthetics tests
@@ -3602,11 +3667,12 @@ type apiTriggerTestsRequest struct {
 func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	req := apiTriggerTestsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.triggerTestsExecute(req)
+
+    return req.ApiService.triggerTestsExecute(req)
 }
 
 /*
@@ -3622,6 +3688,7 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsTriggerCITestsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerTests")
 	if err != nil {
@@ -3742,11 +3809,12 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 }
 
 type apiUpdateAPITestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsAPITest
+	publicId string
+	body *SyntheticsAPITest
 }
+
 
 /*
  * UpdateAPITest Edit an API test
@@ -3755,12 +3823,13 @@ type apiUpdateAPITestRequest struct {
 func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId string, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	req := apiUpdateAPITestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		ctx: ctx,
+		publicId: publicId,
+		body: &body,
 	}
 
-	return req.ApiService.updateAPITestExecute(req)
+
+    return req.ApiService.updateAPITestExecute(req)
 }
 
 /*
@@ -3776,6 +3845,7 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsAPITest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateAPITest")
 	if err != nil {
@@ -3917,11 +3987,12 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 }
 
 type apiUpdateBrowserTestRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsBrowserTest
+	publicId string
+	body *SyntheticsBrowserTest
 }
+
 
 /*
  * UpdateBrowserTest Edit a browser test
@@ -3930,12 +4001,13 @@ type apiUpdateBrowserTestRequest struct {
 func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	req := apiUpdateBrowserTestRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		ctx: ctx,
+		publicId: publicId,
+		body: &body,
 	}
 
-	return req.ApiService.updateBrowserTestExecute(req)
+
+    return req.ApiService.updateBrowserTestExecute(req)
 }
 
 /*
@@ -3951,6 +4023,7 @@ func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRe
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsBrowserTest
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateBrowserTest")
 	if err != nil {
@@ -4092,11 +4165,12 @@ func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRe
 }
 
 type apiUpdatePrivateLocationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
 	locationId string
-	body       *SyntheticsPrivateLocation
+	body *SyntheticsPrivateLocation
 }
+
 
 /*
  * UpdatePrivateLocation Edit a private location
@@ -4105,12 +4179,13 @@ type apiUpdatePrivateLocationRequest struct {
 func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	req := apiUpdatePrivateLocationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		locationId: locationId,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updatePrivateLocationExecute(req)
+
+    return req.ApiService.updatePrivateLocationExecute(req)
 }
 
 /*
@@ -4126,6 +4201,7 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 		localVarFileBytes    []byte
 		localVarReturnValue  SyntheticsPrivateLocation
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdatePrivateLocation")
 	if err != nil {
@@ -4247,11 +4323,12 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 }
 
 type apiUpdateTestPauseStatusRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *SyntheticsApiService
-	publicId   string
-	body       *SyntheticsUpdateTestPauseStatusPayload
+	publicId string
+	body *SyntheticsUpdateTestPauseStatusPayload
 }
+
 
 /*
  * UpdateTestPauseStatus Pause or start a test
@@ -4260,12 +4337,13 @@ type apiUpdateTestPauseStatusRequest struct {
 func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
 	req := apiUpdateTestPauseStatusRequest{
 		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		body:       &body,
+		ctx: ctx,
+		publicId: publicId,
+		body: &body,
 	}
 
-	return req.ApiService.updateTestPauseStatusExecute(req)
+
+    return req.ApiService.updateTestPauseStatusExecute(req)
 }
 
 /*
@@ -4281,6 +4359,7 @@ func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPause
 		localVarFileBytes    []byte
 		localVarReturnValue  bool
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateTestPauseStatus")
 	if err != nil {

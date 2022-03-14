@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SlackIntegrationChannel The Slack channel configuration.
@@ -119,9 +120,9 @@ func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
-		Name    *string                         `json:"name,omitempty"`
-	}{}
+			Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

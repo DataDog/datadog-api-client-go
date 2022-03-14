@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HTTPLogErrors Invalid query performed.
@@ -83,8 +84,8 @@ func (o HTTPLogErrors) MarshalJSON() ([]byte, error) {
 func (o *HTTPLogErrors) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Errors *[]HTTPLogError `json:"errors,omitempty"`
-	}{}
+			Errors *[]HTTPLogError `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *HTTPLogErrors) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

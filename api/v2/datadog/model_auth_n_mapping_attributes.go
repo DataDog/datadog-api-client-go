@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -232,12 +233,12 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey             *string    `json:"attribute_key,omitempty"`
-		AttributeValue           *string    `json:"attribute_value,omitempty"`
-		CreatedAt                *time.Time `json:"created_at,omitempty"`
-		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
-		SamlAssertionAttributeId *int32     `json:"saml_assertion_attribute_id,omitempty"`
-	}{}
+			AttributeKey *string `json:"attribute_key,omitempty"`
+			AttributeValue *string `json:"attribute_value,omitempty"`
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			SamlAssertionAttributeId *int32 `json:"saml_assertion_attribute_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -254,3 +255,5 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.SamlAssertionAttributeId = all.SamlAssertionAttributeId
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricTagConfigurationUpdateAttributes Object containing the definition of a metric tag configuration to be updated.
@@ -161,10 +162,10 @@ func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                      `json:"include_percentiles,omitempty"`
-		Tags               *[]string                  `json:"tags,omitempty"`
-	}{}
+			Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+			IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -179,3 +180,5 @@ func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Tags = all.Tags
 	return nil
 }
+
+

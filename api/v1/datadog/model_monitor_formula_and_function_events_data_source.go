@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MonitorFormulaAndFunctionEventsDataSource Data source for event platform-based queries.
@@ -100,3 +101,4 @@ func (v *NullableMonitorFormulaAndFunctionEventsDataSource) UnmarshalJSON(src []
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

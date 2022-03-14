@@ -17,8 +17,8 @@ import (
 type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
 	Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
 	// Metric used for sorting group by results.
-	Metric *string         `json:"metric,omitempty"`
-	Order  *QuerySortOrder `json:"order,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -58,7 +58,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetAggregation() Monito
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*MonitorFormulaAndFunctionEventAggregation, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Aggregation, true
@@ -154,12 +154,12 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []b
 	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-	}{}
+		}{}
 	all := struct {
-		Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-		Metric      *string                                   `json:"metric,omitempty"`
-		Order       *QuerySortOrder                           `json:"order,omitempty"`
-	}{}
+			Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
+			Metric *string `json:"metric,omitempty"`
+			Order *QuerySortOrder `json:"order,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -197,3 +197,5 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []b
 	o.Order = all.Order
 	return nil
 }
+
+

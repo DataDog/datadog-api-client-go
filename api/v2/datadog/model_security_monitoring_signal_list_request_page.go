@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalListRequestPage The paging attributes for listing security signals.
@@ -124,9 +125,9 @@ func (o SecurityMonitoringSignalListRequestPage) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cursor *string `json:"cursor,omitempty"`
-		Limit  *int32  `json:"limit,omitempty"`
-	}{}
+			Cursor *string `json:"cursor,omitempty"`
+			Limit *int32 `json:"limit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -140,3 +141,5 @@ func (o *SecurityMonitoringSignalListRequestPage) UnmarshalJSON(bytes []byte) (e
 	o.Limit = all.Limit
 	return nil
 }
+
+

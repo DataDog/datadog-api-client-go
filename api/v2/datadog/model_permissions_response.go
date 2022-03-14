@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PermissionsResponse Payload with API-returned permissions.
@@ -83,8 +84,8 @@ func (o PermissionsResponse) MarshalJSON() ([]byte, error) {
 func (o *PermissionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]Permission `json:"data,omitempty"`
-	}{}
+			Data *[]Permission `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *PermissionsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

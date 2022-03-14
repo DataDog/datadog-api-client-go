@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsGlobalVariableAttributes Attributes of the global variable.
@@ -83,8 +84,8 @@ func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
-	}{}
+			RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.RestrictedRoles = all.RestrictedRoles
 	return nil
 }
+
+

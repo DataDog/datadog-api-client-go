@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // LogsAggregateBucketValue - A bucket value, can be either a timeseries or a single value
 type LogsAggregateBucketValue struct {
 	LogsAggregateBucketValueTimeseries *LogsAggregateBucketValueTimeseries
-	Float64                            *float64
-	String                             *string
+	Float64 *float64
+	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type LogsAggregateBucketValue struct {
 
 // LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue is a convenience function that returns LogsAggregateBucketValueTimeseries wrapped in LogsAggregateBucketValue
 func LogsAggregateBucketValueTimeseriesAsLogsAggregateBucketValue(v *LogsAggregateBucketValueTimeseries) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{LogsAggregateBucketValueTimeseries: v}
+	return LogsAggregateBucketValue{ LogsAggregateBucketValueTimeseries: v}
 }
 
 // Float64AsLogsAggregateBucketValue is a convenience function that returns float64 wrapped in LogsAggregateBucketValue
 func Float64AsLogsAggregateBucketValue(v *float64) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{Float64: v}
+	return LogsAggregateBucketValue{ Float64: v}
 }
 
 // StringAsLogsAggregateBucketValue is a convenience function that returns string wrapped in LogsAggregateBucketValue
 func StringAsLogsAggregateBucketValue(v *string) LogsAggregateBucketValue {
-	return LogsAggregateBucketValue{String: v}
+	return LogsAggregateBucketValue{ String: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsAggregateBucketValue) UnmarshalJSON(data []byte) error {
@@ -124,7 +127,7 @@ func (src LogsAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsAggregateBucketValue) GetActualInstance() interface{} {
+func (obj *LogsAggregateBucketValue) GetActualInstance() (interface{}) {
 	if obj.LogsAggregateBucketValueTimeseries != nil {
 		return obj.LogsAggregateBucketValueTimeseries
 	}
@@ -176,3 +179,5 @@ func (v *NullableLogsAggregateBucketValue) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

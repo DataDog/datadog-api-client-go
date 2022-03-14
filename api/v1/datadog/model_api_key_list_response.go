@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApiKeyListResponse List of API and application keys available for a given organization.
@@ -83,8 +84,8 @@ func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 func (o *ApiKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
-	}{}
+			ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *ApiKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApiKeys = all.ApiKeys
 	return nil
 }
+
+

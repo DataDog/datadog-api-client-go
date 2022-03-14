@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -26,10 +28,11 @@ var (
 type LogsApiService service
 
 type apiAggregateLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsApiService
-	body       *LogsAggregateRequest
+	body *LogsAggregateRequest
 }
+
 
 /*
  * AggregateLogs Aggregate events
@@ -38,11 +41,12 @@ type apiAggregateLogsRequest struct {
 func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
 	req := apiAggregateLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.aggregateLogsExecute(req)
+
+    return req.ApiService.aggregateLogsExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAg
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsAggregateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.AggregateLogs")
 	if err != nil {
@@ -188,22 +193,22 @@ func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAg
 }
 
 type apiListLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsApiService
-	body       *LogsListRequest
+	body *LogsListRequest
 }
 
 type ListLogsOptionalParameters struct {
-	Body *LogsListRequest
+    Body *LogsListRequest
 }
 
 func NewListLogsOptionalParameters() *ListLogsOptionalParameters {
-	this := ListLogsOptionalParameters{}
-	return &this
+    this := ListLogsOptionalParameters{}
+    return &this
 }
 func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOptionalParameters {
-	r.Body = &body
-	return r
+    r.Body = &body
+    return r
 }
 
 /*
@@ -219,23 +224,23 @@ See [Datadog Logs Archive documentation][2].**
 
 [1]: /logs/guide/collect-multiple-logs-with-pagination
 [2]: https://docs.datadoghq.com/logs/archives
-*/
+ */
 func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	req := apiListLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue LogsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue LogsListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.body = o[0].Body
-	}
+    if o != nil {
+        req.body = o[0].Body
+    }
 
-	return req.ApiService.listLogsExecute(req)
+    return req.ApiService.listLogsExecute(req)
 }
 
 /*
@@ -251,6 +256,7 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
 	if err != nil {
@@ -378,58 +384,58 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 }
 
 type apiListLogsGetRequest struct {
-	ctx         _context.Context
-	ApiService  *LogsApiService
+	ctx _context.Context
+	ApiService *LogsApiService
 	filterQuery *string
 	filterIndex *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *LogsSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *LogsSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListLogsGetOptionalParameters struct {
-	FilterQuery *string
-	FilterIndex *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *LogsSort
-	PageCursor  *string
-	PageLimit   *int32
+    FilterQuery *string
+    FilterIndex *string
+    FilterFrom *time.Time
+    FilterTo *time.Time
+    Sort *LogsSort
+    PageCursor *string
+    PageLimit *int32
 }
 
 func NewListLogsGetOptionalParameters() *ListLogsGetOptionalParameters {
-	this := ListLogsGetOptionalParameters{}
-	return &this
+    this := ListLogsGetOptionalParameters{}
+    return &this
 }
 func (r *ListLogsGetOptionalParameters) WithFilterQuery(filterQuery string) *ListLogsGetOptionalParameters {
-	r.FilterQuery = &filterQuery
-	return r
+    r.FilterQuery = &filterQuery
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithFilterIndex(filterIndex string) *ListLogsGetOptionalParameters {
-	r.FilterIndex = &filterIndex
-	return r
+    r.FilterIndex = &filterIndex
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListLogsGetOptionalParameters {
-	r.FilterFrom = &filterFrom
-	return r
+    r.FilterFrom = &filterFrom
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithFilterTo(filterTo time.Time) *ListLogsGetOptionalParameters {
-	r.FilterTo = &filterTo
-	return r
+    r.FilterTo = &filterTo
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithSort(sort LogsSort) *ListLogsGetOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithPageCursor(pageCursor string) *ListLogsGetOptionalParameters {
-	r.PageCursor = &pageCursor
-	return r
+    r.PageCursor = &pageCursor
+    return r
 }
 func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogsGetOptionalParameters {
-	r.PageLimit = &pageLimit
-	return r
+    r.PageLimit = &pageLimit
+    return r
 }
 
 /*
@@ -445,29 +451,29 @@ See [Datadog Logs Archive documentation][2].**
 
 [1]: /logs/guide/collect-multiple-logs-with-pagination
 [2]: https://docs.datadoghq.com/logs/archives
-*/
+ */
 func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	req := apiListLogsGetRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue LogsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListLogsGetOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue LogsListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListLogsGetOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterIndex = o[0].FilterIndex
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
+    if o != nil {
+        req.filterQuery = o[0].FilterQuery
+        req.filterIndex = o[0].FilterIndex
+        req.filterFrom = o[0].FilterFrom
+        req.filterTo = o[0].FilterTo
+        req.sort = o[0].Sort
+        req.pageCursor = o[0].PageCursor
+        req.pageLimit = o[0].PageLimit
+    }
 
-	return req.ApiService.listLogsGetExecute(req)
+    return req.ApiService.listLogsGetExecute(req)
 }
 
 /*
@@ -483,6 +489,7 @@ func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListRe
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogsGet")
 	if err != nil {
@@ -629,29 +636,29 @@ func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListRe
 }
 
 type apiSubmitLogRequest struct {
-	ctx             _context.Context
-	ApiService      *LogsApiService
-	body            *[]HTTPLogItem
+	ctx _context.Context
+	ApiService *LogsApiService
+	body *[]HTTPLogItem
 	contentEncoding *ContentEncoding
-	ddtags          *string
+	ddtags *string
 }
 
 type SubmitLogOptionalParameters struct {
-	ContentEncoding *ContentEncoding
-	Ddtags          *string
+    ContentEncoding *ContentEncoding
+    Ddtags *string
 }
 
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
-	this := SubmitLogOptionalParameters{}
-	return &this
+    this := SubmitLogOptionalParameters{}
+    return &this
 }
 func (r *SubmitLogOptionalParameters) WithContentEncoding(contentEncoding ContentEncoding) *SubmitLogOptionalParameters {
-	r.ContentEncoding = &contentEncoding
-	return r
+    r.ContentEncoding = &contentEncoding
+    return r
 }
 func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOptionalParameters {
-	r.Ddtags = &ddtags
-	return r
+    r.Ddtags = &ddtags
+    return r
 }
 
 /*
@@ -679,25 +686,25 @@ The status codes answered by the HTTP API are:
 - 429: Too Many Requests, request should be retried after some time
 - 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time
 - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
-*/
+ */
 func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req := apiSubmitLogRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue interface{}
+        return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
-		req.ddtags = o[0].Ddtags
-	}
+    if o != nil {
+        req.contentEncoding = o[0].ContentEncoding
+        req.ddtags = o[0].Ddtags
+    }
 
-	return req.ApiService.submitLogExecute(req)
+    return req.ApiService.submitLogExecute(req)
 }
 
 /*
@@ -713,6 +720,7 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.SubmitLog")
 	if err != nil {

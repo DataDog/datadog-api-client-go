@@ -26,12 +26,12 @@ type SecurityMonitoringRuleCreatePayload struct {
 	// Message for generated signals.
 	Message string `json:"message"`
 	// The name of the rule.
-	Name    string                        `json:"name"`
+	Name string `json:"name"`
 	Options SecurityMonitoringRuleOptions `json:"options"`
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringRuleQueryCreate `json:"queries"`
 	// Tags for generated signals.
-	Tags *[]string                         `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -73,7 +73,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetCases() []SecurityMonitoringRul
 // GetCasesOk returns a tuple with the Cases field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetCasesOk() (*[]SecurityMonitoringRuleCaseCreate, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Cases, true
@@ -161,7 +161,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabled() bool {
 // GetIsEnabledOk returns a tuple with the IsEnabled field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetIsEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.IsEnabled, true
@@ -185,7 +185,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -209,7 +209,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -233,7 +233,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetOptions() SecurityMonitoringRul
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetOptionsOk() (*SecurityMonitoringRuleOptions, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Options, true
@@ -257,7 +257,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetQueries() []SecurityMonitoringR
 // GetQueriesOk returns a tuple with the Queries field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCreatePayload) GetQueriesOk() (*[]SecurityMonitoringRuleQueryCreate, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Queries, true
@@ -373,25 +373,25 @@ func (o SecurityMonitoringRuleCreatePayload) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Cases     *[]SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		IsEnabled *bool                                `json:"isEnabled"`
-		Message   *string                              `json:"message"`
-		Name      *string                              `json:"name"`
-		Options   *SecurityMonitoringRuleOptions       `json:"options"`
-		Queries   *[]SecurityMonitoringRuleQueryCreate `json:"queries"`
-	}{}
+		Cases *[]SecurityMonitoringRuleCaseCreate `json:"cases"`
+		IsEnabled *bool `json:"isEnabled"`
+		Message *string `json:"message"`
+		Name *string `json:"name"`
+		Options *SecurityMonitoringRuleOptions `json:"options"`
+		Queries *[]SecurityMonitoringRuleQueryCreate `json:"queries"`
+		}{}
 	all := struct {
-		Cases            []SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		Filters          *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
-		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        bool                                `json:"isEnabled"`
-		Message          string                              `json:"message"`
-		Name             string                              `json:"name"`
-		Options          SecurityMonitoringRuleOptions       `json:"options"`
-		Queries          []SecurityMonitoringRuleQueryCreate `json:"queries"`
-		Tags             *[]string                           `json:"tags,omitempty"`
-		Type             *SecurityMonitoringRuleTypeCreate   `json:"type,omitempty"`
-	}{}
+			Cases []SecurityMonitoringRuleCaseCreate `json:"cases"`
+			Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+			HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+			IsEnabled bool `json:"isEnabled"`
+			Message string `json:"message"`
+			Name string `json:"name"`
+			Options SecurityMonitoringRuleOptions `json:"options"`
+			Queries []SecurityMonitoringRuleQueryCreate `json:"queries"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -443,3 +443,5 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	o.Type = all.Type
 	return nil
 }
+
+

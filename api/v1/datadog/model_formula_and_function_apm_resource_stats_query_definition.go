@@ -31,8 +31,8 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM resource name.
 	ResourceName *string `json:"resource_name,omitempty"`
 	// APM service name.
-	Service string                                `json:"service"`
-	Stat    FormulaAndFunctionApmResourceStatName `json:"stat"`
+	Service string `json:"service"`
+	Stat FormulaAndFunctionApmResourceStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -72,7 +72,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetDataSource() Form
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionApmResourceStatsDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -96,7 +96,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnv() string {
 // GetEnvOk returns a tuple with the Env field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Env, true
@@ -152,7 +152,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -304,7 +304,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetService() string 
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -328,7 +328,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStat() FormulaAnd
 // GetStatOk returns a tuple with the Stat field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetStatOk() (*FormulaAndFunctionApmResourceStatName, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Stat, true
@@ -381,23 +381,23 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	raw := map[string]interface{}{}
 	required := struct {
 		DataSource *FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
-		Env        *string                                       `json:"env"`
-		Name       *string                                       `json:"name"`
-		Service    *string                                       `json:"service"`
-		Stat       *FormulaAndFunctionApmResourceStatName        `json:"stat"`
-	}{}
+		Env *string `json:"env"`
+		Name *string `json:"name"`
+		Service *string `json:"service"`
+		Stat *FormulaAndFunctionApmResourceStatName `json:"stat"`
+		}{}
 	all := struct {
-		DataSource      FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
-		Env             string                                       `json:"env"`
-		GroupBy         *[]string                                    `json:"group_by,omitempty"`
-		Name            string                                       `json:"name"`
-		OperationName   *string                                      `json:"operation_name,omitempty"`
-		PrimaryTagName  *string                                      `json:"primary_tag_name,omitempty"`
-		PrimaryTagValue *string                                      `json:"primary_tag_value,omitempty"`
-		ResourceName    *string                                      `json:"resource_name,omitempty"`
-		Service         string                                       `json:"service"`
-		Stat            FormulaAndFunctionApmResourceStatName        `json:"stat"`
-	}{}
+			DataSource FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
+			Env string `json:"env"`
+			GroupBy *[]string `json:"group_by,omitempty"`
+			Name string `json:"name"`
+			OperationName *string `json:"operation_name,omitempty"`
+			PrimaryTagName *string `json:"primary_tag_name,omitempty"`
+			PrimaryTagValue *string `json:"primary_tag_value,omitempty"`
+			ResourceName *string `json:"resource_name,omitempty"`
+			Service string `json:"service"`
+			Stat FormulaAndFunctionApmResourceStatName `json:"stat"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -454,3 +454,5 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	o.Stat = all.Stat
 	return nil
 }
+
+

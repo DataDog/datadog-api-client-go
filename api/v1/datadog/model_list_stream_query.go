@@ -58,7 +58,7 @@ func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -114,7 +114,7 @@ func (o *ListStreamQuery) GetQueryString() string {
 // GetQueryStringOk returns a tuple with the QueryString field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamQuery) GetQueryStringOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.QueryString, true
@@ -145,14 +145,14 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		DataSource  *ListStreamSource `json:"data_source"`
-		QueryString *string           `json:"query_string"`
-	}{}
+		DataSource *ListStreamSource `json:"data_source"`
+		QueryString *string `json:"query_string"`
+		}{}
 	all := struct {
-		DataSource  ListStreamSource `json:"data_source"`
-		Indexes     *[]string        `json:"indexes,omitempty"`
-		QueryString string           `json:"query_string"`
-	}{}
+			DataSource ListStreamSource `json:"data_source"`
+			Indexes *[]string `json:"indexes,omitempty"`
+			QueryString string `json:"query_string"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -185,3 +185,5 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.QueryString = all.QueryString
 	return nil
 }
+
+

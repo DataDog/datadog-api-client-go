@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WebhooksIntegrationCustomVariableUpdateRequest Update request of a custom variable object.  *All properties are optional.*
@@ -157,10 +158,10 @@ func (o WebhooksIntegrationCustomVariableUpdateRequest) MarshalJSON() ([]byte, e
 func (o *WebhooksIntegrationCustomVariableUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IsSecret *bool   `json:"is_secret,omitempty"`
-		Name     *string `json:"name,omitempty"`
-		Value    *string `json:"value,omitempty"`
-	}{}
+			IsSecret *bool `json:"is_secret,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Value *string `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *WebhooksIntegrationCustomVariableUpdateRequest) UnmarshalJSON(bytes []b
 	o.Value = all.Value
 	return nil
 }
+
+

@@ -10,29 +10,30 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ToplistWidgetRequest Updated top list widget.
 type ToplistWidgetRequest struct {
-	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
 	AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
+	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries. **This feature is currently in beta.**
-	Formulas            *[]WidgetFormula        `json:"formulas,omitempty"`
-	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
-	Style          *WidgetRequestStyle                  `json:"style,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -590,22 +591,22 @@ func (o ToplistWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *ToplistWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
-		ConditionalFormats  *[]WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
-		Style               *WidgetRequestStyle                  `json:"style,omitempty"`
-	}{}
+			ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+			AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+			ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+			EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+			Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+			LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+			NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+			ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+			ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+			Q *string `json:"q,omitempty"`
+			Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+			ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+			RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+			SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+			Style *WidgetRequestStyle `json:"style,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -640,3 +641,5 @@ func (o *ToplistWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
+
+

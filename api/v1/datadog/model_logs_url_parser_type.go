@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsURLParserType Type of logs URL parser.
@@ -100,3 +101,4 @@ func (v *NullableLogsURLParserType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

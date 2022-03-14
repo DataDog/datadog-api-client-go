@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOResponseData A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -17,8 +18,8 @@ type SLOResponseData struct {
 	// A list of SLO monitors IDs that reference this SLO. This field is returned only when `with_configured_alert_ids` parameter is true in query.
 	ConfiguredAlertIds *[]int64 `json:"configured_alert_ids,omitempty"`
 	// Creation timestamp (UNIX time in seconds)  Always included in service level objective responses.
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective.  Always included in service level objective responses (but may be `null`). Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the `monitor_ids` field is one.
@@ -32,13 +33,13 @@ type SLOResponseData struct {
 	// The union of monitor tags for all monitors referenced by the `monitor_ids` field. Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the `monitor_ids` field).
 	MonitorTags *[]string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
-	Name  *string                     `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 	// A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
 	Thresholds *[]SLOThreshold `json:"thresholds,omitempty"`
-	Type       *SLOType        `json:"type,omitempty"`
+	Type *SLOType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -169,7 +170,7 @@ func (o *SLOResponseData) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOResponseData) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -188,7 +189,6 @@ func (o *SLOResponseData) HasDescription() bool {
 func (o *SLOResponseData) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *SLOResponseData) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -572,21 +572,21 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ConfiguredAlertIds *[]int64                    `json:"configured_alert_ids,omitempty"`
-		CreatedAt          *int64                      `json:"created_at,omitempty"`
-		Creator            *Creator                    `json:"creator,omitempty"`
-		Description        NullableString              `json:"description,omitempty"`
-		Groups             *[]string                   `json:"groups,omitempty"`
-		Id                 *string                     `json:"id,omitempty"`
-		ModifiedAt         *int64                      `json:"modified_at,omitempty"`
-		MonitorIds         *[]int64                    `json:"monitor_ids,omitempty"`
-		MonitorTags        *[]string                   `json:"monitor_tags,omitempty"`
-		Name               *string                     `json:"name,omitempty"`
-		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags               *[]string                   `json:"tags,omitempty"`
-		Thresholds         *[]SLOThreshold             `json:"thresholds,omitempty"`
-		Type               *SLOType                    `json:"type,omitempty"`
-	}{}
+			ConfiguredAlertIds *[]int64 `json:"configured_alert_ids,omitempty"`
+			CreatedAt *int64 `json:"created_at,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Description NullableString `json:"description,omitempty"`
+			Groups *[]string `json:"groups,omitempty"`
+			Id *string `json:"id,omitempty"`
+			ModifiedAt *int64 `json:"modified_at,omitempty"`
+			MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+			MonitorTags *[]string `json:"monitor_tags,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Thresholds *[]SLOThreshold `json:"thresholds,omitempty"`
+			Type *SLOType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -620,3 +620,5 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

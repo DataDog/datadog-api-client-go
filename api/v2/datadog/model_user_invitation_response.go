@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserInvitationResponse User invitation as returned by the API.
@@ -82,8 +83,8 @@ func (o UserInvitationResponse) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *UserInvitationResponseData `json:"data,omitempty"`
-	}{}
+			Data *UserInvitationResponseData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *UserInvitationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

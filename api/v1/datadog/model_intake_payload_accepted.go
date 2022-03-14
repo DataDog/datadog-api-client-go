@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IntakePayloadAccepted The payload accepted for intake.
@@ -83,8 +84,8 @@ func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Status *string `json:"status,omitempty"`
-	}{}
+			Status *string `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // IFrameWidgetDefinitionType Type of the iframe widget.
@@ -100,3 +101,4 @@ func (v *NullableIFrameWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

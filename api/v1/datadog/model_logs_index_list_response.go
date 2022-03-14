@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsIndexListResponse Object with all Index configurations for a given organization.
@@ -83,8 +84,8 @@ func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Indexes *[]LogsIndex `json:"indexes,omitempty"`
-	}{}
+			Indexes *[]LogsIndex `json:"indexes,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Indexes = all.Indexes
 	return nil
 }
+
+

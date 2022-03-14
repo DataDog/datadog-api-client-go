@@ -22,8 +22,8 @@ type LogsGeoIPParser struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
-	Target string              `json:"target"`
-	Type   LogsGeoIPParserType `json:"type"`
+	Target string `json:"target"`
+	Type LogsGeoIPParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -133,7 +133,7 @@ func (o *LogsGeoIPParser) GetSources() []string {
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
 func (o *LogsGeoIPParser) GetSourcesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sources, true
@@ -157,7 +157,7 @@ func (o *LogsGeoIPParser) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsGeoIPParser) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -181,7 +181,7 @@ func (o *LogsGeoIPParser) GetType() LogsGeoIPParserType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsGeoIPParser) GetTypeOk() (*LogsGeoIPParserType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -218,17 +218,17 @@ func (o LogsGeoIPParser) MarshalJSON() ([]byte, error) {
 func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string            `json:"sources"`
-		Target  *string              `json:"target"`
-		Type    *LogsGeoIPParserType `json:"type"`
-	}{}
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsGeoIPParserType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled *bool               `json:"is_enabled,omitempty"`
-		Name      *string             `json:"name,omitempty"`
-		Sources   []string            `json:"sources"`
-		Target    string              `json:"target"`
-		Type      LogsGeoIPParserType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Sources []string `json:"sources"`
+			Target string `json:"target"`
+			Type LogsGeoIPParserType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -266,3 +266,5 @@ func (o *LogsGeoIPParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

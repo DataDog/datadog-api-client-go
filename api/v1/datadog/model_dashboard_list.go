@@ -258,7 +258,7 @@ func (o *DashboardList) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *DashboardList) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -337,17 +337,17 @@ func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Author         *Creator   `json:"author,omitempty"`
-		Created        *time.Time `json:"created,omitempty"`
-		DashboardCount *int64     `json:"dashboard_count,omitempty"`
-		Id             *int64     `json:"id,omitempty"`
-		IsFavorite     *bool      `json:"is_favorite,omitempty"`
-		Modified       *time.Time `json:"modified,omitempty"`
-		Name           string     `json:"name"`
-		Type           *string    `json:"type,omitempty"`
-	}{}
+			Author *Creator `json:"author,omitempty"`
+			Created *time.Time `json:"created,omitempty"`
+			DashboardCount *int64 `json:"dashboard_count,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			IsFavorite *bool `json:"is_favorite,omitempty"`
+			Modified *time.Time `json:"modified,omitempty"`
+			Name string `json:"name"`
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -374,3 +374,5 @@ func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

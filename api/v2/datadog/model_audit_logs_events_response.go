@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsEventsResponse Response object with all events matching the request and pagination information.
 type AuditLogsEventsResponse struct {
 	// Array of events matching the request.
-	Data  *[]AuditLogsEvent          `json:"data,omitempty"`
-	Links *AuditLogsResponseLinks    `json:"links,omitempty"`
-	Meta  *AuditLogsResponseMetadata `json:"meta,omitempty"`
+	Data *[]AuditLogsEvent `json:"data,omitempty"`
+	Links *AuditLogsResponseLinks `json:"links,omitempty"`
+	Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -155,10 +156,10 @@ func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]AuditLogsEvent          `json:"data,omitempty"`
-		Links *AuditLogsResponseLinks    `json:"links,omitempty"`
-		Meta  *AuditLogsResponseMetadata `json:"meta,omitempty"`
-	}{}
+			Data *[]AuditLogsEvent `json:"data,omitempty"`
+			Links *AuditLogsResponseLinks `json:"links,omitempty"`
+			Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

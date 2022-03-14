@@ -55,7 +55,7 @@ func (o *SecurityFilterExclusionFilter) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterExclusionFilter) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -79,7 +79,7 @@ func (o *SecurityFilterExclusionFilter) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterExclusionFilter) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -107,13 +107,13 @@ func (o SecurityFilterExclusionFilter) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name  *string `json:"name"`
+		Name *string `json:"name"`
 		Query *string `json:"query"`
-	}{}
+		}{}
 	all := struct {
-		Name  string `json:"name"`
-		Query string `json:"query"`
-	}{}
+			Name string `json:"name"`
+			Query string `json:"query"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *SecurityFilterExclusionFilter) UnmarshalJSON(bytes []byte) (err error) 
 	o.Query = all.Query
 	return nil
 }
+
+

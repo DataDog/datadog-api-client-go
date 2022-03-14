@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMuteResponse Response with the list of muted host for your organization.
@@ -194,11 +195,11 @@ func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Action   *string `json:"action,omitempty"`
-		End      *int64  `json:"end,omitempty"`
-		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
-	}{}
+			Action *string `json:"action,omitempty"`
+			End *int64 `json:"end,omitempty"`
+			Hostname *string `json:"hostname,omitempty"`
+			Message *string `json:"message,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricVolumesResponse Response object which includes a single metric's volume.
@@ -82,8 +83,8 @@ func (o MetricVolumesResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricVolumesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *MetricVolumes `json:"data,omitempty"`
-	}{}
+			Data *MetricVolumes `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *MetricVolumesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsSort Sort parameters when querying logs.
@@ -18,7 +19,7 @@ type LogsSort string
 
 // List of LogsSort
 const (
-	LOGSSORT_TIMESTAMP_ASCENDING  LogsSort = "timestamp"
+	LOGSSORT_TIMESTAMP_ASCENDING LogsSort = "timestamp"
 	LOGSSORT_TIMESTAMP_DESCENDING LogsSort = "-timestamp"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableLogsSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

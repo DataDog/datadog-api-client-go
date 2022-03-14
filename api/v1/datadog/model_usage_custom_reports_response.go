@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCustomReportsResponse Response containing available custom reports.
 type UsageCustomReportsResponse struct {
 	// An array of available custom reports.
 	Data *[]UsageCustomReportsData `json:"data,omitempty"`
-	Meta *UsageCustomReportsMeta   `json:"meta,omitempty"`
+	Meta *UsageCustomReportsMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,9 +120,9 @@ func (o UsageCustomReportsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]UsageCustomReportsData `json:"data,omitempty"`
-		Meta *UsageCustomReportsMeta   `json:"meta,omitempty"`
-	}{}
+			Data *[]UsageCustomReportsData `json:"data,omitempty"`
+			Meta *UsageCustomReportsMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *UsageCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

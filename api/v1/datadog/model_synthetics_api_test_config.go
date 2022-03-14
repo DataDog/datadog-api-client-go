@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
@@ -18,7 +19,7 @@ type SyntheticsAPITestConfig struct {
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+	Request *SyntheticsTestRequest `json:"request,omitempty"`
 	// When the test subtype is `multi`, the steps of the test.
 	Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -193,11 +194,11 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Assertions      *[]SyntheticsAssertion      `json:"assertions,omitempty"`
-		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
-		Steps           *[]SyntheticsAPIStep        `json:"steps,omitempty"`
-	}{}
+			Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
+			ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+			Request *SyntheticsTestRequest `json:"request,omitempty"`
+			Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -213,3 +214,5 @@ func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.Steps = all.Steps
 	return nil
 }
+
+

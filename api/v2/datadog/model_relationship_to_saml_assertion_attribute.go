@@ -51,7 +51,7 @@ func (o *RelationshipToSAMLAssertionAttribute) GetData() RelationshipToSAMLAsser
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToSAMLAssertionAttribute) GetDataOk() (*RelationshipToSAMLAssertionAttributeData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *RelationshipToSAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *RelationshipToSAMLAssertionAttributeData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data RelationshipToSAMLAssertionAttributeData `json:"data"`
-	}{}
+			Data RelationshipToSAMLAssertionAttributeData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *RelationshipToSAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err 
 	o.Data = all.Data
 	return nil
 }
+
+

@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // ApplicationKeyResponseIncludedItem - An object related to an application key.
@@ -23,13 +25,14 @@ type ApplicationKeyResponseIncludedItem struct {
 
 // RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem
 func RoleAsApplicationKeyResponseIncludedItem(v *Role) ApplicationKeyResponseIncludedItem {
-	return ApplicationKeyResponseIncludedItem{Role: v}
+	return ApplicationKeyResponseIncludedItem{ Role: v}
 }
 
 // UserAsApplicationKeyResponseIncludedItem is a convenience function that returns User wrapped in ApplicationKeyResponseIncludedItem
 func UserAsApplicationKeyResponseIncludedItem(v *User) ApplicationKeyResponseIncludedItem {
-	return ApplicationKeyResponseIncludedItem{User: v}
+	return ApplicationKeyResponseIncludedItem{ User: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.Role != nil {
 		return obj.Role
 	}
@@ -144,3 +147,5 @@ func (v *NullableApplicationKeyResponseIncludedItem) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

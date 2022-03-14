@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetFormulaLimit Options for limiting results returned.
 type WidgetFormulaLimit struct {
 	// Number of results to return.
-	Count *int64          `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -123,9 +124,9 @@ func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Count *int64          `json:"count,omitempty"`
-		Order *QuerySortOrder `json:"order,omitempty"`
-	}{}
+			Count *int64 `json:"count,omitempty"`
+			Order *QuerySortOrder `json:"order,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -147,3 +148,5 @@ func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	o.Order = all.Order
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetSort Widget sorting methods.
@@ -18,7 +19,7 @@ type WidgetSort string
 
 // List of WidgetSort
 const (
-	WIDGETSORT_ASCENDING  WidgetSort = "asc"
+	WIDGETSORT_ASCENDING WidgetSort = "asc"
 	WIDGETSORT_DESCENDING WidgetSort = "desc"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableWidgetSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

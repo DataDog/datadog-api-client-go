@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -26,52 +28,52 @@ var (
 type RUMApiService service
 
 type apiListRUMEventsRequest struct {
-	ctx         _context.Context
-	ApiService  *RUMApiService
+	ctx _context.Context
+	ApiService *RUMApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *RUMSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *RUMSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListRUMEventsOptionalParameters struct {
-	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *RUMSort
-	PageCursor  *string
-	PageLimit   *int32
+    FilterQuery *string
+    FilterFrom *time.Time
+    FilterTo *time.Time
+    Sort *RUMSort
+    PageCursor *string
+    PageLimit *int32
 }
 
 func NewListRUMEventsOptionalParameters() *ListRUMEventsOptionalParameters {
-	this := ListRUMEventsOptionalParameters{}
-	return &this
+    this := ListRUMEventsOptionalParameters{}
+    return &this
 }
 func (r *ListRUMEventsOptionalParameters) WithFilterQuery(filterQuery string) *ListRUMEventsOptionalParameters {
-	r.FilterQuery = &filterQuery
-	return r
+    r.FilterQuery = &filterQuery
+    return r
 }
 func (r *ListRUMEventsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListRUMEventsOptionalParameters {
-	r.FilterFrom = &filterFrom
-	return r
+    r.FilterFrom = &filterFrom
+    return r
 }
 func (r *ListRUMEventsOptionalParameters) WithFilterTo(filterTo time.Time) *ListRUMEventsOptionalParameters {
-	r.FilterTo = &filterTo
-	return r
+    r.FilterTo = &filterTo
+    return r
 }
 func (r *ListRUMEventsOptionalParameters) WithSort(sort RUMSort) *ListRUMEventsOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListRUMEventsOptionalParameters) WithPageCursor(pageCursor string) *ListRUMEventsOptionalParameters {
-	r.PageCursor = &pageCursor
-	return r
+    r.PageCursor = &pageCursor
+    return r
 }
 func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRUMEventsOptionalParameters {
-	r.PageLimit = &pageLimit
-	return r
+    r.PageLimit = &pageLimit
+    return r
 }
 
 /*
@@ -82,28 +84,28 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 Use this endpoint to see your latest RUM events.
 
 [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-*/
+ */
 func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
 	req := apiListRUMEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue RUMEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue RUMEventsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
+    if o != nil {
+        req.filterQuery = o[0].FilterQuery
+        req.filterFrom = o[0].FilterFrom
+        req.filterTo = o[0].FilterTo
+        req.sort = o[0].Sort
+        req.pageCursor = o[0].PageCursor
+        req.pageLimit = o[0].PageLimit
+    }
 
-	return req.ApiService.listRUMEventsExecute(req)
+    return req.ApiService.listRUMEventsExecute(req)
 }
 
 /*
@@ -119,6 +121,7 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 		localVarFileBytes    []byte
 		localVarReturnValue  RUMEventsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.ListRUMEvents")
 	if err != nil {
@@ -262,22 +265,22 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 }
 
 type apiSearchRUMEventsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RUMApiService
-	body       *RUMSearchEventsRequest
+	body *RUMSearchEventsRequest
 }
 
 type SearchRUMEventsOptionalParameters struct {
-	Body *RUMSearchEventsRequest
+    Body *RUMSearchEventsRequest
 }
 
 func NewSearchRUMEventsOptionalParameters() *SearchRUMEventsOptionalParameters {
-	this := SearchRUMEventsOptionalParameters{}
-	return &this
+    this := SearchRUMEventsOptionalParameters{}
+    return &this
 }
 func (r *SearchRUMEventsOptionalParameters) WithBody(body RUMSearchEventsRequest) *SearchRUMEventsOptionalParameters {
-	r.Body = &body
-	return r
+    r.Body = &body
+    return r
 }
 
 /*
@@ -288,23 +291,23 @@ func (r *SearchRUMEventsOptionalParameters) WithBody(body RUMSearchEventsRequest
 Use this endpoint to build complex RUM events filtering and search.
 
 [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-*/
+ */
 func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, o ...SearchRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
 	req := apiSearchRUMEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue RUMEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchRUMEventsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue RUMEventsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type SearchRUMEventsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.body = o[0].Body
-	}
+    if o != nil {
+        req.body = o[0].Body
+    }
 
-	return req.ApiService.searchRUMEventsExecute(req)
+    return req.ApiService.searchRUMEventsExecute(req)
 }
 
 /*
@@ -320,6 +323,7 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 		localVarFileBytes    []byte
 		localVarReturnValue  RUMEventsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.SearchRUMEvents")
 	if err != nil {

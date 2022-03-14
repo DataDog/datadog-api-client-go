@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestDetails Object containing details about your Synthetic test.
 type SyntheticsTestDetails struct {
-	Config  *SyntheticsTestConfig `json:"config,omitempty"`
-	Creator *Creator              `json:"creator,omitempty"`
+	Config *SyntheticsTestConfig `json:"config,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// Array of locations used to run the test.
 	Locations *[]string `json:"locations,omitempty"`
 	// Notification message associated with the test.
@@ -23,16 +24,16 @@ type SyntheticsTestDetails struct {
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    *string                `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Options *SyntheticsTestOptions `json:"options,omitempty"`
 	// The test public ID.
-	PublicId *string                    `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// For browser test, the steps of the test.
-	Steps   *[]SyntheticsStep             `json:"steps,omitempty"`
+	Steps *[]SyntheticsStep `json:"steps,omitempty"`
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string                  `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -521,20 +522,20 @@ func (o SyntheticsTestDetails) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
-		Creator   *Creator                      `json:"creator,omitempty"`
-		Locations *[]string                     `json:"locations,omitempty"`
-		Message   *string                       `json:"message,omitempty"`
-		MonitorId *int64                        `json:"monitor_id,omitempty"`
-		Name      *string                       `json:"name,omitempty"`
-		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
-		PublicId  *string                       `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-		Steps     *[]SyntheticsStep             `json:"steps,omitempty"`
-		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags      *[]string                     `json:"tags,omitempty"`
-		Type      *SyntheticsTestDetailsType    `json:"type,omitempty"`
-	}{}
+			Config *SyntheticsTestConfig `json:"config,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Locations *[]string `json:"locations,omitempty"`
+			Message *string `json:"message,omitempty"`
+			MonitorId *int64 `json:"monitor_id,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Options *SyntheticsTestOptions `json:"options,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+			Steps *[]SyntheticsStep `json:"steps,omitempty"`
+			Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *SyntheticsTestDetailsType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -583,3 +584,5 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

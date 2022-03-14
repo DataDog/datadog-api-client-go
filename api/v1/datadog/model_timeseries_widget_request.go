@@ -10,32 +10,33 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // TimeseriesWidgetRequest Updated timeseries widget.
 type TimeseriesWidgetRequest struct {
-	ApmQuery    *LogQueryDefinition `json:"apm_query,omitempty"`
-	AuditQuery  *LogQueryDefinition `json:"audit_query,omitempty"`
-	DisplayType *WidgetDisplayType  `json:"display_type,omitempty"`
-	EventQuery  *LogQueryDefinition `json:"event_query,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+	DisplayType *WidgetDisplayType `json:"display_type,omitempty"`
+	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries. **This feature is currently in beta.**
-	Formulas *[]WidgetFormula    `json:"formulas,omitempty"`
+	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
-	Metadata     *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
-	NetworkQuery *LogQueryDefinition                `json:"network_query,omitempty"`
+	Metadata *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
 	// Whether or not to display a second y-axis on the right.
-	OnRightYaxis        *bool                   `json:"on_right_yaxis,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	OnRightYaxis *bool `json:"on_right_yaxis,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
-	Style          *WidgetRequestStyle                  `json:"style,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+	Style *WidgetRequestStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -663,24 +664,24 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
-		DisplayType         *WidgetDisplayType                   `json:"display_type,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		Metadata            *[]TimeseriesWidgetExpressionAlias   `json:"metadata,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		OnRightYaxis        *bool                                `json:"on_right_yaxis,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
-		Style               *WidgetRequestStyle                  `json:"style,omitempty"`
-	}{}
+			ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+			AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
+			DisplayType *WidgetDisplayType `json:"display_type,omitempty"`
+			EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+			Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+			LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+			Metadata *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
+			NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+			OnRightYaxis *bool `json:"on_right_yaxis,omitempty"`
+			ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+			ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+			Q *string `json:"q,omitempty"`
+			Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+			ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+			RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+			SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+			Style *WidgetRequestStyle `json:"style,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -725,3 +726,5 @@ func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
+
+

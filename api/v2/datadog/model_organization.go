@@ -17,7 +17,7 @@ import (
 type Organization struct {
 	Attributes *OrganizationAttributes `json:"attributes,omitempty"`
 	// ID of the organization.
-	Id   *string           `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type OrganizationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -120,7 +120,7 @@ func (o *Organization) GetType() OrganizationsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Organization) GetTypeOk() (*OrganizationsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -152,12 +152,12 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *OrganizationsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *OrganizationAttributes `json:"attributes,omitempty"`
-		Id         *string                 `json:"id,omitempty"`
-		Type       OrganizationsType       `json:"type"`
-	}{}
+			Attributes *OrganizationAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type OrganizationsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -187,3 +187,5 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

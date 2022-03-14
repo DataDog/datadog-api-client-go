@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricBulkTagConfigDeleteAttributes Optional parameters for bulk deleting metric tag configurations.
@@ -83,8 +84,8 @@ func (o MetricBulkTagConfigDeleteAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigDeleteAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Emails *[]string `json:"emails,omitempty"`
-	}{}
+			Emails *[]string `json:"emails,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *MetricBulkTagConfigDeleteAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Emails = all.Emails
 	return nil
 }
+
+

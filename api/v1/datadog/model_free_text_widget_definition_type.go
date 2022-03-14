@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FreeTextWidgetDefinitionType Type of the free text widget.
@@ -100,3 +101,4 @@ func (v *NullableFreeTextWidgetDefinitionType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

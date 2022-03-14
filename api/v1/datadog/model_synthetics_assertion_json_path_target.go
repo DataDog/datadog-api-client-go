@@ -17,9 +17,9 @@ import (
 type SyntheticsAssertionJSONPathTarget struct {
 	Operator SyntheticsAssertionJSONPathOperator `json:"operator"`
 	// The associated assertion property.
-	Property *string                                  `json:"property,omitempty"`
-	Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-	Type     SyntheticsAssertionType                  `json:"type"`
+	Property *string `json:"property,omitempty"`
+	Target *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+	Type SyntheticsAssertionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -56,7 +56,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSO
 // GetOperatorOk returns a tuple with the Operator field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionJSONPathTarget) GetOperatorOk() (*SyntheticsAssertionJSONPathOperator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Operator, true
@@ -144,7 +144,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAssertionJSONPathTarget) GetTypeOk() (*SyntheticsAssertionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -179,14 +179,14 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 	raw := map[string]interface{}{}
 	required := struct {
 		Operator *SyntheticsAssertionJSONPathOperator `json:"operator"`
-		Type     *SyntheticsAssertionType             `json:"type"`
-	}{}
+		Type *SyntheticsAssertionType `json:"type"`
+		}{}
 	all := struct {
-		Operator SyntheticsAssertionJSONPathOperator      `json:"operator"`
-		Property *string                                  `json:"property,omitempty"`
-		Target   *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
-		Type     SyntheticsAssertionType                  `json:"type"`
-	}{}
+			Operator SyntheticsAssertionJSONPathOperator `json:"operator"`
+			Property *string `json:"property,omitempty"`
+			Target *SyntheticsAssertionJSONPathTargetTarget `json:"target,omitempty"`
+			Type SyntheticsAssertionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -228,3 +228,5 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -17,7 +17,7 @@ import (
 type ApplicationKeyUpdateData struct {
 	Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
 	// ID of the application key.
-	Id   string              `json:"id"`
+	Id string `json:"id"`
 	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -58,7 +58,7 @@ func (o *ApplicationKeyUpdateData) GetAttributes() ApplicationKeyUpdateAttribute
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyUpdateData) GetAttributesOk() (*ApplicationKeyUpdateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -82,7 +82,7 @@ func (o *ApplicationKeyUpdateData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyUpdateData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -106,7 +106,7 @@ func (o *ApplicationKeyUpdateData) GetType() ApplicationKeysType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyUpdateData) GetTypeOk() (*ApplicationKeysType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -138,14 +138,14 @@ func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *ApplicationKeyUpdateAttributes `json:"attributes"`
-		Id         *string                         `json:"id"`
-		Type       *ApplicationKeysType            `json:"type"`
-	}{}
+		Id *string `json:"id"`
+		Type *ApplicationKeysType `json:"type"`
+		}{}
 	all := struct {
-		Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
-		Id         string                         `json:"id"`
-		Type       ApplicationKeysType            `json:"type"`
-	}{}
+			Attributes ApplicationKeyUpdateAttributes `json:"attributes"`
+			Id string `json:"id"`
+			Type ApplicationKeysType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -181,3 +181,5 @@ func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

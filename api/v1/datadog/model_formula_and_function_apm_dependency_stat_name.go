@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionApmDependencyStatName APM statistic.
@@ -18,13 +19,13 @@ type FormulaAndFunctionApmDependencyStatName string
 
 // List of FormulaAndFunctionApmDependencyStatName
 const (
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION        FormulaAndFunctionApmDependencyStatName = "avg_duration"
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_ROOT_DURATION   FormulaAndFunctionApmDependencyStatName = "avg_root_duration"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_DURATION FormulaAndFunctionApmDependencyStatName = "avg_duration"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_ROOT_DURATION FormulaAndFunctionApmDependencyStatName = "avg_root_duration"
 	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_AVG_SPANS_PER_TRACE FormulaAndFunctionApmDependencyStatName = "avg_spans_per_trace"
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_ERROR_RATE          FormulaAndFunctionApmDependencyStatName = "error_rate"
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_EXEC_TIME       FormulaAndFunctionApmDependencyStatName = "pct_exec_time"
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_OF_TRACES       FormulaAndFunctionApmDependencyStatName = "pct_of_traces"
-	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_TOTAL_TRACES_COUNT  FormulaAndFunctionApmDependencyStatName = "total_traces_count"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_ERROR_RATE FormulaAndFunctionApmDependencyStatName = "error_rate"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_EXEC_TIME FormulaAndFunctionApmDependencyStatName = "pct_exec_time"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_PCT_OF_TRACES FormulaAndFunctionApmDependencyStatName = "pct_of_traces"
+	FORMULAANDFUNCTIONAPMDEPENDENCYSTATNAME_TOTAL_TRACES_COUNT FormulaAndFunctionApmDependencyStatName = "total_traces_count"
 )
 
 var allowedFormulaAndFunctionApmDependencyStatNameEnumValues = []FormulaAndFunctionApmDependencyStatName{
@@ -112,3 +113,4 @@ func (v *NullableFormulaAndFunctionApmDependencyStatName) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

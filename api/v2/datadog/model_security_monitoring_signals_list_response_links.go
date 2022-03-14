@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalsListResponseLinks Links attributes.
@@ -83,8 +84,8 @@ func (o SecurityMonitoringSignalsListResponseLinks) MarshalJSON() ([]byte, error
 func (o *SecurityMonitoringSignalsListResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Next *string `json:"next,omitempty"`
-	}{}
+			Next *string `json:"next,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SecurityMonitoringSignalsListResponseLinks) UnmarshalJSON(bytes []byte)
 	o.Next = all.Next
 	return nil
 }
+
+

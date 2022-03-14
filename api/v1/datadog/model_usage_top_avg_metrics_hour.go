@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageTopAvgMetricsHour Number of hourly recorded custom metrics for a given organization.
@@ -17,7 +18,7 @@ type UsageTopAvgMetricsHour struct {
 	// Average number of timeseries per hour in which the metric occurs.
 	AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
 	// Maximum number of timeseries per hour in which the metric occurs.
-	MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
+	MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
 	MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
@@ -193,11 +194,11 @@ func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AvgMetricHour  *int64               `json:"avg_metric_hour,omitempty"`
-		MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
-		MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
-		MetricName     *string              `json:"metric_name,omitempty"`
-	}{}
+			AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
+			MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
+			MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
+			MetricName *string `json:"metric_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -221,3 +222,5 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.MetricName = all.MetricName
 	return nil
 }
+
+

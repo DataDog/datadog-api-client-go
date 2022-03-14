@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetRequestStyle Define request widget style.
 type WidgetRequestStyle struct {
-	LineType  *WidgetLineType  `json:"line_type,omitempty"`
+	LineType *WidgetLineType `json:"line_type,omitempty"`
 	LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
@@ -155,10 +156,10 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LineType  *WidgetLineType  `json:"line_type,omitempty"`
-		LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
-		Palette   *string          `json:"palette,omitempty"`
-	}{}
+			LineType *WidgetLineType `json:"line_type,omitempty"`
+			LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
+			Palette *string `json:"palette,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -189,3 +190,5 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.Palette = all.Palette
 	return nil
 }
+
+

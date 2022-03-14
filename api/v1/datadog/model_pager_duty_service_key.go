@@ -52,7 +52,7 @@ func (o *PagerDutyServiceKey) GetServiceKey() string {
 // GetServiceKeyOk returns a tuple with the ServiceKey field value
 // and a boolean to check if the value has been set.
 func (o *PagerDutyServiceKey) GetServiceKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ServiceKey, true
@@ -78,10 +78,10 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ServiceKey *string `json:"service_key"`
-	}{}
+		}{}
 	all := struct {
-		ServiceKey string `json:"service_key"`
-	}{}
+			ServiceKey string `json:"service_key"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *PagerDutyServiceKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServiceKey = all.ServiceKey
 	return nil
 }
+
+

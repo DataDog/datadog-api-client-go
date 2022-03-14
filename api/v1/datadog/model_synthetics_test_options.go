@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestOptions Object describing the extra options for a Synthetic test.
@@ -31,13 +32,13 @@ type SyntheticsTestOptions struct {
 	// Minimum number of locations in failure required to trigger an alert.
 	MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
 	// The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs.
-	MonitorName    *string                              `json:"monitor_name,omitempty"`
+	MonitorName *string `json:"monitor_name,omitempty"`
 	MonitorOptions *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	MonitorPriority *int32 `json:"monitor_priority,omitempty"`
 	// Prevents saving screenshots of the steps.
-	NoScreenshot *bool                       `json:"noScreenshot,omitempty"`
-	Retry        *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	NoScreenshot *bool `json:"noScreenshot,omitempty"`
+	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -562,21 +563,21 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AcceptSelfSigned           *bool                                `json:"accept_self_signed,omitempty"`
-		AllowInsecure              *bool                                `json:"allow_insecure,omitempty"`
-		CheckCertificateRevocation *bool                                `json:"checkCertificateRevocation,omitempty"`
-		DeviceIds                  *[]SyntheticsDeviceID                `json:"device_ids,omitempty"`
-		DisableCors                *bool                                `json:"disableCors,omitempty"`
-		FollowRedirects            *bool                                `json:"follow_redirects,omitempty"`
-		MinFailureDuration         *int64                               `json:"min_failure_duration,omitempty"`
-		MinLocationFailed          *int64                               `json:"min_location_failed,omitempty"`
-		MonitorName                *string                              `json:"monitor_name,omitempty"`
-		MonitorOptions             *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
-		MonitorPriority            *int32                               `json:"monitor_priority,omitempty"`
-		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
-		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
-		TickEvery                  *int64                               `json:"tick_every,omitempty"`
-	}{}
+			AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
+			AllowInsecure *bool `json:"allow_insecure,omitempty"`
+			CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
+			DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
+			DisableCors *bool `json:"disableCors,omitempty"`
+			FollowRedirects *bool `json:"follow_redirects,omitempty"`
+			MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
+			MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
+			MonitorName *string `json:"monitor_name,omitempty"`
+			MonitorOptions *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
+			MonitorPriority *int32 `json:"monitor_priority,omitempty"`
+			NoScreenshot *bool `json:"noScreenshot,omitempty"`
+			Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+			TickEvery *int64 `json:"tick_every,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -602,3 +603,5 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.TickEvery = all.TickEvery
 	return nil
 }
+
+

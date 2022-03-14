@@ -19,13 +19,13 @@ type ToplistWidgetDefinition struct {
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of top list widget requests.
 	Requests []ToplistWidgetRequest `json:"requests"`
-	Time     *WidgetTime            `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                     `json:"title_size,omitempty"`
-	Type      ToplistWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ToplistWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -96,7 +96,7 @@ func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ToplistWidgetDefinition) GetRequestsOk() (*[]ToplistWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -248,7 +248,7 @@ func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ToplistWidgetDefinition) GetTypeOk() (*ToplistWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -291,18 +291,18 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ToplistWidgetRequest      `json:"requests"`
-		Type     *ToplistWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]ToplistWidgetRequest `json:"requests"`
+		Type *ToplistWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
-		Requests    []ToplistWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize   *string                     `json:"title_size,omitempty"`
-		Type        ToplistWidgetDefinitionType `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Requests []ToplistWidgetRequest `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ToplistWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -347,3 +347,5 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -10,8 +10,6 @@ package datadog
 
 import (
 	"encoding/json"
-	"reflect"
-	"strings"
 	"time"
 )
 

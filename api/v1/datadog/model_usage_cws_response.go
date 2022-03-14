@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCWSResponse Response containing the Cloud Workload Security usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageCWSResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageCWSResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageCWSHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageCWSHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageCWSResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

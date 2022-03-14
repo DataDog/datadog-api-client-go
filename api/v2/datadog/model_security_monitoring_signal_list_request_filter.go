@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -158,10 +159,10 @@ func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error)
 func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From  *time.Time `json:"from,omitempty"`
-		Query *string    `json:"query,omitempty"`
-		To    *time.Time `json:"to,omitempty"`
-	}{}
+			From *time.Time `json:"from,omitempty"`
+			Query *string `json:"query,omitempty"`
+			To *time.Time `json:"to,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -176,3 +177,5 @@ func (o *SecurityMonitoringSignalListRequestFilter) UnmarshalJSON(bytes []byte) 
 	o.To = all.To
 	return nil
 }
+
+

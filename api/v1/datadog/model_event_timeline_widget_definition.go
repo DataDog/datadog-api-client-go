@@ -18,14 +18,14 @@ type EventTimelineWidgetDefinition struct {
 	// Query to filter the event timeline with.
 	Query string `json:"query"`
 	// The execution method for multi-value filters. Can be either and or or.
-	TagsExecution *string     `json:"tags_execution,omitempty"`
-	Time          *WidgetTime `json:"time,omitempty"`
+	TagsExecution *string `json:"tags_execution,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                           `json:"title_size,omitempty"`
-	Type      EventTimelineWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type EventTimelineWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -64,7 +64,7 @@ func (o *EventTimelineWidgetDefinition) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *EventTimelineWidgetDefinition) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -248,7 +248,7 @@ func (o *EventTimelineWidgetDefinition) GetType() EventTimelineWidgetDefinitionT
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *EventTimelineWidgetDefinition) GetTypeOk() (*EventTimelineWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -291,18 +291,18 @@ func (o EventTimelineWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string                            `json:"query"`
-		Type  *EventTimelineWidgetDefinitionType `json:"type"`
-	}{}
+		Query *string `json:"query"`
+		Type *EventTimelineWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		Query         string                            `json:"query"`
-		TagsExecution *string                           `json:"tags_execution,omitempty"`
-		Time          *WidgetTime                       `json:"time,omitempty"`
-		Title         *string                           `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                  `json:"title_align,omitempty"`
-		TitleSize     *string                           `json:"title_size,omitempty"`
-		Type          EventTimelineWidgetDefinitionType `json:"type"`
-	}{}
+			Query string `json:"query"`
+			TagsExecution *string `json:"tags_execution,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type EventTimelineWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -347,3 +347,5 @@ func (o *EventTimelineWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) 
 	o.Type = all.Type
 	return nil
 }
+
+

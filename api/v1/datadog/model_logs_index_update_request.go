@@ -21,7 +21,7 @@ type LogsIndexUpdateRequest struct {
 	DisableDailyLimit *bool `json:"disable_daily_limit,omitempty"`
 	// An array of exclusion objects. The logs are tested against the query of each filter, following the order of the array. Only the first matching active exclusion matters, others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-	Filter           LogsFilter       `json:"filter"`
+	Filter LogsFilter `json:"filter"`
 	// The number of days before logs are deleted from this index. Available values depend on retention plans specified in your organization's contract/subscriptions.  **Note:** Changing the retention for an index adjusts the length of retention for all logs already in this index. It may also affect billing.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -155,7 +155,7 @@ func (o *LogsIndexUpdateRequest) GetFilter() LogsFilter {
 // GetFilterOk returns a tuple with the Filter field value
 // and a boolean to check if the value has been set.
 func (o *LogsIndexUpdateRequest) GetFilterOk() (*LogsFilter, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Filter, true
@@ -225,14 +225,14 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Filter *LogsFilter `json:"filter"`
-	}{}
+		}{}
 	all := struct {
-		DailyLimit        *int64           `json:"daily_limit,omitempty"`
-		DisableDailyLimit *bool            `json:"disable_daily_limit,omitempty"`
-		ExclusionFilters  *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-		Filter            LogsFilter       `json:"filter"`
-		NumRetentionDays  *int64           `json:"num_retention_days,omitempty"`
-	}{}
+			DailyLimit *int64 `json:"daily_limit,omitempty"`
+			DisableDailyLimit *bool `json:"disable_daily_limit,omitempty"`
+			ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
+			Filter LogsFilter `json:"filter"`
+			NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -256,3 +256,5 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NumRetentionDays = all.NumRetentionDays
 	return nil
 }
+
+

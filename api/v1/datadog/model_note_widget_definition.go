@@ -24,13 +24,13 @@ type NoteWidgetDefinition struct {
 	// Whether to add padding or not.
 	HasPadding *bool `json:"has_padding,omitempty"`
 	// Whether to show a tick or not.
-	ShowTick  *bool            `json:"show_tick,omitempty"`
+	ShowTick *bool `json:"show_tick,omitempty"`
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-	TickEdge  *WidgetTickEdge  `json:"tick_edge,omitempty"`
+	TickEdge *WidgetTickEdge `json:"tick_edge,omitempty"`
 	// Where to position the tick on an edge.
-	TickPos       *string                  `json:"tick_pos,omitempty"`
-	Type          NoteWidgetDefinitionType `json:"type"`
-	VerticalAlign *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
+	TickPos *string `json:"tick_pos,omitempty"`
+	Type NoteWidgetDefinitionType `json:"type"`
+	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -105,7 +105,7 @@ func (o *NoteWidgetDefinition) GetContent() string {
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
 func (o *NoteWidgetDefinition) GetContentOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Content, true
@@ -321,7 +321,7 @@ func (o *NoteWidgetDefinition) GetType() NoteWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NoteWidgetDefinition) GetTypeOk() (*NoteWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -405,21 +405,21 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Content *string                   `json:"content"`
-		Type    *NoteWidgetDefinitionType `json:"type"`
-	}{}
+		Content *string `json:"content"`
+		Type *NoteWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		BackgroundColor *string                  `json:"background_color,omitempty"`
-		Content         string                   `json:"content"`
-		FontSize        *string                  `json:"font_size,omitempty"`
-		HasPadding      *bool                    `json:"has_padding,omitempty"`
-		ShowTick        *bool                    `json:"show_tick,omitempty"`
-		TextAlign       *WidgetTextAlign         `json:"text_align,omitempty"`
-		TickEdge        *WidgetTickEdge          `json:"tick_edge,omitempty"`
-		TickPos         *string                  `json:"tick_pos,omitempty"`
-		Type            NoteWidgetDefinitionType `json:"type"`
-		VerticalAlign   *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
-	}{}
+			BackgroundColor *string `json:"background_color,omitempty"`
+			Content string `json:"content"`
+			FontSize *string `json:"font_size,omitempty"`
+			HasPadding *bool `json:"has_padding,omitempty"`
+			ShowTick *bool `json:"show_tick,omitempty"`
+			TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+			TickEdge *WidgetTickEdge `json:"tick_edge,omitempty"`
+			TickPos *string `json:"tick_pos,omitempty"`
+			Type NoteWidgetDefinitionType `json:"type"`
+			VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -483,3 +483,5 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.VerticalAlign = all.VerticalAlign
 	return nil
 }
+
+

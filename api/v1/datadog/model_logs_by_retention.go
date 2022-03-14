@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsByRetention Object containing logs usage data broken down by retention period.
 type LogsByRetention struct {
 	Orgs *LogsByRetentionOrgs `json:"orgs,omitempty"`
 	// Aggregated index logs usage for each retention period with usage.
-	Usage        *[]LogsRetentionAggSumUsage  `json:"usage,omitempty"`
+	Usage *[]LogsRetentionAggSumUsage `json:"usage,omitempty"`
 	UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -155,10 +156,10 @@ func (o LogsByRetention) MarshalJSON() ([]byte, error) {
 func (o *LogsByRetention) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Orgs         *LogsByRetentionOrgs         `json:"orgs,omitempty"`
-		Usage        *[]LogsRetentionAggSumUsage  `json:"usage,omitempty"`
-		UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
-	}{}
+			Orgs *LogsByRetentionOrgs `json:"orgs,omitempty"`
+			Usage *[]LogsRetentionAggSumUsage `json:"usage,omitempty"`
+			UsageByMonth *LogsByRetentionMonthlyUsage `json:"usage_by_month,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *LogsByRetention) UnmarshalJSON(bytes []byte) (err error) {
 	o.UsageByMonth = all.UsageByMonth
 	return nil
 }
+
+

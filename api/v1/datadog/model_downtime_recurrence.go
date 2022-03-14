@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DowntimeRecurrence An object defining the recurrence of the downtime.
@@ -156,7 +157,7 @@ func (o *DowntimeRecurrence) GetUntilDate() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DowntimeRecurrence) GetUntilDateOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.UntilDate.Get(), o.UntilDate.IsSet()
@@ -175,7 +176,6 @@ func (o *DowntimeRecurrence) HasUntilDate() bool {
 func (o *DowntimeRecurrence) SetUntilDate(v int64) {
 	o.UntilDate.Set(&v)
 }
-
 // SetUntilDateNil sets the value for UntilDate to be an explicit nil
 func (o *DowntimeRecurrence) SetUntilDateNil() {
 	o.UntilDate.Set(nil)
@@ -199,7 +199,7 @@ func (o *DowntimeRecurrence) GetUntilOccurrences() int32 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.UntilOccurrences.Get(), o.UntilOccurrences.IsSet()
@@ -218,7 +218,6 @@ func (o *DowntimeRecurrence) HasUntilOccurrences() bool {
 func (o *DowntimeRecurrence) SetUntilOccurrences(v int32) {
 	o.UntilOccurrences.Set(&v)
 }
-
 // SetUntilOccurrencesNil sets the value for UntilOccurrences to be an explicit nil
 func (o *DowntimeRecurrence) SetUntilOccurrencesNil() {
 	o.UntilOccurrences.Set(nil)
@@ -231,7 +230,7 @@ func (o *DowntimeRecurrence) UnsetUntilOccurrences() {
 
 // GetWeekDays returns the WeekDays field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DowntimeRecurrence) GetWeekDays() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -291,13 +290,13 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Period           *int32        `json:"period,omitempty"`
-		Rrule            *string       `json:"rrule,omitempty"`
-		Type             *string       `json:"type,omitempty"`
-		UntilDate        NullableInt64 `json:"until_date,omitempty"`
-		UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
-		WeekDays         []string      `json:"week_days,omitempty"`
-	}{}
+			Period *int32 `json:"period,omitempty"`
+			Rrule *string `json:"rrule,omitempty"`
+			Type *string `json:"type,omitempty"`
+			UntilDate NullableInt64 `json:"until_date,omitempty"`
+			UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
+			WeekDays []string `json:"week_days,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -351,3 +350,5 @@ func (v *NullableDowntimeRecurrence) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

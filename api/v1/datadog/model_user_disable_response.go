@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserDisableResponse Array of user disabled for a given organization.
@@ -83,8 +84,8 @@ func (o UserDisableResponse) MarshalJSON() ([]byte, error) {
 func (o *UserDisableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Message *string `json:"message,omitempty"`
-	}{}
+			Message *string `json:"message,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UserDisableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -195,11 +196,11 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour        *time.Time `json:"hour,omitempty"`
-		OrgName     *string    `json:"org_name,omitempty"`
-		PublicId    *string    `json:"public_id,omitempty"`
-		SnmpDevices *int64     `json:"snmp_devices,omitempty"`
-	}{}
+			Hour *time.Time `json:"hour,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			SnmpDevices *int64 `json:"snmp_devices,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -215,3 +216,5 @@ func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnmpDevices = all.SnmpDevices
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ContentEncoding HTTP header used to compress the media-type.
@@ -18,7 +19,7 @@ type ContentEncoding string
 
 // List of ContentEncoding
 const (
-	CONTENTENCODING_GZIP    ContentEncoding = "gzip"
+	CONTENTENCODING_GZIP ContentEncoding = "gzip"
 	CONTENTENCODING_DEFLATE ContentEncoding = "deflate"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableContentEncoding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

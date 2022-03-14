@@ -16,10 +16,10 @@ import (
 // LogsArchiveDestinationS3 The S3 archive destination.
 type LogsArchiveDestinationS3 struct {
 	// The bucket where the archive will be stored.
-	Bucket      string                   `json:"bucket"`
+	Bucket string `json:"bucket"`
 	Integration LogsArchiveIntegrationS3 `json:"integration"`
 	// The archive path.
-	Path *string                      `json:"path,omitempty"`
+	Path *string `json:"path,omitempty"`
 	Type LogsArchiveDestinationS3Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -60,7 +60,7 @@ func (o *LogsArchiveDestinationS3) GetBucket() string {
 // GetBucketOk returns a tuple with the Bucket field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationS3) GetBucketOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Bucket, true
@@ -84,7 +84,7 @@ func (o *LogsArchiveDestinationS3) GetIntegration() LogsArchiveIntegrationS3 {
 // GetIntegrationOk returns a tuple with the Integration field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationS3) GetIntegrationOk() (*LogsArchiveIntegrationS3, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Integration, true
@@ -140,7 +140,7 @@ func (o *LogsArchiveDestinationS3) GetType() LogsArchiveDestinationS3Type {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationS3) GetTypeOk() (*LogsArchiveDestinationS3Type, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -174,16 +174,16 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Bucket      *string                       `json:"bucket"`
-		Integration *LogsArchiveIntegrationS3     `json:"integration"`
-		Type        *LogsArchiveDestinationS3Type `json:"type"`
-	}{}
+		Bucket *string `json:"bucket"`
+		Integration *LogsArchiveIntegrationS3 `json:"integration"`
+		Type *LogsArchiveDestinationS3Type `json:"type"`
+		}{}
 	all := struct {
-		Bucket      string                       `json:"bucket"`
-		Integration LogsArchiveIntegrationS3     `json:"integration"`
-		Path        *string                      `json:"path,omitempty"`
-		Type        LogsArchiveDestinationS3Type `json:"type"`
-	}{}
+			Bucket string `json:"bucket"`
+			Integration LogsArchiveIntegrationS3 `json:"integration"`
+			Path *string `json:"path,omitempty"`
+			Type LogsArchiveDestinationS3Type `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -220,3 +220,5 @@ func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

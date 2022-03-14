@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // IncidentFieldAttributes - Dynamic fields for which selections can be made, with field names as keys.
 type IncidentFieldAttributes struct {
 	IncidentFieldAttributesMultipleValue *IncidentFieldAttributesMultipleValue
-	IncidentFieldAttributesSingleValue   *IncidentFieldAttributesSingleValue
+	IncidentFieldAttributesSingleValue *IncidentFieldAttributesSingleValue
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -23,13 +25,14 @@ type IncidentFieldAttributes struct {
 
 // IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesMultipleValue wrapped in IncidentFieldAttributes
 func IncidentFieldAttributesMultipleValueAsIncidentFieldAttributes(v *IncidentFieldAttributesMultipleValue) IncidentFieldAttributes {
-	return IncidentFieldAttributes{IncidentFieldAttributesMultipleValue: v}
+	return IncidentFieldAttributes{ IncidentFieldAttributesMultipleValue: v}
 }
 
 // IncidentFieldAttributesSingleValueAsIncidentFieldAttributes is a convenience function that returns IncidentFieldAttributesSingleValue wrapped in IncidentFieldAttributes
 func IncidentFieldAttributesSingleValueAsIncidentFieldAttributes(v *IncidentFieldAttributesSingleValue) IncidentFieldAttributes {
-	return IncidentFieldAttributes{IncidentFieldAttributesSingleValue: v}
+	return IncidentFieldAttributes{ IncidentFieldAttributesSingleValue: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *IncidentFieldAttributes) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src IncidentFieldAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentFieldAttributes) GetActualInstance() interface{} {
+func (obj *IncidentFieldAttributes) GetActualInstance() (interface{}) {
 	if obj.IncidentFieldAttributesMultipleValue != nil {
 		return obj.IncidentFieldAttributesMultipleValue
 	}
@@ -144,3 +147,5 @@ func (v *NullableIncidentFieldAttributes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -20,8 +20,8 @@ type LogsTraceRemapper struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources *[]string             `json:"sources,omitempty"`
-	Type    LogsTraceRemapperType `json:"type"`
+	Sources *[]string `json:"sources,omitempty"`
+	Type LogsTraceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -159,7 +159,7 @@ func (o *LogsTraceRemapper) GetType() LogsTraceRemapperType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsTraceRemapper) GetTypeOk() (*LogsTraceRemapperType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -194,13 +194,13 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogsTraceRemapperType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		IsEnabled *bool                 `json:"is_enabled,omitempty"`
-		Name      *string               `json:"name,omitempty"`
-		Sources   *[]string             `json:"sources,omitempty"`
-		Type      LogsTraceRemapperType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Sources *[]string `json:"sources,omitempty"`
+			Type LogsTraceRemapperType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -231,3 +231,5 @@ func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

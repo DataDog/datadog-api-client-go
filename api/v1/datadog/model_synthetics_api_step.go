@@ -24,10 +24,10 @@ type SyntheticsAPIStep struct {
 	// Determines whether or not to consider the entire test as failed if this step fails. Can be used only if `allowFailure` is `true`.
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
-	Name    string                      `json:"name"`
-	Request SyntheticsTestRequest       `json:"request"`
-	Retry   *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-	Subtype SyntheticsAPIStepSubtype    `json:"subtype"`
+	Name string `json:"name"`
+	Request SyntheticsTestRequest `json:"request"`
+	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	Subtype SyntheticsAPIStepSubtype `json:"subtype"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -98,7 +98,7 @@ func (o *SyntheticsAPIStep) GetAssertions() []SyntheticsAssertion {
 // GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Assertions, true
@@ -186,7 +186,7 @@ func (o *SyntheticsAPIStep) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -210,7 +210,7 @@ func (o *SyntheticsAPIStep) GetRequest() SyntheticsTestRequest {
 // GetRequestOk returns a tuple with the Request field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Request, true
@@ -266,7 +266,7 @@ func (o *SyntheticsAPIStep) GetSubtype() SyntheticsAPIStepSubtype {
 // GetSubtypeOk returns a tuple with the Subtype field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPIStep) GetSubtypeOk() (*SyntheticsAPIStepSubtype, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Subtype, true
@@ -312,21 +312,21 @@ func (o SyntheticsAPIStep) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Assertions *[]SyntheticsAssertion    `json:"assertions"`
-		Name       *string                   `json:"name"`
-		Request    *SyntheticsTestRequest    `json:"request"`
-		Subtype    *SyntheticsAPIStepSubtype `json:"subtype"`
-	}{}
+		Assertions *[]SyntheticsAssertion `json:"assertions"`
+		Name *string `json:"name"`
+		Request *SyntheticsTestRequest `json:"request"`
+		Subtype *SyntheticsAPIStepSubtype `json:"subtype"`
+		}{}
 	all := struct {
-		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
-		Assertions      []SyntheticsAssertion       `json:"assertions"`
-		ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
-		IsCritical      *bool                       `json:"isCritical,omitempty"`
-		Name            string                      `json:"name"`
-		Request         SyntheticsTestRequest       `json:"request"`
-		Retry           *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		Subtype         SyntheticsAPIStepSubtype    `json:"subtype"`
-	}{}
+			AllowFailure *bool `json:"allowFailure,omitempty"`
+			Assertions []SyntheticsAssertion `json:"assertions"`
+			ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+			IsCritical *bool `json:"isCritical,omitempty"`
+			Name string `json:"name"`
+			Request SyntheticsTestRequest `json:"request"`
+			Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+			Subtype SyntheticsAPIStepSubtype `json:"subtype"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -370,3 +370,5 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.Subtype = all.Subtype
 	return nil
 }
+
+

@@ -16,7 +16,7 @@ import (
 // NotebookCreateData The data for a notebook create request.
 type NotebookCreateData struct {
 	Attributes NotebookCreateDataAttributes `json:"attributes"`
-	Type       NotebookResourceType         `json:"type"`
+	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *NotebookCreateData) GetAttributes() NotebookCreateDataAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCreateData) GetAttributesOk() (*NotebookCreateDataAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *NotebookCreateData) GetType() NotebookResourceType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCreateData) GetTypeOk() (*NotebookResourceType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *NotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCreateDataAttributes `json:"attributes"`
-		Type       *NotebookResourceType         `json:"type"`
-	}{}
+		Type *NotebookResourceType `json:"type"`
+		}{}
 	all := struct {
-		Attributes NotebookCreateDataAttributes `json:"attributes"`
-		Type       NotebookResourceType         `json:"type"`
-	}{}
+			Attributes NotebookCreateDataAttributes `json:"attributes"`
+			Type NotebookResourceType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *NotebookCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

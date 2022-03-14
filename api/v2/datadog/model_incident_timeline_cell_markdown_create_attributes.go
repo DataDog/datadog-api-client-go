@@ -15,8 +15,8 @@ import (
 
 // IncidentTimelineCellMarkdownCreateAttributes Timeline cell data for Markdown timeline cells for a create request.
 type IncidentTimelineCellMarkdownCreateAttributes struct {
-	CellType IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-	Content  IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+	CellType IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+	Content IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
 	// A flag indicating whether the timeline cell is important and should be highlighted.
 	Important *bool `json:"important,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -61,7 +61,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetCellType() IncidentTim
 // GetCellTypeOk returns a tuple with the CellType field value
 // and a boolean to check if the value has been set.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) GetCellTypeOk() (*IncidentTimelineCellMarkdownContentType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CellType, true
@@ -85,7 +85,7 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContent() IncidentTime
 // GetContentOk returns a tuple with the Content field value
 // and a boolean to check if the value has been set.
 func (o *IncidentTimelineCellMarkdownCreateAttributes) GetContentOk() (*IncidentTimelineCellMarkdownCreateAttributesContent, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Content, true
@@ -148,14 +148,14 @@ func (o IncidentTimelineCellMarkdownCreateAttributes) MarshalJSON() ([]byte, err
 func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		CellType *IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content  *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
-	}{}
+		CellType *IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+		Content *IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+		}{}
 	all := struct {
-		CellType  IncidentTimelineCellMarkdownContentType             `json:"cell_type"`
-		Content   IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
-		Important *bool                                               `json:"important,omitempty"`
-	}{}
+			CellType IncidentTimelineCellMarkdownContentType `json:"cell_type"`
+			Content IncidentTimelineCellMarkdownCreateAttributesContent `json:"content"`
+			Important *bool `json:"important,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -188,3 +188,5 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 	o.Important = all.Important
 	return nil
 }
+
+

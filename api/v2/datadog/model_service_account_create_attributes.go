@@ -59,7 +59,7 @@ func (o *ServiceAccountCreateAttributes) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountCreateAttributes) GetEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Email, true
@@ -115,7 +115,7 @@ func (o *ServiceAccountCreateAttributes) GetServiceAccount() bool {
 // GetServiceAccountOk returns a tuple with the ServiceAccount field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountCreateAttributes) GetServiceAccountOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ServiceAccount, true
@@ -181,15 +181,15 @@ func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Email          *string `json:"email"`
-		ServiceAccount *bool   `json:"service_account"`
-	}{}
+		Email *string `json:"email"`
+		ServiceAccount *bool `json:"service_account"`
+		}{}
 	all := struct {
-		Email          string  `json:"email"`
-		Name           *string `json:"name,omitempty"`
-		ServiceAccount bool    `json:"service_account"`
-		Title          *string `json:"title,omitempty"`
-	}{}
+			Email string `json:"email"`
+			Name *string `json:"name,omitempty"`
+			ServiceAccount bool `json:"service_account"`
+			Title *string `json:"title,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -215,3 +215,5 @@ func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Title = all.Title
 	return nil
 }
+
+

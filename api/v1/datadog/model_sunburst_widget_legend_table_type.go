@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SunburstWidgetLegendTableType Whether or not to show a table legend.
@@ -19,7 +20,7 @@ type SunburstWidgetLegendTableType string
 // List of SunburstWidgetLegendTableType
 const (
 	SUNBURSTWIDGETLEGENDTABLETYPE_TABLE SunburstWidgetLegendTableType = "table"
-	SUNBURSTWIDGETLEGENDTABLETYPE_NONE  SunburstWidgetLegendTableType = "none"
+	SUNBURSTWIDGETLEGENDTABLETYPE_NONE SunburstWidgetLegendTableType = "none"
 )
 
 var allowedSunburstWidgetLegendTableTypeEnumValues = []SunburstWidgetLegendTableType{
@@ -102,3 +103,4 @@ func (v *NullableSunburstWidgetLegendTableType) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

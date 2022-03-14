@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponseGroupBy A group by rule.
@@ -120,9 +121,9 @@ func (o LogsMetricResponseGroupBy) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Path    *string `json:"path,omitempty"`
-		TagName *string `json:"tag_name,omitempty"`
-	}{}
+			Path *string `json:"path,omitempty"`
+			TagName *string `json:"tag_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *LogsMetricResponseGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagName = all.TagName
 	return nil
 }
+
+

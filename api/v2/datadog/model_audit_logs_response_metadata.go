@@ -10,16 +10,17 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsResponseMetadata The metadata associated with a request.
 type AuditLogsResponseMetadata struct {
 	// Time elapsed in milliseconds.
-	Elapsed *int64                 `json:"elapsed,omitempty"`
-	Page    *AuditLogsResponsePage `json:"page,omitempty"`
+	Elapsed *int64 `json:"elapsed,omitempty"`
+	Page *AuditLogsResponsePage `json:"page,omitempty"`
 	// The identifier of the request.
-	RequestId *string                  `json:"request_id,omitempty"`
-	Status    *AuditLogsResponseStatus `json:"status,omitempty"`
+	RequestId *string `json:"request_id,omitempty"`
+	Status *AuditLogsResponseStatus `json:"status,omitempty"`
 	// A list of warnings (non-fatal errors) encountered. Partial results may return if warnings are present in the response.
 	Warnings *[]AuditLogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -229,12 +230,12 @@ func (o AuditLogsResponseMetadata) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Elapsed   *int64                   `json:"elapsed,omitempty"`
-		Page      *AuditLogsResponsePage   `json:"page,omitempty"`
-		RequestId *string                  `json:"request_id,omitempty"`
-		Status    *AuditLogsResponseStatus `json:"status,omitempty"`
-		Warnings  *[]AuditLogsWarning      `json:"warnings,omitempty"`
-	}{}
+			Elapsed *int64 `json:"elapsed,omitempty"`
+			Page *AuditLogsResponsePage `json:"page,omitempty"`
+			RequestId *string `json:"request_id,omitempty"`
+			Status *AuditLogsResponseStatus `json:"status,omitempty"`
+			Warnings *[]AuditLogsWarning `json:"warnings,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -259,3 +260,5 @@ func (o *AuditLogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Warnings = all.Warnings
 	return nil
 }
+
+

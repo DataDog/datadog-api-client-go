@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ServiceMapWidgetDefinitionType Type of the service map widget.
@@ -100,3 +101,4 @@ func (v *NullableServiceMapWidgetDefinitionType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

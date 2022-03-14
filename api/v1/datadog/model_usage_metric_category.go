@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // UsageMetricCategory Contains the metric category.
@@ -19,7 +20,7 @@ type UsageMetricCategory string
 // List of UsageMetricCategory
 const (
 	USAGEMETRICCATEGORY_STANDARD UsageMetricCategory = "standard"
-	USAGEMETRICCATEGORY_CUSTOM   UsageMetricCategory = "custom"
+	USAGEMETRICCATEGORY_CUSTOM UsageMetricCategory = "custom"
 )
 
 var allowedUsageMetricCategoryEnumValues = []UsageMetricCategory{
@@ -102,3 +103,4 @@ func (v *NullableUsageMetricCategory) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleQuery Query for matching rule.
@@ -267,13 +268,13 @@ func (o SecurityMonitoringRuleQuery) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
-		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
-		Metric         *string                                 `json:"metric,omitempty"`
-		Name           *string                                 `json:"name,omitempty"`
-		Query          *string                                 `json:"query,omitempty"`
-	}{}
+			Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+			DistinctFields *[]string `json:"distinctFields,omitempty"`
+			GroupByFields *[]string `json:"groupByFields,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Query *string `json:"query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -299,3 +300,5 @@ func (o *SecurityMonitoringRuleQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	return nil
 }
+
+

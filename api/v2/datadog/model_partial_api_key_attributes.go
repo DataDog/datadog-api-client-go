@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PartialAPIKeyAttributes Attributes of a partial API key.
@@ -194,11 +195,11 @@ func (o PartialAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *string `json:"created_at,omitempty"`
-		Last4      *string `json:"last4,omitempty"`
-		ModifiedAt *string `json:"modified_at,omitempty"`
-		Name       *string `json:"name,omitempty"`
-	}{}
+			CreatedAt *string `json:"created_at,omitempty"`
+			Last4 *string `json:"last4,omitempty"`
+			ModifiedAt *string `json:"modified_at,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *PartialAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

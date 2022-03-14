@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsAttributeRemapperType Type of logs attribute remapper.
@@ -100,3 +101,4 @@ func (v *NullableLogsAttributeRemapperType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

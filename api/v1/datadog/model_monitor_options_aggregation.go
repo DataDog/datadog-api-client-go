@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorOptionsAggregation Type of aggregation performed in the monitor query.
@@ -157,10 +158,10 @@ func (o MonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
 func (o *MonitorOptionsAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		GroupBy *string `json:"group_by,omitempty"`
-		Metric  *string `json:"metric,omitempty"`
-		Type    *string `json:"type,omitempty"`
-	}{}
+			GroupBy *string `json:"group_by,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *MonitorOptionsAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

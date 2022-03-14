@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DistributionWidgetXAxis X Axis controls for the distribution widget.
@@ -206,11 +207,11 @@ func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IncludeZero *bool   `json:"include_zero,omitempty"`
-		Max         *string `json:"max,omitempty"`
-		Min         *string `json:"min,omitempty"`
-		Scale       *string `json:"scale,omitempty"`
-	}{}
+			IncludeZero *bool `json:"include_zero,omitempty"`
+			Max *string `json:"max,omitempty"`
+			Min *string `json:"min,omitempty"`
+			Scale *string `json:"scale,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -226,3 +227,5 @@ func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 	o.Scale = all.Scale
 	return nil
 }
+
+

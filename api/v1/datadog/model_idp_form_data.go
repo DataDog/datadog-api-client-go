@@ -53,7 +53,7 @@ func (o *IdpFormData) GetIdpFile() *os.File {
 // GetIdpFileOk returns a tuple with the IdpFile field value
 // and a boolean to check if the value has been set.
 func (o *IdpFormData) GetIdpFileOk() (**os.File, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.IdpFile, true
@@ -79,10 +79,10 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		IdpFile **os.File `json:"idp_file"`
-	}{}
+		}{}
 	all := struct {
-		IdpFile *os.File `json:"idp_file"`
-	}{}
+			IdpFile *os.File `json:"idp_file"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -102,3 +102,5 @@ func (o *IdpFormData) UnmarshalJSON(bytes []byte) (err error) {
 	o.IdpFile = all.IdpFile
 	return nil
 }
+
+

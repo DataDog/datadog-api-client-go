@@ -63,7 +63,7 @@ func (o *WidgetLayout) GetHeight() int64 {
 // GetHeightOk returns a tuple with the Height field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetHeightOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Height, true
@@ -119,7 +119,7 @@ func (o *WidgetLayout) GetWidth() int64 {
 // GetWidthOk returns a tuple with the Width field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetWidthOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Width, true
@@ -143,7 +143,7 @@ func (o *WidgetLayout) GetX() int64 {
 // GetXOk returns a tuple with the X field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetXOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.X, true
@@ -167,7 +167,7 @@ func (o *WidgetLayout) GetY() int64 {
 // GetYOk returns a tuple with the Y field value
 // and a boolean to check if the value has been set.
 func (o *WidgetLayout) GetYOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Y, true
@@ -205,17 +205,17 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Height *int64 `json:"height"`
-		Width  *int64 `json:"width"`
-		X      *int64 `json:"x"`
-		Y      *int64 `json:"y"`
-	}{}
+		Width *int64 `json:"width"`
+		X *int64 `json:"x"`
+		Y *int64 `json:"y"`
+		}{}
 	all := struct {
-		Height        int64 `json:"height"`
-		IsColumnBreak *bool `json:"is_column_break,omitempty"`
-		Width         int64 `json:"width"`
-		X             int64 `json:"x"`
-		Y             int64 `json:"y"`
-	}{}
+			Height int64 `json:"height"`
+			IsColumnBreak *bool `json:"is_column_break,omitempty"`
+			Width int64 `json:"width"`
+			X int64 `json:"x"`
+			Y int64 `json:"y"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -248,3 +248,5 @@ func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	o.Y = all.Y
 	return nil
 }
+
+

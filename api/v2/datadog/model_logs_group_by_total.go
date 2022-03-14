@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // LogsGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type LogsGroupByTotal struct {
-	Bool    *bool
+	Bool *bool
 	Float64 *float64
-	String  *string
+	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type LogsGroupByTotal struct {
 
 // BoolAsLogsGroupByTotal is a convenience function that returns bool wrapped in LogsGroupByTotal
 func BoolAsLogsGroupByTotal(v *bool) LogsGroupByTotal {
-	return LogsGroupByTotal{Bool: v}
+	return LogsGroupByTotal{ Bool: v}
 }
 
 // Float64AsLogsGroupByTotal is a convenience function that returns float64 wrapped in LogsGroupByTotal
 func Float64AsLogsGroupByTotal(v *float64) LogsGroupByTotal {
-	return LogsGroupByTotal{Float64: v}
+	return LogsGroupByTotal{ Float64: v}
 }
 
 // StringAsLogsGroupByTotal is a convenience function that returns string wrapped in LogsGroupByTotal
 func StringAsLogsGroupByTotal(v *string) LogsGroupByTotal {
-	return LogsGroupByTotal{String: v}
+	return LogsGroupByTotal{ String: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsGroupByTotal) UnmarshalJSON(data []byte) error {
@@ -124,7 +127,7 @@ func (src LogsGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsGroupByTotal) GetActualInstance() interface{} {
+func (obj *LogsGroupByTotal) GetActualInstance() (interface{}) {
 	if obj.Bool != nil {
 		return obj.Bool
 	}
@@ -176,3 +179,5 @@ func (v *NullableLogsGroupByTotal) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

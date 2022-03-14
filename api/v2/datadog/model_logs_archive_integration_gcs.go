@@ -55,7 +55,7 @@ func (o *LogsArchiveIntegrationGCS) GetClientEmail() string {
 // GetClientEmailOk returns a tuple with the ClientEmail field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationGCS) GetClientEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ClientEmail, true
@@ -79,7 +79,7 @@ func (o *LogsArchiveIntegrationGCS) GetProjectId() string {
 // GetProjectIdOk returns a tuple with the ProjectId field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationGCS) GetProjectIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ProjectId, true
@@ -108,12 +108,12 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ClientEmail *string `json:"client_email"`
-		ProjectId   *string `json:"project_id"`
-	}{}
+		ProjectId *string `json:"project_id"`
+		}{}
 	all := struct {
-		ClientEmail string `json:"client_email"`
-		ProjectId   string `json:"project_id"`
-	}{}
+			ClientEmail string `json:"client_email"`
+			ProjectId string `json:"project_id"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	o.ProjectId = all.ProjectId
 	return nil
 }
+
+

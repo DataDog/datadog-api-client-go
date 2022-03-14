@@ -17,9 +17,9 @@ import (
 type IncidentResponseData struct {
 	Attributes *IncidentResponseAttributes `json:"attributes,omitempty"`
 	// The incident's ID.
-	Id            string                         `json:"id"`
+	Id string `json:"id"`
 	Relationships *IncidentResponseRelationships `json:"relationships,omitempty"`
-	Type          IncidentType                   `json:"type"`
+	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -90,7 +90,7 @@ func (o *IncidentResponseData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *IncidentResponseData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -146,7 +146,7 @@ func (o *IncidentResponseData) GetType() IncidentType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *IncidentResponseData) GetTypeOk() (*IncidentType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -180,15 +180,15 @@ func (o IncidentResponseData) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string       `json:"id"`
+		Id *string `json:"id"`
 		Type *IncidentType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *IncidentResponseAttributes    `json:"attributes,omitempty"`
-		Id            string                         `json:"id"`
-		Relationships *IncidentResponseRelationships `json:"relationships,omitempty"`
-		Type          IncidentType                   `json:"type"`
-	}{}
+			Attributes *IncidentResponseAttributes `json:"attributes,omitempty"`
+			Id string `json:"id"`
+			Relationships *IncidentResponseRelationships `json:"relationships,omitempty"`
+			Type IncidentType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -222,3 +222,5 @@ func (o *IncidentResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

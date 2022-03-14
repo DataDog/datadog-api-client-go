@@ -18,8 +18,8 @@ type MetricTagConfigurationCreateAttributes struct {
 	// A list of queryable aggregation combinations for a count, rate, or gauge metric. By default, count and rate metrics require the (time: sum, space: sum) aggregation and Gauge metrics require the (time: avg, space: avg) aggregation. Additional time & space combinations are also available:  - time: avg, space: avg - time: avg, space: max - time: avg, space: min - time: avg, space: sum - time: count, space: sum - time: max, space: max - time: min, space: min - time: sum, space: avg - time: sum, space: sum  Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
 	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Toggle to include/exclude percentiles for a distribution metric. Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
-	IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-	MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
+	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+	MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
 	// A list of tag keys that will be queryable for your metric.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -128,7 +128,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetMetricType() MetricTagConfig
 // GetMetricTypeOk returns a tuple with the MetricType field value
 // and a boolean to check if the value has been set.
 func (o *MetricTagConfigurationCreateAttributes) GetMetricTypeOk() (*MetricTagConfigurationMetricTypes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.MetricType, true
@@ -152,7 +152,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *MetricTagConfigurationCreateAttributes) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tags, true
@@ -187,14 +187,14 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	raw := map[string]interface{}{}
 	required := struct {
 		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags       *[]string                          `json:"tags"`
-	}{}
+		Tags *[]string `json:"tags"`
+		}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation        `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
-		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
-		Tags               []string                          `json:"tags"`
-	}{}
+			Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+			IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+			MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
+			Tags []string `json:"tags"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -228,3 +228,5 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 	o.Tags = all.Tags
 	return nil
 }
+
+

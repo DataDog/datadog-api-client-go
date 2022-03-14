@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageBillableSummaryResponse Response with monthly summary of data billed by Datadog.
@@ -83,8 +84,8 @@ func (o UsageBillableSummaryResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageBillableSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageBillableSummaryHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageBillableSummaryHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageBillableSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

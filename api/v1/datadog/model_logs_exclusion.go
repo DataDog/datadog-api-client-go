@@ -119,7 +119,7 @@ func (o *LogsExclusion) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *LogsExclusion) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -151,12 +151,12 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Filter    *LogsExclusionFilter `json:"filter,omitempty"`
-		IsEnabled *bool                `json:"is_enabled,omitempty"`
-		Name      string               `json:"name"`
-	}{}
+			Filter *LogsExclusionFilter `json:"filter,omitempty"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name string `json:"name"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -178,3 +178,5 @@ func (o *LogsExclusion) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

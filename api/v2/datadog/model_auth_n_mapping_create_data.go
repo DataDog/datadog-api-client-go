@@ -15,9 +15,9 @@ import (
 
 // AuthNMappingCreateData Data for creating an AuthN Mapping.
 type AuthNMappingCreateData struct {
-	Attributes    *AuthNMappingCreateAttributes    `json:"attributes,omitempty"`
+	Attributes *AuthNMappingCreateAttributes `json:"attributes,omitempty"`
 	Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType                `json:"type"`
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,7 +119,7 @@ func (o *AuthNMappingCreateData) GetType() AuthNMappingsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMappingCreateData) GetTypeOk() (*AuthNMappingsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -151,12 +151,12 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *AuthNMappingsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *AuthNMappingCreateAttributes    `json:"attributes,omitempty"`
-		Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType                `json:"type"`
-	}{}
+			Attributes *AuthNMappingCreateAttributes `json:"attributes,omitempty"`
+			Relationships *AuthNMappingCreateRelationships `json:"relationships,omitempty"`
+			Type AuthNMappingsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -186,3 +186,5 @@ func (o *AuthNMappingCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

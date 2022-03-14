@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorSearchResponseMetadata Metadata about the response.
@@ -194,11 +195,11 @@ func (o MonitorSearchResponseMetadata) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page       *int64 `json:"page,omitempty"`
-		PageCount  *int64 `json:"page_count,omitempty"`
-		PerPage    *int64 `json:"per_page,omitempty"`
-		TotalCount *int64 `json:"total_count,omitempty"`
-	}{}
+			Page *int64 `json:"page,omitempty"`
+			PageCount *int64 `json:"page_count,omitempty"`
+			PerPage *int64 `json:"per_page,omitempty"`
+			TotalCount *int64 `json:"total_count,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *MonitorSearchResponseMetadata) UnmarshalJSON(bytes []byte) (err error) 
 	o.TotalCount = all.TotalCount
 	return nil
 }
+
+

@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type KeyManagementApiService service
 
 type apiCreateAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	body       *ApiKey
+	body *ApiKey
 }
+
 
 /*
  * CreateAPIKey Create an API key
@@ -38,11 +41,12 @@ type apiCreateAPIKeyRequest struct {
 func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
 	req := apiCreateAPIKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAPIKeyExecute(req)
+
+    return req.ApiService.createAPIKeyExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  ApiKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateAPIKey")
 	if err != nil {
@@ -188,10 +193,11 @@ func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) 
 }
 
 type apiCreateApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	body       *ApplicationKey
+	body *ApplicationKey
 }
+
 
 /*
  * CreateApplicationKey Create an application key
@@ -200,11 +206,12 @@ type apiCreateApplicationKeyRequest struct {
 func (a *KeyManagementApiService) CreateApplicationKey(ctx _context.Context, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiCreateApplicationKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createApplicationKeyExecute(req)
+
+    return req.ApiService.createApplicationKeyExecute(req)
 }
 
 /*
@@ -220,6 +227,7 @@ func (a *KeyManagementApiService) createApplicationKeyExecute(r apiCreateApplica
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateApplicationKey")
 	if err != nil {
@@ -360,10 +368,11 @@ func (a *KeyManagementApiService) createApplicationKeyExecute(r apiCreateApplica
 }
 
 type apiDeleteAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
  * DeleteAPIKey Delete an API key
@@ -372,11 +381,12 @@ type apiDeleteAPIKeyRequest struct {
 func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	req := apiDeleteAPIKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 
-	return req.ApiService.deleteAPIKeyExecute(req)
+
+    return req.ApiService.deleteAPIKeyExecute(req)
 }
 
 /*
@@ -392,6 +402,7 @@ func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  ApiKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteAPIKey")
 	if err != nil {
@@ -528,10 +539,11 @@ func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) 
 }
 
 type apiDeleteApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
  * DeleteApplicationKey Delete an application key
@@ -540,11 +552,12 @@ type apiDeleteApplicationKeyRequest struct {
 func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiDeleteApplicationKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 
-	return req.ApiService.deleteApplicationKeyExecute(req)
+
+    return req.ApiService.deleteApplicationKeyExecute(req)
 }
 
 /*
@@ -560,6 +573,7 @@ func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplica
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteApplicationKey")
 	if err != nil {
@@ -686,10 +700,11 @@ func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplica
 }
 
 type apiGetAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
  * GetAPIKey Get API key
@@ -698,11 +713,12 @@ type apiGetAPIKeyRequest struct {
 func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
 	req := apiGetAPIKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 
-	return req.ApiService.getAPIKeyExecute(req)
+
+    return req.ApiService.getAPIKeyExecute(req)
 }
 
 /*
@@ -718,6 +734,7 @@ func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKe
 		localVarFileBytes    []byte
 		localVarReturnValue  ApiKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetAPIKey")
 	if err != nil {
@@ -844,10 +861,11 @@ func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKe
 }
 
 type apiGetApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
+
 
 /*
  * GetApplicationKey Get an application key
@@ -856,11 +874,12 @@ type apiGetApplicationKeyRequest struct {
 func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiGetApplicationKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+		ctx: ctx,
+		key: key,
 	}
 
-	return req.ApiService.getApplicationKeyExecute(req)
+
+    return req.ApiService.getApplicationKeyExecute(req)
 }
 
 /*
@@ -876,6 +895,7 @@ func (a *KeyManagementApiService) getApplicationKeyExecute(r apiGetApplicationKe
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetApplicationKey")
 	if err != nil {
@@ -1002,9 +1022,10 @@ func (a *KeyManagementApiService) getApplicationKeyExecute(r apiGetApplicationKe
 }
 
 type apiListAPIKeysRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
 }
+
 
 /*
  * ListAPIKeys Get all API keys
@@ -1013,10 +1034,11 @@ type apiListAPIKeysRequest struct {
 func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context) (ApiKeyListResponse, *_nethttp.Response, error) {
 	req := apiListAPIKeysRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listAPIKeysExecute(req)
+
+    return req.ApiService.listAPIKeysExecute(req)
 }
 
 /*
@@ -1032,6 +1054,7 @@ func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (A
 		localVarFileBytes    []byte
 		localVarReturnValue  ApiKeyListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.ListAPIKeys")
 	if err != nil {
@@ -1147,9 +1170,10 @@ func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (A
 }
 
 type apiListApplicationKeysRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
 }
+
 
 /*
  * ListApplicationKeys Get all application keys
@@ -1158,10 +1182,11 @@ type apiListApplicationKeysRequest struct {
 func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
 	req := apiListApplicationKeysRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listApplicationKeysExecute(req)
+
+    return req.ApiService.listApplicationKeysExecute(req)
 }
 
 /*
@@ -1177,6 +1202,7 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.ListApplicationKeys")
 	if err != nil {
@@ -1292,11 +1318,12 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 }
 
 type apiUpdateAPIKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
-	body       *ApiKey
+	key string
+	body *ApiKey
 }
+
 
 /*
  * UpdateAPIKey Edit an API key
@@ -1305,12 +1332,13 @@ type apiUpdateAPIKeyRequest struct {
 func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, key string, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
 	req := apiUpdateAPIKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
-		body:       &body,
+		ctx: ctx,
+		key: key,
+		body: &body,
 	}
 
-	return req.ApiService.updateAPIKeyExecute(req)
+
+    return req.ApiService.updateAPIKeyExecute(req)
 }
 
 /*
@@ -1326,6 +1354,7 @@ func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  ApiKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.UpdateAPIKey")
 	if err != nil {
@@ -1467,11 +1496,12 @@ func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) 
 }
 
 type apiUpdateApplicationKeyRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *KeyManagementApiService
-	key        string
-	body       *ApplicationKey
+	key string
+	body *ApplicationKey
 }
+
 
 /*
  * UpdateApplicationKey Edit an application key
@@ -1480,12 +1510,13 @@ type apiUpdateApplicationKeyRequest struct {
 func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiUpdateApplicationKeyRequest{
 		ApiService: a,
-		ctx:        ctx,
-		key:        key,
-		body:       &body,
+		ctx: ctx,
+		key: key,
+		body: &body,
 	}
 
-	return req.ApiService.updateApplicationKeyExecute(req)
+
+    return req.ApiService.updateApplicationKeyExecute(req)
 }
 
 /*
@@ -1501,6 +1532,7 @@ func (a *KeyManagementApiService) updateApplicationKeyExecute(r apiUpdateApplica
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.UpdateApplicationKey")
 	if err != nil {

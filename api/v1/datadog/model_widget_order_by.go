@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetOrderBy What to order by.
@@ -18,10 +19,10 @@ type WidgetOrderBy string
 
 // List of WidgetOrderBy
 const (
-	WIDGETORDERBY_CHANGE  WidgetOrderBy = "change"
-	WIDGETORDERBY_NAME    WidgetOrderBy = "name"
+	WIDGETORDERBY_CHANGE WidgetOrderBy = "change"
+	WIDGETORDERBY_NAME WidgetOrderBy = "name"
 	WIDGETORDERBY_PRESENT WidgetOrderBy = "present"
-	WIDGETORDERBY_PAST    WidgetOrderBy = "past"
+	WIDGETORDERBY_PAST WidgetOrderBy = "past"
 )
 
 var allowedWidgetOrderByEnumValues = []WidgetOrderBy{
@@ -106,3 +107,4 @@ func (v *NullableWidgetOrderBy) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

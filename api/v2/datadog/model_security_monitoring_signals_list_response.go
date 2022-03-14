@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalsListResponse The response object with all security signals matching the request and pagination information.
 type SecurityMonitoringSignalsListResponse struct {
 	// An array of security signals matching the request.
-	Data  *[]SecurityMonitoringSignal                 `json:"data,omitempty"`
+	Data *[]SecurityMonitoringSignal `json:"data,omitempty"`
 	Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
-	Meta  *SecurityMonitoringSignalsListResponseMeta  `json:"meta,omitempty"`
+	Meta *SecurityMonitoringSignalsListResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -155,10 +156,10 @@ func (o SecurityMonitoringSignalsListResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]SecurityMonitoringSignal                 `json:"data,omitempty"`
-		Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
-		Meta  *SecurityMonitoringSignalsListResponseMeta  `json:"meta,omitempty"`
-	}{}
+			Data *[]SecurityMonitoringSignal `json:"data,omitempty"`
+			Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
+			Meta *SecurityMonitoringSignalsListResponseMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *SecurityMonitoringSignalsListResponse) UnmarshalJSON(bytes []byte) (err
 	o.Meta = all.Meta
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetVerticalAlign Vertical alignment.
@@ -19,7 +20,7 @@ type WidgetVerticalAlign string
 // List of WidgetVerticalAlign
 const (
 	WIDGETVERTICALALIGN_CENTER WidgetVerticalAlign = "center"
-	WIDGETVERTICALALIGN_TOP    WidgetVerticalAlign = "top"
+	WIDGETVERTICALALIGN_TOP WidgetVerticalAlign = "top"
 	WIDGETVERTICALALIGN_BOTTOM WidgetVerticalAlign = "bottom"
 )
 
@@ -104,3 +105,4 @@ func (v *NullableWidgetVerticalAlign) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

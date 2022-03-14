@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // EventListResponse An event list response.
@@ -120,9 +121,9 @@ func (o EventListResponse) MarshalJSON() ([]byte, error) {
 func (o *EventListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Events *[]Event `json:"events,omitempty"`
-		Status *string  `json:"status,omitempty"`
-	}{}
+			Events *[]Event `json:"events,omitempty"`
+			Status *string `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *EventListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

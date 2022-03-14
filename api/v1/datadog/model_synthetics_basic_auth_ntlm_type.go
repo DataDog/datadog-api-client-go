@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsBasicAuthNTLMType The type of authentication to use when performing the test.
@@ -100,3 +101,4 @@ func (v *NullableSyntheticsBasicAuthNTLMType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

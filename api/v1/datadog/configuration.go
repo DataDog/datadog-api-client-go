@@ -80,9 +80,9 @@ type ServerVariable struct {
 
 // ServerConfiguration stores the information about a server
 type ServerConfiguration struct {
-	URL         string
+	URL string
 	Description string
-	Variables   map[string]ServerVariable
+	Variables map[string]ServerVariable
 }
 
 // ServerConfigurations stores multiple ServerConfiguration items
@@ -90,32 +90,32 @@ type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
 type Configuration struct {
-	Host               string            `json:"host,omitempty"`
-	Scheme             string            `json:"scheme,omitempty"`
-	DefaultHeader      map[string]string `json:"defaultHeader,omitempty"`
-	UserAgent          string            `json:"userAgent,omitempty"`
-	Debug              bool              `json:"debug,omitempty"`
-	Compress           bool              `json:"compress,omitempty"`
-	Servers            ServerConfigurations
-	OperationServers   map[string]ServerConfigurations
-	HTTPClient         *http.Client
+	Host             string            `json:"host,omitempty"`
+	Scheme           string            `json:"scheme,omitempty"`
+	DefaultHeader    map[string]string `json:"defaultHeader,omitempty"`
+	UserAgent        string            `json:"userAgent,omitempty"`
+	Debug            bool              `json:"debug,omitempty"`
+	Compress         bool              `json:"compress,omitempty"`
+	Servers          ServerConfigurations
+	OperationServers map[string]ServerConfigurations
+	HTTPClient       *http.Client
 	unstableOperations map[string]bool
 }
 
 // NewConfiguration returns a new Configuration object
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
-		DefaultHeader: make(map[string]string),
-		UserAgent:     getUserAgent(),
-		Debug:         false,
-		Compress:      true,
-		Servers: ServerConfigurations{
+		DefaultHeader:    make(map[string]string),
+		UserAgent:        getUserAgent(),
+		Debug:            false,
+		Compress:         true,
+		Servers:          ServerConfigurations{
 			{
-				URL:         "https://{subdomain}.{site}",
+				URL: "https://{subdomain}.{site}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"site": ServerVariable{
-						Description:  "The regional site for a Datadog customer.",
+						Description: "The regional site for a Datadog customer.",
 						DefaultValue: "datadoghq.com",
 						EnumValues: []string{
 							"datadoghq.com",
@@ -126,35 +126,35 @@ func NewConfiguration() *Configuration {
 						},
 					},
 					"subdomain": ServerVariable{
-						Description:  "The subdomain where the API is deployed.",
+						Description: "The subdomain where the API is deployed.",
 						DefaultValue: "api",
 					},
 				},
 			},
 			{
-				URL:         "{protocol}://{name}",
+				URL: "{protocol}://{name}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"name": ServerVariable{
-						Description:  "Full site DNS name.",
+						Description: "Full site DNS name.",
 						DefaultValue: "api.datadoghq.com",
 					},
 					"protocol": ServerVariable{
-						Description:  "The protocol for accessing the API.",
+						Description: "The protocol for accessing the API.",
 						DefaultValue: "https",
 					},
 				},
 			},
 			{
-				URL:         "https://{subdomain}.{site}",
+				URL: "https://{subdomain}.{site}",
 				Description: "No description provided",
 				Variables: map[string]ServerVariable{
 					"site": ServerVariable{
-						Description:  "Any Datadog deployment.",
+						Description: "Any Datadog deployment.",
 						DefaultValue: "datadoghq.com",
 					},
 					"subdomain": ServerVariable{
-						Description:  "The subdomain where the API is deployed.",
+						Description: "The subdomain where the API is deployed.",
 						DefaultValue: "api",
 					},
 				},
@@ -163,11 +163,11 @@ func NewConfiguration() *Configuration {
 		OperationServers: map[string]ServerConfigurations{
 			"IPRangesApiService.GetIPRanges": {
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL: "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "The regional site for Datadog customers.",
+							Description: "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
@@ -178,31 +178,31 @@ func NewConfiguration() *Configuration {
 							},
 						},
 						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
+							Description: "The subdomain where the API is deployed.",
 							DefaultValue: "ip-ranges",
 						},
 					},
 				},
 				{
-					URL:         "{protocol}://{name}",
+					URL: "{protocol}://{name}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": ServerVariable{
-							Description:  "Full site DNS name.",
+							Description: "Full site DNS name.",
 							DefaultValue: "ip-ranges.datadoghq.com",
 						},
 						"protocol": ServerVariable{
-							Description:  "The protocol for accessing the API.",
+							Description: "The protocol for accessing the API.",
 							DefaultValue: "https",
 						},
 					},
 				},
 				{
-					URL:         "https://{subdomain}.datadoghq.com",
+					URL: "https://{subdomain}.datadoghq.com",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
+							Description: "The subdomain where the API is deployed.",
 							DefaultValue: "ip-ranges",
 						},
 					},
@@ -210,11 +210,11 @@ func NewConfiguration() *Configuration {
 			},
 			"LogsApiService.SubmitLog": {
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL: "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "The regional site for Datadog customers.",
+							Description: "The regional site for Datadog customers.",
 							DefaultValue: "datadoghq.com",
 							EnumValues: []string{
 								"datadoghq.com",
@@ -225,35 +225,35 @@ func NewConfiguration() *Configuration {
 							},
 						},
 						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
+							Description: "The subdomain where the API is deployed.",
 							DefaultValue: "http-intake.logs",
 						},
 					},
 				},
 				{
-					URL:         "{protocol}://{name}",
+					URL: "{protocol}://{name}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"name": ServerVariable{
-							Description:  "Full site DNS name.",
+							Description: "Full site DNS name.",
 							DefaultValue: "http-intake.logs.datadoghq.com",
 						},
 						"protocol": ServerVariable{
-							Description:  "The protocol for accessing the API.",
+							Description: "The protocol for accessing the API.",
 							DefaultValue: "https",
 						},
 					},
 				},
 				{
-					URL:         "https://{subdomain}.{site}",
+					URL: "https://{subdomain}.{site}",
 					Description: "No description provided",
 					Variables: map[string]ServerVariable{
 						"site": ServerVariable{
-							Description:  "Any Datadog deployment.",
+							Description: "Any Datadog deployment.",
 							DefaultValue: "datadoghq.com",
 						},
 						"subdomain": ServerVariable{
-							Description:  "The subdomain where the API is deployed.",
+							Description: "The subdomain where the API is deployed.",
 							DefaultValue: "http-intake.logs",
 						},
 					},
@@ -261,20 +261,20 @@ func NewConfiguration() *Configuration {
 			},
 		},
 		unstableOperations: map[string]bool{
-			"CreateSLOCorrection":              false,
-			"DeleteSLOCorrection":              false,
-			"GetSLOCorrection":                 false,
-			"ListSLOCorrection":                false,
-			"UpdateSLOCorrection":              false,
-			"GetSLOCorrections":                false,
-			"GetSLOHistory":                    false,
-			"GetDailyCustomReports":            false,
-			"GetHourlyUsageAttribution":        false,
-			"GetMonthlyCustomReports":          false,
-			"GetMonthlyUsageAttribution":       false,
-			"GetSpecifiedDailyCustomReports":   false,
+			"CreateSLOCorrection": false,
+			"DeleteSLOCorrection": false,
+			"GetSLOCorrection": false,
+			"ListSLOCorrection": false,
+			"UpdateSLOCorrection": false,
+			"GetSLOCorrections": false,
+			"GetSLOHistory": false,
+			"GetDailyCustomReports": false,
+			"GetHourlyUsageAttribution": false,
+			"GetMonthlyCustomReports": false,
+			"GetMonthlyUsageAttribution": false,
+			"GetSpecifiedDailyCustomReports": false,
 			"GetSpecifiedMonthlyCustomReports": false,
-			"GetUsageAttribution":              false,
+			"GetUsageAttribution": false,
 		},
 	}
 	return cfg
@@ -447,7 +447,7 @@ func getUserAgent() string {
 // NewDefaultContext returns a new context setup with environment variables
 func NewDefaultContext(ctx context.Context) context.Context {
 	if ctx == nil {
-		ctx = context.Background()
+		ctx	= context.Background()
 	}
 
 	if site, ok := os.LookupEnv("DD_SITE"); ok {

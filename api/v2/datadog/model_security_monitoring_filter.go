@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringFilter The rule's suppression filter.
@@ -119,9 +120,9 @@ func (o SecurityMonitoringFilter) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Action *SecurityMonitoringFilterAction `json:"action,omitempty"`
-		Query  *string                         `json:"query,omitempty"`
-	}{}
+			Action *SecurityMonitoringFilterAction `json:"action,omitempty"`
+			Query *string `json:"query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -143,3 +144,5 @@ func (o *SecurityMonitoringFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	return nil
 }
+
+

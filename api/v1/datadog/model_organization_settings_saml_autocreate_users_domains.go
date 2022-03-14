@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
@@ -120,9 +121,9 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Domains *[]string `json:"domains,omitempty"`
-		Enabled *bool     `json:"enabled,omitempty"`
-	}{}
+			Domains *[]string `json:"domains,omitempty"`
+			Enabled *bool `json:"enabled,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []b
 	o.Enabled = all.Enabled
 	return nil
 }
+
+

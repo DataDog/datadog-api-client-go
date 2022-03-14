@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // TreeMapWidgetRequest An updated treemap widget.
@@ -19,8 +20,8 @@ type TreeMapWidgetRequest struct {
 	// The widget metrics query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -193,11 +194,11 @@ func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       *[]WidgetFormula                     `json:"formulas,omitempty"`
-		Q              *string                              `json:"q,omitempty"`
-		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	}{}
+			Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+			Q *string `json:"q,omitempty"`
+			Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+			ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -221,3 +222,5 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResponseFormat = all.ResponseFormat
 	return nil
 }
+
+

@@ -16,8 +16,8 @@ import (
 // SyntheticsStepDetailWarning Object collecting warnings for a given step.
 type SyntheticsStepDetailWarning struct {
 	// Message for the warning.
-	Message string                `json:"message"`
-	Type    SyntheticsWarningType `json:"type"`
+	Message string `json:"message"`
+	Type SyntheticsWarningType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -54,7 +54,7 @@ func (o *SyntheticsStepDetailWarning) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsStepDetailWarning) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -78,7 +78,7 @@ func (o *SyntheticsStepDetailWarning) GetType() SyntheticsWarningType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsStepDetailWarning) GetTypeOk() (*SyntheticsWarningType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -106,13 +106,13 @@ func (o SyntheticsStepDetailWarning) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Message *string                `json:"message"`
-		Type    *SyntheticsWarningType `json:"type"`
-	}{}
+		Message *string `json:"message"`
+		Type *SyntheticsWarningType `json:"type"`
+		}{}
 	all := struct {
-		Message string                `json:"message"`
-		Type    SyntheticsWarningType `json:"type"`
-	}{}
+			Message string `json:"message"`
+			Type SyntheticsWarningType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -144,3 +144,5 @@ func (o *SyntheticsStepDetailWarning) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -55,7 +55,7 @@ func (o *FunnelStep) GetFacet() string {
 // GetFacetOk returns a tuple with the Facet field value
 // and a boolean to check if the value has been set.
 func (o *FunnelStep) GetFacetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Facet, true
@@ -79,7 +79,7 @@ func (o *FunnelStep) GetValue() string {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *FunnelStep) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -109,11 +109,11 @@ func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
 		Facet *string `json:"facet"`
 		Value *string `json:"value"`
-	}{}
+		}{}
 	all := struct {
-		Facet string `json:"facet"`
-		Value string `json:"value"`
-	}{}
+			Facet string `json:"facet"`
+			Value string `json:"value"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
+
+

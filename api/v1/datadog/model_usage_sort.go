@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // UsageSort The field to sort by.
@@ -19,9 +20,9 @@ type UsageSort string
 // List of UsageSort
 const (
 	USAGESORT_COMPUTED_ON UsageSort = "computed_on"
-	USAGESORT_SIZE        UsageSort = "size"
-	USAGESORT_START_DATE  UsageSort = "start_date"
-	USAGESORT_END_DATE    UsageSort = "end_date"
+	USAGESORT_SIZE UsageSort = "size"
+	USAGESORT_START_DATE UsageSort = "start_date"
+	USAGESORT_END_DATE UsageSort = "end_date"
 )
 
 var allowedUsageSortEnumValues = []UsageSort{
@@ -106,3 +107,4 @@ func (v *NullableUsageSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

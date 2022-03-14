@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorSearchResult Holds search results.
 type MonitorSearchResult struct {
 	// Classification of the monitor.
-	Classification *string  `json:"classification,omitempty"`
-	Creator        *Creator `json:"creator,omitempty"`
+	Classification *string `json:"classification,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// ID of the monitor.
 	Id *int64 `json:"id,omitempty"`
 	// Latest timestamp the monitor triggered.
@@ -32,10 +33,10 @@ type MonitorSearchResult struct {
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
 	// The scope(s) to which the downtime applies, for example `host:app2`. Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`. The resulting downtime applies to sources that matches ALL provided scopes (that is `env:dev AND env:prod`), NOT any of them.
-	Scopes *[]string             `json:"scopes,omitempty"`
+	Scopes *[]string `json:"scopes,omitempty"`
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// Tags associated with the monitor.
-	Tags *[]string    `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -167,7 +168,7 @@ func (o *MonitorSearchResult) GetLastTriggeredTs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorSearchResult) GetLastTriggeredTsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LastTriggeredTs.Get(), o.LastTriggeredTs.IsSet()
@@ -186,7 +187,6 @@ func (o *MonitorSearchResult) HasLastTriggeredTs() bool {
 func (o *MonitorSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
-
 // SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 func (o *MonitorSearchResult) SetLastTriggeredTsNil() {
 	o.LastTriggeredTs.Set(nil)
@@ -535,20 +535,20 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Classification  *string                            `json:"classification,omitempty"`
-		Creator         *Creator                           `json:"creator,omitempty"`
-		Id              *int64                             `json:"id,omitempty"`
-		LastTriggeredTs NullableInt64                      `json:"last_triggered_ts,omitempty"`
-		Metrics         *[]string                          `json:"metrics,omitempty"`
-		Name            *string                            `json:"name,omitempty"`
-		Notifications   *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
-		OrgId           *int64                             `json:"org_id,omitempty"`
-		Query           *string                            `json:"query,omitempty"`
-		Scopes          *[]string                          `json:"scopes,omitempty"`
-		Status          *MonitorOverallStates              `json:"status,omitempty"`
-		Tags            *[]string                          `json:"tags,omitempty"`
-		Type            *MonitorType                       `json:"type,omitempty"`
-	}{}
+			Classification *string `json:"classification,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
+			Metrics *[]string `json:"metrics,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Notifications *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
+			OrgId *int64 `json:"org_id,omitempty"`
+			Query *string `json:"query,omitempty"`
+			Scopes *[]string `json:"scopes,omitempty"`
+			Status *MonitorOverallStates `json:"status,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *MonitorType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -589,3 +589,5 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

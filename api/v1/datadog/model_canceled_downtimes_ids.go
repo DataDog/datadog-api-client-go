@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CanceledDowntimesIds Object containing array of IDs of canceled downtimes.
@@ -83,8 +84,8 @@ func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
-	}{}
+			CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
 	o.CancelledIds = all.CancelledIds
 	return nil
 }
+
+

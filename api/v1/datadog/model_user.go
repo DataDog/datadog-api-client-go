@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // User Create, edit, and disable users.
@@ -308,14 +309,14 @@ func (o User) MarshalJSON() ([]byte, error) {
 func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccessRole *AccessRole `json:"access_role,omitempty"`
-		Disabled   *bool       `json:"disabled,omitempty"`
-		Email      *string     `json:"email,omitempty"`
-		Handle     *string     `json:"handle,omitempty"`
-		Icon       *string     `json:"icon,omitempty"`
-		Name       *string     `json:"name,omitempty"`
-		Verified   *bool       `json:"verified,omitempty"`
-	}{}
+			AccessRole *AccessRole `json:"access_role,omitempty"`
+			Disabled *bool `json:"disabled,omitempty"`
+			Email *string `json:"email,omitempty"`
+			Handle *string `json:"handle,omitempty"`
+			Icon *string `json:"icon,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Verified *bool `json:"verified,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -342,3 +343,5 @@ func (o *User) UnmarshalJSON(bytes []byte) (err error) {
 	o.Verified = all.Verified
 	return nil
 }
+
+

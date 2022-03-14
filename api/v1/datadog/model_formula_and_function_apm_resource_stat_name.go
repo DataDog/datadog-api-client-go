@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionApmResourceStatName APM resource stat name.
@@ -18,9 +19,9 @@ type FormulaAndFunctionApmResourceStatName string
 
 // List of FormulaAndFunctionApmResourceStatName
 const (
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERRORS      FormulaAndFunctionApmResourceStatName = "errors"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERROR_RATE  FormulaAndFunctionApmResourceStatName = "error_rate"
-	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_HITS        FormulaAndFunctionApmResourceStatName = "hits"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERRORS FormulaAndFunctionApmResourceStatName = "errors"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_ERROR_RATE FormulaAndFunctionApmResourceStatName = "error_rate"
+	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_HITS FormulaAndFunctionApmResourceStatName = "hits"
 	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_AVG FormulaAndFunctionApmResourceStatName = "latency_avg"
 	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_MAX FormulaAndFunctionApmResourceStatName = "latency_max"
 	FORMULAANDFUNCTIONAPMRESOURCESTATNAME_LATENCY_P50 FormulaAndFunctionApmResourceStatName = "latency_p50"
@@ -118,3 +119,4 @@ func (v *NullableFormulaAndFunctionApmResourceStatName) UnmarshalJSON(src []byte
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

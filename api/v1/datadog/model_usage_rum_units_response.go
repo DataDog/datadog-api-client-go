@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageRumUnitsResponse Response containing the number of RUM Units for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageRumUnitsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageRumUnitsHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageRumUnitsHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageRumUnitsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

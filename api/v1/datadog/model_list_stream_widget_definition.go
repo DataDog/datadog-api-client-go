@@ -13,21 +13,21 @@ import (
 	"fmt"
 )
 
-// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that match a search criteria using user-defined columns.
+// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that match a search criteria using user-defined columns. 
 type ListStreamWidgetDefinition struct {
 	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// Request payload used to query items.
 	Requests []ListStreamWidgetRequest `json:"requests"`
 	// Whether or not to display the legend on this widget.
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      ListStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ListStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -98,7 +98,7 @@ func (o *ListStreamWidgetDefinition) GetRequests() []ListStreamWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamWidgetDefinition) GetRequestsOk() (*[]ListStreamWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -282,7 +282,7 @@ func (o *ListStreamWidgetDefinition) GetType() ListStreamWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamWidgetDefinition) GetTypeOk() (*ListStreamWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -328,19 +328,19 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ListStreamWidgetRequest      `json:"requests"`
-		Type     *ListStreamWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]ListStreamWidgetRequest `json:"requests"`
+		Type *ListStreamWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		LegendSize *string                        `json:"legend_size,omitempty"`
-		Requests   []ListStreamWidgetRequest      `json:"requests"`
-		ShowLegend *bool                          `json:"show_legend,omitempty"`
-		Time       *WidgetTime                    `json:"time,omitempty"`
-		Title      *string                        `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize  *string                        `json:"title_size,omitempty"`
-		Type       ListStreamWidgetDefinitionType `json:"type"`
-	}{}
+			LegendSize *string `json:"legend_size,omitempty"`
+			Requests []ListStreamWidgetRequest `json:"requests"`
+			ShowLegend *bool `json:"show_legend,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ListStreamWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -386,3 +386,5 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

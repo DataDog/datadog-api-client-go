@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsCategoryProcessorType Type of logs category processor.
@@ -100,3 +101,4 @@ func (v *NullableLogsCategoryProcessorType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

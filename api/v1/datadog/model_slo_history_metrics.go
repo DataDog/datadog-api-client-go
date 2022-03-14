@@ -19,7 +19,7 @@ type SLOHistoryMetrics struct {
 	// The aggregated query interval for the series data. It's implicit based on the query time window.
 	Interval int64 `json:"interval"`
 	// Optional message if there are specific query issues/warnings.
-	Message   *string                 `json:"message,omitempty"`
+	Message *string `json:"message,omitempty"`
 	Numerator SLOHistoryMetricsSeries `json:"numerator"`
 	// The combined numerator and denominator query CSV.
 	Query string `json:"query"`
@@ -70,7 +70,7 @@ func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
 // GetDenominatorOk returns a tuple with the Denominator field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetDenominatorOk() (*SLOHistoryMetricsSeries, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Denominator, true
@@ -94,7 +94,7 @@ func (o *SLOHistoryMetrics) GetInterval() int64 {
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Interval, true
@@ -150,7 +150,7 @@ func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
 // GetNumeratorOk returns a tuple with the Numerator field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Numerator, true
@@ -174,7 +174,7 @@ func (o *SLOHistoryMetrics) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -198,7 +198,7 @@ func (o *SLOHistoryMetrics) GetResType() string {
 // GetResTypeOk returns a tuple with the ResType field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ResType, true
@@ -222,7 +222,7 @@ func (o *SLOHistoryMetrics) GetRespVersion() int64 {
 // GetRespVersionOk returns a tuple with the RespVersion field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetRespVersionOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.RespVersion, true
@@ -246,7 +246,7 @@ func (o *SLOHistoryMetrics) GetTimes() []float64 {
 // GetTimesOk returns a tuple with the Times field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetrics) GetTimesOk() (*[]float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Times, true
@@ -293,23 +293,23 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *SLOHistoryMetricsSeries `json:"denominator"`
-		Interval    *int64                   `json:"interval"`
-		Numerator   *SLOHistoryMetricsSeries `json:"numerator"`
-		Query       *string                  `json:"query"`
-		ResType     *string                  `json:"res_type"`
-		RespVersion *int64                   `json:"resp_version"`
-		Times       *[]float64               `json:"times"`
-	}{}
+		Interval *int64 `json:"interval"`
+		Numerator *SLOHistoryMetricsSeries `json:"numerator"`
+		Query *string `json:"query"`
+		ResType *string `json:"res_type"`
+		RespVersion *int64 `json:"resp_version"`
+		Times *[]float64 `json:"times"`
+		}{}
 	all := struct {
-		Denominator SLOHistoryMetricsSeries `json:"denominator"`
-		Interval    int64                   `json:"interval"`
-		Message     *string                 `json:"message,omitempty"`
-		Numerator   SLOHistoryMetricsSeries `json:"numerator"`
-		Query       string                  `json:"query"`
-		ResType     string                  `json:"res_type"`
-		RespVersion int64                   `json:"resp_version"`
-		Times       []float64               `json:"times"`
-	}{}
+			Denominator SLOHistoryMetricsSeries `json:"denominator"`
+			Interval int64 `json:"interval"`
+			Message *string `json:"message,omitempty"`
+			Numerator SLOHistoryMetricsSeries `json:"numerator"`
+			Query string `json:"query"`
+			ResType string `json:"res_type"`
+			RespVersion int64 `json:"resp_version"`
+			Times []float64 `json:"times"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -354,3 +354,5 @@ func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.Times = all.Times
 	return nil
 }
+
+

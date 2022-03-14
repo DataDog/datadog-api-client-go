@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RelationshipToPermissions Relationship to multiple permissions objects.
@@ -83,8 +84,8 @@ func (o RelationshipToPermissions) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToPermissions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]RelationshipToPermissionData `json:"data,omitempty"`
-	}{}
+			Data *[]RelationshipToPermissionData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *RelationshipToPermissions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

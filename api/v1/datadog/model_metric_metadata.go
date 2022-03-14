@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricMetadata Object with all metric related metadata.
@@ -305,14 +306,14 @@ func (o MetricMetadata) MarshalJSON() ([]byte, error) {
 func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Description    *string `json:"description,omitempty"`
-		Integration    *string `json:"integration,omitempty"`
-		PerUnit        *string `json:"per_unit,omitempty"`
-		ShortName      *string `json:"short_name,omitempty"`
-		StatsdInterval *int64  `json:"statsd_interval,omitempty"`
-		Type           *string `json:"type,omitempty"`
-		Unit           *string `json:"unit,omitempty"`
-	}{}
+			Description *string `json:"description,omitempty"`
+			Integration *string `json:"integration,omitempty"`
+			PerUnit *string `json:"per_unit,omitempty"`
+			ShortName *string `json:"short_name,omitempty"`
+			StatsdInterval *int64 `json:"statsd_interval,omitempty"`
+			Type *string `json:"type,omitempty"`
+			Unit *string `json:"unit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -331,3 +332,5 @@ func (o *MetricMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Unit = all.Unit
 	return nil
 }
+
+

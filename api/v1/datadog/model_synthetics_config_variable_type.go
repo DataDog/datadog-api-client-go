@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsConfigVariableType Type of the configuration variable.
@@ -19,7 +20,7 @@ type SyntheticsConfigVariableType string
 // List of SyntheticsConfigVariableType
 const (
 	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL SyntheticsConfigVariableType = "global"
-	SYNTHETICSCONFIGVARIABLETYPE_TEXT   SyntheticsConfigVariableType = "text"
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT SyntheticsConfigVariableType = "text"
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{
@@ -102,3 +103,4 @@ func (v *NullableSyntheticsConfigVariableType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

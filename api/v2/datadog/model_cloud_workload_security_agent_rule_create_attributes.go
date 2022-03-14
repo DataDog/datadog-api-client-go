@@ -123,7 +123,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetExpression() string 
 // GetExpressionOk returns a tuple with the Expression field value
 // and a boolean to check if the value has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetExpressionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Expression, true
@@ -147,7 +147,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -182,14 +182,14 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	raw := map[string]interface{}{}
 	required := struct {
 		Expression *string `json:"expression"`
-		Name       *string `json:"name"`
-	}{}
+		Name *string `json:"name"`
+		}{}
 	all := struct {
-		Description *string `json:"description,omitempty"`
-		Enabled     *bool   `json:"enabled,omitempty"`
-		Expression  string  `json:"expression"`
-		Name        string  `json:"name"`
-	}{}
+			Description *string `json:"description,omitempty"`
+			Enabled *bool `json:"enabled,omitempty"`
+			Expression string `json:"expression"`
+			Name string `json:"name"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -215,3 +215,5 @@ func (o *CloudWorkloadSecurityAgentRuleCreateAttributes) UnmarshalJSON(bytes []b
 	o.Name = all.Name
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponseFilter The log-based metric filter. Logs matching this filter will be aggregated in this metric.
@@ -83,8 +84,8 @@ func (o LogsMetricResponseFilter) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Query *string `json:"query,omitempty"`
-	}{}
+			Query *string `json:"query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsMetricResponseFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	return nil
 }
+
+

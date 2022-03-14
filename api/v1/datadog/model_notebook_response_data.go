@@ -17,7 +17,7 @@ import (
 type NotebookResponseData struct {
 	Attributes NotebookResponseDataAttributes `json:"attributes"`
 	// Unique notebook ID, assigned when you create the notebook.
-	Id   int64                `json:"id"`
+	Id int64 `json:"id"`
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -58,7 +58,7 @@ func (o *NotebookResponseData) GetAttributes() NotebookResponseDataAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *NotebookResponseData) GetAttributesOk() (*NotebookResponseDataAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -82,7 +82,7 @@ func (o *NotebookResponseData) GetId() int64 {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *NotebookResponseData) GetIdOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -106,7 +106,7 @@ func (o *NotebookResponseData) GetType() NotebookResourceType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NotebookResponseData) GetTypeOk() (*NotebookResourceType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -138,14 +138,14 @@ func (o *NotebookResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookResponseDataAttributes `json:"attributes"`
-		Id         *int64                          `json:"id"`
-		Type       *NotebookResourceType           `json:"type"`
-	}{}
+		Id *int64 `json:"id"`
+		Type *NotebookResourceType `json:"type"`
+		}{}
 	all := struct {
-		Attributes NotebookResponseDataAttributes `json:"attributes"`
-		Id         int64                          `json:"id"`
-		Type       NotebookResourceType           `json:"type"`
-	}{}
+			Attributes NotebookResponseDataAttributes `json:"attributes"`
+			Id int64 `json:"id"`
+			Type NotebookResourceType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -181,3 +181,5 @@ func (o *NotebookResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

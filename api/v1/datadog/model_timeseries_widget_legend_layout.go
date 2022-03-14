@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // TimeseriesWidgetLegendLayout Layout of the legend.
@@ -18,9 +19,9 @@ type TimeseriesWidgetLegendLayout string
 
 // List of TimeseriesWidgetLegendLayout
 const (
-	TIMESERIESWIDGETLEGENDLAYOUT_AUTO       TimeseriesWidgetLegendLayout = "auto"
+	TIMESERIESWIDGETLEGENDLAYOUT_AUTO TimeseriesWidgetLegendLayout = "auto"
 	TIMESERIESWIDGETLEGENDLAYOUT_HORIZONTAL TimeseriesWidgetLegendLayout = "horizontal"
-	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL   TimeseriesWidgetLegendLayout = "vertical"
+	TIMESERIESWIDGETLEGENDLAYOUT_VERTICAL TimeseriesWidgetLegendLayout = "vertical"
 )
 
 var allowedTimeseriesWidgetLegendLayoutEnumValues = []TimeseriesWidgetLegendLayout{
@@ -104,3 +105,4 @@ func (v *NullableTimeseriesWidgetLegendLayout) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

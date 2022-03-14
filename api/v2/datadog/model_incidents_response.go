@@ -19,7 +19,7 @@ type IncidentsResponse struct {
 	Data []IncidentResponseData `json:"data"`
 	// Included related resources that the user requested.
 	Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
-	Meta     *IncidentResponseMeta           `json:"meta,omitempty"`
+	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *IncidentsResponse) GetData() []IncidentResponseData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *IncidentsResponse) GetDataOk() (*[]IncidentResponseData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -151,12 +151,12 @@ func (o *IncidentsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *[]IncidentResponseData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data     []IncidentResponseData          `json:"data"`
-		Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
-		Meta     *IncidentResponseMeta           `json:"meta,omitempty"`
-	}{}
+			Data []IncidentResponseData `json:"data"`
+			Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
+			Meta *IncidentResponseMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -178,3 +178,5 @@ func (o *IncidentsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

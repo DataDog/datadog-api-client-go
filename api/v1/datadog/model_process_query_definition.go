@@ -122,7 +122,7 @@ func (o *ProcessQueryDefinition) GetMetric() string {
 // GetMetricOk returns a tuple with the Metric field value
 // and a boolean to check if the value has been set.
 func (o *ProcessQueryDefinition) GetMetricOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metric, true
@@ -189,13 +189,13 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Metric *string `json:"metric"`
-	}{}
+		}{}
 	all := struct {
-		FilterBy *[]string `json:"filter_by,omitempty"`
-		Limit    *int64    `json:"limit,omitempty"`
-		Metric   string    `json:"metric"`
-		SearchBy *string   `json:"search_by,omitempty"`
-	}{}
+			FilterBy *[]string `json:"filter_by,omitempty"`
+			Limit *int64 `json:"limit,omitempty"`
+			Metric string `json:"metric"`
+			SearchBy *string `json:"search_by,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -218,3 +218,5 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.SearchBy = all.SearchBy
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -269,13 +270,13 @@ func (o UsageTimeseriesHour) MarshalJSON() ([]byte, error) {
 func (o *UsageTimeseriesHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                      *time.Time `json:"hour,omitempty"`
-		NumCustomInputTimeseries  *int64     `json:"num_custom_input_timeseries,omitempty"`
-		NumCustomOutputTimeseries *int64     `json:"num_custom_output_timeseries,omitempty"`
-		NumCustomTimeseries       *int64     `json:"num_custom_timeseries,omitempty"`
-		OrgName                   *string    `json:"org_name,omitempty"`
-		PublicId                  *string    `json:"public_id,omitempty"`
-	}{}
+			Hour *time.Time `json:"hour,omitempty"`
+			NumCustomInputTimeseries *int64 `json:"num_custom_input_timeseries,omitempty"`
+			NumCustomOutputTimeseries *int64 `json:"num_custom_output_timeseries,omitempty"`
+			NumCustomTimeseries *int64 `json:"num_custom_timeseries,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -293,3 +294,5 @@ func (o *UsageTimeseriesHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
+
+

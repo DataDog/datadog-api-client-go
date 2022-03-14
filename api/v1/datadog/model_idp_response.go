@@ -52,7 +52,7 @@ func (o *IdpResponse) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *IdpResponse) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -78,10 +78,10 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Message *string `json:"message"`
-	}{}
+		}{}
 	all := struct {
-		Message string `json:"message"`
-	}{}
+			Message string `json:"message"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

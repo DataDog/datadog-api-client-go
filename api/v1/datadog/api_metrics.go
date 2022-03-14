@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type MetricsApiService service
 
 type apiGetMetricMetadataRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *MetricsApiService
 	metricName string
 }
+
 
 /*
  * GetMetricMetadata Get metric metadata
@@ -38,11 +41,12 @@ type apiGetMetricMetadataRequest struct {
 func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
 	req := apiGetMetricMetadataRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		metricName: metricName,
 	}
 
-	return req.ApiService.getMetricMetadataExecute(req)
+
+    return req.ApiService.getMetricMetadataExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataReque
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricMetadata
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.GetMetricMetadata")
 	if err != nil {
@@ -184,29 +189,29 @@ func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataReque
 }
 
 type apiListActiveMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *MetricsApiService
-	from       *int64
-	host       *string
-	tagFilter  *string
+	from *int64
+	host *string
+	tagFilter *string
 }
 
 type ListActiveMetricsOptionalParameters struct {
-	Host      *string
-	TagFilter *string
+    Host *string
+    TagFilter *string
 }
 
 func NewListActiveMetricsOptionalParameters() *ListActiveMetricsOptionalParameters {
-	this := ListActiveMetricsOptionalParameters{}
-	return &this
+    this := ListActiveMetricsOptionalParameters{}
+    return &this
 }
 func (r *ListActiveMetricsOptionalParameters) WithHost(host string) *ListActiveMetricsOptionalParameters {
-	r.Host = &host
-	return r
+    r.Host = &host
+    return r
 }
 func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *ListActiveMetricsOptionalParameters {
-	r.TagFilter = &tagFilter
-	return r
+    r.TagFilter = &tagFilter
+    return r
 }
 
 /*
@@ -216,21 +221,21 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
 	req := apiListActiveMetricsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		from:       &from,
+		ctx: ctx,
+		from: &from,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue MetricsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListActiveMetricsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue MetricsListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListActiveMetricsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.host = o[0].Host
-		req.tagFilter = o[0].TagFilter
-	}
+    if o != nil {
+        req.host = o[0].Host
+        req.tagFilter = o[0].TagFilter
+    }
 
-	return req.ApiService.listActiveMetricsExecute(req)
+    return req.ApiService.listActiveMetricsExecute(req)
 }
 
 /*
@@ -246,6 +251,7 @@ func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsReque
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricsListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListActiveMetrics")
 	if err != nil {
@@ -381,10 +387,11 @@ func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsReque
 }
 
 type apiListMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *MetricsApiService
-	q          *string
+	q *string
 }
+
 
 /*
  * ListMetrics Search metrics
@@ -393,11 +400,12 @@ type apiListMetricsRequest struct {
 func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
 	req := apiListMetricsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		q:          &q,
+		ctx: ctx,
+		q: &q,
 	}
 
-	return req.ApiService.listMetricsExecute(req)
+
+    return req.ApiService.listMetricsExecute(req)
 }
 
 /*
@@ -413,6 +421,7 @@ func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricS
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricSearchResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListMetrics")
 	if err != nil {
@@ -542,12 +551,13 @@ func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricS
 }
 
 type apiQueryMetricsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *MetricsApiService
-	from       *int64
-	to         *int64
-	query      *string
+	from *int64
+	to *int64
+	query *string
 }
+
 
 /*
  * QueryMetrics Query timeseries points
@@ -556,13 +566,14 @@ type apiQueryMetricsRequest struct {
 func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
 	req := apiQueryMetricsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		from:       &from,
-		to:         &to,
-		query:      &query,
+		ctx: ctx,
+		from: &from,
+		to: &to,
+		query: &query,
 	}
 
-	return req.ApiService.queryMetricsExecute(req)
+
+    return req.ApiService.queryMetricsExecute(req)
 }
 
 /*
@@ -578,6 +589,7 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricsQueryResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.QueryMetrics")
 	if err != nil {
@@ -715,23 +727,23 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 }
 
 type apiSubmitMetricsRequest struct {
-	ctx             _context.Context
-	ApiService      *MetricsApiService
-	body            *MetricsPayload
+	ctx _context.Context
+	ApiService *MetricsApiService
+	body *MetricsPayload
 	contentEncoding *MetricContentEncoding
 }
 
 type SubmitMetricsOptionalParameters struct {
-	ContentEncoding *MetricContentEncoding
+    ContentEncoding *MetricContentEncoding
 }
 
 func NewSubmitMetricsOptionalParameters() *SubmitMetricsOptionalParameters {
-	this := SubmitMetricsOptionalParameters{}
-	return &this
+    this := SubmitMetricsOptionalParameters{}
+    return &this
 }
 func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding MetricContentEncoding) *SubmitMetricsOptionalParameters {
-	r.ContentEncoding = &contentEncoding
-	return r
+    r.ContentEncoding = &contentEncoding
+    return r
 }
 
 /*
@@ -747,24 +759,24 @@ If you’re submitting metrics directly to the Datadog API without using DogStat
 - 50 bytes for the timeseries
 - The full payload is approximately 100 bytes. However, with the DogStatsD API,
 compression is applied, which reduces the payload size.
-*/
+ */
 func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req := apiSubmitMetricsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue IntakePayloadAccepted
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue IntakePayloadAccepted
+        return localVarReturnValue, nil, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
-	}
+    if o != nil {
+        req.contentEncoding = o[0].ContentEncoding
+    }
 
-	return req.ApiService.submitMetricsExecute(req)
+    return req.ApiService.submitMetricsExecute(req)
 }
 
 /*
@@ -780,6 +792,7 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 		localVarFileBytes    []byte
 		localVarReturnValue  IntakePayloadAccepted
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.SubmitMetrics")
 	if err != nil {
@@ -919,11 +932,12 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 }
 
 type apiUpdateMetricMetadataRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *MetricsApiService
 	metricName string
-	body       *MetricMetadata
+	body *MetricMetadata
 }
+
 
 /*
  * UpdateMetricMetadata Edit metric metadata
@@ -932,12 +946,13 @@ type apiUpdateMetricMetadataRequest struct {
 func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
 	req := apiUpdateMetricMetadataRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		metricName: metricName,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateMetricMetadataExecute(req)
+
+    return req.ApiService.updateMetricMetadataExecute(req)
 }
 
 /*
@@ -953,6 +968,7 @@ func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadat
 		localVarFileBytes    []byte
 		localVarReturnValue  MetricMetadata
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateMetricMetadata")
 	if err != nil {

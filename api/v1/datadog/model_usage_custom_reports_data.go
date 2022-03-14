@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCustomReportsData The response containing the date and type for custom reports.
 type UsageCustomReportsData struct {
 	Attributes *UsageCustomReportsAttributes `json:"attributes,omitempty"`
 	// The date for specified custom reports.
-	Id   *string           `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *UsageReportsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o UsageCustomReportsData) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *UsageCustomReportsAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id,omitempty"`
-		Type       *UsageReportsType             `json:"type,omitempty"`
-	}{}
+			Attributes *UsageCustomReportsAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *UsageReportsType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *UsageCustomReportsData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

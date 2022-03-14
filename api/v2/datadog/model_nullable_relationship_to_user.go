@@ -53,7 +53,7 @@ func (o *NullableRelationshipToUser) GetData() NullableRelationshipToUserData {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NullableRelationshipToUser) GetDataOk() (*NullableRelationshipToUserData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Data.Get(), o.Data.IsSet()
@@ -79,10 +79,10 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *NullableNullableRelationshipToUserData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data NullableNullableRelationshipToUserData `json:"data"`
-	}{}
+			Data NullableNullableRelationshipToUserData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -102,3 +102,5 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

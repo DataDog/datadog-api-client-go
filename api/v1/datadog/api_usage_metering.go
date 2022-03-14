@@ -16,9 +16,9 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
 	"time"
+	"reflect"
 )
 
 // Linger please
@@ -30,40 +30,40 @@ var (
 type UsageMeteringApiService service
 
 type apiGetDailyCustomReportsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sortDir    *UsageSortDirection
-	sort       *UsageSort
+	sortDir *UsageSortDirection
+	sort *UsageSort
 }
 
 type GetDailyCustomReportsOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	SortDir    *UsageSortDirection
-	Sort       *UsageSort
+    PageSize *int64
+    PageNumber *int64
+    SortDir *UsageSortDirection
+    Sort *UsageSort
 }
 
 func NewGetDailyCustomReportsOptionalParameters() *GetDailyCustomReportsOptionalParameters {
-	this := GetDailyCustomReportsOptionalParameters{}
-	return &this
+    this := GetDailyCustomReportsOptionalParameters{}
+    return &this
 }
 func (r *GetDailyCustomReportsOptionalParameters) WithPageSize(pageSize int64) *GetDailyCustomReportsOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *GetDailyCustomReportsOptionalParameters) WithPageNumber(pageNumber int64) *GetDailyCustomReportsOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *GetDailyCustomReportsOptionalParameters) WithSortDir(sortDir UsageSortDirection) *GetDailyCustomReportsOptionalParameters {
-	r.SortDir = &sortDir
-	return r
+    r.SortDir = &sortDir
+    return r
 }
 func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetDailyCustomReportsOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 
 /*
@@ -73,22 +73,22 @@ func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetD
 func (a *UsageMeteringApiService) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req := apiGetDailyCustomReportsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageCustomReportsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetDailyCustomReportsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageCustomReportsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetDailyCustomReportsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sortDir = o[0].SortDir
-		req.sort = o[0].Sort
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sortDir = o[0].SortDir
+        req.sort = o[0].Sort
+    }
 
-	return req.ApiService.getDailyCustomReportsExecute(req)
+    return req.ApiService.getDailyCustomReportsExecute(req)
 }
 
 /*
@@ -107,9 +107,9 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 
 	operationId := "GetDailyCustomReports"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetDailyCustomReports")
@@ -238,36 +238,36 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 }
 
 type apiGetHourlyUsageAttributionRequest struct {
-	ctx              _context.Context
-	ApiService       *UsageMeteringApiService
-	startHr          *time.Time
-	usageType        *HourlyUsageAttributionUsageType
-	endHr            *time.Time
-	nextRecordId     *string
+	ctx _context.Context
+	ApiService *UsageMeteringApiService
+	startHr *time.Time
+	usageType *HourlyUsageAttributionUsageType
+	endHr *time.Time
+	nextRecordId *string
 	tagBreakdownKeys *string
 }
 
 type GetHourlyUsageAttributionOptionalParameters struct {
-	EndHr            *time.Time
-	NextRecordId     *string
-	TagBreakdownKeys *string
+    EndHr *time.Time
+    NextRecordId *string
+    TagBreakdownKeys *string
 }
 
 func NewGetHourlyUsageAttributionOptionalParameters() *GetHourlyUsageAttributionOptionalParameters {
-	this := GetHourlyUsageAttributionOptionalParameters{}
-	return &this
+    this := GetHourlyUsageAttributionOptionalParameters{}
+    return &this
 }
 func (r *GetHourlyUsageAttributionOptionalParameters) WithEndHr(endHr time.Time) *GetHourlyUsageAttributionOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 func (r *GetHourlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetHourlyUsageAttributionOptionalParameters {
-	r.NextRecordId = &nextRecordId
-	return r
+    r.NextRecordId = &nextRecordId
+    return r
 }
 func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetHourlyUsageAttributionOptionalParameters {
-	r.TagBreakdownKeys = &tagBreakdownKeys
-	return r
+    r.TagBreakdownKeys = &tagBreakdownKeys
+    return r
 }
 
 /*
@@ -277,23 +277,23 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBr
 func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetHourlyUsageAttributionRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
-		usageType:  &usageType,
+		ctx: ctx,
+		startHr: &startHr,
+		usageType: &usageType,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue HourlyUsageAttributionResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetHourlyUsageAttributionOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue HourlyUsageAttributionResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetHourlyUsageAttributionOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-		req.nextRecordId = o[0].NextRecordId
-		req.tagBreakdownKeys = o[0].TagBreakdownKeys
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+        req.nextRecordId = o[0].NextRecordId
+        req.tagBreakdownKeys = o[0].TagBreakdownKeys
+    }
 
-	return req.ApiService.getHourlyUsageAttributionExecute(req)
+    return req.ApiService.getHourlyUsageAttributionExecute(req)
 }
 
 /*
@@ -312,9 +312,9 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 
 	operationId := "GetHourlyUsageAttribution"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetHourlyUsageAttribution")
@@ -448,23 +448,23 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 }
 
 type apiGetIncidentManagementRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetIncidentManagementOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetIncidentManagementOptionalParameters() *GetIncidentManagementOptionalParameters {
-	this := GetIncidentManagementOptionalParameters{}
-	return &this
+    this := GetIncidentManagementOptionalParameters{}
+    return &this
 }
 func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *GetIncidentManagementOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -474,20 +474,20 @@ func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *Ge
 func (a *UsageMeteringApiService) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	req := apiGetIncidentManagementRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageIncidentManagementResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentManagementOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageIncidentManagementResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetIncidentManagementOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getIncidentManagementExecute(req)
+    return req.ApiService.getIncidentManagementExecute(req)
 }
 
 /*
@@ -503,6 +503,7 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageIncidentManagementResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIncidentManagement")
 	if err != nil {
@@ -635,23 +636,23 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 }
 
 type apiGetIngestedSpansRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetIngestedSpansOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetIngestedSpansOptionalParameters() *GetIngestedSpansOptionalParameters {
-	this := GetIngestedSpansOptionalParameters{}
-	return &this
+    this := GetIngestedSpansOptionalParameters{}
+    return &this
 }
 func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetIngestedSpansOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -661,20 +662,20 @@ func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetInge
 func (a *UsageMeteringApiService) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	req := apiGetIngestedSpansRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageIngestedSpansResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetIngestedSpansOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageIngestedSpansResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetIngestedSpansOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getIngestedSpansExecute(req)
+    return req.ApiService.getIngestedSpansExecute(req)
 }
 
 /*
@@ -690,6 +691,7 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageIngestedSpansResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIngestedSpans")
 	if err != nil {
@@ -822,40 +824,40 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 }
 
 type apiGetMonthlyCustomReportsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sortDir    *UsageSortDirection
-	sort       *UsageSort
+	sortDir *UsageSortDirection
+	sort *UsageSort
 }
 
 type GetMonthlyCustomReportsOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	SortDir    *UsageSortDirection
-	Sort       *UsageSort
+    PageSize *int64
+    PageNumber *int64
+    SortDir *UsageSortDirection
+    Sort *UsageSort
 }
 
 func NewGetMonthlyCustomReportsOptionalParameters() *GetMonthlyCustomReportsOptionalParameters {
-	this := GetMonthlyCustomReportsOptionalParameters{}
-	return &this
+    this := GetMonthlyCustomReportsOptionalParameters{}
+    return &this
 }
 func (r *GetMonthlyCustomReportsOptionalParameters) WithPageSize(pageSize int64) *GetMonthlyCustomReportsOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *GetMonthlyCustomReportsOptionalParameters) WithPageNumber(pageNumber int64) *GetMonthlyCustomReportsOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *GetMonthlyCustomReportsOptionalParameters) WithSortDir(sortDir UsageSortDirection) *GetMonthlyCustomReportsOptionalParameters {
-	r.SortDir = &sortDir
-	return r
+    r.SortDir = &sortDir
+    return r
 }
 func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetMonthlyCustomReportsOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 
 /*
@@ -865,22 +867,22 @@ func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *Ge
 func (a *UsageMeteringApiService) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req := apiGetMonthlyCustomReportsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageCustomReportsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetMonthlyCustomReportsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageCustomReportsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetMonthlyCustomReportsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sortDir = o[0].SortDir
-		req.sort = o[0].Sort
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sortDir = o[0].SortDir
+        req.sort = o[0].Sort
+    }
 
-	return req.ApiService.getMonthlyCustomReportsExecute(req)
+    return req.ApiService.getMonthlyCustomReportsExecute(req)
 }
 
 /*
@@ -899,9 +901,9 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 
 	operationId := "GetMonthlyCustomReports"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyCustomReports")
@@ -1030,48 +1032,48 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 }
 
 type apiGetMonthlyUsageAttributionRequest struct {
-	ctx              _context.Context
-	ApiService       *UsageMeteringApiService
-	startMonth       *time.Time
-	fields           *MonthlyUsageAttributionSupportedMetrics
-	endMonth         *time.Time
-	sortDirection    *UsageSortDirection
-	sortName         *MonthlyUsageAttributionSupportedMetrics
+	ctx _context.Context
+	ApiService *UsageMeteringApiService
+	startMonth *time.Time
+	fields *MonthlyUsageAttributionSupportedMetrics
+	endMonth *time.Time
+	sortDirection *UsageSortDirection
+	sortName *MonthlyUsageAttributionSupportedMetrics
 	tagBreakdownKeys *string
-	nextRecordId     *string
+	nextRecordId *string
 }
 
 type GetMonthlyUsageAttributionOptionalParameters struct {
-	EndMonth         *time.Time
-	SortDirection    *UsageSortDirection
-	SortName         *MonthlyUsageAttributionSupportedMetrics
-	TagBreakdownKeys *string
-	NextRecordId     *string
+    EndMonth *time.Time
+    SortDirection *UsageSortDirection
+    SortName *MonthlyUsageAttributionSupportedMetrics
+    TagBreakdownKeys *string
+    NextRecordId *string
 }
 
 func NewGetMonthlyUsageAttributionOptionalParameters() *GetMonthlyUsageAttributionOptionalParameters {
-	this := GetMonthlyUsageAttributionOptionalParameters{}
-	return &this
+    this := GetMonthlyUsageAttributionOptionalParameters{}
+    return &this
 }
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetMonthlyUsageAttributionOptionalParameters {
-	r.EndMonth = &endMonth
-	return r
+    r.EndMonth = &endMonth
+    return r
 }
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortDirection(sortDirection UsageSortDirection) *GetMonthlyUsageAttributionOptionalParameters {
-	r.SortDirection = &sortDirection
-	return r
+    r.SortDirection = &sortDirection
+    return r
 }
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortName(sortName MonthlyUsageAttributionSupportedMetrics) *GetMonthlyUsageAttributionOptionalParameters {
-	r.SortName = &sortName
-	return r
+    r.SortName = &sortName
+    return r
 }
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetMonthlyUsageAttributionOptionalParameters {
-	r.TagBreakdownKeys = &tagBreakdownKeys
-	return r
+    r.TagBreakdownKeys = &tagBreakdownKeys
+    return r
 }
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetMonthlyUsageAttributionOptionalParameters {
-	r.NextRecordId = &nextRecordId
-	return r
+    r.NextRecordId = &nextRecordId
+    return r
 }
 
 /*
@@ -1081,25 +1083,25 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextReco
 func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetMonthlyUsageAttributionRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		startMonth: &startMonth,
-		fields:     &fields,
+		fields: &fields,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue MonthlyUsageAttributionResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetMonthlyUsageAttributionOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue MonthlyUsageAttributionResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetMonthlyUsageAttributionOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endMonth = o[0].EndMonth
-		req.sortDirection = o[0].SortDirection
-		req.sortName = o[0].SortName
-		req.tagBreakdownKeys = o[0].TagBreakdownKeys
-		req.nextRecordId = o[0].NextRecordId
-	}
+    if o != nil {
+        req.endMonth = o[0].EndMonth
+        req.sortDirection = o[0].SortDirection
+        req.sortName = o[0].SortName
+        req.tagBreakdownKeys = o[0].TagBreakdownKeys
+        req.nextRecordId = o[0].NextRecordId
+    }
 
-	return req.ApiService.getMonthlyUsageAttributionExecute(req)
+    return req.ApiService.getMonthlyUsageAttributionExecute(req)
 }
 
 /*
@@ -1118,9 +1120,9 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 
 	operationId := "GetMonthlyUsageAttribution"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyUsageAttribution")
@@ -1260,10 +1262,11 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 }
 
 type apiGetSpecifiedDailyCustomReportsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	reportId   string
+	reportId string
 }
+
 
 /*
  * GetSpecifiedDailyCustomReports Get specified daily custom reports
@@ -1272,11 +1275,12 @@ type apiGetSpecifiedDailyCustomReportsRequest struct {
 func (a *UsageMeteringApiService) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req := apiGetSpecifiedDailyCustomReportsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		ctx: ctx,
+		reportId: reportId,
 	}
 
-	return req.ApiService.getSpecifiedDailyCustomReportsExecute(req)
+
+    return req.ApiService.getSpecifiedDailyCustomReportsExecute(req)
 }
 
 /*
@@ -1295,9 +1299,9 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 
 	operationId := "GetSpecifiedDailyCustomReports"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedDailyCustomReports")
@@ -1425,10 +1429,11 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 }
 
 type apiGetSpecifiedMonthlyCustomReportsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	reportId   string
+	reportId string
 }
+
 
 /*
  * GetSpecifiedMonthlyCustomReports Get specified monthly custom reports
@@ -1437,11 +1442,12 @@ type apiGetSpecifiedMonthlyCustomReportsRequest struct {
 func (a *UsageMeteringApiService) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req := apiGetSpecifiedMonthlyCustomReportsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		reportId:   reportId,
+		ctx: ctx,
+		reportId: reportId,
 	}
 
-	return req.ApiService.getSpecifiedMonthlyCustomReportsExecute(req)
+
+    return req.ApiService.getSpecifiedMonthlyCustomReportsExecute(req)
 }
 
 /*
@@ -1460,9 +1466,9 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 
 	operationId := "GetSpecifiedMonthlyCustomReports"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedMonthlyCustomReports")
@@ -1600,23 +1606,23 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 }
 
 type apiGetUsageAnalyzedLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageAnalyzedLogsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageAnalyzedLogsOptionalParameters() *GetUsageAnalyzedLogsOptionalParameters {
-	this := GetUsageAnalyzedLogsOptionalParameters{}
-	return &this
+    this := GetUsageAnalyzedLogsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageAnalyzedLogsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -1626,20 +1632,20 @@ func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *Get
 func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageAnalyzedLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageAnalyzedLogsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageAnalyzedLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageAnalyzedLogsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageAnalyzedLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageAnalyzedLogsExecute(req)
+    return req.ApiService.getUsageAnalyzedLogsExecute(req)
 }
 
 /*
@@ -1655,6 +1661,7 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageAnalyzedLogsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAnalyzedLogs")
 	if err != nil {
@@ -1787,54 +1794,54 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 }
 
 type apiGetUsageAttributionRequest struct {
-	ctx                _context.Context
-	ApiService         *UsageMeteringApiService
-	startMonth         *time.Time
-	fields             *UsageAttributionSupportedMetrics
-	endMonth           *time.Time
-	sortDirection      *UsageSortDirection
-	sortName           *UsageAttributionSort
+	ctx _context.Context
+	ApiService *UsageMeteringApiService
+	startMonth *time.Time
+	fields *UsageAttributionSupportedMetrics
+	endMonth *time.Time
+	sortDirection *UsageSortDirection
+	sortName *UsageAttributionSort
 	includeDescendants *bool
-	offset             *int64
-	limit              *int64
+	offset *int64
+	limit *int64
 }
 
 type GetUsageAttributionOptionalParameters struct {
-	EndMonth           *time.Time
-	SortDirection      *UsageSortDirection
-	SortName           *UsageAttributionSort
-	IncludeDescendants *bool
-	Offset             *int64
-	Limit              *int64
+    EndMonth *time.Time
+    SortDirection *UsageSortDirection
+    SortName *UsageAttributionSort
+    IncludeDescendants *bool
+    Offset *int64
+    Limit *int64
 }
 
 func NewGetUsageAttributionOptionalParameters() *GetUsageAttributionOptionalParameters {
-	this := GetUsageAttributionOptionalParameters{}
-	return &this
+    this := GetUsageAttributionOptionalParameters{}
+    return &this
 }
 func (r *GetUsageAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageAttributionOptionalParameters {
-	r.EndMonth = &endMonth
-	return r
+    r.EndMonth = &endMonth
+    return r
 }
 func (r *GetUsageAttributionOptionalParameters) WithSortDirection(sortDirection UsageSortDirection) *GetUsageAttributionOptionalParameters {
-	r.SortDirection = &sortDirection
-	return r
+    r.SortDirection = &sortDirection
+    return r
 }
 func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttributionSort) *GetUsageAttributionOptionalParameters {
-	r.SortName = &sortName
-	return r
+    r.SortName = &sortName
+    return r
 }
 func (r *GetUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetUsageAttributionOptionalParameters {
-	r.IncludeDescendants = &includeDescendants
-	return r
+    r.IncludeDescendants = &includeDescendants
+    return r
 }
 func (r *GetUsageAttributionOptionalParameters) WithOffset(offset int64) *GetUsageAttributionOptionalParameters {
-	r.Offset = &offset
-	return r
+    r.Offset = &offset
+    return r
 }
 func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsageAttributionOptionalParameters {
-	r.Limit = &limit
-	return r
+    r.Limit = &limit
+    return r
 }
 
 /*
@@ -1844,26 +1851,26 @@ func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsage
 func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetUsageAttributionRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		startMonth: &startMonth,
-		fields:     &fields,
+		fields: &fields,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageAttributionResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageAttributionOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageAttributionResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageAttributionOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endMonth = o[0].EndMonth
-		req.sortDirection = o[0].SortDirection
-		req.sortName = o[0].SortName
-		req.includeDescendants = o[0].IncludeDescendants
-		req.offset = o[0].Offset
-		req.limit = o[0].Limit
-	}
+    if o != nil {
+        req.endMonth = o[0].EndMonth
+        req.sortDirection = o[0].SortDirection
+        req.sortName = o[0].SortName
+        req.includeDescendants = o[0].IncludeDescendants
+        req.offset = o[0].Offset
+        req.limit = o[0].Limit
+    }
 
-	return req.ApiService.getUsageAttributionExecute(req)
+    return req.ApiService.getUsageAttributionExecute(req)
 }
 
 /*
@@ -1882,9 +1889,9 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 
 	operationId := "GetUsageAttribution"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAttribution")
@@ -2027,23 +2034,23 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 }
 
 type apiGetUsageAuditLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageAuditLogsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageAuditLogsOptionalParameters() *GetUsageAuditLogsOptionalParameters {
-	this := GetUsageAuditLogsOptionalParameters{}
-	return &this
+    this := GetUsageAuditLogsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageAuditLogsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -2053,20 +2060,20 @@ func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 func (a *UsageMeteringApiService) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageAuditLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageAuditLogsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageAuditLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageAuditLogsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageAuditLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageAuditLogsExecute(req)
+    return req.ApiService.getUsageAuditLogsExecute(req)
 }
 
 /*
@@ -2082,6 +2089,7 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageAuditLogsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAuditLogs")
 	if err != nil {
@@ -2214,22 +2222,22 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 }
 
 type apiGetUsageBillableSummaryRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	month      *time.Time
+	month *time.Time
 }
 
 type GetUsageBillableSummaryOptionalParameters struct {
-	Month *time.Time
+    Month *time.Time
 }
 
 func NewGetUsageBillableSummaryOptionalParameters() *GetUsageBillableSummaryOptionalParameters {
-	this := GetUsageBillableSummaryOptionalParameters{}
-	return &this
+    this := GetUsageBillableSummaryOptionalParameters{}
+    return &this
 }
 func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *GetUsageBillableSummaryOptionalParameters {
-	r.Month = &month
-	return r
+    r.Month = &month
+    return r
 }
 
 /*
@@ -2239,19 +2247,19 @@ func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *
 func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	req := apiGetUsageBillableSummaryRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageBillableSummaryResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageBillableSummaryOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageBillableSummaryResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageBillableSummaryOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.month = o[0].Month
-	}
+    if o != nil {
+        req.month = o[0].Month
+    }
 
-	return req.ApiService.getUsageBillableSummaryExecute(req)
+    return req.ApiService.getUsageBillableSummaryExecute(req)
 }
 
 /*
@@ -2267,6 +2275,7 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageBillableSummaryResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageBillableSummary")
 	if err != nil {
@@ -2395,23 +2404,23 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 }
 
 type apiGetUsageCIAppRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageCIAppOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageCIAppOptionalParameters() *GetUsageCIAppOptionalParameters {
-	this := GetUsageCIAppOptionalParameters{}
-	return &this
+    this := GetUsageCIAppOptionalParameters{}
+    return &this
 }
 func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCIAppOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -2421,20 +2430,20 @@ func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCI
 func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req := apiGetUsageCIAppRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageCIVisibilityResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageCIAppOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageCIVisibilityResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageCIAppOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageCIAppExecute(req)
+    return req.ApiService.getUsageCIAppExecute(req)
 }
 
 /*
@@ -2450,6 +2459,7 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageCIVisibilityResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCIApp")
 	if err != nil {
@@ -2582,23 +2592,23 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 }
 
 type apiGetUsageCWSRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageCWSOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageCWSOptionalParameters() *GetUsageCWSOptionalParameters {
-	this := GetUsageCWSOptionalParameters{}
-	return &this
+    this := GetUsageCWSOptionalParameters{}
+    return &this
 }
 func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -2608,20 +2618,20 @@ func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSO
 func (a *UsageMeteringApiService) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
 	req := apiGetUsageCWSRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageCWSResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageCWSOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageCWSResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageCWSOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageCWSExecute(req)
+    return req.ApiService.getUsageCWSExecute(req)
 }
 
 /*
@@ -2637,6 +2647,7 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageCWSResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCWS")
 	if err != nil {
@@ -2769,23 +2780,23 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 }
 
 type apiGetUsageCloudSecurityPostureManagementRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageCloudSecurityPostureManagementOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageCloudSecurityPostureManagementOptionalParameters() *GetUsageCloudSecurityPostureManagementOptionalParameters {
-	this := GetUsageCloudSecurityPostureManagementOptionalParameters{}
-	return &this
+    this := GetUsageCloudSecurityPostureManagementOptionalParameters{}
+    return &this
 }
 func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCloudSecurityPostureManagementOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -2795,20 +2806,20 @@ func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(end
 func (a *UsageMeteringApiService) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	req := apiGetUsageCloudSecurityPostureManagementRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageCloudSecurityPostureManagementResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageCloudSecurityPostureManagementOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageCloudSecurityPostureManagementResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageCloudSecurityPostureManagementOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageCloudSecurityPostureManagementExecute(req)
+    return req.ApiService.getUsageCloudSecurityPostureManagementExecute(req)
 }
 
 /*
@@ -2824,6 +2835,7 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageCloudSecurityPostureManagementResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCloudSecurityPostureManagement")
 	if err != nil {
@@ -2956,23 +2968,23 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 }
 
 type apiGetUsageDBMRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageDBMOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageDBMOptionalParameters() *GetUsageDBMOptionalParameters {
-	this := GetUsageDBMOptionalParameters{}
-	return &this
+    this := GetUsageDBMOptionalParameters{}
+    return &this
 }
 func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -2982,20 +2994,20 @@ func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMO
 func (a *UsageMeteringApiService) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
 	req := apiGetUsageDBMRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageDBMResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageDBMOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageDBMResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageDBMOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageDBMExecute(req)
+    return req.ApiService.getUsageDBMExecute(req)
 }
 
 /*
@@ -3011,6 +3023,7 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageDBMResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageDBM")
 	if err != nil {
@@ -3143,23 +3156,23 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 }
 
 type apiGetUsageFargateRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageFargateOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageFargateOptionalParameters() *GetUsageFargateOptionalParameters {
-	this := GetUsageFargateOptionalParameters{}
-	return &this
+    this := GetUsageFargateOptionalParameters{}
+    return &this
 }
 func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsageFargateOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -3169,20 +3182,20 @@ func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsage
 func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
 	req := apiGetUsageFargateRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageFargateResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageFargateOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageFargateResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageFargateOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageFargateExecute(req)
+    return req.ApiService.getUsageFargateExecute(req)
 }
 
 /*
@@ -3198,6 +3211,7 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageFargateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageFargate")
 	if err != nil {
@@ -3330,23 +3344,23 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 }
 
 type apiGetUsageHostsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageHostsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageHostsOptionalParameters() *GetUsageHostsOptionalParameters {
-	this := GetUsageHostsOptionalParameters{}
-	return &this
+    this := GetUsageHostsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHostsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -3356,20 +3370,20 @@ func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHo
 func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageHostsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageHostsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageHostsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageHostsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageHostsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageHostsExecute(req)
+    return req.ApiService.getUsageHostsExecute(req)
 }
 
 /*
@@ -3385,6 +3399,7 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageHostsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageHosts")
 	if err != nil {
@@ -3517,23 +3532,23 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 }
 
 type apiGetUsageIndexedSpansRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageIndexedSpansOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageIndexedSpansOptionalParameters() *GetUsageIndexedSpansOptionalParameters {
-	this := GetUsageIndexedSpansOptionalParameters{}
-	return &this
+    this := GetUsageIndexedSpansOptionalParameters{}
+    return &this
 }
 func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetUsageIndexedSpansOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -3543,20 +3558,20 @@ func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *Get
 func (a *UsageMeteringApiService) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	req := apiGetUsageIndexedSpansRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageIndexedSpansResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageIndexedSpansOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageIndexedSpansResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageIndexedSpansOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageIndexedSpansExecute(req)
+    return req.ApiService.getUsageIndexedSpansExecute(req)
 }
 
 /*
@@ -3572,6 +3587,7 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageIndexedSpansResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageIndexedSpans")
 	if err != nil {
@@ -3704,23 +3720,23 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 }
 
 type apiGetUsageInternetOfThingsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageInternetOfThingsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageInternetOfThingsOptionalParameters() *GetUsageInternetOfThingsOptionalParameters {
-	this := GetUsageInternetOfThingsOptionalParameters{}
-	return &this
+    this := GetUsageInternetOfThingsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageInternetOfThingsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -3730,20 +3746,20 @@ func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) 
 func (a *UsageMeteringApiService) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
 	req := apiGetUsageInternetOfThingsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageIoTResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageInternetOfThingsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageIoTResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageInternetOfThingsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageInternetOfThingsExecute(req)
+    return req.ApiService.getUsageInternetOfThingsExecute(req)
 }
 
 /*
@@ -3759,6 +3775,7 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageIoTResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageInternetOfThings")
 	if err != nil {
@@ -3891,23 +3908,23 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 }
 
 type apiGetUsageLambdaRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageLambdaOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageLambdaOptionalParameters() *GetUsageLambdaOptionalParameters {
-	this := GetUsageLambdaOptionalParameters{}
-	return &this
+    this := GetUsageLambdaOptionalParameters{}
+    return &this
 }
 func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLambdaOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -3917,20 +3934,20 @@ func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageL
 func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	req := apiGetUsageLambdaRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageLambdaResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageLambdaOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageLambdaResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageLambdaOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageLambdaExecute(req)
+    return req.ApiService.getUsageLambdaExecute(req)
 }
 
 /*
@@ -3946,6 +3963,7 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageLambdaResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLambda")
 	if err != nil {
@@ -4078,23 +4096,23 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 }
 
 type apiGetUsageLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageLogsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageLogsOptionalParameters() *GetUsageLogsOptionalParameters {
-	this := GetUsageLogsOptionalParameters{}
-	return &this
+    this := GetUsageLogsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -4104,20 +4122,20 @@ func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLog
 func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageLogsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageLogsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageLogsExecute(req)
+    return req.ApiService.getUsageLogsExecute(req)
 }
 
 /*
@@ -4133,6 +4151,7 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageLogsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogs")
 	if err != nil {
@@ -4265,29 +4284,29 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 }
 
 type apiGetUsageLogsByIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	indexName  *[]string
+	startHr *time.Time
+	endHr *time.Time
+	indexName *[]string
 }
 
 type GetUsageLogsByIndexOptionalParameters struct {
-	EndHr     *time.Time
-	IndexName *[]string
+    EndHr *time.Time
+    IndexName *[]string
 }
 
 func NewGetUsageLogsByIndexOptionalParameters() *GetUsageLogsByIndexOptionalParameters {
-	this := GetUsageLogsByIndexOptionalParameters{}
-	return &this
+    this := GetUsageLogsByIndexOptionalParameters{}
+    return &this
 }
 func (r *GetUsageLogsByIndexOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsByIndexOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string) *GetUsageLogsByIndexOptionalParameters {
-	r.IndexName = &indexName
-	return r
+    r.IndexName = &indexName
+    return r
 }
 
 /*
@@ -4297,21 +4316,21 @@ func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string
 func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	req := apiGetUsageLogsByIndexRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageLogsByIndexResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsByIndexOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageLogsByIndexResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsByIndexOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-		req.indexName = o[0].IndexName
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+        req.indexName = o[0].IndexName
+    }
 
-	return req.ApiService.getUsageLogsByIndexExecute(req)
+    return req.ApiService.getUsageLogsByIndexExecute(req)
 }
 
 /*
@@ -4327,6 +4346,7 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageLogsByIndexResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByIndex")
 	if err != nil {
@@ -4470,23 +4490,23 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 }
 
 type apiGetUsageLogsByRetentionRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageLogsByRetentionOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageLogsByRetentionOptionalParameters() *GetUsageLogsByRetentionOptionalParameters {
-	this := GetUsageLogsByRetentionOptionalParameters{}
-	return &this
+    this := GetUsageLogsByRetentionOptionalParameters{}
+    return &this
 }
 func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsByRetentionOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -4496,20 +4516,20 @@ func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *
 func (a *UsageMeteringApiService) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	req := apiGetUsageLogsByRetentionRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageLogsByRetentionResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsByRetentionOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageLogsByRetentionResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageLogsByRetentionOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageLogsByRetentionExecute(req)
+    return req.ApiService.getUsageLogsByRetentionExecute(req)
 }
 
 /*
@@ -4525,6 +4545,7 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageLogsByRetentionResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByRetention")
 	if err != nil {
@@ -4657,23 +4678,23 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 }
 
 type apiGetUsageNetworkFlowsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageNetworkFlowsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageNetworkFlowsOptionalParameters() *GetUsageNetworkFlowsOptionalParameters {
-	this := GetUsageNetworkFlowsOptionalParameters{}
-	return &this
+    this := GetUsageNetworkFlowsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageNetworkFlowsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -4683,20 +4704,20 @@ func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *Get
 func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageNetworkFlowsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageNetworkFlowsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageNetworkFlowsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageNetworkFlowsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageNetworkFlowsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageNetworkFlowsExecute(req)
+    return req.ApiService.getUsageNetworkFlowsExecute(req)
 }
 
 /*
@@ -4712,6 +4733,7 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageNetworkFlowsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkFlows")
 	if err != nil {
@@ -4844,23 +4866,23 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageNetworkHostsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageNetworkHostsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageNetworkHostsOptionalParameters() *GetUsageNetworkHostsOptionalParameters {
-	this := GetUsageNetworkHostsOptionalParameters{}
-	return &this
+    this := GetUsageNetworkHostsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageNetworkHostsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -4870,20 +4892,20 @@ func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *Get
 func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageNetworkHostsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageNetworkHostsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageNetworkHostsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageNetworkHostsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageNetworkHostsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageNetworkHostsExecute(req)
+    return req.ApiService.getUsageNetworkHostsExecute(req)
 }
 
 /*
@@ -4899,6 +4921,7 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageNetworkHostsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkHosts")
 	if err != nil {
@@ -5031,23 +5054,23 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 }
 
 type apiGetUsageOnlineArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageOnlineArchiveOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageOnlineArchiveOptionalParameters() *GetUsageOnlineArchiveOptionalParameters {
-	this := GetUsageOnlineArchiveOptionalParameters{}
-	return &this
+    this := GetUsageOnlineArchiveOptionalParameters{}
+    return &this
 }
 func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *GetUsageOnlineArchiveOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -5057,20 +5080,20 @@ func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *Ge
 func (a *UsageMeteringApiService) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	req := apiGetUsageOnlineArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageOnlineArchiveResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageOnlineArchiveOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageOnlineArchiveResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageOnlineArchiveOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageOnlineArchiveExecute(req)
+    return req.ApiService.getUsageOnlineArchiveExecute(req)
 }
 
 /*
@@ -5086,6 +5109,7 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageOnlineArchiveResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageOnlineArchive")
 	if err != nil {
@@ -5218,23 +5242,23 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 }
 
 type apiGetUsageProfilingRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageProfilingOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageProfilingOptionalParameters() *GetUsageProfilingOptionalParameters {
-	this := GetUsageProfilingOptionalParameters{}
-	return &this
+    this := GetUsageProfilingOptionalParameters{}
+    return &this
 }
 func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsageProfilingOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -5244,20 +5268,20 @@ func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsa
 func (a *UsageMeteringApiService) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
 	req := apiGetUsageProfilingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageProfilingResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageProfilingOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageProfilingResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageProfilingOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageProfilingExecute(req)
+    return req.ApiService.getUsageProfilingExecute(req)
 }
 
 /*
@@ -5273,6 +5297,7 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageProfilingResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageProfiling")
 	if err != nil {
@@ -5405,29 +5430,29 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 }
 
 type apiGetUsageRumSessionsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
-	type_      *string
+	startHr *time.Time
+	endHr *time.Time
+	type_ *string
 }
 
 type GetUsageRumSessionsOptionalParameters struct {
-	EndHr *time.Time
-	Type_ *string
+    EndHr *time.Time
+    Type_ *string
 }
 
 func NewGetUsageRumSessionsOptionalParameters() *GetUsageRumSessionsOptionalParameters {
-	this := GetUsageRumSessionsOptionalParameters{}
-	return &this
+    this := GetUsageRumSessionsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageRumSessionsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageRumSessionsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 func (r *GetUsageRumSessionsOptionalParameters) WithType_(type_ string) *GetUsageRumSessionsOptionalParameters {
-	r.Type_ = &type_
-	return r
+    r.Type_ = &type_
+    return r
 }
 
 /*
@@ -5437,21 +5462,21 @@ func (r *GetUsageRumSessionsOptionalParameters) WithType_(type_ string) *GetUsag
 func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageRumSessionsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageRumSessionsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageRumSessionsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageRumSessionsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageRumSessionsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-		req.type_ = o[0].Type_
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+        req.type_ = o[0].Type_
+    }
 
-	return req.ApiService.getUsageRumSessionsExecute(req)
+    return req.ApiService.getUsageRumSessionsExecute(req)
 }
 
 /*
@@ -5467,6 +5492,7 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageRumSessionsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumSessions")
 	if err != nil {
@@ -5602,23 +5628,23 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 }
 
 type apiGetUsageRumUnitsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageRumUnitsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageRumUnitsOptionalParameters() *GetUsageRumUnitsOptionalParameters {
-	this := GetUsageRumUnitsOptionalParameters{}
-	return &this
+    this := GetUsageRumUnitsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageRumUnitsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -5628,20 +5654,20 @@ func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsag
 func (a *UsageMeteringApiService) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageRumUnitsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageRumUnitsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageRumUnitsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageRumUnitsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageRumUnitsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageRumUnitsExecute(req)
+    return req.ApiService.getUsageRumUnitsExecute(req)
 }
 
 /*
@@ -5657,6 +5683,7 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageRumUnitsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumUnits")
 	if err != nil {
@@ -5789,23 +5816,23 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 }
 
 type apiGetUsageSDSRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageSDSOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageSDSOptionalParameters() *GetUsageSDSOptionalParameters {
-	this := GetUsageSDSOptionalParameters{}
-	return &this
+    this := GetUsageSDSOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -5815,20 +5842,20 @@ func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSO
 func (a *UsageMeteringApiService) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSDSRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSDSResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSDSOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSDSResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSDSOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageSDSExecute(req)
+    return req.ApiService.getUsageSDSExecute(req)
 }
 
 /*
@@ -5844,6 +5871,7 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSDSResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSDS")
 	if err != nil {
@@ -5976,23 +6004,23 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 }
 
 type apiGetUsageSNMPRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageSNMPOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageSNMPOptionalParameters() *GetUsageSNMPOptionalParameters {
-	this := GetUsageSNMPOptionalParameters{}
-	return &this
+    this := GetUsageSNMPOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNMPOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -6002,20 +6030,20 @@ func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNM
 func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSNMPRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSNMPResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSNMPOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSNMPResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSNMPOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageSNMPExecute(req)
+    return req.ApiService.getUsageSNMPExecute(req)
 }
 
 /*
@@ -6031,6 +6059,7 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSNMPResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSNMP")
 	if err != nil {
@@ -6163,29 +6192,29 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 }
 
 type apiGetUsageSummaryRequest struct {
-	ctx               _context.Context
-	ApiService        *UsageMeteringApiService
-	startMonth        *time.Time
-	endMonth          *time.Time
+	ctx _context.Context
+	ApiService *UsageMeteringApiService
+	startMonth *time.Time
+	endMonth *time.Time
 	includeOrgDetails *bool
 }
 
 type GetUsageSummaryOptionalParameters struct {
-	EndMonth          *time.Time
-	IncludeOrgDetails *bool
+    EndMonth *time.Time
+    IncludeOrgDetails *bool
 }
 
 func NewGetUsageSummaryOptionalParameters() *GetUsageSummaryOptionalParameters {
-	this := GetUsageSummaryOptionalParameters{}
-	return &this
+    this := GetUsageSummaryOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSummaryOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageSummaryOptionalParameters {
-	r.EndMonth = &endMonth
-	return r
+    r.EndMonth = &endMonth
+    return r
 }
 func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDetails bool) *GetUsageSummaryOptionalParameters {
-	r.IncludeOrgDetails = &includeOrgDetails
-	return r
+    r.IncludeOrgDetails = &includeOrgDetails
+    return r
 }
 
 /*
@@ -6195,21 +6224,21 @@ func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDeta
 func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSummaryRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		startMonth: &startMonth,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSummaryResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSummaryOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSummaryResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSummaryOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endMonth = o[0].EndMonth
-		req.includeOrgDetails = o[0].IncludeOrgDetails
-	}
+    if o != nil {
+        req.endMonth = o[0].EndMonth
+        req.includeOrgDetails = o[0].IncludeOrgDetails
+    }
 
-	return req.ApiService.getUsageSummaryExecute(req)
+    return req.ApiService.getUsageSummaryExecute(req)
 }
 
 /*
@@ -6225,6 +6254,7 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSummaryResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSummary")
 	if err != nil {
@@ -6360,23 +6390,23 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 }
 
 type apiGetUsageSyntheticsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageSyntheticsOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageSyntheticsOptionalParameters() *GetUsageSyntheticsOptionalParameters {
-	this := GetUsageSyntheticsOptionalParameters{}
-	return &this
+    this := GetUsageSyntheticsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -6386,20 +6416,20 @@ func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSyntheticsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSyntheticsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSyntheticsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageSyntheticsExecute(req)
+    return req.ApiService.getUsageSyntheticsExecute(req)
 }
 
 /*
@@ -6415,6 +6445,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSyntheticsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSynthetics")
 	if err != nil {
@@ -6547,23 +6578,23 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 }
 
 type apiGetUsageSyntheticsAPIRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageSyntheticsAPIOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageSyntheticsAPIOptionalParameters() *GetUsageSyntheticsAPIOptionalParameters {
-	this := GetUsageSyntheticsAPIOptionalParameters{}
-	return &this
+    this := GetUsageSyntheticsAPIOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsAPIOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -6573,20 +6604,20 @@ func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *Ge
 func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSyntheticsAPIRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSyntheticsAPIResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSyntheticsAPIResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsAPIOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageSyntheticsAPIExecute(req)
+    return req.ApiService.getUsageSyntheticsAPIExecute(req)
 }
 
 /*
@@ -6602,6 +6633,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSyntheticsAPIResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsAPI")
 	if err != nil {
@@ -6734,23 +6766,23 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 }
 
 type apiGetUsageSyntheticsBrowserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageSyntheticsBrowserOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageSyntheticsBrowserOptionalParameters() *GetUsageSyntheticsBrowserOptionalParameters {
-	this := GetUsageSyntheticsBrowserOptionalParameters{}
-	return &this
+    this := GetUsageSyntheticsBrowserOptionalParameters{}
+    return &this
 }
 func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsBrowserOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -6760,20 +6792,20 @@ func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time)
 func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	req := apiGetUsageSyntheticsBrowserRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageSyntheticsBrowserResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageSyntheticsBrowserResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageSyntheticsBrowserOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageSyntheticsBrowserExecute(req)
+    return req.ApiService.getUsageSyntheticsBrowserExecute(req)
 }
 
 /*
@@ -6789,6 +6821,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageSyntheticsBrowserResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsBrowser")
 	if err != nil {
@@ -6921,23 +6954,23 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 }
 
 type apiGetUsageTimeseriesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsageMeteringApiService
-	startHr    *time.Time
-	endHr      *time.Time
+	startHr *time.Time
+	endHr *time.Time
 }
 
 type GetUsageTimeseriesOptionalParameters struct {
-	EndHr *time.Time
+    EndHr *time.Time
 }
 
 func NewGetUsageTimeseriesOptionalParameters() *GetUsageTimeseriesOptionalParameters {
-	this := GetUsageTimeseriesOptionalParameters{}
-	return &this
+    this := GetUsageTimeseriesOptionalParameters{}
+    return &this
 }
 func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageTimeseriesOptionalParameters {
-	r.EndHr = &endHr
-	return r
+    r.EndHr = &endHr
+    return r
 }
 
 /*
@@ -6947,20 +6980,20 @@ func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUs
 func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	req := apiGetUsageTimeseriesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		startHr:    &startHr,
+		ctx: ctx,
+		startHr: &startHr,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageTimeseriesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageTimeseriesOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageTimeseriesResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageTimeseriesOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.endHr = o[0].EndHr
-	}
+    if o != nil {
+        req.endHr = o[0].EndHr
+    }
 
-	return req.ApiService.getUsageTimeseriesExecute(req)
+    return req.ApiService.getUsageTimeseriesExecute(req)
 }
 
 /*
@@ -6976,6 +7009,7 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageTimeseriesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTimeseries")
 	if err != nil {
@@ -7108,46 +7142,46 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 }
 
 type apiGetUsageTopAvgMetricsRequest struct {
-	ctx          _context.Context
-	ApiService   *UsageMeteringApiService
-	month        *time.Time
-	day          *time.Time
-	names        *[]string
-	limit        *int32
+	ctx _context.Context
+	ApiService *UsageMeteringApiService
+	month *time.Time
+	day *time.Time
+	names *[]string
+	limit *int32
 	nextRecordId *string
 }
 
 type GetUsageTopAvgMetricsOptionalParameters struct {
-	Month        *time.Time
-	Day          *time.Time
-	Names        *[]string
-	Limit        *int32
-	NextRecordId *string
+    Month *time.Time
+    Day *time.Time
+    Names *[]string
+    Limit *int32
+    NextRecordId *string
 }
 
 func NewGetUsageTopAvgMetricsOptionalParameters() *GetUsageTopAvgMetricsOptionalParameters {
-	this := GetUsageTopAvgMetricsOptionalParameters{}
-	return &this
+    this := GetUsageTopAvgMetricsOptionalParameters{}
+    return &this
 }
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithMonth(month time.Time) *GetUsageTopAvgMetricsOptionalParameters {
-	r.Month = &month
-	return r
+    r.Month = &month
+    return r
 }
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithDay(day time.Time) *GetUsageTopAvgMetricsOptionalParameters {
-	r.Day = &day
-	return r
+    r.Day = &day
+    return r
 }
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithNames(names []string) *GetUsageTopAvgMetricsOptionalParameters {
-	r.Names = &names
-	return r
+    r.Names = &names
+    return r
 }
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithLimit(limit int32) *GetUsageTopAvgMetricsOptionalParameters {
-	r.Limit = &limit
-	return r
+    r.Limit = &limit
+    return r
 }
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId string) *GetUsageTopAvgMetricsOptionalParameters {
-	r.NextRecordId = &nextRecordId
-	return r
+    r.NextRecordId = &nextRecordId
+    return r
 }
 
 /*
@@ -7157,23 +7191,23 @@ func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId 
 func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	req := apiGetUsageTopAvgMetricsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsageTopAvgMetricsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsageTopAvgMetricsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetUsageTopAvgMetricsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.month = o[0].Month
-		req.day = o[0].Day
-		req.names = o[0].Names
-		req.limit = o[0].Limit
-		req.nextRecordId = o[0].NextRecordId
-	}
+    if o != nil {
+        req.month = o[0].Month
+        req.day = o[0].Day
+        req.names = o[0].Names
+        req.limit = o[0].Limit
+        req.nextRecordId = o[0].NextRecordId
+    }
 
-	return req.ApiService.getUsageTopAvgMetricsExecute(req)
+    return req.ApiService.getUsageTopAvgMetricsExecute(req)
 }
 
 /*
@@ -7189,6 +7223,7 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 		localVarFileBytes    []byte
 		localVarReturnValue  UsageTopAvgMetricsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTopAvgMetrics")
 	if err != nil {

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsTestMonitorStatus The status of your Synthetic monitor. * `O` for not triggered * `1` for triggered * `2` for no data
@@ -19,8 +20,8 @@ type SyntheticsTestMonitorStatus int64
 // List of SyntheticsTestMonitorStatus
 const (
 	SYNTHETICSTESTMONITORSTATUS_UNTRIGGERED SyntheticsTestMonitorStatus = 0
-	SYNTHETICSTESTMONITORSTATUS_TRIGGERED   SyntheticsTestMonitorStatus = 1
-	SYNTHETICSTESTMONITORSTATUS_NO_DATA     SyntheticsTestMonitorStatus = 2
+	SYNTHETICSTESTMONITORSTATUS_TRIGGERED SyntheticsTestMonitorStatus = 1
+	SYNTHETICSTESTMONITORSTATUS_NO_DATA SyntheticsTestMonitorStatus = 2
 )
 
 var allowedSyntheticsTestMonitorStatusEnumValues = []SyntheticsTestMonitorStatus{
@@ -104,3 +105,4 @@ func (v *NullableSyntheticsTestMonitorStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

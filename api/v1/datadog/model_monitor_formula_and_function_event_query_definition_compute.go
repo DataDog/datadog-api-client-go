@@ -55,7 +55,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() 
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregationOk() (*MonitorFormulaAndFunctionEventAggregation, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Aggregation, true
@@ -151,12 +151,12 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-	}{}
+		}{}
 	all := struct {
-		Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-		Interval    *int64                                    `json:"interval,omitempty"`
-		Metric      *string                                   `json:"metric,omitempty"`
-	}{}
+			Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
+			Interval *int64 `json:"interval,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -186,3 +186,5 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(byt
 	o.Metric = all.Metric
 	return nil
 }
+
+

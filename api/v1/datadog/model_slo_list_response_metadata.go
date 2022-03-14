@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOListResponseMetadata The metadata object containing additional information about the list of SLOs.
@@ -82,8 +83,8 @@ func (o SLOListResponseMetadata) MarshalJSON() ([]byte, error) {
 func (o *SLOListResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *SLOListResponseMetadataPage `json:"page,omitempty"`
-	}{}
+			Page *SLOListResponseMetadataPage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *SLOListResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

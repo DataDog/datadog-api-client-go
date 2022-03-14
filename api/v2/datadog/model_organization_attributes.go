@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -343,15 +344,15 @@ func (o OrganizationAttributes) MarshalJSON() ([]byte, error) {
 func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt   *time.Time `json:"created_at,omitempty"`
-		Description *string    `json:"description,omitempty"`
-		Disabled    *bool      `json:"disabled,omitempty"`
-		ModifiedAt  *time.Time `json:"modified_at,omitempty"`
-		Name        *string    `json:"name,omitempty"`
-		PublicId    *string    `json:"public_id,omitempty"`
-		Sharing     *string    `json:"sharing,omitempty"`
-		Url         *string    `json:"url,omitempty"`
-	}{}
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Disabled *bool `json:"disabled,omitempty"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			Name *string `json:"name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			Sharing *string `json:"sharing,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -371,3 +372,5 @@ func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

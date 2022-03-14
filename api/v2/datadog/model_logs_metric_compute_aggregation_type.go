@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsMetricComputeAggregationType The type of aggregation to use.
@@ -18,7 +19,7 @@ type LogsMetricComputeAggregationType string
 
 // List of LogsMetricComputeAggregationType
 const (
-	LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT        LogsMetricComputeAggregationType = "count"
+	LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT LogsMetricComputeAggregationType = "count"
 	LOGSMETRICCOMPUTEAGGREGATIONTYPE_DISTRIBUTION LogsMetricComputeAggregationType = "distribution"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableLogsMetricComputeAggregationType) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

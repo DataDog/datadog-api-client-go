@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalListRequest The request for a security signal list.
 type SecurityMonitoringSignalListRequest struct {
 	Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
-	Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
-	Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+	Page *SecurityMonitoringSignalListRequestPage `json:"page,omitempty"`
+	Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -154,10 +155,10 @@ func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
-		Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
-		Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
-	}{}
+			Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
+			Page *SecurityMonitoringSignalListRequestPage `json:"page,omitempty"`
+			Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -180,3 +181,5 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 	o.Sort = all.Sort
 	return nil
 }
+
+

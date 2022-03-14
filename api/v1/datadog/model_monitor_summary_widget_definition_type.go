@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MonitorSummaryWidgetDefinitionType Type of the monitor summary widget.
@@ -100,3 +101,4 @@ func (v *NullableMonitorSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

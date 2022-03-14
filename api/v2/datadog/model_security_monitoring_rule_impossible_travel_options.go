@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleImpossibleTravelOptions Options on impossible travel rules.
@@ -83,8 +84,8 @@ func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, er
 func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
-	}{}
+			BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []by
 	o.BaselineUserLocations = all.BaselineUserLocations
 	return nil
 }
+
+

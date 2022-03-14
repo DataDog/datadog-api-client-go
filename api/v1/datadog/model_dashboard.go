@@ -28,12 +28,12 @@ type Dashboard struct {
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using `restricted_roles` to manage write authorization.
 	// Deprecated
-	IsReadOnly *bool               `json:"is_read_only,omitempty"`
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
 	LayoutType DashboardLayoutType `json:"layout_type"`
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
-	NotifyList []string             `json:"notify_list,omitempty"`
+	NotifyList []string `json:"notify_list,omitempty"`
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
@@ -120,7 +120,7 @@ func (o *Dashboard) GetAuthorName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Dashboard) GetAuthorNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.AuthorName.Get(), o.AuthorName.IsSet()
@@ -139,7 +139,6 @@ func (o *Dashboard) HasAuthorName() bool {
 func (o *Dashboard) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
-
 // SetAuthorNameNil sets the value for AuthorName to be an explicit nil
 func (o *Dashboard) SetAuthorNameNil() {
 	o.AuthorName.Set(nil)
@@ -195,7 +194,7 @@ func (o *Dashboard) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Dashboard) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -214,7 +213,6 @@ func (o *Dashboard) HasDescription() bool {
 func (o *Dashboard) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *Dashboard) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -305,7 +303,7 @@ func (o *Dashboard) GetLayoutType() DashboardLayoutType {
 // GetLayoutTypeOk returns a tuple with the LayoutType field value
 // and a boolean to check if the value has been set.
 func (o *Dashboard) GetLayoutTypeOk() (*DashboardLayoutType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.LayoutType, true
@@ -350,7 +348,7 @@ func (o *Dashboard) SetModifiedAt(v time.Time) {
 
 // GetNotifyList returns the NotifyList field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetNotifyList() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -447,7 +445,7 @@ func (o *Dashboard) SetRestrictedRoles(v []string) {
 
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePreset {
-	if o == nil {
+	if o == nil  {
 		var ret []DashboardTemplateVariablePreset
 		return ret
 	}
@@ -480,7 +478,7 @@ func (o *Dashboard) SetTemplateVariablePresets(v []DashboardTemplateVariablePres
 
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariable {
-	if o == nil {
+	if o == nil  {
 		var ret []DashboardTemplateVariable
 		return ret
 	}
@@ -524,7 +522,7 @@ func (o *Dashboard) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *Dashboard) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Title, true
@@ -580,7 +578,7 @@ func (o *Dashboard) GetWidgets() []Widget {
 // GetWidgetsOk returns a tuple with the Widgets field value
 // and a boolean to check if the value has been set.
 func (o *Dashboard) GetWidgetsOk() (*[]Widget, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Widgets, true
@@ -651,27 +649,27 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		LayoutType *DashboardLayoutType `json:"layout_type"`
-		Title      *string              `json:"title"`
-		Widgets    *[]Widget            `json:"widgets"`
-	}{}
+		Title *string `json:"title"`
+		Widgets *[]Widget `json:"widgets"`
+		}{}
 	all := struct {
-		AuthorHandle            *string                           `json:"author_handle,omitempty"`
-		AuthorName              NullableString                    `json:"author_name,omitempty"`
-		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
-		Description             NullableString                    `json:"description,omitempty"`
-		Id                      *string                           `json:"id,omitempty"`
-		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
-		LayoutType              DashboardLayoutType               `json:"layout_type"`
-		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
-		NotifyList              []string                          `json:"notify_list,omitempty"`
-		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
-		RestrictedRoles         *[]string                         `json:"restricted_roles,omitempty"`
-		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
-		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
-		Title                   string                            `json:"title"`
-		Url                     *string                           `json:"url,omitempty"`
-		Widgets                 []Widget                          `json:"widgets"`
-	}{}
+			AuthorHandle *string `json:"author_handle,omitempty"`
+			AuthorName NullableString `json:"author_name,omitempty"`
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			Description NullableString `json:"description,omitempty"`
+			Id *string `json:"id,omitempty"`
+			IsReadOnly *bool `json:"is_read_only,omitempty"`
+			LayoutType DashboardLayoutType `json:"layout_type"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			NotifyList []string `json:"notify_list,omitempty"`
+			ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
+			RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+			TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
+			TemplateVariables []DashboardTemplateVariable `json:"template_variables,omitempty"`
+			Title string `json:"title"`
+			Url *string `json:"url,omitempty"`
+			Widgets []Widget `json:"widgets"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -728,3 +726,5 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	o.Widgets = all.Widgets
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CheckCanDeleteMonitorResponseData Wrapper object with the list of monitor IDs.
@@ -83,8 +84,8 @@ func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ok *[]int64 `json:"ok,omitempty"`
-	}{}
+			Ok *[]int64 `json:"ok,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err err
 	o.Ok = all.Ok
 	return nil
 }
+
+

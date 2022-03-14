@@ -156,7 +156,7 @@ func (o *HTTPLogItem) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *HTTPLogItem) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -226,14 +226,14 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Message *string `json:"message"`
-	}{}
+		}{}
 	all := struct {
-		Ddsource *string `json:"ddsource,omitempty"`
-		Ddtags   *string `json:"ddtags,omitempty"`
-		Hostname *string `json:"hostname,omitempty"`
-		Message  string  `json:"message"`
-		Service  *string `json:"service,omitempty"`
-	}{}
+			Ddsource *string `json:"ddsource,omitempty"`
+			Ddtags *string `json:"ddtags,omitempty"`
+			Hostname *string `json:"hostname,omitempty"`
+			Message string `json:"message"`
+			Service *string `json:"service,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -257,3 +257,5 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	return nil
 }
+
+

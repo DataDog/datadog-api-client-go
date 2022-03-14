@@ -51,7 +51,7 @@ func (o *MetricTagConfigurationUpdateRequest) GetData() MetricTagConfigurationUp
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *MetricTagConfigurationUpdateRequest) GetDataOk() (*MetricTagConfigurationUpdateData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *MetricTagConfigurationUpdateRequest) UnmarshalJSON(bytes []byte) (err e
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *MetricTagConfigurationUpdateData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data MetricTagConfigurationUpdateData `json:"data"`
-	}{}
+			Data MetricTagConfigurationUpdateData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *MetricTagConfigurationUpdateRequest) UnmarshalJSON(bytes []byte) (err e
 	o.Data = all.Data
 	return nil
 }
+
+

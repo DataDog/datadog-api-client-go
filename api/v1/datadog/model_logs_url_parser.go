@@ -24,8 +24,8 @@ type LogsURLParser struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
-	Target string            `json:"target"`
-	Type   LogsURLParserType `json:"type"`
+	Target string `json:"target"`
+	Type LogsURLParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -139,7 +139,7 @@ func (o *LogsURLParser) GetNormalizeEndingSlashes() bool {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NormalizeEndingSlashes.Get(), o.NormalizeEndingSlashes.IsSet()
@@ -158,7 +158,6 @@ func (o *LogsURLParser) HasNormalizeEndingSlashes() bool {
 func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool) {
 	o.NormalizeEndingSlashes.Set(&v)
 }
-
 // SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
 func (o *LogsURLParser) SetNormalizeEndingSlashesNil() {
 	o.NormalizeEndingSlashes.Set(nil)
@@ -182,7 +181,7 @@ func (o *LogsURLParser) GetSources() []string {
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
 func (o *LogsURLParser) GetSourcesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sources, true
@@ -206,7 +205,7 @@ func (o *LogsURLParser) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsURLParser) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -230,7 +229,7 @@ func (o *LogsURLParser) GetType() LogsURLParserType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsURLParser) GetTypeOk() (*LogsURLParserType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -270,18 +269,18 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string          `json:"sources"`
-		Target  *string            `json:"target"`
-		Type    *LogsURLParserType `json:"type"`
-	}{}
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsURLParserType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled              *bool             `json:"is_enabled,omitempty"`
-		Name                   *string           `json:"name,omitempty"`
-		NormalizeEndingSlashes NullableBool      `json:"normalize_ending_slashes,omitempty"`
-		Sources                []string          `json:"sources"`
-		Target                 string            `json:"target"`
-		Type                   LogsURLParserType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			NormalizeEndingSlashes NullableBool `json:"normalize_ending_slashes,omitempty"`
+			Sources []string `json:"sources"`
+			Target string `json:"target"`
+			Type LogsURLParserType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -320,3 +319,5 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

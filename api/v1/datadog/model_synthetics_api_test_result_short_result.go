@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestResultShortResult Result of the last API test run.
 type SyntheticsAPITestResultShortResult struct {
 	// Describes if the test run has passed or failed.
-	Passed  *bool             `json:"passed,omitempty"`
+	Passed *bool `json:"passed,omitempty"`
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -119,9 +120,9 @@ func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Passed  *bool             `json:"passed,omitempty"`
-		Timings *SyntheticsTiming `json:"timings,omitempty"`
-	}{}
+			Passed *bool `json:"passed,omitempty"`
+			Timings *SyntheticsTiming `json:"timings,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err er
 	o.Timings = all.Timings
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SecurityMonitoringRuleTypeRead The rule type.
@@ -18,10 +19,10 @@ type SecurityMonitoringRuleTypeRead string
 
 // List of SecurityMonitoringRuleTypeRead
 const (
-	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION                SecurityMonitoringRuleTypeRead = "log_detection"
+	SECURITYMONITORINGRULETYPEREAD_LOG_DETECTION SecurityMonitoringRuleTypeRead = "log_detection"
 	SECURITYMONITORINGRULETYPEREAD_INFRASTRUCTURE_CONFIGURATION SecurityMonitoringRuleTypeRead = "infrastructure_configuration"
-	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY            SecurityMonitoringRuleTypeRead = "workload_security"
-	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION          SecurityMonitoringRuleTypeRead = "cloud_configuration"
+	SECURITYMONITORINGRULETYPEREAD_WORKLOAD_SECURITY SecurityMonitoringRuleTypeRead = "workload_security"
+	SECURITYMONITORINGRULETYPEREAD_CLOUD_CONFIGURATION SecurityMonitoringRuleTypeRead = "cloud_configuration"
 )
 
 var allowedSecurityMonitoringRuleTypeReadEnumValues = []SecurityMonitoringRuleTypeRead{
@@ -106,3 +107,4 @@ func (v *NullableSecurityMonitoringRuleTypeRead) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

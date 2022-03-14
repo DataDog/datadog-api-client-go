@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestOptionsRetry Object describing the retry strategy to apply to a Synthetic test.
@@ -120,9 +121,9 @@ func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Count    *int64   `json:"count,omitempty"`
-		Interval *float64 `json:"interval,omitempty"`
-	}{}
+			Count *int64 `json:"count,omitempty"`
+			Interval *float64 `json:"interval,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = all.Interval
 	return nil
 }
+
+

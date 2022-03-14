@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsAPIStepSubtype The subtype of the Synthetic multistep API test step, currently only supporting `http`.
@@ -100,3 +101,4 @@ func (v *NullableSyntheticsAPIStepSubtype) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

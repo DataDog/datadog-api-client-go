@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -232,12 +233,12 @@ func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DbmHostCount    *int64     `json:"dbm_host_count,omitempty"`
-		DbmQueriesCount *int64     `json:"dbm_queries_count,omitempty"`
-		Hour            *time.Time `json:"hour,omitempty"`
-		OrgName         *string    `json:"org_name,omitempty"`
-		PublicId        *string    `json:"public_id,omitempty"`
-	}{}
+			DbmHostCount *int64 `json:"dbm_host_count,omitempty"`
+			DbmQueriesCount *int64 `json:"dbm_queries_count,omitempty"`
+			Hour *time.Time `json:"hour,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -254,3 +255,5 @@ func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
+
+

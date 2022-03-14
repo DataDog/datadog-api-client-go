@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsUserAgentParserType Type of logs User-Agent parser.
@@ -100,3 +101,4 @@ func (v *NullableLogsUserAgentParserType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,11 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.
 type AuthNMappingIncluded struct {
-	Role                   *Role
+	Role *Role
 	SAMLAssertionAttribute *SAMLAssertionAttribute
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -23,13 +25,14 @@ type AuthNMappingIncluded struct {
 
 // RoleAsAuthNMappingIncluded is a convenience function that returns Role wrapped in AuthNMappingIncluded
 func RoleAsAuthNMappingIncluded(v *Role) AuthNMappingIncluded {
-	return AuthNMappingIncluded{Role: v}
+	return AuthNMappingIncluded{ Role: v}
 }
 
 // SAMLAssertionAttributeAsAuthNMappingIncluded is a convenience function that returns SAMLAssertionAttribute wrapped in AuthNMappingIncluded
 func SAMLAssertionAttributeAsAuthNMappingIncluded(v *SAMLAssertionAttribute) AuthNMappingIncluded {
-	return AuthNMappingIncluded{SAMLAssertionAttribute: v}
+	return AuthNMappingIncluded{ SAMLAssertionAttribute: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *AuthNMappingIncluded) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *AuthNMappingIncluded) GetActualInstance() interface{} {
+func (obj *AuthNMappingIncluded) GetActualInstance() (interface{}) {
 	if obj.Role != nil {
 		return obj.Role
 	}
@@ -144,3 +147,5 @@ func (v *NullableAuthNMappingIncluded) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

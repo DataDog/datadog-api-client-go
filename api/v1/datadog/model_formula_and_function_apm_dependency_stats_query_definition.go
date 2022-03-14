@@ -31,8 +31,8 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	// APM resource.
 	ResourceName string `json:"resource_name"`
 	// APM service.
-	Service string                                  `json:"service"`
-	Stat    FormulaAndFunctionApmDependencyStatName `json:"stat"`
+	Service string `json:"service"`
+	Stat FormulaAndFunctionApmDependencyStatName `json:"stat"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -74,7 +74,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetDataSource() Fo
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionApmDependencyStatsDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -98,7 +98,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnv() string {
 // GetEnvOk returns a tuple with the Env field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Env, true
@@ -154,7 +154,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -178,7 +178,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationName()
 // GetOperationNameOk returns a tuple with the OperationName field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.OperationName, true
@@ -266,7 +266,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetResourceName() 
 // GetResourceNameOk returns a tuple with the ResourceName field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetResourceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ResourceName, true
@@ -290,7 +290,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetService() strin
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -314,7 +314,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetStat() FormulaA
 // GetStatOk returns a tuple with the Stat field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetStatOk() (*FormulaAndFunctionApmDependencyStatName, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Stat, true
@@ -366,26 +366,26 @@ func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]by
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		DataSource    *FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
-		Env           *string                                         `json:"env"`
-		Name          *string                                         `json:"name"`
-		OperationName *string                                         `json:"operation_name"`
-		ResourceName  *string                                         `json:"resource_name"`
-		Service       *string                                         `json:"service"`
-		Stat          *FormulaAndFunctionApmDependencyStatName        `json:"stat"`
-	}{}
+		DataSource *FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
+		Env *string `json:"env"`
+		Name *string `json:"name"`
+		OperationName *string `json:"operation_name"`
+		ResourceName *string `json:"resource_name"`
+		Service *string `json:"service"`
+		Stat *FormulaAndFunctionApmDependencyStatName `json:"stat"`
+		}{}
 	all := struct {
-		DataSource      FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
-		Env             string                                         `json:"env"`
-		IsUpstream      *bool                                          `json:"is_upstream,omitempty"`
-		Name            string                                         `json:"name"`
-		OperationName   string                                         `json:"operation_name"`
-		PrimaryTagName  *string                                        `json:"primary_tag_name,omitempty"`
-		PrimaryTagValue *string                                        `json:"primary_tag_value,omitempty"`
-		ResourceName    string                                         `json:"resource_name"`
-		Service         string                                         `json:"service"`
-		Stat            FormulaAndFunctionApmDependencyStatName        `json:"stat"`
-	}{}
+			DataSource FormulaAndFunctionApmDependencyStatsDataSource `json:"data_source"`
+			Env string `json:"env"`
+			IsUpstream *bool `json:"is_upstream,omitempty"`
+			Name string `json:"name"`
+			OperationName string `json:"operation_name"`
+			PrimaryTagName *string `json:"primary_tag_name,omitempty"`
+			PrimaryTagValue *string `json:"primary_tag_value,omitempty"`
+			ResourceName string `json:"resource_name"`
+			Service string `json:"service"`
+			Stat FormulaAndFunctionApmDependencyStatName `json:"stat"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -448,3 +448,5 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(byte
 	o.Stat = all.Stat
 	return nil
 }
+
+

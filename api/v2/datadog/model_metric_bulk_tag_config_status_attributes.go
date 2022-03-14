@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricBulkTagConfigStatusAttributes Optional attributes for the status of a bulk tag configuration request.
@@ -157,10 +158,10 @@ func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Emails *[]string `json:"emails,omitempty"`
-		Status *string   `json:"status,omitempty"`
-		Tags   *[]string `json:"tags,omitempty"`
-	}{}
+			Emails *[]string `json:"emails,omitempty"`
+			Status *string `json:"status,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Tags = all.Tags
 	return nil
 }
+
+

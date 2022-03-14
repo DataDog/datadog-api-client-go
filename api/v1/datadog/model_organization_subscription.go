@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationSubscription Subscription definition.
@@ -83,8 +84,8 @@ func (o OrganizationSubscription) MarshalJSON() ([]byte, error) {
 func (o *OrganizationSubscription) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Type *string `json:"type,omitempty"`
-	}{}
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *OrganizationSubscription) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

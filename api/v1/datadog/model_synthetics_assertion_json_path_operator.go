@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsAssertionJSONPathOperator Assertion operator to apply.
@@ -100,3 +101,4 @@ func (v *NullableSyntheticsAssertionJSONPathOperator) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

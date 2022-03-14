@@ -53,7 +53,7 @@ func (o *LogsMetricCompute) GetAggregationType() LogsMetricComputeAggregationTyp
 // GetAggregationTypeOk returns a tuple with the AggregationType field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricCompute) GetAggregationTypeOk() (*LogsMetricComputeAggregationType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AggregationType, true
@@ -114,11 +114,11 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		AggregationType *LogsMetricComputeAggregationType `json:"aggregation_type"`
-	}{}
+		}{}
 	all := struct {
-		AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"`
-		Path            *string                          `json:"path,omitempty"`
-	}{}
+			AggregationType LogsMetricComputeAggregationType `json:"aggregation_type"`
+			Path *string `json:"path,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -147,3 +147,5 @@ func (o *LogsMetricCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Path = all.Path
 	return nil
 }
+
+

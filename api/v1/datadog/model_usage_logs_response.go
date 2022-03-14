@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageLogsResponse Response containing the number of logs for each hour.
@@ -83,8 +84,8 @@ func (o UsageLogsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageLogsHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageLogsHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageLogsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryMetricsSeriesMetadataUnit An Object of metric units.
@@ -156,7 +157,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPlural() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPluralOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Plural.Get(), o.Plural.IsSet()
@@ -175,7 +176,6 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasPlural() bool {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPlural(v string) {
 	o.Plural.Set(&v)
 }
-
 // SetPluralNil sets the value for Plural to be an explicit nil
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPluralNil() {
 	o.Plural.Set(nil)
@@ -231,7 +231,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.ShortName.Get(), o.ShortName.IsSet()
@@ -250,7 +250,6 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) HasShortName() bool {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortName(v string) {
 	o.ShortName.Set(&v)
 }
-
 // SetShortNameNil sets the value for ShortName to be an explicit nil
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortNameNil() {
 	o.ShortName.Set(nil)
@@ -290,13 +289,13 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Family      *string        `json:"family,omitempty"`
-		Id          *int64         `json:"id,omitempty"`
-		Name        *string        `json:"name,omitempty"`
-		Plural      NullableString `json:"plural,omitempty"`
-		ScaleFactor *float64       `json:"scale_factor,omitempty"`
-		ShortName   NullableString `json:"short_name,omitempty"`
-	}{}
+			Family *string `json:"family,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Plural NullableString `json:"plural,omitempty"`
+			ScaleFactor *float64 `json:"scale_factor,omitempty"`
+			ShortName NullableString `json:"short_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -350,3 +349,5 @@ func (v *NullableSLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

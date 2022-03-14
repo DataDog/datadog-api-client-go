@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HTTPLogError List of errors.
@@ -157,10 +158,10 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Detail *string `json:"detail,omitempty"`
-		Status *string `json:"status,omitempty"`
-		Title  *string `json:"title,omitempty"`
-	}{}
+			Detail *string `json:"detail,omitempty"`
+			Status *string `json:"status,omitempty"`
+			Title *string `json:"title,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
+
+

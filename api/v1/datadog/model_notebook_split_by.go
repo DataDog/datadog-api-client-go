@@ -55,7 +55,7 @@ func (o *NotebookSplitBy) GetKeys() []string {
 // GetKeysOk returns a tuple with the Keys field value
 // and a boolean to check if the value has been set.
 func (o *NotebookSplitBy) GetKeysOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Keys, true
@@ -79,7 +79,7 @@ func (o *NotebookSplitBy) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *NotebookSplitBy) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tags, true
@@ -109,11 +109,11 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
 		Keys *[]string `json:"keys"`
 		Tags *[]string `json:"tags"`
-	}{}
+		}{}
 	all := struct {
-		Keys []string `json:"keys"`
-		Tags []string `json:"tags"`
-	}{}
+			Keys []string `json:"keys"`
+			Tags []string `json:"tags"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

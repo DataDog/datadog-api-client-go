@@ -52,7 +52,7 @@ func (o *CancelDowntimesByScopeRequest) GetScope() string {
 // GetScopeOk returns a tuple with the Scope field value
 // and a boolean to check if the value has been set.
 func (o *CancelDowntimesByScopeRequest) GetScopeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Scope, true
@@ -78,10 +78,10 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 	raw := map[string]interface{}{}
 	required := struct {
 		Scope *string `json:"scope"`
-	}{}
+		}{}
 	all := struct {
-		Scope string `json:"scope"`
-	}{}
+			Scope string `json:"scope"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) 
 	o.Scope = all.Scope
 	return nil
 }
+
+

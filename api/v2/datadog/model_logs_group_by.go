@@ -16,13 +16,13 @@ import (
 // LogsGroupBy A group by rule
 type LogsGroupBy struct {
 	// The name of the facet to use (required)
-	Facet     string                `json:"facet"`
+	Facet string `json:"facet"`
 	Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
 	// The maximum buckets to return for this group by
-	Limit   *int64              `json:"limit,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
 	Missing *LogsGroupByMissing `json:"missing,omitempty"`
-	Sort    *LogsAggregateSort  `json:"sort,omitempty"`
-	Total   *LogsGroupByTotal   `json:"total,omitempty"`
+	Sort *LogsAggregateSort `json:"sort,omitempty"`
+	Total *LogsGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -62,7 +62,7 @@ func (o *LogsGroupBy) GetFacet() string {
 // GetFacetOk returns a tuple with the Facet field value
 // and a boolean to check if the value has been set.
 func (o *LogsGroupBy) GetFacetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Facet, true
@@ -263,15 +263,15 @@ func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Facet *string `json:"facet"`
-	}{}
+		}{}
 	all := struct {
-		Facet     string                `json:"facet"`
-		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
-		Limit     *int64                `json:"limit,omitempty"`
-		Missing   *LogsGroupByMissing   `json:"missing,omitempty"`
-		Sort      *LogsAggregateSort    `json:"sort,omitempty"`
-		Total     *LogsGroupByTotal     `json:"total,omitempty"`
-	}{}
+			Facet string `json:"facet"`
+			Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
+			Limit *int64 `json:"limit,omitempty"`
+			Missing *LogsGroupByMissing `json:"missing,omitempty"`
+			Sort *LogsAggregateSort `json:"sort,omitempty"`
+			Total *LogsGroupByTotal `json:"total,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -296,3 +296,5 @@ func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Total = all.Total
 	return nil
 }
+
+

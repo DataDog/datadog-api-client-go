@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IPPrefixesSynthetics Available prefix information for the Synthetics endpoints.
@@ -194,11 +195,11 @@ func (o IPPrefixesSynthetics) MarshalJSON() ([]byte, error) {
 func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PrefixesIpv4           *[]string            `json:"prefixes_ipv4,omitempty"`
-		PrefixesIpv4ByLocation *map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
-		PrefixesIpv6           *[]string            `json:"prefixes_ipv6,omitempty"`
-		PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
-	}{}
+			PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
+			PrefixesIpv4ByLocation *map[string][]string `json:"prefixes_ipv4_by_location,omitempty"`
+			PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+			PrefixesIpv6ByLocation *map[string][]string `json:"prefixes_ipv6_by_location,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *IPPrefixesSynthetics) UnmarshalJSON(bytes []byte) (err error) {
 	o.PrefixesIpv6ByLocation = all.PrefixesIpv6ByLocation
 	return nil
 }
+
+

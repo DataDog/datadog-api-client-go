@@ -55,7 +55,7 @@ func (o *GeomapWidgetDefinitionStyle) GetPalette() string {
 // GetPaletteOk returns a tuple with the Palette field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinitionStyle) GetPaletteOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Palette, true
@@ -79,7 +79,7 @@ func (o *GeomapWidgetDefinitionStyle) GetPaletteFlip() bool {
 // GetPaletteFlipOk returns a tuple with the PaletteFlip field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinitionStyle) GetPaletteFlipOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.PaletteFlip, true
@@ -107,13 +107,13 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Palette     *string `json:"palette"`
-		PaletteFlip *bool   `json:"palette_flip"`
-	}{}
+		Palette *string `json:"palette"`
+		PaletteFlip *bool `json:"palette_flip"`
+		}{}
 	all := struct {
-		Palette     string `json:"palette"`
-		PaletteFlip bool   `json:"palette_flip"`
-	}{}
+			Palette string `json:"palette"`
+			PaletteFlip bool `json:"palette_flip"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.PaletteFlip = all.PaletteFlip
 	return nil
 }
+
+

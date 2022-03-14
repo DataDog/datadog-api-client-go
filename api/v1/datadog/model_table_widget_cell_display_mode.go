@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // TableWidgetCellDisplayMode Define a display mode for the table cell.
@@ -19,7 +20,7 @@ type TableWidgetCellDisplayMode string
 // List of TableWidgetCellDisplayMode
 const (
 	TABLEWIDGETCELLDISPLAYMODE_NUMBER TableWidgetCellDisplayMode = "number"
-	TABLEWIDGETCELLDISPLAYMODE_BAR    TableWidgetCellDisplayMode = "bar"
+	TABLEWIDGETCELLDISPLAYMODE_BAR TableWidgetCellDisplayMode = "bar"
 )
 
 var allowedTableWidgetCellDisplayModeEnumValues = []TableWidgetCellDisplayMode{
@@ -102,3 +103,4 @@ func (v *NullableTableWidgetCellDisplayMode) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

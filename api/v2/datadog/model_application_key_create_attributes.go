@@ -54,7 +54,7 @@ func (o *ApplicationKeyCreateAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ApplicationKeyCreateAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -67,7 +67,7 @@ func (o *ApplicationKeyCreateAttributes) SetName(v string) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationKeyCreateAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -116,11 +116,11 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Name   string   `json:"name"`
-		Scopes []string `json:"scopes,omitempty"`
-	}{}
+			Name string `json:"name"`
+			Scopes []string `json:"scopes,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -141,3 +141,5 @@ func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Scopes = all.Scopes
 	return nil
 }
+
+

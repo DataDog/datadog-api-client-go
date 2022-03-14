@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsFilter Filter for logs.
@@ -83,8 +84,8 @@ func (o LogsFilter) MarshalJSON() ([]byte, error) {
 func (o *LogsFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Query *string `json:"query,omitempty"`
-	}{}
+			Query *string `json:"query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	return nil
 }
+
+

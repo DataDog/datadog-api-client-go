@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsBrowserErrorType Error type returned by a browser test.
@@ -19,7 +20,7 @@ type SyntheticsBrowserErrorType string
 // List of SyntheticsBrowserErrorType
 const (
 	SYNTHETICSBROWSERERRORTYPE_NETWORK SyntheticsBrowserErrorType = "network"
-	SYNTHETICSBROWSERERRORTYPE_JS      SyntheticsBrowserErrorType = "js"
+	SYNTHETICSBROWSERERRORTYPE_JS SyntheticsBrowserErrorType = "js"
 )
 
 var allowedSyntheticsBrowserErrorTypeEnumValues = []SyntheticsBrowserErrorType{
@@ -102,3 +103,4 @@ func (v *NullableSyntheticsBrowserErrorType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

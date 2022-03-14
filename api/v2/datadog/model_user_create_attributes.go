@@ -56,7 +56,7 @@ func (o *UserCreateAttributes) GetEmail() string {
 // GetEmailOk returns a tuple with the Email field value
 // and a boolean to check if the value has been set.
 func (o *UserCreateAttributes) GetEmailOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Email, true
@@ -152,12 +152,12 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Email *string `json:"email"`
-	}{}
+		}{}
 	all := struct {
-		Email string  `json:"email"`
-		Name  *string `json:"name,omitempty"`
-		Title *string `json:"title,omitempty"`
-	}{}
+			Email string `json:"email"`
+			Name *string `json:"name,omitempty"`
+			Title *string `json:"title,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -179,3 +179,5 @@ func (o *UserCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
+
+

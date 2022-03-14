@@ -10,15 +10,17 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
 	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
-	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition
-	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
+	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition
+	FormulaAndFunctionEventQueryDefinition *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionProcessQueryDefinition *FormulaAndFunctionProcessQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -26,28 +28,29 @@ type FormulaAndFunctionQueryDefinition struct {
 
 // FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionApmDependencyStatsQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionApmDependencyStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionApmDependencyStatsQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionApmDependencyStatsQueryDefinition: v}
+	return FormulaAndFunctionQueryDefinition{ FormulaAndFunctionApmDependencyStatsQueryDefinition: v}
 }
 
 // FormulaAndFunctionApmResourceStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionApmResourceStatsQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionApmResourceStatsQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionApmResourceStatsQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionApmResourceStatsQueryDefinition: v}
+	return FormulaAndFunctionQueryDefinition{ FormulaAndFunctionApmResourceStatsQueryDefinition: v}
 }
 
 // FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionEventQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionEventQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionEventQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionEventQueryDefinition: v}
+	return FormulaAndFunctionQueryDefinition{ FormulaAndFunctionEventQueryDefinition: v}
 }
 
 // FormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionMetricQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionMetricQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionMetricQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionMetricQueryDefinition: v}
+	return FormulaAndFunctionQueryDefinition{ FormulaAndFunctionMetricQueryDefinition: v}
 }
 
 // FormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition is a convenience function that returns FormulaAndFunctionProcessQueryDefinition wrapped in FormulaAndFunctionQueryDefinition
 func FormulaAndFunctionProcessQueryDefinitionAsFormulaAndFunctionQueryDefinition(v *FormulaAndFunctionProcessQueryDefinition) FormulaAndFunctionQueryDefinition {
-	return FormulaAndFunctionQueryDefinition{FormulaAndFunctionProcessQueryDefinition: v}
+	return FormulaAndFunctionQueryDefinition{ FormulaAndFunctionProcessQueryDefinition: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *FormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
@@ -180,7 +183,7 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmDependencyStatsQueryDefinition
 	}
@@ -240,3 +243,5 @@ func (v *NullableFormulaAndFunctionQueryDefinition) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

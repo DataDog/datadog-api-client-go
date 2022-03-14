@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestResultShort Object with the results of a single Synthetic API test.
@@ -17,11 +18,11 @@ type SyntheticsAPITestResultShort struct {
 	// Last time the API test was performed.
 	CheckTime *float64 `json:"check_time,omitempty"`
 	// Location from which the API test was performed.
-	ProbeDc *string                             `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -229,12 +230,12 @@ func (o SyntheticsAPITestResultShort) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CheckTime *float64                            `json:"check_time,omitempty"`
-		ProbeDc   *string                             `json:"probe_dc,omitempty"`
-		Result    *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
-		ResultId  *string                             `json:"result_id,omitempty"`
-		Status    *SyntheticsTestMonitorStatus        `json:"status,omitempty"`
-	}{}
+			CheckTime *float64 `json:"check_time,omitempty"`
+			ProbeDc *string `json:"probe_dc,omitempty"`
+			Result *SyntheticsAPITestResultShortResult `json:"result,omitempty"`
+			ResultId *string `json:"result_id,omitempty"`
+			Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -259,3 +260,5 @@ func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

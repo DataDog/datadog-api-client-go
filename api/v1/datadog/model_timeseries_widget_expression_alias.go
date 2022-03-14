@@ -86,7 +86,7 @@ func (o *TimeseriesWidgetExpressionAlias) GetExpression() string {
 // GetExpressionOk returns a tuple with the Expression field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetExpressionAlias) GetExpressionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Expression, true
@@ -115,11 +115,11 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	required := struct {
 		Expression *string `json:"expression"`
-	}{}
+		}{}
 	all := struct {
-		AliasName  *string `json:"alias_name,omitempty"`
-		Expression string  `json:"expression"`
-	}{}
+			AliasName *string `json:"alias_name,omitempty"`
+			Expression string `json:"expression"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *TimeseriesWidgetExpressionAlias) UnmarshalJSON(bytes []byte) (err error
 	o.Expression = all.Expression
 	return nil
 }
+
+

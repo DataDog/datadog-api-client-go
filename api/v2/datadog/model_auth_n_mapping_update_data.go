@@ -17,9 +17,9 @@ import (
 type AuthNMappingUpdateData struct {
 	Attributes *AuthNMappingUpdateAttributes `json:"attributes,omitempty"`
 	// ID of the AuthN Mapping.
-	Id            string                           `json:"id"`
+	Id string `json:"id"`
 	Relationships *AuthNMappingUpdateRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType                `json:"type"`
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -90,7 +90,7 @@ func (o *AuthNMappingUpdateData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMappingUpdateData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -146,7 +146,7 @@ func (o *AuthNMappingUpdateData) GetType() AuthNMappingsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMappingUpdateData) GetTypeOk() (*AuthNMappingsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -180,15 +180,15 @@ func (o AuthNMappingUpdateData) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string            `json:"id"`
+		Id *string `json:"id"`
 		Type *AuthNMappingsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *AuthNMappingUpdateAttributes    `json:"attributes,omitempty"`
-		Id            string                           `json:"id"`
-		Relationships *AuthNMappingUpdateRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType                `json:"type"`
-	}{}
+			Attributes *AuthNMappingUpdateAttributes `json:"attributes,omitempty"`
+			Id string `json:"id"`
+			Relationships *AuthNMappingUpdateRelationships `json:"relationships,omitempty"`
+			Type AuthNMappingsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -222,3 +222,5 @@ func (o *AuthNMappingUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

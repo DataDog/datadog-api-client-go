@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PartialAPIKey Partial Datadog API key.
 type PartialAPIKey struct {
 	Attributes *PartialAPIKeyAttributes `json:"attributes,omitempty"`
 	// ID of the API key.
-	Id            *string              `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Relationships *APIKeyRelationships `json:"relationships,omitempty"`
-	Type          *APIKeysType         `json:"type,omitempty"`
+	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -195,11 +196,11 @@ func (o PartialAPIKey) MarshalJSON() ([]byte, error) {
 func (o *PartialAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *PartialAPIKeyAttributes `json:"attributes,omitempty"`
-		Id            *string                  `json:"id,omitempty"`
-		Relationships *APIKeyRelationships     `json:"relationships,omitempty"`
-		Type          *APIKeysType             `json:"type,omitempty"`
-	}{}
+			Attributes *PartialAPIKeyAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Relationships *APIKeyRelationships `json:"relationships,omitempty"`
+			Type *APIKeysType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -223,3 +224,5 @@ func (o *PartialAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

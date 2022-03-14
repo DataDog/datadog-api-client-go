@@ -53,7 +53,7 @@ func (o *CheckCanDeleteMonitorResponse) GetData() CheckCanDeleteMonitorResponseD
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *CheckCanDeleteMonitorResponse) GetDataOk() (*CheckCanDeleteMonitorResponseData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -114,11 +114,11 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *CheckCanDeleteMonitorResponseData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data   CheckCanDeleteMonitorResponseData `json:"data"`
-		Errors *map[string][]string              `json:"errors,omitempty"`
-	}{}
+			Data CheckCanDeleteMonitorResponseData `json:"data"`
+			Errors *map[string][]string `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -139,3 +139,5 @@ func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) 
 	o.Errors = all.Errors
 	return nil
 }
+
+

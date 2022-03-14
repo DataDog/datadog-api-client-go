@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsMetricType The type of the resource. The value should always be logs_metrics.
@@ -100,3 +101,4 @@ func (v *NullableLogsMetricType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

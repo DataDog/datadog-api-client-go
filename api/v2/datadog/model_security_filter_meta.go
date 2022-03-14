@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityFilterMeta Optional metadata associated to the response.
@@ -83,8 +84,8 @@ func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Warning *string `json:"warning,omitempty"`
-	}{}
+			Warning *string `json:"warning,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SecurityFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Warning = all.Warning
 	return nil
 }
+
+

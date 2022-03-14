@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // AuthNMappingsSort Sorting options for AuthN Mappings.
@@ -18,17 +19,17 @@ type AuthNMappingsSort string
 
 // List of AuthNMappingsSort
 const (
-	AUTHNMAPPINGSSORT_CREATED_AT_ASCENDING                      AuthNMappingsSort = "created_at"
-	AUTHNMAPPINGSSORT_CREATED_AT_DESCENDING                     AuthNMappingsSort = "-created_at"
-	AUTHNMAPPINGSSORT_ROLE_ID_ASCENDING                         AuthNMappingsSort = "role_id"
-	AUTHNMAPPINGSSORT_ROLE_ID_DESCENDING                        AuthNMappingsSort = "-role_id"
-	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_ASCENDING     AuthNMappingsSort = "saml_assertion_attribute_id"
-	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_DESCENDING    AuthNMappingsSort = "-saml_assertion_attribute_id"
-	AUTHNMAPPINGSSORT_ROLE_NAME_ASCENDING                       AuthNMappingsSort = "role.name"
-	AUTHNMAPPINGSSORT_ROLE_NAME_DESCENDING                      AuthNMappingsSort = "-role.name"
-	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_ASCENDING    AuthNMappingsSort = "saml_assertion_attribute.attribute_key"
-	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_DESCENDING   AuthNMappingsSort = "-saml_assertion_attribute.attribute_key"
-	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_ASCENDING  AuthNMappingsSort = "saml_assertion_attribute.attribute_value"
+	AUTHNMAPPINGSSORT_CREATED_AT_ASCENDING AuthNMappingsSort = "created_at"
+	AUTHNMAPPINGSSORT_CREATED_AT_DESCENDING AuthNMappingsSort = "-created_at"
+	AUTHNMAPPINGSSORT_ROLE_ID_ASCENDING AuthNMappingsSort = "role_id"
+	AUTHNMAPPINGSSORT_ROLE_ID_DESCENDING AuthNMappingsSort = "-role_id"
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_ASCENDING AuthNMappingsSort = "saml_assertion_attribute_id"
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_ID_DESCENDING AuthNMappingsSort = "-saml_assertion_attribute_id"
+	AUTHNMAPPINGSSORT_ROLE_NAME_ASCENDING AuthNMappingsSort = "role.name"
+	AUTHNMAPPINGSSORT_ROLE_NAME_DESCENDING AuthNMappingsSort = "-role.name"
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_ASCENDING AuthNMappingsSort = "saml_assertion_attribute.attribute_key"
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_KEY_DESCENDING AuthNMappingsSort = "-saml_assertion_attribute.attribute_key"
+	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_ASCENDING AuthNMappingsSort = "saml_assertion_attribute.attribute_value"
 	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_DESCENDING AuthNMappingsSort = "-saml_assertion_attribute.attribute_value"
 )
 
@@ -122,3 +123,4 @@ func (v *NullableAuthNMappingsSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

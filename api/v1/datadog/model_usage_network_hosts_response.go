@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageNetworkHostsResponse Response containing the number of active NPM hosts for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageNetworkHostsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkHostsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageNetworkHostsHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageNetworkHostsHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageNetworkHostsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorThresholdWindowOptions Alerting time window options.
@@ -52,7 +53,7 @@ func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RecoveryWindow.Get(), o.RecoveryWindow.IsSet()
@@ -71,7 +72,6 @@ func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
 	o.RecoveryWindow.Set(&v)
 }
-
 // SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
 	o.RecoveryWindow.Set(nil)
@@ -95,7 +95,7 @@ func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.TriggerWindow.Get(), o.TriggerWindow.IsSet()
@@ -114,7 +114,6 @@ func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow.Set(&v)
 }
-
 // SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
 func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
 	o.TriggerWindow.Set(nil)
@@ -142,9 +141,9 @@ func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		RecoveryWindow NullableString `json:"recovery_window,omitempty"`
-		TriggerWindow  NullableString `json:"trigger_window,omitempty"`
-	}{}
+			RecoveryWindow NullableString `json:"recovery_window,omitempty"`
+			TriggerWindow NullableString `json:"trigger_window,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -158,3 +157,5 @@ func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) 
 	o.TriggerWindow = all.TriggerWindow
 	return nil
 }
+
+

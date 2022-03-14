@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // APIKeyRelationships Resources related to the API key.
 type APIKeyRelationships struct {
-	CreatedBy  *RelationshipToUser `json:"created_by,omitempty"`
+	CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
 	ModifiedBy *RelationshipToUser `json:"modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o APIKeyRelationships) MarshalJSON() ([]byte, error) {
 func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedBy  *RelationshipToUser `json:"created_by,omitempty"`
-		ModifiedBy *RelationshipToUser `json:"modified_by,omitempty"`
-	}{}
+			CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+			ModifiedBy *RelationshipToUser `json:"modified_by,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *APIKeyRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.ModifiedBy = all.ModifiedBy
 	return nil
 }
+
+

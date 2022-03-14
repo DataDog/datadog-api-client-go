@@ -16,7 +16,7 @@ import (
 // RoleClone Data for the clone role request.
 type RoleClone struct {
 	Attributes RoleCloneAttributes `json:"attributes"`
-	Type       RolesType           `json:"type"`
+	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *RoleClone) GetAttributes() RoleCloneAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *RoleClone) GetAttributesOk() (*RoleCloneAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *RoleClone) GetType() RolesType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RoleClone) GetTypeOk() (*RolesType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *RoleCloneAttributes `json:"attributes"`
-		Type       *RolesType           `json:"type"`
-	}{}
+		Type *RolesType `json:"type"`
+		}{}
 	all := struct {
-		Attributes RoleCloneAttributes `json:"attributes"`
-		Type       RolesType           `json:"type"`
-	}{}
+			Attributes RoleCloneAttributes `json:"attributes"`
+			Type RolesType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

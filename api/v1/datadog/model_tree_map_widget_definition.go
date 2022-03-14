@@ -19,10 +19,10 @@ type TreeMapWidgetDefinition struct {
 	GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
 	// List of top list widget requests.
 	Requests []TreeMapWidgetRequest `json:"requests"`
-	SizeBy   *TreeMapSizeBy         `json:"size_by,omitempty"`
+	SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
 	// Title of your widget.
-	Title *string                     `json:"title,omitempty"`
-	Type  TreeMapWidgetDefinitionType `json:"type"`
+	Title *string `json:"title,omitempty"`
+	Type TreeMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -129,7 +129,7 @@ func (o *TreeMapWidgetDefinition) GetRequests() []TreeMapWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *TreeMapWidgetDefinition) GetRequestsOk() (*[]TreeMapWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -217,7 +217,7 @@ func (o *TreeMapWidgetDefinition) GetType() TreeMapWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TreeMapWidgetDefinition) GetTypeOk() (*TreeMapWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -257,17 +257,17 @@ func (o TreeMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]TreeMapWidgetRequest      `json:"requests"`
-		Type     *TreeMapWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]TreeMapWidgetRequest `json:"requests"`
+		Type *TreeMapWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		ColorBy  *TreeMapColorBy             `json:"color_by,omitempty"`
-		GroupBy  *TreeMapGroupBy             `json:"group_by,omitempty"`
-		Requests []TreeMapWidgetRequest      `json:"requests"`
-		SizeBy   *TreeMapSizeBy              `json:"size_by,omitempty"`
-		Title    *string                     `json:"title,omitempty"`
-		Type     TreeMapWidgetDefinitionType `json:"type"`
-	}{}
+			ColorBy *TreeMapColorBy `json:"color_by,omitempty"`
+			GroupBy *TreeMapGroupBy `json:"group_by,omitempty"`
+			Requests []TreeMapWidgetRequest `json:"requests"`
+			SizeBy *TreeMapSizeBy `json:"size_by,omitempty"`
+			Title *string `json:"title,omitempty"`
+			Type TreeMapWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -327,3 +327,5 @@ func (o *TreeMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

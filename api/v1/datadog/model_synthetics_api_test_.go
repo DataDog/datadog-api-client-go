@@ -23,14 +23,14 @@ type SyntheticsAPITest struct {
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    string                `json:"name"`
+	Name string `json:"name"`
 	Options SyntheticsTestOptions `json:"options"`
 	// The public ID for the test.
-	PublicId *string                       `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-	Subtype  *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string             `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -73,7 +73,7 @@ func (o *SyntheticsAPITest) GetConfig() SyntheticsAPITestConfig {
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetConfigOk() (*SyntheticsAPITestConfig, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Config, true
@@ -97,7 +97,7 @@ func (o *SyntheticsAPITest) GetLocations() []string {
 // GetLocationsOk returns a tuple with the Locations field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetLocationsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Locations, true
@@ -185,7 +185,7 @@ func (o *SyntheticsAPITest) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -209,7 +209,7 @@ func (o *SyntheticsAPITest) GetOptions() SyntheticsTestOptions {
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Options, true
@@ -361,7 +361,7 @@ func (o *SyntheticsAPITest) GetType() SyntheticsAPITestType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetTypeOk() (*SyntheticsAPITestType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -416,25 +416,25 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Config    *SyntheticsAPITestConfig `json:"config"`
-		Locations *[]string                `json:"locations"`
-		Name      *string                  `json:"name"`
-		Options   *SyntheticsTestOptions   `json:"options"`
-		Type      *SyntheticsAPITestType   `json:"type"`
-	}{}
+		Config *SyntheticsAPITestConfig `json:"config"`
+		Locations *[]string `json:"locations"`
+		Name *string `json:"name"`
+		Options *SyntheticsTestOptions `json:"options"`
+		Type *SyntheticsAPITestType `json:"type"`
+		}{}
 	all := struct {
-		Config    SyntheticsAPITestConfig       `json:"config"`
-		Locations []string                      `json:"locations"`
-		Message   *string                       `json:"message,omitempty"`
-		MonitorId *int64                        `json:"monitor_id,omitempty"`
-		Name      string                        `json:"name"`
-		Options   SyntheticsTestOptions         `json:"options"`
-		PublicId  *string                       `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags      *[]string                     `json:"tags,omitempty"`
-		Type      SyntheticsAPITestType         `json:"type"`
-	}{}
+			Config SyntheticsAPITestConfig `json:"config"`
+			Locations []string `json:"locations"`
+			Message *string `json:"message,omitempty"`
+			MonitorId *int64 `json:"monitor_id,omitempty"`
+			Name string `json:"name"`
+			Options SyntheticsTestOptions `json:"options"`
+			PublicId *string `json:"public_id,omitempty"`
+			Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+			Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type SyntheticsAPITestType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -500,3 +500,5 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

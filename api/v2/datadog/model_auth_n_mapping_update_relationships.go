@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuthNMappingUpdateRelationships Relationship of AuthN Mapping update object to Role.
@@ -82,8 +83,8 @@ func (o AuthNMappingUpdateRelationships) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingUpdateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Role *RelationshipToRole `json:"role,omitempty"`
-	}{}
+			Role *RelationshipToRole `json:"role,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *AuthNMappingUpdateRelationships) UnmarshalJSON(bytes []byte) (err error
 	o.Role = all.Role
 	return nil
 }
+
+

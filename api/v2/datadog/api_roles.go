@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,11 +28,12 @@ var (
 type RolesApiService service
 
 type apiAddPermissionToRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	roleId string
+	body *RelationshipToPermission
 }
+
 
 /*
  * AddPermissionToRole Grant permission to a role
@@ -39,12 +42,13 @@ type apiAddPermissionToRoleRequest struct {
 func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	req := apiAddPermissionToRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.addPermissionToRoleExecute(req)
+
+    return req.ApiService.addPermissionToRoleExecute(req)
 }
 
 /*
@@ -60,6 +64,7 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 		localVarFileBytes    []byte
 		localVarReturnValue  PermissionsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddPermissionToRole")
 	if err != nil {
@@ -201,11 +206,12 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 }
 
 type apiAddUserToRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	roleId string
+	body *RelationshipToUser
 }
+
 
 /*
  * AddUserToRole Add a user to a role
@@ -214,12 +220,13 @@ type apiAddUserToRoleRequest struct {
 func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	req := apiAddUserToRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.addUserToRoleExecute(req)
+
+    return req.ApiService.addUserToRoleExecute(req)
 }
 
 /*
@@ -235,6 +242,7 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 		localVarFileBytes    []byte
 		localVarReturnValue  UsersResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddUserToRole")
 	if err != nil {
@@ -376,11 +384,12 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 }
 
 type apiCloneRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RoleCloneRequest
+	roleId string
+	body *RoleCloneRequest
 }
+
 
 /*
  * CloneRole Create a new role by cloning an existing role
@@ -389,12 +398,13 @@ type apiCloneRoleRequest struct {
 func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
 	req := apiCloneRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.cloneRoleExecute(req)
+
+    return req.ApiService.cloneRoleExecute(req)
 }
 
 /*
@@ -410,6 +420,7 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 		localVarFileBytes    []byte
 		localVarReturnValue  RoleResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CloneRole")
 	if err != nil {
@@ -561,10 +572,11 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 }
 
 type apiCreateRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	body       *RoleCreateRequest
+	body *RoleCreateRequest
 }
+
 
 /*
  * CreateRole Create role
@@ -573,11 +585,12 @@ type apiCreateRoleRequest struct {
 func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createRoleExecute(req)
+
+    return req.ApiService.createRoleExecute(req)
 }
 
 /*
@@ -593,6 +606,7 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 		localVarFileBytes    []byte
 		localVarReturnValue  RoleCreateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CreateRole")
 	if err != nil {
@@ -723,10 +737,11 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 }
 
 type apiDeleteRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
+
 
 /*
  * DeleteRole Delete role
@@ -735,11 +750,12 @@ type apiDeleteRoleRequest struct {
 func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
 	req := apiDeleteRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		ctx: ctx,
+		roleId: roleId,
 	}
 
-	return req.ApiService.deleteRoleExecute(req)
+
+    return req.ApiService.deleteRoleExecute(req)
 }
 
 /*
@@ -753,6 +769,7 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.DeleteRole")
 	if err != nil {
@@ -870,10 +887,11 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 }
 
 type apiGetRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
+
 
 /*
  * GetRole Get a role
@@ -882,11 +900,12 @@ type apiGetRoleRequest struct {
 func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
 	req := apiGetRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		ctx: ctx,
+		roleId: roleId,
 	}
 
-	return req.ApiService.getRoleExecute(req)
+
+    return req.ApiService.getRoleExecute(req)
 }
 
 /*
@@ -902,6 +921,7 @@ func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_n
 		localVarFileBytes    []byte
 		localVarReturnValue  RoleResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.GetRole")
 	if err != nil {
@@ -1028,9 +1048,10 @@ func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_n
 }
 
 type apiListPermissionsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
 }
+
 
 /*
  * ListPermissions List permissions
@@ -1039,10 +1060,11 @@ type apiListPermissionsRequest struct {
 func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
 	req := apiListPermissionsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listPermissionsExecute(req)
+
+    return req.ApiService.listPermissionsExecute(req)
 }
 
 /*
@@ -1058,6 +1080,7 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 		localVarFileBytes    []byte
 		localVarReturnValue  PermissionsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListPermissions")
 	if err != nil {
@@ -1183,10 +1206,11 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 }
 
 type apiListRolePermissionsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
+
 
 /*
  * ListRolePermissions List permissions for a role
@@ -1195,11 +1219,12 @@ type apiListRolePermissionsRequest struct {
 func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
 	req := apiListRolePermissionsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		ctx: ctx,
+		roleId: roleId,
 	}
 
-	return req.ApiService.listRolePermissionsExecute(req)
+
+    return req.ApiService.listRolePermissionsExecute(req)
 }
 
 /*
@@ -1215,6 +1240,7 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 		localVarFileBytes    []byte
 		localVarReturnValue  PermissionsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRolePermissions")
 	if err != nil {
@@ -1341,41 +1367,41 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 }
 
 type apiListRoleUsersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	pageSize   *int64
+	roleId string
+	pageSize *int64
 	pageNumber *int64
-	sort       *string
-	filter     *string
+	sort *string
+	filter *string
 }
 
 type ListRoleUsersOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	Sort       *string
-	Filter     *string
+    PageSize *int64
+    PageNumber *int64
+    Sort *string
+    Filter *string
 }
 
 func NewListRoleUsersOptionalParameters() *ListRoleUsersOptionalParameters {
-	this := ListRoleUsersOptionalParameters{}
-	return &this
+    this := ListRoleUsersOptionalParameters{}
+    return &this
 }
 func (r *ListRoleUsersOptionalParameters) WithPageSize(pageSize int64) *ListRoleUsersOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *ListRoleUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListRoleUsersOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *ListRoleUsersOptionalParameters) WithSort(sort string) *ListRoleUsersOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUsersOptionalParameters {
-	r.Filter = &filter
-	return r
+    r.Filter = &filter
+    return r
 }
 
 /*
@@ -1385,23 +1411,23 @@ func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUse
 func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	req := apiListRoleUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+		ctx: ctx,
+		roleId: roleId,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue UsersResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue UsersResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sort = o[0].Sort
-		req.filter = o[0].Filter
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sort = o[0].Sort
+        req.filter = o[0].Filter
+    }
 
-	return req.ApiService.listRoleUsersExecute(req)
+    return req.ApiService.listRoleUsersExecute(req)
 }
 
 /*
@@ -1417,6 +1443,7 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 		localVarFileBytes    []byte
 		localVarReturnValue  UsersResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoleUsers")
 	if err != nil {
@@ -1555,40 +1582,40 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 }
 
 type apiListRolesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sort       *RolesSort
-	filter     *string
+	sort *RolesSort
+	filter *string
 }
 
 type ListRolesOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	Sort       *RolesSort
-	Filter     *string
+    PageSize *int64
+    PageNumber *int64
+    Sort *RolesSort
+    Filter *string
 }
 
 func NewListRolesOptionalParameters() *ListRolesOptionalParameters {
-	this := ListRolesOptionalParameters{}
-	return &this
+    this := ListRolesOptionalParameters{}
+    return &this
 }
 func (r *ListRolesOptionalParameters) WithPageSize(pageSize int64) *ListRolesOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *ListRolesOptionalParameters) WithPageNumber(pageNumber int64) *ListRolesOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *ListRolesOptionalParameters) WithSort(sort RolesSort) *ListRolesOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOptionalParameters {
-	r.Filter = &filter
-	return r
+    r.Filter = &filter
+    return r
 }
 
 /*
@@ -1598,22 +1625,22 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
 	req := apiListRolesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue RolesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRolesOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue RolesResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListRolesOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sort = o[0].Sort
-		req.filter = o[0].Filter
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sort = o[0].Sort
+        req.filter = o[0].Filter
+    }
 
-	return req.ApiService.listRolesExecute(req)
+    return req.ApiService.listRolesExecute(req)
 }
 
 /*
@@ -1629,6 +1656,7 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 		localVarFileBytes    []byte
 		localVarReturnValue  RolesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoles")
 	if err != nil {
@@ -1756,11 +1784,12 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 }
 
 type apiRemovePermissionFromRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	roleId string
+	body *RelationshipToPermission
 }
+
 
 /*
  * RemovePermissionFromRole Revoke permission
@@ -1769,12 +1798,13 @@ type apiRemovePermissionFromRoleRequest struct {
 func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
 	req := apiRemovePermissionFromRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.removePermissionFromRoleExecute(req)
+
+    return req.ApiService.removePermissionFromRoleExecute(req)
 }
 
 /*
@@ -1790,6 +1820,7 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 		localVarFileBytes    []byte
 		localVarReturnValue  PermissionsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemovePermissionFromRole")
 	if err != nil {
@@ -1931,11 +1962,12 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 }
 
 type apiRemoveUserFromRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	roleId string
+	body *RelationshipToUser
 }
+
 
 /*
  * RemoveUserFromRole Remove a user from a role
@@ -1944,12 +1976,13 @@ type apiRemoveUserFromRoleRequest struct {
 func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
 	req := apiRemoveUserFromRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.removeUserFromRoleExecute(req)
+
+    return req.ApiService.removeUserFromRoleExecute(req)
 }
 
 /*
@@ -1965,6 +1998,7 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 		localVarFileBytes    []byte
 		localVarReturnValue  UsersResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemoveUserFromRole")
 	if err != nil {
@@ -2106,11 +2140,12 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 }
 
 type apiUpdateRoleRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RoleUpdateRequest
+	roleId string
+	body *RoleUpdateRequest
 }
+
 
 /*
  * UpdateRole Update a role
@@ -2119,12 +2154,13 @@ type apiUpdateRoleRequest struct {
 func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	req := apiUpdateRoleRequest{
 		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		ctx: ctx,
+		roleId: roleId,
+		body: &body,
 	}
 
-	return req.ApiService.updateRoleExecute(req)
+
+    return req.ApiService.updateRoleExecute(req)
 }
 
 /*
@@ -2140,6 +2176,7 @@ func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateR
 		localVarFileBytes    []byte
 		localVarReturnValue  RoleUpdateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.UpdateRole")
 	if err != nil {

@@ -15,9 +15,9 @@ import (
 
 // ServiceAccountCreateData Object to create a service account User.
 type ServiceAccountCreateData struct {
-	Attributes    ServiceAccountCreateAttributes `json:"attributes"`
-	Relationships *UserRelationships             `json:"relationships,omitempty"`
-	Type          UsersType                      `json:"type"`
+	Attributes ServiceAccountCreateAttributes `json:"attributes"`
+	Relationships *UserRelationships `json:"relationships,omitempty"`
+	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -56,7 +56,7 @@ func (o *ServiceAccountCreateData) GetAttributes() ServiceAccountCreateAttribute
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountCreateData) GetAttributesOk() (*ServiceAccountCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -112,7 +112,7 @@ func (o *ServiceAccountCreateData) GetType() UsersType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountCreateData) GetTypeOk() (*UsersType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -144,13 +144,13 @@ func (o *ServiceAccountCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *ServiceAccountCreateAttributes `json:"attributes"`
-		Type       *UsersType                      `json:"type"`
-	}{}
+		Type *UsersType `json:"type"`
+		}{}
 	all := struct {
-		Attributes    ServiceAccountCreateAttributes `json:"attributes"`
-		Relationships *UserRelationships             `json:"relationships,omitempty"`
-		Type          UsersType                      `json:"type"`
-	}{}
+			Attributes ServiceAccountCreateAttributes `json:"attributes"`
+			Relationships *UserRelationships `json:"relationships,omitempty"`
+			Type UsersType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -183,3 +183,5 @@ func (o *ServiceAccountCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

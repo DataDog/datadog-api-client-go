@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestRequestCertificateItem Define a request certificate.
@@ -157,10 +158,10 @@ func (o SyntheticsTestRequestCertificateItem) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Content   *string `json:"content,omitempty"`
-		Filename  *string `json:"filename,omitempty"`
-		UpdatedAt *string `json:"updatedAt,omitempty"`
-	}{}
+			Content *string `json:"content,omitempty"`
+			Filename *string `json:"filename,omitempty"`
+			UpdatedAt *string `json:"updatedAt,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *SyntheticsTestRequestCertificateItem) UnmarshalJSON(bytes []byte) (err 
 	o.UpdatedAt = all.UpdatedAt
 	return nil
 }
+
+

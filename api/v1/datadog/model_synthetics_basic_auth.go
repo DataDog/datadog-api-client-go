@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthNTLM  *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthNTLM *SyntheticsBasicAuthNTLM
 	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthWeb   *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthWeb *SyntheticsBasicAuthWeb
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type SyntheticsBasicAuth struct {
 
 // SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthNTLM wrapped in SyntheticsBasicAuth
 func SyntheticsBasicAuthNTLMAsSyntheticsBasicAuth(v *SyntheticsBasicAuthNTLM) SyntheticsBasicAuth {
-	return SyntheticsBasicAuth{SyntheticsBasicAuthNTLM: v}
+	return SyntheticsBasicAuth{ SyntheticsBasicAuthNTLM: v}
 }
 
 // SyntheticsBasicAuthSigv4AsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthSigv4 wrapped in SyntheticsBasicAuth
 func SyntheticsBasicAuthSigv4AsSyntheticsBasicAuth(v *SyntheticsBasicAuthSigv4) SyntheticsBasicAuth {
-	return SyntheticsBasicAuth{SyntheticsBasicAuthSigv4: v}
+	return SyntheticsBasicAuth{ SyntheticsBasicAuthSigv4: v}
 }
 
 // SyntheticsBasicAuthWebAsSyntheticsBasicAuth is a convenience function that returns SyntheticsBasicAuthWeb wrapped in SyntheticsBasicAuth
 func SyntheticsBasicAuthWebAsSyntheticsBasicAuth(v *SyntheticsBasicAuthWeb) SyntheticsBasicAuth {
-	return SyntheticsBasicAuth{SyntheticsBasicAuthWeb: v}
+	return SyntheticsBasicAuth{ SyntheticsBasicAuthWeb: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *SyntheticsBasicAuth) UnmarshalJSON(data []byte) error {
@@ -124,7 +127,7 @@ func (src SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
+func (obj *SyntheticsBasicAuth) GetActualInstance() (interface{}) {
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return obj.SyntheticsBasicAuthNTLM
 	}
@@ -176,3 +179,5 @@ func (v *NullableSyntheticsBasicAuth) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

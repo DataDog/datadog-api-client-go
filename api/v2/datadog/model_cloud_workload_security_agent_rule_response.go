@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleResponse Response object that includes an Agent rule.
@@ -82,8 +83,8 @@ func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
-	}{}
+			Data *CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (er
 	o.Data = all.Data
 	return nil
 }
+
+

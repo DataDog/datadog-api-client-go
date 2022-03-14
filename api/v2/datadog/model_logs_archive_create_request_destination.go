@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // LogsArchiveCreateRequestDestination - An archive's destination.
 type LogsArchiveCreateRequestDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+	LogsArchiveDestinationGCS *LogsArchiveDestinationGCS
+	LogsArchiveDestinationS3 *LogsArchiveDestinationS3
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type LogsArchiveCreateRequestDestination struct {
 
 // LogsArchiveDestinationAzureAsLogsArchiveCreateRequestDestination is a convenience function that returns LogsArchiveDestinationAzure wrapped in LogsArchiveCreateRequestDestination
 func LogsArchiveDestinationAzureAsLogsArchiveCreateRequestDestination(v *LogsArchiveDestinationAzure) LogsArchiveCreateRequestDestination {
-	return LogsArchiveCreateRequestDestination{LogsArchiveDestinationAzure: v}
+	return LogsArchiveCreateRequestDestination{ LogsArchiveDestinationAzure: v}
 }
 
 // LogsArchiveDestinationGCSAsLogsArchiveCreateRequestDestination is a convenience function that returns LogsArchiveDestinationGCS wrapped in LogsArchiveCreateRequestDestination
 func LogsArchiveDestinationGCSAsLogsArchiveCreateRequestDestination(v *LogsArchiveDestinationGCS) LogsArchiveCreateRequestDestination {
-	return LogsArchiveCreateRequestDestination{LogsArchiveDestinationGCS: v}
+	return LogsArchiveCreateRequestDestination{ LogsArchiveDestinationGCS: v}
 }
 
 // LogsArchiveDestinationS3AsLogsArchiveCreateRequestDestination is a convenience function that returns LogsArchiveDestinationS3 wrapped in LogsArchiveCreateRequestDestination
 func LogsArchiveDestinationS3AsLogsArchiveCreateRequestDestination(v *LogsArchiveDestinationS3) LogsArchiveCreateRequestDestination {
-	return LogsArchiveCreateRequestDestination{LogsArchiveDestinationS3: v}
+	return LogsArchiveCreateRequestDestination{ LogsArchiveDestinationS3: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsArchiveCreateRequestDestination) UnmarshalJSON(data []byte) error {
@@ -124,7 +127,7 @@ func (src LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() interface{} {
+func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() (interface{}) {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
 	}
@@ -176,3 +179,5 @@ func (v *NullableLogsArchiveCreateRequestDestination) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

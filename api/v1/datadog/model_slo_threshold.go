@@ -18,8 +18,8 @@ type SLOThreshold struct {
 	// The target value for the service level indicator within the corresponding timeframe.
 	Target float64 `json:"target"`
 	// A string representation of the target that indicates its precision. It uses trailing zeros to show significant decimal places (for example `98.00`).  Always included in service level objective responses. Ignored in create/update requests.
-	TargetDisplay *string      `json:"target_display,omitempty"`
-	Timeframe     SLOTimeframe `json:"timeframe"`
+	TargetDisplay *string `json:"target_display,omitempty"`
+	Timeframe SLOTimeframe `json:"timeframe"`
 	// The warning value for the service level objective.
 	Warning *float64 `json:"warning,omitempty"`
 	// A string representation of the warning target (see the description of the `target_display` field for details).  Included in service level objective responses if a warning target exists. Ignored in create/update requests.
@@ -60,7 +60,7 @@ func (o *SLOThreshold) GetTarget() float64 {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *SLOThreshold) GetTargetOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -116,7 +116,7 @@ func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
 func (o *SLOThreshold) GetTimeframeOk() (*SLOTimeframe, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Timeframe, true
@@ -217,16 +217,16 @@ func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Target    *float64      `json:"target"`
+		Target *float64 `json:"target"`
 		Timeframe *SLOTimeframe `json:"timeframe"`
-	}{}
+		}{}
 	all := struct {
-		Target         float64      `json:"target"`
-		TargetDisplay  *string      `json:"target_display,omitempty"`
-		Timeframe      SLOTimeframe `json:"timeframe"`
-		Warning        *float64     `json:"warning,omitempty"`
-		WarningDisplay *string      `json:"warning_display,omitempty"`
-	}{}
+			Target float64 `json:"target"`
+			TargetDisplay *string `json:"target_display,omitempty"`
+			Timeframe SLOTimeframe `json:"timeframe"`
+			Warning *float64 `json:"warning,omitempty"`
+			WarningDisplay *string `json:"warning_display,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -261,3 +261,5 @@ func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	o.WarningDisplay = all.WarningDisplay
 	return nil
 }
+
+

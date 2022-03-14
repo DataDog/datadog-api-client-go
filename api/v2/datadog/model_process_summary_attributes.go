@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ProcessSummaryAttributes Attributes for a process summary.
@@ -342,15 +343,15 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cmdline   *string   `json:"cmdline,omitempty"`
-		Host      *string   `json:"host,omitempty"`
-		Pid       *int64    `json:"pid,omitempty"`
-		Ppid      *int64    `json:"ppid,omitempty"`
-		Start     *string   `json:"start,omitempty"`
-		Tags      *[]string `json:"tags,omitempty"`
-		Timestamp *string   `json:"timestamp,omitempty"`
-		User      *string   `json:"user,omitempty"`
-	}{}
+			Cmdline *string `json:"cmdline,omitempty"`
+			Host *string `json:"host,omitempty"`
+			Pid *int64 `json:"pid,omitempty"`
+			Ppid *int64 `json:"ppid,omitempty"`
+			Start *string `json:"start,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Timestamp *string `json:"timestamp,omitempty"`
+			User *string `json:"user,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -370,3 +371,5 @@ func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.User = all.User
 	return nil
 }
+
+

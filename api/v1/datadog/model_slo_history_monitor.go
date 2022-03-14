@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value. This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
@@ -498,19 +499,19 @@ func (o SLOHistoryMonitor) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ErrorBudgetRemaining *map[string]float64                `json:"error_budget_remaining,omitempty"`
-		Errors               *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
-		Group                *string                            `json:"group,omitempty"`
-		History              *[][]float64                       `json:"history,omitempty"`
-		MonitorModified      *int64                             `json:"monitor_modified,omitempty"`
-		MonitorType          *string                            `json:"monitor_type,omitempty"`
-		Name                 *string                            `json:"name,omitempty"`
-		Precision            *float64                           `json:"precision,omitempty"`
-		Preview              *bool                              `json:"preview,omitempty"`
-		SliValue             *float64                           `json:"sli_value,omitempty"`
-		SpanPrecision        *float64                           `json:"span_precision,omitempty"`
-		Uptime               *float64                           `json:"uptime,omitempty"`
-	}{}
+			ErrorBudgetRemaining *map[string]float64 `json:"error_budget_remaining,omitempty"`
+			Errors *[]SLOHistoryResponseErrorWithType `json:"errors,omitempty"`
+			Group *string `json:"group,omitempty"`
+			History *[][]float64 `json:"history,omitempty"`
+			MonitorModified *int64 `json:"monitor_modified,omitempty"`
+			MonitorType *string `json:"monitor_type,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Precision *float64 `json:"precision,omitempty"`
+			Preview *bool `json:"preview,omitempty"`
+			SliValue *float64 `json:"sli_value,omitempty"`
+			SpanPrecision *float64 `json:"span_precision,omitempty"`
+			Uptime *float64 `json:"uptime,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -534,3 +535,5 @@ func (o *SLOHistoryMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Uptime = all.Uptime
 	return nil
 }
+
+

@@ -51,7 +51,7 @@ func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToU
 // GetCommanderUserOk returns a tuple with the CommanderUser field value
 // and a boolean to check if the value has been set.
 func (o *IncidentCreateRelationships) GetCommanderUserOk() (*NullableRelationshipToUser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CommanderUser, true
@@ -77,10 +77,10 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		CommanderUser *NullableRelationshipToUser `json:"commander_user"`
-	}{}
+		}{}
 	all := struct {
-		CommanderUser NullableRelationshipToUser `json:"commander_user"`
-	}{}
+			CommanderUser NullableRelationshipToUser `json:"commander_user"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.CommanderUser = all.CommanderUser
 	return nil
 }
+
+

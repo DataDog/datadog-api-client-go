@@ -51,7 +51,7 @@ func (o *NotebookMarkdownCellAttributes) GetDefinition() NotebookMarkdownCellDef
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *NotebookMarkdownCellAttributes) GetDefinitionOk() (*NotebookMarkdownCellDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -77,10 +77,10 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *NotebookMarkdownCellDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition NotebookMarkdownCellDefinition `json:"definition"`
-	}{}
+			Definition NotebookMarkdownCellDefinition `json:"definition"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *NotebookMarkdownCellAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Definition = all.Definition
 	return nil
 }
+
+

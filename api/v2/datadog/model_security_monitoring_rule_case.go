@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleCase Case when signal is generated.
@@ -19,8 +20,8 @@ type SecurityMonitoringRuleCase struct {
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
 	// Notification targets for each rule case.
-	Notifications *[]string                       `json:"notifications,omitempty"`
-	Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
+	Notifications *[]string `json:"notifications,omitempty"`
+	Status *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -193,11 +194,11 @@ func (o SecurityMonitoringRuleCase) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleCase) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Condition     *string                         `json:"condition,omitempty"`
-		Name          *string                         `json:"name,omitempty"`
-		Notifications *[]string                       `json:"notifications,omitempty"`
-		Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
-	}{}
+			Condition *string `json:"condition,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Notifications *[]string `json:"notifications,omitempty"`
+			Status *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -221,3 +222,5 @@ func (o *SecurityMonitoringRuleCase) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionApmDependencyStatsDataSource Data source for APM dependency stats queries.
@@ -100,3 +101,4 @@ func (v *NullableFormulaAndFunctionApmDependencyStatsDataSource) UnmarshalJSON(s
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

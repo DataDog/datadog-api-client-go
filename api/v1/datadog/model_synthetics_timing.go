@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test. Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
@@ -379,16 +380,16 @@ func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dns       *float64 `json:"dns,omitempty"`
-		Download  *float64 `json:"download,omitempty"`
-		FirstByte *float64 `json:"firstByte,omitempty"`
-		Handshake *float64 `json:"handshake,omitempty"`
-		Redirect  *float64 `json:"redirect,omitempty"`
-		Ssl       *float64 `json:"ssl,omitempty"`
-		Tcp       *float64 `json:"tcp,omitempty"`
-		Total     *float64 `json:"total,omitempty"`
-		Wait      *float64 `json:"wait,omitempty"`
-	}{}
+			Dns *float64 `json:"dns,omitempty"`
+			Download *float64 `json:"download,omitempty"`
+			FirstByte *float64 `json:"firstByte,omitempty"`
+			Handshake *float64 `json:"handshake,omitempty"`
+			Redirect *float64 `json:"redirect,omitempty"`
+			Ssl *float64 `json:"ssl,omitempty"`
+			Tcp *float64 `json:"tcp,omitempty"`
+			Total *float64 `json:"total,omitempty"`
+			Wait *float64 `json:"wait,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -409,3 +410,5 @@ func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	o.Wait = all.Wait
 	return nil
 }
+
+

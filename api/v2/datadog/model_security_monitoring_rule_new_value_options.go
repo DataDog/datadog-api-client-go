@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleNewValueOptions Options on new value rules.
 type SecurityMonitoringRuleNewValueOptions struct {
-	ForgetAfter      *SecurityMonitoringRuleNewValueOptionsForgetAfter      `json:"forgetAfter,omitempty"`
+	ForgetAfter *SecurityMonitoringRuleNewValueOptionsForgetAfter `json:"forgetAfter,omitempty"`
 	LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ForgetAfter      *SecurityMonitoringRuleNewValueOptionsForgetAfter      `json:"forgetAfter,omitempty"`
-		LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
-	}{}
+			ForgetAfter *SecurityMonitoringRuleNewValueOptionsForgetAfter `json:"forgetAfter,omitempty"`
+			LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -150,3 +151,5 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 	o.LearningDuration = all.LearningDuration
 	return nil
 }
+
+

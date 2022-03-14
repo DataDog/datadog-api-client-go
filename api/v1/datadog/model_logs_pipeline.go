@@ -191,7 +191,7 @@ func (o *LogsPipeline) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *LogsPipeline) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -299,16 +299,16 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Filter     *LogsFilter      `json:"filter,omitempty"`
-		Id         *string          `json:"id,omitempty"`
-		IsEnabled  *bool            `json:"is_enabled,omitempty"`
-		IsReadOnly *bool            `json:"is_read_only,omitempty"`
-		Name       string           `json:"name"`
-		Processors *[]LogsProcessor `json:"processors,omitempty"`
-		Type       *string          `json:"type,omitempty"`
-	}{}
+			Filter *LogsFilter `json:"filter,omitempty"`
+			Id *string `json:"id,omitempty"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			IsReadOnly *bool `json:"is_read_only,omitempty"`
+			Name string `json:"name"`
+			Processors *[]LogsProcessor `json:"processors,omitempty"`
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -334,3 +334,5 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

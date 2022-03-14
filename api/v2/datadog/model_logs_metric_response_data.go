@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponseData The log-based metric properties.
 type LogsMetricResponseData struct {
 	Attributes *LogsMetricResponseAttributes `json:"attributes,omitempty"`
 	// The name of the log-based metric.
-	Id   *string         `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *LogsMetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o LogsMetricResponseData) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *LogsMetricResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id,omitempty"`
-		Type       *LogsMetricType               `json:"type,omitempty"`
-	}{}
+			Attributes *LogsMetricResponseAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *LogsMetricType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *LogsMetricResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

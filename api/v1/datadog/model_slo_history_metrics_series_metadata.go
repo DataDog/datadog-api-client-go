@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryMetricsSeriesMetadata Query metadata.
@@ -209,7 +210,7 @@ func (o *SLOHistoryMetricsSeriesMetadata) SetScope(v string) {
 
 // GetUnit returns the Unit field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOHistoryMetricsSeriesMetadata) GetUnit() []SLOHistoryMetricsSeriesMetadataUnit {
-	if o == nil {
+	if o == nil  {
 		var ret []SLOHistoryMetricsSeriesMetadataUnit
 		return ret
 	}
@@ -269,13 +270,13 @@ func (o SLOHistoryMetricsSeriesMetadata) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggr       *string                               `json:"aggr,omitempty"`
-		Expression *string                               `json:"expression,omitempty"`
-		Metric     *string                               `json:"metric,omitempty"`
-		QueryIndex *int64                                `json:"query_index,omitempty"`
-		Scope      *string                               `json:"scope,omitempty"`
-		Unit       []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
-	}{}
+			Aggr *string `json:"aggr,omitempty"`
+			Expression *string `json:"expression,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			QueryIndex *int64 `json:"query_index,omitempty"`
+			Scope *string `json:"scope,omitempty"`
+			Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -293,3 +294,5 @@ func (o *SLOHistoryMetricsSeriesMetadata) UnmarshalJSON(bytes []byte) (err error
 	o.Unit = all.Unit
 	return nil
 }
+
+

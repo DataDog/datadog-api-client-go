@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SecurityMonitoringSignalsSort The sort parameters used for querying security signals.
@@ -18,7 +19,7 @@ type SecurityMonitoringSignalsSort string
 
 // List of SecurityMonitoringSignalsSort
 const (
-	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING  SecurityMonitoringSignalsSort = "timestamp"
+	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING SecurityMonitoringSignalsSort = "timestamp"
 	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING SecurityMonitoringSignalsSort = "-timestamp"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableSecurityMonitoringSignalsSort) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

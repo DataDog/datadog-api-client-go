@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageSpecifiedCustomReportsResponse Returns available specified custom reports.
@@ -118,9 +119,9 @@ func (o UsageSpecifiedCustomReportsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSpecifiedCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *UsageSpecifiedCustomReportsData `json:"data,omitempty"`
-		Meta *UsageSpecifiedCustomReportsMeta `json:"meta,omitempty"`
-	}{}
+			Data *UsageSpecifiedCustomReportsData `json:"data,omitempty"`
+			Meta *UsageSpecifiedCustomReportsMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *UsageSpecifiedCustomReportsResponse) UnmarshalJSON(bytes []byte) (err e
 	o.Meta = all.Meta
 	return nil
 }
+
+

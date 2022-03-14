@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSAccountDeleteRequest List of AWS accounts to delete.
@@ -157,10 +158,10 @@ func (o AWSAccountDeleteRequest) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccessKeyId *string `json:"access_key_id,omitempty"`
-		AccountId   *string `json:"account_id,omitempty"`
-		RoleName    *string `json:"role_name,omitempty"`
-	}{}
+			AccessKeyId *string `json:"access_key_id,omitempty"`
+			AccountId *string `json:"account_id,omitempty"`
+			RoleName *string `json:"role_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *AWSAccountDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.RoleName = all.RoleName
 	return nil
 }
+
+

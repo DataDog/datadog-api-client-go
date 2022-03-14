@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsAggregateResponseStatus The status of the response
@@ -18,7 +19,7 @@ type LogsAggregateResponseStatus string
 
 // List of LogsAggregateResponseStatus
 const (
-	LOGSAGGREGATERESPONSESTATUS_DONE    LogsAggregateResponseStatus = "done"
+	LOGSAGGREGATERESPONSESTATUS_DONE LogsAggregateResponseStatus = "done"
 	LOGSAGGREGATERESPONSESTATUS_TIMEOUT LogsAggregateResponseStatus = "timeout"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableLogsAggregateResponseStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

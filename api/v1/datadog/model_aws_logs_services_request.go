@@ -55,7 +55,7 @@ func (o *AWSLogsServicesRequest) GetAccountId() string {
 // GetAccountIdOk returns a tuple with the AccountId field value
 // and a boolean to check if the value has been set.
 func (o *AWSLogsServicesRequest) GetAccountIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AccountId, true
@@ -79,7 +79,7 @@ func (o *AWSLogsServicesRequest) GetServices() []string {
 // GetServicesOk returns a tuple with the Services field value
 // and a boolean to check if the value has been set.
 func (o *AWSLogsServicesRequest) GetServicesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Services, true
@@ -107,13 +107,13 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AccountId *string   `json:"account_id"`
-		Services  *[]string `json:"services"`
-	}{}
+		AccountId *string `json:"account_id"`
+		Services *[]string `json:"services"`
+		}{}
 	all := struct {
-		AccountId string   `json:"account_id"`
-		Services  []string `json:"services"`
-	}{}
+			AccountId string `json:"account_id"`
+			Services []string `json:"services"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Services = all.Services
 	return nil
 }
+
+

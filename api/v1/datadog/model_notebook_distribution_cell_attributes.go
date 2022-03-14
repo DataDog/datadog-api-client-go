@@ -16,9 +16,9 @@ import (
 // NotebookDistributionCellAttributes The attributes of a notebook `distribution` cell.
 type NotebookDistributionCellAttributes struct {
 	Definition DistributionWidgetDefinition `json:"definition"`
-	GraphSize  *NotebookGraphSize           `json:"graph_size,omitempty"`
-	SplitBy    *NotebookSplitBy             `json:"split_by,omitempty"`
-	Time       NullableNotebookCellTime     `json:"time,omitempty"`
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -54,7 +54,7 @@ func (o *NotebookDistributionCellAttributes) GetDefinition() DistributionWidgetD
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *NotebookDistributionCellAttributes) GetDefinitionOk() (*DistributionWidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -142,7 +142,7 @@ func (o *NotebookDistributionCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookDistributionCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -161,7 +161,6 @@ func (o *NotebookDistributionCellAttributes) HasTime() bool {
 func (o *NotebookDistributionCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookDistributionCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -196,13 +195,13 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *DistributionWidgetDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition DistributionWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize           `json:"graph_size,omitempty"`
-		SplitBy    *NotebookSplitBy             `json:"split_by,omitempty"`
-		Time       NullableNotebookCellTime     `json:"time,omitempty"`
-	}{}
+			Definition DistributionWidgetDefinition `json:"definition"`
+			GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+			SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+			Time NullableNotebookCellTime `json:"time,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -233,3 +232,5 @@ func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.Time = all.Time
 	return nil
 }
+
+

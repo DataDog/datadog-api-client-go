@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"time"
@@ -26,52 +28,52 @@ var (
 type AuditApiService service
 
 type apiListAuditLogsRequest struct {
-	ctx         _context.Context
-	ApiService  *AuditApiService
+	ctx _context.Context
+	ApiService *AuditApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *AuditLogsSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *AuditLogsSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListAuditLogsOptionalParameters struct {
-	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *AuditLogsSort
-	PageCursor  *string
-	PageLimit   *int32
+    FilterQuery *string
+    FilterFrom *time.Time
+    FilterTo *time.Time
+    Sort *AuditLogsSort
+    PageCursor *string
+    PageLimit *int32
 }
 
 func NewListAuditLogsOptionalParameters() *ListAuditLogsOptionalParameters {
-	this := ListAuditLogsOptionalParameters{}
-	return &this
+    this := ListAuditLogsOptionalParameters{}
+    return &this
 }
 func (r *ListAuditLogsOptionalParameters) WithFilterQuery(filterQuery string) *ListAuditLogsOptionalParameters {
-	r.FilterQuery = &filterQuery
-	return r
+    r.FilterQuery = &filterQuery
+    return r
 }
 func (r *ListAuditLogsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListAuditLogsOptionalParameters {
-	r.FilterFrom = &filterFrom
-	return r
+    r.FilterFrom = &filterFrom
+    return r
 }
 func (r *ListAuditLogsOptionalParameters) WithFilterTo(filterTo time.Time) *ListAuditLogsOptionalParameters {
-	r.FilterTo = &filterTo
-	return r
+    r.FilterTo = &filterTo
+    return r
 }
 func (r *ListAuditLogsOptionalParameters) WithSort(sort AuditLogsSort) *ListAuditLogsOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListAuditLogsOptionalParameters) WithPageCursor(pageCursor string) *ListAuditLogsOptionalParameters {
-	r.PageCursor = &pageCursor
-	return r
+    r.PageCursor = &pageCursor
+    return r
 }
 func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAuditLogsOptionalParameters {
-	r.PageLimit = &pageLimit
-	return r
+    r.PageLimit = &pageLimit
+    return r
 }
 
 /*
@@ -82,28 +84,28 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 Use this endpoint to see your latest Audit Logs events.
 
 [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-*/
+ */
 func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req := apiListAuditLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue AuditLogsEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue AuditLogsEventsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
-	}
+    if o != nil {
+        req.filterQuery = o[0].FilterQuery
+        req.filterFrom = o[0].FilterFrom
+        req.filterTo = o[0].FilterTo
+        req.sort = o[0].Sort
+        req.pageCursor = o[0].PageCursor
+        req.pageLimit = o[0].PageLimit
+    }
 
-	return req.ApiService.listAuditLogsExecute(req)
+    return req.ApiService.listAuditLogsExecute(req)
 }
 
 /*
@@ -119,6 +121,7 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 		localVarFileBytes    []byte
 		localVarReturnValue  AuditLogsEventsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.ListAuditLogs")
 	if err != nil {
@@ -262,22 +265,22 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 }
 
 type apiSearchAuditLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AuditApiService
-	body       *AuditLogsSearchEventsRequest
+	body *AuditLogsSearchEventsRequest
 }
 
 type SearchAuditLogsOptionalParameters struct {
-	Body *AuditLogsSearchEventsRequest
+    Body *AuditLogsSearchEventsRequest
 }
 
 func NewSearchAuditLogsOptionalParameters() *SearchAuditLogsOptionalParameters {
-	this := SearchAuditLogsOptionalParameters{}
-	return &this
+    this := SearchAuditLogsOptionalParameters{}
+    return &this
 }
 func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsRequest) *SearchAuditLogsOptionalParameters {
-	r.Body = &body
-	return r
+    r.Body = &body
+    return r
 }
 
 /*
@@ -288,23 +291,23 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 Use this endpoint to build complex Audit Logs events filtering and search.
 
 [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
-*/
+ */
 func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req := apiSearchAuditLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue AuditLogsEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue AuditLogsEventsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.body = o[0].Body
-	}
+    if o != nil {
+        req.body = o[0].Body
+    }
 
-	return req.ApiService.searchAuditLogsExecute(req)
+    return req.ApiService.searchAuditLogsExecute(req)
 }
 
 /*
@@ -320,6 +323,7 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 		localVarFileBytes    []byte
 		localVarReturnValue  AuditLogsEventsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.SearchAuditLogs")
 	if err != nil {

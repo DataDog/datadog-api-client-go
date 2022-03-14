@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HTTPLogItem Logs that are sent over HTTP.
@@ -231,12 +232,12 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ddsource *string `json:"ddsource,omitempty"`
-		Ddtags   *string `json:"ddtags,omitempty"`
-		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
-		Service  *string `json:"service,omitempty"`
-	}{}
+			Ddsource *string `json:"ddsource,omitempty"`
+			Ddtags *string `json:"ddtags,omitempty"`
+			Hostname *string `json:"hostname,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Service *string `json:"service,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -253,3 +254,5 @@ func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	return nil
 }
+
+

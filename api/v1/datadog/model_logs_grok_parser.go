@@ -23,8 +23,8 @@ type LogsGrokParser struct {
 	// List of sample logs to test this grok parser.
 	Samples *[]string `json:"samples,omitempty"`
 	// Name of the log attribute to parse.
-	Source string             `json:"source"`
-	Type   LogsGrokParserType `json:"type"`
+	Source string `json:"source"`
+	Type LogsGrokParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -70,7 +70,7 @@ func (o *LogsGrokParser) GetGrok() LogsGrokParserRules {
 // GetGrokOk returns a tuple with the Grok field value
 // and a boolean to check if the value has been set.
 func (o *LogsGrokParser) GetGrokOk() (*LogsGrokParserRules, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Grok, true
@@ -190,7 +190,7 @@ func (o *LogsGrokParser) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
 func (o *LogsGrokParser) GetSourceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Source, true
@@ -214,7 +214,7 @@ func (o *LogsGrokParser) GetType() LogsGrokParserType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsGrokParser) GetTypeOk() (*LogsGrokParserType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -254,18 +254,18 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Grok   *LogsGrokParserRules `json:"grok"`
-		Source *string              `json:"source"`
-		Type   *LogsGrokParserType  `json:"type"`
-	}{}
+		Grok *LogsGrokParserRules `json:"grok"`
+		Source *string `json:"source"`
+		Type *LogsGrokParserType `json:"type"`
+		}{}
 	all := struct {
-		Grok      LogsGrokParserRules `json:"grok"`
-		IsEnabled *bool               `json:"is_enabled,omitempty"`
-		Name      *string             `json:"name,omitempty"`
-		Samples   *[]string           `json:"samples,omitempty"`
-		Source    string              `json:"source"`
-		Type      LogsGrokParserType  `json:"type"`
-	}{}
+			Grok LogsGrokParserRules `json:"grok"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Samples *[]string `json:"samples,omitempty"`
+			Source string `json:"source"`
+			Type LogsGrokParserType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -304,3 +304,5 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

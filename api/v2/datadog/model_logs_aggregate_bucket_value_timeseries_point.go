@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateBucketValueTimeseriesPoint A timeseries point
@@ -120,9 +121,9 @@ func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Time  *string  `json:"time,omitempty"`
-		Value *float64 `json:"value,omitempty"`
-	}{}
+			Time *string `json:"time,omitempty"`
+			Value *float64 `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (e
 	o.Value = all.Value
 	return nil
 }
+
+

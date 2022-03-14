@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ListStreamResponseFormat Widget response format.
@@ -100,3 +101,4 @@ func (v *NullableListStreamResponseFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

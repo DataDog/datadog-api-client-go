@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsEvent Object description of an Audit Logs event after it is processed and stored by Datadog.
 type AuditLogsEvent struct {
 	Attributes *AuditLogsEventAttributes `json:"attributes,omitempty"`
 	// Unique ID of the event.
-	Id   *string             `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *AuditLogsEventType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o AuditLogsEvent) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *AuditLogsEventAttributes `json:"attributes,omitempty"`
-		Id         *string                   `json:"id,omitempty"`
-		Type       *AuditLogsEventType       `json:"type,omitempty"`
-	}{}
+			Attributes *AuditLogsEventAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *AuditLogsEventType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *AuditLogsEvent) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

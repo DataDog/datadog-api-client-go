@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLODeleteResponse A response list of all service level objective deleted.
@@ -120,9 +121,9 @@ func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
 func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *[]string          `json:"data,omitempty"`
-		Errors *map[string]string `json:"errors,omitempty"`
-	}{}
+			Data *[]string `json:"data,omitempty"`
+			Errors *map[string]string `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

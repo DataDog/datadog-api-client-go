@@ -51,7 +51,7 @@ func (o *SunburstWidgetLegendTable) GetType() SunburstWidgetLegendTableType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SunburstWidgetLegendTable) GetTypeOk() (*SunburstWidgetLegendTableType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -77,10 +77,10 @@ func (o *SunburstWidgetLegendTable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SunburstWidgetLegendTableType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Type SunburstWidgetLegendTableType `json:"type"`
-	}{}
+			Type SunburstWidgetLegendTableType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -108,3 +108,5 @@ func (o *SunburstWidgetLegendTable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

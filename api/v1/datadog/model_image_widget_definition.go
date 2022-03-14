@@ -18,15 +18,15 @@ type ImageWidgetDefinition struct {
 	// Whether to display a background or not.
 	HasBackground *bool `json:"has_background,omitempty"`
 	// Whether to display a border or not.
-	HasBorder       *bool                     `json:"has_border,omitempty"`
-	HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
-	Margin          *WidgetMargin             `json:"margin,omitempty"`
-	Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
-	Type            ImageWidgetDefinitionType `json:"type"`
+	HasBorder *bool `json:"has_border,omitempty"`
+	HorizontalAlign *WidgetHorizontalAlign `json:"horizontal_align,omitempty"`
+	Margin *WidgetMargin `json:"margin,omitempty"`
+	Sizing *WidgetImageSizing `json:"sizing,omitempty"`
+	Type ImageWidgetDefinitionType `json:"type"`
 	// URL of the image.
 	Url string `json:"url"`
 	// URL of the image in dark mode.
-	UrlDarkTheme  *string              `json:"url_dark_theme,omitempty"`
+	UrlDarkTheme *string `json:"url_dark_theme,omitempty"`
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -234,7 +234,7 @@ func (o *ImageWidgetDefinition) GetType() ImageWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ImageWidgetDefinition) GetTypeOk() (*ImageWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -258,7 +258,7 @@ func (o *ImageWidgetDefinition) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *ImageWidgetDefinition) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -372,19 +372,19 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *ImageWidgetDefinitionType `json:"type"`
-		Url  *string                    `json:"url"`
-	}{}
+		Url *string `json:"url"`
+		}{}
 	all := struct {
-		HasBackground   *bool                     `json:"has_background,omitempty"`
-		HasBorder       *bool                     `json:"has_border,omitempty"`
-		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
-		Margin          *WidgetMargin             `json:"margin,omitempty"`
-		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
-		Type            ImageWidgetDefinitionType `json:"type"`
-		Url             string                    `json:"url"`
-		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"`
-		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"`
-	}{}
+			HasBackground *bool `json:"has_background,omitempty"`
+			HasBorder *bool `json:"has_border,omitempty"`
+			HorizontalAlign *WidgetHorizontalAlign `json:"horizontal_align,omitempty"`
+			Margin *WidgetMargin `json:"margin,omitempty"`
+			Sizing *WidgetImageSizing `json:"sizing,omitempty"`
+			Type ImageWidgetDefinitionType `json:"type"`
+			Url string `json:"url"`
+			UrlDarkTheme *string `json:"url_dark_theme,omitempty"`
+			VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -455,3 +455,5 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.VerticalAlign = all.VerticalAlign
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RelationshipToRole Relationship to role.
@@ -82,8 +83,8 @@ func (o RelationshipToRole) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToRole) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *RelationshipToRoleData `json:"data,omitempty"`
-	}{}
+			Data *RelationshipToRoleData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *RelationshipToRole) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

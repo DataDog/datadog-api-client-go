@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MetricTagConfigurationType The metric tag configuration resource type.
@@ -100,3 +101,4 @@ func (v *NullableMetricTagConfigurationType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

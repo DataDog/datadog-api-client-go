@@ -24,8 +24,8 @@ type LogsArithmeticProcessor struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Name of the attribute that contains the result of the arithmetic operation.
-	Target string                      `json:"target"`
-	Type   LogsArithmeticProcessorType `json:"type"`
+	Target string `json:"target"`
+	Type LogsArithmeticProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -73,7 +73,7 @@ func (o *LogsArithmeticProcessor) GetExpression() string {
 // GetExpressionOk returns a tuple with the Expression field value
 // and a boolean to check if the value has been set.
 func (o *LogsArithmeticProcessor) GetExpressionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Expression, true
@@ -193,7 +193,7 @@ func (o *LogsArithmeticProcessor) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsArithmeticProcessor) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -217,7 +217,7 @@ func (o *LogsArithmeticProcessor) GetType() LogsArithmeticProcessorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsArithmeticProcessor) GetTypeOk() (*LogsArithmeticProcessorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -257,18 +257,18 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Expression *string                      `json:"expression"`
-		Target     *string                      `json:"target"`
-		Type       *LogsArithmeticProcessorType `json:"type"`
-	}{}
+		Expression *string `json:"expression"`
+		Target *string `json:"target"`
+		Type *LogsArithmeticProcessorType `json:"type"`
+		}{}
 	all := struct {
-		Expression       string                      `json:"expression"`
-		IsEnabled        *bool                       `json:"is_enabled,omitempty"`
-		IsReplaceMissing *bool                       `json:"is_replace_missing,omitempty"`
-		Name             *string                     `json:"name,omitempty"`
-		Target           string                      `json:"target"`
-		Type             LogsArithmeticProcessorType `json:"type"`
-	}{}
+			Expression string `json:"expression"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Target string `json:"target"`
+			Type LogsArithmeticProcessorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -307,3 +307,5 @@ func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

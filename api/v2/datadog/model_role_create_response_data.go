@@ -17,9 +17,9 @@ import (
 type RoleCreateResponseData struct {
 	Attributes *RoleCreateAttributes `json:"attributes,omitempty"`
 	// ID of the role.
-	Id            *string                    `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-	Type          RolesType                  `json:"type"`
+	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -153,7 +153,7 @@ func (o *RoleCreateResponseData) GetType() RolesType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RoleCreateResponseData) GetTypeOk() (*RolesType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -188,13 +188,13 @@ func (o *RoleCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *RolesType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *RoleCreateAttributes      `json:"attributes,omitempty"`
-		Id            *string                    `json:"id,omitempty"`
-		Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
-		Type          RolesType                  `json:"type"`
-	}{}
+			Attributes *RoleCreateAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
+			Type RolesType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -225,3 +225,5 @@ func (o *RoleCreateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

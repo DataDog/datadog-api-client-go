@@ -23,8 +23,8 @@ type LogsArchiveAttributes struct {
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// An array of tags to add to rehydrated logs from an archive.
-	RehydrationTags *[]string         `json:"rehydration_tags,omitempty"`
-	State           *LogsArchiveState `json:"state,omitempty"`
+	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+	State *LogsArchiveState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -68,7 +68,7 @@ func (o *LogsArchiveAttributes) GetDestination() LogsArchiveDestination {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *LogsArchiveAttributes) GetDestinationOk() (*LogsArchiveDestination, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Destination.Get(), o.Destination.IsSet()
@@ -124,7 +124,7 @@ func (o *LogsArchiveAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -148,7 +148,7 @@ func (o *LogsArchiveAttributes) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveAttributes) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -253,17 +253,17 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Destination *NullableLogsArchiveDestination `json:"destination"`
-		Name        *string                         `json:"name"`
-		Query       *string                         `json:"query"`
-	}{}
+		Name *string `json:"name"`
+		Query *string `json:"query"`
+		}{}
 	all := struct {
-		Destination     NullableLogsArchiveDestination `json:"destination"`
-		IncludeTags     *bool                          `json:"include_tags,omitempty"`
-		Name            string                         `json:"name"`
-		Query           string                         `json:"query"`
-		RehydrationTags *[]string                      `json:"rehydration_tags,omitempty"`
-		State           *LogsArchiveState              `json:"state,omitempty"`
-	}{}
+			Destination NullableLogsArchiveDestination `json:"destination"`
+			IncludeTags *bool `json:"include_tags,omitempty"`
+			Name string `json:"name"`
+			Query string `json:"query"`
+			RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+			State *LogsArchiveState `json:"state,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -302,3 +302,5 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.State = all.State
 	return nil
 }
+
+

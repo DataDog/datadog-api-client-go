@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Host Object representing a host.
@@ -27,9 +28,9 @@ type Host struct {
 	// If a host is muted or unmuted.
 	IsMuted *bool `json:"is_muted,omitempty"`
 	// Last time the host reported a metric data point.
-	LastReportedTime *int64       `json:"last_reported_time,omitempty"`
-	Meta             *HostMeta    `json:"meta,omitempty"`
-	Metrics          *HostMetrics `json:"metrics,omitempty"`
+	LastReportedTime *int64 `json:"last_reported_time,omitempty"`
+	Meta *HostMeta `json:"meta,omitempty"`
+	Metrics *HostMetrics `json:"metrics,omitempty"`
 	// Timeout of the mute applied to your host.
 	MuteTimeout *int64 `json:"mute_timeout,omitempty"`
 	// The host name.
@@ -562,21 +563,21 @@ func (o Host) MarshalJSON() ([]byte, error) {
 func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aliases          *[]string            `json:"aliases,omitempty"`
-		Apps             *[]string            `json:"apps,omitempty"`
-		AwsName          *string              `json:"aws_name,omitempty"`
-		HostName         *string              `json:"host_name,omitempty"`
-		Id               *int64               `json:"id,omitempty"`
-		IsMuted          *bool                `json:"is_muted,omitempty"`
-		LastReportedTime *int64               `json:"last_reported_time,omitempty"`
-		Meta             *HostMeta            `json:"meta,omitempty"`
-		Metrics          *HostMetrics         `json:"metrics,omitempty"`
-		MuteTimeout      *int64               `json:"mute_timeout,omitempty"`
-		Name             *string              `json:"name,omitempty"`
-		Sources          *[]string            `json:"sources,omitempty"`
-		TagsBySource     *map[string][]string `json:"tags_by_source,omitempty"`
-		Up               *bool                `json:"up,omitempty"`
-	}{}
+			Aliases *[]string `json:"aliases,omitempty"`
+			Apps *[]string `json:"apps,omitempty"`
+			AwsName *string `json:"aws_name,omitempty"`
+			HostName *string `json:"host_name,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			IsMuted *bool `json:"is_muted,omitempty"`
+			LastReportedTime *int64 `json:"last_reported_time,omitempty"`
+			Meta *HostMeta `json:"meta,omitempty"`
+			Metrics *HostMetrics `json:"metrics,omitempty"`
+			MuteTimeout *int64 `json:"mute_timeout,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Sources *[]string `json:"sources,omitempty"`
+			TagsBySource *map[string][]string `json:"tags_by_source,omitempty"`
+			Up *bool `json:"up,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -602,3 +603,5 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.Up = all.Up
 	return nil
 }
+
+

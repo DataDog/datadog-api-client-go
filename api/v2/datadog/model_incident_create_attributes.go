@@ -61,7 +61,7 @@ func (o *IncidentCreateAttributes) GetCustomerImpacted() bool {
 // GetCustomerImpactedOk returns a tuple with the CustomerImpacted field value
 // and a boolean to check if the value has been set.
 func (o *IncidentCreateAttributes) GetCustomerImpactedOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.CustomerImpacted, true
@@ -181,7 +181,7 @@ func (o *IncidentCreateAttributes) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *IncidentCreateAttributes) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Title, true
@@ -218,16 +218,16 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		CustomerImpacted *bool   `json:"customer_impacted"`
-		Title            *string `json:"title"`
-	}{}
+		CustomerImpacted *bool `json:"customer_impacted"`
+		Title *string `json:"title"`
+		}{}
 	all := struct {
-		CustomerImpacted    bool                                    `json:"customer_impacted"`
-		Fields              *map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
-		InitialCells        *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
-		NotificationHandles *[]IncidentNotificationHandle           `json:"notification_handles,omitempty"`
-		Title               string                                  `json:"title"`
-	}{}
+			CustomerImpacted bool `json:"customer_impacted"`
+			Fields *map[string]IncidentFieldAttributes `json:"fields,omitempty"`
+			InitialCells *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
+			NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
+			Title string `json:"title"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -254,3 +254,5 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
+
+

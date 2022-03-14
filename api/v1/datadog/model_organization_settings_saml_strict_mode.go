@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationSettingsSamlStrictMode Has one property enabled (boolean).
@@ -83,8 +84,8 @@ func (o OrganizationSettingsSamlStrictMode) MarshalJSON() ([]byte, error) {
 func (o *OrganizationSettingsSamlStrictMode) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Enabled *bool `json:"enabled,omitempty"`
-	}{}
+			Enabled *bool `json:"enabled,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *OrganizationSettingsSamlStrictMode) UnmarshalJSON(bytes []byte) (err er
 	o.Enabled = all.Enabled
 	return nil
 }
+
+

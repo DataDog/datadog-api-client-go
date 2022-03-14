@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsersResponse Response containing information about multiple users.
@@ -18,7 +19,7 @@ type UsersResponse struct {
 	Data *[]User `json:"data,omitempty"`
 	// Array of objects related to the users.
 	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
-	Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
+	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -156,10 +157,10 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]User                     `json:"data,omitempty"`
-		Included *[]UserResponseIncludedItem `json:"included,omitempty"`
-		Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
-	}{}
+			Data *[]User `json:"data,omitempty"`
+			Included *[]UserResponseIncludedItem `json:"included,omitempty"`
+			Meta *ResponseMetaAttributes `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -174,3 +175,5 @@ func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

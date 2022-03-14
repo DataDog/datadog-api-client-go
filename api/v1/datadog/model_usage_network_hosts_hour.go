@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -195,11 +196,11 @@ func (o UsageNetworkHostsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkHostsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostCount *int64     `json:"host_count,omitempty"`
-		Hour      *time.Time `json:"hour,omitempty"`
-		OrgName   *string    `json:"org_name,omitempty"`
-		PublicId  *string    `json:"public_id,omitempty"`
-	}{}
+			HostCount *int64 `json:"host_count,omitempty"`
+			Hour *time.Time `json:"hour,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -215,3 +216,5 @@ func (o *UsageNetworkHostsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
+
+

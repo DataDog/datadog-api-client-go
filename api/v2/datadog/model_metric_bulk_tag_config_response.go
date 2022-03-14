@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricBulkTagConfigResponse Wrapper for a single bulk tag configuration status response.
@@ -82,8 +83,8 @@ func (o MetricBulkTagConfigResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *MetricBulkTagConfigStatus `json:"data,omitempty"`
-	}{}
+			Data *MetricBulkTagConfigStatus `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *MetricBulkTagConfigResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

@@ -18,8 +18,8 @@ type SyntheticsBasicAuthNTLM struct {
 	// Domain for the authentication to use when performing the test.
 	Domain *string `json:"domain,omitempty"`
 	// Password for the authentication to use when performing the test.
-	Password *string                     `json:"password,omitempty"`
-	Type     SyntheticsBasicAuthNTLMType `json:"type"`
+	Password *string `json:"password,omitempty"`
+	Type SyntheticsBasicAuthNTLMType `json:"type"`
 	// Username for the authentication to use when performing the test.
 	Username *string `json:"username,omitempty"`
 	// Workstation for the authentication to use when performing the test.
@@ -125,7 +125,7 @@ func (o *SyntheticsBasicAuthNTLM) GetType() SyntheticsBasicAuthNTLMType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBasicAuthNTLM) GetTypeOk() (*SyntheticsBasicAuthNTLMType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -227,14 +227,14 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SyntheticsBasicAuthNTLMType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Domain      *string                     `json:"domain,omitempty"`
-		Password    *string                     `json:"password,omitempty"`
-		Type        SyntheticsBasicAuthNTLMType `json:"type"`
-		Username    *string                     `json:"username,omitempty"`
-		Workstation *string                     `json:"workstation,omitempty"`
-	}{}
+			Domain *string `json:"domain,omitempty"`
+			Password *string `json:"password,omitempty"`
+			Type SyntheticsBasicAuthNTLMType `json:"type"`
+			Username *string `json:"username,omitempty"`
+			Workstation *string `json:"workstation,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -266,3 +266,5 @@ func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	o.Workstation = all.Workstation
 	return nil
 }
+
+

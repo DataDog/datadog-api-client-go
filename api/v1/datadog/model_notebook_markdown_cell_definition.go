@@ -16,7 +16,7 @@ import (
 // NotebookMarkdownCellDefinition Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 type NotebookMarkdownCellDefinition struct {
 	// The markdown content.
-	Text string                             `json:"text"`
+	Text string `json:"text"`
 	Type NotebookMarkdownCellDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *NotebookMarkdownCellDefinition) GetText() string {
 // GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
 func (o *NotebookMarkdownCellDefinition) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Text, true
@@ -80,7 +80,7 @@ func (o *NotebookMarkdownCellDefinition) GetType() NotebookMarkdownCellDefinitio
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NotebookMarkdownCellDefinition) GetTypeOk() (*NotebookMarkdownCellDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text *string                             `json:"text"`
+		Text *string `json:"text"`
 		Type *NotebookMarkdownCellDefinitionType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Text string                             `json:"text"`
-		Type NotebookMarkdownCellDefinitionType `json:"type"`
-	}{}
+			Text string `json:"text"`
+			Type NotebookMarkdownCellDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
+
+

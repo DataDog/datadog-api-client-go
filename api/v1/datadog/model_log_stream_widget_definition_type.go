@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogStreamWidgetDefinitionType Type of the log stream widget.
@@ -100,3 +101,4 @@ func (v *NullableLogStreamWidgetDefinitionType) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

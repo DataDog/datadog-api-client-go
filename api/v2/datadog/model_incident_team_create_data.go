@@ -15,9 +15,9 @@ import (
 
 // IncidentTeamCreateData Incident Team data for a create request.
 type IncidentTeamCreateData struct {
-	Attributes    *IncidentTeamCreateAttributes `json:"attributes,omitempty"`
-	Relationships *IncidentTeamRelationships    `json:"relationships,omitempty"`
-	Type          IncidentTeamType              `json:"type"`
+	Attributes *IncidentTeamCreateAttributes `json:"attributes,omitempty"`
+	Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
+	Type IncidentTeamType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,7 +119,7 @@ func (o *IncidentTeamCreateData) GetType() IncidentTeamType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *IncidentTeamCreateData) GetTypeOk() (*IncidentTeamType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -151,12 +151,12 @@ func (o *IncidentTeamCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *IncidentTeamType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *IncidentTeamCreateAttributes `json:"attributes,omitempty"`
-		Relationships *IncidentTeamRelationships    `json:"relationships,omitempty"`
-		Type          IncidentTeamType              `json:"type"`
-	}{}
+			Attributes *IncidentTeamCreateAttributes `json:"attributes,omitempty"`
+			Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
+			Type IncidentTeamType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -186,3 +186,5 @@ func (o *IncidentTeamCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

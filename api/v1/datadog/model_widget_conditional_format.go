@@ -25,7 +25,7 @@ type WidgetConditionalFormat struct {
 	// Displays an image as the background.
 	ImageUrl *string `json:"image_url,omitempty"`
 	// Metric from the request to correlate this conditional format with.
-	Metric  *string       `json:"metric,omitempty"`
+	Metric *string `json:"metric,omitempty"`
 	Palette WidgetPalette `json:"palette"`
 	// Defines the displayed timeframe.
 	Timeframe *string `json:"timeframe,omitempty"`
@@ -68,7 +68,7 @@ func (o *WidgetConditionalFormat) GetComparator() WidgetComparator {
 // GetComparatorOk returns a tuple with the Comparator field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetComparatorOk() (*WidgetComparator, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Comparator, true
@@ -252,7 +252,7 @@ func (o *WidgetConditionalFormat) GetPalette() WidgetPalette {
 // GetPaletteOk returns a tuple with the Palette field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetPaletteOk() (*WidgetPalette, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Palette, true
@@ -308,7 +308,7 @@ func (o *WidgetConditionalFormat) GetValue() float64 {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *WidgetConditionalFormat) GetValueOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -358,20 +358,20 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Comparator *WidgetComparator `json:"comparator"`
-		Palette    *WidgetPalette    `json:"palette"`
-		Value      *float64          `json:"value"`
-	}{}
+		Palette *WidgetPalette `json:"palette"`
+		Value *float64 `json:"value"`
+		}{}
 	all := struct {
-		Comparator    WidgetComparator `json:"comparator"`
-		CustomBgColor *string          `json:"custom_bg_color,omitempty"`
-		CustomFgColor *string          `json:"custom_fg_color,omitempty"`
-		HideValue     *bool            `json:"hide_value,omitempty"`
-		ImageUrl      *string          `json:"image_url,omitempty"`
-		Metric        *string          `json:"metric,omitempty"`
-		Palette       WidgetPalette    `json:"palette"`
-		Timeframe     *string          `json:"timeframe,omitempty"`
-		Value         float64          `json:"value"`
-	}{}
+			Comparator WidgetComparator `json:"comparator"`
+			CustomBgColor *string `json:"custom_bg_color,omitempty"`
+			CustomFgColor *string `json:"custom_fg_color,omitempty"`
+			HideValue *bool `json:"hide_value,omitempty"`
+			ImageUrl *string `json:"image_url,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Palette WidgetPalette `json:"palette"`
+			Timeframe *string `json:"timeframe,omitempty"`
+			Value float64 `json:"value"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -421,3 +421,5 @@ func (o *WidgetConditionalFormat) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
+
+

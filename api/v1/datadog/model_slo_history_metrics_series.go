@@ -16,7 +16,7 @@ import (
 // SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries. This is the same response type from `batch_query` endpoint.
 type SLOHistoryMetricsSeries struct {
 	// Count of submitted metrics.
-	Count    int64                            `json:"count"`
+	Count int64 `json:"count"`
 	Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
 	// Total sum of the query.
 	Sum float64 `json:"sum"`
@@ -59,7 +59,7 @@ func (o *SLOHistoryMetricsSeries) GetCount() int64 {
 // GetCountOk returns a tuple with the Count field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetCountOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Count, true
@@ -115,7 +115,7 @@ func (o *SLOHistoryMetricsSeries) GetSum() float64 {
 // GetSumOk returns a tuple with the Sum field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetSumOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sum, true
@@ -139,7 +139,7 @@ func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
 // GetValuesOk returns a tuple with the Values field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryMetricsSeries) GetValuesOk() (*[]float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Values, true
@@ -173,16 +173,16 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Count  *int64     `json:"count"`
-		Sum    *float64   `json:"sum"`
+		Count *int64 `json:"count"`
+		Sum *float64 `json:"sum"`
 		Values *[]float64 `json:"values"`
-	}{}
+		}{}
 	all := struct {
-		Count    int64                            `json:"count"`
-		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
-		Sum      float64                          `json:"sum"`
-		Values   []float64                        `json:"values"`
-	}{}
+			Count int64 `json:"count"`
+			Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
+			Sum float64 `json:"sum"`
+			Values []float64 `json:"values"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -211,3 +211,5 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	o.Values = all.Values
 	return nil
 }
+
+

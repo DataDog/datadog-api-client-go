@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsTestDetailsType Type of the Synthetic test, either `api` or `browser`.
@@ -18,7 +19,7 @@ type SyntheticsTestDetailsType string
 
 // List of SyntheticsTestDetailsType
 const (
-	SYNTHETICSTESTDETAILSTYPE_API     SyntheticsTestDetailsType = "api"
+	SYNTHETICSTESTDETAILSTYPE_API SyntheticsTestDetailsType = "api"
 	SYNTHETICSTESTDETAILSTYPE_BROWSER SyntheticsTestDetailsType = "browser"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableSyntheticsTestDetailsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

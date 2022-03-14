@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentNotificationHandle A notification handle that will be notified at incident creation.
@@ -120,9 +121,9 @@ func (o IncidentNotificationHandle) MarshalJSON() ([]byte, error) {
 func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DisplayName *string `json:"display_name,omitempty"`
-		Handle      *string `json:"handle,omitempty"`
-	}{}
+			DisplayName *string `json:"display_name,omitempty"`
+			Handle *string `json:"handle,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *IncidentNotificationHandle) UnmarshalJSON(bytes []byte) (err error) {
 	o.Handle = all.Handle
 	return nil
 }
+
+

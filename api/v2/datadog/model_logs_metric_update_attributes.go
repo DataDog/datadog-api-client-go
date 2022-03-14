@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricUpdateAttributes The log-based metric properties that will be updated.
@@ -119,9 +120,9 @@ func (o LogsMetricUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *LogsMetricFilter    `json:"filter,omitempty"`
-		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
-	}{}
+			Filter *LogsMetricFilter `json:"filter,omitempty"`
+			GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *LogsMetricUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	return nil
 }
+
+

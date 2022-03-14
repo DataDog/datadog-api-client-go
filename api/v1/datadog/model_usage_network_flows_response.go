@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageNetworkFlowsResponse Response containing the number of netflow events indexed for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkFlowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageNetworkFlowsHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageNetworkFlowsHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageNetworkFlowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

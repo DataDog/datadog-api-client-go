@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardListUpdateItemsResponse Response containing a list of updated dashboards.
@@ -83,8 +84,8 @@ func (o DashboardListUpdateItemsResponse) MarshalJSON() ([]byte, error) {
 func (o *DashboardListUpdateItemsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dashboards *[]DashboardListItemResponse `json:"dashboards,omitempty"`
-	}{}
+			Dashboards *[]DashboardListItemResponse `json:"dashboards,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *DashboardListUpdateItemsResponse) UnmarshalJSON(bytes []byte) (err erro
 	o.Dashboards = all.Dashboards
 	return nil
 }
+
+

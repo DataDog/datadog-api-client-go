@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCustomReportsPage The object containing page total count.
@@ -83,8 +84,8 @@ func (o UsageCustomReportsPage) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalCount *int64 `json:"total_count,omitempty"`
-	}{}
+			TotalCount *int64 `json:"total_count,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageCustomReportsPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalCount = all.TotalCount
 	return nil
 }
+
+

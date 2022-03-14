@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserResponse A Datadog User.
@@ -82,8 +83,8 @@ func (o UserResponse) MarshalJSON() ([]byte, error) {
 func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		User *User `json:"user,omitempty"`
-	}{}
+			User *User `json:"user,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.User = all.User
 	return nil
 }
+
+

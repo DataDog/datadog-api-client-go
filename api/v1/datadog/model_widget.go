@@ -17,7 +17,7 @@ import (
 type Widget struct {
 	Definition WidgetDefinition `json:"definition"`
 	// ID of the widget.
-	Id     *int64        `json:"id,omitempty"`
+	Id *int64 `json:"id,omitempty"`
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -54,7 +54,7 @@ func (o *Widget) GetDefinition() WidgetDefinition {
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -150,12 +150,12 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *WidgetDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition WidgetDefinition `json:"definition"`
-		Id         *int64           `json:"id,omitempty"`
-		Layout     *WidgetLayout    `json:"layout,omitempty"`
-	}{}
+			Definition WidgetDefinition `json:"definition"`
+			Id *int64 `json:"id,omitempty"`
+			Layout *WidgetLayout `json:"layout,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -177,3 +177,5 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	o.Layout = all.Layout
 	return nil
 }
+
+

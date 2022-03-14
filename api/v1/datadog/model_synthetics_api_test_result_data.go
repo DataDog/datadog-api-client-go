@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestResultData Object containing results for your Synthetic API test.
 type SyntheticsAPITestResultData struct {
-	Cert      *SyntheticsSSLCertificate       `json:"cert,omitempty"`
-	EventType *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
-	Failure   *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
+	Cert *SyntheticsSSLCertificate `json:"cert,omitempty"`
+	EventType *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+	Failure *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
 	// The API test HTTP status code.
 	HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
 	// Request header object used for the API test.
@@ -26,8 +27,8 @@ type SyntheticsAPITestResultData struct {
 	// Response headers returned for the API test.
 	ResponseHeaders *map[string]interface{} `json:"responseHeaders,omitempty"`
 	// Global size in byte of the API test response.
-	ResponseSize *int64            `json:"responseSize,omitempty"`
-	Timings      *SyntheticsTiming `json:"timings,omitempty"`
+	ResponseSize *int64 `json:"responseSize,omitempty"`
+	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -375,16 +376,16 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cert            *SyntheticsSSLCertificate       `json:"cert,omitempty"`
-		EventType       *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
-		Failure         *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
-		HttpStatusCode  *int64                          `json:"httpStatusCode,omitempty"`
-		RequestHeaders  *map[string]interface{}         `json:"requestHeaders,omitempty"`
-		ResponseBody    *string                         `json:"responseBody,omitempty"`
-		ResponseHeaders *map[string]interface{}         `json:"responseHeaders,omitempty"`
-		ResponseSize    *int64                          `json:"responseSize,omitempty"`
-		Timings         *SyntheticsTiming               `json:"timings,omitempty"`
-	}{}
+			Cert *SyntheticsSSLCertificate `json:"cert,omitempty"`
+			EventType *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
+			Failure *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
+			HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
+			RequestHeaders *map[string]interface{} `json:"requestHeaders,omitempty"`
+			ResponseBody *string `json:"responseBody,omitempty"`
+			ResponseHeaders *map[string]interface{} `json:"responseHeaders,omitempty"`
+			ResponseSize *int64 `json:"responseSize,omitempty"`
+			Timings *SyntheticsTiming `json:"timings,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -413,3 +414,5 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timings = all.Timings
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AzureAccount Datadog-Azure integrations configured for your organization.
@@ -342,15 +343,15 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Automute      *bool     `json:"automute,omitempty"`
-		ClientId      *string   `json:"client_id,omitempty"`
-		ClientSecret  *string   `json:"client_secret,omitempty"`
-		Errors        *[]string `json:"errors,omitempty"`
-		HostFilters   *string   `json:"host_filters,omitempty"`
-		NewClientId   *string   `json:"new_client_id,omitempty"`
-		NewTenantName *string   `json:"new_tenant_name,omitempty"`
-		TenantName    *string   `json:"tenant_name,omitempty"`
-	}{}
+			Automute *bool `json:"automute,omitempty"`
+			ClientId *string `json:"client_id,omitempty"`
+			ClientSecret *string `json:"client_secret,omitempty"`
+			Errors *[]string `json:"errors,omitempty"`
+			HostFilters *string `json:"host_filters,omitempty"`
+			NewClientId *string `json:"new_client_id,omitempty"`
+			NewTenantName *string `json:"new_tenant_name,omitempty"`
+			TenantName *string `json:"tenant_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -370,3 +371,5 @@ func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.TenantName = all.TenantName
 	return nil
 }
+
+

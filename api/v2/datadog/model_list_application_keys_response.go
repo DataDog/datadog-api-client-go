@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ListApplicationKeysResponse Response for a list of application keys.
@@ -120,9 +121,9 @@ func (o ListApplicationKeysResponse) MarshalJSON() ([]byte, error) {
 func (o *ListApplicationKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]PartialApplicationKey              `json:"data,omitempty"`
-		Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
-	}{}
+			Data *[]PartialApplicationKey `json:"data,omitempty"`
+			Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *ListApplicationKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Included = all.Included
 	return nil
 }
+
+

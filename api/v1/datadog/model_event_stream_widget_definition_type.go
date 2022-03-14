@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // EventStreamWidgetDefinitionType Type of the event stream widget.
@@ -100,3 +101,4 @@ func (v *NullableEventStreamWidgetDefinitionType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

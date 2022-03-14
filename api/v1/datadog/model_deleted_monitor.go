@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DeletedMonitor Response from the delete monitor call.
@@ -83,8 +84,8 @@ func (o DeletedMonitor) MarshalJSON() ([]byte, error) {
 func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
-	}{}
+			DeletedMonitorId *int64 `json:"deleted_monitor_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *DeletedMonitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.DeletedMonitorId = all.DeletedMonitorId
 	return nil
 }
+
+

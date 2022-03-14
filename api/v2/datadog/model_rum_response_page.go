@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RUMResponsePage Paging attributes.
@@ -83,8 +84,8 @@ func (o RUMResponsePage) MarshalJSON() ([]byte, error) {
 func (o *RUMResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		After *string `json:"after,omitempty"`
-	}{}
+			After *string `json:"after,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *RUMResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	o.After = all.After
 	return nil
 }
+
+

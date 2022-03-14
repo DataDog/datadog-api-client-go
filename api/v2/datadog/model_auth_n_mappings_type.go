@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // AuthNMappingsType AuthN Mappings resource type.
@@ -100,3 +101,4 @@ func (v *NullableAuthNMappingsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

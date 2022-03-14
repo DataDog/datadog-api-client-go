@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorGroupSearchResponse The response of a monitor group search.
 type MonitorGroupSearchResponse struct {
 	Counts *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
 	// The list of found monitor groups.
-	Groups   *[]MonitorGroupSearchResult    `json:"groups,omitempty"`
+	Groups *[]MonitorGroupSearchResult `json:"groups,omitempty"`
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -155,10 +156,10 @@ func (o MonitorGroupSearchResponse) MarshalJSON() ([]byte, error) {
 func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Counts   *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
-		Groups   *[]MonitorGroupSearchResult       `json:"groups,omitempty"`
-		Metadata *MonitorSearchResponseMetadata    `json:"metadata,omitempty"`
-	}{}
+			Counts *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
+			Groups *[]MonitorGroupSearchResult `json:"groups,omitempty"`
+			Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Metadata = all.Metadata
 	return nil
 }
+
+

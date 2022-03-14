@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MetricIngestedIndexedVolumeType The metric ingested and indexed volume type.
@@ -100,3 +101,4 @@ func (v *NullableMetricIngestedIndexedVolumeType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

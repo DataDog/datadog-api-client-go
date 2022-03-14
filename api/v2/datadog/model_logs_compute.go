@@ -19,8 +19,8 @@ type LogsCompute struct {
 	// The time buckets' size (only used for type=timeseries) Defaults to a resolution of 150 points
 	Interval *string `json:"interval,omitempty"`
 	// The metric to use
-	Metric *string          `json:"metric,omitempty"`
-	Type   *LogsComputeType `json:"type,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	Type *LogsComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -60,7 +60,7 @@ func (o *LogsCompute) GetAggregation() LogsAggregationFunction {
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
 func (o *LogsCompute) GetAggregationOk() (*LogsAggregationFunction, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Aggregation, true
@@ -191,13 +191,13 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *LogsAggregationFunction `json:"aggregation"`
-	}{}
+		}{}
 	all := struct {
-		Aggregation LogsAggregationFunction `json:"aggregation"`
-		Interval    *string                 `json:"interval,omitempty"`
-		Metric      *string                 `json:"metric,omitempty"`
-		Type        *LogsComputeType        `json:"type,omitempty"`
-	}{}
+			Aggregation LogsAggregationFunction `json:"aggregation"`
+			Interval *string `json:"interval,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Type *LogsComputeType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -236,3 +236,5 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

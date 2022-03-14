@@ -17,7 +17,7 @@ import (
 type LogsMetricCreateData struct {
 	Attributes LogsMetricCreateAttributes `json:"attributes"`
 	// The name of the log-based metric.
-	Id   string         `json:"id"`
+	Id string `json:"id"`
 	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -58,7 +58,7 @@ func (o *LogsMetricCreateData) GetAttributes() LogsMetricCreateAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricCreateData) GetAttributesOk() (*LogsMetricCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -82,7 +82,7 @@ func (o *LogsMetricCreateData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricCreateData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -106,7 +106,7 @@ func (o *LogsMetricCreateData) GetType() LogsMetricType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricCreateData) GetTypeOk() (*LogsMetricType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -138,14 +138,14 @@ func (o *LogsMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *LogsMetricCreateAttributes `json:"attributes"`
-		Id         *string                     `json:"id"`
-		Type       *LogsMetricType             `json:"type"`
-	}{}
+		Id *string `json:"id"`
+		Type *LogsMetricType `json:"type"`
+		}{}
 	all := struct {
-		Attributes LogsMetricCreateAttributes `json:"attributes"`
-		Id         string                     `json:"id"`
-		Type       LogsMetricType             `json:"type"`
-	}{}
+			Attributes LogsMetricCreateAttributes `json:"attributes"`
+			Id string `json:"id"`
+			Type LogsMetricType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -181,3 +181,5 @@ func (o *LogsMetricCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

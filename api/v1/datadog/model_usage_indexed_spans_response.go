@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageIndexedSpansResponse A response containing indexed spans usage.
@@ -83,8 +84,8 @@ func (o UsageIndexedSpansResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIndexedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageIndexedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

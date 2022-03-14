@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -306,14 +307,14 @@ func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		EventCount *int64     `json:"event_count,omitempty"`
-		Hour       *time.Time `json:"hour,omitempty"`
-		IndexId    *string    `json:"index_id,omitempty"`
-		IndexName  *string    `json:"index_name,omitempty"`
-		OrgName    *string    `json:"org_name,omitempty"`
-		PublicId   *string    `json:"public_id,omitempty"`
-		Retention  *int64     `json:"retention,omitempty"`
-	}{}
+			EventCount *int64 `json:"event_count,omitempty"`
+			Hour *time.Time `json:"hour,omitempty"`
+			IndexId *string `json:"index_id,omitempty"`
+			IndexName *string `json:"index_name,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			Retention *int64 `json:"retention,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -332,3 +333,5 @@ func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Retention = all.Retention
 	return nil
 }
+
+

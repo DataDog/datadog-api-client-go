@@ -15,7 +15,7 @@ import (
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
 type WidgetMarker struct {
-	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be `x_axis_percentile`.
+	// Combination of:   - A severity error, warning, ok, or info   - A line type: dashed, solid, or bold In this case of a Distribution widget, this can be set to be `x_axis_percentile`. 
 	DisplayType *string `json:"display_type,omitempty"`
 	// Label to display over the marker.
 	Label *string `json:"label,omitempty"`
@@ -154,7 +154,7 @@ func (o *WidgetMarker) GetValue() string {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *WidgetMarker) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -189,13 +189,13 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Value *string `json:"value"`
-	}{}
+		}{}
 	all := struct {
-		DisplayType *string `json:"display_type,omitempty"`
-		Label       *string `json:"label,omitempty"`
-		Time        *string `json:"time,omitempty"`
-		Value       string  `json:"value"`
-	}{}
+			DisplayType *string `json:"display_type,omitempty"`
+			Label *string `json:"label,omitempty"`
+			Time *string `json:"time,omitempty"`
+			Value string `json:"value"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -218,3 +218,5 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
+
+

@@ -18,16 +18,16 @@ type GeomapWidgetDefinition struct {
 	// A list of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// Array of one request object to display in the widget. The request must contain a `group-by` tag whose value is a country ISO code.  See the [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json) for information about building the `REQUEST_SCHEMA`.
-	Requests []GeomapWidgetRequest       `json:"requests"`
-	Style    GeomapWidgetDefinitionStyle `json:"style"`
-	Time     *WidgetTime                 `json:"time,omitempty"`
+	Requests []GeomapWidgetRequest `json:"requests"`
+	Style GeomapWidgetDefinitionStyle `json:"style"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// The title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// The size of the title.
-	TitleSize *string                    `json:"title_size,omitempty"`
-	Type      GeomapWidgetDefinitionType `json:"type"`
-	View      GeomapWidgetDefinitionView `json:"view"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type GeomapWidgetDefinitionType `json:"type"`
+	View GeomapWidgetDefinitionView `json:"view"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -100,7 +100,7 @@ func (o *GeomapWidgetDefinition) GetRequests() []GeomapWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinition) GetRequestsOk() (*[]GeomapWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -124,7 +124,7 @@ func (o *GeomapWidgetDefinition) GetStyle() GeomapWidgetDefinitionStyle {
 // GetStyleOk returns a tuple with the Style field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinition) GetStyleOk() (*GeomapWidgetDefinitionStyle, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Style, true
@@ -276,7 +276,7 @@ func (o *GeomapWidgetDefinition) GetType() GeomapWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinition) GetTypeOk() (*GeomapWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -300,7 +300,7 @@ func (o *GeomapWidgetDefinition) GetView() GeomapWidgetDefinitionView {
 // GetViewOk returns a tuple with the View field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinition) GetViewOk() (*GeomapWidgetDefinitionView, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.View, true
@@ -349,22 +349,22 @@ func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]GeomapWidgetRequest       `json:"requests"`
-		Style    *GeomapWidgetDefinitionStyle `json:"style"`
-		Type     *GeomapWidgetDefinitionType  `json:"type"`
-		View     *GeomapWidgetDefinitionView  `json:"view"`
-	}{}
+		Requests *[]GeomapWidgetRequest `json:"requests"`
+		Style *GeomapWidgetDefinitionStyle `json:"style"`
+		Type *GeomapWidgetDefinitionType `json:"type"`
+		View *GeomapWidgetDefinitionView `json:"view"`
+		}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
-		Requests    []GeomapWidgetRequest       `json:"requests"`
-		Style       GeomapWidgetDefinitionStyle `json:"style"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize   *string                     `json:"title_size,omitempty"`
-		Type        GeomapWidgetDefinitionType  `json:"type"`
-		View        GeomapWidgetDefinitionView  `json:"view"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Requests []GeomapWidgetRequest `json:"requests"`
+			Style GeomapWidgetDefinitionStyle `json:"style"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type GeomapWidgetDefinitionType `json:"type"`
+			View GeomapWidgetDefinitionView `json:"view"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -417,3 +417,5 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.View = all.View
 	return nil
 }
+
+

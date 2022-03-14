@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // IncidentTeamIncludedItems - An object related to an incident team which is present in the included payload.
@@ -22,8 +24,9 @@ type IncidentTeamIncludedItems struct {
 
 // UserAsIncidentTeamIncludedItems is a convenience function that returns User wrapped in IncidentTeamIncludedItems
 func UserAsIncidentTeamIncludedItems(v *User) IncidentTeamIncludedItems {
-	return IncidentTeamIncludedItems{User: v}
+	return IncidentTeamIncludedItems{ User: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *IncidentTeamIncludedItems) UnmarshalJSON(data []byte) error {
@@ -68,7 +71,7 @@ func (src IncidentTeamIncludedItems) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentTeamIncludedItems) GetActualInstance() interface{} {
+func (obj *IncidentTeamIncludedItems) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
@@ -112,3 +115,5 @@ func (v *NullableIncidentTeamIncludedItems) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

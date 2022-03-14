@@ -99,7 +99,7 @@ func (o *Series) GetInterval() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Series) GetIntervalOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Interval.Get(), o.Interval.IsSet()
@@ -118,7 +118,6 @@ func (o *Series) HasInterval() bool {
 func (o *Series) SetInterval(v int64) {
 	o.Interval.Set(&v)
 }
-
 // SetIntervalNil sets the value for Interval to be an explicit nil
 func (o *Series) SetIntervalNil() {
 	o.Interval.Set(nil)
@@ -142,7 +141,7 @@ func (o *Series) GetMetric() string {
 // GetMetricOk returns a tuple with the Metric field value
 // and a boolean to check if the value has been set.
 func (o *Series) GetMetricOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metric, true
@@ -166,7 +165,7 @@ func (o *Series) GetPoints() [][]*float64 {
 // GetPointsOk returns a tuple with the Points field value
 // and a boolean to check if the value has been set.
 func (o *Series) GetPointsOk() (*[][]*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Points, true
@@ -270,17 +269,17 @@ func (o Series) MarshalJSON() ([]byte, error) {
 func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Metric *string       `json:"metric"`
+		Metric *string `json:"metric"`
 		Points *[][]*float64 `json:"points"`
-	}{}
+		}{}
 	all := struct {
-		Host     *string       `json:"host,omitempty"`
-		Interval NullableInt64 `json:"interval,omitempty"`
-		Metric   string        `json:"metric"`
-		Points   [][]*float64  `json:"points"`
-		Tags     *[]string     `json:"tags,omitempty"`
-		Type     *string       `json:"type,omitempty"`
-	}{}
+			Host *string `json:"host,omitempty"`
+			Interval NullableInt64 `json:"interval,omitempty"`
+			Metric string `json:"metric"`
+			Points [][]*float64 `json:"points"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -308,3 +307,5 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

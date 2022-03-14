@@ -10,17 +10,18 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateRequest The object sent with the request to retrieve a list of logs from your organization.
 type LogsAggregateRequest struct {
 	// The list of metrics or timeseries to compute for the retrieved buckets.
-	Compute *[]LogsCompute   `json:"compute,omitempty"`
-	Filter  *LogsQueryFilter `json:"filter,omitempty"`
+	Compute *[]LogsCompute `json:"compute,omitempty"`
+	Filter *LogsQueryFilter `json:"filter,omitempty"`
 	// The rules for the group by
-	GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
-	Options *LogsQueryOptions         `json:"options,omitempty"`
-	Page    *LogsAggregateRequestPage `json:"page,omitempty"`
+	GroupBy *[]LogsGroupBy `json:"group_by,omitempty"`
+	Options *LogsQueryOptions `json:"options,omitempty"`
+	Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -228,12 +229,12 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *[]LogsCompute            `json:"compute,omitempty"`
-		Filter  *LogsQueryFilter          `json:"filter,omitempty"`
-		GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
-		Options *LogsQueryOptions         `json:"options,omitempty"`
-		Page    *LogsAggregateRequestPage `json:"page,omitempty"`
-	}{}
+			Compute *[]LogsCompute `json:"compute,omitempty"`
+			Filter *LogsQueryFilter `json:"filter,omitempty"`
+			GroupBy *[]LogsGroupBy `json:"group_by,omitempty"`
+			Options *LogsQueryOptions `json:"options,omitempty"`
+			Page *LogsAggregateRequestPage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -250,3 +251,5 @@ func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

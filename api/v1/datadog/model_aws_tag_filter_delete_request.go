@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSTagFilterDeleteRequest The objects used to delete an AWS tag filter entry.
 type AWSTagFilterDeleteRequest struct {
 	// The unique identifier of your AWS account.
-	AccountId *string       `json:"account_id,omitempty"`
+	AccountId *string `json:"account_id,omitempty"`
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -119,9 +120,9 @@ func (o AWSTagFilterDeleteRequest) MarshalJSON() ([]byte, error) {
 func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId *string       `json:"account_id,omitempty"`
-		Namespace *AWSNamespace `json:"namespace,omitempty"`
-	}{}
+			AccountId *string `json:"account_id,omitempty"`
+			Namespace *AWSNamespace `json:"namespace,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -143,3 +144,5 @@ func (o *AWSTagFilterDeleteRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Namespace = all.Namespace
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // AuditLogsSort Sort parameters when querying events.
@@ -18,7 +19,7 @@ type AuditLogsSort string
 
 // List of AuditLogsSort
 const (
-	AUDITLOGSSORT_TIMESTAMP_ASCENDING  AuditLogsSort = "timestamp"
+	AUDITLOGSSORT_TIMESTAMP_ASCENDING AuditLogsSort = "timestamp"
 	AUDITLOGSSORT_TIMESTAMP_DESCENDING AuditLogsSort = "-timestamp"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableAuditLogsSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

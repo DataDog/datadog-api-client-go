@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ResponseMetaAttributes Object describing meta attributes of response.
@@ -82,8 +83,8 @@ func (o ResponseMetaAttributes) MarshalJSON() ([]byte, error) {
 func (o *ResponseMetaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *Pagination `json:"page,omitempty"`
-	}{}
+			Page *Pagination `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *ResponseMetaAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated.
@@ -304,14 +305,14 @@ func (o SLOCorrectionUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 func (o *SLOCorrectionUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category    *SLOCorrectionCategory `json:"category,omitempty"`
-		Description *string                `json:"description,omitempty"`
-		Duration    *int64                 `json:"duration,omitempty"`
-		End         *int64                 `json:"end,omitempty"`
-		Rrule       *string                `json:"rrule,omitempty"`
-		Start       *int64                 `json:"start,omitempty"`
-		Timezone    *string                `json:"timezone,omitempty"`
-	}{}
+			Category *SLOCorrectionCategory `json:"category,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Duration *int64 `json:"duration,omitempty"`
+			End *int64 `json:"end,omitempty"`
+			Rrule *string `json:"rrule,omitempty"`
+			Start *int64 `json:"start,omitempty"`
+			Timezone *string `json:"timezone,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -338,3 +339,5 @@ func (o *SLOCorrectionUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.Timezone = all.Timezone
 	return nil
 }
+
+

@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserInvitationResponseData Object of a user invitation returned by the API.
 type UserInvitationResponseData struct {
 	Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
 	// ID of the user invitation.
-	Id   *string              `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *UserInvitationsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id,omitempty"`
-		Type       *UserInvitationsType          `json:"type,omitempty"`
-	}{}
+			Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *UserInvitationsType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

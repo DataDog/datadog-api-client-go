@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WebhooksIntegrationUpdateRequest Update request of a Webhooks integration object.  *All properties are optional.*
 type WebhooksIntegrationUpdateRequest struct {
 	// If `null`, uses no header. If given a JSON payload, these will be headers attached to your webhook.
-	CustomHeaders *string                      `json:"custom_headers,omitempty"`
-	EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+	CustomHeaders *string `json:"custom_headers,omitempty"`
+	EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
 	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify).
 	Name *string `json:"name,omitempty"`
 	// If `null`, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
@@ -157,7 +158,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetPayload() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WebhooksIntegrationUpdateRequest) GetPayloadOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Payload.Get(), o.Payload.IsSet()
@@ -176,7 +177,6 @@ func (o *WebhooksIntegrationUpdateRequest) HasPayload() bool {
 func (o *WebhooksIntegrationUpdateRequest) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
-
 // SetPayloadNil sets the value for Payload to be an explicit nil
 func (o *WebhooksIntegrationUpdateRequest) SetPayloadNil() {
 	o.Payload.Set(nil)
@@ -245,12 +245,12 @@ func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
 func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CustomHeaders *string                      `json:"custom_headers,omitempty"`
-		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
-		Name          *string                      `json:"name,omitempty"`
-		Payload       NullableString               `json:"payload,omitempty"`
-		Url           *string                      `json:"url,omitempty"`
-	}{}
+			CustomHeaders *string `json:"custom_headers,omitempty"`
+			EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Payload NullableString `json:"payload,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -275,3 +275,5 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 	o.Url = all.Url
 	return nil
 }
+
+

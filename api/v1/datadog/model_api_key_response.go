@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApiKeyResponse An API key with its associated metadata.
@@ -82,8 +83,8 @@ func (o ApiKeyResponse) MarshalJSON() ([]byte, error) {
 func (o *ApiKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiKey *ApiKey `json:"api_key,omitempty"`
-	}{}
+			ApiKey *ApiKey `json:"api_key,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *ApiKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ApiKey = all.ApiKey
 	return nil
 }
+
+

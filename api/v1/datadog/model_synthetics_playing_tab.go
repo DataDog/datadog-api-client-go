@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsPlayingTab Navigate between different tabs for your browser test.
@@ -19,10 +20,10 @@ type SyntheticsPlayingTab int64
 // List of SyntheticsPlayingTab
 const (
 	SYNTHETICSPLAYINGTAB_MAIN_TAB SyntheticsPlayingTab = -1
-	SYNTHETICSPLAYINGTAB_NEW_TAB  SyntheticsPlayingTab = 0
-	SYNTHETICSPLAYINGTAB_TAB_1    SyntheticsPlayingTab = 1
-	SYNTHETICSPLAYINGTAB_TAB_2    SyntheticsPlayingTab = 2
-	SYNTHETICSPLAYINGTAB_TAB_3    SyntheticsPlayingTab = 3
+	SYNTHETICSPLAYINGTAB_NEW_TAB SyntheticsPlayingTab = 0
+	SYNTHETICSPLAYINGTAB_TAB_1 SyntheticsPlayingTab = 1
+	SYNTHETICSPLAYINGTAB_TAB_2 SyntheticsPlayingTab = 2
+	SYNTHETICSPLAYINGTAB_TAB_3 SyntheticsPlayingTab = 3
 )
 
 var allowedSyntheticsPlayingTabEnumValues = []SyntheticsPlayingTab{
@@ -108,3 +109,4 @@ func (v *NullableSyntheticsPlayingTab) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

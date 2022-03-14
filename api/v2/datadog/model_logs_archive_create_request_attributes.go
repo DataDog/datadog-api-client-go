@@ -65,7 +65,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetDestination() LogsArchiveCreateR
 // GetDestinationOk returns a tuple with the Destination field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveCreateRequestAttributes) GetDestinationOk() (*LogsArchiveCreateRequestDestination, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Destination, true
@@ -121,7 +121,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveCreateRequestAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -145,7 +145,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveCreateRequestAttributes) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -215,16 +215,16 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	required := struct {
 		Destination *LogsArchiveCreateRequestDestination `json:"destination"`
-		Name        *string                              `json:"name"`
-		Query       *string                              `json:"query"`
-	}{}
+		Name *string `json:"name"`
+		Query *string `json:"query"`
+		}{}
 	all := struct {
-		Destination     LogsArchiveCreateRequestDestination `json:"destination"`
-		IncludeTags     *bool                               `json:"include_tags,omitempty"`
-		Name            string                              `json:"name"`
-		Query           string                              `json:"query"`
-		RehydrationTags *[]string                           `json:"rehydration_tags,omitempty"`
-	}{}
+			Destination LogsArchiveCreateRequestDestination `json:"destination"`
+			IncludeTags *bool `json:"include_tags,omitempty"`
+			Name string `json:"name"`
+			Query string `json:"query"`
+			RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -254,3 +254,5 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.RehydrationTags = all.RehydrationTags
 	return nil
 }
+
+

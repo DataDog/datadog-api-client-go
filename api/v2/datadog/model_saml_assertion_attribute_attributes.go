@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SAMLAssertionAttributeAttributes Key/Value pair of attributes used in SAML assertion attributes.
@@ -120,9 +121,9 @@ func (o SAMLAssertionAttributeAttributes) MarshalJSON() ([]byte, error) {
 func (o *SAMLAssertionAttributeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey   *string `json:"attribute_key,omitempty"`
-		AttributeValue *string `json:"attribute_value,omitempty"`
-	}{}
+			AttributeKey *string `json:"attribute_key,omitempty"`
+			AttributeValue *string `json:"attribute_value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SAMLAssertionAttributeAttributes) UnmarshalJSON(bytes []byte) (err erro
 	o.AttributeValue = all.AttributeValue
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricIngestedIndexedVolumeAttributes Object containing the definition of a metric's ingested and indexed volume.
@@ -120,9 +121,9 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedVolume  *int64 `json:"indexed_volume,omitempty"`
-		IngestedVolume *int64 `json:"ingested_volume,omitempty"`
-	}{}
+			IndexedVolume *int64 `json:"indexed_volume,omitempty"`
+			IngestedVolume *int64 `json:"ingested_volume,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err
 	o.IngestedVolume = all.IngestedVolume
 	return nil
 }
+
+

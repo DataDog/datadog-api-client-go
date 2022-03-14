@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -24,15 +25,15 @@ type SyntheticsSSLCertificate struct {
 	// MD5 digest of the DER-encoded Certificate information.
 	Fingerprint *string `json:"fingerprint,omitempty"`
 	// SHA-1 digest of the DER-encoded Certificate information.
-	Fingerprint256 *string                         `json:"fingerprint256,omitempty"`
-	Issuer         *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
+	Fingerprint256 *string `json:"fingerprint256,omitempty"`
+	Issuer *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
 	// Modulus associated to the SSL certificate private key.
 	Modulus *string `json:"modulus,omitempty"`
 	// TLS protocol used for the test.
 	Protocol *string `json:"protocol,omitempty"`
 	// Serial Number assigned by Symantec to the SSL certificate.
-	SerialNumber *string                          `json:"serialNumber,omitempty"`
-	Subject      *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+	SerialNumber *string `json:"serialNumber,omitempty"`
+	Subject *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
 	// Date from which the SSL certificate is valid.
 	ValidFrom *time.Time `json:"validFrom,omitempty"`
 	// Date until which the SSL certificate is valid.
@@ -489,19 +490,19 @@ func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cipher         *string                          `json:"cipher,omitempty"`
-		Exponent       *float64                         `json:"exponent,omitempty"`
-		ExtKeyUsage    *[]string                        `json:"extKeyUsage,omitempty"`
-		Fingerprint    *string                          `json:"fingerprint,omitempty"`
-		Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
-		Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`
-		Modulus        *string                          `json:"modulus,omitempty"`
-		Protocol       *string                          `json:"protocol,omitempty"`
-		SerialNumber   *string                          `json:"serialNumber,omitempty"`
-		Subject        *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
-		ValidFrom      *time.Time                       `json:"validFrom,omitempty"`
-		ValidTo        *time.Time                       `json:"validTo,omitempty"`
-	}{}
+			Cipher *string `json:"cipher,omitempty"`
+			Exponent *float64 `json:"exponent,omitempty"`
+			ExtKeyUsage *[]string `json:"extKeyUsage,omitempty"`
+			Fingerprint *string `json:"fingerprint,omitempty"`
+			Fingerprint256 *string `json:"fingerprint256,omitempty"`
+			Issuer *SyntheticsSSLCertificateIssuer `json:"issuer,omitempty"`
+			Modulus *string `json:"modulus,omitempty"`
+			Protocol *string `json:"protocol,omitempty"`
+			SerialNumber *string `json:"serialNumber,omitempty"`
+			Subject *SyntheticsSSLCertificateSubject `json:"subject,omitempty"`
+			ValidFrom *time.Time `json:"validFrom,omitempty"`
+			ValidTo *time.Time `json:"validTo,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -525,3 +526,5 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ValidTo = all.ValidTo
 	return nil
 }
+
+

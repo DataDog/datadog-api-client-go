@@ -10,6 +10,9 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"time"
+	"fmt"
 )
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
@@ -23,13 +26,14 @@ type NotebookCellTime struct {
 
 // NotebookAbsoluteTimeAsNotebookCellTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookCellTime
 func NotebookAbsoluteTimeAsNotebookCellTime(v *NotebookAbsoluteTime) NotebookCellTime {
-	return NotebookCellTime{NotebookAbsoluteTime: v}
+	return NotebookCellTime{ NotebookAbsoluteTime: v}
 }
 
 // NotebookRelativeTimeAsNotebookCellTime is a convenience function that returns NotebookRelativeTime wrapped in NotebookCellTime
 func NotebookRelativeTimeAsNotebookCellTime(v *NotebookRelativeTime) NotebookCellTime {
-	return NotebookCellTime{NotebookRelativeTime: v}
+	return NotebookCellTime{ NotebookRelativeTime: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookCellTime) UnmarshalJSON(data []byte) error {
@@ -101,7 +105,7 @@ func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookCellTime) GetActualInstance() interface{} {
+func (obj *NotebookCellTime) GetActualInstance() (interface{}) {
 	if obj.NotebookAbsoluteTime != nil {
 		return obj.NotebookAbsoluteTime
 	}
@@ -149,3 +153,5 @@ func (v *NullableNotebookCellTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

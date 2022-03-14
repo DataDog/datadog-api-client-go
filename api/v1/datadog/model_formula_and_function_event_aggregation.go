@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionEventAggregation Aggregation methods for event platform queries.
@@ -18,18 +19,18 @@ type FormulaAndFunctionEventAggregation string
 
 // List of FormulaAndFunctionEventAggregation
 const (
-	FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT       FormulaAndFunctionEventAggregation = "count"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT FormulaAndFunctionEventAggregation = "count"
 	FORMULAANDFUNCTIONEVENTAGGREGATION_CARDINALITY FormulaAndFunctionEventAggregation = "cardinality"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN      FormulaAndFunctionEventAggregation = "median"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC75        FormulaAndFunctionEventAggregation = "pc75"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC90        FormulaAndFunctionEventAggregation = "pc90"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC95        FormulaAndFunctionEventAggregation = "pc95"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC98        FormulaAndFunctionEventAggregation = "pc98"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_PC99        FormulaAndFunctionEventAggregation = "pc99"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_SUM         FormulaAndFunctionEventAggregation = "sum"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MIN         FormulaAndFunctionEventAggregation = "min"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_MAX         FormulaAndFunctionEventAggregation = "max"
-	FORMULAANDFUNCTIONEVENTAGGREGATION_AVG         FormulaAndFunctionEventAggregation = "avg"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN FormulaAndFunctionEventAggregation = "median"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC75 FormulaAndFunctionEventAggregation = "pc75"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC90 FormulaAndFunctionEventAggregation = "pc90"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC95 FormulaAndFunctionEventAggregation = "pc95"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC98 FormulaAndFunctionEventAggregation = "pc98"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_PC99 FormulaAndFunctionEventAggregation = "pc99"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_SUM FormulaAndFunctionEventAggregation = "sum"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MIN FormulaAndFunctionEventAggregation = "min"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_MAX FormulaAndFunctionEventAggregation = "max"
+	FORMULAANDFUNCTIONEVENTAGGREGATION_AVG FormulaAndFunctionEventAggregation = "avg"
 )
 
 var allowedFormulaAndFunctionEventAggregationEnumValues = []FormulaAndFunctionEventAggregation{
@@ -122,3 +123,4 @@ func (v *NullableFormulaAndFunctionEventAggregation) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -16,8 +16,8 @@ import (
 // SyntheticsDevice Object describing the device used to perform the Synthetic test.
 type SyntheticsDevice struct {
 	// Screen height of the device.
-	Height int64              `json:"height"`
-	Id     SyntheticsDeviceID `json:"id"`
+	Height int64 `json:"height"`
+	Id SyntheticsDeviceID `json:"id"`
 	// Whether or not the device is a mobile.
 	IsMobile *bool `json:"isMobile,omitempty"`
 	// The device name.
@@ -62,7 +62,7 @@ func (o *SyntheticsDevice) GetHeight() int64 {
 // GetHeightOk returns a tuple with the Height field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetHeightOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Height, true
@@ -86,7 +86,7 @@ func (o *SyntheticsDevice) GetId() SyntheticsDeviceID {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetIdOk() (*SyntheticsDeviceID, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -142,7 +142,7 @@ func (o *SyntheticsDevice) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -166,7 +166,7 @@ func (o *SyntheticsDevice) GetWidth() int64 {
 // GetWidthOk returns a tuple with the Width field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsDevice) GetWidthOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Width, true
@@ -203,18 +203,18 @@ func (o SyntheticsDevice) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Height *int64              `json:"height"`
-		Id     *SyntheticsDeviceID `json:"id"`
-		Name   *string             `json:"name"`
-		Width  *int64              `json:"width"`
-	}{}
+		Height *int64 `json:"height"`
+		Id *SyntheticsDeviceID `json:"id"`
+		Name *string `json:"name"`
+		Width *int64 `json:"width"`
+		}{}
 	all := struct {
-		Height   int64              `json:"height"`
-		Id       SyntheticsDeviceID `json:"id"`
-		IsMobile *bool              `json:"isMobile,omitempty"`
-		Name     string             `json:"name"`
-		Width    int64              `json:"width"`
-	}{}
+			Height int64 `json:"height"`
+			Id SyntheticsDeviceID `json:"id"`
+			IsMobile *bool `json:"isMobile,omitempty"`
+			Name string `json:"name"`
+			Width int64 `json:"width"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -255,3 +255,5 @@ func (o *SyntheticsDevice) UnmarshalJSON(bytes []byte) (err error) {
 	o.Width = all.Width
 	return nil
 }
+
+

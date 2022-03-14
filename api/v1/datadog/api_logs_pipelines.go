@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type LogsPipelinesApiService service
 
 type apiCreateLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipeline
+	body *LogsPipeline
 }
+
 
 /*
  * CreateLogsPipeline Create a pipeline
@@ -38,11 +41,12 @@ type apiCreateLogsPipelineRequest struct {
 func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	req := apiCreateLogsPipelineRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createLogsPipelineExecute(req)
+
+    return req.ApiService.createLogsPipelineExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipel
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsPipeline
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.CreateLogsPipeline")
 	if err != nil {
@@ -188,24 +193,26 @@ func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipel
 }
 
 type apiDeleteLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
 }
+
 
 /*
  * DeleteLogsPipeline Delete a pipeline
  * Delete a given pipeline from your organization.
 This endpoint takes no JSON arguments.
-*/
+ */
 func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipelineId string) (*_nethttp.Response, error) {
 	req := apiDeleteLogsPipelineRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
 	}
 
-	return req.ApiService.deleteLogsPipelineExecute(req)
+
+    return req.ApiService.deleteLogsPipelineExecute(req)
 }
 
 /*
@@ -219,6 +226,7 @@ func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipel
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.DeleteLogsPipeline")
 	if err != nil {
@@ -336,24 +344,26 @@ func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipel
 }
 
 type apiGetLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
 }
+
 
 /*
  * GetLogsPipeline Get a pipeline
  * Get a specific pipeline from your organization.
 This endpoint takes no JSON arguments.
-*/
+ */
 func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipelineId string) (LogsPipeline, *_nethttp.Response, error) {
 	req := apiGetLogsPipelineRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
 	}
 
-	return req.ApiService.getLogsPipelineExecute(req)
+
+    return req.ApiService.getLogsPipelineExecute(req)
 }
 
 /*
@@ -369,6 +379,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineReq
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsPipeline
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipeline")
 	if err != nil {
@@ -495,22 +506,24 @@ func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineReq
 }
 
 type apiGetLogsPipelineOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
 }
+
 
 /*
  * GetLogsPipelineOrder Get pipeline order
  * Get the current order of your pipelines.
 This endpoint takes no JSON arguments.
-*/
+ */
 func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	req := apiGetLogsPipelineOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.getLogsPipelineOrderExecute(req)
+
+    return req.ApiService.getLogsPipelineOrderExecute(req)
 }
 
 /*
@@ -526,6 +539,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipeli
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsPipelinesOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipelineOrder")
 	if err != nil {
@@ -641,22 +655,24 @@ func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipeli
 }
 
 type apiListLogsPipelinesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
 }
+
 
 /*
  * ListLogsPipelines Get all pipelines
  * Get all pipelines from your organization.
 This endpoint takes no JSON arguments.
-*/
+ */
 func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) ([]LogsPipeline, *_nethttp.Response, error) {
 	req := apiListLogsPipelinesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listLogsPipelinesExecute(req)
+
+    return req.ApiService.listLogsPipelinesExecute(req)
 }
 
 /*
@@ -672,6 +688,7 @@ func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipeline
 		localVarFileBytes    []byte
 		localVarReturnValue  []LogsPipeline
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.ListLogsPipelines")
 	if err != nil {
@@ -787,11 +804,12 @@ func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipeline
 }
 
 type apiUpdateLogsPipelineRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
-	body       *LogsPipeline
+	body *LogsPipeline
 }
+
 
 /*
  * UpdateLogsPipeline Update a pipeline
@@ -799,16 +817,17 @@ type apiUpdateLogsPipelineRequest struct {
 
 **Note**: Using this method updates your pipeline configuration by **replacing**
 your current configuration with the new one sent to your Datadog organization.
-*/
+ */
 func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipelineId string, body LogsPipeline) (LogsPipeline, *_nethttp.Response, error) {
 	req := apiUpdateLogsPipelineRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		pipelineId: pipelineId,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsPipelineExecute(req)
+
+    return req.ApiService.updateLogsPipelineExecute(req)
 }
 
 /*
@@ -824,6 +843,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsPipeline
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipeline")
 	if err != nil {
@@ -955,10 +975,11 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 }
 
 type apiUpdateLogsPipelineOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipelinesOrder
+	body *LogsPipelinesOrder
 }
+
 
 /*
  * UpdateLogsPipelineOrder Update pipeline order
@@ -967,15 +988,16 @@ the structure and content of the data processed by other pipelines and their pro
 
 **Note**: Using the `PUT` method updates your pipeline order by replacing your current order
 with the new one sent to your Datadog organization.
-*/
+ */
 func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, body LogsPipelinesOrder) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	req := apiUpdateLogsPipelineOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsPipelineOrderExecute(req)
+
+    return req.ApiService.updateLogsPipelineOrderExecute(req)
 }
 
 /*
@@ -991,6 +1013,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogs
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsPipelinesOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipelineOrder")
 	if err != nil {

@@ -11,11 +11,13 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
+	"reflect"
 )
 
 // Linger please
@@ -27,10 +29,11 @@ var (
 type AuthNMappingsApiService service
 
 type apiCreateAuthNMappingRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AuthNMappingsApiService
-	body       *AuthNMappingCreateRequest
+	body *AuthNMappingCreateRequest
 }
+
 
 /*
  * CreateAuthNMapping Create an AuthN Mapping
@@ -39,11 +42,12 @@ type apiCreateAuthNMappingRequest struct {
 func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req := apiCreateAuthNMappingRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAuthNMappingExecute(req)
+
+    return req.ApiService.createAuthNMappingExecute(req)
 }
 
 /*
@@ -59,6 +63,7 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 		localVarFileBytes    []byte
 		localVarReturnValue  AuthNMappingResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.CreateAuthNMapping")
 	if err != nil {
@@ -199,10 +204,11 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 }
 
 type apiDeleteAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
 }
+
 
 /*
  * DeleteAuthNMapping Delete an AuthN Mapping
@@ -210,12 +216,13 @@ type apiDeleteAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	req := apiDeleteAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx: ctx,
 		authnMappingId: authnMappingId,
 	}
 
-	return req.ApiService.deleteAuthNMappingExecute(req)
+
+    return req.ApiService.deleteAuthNMappingExecute(req)
 }
 
 /*
@@ -229,6 +236,7 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.DeleteAuthNMapping")
 	if err != nil {
@@ -346,10 +354,11 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 }
 
 type apiGetAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
 }
+
 
 /*
  * GetAuthNMapping Get an AuthN Mapping by UUID
@@ -357,12 +366,13 @@ type apiGetAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req := apiGetAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx: ctx,
 		authnMappingId: authnMappingId,
 	}
 
-	return req.ApiService.getAuthNMappingExecute(req)
+
+    return req.ApiService.getAuthNMappingExecute(req)
 }
 
 /*
@@ -378,6 +388,7 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 		localVarFileBytes    []byte
 		localVarReturnValue  AuthNMappingResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.GetAuthNMapping")
 	if err != nil {
@@ -504,46 +515,46 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 }
 
 type apiListAuthNMappingsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AuthNMappingsApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sort       *AuthNMappingsSort
-	include    *[]string
-	filter     *string
+	sort *AuthNMappingsSort
+	include *[]string
+	filter *string
 }
 
 type ListAuthNMappingsOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
-	Sort       *AuthNMappingsSort
-	Include    *[]string
-	Filter     *string
+    PageSize *int64
+    PageNumber *int64
+    Sort *AuthNMappingsSort
+    Include *[]string
+    Filter *string
 }
 
 func NewListAuthNMappingsOptionalParameters() *ListAuthNMappingsOptionalParameters {
-	this := ListAuthNMappingsOptionalParameters{}
-	return &this
+    this := ListAuthNMappingsOptionalParameters{}
+    return &this
 }
 func (r *ListAuthNMappingsOptionalParameters) WithPageSize(pageSize int64) *ListAuthNMappingsOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *ListAuthNMappingsOptionalParameters) WithPageNumber(pageNumber int64) *ListAuthNMappingsOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *ListAuthNMappingsOptionalParameters) WithSort(sort AuthNMappingsSort) *ListAuthNMappingsOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListAuthNMappingsOptionalParameters) WithInclude(include []string) *ListAuthNMappingsOptionalParameters {
-	r.Include = &include
-	return r
+    r.Include = &include
+    return r
 }
 func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAuthNMappingsOptionalParameters {
-	r.Filter = &filter
-	return r
+    r.Filter = &filter
+    return r
 }
 
 /*
@@ -553,23 +564,23 @@ func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAut
 func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	req := apiListAuthNMappingsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue AuthNMappingsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListAuthNMappingsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue AuthNMappingsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListAuthNMappingsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sort = o[0].Sort
-		req.include = o[0].Include
-		req.filter = o[0].Filter
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sort = o[0].Sort
+        req.include = o[0].Include
+        req.filter = o[0].Filter
+    }
 
-	return req.ApiService.listAuthNMappingsExecute(req)
+    return req.ApiService.listAuthNMappingsExecute(req)
 }
 
 /*
@@ -585,6 +596,7 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 		localVarFileBytes    []byte
 		localVarReturnValue  AuthNMappingsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.ListAuthNMappings")
 	if err != nil {
@@ -723,11 +735,12 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 }
 
 type apiUpdateAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
-	body           *AuthNMappingUpdateRequest
+	body *AuthNMappingUpdateRequest
 }
+
 
 /*
  * UpdateAuthNMapping Edit an AuthN Mapping
@@ -735,13 +748,14 @@ type apiUpdateAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req := apiUpdateAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx: ctx,
 		authnMappingId: authnMappingId,
-		body:           &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateAuthNMappingExecute(req)
+
+    return req.ApiService.updateAuthNMappingExecute(req)
 }
 
 /*
@@ -757,6 +771,7 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 		localVarFileBytes    []byte
 		localVarReturnValue  AuthNMappingResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.UpdateAuthNMapping")
 	if err != nil {

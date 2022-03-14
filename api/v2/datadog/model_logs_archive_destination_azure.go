@@ -16,15 +16,15 @@ import (
 // LogsArchiveDestinationAzure The Azure archive destination.
 type LogsArchiveDestinationAzure struct {
 	// The container where the archive will be stored.
-	Container   string                      `json:"container"`
+	Container string `json:"container"`
 	Integration LogsArchiveIntegrationAzure `json:"integration"`
 	// The archive path.
 	Path *string `json:"path,omitempty"`
 	// The region where the archive will be stored.
 	Region *string `json:"region,omitempty"`
 	// The associated storage account.
-	StorageAccount string                          `json:"storage_account"`
-	Type           LogsArchiveDestinationAzureType `json:"type"`
+	StorageAccount string `json:"storage_account"`
+	Type LogsArchiveDestinationAzureType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -65,7 +65,7 @@ func (o *LogsArchiveDestinationAzure) GetContainer() string {
 // GetContainerOk returns a tuple with the Container field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationAzure) GetContainerOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Container, true
@@ -89,7 +89,7 @@ func (o *LogsArchiveDestinationAzure) GetIntegration() LogsArchiveIntegrationAzu
 // GetIntegrationOk returns a tuple with the Integration field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationAzure) GetIntegrationOk() (*LogsArchiveIntegrationAzure, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Integration, true
@@ -177,7 +177,7 @@ func (o *LogsArchiveDestinationAzure) GetStorageAccount() string {
 // GetStorageAccountOk returns a tuple with the StorageAccount field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationAzure) GetStorageAccountOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.StorageAccount, true
@@ -201,7 +201,7 @@ func (o *LogsArchiveDestinationAzure) GetType() LogsArchiveDestinationAzureType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveDestinationAzure) GetTypeOk() (*LogsArchiveDestinationAzureType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -241,19 +241,19 @@ func (o LogsArchiveDestinationAzure) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Container      *string                          `json:"container"`
-		Integration    *LogsArchiveIntegrationAzure     `json:"integration"`
-		StorageAccount *string                          `json:"storage_account"`
-		Type           *LogsArchiveDestinationAzureType `json:"type"`
-	}{}
+		Container *string `json:"container"`
+		Integration *LogsArchiveIntegrationAzure `json:"integration"`
+		StorageAccount *string `json:"storage_account"`
+		Type *LogsArchiveDestinationAzureType `json:"type"`
+		}{}
 	all := struct {
-		Container      string                          `json:"container"`
-		Integration    LogsArchiveIntegrationAzure     `json:"integration"`
-		Path           *string                         `json:"path,omitempty"`
-		Region         *string                         `json:"region,omitempty"`
-		StorageAccount string                          `json:"storage_account"`
-		Type           LogsArchiveDestinationAzureType `json:"type"`
-	}{}
+			Container string `json:"container"`
+			Integration LogsArchiveIntegrationAzure `json:"integration"`
+			Path *string `json:"path,omitempty"`
+			Region *string `json:"region,omitempty"`
+			StorageAccount string `json:"storage_account"`
+			Type LogsArchiveDestinationAzureType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -295,3 +295,5 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -16,7 +16,7 @@ import (
 // CloudWorkloadSecurityAgentRuleCreateData Object for a single Agent rule.
 type CloudWorkloadSecurityAgentRuleCreateData struct {
 	Attributes CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
-	Type       CloudWorkloadSecurityAgentRuleType             `json:"type"`
+	Type CloudWorkloadSecurityAgentRuleType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributes() CloudWorkload
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateData) GetAttributesOk() (*CloudWorkloadSecurityAgentRuleCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) GetType() CloudWorkloadSecuri
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateData) GetTypeOk() (*CloudWorkloadSecurityAgentRuleType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) UnmarshalJSON(bytes []byte) (
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
-		Type       *CloudWorkloadSecurityAgentRuleType             `json:"type"`
-	}{}
+		Type *CloudWorkloadSecurityAgentRuleType `json:"type"`
+		}{}
 	all := struct {
-		Attributes CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
-		Type       CloudWorkloadSecurityAgentRuleType             `json:"type"`
-	}{}
+			Attributes CloudWorkloadSecurityAgentRuleCreateAttributes `json:"attributes"`
+			Type CloudWorkloadSecurityAgentRuleType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *CloudWorkloadSecurityAgentRuleCreateData) UnmarshalJSON(bytes []byte) (
 	o.Type = all.Type
 	return nil
 }
+
+

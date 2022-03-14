@@ -15,7 +15,7 @@ import (
 
 // FunnelWidgetRequest Updated funnel widget.
 type FunnelWidgetRequest struct {
-	Query       FunnelQuery       `json:"query"`
+	Query FunnelQuery `json:"query"`
 	RequestType FunnelRequestType `json:"request_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -53,7 +53,7 @@ func (o *FunnelWidgetRequest) GetQuery() FunnelQuery {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *FunnelWidgetRequest) GetQueryOk() (*FunnelQuery, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -77,7 +77,7 @@ func (o *FunnelWidgetRequest) GetRequestType() FunnelRequestType {
 // GetRequestTypeOk returns a tuple with the RequestType field value
 // and a boolean to check if the value has been set.
 func (o *FunnelWidgetRequest) GetRequestTypeOk() (*FunnelRequestType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.RequestType, true
@@ -105,13 +105,13 @@ func (o FunnelWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query       *FunnelQuery       `json:"query"`
+		Query *FunnelQuery `json:"query"`
 		RequestType *FunnelRequestType `json:"request_type"`
-	}{}
+		}{}
 	all := struct {
-		Query       FunnelQuery       `json:"query"`
-		RequestType FunnelRequestType `json:"request_type"`
-	}{}
+			Query FunnelQuery `json:"query"`
+			RequestType FunnelRequestType `json:"request_type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -143,3 +143,5 @@ func (o *FunnelWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.RequestType = all.RequestType
 	return nil
 }
+
+

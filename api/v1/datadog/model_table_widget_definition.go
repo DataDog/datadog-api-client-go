@@ -16,17 +16,17 @@ import (
 // TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
 type TableWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks  *[]WidgetCustomLink      `json:"custom_links,omitempty"`
+	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
 	// Widget definition.
 	Requests []TableWidgetRequest `json:"requests"`
-	Time     *WidgetTime          `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                   `json:"title_size,omitempty"`
-	Type      TableWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type TableWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -129,7 +129,7 @@ func (o *TableWidgetDefinition) GetRequests() []TableWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *TableWidgetDefinition) GetRequestsOk() (*[]TableWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -281,7 +281,7 @@ func (o *TableWidgetDefinition) GetType() TableWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TableWidgetDefinition) GetTypeOk() (*TableWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -327,19 +327,19 @@ func (o TableWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]TableWidgetRequest      `json:"requests"`
-		Type     *TableWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]TableWidgetRequest `json:"requests"`
+		Type *TableWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks  *[]WidgetCustomLink       `json:"custom_links,omitempty"`
-		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"`
-		Requests     []TableWidgetRequest      `json:"requests"`
-		Time         *WidgetTime               `json:"time,omitempty"`
-		Title        *string                   `json:"title,omitempty"`
-		TitleAlign   *WidgetTextAlign          `json:"title_align,omitempty"`
-		TitleSize    *string                   `json:"title_size,omitempty"`
-		Type         TableWidgetDefinitionType `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
+			Requests []TableWidgetRequest `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type TableWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -393,3 +393,5 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

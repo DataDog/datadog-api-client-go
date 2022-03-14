@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,45 +28,45 @@ var (
 type HostsApiService service
 
 type apiGetHostTotalsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *HostsApiService
-	from       *int64
+	from *int64
 }
 
 type GetHostTotalsOptionalParameters struct {
-	From *int64
+    From *int64
 }
 
 func NewGetHostTotalsOptionalParameters() *GetHostTotalsOptionalParameters {
-	this := GetHostTotalsOptionalParameters{}
-	return &this
+    this := GetHostTotalsOptionalParameters{}
+    return &this
 }
 func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOptionalParameters {
-	r.From = &from
-	return r
+    r.From = &from
+    return r
 }
 
 /*
  * GetHostTotals Get the total number of active hosts
  * This endpoint returns the total number of active and up hosts in your Datadog account.
 Active means the host has reported in the past hour, and up means it has reported in the past two hours.
-*/
+ */
 func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
 	req := apiGetHostTotalsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue HostTotals
-		return localVarReturnValue, nil, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue HostTotals
+        return localVarReturnValue, nil, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.from = o[0].From
-	}
+    if o != nil {
+        req.from = o[0].From
+    }
 
-	return req.ApiService.getHostTotalsExecute(req)
+    return req.ApiService.getHostTotalsExecute(req)
 }
 
 /*
@@ -80,6 +82,7 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 		localVarFileBytes    []byte
 		localVarReturnValue  HostTotals
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostsApiService.GetHostTotals")
 	if err != nil {
@@ -208,64 +211,64 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 }
 
 type apiListHostsRequest struct {
-	ctx                   _context.Context
-	ApiService            *HostsApiService
-	filter                *string
-	sortField             *string
-	sortDir               *string
-	start                 *int64
-	count                 *int64
-	from                  *int64
+	ctx _context.Context
+	ApiService *HostsApiService
+	filter *string
+	sortField *string
+	sortDir *string
+	start *int64
+	count *int64
+	from *int64
 	includeMutedHostsData *bool
-	includeHostsMetadata  *bool
+	includeHostsMetadata *bool
 }
 
 type ListHostsOptionalParameters struct {
-	Filter                *string
-	SortField             *string
-	SortDir               *string
-	Start                 *int64
-	Count                 *int64
-	From                  *int64
-	IncludeMutedHostsData *bool
-	IncludeHostsMetadata  *bool
+    Filter *string
+    SortField *string
+    SortDir *string
+    Start *int64
+    Count *int64
+    From *int64
+    IncludeMutedHostsData *bool
+    IncludeHostsMetadata *bool
 }
 
 func NewListHostsOptionalParameters() *ListHostsOptionalParameters {
-	this := ListHostsOptionalParameters{}
-	return &this
+    this := ListHostsOptionalParameters{}
+    return &this
 }
 func (r *ListHostsOptionalParameters) WithFilter(filter string) *ListHostsOptionalParameters {
-	r.Filter = &filter
-	return r
+    r.Filter = &filter
+    return r
 }
 func (r *ListHostsOptionalParameters) WithSortField(sortField string) *ListHostsOptionalParameters {
-	r.SortField = &sortField
-	return r
+    r.SortField = &sortField
+    return r
 }
 func (r *ListHostsOptionalParameters) WithSortDir(sortDir string) *ListHostsOptionalParameters {
-	r.SortDir = &sortDir
-	return r
+    r.SortDir = &sortDir
+    return r
 }
 func (r *ListHostsOptionalParameters) WithStart(start int64) *ListHostsOptionalParameters {
-	r.Start = &start
-	return r
+    r.Start = &start
+    return r
 }
 func (r *ListHostsOptionalParameters) WithCount(count int64) *ListHostsOptionalParameters {
-	r.Count = &count
-	return r
+    r.Count = &count
+    return r
 }
 func (r *ListHostsOptionalParameters) WithFrom(from int64) *ListHostsOptionalParameters {
-	r.From = &from
-	return r
+    r.From = &from
+    return r
 }
 func (r *ListHostsOptionalParameters) WithIncludeMutedHostsData(includeMutedHostsData bool) *ListHostsOptionalParameters {
-	r.IncludeMutedHostsData = &includeMutedHostsData
-	return r
+    r.IncludeMutedHostsData = &includeMutedHostsData
+    return r
 }
 func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetadata bool) *ListHostsOptionalParameters {
-	r.IncludeHostsMetadata = &includeHostsMetadata
-	return r
+    r.IncludeHostsMetadata = &includeHostsMetadata
+    return r
 }
 
 /*
@@ -274,30 +277,30 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 Hosts live within the past 3 hours are included by default.
 Retention is 7 days.
 Results are paginated with a max of 1000 results at a time.
-*/
+ */
 func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
 	req := apiListHostsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue HostListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListHostsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue HostListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListHostsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.filter = o[0].Filter
-		req.sortField = o[0].SortField
-		req.sortDir = o[0].SortDir
-		req.start = o[0].Start
-		req.count = o[0].Count
-		req.from = o[0].From
-		req.includeMutedHostsData = o[0].IncludeMutedHostsData
-		req.includeHostsMetadata = o[0].IncludeHostsMetadata
-	}
+    if o != nil {
+        req.filter = o[0].Filter
+        req.sortField = o[0].SortField
+        req.sortDir = o[0].SortDir
+        req.start = o[0].Start
+        req.count = o[0].Count
+        req.from = o[0].From
+        req.includeMutedHostsData = o[0].IncludeMutedHostsData
+        req.includeHostsMetadata = o[0].IncludeHostsMetadata
+    }
 
-	return req.ApiService.listHostsExecute(req)
+    return req.ApiService.listHostsExecute(req)
 }
 
 /*
@@ -313,6 +316,7 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 		localVarFileBytes    []byte
 		localVarReturnValue  HostListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostsApiService.ListHosts")
 	if err != nil {
@@ -462,11 +466,12 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 }
 
 type apiMuteHostRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *HostsApiService
-	hostName   string
-	body       *HostMuteSettings
+	hostName string
+	body *HostMuteSettings
 }
+
 
 /*
  * MuteHost Mute a host
@@ -475,12 +480,13 @@ type apiMuteHostRequest struct {
 func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
 	req := apiMuteHostRequest{
 		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
-		body:       &body,
+		ctx: ctx,
+		hostName: hostName,
+		body: &body,
 	}
 
-	return req.ApiService.muteHostExecute(req)
+
+    return req.ApiService.muteHostExecute(req)
 }
 
 /*
@@ -496,6 +502,7 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 		localVarFileBytes    []byte
 		localVarReturnValue  HostMuteResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostsApiService.MuteHost")
 	if err != nil {
@@ -627,10 +634,11 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 }
 
 type apiUnmuteHostRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *HostsApiService
-	hostName   string
+	hostName string
 }
+
 
 /*
  * UnmuteHost Unmute a host
@@ -639,11 +647,12 @@ type apiUnmuteHostRequest struct {
 func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
 	req := apiUnmuteHostRequest{
 		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+		ctx: ctx,
+		hostName: hostName,
 	}
 
-	return req.ApiService.unmuteHostExecute(req)
+
+    return req.ApiService.unmuteHostExecute(req)
 }
 
 /*
@@ -659,6 +668,7 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 		localVarFileBytes    []byte
 		localVarReturnValue  HostMuteResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "HostsApiService.UnmuteHost")
 	if err != nil {

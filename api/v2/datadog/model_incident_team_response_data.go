@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTeamResponseData Incident Team data from a response.
 type IncidentTeamResponseData struct {
 	Attributes *IncidentTeamResponseAttributes `json:"attributes,omitempty"`
 	// The incident team's ID.
-	Id            *string                    `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
-	Type          *IncidentTeamType          `json:"type,omitempty"`
+	Type *IncidentTeamType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -195,11 +196,11 @@ func (o IncidentTeamResponseData) MarshalJSON() ([]byte, error) {
 func (o *IncidentTeamResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *IncidentTeamResponseAttributes `json:"attributes,omitempty"`
-		Id            *string                         `json:"id,omitempty"`
-		Relationships *IncidentTeamRelationships      `json:"relationships,omitempty"`
-		Type          *IncidentTeamType               `json:"type,omitempty"`
-	}{}
+			Attributes *IncidentTeamResponseAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Relationships *IncidentTeamRelationships `json:"relationships,omitempty"`
+			Type *IncidentTeamType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -223,3 +224,5 @@ func (o *IncidentTeamResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

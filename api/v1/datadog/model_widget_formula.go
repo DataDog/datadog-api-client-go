@@ -16,13 +16,13 @@ import (
 // WidgetFormula Formula to be used in a widget query.
 type WidgetFormula struct {
 	// Expression alias.
-	Alias           *string                     `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	// String expression built from queries, formulas, and functions.
-	Formula string              `json:"formula"`
-	Limit   *WidgetFormulaLimit `json:"limit,omitempty"`
+	Formula string `json:"formula"`
+	Limit *WidgetFormulaLimit `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -154,7 +154,7 @@ func (o *WidgetFormula) GetFormula() string {
 // GetFormulaOk returns a tuple with the Formula field value
 // and a boolean to check if the value has been set.
 func (o *WidgetFormula) GetFormulaOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Formula, true
@@ -224,14 +224,14 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Formula *string `json:"formula"`
-	}{}
+		}{}
 	all := struct {
-		Alias              *string                     `json:"alias,omitempty"`
-		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		ConditionalFormats *[]WidgetConditionalFormat  `json:"conditional_formats,omitempty"`
-		Formula            string                      `json:"formula"`
-		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
-	}{}
+			Alias *string `json:"alias,omitempty"`
+			CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+			ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+			Formula string `json:"formula"`
+			Limit *WidgetFormulaLimit `json:"limit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -263,3 +263,5 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	return nil
 }
+
+

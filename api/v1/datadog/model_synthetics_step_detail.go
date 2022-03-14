@@ -10,19 +10,20 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsStepDetail Object describing a step for a Synthetic test.
 type SyntheticsStepDetail struct {
 	// Array of errors collected for a browser test.
 	BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
-	CheckType     *SyntheticsCheckType      `json:"checkType,omitempty"`
+	CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
 	// Description of the test.
 	Description *string `json:"description,omitempty"`
 	// Total duration in millisecond of the test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned by the test.
-	Error      *string               `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
 	PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
 	// Whether or not screenshots where collected by the test.
 	ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
@@ -35,8 +36,8 @@ type SyntheticsStepDetail struct {
 	// If this steps include a sub-test. [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
 	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.
-	TimeToInteractive *float64            `json:"timeToInteractive,omitempty"`
-	Type              *SyntheticsStepType `json:"type,omitempty"`
+	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+	Type *SyntheticsStepType `json:"type,omitempty"`
 	// URL to perform the step against.
 	Url *string `json:"url,omitempty"`
 	// Value for the step.
@@ -516,7 +517,7 @@ func (o *SyntheticsStepDetail) SetUrl(v string) {
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsStepDetail) GetValue() interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret interface{}
 		return ret
 	}
@@ -673,24 +674,24 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserErrors       *[]SyntheticsBrowserError      `json:"browserErrors,omitempty"`
-		CheckType           *SyntheticsCheckType           `json:"checkType,omitempty"`
-		Description         *string                        `json:"description,omitempty"`
-		Duration            *float64                       `json:"duration,omitempty"`
-		Error               *string                        `json:"error,omitempty"`
-		PlayingTab          *SyntheticsPlayingTab          `json:"playingTab,omitempty"`
-		ScreenshotBucketKey *bool                          `json:"screenshotBucketKey,omitempty"`
-		Skipped             *bool                          `json:"skipped,omitempty"`
-		SnapshotBucketKey   *bool                          `json:"snapshotBucketKey,omitempty"`
-		StepId              *int64                         `json:"stepId,omitempty"`
-		SubTestStepDetails  *[]SyntheticsStepDetail        `json:"subTestStepDetails,omitempty"`
-		TimeToInteractive   *float64                       `json:"timeToInteractive,omitempty"`
-		Type                *SyntheticsStepType            `json:"type,omitempty"`
-		Url                 *string                        `json:"url,omitempty"`
-		Value               interface{}                    `json:"value,omitempty"`
-		VitalsMetrics       *[]SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
-		Warnings            *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
-	}{}
+			BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
+			CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Duration *float64 `json:"duration,omitempty"`
+			Error *string `json:"error,omitempty"`
+			PlayingTab *SyntheticsPlayingTab `json:"playingTab,omitempty"`
+			ScreenshotBucketKey *bool `json:"screenshotBucketKey,omitempty"`
+			Skipped *bool `json:"skipped,omitempty"`
+			SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
+			StepId *int64 `json:"stepId,omitempty"`
+			SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
+			TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+			Type *SyntheticsStepType `json:"type,omitempty"`
+			Url *string `json:"url,omitempty"`
+			Value interface{} `json:"value,omitempty"`
+			VitalsMetrics *[]SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
+			Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -743,3 +744,5 @@ func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	o.Warnings = all.Warnings
 	return nil
 }
+
+

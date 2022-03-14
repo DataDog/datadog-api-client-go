@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetMessageDisplay Amount of log lines to display
@@ -18,9 +19,9 @@ type WidgetMessageDisplay string
 
 // List of WidgetMessageDisplay
 const (
-	WIDGETMESSAGEDISPLAY_INLINE          WidgetMessageDisplay = "inline"
+	WIDGETMESSAGEDISPLAY_INLINE WidgetMessageDisplay = "inline"
 	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM WidgetMessageDisplay = "expanded-md"
-	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE  WidgetMessageDisplay = "expanded-lg"
+	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE WidgetMessageDisplay = "expanded-lg"
 )
 
 var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{
@@ -104,3 +105,4 @@ func (v *NullableWidgetMessageDisplay) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

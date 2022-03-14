@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IPPrefixesAPM Available prefix information for the APM endpoints.
@@ -120,9 +121,9 @@ func (o IPPrefixesAPM) MarshalJSON() ([]byte, error) {
 func (o *IPPrefixesAPM) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
-		PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
-	}{}
+			PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
+			PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *IPPrefixesAPM) UnmarshalJSON(bytes []byte) (err error) {
 	o.PrefixesIpv6 = all.PrefixesIpv6
 	return nil
 }
+
+

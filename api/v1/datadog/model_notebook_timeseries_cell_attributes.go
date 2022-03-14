@@ -16,9 +16,9 @@ import (
 // NotebookTimeseriesCellAttributes The attributes of a notebook `timeseries` cell.
 type NotebookTimeseriesCellAttributes struct {
 	Definition TimeseriesWidgetDefinition `json:"definition"`
-	GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
-	SplitBy    *NotebookSplitBy           `json:"split_by,omitempty"`
-	Time       NullableNotebookCellTime   `json:"time,omitempty"`
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -54,7 +54,7 @@ func (o *NotebookTimeseriesCellAttributes) GetDefinition() TimeseriesWidgetDefin
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *NotebookTimeseriesCellAttributes) GetDefinitionOk() (*TimeseriesWidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -142,7 +142,7 @@ func (o *NotebookTimeseriesCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookTimeseriesCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -161,7 +161,6 @@ func (o *NotebookTimeseriesCellAttributes) HasTime() bool {
 func (o *NotebookTimeseriesCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookTimeseriesCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -196,13 +195,13 @@ func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err erro
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *TimeseriesWidgetDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition TimeseriesWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize         `json:"graph_size,omitempty"`
-		SplitBy    *NotebookSplitBy           `json:"split_by,omitempty"`
-		Time       NullableNotebookCellTime   `json:"time,omitempty"`
-	}{}
+			Definition TimeseriesWidgetDefinition `json:"definition"`
+			GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+			SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+			Time NullableNotebookCellTime `json:"time,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -233,3 +232,5 @@ func (o *NotebookTimeseriesCellAttributes) UnmarshalJSON(bytes []byte) (err erro
 	o.Time = all.Time
 	return nil
 }
+
+

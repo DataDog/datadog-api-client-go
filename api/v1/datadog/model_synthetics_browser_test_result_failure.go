@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserTestResultFailure The browser test failure details.
@@ -119,9 +120,9 @@ func (o SyntheticsBrowserTestResultFailure) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
-		Message *string                           `json:"message,omitempty"`
-	}{}
+			Code *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
+			Message *string `json:"message,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -143,3 +144,5 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 	o.Message = all.Message
 	return nil
 }
+
+

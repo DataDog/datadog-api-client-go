@@ -10,11 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // MetricsAndMetricTagConfigurations - Object for a metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurations struct {
-	Metric                 *Metric
+	Metric *Metric
 	MetricTagConfiguration *MetricTagConfiguration
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -23,13 +25,14 @@ type MetricsAndMetricTagConfigurations struct {
 
 // MetricAsMetricsAndMetricTagConfigurations is a convenience function that returns Metric wrapped in MetricsAndMetricTagConfigurations
 func MetricAsMetricsAndMetricTagConfigurations(v *Metric) MetricsAndMetricTagConfigurations {
-	return MetricsAndMetricTagConfigurations{Metric: v}
+	return MetricsAndMetricTagConfigurations{ Metric: v}
 }
 
 // MetricTagConfigurationAsMetricsAndMetricTagConfigurations is a convenience function that returns MetricTagConfiguration wrapped in MetricsAndMetricTagConfigurations
 func MetricTagConfigurationAsMetricsAndMetricTagConfigurations(v *MetricTagConfiguration) MetricsAndMetricTagConfigurations {
-	return MetricsAndMetricTagConfigurations{MetricTagConfiguration: v}
+	return MetricsAndMetricTagConfigurations{ MetricTagConfiguration: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
+func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() (interface{}) {
 	if obj.Metric != nil {
 		return obj.Metric
 	}
@@ -144,3 +147,5 @@ func (v *NullableMetricsAndMetricTagConfigurations) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

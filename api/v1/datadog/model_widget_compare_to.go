@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetCompareTo Timeframe used for the change comparison.
@@ -18,9 +19,9 @@ type WidgetCompareTo string
 
 // List of WidgetCompareTo
 const (
-	WIDGETCOMPARETO_HOUR_BEFORE  WidgetCompareTo = "hour_before"
-	WIDGETCOMPARETO_DAY_BEFORE   WidgetCompareTo = "day_before"
-	WIDGETCOMPARETO_WEEK_BEFORE  WidgetCompareTo = "week_before"
+	WIDGETCOMPARETO_HOUR_BEFORE WidgetCompareTo = "hour_before"
+	WIDGETCOMPARETO_DAY_BEFORE WidgetCompareTo = "day_before"
+	WIDGETCOMPARETO_WEEK_BEFORE WidgetCompareTo = "week_before"
 	WIDGETCOMPARETO_MONTH_BEFORE WidgetCompareTo = "month_before"
 )
 
@@ -106,3 +107,4 @@ func (v *NullableWidgetCompareTo) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

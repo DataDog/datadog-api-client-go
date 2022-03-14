@@ -16,7 +16,7 @@ import (
 // RelationshipToIncidentPostmortemData The postmortem relationship data.
 type RelationshipToIncidentPostmortemData struct {
 	// A unique identifier that represents the postmortem.
-	Id   string                 `json:"id"`
+	Id string `json:"id"`
 	Type IncidentPostmortemType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *RelationshipToIncidentPostmortemData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToIncidentPostmortemData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -80,7 +80,7 @@ func (o *RelationshipToIncidentPostmortemData) GetType() IncidentPostmortemType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToIncidentPostmortemData) GetTypeOk() (*IncidentPostmortemType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o RelationshipToIncidentPostmortemData) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToIncidentPostmortemData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                 `json:"id"`
+		Id *string `json:"id"`
 		Type *IncidentPostmortemType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Id   string                 `json:"id"`
-		Type IncidentPostmortemType `json:"type"`
-	}{}
+			Id string `json:"id"`
+			Type IncidentPostmortemType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *RelationshipToIncidentPostmortemData) UnmarshalJSON(bytes []byte) (err 
 	o.Type = all.Type
 	return nil
 }
+
+

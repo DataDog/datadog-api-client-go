@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApplicationKey An application key with its associated metadata.
@@ -157,10 +158,10 @@ func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 func (o *ApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hash  *string `json:"hash,omitempty"`
-		Name  *string `json:"name,omitempty"`
-		Owner *string `json:"owner,omitempty"`
-	}{}
+			Hash *string `json:"hash,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Owner *string `json:"owner,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *ApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Owner = all.Owner
 	return nil
 }
+
+

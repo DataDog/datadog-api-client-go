@@ -58,7 +58,7 @@ func (o *LogsGrokParserRules) GetMatchRules() string {
 // GetMatchRulesOk returns a tuple with the MatchRules field value
 // and a boolean to check if the value has been set.
 func (o *LogsGrokParserRules) GetMatchRulesOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.MatchRules, true
@@ -119,11 +119,11 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		MatchRules *string `json:"match_rules"`
-	}{}
+		}{}
 	all := struct {
-		MatchRules   string  `json:"match_rules"`
-		SupportRules *string `json:"support_rules,omitempty"`
-	}{}
+			MatchRules string `json:"match_rules"`
+			SupportRules *string `json:"support_rules,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -144,3 +144,5 @@ func (o *LogsGrokParserRules) UnmarshalJSON(bytes []byte) (err error) {
 	o.SupportRules = all.SupportRules
 	return nil
 }
+
+

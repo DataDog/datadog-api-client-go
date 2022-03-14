@@ -51,7 +51,7 @@ func (o *LogsMetricCreateRequest) GetData() LogsMetricCreateData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricCreateRequest) GetDataOk() (*LogsMetricCreateData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *LogsMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *LogsMetricCreateData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data LogsMetricCreateData `json:"data"`
-	}{}
+			Data LogsMetricCreateData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *LogsMetricCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

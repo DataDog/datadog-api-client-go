@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PartialApplicationKey Partial Datadog application key.
 type PartialApplicationKey struct {
 	Attributes *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
 	// ID of the application key.
-	Id            *string                      `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
-	Type          *ApplicationKeysType         `json:"type,omitempty"`
+	Type *ApplicationKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -195,11 +196,11 @@ func (o PartialApplicationKey) MarshalJSON() ([]byte, error) {
 func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
-		Id            *string                          `json:"id,omitempty"`
-		Relationships *ApplicationKeyRelationships     `json:"relationships,omitempty"`
-		Type          *ApplicationKeysType             `json:"type,omitempty"`
-	}{}
+			Attributes *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
+			Type *ApplicationKeysType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -223,3 +224,5 @@ func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

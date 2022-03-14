@@ -28,10 +28,11 @@ var (
 type IncidentsApiService service
 
 type apiCreateIncidentRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IncidentsApiService
-	body       *IncidentCreateRequest
+	body *IncidentCreateRequest
 }
+
 
 /*
  * CreateIncident Create an incident
@@ -40,11 +41,12 @@ type apiCreateIncidentRequest struct {
 func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
 	req := apiCreateIncidentRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createIncidentExecute(req)
+
+    return req.ApiService.createIncidentExecute(req)
 }
 
 /*
@@ -63,9 +65,9 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 
 	operationId := "CreateIncident"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.CreateIncident")
@@ -217,10 +219,11 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 }
 
 type apiDeleteIncidentRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IncidentsApiService
 	incidentId string
 }
+
 
 /*
  * DeleteIncident Delete an existing incident
@@ -229,11 +232,12 @@ type apiDeleteIncidentRequest struct {
 func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
 	req := apiDeleteIncidentRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		incidentId: incidentId,
 	}
 
-	return req.ApiService.deleteIncidentExecute(req)
+
+    return req.ApiService.deleteIncidentExecute(req)
 }
 
 /*
@@ -250,7 +254,7 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 
 	operationId := "DeleteIncident"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
 		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -391,23 +395,23 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 }
 
 type apiGetIncidentRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IncidentsApiService
 	incidentId string
-	include    *[]IncidentRelatedObject
+	include *[]IncidentRelatedObject
 }
 
 type GetIncidentOptionalParameters struct {
-	Include *[]IncidentRelatedObject
+    Include *[]IncidentRelatedObject
 }
 
 func NewGetIncidentOptionalParameters() *GetIncidentOptionalParameters {
-	this := GetIncidentOptionalParameters{}
-	return &this
+    this := GetIncidentOptionalParameters{}
+    return &this
 }
 func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *GetIncidentOptionalParameters {
-	r.Include = &include
-	return r
+    r.Include = &include
+    return r
 }
 
 /*
@@ -417,20 +421,20 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req := apiGetIncidentRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		incidentId: incidentId,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue IncidentResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue IncidentResponse
+        return localVarReturnValue, nil, reportError("only one argument of type GetIncidentOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.include = o[0].Include
-	}
+    if o != nil {
+        req.include = o[0].Include
+    }
 
-	return req.ApiService.getIncidentExecute(req)
+    return req.ApiService.getIncidentExecute(req)
 }
 
 /*
@@ -449,9 +453,9 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 
 	operationId := "GetIncident"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.GetIncident")
@@ -602,34 +606,34 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 }
 
 type apiListIncidentsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IncidentsApiService
-	include    *[]IncidentRelatedObject
-	pageSize   *int64
+	include *[]IncidentRelatedObject
+	pageSize *int64
 	pageOffset *int64
 }
 
 type ListIncidentsOptionalParameters struct {
-	Include    *[]IncidentRelatedObject
-	PageSize   *int64
-	PageOffset *int64
+    Include *[]IncidentRelatedObject
+    PageSize *int64
+    PageOffset *int64
 }
 
 func NewListIncidentsOptionalParameters() *ListIncidentsOptionalParameters {
-	this := ListIncidentsOptionalParameters{}
-	return &this
+    this := ListIncidentsOptionalParameters{}
+    return &this
 }
 func (r *ListIncidentsOptionalParameters) WithInclude(include []IncidentRelatedObject) *ListIncidentsOptionalParameters {
-	r.Include = &include
-	return r
+    r.Include = &include
+    return r
 }
 func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentsOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
-	r.PageOffset = &pageOffset
-	return r
+    r.PageOffset = &pageOffset
+    return r
 }
 
 /*
@@ -639,21 +643,21 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
 	req := apiListIncidentsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue IncidentsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListIncidentsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue IncidentsResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListIncidentsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.include = o[0].Include
-		req.pageSize = o[0].PageSize
-		req.pageOffset = o[0].PageOffset
-	}
+    if o != nil {
+        req.include = o[0].Include
+        req.pageSize = o[0].PageSize
+        req.pageOffset = o[0].PageOffset
+    }
 
-	return req.ApiService.listIncidentsExecute(req)
+    return req.ApiService.listIncidentsExecute(req)
 }
 
 /*
@@ -672,9 +676,9 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 
 	operationId := "ListIncidents"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.ListIncidents")
@@ -830,24 +834,24 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 }
 
 type apiUpdateIncidentRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IncidentsApiService
 	incidentId string
-	body       *IncidentUpdateRequest
-	include    *[]IncidentRelatedObject
+	body *IncidentUpdateRequest
+	include *[]IncidentRelatedObject
 }
 
 type UpdateIncidentOptionalParameters struct {
-	Include *[]IncidentRelatedObject
+    Include *[]IncidentRelatedObject
 }
 
 func NewUpdateIncidentOptionalParameters() *UpdateIncidentOptionalParameters {
-	this := UpdateIncidentOptionalParameters{}
-	return &this
+    this := UpdateIncidentOptionalParameters{}
+    return &this
 }
 func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *UpdateIncidentOptionalParameters {
-	r.Include = &include
-	return r
+    r.Include = &include
+    return r
 }
 
 /*
@@ -857,21 +861,21 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req := apiUpdateIncidentRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		incidentId: incidentId,
-		body:       &body,
+		body: &body,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue IncidentResponse
-		return localVarReturnValue, nil, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue IncidentResponse
+        return localVarReturnValue, nil, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.include = o[0].Include
-	}
+    if o != nil {
+        req.include = o[0].Include
+    }
 
-	return req.ApiService.updateIncidentExecute(req)
+    return req.ApiService.updateIncidentExecute(req)
 }
 
 /*
@@ -890,9 +894,9 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 
 	operationId := "UpdateIncident"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentsApiService.UpdateIncident")

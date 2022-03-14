@@ -23,15 +23,15 @@ type SyntheticsBrowserTest struct {
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
-	Name    string                `json:"name"`
+	Name string `json:"name"`
 	Options SyntheticsTestOptions `json:"options"`
 	// The public ID of the test.
-	PublicId *string                    `json:"public_id,omitempty"`
-	Status   *SyntheticsTestPauseStatus `json:"status,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
+	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test.
 	Steps *[]SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string                 `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -74,7 +74,7 @@ func (o *SyntheticsBrowserTest) GetConfig() SyntheticsBrowserTestConfig {
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetConfigOk() (*SyntheticsBrowserTestConfig, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Config, true
@@ -98,7 +98,7 @@ func (o *SyntheticsBrowserTest) GetLocations() []string {
 // GetLocationsOk returns a tuple with the Locations field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetLocationsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Locations, true
@@ -186,7 +186,7 @@ func (o *SyntheticsBrowserTest) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -210,7 +210,7 @@ func (o *SyntheticsBrowserTest) GetOptions() SyntheticsTestOptions {
 // GetOptionsOk returns a tuple with the Options field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Options, true
@@ -362,7 +362,7 @@ func (o *SyntheticsBrowserTest) GetType() SyntheticsBrowserTestType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTest) GetTypeOk() (*SyntheticsBrowserTestType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -417,25 +417,25 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Config    *SyntheticsBrowserTestConfig `json:"config"`
-		Locations *[]string                    `json:"locations"`
-		Name      *string                      `json:"name"`
-		Options   *SyntheticsTestOptions       `json:"options"`
-		Type      *SyntheticsBrowserTestType   `json:"type"`
-	}{}
+		Config *SyntheticsBrowserTestConfig `json:"config"`
+		Locations *[]string `json:"locations"`
+		Name *string `json:"name"`
+		Options *SyntheticsTestOptions `json:"options"`
+		Type *SyntheticsBrowserTestType `json:"type"`
+		}{}
 	all := struct {
-		Config    SyntheticsBrowserTestConfig `json:"config"`
-		Locations []string                    `json:"locations"`
-		Message   *string                     `json:"message,omitempty"`
-		MonitorId *int64                      `json:"monitor_id,omitempty"`
-		Name      string                      `json:"name"`
-		Options   SyntheticsTestOptions       `json:"options"`
-		PublicId  *string                     `json:"public_id,omitempty"`
-		Status    *SyntheticsTestPauseStatus  `json:"status,omitempty"`
-		Steps     *[]SyntheticsStep           `json:"steps,omitempty"`
-		Tags      *[]string                   `json:"tags,omitempty"`
-		Type      SyntheticsBrowserTestType   `json:"type"`
-	}{}
+			Config SyntheticsBrowserTestConfig `json:"config"`
+			Locations []string `json:"locations"`
+			Message *string `json:"message,omitempty"`
+			MonitorId *int64 `json:"monitor_id,omitempty"`
+			Name string `json:"name"`
+			Options SyntheticsTestOptions `json:"options"`
+			PublicId *string `json:"public_id,omitempty"`
+			Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
+			Steps *[]SyntheticsStep `json:"steps,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type SyntheticsBrowserTestType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -493,3 +493,5 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

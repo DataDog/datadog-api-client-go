@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ProcessSummariesMeta Response metadata object.
@@ -82,8 +83,8 @@ func (o ProcessSummariesMeta) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummariesMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *ProcessSummariesMetaPage `json:"page,omitempty"`
-	}{}
+			Page *ProcessSummariesMetaPage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *ProcessSummariesMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

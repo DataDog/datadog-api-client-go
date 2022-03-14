@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardListDeleteItemsRequest Request containing a list of dashboards to delete.
@@ -83,8 +84,8 @@ func (o DashboardListDeleteItemsRequest) MarshalJSON() ([]byte, error) {
 func (o *DashboardListDeleteItemsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
-	}{}
+			Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *DashboardListDeleteItemsRequest) UnmarshalJSON(bytes []byte) (err error
 	o.Dashboards = all.Dashboards
 	return nil
 }
+
+

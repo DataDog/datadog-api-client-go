@@ -16,9 +16,9 @@ import (
 // SyntheticsGlobalVariableParseTestOptions Parser options to use for retrieving a Synthetics global variable from a Synthetics Test. Used in conjunction with `parse_test_public_id`.
 type SyntheticsGlobalVariableParseTestOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
-	Field  *string                                      `json:"field,omitempty"`
-	Parser SyntheticsVariableParser                     `json:"parser"`
-	Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+	Field *string `json:"field,omitempty"`
+	Parser SyntheticsVariableParser `json:"parser"`
+	Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -87,7 +87,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetParser() SyntheticsVariabl
 // GetParserOk returns a tuple with the Parser field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) GetParserOk() (*SyntheticsVariableParser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Parser, true
@@ -111,7 +111,7 @@ func (o *SyntheticsGlobalVariableParseTestOptions) GetType() SyntheticsGlobalVar
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariableParseTestOptions) GetTypeOk() (*SyntheticsGlobalVariableParseTestOptionsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -142,14 +142,14 @@ func (o SyntheticsGlobalVariableParseTestOptions) MarshalJSON() ([]byte, error) 
 func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Parser *SyntheticsVariableParser                     `json:"parser"`
-		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
-	}{}
+		Parser *SyntheticsVariableParser `json:"parser"`
+		Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		}{}
 	all := struct {
-		Field  *string                                      `json:"field,omitempty"`
-		Parser SyntheticsVariableParser                     `json:"parser"`
-		Type   SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
-	}{}
+			Field *string `json:"field,omitempty"`
+			Parser SyntheticsVariableParser `json:"parser"`
+			Type SyntheticsGlobalVariableParseTestOptionsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -182,3 +182,5 @@ func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (
 	o.Type = all.Type
 	return nil
 }
+
+

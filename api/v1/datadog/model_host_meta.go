@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMeta Metadata associated with your host.
@@ -23,7 +24,7 @@ type HostMeta struct {
 	// An array of Mac versions.
 	FbsdV *[]string `json:"fbsdV,omitempty"`
 	// JSON string containing system information.
-	Gohai         *string                `json:"gohai,omitempty"`
+	Gohai *string `json:"gohai,omitempty"`
 	InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
 	// An array of Mac versions.
 	MacV *[]string `json:"macV,omitempty"`
@@ -600,22 +601,22 @@ func (o HostMeta) MarshalJSON() ([]byte, error) {
 func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentChecks    *[][]interface{}       `json:"agent_checks,omitempty"`
-		AgentVersion   *string                `json:"agent_version,omitempty"`
-		CpuCores       *int64                 `json:"cpuCores,omitempty"`
-		FbsdV          *[]string              `json:"fbsdV,omitempty"`
-		Gohai          *string                `json:"gohai,omitempty"`
-		InstallMethod  *HostMetaInstallMethod `json:"install_method,omitempty"`
-		MacV           *[]string              `json:"macV,omitempty"`
-		Machine        *string                `json:"machine,omitempty"`
-		NixV           *[]string              `json:"nixV,omitempty"`
-		Platform       *string                `json:"platform,omitempty"`
-		Processor      *string                `json:"processor,omitempty"`
-		PythonV        *string                `json:"pythonV,omitempty"`
-		SocketFqdn     *string                `json:"socket-fqdn,omitempty"`
-		SocketHostname *string                `json:"socket-hostname,omitempty"`
-		WinV           *[]string              `json:"winV,omitempty"`
-	}{}
+			AgentChecks *[][]interface{} `json:"agent_checks,omitempty"`
+			AgentVersion *string `json:"agent_version,omitempty"`
+			CpuCores *int64 `json:"cpuCores,omitempty"`
+			FbsdV *[]string `json:"fbsdV,omitempty"`
+			Gohai *string `json:"gohai,omitempty"`
+			InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
+			MacV *[]string `json:"macV,omitempty"`
+			Machine *string `json:"machine,omitempty"`
+			NixV *[]string `json:"nixV,omitempty"`
+			Platform *string `json:"platform,omitempty"`
+			Processor *string `json:"processor,omitempty"`
+			PythonV *string `json:"pythonV,omitempty"`
+			SocketFqdn *string `json:"socket-fqdn,omitempty"`
+			SocketHostname *string `json:"socket-hostname,omitempty"`
+			WinV *[]string `json:"winV,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -642,3 +643,5 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.WinV = all.WinV
 	return nil
 }
+
+

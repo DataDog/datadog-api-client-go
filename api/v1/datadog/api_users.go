@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type UsersApiService service
 
 type apiCreateUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsersApiService
-	body       *User
+	body *User
 }
+
 
 /*
  * CreateUser Create a user
@@ -37,15 +40,16 @@ type apiCreateUserRequest struct {
 
 **Note**: Users can only be created with the admin access role
 if application keys belong to administrators.
-*/
+ */
 func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
 	req := apiCreateUserRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createUserExecute(req)
+
+    return req.ApiService.createUserExecute(req)
 }
 
 /*
@@ -61,6 +65,7 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 		localVarFileBytes    []byte
 		localVarReturnValue  UserResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateUser")
 	if err != nil {
@@ -201,10 +206,11 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 }
 
 type apiDisableUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
+
 
 /*
  * DisableUser Disable a user
@@ -212,15 +218,16 @@ type apiDisableUserRequest struct {
 
 **Note**: This endpoint can only be used with application keys belonging to
 administrators.
-*/
+ */
 func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
 	req := apiDisableUserRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
 	}
 
-	return req.ApiService.disableUserExecute(req)
+
+    return req.ApiService.disableUserExecute(req)
 }
 
 /*
@@ -236,6 +243,7 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisab
 		localVarFileBytes    []byte
 		localVarReturnValue  UserDisableResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.DisableUser")
 	if err != nil {
@@ -372,10 +380,11 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisab
 }
 
 type apiGetUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsersApiService
 	userHandle string
 }
+
 
 /*
  * GetUser Get user details
@@ -384,11 +393,12 @@ type apiGetUserRequest struct {
 func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
 	req := apiGetUserRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
 	}
 
-	return req.ApiService.getUserExecute(req)
+
+    return req.ApiService.getUserExecute(req)
 }
 
 /*
@@ -404,6 +414,7 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 		localVarFileBytes    []byte
 		localVarReturnValue  UserResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetUser")
 	if err != nil {
@@ -530,9 +541,10 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 }
 
 type apiListUsersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsersApiService
 }
+
 
 /*
  * ListUsers List all users
@@ -541,10 +553,11 @@ type apiListUsersRequest struct {
 func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
 	req := apiListUsersRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listUsersExecute(req)
+
+    return req.ApiService.listUsersExecute(req)
 }
 
 /*
@@ -560,6 +573,7 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListRespo
 		localVarFileBytes    []byte
 		localVarReturnValue  UserListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUsers")
 	if err != nil {
@@ -675,27 +689,29 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListRespo
 }
 
 type apiUpdateUserRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	body       *User
+	body *User
 }
+
 
 /*
  * UpdateUser Update a user
  * Update a user information.
 
 **Note**: It can only be used with application keys belonging to administrators.
-*/
+ */
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
 	req := apiUpdateUserRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		userHandle: userHandle,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateUserExecute(req)
+
+    return req.ApiService.updateUserExecute(req)
 }
 
 /*
@@ -711,6 +727,7 @@ func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserRespons
 		localVarFileBytes    []byte
 		localVarReturnValue  UserResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.UpdateUser")
 	if err != nil {

@@ -24,8 +24,8 @@ type LogsUserAgentParser struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
-	Target string                  `json:"target"`
-	Type   LogsUserAgentParserType `json:"type"`
+	Target string `json:"target"`
+	Type LogsUserAgentParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -171,7 +171,7 @@ func (o *LogsUserAgentParser) GetSources() []string {
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
 func (o *LogsUserAgentParser) GetSourcesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sources, true
@@ -195,7 +195,7 @@ func (o *LogsUserAgentParser) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsUserAgentParser) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -219,7 +219,7 @@ func (o *LogsUserAgentParser) GetType() LogsUserAgentParserType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsUserAgentParser) GetTypeOk() (*LogsUserAgentParserType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -259,18 +259,18 @@ func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string                `json:"sources"`
-		Target  *string                  `json:"target"`
-		Type    *LogsUserAgentParserType `json:"type"`
-	}{}
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsUserAgentParserType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled *bool                   `json:"is_enabled,omitempty"`
-		IsEncoded *bool                   `json:"is_encoded,omitempty"`
-		Name      *string                 `json:"name,omitempty"`
-		Sources   []string                `json:"sources"`
-		Target    string                  `json:"target"`
-		Type      LogsUserAgentParserType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			IsEncoded *bool `json:"is_encoded,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Sources []string `json:"sources"`
+			Target string `json:"target"`
+			Type LogsUserAgentParserType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -309,3 +309,5 @@ func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

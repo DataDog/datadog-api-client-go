@@ -16,8 +16,8 @@ import (
 // NotebookLogStreamCellAttributes The attributes of a notebook `log_stream` cell.
 type NotebookLogStreamCellAttributes struct {
 	Definition LogStreamWidgetDefinition `json:"definition"`
-	GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
-	Time       NullableNotebookCellTime  `json:"time,omitempty"`
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -53,7 +53,7 @@ func (o *NotebookLogStreamCellAttributes) GetDefinition() LogStreamWidgetDefinit
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *NotebookLogStreamCellAttributes) GetDefinitionOk() (*LogStreamWidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -109,7 +109,7 @@ func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookLogStreamCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -128,7 +128,6 @@ func (o *NotebookLogStreamCellAttributes) HasTime() bool {
 func (o *NotebookLogStreamCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -160,12 +159,12 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *LogStreamWidgetDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition LogStreamWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
-		Time       NullableNotebookCellTime  `json:"time,omitempty"`
-	}{}
+			Definition LogStreamWidgetDefinition `json:"definition"`
+			GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+			Time NullableNotebookCellTime `json:"time,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -195,3 +194,5 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Time = all.Time
 	return nil
 }
+
+

@@ -52,7 +52,7 @@ func (o *PagerDutyServiceName) GetServiceName() string {
 // GetServiceNameOk returns a tuple with the ServiceName field value
 // and a boolean to check if the value has been set.
 func (o *PagerDutyServiceName) GetServiceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ServiceName, true
@@ -78,10 +78,10 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ServiceName *string `json:"service_name"`
-	}{}
+		}{}
 	all := struct {
-		ServiceName string `json:"service_name"`
-	}{}
+			ServiceName string `json:"service_name"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServiceName = all.ServiceName
 	return nil
 }
+
+

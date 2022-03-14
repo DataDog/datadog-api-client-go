@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsPrivateLocationCreationResponseResultEncryption Public key for the result encryption.
@@ -120,9 +121,9 @@ func (o SyntheticsPrivateLocationCreationResponseResultEncryption) MarshalJSON()
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id  *string `json:"id,omitempty"`
-		Key *string `json:"key,omitempty"`
-	}{}
+			Id *string `json:"id,omitempty"`
+			Key *string `json:"key,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSO
 	o.Key = all.Key
 	return nil
 }
+
+

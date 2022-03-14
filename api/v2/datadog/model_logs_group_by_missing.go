@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // LogsGroupByMissing - The value to use for logs that don't have the facet used to group by
 type LogsGroupByMissing struct {
 	Float64 *float64
-	String  *string
+	String *string
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -23,13 +25,14 @@ type LogsGroupByMissing struct {
 
 // Float64AsLogsGroupByMissing is a convenience function that returns float64 wrapped in LogsGroupByMissing
 func Float64AsLogsGroupByMissing(v *float64) LogsGroupByMissing {
-	return LogsGroupByMissing{Float64: v}
+	return LogsGroupByMissing{ Float64: v}
 }
 
 // StringAsLogsGroupByMissing is a convenience function that returns string wrapped in LogsGroupByMissing
 func StringAsLogsGroupByMissing(v *string) LogsGroupByMissing {
-	return LogsGroupByMissing{String: v}
+	return LogsGroupByMissing{ String: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsGroupByMissing) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsGroupByMissing) GetActualInstance() interface{} {
+func (obj *LogsGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.Float64 != nil {
 		return obj.Float64
 	}
@@ -144,3 +147,5 @@ func (v *NullableLogsGroupByMissing) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

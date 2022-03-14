@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsPrivateLocationSecretsConfigDecryption Private key for the private location.
@@ -83,8 +84,8 @@ func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte,
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Key *string `json:"key,omitempty"`
-	}{}
+			Key *string `json:"key,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes [
 	o.Key = all.Key
 	return nil
 }
+
+

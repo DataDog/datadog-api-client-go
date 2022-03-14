@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsSSLCertificateSubject Object describing the SSL certificate used for the test.
@@ -305,14 +306,14 @@ func (o SyntheticsSSLCertificateSubject) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		C       *string `json:"C,omitempty"`
-		CN      *string `json:"CN,omitempty"`
-		L       *string `json:"L,omitempty"`
-		O       *string `json:"O,omitempty"`
-		OU      *string `json:"OU,omitempty"`
-		ST      *string `json:"ST,omitempty"`
-		AltName *string `json:"altName,omitempty"`
-	}{}
+			C *string `json:"C,omitempty"`
+			CN *string `json:"CN,omitempty"`
+			L *string `json:"L,omitempty"`
+			O *string `json:"O,omitempty"`
+			OU *string `json:"OU,omitempty"`
+			ST *string `json:"ST,omitempty"`
+			AltName *string `json:"altName,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -331,3 +332,5 @@ func (o *SyntheticsSSLCertificateSubject) UnmarshalJSON(bytes []byte) (err error
 	o.AltName = all.AltName
 	return nil
 }
+
+

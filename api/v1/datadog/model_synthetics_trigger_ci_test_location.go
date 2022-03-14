@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTriggerCITestLocation Synthetics location.
@@ -120,9 +121,9 @@ func (o SyntheticsTriggerCITestLocation) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id   *int64  `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-	}{}
+			Id *int64 `json:"id,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsTriggerCITestLocation) UnmarshalJSON(bytes []byte) (err error
 	o.Name = all.Name
 	return nil
 }
+
+

@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorSearchResponse The response form a monitor search.
 type MonitorSearchResponse struct {
-	Counts   *MonitorSearchResponseCounts   `json:"counts,omitempty"`
+	Counts *MonitorSearchResponseCounts `json:"counts,omitempty"`
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// The list of found monitors.
 	Monitors *[]MonitorSearchResult `json:"monitors,omitempty"`
@@ -155,10 +156,10 @@ func (o MonitorSearchResponse) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Counts   *MonitorSearchResponseCounts   `json:"counts,omitempty"`
-		Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
-		Monitors *[]MonitorSearchResult         `json:"monitors,omitempty"`
-	}{}
+			Counts *MonitorSearchResponseCounts `json:"counts,omitempty"`
+			Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
+			Monitors *[]MonitorSearchResult `json:"monitors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Monitors = all.Monitors
 	return nil
 }
+
+

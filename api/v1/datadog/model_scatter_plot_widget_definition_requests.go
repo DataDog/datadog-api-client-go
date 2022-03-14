@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ScatterPlotWidgetDefinitionRequests Widget definition.
 type ScatterPlotWidgetDefinitionRequests struct {
 	Table *ScatterplotTableRequest `json:"table,omitempty"`
-	X     *ScatterPlotRequest      `json:"x,omitempty"`
-	Y     *ScatterPlotRequest      `json:"y,omitempty"`
+	X *ScatterPlotRequest `json:"x,omitempty"`
+	Y *ScatterPlotRequest `json:"y,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -154,10 +155,10 @@ func (o ScatterPlotWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Table *ScatterplotTableRequest `json:"table,omitempty"`
-		X     *ScatterPlotRequest      `json:"x,omitempty"`
-		Y     *ScatterPlotRequest      `json:"y,omitempty"`
-	}{}
+			Table *ScatterplotTableRequest `json:"table,omitempty"`
+			X *ScatterPlotRequest `json:"x,omitempty"`
+			Y *ScatterPlotRequest `json:"y,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -172,3 +173,5 @@ func (o *ScatterPlotWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err e
 	o.Y = all.Y
 	return nil
 }
+
+

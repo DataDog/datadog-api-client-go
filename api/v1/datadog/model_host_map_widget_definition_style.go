@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMapWidgetDefinitionStyle The style to apply to the widget.
@@ -194,11 +195,11 @@ func (o HostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FillMax     *string `json:"fill_max,omitempty"`
-		FillMin     *string `json:"fill_min,omitempty"`
-		Palette     *string `json:"palette,omitempty"`
-		PaletteFlip *bool   `json:"palette_flip,omitempty"`
-	}{}
+			FillMax *string `json:"fill_max,omitempty"`
+			FillMin *string `json:"fill_min,omitempty"`
+			Palette *string `json:"palette,omitempty"`
+			PaletteFlip *bool `json:"palette_flip,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.PaletteFlip = all.PaletteFlip
 	return nil
 }
+
+

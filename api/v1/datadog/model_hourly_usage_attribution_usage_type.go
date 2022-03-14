@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // HourlyUsageAttributionUsageType Supported products for hourly usage attribution requests.
@@ -18,21 +19,21 @@ type HourlyUsageAttributionUsageType string
 
 // List of HourlyUsageAttributionUsageType
 const (
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_API_USAGE                    HourlyUsageAttributionUsageType = "api_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APM_HOST_USAGE               HourlyUsageAttributionUsageType = "apm_host_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE                HourlyUsageAttributionUsageType = "browser_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE              HourlyUsageAttributionUsageType = "container_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CUSTOM_TIMESERIES_USAGE      HourlyUsageAttributionUsageType = "custom_timeseries_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_API_USAGE HourlyUsageAttributionUsageType = "api_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APM_HOST_USAGE HourlyUsageAttributionUsageType = "apm_host_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE HourlyUsageAttributionUsageType = "browser_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE HourlyUsageAttributionUsageType = "container_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CUSTOM_TIMESERIES_USAGE HourlyUsageAttributionUsageType = "custom_timeseries_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_ESTIMATED_INDEXED_LOGS_USAGE HourlyUsageAttributionUsageType = "estimated_indexed_logs_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_FARGATE_USAGE                HourlyUsageAttributionUsageType = "fargate_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_FUNCTIONS_USAGE              HourlyUsageAttributionUsageType = "functions_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INDEXED_LOGS_USAGE           HourlyUsageAttributionUsageType = "indexed_logs_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INFRA_HOST_USAGE             HourlyUsageAttributionUsageType = "infra_host_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INVOCATIONS_USAGE            HourlyUsageAttributionUsageType = "invocations_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_NPM_HOST_USAGE               HourlyUsageAttributionUsageType = "npm_host_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_CONTAINER_USAGE     HourlyUsageAttributionUsageType = "profiled_container_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_HOST_USAGE          HourlyUsageAttributionUsageType = "profiled_host_usage"
-	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE                   HourlyUsageAttributionUsageType = "snmp_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_FARGATE_USAGE HourlyUsageAttributionUsageType = "fargate_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_FUNCTIONS_USAGE HourlyUsageAttributionUsageType = "functions_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INDEXED_LOGS_USAGE HourlyUsageAttributionUsageType = "indexed_logs_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INFRA_HOST_USAGE HourlyUsageAttributionUsageType = "infra_host_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_INVOCATIONS_USAGE HourlyUsageAttributionUsageType = "invocations_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_NPM_HOST_USAGE HourlyUsageAttributionUsageType = "npm_host_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_CONTAINER_USAGE HourlyUsageAttributionUsageType = "profiled_container_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_PROFILED_HOST_USAGE HourlyUsageAttributionUsageType = "profiled_host_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE HourlyUsageAttributionUsageType = "snmp_usage"
 )
 
 var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionUsageType{
@@ -128,3 +129,4 @@ func (v *NullableHourlyUsageAttributionUsageType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

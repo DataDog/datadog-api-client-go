@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsQueryFilter Search and filter query settings.
@@ -169,10 +170,10 @@ func (o AuditLogsQueryFilter) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From  *string `json:"from,omitempty"`
-		Query *string `json:"query,omitempty"`
-		To    *string `json:"to,omitempty"`
-	}{}
+			From *string `json:"from,omitempty"`
+			Query *string `json:"query,omitempty"`
+			To *string `json:"to,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -187,3 +188,5 @@ func (o *AuditLogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.To = all.To
 	return nil
 }
+
+

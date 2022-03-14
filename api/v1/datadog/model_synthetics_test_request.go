@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestRequest Object describing the Synthetic test request.
 type SyntheticsTestRequest struct {
 	// Allows loading insecure content for an HTTP request in a multistep test step.
-	AllowInsecure *bool                `json:"allow_insecure,omitempty"`
-	BasicAuth     *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+	AllowInsecure *bool `json:"allow_insecure,omitempty"`
+	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
-	Body        *string                           `json:"body,omitempty"`
+	Body *string `json:"body,omitempty"`
 	Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
 	// DNS server to use for DNS tests.
 	DnsServer *string `json:"dnsServer,omitempty"`
@@ -31,14 +32,14 @@ type SyntheticsTestRequest struct {
 	// Host name to perform the test with.
 	Host *string `json:"host,omitempty"`
 	// Message to send for UDP or WebSocket tests.
-	Message *string     `json:"message,omitempty"`
-	Method  *HTTPMethod `json:"method,omitempty"`
+	Message *string `json:"message,omitempty"`
+	Method *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
 	NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
 	// Number of pings to use per test.
 	NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
 	// Port to use when performing the test.
-	Port  *int64                      `json:"port,omitempty"`
+	Port *int64 `json:"port,omitempty"`
 	Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
 	// Query to use for the test.
 	Query *interface{} `json:"query,omitempty"`
@@ -782,27 +783,27 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowInsecure        *bool                             `json:"allow_insecure,omitempty"`
-		BasicAuth            *SyntheticsBasicAuth              `json:"basicAuth,omitempty"`
-		Body                 *string                           `json:"body,omitempty"`
-		Certificate          *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
-		DnsServer            *string                           `json:"dnsServer,omitempty"`
-		DnsServerPort        *int32                            `json:"dnsServerPort,omitempty"`
-		FollowRedirects      *bool                             `json:"follow_redirects,omitempty"`
-		Headers              *map[string]string                `json:"headers,omitempty"`
-		Host                 *string                           `json:"host,omitempty"`
-		Message              *string                           `json:"message,omitempty"`
-		Method               *HTTPMethod                       `json:"method,omitempty"`
-		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
-		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
-		Port                 *int64                            `json:"port,omitempty"`
-		Proxy                *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
-		Query                *interface{}                      `json:"query,omitempty"`
-		Servername           *string                           `json:"servername,omitempty"`
-		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
-		Timeout              *float64                          `json:"timeout,omitempty"`
-		Url                  *string                           `json:"url,omitempty"`
-	}{}
+			AllowInsecure *bool `json:"allow_insecure,omitempty"`
+			BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+			Body *string `json:"body,omitempty"`
+			Certificate *SyntheticsTestRequestCertificate `json:"certificate,omitempty"`
+			DnsServer *string `json:"dnsServer,omitempty"`
+			DnsServerPort *int32 `json:"dnsServerPort,omitempty"`
+			FollowRedirects *bool `json:"follow_redirects,omitempty"`
+			Headers *map[string]string `json:"headers,omitempty"`
+			Host *string `json:"host,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Method *HTTPMethod `json:"method,omitempty"`
+			NoSavingResponseBody *bool `json:"noSavingResponseBody,omitempty"`
+			NumberOfPackets *int32 `json:"numberOfPackets,omitempty"`
+			Port *int64 `json:"port,omitempty"`
+			Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
+			Query *interface{} `json:"query,omitempty"`
+			Servername *string `json:"servername,omitempty"`
+			ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
+			Timeout *float64 `json:"timeout,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -842,3 +843,5 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

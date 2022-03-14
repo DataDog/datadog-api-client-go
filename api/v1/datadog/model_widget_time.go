@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetTime Time setting for the widget.
@@ -82,8 +83,8 @@ func (o WidgetTime) MarshalJSON() ([]byte, error) {
 func (o *WidgetTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
-	}{}
+			LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -104,3 +105,5 @@ func (o *WidgetTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.LiveSpan = all.LiveSpan
 	return nil
 }
+
+

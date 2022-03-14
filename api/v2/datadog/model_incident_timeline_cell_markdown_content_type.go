@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // IncidentTimelineCellMarkdownContentType Type of the Markdown timeline cell.
@@ -100,3 +101,4 @@ func (v *NullableIncidentTimelineCellMarkdownContentType) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

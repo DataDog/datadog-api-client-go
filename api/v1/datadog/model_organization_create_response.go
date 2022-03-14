@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationCreateResponse Response object for an organization creation.
 type OrganizationCreateResponse struct {
-	ApiKey         *ApiKey         `json:"api_key,omitempty"`
+	ApiKey *ApiKey `json:"api_key,omitempty"`
 	ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
-	Org            *Organization   `json:"org,omitempty"`
-	User           *User           `json:"user,omitempty"`
+	Org *Organization `json:"org,omitempty"`
+	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -190,11 +191,11 @@ func (o OrganizationCreateResponse) MarshalJSON() ([]byte, error) {
 func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiKey         *ApiKey         `json:"api_key,omitempty"`
-		ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
-		Org            *Organization   `json:"org,omitempty"`
-		User           *User           `json:"user,omitempty"`
-	}{}
+			ApiKey *ApiKey `json:"api_key,omitempty"`
+			ApplicationKey *ApplicationKey `json:"application_key,omitempty"`
+			Org *Organization `json:"org,omitempty"`
+			User *User `json:"user,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -210,3 +211,5 @@ func (o *OrganizationCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.User = all.User
 	return nil
 }
+
+

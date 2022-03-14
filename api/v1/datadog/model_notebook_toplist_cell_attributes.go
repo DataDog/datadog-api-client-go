@@ -15,10 +15,10 @@ import (
 
 // NotebookToplistCellAttributes The attributes of a notebook `toplist` cell.
 type NotebookToplistCellAttributes struct {
-	Definition ToplistWidgetDefinition  `json:"definition"`
-	GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
-	SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
-	Time       NullableNotebookCellTime `json:"time,omitempty"`
+	Definition ToplistWidgetDefinition `json:"definition"`
+	GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+	SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -54,7 +54,7 @@ func (o *NotebookToplistCellAttributes) GetDefinition() ToplistWidgetDefinition 
 // GetDefinitionOk returns a tuple with the Definition field value
 // and a boolean to check if the value has been set.
 func (o *NotebookToplistCellAttributes) GetDefinitionOk() (*ToplistWidgetDefinition, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Definition, true
@@ -142,7 +142,7 @@ func (o *NotebookToplistCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookToplistCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -161,7 +161,6 @@ func (o *NotebookToplistCellAttributes) HasTime() bool {
 func (o *NotebookToplistCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookToplistCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -196,13 +195,13 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *ToplistWidgetDefinition `json:"definition"`
-	}{}
+		}{}
 	all := struct {
-		Definition ToplistWidgetDefinition  `json:"definition"`
-		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
-		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
-		Time       NullableNotebookCellTime `json:"time,omitempty"`
-	}{}
+			Definition ToplistWidgetDefinition `json:"definition"`
+			GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+			SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+			Time NullableNotebookCellTime `json:"time,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -233,3 +232,5 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 	o.Time = all.Time
 	return nil
 }
+
+

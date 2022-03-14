@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricBulkTagConfigCreateAttributes Optional parameters for bulk creating metric tag configurations.
@@ -120,9 +121,9 @@ func (o MetricBulkTagConfigCreateAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Emails *[]string `json:"emails,omitempty"`
-		Tags   *[]string `json:"tags,omitempty"`
-	}{}
+			Emails *[]string `json:"emails,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *MetricBulkTagConfigCreateAttributes) UnmarshalJSON(bytes []byte) (err e
 	o.Tags = all.Tags
 	return nil
 }
+
+

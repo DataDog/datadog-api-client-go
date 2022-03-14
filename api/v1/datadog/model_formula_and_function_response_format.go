@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionResponseFormat Timeseries or Scalar response. **This feature is currently in beta.**
@@ -19,7 +20,7 @@ type FormulaAndFunctionResponseFormat string
 // List of FormulaAndFunctionResponseFormat
 const (
 	FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES FormulaAndFunctionResponseFormat = "timeseries"
-	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR     FormulaAndFunctionResponseFormat = "scalar"
+	FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR FormulaAndFunctionResponseFormat = "scalar"
 )
 
 var allowedFormulaAndFunctionResponseFormatEnumValues = []FormulaAndFunctionResponseFormat{
@@ -102,3 +103,4 @@ func (v *NullableFormulaAndFunctionResponseFormat) UnmarshalJSON(src []byte) err
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

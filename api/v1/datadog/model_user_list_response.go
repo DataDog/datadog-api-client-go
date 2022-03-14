@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserListResponse Array of Datadog users for a given organization.
@@ -83,8 +84,8 @@ func (o UserListResponse) MarshalJSON() ([]byte, error) {
 func (o *UserListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Users *[]User `json:"users,omitempty"`
-	}{}
+			Users *[]User `json:"users,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UserListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Users = all.Users
 	return nil
 }
+
+

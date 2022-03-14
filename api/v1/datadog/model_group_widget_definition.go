@@ -18,14 +18,14 @@ type GroupWidgetDefinition struct {
 	// Background color of the group title.
 	BackgroundColor *string `json:"background_color,omitempty"`
 	// URL of image to display as a banner for the group.
-	BannerImg  *string          `json:"banner_img,omitempty"`
+	BannerImg *string `json:"banner_img,omitempty"`
 	LayoutType WidgetLayoutType `json:"layout_type"`
 	// Whether to show the title or not.
 	ShowTitle *bool `json:"show_title,omitempty"`
 	// Title of the widget.
-	Title      *string                   `json:"title,omitempty"`
-	TitleAlign *WidgetTextAlign          `json:"title_align,omitempty"`
-	Type       GroupWidgetDefinitionType `json:"type"`
+	Title *string `json:"title,omitempty"`
+	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+	Type GroupWidgetDefinitionType `json:"type"`
 	// List of widget groups.
 	Widgets []Widget `json:"widgets"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -135,7 +135,7 @@ func (o *GroupWidgetDefinition) GetLayoutType() WidgetLayoutType {
 // GetLayoutTypeOk returns a tuple with the LayoutType field value
 // and a boolean to check if the value has been set.
 func (o *GroupWidgetDefinition) GetLayoutTypeOk() (*WidgetLayoutType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.LayoutType, true
@@ -255,7 +255,7 @@ func (o *GroupWidgetDefinition) GetType() GroupWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *GroupWidgetDefinition) GetTypeOk() (*GroupWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -279,7 +279,7 @@ func (o *GroupWidgetDefinition) GetWidgets() []Widget {
 // GetWidgetsOk returns a tuple with the Widgets field value
 // and a boolean to check if the value has been set.
 func (o *GroupWidgetDefinition) GetWidgetsOk() (*[]Widget, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Widgets, true
@@ -325,20 +325,20 @@ func (o GroupWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		LayoutType *WidgetLayoutType          `json:"layout_type"`
-		Type       *GroupWidgetDefinitionType `json:"type"`
-		Widgets    *[]Widget                  `json:"widgets"`
-	}{}
+		LayoutType *WidgetLayoutType `json:"layout_type"`
+		Type *GroupWidgetDefinitionType `json:"type"`
+		Widgets *[]Widget `json:"widgets"`
+		}{}
 	all := struct {
-		BackgroundColor *string                   `json:"background_color,omitempty"`
-		BannerImg       *string                   `json:"banner_img,omitempty"`
-		LayoutType      WidgetLayoutType          `json:"layout_type"`
-		ShowTitle       *bool                     `json:"show_title,omitempty"`
-		Title           *string                   `json:"title,omitempty"`
-		TitleAlign      *WidgetTextAlign          `json:"title_align,omitempty"`
-		Type            GroupWidgetDefinitionType `json:"type"`
-		Widgets         []Widget                  `json:"widgets"`
-	}{}
+			BackgroundColor *string `json:"background_color,omitempty"`
+			BannerImg *string `json:"banner_img,omitempty"`
+			LayoutType WidgetLayoutType `json:"layout_type"`
+			ShowTitle *bool `json:"show_title,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			Type GroupWidgetDefinitionType `json:"type"`
+			Widgets []Widget `json:"widgets"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -395,3 +395,5 @@ func (o *GroupWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Widgets = all.Widgets
 	return nil
 }
+
+

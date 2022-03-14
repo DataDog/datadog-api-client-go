@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FullApplicationKeyAttributes Attributes of a full application key.
@@ -175,7 +176,7 @@ func (o *FullApplicationKeyAttributes) SetName(v string) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *FullApplicationKeyAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -232,12 +233,12 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *string  `json:"created_at,omitempty"`
-		Key       *string  `json:"key,omitempty"`
-		Last4     *string  `json:"last4,omitempty"`
-		Name      *string  `json:"name,omitempty"`
-		Scopes    []string `json:"scopes,omitempty"`
-	}{}
+			CreatedAt *string `json:"created_at,omitempty"`
+			Key *string `json:"key,omitempty"`
+			Last4 *string `json:"last4,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Scopes []string `json:"scopes,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -254,3 +255,5 @@ func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Scopes = all.Scopes
 	return nil
 }
+
+

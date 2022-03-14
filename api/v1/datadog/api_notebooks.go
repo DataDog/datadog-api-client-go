@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type NotebooksApiService service
 
 type apiCreateNotebookRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *NotebooksApiService
-	body       *NotebookCreateRequest
+	body *NotebookCreateRequest
 }
+
 
 /*
  * CreateNotebook Create a notebook
@@ -38,11 +41,12 @@ type apiCreateNotebookRequest struct {
 func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req := apiCreateNotebookRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createNotebookExecute(req)
+
+    return req.ApiService.createNotebookExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  NotebookResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.CreateNotebook")
 	if err != nil {
@@ -188,10 +193,11 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 }
 
 type apiDeleteNotebookRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *NotebooksApiService
 	notebookId int64
 }
+
 
 /*
  * DeleteNotebook Delete a notebook
@@ -200,11 +206,12 @@ type apiDeleteNotebookRequest struct {
 func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	req := apiDeleteNotebookRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		notebookId: notebookId,
 	}
 
-	return req.ApiService.deleteNotebookExecute(req)
+
+    return req.ApiService.deleteNotebookExecute(req)
 }
 
 /*
@@ -218,6 +225,7 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.DeleteNotebook")
 	if err != nil {
@@ -345,10 +353,11 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 }
 
 type apiGetNotebookRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *NotebooksApiService
 	notebookId int64
 }
+
 
 /*
  * GetNotebook Get a notebook
@@ -357,11 +366,12 @@ type apiGetNotebookRequest struct {
 func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	req := apiGetNotebookRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		notebookId: notebookId,
 	}
 
-	return req.ApiService.getNotebookExecute(req)
+
+    return req.ApiService.getNotebookExecute(req)
 }
 
 /*
@@ -377,6 +387,7 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 		localVarFileBytes    []byte
 		localVarReturnValue  NotebookResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.GetNotebook")
 	if err != nil {
@@ -513,108 +524,108 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 }
 
 type apiListNotebooksRequest struct {
-	ctx                 _context.Context
-	ApiService          *NotebooksApiService
-	authorHandle        *string
+	ctx _context.Context
+	ApiService *NotebooksApiService
+	authorHandle *string
 	excludeAuthorHandle *string
-	start               *int64
-	count               *int64
-	sortField           *string
-	sortDir             *string
-	query               *string
-	includeCells        *bool
-	isTemplate          *bool
-	type_               *string
+	start *int64
+	count *int64
+	sortField *string
+	sortDir *string
+	query *string
+	includeCells *bool
+	isTemplate *bool
+	type_ *string
 }
 
 type ListNotebooksOptionalParameters struct {
-	AuthorHandle        *string
-	ExcludeAuthorHandle *string
-	Start               *int64
-	Count               *int64
-	SortField           *string
-	SortDir             *string
-	Query               *string
-	IncludeCells        *bool
-	IsTemplate          *bool
-	Type_               *string
+    AuthorHandle *string
+    ExcludeAuthorHandle *string
+    Start *int64
+    Count *int64
+    SortField *string
+    SortDir *string
+    Query *string
+    IncludeCells *bool
+    IsTemplate *bool
+    Type_ *string
 }
 
 func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
-	this := ListNotebooksOptionalParameters{}
-	return &this
+    this := ListNotebooksOptionalParameters{}
+    return &this
 }
 func (r *ListNotebooksOptionalParameters) WithAuthorHandle(authorHandle string) *ListNotebooksOptionalParameters {
-	r.AuthorHandle = &authorHandle
-	return r
+    r.AuthorHandle = &authorHandle
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithExcludeAuthorHandle(excludeAuthorHandle string) *ListNotebooksOptionalParameters {
-	r.ExcludeAuthorHandle = &excludeAuthorHandle
-	return r
+    r.ExcludeAuthorHandle = &excludeAuthorHandle
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithStart(start int64) *ListNotebooksOptionalParameters {
-	r.Start = &start
-	return r
+    r.Start = &start
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithCount(count int64) *ListNotebooksOptionalParameters {
-	r.Count = &count
-	return r
+    r.Count = &count
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithSortField(sortField string) *ListNotebooksOptionalParameters {
-	r.SortField = &sortField
-	return r
+    r.SortField = &sortField
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithSortDir(sortDir string) *ListNotebooksOptionalParameters {
-	r.SortDir = &sortDir
-	return r
+    r.SortDir = &sortDir
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithQuery(query string) *ListNotebooksOptionalParameters {
-	r.Query = &query
-	return r
+    r.Query = &query
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithIncludeCells(includeCells bool) *ListNotebooksOptionalParameters {
-	r.IncludeCells = &includeCells
-	return r
+    r.IncludeCells = &includeCells
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithIsTemplate(isTemplate bool) *ListNotebooksOptionalParameters {
-	r.IsTemplate = &isTemplate
-	return r
+    r.IsTemplate = &isTemplate
+    return r
 }
 func (r *ListNotebooksOptionalParameters) WithType_(type_ string) *ListNotebooksOptionalParameters {
-	r.Type_ = &type_
-	return r
+    r.Type_ = &type_
+    return r
 }
 
 /*
  * ListNotebooks Get all notebooks
  * Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
 `name` or author `handle`.
-*/
+ */
 func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	req := apiListNotebooksRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue NotebooksResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListNotebooksOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue NotebooksResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListNotebooksOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.authorHandle = o[0].AuthorHandle
-		req.excludeAuthorHandle = o[0].ExcludeAuthorHandle
-		req.start = o[0].Start
-		req.count = o[0].Count
-		req.sortField = o[0].SortField
-		req.sortDir = o[0].SortDir
-		req.query = o[0].Query
-		req.includeCells = o[0].IncludeCells
-		req.isTemplate = o[0].IsTemplate
-		req.type_ = o[0].Type_
-	}
+    if o != nil {
+        req.authorHandle = o[0].AuthorHandle
+        req.excludeAuthorHandle = o[0].ExcludeAuthorHandle
+        req.start = o[0].Start
+        req.count = o[0].Count
+        req.sortField = o[0].SortField
+        req.sortDir = o[0].SortDir
+        req.query = o[0].Query
+        req.includeCells = o[0].IncludeCells
+        req.isTemplate = o[0].IsTemplate
+        req.type_ = o[0].Type_
+    }
 
-	return req.ApiService.listNotebooksExecute(req)
+    return req.ApiService.listNotebooksExecute(req)
 }
 
 /*
@@ -630,6 +641,7 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 		localVarFileBytes    []byte
 		localVarReturnValue  NotebooksResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.ListNotebooks")
 	if err != nil {
@@ -785,11 +797,12 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 }
 
 type apiUpdateNotebookRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *NotebooksApiService
 	notebookId int64
-	body       *NotebookUpdateRequest
+	body *NotebookUpdateRequest
 }
+
 
 /*
  * UpdateNotebook Update a notebook
@@ -798,12 +811,13 @@ type apiUpdateNotebookRequest struct {
 func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req := apiUpdateNotebookRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		notebookId: notebookId,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateNotebookExecute(req)
+
+    return req.ApiService.updateNotebookExecute(req)
 }
 
 /*
@@ -819,6 +833,7 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  NotebookResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.UpdateNotebook")
 	if err != nil {

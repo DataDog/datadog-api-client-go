@@ -47,7 +47,7 @@ func NewDashboardTemplateVariableWithDefaults() *DashboardTemplateVariable {
 
 // GetAvailableValues returns the AvailableValues field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardTemplateVariable) GetAvailableValues() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -91,7 +91,7 @@ func (o *DashboardTemplateVariable) GetDefault() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardTemplateVariable) GetDefaultOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Default.Get(), o.Default.IsSet()
@@ -110,7 +110,6 @@ func (o *DashboardTemplateVariable) HasDefault() bool {
 func (o *DashboardTemplateVariable) SetDefault(v string) {
 	o.Default.Set(&v)
 }
-
 // SetDefaultNil sets the value for Default to be an explicit nil
 func (o *DashboardTemplateVariable) SetDefaultNil() {
 	o.Default.Set(nil)
@@ -134,7 +133,7 @@ func (o *DashboardTemplateVariable) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *DashboardTemplateVariable) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -158,7 +157,7 @@ func (o *DashboardTemplateVariable) GetPrefix() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardTemplateVariable) GetPrefixOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Prefix.Get(), o.Prefix.IsSet()
@@ -177,7 +176,6 @@ func (o *DashboardTemplateVariable) HasPrefix() bool {
 func (o *DashboardTemplateVariable) SetPrefix(v string) {
 	o.Prefix.Set(&v)
 }
-
 // SetPrefixNil sets the value for Prefix to be an explicit nil
 func (o *DashboardTemplateVariable) SetPrefixNil() {
 	o.Prefix.Set(nil)
@@ -212,13 +210,13 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		AvailableValues []string       `json:"available_values,omitempty"`
-		Default         NullableString `json:"default,omitempty"`
-		Name            string         `json:"name"`
-		Prefix          NullableString `json:"prefix,omitempty"`
-	}{}
+			AvailableValues []string `json:"available_values,omitempty"`
+			Default NullableString `json:"default,omitempty"`
+			Name string `json:"name"`
+			Prefix NullableString `json:"prefix,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -241,3 +239,5 @@ func (o *DashboardTemplateVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Prefix = all.Prefix
 	return nil
 }
+
+

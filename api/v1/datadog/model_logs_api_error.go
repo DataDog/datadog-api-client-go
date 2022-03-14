@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAPIError Error returned by the Logs API
@@ -157,10 +158,10 @@ func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *string         `json:"code,omitempty"`
-		Details *[]LogsAPIError `json:"details,omitempty"`
-		Message *string         `json:"message,omitempty"`
-	}{}
+			Code *string `json:"code,omitempty"`
+			Details *[]LogsAPIError `json:"details,omitempty"`
+			Message *string `json:"message,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
@@ -56,7 +57,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.BatchId.Get(), o.BatchId.IsSet()
@@ -75,7 +76,6 @@ func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
 func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string) {
 	o.BatchId.Set(&v)
 }
-
 // SetBatchIdNil sets the value for BatchId to be an explicit nil
 func (o *SyntheticsTriggerCITestsResponse) SetBatchIdNil() {
 	o.BatchId.Set(nil)
@@ -205,11 +205,11 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BatchId           NullableString                      `json:"batch_id,omitempty"`
-		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
-		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
-		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
-	}{}
+			BatchId NullableString `json:"batch_id,omitempty"`
+			Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
+			Results *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
+			TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -225,3 +225,5 @@ func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err erro
 	o.TriggeredCheckIds = all.TriggeredCheckIds
 	return nil
 }
+
+

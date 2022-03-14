@@ -31,17 +31,17 @@ type ServiceSummaryWidgetDefinition struct {
 	// Whether to show the latency metrics or not.
 	ShowLatency *bool `json:"show_latency,omitempty"`
 	// Whether to show the resource list or not.
-	ShowResourceList *bool             `json:"show_resource_list,omitempty"`
-	SizeFormat       *WidgetSizeFormat `json:"size_format,omitempty"`
+	ShowResourceList *bool `json:"show_resource_list,omitempty"`
+	SizeFormat *WidgetSizeFormat `json:"size_format,omitempty"`
 	// APM span name.
-	SpanName string      `json:"span_name"`
-	Time     *WidgetTime `json:"time,omitempty"`
+	SpanName string `json:"span_name"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                            `json:"title_size,omitempty"`
-	Type      ServiceSummaryWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -114,7 +114,7 @@ func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 // GetEnvOk returns a tuple with the Env field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Env, true
@@ -138,7 +138,7 @@ func (o *ServiceSummaryWidgetDefinition) GetService() string {
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -386,7 +386,7 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 // GetSpanNameOk returns a tuple with the SpanName field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetSpanNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.SpanName, true
@@ -538,7 +538,7 @@ func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitio
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*ServiceSummaryWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -608,29 +608,29 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Env      *string                             `json:"env"`
-		Service  *string                             `json:"service"`
-		SpanName *string                             `json:"span_name"`
-		Type     *ServiceSummaryWidgetDefinitionType `json:"type"`
-	}{}
+		Env *string `json:"env"`
+		Service *string `json:"service"`
+		SpanName *string `json:"span_name"`
+		Type *ServiceSummaryWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
-		Env              string                             `json:"env"`
-		Service          string                             `json:"service"`
-		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"`
-		ShowDistribution *bool                              `json:"show_distribution,omitempty"`
-		ShowErrors       *bool                              `json:"show_errors,omitempty"`
-		ShowHits         *bool                              `json:"show_hits,omitempty"`
-		ShowLatency      *bool                              `json:"show_latency,omitempty"`
-		ShowResourceList *bool                              `json:"show_resource_list,omitempty"`
-		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"`
-		SpanName         string                             `json:"span_name"`
-		Time             *WidgetTime                        `json:"time,omitempty"`
-		Title            *string                            `json:"title,omitempty"`
-		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize        *string                            `json:"title_size,omitempty"`
-		Type             ServiceSummaryWidgetDefinitionType `json:"type"`
-	}{}
+			DisplayFormat *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
+			Env string `json:"env"`
+			Service string `json:"service"`
+			ShowBreakdown *bool `json:"show_breakdown,omitempty"`
+			ShowDistribution *bool `json:"show_distribution,omitempty"`
+			ShowErrors *bool `json:"show_errors,omitempty"`
+			ShowHits *bool `json:"show_hits,omitempty"`
+			ShowLatency *bool `json:"show_latency,omitempty"`
+			ShowResourceList *bool `json:"show_resource_list,omitempty"`
+			SizeFormat *WidgetSizeFormat `json:"size_format,omitempty"`
+			SpanName string `json:"span_name"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ServiceSummaryWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -706,3 +706,5 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
+
+

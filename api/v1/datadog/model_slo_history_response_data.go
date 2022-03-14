@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryResponseData An array of service level objective objects.
@@ -22,13 +23,13 @@ type SLOHistoryResponseData struct {
 	Groups *[]SLOHistoryMonitor `json:"groups,omitempty"`
 	// For multi-monitor SLOs, this represents SLI data for specific monitors.  This is not included in the responses for `metric` based SLOs.
 	Monitors *[]SLOHistoryMonitor `json:"monitors,omitempty"`
-	Overall  *SLOHistorySLIData   `json:"overall,omitempty"`
-	Series   *SLOHistoryMetrics   `json:"series,omitempty"`
+	Overall *SLOHistorySLIData `json:"overall,omitempty"`
+	Series *SLOHistoryMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
 	Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
 	// The `to` timestamp in epoch seconds.
-	ToTs   *int64          `json:"to_ts,omitempty"`
-	Type   *SLOType        `json:"type,omitempty"`
+	ToTs *int64 `json:"to_ts,omitempty"`
+	Type *SLOType `json:"type,omitempty"`
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -412,17 +413,17 @@ func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FromTs     *int64                   `json:"from_ts,omitempty"`
-		GroupBy    *[]string                `json:"group_by,omitempty"`
-		Groups     *[]SLOHistoryMonitor     `json:"groups,omitempty"`
-		Monitors   *[]SLOHistoryMonitor     `json:"monitors,omitempty"`
-		Overall    *SLOHistorySLIData       `json:"overall,omitempty"`
-		Series     *SLOHistoryMetrics       `json:"series,omitempty"`
-		Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
-		ToTs       *int64                   `json:"to_ts,omitempty"`
-		Type       *SLOType                 `json:"type,omitempty"`
-		TypeId     *SLOTypeNumeric          `json:"type_id,omitempty"`
-	}{}
+			FromTs *int64 `json:"from_ts,omitempty"`
+			GroupBy *[]string `json:"group_by,omitempty"`
+			Groups *[]SLOHistoryMonitor `json:"groups,omitempty"`
+			Monitors *[]SLOHistoryMonitor `json:"monitors,omitempty"`
+			Overall *SLOHistorySLIData `json:"overall,omitempty"`
+			Series *SLOHistoryMetrics `json:"series,omitempty"`
+			Thresholds *map[string]SLOThreshold `json:"thresholds,omitempty"`
+			ToTs *int64 `json:"to_ts,omitempty"`
+			Type *SLOType `json:"type,omitempty"`
+			TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -460,3 +461,5 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.TypeId = all.TypeId
 	return nil
 }
+
+

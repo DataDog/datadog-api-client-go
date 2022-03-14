@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Creator Object describing the creator of the shared element.
@@ -118,7 +119,7 @@ func (o *Creator) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Creator) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -137,7 +138,6 @@ func (o *Creator) HasName() bool {
 func (o *Creator) SetName(v string) {
 	o.Name.Set(&v)
 }
-
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Creator) SetNameNil() {
 	o.Name.Set(nil)
@@ -168,10 +168,10 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email  *string        `json:"email,omitempty"`
-		Handle *string        `json:"handle,omitempty"`
-		Name   NullableString `json:"name,omitempty"`
-	}{}
+			Email *string `json:"email,omitempty"`
+			Handle *string `json:"handle,omitempty"`
+			Name NullableString `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -186,3 +186,5 @@ func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

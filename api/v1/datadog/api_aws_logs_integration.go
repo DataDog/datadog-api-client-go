@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type AWSLogsIntegrationApiService service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 /*
  * CheckAWSLogsLambdaAsync Check that an AWS Lambda Function exists
@@ -40,15 +43,16 @@ endpoint can be polled intermittently instead of blocking.
 - Returns a status of 'waiting' while checking.
 - Returns a status of 'checked and ok' if the Lambda exists.
 - Returns a status of 'error' if the Lambda does not exist.
-*/
+ */
 func (a *AWSLogsIntegrationApiService) CheckAWSLogsLambdaAsync(ctx _context.Context, body AWSAccountAndLambdaRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	req := apiCheckAWSLogsLambdaAsyncRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.checkAWSLogsLambdaAsyncExecute(req)
+
+    return req.ApiService.checkAWSLogsLambdaAsyncExecute(req)
 }
 
 /*
@@ -64,6 +68,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSLogsAsyncResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsLambdaAsync")
 	if err != nil {
@@ -194,10 +199,11 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 }
 
 type apiCheckAWSLogsServicesAsyncRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
+
 
 /*
  * CheckAWSLogsServicesAsync Check permissions for log services
@@ -211,15 +217,16 @@ the async request completes.
 - Returns a status of `waiting` while checking.
 - Returns a status of `checked and ok` if the Lambda exists.
 - Returns a status of `error` if the Lambda does not exist.
-*/
+ */
 func (a *AWSLogsIntegrationApiService) CheckAWSLogsServicesAsync(ctx _context.Context, body AWSLogsServicesRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	req := apiCheckAWSLogsServicesAsyncRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.checkAWSLogsServicesAsyncExecute(req)
+
+    return req.ApiService.checkAWSLogsServicesAsyncExecute(req)
 }
 
 /*
@@ -235,6 +242,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSLogsAsyncResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsServicesAsync")
 	if err != nil {
@@ -365,10 +373,11 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 }
 
 type apiCreateAWSLambdaARNRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 /*
  * CreateAWSLambdaARN Add AWS Log Lambda ARN
@@ -377,11 +386,12 @@ type apiCreateAWSLambdaARNRequest struct {
 func (a *AWSLogsIntegrationApiService) CreateAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiCreateAWSLambdaARNRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAWSLambdaARNExecute(req)
+
+    return req.ApiService.createAWSLambdaARNExecute(req)
 }
 
 /*
@@ -397,6 +407,7 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CreateAWSLambdaARN")
 	if err != nil {
@@ -527,10 +538,11 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 }
 
 type apiDeleteAWSLambdaARNRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
+
 
 /*
  * DeleteAWSLambdaARN Delete an AWS Logs integration
@@ -539,11 +551,12 @@ type apiDeleteAWSLambdaARNRequest struct {
 func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context, body AWSAccountAndLambdaRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteAWSLambdaARNRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteAWSLambdaARNExecute(req)
+
+    return req.ApiService.deleteAWSLambdaARNExecute(req)
 }
 
 /*
@@ -559,6 +572,7 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
 	if err != nil {
@@ -689,10 +703,11 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 }
 
 type apiEnableAWSLogServicesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
+
 
 /*
  * EnableAWSLogServices Enable an AWS Logs integration
@@ -701,11 +716,12 @@ type apiEnableAWSLogServicesRequest struct {
 func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context, body AWSLogsServicesRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiEnableAWSLogServicesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.enableAWSLogServicesExecute(req)
+
+    return req.ApiService.enableAWSLogServicesExecute(req)
 }
 
 /*
@@ -721,6 +737,7 @@ func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAW
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.EnableAWSLogServices")
 	if err != nil {
@@ -851,9 +868,10 @@ func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAW
 }
 
 type apiListAWSLogsIntegrationsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
 }
+
 
 /*
  * ListAWSLogsIntegrations List all AWS Logs integrations
@@ -862,10 +880,11 @@ type apiListAWSLogsIntegrationsRequest struct {
 func (a *AWSLogsIntegrationApiService) ListAWSLogsIntegrations(ctx _context.Context) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	req := apiListAWSLogsIntegrationsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listAWSLogsIntegrationsExecute(req)
+
+    return req.ApiService.listAWSLogsIntegrationsExecute(req)
 }
 
 /*
@@ -881,6 +900,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListA
 		localVarFileBytes    []byte
 		localVarReturnValue  []AWSLogsListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
 	if err != nil {
@@ -1006,9 +1026,10 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListA
 }
 
 type apiListAWSLogsServicesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSLogsIntegrationApiService
 }
+
 
 /*
  * ListAWSLogsServices Get list of AWS log ready services
@@ -1017,10 +1038,11 @@ type apiListAWSLogsServicesRequest struct {
 func (a *AWSLogsIntegrationApiService) ListAWSLogsServices(ctx _context.Context) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	req := apiListAWSLogsServicesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listAWSLogsServicesExecute(req)
+
+    return req.ApiService.listAWSLogsServicesExecute(req)
 }
 
 /*
@@ -1036,6 +1058,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLo
 		localVarFileBytes    []byte
 		localVarReturnValue  []AWSLogsListServicesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsServices")
 	if err != nil {

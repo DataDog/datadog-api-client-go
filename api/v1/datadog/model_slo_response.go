@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOResponse A service level objective response containing a single service level objective.
@@ -119,9 +120,9 @@ func (o SLOResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOResponseData `json:"data,omitempty"`
-		Errors *[]string        `json:"errors,omitempty"`
-	}{}
+			Data *SLOResponseData `json:"data,omitempty"`
+			Errors *[]string `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

@@ -51,7 +51,7 @@ func (o *AuthNMappingUpdateRequest) GetData() AuthNMappingUpdateData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMappingUpdateRequest) GetDataOk() (*AuthNMappingUpdateData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *AuthNMappingUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *AuthNMappingUpdateData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data AuthNMappingUpdateData `json:"data"`
-	}{}
+			Data AuthNMappingUpdateData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *AuthNMappingUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

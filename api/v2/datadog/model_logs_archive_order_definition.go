@@ -15,8 +15,8 @@ import (
 
 // LogsArchiveOrderDefinition The definition of an archive order.
 type LogsArchiveOrderDefinition struct {
-	Attributes LogsArchiveOrderAttributes     `json:"attributes"`
-	Type       LogsArchiveOrderDefinitionType `json:"type"`
+	Attributes LogsArchiveOrderAttributes `json:"attributes"`
+	Type LogsArchiveOrderDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *LogsArchiveOrderDefinition) GetAttributes() LogsArchiveOrderAttributes 
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveOrderDefinition) GetAttributesOk() (*LogsArchiveOrderAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *LogsArchiveOrderDefinition) GetType() LogsArchiveOrderDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveOrderDefinition) GetTypeOk() (*LogsArchiveOrderDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -107,13 +107,13 @@ func (o LogsArchiveOrderDefinition) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Attributes *LogsArchiveOrderAttributes     `json:"attributes"`
-		Type       *LogsArchiveOrderDefinitionType `json:"type"`
-	}{}
+		Attributes *LogsArchiveOrderAttributes `json:"attributes"`
+		Type *LogsArchiveOrderDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		Attributes LogsArchiveOrderAttributes     `json:"attributes"`
-		Type       LogsArchiveOrderDefinitionType `json:"type"`
-	}{}
+			Attributes LogsArchiveOrderAttributes `json:"attributes"`
+			Type LogsArchiveOrderDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *LogsArchiveOrderDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

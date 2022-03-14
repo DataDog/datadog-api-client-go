@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsStatus Determines whether or not the batch has passed, failed, or is in progress.
@@ -18,9 +19,9 @@ type SyntheticsStatus string
 
 // List of SyntheticsStatus
 const (
-	SYNTHETICSSTATUS_PASSED  SyntheticsStatus = "passed"
+	SYNTHETICSSTATUS_PASSED SyntheticsStatus = "passed"
 	SYNTHETICSSTATUS_skipped SyntheticsStatus = "skipped"
-	SYNTHETICSSTATUS_failed  SyntheticsStatus = "failed"
+	SYNTHETICSSTATUS_failed SyntheticsStatus = "failed"
 )
 
 var allowedSyntheticsStatusEnumValues = []SyntheticsStatus{
@@ -104,3 +105,4 @@ func (v *NullableSyntheticsStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

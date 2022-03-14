@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Log Object describing a log after being processed and stored by Datadog.
@@ -119,9 +120,9 @@ func (o Log) MarshalJSON() ([]byte, error) {
 func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Content *LogContent `json:"content,omitempty"`
-		Id      *string     `json:"id,omitempty"`
-	}{}
+			Content *LogContent `json:"content,omitempty"`
+			Id *string `json:"id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	return nil
 }
+
+

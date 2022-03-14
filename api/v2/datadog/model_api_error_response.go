@@ -52,7 +52,7 @@ func (o *APIErrorResponse) GetErrors() []string {
 // GetErrorsOk returns a tuple with the Errors field value
 // and a boolean to check if the value has been set.
 func (o *APIErrorResponse) GetErrorsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Errors, true
@@ -78,10 +78,10 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Errors *[]string `json:"errors"`
-	}{}
+		}{}
 	all := struct {
-		Errors []string `json:"errors"`
-	}{}
+			Errors []string `json:"errors"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *APIErrorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

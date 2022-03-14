@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageFargateResponse Response containing the number of Fargate tasks run and hourly usage.
@@ -83,8 +84,8 @@ func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageFargateHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageFargateHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

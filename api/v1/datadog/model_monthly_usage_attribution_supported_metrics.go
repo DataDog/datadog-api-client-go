@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MonthlyUsageAttributionSupportedMetrics Supported metrics for monthly usage attribution requests.
@@ -18,37 +19,37 @@ type MonthlyUsageAttributionSupportedMetrics string
 
 // List of MonthlyUsageAttributionSupportedMetrics
 const (
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_USAGE                         MonthlyUsageAttributionSupportedMetrics = "api_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_PERCENTAGE                    MonthlyUsageAttributionSupportedMetrics = "api_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_USAGE                    MonthlyUsageAttributionSupportedMetrics = "apm_host_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_PERCENTAGE               MonthlyUsageAttributionSupportedMetrics = "apm_host_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_USAGE                     MonthlyUsageAttributionSupportedMetrics = "browser_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_PERCENTAGE                MonthlyUsageAttributionSupportedMetrics = "browser_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_USAGE                   MonthlyUsageAttributionSupportedMetrics = "container_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_PERCENTAGE              MonthlyUsageAttributionSupportedMetrics = "container_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_USAGE           MonthlyUsageAttributionSupportedMetrics = "custom_timeseries_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_PERCENTAGE      MonthlyUsageAttributionSupportedMetrics = "custom_timeseries_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ESTIMATED_INDEXED_LOGS_USAGE      MonthlyUsageAttributionSupportedMetrics = "estimated_indexed_logs_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_USAGE MonthlyUsageAttributionSupportedMetrics = "api_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "api_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_USAGE MonthlyUsageAttributionSupportedMetrics = "apm_host_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_APM_HOST_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "apm_host_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_USAGE MonthlyUsageAttributionSupportedMetrics = "browser_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_BROWSER_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "browser_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_USAGE MonthlyUsageAttributionSupportedMetrics = "container_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CONTAINER_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "container_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_USAGE MonthlyUsageAttributionSupportedMetrics = "custom_timeseries_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_CUSTOM_TIMESERIES_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "custom_timeseries_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ESTIMATED_INDEXED_LOGS_USAGE MonthlyUsageAttributionSupportedMetrics = "estimated_indexed_logs_usage"
 	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ESTIMATED_INDEXED_LOGS_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "estimated_indexed_logs_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_USAGE                     MonthlyUsageAttributionSupportedMetrics = "fargate_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_PERCENTAGE                MonthlyUsageAttributionSupportedMetrics = "fargate_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FUNCTIONS_USAGE                   MonthlyUsageAttributionSupportedMetrics = "functions_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FUNCTIONS_PERCENTAGE              MonthlyUsageAttributionSupportedMetrics = "functions_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INDEXED_LOGS_USAGE                MonthlyUsageAttributionSupportedMetrics = "indexed_logs_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INDEXED_LOGS_PERCENTAGE           MonthlyUsageAttributionSupportedMetrics = "indexed_logs_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_USAGE                  MonthlyUsageAttributionSupportedMetrics = "infra_host_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_PERCENTAGE             MonthlyUsageAttributionSupportedMetrics = "infra_host_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INVOCATIONS_USAGE                 MonthlyUsageAttributionSupportedMetrics = "invocations_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INVOCATIONS_PERCENTAGE            MonthlyUsageAttributionSupportedMetrics = "invocations_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_USAGE                    MonthlyUsageAttributionSupportedMetrics = "npm_host_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_PERCENTAGE               MonthlyUsageAttributionSupportedMetrics = "npm_host_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_USAGE          MonthlyUsageAttributionSupportedMetrics = "profiled_container_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_PERCENTAGE     MonthlyUsageAttributionSupportedMetrics = "profiled_container_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_USAGE               MonthlyUsageAttributionSupportedMetrics = "profiled_host_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_PERCENTAGE          MonthlyUsageAttributionSupportedMetrics = "profiled_host_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_USAGE                        MonthlyUsageAttributionSupportedMetrics = "snmp_usage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_PERCENTAGE                   MonthlyUsageAttributionSupportedMetrics = "snmp_percentage"
-	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ALL                               MonthlyUsageAttributionSupportedMetrics = "*"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_USAGE MonthlyUsageAttributionSupportedMetrics = "fargate_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FARGATE_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "fargate_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FUNCTIONS_USAGE MonthlyUsageAttributionSupportedMetrics = "functions_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_FUNCTIONS_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "functions_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INDEXED_LOGS_USAGE MonthlyUsageAttributionSupportedMetrics = "indexed_logs_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INDEXED_LOGS_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "indexed_logs_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_USAGE MonthlyUsageAttributionSupportedMetrics = "infra_host_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INFRA_HOST_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "infra_host_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INVOCATIONS_USAGE MonthlyUsageAttributionSupportedMetrics = "invocations_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_INVOCATIONS_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "invocations_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_USAGE MonthlyUsageAttributionSupportedMetrics = "npm_host_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_NPM_HOST_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "npm_host_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_USAGE MonthlyUsageAttributionSupportedMetrics = "profiled_container_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_CONTAINER_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "profiled_container_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_USAGE MonthlyUsageAttributionSupportedMetrics = "profiled_host_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_PROFILED_HOST_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "profiled_host_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_USAGE MonthlyUsageAttributionSupportedMetrics = "snmp_usage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_SNMP_PERCENTAGE MonthlyUsageAttributionSupportedMetrics = "snmp_percentage"
+	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ALL MonthlyUsageAttributionSupportedMetrics = "*"
 )
 
 var allowedMonthlyUsageAttributionSupportedMetricsEnumValues = []MonthlyUsageAttributionSupportedMetrics{
@@ -160,3 +161,4 @@ func (v *NullableMonthlyUsageAttributionSupportedMetrics) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

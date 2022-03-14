@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,70 +27,70 @@ var (
 type SnapshotsApiService service
 
 type apiGetGraphSnapshotRequest struct {
-	ctx         _context.Context
-	ApiService  *SnapshotsApiService
-	start       *int64
-	end         *int64
+	ctx _context.Context
+	ApiService *SnapshotsApiService
+	start *int64
+	end *int64
 	metricQuery *string
-	eventQuery  *string
-	graphDef    *string
-	title       *string
+	eventQuery *string
+	graphDef *string
+	title *string
 }
 
 type GetGraphSnapshotOptionalParameters struct {
-	MetricQuery *string
-	EventQuery  *string
-	GraphDef    *string
-	Title       *string
+    MetricQuery *string
+    EventQuery *string
+    GraphDef *string
+    Title *string
 }
 
 func NewGetGraphSnapshotOptionalParameters() *GetGraphSnapshotOptionalParameters {
-	this := GetGraphSnapshotOptionalParameters{}
-	return &this
+    this := GetGraphSnapshotOptionalParameters{}
+    return &this
 }
 func (r *GetGraphSnapshotOptionalParameters) WithMetricQuery(metricQuery string) *GetGraphSnapshotOptionalParameters {
-	r.MetricQuery = &metricQuery
-	return r
+    r.MetricQuery = &metricQuery
+    return r
 }
 func (r *GetGraphSnapshotOptionalParameters) WithEventQuery(eventQuery string) *GetGraphSnapshotOptionalParameters {
-	r.EventQuery = &eventQuery
-	return r
+    r.EventQuery = &eventQuery
+    return r
 }
 func (r *GetGraphSnapshotOptionalParameters) WithGraphDef(graphDef string) *GetGraphSnapshotOptionalParameters {
-	r.GraphDef = &graphDef
-	return r
+    r.GraphDef = &graphDef
+    return r
 }
 func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSnapshotOptionalParameters {
-	r.Title = &title
-	return r
+    r.Title = &title
+    return r
 }
 
 /*
  * GetGraphSnapshot Take graph snapshots
  * Take graph snapshots.
 **Note**: When a snapshot is created, there is some delay before it is available.
-*/
+ */
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
 	req := apiGetGraphSnapshotRequest{
 		ApiService: a,
-		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		ctx: ctx,
+		start: &start,
+		end: &end,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue GraphSnapshot
-		return localVarReturnValue, nil, reportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue GraphSnapshot
+        return localVarReturnValue, nil, reportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.metricQuery = o[0].MetricQuery
-		req.eventQuery = o[0].EventQuery
-		req.graphDef = o[0].GraphDef
-		req.title = o[0].Title
-	}
+    if o != nil {
+        req.metricQuery = o[0].MetricQuery
+        req.eventQuery = o[0].EventQuery
+        req.graphDef = o[0].GraphDef
+        req.title = o[0].Title
+    }
 
-	return req.ApiService.getGraphSnapshotExecute(req)
+    return req.ApiService.getGraphSnapshotExecute(req)
 }
 
 /*
@@ -104,6 +106,7 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 		localVarFileBytes    []byte
 		localVarReturnValue  GraphSnapshot
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SnapshotsApiService.GetGraphSnapshot")
 	if err != nil {

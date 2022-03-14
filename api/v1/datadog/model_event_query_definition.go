@@ -55,7 +55,7 @@ func (o *EventQueryDefinition) GetSearch() string {
 // GetSearchOk returns a tuple with the Search field value
 // and a boolean to check if the value has been set.
 func (o *EventQueryDefinition) GetSearchOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Search, true
@@ -79,7 +79,7 @@ func (o *EventQueryDefinition) GetTagsExecution() string {
 // GetTagsExecutionOk returns a tuple with the TagsExecution field value
 // and a boolean to check if the value has been set.
 func (o *EventQueryDefinition) GetTagsExecutionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.TagsExecution, true
@@ -107,13 +107,13 @@ func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Search        *string `json:"search"`
+		Search *string `json:"search"`
 		TagsExecution *string `json:"tags_execution"`
-	}{}
+		}{}
 	all := struct {
-		Search        string `json:"search"`
-		TagsExecution string `json:"tags_execution"`
-	}{}
+			Search string `json:"search"`
+			TagsExecution string `json:"tags_execution"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagsExecution = all.TagsExecution
 	return nil
 }
+
+

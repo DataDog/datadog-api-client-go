@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBatchDetails Details about a batch response.
@@ -82,8 +83,8 @@ func (o SyntheticsBatchDetails) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBatchDetails) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *SyntheticsBatchDetailsData `json:"data,omitempty"`
-	}{}
+			Data *SyntheticsBatchDetailsData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *SyntheticsBatchDetails) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

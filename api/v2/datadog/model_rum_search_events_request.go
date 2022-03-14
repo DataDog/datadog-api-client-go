@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RUMSearchEventsRequest The request for a RUM events list.
 type RUMSearchEventsRequest struct {
-	Filter  *RUMQueryFilter      `json:"filter,omitempty"`
-	Options *RUMQueryOptions     `json:"options,omitempty"`
-	Page    *RUMQueryPageOptions `json:"page,omitempty"`
-	Sort    *RUMSort             `json:"sort,omitempty"`
+	Filter *RUMQueryFilter `json:"filter,omitempty"`
+	Options *RUMQueryOptions `json:"options,omitempty"`
+	Page *RUMQueryPageOptions `json:"page,omitempty"`
+	Sort *RUMSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -190,11 +191,11 @@ func (o RUMSearchEventsRequest) MarshalJSON() ([]byte, error) {
 func (o *RUMSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *RUMQueryFilter      `json:"filter,omitempty"`
-		Options *RUMQueryOptions     `json:"options,omitempty"`
-		Page    *RUMQueryPageOptions `json:"page,omitempty"`
-		Sort    *RUMSort             `json:"sort,omitempty"`
-	}{}
+			Filter *RUMQueryFilter `json:"filter,omitempty"`
+			Options *RUMQueryOptions `json:"options,omitempty"`
+			Page *RUMQueryPageOptions `json:"page,omitempty"`
+			Sort *RUMSort `json:"sort,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -218,3 +219,5 @@ func (o *RUMSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sort = all.Sort
 	return nil
 }
+
+

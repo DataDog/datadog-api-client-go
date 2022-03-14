@@ -26,8 +26,8 @@ type LogsLookupProcessor struct {
 	// Source attribute used to perform the lookup.
 	Source string `json:"source"`
 	// Name of the attribute that contains the corresponding value in the mapping list or the `default_lookup` if not found in the mapping list.
-	Target string                  `json:"target"`
-	Type   LogsLookupProcessorType `json:"type"`
+	Target string `json:"target"`
+	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -136,7 +136,7 @@ func (o *LogsLookupProcessor) GetLookupTable() []string {
 // GetLookupTableOk returns a tuple with the LookupTable field value
 // and a boolean to check if the value has been set.
 func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.LookupTable, true
@@ -192,7 +192,7 @@ func (o *LogsLookupProcessor) GetSource() string {
 // GetSourceOk returns a tuple with the Source field value
 // and a boolean to check if the value has been set.
 func (o *LogsLookupProcessor) GetSourceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Source, true
@@ -216,7 +216,7 @@ func (o *LogsLookupProcessor) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsLookupProcessor) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -240,7 +240,7 @@ func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -283,20 +283,20 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		LookupTable *[]string                `json:"lookup_table"`
-		Source      *string                  `json:"source"`
-		Target      *string                  `json:"target"`
-		Type        *LogsLookupProcessorType `json:"type"`
-	}{}
+		LookupTable *[]string `json:"lookup_table"`
+		Source *string `json:"source"`
+		Target *string `json:"target"`
+		Type *LogsLookupProcessorType `json:"type"`
+		}{}
 	all := struct {
-		DefaultLookup *string                 `json:"default_lookup,omitempty"`
-		IsEnabled     *bool                   `json:"is_enabled,omitempty"`
-		LookupTable   []string                `json:"lookup_table"`
-		Name          *string                 `json:"name,omitempty"`
-		Source        string                  `json:"source"`
-		Target        string                  `json:"target"`
-		Type          LogsLookupProcessorType `json:"type"`
-	}{}
+			DefaultLookup *string `json:"default_lookup,omitempty"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			LookupTable []string `json:"lookup_table"`
+			Name *string `json:"name,omitempty"`
+			Source string `json:"source"`
+			Target string `json:"target"`
+			Type LogsLookupProcessorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -339,3 +339,5 @@ func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

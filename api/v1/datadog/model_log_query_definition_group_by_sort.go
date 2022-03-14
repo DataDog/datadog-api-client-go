@@ -18,7 +18,7 @@ type LogQueryDefinitionGroupBySort struct {
 	// The aggregation method.
 	Aggregation string `json:"aggregation"`
 	// Facet name.
-	Facet *string    `json:"facet,omitempty"`
+	Facet *string `json:"facet,omitempty"`
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *LogQueryDefinitionGroupBySort) GetAggregation() string {
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
 func (o *LogQueryDefinitionGroupBySort) GetAggregationOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Aggregation, true
@@ -112,7 +112,7 @@ func (o *LogQueryDefinitionGroupBySort) GetOrder() WidgetSort {
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
 func (o *LogQueryDefinitionGroupBySort) GetOrderOk() (*WidgetSort, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Order, true
@@ -143,14 +143,14 @@ func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Aggregation *string     `json:"aggregation"`
-		Order       *WidgetSort `json:"order"`
-	}{}
+		Aggregation *string `json:"aggregation"`
+		Order *WidgetSort `json:"order"`
+		}{}
 	all := struct {
-		Aggregation string     `json:"aggregation"`
-		Facet       *string    `json:"facet,omitempty"`
-		Order       WidgetSort `json:"order"`
-	}{}
+			Aggregation string `json:"aggregation"`
+			Facet *string `json:"facet,omitempty"`
+			Order WidgetSort `json:"order"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -183,3 +183,5 @@ func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) 
 	o.Order = all.Order
 	return nil
 }
+
+

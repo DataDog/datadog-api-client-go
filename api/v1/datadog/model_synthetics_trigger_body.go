@@ -52,7 +52,7 @@ func (o *SyntheticsTriggerBody) GetTests() []SyntheticsTriggerTest {
 // GetTestsOk returns a tuple with the Tests field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTriggerBody) GetTestsOk() (*[]SyntheticsTriggerTest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tests, true
@@ -78,10 +78,10 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Tests *[]SyntheticsTriggerTest `json:"tests"`
-	}{}
+		}{}
 	all := struct {
-		Tests []SyntheticsTriggerTest `json:"tests"`
-	}{}
+			Tests []SyntheticsTriggerTest `json:"tests"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tests = all.Tests
 	return nil
 }
+
+

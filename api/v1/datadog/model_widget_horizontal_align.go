@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetHorizontalAlign Horizontal alignment.
@@ -19,8 +20,8 @@ type WidgetHorizontalAlign string
 // List of WidgetHorizontalAlign
 const (
 	WIDGETHORIZONTALALIGN_CENTER WidgetHorizontalAlign = "center"
-	WIDGETHORIZONTALALIGN_LEFT   WidgetHorizontalAlign = "left"
-	WIDGETHORIZONTALALIGN_RIGHT  WidgetHorizontalAlign = "right"
+	WIDGETHORIZONTALALIGN_LEFT WidgetHorizontalAlign = "left"
+	WIDGETHORIZONTALALIGN_RIGHT WidgetHorizontalAlign = "right"
 )
 
 var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{
@@ -104,3 +105,4 @@ func (v *NullableWidgetHorizontalAlign) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

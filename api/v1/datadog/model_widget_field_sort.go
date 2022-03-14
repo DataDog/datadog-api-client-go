@@ -16,8 +16,8 @@ import (
 // WidgetFieldSort Which column and order to sort by
 type WidgetFieldSort struct {
 	// Facet path for the column
-	Column string     `json:"column"`
-	Order  WidgetSort `json:"order"`
+	Column string `json:"column"`
+	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -54,7 +54,7 @@ func (o *WidgetFieldSort) GetColumn() string {
 // GetColumnOk returns a tuple with the Column field value
 // and a boolean to check if the value has been set.
 func (o *WidgetFieldSort) GetColumnOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Column, true
@@ -78,7 +78,7 @@ func (o *WidgetFieldSort) GetOrder() WidgetSort {
 // GetOrderOk returns a tuple with the Order field value
 // and a boolean to check if the value has been set.
 func (o *WidgetFieldSort) GetOrderOk() (*WidgetSort, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Order, true
@@ -106,13 +106,13 @@ func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Column *string     `json:"column"`
-		Order  *WidgetSort `json:"order"`
-	}{}
+		Column *string `json:"column"`
+		Order *WidgetSort `json:"order"`
+		}{}
 	all := struct {
-		Column string     `json:"column"`
-		Order  WidgetSort `json:"order"`
-	}{}
+			Column string `json:"column"`
+			Order WidgetSort `json:"order"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -144,3 +144,5 @@ func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Order = all.Order
 	return nil
 }
+
+

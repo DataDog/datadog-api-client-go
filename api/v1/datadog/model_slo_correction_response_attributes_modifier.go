@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrectionResponseAttributesModifier Modifier of the object.
@@ -157,10 +158,10 @@ func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email  *string `json:"email,omitempty"`
-		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
-	}{}
+			Email *string `json:"email,omitempty"`
+			Handle *string `json:"handle,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -211,3 +212,5 @@ func (v *NullableSLOCorrectionResponseAttributesModifier) UnmarshalJSON(src []by
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

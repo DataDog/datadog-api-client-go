@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponse The log-based metric object.
@@ -82,8 +83,8 @@ func (o LogsMetricResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *LogsMetricResponseData `json:"data,omitempty"`
-	}{}
+			Data *LogsMetricResponseData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *LogsMetricResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

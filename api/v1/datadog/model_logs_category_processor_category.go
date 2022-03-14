@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsCategoryProcessorCategory Object describing the logs filter.
@@ -119,9 +120,9 @@ func (o LogsCategoryProcessorCategory) MarshalJSON() ([]byte, error) {
 func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter *LogsFilter `json:"filter,omitempty"`
-		Name   *string     `json:"name,omitempty"`
-	}{}
+			Filter *LogsFilter `json:"filter,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *LogsCategoryProcessorCategory) UnmarshalJSON(bytes []byte) (err error) 
 	o.Name = all.Name
 	return nil
 }
+
+

@@ -17,7 +17,7 @@ import (
 type Permission struct {
 	Attributes *PermissionAttributes `json:"attributes,omitempty"`
 	// ID of the permission.
-	Id   *string         `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type PermissionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -120,7 +120,7 @@ func (o *Permission) GetType() PermissionsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Permission) GetTypeOk() (*PermissionsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -152,12 +152,12 @@ func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *PermissionsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *PermissionAttributes `json:"attributes,omitempty"`
-		Id         *string               `json:"id,omitempty"`
-		Type       PermissionsType       `json:"type"`
-	}{}
+			Attributes *PermissionAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type PermissionsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -187,3 +187,5 @@ func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

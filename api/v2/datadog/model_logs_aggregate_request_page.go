@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateRequestPage Paging settings
@@ -83,8 +84,8 @@ func (o LogsAggregateRequestPage) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cursor *string `json:"cursor,omitempty"`
-	}{}
+			Cursor *string `json:"cursor,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsAggregateRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Cursor = all.Cursor
 	return nil
 }
+
+

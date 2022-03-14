@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCIVisibilityHour CI visibility usage in a given hour.
@@ -268,13 +269,13 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CiPipelineIndexedSpans         *int32  `json:"ci_pipeline_indexed_spans,omitempty"`
-		CiTestIndexedSpans             *int32  `json:"ci_test_indexed_spans,omitempty"`
-		CiVisibilityPipelineCommitters *int32  `json:"ci_visibility_pipeline_committers,omitempty"`
-		CiVisibilityTestCommitters     *int32  `json:"ci_visibility_test_committers,omitempty"`
-		OrgName                        *string `json:"org_name,omitempty"`
-		PublicId                       *string `json:"public_id,omitempty"`
-	}{}
+			CiPipelineIndexedSpans *int32 `json:"ci_pipeline_indexed_spans,omitempty"`
+			CiTestIndexedSpans *int32 `json:"ci_test_indexed_spans,omitempty"`
+			CiVisibilityPipelineCommitters *int32 `json:"ci_visibility_pipeline_committers,omitempty"`
+			CiVisibilityTestCommitters *int32 `json:"ci_visibility_test_committers,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -292,3 +293,5 @@ func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
+
+

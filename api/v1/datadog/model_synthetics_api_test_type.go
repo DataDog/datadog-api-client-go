@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsAPITestType Type of the Synthetic test, `api`.
@@ -100,3 +101,4 @@ func (v *NullableSyntheticsAPITestType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

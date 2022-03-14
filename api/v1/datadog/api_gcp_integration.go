@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type GCPIntegrationApiService service
 
 type apiCreateGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 /*
  * CreateGCPIntegration Create a GCP integration
@@ -37,11 +40,12 @@ type apiCreateGCPIntegrationRequest struct {
 func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiCreateGCPIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createGCPIntegrationExecute(req)
+
+    return req.ApiService.createGCPIntegrationExecute(req)
 }
 
 /*
@@ -57,6 +61,7 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.CreateGCPIntegration")
 	if err != nil {
@@ -187,10 +192,11 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 }
 
 type apiDeleteGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 /*
  * DeleteGCPIntegration Delete a GCP integration
@@ -199,11 +205,12 @@ type apiDeleteGCPIntegrationRequest struct {
 func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteGCPIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteGCPIntegrationExecute(req)
+
+    return req.ApiService.deleteGCPIntegrationExecute(req)
 }
 
 /*
@@ -219,6 +226,7 @@ func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPInt
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.DeleteGCPIntegration")
 	if err != nil {
@@ -349,9 +357,10 @@ func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPInt
 }
 
 type apiListGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *GCPIntegrationApiService
 }
+
 
 /*
  * ListGCPIntegration List all GCP integrations
@@ -360,10 +369,11 @@ type apiListGCPIntegrationRequest struct {
 func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	req := apiListGCPIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listGCPIntegrationExecute(req)
+
+    return req.ApiService.listGCPIntegrationExecute(req)
 }
 
 /*
@@ -379,6 +389,7 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 		localVarFileBytes    []byte
 		localVarReturnValue  []GCPAccount
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.ListGCPIntegration")
 	if err != nil {
@@ -504,10 +515,11 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 }
 
 type apiUpdateGCPIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
+
 
 /*
  * UpdateGCPIntegration Update a GCP integration
@@ -515,15 +527,16 @@ type apiUpdateGCPIntegrationRequest struct {
 Requires a `project_id` and `client_email`, however these fields cannot be updated.
 If you need to update these fields, delete and use the create (`POST`) endpoint.
 The unspecified fields will keep their original values.
-*/
+ */
 func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateGCPIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateGCPIntegrationExecute(req)
+
+    return req.ApiService.updateGCPIntegrationExecute(req)
 }
 
 /*
@@ -539,6 +552,7 @@ func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPInt
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.UpdateGCPIntegration")
 	if err != nil {

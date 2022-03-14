@@ -16,8 +16,8 @@ import (
 // ServiceLevelObjective A service level objective object includes a service level indicator, thresholds for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type ServiceLevelObjective struct {
 	// Creation timestamp (UNIX time in seconds)  Always included in service level objective responses.
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// A user-defined description of the service level objective.  Always included in service level objective responses (but may be `null`). Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.  Included in service level objective responses if it is not empty. Optional in create/update requests for monitor service level objectives, but may only be used when then length of the `monitor_ids` field is one.
@@ -31,13 +31,13 @@ type ServiceLevelObjective struct {
 	// The union of monitor tags for all monitors referenced by the `monitor_ids` field. Always included in service level objective responses for monitor service level objectives (but may be empty). Ignored in create/update requests. Does not affect which monitors are included in the service level objective (that is determined entirely by the `monitor_ids` field).
 	MonitorTags *[]string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
-	Name  string                      `json:"name"`
+	Name string `json:"name"`
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 	// A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
-	Type       SLOType        `json:"type"`
+	Type SLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -139,7 +139,7 @@ func (o *ServiceLevelObjective) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceLevelObjective) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -158,7 +158,6 @@ func (o *ServiceLevelObjective) HasDescription() bool {
 func (o *ServiceLevelObjective) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ServiceLevelObjective) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -342,7 +341,7 @@ func (o *ServiceLevelObjective) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjective) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -430,7 +429,7 @@ func (o *ServiceLevelObjective) GetThresholds() []SLOThreshold {
 // GetThresholdsOk returns a tuple with the Thresholds field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjective) GetThresholdsOk() (*[]SLOThreshold, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Thresholds, true
@@ -454,7 +453,7 @@ func (o *ServiceLevelObjective) GetType() SLOType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjective) GetTypeOk() (*SLOType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -515,25 +514,25 @@ func (o ServiceLevelObjective) MarshalJSON() ([]byte, error) {
 func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name       *string         `json:"name"`
+		Name *string `json:"name"`
 		Thresholds *[]SLOThreshold `json:"thresholds"`
-		Type       *SLOType        `json:"type"`
-	}{}
+		Type *SLOType `json:"type"`
+		}{}
 	all := struct {
-		CreatedAt   *int64                      `json:"created_at,omitempty"`
-		Creator     *Creator                    `json:"creator,omitempty"`
-		Description NullableString              `json:"description,omitempty"`
-		Groups      *[]string                   `json:"groups,omitempty"`
-		Id          *string                     `json:"id,omitempty"`
-		ModifiedAt  *int64                      `json:"modified_at,omitempty"`
-		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
-		MonitorTags *[]string                   `json:"monitor_tags,omitempty"`
-		Name        string                      `json:"name"`
-		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags        *[]string                   `json:"tags,omitempty"`
-		Thresholds  []SLOThreshold              `json:"thresholds"`
-		Type        SLOType                     `json:"type"`
-	}{}
+			CreatedAt *int64 `json:"created_at,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Description NullableString `json:"description,omitempty"`
+			Groups *[]string `json:"groups,omitempty"`
+			Id *string `json:"id,omitempty"`
+			ModifiedAt *int64 `json:"modified_at,omitempty"`
+			MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+			MonitorTags *[]string `json:"monitor_tags,omitempty"`
+			Name string `json:"name"`
+			Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Thresholds []SLOThreshold `json:"thresholds"`
+			Type SLOType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -579,3 +578,5 @@ func (o *ServiceLevelObjective) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

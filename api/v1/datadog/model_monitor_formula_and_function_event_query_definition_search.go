@@ -52,7 +52,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionSearch) GetQuery() string 
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionSearch) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -78,10 +78,10 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(byte
 	raw := map[string]interface{}{}
 	required := struct {
 		Query *string `json:"query"`
-	}{}
+		}{}
 	all := struct {
-		Query string `json:"query"`
-	}{}
+			Query string `json:"query"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionSearch) UnmarshalJSON(byte
 	o.Query = all.Query
 	return nil
 }
+
+

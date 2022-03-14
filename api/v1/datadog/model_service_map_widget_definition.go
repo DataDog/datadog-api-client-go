@@ -22,11 +22,11 @@ type ServiceMapWidgetDefinition struct {
 	// The ID of the service you want to map.
 	Service string `json:"service"`
 	// The title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      ServiceMapWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ServiceMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -98,7 +98,7 @@ func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 // GetFiltersOk returns a tuple with the Filters field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetFiltersOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Filters, true
@@ -122,7 +122,7 @@ func (o *ServiceMapWidgetDefinition) GetService() string {
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -242,7 +242,7 @@ func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceMapWidgetDefinition) GetTypeOk() (*ServiceMapWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -285,19 +285,19 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Filters *[]string                       `json:"filters"`
-		Service *string                         `json:"service"`
-		Type    *ServiceMapWidgetDefinitionType `json:"type"`
-	}{}
+		Filters *[]string `json:"filters"`
+		Service *string `json:"service"`
+		Type *ServiceMapWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
-		Filters     []string                       `json:"filters"`
-		Service     string                         `json:"service"`
-		Title       *string                        `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize   *string                        `json:"title_size,omitempty"`
-		Type        ServiceMapWidgetDefinitionType `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Filters []string `json:"filters"`
+			Service string `json:"service"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ServiceMapWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -345,3 +345,5 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

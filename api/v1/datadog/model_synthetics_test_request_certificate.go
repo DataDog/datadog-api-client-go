@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestRequestCertificate Client certificate to use when performing the test request.
 type SyntheticsTestRequestCertificate struct {
 	Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
-	Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+	Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -118,9 +119,9 @@ func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
-		Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
-	}{}
+			Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
+			Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err erro
 	o.Key = all.Key
 	return nil
 }
+
+

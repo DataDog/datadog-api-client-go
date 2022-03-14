@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // AWSNamespace The namespace associated with the tag filter entry.
@@ -18,13 +19,13 @@ type AWSNamespace string
 
 // List of AWSNamespace
 const (
-	AWSNAMESPACE_ELB             AWSNamespace = "elb"
+	AWSNAMESPACE_ELB AWSNamespace = "elb"
 	AWSNAMESPACE_APPLICATION_ELB AWSNamespace = "application_elb"
-	AWSNAMESPACE_SQS             AWSNamespace = "sqs"
-	AWSNAMESPACE_RDS             AWSNamespace = "rds"
-	AWSNAMESPACE_CUSTOM          AWSNamespace = "custom"
-	AWSNAMESPACE_NETWORK_ELB     AWSNamespace = "network_elb"
-	AWSNAMESPACE_LAMBDA          AWSNamespace = "lambda"
+	AWSNAMESPACE_SQS AWSNamespace = "sqs"
+	AWSNAMESPACE_RDS AWSNamespace = "rds"
+	AWSNAMESPACE_CUSTOM AWSNamespace = "custom"
+	AWSNAMESPACE_NETWORK_ELB AWSNamespace = "network_elb"
+	AWSNAMESPACE_LAMBDA AWSNamespace = "lambda"
 )
 
 var allowedAWSNamespaceEnumValues = []AWSNamespace{
@@ -112,3 +113,4 @@ func (v *NullableAWSNamespace) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

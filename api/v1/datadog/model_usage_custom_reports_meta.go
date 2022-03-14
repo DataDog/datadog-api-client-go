@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCustomReportsMeta The object containing document metadata.
@@ -82,8 +83,8 @@ func (o UsageCustomReportsMeta) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *UsageCustomReportsPage `json:"page,omitempty"`
-	}{}
+			Page *UsageCustomReportsPage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *UsageCustomReportsMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

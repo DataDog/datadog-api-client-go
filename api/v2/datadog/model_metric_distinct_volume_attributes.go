@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricDistinctVolumeAttributes Object containing the definition of a metric's distinct volume.
@@ -83,8 +84,8 @@ func (o MetricDistinctVolumeAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricDistinctVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DistinctVolume *int64 `json:"distinct_volume,omitempty"`
-	}{}
+			DistinctVolume *int64 `json:"distinct_volume,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *MetricDistinctVolumeAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.DistinctVolume = all.DistinctVolume
 	return nil
 }
+
+

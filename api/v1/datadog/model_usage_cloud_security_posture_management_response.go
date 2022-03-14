@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCloudSecurityPostureManagementResponse The response containing the Cloud Security Posture Management usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, erro
 func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte
 	o.Usage = all.Usage
 	return nil
 }
+
+

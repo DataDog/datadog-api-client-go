@@ -24,8 +24,8 @@ type LogsStringBuilderProcessor struct {
 	// The name of the attribute that contains the result of the template.
 	Target string `json:"target"`
 	// A formula with one or more attributes and raw text.
-	Template string                         `json:"template"`
-	Type     LogsStringBuilderProcessorType `json:"type"`
+	Template string `json:"template"`
+	Type LogsStringBuilderProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -169,7 +169,7 @@ func (o *LogsStringBuilderProcessor) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsStringBuilderProcessor) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -193,7 +193,7 @@ func (o *LogsStringBuilderProcessor) GetTemplate() string {
 // GetTemplateOk returns a tuple with the Template field value
 // and a boolean to check if the value has been set.
 func (o *LogsStringBuilderProcessor) GetTemplateOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Template, true
@@ -217,7 +217,7 @@ func (o *LogsStringBuilderProcessor) GetType() LogsStringBuilderProcessorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsStringBuilderProcessor) GetTypeOk() (*LogsStringBuilderProcessorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -257,18 +257,18 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Target   *string                         `json:"target"`
-		Template *string                         `json:"template"`
-		Type     *LogsStringBuilderProcessorType `json:"type"`
-	}{}
+		Target *string `json:"target"`
+		Template *string `json:"template"`
+		Type *LogsStringBuilderProcessorType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled        *bool                          `json:"is_enabled,omitempty"`
-		IsReplaceMissing *bool                          `json:"is_replace_missing,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Target           string                         `json:"target"`
-		Template         string                         `json:"template"`
-		Type             LogsStringBuilderProcessorType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Target string `json:"target"`
+			Template string `json:"template"`
+			Type LogsStringBuilderProcessorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -307,3 +307,5 @@ func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

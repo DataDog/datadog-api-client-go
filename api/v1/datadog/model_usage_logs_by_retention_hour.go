@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageLogsByRetentionHour The number of indexed logs for each hour for a given organization broken down by retention period.
@@ -268,13 +269,13 @@ func (o UsageLogsByRetentionHour) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedEventsCount           *int64  `json:"indexed_events_count,omitempty"`
-		LiveIndexedEventsCount       *int64  `json:"live_indexed_events_count,omitempty"`
-		OrgName                      *string `json:"org_name,omitempty"`
-		PublicId                     *string `json:"public_id,omitempty"`
-		RehydratedIndexedEventsCount *int64  `json:"rehydrated_indexed_events_count,omitempty"`
-		Retention                    *string `json:"retention,omitempty"`
-	}{}
+			IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+			LiveIndexedEventsCount *int64 `json:"live_indexed_events_count,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			RehydratedIndexedEventsCount *int64 `json:"rehydrated_indexed_events_count,omitempty"`
+			Retention *string `json:"retention,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -292,3 +293,5 @@ func (o *UsageLogsByRetentionHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Retention = all.Retention
 	return nil
 }
+
+

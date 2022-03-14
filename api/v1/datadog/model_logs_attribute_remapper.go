@@ -28,11 +28,11 @@ type LogsAttributeRemapper struct {
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Final attribute or tag name to remap the sources to.
-	Target       string            `json:"target"`
+	Target string `json:"target"`
 	TargetFormat *TargetFormatType `json:"target_format,omitempty"`
 	// Defines if the final attribute or tag name is from log `attribute` or `tag`.
-	TargetType *string                   `json:"target_type,omitempty"`
-	Type       LogsAttributeRemapperType `json:"type"`
+	TargetType *string `json:"target_type,omitempty"`
+	Type LogsAttributeRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -252,7 +252,7 @@ func (o *LogsAttributeRemapper) GetSources() []string {
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
 func (o *LogsAttributeRemapper) GetSourcesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sources, true
@@ -276,7 +276,7 @@ func (o *LogsAttributeRemapper) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsAttributeRemapper) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -364,7 +364,7 @@ func (o *LogsAttributeRemapper) GetType() LogsAttributeRemapperType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsAttributeRemapper) GetTypeOk() (*LogsAttributeRemapperType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -416,22 +416,22 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string                  `json:"sources"`
-		Target  *string                    `json:"target"`
-		Type    *LogsAttributeRemapperType `json:"type"`
-	}{}
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsAttributeRemapperType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled          *bool                     `json:"is_enabled,omitempty"`
-		Name               *string                   `json:"name,omitempty"`
-		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"`
-		PreserveSource     *bool                     `json:"preserve_source,omitempty"`
-		SourceType         *string                   `json:"source_type,omitempty"`
-		Sources            []string                  `json:"sources"`
-		Target             string                    `json:"target"`
-		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"`
-		TargetType         *string                   `json:"target_type,omitempty"`
-		Type               LogsAttributeRemapperType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			OverrideOnConflict *bool `json:"override_on_conflict,omitempty"`
+			PreserveSource *bool `json:"preserve_source,omitempty"`
+			SourceType *string `json:"source_type,omitempty"`
+			Sources []string `json:"sources"`
+			Target string `json:"target"`
+			TargetFormat *TargetFormatType `json:"target_format,omitempty"`
+			TargetType *string `json:"target_type,omitempty"`
+			Type LogsAttributeRemapperType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -482,3 +482,5 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

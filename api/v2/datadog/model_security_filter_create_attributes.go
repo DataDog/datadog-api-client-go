@@ -17,7 +17,7 @@ import (
 type SecurityFilterCreateAttributes struct {
 	// Exclusion filters to exclude some logs from the security filter.
 	ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
-	FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
+	FilteredDataType SecurityFilterFilteredDataType `json:"filtered_data_type"`
 	// Whether the security filter is enabled.
 	IsEnabled bool `json:"is_enabled"`
 	// The name of the security filter.
@@ -63,7 +63,7 @@ func (o *SecurityFilterCreateAttributes) GetExclusionFilters() []SecurityFilterE
 // GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateAttributes) GetExclusionFiltersOk() (*[]SecurityFilterExclusionFilter, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ExclusionFilters, true
@@ -87,7 +87,7 @@ func (o *SecurityFilterCreateAttributes) GetFilteredDataType() SecurityFilterFil
 // GetFilteredDataTypeOk returns a tuple with the FilteredDataType field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateAttributes) GetFilteredDataTypeOk() (*SecurityFilterFilteredDataType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.FilteredDataType, true
@@ -111,7 +111,7 @@ func (o *SecurityFilterCreateAttributes) GetIsEnabled() bool {
 // GetIsEnabledOk returns a tuple with the IsEnabled field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateAttributes) GetIsEnabledOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.IsEnabled, true
@@ -135,7 +135,7 @@ func (o *SecurityFilterCreateAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -159,7 +159,7 @@ func (o *SecurityFilterCreateAttributes) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateAttributes) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -197,18 +197,18 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	raw := map[string]interface{}{}
 	required := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters"`
-		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type"`
-		IsEnabled        *bool                            `json:"is_enabled"`
-		Name             *string                          `json:"name"`
-		Query            *string                          `json:"query"`
-	}{}
+		FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type"`
+		IsEnabled *bool `json:"is_enabled"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
+		}{}
 	all := struct {
-		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
-		FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
-		IsEnabled        bool                            `json:"is_enabled"`
-		Name             string                          `json:"name"`
-		Query            string                          `json:"query"`
-	}{}
+			ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
+			FilteredDataType SecurityFilterFilteredDataType `json:"filtered_data_type"`
+			IsEnabled bool `json:"is_enabled"`
+			Name string `json:"name"`
+			Query string `json:"query"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -252,3 +252,5 @@ func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Query = all.Query
 	return nil
 }
+
+

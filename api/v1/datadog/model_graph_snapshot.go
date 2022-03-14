@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GraphSnapshot Object representing a graph snapshot.
@@ -157,10 +158,10 @@ func (o GraphSnapshot) MarshalJSON() ([]byte, error) {
 func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		GraphDef    *string `json:"graph_def,omitempty"`
-		MetricQuery *string `json:"metric_query,omitempty"`
-		SnapshotUrl *string `json:"snapshot_url,omitempty"`
-	}{}
+			GraphDef *string `json:"graph_def,omitempty"`
+			MetricQuery *string `json:"metric_query,omitempty"`
+			SnapshotUrl *string `json:"snapshot_url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *GraphSnapshot) UnmarshalJSON(bytes []byte) (err error) {
 	o.SnapshotUrl = all.SnapshotUrl
 	return nil
 }
+
+

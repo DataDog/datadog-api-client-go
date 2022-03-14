@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsBrowserVariableType Type of browser test variable.
@@ -18,11 +19,11 @@ type SyntheticsBrowserVariableType string
 
 // List of SyntheticsBrowserVariableType
 const (
-	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT    SyntheticsBrowserVariableType = "element"
-	SYNTHETICSBROWSERVARIABLETYPE_EMAIL      SyntheticsBrowserVariableType = "email"
-	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL     SyntheticsBrowserVariableType = "global"
+	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT SyntheticsBrowserVariableType = "element"
+	SYNTHETICSBROWSERVARIABLETYPE_EMAIL SyntheticsBrowserVariableType = "email"
+	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL SyntheticsBrowserVariableType = "global"
 	SYNTHETICSBROWSERVARIABLETYPE_JAVASCRIPT SyntheticsBrowserVariableType = "javascript"
-	SYNTHETICSBROWSERVARIABLETYPE_TEXT       SyntheticsBrowserVariableType = "text"
+	SYNTHETICSBROWSERVARIABLETYPE_TEXT SyntheticsBrowserVariableType = "text"
 )
 
 var allowedSyntheticsBrowserVariableTypeEnumValues = []SyntheticsBrowserVariableType{
@@ -108,3 +109,4 @@ func (v *NullableSyntheticsBrowserVariableType) UnmarshalJSON(src []byte) error 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

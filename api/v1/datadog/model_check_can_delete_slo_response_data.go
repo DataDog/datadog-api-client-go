@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CheckCanDeleteSLOResponseData An array of service level objective objects.
@@ -83,8 +84,8 @@ func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ok *[]string `json:"ok,omitempty"`
-	}{}
+			Ok *[]string `json:"ok,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) 
 	o.Ok = all.Ok
 	return nil
 }
+
+

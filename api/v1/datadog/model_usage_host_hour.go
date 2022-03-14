@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -639,23 +640,23 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentHostCount              *int64     `json:"agent_host_count,omitempty"`
-		AlibabaHostCount            *int64     `json:"alibaba_host_count,omitempty"`
-		ApmAzureAppServiceHostCount *int64     `json:"apm_azure_app_service_host_count,omitempty"`
-		ApmHostCount                *int64     `json:"apm_host_count,omitempty"`
-		AwsHostCount                *int64     `json:"aws_host_count,omitempty"`
-		AzureHostCount              *int64     `json:"azure_host_count,omitempty"`
-		ContainerCount              *int64     `json:"container_count,omitempty"`
-		GcpHostCount                *int64     `json:"gcp_host_count,omitempty"`
-		HerokuHostCount             *int64     `json:"heroku_host_count,omitempty"`
-		HostCount                   *int64     `json:"host_count,omitempty"`
-		Hour                        *time.Time `json:"hour,omitempty"`
-		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
-		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
-		OrgName                     *string    `json:"org_name,omitempty"`
-		PublicId                    *string    `json:"public_id,omitempty"`
-		VsphereHostCount            *int64     `json:"vsphere_host_count,omitempty"`
-	}{}
+			AgentHostCount *int64 `json:"agent_host_count,omitempty"`
+			AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
+			ApmAzureAppServiceHostCount *int64 `json:"apm_azure_app_service_host_count,omitempty"`
+			ApmHostCount *int64 `json:"apm_host_count,omitempty"`
+			AwsHostCount *int64 `json:"aws_host_count,omitempty"`
+			AzureHostCount *int64 `json:"azure_host_count,omitempty"`
+			ContainerCount *int64 `json:"container_count,omitempty"`
+			GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
+			HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
+			HostCount *int64 `json:"host_count,omitempty"`
+			Hour *time.Time `json:"hour,omitempty"`
+			InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
+			OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -683,3 +684,5 @@ func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostCount = all.VsphereHostCount
 	return nil
 }
+
+

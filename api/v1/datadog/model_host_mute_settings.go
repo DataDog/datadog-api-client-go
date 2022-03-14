@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMuteSettings Combination of settings to mute a host.
@@ -157,10 +158,10 @@ func (o HostMuteSettings) MarshalJSON() ([]byte, error) {
 func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		End      *int64  `json:"end,omitempty"`
-		Message  *string `json:"message,omitempty"`
-		Override *bool   `json:"override,omitempty"`
-	}{}
+			End *int64 `json:"end,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Override *bool `json:"override,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *HostMuteSettings) UnmarshalJSON(bytes []byte) (err error) {
 	o.Override = all.Override
 	return nil
 }
+
+

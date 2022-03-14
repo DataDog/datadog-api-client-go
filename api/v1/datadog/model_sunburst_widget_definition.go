@@ -18,17 +18,17 @@ type SunburstWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// Show the total value in this widget.
-	HideTotal *bool                 `json:"hide_total,omitempty"`
-	Legend    *SunburstWidgetLegend `json:"legend,omitempty"`
+	HideTotal *bool `json:"hide_total,omitempty"`
+	Legend *SunburstWidgetLegend `json:"legend,omitempty"`
 	// List of sunburst widget requests.
 	Requests []SunburstWidgetRequest `json:"requests"`
-	Time     *WidgetTime             `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                      `json:"title_size,omitempty"`
-	Type      SunburstWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type SunburstWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -163,7 +163,7 @@ func (o *SunburstWidgetDefinition) GetRequests() []SunburstWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *SunburstWidgetDefinition) GetRequestsOk() (*[]SunburstWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -315,7 +315,7 @@ func (o *SunburstWidgetDefinition) GetType() SunburstWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SunburstWidgetDefinition) GetTypeOk() (*SunburstWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -364,20 +364,20 @@ func (o SunburstWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]SunburstWidgetRequest      `json:"requests"`
-		Type     *SunburstWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]SunburstWidgetRequest `json:"requests"`
+		Type *SunburstWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink          `json:"custom_links,omitempty"`
-		HideTotal   *bool                        `json:"hide_total,omitempty"`
-		Legend      *SunburstWidgetLegend        `json:"legend,omitempty"`
-		Requests    []SunburstWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                  `json:"time,omitempty"`
-		Title       *string                      `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
-		TitleSize   *string                      `json:"title_size,omitempty"`
-		Type        SunburstWidgetDefinitionType `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			HideTotal *bool `json:"hide_total,omitempty"`
+			Legend *SunburstWidgetLegend `json:"legend,omitempty"`
+			Requests []SunburstWidgetRequest `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type SunburstWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -424,3 +424,5 @@ func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

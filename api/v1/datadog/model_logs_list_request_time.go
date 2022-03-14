@@ -58,7 +58,7 @@ func (o *LogsListRequestTime) GetFrom() time.Time {
 // GetFromOk returns a tuple with the From field value
 // and a boolean to check if the value has been set.
 func (o *LogsListRequestTime) GetFromOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.From, true
@@ -114,7 +114,7 @@ func (o *LogsListRequestTime) GetTo() time.Time {
 // GetToOk returns a tuple with the To field value
 // and a boolean to check if the value has been set.
 func (o *LogsListRequestTime) GetToOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.To, true
@@ -146,13 +146,13 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		From *time.Time `json:"from"`
-		To   *time.Time `json:"to"`
-	}{}
+		To *time.Time `json:"to"`
+		}{}
 	all := struct {
-		From     time.Time `json:"from"`
-		Timezone *string   `json:"timezone,omitempty"`
-		To       time.Time `json:"to"`
-	}{}
+			From time.Time `json:"from"`
+			Timezone *string `json:"timezone,omitempty"`
+			To time.Time `json:"to"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -177,3 +177,5 @@ func (o *LogsListRequestTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.To = all.To
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsLocations List of Synthetics locations.
@@ -83,8 +84,8 @@ func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Locations *[]SyntheticsLocation `json:"locations,omitempty"`
-	}{}
+			Locations *[]SyntheticsLocation `json:"locations,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
 	o.Locations = all.Locations
 	return nil
 }
+
+

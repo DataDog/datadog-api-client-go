@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageSyntheticsBrowserResponse Response containing the number of Synthetics Browser tests run for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageSyntheticsBrowserResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsBrowserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageSyntheticsBrowserHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageSyntheticsBrowserHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageSyntheticsBrowserResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Usage = all.Usage
 	return nil
 }
+
+

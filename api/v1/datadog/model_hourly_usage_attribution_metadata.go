@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HourlyUsageAttributionMetadata The object containing document metadata.
@@ -82,8 +83,8 @@ func (o HourlyUsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Pagination *HourlyUsageAttributionPagination `json:"pagination,omitempty"`
-	}{}
+			Pagination *HourlyUsageAttributionPagination `json:"pagination,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *HourlyUsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error)
 	o.Pagination = all.Pagination
 	return nil
 }
+
+

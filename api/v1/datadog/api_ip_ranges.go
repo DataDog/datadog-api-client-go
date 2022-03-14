@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,9 +27,10 @@ var (
 type IPRangesApiService service
 
 type apiGetIPRangesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *IPRangesApiService
 }
+
 
 /*
  * GetIPRanges List IP Ranges
@@ -36,10 +39,11 @@ type apiGetIPRangesRequest struct {
 func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
 	req := apiGetIPRangesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.getIPRangesExecute(req)
+
+    return req.ApiService.getIPRangesExecute(req)
 }
 
 /*
@@ -55,6 +59,7 @@ func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRang
 		localVarFileBytes    []byte
 		localVarReturnValue  IPRanges
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPRangesApiService.GetIPRanges")
 	if err != nil {

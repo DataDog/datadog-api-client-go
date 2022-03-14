@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorGroupSearchResult A single monitor group search result.
@@ -25,8 +26,8 @@ type MonitorGroupSearchResult struct {
 	// The ID of the monitor.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// The name of the monitor.
-	MonitorName *string               `json:"monitor_name,omitempty"`
-	Status      *MonitorOverallStates `json:"status,omitempty"`
+	MonitorName *string `json:"monitor_name,omitempty"`
+	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -157,7 +158,7 @@ func (o *MonitorGroupSearchResult) GetLastTriggeredTs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorGroupSearchResult) GetLastTriggeredTsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.LastTriggeredTs.Get(), o.LastTriggeredTs.IsSet()
@@ -176,7 +177,6 @@ func (o *MonitorGroupSearchResult) HasLastTriggeredTs() bool {
 func (o *MonitorGroupSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
-
 // SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 func (o *MonitorGroupSearchResult) SetLastTriggeredTsNil() {
 	o.LastTriggeredTs.Set(nil)
@@ -315,14 +315,14 @@ func (o MonitorGroupSearchResult) MarshalJSON() ([]byte, error) {
 func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Group           *string               `json:"group,omitempty"`
-		GroupTags       *[]string             `json:"group_tags,omitempty"`
-		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
-		LastTriggeredTs NullableInt64         `json:"last_triggered_ts,omitempty"`
-		MonitorId       *int64                `json:"monitor_id,omitempty"`
-		MonitorName     *string               `json:"monitor_name,omitempty"`
-		Status          *MonitorOverallStates `json:"status,omitempty"`
-	}{}
+			Group *string `json:"group,omitempty"`
+			GroupTags *[]string `json:"group_tags,omitempty"`
+			LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
+			LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
+			MonitorId *int64 `json:"monitor_id,omitempty"`
+			MonitorName *string `json:"monitor_name,omitempty"`
+			Status *MonitorOverallStates `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -349,3 +349,5 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

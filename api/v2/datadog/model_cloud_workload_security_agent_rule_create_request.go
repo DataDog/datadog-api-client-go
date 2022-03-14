@@ -51,7 +51,7 @@ func (o *CloudWorkloadSecurityAgentRuleCreateRequest) GetData() CloudWorkloadSec
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *CloudWorkloadSecurityAgentRuleCreateRequest) GetDataOk() (*CloudWorkloadSecurityAgentRuleCreateData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *CloudWorkloadSecurityAgentRuleCreateRequest) UnmarshalJSON(bytes []byte
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *CloudWorkloadSecurityAgentRuleCreateData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data CloudWorkloadSecurityAgentRuleCreateData `json:"data"`
-	}{}
+			Data CloudWorkloadSecurityAgentRuleCreateData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *CloudWorkloadSecurityAgentRuleCreateRequest) UnmarshalJSON(bytes []byte
 	o.Data = all.Data
 	return nil
 }
+
+

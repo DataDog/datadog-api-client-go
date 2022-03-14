@@ -20,8 +20,8 @@ type LogsStatusRemapper struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Array of source attributes.
-	Sources []string               `json:"sources"`
-	Type    LogsStatusRemapperType `json:"type"`
+	Sources []string `json:"sources"`
+	Type LogsStatusRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -128,7 +128,7 @@ func (o *LogsStatusRemapper) GetSources() []string {
 // GetSourcesOk returns a tuple with the Sources field value
 // and a boolean to check if the value has been set.
 func (o *LogsStatusRemapper) GetSourcesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Sources, true
@@ -152,7 +152,7 @@ func (o *LogsStatusRemapper) GetType() LogsStatusRemapperType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsStatusRemapper) GetTypeOk() (*LogsStatusRemapperType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -186,15 +186,15 @@ func (o LogsStatusRemapper) MarshalJSON() ([]byte, error) {
 func (o *LogsStatusRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string               `json:"sources"`
-		Type    *LogsStatusRemapperType `json:"type"`
-	}{}
+		Sources *[]string `json:"sources"`
+		Type *LogsStatusRemapperType `json:"type"`
+		}{}
 	all := struct {
-		IsEnabled *bool                  `json:"is_enabled,omitempty"`
-		Name      *string                `json:"name,omitempty"`
-		Sources   []string               `json:"sources"`
-		Type      LogsStatusRemapperType `json:"type"`
-	}{}
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Sources []string `json:"sources"`
+			Type LogsStatusRemapperType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -228,3 +228,5 @@ func (o *LogsStatusRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

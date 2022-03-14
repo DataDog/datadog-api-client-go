@@ -67,7 +67,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetCategory() SLOCorrectionCatego
 // GetCategoryOk returns a tuple with the Category field value
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionCreateRequestAttributes) GetCategoryOk() (*SLOCorrectionCategory, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Category, true
@@ -219,7 +219,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetSloId() string {
 // GetSloIdOk returns a tuple with the SloId field value
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionCreateRequestAttributes) GetSloIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.SloId, true
@@ -243,7 +243,7 @@ func (o *SLOCorrectionCreateRequestAttributes) GetStart() int64 {
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
 func (o *SLOCorrectionCreateRequestAttributes) GetStartOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Start, true
@@ -322,19 +322,19 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	required := struct {
 		Category *SLOCorrectionCategory `json:"category"`
-		SloId    *string                `json:"slo_id"`
-		Start    *int64                 `json:"start"`
-	}{}
+		SloId *string `json:"slo_id"`
+		Start *int64 `json:"start"`
+		}{}
 	all := struct {
-		Category    SLOCorrectionCategory `json:"category"`
-		Description *string               `json:"description,omitempty"`
-		Duration    *int64                `json:"duration,omitempty"`
-		End         *int64                `json:"end,omitempty"`
-		Rrule       *string               `json:"rrule,omitempty"`
-		SloId       string                `json:"slo_id"`
-		Start       int64                 `json:"start"`
-		Timezone    *string               `json:"timezone,omitempty"`
-	}{}
+			Category SLOCorrectionCategory `json:"category"`
+			Description *string `json:"description,omitempty"`
+			Duration *int64 `json:"duration,omitempty"`
+			End *int64 `json:"end,omitempty"`
+			Rrule *string `json:"rrule,omitempty"`
+			SloId string `json:"slo_id"`
+			Start int64 `json:"start"`
+			Timezone *string `json:"timezone,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -375,3 +375,5 @@ func (o *SLOCorrectionCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 	o.Timezone = all.Timezone
 	return nil
 }
+
+

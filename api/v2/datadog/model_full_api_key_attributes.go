@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // FullAPIKeyAttributes Attributes of a full API key.
@@ -231,12 +232,12 @@ func (o FullAPIKeyAttributes) MarshalJSON() ([]byte, error) {
 func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *string `json:"created_at,omitempty"`
-		Key        *string `json:"key,omitempty"`
-		Last4      *string `json:"last4,omitempty"`
-		ModifiedAt *string `json:"modified_at,omitempty"`
-		Name       *string `json:"name,omitempty"`
-	}{}
+			CreatedAt *string `json:"created_at,omitempty"`
+			Key *string `json:"key,omitempty"`
+			Last4 *string `json:"last4,omitempty"`
+			ModifiedAt *string `json:"modified_at,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -253,3 +254,5 @@ func (o *FullAPIKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

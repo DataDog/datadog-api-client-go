@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuthNMappingRelationships All relationships associated with AuthN Mapping.
 type AuthNMappingRelationships struct {
-	Role                   *RelationshipToRole                   `json:"role,omitempty"`
+	Role *RelationshipToRole `json:"role,omitempty"`
 	SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o AuthNMappingRelationships) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Role                   *RelationshipToRole                   `json:"role,omitempty"`
-		SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
-	}{}
+			Role *RelationshipToRole `json:"role,omitempty"`
+			SamlAssertionAttribute *RelationshipToSAMLAssertionAttribute `json:"saml_assertion_attribute,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.SamlAssertionAttribute = all.SamlAssertionAttribute
 	return nil
 }
+
+

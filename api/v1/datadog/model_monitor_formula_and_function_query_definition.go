@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // MonitorFormulaAndFunctionQueryDefinition - A formula and function query.
@@ -22,8 +24,9 @@ type MonitorFormulaAndFunctionQueryDefinition struct {
 
 // MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition is a convenience function that returns MonitorFormulaAndFunctionEventQueryDefinition wrapped in MonitorFormulaAndFunctionQueryDefinition
 func MonitorFormulaAndFunctionEventQueryDefinitionAsMonitorFormulaAndFunctionQueryDefinition(v *MonitorFormulaAndFunctionEventQueryDefinition) MonitorFormulaAndFunctionQueryDefinition {
-	return MonitorFormulaAndFunctionQueryDefinition{MonitorFormulaAndFunctionEventQueryDefinition: v}
+	return MonitorFormulaAndFunctionQueryDefinition{ MonitorFormulaAndFunctionEventQueryDefinition: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *MonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(data []byte) error {
@@ -68,7 +71,7 @@ func (src MonitorFormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error
 }
 
 // Get the actual instance
-func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
+func (obj *MonitorFormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
 	if obj.MonitorFormulaAndFunctionEventQueryDefinition != nil {
 		return obj.MonitorFormulaAndFunctionEventQueryDefinition
 	}
@@ -112,3 +115,5 @@ func (v *NullableMonitorFormulaAndFunctionQueryDefinition) UnmarshalJSON(src []b
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

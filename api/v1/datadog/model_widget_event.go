@@ -54,7 +54,7 @@ func (o *WidgetEvent) GetQ() string {
 // GetQOk returns a tuple with the Q field value
 // and a boolean to check if the value has been set.
 func (o *WidgetEvent) GetQOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Q, true
@@ -115,11 +115,11 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Q *string `json:"q"`
-	}{}
+		}{}
 	all := struct {
-		Q             string  `json:"q"`
-		TagsExecution *string `json:"tags_execution,omitempty"`
-	}{}
+			Q string `json:"q"`
+			TagsExecution *string `json:"tags_execution,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagsExecution = all.TagsExecution
 	return nil
 }
+
+

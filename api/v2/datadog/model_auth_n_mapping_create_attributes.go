@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuthNMappingCreateAttributes Key/Value pair of attributes used for create request.
@@ -120,9 +121,9 @@ func (o AuthNMappingCreateAttributes) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AttributeKey   *string `json:"attribute_key,omitempty"`
-		AttributeValue *string `json:"attribute_value,omitempty"`
-	}{}
+			AttributeKey *string `json:"attribute_key,omitempty"`
+			AttributeValue *string `json:"attribute_value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *AuthNMappingCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.AttributeValue = all.AttributeValue
 	return nil
 }
+
+

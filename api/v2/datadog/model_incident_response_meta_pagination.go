@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentResponseMetaPagination Pagination properties.
@@ -157,10 +158,10 @@ func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		NextOffset *int64 `json:"next_offset,omitempty"`
-		Offset     *int64 `json:"offset,omitempty"`
-		Size       *int64 `json:"size,omitempty"`
-	}{}
+			NextOffset *int64 `json:"next_offset,omitempty"`
+			Offset *int64 `json:"offset,omitempty"`
+			Size *int64 `json:"size,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error)
 	o.Size = all.Size
 	return nil
 }
+
+

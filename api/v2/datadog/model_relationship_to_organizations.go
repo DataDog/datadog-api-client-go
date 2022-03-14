@@ -52,7 +52,7 @@ func (o *RelationshipToOrganizations) GetData() []RelationshipToOrganizationData
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToOrganizations) GetDataOk() (*[]RelationshipToOrganizationData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -78,10 +78,10 @@ func (o *RelationshipToOrganizations) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *[]RelationshipToOrganizationData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data []RelationshipToOrganizationData `json:"data"`
-	}{}
+			Data []RelationshipToOrganizationData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *RelationshipToOrganizations) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetStyle Widget style definition.
@@ -83,8 +84,8 @@ func (o WidgetStyle) MarshalJSON() ([]byte, error) {
 func (o *WidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Palette *string `json:"palette,omitempty"`
-	}{}
+			Palette *string `json:"palette,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *WidgetStyle) UnmarshalJSON(bytes []byte) (err error) {
 	o.Palette = all.Palette
 	return nil
 }
+
+

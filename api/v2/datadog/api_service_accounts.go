@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,11 +28,12 @@ var (
 type ServiceAccountsApiService service
 
 type apiCreateServiceAccountApplicationKeyRequest struct {
-	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
+	ctx _context.Context
+	ApiService *ServiceAccountsApiService
 	serviceAccountId string
-	body             *ApplicationKeyCreateRequest
+	body *ApplicationKeyCreateRequest
 }
+
 
 /*
  * CreateServiceAccountApplicationKey Create an application key for this service account
@@ -38,13 +41,14 @@ type apiCreateServiceAccountApplicationKeyRequest struct {
  */
 func (a *ServiceAccountsApiService) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiCreateServiceAccountApplicationKeyRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceAccountId: serviceAccountId,
-		body:             &body,
+		body: &body,
 	}
 
-	return req.ApiService.createServiceAccountApplicationKeyExecute(req)
+
+    return req.ApiService.createServiceAccountApplicationKeyExecute(req)
 }
 
 /*
@@ -60,6 +64,7 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 		localVarFileBytes    []byte
 		localVarReturnValue  ApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.CreateServiceAccountApplicationKey")
 	if err != nil {
@@ -191,11 +196,12 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 }
 
 type apiDeleteServiceAccountApplicationKeyRequest struct {
-	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
+	ctx _context.Context
+	ApiService *ServiceAccountsApiService
 	serviceAccountId string
-	appKeyId         string
+	appKeyId string
 }
+
 
 /*
  * DeleteServiceAccountApplicationKey Delete an application key for this service account
@@ -203,13 +209,14 @@ type apiDeleteServiceAccountApplicationKeyRequest struct {
  */
 func (a *ServiceAccountsApiService) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
 	req := apiDeleteServiceAccountApplicationKeyRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceAccountId: serviceAccountId,
-		appKeyId:         appKeyId,
+		appKeyId: appKeyId,
 	}
 
-	return req.ApiService.deleteServiceAccountApplicationKeyExecute(req)
+
+    return req.ApiService.deleteServiceAccountApplicationKeyExecute(req)
 }
 
 /*
@@ -223,6 +230,7 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.DeleteServiceAccountApplicationKey")
 	if err != nil {
@@ -341,11 +349,12 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 }
 
 type apiGetServiceAccountApplicationKeyRequest struct {
-	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
+	ctx _context.Context
+	ApiService *ServiceAccountsApiService
 	serviceAccountId string
-	appKeyId         string
+	appKeyId string
 }
+
 
 /*
  * GetServiceAccountApplicationKey Get one application key for this service account
@@ -353,13 +362,14 @@ type apiGetServiceAccountApplicationKeyRequest struct {
  */
 func (a *ServiceAccountsApiService) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiGetServiceAccountApplicationKeyRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceAccountId: serviceAccountId,
-		appKeyId:         appKeyId,
+		appKeyId: appKeyId,
 	}
 
-	return req.ApiService.getServiceAccountApplicationKeyExecute(req)
+
+    return req.ApiService.getServiceAccountApplicationKeyExecute(req)
 }
 
 /*
@@ -375,6 +385,7 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 		localVarFileBytes    []byte
 		localVarReturnValue  PartialApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.GetServiceAccountApplicationKey")
 	if err != nil {
@@ -502,53 +513,53 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 }
 
 type apiListServiceAccountApplicationKeysRequest struct {
-	ctx                  _context.Context
-	ApiService           *ServiceAccountsApiService
-	serviceAccountId     string
-	pageSize             *int64
-	pageNumber           *int64
-	sort                 *ApplicationKeysSort
-	filter               *string
+	ctx _context.Context
+	ApiService *ServiceAccountsApiService
+	serviceAccountId string
+	pageSize *int64
+	pageNumber *int64
+	sort *ApplicationKeysSort
+	filter *string
 	filterCreatedAtStart *string
-	filterCreatedAtEnd   *string
+	filterCreatedAtEnd *string
 }
 
 type ListServiceAccountApplicationKeysOptionalParameters struct {
-	PageSize             *int64
-	PageNumber           *int64
-	Sort                 *ApplicationKeysSort
-	Filter               *string
-	FilterCreatedAtStart *string
-	FilterCreatedAtEnd   *string
+    PageSize *int64
+    PageNumber *int64
+    Sort *ApplicationKeysSort
+    Filter *string
+    FilterCreatedAtStart *string
+    FilterCreatedAtEnd *string
 }
 
 func NewListServiceAccountApplicationKeysOptionalParameters() *ListServiceAccountApplicationKeysOptionalParameters {
-	this := ListServiceAccountApplicationKeysOptionalParameters{}
-	return &this
+    this := ListServiceAccountApplicationKeysOptionalParameters{}
+    return &this
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.PageSize = &pageSize
-	return r
+    r.PageSize = &pageSize
+    return r
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.PageNumber = &pageNumber
-	return r
+    r.PageNumber = &pageNumber
+    return r
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithSort(sort ApplicationKeysSort) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.Sort = &sort
-	return r
+    r.Sort = &sort
+    return r
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilter(filter string) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.Filter = &filter
-	return r
+    r.Filter = &filter
+    return r
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.FilterCreatedAtStart = &filterCreatedAtStart
-	return r
+    r.FilterCreatedAtStart = &filterCreatedAtStart
+    return r
 }
 func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListServiceAccountApplicationKeysOptionalParameters {
-	r.FilterCreatedAtEnd = &filterCreatedAtEnd
-	return r
+    r.FilterCreatedAtEnd = &filterCreatedAtEnd
+    return r
 }
 
 /*
@@ -557,26 +568,26 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
  */
 func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	req := apiListServiceAccountApplicationKeysRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceAccountId: serviceAccountId,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue ListApplicationKeysResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue ListApplicationKeysResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.pageSize = o[0].PageSize
-		req.pageNumber = o[0].PageNumber
-		req.sort = o[0].Sort
-		req.filter = o[0].Filter
-		req.filterCreatedAtStart = o[0].FilterCreatedAtStart
-		req.filterCreatedAtEnd = o[0].FilterCreatedAtEnd
-	}
+    if o != nil {
+        req.pageSize = o[0].PageSize
+        req.pageNumber = o[0].PageNumber
+        req.sort = o[0].Sort
+        req.filter = o[0].Filter
+        req.filterCreatedAtStart = o[0].FilterCreatedAtStart
+        req.filterCreatedAtEnd = o[0].FilterCreatedAtEnd
+    }
 
-	return req.ApiService.listServiceAccountApplicationKeysExecute(req)
+    return req.ApiService.listServiceAccountApplicationKeysExecute(req)
 }
 
 /*
@@ -592,6 +603,7 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 		localVarFileBytes    []byte
 		localVarReturnValue  ListApplicationKeysResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.ListServiceAccountApplicationKeys")
 	if err != nil {
@@ -746,12 +758,13 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 }
 
 type apiUpdateServiceAccountApplicationKeyRequest struct {
-	ctx              _context.Context
-	ApiService       *ServiceAccountsApiService
+	ctx _context.Context
+	ApiService *ServiceAccountsApiService
 	serviceAccountId string
-	appKeyId         string
-	body             *ApplicationKeyUpdateRequest
+	appKeyId string
+	body *ApplicationKeyUpdateRequest
 }
+
 
 /*
  * UpdateServiceAccountApplicationKey Edit an application key for this service account
@@ -759,14 +772,15 @@ type apiUpdateServiceAccountApplicationKeyRequest struct {
  */
 func (a *ServiceAccountsApiService) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
 	req := apiUpdateServiceAccountApplicationKeyRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceAccountId: serviceAccountId,
-		appKeyId:         appKeyId,
-		body:             &body,
+		appKeyId: appKeyId,
+		body: &body,
 	}
 
-	return req.ApiService.updateServiceAccountApplicationKeyExecute(req)
+
+    return req.ApiService.updateServiceAccountApplicationKeyExecute(req)
 }
 
 /*
@@ -782,6 +796,7 @@ func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r 
 		localVarFileBytes    []byte
 		localVarReturnValue  PartialApplicationKeyResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.UpdateServiceAccountApplicationKey")
 	if err != nil {

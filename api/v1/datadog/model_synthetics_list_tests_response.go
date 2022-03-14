@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.
@@ -83,8 +84,8 @@ func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
-	}{}
+			Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tests = all.Tests
 	return nil
 }
+
+

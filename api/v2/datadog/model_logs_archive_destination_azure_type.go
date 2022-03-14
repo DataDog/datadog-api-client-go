@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsArchiveDestinationAzureType Type of the Azure archive destination.
@@ -100,3 +101,4 @@ func (v *NullableLogsArchiveDestinationAzureType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

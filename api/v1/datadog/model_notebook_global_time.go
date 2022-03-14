@@ -10,6 +10,9 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"time"
+	"fmt"
 )
 
 // NotebookGlobalTime - Notebook global timeframe.
@@ -23,13 +26,14 @@ type NotebookGlobalTime struct {
 
 // NotebookAbsoluteTimeAsNotebookGlobalTime is a convenience function that returns NotebookAbsoluteTime wrapped in NotebookGlobalTime
 func NotebookAbsoluteTimeAsNotebookGlobalTime(v *NotebookAbsoluteTime) NotebookGlobalTime {
-	return NotebookGlobalTime{NotebookAbsoluteTime: v}
+	return NotebookGlobalTime{ NotebookAbsoluteTime: v}
 }
 
 // NotebookRelativeTimeAsNotebookGlobalTime is a convenience function that returns NotebookRelativeTime wrapped in NotebookGlobalTime
 func NotebookRelativeTimeAsNotebookGlobalTime(v *NotebookRelativeTime) NotebookGlobalTime {
-	return NotebookGlobalTime{NotebookRelativeTime: v}
+	return NotebookGlobalTime{ NotebookRelativeTime: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookGlobalTime) UnmarshalJSON(data []byte) error {
@@ -96,7 +100,7 @@ func (src NotebookGlobalTime) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookGlobalTime) GetActualInstance() interface{} {
+func (obj *NotebookGlobalTime) GetActualInstance() (interface{}) {
 	if obj.NotebookAbsoluteTime != nil {
 		return obj.NotebookAbsoluteTime
 	}
@@ -144,3 +148,5 @@ func (v *NullableNotebookGlobalTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

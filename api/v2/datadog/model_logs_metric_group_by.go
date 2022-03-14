@@ -54,7 +54,7 @@ func (o *LogsMetricGroupBy) GetPath() string {
 // GetPathOk returns a tuple with the Path field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricGroupBy) GetPathOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Path, true
@@ -115,11 +115,11 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Path *string `json:"path"`
-	}{}
+		}{}
 	all := struct {
-		Path    string  `json:"path"`
-		TagName *string `json:"tag_name,omitempty"`
-	}{}
+			Path string `json:"path"`
+			TagName *string `json:"tag_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagName = all.TagName
 	return nil
 }
+
+

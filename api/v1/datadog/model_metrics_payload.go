@@ -52,7 +52,7 @@ func (o *MetricsPayload) GetSeries() []Series {
 // GetSeriesOk returns a tuple with the Series field value
 // and a boolean to check if the value has been set.
 func (o *MetricsPayload) GetSeriesOk() (*[]Series, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Series, true
@@ -78,10 +78,10 @@ func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Series *[]Series `json:"series"`
-	}{}
+		}{}
 	all := struct {
-		Series []Series `json:"series"`
-	}{}
+			Series []Series `json:"series"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	o.Series = all.Series
 	return nil
 }
+
+

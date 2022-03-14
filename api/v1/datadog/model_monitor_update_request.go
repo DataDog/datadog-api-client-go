@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -17,7 +18,7 @@ import (
 type MonitorUpdateRequest struct {
 	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
-	Creator *Creator   `json:"creator,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
@@ -29,18 +30,18 @@ type MonitorUpdateRequest struct {
 	// Whether or not the monitor is broken down on different groups.
 	Multi *bool `json:"multi,omitempty"`
 	// The monitor name.
-	Name         *string               `json:"name,omitempty"`
-	Options      *MonitorOptions       `json:"options,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Options *MonitorOptions `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	Priority *int64 `json:"priority,omitempty"`
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
 	// A list of role identifiers that can be pulled from the Roles API. Cannot be used with `locked` option.
-	RestrictedRoles *[]string     `json:"restricted_roles,omitempty"`
-	State           *MonitorState `json:"state,omitempty"`
+	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string    `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -140,7 +141,7 @@ func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorUpdateRequest) GetDeletedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Deleted.Get(), o.Deleted.IsSet()
@@ -159,7 +160,6 @@ func (o *MonitorUpdateRequest) HasDeleted() bool {
 func (o *MonitorUpdateRequest) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
-
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *MonitorUpdateRequest) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -645,23 +645,23 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created         *time.Time            `json:"created,omitempty"`
-		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         NullableTime          `json:"deleted,omitempty"`
-		Id              *int64                `json:"id,omitempty"`
-		Message         *string               `json:"message,omitempty"`
-		Modified        *time.Time            `json:"modified,omitempty"`
-		Multi           *bool                 `json:"multi,omitempty"`
-		Name            *string               `json:"name,omitempty"`
-		Options         *MonitorOptions       `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
-		Priority        *int64                `json:"priority,omitempty"`
-		Query           *string               `json:"query,omitempty"`
-		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"`
-		State           *MonitorState         `json:"state,omitempty"`
-		Tags            *[]string             `json:"tags,omitempty"`
-		Type            *MonitorType          `json:"type,omitempty"`
-	}{}
+			Created *time.Time `json:"created,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Deleted NullableTime `json:"deleted,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Modified *time.Time `json:"modified,omitempty"`
+			Multi *bool `json:"multi,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Options *MonitorOptions `json:"options,omitempty"`
+			OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
+			Priority *int64 `json:"priority,omitempty"`
+			Query *string `json:"query,omitempty"`
+			RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+			State *MonitorState `json:"state,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *MonitorType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -705,3 +705,5 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

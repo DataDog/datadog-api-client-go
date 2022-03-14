@@ -15,14 +15,14 @@ import (
 
 // FormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type FormulaAndFunctionEventQueryDefinition struct {
-	Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-	DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
+	Compute FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+	DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
 	GroupBy *[]FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
-	Name   string                                        `json:"name"`
+	Name string `json:"name"`
 	Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -61,7 +61,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetCompute() FormulaAndFunction
 // GetComputeOk returns a tuple with the Compute field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) GetComputeOk() (*FormulaAndFunctionEventQueryDefinitionCompute, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Compute, true
@@ -85,7 +85,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetDataSource() FormulaAndFunct
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionEventsDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -173,7 +173,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -245,18 +245,18 @@ func (o FormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Compute    *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource *FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		Name       *string                                        `json:"name"`
-	}{}
+		Compute *FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource *FormulaAndFunctionEventsDataSource `json:"data_source"`
+		Name *string `json:"name"`
+		}{}
 	all := struct {
-		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
-		Indexes    *[]string                                     `json:"indexes,omitempty"`
-		Name       string                                        `json:"name"`
-		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
-	}{}
+			Compute FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+			DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
+			GroupBy *[]FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+			Indexes *[]string `json:"indexes,omitempty"`
+			Name string `json:"name"`
+			Search *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -295,3 +295,5 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 	o.Search = all.Search
 	return nil
 }
+
+

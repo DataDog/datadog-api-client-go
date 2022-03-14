@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSAccountListResponse List of enabled AWS accounts.
@@ -83,8 +84,8 @@ func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Accounts *[]AWSAccount `json:"accounts,omitempty"`
-	}{}
+			Accounts *[]AWSAccount `json:"accounts,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Accounts = all.Accounts
 	return nil
 }
+
+

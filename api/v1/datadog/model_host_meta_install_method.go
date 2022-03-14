@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMetaInstallMethod Agent install method.
@@ -157,10 +158,10 @@ func (o HostMetaInstallMethod) MarshalJSON() ([]byte, error) {
 func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		InstallerVersion *string `json:"installer_version,omitempty"`
-		Tool             *string `json:"tool,omitempty"`
-		ToolVersion      *string `json:"tool_version,omitempty"`
-	}{}
+			InstallerVersion *string `json:"installer_version,omitempty"`
+			Tool *string `json:"tool,omitempty"`
+			ToolVersion *string `json:"tool_version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *HostMetaInstallMethod) UnmarshalJSON(bytes []byte) (err error) {
 	o.ToolVersion = all.ToolVersion
 	return nil
 }
+
+

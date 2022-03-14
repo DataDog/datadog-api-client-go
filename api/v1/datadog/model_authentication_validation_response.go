@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuthenticationValidationResponse Represent validation endpoint responses.
@@ -83,8 +84,8 @@ func (o AuthenticationValidationResponse) MarshalJSON() ([]byte, error) {
 func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Valid *bool `json:"valid,omitempty"`
-	}{}
+			Valid *bool `json:"valid,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *AuthenticationValidationResponse) UnmarshalJSON(bytes []byte) (err erro
 	o.Valid = all.Valid
 	return nil
 }
+
+

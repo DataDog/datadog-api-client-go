@@ -17,7 +17,7 @@ import (
 type MetricTagConfigurationCreateData struct {
 	Attributes *MetricTagConfigurationCreateAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   string                     `json:"id"`
+	Id string `json:"id"`
 	Type MetricTagConfigurationType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -89,7 +89,7 @@ func (o *MetricTagConfigurationCreateData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *MetricTagConfigurationCreateData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -113,7 +113,7 @@ func (o *MetricTagConfigurationCreateData) GetType() MetricTagConfigurationType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *MetricTagConfigurationCreateData) GetTypeOk() (*MetricTagConfigurationType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -144,14 +144,14 @@ func (o MetricTagConfigurationCreateData) MarshalJSON() ([]byte, error) {
 func (o *MetricTagConfigurationCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                     `json:"id"`
+		Id *string `json:"id"`
 		Type *MetricTagConfigurationType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *MetricTagConfigurationCreateAttributes `json:"attributes,omitempty"`
-		Id         string                                  `json:"id"`
-		Type       MetricTagConfigurationType              `json:"type"`
-	}{}
+			Attributes *MetricTagConfigurationCreateAttributes `json:"attributes,omitempty"`
+			Id string `json:"id"`
+			Type MetricTagConfigurationType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -184,3 +184,5 @@ func (o *MetricTagConfigurationCreateData) UnmarshalJSON(bytes []byte) (err erro
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -16,7 +16,7 @@ import (
 // NullableRelationshipToUserData Relationship to user object.
 type NullableRelationshipToUserData struct {
 	// A unique identifier that represents the user.
-	Id   string    `json:"id"`
+	Id string `json:"id"`
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *NullableRelationshipToUserData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *NullableRelationshipToUserData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -80,7 +80,7 @@ func (o *NullableRelationshipToUserData) GetType() UsersType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NullableRelationshipToUserData) GetTypeOk() (*UsersType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 func (o *NullableRelationshipToUserData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string    `json:"id"`
+		Id *string `json:"id"`
 		Type *UsersType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Id   string    `json:"id"`
-		Type UsersType `json:"type"`
-	}{}
+			Id string `json:"id"`
+			Type UsersType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -182,3 +182,5 @@ func (v *NullableNullableRelationshipToUserData) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

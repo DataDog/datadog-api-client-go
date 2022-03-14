@@ -86,7 +86,7 @@ func (o *SyntheticsTestRequestProxy) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTestRequestProxy) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -115,11 +115,11 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Url *string `json:"url"`
-	}{}
+		}{}
 	all := struct {
-		Headers *map[string]string `json:"headers,omitempty"`
-		Url     string             `json:"url"`
-	}{}
+			Headers *map[string]string `json:"headers,omitempty"`
+			Url string `json:"url"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *SyntheticsTestRequestProxy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

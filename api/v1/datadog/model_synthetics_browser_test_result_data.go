@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserTestResultData Object containing results for your Synthetic browser test.
@@ -17,12 +18,12 @@ type SyntheticsBrowserTestResultData struct {
 	// Type of browser device used for the browser test.
 	BrowserType *string `json:"browserType,omitempty"`
 	// Browser version used for the browser test.
-	BrowserVersion *string           `json:"browserVersion,omitempty"`
-	Device         *SyntheticsDevice `json:"device,omitempty"`
+	BrowserVersion *string `json:"browserVersion,omitempty"`
+	Device *SyntheticsDevice `json:"device,omitempty"`
 	// Global duration in second of the browser test.
 	Duration *float64 `json:"duration,omitempty"`
 	// Error returned for the browser test.
-	Error   *string                             `json:"error,omitempty"`
+	Error *string `json:"error,omitempty"`
 	Failure *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
 	// Whether or not the browser test was conducted.
 	Passed *bool `json:"passed,omitempty"`
@@ -488,19 +489,19 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserType         *string                             `json:"browserType,omitempty"`
-		BrowserVersion      *string                             `json:"browserVersion,omitempty"`
-		Device              *SyntheticsDevice                   `json:"device,omitempty"`
-		Duration            *float64                            `json:"duration,omitempty"`
-		Error               *string                             `json:"error,omitempty"`
-		Failure             *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
-		Passed              *bool                               `json:"passed,omitempty"`
-		ReceivedEmailCount  *int64                              `json:"receivedEmailCount,omitempty"`
-		StartUrl            *string                             `json:"startUrl,omitempty"`
-		StepDetails         *[]SyntheticsStepDetail             `json:"stepDetails,omitempty"`
-		ThumbnailsBucketKey *bool                               `json:"thumbnailsBucketKey,omitempty"`
-		TimeToInteractive   *float64                            `json:"timeToInteractive,omitempty"`
-	}{}
+			BrowserType *string `json:"browserType,omitempty"`
+			BrowserVersion *string `json:"browserVersion,omitempty"`
+			Device *SyntheticsDevice `json:"device,omitempty"`
+			Duration *float64 `json:"duration,omitempty"`
+			Error *string `json:"error,omitempty"`
+			Failure *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
+			Passed *bool `json:"passed,omitempty"`
+			ReceivedEmailCount *int64 `json:"receivedEmailCount,omitempty"`
+			StartUrl *string `json:"startUrl,omitempty"`
+			StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
+			ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
+			TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -524,3 +525,5 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 	o.TimeToInteractive = all.TimeToInteractive
 	return nil
 }
+
+

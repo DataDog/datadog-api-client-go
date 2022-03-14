@@ -51,7 +51,7 @@ func (o *UserInvitationRelationships) GetUser() RelationshipToUser {
 // GetUserOk returns a tuple with the User field value
 // and a boolean to check if the value has been set.
 func (o *UserInvitationRelationships) GetUserOk() (*RelationshipToUser, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.User, true
@@ -77,10 +77,10 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		User *RelationshipToUser `json:"user"`
-	}{}
+		}{}
 	all := struct {
-		User RelationshipToUser `json:"user"`
-	}{}
+			User RelationshipToUser `json:"user"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *UserInvitationRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.User = all.User
 	return nil
 }
+
+

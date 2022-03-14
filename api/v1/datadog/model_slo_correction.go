@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrection The response object of a list of SLO corrections.
 type SLOCorrection struct {
 	Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
 	// The ID of the SLO correction.
-	Id   *string            `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *SLOCorrectionType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o SLOCorrection) MarshalJSON() ([]byte, error) {
 func (o *SLOCorrection) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
-		Id         *string                          `json:"id,omitempty"`
-		Type       *SLOCorrectionType               `json:"type,omitempty"`
-	}{}
+			Attributes *SLOCorrectionResponseAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *SLOCorrectionType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *SLOCorrection) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetTimeWindows Define a time window.
@@ -18,14 +19,14 @@ type WidgetTimeWindows string
 
 // List of WidgetTimeWindows
 const (
-	WIDGETTIMEWINDOWS_SEVEN_DAYS     WidgetTimeWindows = "7d"
-	WIDGETTIMEWINDOWS_THIRTY_DAYS    WidgetTimeWindows = "30d"
-	WIDGETTIMEWINDOWS_NINETY_DAYS    WidgetTimeWindows = "90d"
-	WIDGETTIMEWINDOWS_WEEK_TO_DATE   WidgetTimeWindows = "week_to_date"
-	WIDGETTIMEWINDOWS_PREVIOUS_WEEK  WidgetTimeWindows = "previous_week"
-	WIDGETTIMEWINDOWS_MONTH_TO_DATE  WidgetTimeWindows = "month_to_date"
+	WIDGETTIMEWINDOWS_SEVEN_DAYS WidgetTimeWindows = "7d"
+	WIDGETTIMEWINDOWS_THIRTY_DAYS WidgetTimeWindows = "30d"
+	WIDGETTIMEWINDOWS_NINETY_DAYS WidgetTimeWindows = "90d"
+	WIDGETTIMEWINDOWS_WEEK_TO_DATE WidgetTimeWindows = "week_to_date"
+	WIDGETTIMEWINDOWS_PREVIOUS_WEEK WidgetTimeWindows = "previous_week"
+	WIDGETTIMEWINDOWS_MONTH_TO_DATE WidgetTimeWindows = "month_to_date"
 	WIDGETTIMEWINDOWS_PREVIOUS_MONTH WidgetTimeWindows = "previous_month"
-	WIDGETTIMEWINDOWS_GLOBAL_TIME    WidgetTimeWindows = "global_time"
+	WIDGETTIMEWINDOWS_GLOBAL_TIME WidgetTimeWindows = "global_time"
 )
 
 var allowedWidgetTimeWindowsEnumValues = []WidgetTimeWindows{
@@ -114,3 +115,4 @@ func (v *NullableWidgetTimeWindows) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

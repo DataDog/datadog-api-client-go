@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsWarning Warning message indicating something that went wrong with the query.
@@ -157,10 +158,10 @@ func (o AuditLogsWarning) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsWarning) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code   *string `json:"code,omitempty"`
-		Detail *string `json:"detail,omitempty"`
-		Title  *string `json:"title,omitempty"`
-	}{}
+			Code *string `json:"code,omitempty"`
+			Detail *string `json:"detail,omitempty"`
+			Title *string `json:"title,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *AuditLogsWarning) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
+
+

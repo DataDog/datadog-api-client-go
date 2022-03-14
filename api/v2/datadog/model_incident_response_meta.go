@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentResponseMeta The metadata object containing pagination metadata.
@@ -82,8 +83,8 @@ func (o IncidentResponseMeta) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
-	}{}
+			Pagination *IncidentResponseMetaPagination `json:"pagination,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *IncidentResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Pagination = all.Pagination
 	return nil
 }
+
+

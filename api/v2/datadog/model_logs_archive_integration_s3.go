@@ -55,7 +55,7 @@ func (o *LogsArchiveIntegrationS3) GetAccountId() string {
 // GetAccountIdOk returns a tuple with the AccountId field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationS3) GetAccountIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AccountId, true
@@ -79,7 +79,7 @@ func (o *LogsArchiveIntegrationS3) GetRoleName() string {
 // GetRoleNameOk returns a tuple with the RoleName field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationS3) GetRoleNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.RoleName, true
@@ -108,12 +108,12 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		AccountId *string `json:"account_id"`
-		RoleName  *string `json:"role_name"`
-	}{}
+		RoleName *string `json:"role_name"`
+		}{}
 	all := struct {
-		AccountId string `json:"account_id"`
-		RoleName  string `json:"role_name"`
-	}{}
+			AccountId string `json:"account_id"`
+			RoleName string `json:"role_name"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *LogsArchiveIntegrationS3) UnmarshalJSON(bytes []byte) (err error) {
 	o.RoleName = all.RoleName
 	return nil
 }
+
+

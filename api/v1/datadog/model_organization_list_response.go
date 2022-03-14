@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationListResponse Response with the list of organizations.
@@ -83,8 +84,8 @@ func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Orgs *[]Organization `json:"orgs,omitempty"`
-	}{}
+			Orgs *[]Organization `json:"orgs,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Orgs = all.Orgs
 	return nil
 }
+
+

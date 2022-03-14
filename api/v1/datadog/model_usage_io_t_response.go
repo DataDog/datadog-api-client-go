@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageIoTResponse Response containing the IoT usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageIoTResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIoTResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIoTHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageIoTHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageIoTResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

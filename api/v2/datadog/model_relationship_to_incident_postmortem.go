@@ -51,7 +51,7 @@ func (o *RelationshipToIncidentPostmortem) GetData() RelationshipToIncidentPostm
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToIncidentPostmortem) GetDataOk() (*RelationshipToIncidentPostmortemData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *RelationshipToIncidentPostmortemData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data RelationshipToIncidentPostmortemData `json:"data"`
-	}{}
+			Data RelationshipToIncidentPostmortemData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *RelationshipToIncidentPostmortem) UnmarshalJSON(bytes []byte) (err erro
 	o.Data = all.Data
 	return nil
 }
+
+

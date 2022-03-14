@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsLambda Description of the Lambdas.
@@ -83,8 +84,8 @@ func (o AWSLogsLambda) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsLambda) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Arn *string `json:"arn,omitempty"`
-	}{}
+			Arn *string `json:"arn,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *AWSLogsLambda) UnmarshalJSON(bytes []byte) (err error) {
 	o.Arn = all.Arn
 	return nil
 }
+
+

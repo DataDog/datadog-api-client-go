@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RoleCreateResponse Response containing information about a created role.
@@ -82,8 +83,8 @@ func (o RoleCreateResponse) MarshalJSON() ([]byte, error) {
 func (o *RoleCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *RoleCreateResponseData `json:"data,omitempty"`
-	}{}
+			Data *RoleCreateResponseData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *RoleCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

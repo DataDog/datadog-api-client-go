@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrectionUpdateRequest An object that defines a correction to be applied to an SLO.
@@ -82,8 +83,8 @@ func (o SLOCorrectionUpdateRequest) MarshalJSON() ([]byte, error) {
 func (o *SLOCorrectionUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *SLOCorrectionUpdateData `json:"data,omitempty"`
-	}{}
+			Data *SLOCorrectionUpdateData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *SLOCorrectionUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

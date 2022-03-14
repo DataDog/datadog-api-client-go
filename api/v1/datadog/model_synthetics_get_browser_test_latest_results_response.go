@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsGetBrowserTestLatestResultsResponse Object with the latest Synthetic browser test run.
@@ -120,9 +121,9 @@ func (o SyntheticsGetBrowserTestLatestResultsResponse) MarshalJSON() ([]byte, er
 func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LastTimestampFetched *int64                              `json:"last_timestamp_fetched,omitempty"`
-		Results              *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
-	}{}
+			LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
+			Results *[]SyntheticsBrowserTestResultShort `json:"results,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsGetBrowserTestLatestResultsResponse) UnmarshalJSON(bytes []by
 	o.Results = all.Results
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringSignalsListResponseMeta Meta attributes.
@@ -82,8 +83,8 @@ func (o SecurityMonitoringSignalsListResponseMeta) MarshalJSON() ([]byte, error)
 func (o *SecurityMonitoringSignalsListResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *SecurityMonitoringSignalsListResponseMetaPage `json:"page,omitempty"`
-	}{}
+			Page *SecurityMonitoringSignalsListResponseMetaPage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *SecurityMonitoringSignalsListResponseMeta) UnmarshalJSON(bytes []byte) 
 	o.Page = all.Page
 	return nil
 }
+
+

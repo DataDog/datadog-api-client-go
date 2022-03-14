@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricTagConfigurationResponse Response object which includes a single metric's tag configuration.
@@ -82,8 +83,8 @@ func (o MetricTagConfigurationResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricTagConfigurationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *MetricTagConfiguration `json:"data,omitempty"`
-	}{}
+			Data *MetricTagConfiguration `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *MetricTagConfigurationResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Data = all.Data
 	return nil
 }
+
+

@@ -52,7 +52,7 @@ func (o *LogsPipelinesOrder) GetPipelineIds() []string {
 // GetPipelineIdsOk returns a tuple with the PipelineIds field value
 // and a boolean to check if the value has been set.
 func (o *LogsPipelinesOrder) GetPipelineIdsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.PipelineIds, true
@@ -78,10 +78,10 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		PipelineIds *[]string `json:"pipeline_ids"`
-	}{}
+		}{}
 	all := struct {
-		PipelineIds []string `json:"pipeline_ids"`
-	}{}
+			PipelineIds []string `json:"pipeline_ids"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *LogsPipelinesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	o.PipelineIds = all.PipelineIds
 	return nil
 }
+
+

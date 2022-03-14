@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsArchiveDestinationS3Type Type of the S3 archive destination.
@@ -100,3 +101,4 @@ func (v *NullableLogsArchiveDestinationS3Type) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -16,7 +16,7 @@ import (
 // FormulaAndFunctionMetricQueryDefinition A formula and functions metrics query.
 type FormulaAndFunctionMetricQueryDefinition struct {
 	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-	DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
+	DataSource FormulaAndFunctionMetricDataSource `json:"data_source"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
 	// Metrics query definition.
@@ -90,7 +90,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSource() FormulaAndFunc
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionMetricDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -114,7 +114,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -138,7 +138,7 @@ func (o *FormulaAndFunctionMetricQueryDefinition) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionMetricQueryDefinition) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -173,15 +173,15 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 	raw := map[string]interface{}{}
 	required := struct {
 		DataSource *FormulaAndFunctionMetricDataSource `json:"data_source"`
-		Name       *string                             `json:"name"`
-		Query      *string                             `json:"query"`
-	}{}
+		Name *string `json:"name"`
+		Query *string `json:"query"`
+		}{}
 	all := struct {
-		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-		DataSource FormulaAndFunctionMetricDataSource   `json:"data_source"`
-		Name       string                               `json:"name"`
-		Query      string                               `json:"query"`
-	}{}
+			Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
+			DataSource FormulaAndFunctionMetricDataSource `json:"data_source"`
+			Name string `json:"name"`
+			Query string `json:"query"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -226,3 +226,5 @@ func (o *FormulaAndFunctionMetricQueryDefinition) UnmarshalJSON(bytes []byte) (e
 	o.Query = all.Query
 	return nil
 }
+
+

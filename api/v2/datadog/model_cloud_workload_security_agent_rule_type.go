@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleType The type of the resource. The value should always be `agent_rule`.
@@ -100,3 +101,4 @@ func (v *NullableCloudWorkloadSecurityAgentRuleType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

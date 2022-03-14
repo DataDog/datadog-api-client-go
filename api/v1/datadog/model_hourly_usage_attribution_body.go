@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -28,7 +29,7 @@ type HourlyUsageAttributionBody struct {
 	// Total product usage for the given tags within the hour.
 	TotalUsageSum *float64 `json:"total_usage_sum,omitempty"`
 	// Shows the most recent hour in the current month for all organizations where usages are calculated.
-	UpdatedAt *string                          `json:"updated_at,omitempty"`
+	UpdatedAt *string `json:"updated_at,omitempty"`
 	UsageType *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -342,15 +343,15 @@ func (o HourlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour            *time.Time                       `json:"hour,omitempty"`
-		OrgName         *string                          `json:"org_name,omitempty"`
-		PublicId        *string                          `json:"public_id,omitempty"`
-		TagConfigSource *string                          `json:"tag_config_source,omitempty"`
-		Tags            *map[string][]string             `json:"tags,omitempty"`
-		TotalUsageSum   *float64                         `json:"total_usage_sum,omitempty"`
-		UpdatedAt       *string                          `json:"updated_at,omitempty"`
-		UsageType       *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
-	}{}
+			Hour *time.Time `json:"hour,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			TagConfigSource *string `json:"tag_config_source,omitempty"`
+			Tags *map[string][]string `json:"tags,omitempty"`
+			TotalUsageSum *float64 `json:"total_usage_sum,omitempty"`
+			UpdatedAt *string `json:"updated_at,omitempty"`
+			UsageType *HourlyUsageAttributionUsageType `json:"usage_type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -378,3 +379,5 @@ func (o *HourlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.UsageType = all.UsageType
 	return nil
 }
+
+

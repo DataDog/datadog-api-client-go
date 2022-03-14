@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsStringBuilderProcessorType Type of logs string builder processor.
@@ -100,3 +101,4 @@ func (v *NullableLogsStringBuilderProcessorType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

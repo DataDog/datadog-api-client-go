@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SLOType The type of the service level objective.
@@ -18,7 +19,7 @@ type SLOType string
 
 // List of SLOType
 const (
-	SLOTYPE_METRIC  SLOType = "metric"
+	SLOTYPE_METRIC SLOType = "metric"
 	SLOTYPE_MONITOR SLOType = "monitor"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableSLOType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

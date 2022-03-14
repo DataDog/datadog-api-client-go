@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SecurityMonitoringRuleSeverity Severity of the Security Signal.
@@ -18,10 +19,10 @@ type SecurityMonitoringRuleSeverity string
 
 // List of SecurityMonitoringRuleSeverity
 const (
-	SECURITYMONITORINGRULESEVERITY_INFO     SecurityMonitoringRuleSeverity = "info"
-	SECURITYMONITORINGRULESEVERITY_LOW      SecurityMonitoringRuleSeverity = "low"
-	SECURITYMONITORINGRULESEVERITY_MEDIUM   SecurityMonitoringRuleSeverity = "medium"
-	SECURITYMONITORINGRULESEVERITY_HIGH     SecurityMonitoringRuleSeverity = "high"
+	SECURITYMONITORINGRULESEVERITY_INFO SecurityMonitoringRuleSeverity = "info"
+	SECURITYMONITORINGRULESEVERITY_LOW SecurityMonitoringRuleSeverity = "low"
+	SECURITYMONITORINGRULESEVERITY_MEDIUM SecurityMonitoringRuleSeverity = "medium"
+	SECURITYMONITORINGRULESEVERITY_HIGH SecurityMonitoringRuleSeverity = "high"
 	SECURITYMONITORINGRULESEVERITY_CRITICAL SecurityMonitoringRuleSeverity = "critical"
 )
 
@@ -108,3 +109,4 @@ func (v *NullableSecurityMonitoringRuleSeverity) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

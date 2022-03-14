@@ -56,7 +56,7 @@ func (o *IFrameWidgetDefinition) GetType() IFrameWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *IFrameWidgetDefinition) GetTypeOk() (*IFrameWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -80,7 +80,7 @@ func (o *IFrameWidgetDefinition) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *IFrameWidgetDefinition) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -109,12 +109,12 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *IFrameWidgetDefinitionType `json:"type"`
-		Url  *string                     `json:"url"`
-	}{}
+		Url *string `json:"url"`
+		}{}
 	all := struct {
-		Type IFrameWidgetDefinitionType `json:"type"`
-		Url  string                     `json:"url"`
-	}{}
+			Type IFrameWidgetDefinitionType `json:"type"`
+			Url string `json:"url"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *IFrameWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

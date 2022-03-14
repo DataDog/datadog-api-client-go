@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageAttributionAggregatesBody The object containing the aggregates.
@@ -157,10 +158,10 @@ func (o UsageAttributionAggregatesBody) MarshalJSON() ([]byte, error) {
 func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AggType *string  `json:"agg_type,omitempty"`
-		Field   *string  `json:"field,omitempty"`
-		Value   *float64 `json:"value,omitempty"`
-	}{}
+			AggType *string `json:"agg_type,omitempty"`
+			Field *string `json:"field,omitempty"`
+			Value *float64 `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error)
 	o.Value = all.Value
 	return nil
 }
+
+

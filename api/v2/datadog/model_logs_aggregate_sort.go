@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateSort A sort rule
 type LogsAggregateSort struct {
 	Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
 	// The metric to sort by (only used for `type=measure`)
-	Metric *string                `json:"metric,omitempty"`
-	Order  *LogsSortOrder         `json:"order,omitempty"`
-	Type   *LogsAggregateSortType `json:"type,omitempty"`
+	Metric *string `json:"metric,omitempty"`
+	Order *LogsSortOrder `json:"order,omitempty"`
+	Type *LogsAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -195,11 +196,11 @@ func (o LogsAggregateSort) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
-		Metric      *string                  `json:"metric,omitempty"`
-		Order       *LogsSortOrder           `json:"order,omitempty"`
-		Type        *LogsAggregateSortType   `json:"type,omitempty"`
-	}{}
+			Aggregation *LogsAggregationFunction `json:"aggregation,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Order *LogsSortOrder `json:"order,omitempty"`
+			Type *LogsAggregateSortType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -239,3 +240,5 @@ func (o *LogsAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

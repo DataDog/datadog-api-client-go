@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SlackIntegrationChannelDisplay Configuration options for what is shown in an alert event message.
@@ -210,11 +211,11 @@ func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Message  *bool `json:"message,omitempty"`
-		Notified *bool `json:"notified,omitempty"`
-		Snapshot *bool `json:"snapshot,omitempty"`
-		Tags     *bool `json:"tags,omitempty"`
-	}{}
+			Message *bool `json:"message,omitempty"`
+			Notified *bool `json:"notified,omitempty"`
+			Snapshot *bool `json:"snapshot,omitempty"`
+			Tags *bool `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -230,3 +231,5 @@ func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error)
 	o.Tags = all.Tags
 	return nil
 }
+
+

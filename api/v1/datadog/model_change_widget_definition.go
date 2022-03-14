@@ -19,13 +19,13 @@ type ChangeWidgetDefinition struct {
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
 	// Array of one request object to display in the widget.  See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []ChangeWidgetRequest `json:"requests"`
-	Time     *WidgetTime           `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                    `json:"title_size,omitempty"`
-	Type      ChangeWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ChangeWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -96,7 +96,7 @@ func (o *ChangeWidgetDefinition) GetRequests() []ChangeWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ChangeWidgetDefinition) GetRequestsOk() (*[]ChangeWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -248,7 +248,7 @@ func (o *ChangeWidgetDefinition) GetType() ChangeWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ChangeWidgetDefinition) GetTypeOk() (*ChangeWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -291,18 +291,18 @@ func (o ChangeWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ChangeWidgetRequest      `json:"requests"`
-		Type     *ChangeWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]ChangeWidgetRequest `json:"requests"`
+		Type *ChangeWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink        `json:"custom_links,omitempty"`
-		Requests    []ChangeWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                `json:"time,omitempty"`
-		Title       *string                    `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign           `json:"title_align,omitempty"`
-		TitleSize   *string                    `json:"title_size,omitempty"`
-		Type        ChangeWidgetDefinitionType `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Requests []ChangeWidgetRequest `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ChangeWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -347,3 +347,5 @@ func (o *ChangeWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

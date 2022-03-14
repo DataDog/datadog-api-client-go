@@ -16,7 +16,7 @@ import (
 // APIKeyCreateData Object used to create an API key.
 type APIKeyCreateData struct {
 	Attributes APIKeyCreateAttributes `json:"attributes"`
-	Type       APIKeysType            `json:"type"`
+	Type APIKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *APIKeyCreateData) GetAttributes() APIKeyCreateAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *APIKeyCreateData) GetAttributesOk() (*APIKeyCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *APIKeyCreateData) GetType() APIKeysType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *APIKeyCreateData) GetTypeOk() (*APIKeysType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *APIKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *APIKeyCreateAttributes `json:"attributes"`
-		Type       *APIKeysType            `json:"type"`
-	}{}
+		Type *APIKeysType `json:"type"`
+		}{}
 	all := struct {
-		Attributes APIKeyCreateAttributes `json:"attributes"`
-		Type       APIKeysType            `json:"type"`
-	}{}
+			Attributes APIKeyCreateAttributes `json:"attributes"`
+			Type APIKeysType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *APIKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

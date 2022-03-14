@@ -24,16 +24,16 @@ type DistributionWidgetDefinition struct {
 	Requests []DistributionWidgetRequest `json:"requests"`
 	// (Deprecated) The widget legend was replaced by a tooltip and sidebar.
 	// Deprecated
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                          `json:"title_size,omitempty"`
-	Type      DistributionWidgetDefinitionType `json:"type"`
-	Xaxis     *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
-	Yaxis     *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type DistributionWidgetDefinitionType `json:"type"`
+	Xaxis *DistributionWidgetXAxis `json:"xaxis,omitempty"`
+	Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -139,7 +139,7 @@ func (o *DistributionWidgetDefinition) GetRequests() []DistributionWidgetRequest
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *DistributionWidgetDefinition) GetRequestsOk() (*[]DistributionWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -326,7 +326,7 @@ func (o *DistributionWidgetDefinition) GetType() DistributionWidgetDefinitionTyp
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *DistributionWidgetDefinition) GetTypeOk() (*DistributionWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -445,22 +445,22 @@ func (o DistributionWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]DistributionWidgetRequest      `json:"requests"`
-		Type     *DistributionWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]DistributionWidgetRequest `json:"requests"`
+		Type *DistributionWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		LegendSize *string                          `json:"legend_size,omitempty"`
-		Markers    *[]WidgetMarker                  `json:"markers,omitempty"`
-		Requests   []DistributionWidgetRequest      `json:"requests"`
-		ShowLegend *bool                            `json:"show_legend,omitempty"`
-		Time       *WidgetTime                      `json:"time,omitempty"`
-		Title      *string                          `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                 `json:"title_align,omitempty"`
-		TitleSize  *string                          `json:"title_size,omitempty"`
-		Type       DistributionWidgetDefinitionType `json:"type"`
-		Xaxis      *DistributionWidgetXAxis         `json:"xaxis,omitempty"`
-		Yaxis      *DistributionWidgetYAxis         `json:"yaxis,omitempty"`
-	}{}
+			LegendSize *string `json:"legend_size,omitempty"`
+			Markers *[]WidgetMarker `json:"markers,omitempty"`
+			Requests []DistributionWidgetRequest `json:"requests"`
+			ShowLegend *bool `json:"show_legend,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type DistributionWidgetDefinitionType `json:"type"`
+			Xaxis *DistributionWidgetXAxis `json:"xaxis,omitempty"`
+			Yaxis *DistributionWidgetYAxis `json:"yaxis,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -509,3 +509,5 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
+
+

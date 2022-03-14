@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryResponseError A list of errors while querying the history data for the service level objective.
@@ -83,8 +84,8 @@ func (o SLOHistoryResponseError) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryResponseError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Error *string `json:"error,omitempty"`
-	}{}
+			Error *string `json:"error,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SLOHistoryResponseError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Error = all.Error
 	return nil
 }
+
+

@@ -16,7 +16,7 @@ import (
 // RelationshipToIncidentIntegrationMetadataData A relationship reference for an integration metadata object.
 type RelationshipToIncidentIntegrationMetadataData struct {
 	// A unique identifier that represents the integration metadata.
-	Id   string                          `json:"id"`
+	Id string `json:"id"`
 	Type IncidentIntegrationMetadataType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *RelationshipToIncidentIntegrationMetadataData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToIncidentIntegrationMetadataData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -80,7 +80,7 @@ func (o *RelationshipToIncidentIntegrationMetadataData) GetType() IncidentIntegr
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToIncidentIntegrationMetadataData) GetTypeOk() (*IncidentIntegrationMetadataType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o RelationshipToIncidentIntegrationMetadataData) MarshalJSON() ([]byte, er
 func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                          `json:"id"`
+		Id *string `json:"id"`
 		Type *IncidentIntegrationMetadataType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Id   string                          `json:"id"`
-		Type IncidentIntegrationMetadataType `json:"type"`
-	}{}
+			Id string `json:"id"`
+			Type IncidentIntegrationMetadataType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *RelationshipToIncidentIntegrationMetadataData) UnmarshalJSON(bytes []by
 	o.Type = all.Type
 	return nil
 }
+
+

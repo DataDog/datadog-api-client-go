@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageSyntheticsAPIResponse Response containing the number of Synthetics API tests run for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageSyntheticsAPIResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsAPIResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageSyntheticsAPIHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageSyntheticsAPIHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageSyntheticsAPIResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

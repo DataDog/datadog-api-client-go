@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,9 +27,10 @@ var (
 type AuthenticationApiService service
 
 type apiValidateRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AuthenticationApiService
 }
+
 
 /*
  * Validate Validate API key
@@ -36,10 +39,11 @@ type apiValidateRequest struct {
 func (a *AuthenticationApiService) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	req := apiValidateRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.validateExecute(req)
+
+    return req.ApiService.validateExecute(req)
 }
 
 /*
@@ -55,6 +59,7 @@ func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (Authen
 		localVarFileBytes    []byte
 		localVarReturnValue  AuthenticationValidationResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.Validate")
 	if err != nil {

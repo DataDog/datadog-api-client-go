@@ -56,7 +56,7 @@ func (o *LogsQueryCompute) GetAggregation() string {
 // GetAggregationOk returns a tuple with the Aggregation field value
 // and a boolean to check if the value has been set.
 func (o *LogsQueryCompute) GetAggregationOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Aggregation, true
@@ -152,12 +152,12 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Aggregation *string `json:"aggregation"`
-	}{}
+		}{}
 	all := struct {
-		Aggregation string  `json:"aggregation"`
-		Facet       *string `json:"facet,omitempty"`
-		Interval    *int64  `json:"interval,omitempty"`
-	}{}
+			Aggregation string `json:"aggregation"`
+			Facet *string `json:"facet,omitempty"`
+			Interval *int64 `json:"interval,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -179,3 +179,5 @@ func (o *LogsQueryCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Interval = all.Interval
 	return nil
 }
+
+

@@ -57,7 +57,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetIsSecret() bool {
 // GetIsSecretOk returns a tuple with the IsSecret field value
 // and a boolean to check if the value has been set.
 func (o *WebhooksIntegrationCustomVariableResponse) GetIsSecretOk() (*bool, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.IsSecret, true
@@ -81,7 +81,7 @@ func (o *WebhooksIntegrationCustomVariableResponse) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *WebhooksIntegrationCustomVariableResponse) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -144,14 +144,14 @@ func (o WebhooksIntegrationCustomVariableResponse) MarshalJSON() ([]byte, error)
 func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		IsSecret *bool   `json:"is_secret"`
-		Name     *string `json:"name"`
-	}{}
+		IsSecret *bool `json:"is_secret"`
+		Name *string `json:"name"`
+		}{}
 	all := struct {
-		IsSecret bool    `json:"is_secret"`
-		Name     string  `json:"name"`
-		Value    *string `json:"value,omitempty"`
-	}{}
+			IsSecret bool `json:"is_secret"`
+			Name string `json:"name"`
+			Value *string `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -176,3 +176,5 @@ func (o *WebhooksIntegrationCustomVariableResponse) UnmarshalJSON(bytes []byte) 
 	o.Value = all.Value
 	return nil
 }
+
+

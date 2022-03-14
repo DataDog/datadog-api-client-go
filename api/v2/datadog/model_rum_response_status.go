@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // RUMResponseStatus The status of the response.
@@ -18,7 +19,7 @@ type RUMResponseStatus string
 
 // List of RUMResponseStatus
 const (
-	RUMRESPONSESTATUS_DONE    RUMResponseStatus = "done"
+	RUMRESPONSESTATUS_DONE RUMResponseStatus = "done"
 	RUMRESPONSESTATUS_TIMEOUT RUMResponseStatus = "timeout"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableRUMResponseStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,24 +28,26 @@ var (
 type EventsApiService service
 
 type apiCreateEventRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *EventsApiService
-	body       *EventCreateRequest
+	body *EventCreateRequest
 }
+
 
 /*
  * CreateEvent Post an event
  * This endpoint allows you to post events to the stream.
 Tag them, set priority and event aggregate them with other events.
-*/
+ */
 func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateEventRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createEventExecute(req)
+
+    return req.ApiService.createEventExecute(req)
 }
 
 /*
@@ -59,6 +63,7 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 		localVarFileBytes    []byte
 		localVarReturnValue  EventCreateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.CreateEvent")
 	if err != nil {
@@ -165,10 +170,11 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 }
 
 type apiGetEventRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *EventsApiService
-	eventId    int64
+	eventId int64
 }
+
 
 /*
  * GetEvent Get an event
@@ -176,15 +182,16 @@ type apiGetEventRequest struct {
 
 **Note**: If the event you’re querying contains markdown formatting of any kind,
 you may see characters such as `%`,`\`,`n` in your output.
-*/
+ */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
 	req := apiGetEventRequest{
 		ApiService: a,
-		ctx:        ctx,
-		eventId:    eventId,
+		ctx: ctx,
+		eventId: eventId,
 	}
 
-	return req.ApiService.getEventExecute(req)
+
+    return req.ApiService.getEventExecute(req)
 }
 
 /*
@@ -200,6 +207,7 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 		localVarFileBytes    []byte
 		localVarReturnValue  EventResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetEvent")
 	if err != nil {
@@ -326,54 +334,54 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 }
 
 type apiListEventsRequest struct {
-	ctx              _context.Context
-	ApiService       *EventsApiService
-	start            *int64
-	end              *int64
-	priority         *EventPriority
-	sources          *string
-	tags             *string
-	unaggregated     *bool
+	ctx _context.Context
+	ApiService *EventsApiService
+	start *int64
+	end *int64
+	priority *EventPriority
+	sources *string
+	tags *string
+	unaggregated *bool
 	excludeAggregate *bool
-	page             *int32
+	page *int32
 }
 
 type ListEventsOptionalParameters struct {
-	Priority         *EventPriority
-	Sources          *string
-	Tags             *string
-	Unaggregated     *bool
-	ExcludeAggregate *bool
-	Page             *int32
+    Priority *EventPriority
+    Sources *string
+    Tags *string
+    Unaggregated *bool
+    ExcludeAggregate *bool
+    Page *int32
 }
 
 func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
-	this := ListEventsOptionalParameters{}
-	return &this
+    this := ListEventsOptionalParameters{}
+    return &this
 }
 func (r *ListEventsOptionalParameters) WithPriority(priority EventPriority) *ListEventsOptionalParameters {
-	r.Priority = &priority
-	return r
+    r.Priority = &priority
+    return r
 }
 func (r *ListEventsOptionalParameters) WithSources(sources string) *ListEventsOptionalParameters {
-	r.Sources = &sources
-	return r
+    r.Sources = &sources
+    return r
 }
 func (r *ListEventsOptionalParameters) WithTags(tags string) *ListEventsOptionalParameters {
-	r.Tags = &tags
-	return r
+    r.Tags = &tags
+    return r
 }
 func (r *ListEventsOptionalParameters) WithUnaggregated(unaggregated bool) *ListEventsOptionalParameters {
-	r.Unaggregated = &unaggregated
-	return r
+    r.Unaggregated = &unaggregated
+    return r
 }
 func (r *ListEventsOptionalParameters) WithExcludeAggregate(excludeAggregate bool) *ListEventsOptionalParameters {
-	r.ExcludeAggregate = &excludeAggregate
-	return r
+    r.ExcludeAggregate = &excludeAggregate
+    return r
 }
 func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalParameters {
-	r.Page = &page
-	return r
+    r.Page = &page
+    return r
 }
 
 /*
@@ -387,30 +395,30 @@ you may see characters such as `%`,`\`,`n` in your output.
 - This endpoint returns a maximum of `1000` most recent results. To return additional results,
 identify the last timestamp of the last result and set that as the `end` query time to
 paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
-*/
+ */
 func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
 	req := apiListEventsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		ctx: ctx,
+		start: &start,
+		end: &end,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue EventListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListEventsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue EventListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListEventsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.priority = o[0].Priority
-		req.sources = o[0].Sources
-		req.tags = o[0].Tags
-		req.unaggregated = o[0].Unaggregated
-		req.excludeAggregate = o[0].ExcludeAggregate
-		req.page = o[0].Page
-	}
+    if o != nil {
+        req.priority = o[0].Priority
+        req.sources = o[0].Sources
+        req.tags = o[0].Tags
+        req.unaggregated = o[0].Unaggregated
+        req.excludeAggregate = o[0].ExcludeAggregate
+        req.page = o[0].Page
+    }
 
-	return req.ApiService.listEventsExecute(req)
+    return req.ApiService.listEventsExecute(req)
 }
 
 /*
@@ -426,6 +434,7 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 		localVarFileBytes    []byte
 		localVarReturnValue  EventListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListEvents")
 	if err != nil {

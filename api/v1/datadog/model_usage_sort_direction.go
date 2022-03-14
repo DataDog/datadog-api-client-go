@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // UsageSortDirection The direction to sort by.
@@ -19,7 +20,7 @@ type UsageSortDirection string
 // List of UsageSortDirection
 const (
 	USAGESORTDIRECTION_DESC UsageSortDirection = "desc"
-	USAGESORTDIRECTION_ASC  UsageSortDirection = "asc"
+	USAGESORTDIRECTION_ASC UsageSortDirection = "asc"
 )
 
 var allowedUsageSortDirectionEnumValues = []UsageSortDirection{
@@ -102,3 +103,4 @@ func (v *NullableUsageSortDirection) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

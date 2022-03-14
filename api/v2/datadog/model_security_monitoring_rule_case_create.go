@@ -20,8 +20,8 @@ type SecurityMonitoringRuleCaseCreate struct {
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
 	// Notification targets for each rule case.
-	Notifications *[]string                      `json:"notifications,omitempty"`
-	Status        SecurityMonitoringRuleSeverity `json:"status"`
+	Notifications *[]string `json:"notifications,omitempty"`
+	Status SecurityMonitoringRuleSeverity `json:"status"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -153,7 +153,7 @@ func (o *SecurityMonitoringRuleCaseCreate) GetStatus() SecurityMonitoringRuleSev
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleCaseCreate) GetStatusOk() (*SecurityMonitoringRuleSeverity, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Status, true
@@ -188,13 +188,13 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	raw := map[string]interface{}{}
 	required := struct {
 		Status *SecurityMonitoringRuleSeverity `json:"status"`
-	}{}
+		}{}
 	all := struct {
-		Condition     *string                        `json:"condition,omitempty"`
-		Name          *string                        `json:"name,omitempty"`
-		Notifications *[]string                      `json:"notifications,omitempty"`
-		Status        SecurityMonitoringRuleSeverity `json:"status"`
-	}{}
+			Condition *string `json:"condition,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Notifications *[]string `json:"notifications,omitempty"`
+			Status SecurityMonitoringRuleSeverity `json:"status"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -225,3 +225,5 @@ func (o *SecurityMonitoringRuleCaseCreate) UnmarshalJSON(bytes []byte) (err erro
 	o.Status = all.Status
 	return nil
 }
+
+

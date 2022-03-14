@@ -18,8 +18,8 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	// Whether to hide the percentages of the groups.
 	HidePercent *bool `json:"hide_percent,omitempty"`
 	// Whether to hide the values of the groups.
-	HideValue *bool                                   `json:"hide_value,omitempty"`
-	Type      SunburstWidgetLegendInlineAutomaticType `json:"type"`
+	HideValue *bool `json:"hide_value,omitempty"`
+	Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,7 +119,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetType() SunburstWidgetLegendInli
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SunburstWidgetLegendInlineAutomatic) GetTypeOk() (*SunburstWidgetLegendInlineAutomaticType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -151,12 +151,12 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SunburstWidgetLegendInlineAutomaticType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		HidePercent *bool                                   `json:"hide_percent,omitempty"`
-		HideValue   *bool                                   `json:"hide_value,omitempty"`
-		Type        SunburstWidgetLegendInlineAutomaticType `json:"type"`
-	}{}
+			HidePercent *bool `json:"hide_percent,omitempty"`
+			HideValue *bool `json:"hide_value,omitempty"`
+			Type SunburstWidgetLegendInlineAutomaticType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -186,3 +186,5 @@ func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err e
 	o.Type = all.Type
 	return nil
 }
+
+

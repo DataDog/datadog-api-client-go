@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsArchiveState The state of the archive.
@@ -18,9 +19,9 @@ type LogsArchiveState string
 
 // List of LogsArchiveState
 const (
-	LOGSARCHIVESTATE_UNKNOWN             LogsArchiveState = "UNKNOWN"
-	LOGSARCHIVESTATE_WORKING             LogsArchiveState = "WORKING"
-	LOGSARCHIVESTATE_FAILING             LogsArchiveState = "FAILING"
+	LOGSARCHIVESTATE_UNKNOWN LogsArchiveState = "UNKNOWN"
+	LOGSARCHIVESTATE_WORKING LogsArchiveState = "WORKING"
+	LOGSARCHIVESTATE_FAILING LogsArchiveState = "FAILING"
 	LOGSARCHIVESTATE_WORKING_AUTH_LEGACY LogsArchiveState = "WORKING_AUTH_LEGACY"
 )
 
@@ -106,3 +107,4 @@ func (v *NullableLogsArchiveState) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

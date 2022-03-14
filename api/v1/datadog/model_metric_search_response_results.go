@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricSearchResponseResults Search result.
@@ -83,8 +84,8 @@ func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
 func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metrics *[]string `json:"metrics,omitempty"`
-	}{}
+			Metrics *[]string `json:"metrics,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {
 	o.Metrics = all.Metrics
 	return nil
 }
+
+

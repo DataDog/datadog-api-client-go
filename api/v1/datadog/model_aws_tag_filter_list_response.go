@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSTagFilterListResponse An array of tag filter rules by `namespace` and tag filter string.
@@ -83,8 +84,8 @@ func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filters *[]AWSTagFilter `json:"filters,omitempty"`
-	}{}
+			Filters *[]AWSTagFilter `json:"filters,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Filters = all.Filters
 	return nil
 }
+
+

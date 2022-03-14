@@ -10,20 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ScatterPlotRequest Updated scatter plot.
 type ScatterPlotRequest struct {
-	Aggregator          *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
-	ApmQuery            *LogQueryDefinition          `json:"apm_query,omitempty"`
-	EventQuery          *LogQueryDefinition          `json:"event_query,omitempty"`
-	LogQuery            *LogQueryDefinition          `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition          `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition      `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition          `json:"profile_metrics_query,omitempty"`
+	Aggregator *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Query definition.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -407,17 +408,17 @@ func (o ScatterPlotRequest) MarshalJSON() ([]byte, error) {
 func (o *ScatterPlotRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregator          *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
-		ApmQuery            *LogQueryDefinition          `json:"apm_query,omitempty"`
-		EventQuery          *LogQueryDefinition          `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition          `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition          `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition      `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition          `json:"profile_metrics_query,omitempty"`
-		Q                   *string                      `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition          `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition          `json:"security_query,omitempty"`
-	}{}
+			Aggregator *ScatterplotWidgetAggregator `json:"aggregator,omitempty"`
+			ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+			EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+			LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+			NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+			ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+			ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+			Q *string `json:"q,omitempty"`
+			RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+			SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -447,3 +448,5 @@ func (o *ScatterPlotRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogQueryDefinition The log query.
@@ -20,8 +21,8 @@ type LogQueryDefinition struct {
 	// A coma separated-list of index names. Use \"*\" query all indexes at once. [Multiple Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
 	Index *string `json:"index,omitempty"`
 	// This field is mutually exclusive with `compute`.
-	MultiCompute *[]LogsQueryCompute       `json:"multi_compute,omitempty"`
-	Search       *LogQueryDefinitionSearch `json:"search,omitempty"`
+	MultiCompute *[]LogsQueryCompute `json:"multi_compute,omitempty"`
+	Search *LogQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -229,12 +230,12 @@ func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute      *LogsQueryCompute            `json:"compute,omitempty"`
-		GroupBy      *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
-		Index        *string                      `json:"index,omitempty"`
-		MultiCompute *[]LogsQueryCompute          `json:"multi_compute,omitempty"`
-		Search       *LogQueryDefinitionSearch    `json:"search,omitempty"`
-	}{}
+			Compute *LogsQueryCompute `json:"compute,omitempty"`
+			GroupBy *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
+			Index *string `json:"index,omitempty"`
+			MultiCompute *[]LogsQueryCompute `json:"multi_compute,omitempty"`
+			Search *LogQueryDefinitionSearch `json:"search,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -251,3 +252,5 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Search = all.Search
 	return nil
 }
+
+

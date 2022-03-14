@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestConfig Configuration object for a Synthetic test.
@@ -18,7 +19,7 @@ type SyntheticsTestConfig struct {
 	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         *SyntheticsTestRequest      `json:"request,omitempty"`
+	Request *SyntheticsTestRequest `json:"request,omitempty"`
 	// Browser tests only - array of variables used for the test steps.
 	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -193,11 +194,11 @@ func (o SyntheticsTestConfig) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Assertions      *[]SyntheticsAssertion       `json:"assertions,omitempty"`
-		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest       `json:"request,omitempty"`
-		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
-	}{}
+			Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
+			ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+			Request *SyntheticsTestRequest `json:"request,omitempty"`
+			Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -213,3 +214,5 @@ func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.Variables = all.Variables
 	return nil
 }
+
+

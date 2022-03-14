@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // CheckStatusWidgetDefinitionType Type of the check status widget.
@@ -100,3 +101,4 @@ func (v *NullableCheckStatusWidgetDefinitionType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

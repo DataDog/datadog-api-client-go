@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // EventPriority The priority of the event. For example, `normal` or `low`.
@@ -19,7 +20,7 @@ type EventPriority string
 // List of EventPriority
 const (
 	EVENTPRIORITY_NORMAL EventPriority = "normal"
-	EVENTPRIORITY_LOW    EventPriority = "low"
+	EVENTPRIORITY_LOW EventPriority = "low"
 )
 
 var allowedEventPriorityEnumValues = []EventPriority{
@@ -102,3 +103,4 @@ func (v *NullableEventPriority) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

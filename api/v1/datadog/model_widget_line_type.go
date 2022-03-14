@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetLineType Type of lines displayed.
@@ -20,7 +21,7 @@ type WidgetLineType string
 const (
 	WIDGETLINETYPE_DASHED WidgetLineType = "dashed"
 	WIDGETLINETYPE_DOTTED WidgetLineType = "dotted"
-	WIDGETLINETYPE_SOLID  WidgetLineType = "solid"
+	WIDGETLINETYPE_SOLID WidgetLineType = "solid"
 )
 
 var allowedWidgetLineTypeEnumValues = []WidgetLineType{
@@ -104,3 +105,4 @@ func (v *NullableWidgetLineType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

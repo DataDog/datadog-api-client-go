@@ -24,8 +24,8 @@ type ApmStatsQueryDefinition struct {
 	// The organization's host group name and value.
 	PrimaryTag string `json:"primary_tag"`
 	// Resource name.
-	Resource *string              `json:"resource,omitempty"`
-	RowType  ApmStatsQueryRowType `json:"row_type"`
+	Resource *string `json:"resource,omitempty"`
+	RowType ApmStatsQueryRowType `json:"row_type"`
 	// Service name.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -99,7 +99,7 @@ func (o *ApmStatsQueryDefinition) GetEnv() string {
 // GetEnvOk returns a tuple with the Env field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryDefinition) GetEnvOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Env, true
@@ -123,7 +123,7 @@ func (o *ApmStatsQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -147,7 +147,7 @@ func (o *ApmStatsQueryDefinition) GetPrimaryTag() string {
 // GetPrimaryTagOk returns a tuple with the PrimaryTag field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryDefinition) GetPrimaryTagOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.PrimaryTag, true
@@ -203,7 +203,7 @@ func (o *ApmStatsQueryDefinition) GetRowType() ApmStatsQueryRowType {
 // GetRowTypeOk returns a tuple with the RowType field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryDefinition) GetRowTypeOk() (*ApmStatsQueryRowType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.RowType, true
@@ -227,7 +227,7 @@ func (o *ApmStatsQueryDefinition) GetService() string {
 // GetServiceOk returns a tuple with the Service field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryDefinition) GetServiceOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Service, true
@@ -270,21 +270,21 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Env        *string               `json:"env"`
-		Name       *string               `json:"name"`
-		PrimaryTag *string               `json:"primary_tag"`
-		RowType    *ApmStatsQueryRowType `json:"row_type"`
-		Service    *string               `json:"service"`
-	}{}
+		Env *string `json:"env"`
+		Name *string `json:"name"`
+		PrimaryTag *string `json:"primary_tag"`
+		RowType *ApmStatsQueryRowType `json:"row_type"`
+		Service *string `json:"service"`
+		}{}
 	all := struct {
-		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
-		Env        string                     `json:"env"`
-		Name       string                     `json:"name"`
-		PrimaryTag string                     `json:"primary_tag"`
-		Resource   *string                    `json:"resource,omitempty"`
-		RowType    ApmStatsQueryRowType       `json:"row_type"`
-		Service    string                     `json:"service"`
-	}{}
+			Columns *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
+			Env string `json:"env"`
+			Name string `json:"name"`
+			PrimaryTag string `json:"primary_tag"`
+			Resource *string `json:"resource,omitempty"`
+			RowType ApmStatsQueryRowType `json:"row_type"`
+			Service string `json:"service"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -330,3 +330,5 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Service = all.Service
 	return nil
 }
+
+

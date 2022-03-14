@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -20,8 +21,8 @@ type MetricTagConfigurationAttributes struct {
 	// Timestamp when the tag configuration was created.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Toggle to turn on/off percentile aggregations for distribution metrics. Only present when the `metric_type` is `distribution`.
-	IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
-	MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
+	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+	MetricType *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
 	// Timestamp when the tag configuration was last modified.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of tag keys on which to group.
@@ -272,13 +273,13 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation         `json:"aggregations,omitempty"`
-		CreatedAt          *time.Time                         `json:"created_at,omitempty"`
-		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
-		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
-		ModifiedAt         *time.Time                         `json:"modified_at,omitempty"`
-		Tags               *[]string                          `json:"tags,omitempty"`
-	}{}
+			Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+			MetricType *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -304,3 +305,5 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 	o.Tags = all.Tags
 	return nil
 }
+
+

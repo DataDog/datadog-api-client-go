@@ -10,26 +10,27 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBatchResult Object with the results of a Synthetics batch.
 type SyntheticsBatchResult struct {
 	Device *SyntheticsDeviceID `json:"device,omitempty"`
 	// Total duration in millisecond of the test.
-	Duration      *float64                     `json:"duration,omitempty"`
+	Duration *float64 `json:"duration,omitempty"`
 	ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
 	// Name of the location.
 	Location *string `json:"location,omitempty"`
 	// The ID of the result to get.
 	ResultId *string `json:"result_id,omitempty"`
 	// Total duration in millisecond of the test.
-	Retries *float64          `json:"retries,omitempty"`
-	Status  *SyntheticsStatus `json:"status,omitempty"`
+	Retries *float64 `json:"retries,omitempty"`
+	Status *SyntheticsStatus `json:"status,omitempty"`
 	// Name of the test.
 	TestName *string `json:"test_name,omitempty"`
 	// The public ID of the Synthetic test.
-	TestPublicId *string                    `json:"test_public_id,omitempty"`
-	TestType     *SyntheticsTestDetailsType `json:"test_type,omitempty"`
+	TestPublicId *string `json:"test_public_id,omitempty"`
+	TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -412,17 +413,17 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Device        *SyntheticsDeviceID          `json:"device,omitempty"`
-		Duration      *float64                     `json:"duration,omitempty"`
-		ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
-		Location      *string                      `json:"location,omitempty"`
-		ResultId      *string                      `json:"result_id,omitempty"`
-		Retries       *float64                     `json:"retries,omitempty"`
-		Status        *SyntheticsStatus            `json:"status,omitempty"`
-		TestName      *string                      `json:"test_name,omitempty"`
-		TestPublicId  *string                      `json:"test_public_id,omitempty"`
-		TestType      *SyntheticsTestDetailsType   `json:"test_type,omitempty"`
-	}{}
+			Device *SyntheticsDeviceID `json:"device,omitempty"`
+			Duration *float64 `json:"duration,omitempty"`
+			ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
+			Location *string `json:"location,omitempty"`
+			ResultId *string `json:"result_id,omitempty"`
+			Retries *float64 `json:"retries,omitempty"`
+			Status *SyntheticsStatus `json:"status,omitempty"`
+			TestName *string `json:"test_name,omitempty"`
+			TestPublicId *string `json:"test_public_id,omitempty"`
+			TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -476,3 +477,5 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	o.TestType = all.TestType
 	return nil
 }
+
+

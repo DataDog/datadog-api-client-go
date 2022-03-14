@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // NotebookGraphSize The size of the graph.
@@ -19,9 +20,9 @@ type NotebookGraphSize string
 // List of NotebookGraphSize
 const (
 	NOTEBOOKGRAPHSIZE_EXTRA_SMALL NotebookGraphSize = "xs"
-	NOTEBOOKGRAPHSIZE_SMALL       NotebookGraphSize = "s"
-	NOTEBOOKGRAPHSIZE_MEDIUM      NotebookGraphSize = "m"
-	NOTEBOOKGRAPHSIZE_LARGE       NotebookGraphSize = "l"
+	NOTEBOOKGRAPHSIZE_SMALL NotebookGraphSize = "s"
+	NOTEBOOKGRAPHSIZE_MEDIUM NotebookGraphSize = "m"
+	NOTEBOOKGRAPHSIZE_LARGE NotebookGraphSize = "l"
 	NOTEBOOKGRAPHSIZE_EXTRA_LARGE NotebookGraphSize = "xl"
 )
 
@@ -108,3 +109,4 @@ func (v *NullableNotebookGraphSize) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

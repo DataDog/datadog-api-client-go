@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsQueryPageOptions Paging attributes for listing events.
@@ -124,9 +125,9 @@ func (o AuditLogsQueryPageOptions) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsQueryPageOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cursor *string `json:"cursor,omitempty"`
-		Limit  *int32  `json:"limit,omitempty"`
-	}{}
+			Cursor *string `json:"cursor,omitempty"`
+			Limit *int32 `json:"limit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -140,3 +141,5 @@ func (o *AuditLogsQueryPageOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Limit = all.Limit
 	return nil
 }
+
+

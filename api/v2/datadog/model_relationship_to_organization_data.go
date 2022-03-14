@@ -16,7 +16,7 @@ import (
 // RelationshipToOrganizationData Relationship to organization object.
 type RelationshipToOrganizationData struct {
 	// ID of the organization.
-	Id   string            `json:"id"`
+	Id string `json:"id"`
 	Type OrganizationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *RelationshipToOrganizationData) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToOrganizationData) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -80,7 +80,7 @@ func (o *RelationshipToOrganizationData) GetType() OrganizationsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToOrganizationData) GetTypeOk() (*OrganizationsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o RelationshipToOrganizationData) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToOrganizationData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string            `json:"id"`
+		Id *string `json:"id"`
 		Type *OrganizationsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Id   string            `json:"id"`
-		Type OrganizationsType `json:"type"`
-	}{}
+			Id string `json:"id"`
+			Type OrganizationsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *RelationshipToOrganizationData) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
+
+

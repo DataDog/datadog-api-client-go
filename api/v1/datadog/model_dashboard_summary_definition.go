@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -24,7 +25,7 @@ type DashboardSummaryDefinition struct {
 	// Dashboard identifier.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
-	IsReadOnly *bool                `json:"is_read_only,omitempty"`
+	IsReadOnly *bool `json:"is_read_only,omitempty"`
 	LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
 	// Modification date of the dashboard.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
@@ -130,7 +131,7 @@ func (o *DashboardSummaryDefinition) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardSummaryDefinition) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -149,7 +150,6 @@ func (o *DashboardSummaryDefinition) HasDescription() bool {
 func (o *DashboardSummaryDefinition) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *DashboardSummaryDefinition) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -390,16 +390,16 @@ func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AuthorHandle *string              `json:"author_handle,omitempty"`
-		CreatedAt    *time.Time           `json:"created_at,omitempty"`
-		Description  NullableString       `json:"description,omitempty"`
-		Id           *string              `json:"id,omitempty"`
-		IsReadOnly   *bool                `json:"is_read_only,omitempty"`
-		LayoutType   *DashboardLayoutType `json:"layout_type,omitempty"`
-		ModifiedAt   *time.Time           `json:"modified_at,omitempty"`
-		Title        *string              `json:"title,omitempty"`
-		Url          *string              `json:"url,omitempty"`
-	}{}
+			AuthorHandle *string `json:"author_handle,omitempty"`
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			Description NullableString `json:"description,omitempty"`
+			Id *string `json:"id,omitempty"`
+			IsReadOnly *bool `json:"is_read_only,omitempty"`
+			LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			Title *string `json:"title,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -428,3 +428,5 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

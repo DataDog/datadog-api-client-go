@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,11 +28,12 @@ var (
 type LogsArchivesApiService service
 
 type apiAddReadRoleToArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	archiveId string
+	body *RelationshipToRole
 }
+
 
 /*
  * AddReadRoleToArchive Grant role to an archive
@@ -39,12 +42,13 @@ type apiAddReadRoleToArchiveRequest struct {
 func (a *LogsArchivesApiService) AddReadRoleToArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	req := apiAddReadRoleToArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		ctx: ctx,
+		archiveId: archiveId,
+		body: &body,
 	}
 
-	return req.ApiService.addReadRoleToArchiveExecute(req)
+
+    return req.ApiService.addReadRoleToArchiveExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.AddReadRoleToArchive")
 	if err != nil {
@@ -190,10 +195,11 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 }
 
 type apiCreateLogsArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	body       *LogsArchiveCreateRequest
+	body *LogsArchiveCreateRequest
 }
+
 
 /*
  * CreateLogsArchive Create an archive
@@ -202,11 +208,12 @@ type apiCreateLogsArchiveRequest struct {
 func (a *LogsArchivesApiService) CreateLogsArchive(ctx _context.Context, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	req := apiCreateLogsArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createLogsArchiveExecute(req)
+
+    return req.ApiService.createLogsArchiveExecute(req)
 }
 
 /*
@@ -222,6 +229,7 @@ func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchive
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchive
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.CreateLogsArchive")
 	if err != nil {
@@ -352,10 +360,11 @@ func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchive
 }
 
 type apiDeleteLogsArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
+
 
 /*
  * DeleteLogsArchive Delete an archive
@@ -364,11 +373,12 @@ type apiDeleteLogsArchiveRequest struct {
 func (a *LogsArchivesApiService) DeleteLogsArchive(ctx _context.Context, archiveId string) (*_nethttp.Response, error) {
 	req := apiDeleteLogsArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		ctx: ctx,
+		archiveId: archiveId,
 	}
 
-	return req.ApiService.deleteLogsArchiveExecute(req)
+
+    return req.ApiService.deleteLogsArchiveExecute(req)
 }
 
 /*
@@ -382,6 +392,7 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.DeleteLogsArchive")
 	if err != nil {
@@ -509,10 +520,11 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 }
 
 type apiGetLogsArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
+
 
 /*
  * GetLogsArchive Get an archive
@@ -521,11 +533,12 @@ type apiGetLogsArchiveRequest struct {
 func (a *LogsArchivesApiService) GetLogsArchive(ctx _context.Context, archiveId string) (LogsArchive, *_nethttp.Response, error) {
 	req := apiGetLogsArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		ctx: ctx,
+		archiveId: archiveId,
 	}
 
-	return req.ApiService.getLogsArchiveExecute(req)
+
+    return req.ApiService.getLogsArchiveExecute(req)
 }
 
 /*
@@ -541,6 +554,7 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchive
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.GetLogsArchive")
 	if err != nil {
@@ -677,22 +691,24 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 }
 
 type apiGetLogsArchiveOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
 }
+
 
 /*
  * GetLogsArchiveOrder Get archive order
  * Get the current order of your archives.
 This endpoint takes no JSON arguments.
-*/
+ */
 func (a *LogsArchivesApiService) GetLogsArchiveOrder(ctx _context.Context) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req := apiGetLogsArchiveOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.getLogsArchiveOrderExecute(req)
+
+    return req.ApiService.getLogsArchiveOrderExecute(req)
 }
 
 /*
@@ -708,6 +724,7 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchiveOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.GetLogsArchiveOrder")
 	if err != nil {
@@ -823,10 +840,11 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 }
 
 type apiListArchiveReadRolesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
+	archiveId string
 }
+
 
 /*
  * ListArchiveReadRoles List read roles for an archive
@@ -835,11 +853,12 @@ type apiListArchiveReadRolesRequest struct {
 func (a *LogsArchivesApiService) ListArchiveReadRoles(ctx _context.Context, archiveId string) (RolesResponse, *_nethttp.Response, error) {
 	req := apiListArchiveReadRolesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
+		ctx: ctx,
+		archiveId: archiveId,
 	}
 
-	return req.ApiService.listArchiveReadRolesExecute(req)
+
+    return req.ApiService.listArchiveReadRolesExecute(req)
 }
 
 /*
@@ -855,6 +874,7 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 		localVarFileBytes    []byte
 		localVarReturnValue  RolesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.ListArchiveReadRoles")
 	if err != nil {
@@ -991,9 +1011,10 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 }
 
 type apiListLogsArchivesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
 }
+
 
 /*
  * ListLogsArchives Get all archives
@@ -1002,10 +1023,11 @@ type apiListLogsArchivesRequest struct {
 func (a *LogsArchivesApiService) ListLogsArchives(ctx _context.Context) (LogsArchives, *_nethttp.Response, error) {
 	req := apiListLogsArchivesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listLogsArchivesExecute(req)
+
+    return req.ApiService.listLogsArchivesExecute(req)
 }
 
 /*
@@ -1021,6 +1043,7 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchives
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.ListLogsArchives")
 	if err != nil {
@@ -1136,11 +1159,12 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 }
 
 type apiRemoveRoleFromArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *RelationshipToRole
+	archiveId string
+	body *RelationshipToRole
 }
+
 
 /*
  * RemoveRoleFromArchive Revoke role from an archive
@@ -1149,12 +1173,13 @@ type apiRemoveRoleFromArchiveRequest struct {
 func (a *LogsArchivesApiService) RemoveRoleFromArchive(ctx _context.Context, archiveId string, body RelationshipToRole) (*_nethttp.Response, error) {
 	req := apiRemoveRoleFromArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		ctx: ctx,
+		archiveId: archiveId,
+		body: &body,
 	}
 
-	return req.ApiService.removeRoleFromArchiveExecute(req)
+
+    return req.ApiService.removeRoleFromArchiveExecute(req)
 }
 
 /*
@@ -1168,6 +1193,7 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.RemoveRoleFromArchive")
 	if err != nil {
@@ -1300,11 +1326,12 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 }
 
 type apiUpdateLogsArchiveRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	archiveId  string
-	body       *LogsArchiveCreateRequest
+	archiveId string
+	body *LogsArchiveCreateRequest
 }
+
 
 /*
  * UpdateLogsArchive Update an archive
@@ -1312,16 +1339,17 @@ type apiUpdateLogsArchiveRequest struct {
 
 **Note**: Using this method updates your archive configuration by **replacing**
 your current configuration with the new one sent to your Datadog organization.
-*/
+ */
 func (a *LogsArchivesApiService) UpdateLogsArchive(ctx _context.Context, archiveId string, body LogsArchiveCreateRequest) (LogsArchive, *_nethttp.Response, error) {
 	req := apiUpdateLogsArchiveRequest{
 		ApiService: a,
-		ctx:        ctx,
-		archiveId:  archiveId,
-		body:       &body,
+		ctx: ctx,
+		archiveId: archiveId,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsArchiveExecute(req)
+
+    return req.ApiService.updateLogsArchiveExecute(req)
 }
 
 /*
@@ -1337,6 +1365,7 @@ func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchive
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchive
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.UpdateLogsArchive")
 	if err != nil {
@@ -1478,10 +1507,11 @@ func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchive
 }
 
 type apiUpdateLogsArchiveOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsArchivesApiService
-	body       *LogsArchiveOrder
+	body *LogsArchiveOrder
 }
+
 
 /*
  * UpdateLogsArchiveOrder Update archive order
@@ -1490,15 +1520,16 @@ the structure and content of the data processed by other archives.
 
 **Note**: Using the `PUT` method updates your archive's order by replacing the current order
 with the new one.
-*/
+ */
 func (a *LogsArchivesApiService) UpdateLogsArchiveOrder(ctx _context.Context, body LogsArchiveOrder) (LogsArchiveOrder, *_nethttp.Response, error) {
 	req := apiUpdateLogsArchiveOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsArchiveOrderExecute(req)
+
+    return req.ApiService.updateLogsArchiveOrderExecute(req)
 }
 
 /*
@@ -1514,6 +1545,7 @@ func (a *LogsArchivesApiService) updateLogsArchiveOrderExecute(r apiUpdateLogsAr
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsArchiveOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.UpdateLogsArchiveOrder")
 	if err != nil {

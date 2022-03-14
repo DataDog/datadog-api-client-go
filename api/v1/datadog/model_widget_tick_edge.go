@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetTickEdge Define how you want to align the text on the widget.
@@ -19,9 +20,9 @@ type WidgetTickEdge string
 // List of WidgetTickEdge
 const (
 	WIDGETTICKEDGE_BOTTOM WidgetTickEdge = "bottom"
-	WIDGETTICKEDGE_LEFT   WidgetTickEdge = "left"
-	WIDGETTICKEDGE_RIGHT  WidgetTickEdge = "right"
-	WIDGETTICKEDGE_TOP    WidgetTickEdge = "top"
+	WIDGETTICKEDGE_LEFT WidgetTickEdge = "left"
+	WIDGETTICKEDGE_RIGHT WidgetTickEdge = "right"
+	WIDGETTICKEDGE_TOP WidgetTickEdge = "top"
 )
 
 var allowedWidgetTickEdgeEnumValues = []WidgetTickEdge{
@@ -106,3 +107,4 @@ func (v *NullableWidgetTickEdge) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

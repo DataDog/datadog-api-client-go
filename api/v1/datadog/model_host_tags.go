@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostTags Set of tags to associate with your host.
@@ -120,9 +121,9 @@ func (o HostTags) MarshalJSON() ([]byte, error) {
 func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Host *string   `json:"host,omitempty"`
-		Tags *[]string `json:"tags,omitempty"`
-	}{}
+			Host *string `json:"host,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

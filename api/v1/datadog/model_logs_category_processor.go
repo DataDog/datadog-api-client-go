@@ -22,8 +22,8 @@ type LogsCategoryProcessor struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Name of the target attribute which value is defined by the matching category.
-	Target string                    `json:"target"`
-	Type   LogsCategoryProcessorType `json:"type"`
+	Target string `json:"target"`
+	Type LogsCategoryProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -67,7 +67,7 @@ func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategory 
 // GetCategoriesOk returns a tuple with the Categories field value
 // and a boolean to check if the value has been set.
 func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCategory, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Categories, true
@@ -155,7 +155,7 @@ func (o *LogsCategoryProcessor) GetTarget() string {
 // GetTargetOk returns a tuple with the Target field value
 // and a boolean to check if the value has been set.
 func (o *LogsCategoryProcessor) GetTargetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Target, true
@@ -179,7 +179,7 @@ func (o *LogsCategoryProcessor) GetType() LogsCategoryProcessorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsCategoryProcessor) GetTypeOk() (*LogsCategoryProcessorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -217,16 +217,16 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
-		Target     *string                          `json:"target"`
-		Type       *LogsCategoryProcessorType       `json:"type"`
-	}{}
+		Target *string `json:"target"`
+		Type *LogsCategoryProcessorType `json:"type"`
+		}{}
 	all := struct {
-		Categories []LogsCategoryProcessorCategory `json:"categories"`
-		IsEnabled  *bool                           `json:"is_enabled,omitempty"`
-		Name       *string                         `json:"name,omitempty"`
-		Target     string                          `json:"target"`
-		Type       LogsCategoryProcessorType       `json:"type"`
-	}{}
+			Categories []LogsCategoryProcessorCategory `json:"categories"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Target string `json:"target"`
+			Type LogsCategoryProcessorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -264,3 +264,5 @@ func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

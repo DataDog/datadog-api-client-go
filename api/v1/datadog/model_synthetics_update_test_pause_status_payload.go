@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
@@ -82,8 +83,8 @@ func (o SyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
-	}{}
+			NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -104,3 +105,5 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 	o.NewStatus = all.NewStatus
 	return nil
 }
+
+

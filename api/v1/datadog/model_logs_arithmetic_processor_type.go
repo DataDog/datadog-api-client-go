@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsArithmeticProcessorType Type of logs arithmetic processor.
@@ -100,3 +101,4 @@ func (v *NullableLogsArithmeticProcessorType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

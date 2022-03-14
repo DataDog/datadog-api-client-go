@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleUpdatePayload Update an existing rule.
@@ -25,7 +26,7 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	// Message for generated signals.
 	Message *string `json:"message,omitempty"`
 	// Name of the rule.
-	Name    *string                        `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
@@ -415,17 +416,17 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase  `json:"cases,omitempty"`
-		Filters          *[]SecurityMonitoringFilter    `json:"filters,omitempty"`
-		HasExtendedTitle *bool                          `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        *bool                          `json:"isEnabled,omitempty"`
-		Message          *string                        `json:"message,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
-		Tags             *[]string                      `json:"tags,omitempty"`
-		Version          *int32                         `json:"version,omitempty"`
-	}{}
+			Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
+			Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+			HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+			IsEnabled *bool `json:"isEnabled,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
+			Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Version *int32 `json:"version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -447,3 +448,5 @@ func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err e
 	o.Version = all.Version
 	return nil
 }
+
+

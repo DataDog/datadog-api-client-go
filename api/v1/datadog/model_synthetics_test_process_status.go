@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsTestProcessStatus Status of a Synthetic test.
@@ -18,10 +19,10 @@ type SyntheticsTestProcessStatus string
 
 // List of SyntheticsTestProcessStatus
 const (
-	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED       SyntheticsTestProcessStatus = "not_scheduled"
-	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED           SyntheticsTestProcessStatus = "scheduled"
-	SYNTHETICSTESTPROCESSSTATUS_STARTED             SyntheticsTestProcessStatus = "started"
-	SYNTHETICSTESTPROCESSSTATUS_FINISHED            SyntheticsTestProcessStatus = "finished"
+	SYNTHETICSTESTPROCESSSTATUS_NOT_SCHEDULED SyntheticsTestProcessStatus = "not_scheduled"
+	SYNTHETICSTESTPROCESSSTATUS_SCHEDULED SyntheticsTestProcessStatus = "scheduled"
+	SYNTHETICSTESTPROCESSSTATUS_STARTED SyntheticsTestProcessStatus = "started"
+	SYNTHETICSTESTPROCESSSTATUS_FINISHED SyntheticsTestProcessStatus = "finished"
 	SYNTHETICSTESTPROCESSSTATUS_FINISHED_WITH_ERROR SyntheticsTestProcessStatus = "finished_with_error"
 )
 
@@ -108,3 +109,4 @@ func (v *NullableSyntheticsTestProcessStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

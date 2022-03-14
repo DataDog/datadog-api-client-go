@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -306,14 +307,14 @@ func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created     *time.Time `json:"created,omitempty"`
-		Description *string    `json:"description,omitempty"`
-		DisplayName *string    `json:"display_name,omitempty"`
-		DisplayType *string    `json:"display_type,omitempty"`
-		GroupName   *string    `json:"group_name,omitempty"`
-		Name        *string    `json:"name,omitempty"`
-		Restricted  *bool      `json:"restricted,omitempty"`
-	}{}
+			Created *time.Time `json:"created,omitempty"`
+			Description *string `json:"description,omitempty"`
+			DisplayName *string `json:"display_name,omitempty"`
+			DisplayType *string `json:"display_type,omitempty"`
+			GroupName *string `json:"group_name,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Restricted *bool `json:"restricted,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -332,3 +333,5 @@ func (o *PermissionAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Restricted = all.Restricted
 	return nil
 }
+
+

@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // NotebookUpdateCell - Updating a notebook can either insert new cell(s) or update existing cell(s) by including the cell `id`. To delete existing cell(s), simply omit it from the list of cells.
@@ -23,13 +25,14 @@ type NotebookUpdateCell struct {
 
 // NotebookCellCreateRequestAsNotebookUpdateCell is a convenience function that returns NotebookCellCreateRequest wrapped in NotebookUpdateCell
 func NotebookCellCreateRequestAsNotebookUpdateCell(v *NotebookCellCreateRequest) NotebookUpdateCell {
-	return NotebookUpdateCell{NotebookCellCreateRequest: v}
+	return NotebookUpdateCell{ NotebookCellCreateRequest: v}
 }
 
 // NotebookCellUpdateRequestAsNotebookUpdateCell is a convenience function that returns NotebookCellUpdateRequest wrapped in NotebookUpdateCell
 func NotebookCellUpdateRequestAsNotebookUpdateCell(v *NotebookCellUpdateRequest) NotebookUpdateCell {
-	return NotebookUpdateCell{NotebookCellUpdateRequest: v}
+	return NotebookUpdateCell{ NotebookCellUpdateRequest: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookUpdateCell) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src NotebookUpdateCell) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookUpdateCell) GetActualInstance() interface{} {
+func (obj *NotebookUpdateCell) GetActualInstance() (interface{}) {
 	if obj.NotebookCellCreateRequest != nil {
 		return obj.NotebookCellCreateRequest
 	}
@@ -144,3 +147,5 @@ func (v *NullableNotebookUpdateCell) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

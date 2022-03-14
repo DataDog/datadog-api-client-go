@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
@@ -186,7 +187,7 @@ func (o *UsageRumUnitsHour) GetRumUnits() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageRumUnitsHour) GetRumUnitsOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RumUnits.Get(), o.RumUnits.IsSet()
@@ -205,7 +206,6 @@ func (o *UsageRumUnitsHour) HasRumUnits() bool {
 func (o *UsageRumUnitsHour) SetRumUnits(v int64) {
 	o.RumUnits.Set(&v)
 }
-
 // SetRumUnitsNil sets the value for RumUnits to be an explicit nil
 func (o *UsageRumUnitsHour) SetRumUnitsNil() {
 	o.RumUnits.Set(nil)
@@ -242,12 +242,12 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserRumUnits *int64        `json:"browser_rum_units,omitempty"`
-		MobileRumUnits  *int64        `json:"mobile_rum_units,omitempty"`
-		OrgName         *string       `json:"org_name,omitempty"`
-		PublicId        *string       `json:"public_id,omitempty"`
-		RumUnits        NullableInt64 `json:"rum_units,omitempty"`
-	}{}
+			BrowserRumUnits *int64 `json:"browser_rum_units,omitempty"`
+			MobileRumUnits *int64 `json:"mobile_rum_units,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			RumUnits NullableInt64 `json:"rum_units,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -264,3 +264,5 @@ func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.RumUnits = all.RumUnits
 	return nil
 }
+
+

@@ -24,15 +24,15 @@ type QueryValueWidgetDefinition struct {
 	// Number of decimals to show. If not defined, the widget uses the raw value.
 	Precision *int64 `json:"precision,omitempty"`
 	// Widget definition.
-	Requests  []QueryValueWidgetRequest `json:"requests"`
-	TextAlign *WidgetTextAlign          `json:"text_align,omitempty"`
-	Time      *WidgetTime               `json:"time,omitempty"`
+	Requests []QueryValueWidgetRequest `json:"requests"`
+	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      QueryValueWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type QueryValueWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -199,7 +199,7 @@ func (o *QueryValueWidgetDefinition) GetRequests() []QueryValueWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *QueryValueWidgetDefinition) GetRequestsOk() (*[]QueryValueWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -383,7 +383,7 @@ func (o *QueryValueWidgetDefinition) GetType() QueryValueWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *QueryValueWidgetDefinition) GetTypeOk() (*QueryValueWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -438,22 +438,22 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]QueryValueWidgetRequest      `json:"requests"`
-		Type     *QueryValueWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]QueryValueWidgetRequest `json:"requests"`
+		Type *QueryValueWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		Autoscale   *bool                          `json:"autoscale,omitempty"`
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
-		CustomUnit  *string                        `json:"custom_unit,omitempty"`
-		Precision   *int64                         `json:"precision,omitempty"`
-		Requests    []QueryValueWidgetRequest      `json:"requests"`
-		TextAlign   *WidgetTextAlign               `json:"text_align,omitempty"`
-		Time        *WidgetTime                    `json:"time,omitempty"`
-		Title       *string                        `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize   *string                        `json:"title_size,omitempty"`
-		Type        QueryValueWidgetDefinitionType `json:"type"`
-	}{}
+			Autoscale *bool `json:"autoscale,omitempty"`
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			CustomUnit *string `json:"custom_unit,omitempty"`
+			Precision *int64 `json:"precision,omitempty"`
+			Requests []QueryValueWidgetRequest `json:"requests"`
+			TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type QueryValueWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -510,3 +510,5 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

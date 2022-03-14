@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOListResponse A response with one or more service level objective.
@@ -17,7 +18,7 @@ type SLOListResponse struct {
 	// An array of service level objective objects.
 	Data *[]ServiceLevelObjective `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is used.
-	Errors   *[]string                `json:"errors,omitempty"`
+	Errors *[]string `json:"errors,omitempty"`
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -156,10 +157,10 @@ func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]ServiceLevelObjective `json:"data,omitempty"`
-		Errors   *[]string                `json:"errors,omitempty"`
-		Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
-	}{}
+			Data *[]ServiceLevelObjective `json:"data,omitempty"`
+			Errors *[]string `json:"errors,omitempty"`
+			Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -174,3 +175,5 @@ func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Metadata = all.Metadata
 	return nil
 }
+
+

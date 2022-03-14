@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityFilterExclusionFilterResponse A single exclusion filter.
@@ -120,9 +121,9 @@ func (o SecurityFilterExclusionFilterResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterExclusionFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name  *string `json:"name,omitempty"`
-		Query *string `json:"query,omitempty"`
-	}{}
+			Name *string `json:"name,omitempty"`
+			Query *string `json:"query,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SecurityFilterExclusionFilterResponse) UnmarshalJSON(bytes []byte) (err
 	o.Query = all.Query
 	return nil
 }
+
+

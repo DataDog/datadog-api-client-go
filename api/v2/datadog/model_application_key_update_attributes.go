@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApplicationKeyUpdateAttributes Attributes used to update an application Key.
@@ -73,7 +74,7 @@ func (o *ApplicationKeyUpdateAttributes) SetName(v string) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationKeyUpdateAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -121,9 +122,9 @@ func (o ApplicationKeyUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name   *string  `json:"name,omitempty"`
-		Scopes []string `json:"scopes,omitempty"`
-	}{}
+			Name *string `json:"name,omitempty"`
+			Scopes []string `json:"scopes,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -137,3 +138,5 @@ func (o *ApplicationKeyUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Scopes = all.Scopes
 	return nil
 }
+
+

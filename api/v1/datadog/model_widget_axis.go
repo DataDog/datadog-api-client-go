@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetAxis Axis controls for the widget.
@@ -243,12 +244,12 @@ func (o WidgetAxis) MarshalJSON() ([]byte, error) {
 func (o *WidgetAxis) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IncludeZero *bool   `json:"include_zero,omitempty"`
-		Label       *string `json:"label,omitempty"`
-		Max         *string `json:"max,omitempty"`
-		Min         *string `json:"min,omitempty"`
-		Scale       *string `json:"scale,omitempty"`
-	}{}
+			IncludeZero *bool `json:"include_zero,omitempty"`
+			Label *string `json:"label,omitempty"`
+			Max *string `json:"max,omitempty"`
+			Min *string `json:"min,omitempty"`
+			Scale *string `json:"scale,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -265,3 +266,5 @@ func (o *WidgetAxis) UnmarshalJSON(bytes []byte) (err error) {
 	o.Scale = all.Scale
 	return nil
 }
+
+

@@ -20,7 +20,7 @@ type SyntheticsPrivateLocation struct {
 	// Unique identifier of the private location.
 	Id *string `json:"id,omitempty"`
 	// Name of the private location.
-	Name    string                            `json:"name"`
+	Name string `json:"name"`
 	Secrets *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
 	// Array of tags attached to the private location.
 	Tags []string `json:"tags"`
@@ -61,7 +61,7 @@ func (o *SyntheticsPrivateLocation) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsPrivateLocation) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Description, true
@@ -117,7 +117,7 @@ func (o *SyntheticsPrivateLocation) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsPrivateLocation) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -173,7 +173,7 @@ func (o *SyntheticsPrivateLocation) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsPrivateLocation) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tags, true
@@ -210,17 +210,17 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Description *string   `json:"description"`
-		Name        *string   `json:"name"`
-		Tags        *[]string `json:"tags"`
-	}{}
+		Description *string `json:"description"`
+		Name *string `json:"name"`
+		Tags *[]string `json:"tags"`
+		}{}
 	all := struct {
-		Description string                            `json:"description"`
-		Id          *string                           `json:"id,omitempty"`
-		Name        string                            `json:"name"`
-		Secrets     *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
-		Tags        []string                          `json:"tags"`
-	}{}
+			Description string `json:"description"`
+			Id *string `json:"id,omitempty"`
+			Name string `json:"name"`
+			Secrets *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
+			Tags []string `json:"tags"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -250,3 +250,5 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

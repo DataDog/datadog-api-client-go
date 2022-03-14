@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageLogsByIndexResponse Response containing the number of indexed logs for each hour and index for a given organization.
@@ -83,8 +84,8 @@ func (o UsageLogsByIndexResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByIndexResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageLogsByIndexResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

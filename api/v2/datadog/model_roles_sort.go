@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // RolesSort Sorting options for roles.
@@ -18,12 +19,12 @@ type RolesSort string
 
 // List of RolesSort
 const (
-	ROLESSORT_NAME_ASCENDING         RolesSort = "name"
-	ROLESSORT_NAME_DESCENDING        RolesSort = "-name"
-	ROLESSORT_MODIFIED_AT_ASCENDING  RolesSort = "modified_at"
+	ROLESSORT_NAME_ASCENDING RolesSort = "name"
+	ROLESSORT_NAME_DESCENDING RolesSort = "-name"
+	ROLESSORT_MODIFIED_AT_ASCENDING RolesSort = "modified_at"
 	ROLESSORT_MODIFIED_AT_DESCENDING RolesSort = "-modified_at"
-	ROLESSORT_USER_COUNT_ASCENDING   RolesSort = "user_count"
-	ROLESSORT_USER_COUNT_DESCENDING  RolesSort = "-user_count"
+	ROLESSORT_USER_COUNT_ASCENDING RolesSort = "user_count"
+	ROLESSORT_USER_COUNT_DESCENDING RolesSort = "-user_count"
 )
 
 var allowedRolesSortEnumValues = []RolesSort{
@@ -110,3 +111,4 @@ func (v *NullableRolesSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

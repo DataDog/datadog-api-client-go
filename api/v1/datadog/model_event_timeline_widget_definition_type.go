@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // EventTimelineWidgetDefinitionType Type of the event timeline widget.
@@ -100,3 +101,4 @@ func (v *NullableEventTimelineWidgetDefinitionType) UnmarshalJSON(src []byte) er
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

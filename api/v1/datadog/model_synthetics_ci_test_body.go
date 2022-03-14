@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCITestBody Object describing the synthetics tests to trigger.
@@ -83,8 +84,8 @@ func (o SyntheticsCITestBody) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCITestBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tests *[]SyntheticsCITest `json:"tests,omitempty"`
-	}{}
+			Tests *[]SyntheticsCITest `json:"tests,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsCITestBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tests = all.Tests
 	return nil
 }
+
+

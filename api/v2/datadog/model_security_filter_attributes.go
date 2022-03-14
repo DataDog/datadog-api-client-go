@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityFilterAttributes The object describing a security filter.
 type SecurityFilterAttributes struct {
 	// The list of exclusion filters applied in this security filter.
 	ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
-	FilteredDataType *SecurityFilterFilteredDataType          `json:"filtered_data_type,omitempty"`
+	FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
 	// Whether the security filter is the built-in filter.
 	IsBuiltin *bool `json:"is_builtin,omitempty"`
 	// Whether the security filter is enabled.
@@ -304,14 +305,14 @@ func (o SecurityFilterAttributes) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
-		FilteredDataType *SecurityFilterFilteredDataType          `json:"filtered_data_type,omitempty"`
-		IsBuiltin        *bool                                    `json:"is_builtin,omitempty"`
-		IsEnabled        *bool                                    `json:"is_enabled,omitempty"`
-		Name             *string                                  `json:"name,omitempty"`
-		Query            *string                                  `json:"query,omitempty"`
-		Version          *int32                                   `json:"version,omitempty"`
-	}{}
+			ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
+			FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
+			IsBuiltin *bool `json:"is_builtin,omitempty"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Query *string `json:"query,omitempty"`
+			Version *int32 `json:"version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -338,3 +339,5 @@ func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Version = all.Version
 	return nil
 }
+
+

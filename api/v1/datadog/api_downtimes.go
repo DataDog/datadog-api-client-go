@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type DowntimesApiService service
 
 type apiCancelDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
 	downtimeId int64
 }
+
 
 /*
  * CancelDowntime Cancel a downtime
@@ -38,11 +41,12 @@ type apiCancelDowntimeRequest struct {
 func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
 	req := apiCancelDowntimeRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
 	}
 
-	return req.ApiService.cancelDowntimeExecute(req)
+
+    return req.ApiService.cancelDowntimeExecute(req)
 }
 
 /*
@@ -56,6 +60,7 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CancelDowntime")
 	if err != nil {
@@ -173,10 +178,11 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 }
 
 type apiCancelDowntimesByScopeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
-	body       *CancelDowntimesByScopeRequest
+	body *CancelDowntimesByScopeRequest
 }
+
 
 /*
  * CancelDowntimesByScope Cancel downtimes by scope
@@ -185,11 +191,12 @@ type apiCancelDowntimesByScopeRequest struct {
 func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	req := apiCancelDowntimesByScopeRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.cancelDowntimesByScopeExecute(req)
+
+    return req.ApiService.cancelDowntimesByScopeExecute(req)
 }
 
 /*
@@ -205,6 +212,7 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 		localVarFileBytes    []byte
 		localVarReturnValue  CanceledDowntimesIds
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CancelDowntimesByScope")
 	if err != nil {
@@ -345,10 +353,11 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 }
 
 type apiCreateDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
-	body       *Downtime
+	body *Downtime
 }
+
 
 /*
  * CreateDowntime Schedule a downtime
@@ -357,11 +366,12 @@ type apiCreateDowntimeRequest struct {
 func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req := apiCreateDowntimeRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createDowntimeExecute(req)
+
+    return req.ApiService.createDowntimeExecute(req)
 }
 
 /*
@@ -377,6 +387,7 @@ func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  Downtime
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CreateDowntime")
 	if err != nil {
@@ -507,10 +518,11 @@ func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) 
 }
 
 type apiGetDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
 	downtimeId int64
 }
+
 
 /*
  * GetDowntime Get a downtime
@@ -519,11 +531,12 @@ type apiGetDowntimeRequest struct {
 func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
 	req := apiGetDowntimeRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
 	}
 
-	return req.ApiService.getDowntimeExecute(req)
+
+    return req.ApiService.getDowntimeExecute(req)
 }
 
 /*
@@ -539,6 +552,7 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 		localVarFileBytes    []byte
 		localVarReturnValue  Downtime
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.GetDowntime")
 	if err != nil {
@@ -665,22 +679,22 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 }
 
 type apiListDowntimesRequest struct {
-	ctx         _context.Context
-	ApiService  *DowntimesApiService
+	ctx _context.Context
+	ApiService *DowntimesApiService
 	currentOnly *bool
 }
 
 type ListDowntimesOptionalParameters struct {
-	CurrentOnly *bool
+    CurrentOnly *bool
 }
 
 func NewListDowntimesOptionalParameters() *ListDowntimesOptionalParameters {
-	this := ListDowntimesOptionalParameters{}
-	return &this
+    this := ListDowntimesOptionalParameters{}
+    return &this
 }
 func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *ListDowntimesOptionalParameters {
-	r.CurrentOnly = &currentOnly
-	return r
+    r.CurrentOnly = &currentOnly
+    return r
 }
 
 /*
@@ -690,19 +704,19 @@ func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *Lis
 func (a *DowntimesApiService) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
 	req := apiListDowntimesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue []Downtime
-		return localVarReturnValue, nil, reportError("only one argument of type ListDowntimesOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue []Downtime
+        return localVarReturnValue, nil, reportError("only one argument of type ListDowntimesOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.currentOnly = o[0].CurrentOnly
-	}
+    if o != nil {
+        req.currentOnly = o[0].CurrentOnly
+    }
 
-	return req.ApiService.listDowntimesExecute(req)
+    return req.ApiService.listDowntimesExecute(req)
 }
 
 /*
@@ -718,6 +732,7 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 		localVarFileBytes    []byte
 		localVarReturnValue  []Downtime
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.ListDowntimes")
 	if err != nil {
@@ -836,10 +851,11 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 }
 
 type apiListMonitorDowntimesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
-	monitorId  int64
+	monitorId int64
 }
+
 
 /*
  * ListMonitorDowntimes Get all downtimes for a monitor
@@ -848,11 +864,12 @@ type apiListMonitorDowntimesRequest struct {
 func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	req := apiListMonitorDowntimesRequest{
 		ApiService: a,
-		ctx:        ctx,
-		monitorId:  monitorId,
+		ctx: ctx,
+		monitorId: monitorId,
 	}
 
-	return req.ApiService.listMonitorDowntimesExecute(req)
+
+    return req.ApiService.listMonitorDowntimesExecute(req)
 }
 
 /*
@@ -868,6 +885,7 @@ func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDownti
 		localVarFileBytes    []byte
 		localVarReturnValue  []Downtime
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.ListMonitorDowntimes")
 	if err != nil {
@@ -994,11 +1012,12 @@ func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDownti
 }
 
 type apiUpdateDowntimeRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *DowntimesApiService
 	downtimeId int64
-	body       *Downtime
+	body *Downtime
 }
+
 
 /*
  * UpdateDowntime Update a downtime
@@ -1007,12 +1026,13 @@ type apiUpdateDowntimeRequest struct {
 func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req := apiUpdateDowntimeRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 		downtimeId: downtimeId,
-		body:       &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateDowntimeExecute(req)
+
+    return req.ApiService.updateDowntimeExecute(req)
 }
 
 /*
@@ -1028,6 +1048,7 @@ func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) 
 		localVarFileBytes    []byte
 		localVarReturnValue  Downtime
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.UpdateDowntime")
 	if err != nil {

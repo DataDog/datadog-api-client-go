@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Log Object description of a log after being processed and stored by Datadog.
 type Log struct {
 	Attributes *LogAttributes `json:"attributes,omitempty"`
 	// Unique ID of the Log.
-	Id   *string  `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *LogType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o Log) MarshalJSON() ([]byte, error) {
 func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *LogAttributes `json:"attributes,omitempty"`
-		Id         *string        `json:"id,omitempty"`
-		Type       *LogType       `json:"type,omitempty"`
-	}{}
+			Attributes *LogAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *LogType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *Log) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

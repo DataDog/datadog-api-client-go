@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageAttributionMetadata The object containing document metadata.
 type UsageAttributionMetadata struct {
 	// An array of available aggregates.
 	Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
-	Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
+	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,9 +120,9 @@ func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
-		Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
-	}{}
+			Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+			Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Pagination = all.Pagination
 	return nil
 }
+
+

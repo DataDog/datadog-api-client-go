@@ -52,7 +52,7 @@ func (o *LogsArchiveOrderAttributes) GetArchiveIds() []string {
 // GetArchiveIdsOk returns a tuple with the ArchiveIds field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveOrderAttributes) GetArchiveIdsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ArchiveIds, true
@@ -78,10 +78,10 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ArchiveIds *[]string `json:"archive_ids"`
-	}{}
+		}{}
 	all := struct {
-		ArchiveIds []string `json:"archive_ids"`
-	}{}
+			ArchiveIds []string `json:"archive_ids"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *LogsArchiveOrderAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.ArchiveIds = all.ArchiveIds
 	return nil
 }
+
+

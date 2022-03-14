@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // GCPAccount Your Google Cloud Platform Account.
@@ -527,20 +528,20 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AuthProviderX509CertUrl *string   `json:"auth_provider_x509_cert_url,omitempty"`
-		AuthUri                 *string   `json:"auth_uri,omitempty"`
-		Automute                *bool     `json:"automute,omitempty"`
-		ClientEmail             *string   `json:"client_email,omitempty"`
-		ClientId                *string   `json:"client_id,omitempty"`
-		ClientX509CertUrl       *string   `json:"client_x509_cert_url,omitempty"`
-		Errors                  *[]string `json:"errors,omitempty"`
-		HostFilters             *string   `json:"host_filters,omitempty"`
-		PrivateKey              *string   `json:"private_key,omitempty"`
-		PrivateKeyId            *string   `json:"private_key_id,omitempty"`
-		ProjectId               *string   `json:"project_id,omitempty"`
-		TokenUri                *string   `json:"token_uri,omitempty"`
-		Type                    *string   `json:"type,omitempty"`
-	}{}
+			AuthProviderX509CertUrl *string `json:"auth_provider_x509_cert_url,omitempty"`
+			AuthUri *string `json:"auth_uri,omitempty"`
+			Automute *bool `json:"automute,omitempty"`
+			ClientEmail *string `json:"client_email,omitempty"`
+			ClientId *string `json:"client_id,omitempty"`
+			ClientX509CertUrl *string `json:"client_x509_cert_url,omitempty"`
+			Errors *[]string `json:"errors,omitempty"`
+			HostFilters *string `json:"host_filters,omitempty"`
+			PrivateKey *string `json:"private_key,omitempty"`
+			PrivateKeyId *string `json:"private_key_id,omitempty"`
+			ProjectId *string `json:"project_id,omitempty"`
+			TokenUri *string `json:"token_uri,omitempty"`
+			Type *string `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -565,3 +566,5 @@ func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

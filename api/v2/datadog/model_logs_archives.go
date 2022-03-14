@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchives The available archives.
@@ -83,8 +84,8 @@ func (o LogsArchives) MarshalJSON() ([]byte, error) {
 func (o *LogsArchives) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]LogsArchiveDefinition `json:"data,omitempty"`
-	}{}
+			Data *[]LogsArchiveDefinition `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsArchives) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

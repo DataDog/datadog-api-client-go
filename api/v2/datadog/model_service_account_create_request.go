@@ -51,7 +51,7 @@ func (o *ServiceAccountCreateRequest) GetData() ServiceAccountCreateData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *ServiceAccountCreateRequest) GetDataOk() (*ServiceAccountCreateData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *ServiceAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *ServiceAccountCreateData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data ServiceAccountCreateData `json:"data"`
-	}{}
+			Data ServiceAccountCreateData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *ServiceAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

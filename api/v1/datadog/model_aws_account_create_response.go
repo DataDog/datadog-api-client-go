@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSAccountCreateResponse The Response returned by the AWS Create Account call.
@@ -83,8 +84,8 @@ func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ExternalId *string `json:"external_id,omitempty"`
-	}{}
+			ExternalId *string `json:"external_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *AWSAccountCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExternalId = all.ExternalId
 	return nil
 }
+
+

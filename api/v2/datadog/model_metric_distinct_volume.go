@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricDistinctVolume Object for a single metric's distinct volume.
 type MetricDistinctVolume struct {
 	Attributes *MetricDistinctVolumeAttributes `json:"attributes,omitempty"`
 	// The metric name for this resource.
-	Id   *string                   `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *MetricDistinctVolumeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o MetricDistinctVolume) MarshalJSON() ([]byte, error) {
 func (o *MetricDistinctVolume) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *MetricDistinctVolumeAttributes `json:"attributes,omitempty"`
-		Id         *string                         `json:"id,omitempty"`
-		Type       *MetricDistinctVolumeType       `json:"type,omitempty"`
-	}{}
+			Attributes *MetricDistinctVolumeAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *MetricDistinctVolumeType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *MetricDistinctVolume) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

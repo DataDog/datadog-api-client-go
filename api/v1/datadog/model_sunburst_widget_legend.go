@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // SunburstWidgetLegend - Configuration of the legend.
 type SunburstWidgetLegend struct {
 	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
-	SunburstWidgetLegendTable           *SunburstWidgetLegendTable
+	SunburstWidgetLegendTable *SunburstWidgetLegendTable
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -23,13 +25,14 @@ type SunburstWidgetLegend struct {
 
 // SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend is a convenience function that returns SunburstWidgetLegendInlineAutomatic wrapped in SunburstWidgetLegend
 func SunburstWidgetLegendInlineAutomaticAsSunburstWidgetLegend(v *SunburstWidgetLegendInlineAutomatic) SunburstWidgetLegend {
-	return SunburstWidgetLegend{SunburstWidgetLegendInlineAutomatic: v}
+	return SunburstWidgetLegend{ SunburstWidgetLegendInlineAutomatic: v}
 }
 
 // SunburstWidgetLegendTableAsSunburstWidgetLegend is a convenience function that returns SunburstWidgetLegendTable wrapped in SunburstWidgetLegend
 func SunburstWidgetLegendTableAsSunburstWidgetLegend(v *SunburstWidgetLegendTable) SunburstWidgetLegend {
-	return SunburstWidgetLegend{SunburstWidgetLegendTable: v}
+	return SunburstWidgetLegend{ SunburstWidgetLegendTable: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *SunburstWidgetLegend) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SunburstWidgetLegend) GetActualInstance() interface{} {
+func (obj *SunburstWidgetLegend) GetActualInstance() (interface{}) {
 	if obj.SunburstWidgetLegendInlineAutomatic != nil {
 		return obj.SunburstWidgetLegendInlineAutomatic
 	}
@@ -144,3 +147,5 @@ func (v *NullableSunburstWidgetLegend) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

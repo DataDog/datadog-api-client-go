@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsPrivateLocationCreationResponse Object that contains the new private location, the public key for result encryption, and the configuration skeleton.
 type SyntheticsPrivateLocationCreationResponse struct {
 	// Configuration skeleton for the private location. See installation instructions of the private location on how to use this configuration.
-	Config           *interface{}                                               `json:"config,omitempty"`
-	PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
+	Config *interface{} `json:"config,omitempty"`
+	PrivateLocation *SyntheticsPrivateLocation `json:"private_location,omitempty"`
 	ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -155,10 +156,10 @@ func (o SyntheticsPrivateLocationCreationResponse) MarshalJSON() ([]byte, error)
 func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Config           *interface{}                                               `json:"config,omitempty"`
-		PrivateLocation  *SyntheticsPrivateLocation                                 `json:"private_location,omitempty"`
-		ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
-	}{}
+			Config *interface{} `json:"config,omitempty"`
+			PrivateLocation *SyntheticsPrivateLocation `json:"private_location,omitempty"`
+			ResultEncryption *SyntheticsPrivateLocationCreationResponseResultEncryption `json:"result_encryption,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *SyntheticsPrivateLocationCreationResponse) UnmarshalJSON(bytes []byte) 
 	o.ResultEncryption = all.ResultEncryption
 	return nil
 }
+
+

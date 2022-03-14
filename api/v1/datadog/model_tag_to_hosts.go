@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // TagToHosts In this object, the key is the tag, the value is a list of host names that are reporting that tag.
@@ -83,8 +84,8 @@ func (o TagToHosts) MarshalJSON() ([]byte, error) {
 func (o *TagToHosts) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tags *map[string][]string `json:"tags,omitempty"`
-	}{}
+			Tags *map[string][]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *TagToHosts) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -2341,69 +2342,69 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentHostTop99p                         *int64                 `json:"agent_host_top99p,omitempty"`
-		ApmAzureAppServiceHostTop99p            *int64                 `json:"apm_azure_app_service_host_top99p,omitempty"`
-		ApmHostTop99p                           *int64                 `json:"apm_host_top99p,omitempty"`
-		AuditLogsLinesIndexedSum                *int64                 `json:"audit_logs_lines_indexed_sum,omitempty"`
-		AvgProfiledFargateTasks                 *int64                 `json:"avg_profiled_fargate_tasks,omitempty"`
-		AwsHostTop99p                           *int64                 `json:"aws_host_top99p,omitempty"`
-		AwsLambdaFuncCount                      *int64                 `json:"aws_lambda_func_count,omitempty"`
-		AwsLambdaInvocationsSum                 *int64                 `json:"aws_lambda_invocations_sum,omitempty"`
-		AzureAppServiceTop99p                   *int64                 `json:"azure_app_service_top99p,omitempty"`
-		BillableIngestedBytesSum                *int64                 `json:"billable_ingested_bytes_sum,omitempty"`
-		BrowserRumLiteSessionCountSum           *int64                 `json:"browser_rum_lite_session_count_sum,omitempty"`
-		BrowserRumReplaySessionCountSum         *int64                 `json:"browser_rum_replay_session_count_sum,omitempty"`
-		BrowserRumUnitsSum                      *int64                 `json:"browser_rum_units_sum,omitempty"`
-		CiPipelineIndexedSpansSum               *int64                 `json:"ci_pipeline_indexed_spans_sum,omitempty"`
-		CiTestIndexedSpansSum                   *int64                 `json:"ci_test_indexed_spans_sum,omitempty"`
-		CiVisibilityPipelineCommittersHwm       *int64                 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
-		CiVisibilityTestCommittersHwm           *int64                 `json:"ci_visibility_test_committers_hwm,omitempty"`
-		ContainerAvg                            *int64                 `json:"container_avg,omitempty"`
-		ContainerHwm                            *int64                 `json:"container_hwm,omitempty"`
-		CspmAasHostTop99p                       *int64                 `json:"cspm_aas_host_top99p,omitempty"`
-		CspmAzureHostTop99p                     *int64                 `json:"cspm_azure_host_top99p,omitempty"`
-		CspmContainerAvg                        *int64                 `json:"cspm_container_avg,omitempty"`
-		CspmContainerHwm                        *int64                 `json:"cspm_container_hwm,omitempty"`
-		CspmHostTop99p                          *int64                 `json:"cspm_host_top99p,omitempty"`
-		CustomTsAvg                             *int64                 `json:"custom_ts_avg,omitempty"`
-		CwsContainerCountAvg                    *int64                 `json:"cws_container_count_avg,omitempty"`
-		CwsHostTop99p                           *int64                 `json:"cws_host_top99p,omitempty"`
-		Date                                    *time.Time             `json:"date,omitempty"`
-		DbmHostTop99p                           *int64                 `json:"dbm_host_top99p,omitempty"`
-		DbmQueriesCountAvg                      *int64                 `json:"dbm_queries_count_avg,omitempty"`
-		FargateTasksCountAvg                    *int64                 `json:"fargate_tasks_count_avg,omitempty"`
-		FargateTasksCountHwm                    *int64                 `json:"fargate_tasks_count_hwm,omitempty"`
-		GcpHostTop99p                           *int64                 `json:"gcp_host_top99p,omitempty"`
-		HerokuHostTop99p                        *int64                 `json:"heroku_host_top99p,omitempty"`
-		IncidentManagementMonthlyActiveUsersHwm *int64                 `json:"incident_management_monthly_active_users_hwm,omitempty"`
-		IndexedEventsCountSum                   *int64                 `json:"indexed_events_count_sum,omitempty"`
-		InfraHostTop99p                         *int64                 `json:"infra_host_top99p,omitempty"`
-		IngestedEventsBytesSum                  *int64                 `json:"ingested_events_bytes_sum,omitempty"`
-		IotDeviceSum                            *int64                 `json:"iot_device_sum,omitempty"`
-		IotDeviceTop99p                         *int64                 `json:"iot_device_top99p,omitempty"`
-		MobileRumLiteSessionCountSum            *int64                 `json:"mobile_rum_lite_session_count_sum,omitempty"`
-		MobileRumSessionCountAndroidSum         *int64                 `json:"mobile_rum_session_count_android_sum,omitempty"`
-		MobileRumSessionCountIosSum             *int64                 `json:"mobile_rum_session_count_ios_sum,omitempty"`
-		MobileRumSessionCountSum                *int64                 `json:"mobile_rum_session_count_sum,omitempty"`
-		MobileRumUnitsSum                       *int64                 `json:"mobile_rum_units_sum,omitempty"`
-		NetflowIndexedEventsCountSum            *int64                 `json:"netflow_indexed_events_count_sum,omitempty"`
-		NpmHostTop99p                           *int64                 `json:"npm_host_top99p,omitempty"`
-		OnlineArchiveEventsCountSum             *int64                 `json:"online_archive_events_count_sum,omitempty"`
-		OpentelemetryHostTop99p                 *int64                 `json:"opentelemetry_host_top99p,omitempty"`
-		Orgs                                    *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
-		ProfilingHostTop99p                     *int64                 `json:"profiling_host_top99p,omitempty"`
-		RumBrowserAndMobileSessionCount         *int64                 `json:"rum_browser_and_mobile_session_count,omitempty"`
-		RumSessionCountSum                      *int64                 `json:"rum_session_count_sum,omitempty"`
-		RumTotalSessionCountSum                 *int64                 `json:"rum_total_session_count_sum,omitempty"`
-		RumUnitsSum                             *int64                 `json:"rum_units_sum,omitempty"`
-		SdsLogsScannedBytesSum                  *int64                 `json:"sds_logs_scanned_bytes_sum,omitempty"`
-		SdsTotalScannedBytesSum                 *int64                 `json:"sds_total_scanned_bytes_sum,omitempty"`
-		SyntheticsBrowserCheckCallsCountSum     *int64                 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
-		SyntheticsCheckCallsCountSum            *int64                 `json:"synthetics_check_calls_count_sum,omitempty"`
-		TraceSearchIndexedEventsCountSum        *int64                 `json:"trace_search_indexed_events_count_sum,omitempty"`
-		TwolIngestedEventsBytesSum              *int64                 `json:"twol_ingested_events_bytes_sum,omitempty"`
-		VsphereHostTop99p                       *int64                 `json:"vsphere_host_top99p,omitempty"`
-	}{}
+			AgentHostTop99p *int64 `json:"agent_host_top99p,omitempty"`
+			ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
+			ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
+			AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
+			AvgProfiledFargateTasks *int64 `json:"avg_profiled_fargate_tasks,omitempty"`
+			AwsHostTop99p *int64 `json:"aws_host_top99p,omitempty"`
+			AwsLambdaFuncCount *int64 `json:"aws_lambda_func_count,omitempty"`
+			AwsLambdaInvocationsSum *int64 `json:"aws_lambda_invocations_sum,omitempty"`
+			AzureAppServiceTop99p *int64 `json:"azure_app_service_top99p,omitempty"`
+			BillableIngestedBytesSum *int64 `json:"billable_ingested_bytes_sum,omitempty"`
+			BrowserRumLiteSessionCountSum *int64 `json:"browser_rum_lite_session_count_sum,omitempty"`
+			BrowserRumReplaySessionCountSum *int64 `json:"browser_rum_replay_session_count_sum,omitempty"`
+			BrowserRumUnitsSum *int64 `json:"browser_rum_units_sum,omitempty"`
+			CiPipelineIndexedSpansSum *int64 `json:"ci_pipeline_indexed_spans_sum,omitempty"`
+			CiTestIndexedSpansSum *int64 `json:"ci_test_indexed_spans_sum,omitempty"`
+			CiVisibilityPipelineCommittersHwm *int64 `json:"ci_visibility_pipeline_committers_hwm,omitempty"`
+			CiVisibilityTestCommittersHwm *int64 `json:"ci_visibility_test_committers_hwm,omitempty"`
+			ContainerAvg *int64 `json:"container_avg,omitempty"`
+			ContainerHwm *int64 `json:"container_hwm,omitempty"`
+			CspmAasHostTop99p *int64 `json:"cspm_aas_host_top99p,omitempty"`
+			CspmAzureHostTop99p *int64 `json:"cspm_azure_host_top99p,omitempty"`
+			CspmContainerAvg *int64 `json:"cspm_container_avg,omitempty"`
+			CspmContainerHwm *int64 `json:"cspm_container_hwm,omitempty"`
+			CspmHostTop99p *int64 `json:"cspm_host_top99p,omitempty"`
+			CustomTsAvg *int64 `json:"custom_ts_avg,omitempty"`
+			CwsContainerCountAvg *int64 `json:"cws_container_count_avg,omitempty"`
+			CwsHostTop99p *int64 `json:"cws_host_top99p,omitempty"`
+			Date *time.Time `json:"date,omitempty"`
+			DbmHostTop99p *int64 `json:"dbm_host_top99p,omitempty"`
+			DbmQueriesCountAvg *int64 `json:"dbm_queries_count_avg,omitempty"`
+			FargateTasksCountAvg *int64 `json:"fargate_tasks_count_avg,omitempty"`
+			FargateTasksCountHwm *int64 `json:"fargate_tasks_count_hwm,omitempty"`
+			GcpHostTop99p *int64 `json:"gcp_host_top99p,omitempty"`
+			HerokuHostTop99p *int64 `json:"heroku_host_top99p,omitempty"`
+			IncidentManagementMonthlyActiveUsersHwm *int64 `json:"incident_management_monthly_active_users_hwm,omitempty"`
+			IndexedEventsCountSum *int64 `json:"indexed_events_count_sum,omitempty"`
+			InfraHostTop99p *int64 `json:"infra_host_top99p,omitempty"`
+			IngestedEventsBytesSum *int64 `json:"ingested_events_bytes_sum,omitempty"`
+			IotDeviceSum *int64 `json:"iot_device_sum,omitempty"`
+			IotDeviceTop99p *int64 `json:"iot_device_top99p,omitempty"`
+			MobileRumLiteSessionCountSum *int64 `json:"mobile_rum_lite_session_count_sum,omitempty"`
+			MobileRumSessionCountAndroidSum *int64 `json:"mobile_rum_session_count_android_sum,omitempty"`
+			MobileRumSessionCountIosSum *int64 `json:"mobile_rum_session_count_ios_sum,omitempty"`
+			MobileRumSessionCountSum *int64 `json:"mobile_rum_session_count_sum,omitempty"`
+			MobileRumUnitsSum *int64 `json:"mobile_rum_units_sum,omitempty"`
+			NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
+			NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+			OnlineArchiveEventsCountSum *int64 `json:"online_archive_events_count_sum,omitempty"`
+			OpentelemetryHostTop99p *int64 `json:"opentelemetry_host_top99p,omitempty"`
+			Orgs *[]UsageSummaryDateOrg `json:"orgs,omitempty"`
+			ProfilingHostTop99p *int64 `json:"profiling_host_top99p,omitempty"`
+			RumBrowserAndMobileSessionCount *int64 `json:"rum_browser_and_mobile_session_count,omitempty"`
+			RumSessionCountSum *int64 `json:"rum_session_count_sum,omitempty"`
+			RumTotalSessionCountSum *int64 `json:"rum_total_session_count_sum,omitempty"`
+			RumUnitsSum *int64 `json:"rum_units_sum,omitempty"`
+			SdsLogsScannedBytesSum *int64 `json:"sds_logs_scanned_bytes_sum,omitempty"`
+			SdsTotalScannedBytesSum *int64 `json:"sds_total_scanned_bytes_sum,omitempty"`
+			SyntheticsBrowserCheckCallsCountSum *int64 `json:"synthetics_browser_check_calls_count_sum,omitempty"`
+			SyntheticsCheckCallsCountSum *int64 `json:"synthetics_check_calls_count_sum,omitempty"`
+			TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
+			TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
+			VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -2477,3 +2478,5 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.VsphereHostTop99p = all.VsphereHostTop99p
 	return nil
 }
+
+

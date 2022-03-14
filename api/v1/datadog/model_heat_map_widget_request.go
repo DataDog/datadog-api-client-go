@@ -10,21 +10,22 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HeatMapWidgetRequest Updated heat map widget.
 type HeatMapWidgetRequest struct {
-	ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-	EventQuery          *EventQueryDefinition   `json:"event_query,omitempty"`
-	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
-	Q             *string             `json:"q,omitempty"`
-	RumQuery      *LogQueryDefinition `json:"rum_query,omitempty"`
+	Q *string `json:"q,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-	Style         *WidgetStyle        `json:"style,omitempty"`
+	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -407,17 +408,17 @@ func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-		EventQuery          *EventQueryDefinition   `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
-		Q                   *string                 `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
-		Style               *WidgetStyle            `json:"style,omitempty"`
-	}{}
+			ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+			EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
+			LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+			NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+			ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+			ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+			Q *string `json:"q,omitempty"`
+			RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+			SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+			Style *WidgetStyle `json:"style,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -439,3 +440,5 @@ func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Style = all.Style
 	return nil
 }
+
+

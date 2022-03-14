@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetGrouping The kind of grouping to use.
@@ -18,7 +19,7 @@ type WidgetGrouping string
 
 // List of WidgetGrouping
 const (
-	WIDGETGROUPING_CHECK   WidgetGrouping = "check"
+	WIDGETGROUPING_CHECK WidgetGrouping = "check"
 	WIDGETGROUPING_CLUSTER WidgetGrouping = "cluster"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableWidgetGrouping) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

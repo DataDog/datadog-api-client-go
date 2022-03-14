@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleUpdateAttributes Update an existing Cloud Workload Security Agent rule.
@@ -157,10 +158,10 @@ func (o CloudWorkloadSecurityAgentRuleUpdateAttributes) MarshalJSON() ([]byte, e
 func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Description *string `json:"description,omitempty"`
-		Enabled     *bool   `json:"enabled,omitempty"`
-		Expression  *string `json:"expression,omitempty"`
-	}{}
+			Description *string `json:"description,omitempty"`
+			Enabled *bool `json:"enabled,omitempty"`
+			Expression *string `json:"expression,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateAttributes) UnmarshalJSON(bytes []b
 	o.Expression = all.Expression
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsRetentionAggSumUsage Object containing indexed logs usage aggregated across organizations and months for a retention period.
@@ -194,11 +195,11 @@ func (o LogsRetentionAggSumUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LogsIndexedLogsUsageAggSum           *int64  `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
-		LogsLiveIndexedLogsUsageAggSum       *int64  `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageAggSum *int64  `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
-		Retention                            *string `json:"retention,omitempty"`
-	}{}
+			LogsIndexedLogsUsageAggSum *int64 `json:"logs_indexed_logs_usage_agg_sum,omitempty"`
+			LogsLiveIndexedLogsUsageAggSum *int64 `json:"logs_live_indexed_logs_usage_agg_sum,omitempty"`
+			LogsRehydratedIndexedLogsUsageAggSum *int64 `json:"logs_rehydrated_indexed_logs_usage_agg_sum,omitempty"`
+			Retention *string `json:"retention,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *LogsRetentionAggSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	o.Retention = all.Retention
 	return nil
 }
+
+

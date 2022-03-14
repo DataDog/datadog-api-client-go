@@ -20,17 +20,17 @@ type CheckStatusWidgetDefinition struct {
 	// Group reporting a single check.
 	Group *string `json:"group,omitempty"`
 	// List of tag prefixes to group by in the case of a cluster check.
-	GroupBy  *[]string      `json:"group_by,omitempty"`
+	GroupBy *[]string `json:"group_by,omitempty"`
 	Grouping WidgetGrouping `json:"grouping"`
 	// List of tags used to filter the groups reporting a cluster check.
-	Tags *[]string   `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      CheckStatusWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type CheckStatusWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -70,7 +70,7 @@ func (o *CheckStatusWidgetDefinition) GetCheck() string {
 // GetCheckOk returns a tuple with the Check field value
 // and a boolean to check if the value has been set.
 func (o *CheckStatusWidgetDefinition) GetCheckOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Check, true
@@ -158,7 +158,7 @@ func (o *CheckStatusWidgetDefinition) GetGrouping() WidgetGrouping {
 // GetGroupingOk returns a tuple with the Grouping field value
 // and a boolean to check if the value has been set.
 func (o *CheckStatusWidgetDefinition) GetGroupingOk() (*WidgetGrouping, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Grouping, true
@@ -342,7 +342,7 @@ func (o *CheckStatusWidgetDefinition) GetType() CheckStatusWidgetDefinitionType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *CheckStatusWidgetDefinition) GetTypeOk() (*CheckStatusWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -394,22 +394,22 @@ func (o CheckStatusWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Check    *string                          `json:"check"`
-		Grouping *WidgetGrouping                  `json:"grouping"`
-		Type     *CheckStatusWidgetDefinitionType `json:"type"`
-	}{}
+		Check *string `json:"check"`
+		Grouping *WidgetGrouping `json:"grouping"`
+		Type *CheckStatusWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		Check      string                          `json:"check"`
-		Group      *string                         `json:"group,omitempty"`
-		GroupBy    *[]string                       `json:"group_by,omitempty"`
-		Grouping   WidgetGrouping                  `json:"grouping"`
-		Tags       *[]string                       `json:"tags,omitempty"`
-		Time       *WidgetTime                     `json:"time,omitempty"`
-		Title      *string                         `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize  *string                         `json:"title_size,omitempty"`
-		Type       CheckStatusWidgetDefinitionType `json:"type"`
-	}{}
+			Check string `json:"check"`
+			Group *string `json:"group,omitempty"`
+			GroupBy *[]string `json:"group_by,omitempty"`
+			Grouping WidgetGrouping `json:"grouping"`
+			Tags *[]string `json:"tags,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type CheckStatusWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -468,3 +468,5 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

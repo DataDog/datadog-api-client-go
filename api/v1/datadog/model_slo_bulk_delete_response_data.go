@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOBulkDeleteResponseData An array of service level objective objects.
@@ -120,9 +121,9 @@ func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Deleted *[]string `json:"deleted,omitempty"`
-		Updated *[]string `json:"updated,omitempty"`
-	}{}
+			Deleted *[]string `json:"deleted,omitempty"`
+			Updated *[]string `json:"updated,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Updated = all.Updated
 	return nil
 }
+
+

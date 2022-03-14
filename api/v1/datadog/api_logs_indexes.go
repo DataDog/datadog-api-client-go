@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type LogsIndexesApiService service
 
 type apiCreateLogsIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
-	body       *LogsIndex
+	body *LogsIndex
 }
+
 
 /*
  * CreateLogsIndex Create an index
@@ -38,11 +41,12 @@ type apiCreateLogsIndexRequest struct {
 func (a *LogsIndexesApiService) CreateLogsIndex(ctx _context.Context, body LogsIndex) (LogsIndex, *_nethttp.Response, error) {
 	req := apiCreateLogsIndexRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createLogsIndexExecute(req)
+
+    return req.ApiService.createLogsIndexExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.CreateLogsIndex")
 	if err != nil {
@@ -188,10 +193,11 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 }
 
 type apiGetLogsIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
-	name       string
+	name string
 }
+
 
 /*
  * GetLogsIndex Get an index
@@ -200,11 +206,12 @@ type apiGetLogsIndexRequest struct {
 func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
 	req := apiGetLogsIndexRequest{
 		ApiService: a,
-		ctx:        ctx,
-		name:       name,
+		ctx: ctx,
+		name: name,
 	}
 
-	return req.ApiService.getLogsIndexExecute(req)
+
+    return req.ApiService.getLogsIndexExecute(req)
 }
 
 /*
@@ -220,6 +227,7 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
 	if err != nil {
@@ -346,9 +354,10 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 }
 
 type apiGetLogsIndexOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
 }
+
 
 /*
  * GetLogsIndexOrder Get indexes order
@@ -357,10 +366,11 @@ type apiGetLogsIndexOrderRequest struct {
 func (a *LogsIndexesApiService) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrder, *_nethttp.Response, error) {
 	req := apiGetLogsIndexOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.getLogsIndexOrderExecute(req)
+
+    return req.ApiService.getLogsIndexOrderExecute(req)
 }
 
 /*
@@ -376,6 +386,7 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexesOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndexOrder")
 	if err != nil {
@@ -491,22 +502,24 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 }
 
 type apiListLogIndexesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
 }
+
 
 /*
  * ListLogIndexes Get all indexes
  * The Index object describes the configuration of a log index.
 This endpoint returns an array of the `LogIndex` objects of your organization.
-*/
+ */
 func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
 	req := apiListLogIndexesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listLogIndexesExecute(req)
+
+    return req.ApiService.listLogIndexesExecute(req)
 }
 
 /*
@@ -522,6 +535,7 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.ListLogIndexes")
 	if err != nil {
@@ -637,11 +651,12 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 }
 
 type apiUpdateLogsIndexRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
-	name       string
-	body       *LogsIndexUpdateRequest
+	name string
+	body *LogsIndexUpdateRequest
 }
+
 
 /*
  * UpdateLogsIndex Update an index
@@ -650,16 +665,17 @@ Returns the Index object passed in the request body when the request is successf
 
 Using the `PUT` method updates your index’s configuration by **replacing**
 your current configuration with the new one sent to your Datadog organization.
-*/
+ */
 func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
 	req := apiUpdateLogsIndexRequest{
 		ApiService: a,
-		ctx:        ctx,
-		name:       name,
-		body:       &body,
+		ctx: ctx,
+		name: name,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsIndexExecute(req)
+
+    return req.ApiService.updateLogsIndexExecute(req)
 }
 
 /*
@@ -675,6 +691,7 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndex
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
 	if err != nil {
@@ -806,24 +823,26 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 }
 
 type apiUpdateLogsIndexOrderRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsIndexesApiService
-	body       *LogsIndexesOrder
+	body *LogsIndexesOrder
 }
+
 
 /*
  * UpdateLogsIndexOrder Update indexes order
  * This endpoint updates the index order of your organization.
 It returns the index order object passed in the request body when the request is successful.
-*/
+ */
 func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
 	req := apiUpdateLogsIndexOrderRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateLogsIndexOrderExecute(req)
+
+    return req.ApiService.updateLogsIndexOrderExecute(req)
 }
 
 /*
@@ -839,6 +858,7 @@ func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndex
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsIndexesOrder
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
 	if err != nil {

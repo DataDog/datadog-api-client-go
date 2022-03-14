@@ -22,20 +22,20 @@ type HostMapWidgetDefinition struct {
 	// Whether to show the hosts that don’t fit in a group.
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
 	// Whether to show the hosts with no metrics.
-	NoMetricHosts *bool           `json:"no_metric_hosts,omitempty"`
-	NodeType      *WidgetNodeType `json:"node_type,omitempty"`
+	NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
+	NodeType *WidgetNodeType `json:"node_type,omitempty"`
 	// Notes on the title.
-	Notes    *string                         `json:"notes,omitempty"`
+	Notes *string `json:"notes,omitempty"`
 	Requests HostMapWidgetDefinitionRequests `json:"requests"`
 	// List of tags used to filter the map.
-	Scope *[]string                     `json:"scope,omitempty"`
+	Scope *[]string `json:"scope,omitempty"`
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                     `json:"title_size,omitempty"`
-	Type      HostMapWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type HostMapWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -266,7 +266,7 @@ func (o *HostMapWidgetDefinition) GetRequests() HostMapWidgetDefinitionRequests 
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *HostMapWidgetDefinition) GetRequestsOk() (*HostMapWidgetDefinitionRequests, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -450,7 +450,7 @@ func (o *HostMapWidgetDefinition) GetType() HostMapWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *HostMapWidgetDefinition) GetTypeOk() (*HostMapWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -512,23 +512,23 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Requests *HostMapWidgetDefinitionRequests `json:"requests"`
-		Type     *HostMapWidgetDefinitionType     `json:"type"`
-	}{}
+		Type *HostMapWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
-		Group         *[]string                       `json:"group,omitempty"`
-		NoGroupHosts  *bool                           `json:"no_group_hosts,omitempty"`
-		NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"`
-		NodeType      *WidgetNodeType                 `json:"node_type,omitempty"`
-		Notes         *string                         `json:"notes,omitempty"`
-		Requests      HostMapWidgetDefinitionRequests `json:"requests"`
-		Scope         *[]string                       `json:"scope,omitempty"`
-		Style         *HostMapWidgetDefinitionStyle   `json:"style,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          HostMapWidgetDefinitionType     `json:"type"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Group *[]string `json:"group,omitempty"`
+			NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
+			NoMetricHosts *bool `json:"no_metric_hosts,omitempty"`
+			NodeType *WidgetNodeType `json:"node_type,omitempty"`
+			Notes *string `json:"notes,omitempty"`
+			Requests HostMapWidgetDefinitionRequests `json:"requests"`
+			Scope *[]string `json:"scope,omitempty"`
+			Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type HostMapWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -587,3 +587,5 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

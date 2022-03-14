@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricsQueryUnit Object containing the metric unit family, scale factor, name, and short name.
@@ -231,12 +232,12 @@ func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Family      *string  `json:"family,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		Plural      *string  `json:"plural,omitempty"`
-		ScaleFactor *float64 `json:"scale_factor,omitempty"`
-		ShortName   *string  `json:"short_name,omitempty"`
-	}{}
+			Family *string `json:"family,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Plural *string `json:"plural,omitempty"`
+			ScaleFactor *float64 `json:"scale_factor,omitempty"`
+			ShortName *string `json:"short_name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -289,3 +290,5 @@ func (v *NullableMetricsQueryUnit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -15,9 +15,9 @@ import (
 
 // UserCreateData Object to create a user.
 type UserCreateData struct {
-	Attributes    UserCreateAttributes `json:"attributes"`
-	Relationships *UserRelationships   `json:"relationships,omitempty"`
-	Type          UsersType            `json:"type"`
+	Attributes UserCreateAttributes `json:"attributes"`
+	Relationships *UserRelationships `json:"relationships,omitempty"`
+	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -56,7 +56,7 @@ func (o *UserCreateData) GetAttributes() UserCreateAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *UserCreateData) GetAttributesOk() (*UserCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -112,7 +112,7 @@ func (o *UserCreateData) GetType() UsersType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *UserCreateData) GetTypeOk() (*UsersType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -144,13 +144,13 @@ func (o *UserCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *UserCreateAttributes `json:"attributes"`
-		Type       *UsersType            `json:"type"`
-	}{}
+		Type *UsersType `json:"type"`
+		}{}
 	all := struct {
-		Attributes    UserCreateAttributes `json:"attributes"`
-		Relationships *UserRelationships   `json:"relationships,omitempty"`
-		Type          UsersType            `json:"type"`
-	}{}
+			Attributes UserCreateAttributes `json:"attributes"`
+			Relationships *UserRelationships `json:"relationships,omitempty"`
+			Type UsersType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -183,3 +183,5 @@ func (o *UserCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

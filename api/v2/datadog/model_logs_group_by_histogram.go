@@ -58,7 +58,7 @@ func (o *LogsGroupByHistogram) GetInterval() float64 {
 // GetIntervalOk returns a tuple with the Interval field value
 // and a boolean to check if the value has been set.
 func (o *LogsGroupByHistogram) GetIntervalOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Interval, true
@@ -82,7 +82,7 @@ func (o *LogsGroupByHistogram) GetMax() float64 {
 // GetMaxOk returns a tuple with the Max field value
 // and a boolean to check if the value has been set.
 func (o *LogsGroupByHistogram) GetMaxOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Max, true
@@ -106,7 +106,7 @@ func (o *LogsGroupByHistogram) GetMin() float64 {
 // GetMinOk returns a tuple with the Min field value
 // and a boolean to check if the value has been set.
 func (o *LogsGroupByHistogram) GetMinOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Min, true
@@ -138,14 +138,14 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Interval *float64 `json:"interval"`
-		Max      *float64 `json:"max"`
-		Min      *float64 `json:"min"`
-	}{}
+		Max *float64 `json:"max"`
+		Min *float64 `json:"min"`
+		}{}
 	all := struct {
-		Interval float64 `json:"interval"`
-		Max      float64 `json:"max"`
-		Min      float64 `json:"min"`
-	}{}
+			Interval float64 `json:"interval"`
+			Max float64 `json:"max"`
+			Min float64 `json:"min"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -173,3 +173,5 @@ func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	o.Min = all.Min
 	return nil
 }
+
+

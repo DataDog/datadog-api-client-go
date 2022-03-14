@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsSortOrder The order to use, ascending or descending
@@ -18,7 +19,7 @@ type LogsSortOrder string
 
 // List of LogsSortOrder
 const (
-	LOGSSORTORDER_ASCENDING  LogsSortOrder = "asc"
+	LOGSSORTORDER_ASCENDING LogsSortOrder = "asc"
 	LOGSSORTORDER_DESCENDING LogsSortOrder = "desc"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableLogsSortOrder) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

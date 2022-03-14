@@ -21,24 +21,24 @@ type TimeseriesWidgetDefinition struct {
 	Events *[]WidgetEvent `json:"events,omitempty"`
 	// Columns displayed in the legend.
 	LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
-	LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
+	LegendLayout *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
 	// Available legend sizes for a widget. Should be one of \"0\", \"2\", \"4\", \"8\", \"16\", or \"auto\".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
-	Requests   []TimeseriesWidgetRequest `json:"requests"`
-	RightYaxis *WidgetAxis               `json:"right_yaxis,omitempty"`
+	Requests []TimeseriesWidgetRequest `json:"requests"`
+	RightYaxis *WidgetAxis `json:"right_yaxis,omitempty"`
 	// (screenboard only) Show the legend for this widget.
-	ShowLegend *bool       `json:"show_legend,omitempty"`
-	Time       *WidgetTime `json:"time,omitempty"`
+	ShowLegend *bool `json:"show_legend,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      TimeseriesWidgetDefinitionType `json:"type"`
-	Yaxis     *WidgetAxis                    `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type TimeseriesWidgetDefinitionType `json:"type"`
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -269,7 +269,7 @@ func (o *TimeseriesWidgetDefinition) GetRequests() []TimeseriesWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetDefinition) GetRequestsOk() (*[]TimeseriesWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -485,7 +485,7 @@ func (o *TimeseriesWidgetDefinition) GetType() TimeseriesWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *TimeseriesWidgetDefinition) GetTypeOk() (*TimeseriesWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -584,26 +584,26 @@ func (o TimeseriesWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]TimeseriesWidgetRequest      `json:"requests"`
-		Type     *TimeseriesWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]TimeseriesWidgetRequest `json:"requests"`
+		Type *TimeseriesWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
-		Events        *[]WidgetEvent                  `json:"events,omitempty"`
-		LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
-		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
-		LegendSize    *string                         `json:"legend_size,omitempty"`
-		Markers       *[]WidgetMarker                 `json:"markers,omitempty"`
-		Requests      []TimeseriesWidgetRequest       `json:"requests"`
-		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"`
-		ShowLegend    *bool                           `json:"show_legend,omitempty"`
-		Time          *WidgetTime                     `json:"time,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          TimeseriesWidgetDefinitionType  `json:"type"`
-		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"`
-	}{}
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Events *[]WidgetEvent `json:"events,omitempty"`
+			LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+			LegendLayout *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
+			LegendSize *string `json:"legend_size,omitempty"`
+			Markers *[]WidgetMarker `json:"markers,omitempty"`
+			Requests []TimeseriesWidgetRequest `json:"requests"`
+			RightYaxis *WidgetAxis `json:"right_yaxis,omitempty"`
+			ShowLegend *bool `json:"show_legend,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type TimeseriesWidgetDefinitionType `json:"type"`
+			Yaxis *WidgetAxis `json:"yaxis,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -664,3 +664,5 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
+
+

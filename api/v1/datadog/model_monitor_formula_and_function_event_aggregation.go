@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MonitorFormulaAndFunctionEventAggregation Aggregation methods for event platform queries.
@@ -18,18 +19,18 @@ type MonitorFormulaAndFunctionEventAggregation string
 
 // List of MonitorFormulaAndFunctionEventAggregation
 const (
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT       MonitorFormulaAndFunctionEventAggregation = "count"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT MonitorFormulaAndFunctionEventAggregation = "count"
 	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_CARDINALITY MonitorFormulaAndFunctionEventAggregation = "cardinality"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN      MonitorFormulaAndFunctionEventAggregation = "median"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC75        MonitorFormulaAndFunctionEventAggregation = "pc75"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC90        MonitorFormulaAndFunctionEventAggregation = "pc90"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC95        MonitorFormulaAndFunctionEventAggregation = "pc95"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC98        MonitorFormulaAndFunctionEventAggregation = "pc98"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC99        MonitorFormulaAndFunctionEventAggregation = "pc99"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_SUM         MonitorFormulaAndFunctionEventAggregation = "sum"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MIN         MonitorFormulaAndFunctionEventAggregation = "min"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MAX         MonitorFormulaAndFunctionEventAggregation = "max"
-	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_AVG         MonitorFormulaAndFunctionEventAggregation = "avg"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MEDIAN MonitorFormulaAndFunctionEventAggregation = "median"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC75 MonitorFormulaAndFunctionEventAggregation = "pc75"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC90 MonitorFormulaAndFunctionEventAggregation = "pc90"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC95 MonitorFormulaAndFunctionEventAggregation = "pc95"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC98 MonitorFormulaAndFunctionEventAggregation = "pc98"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_PC99 MonitorFormulaAndFunctionEventAggregation = "pc99"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_SUM MonitorFormulaAndFunctionEventAggregation = "sum"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MIN MonitorFormulaAndFunctionEventAggregation = "min"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_MAX MonitorFormulaAndFunctionEventAggregation = "max"
+	MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_AVG MonitorFormulaAndFunctionEventAggregation = "avg"
 )
 
 var allowedMonitorFormulaAndFunctionEventAggregationEnumValues = []MonitorFormulaAndFunctionEventAggregation{
@@ -122,3 +123,4 @@ func (v *NullableMonitorFormulaAndFunctionEventAggregation) UnmarshalJSON(src []
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

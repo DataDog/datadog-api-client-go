@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsLocation Synthetic location that can be used when creating or editing a test.
@@ -120,9 +121,9 @@ func (o SyntheticsLocation) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id   *string `json:"id,omitempty"`
-		Name *string `json:"name,omitempty"`
-	}{}
+			Id *string `json:"id,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsLocation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,10 +28,11 @@ var (
 type PagerDutyIntegrationApiService service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *PagerDutyIntegrationApiService
-	body       *PagerDutyService
+	body *PagerDutyService
 }
+
 
 /*
  * CreatePagerDutyIntegrationService Create a new service object
@@ -38,11 +41,12 @@ type apiCreatePagerDutyIntegrationServiceRequest struct {
 func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req := apiCreatePagerDutyIntegrationServiceRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
+
+    return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
 }
 
 /*
@@ -58,6 +62,7 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 		localVarFileBytes    []byte
 		localVarReturnValue  PagerDutyServiceName
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.CreatePagerDutyIntegrationService")
 	if err != nil {
@@ -188,10 +193,11 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 }
 
 type apiDeletePagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	ApiService *PagerDutyIntegrationApiService
 	serviceName string
 }
+
 
 /*
  * DeletePagerDutyIntegrationService Delete a single service object
@@ -199,12 +205,13 @@ type apiDeletePagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	req := apiDeletePagerDutyIntegrationServiceRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
 	}
 
-	return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
+
+    return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
 }
 
 /*
@@ -218,6 +225,7 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.DeletePagerDutyIntegrationService")
 	if err != nil {
@@ -335,10 +343,11 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 }
 
 type apiGetPagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	ApiService *PagerDutyIntegrationApiService
 	serviceName string
 }
+
 
 /*
  * GetPagerDutyIntegrationService Get a single service object
@@ -346,12 +355,13 @@ type apiGetPagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req := apiGetPagerDutyIntegrationServiceRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
 	}
 
-	return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
+
+    return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
 }
 
 /*
@@ -367,6 +377,7 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 		localVarFileBytes    []byte
 		localVarReturnValue  PagerDutyServiceName
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.GetPagerDutyIntegrationService")
 	if err != nil {
@@ -493,11 +504,12 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 }
 
 type apiUpdatePagerDutyIntegrationServiceRequest struct {
-	ctx         _context.Context
-	ApiService  *PagerDutyIntegrationApiService
+	ctx _context.Context
+	ApiService *PagerDutyIntegrationApiService
 	serviceName string
-	body        *PagerDutyServiceKey
+	body *PagerDutyServiceKey
 }
+
 
 /*
  * UpdatePagerDutyIntegrationService Update a single service object
@@ -505,13 +517,14 @@ type apiUpdatePagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
 	req := apiUpdatePagerDutyIntegrationServiceRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx: ctx,
 		serviceName: serviceName,
-		body:        &body,
+		body: &body,
 	}
 
-	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)
+
+    return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)
 }
 
 /*
@@ -525,6 +538,7 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.UpdatePagerDutyIntegrationService")
 	if err != nil {

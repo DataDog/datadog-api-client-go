@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponseCompute The compute rule to compute the log-based metric.
@@ -119,9 +120,9 @@ func (o LogsMetricResponseCompute) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
-		Path            *string                                   `json:"path,omitempty"`
-	}{}
+			AggregationType *LogsMetricResponseComputeAggregationType `json:"aggregation_type,omitempty"`
+			Path *string `json:"path,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -143,3 +144,5 @@ func (o *LogsMetricResponseCompute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Path = all.Path
 	return nil
 }
+
+

@@ -10,16 +10,18 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // NotebookCellCreateRequestAttributes - The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`, `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 type NotebookCellCreateRequestAttributes struct {
 	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
-	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
-	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
-	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
-	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
-	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
+	NotebookHeatMapCellAttributes *NotebookHeatMapCellAttributes
+	NotebookLogStreamCellAttributes *NotebookLogStreamCellAttributes
+	NotebookMarkdownCellAttributes *NotebookMarkdownCellAttributes
+	NotebookTimeseriesCellAttributes *NotebookTimeseriesCellAttributes
+	NotebookToplistCellAttributes *NotebookToplistCellAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -27,33 +29,34 @@ type NotebookCellCreateRequestAttributes struct {
 
 // NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookDistributionCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookDistributionCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookDistributionCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookDistributionCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookDistributionCellAttributes: v}
 }
 
 // NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookHeatMapCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookHeatMapCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookHeatMapCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookHeatMapCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookHeatMapCellAttributes: v}
 }
 
 // NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookLogStreamCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookLogStreamCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookLogStreamCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookLogStreamCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookLogStreamCellAttributes: v}
 }
 
 // NotebookMarkdownCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookMarkdownCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookMarkdownCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookMarkdownCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookMarkdownCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookMarkdownCellAttributes: v}
 }
 
 // NotebookTimeseriesCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookTimeseriesCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookTimeseriesCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookTimeseriesCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookTimeseriesCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookTimeseriesCellAttributes: v}
 }
 
 // NotebookToplistCellAttributesAsNotebookCellCreateRequestAttributes is a convenience function that returns NotebookToplistCellAttributes wrapped in NotebookCellCreateRequestAttributes
 func NotebookToplistCellAttributesAsNotebookCellCreateRequestAttributes(v *NotebookToplistCellAttributes) NotebookCellCreateRequestAttributes {
-	return NotebookCellCreateRequestAttributes{NotebookToplistCellAttributes: v}
+	return NotebookCellCreateRequestAttributes{ NotebookToplistCellAttributes: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookCellCreateRequestAttributes) UnmarshalJSON(data []byte) error {
@@ -208,7 +211,7 @@ func (src NotebookCellCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookCellCreateRequestAttributes) GetActualInstance() interface{} {
+func (obj *NotebookCellCreateRequestAttributes) GetActualInstance() (interface{}) {
 	if obj.NotebookDistributionCellAttributes != nil {
 		return obj.NotebookDistributionCellAttributes
 	}
@@ -272,3 +275,5 @@ func (v *NullableNotebookCellCreateRequestAttributes) UnmarshalJSON(src []byte) 
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -24,12 +24,12 @@ type SLOWidgetDefinition struct {
 	// Times being monitored.
 	TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                 `json:"title_size,omitempty"`
-	Type      SLOWidgetDefinitionType `json:"type"`
-	ViewMode  *WidgetViewMode         `json:"view_mode,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type SLOWidgetDefinitionType `json:"type"`
+	ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
 	// Type of view displayed by the widget.
 	ViewType string `json:"view_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -296,7 +296,7 @@ func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -352,7 +352,7 @@ func (o *SLOWidgetDefinition) GetViewType() string {
 // GetViewTypeOk returns a tuple with the ViewType field value
 // and a boolean to check if the value has been set.
 func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ViewType, true
@@ -404,21 +404,21 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Type     *SLOWidgetDefinitionType `json:"type"`
-		ViewType *string                  `json:"view_type"`
-	}{}
+		Type *SLOWidgetDefinitionType `json:"type"`
+		ViewType *string `json:"view_type"`
+		}{}
 	all := struct {
-		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"`
-		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"`
-		SloId            *string                 `json:"slo_id,omitempty"`
-		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"`
-		Title            *string                 `json:"title,omitempty"`
-		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"`
-		TitleSize        *string                 `json:"title_size,omitempty"`
-		Type             SLOWidgetDefinitionType `json:"type"`
-		ViewMode         *WidgetViewMode         `json:"view_mode,omitempty"`
-		ViewType         string                  `json:"view_type"`
-	}{}
+			GlobalTimeTarget *string `json:"global_time_target,omitempty"`
+			ShowErrorBudget *bool `json:"show_error_budget,omitempty"`
+			SloId *string `json:"slo_id,omitempty"`
+			TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type SLOWidgetDefinitionType `json:"type"`
+			ViewMode *WidgetViewMode `json:"view_mode,omitempty"`
+			ViewType string `json:"view_type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -474,3 +474,5 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.ViewType = all.ViewType
 	return nil
 }
+
+

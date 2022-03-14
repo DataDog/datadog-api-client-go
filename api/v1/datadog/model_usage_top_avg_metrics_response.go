@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageTopAvgMetricsResponse Response containing the number of hourly recorded custom metrics for a given organization.
@@ -119,9 +120,9 @@ func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
-		Usage    *[]UsageTopAvgMetricsHour   `json:"usage,omitempty"`
-	}{}
+			Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
+			Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostListResponse Response with Host information from Datadog.
@@ -157,10 +158,10 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostList      *[]Host `json:"host_list,omitempty"`
-		TotalMatching *int64  `json:"total_matching,omitempty"`
-		TotalReturned *int64  `json:"total_returned,omitempty"`
-	}{}
+			HostList *[]Host `json:"host_list,omitempty"`
+			TotalMatching *int64 `json:"total_matching,omitempty"`
+			TotalReturned *int64 `json:"total_returned,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalReturned = all.TotalReturned
 	return nil
 }
+
+

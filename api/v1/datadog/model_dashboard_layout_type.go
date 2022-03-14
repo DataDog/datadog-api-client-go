@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // DashboardLayoutType Layout type of the dashboard.
@@ -19,7 +20,7 @@ type DashboardLayoutType string
 // List of DashboardLayoutType
 const (
 	DASHBOARDLAYOUTTYPE_ORDERED DashboardLayoutType = "ordered"
-	DASHBOARDLAYOUTTYPE_FREE    DashboardLayoutType = "free"
+	DASHBOARDLAYOUTTYPE_FREE DashboardLayoutType = "free"
 )
 
 var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{
@@ -102,3 +103,4 @@ func (v *NullableDashboardLayoutType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

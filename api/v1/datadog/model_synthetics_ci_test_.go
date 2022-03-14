@@ -16,8 +16,8 @@ import (
 // SyntheticsCITest Test configuration for Synthetics CI
 type SyntheticsCITest struct {
 	// Disable certificate checks in API tests.
-	AllowInsecureCertificates *bool                `json:"allowInsecureCertificates,omitempty"`
-	BasicAuth                 *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+	AllowInsecureCertificates *bool `json:"allowInsecureCertificates,omitempty"`
+	BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
 	// Body to include in the test.
 	Body *string `json:"body,omitempty"`
 	// Type of the data sent in a synthetics API test.
@@ -31,11 +31,11 @@ type SyntheticsCITest struct {
 	// Headers to include when performing the test.
 	Headers *map[string]string `json:"headers,omitempty"`
 	// Array of locations used to run the test.
-	Locations *[]string                  `json:"locations,omitempty"`
-	Metadata  *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+	Locations *[]string `json:"locations,omitempty"`
+	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// The public ID of the Synthetics test to trigger.
-	PublicId string                      `json:"public_id"`
-	Retry    *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	PublicId string `json:"public_id"`
+	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// Starting URL for the browser test.
 	StartUrl *string `json:"startUrl,omitempty"`
 	// Variables to replace in the test.
@@ -395,7 +395,7 @@ func (o *SyntheticsCITest) GetPublicId() string {
 // GetPublicIdOk returns a tuple with the PublicId field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsCITest) GetPublicIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.PublicId, true
@@ -556,23 +556,23 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		PublicId *string `json:"public_id"`
-	}{}
+		}{}
 	all := struct {
-		AllowInsecureCertificates *bool                       `json:"allowInsecureCertificates,omitempty"`
-		BasicAuth                 *SyntheticsBasicAuth        `json:"basicAuth,omitempty"`
-		Body                      *string                     `json:"body,omitempty"`
-		BodyType                  *string                     `json:"bodyType,omitempty"`
-		Cookies                   *string                     `json:"cookies,omitempty"`
-		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"`
-		FollowRedirects           *bool                       `json:"followRedirects,omitempty"`
-		Headers                   *map[string]string          `json:"headers,omitempty"`
-		Locations                 *[]string                   `json:"locations,omitempty"`
-		Metadata                  *SyntheticsCIBatchMetadata  `json:"metadata,omitempty"`
-		PublicId                  string                      `json:"public_id"`
-		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
-		StartUrl                  *string                     `json:"startUrl,omitempty"`
-		Variables                 *map[string]string          `json:"variables,omitempty"`
-	}{}
+			AllowInsecureCertificates *bool `json:"allowInsecureCertificates,omitempty"`
+			BasicAuth *SyntheticsBasicAuth `json:"basicAuth,omitempty"`
+			Body *string `json:"body,omitempty"`
+			BodyType *string `json:"bodyType,omitempty"`
+			Cookies *string `json:"cookies,omitempty"`
+			DeviceIds *[]SyntheticsDeviceID `json:"deviceIds,omitempty"`
+			FollowRedirects *bool `json:"followRedirects,omitempty"`
+			Headers *map[string]string `json:"headers,omitempty"`
+			Locations *[]string `json:"locations,omitempty"`
+			Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+			PublicId string `json:"public_id"`
+			Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+			StartUrl *string `json:"startUrl,omitempty"`
+			Variables *map[string]string `json:"variables,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -605,3 +605,5 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Variables = all.Variables
 	return nil
 }
+
+

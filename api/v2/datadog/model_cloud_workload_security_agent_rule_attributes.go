@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleAttributes A Cloud Workload Security Agent rule returned by the API.
@@ -17,8 +18,8 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	// The category of the Agent rule.
 	Category *string `json:"category,omitempty"`
 	// When the Agent rule was created, timestamp in milliseconds.
-	CreationDate *int64                                           `json:"creationDate,omitempty"`
-	Creator      *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
+	CreationDate *int64 `json:"creationDate,omitempty"`
+	Creator *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
 	// Whether the rule is included by default.
 	DefaultRule *bool `json:"defaultRule,omitempty"`
 	// The description of the Agent rule.
@@ -30,8 +31,8 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	// The name of the Agent rule.
 	Name *string `json:"name,omitempty"`
 	// When the Agent rule was last updated, timestamp in milliseconds.
-	UpdatedAt *int64                                           `json:"updatedAt,omitempty"`
-	Updater   *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
+	UpdatedAt *int64 `json:"updatedAt,omitempty"`
+	Updater *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
 	// The version of the Agent rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -451,18 +452,18 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category     *string                                          `json:"category,omitempty"`
-		CreationDate *int64                                           `json:"creationDate,omitempty"`
-		Creator      *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
-		DefaultRule  *bool                                            `json:"defaultRule,omitempty"`
-		Description  *string                                          `json:"description,omitempty"`
-		Enabled      *bool                                            `json:"enabled,omitempty"`
-		Expression   *string                                          `json:"expression,omitempty"`
-		Name         *string                                          `json:"name,omitempty"`
-		UpdatedAt    *int64                                           `json:"updatedAt,omitempty"`
-		Updater      *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
-		Version      *int64                                           `json:"version,omitempty"`
-	}{}
+			Category *string `json:"category,omitempty"`
+			CreationDate *int64 `json:"creationDate,omitempty"`
+			Creator *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
+			DefaultRule *bool `json:"defaultRule,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Enabled *bool `json:"enabled,omitempty"`
+			Expression *string `json:"expression,omitempty"`
+			Name *string `json:"name,omitempty"`
+			UpdatedAt *int64 `json:"updatedAt,omitempty"`
+			Updater *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
+			Version *int64 `json:"version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -485,3 +486,5 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.Version = all.Version
 	return nil
 }
+
+

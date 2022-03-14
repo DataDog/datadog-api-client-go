@@ -52,7 +52,7 @@ func (o *GeomapWidgetDefinitionView) GetFocus() string {
 // GetFocusOk returns a tuple with the Focus field value
 // and a boolean to check if the value has been set.
 func (o *GeomapWidgetDefinitionView) GetFocusOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Focus, true
@@ -78,10 +78,10 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Focus *string `json:"focus"`
-	}{}
+		}{}
 	all := struct {
-		Focus string `json:"focus"`
-	}{}
+			Focus string `json:"focus"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	o.Focus = all.Focus
 	return nil
 }
+
+

@@ -16,7 +16,7 @@ import (
 // MetricCustomAggregation A time and space aggregation combination for use in query.
 type MetricCustomAggregation struct {
 	Space MetricCustomSpaceAggregation `json:"space"`
-	Time  MetricCustomTimeAggregation  `json:"time"`
+	Time MetricCustomTimeAggregation `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -53,7 +53,7 @@ func (o *MetricCustomAggregation) GetSpace() MetricCustomSpaceAggregation {
 // GetSpaceOk returns a tuple with the Space field value
 // and a boolean to check if the value has been set.
 func (o *MetricCustomAggregation) GetSpaceOk() (*MetricCustomSpaceAggregation, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Space, true
@@ -77,7 +77,7 @@ func (o *MetricCustomAggregation) GetTime() MetricCustomTimeAggregation {
 // GetTimeOk returns a tuple with the Time field value
 // and a boolean to check if the value has been set.
 func (o *MetricCustomAggregation) GetTimeOk() (*MetricCustomTimeAggregation, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Time, true
@@ -106,12 +106,12 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Space *MetricCustomSpaceAggregation `json:"space"`
-		Time  *MetricCustomTimeAggregation  `json:"time"`
-	}{}
+		Time *MetricCustomTimeAggregation `json:"time"`
+		}{}
 	all := struct {
-		Space MetricCustomSpaceAggregation `json:"space"`
-		Time  MetricCustomTimeAggregation  `json:"time"`
-	}{}
+			Space MetricCustomSpaceAggregation `json:"space"`
+			Time MetricCustomTimeAggregation `json:"time"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -151,3 +151,5 @@ func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Time = all.Time
 	return nil
 }
+
+

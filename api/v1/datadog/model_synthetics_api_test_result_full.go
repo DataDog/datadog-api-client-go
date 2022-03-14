@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAPITestResultFull Object returned describing a API test result.
@@ -20,11 +21,11 @@ type SyntheticsAPITestResultFull struct {
 	// Version of the API test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Locations for which to query the API test results.
-	ProbeDc *string                      `json:"probe_dc,omitempty"`
-	Result  *SyntheticsAPITestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsAPITestResultData `json:"result,omitempty"`
 	// ID of the API test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -302,14 +303,14 @@ func (o SyntheticsAPITestResultFull) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Check        *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
-		CheckTime    *float64                          `json:"check_time,omitempty"`
-		CheckVersion *int64                            `json:"check_version,omitempty"`
-		ProbeDc      *string                           `json:"probe_dc,omitempty"`
-		Result       *SyntheticsAPITestResultData      `json:"result,omitempty"`
-		ResultId     *string                           `json:"result_id,omitempty"`
-		Status       *SyntheticsTestMonitorStatus      `json:"status,omitempty"`
-	}{}
+			Check *SyntheticsAPITestResultFullCheck `json:"check,omitempty"`
+			CheckTime *float64 `json:"check_time,omitempty"`
+			CheckVersion *int64 `json:"check_version,omitempty"`
+			ProbeDc *string `json:"probe_dc,omitempty"`
+			Result *SyntheticsAPITestResultData `json:"result,omitempty"`
+			ResultId *string `json:"result_id,omitempty"`
+			Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -336,3 +337,5 @@ func (o *SyntheticsAPITestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

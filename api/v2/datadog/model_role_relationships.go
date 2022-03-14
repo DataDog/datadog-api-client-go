@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RoleRelationships Relationships of the role object.
 type RoleRelationships struct {
 	Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
-	Users       *RelationshipToUsers       `json:"users,omitempty"`
+	Users *RelationshipToUsers `json:"users,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -118,9 +119,9 @@ func (o RoleRelationships) MarshalJSON() ([]byte, error) {
 func (o *RoleRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
-		Users       *RelationshipToUsers       `json:"users,omitempty"`
-	}{}
+			Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
+			Users *RelationshipToUsers `json:"users,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *RoleRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.Users = all.Users
 	return nil
 }
+
+

@@ -16,10 +16,10 @@ import (
 // ApmStatsQueryColumnType Column properties.
 type ApmStatsQueryColumnType struct {
 	// A user-assigned alias for the column.
-	Alias           *string                     `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// Column name.
-	Name  string      `json:"name"`
+	Name string `json:"name"`
 	Order *WidgetSort `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -120,7 +120,7 @@ func (o *ApmStatsQueryColumnType) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ApmStatsQueryColumnType) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -187,13 +187,13 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Alias           *string                     `json:"alias,omitempty"`
-		CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		Name            string                      `json:"name"`
-		Order           *WidgetSort                 `json:"order,omitempty"`
-	}{}
+			Alias *string `json:"alias,omitempty"`
+			CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+			Name string `json:"name"`
+			Order *WidgetSort `json:"order,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -232,3 +232,5 @@ func (o *ApmStatsQueryColumnType) UnmarshalJSON(bytes []byte) (err error) {
 	o.Order = all.Order
 	return nil
 }
+
+

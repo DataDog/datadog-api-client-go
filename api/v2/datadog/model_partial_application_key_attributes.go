@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // PartialApplicationKeyAttributes Attributes of a partial application key.
@@ -141,7 +142,7 @@ func (o *PartialApplicationKeyAttributes) SetName(v string) {
 
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PartialApplicationKeyAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -195,11 +196,11 @@ func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *string  `json:"created_at,omitempty"`
-		Last4     *string  `json:"last4,omitempty"`
-		Name      *string  `json:"name,omitempty"`
-		Scopes    []string `json:"scopes,omitempty"`
-	}{}
+			CreatedAt *string `json:"created_at,omitempty"`
+			Last4 *string `json:"last4,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Scopes []string `json:"scopes,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -215,3 +216,5 @@ func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Scopes = all.Scopes
 	return nil
 }
+
+

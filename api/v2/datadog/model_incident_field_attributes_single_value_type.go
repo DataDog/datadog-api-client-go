@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // IncidentFieldAttributesSingleValueType Type of the single value field definitions.
@@ -19,7 +20,7 @@ type IncidentFieldAttributesSingleValueType string
 // List of IncidentFieldAttributesSingleValueType
 const (
 	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN IncidentFieldAttributesSingleValueType = "dropdown"
-	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX  IncidentFieldAttributesSingleValueType = "textbox"
+	INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_TEXTBOX IncidentFieldAttributesSingleValueType = "textbox"
 )
 
 var allowedIncidentFieldAttributesSingleValueTypeEnumValues = []IncidentFieldAttributesSingleValueType{
@@ -102,3 +103,4 @@ func (v *NullableIncidentFieldAttributesSingleValueType) UnmarshalJSON(src []byt
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMetrics Host Metrics collected.
@@ -157,10 +158,10 @@ func (o HostMetrics) MarshalJSON() ([]byte, error) {
 func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cpu    *float64 `json:"cpu,omitempty"`
-		Iowait *float64 `json:"iowait,omitempty"`
-		Load   *float64 `json:"load,omitempty"`
-	}{}
+			Cpu *float64 `json:"cpu,omitempty"`
+			Iowait *float64 `json:"iowait,omitempty"`
+			Load *float64 `json:"load,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *HostMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	o.Load = all.Load
 	return nil
 }
+
+

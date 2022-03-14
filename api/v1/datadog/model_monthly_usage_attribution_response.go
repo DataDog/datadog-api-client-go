@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonthlyUsageAttributionResponse Response containing the monthly Usage Summary by tag(s).
@@ -119,9 +120,9 @@ func (o MonthlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 func (o *MonthlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metadata *MonthlyUsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    *[]MonthlyUsageAttributionBody   `json:"usage,omitempty"`
-	}{}
+			Metadata *MonthlyUsageAttributionMetadata `json:"metadata,omitempty"`
+			Usage *[]MonthlyUsageAttributionBody `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *MonthlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error
 	o.Usage = all.Usage
 	return nil
 }
+
+

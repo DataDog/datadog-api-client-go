@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsListServicesResponse The list of current AWS services for which Datadog offers automatic log collection.
@@ -120,9 +121,9 @@ func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id    *string `json:"id,omitempty"`
-		Label *string `json:"label,omitempty"`
-	}{}
+			Id *string `json:"id,omitempty"`
+			Label *string `json:"label,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Label = all.Label
 	return nil
 }
+
+

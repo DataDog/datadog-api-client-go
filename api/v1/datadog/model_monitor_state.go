@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorState Wrapper object with the different monitor states.
@@ -83,8 +84,8 @@ func (o MonitorState) MarshalJSON() ([]byte, error) {
 func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
-	}{}
+			Groups *map[string]MonitorStateGroup `json:"groups,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	o.Groups = all.Groups
 	return nil
 }
+
+

@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCIBatchMetadata Metadata for the Synthetics tests run.
 type SyntheticsCIBatchMetadata struct {
-	Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
+	Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`
 	Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o SyntheticsCIBatchMetadata) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ci  *SyntheticsCIBatchMetadataCI  `json:"ci,omitempty"`
-		Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
-	}{}
+			Ci *SyntheticsCIBatchMetadataCI `json:"ci,omitempty"`
+			Git *SyntheticsCIBatchMetadataGit `json:"git,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Git = all.Git
 	return nil
 }
+
+

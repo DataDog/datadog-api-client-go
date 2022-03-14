@@ -51,7 +51,7 @@ func (o *SyntheticsBrowserTestResultFullCheck) GetConfig() SyntheticsTestConfig 
 // GetConfigOk returns a tuple with the Config field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTestResultFullCheck) GetConfigOk() (*SyntheticsTestConfig, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Config, true
@@ -77,10 +77,10 @@ func (o *SyntheticsBrowserTestResultFullCheck) UnmarshalJSON(bytes []byte) (err 
 	raw := map[string]interface{}{}
 	required := struct {
 		Config *SyntheticsTestConfig `json:"config"`
-	}{}
+		}{}
 	all := struct {
-		Config SyntheticsTestConfig `json:"config"`
-	}{}
+			Config SyntheticsTestConfig `json:"config"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *SyntheticsBrowserTestResultFullCheck) UnmarshalJSON(bytes []byte) (err 
 	o.Config = all.Config
 	return nil
 }
+
+

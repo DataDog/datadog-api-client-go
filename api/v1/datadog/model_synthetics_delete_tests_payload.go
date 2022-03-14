@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want to delete.
@@ -83,8 +84,8 @@ func (o SyntheticsDeleteTestsPayload) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PublicIds *[]string `json:"public_ids,omitempty"`
-	}{}
+			PublicIds *[]string `json:"public_ids,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsDeleteTestsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicIds = all.PublicIds
 	return nil
 }
+
+

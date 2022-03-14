@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageIngestedSpansResponse Response containing the ingested spans usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageIngestedSpansResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIngestedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIngestedSpansHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageIngestedSpansHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageIngestedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

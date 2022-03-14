@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ProcessSummariesResponse List of process summaries.
 type ProcessSummariesResponse struct {
 	// Array of process summary objects.
-	Data *[]ProcessSummary     `json:"data,omitempty"`
+	Data *[]ProcessSummary `json:"data,omitempty"`
 	Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -119,9 +120,9 @@ func (o ProcessSummariesResponse) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummariesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]ProcessSummary     `json:"data,omitempty"`
-		Meta *ProcessSummariesMeta `json:"meta,omitempty"`
-	}{}
+			Data *[]ProcessSummary `json:"data,omitempty"`
+			Meta *ProcessSummariesMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *ProcessSummariesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

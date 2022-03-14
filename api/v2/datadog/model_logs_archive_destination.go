@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // LogsArchiveDestination - An archive's destination.
 type LogsArchiveDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
+	LogsArchiveDestinationGCS *LogsArchiveDestinationGCS
+	LogsArchiveDestinationS3 *LogsArchiveDestinationS3
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type LogsArchiveDestination struct {
 
 // LogsArchiveDestinationAzureAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationAzure wrapped in LogsArchiveDestination
 func LogsArchiveDestinationAzureAsLogsArchiveDestination(v *LogsArchiveDestinationAzure) LogsArchiveDestination {
-	return LogsArchiveDestination{LogsArchiveDestinationAzure: v}
+	return LogsArchiveDestination{ LogsArchiveDestinationAzure: v}
 }
 
 // LogsArchiveDestinationGCSAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationGCS wrapped in LogsArchiveDestination
 func LogsArchiveDestinationGCSAsLogsArchiveDestination(v *LogsArchiveDestinationGCS) LogsArchiveDestination {
-	return LogsArchiveDestination{LogsArchiveDestinationGCS: v}
+	return LogsArchiveDestination{ LogsArchiveDestinationGCS: v}
 }
 
 // LogsArchiveDestinationS3AsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationS3 wrapped in LogsArchiveDestination
 func LogsArchiveDestinationS3AsLogsArchiveDestination(v *LogsArchiveDestinationS3) LogsArchiveDestination {
-	return LogsArchiveDestination{LogsArchiveDestinationS3: v}
+	return LogsArchiveDestination{ LogsArchiveDestinationS3: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
@@ -129,7 +132,7 @@ func (src LogsArchiveDestination) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsArchiveDestination) GetActualInstance() interface{} {
+func (obj *LogsArchiveDestination) GetActualInstance() (interface{}) {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
 	}
@@ -181,3 +184,5 @@ func (v *NullableLogsArchiveDestination) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

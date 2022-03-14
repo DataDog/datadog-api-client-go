@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageLambdaResponse Response containing the number of lambda functions and sum of the invocations of all lambda functions for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageLambdaResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageLambdaResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageLambdaHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageLambdaHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageLambdaResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

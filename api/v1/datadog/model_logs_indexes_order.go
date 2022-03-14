@@ -52,7 +52,7 @@ func (o *LogsIndexesOrder) GetIndexNames() []string {
 // GetIndexNamesOk returns a tuple with the IndexNames field value
 // and a boolean to check if the value has been set.
 func (o *LogsIndexesOrder) GetIndexNamesOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.IndexNames, true
@@ -78,10 +78,10 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		IndexNames *[]string `json:"index_names"`
-	}{}
+		}{}
 	all := struct {
-		IndexNames []string `json:"index_names"`
-	}{}
+			IndexNames []string `json:"index_names"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *LogsIndexesOrder) UnmarshalJSON(bytes []byte) (err error) {
 	o.IndexNames = all.IndexNames
 	return nil
 }
+
+

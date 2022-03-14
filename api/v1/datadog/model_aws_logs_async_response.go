@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsAsyncResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
@@ -120,9 +121,9 @@ func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsAsyncResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
-		Status *string              `json:"status,omitempty"`
-	}{}
+			Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
+			Status *string `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *AWSLogsAsyncResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

@@ -15,7 +15,7 @@ import (
 
 // FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
 type FormulaAndFunctionProcessQueryDefinition struct {
-	Aggregator *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
+	Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
 	DataSource FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
 	// Whether to normalize the CPU percentages.
 	IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
@@ -24,7 +24,7 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Process metric name.
 	Metric string `json:"metric"`
 	// Name of query for use in formulas.
-	Name string          `json:"name"`
+	Name string `json:"name"`
 	Sort *QuerySortOrder `json:"sort,omitempty"`
 	// An array of tags to filter by.
 	TagFilters *[]string `json:"tag_filters,omitempty"`
@@ -103,7 +103,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFun
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAndFunctionProcessQueryDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -191,7 +191,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 // GetMetricOk returns a tuple with the Metric field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Metric, true
@@ -215,7 +215,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -361,20 +361,20 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	raw := map[string]interface{}{}
 	required := struct {
 		DataSource *FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
-		Metric     *string                                   `json:"metric"`
-		Name       *string                                   `json:"name"`
-	}{}
+		Metric *string `json:"metric"`
+		Name *string `json:"name"`
+		}{}
 	all := struct {
-		Aggregator      *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
-		DataSource      FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
-		IsNormalizedCpu *bool                                    `json:"is_normalized_cpu,omitempty"`
-		Limit           *int64                                   `json:"limit,omitempty"`
-		Metric          string                                   `json:"metric"`
-		Name            string                                   `json:"name"`
-		Sort            *QuerySortOrder                          `json:"sort,omitempty"`
-		TagFilters      *[]string                                `json:"tag_filters,omitempty"`
-		TextFilter      *string                                  `json:"text_filter,omitempty"`
-	}{}
+			Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
+			DataSource FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+			IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
+			Limit *int64 `json:"limit,omitempty"`
+			Metric string `json:"metric"`
+			Name string `json:"name"`
+			Sort *QuerySortOrder `json:"sort,omitempty"`
+			TagFilters *[]string `json:"tag_filters,omitempty"`
+			TextFilter *string `json:"text_filter,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -432,3 +432,5 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 	o.TextFilter = all.TextFilter
 	return nil
 }
+
+

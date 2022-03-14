@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ServiceSummaryWidgetDefinitionType Type of the service summary widget.
@@ -100,3 +101,4 @@ func (v *NullableServiceSummaryWidgetDefinitionType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

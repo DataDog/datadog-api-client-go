@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBrowserTestResultFull Object returned describing a browser test result.
@@ -20,11 +21,11 @@ type SyntheticsBrowserTestResultFull struct {
 	// Version of the browser test used.
 	CheckVersion *int64 `json:"check_version,omitempty"`
 	// Location from which the browser test was performed.
-	ProbeDc *string                          `json:"probe_dc,omitempty"`
-	Result  *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+	ProbeDc *string `json:"probe_dc,omitempty"`
+	Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
 	// ID of the browser test result.
-	ResultId *string                      `json:"result_id,omitempty"`
-	Status   *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+	ResultId *string `json:"result_id,omitempty"`
+	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -302,14 +303,14 @@ func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Check        *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
-		CheckTime    *float64                              `json:"check_time,omitempty"`
-		CheckVersion *int64                                `json:"check_version,omitempty"`
-		ProbeDc      *string                               `json:"probe_dc,omitempty"`
-		Result       *SyntheticsBrowserTestResultData      `json:"result,omitempty"`
-		ResultId     *string                               `json:"result_id,omitempty"`
-		Status       *SyntheticsTestMonitorStatus          `json:"status,omitempty"`
-	}{}
+			Check *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
+			CheckTime *float64 `json:"check_time,omitempty"`
+			CheckVersion *int64 `json:"check_version,omitempty"`
+			ProbeDc *string `json:"probe_dc,omitempty"`
+			Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+			ResultId *string `json:"result_id,omitempty"`
+			Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -336,3 +337,5 @@ func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error
 	o.Status = all.Status
 	return nil
 }
+
+

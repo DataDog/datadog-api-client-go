@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsSSLCertificateIssuer Object describing the issuer of a SSL certificate.
@@ -268,13 +269,13 @@ func (o SyntheticsSSLCertificateIssuer) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsSSLCertificateIssuer) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		C  *string `json:"C,omitempty"`
-		CN *string `json:"CN,omitempty"`
-		L  *string `json:"L,omitempty"`
-		O  *string `json:"O,omitempty"`
-		OU *string `json:"OU,omitempty"`
-		ST *string `json:"ST,omitempty"`
-	}{}
+			C *string `json:"C,omitempty"`
+			CN *string `json:"CN,omitempty"`
+			L *string `json:"L,omitempty"`
+			O *string `json:"O,omitempty"`
+			OU *string `json:"OU,omitempty"`
+			ST *string `json:"ST,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -292,3 +293,5 @@ func (o *SyntheticsSSLCertificateIssuer) UnmarshalJSON(bytes []byte) (err error)
 	o.ST = all.ST
 	return nil
 }
+
+

@@ -10,13 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // UserResponseIncludedItem - An object related to a user.
 type UserResponseIncludedItem struct {
 	Organization *Organization
-	Permission   *Permission
-	Role         *Role
+	Permission *Permission
+	Role *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -24,18 +26,19 @@ type UserResponseIncludedItem struct {
 
 // OrganizationAsUserResponseIncludedItem is a convenience function that returns Organization wrapped in UserResponseIncludedItem
 func OrganizationAsUserResponseIncludedItem(v *Organization) UserResponseIncludedItem {
-	return UserResponseIncludedItem{Organization: v}
+	return UserResponseIncludedItem{ Organization: v}
 }
 
 // PermissionAsUserResponseIncludedItem is a convenience function that returns Permission wrapped in UserResponseIncludedItem
 func PermissionAsUserResponseIncludedItem(v *Permission) UserResponseIncludedItem {
-	return UserResponseIncludedItem{Permission: v}
+	return UserResponseIncludedItem{ Permission: v}
 }
 
 // RoleAsUserResponseIncludedItem is a convenience function that returns Role wrapped in UserResponseIncludedItem
 func RoleAsUserResponseIncludedItem(v *Role) UserResponseIncludedItem {
-	return UserResponseIncludedItem{Role: v}
+	return UserResponseIncludedItem{ Role: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *UserResponseIncludedItem) UnmarshalJSON(data []byte) error {
@@ -124,7 +127,7 @@ func (src UserResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *UserResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *UserResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.Organization != nil {
 		return obj.Organization
 	}
@@ -176,3 +179,5 @@ func (v *NullableUserResponseIncludedItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

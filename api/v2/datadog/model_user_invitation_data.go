@@ -16,7 +16,7 @@ import (
 // UserInvitationData Object to create a user invitation.
 type UserInvitationData struct {
 	Relationships UserInvitationRelationships `json:"relationships"`
-	Type          UserInvitationsType         `json:"type"`
+	Type UserInvitationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *UserInvitationData) GetRelationships() UserInvitationRelationships {
 // GetRelationshipsOk returns a tuple with the Relationships field value
 // and a boolean to check if the value has been set.
 func (o *UserInvitationData) GetRelationshipsOk() (*UserInvitationRelationships, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Relationships, true
@@ -79,7 +79,7 @@ func (o *UserInvitationData) GetType() UserInvitationsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *UserInvitationData) GetTypeOk() (*UserInvitationsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Relationships *UserInvitationRelationships `json:"relationships"`
-		Type          *UserInvitationsType         `json:"type"`
-	}{}
+		Type *UserInvitationsType `json:"type"`
+		}{}
 	all := struct {
-		Relationships UserInvitationRelationships `json:"relationships"`
-		Type          UserInvitationsType         `json:"type"`
-	}{}
+			Relationships UserInvitationRelationships `json:"relationships"`
+			Type UserInvitationsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

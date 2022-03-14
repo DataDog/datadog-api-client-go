@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateResponse The response object for the logs aggregate API endpoint
 type LogsAggregateResponse struct {
 	Data *LogsAggregateResponseData `json:"data,omitempty"`
-	Meta *LogsResponseMetadata      `json:"meta,omitempty"`
+	Meta *LogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -118,9 +119,9 @@ func (o LogsAggregateResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *LogsAggregateResponseData `json:"data,omitempty"`
-		Meta *LogsResponseMetadata      `json:"meta,omitempty"`
-	}{}
+			Data *LogsAggregateResponseData `json:"data,omitempty"`
+			Meta *LogsResponseMetadata `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *LogsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityFilterUpdateAttributes The security filters properties to be updated.
 type SecurityFilterUpdateAttributes struct {
 	// Exclusion filters to exclude some logs from the security filter.
 	ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
-	FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type,omitempty"`
+	FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
 	// Whether the security filter is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
 	// The name of the security filter.
@@ -267,13 +268,13 @@ func (o SecurityFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
-		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type,omitempty"`
-		IsEnabled        *bool                            `json:"is_enabled,omitempty"`
-		Name             *string                          `json:"name,omitempty"`
-		Query            *string                          `json:"query,omitempty"`
-		Version          *int32                           `json:"version,omitempty"`
-	}{}
+			ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
+			FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
+			IsEnabled *bool `json:"is_enabled,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Query *string `json:"query,omitempty"`
+			Version *int32 `json:"version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -299,3 +300,5 @@ func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 	o.Version = all.Version
 	return nil
 }
+
+

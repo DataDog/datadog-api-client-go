@@ -18,14 +18,14 @@ type AlertValueWidgetDefinition struct {
 	// ID of the alert to use in the widget.
 	AlertId string `json:"alert_id"`
 	// Number of decimal to show. If not defined, will use the raw value.
-	Precision *int64           `json:"precision,omitempty"`
+	Precision *int64 `json:"precision,omitempty"`
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of value in the widget.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      AlertValueWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type AlertValueWidgetDefinitionType `json:"type"`
 	// Unit to display with the value.
 	Unit *string `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -66,7 +66,7 @@ func (o *AlertValueWidgetDefinition) GetAlertId() string {
 // GetAlertIdOk returns a tuple with the AlertId field value
 // and a boolean to check if the value has been set.
 func (o *AlertValueWidgetDefinition) GetAlertIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AlertId, true
@@ -250,7 +250,7 @@ func (o *AlertValueWidgetDefinition) GetType() AlertValueWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *AlertValueWidgetDefinition) GetTypeOk() (*AlertValueWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -328,19 +328,19 @@ func (o AlertValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AlertId *string                         `json:"alert_id"`
-		Type    *AlertValueWidgetDefinitionType `json:"type"`
-	}{}
+		AlertId *string `json:"alert_id"`
+		Type *AlertValueWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		AlertId    string                         `json:"alert_id"`
-		Precision  *int64                         `json:"precision,omitempty"`
-		TextAlign  *WidgetTextAlign               `json:"text_align,omitempty"`
-		Title      *string                        `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize  *string                        `json:"title_size,omitempty"`
-		Type       AlertValueWidgetDefinitionType `json:"type"`
-		Unit       *string                        `json:"unit,omitempty"`
-	}{}
+			AlertId string `json:"alert_id"`
+			Precision *int64 `json:"precision,omitempty"`
+			TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type AlertValueWidgetDefinitionType `json:"type"`
+			Unit *string `json:"unit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -394,3 +394,5 @@ func (o *AlertValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Unit = all.Unit
 	return nil
 }
+
+

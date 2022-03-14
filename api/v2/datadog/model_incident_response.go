@@ -53,7 +53,7 @@ func (o *IncidentResponse) GetData() IncidentResponseData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *IncidentResponse) GetDataOk() (*IncidentResponseData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -114,11 +114,11 @@ func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *IncidentResponseData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data     IncidentResponseData            `json:"data"`
-		Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
-	}{}
+			Data IncidentResponseData `json:"data"`
+			Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -139,3 +139,5 @@ func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Included = all.Included
 	return nil
 }
+
+

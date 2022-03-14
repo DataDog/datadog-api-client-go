@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSTagFilterCreateRequest The objects used to set an AWS tag filter.
 type AWSTagFilterCreateRequest struct {
 	// Your AWS Account ID without dashes.
-	AccountId *string       `json:"account_id,omitempty"`
+	AccountId *string `json:"account_id,omitempty"`
 	Namespace *AWSNamespace `json:"namespace,omitempty"`
 	// The tag filter string.
 	TagFilterStr *string `json:"tag_filter_str,omitempty"`
@@ -156,10 +157,10 @@ func (o AWSTagFilterCreateRequest) MarshalJSON() ([]byte, error) {
 func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId    *string       `json:"account_id,omitempty"`
-		Namespace    *AWSNamespace `json:"namespace,omitempty"`
-		TagFilterStr *string       `json:"tag_filter_str,omitempty"`
-	}{}
+			AccountId *string `json:"account_id,omitempty"`
+			Namespace *AWSNamespace `json:"namespace,omitempty"`
+			TagFilterStr *string `json:"tag_filter_str,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -182,3 +183,5 @@ func (o *AWSTagFilterCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagFilterStr = all.TagFilterStr
 	return nil
 }
+
+

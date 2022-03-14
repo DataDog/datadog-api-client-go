@@ -18,17 +18,17 @@ type ScatterPlotWidgetDefinition struct {
 	// List of groups used for colors.
 	ColorByGroups *[]string `json:"color_by_groups,omitempty"`
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink                 `json:"custom_links,omitempty"`
-	Requests    ScatterPlotWidgetDefinitionRequests `json:"requests"`
-	Time        *WidgetTime                         `json:"time,omitempty"`
+	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of your widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      ScatterPlotWidgetDefinitionType `json:"type"`
-	Xaxis     *WidgetAxis                     `json:"xaxis,omitempty"`
-	Yaxis     *WidgetAxis                     `json:"yaxis,omitempty"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type ScatterPlotWidgetDefinitionType `json:"type"`
+	Xaxis *WidgetAxis `json:"xaxis,omitempty"`
+	Yaxis *WidgetAxis `json:"yaxis,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -131,7 +131,7 @@ func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionR
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinitionRequests, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -283,7 +283,7 @@ func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*ScatterPlotWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -400,20 +400,20 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Requests *ScatterPlotWidgetDefinitionRequests `json:"requests"`
-		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
-	}{}
+		Type *ScatterPlotWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		ColorByGroups *[]string                           `json:"color_by_groups,omitempty"`
-		CustomLinks   *[]WidgetCustomLink                 `json:"custom_links,omitempty"`
-		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"`
-		Time          *WidgetTime                         `json:"time,omitempty"`
-		Title         *string                             `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                    `json:"title_align,omitempty"`
-		TitleSize     *string                             `json:"title_size,omitempty"`
-		Type          ScatterPlotWidgetDefinitionType     `json:"type"`
-		Xaxis         *WidgetAxis                         `json:"xaxis,omitempty"`
-		Yaxis         *WidgetAxis                         `json:"yaxis,omitempty"`
-	}{}
+			ColorByGroups *[]string `json:"color_by_groups,omitempty"`
+			CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+			Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type ScatterPlotWidgetDefinitionType `json:"type"`
+			Xaxis *WidgetAxis `json:"xaxis,omitempty"`
+			Yaxis *WidgetAxis `json:"yaxis,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -461,3 +461,5 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Yaxis = all.Yaxis
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsByRetentionOrgs Indexed logs usage summary for each organization for each retention period with usage.
@@ -83,8 +84,8 @@ func (o LogsByRetentionOrgs) MarshalJSON() ([]byte, error) {
 func (o *LogsByRetentionOrgs) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]LogsByRetentionOrgUsage `json:"usage,omitempty"`
-	}{}
+			Usage *[]LogsByRetentionOrgUsage `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsByRetentionOrgs) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

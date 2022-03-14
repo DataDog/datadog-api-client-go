@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsSort Time-ascending `asc` or time-descending `desc`results.
@@ -18,7 +19,7 @@ type LogsSort string
 
 // List of LogsSort
 const (
-	LOGSSORT_TIME_ASCENDING  LogsSort = "asc"
+	LOGSSORT_TIME_ASCENDING LogsSort = "asc"
 	LOGSSORT_TIME_DESCENDING LogsSort = "desc"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableLogsSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

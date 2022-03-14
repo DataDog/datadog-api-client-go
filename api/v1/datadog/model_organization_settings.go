@@ -10,24 +10,25 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationSettings A JSON array of settings.
 type OrganizationSettings struct {
 	// Whether or not the organization users can share widgets outside of Datadog.
-	PrivateWidgetShare         *bool                                           `json:"private_widget_share,omitempty"`
-	Saml                       *OrganizationSettingsSaml                       `json:"saml,omitempty"`
-	SamlAutocreateAccessRole   *AccessRole                                     `json:"saml_autocreate_access_role,omitempty"`
+	PrivateWidgetShare *bool `json:"private_widget_share,omitempty"`
+	Saml *OrganizationSettingsSaml `json:"saml,omitempty"`
+	SamlAutocreateAccessRole *AccessRole `json:"saml_autocreate_access_role,omitempty"`
 	SamlAutocreateUsersDomains *OrganizationSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
 	// Whether or not SAML can be enabled for this organization.
 	SamlCanBeEnabled *bool `json:"saml_can_be_enabled,omitempty"`
 	// Identity provider endpoint for SAML authentication.
-	SamlIdpEndpoint       *string                                    `json:"saml_idp_endpoint,omitempty"`
+	SamlIdpEndpoint *string `json:"saml_idp_endpoint,omitempty"`
 	SamlIdpInitiatedLogin *OrganizationSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
 	// Whether or not a SAML identity provider metadata file was provided to the Datadog organization.
 	SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
 	// URL for SAML logging.
-	SamlLoginUrl   *string                             `json:"saml_login_url,omitempty"`
+	SamlLoginUrl *string `json:"saml_login_url,omitempty"`
 	SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -415,17 +416,17 @@ func (o OrganizationSettings) MarshalJSON() ([]byte, error) {
 func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PrivateWidgetShare         *bool                                           `json:"private_widget_share,omitempty"`
-		Saml                       *OrganizationSettingsSaml                       `json:"saml,omitempty"`
-		SamlAutocreateAccessRole   *AccessRole                                     `json:"saml_autocreate_access_role,omitempty"`
-		SamlAutocreateUsersDomains *OrganizationSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
-		SamlCanBeEnabled           *bool                                           `json:"saml_can_be_enabled,omitempty"`
-		SamlIdpEndpoint            *string                                         `json:"saml_idp_endpoint,omitempty"`
-		SamlIdpInitiatedLogin      *OrganizationSettingsSamlIdpInitiatedLogin      `json:"saml_idp_initiated_login,omitempty"`
-		SamlIdpMetadataUploaded    *bool                                           `json:"saml_idp_metadata_uploaded,omitempty"`
-		SamlLoginUrl               *string                                         `json:"saml_login_url,omitempty"`
-		SamlStrictMode             *OrganizationSettingsSamlStrictMode             `json:"saml_strict_mode,omitempty"`
-	}{}
+			PrivateWidgetShare *bool `json:"private_widget_share,omitempty"`
+			Saml *OrganizationSettingsSaml `json:"saml,omitempty"`
+			SamlAutocreateAccessRole *AccessRole `json:"saml_autocreate_access_role,omitempty"`
+			SamlAutocreateUsersDomains *OrganizationSettingsSamlAutocreateUsersDomains `json:"saml_autocreate_users_domains,omitempty"`
+			SamlCanBeEnabled *bool `json:"saml_can_be_enabled,omitempty"`
+			SamlIdpEndpoint *string `json:"saml_idp_endpoint,omitempty"`
+			SamlIdpInitiatedLogin *OrganizationSettingsSamlIdpInitiatedLogin `json:"saml_idp_initiated_login,omitempty"`
+			SamlIdpMetadataUploaded *bool `json:"saml_idp_metadata_uploaded,omitempty"`
+			SamlLoginUrl *string `json:"saml_login_url,omitempty"`
+			SamlStrictMode *OrganizationSettingsSamlStrictMode `json:"saml_strict_mode,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -455,3 +456,5 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 	o.SamlStrictMode = all.SamlStrictMode
 	return nil
 }
+
+

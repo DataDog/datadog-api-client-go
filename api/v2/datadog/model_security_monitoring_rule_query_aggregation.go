@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SecurityMonitoringRuleQueryAggregation The aggregation type.
@@ -18,12 +19,12 @@ type SecurityMonitoringRuleQueryAggregation string
 
 // List of SecurityMonitoringRuleQueryAggregation
 const (
-	SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT       SecurityMonitoringRuleQueryAggregation = "count"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT SecurityMonitoringRuleQueryAggregation = "count"
 	SECURITYMONITORINGRULEQUERYAGGREGATION_CARDINALITY SecurityMonitoringRuleQueryAggregation = "cardinality"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM         SecurityMonitoringRuleQueryAggregation = "sum"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX         SecurityMonitoringRuleQueryAggregation = "max"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE   SecurityMonitoringRuleQueryAggregation = "new_value"
-	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA    SecurityMonitoringRuleQueryAggregation = "geo_data"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_SUM SecurityMonitoringRuleQueryAggregation = "sum"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_MAX SecurityMonitoringRuleQueryAggregation = "max"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_NEW_VALUE SecurityMonitoringRuleQueryAggregation = "new_value"
+	SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA SecurityMonitoringRuleQueryAggregation = "geo_data"
 )
 
 var allowedSecurityMonitoringRuleQueryAggregationEnumValues = []SecurityMonitoringRuleQueryAggregation{
@@ -110,3 +111,4 @@ func (v *NullableSecurityMonitoringRuleQueryAggregation) UnmarshalJSON(src []byt
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

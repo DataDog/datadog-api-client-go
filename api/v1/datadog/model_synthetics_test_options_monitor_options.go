@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor (for example, renotification).
@@ -83,8 +84,8 @@ func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
-	}{}
+			RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err e
 	o.RenotifyInterval = all.RenotifyInterval
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageAttributionPagination The metadata for the current pagination.
@@ -231,12 +232,12 @@ func (o UsageAttributionPagination) MarshalJSON() ([]byte, error) {
 func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Limit                *int64  `json:"limit,omitempty"`
-		Offset               *int64  `json:"offset,omitempty"`
-		SortDirection        *string `json:"sort_direction,omitempty"`
-		SortName             *string `json:"sort_name,omitempty"`
-		TotalNumberOfRecords *int64  `json:"total_number_of_records,omitempty"`
-	}{}
+			Limit *int64 `json:"limit,omitempty"`
+			Offset *int64 `json:"offset,omitempty"`
+			SortDirection *string `json:"sort_direction,omitempty"`
+			SortName *string `json:"sort_name,omitempty"`
+			TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -253,3 +254,5 @@ func (o *UsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalNumberOfRecords = all.TotalNumberOfRecords
 	return nil
 }
+
+

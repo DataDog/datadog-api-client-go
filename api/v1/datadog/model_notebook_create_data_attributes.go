@@ -16,12 +16,12 @@ import (
 // NotebookCreateDataAttributes The data attributes of a notebook.
 type NotebookCreateDataAttributes struct {
 	// List of cells to display in the notebook.
-	Cells    []NotebookCellCreateRequest `json:"cells"`
-	Metadata *NotebookMetadata           `json:"metadata,omitempty"`
+	Cells []NotebookCellCreateRequest `json:"cells"`
+	Metadata *NotebookMetadata `json:"metadata,omitempty"`
 	// The name of the notebook.
-	Name   string             `json:"name"`
-	Status *NotebookStatus    `json:"status,omitempty"`
-	Time   NotebookGlobalTime `json:"time"`
+	Name string `json:"name"`
+	Status *NotebookStatus `json:"status,omitempty"`
+	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -63,7 +63,7 @@ func (o *NotebookCreateDataAttributes) GetCells() []NotebookCellCreateRequest {
 // GetCellsOk returns a tuple with the Cells field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCreateDataAttributes) GetCellsOk() (*[]NotebookCellCreateRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Cells, true
@@ -119,7 +119,7 @@ func (o *NotebookCreateDataAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCreateDataAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -175,7 +175,7 @@ func (o *NotebookCreateDataAttributes) GetTime() NotebookGlobalTime {
 // GetTimeOk returns a tuple with the Time field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCreateDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Time, true
@@ -213,16 +213,16 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Cells *[]NotebookCellCreateRequest `json:"cells"`
-		Name  *string                      `json:"name"`
-		Time  *NotebookGlobalTime          `json:"time"`
-	}{}
+		Name *string `json:"name"`
+		Time *NotebookGlobalTime `json:"time"`
+		}{}
 	all := struct {
-		Cells    []NotebookCellCreateRequest `json:"cells"`
-		Metadata *NotebookMetadata           `json:"metadata,omitempty"`
-		Name     string                      `json:"name"`
-		Status   *NotebookStatus             `json:"status,omitempty"`
-		Time     NotebookGlobalTime          `json:"time"`
-	}{}
+			Cells []NotebookCellCreateRequest `json:"cells"`
+			Metadata *NotebookMetadata `json:"metadata,omitempty"`
+			Name string `json:"name"`
+			Status *NotebookStatus `json:"status,omitempty"`
+			Time NotebookGlobalTime `json:"time"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -260,3 +260,5 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Time = all.Time
 	return nil
 }
+
+

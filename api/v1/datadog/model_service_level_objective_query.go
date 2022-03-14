@@ -55,7 +55,7 @@ func (o *ServiceLevelObjectiveQuery) GetDenominator() string {
 // GetDenominatorOk returns a tuple with the Denominator field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveQuery) GetDenominatorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Denominator, true
@@ -79,7 +79,7 @@ func (o *ServiceLevelObjectiveQuery) GetNumerator() string {
 // GetNumeratorOk returns a tuple with the Numerator field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveQuery) GetNumeratorOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Numerator, true
@@ -108,12 +108,12 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *string `json:"denominator"`
-		Numerator   *string `json:"numerator"`
-	}{}
+		Numerator *string `json:"numerator"`
+		}{}
 	all := struct {
-		Denominator string `json:"denominator"`
-		Numerator   string `json:"numerator"`
-	}{}
+			Denominator string `json:"denominator"`
+			Numerator string `json:"numerator"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *ServiceLevelObjectiveQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Numerator = all.Numerator
 	return nil
 }
+
+

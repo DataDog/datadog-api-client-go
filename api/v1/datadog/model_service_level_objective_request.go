@@ -22,13 +22,13 @@ type ServiceLevelObjectiveRequest struct {
 	// A list of monitor ids that defines the scope of a monitor service level objective. **Required if type is `monitor`**.
 	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
-	Name  string                      `json:"name"`
+	Name string `json:"name"`
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
 	// A list of tags associated with this service level objective. Always included in service level objective responses (but may be empty). Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
-	Type       SLOType        `json:"type"`
+	Type SLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -66,7 +66,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -85,7 +85,6 @@ func (o *ServiceLevelObjectiveRequest) HasDescription() bool {
 func (o *ServiceLevelObjectiveRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -173,7 +172,7 @@ func (o *ServiceLevelObjectiveRequest) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -261,7 +260,7 @@ func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
 // GetThresholdsOk returns a tuple with the Thresholds field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetThresholdsOk() (*[]SLOThreshold, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Thresholds, true
@@ -285,7 +284,7 @@ func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *ServiceLevelObjectiveRequest) GetTypeOk() (*SLOType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -331,20 +330,20 @@ func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name       *string         `json:"name"`
+		Name *string `json:"name"`
 		Thresholds *[]SLOThreshold `json:"thresholds"`
-		Type       *SLOType        `json:"type"`
-	}{}
+		Type *SLOType `json:"type"`
+		}{}
 	all := struct {
-		Description NullableString              `json:"description,omitempty"`
-		Groups      *[]string                   `json:"groups,omitempty"`
-		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
-		Name        string                      `json:"name"`
-		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags        *[]string                   `json:"tags,omitempty"`
-		Thresholds  []SLOThreshold              `json:"thresholds"`
-		Type        SLOType                     `json:"type"`
-	}{}
+			Description NullableString `json:"description,omitempty"`
+			Groups *[]string `json:"groups,omitempty"`
+			MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+			Name string `json:"name"`
+			Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Thresholds []SLOThreshold `json:"thresholds"`
+			Type SLOType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -385,3 +384,5 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

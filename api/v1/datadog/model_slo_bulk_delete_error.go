@@ -18,7 +18,7 @@ type SLOBulkDeleteError struct {
 	// The ID of the service level objective object associated with this error.
 	Id string `json:"id"`
 	// The error message.
-	Message   string            `json:"message"`
+	Message string `json:"message"`
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -57,7 +57,7 @@ func (o *SLOBulkDeleteError) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteError) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -81,7 +81,7 @@ func (o *SLOBulkDeleteError) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteError) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -105,7 +105,7 @@ func (o *SLOBulkDeleteError) GetTimeframe() SLOErrorTimeframe {
 // GetTimeframeOk returns a tuple with the Timeframe field value
 // and a boolean to check if the value has been set.
 func (o *SLOBulkDeleteError) GetTimeframeOk() (*SLOErrorTimeframe, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Timeframe, true
@@ -136,15 +136,15 @@ func (o SLOBulkDeleteError) MarshalJSON() ([]byte, error) {
 func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id        *string            `json:"id"`
-		Message   *string            `json:"message"`
+		Id *string `json:"id"`
+		Message *string `json:"message"`
 		Timeframe *SLOErrorTimeframe `json:"timeframe"`
-	}{}
+		}{}
 	all := struct {
-		Id        string            `json:"id"`
-		Message   string            `json:"message"`
-		Timeframe SLOErrorTimeframe `json:"timeframe"`
-	}{}
+			Id string `json:"id"`
+			Message string `json:"message"`
+			Timeframe SLOErrorTimeframe `json:"timeframe"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -180,3 +180,5 @@ func (o *SLOBulkDeleteError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timeframe = all.Timeframe
 	return nil
 }
+
+

@@ -20,11 +20,11 @@ type LogsListRequest struct {
 	// Number of logs return in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// The search query - following the log search syntax.
-	Query *string   `json:"query,omitempty"`
-	Sort  *LogsSort `json:"sort,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Sort *LogsSort `json:"sort,omitempty"`
 	// Hash identifier of the first log to return in the list, available in a log `id` attribute. This parameter is used for the pagination feature.  **Note**: This parameter is ignored if the corresponding log is out of the scope of the specified time window.
-	StartAt *string             `json:"startAt,omitempty"`
-	Time    LogsListRequestTime `json:"time"`
+	StartAt *string `json:"startAt,omitempty"`
+	Time LogsListRequestTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -220,7 +220,7 @@ func (o *LogsListRequest) GetTime() LogsListRequestTime {
 // GetTimeOk returns a tuple with the Time field value
 // and a boolean to check if the value has been set.
 func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Time, true
@@ -261,15 +261,15 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Time *LogsListRequestTime `json:"time"`
-	}{}
+		}{}
 	all := struct {
-		Index   *string             `json:"index,omitempty"`
-		Limit   *int32              `json:"limit,omitempty"`
-		Query   *string             `json:"query,omitempty"`
-		Sort    *LogsSort           `json:"sort,omitempty"`
-		StartAt *string             `json:"startAt,omitempty"`
-		Time    LogsListRequestTime `json:"time"`
-	}{}
+			Index *string `json:"index,omitempty"`
+			Limit *int32 `json:"limit,omitempty"`
+			Query *string `json:"query,omitempty"`
+			Sort *LogsSort `json:"sort,omitempty"`
+			StartAt *string `json:"startAt,omitempty"`
+			Time LogsListRequestTime `json:"time"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -302,3 +302,5 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Time = all.Time
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsAggregateSortType The type of sorting algorithm
@@ -19,7 +20,7 @@ type LogsAggregateSortType string
 // List of LogsAggregateSortType
 const (
 	LOGSAGGREGATESORTTYPE_ALPHABETICAL LogsAggregateSortType = "alphabetical"
-	LOGSAGGREGATESORTTYPE_MEASURE      LogsAggregateSortType = "measure"
+	LOGSAGGREGATESORTTYPE_MEASURE LogsAggregateSortType = "measure"
 )
 
 var allowedLogsAggregateSortTypeEnumValues = []LogsAggregateSortType{
@@ -102,3 +103,4 @@ func (v *NullableLogsAggregateSortType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

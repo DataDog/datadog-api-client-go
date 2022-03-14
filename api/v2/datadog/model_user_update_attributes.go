@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UserUpdateAttributes Attributes of the edited user.
@@ -157,10 +158,10 @@ func (o UserUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *UserUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Disabled *bool   `json:"disabled,omitempty"`
-		Email    *string `json:"email,omitempty"`
-		Name     *string `json:"name,omitempty"`
-	}{}
+			Disabled *bool `json:"disabled,omitempty"`
+			Email *string `json:"email,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *UserUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

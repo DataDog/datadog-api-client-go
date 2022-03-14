@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringRuleResponse Rule.
@@ -35,12 +36,12 @@ type SecurityMonitoringRuleResponse struct {
 	// Message for generated signals.
 	Message *string `json:"message,omitempty"`
 	// The name of the rule.
-	Name    *string                        `json:"name,omitempty"`
+	Name *string `json:"name,omitempty"`
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
 	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
-	Tags *[]string                       `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 	// User ID of the user who updated the rule.
 	UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
@@ -673,24 +674,24 @@ func (o SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase   `json:"cases,omitempty"`
-		CreatedAt        *int64                          `json:"createdAt,omitempty"`
-		CreationAuthorId *int64                          `json:"creationAuthorId,omitempty"`
-		Filters          *[]SecurityMonitoringFilter     `json:"filters,omitempty"`
-		HasExtendedTitle *bool                           `json:"hasExtendedTitle,omitempty"`
-		Id               *string                         `json:"id,omitempty"`
-		IsDefault        *bool                           `json:"isDefault,omitempty"`
-		IsDeleted        *bool                           `json:"isDeleted,omitempty"`
-		IsEnabled        *bool                           `json:"isEnabled,omitempty"`
-		Message          *string                         `json:"message,omitempty"`
-		Name             *string                         `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions  `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery  `json:"queries,omitempty"`
-		Tags             *[]string                       `json:"tags,omitempty"`
-		Type             *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
-		UpdateAuthorId   *int64                          `json:"updateAuthorId,omitempty"`
-		Version          *int64                          `json:"version,omitempty"`
-	}{}
+			Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
+			CreatedAt *int64 `json:"createdAt,omitempty"`
+			CreationAuthorId *int64 `json:"creationAuthorId,omitempty"`
+			Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+			HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+			Id *string `json:"id,omitempty"`
+			IsDefault *bool `json:"isDefault,omitempty"`
+			IsDeleted *bool `json:"isDeleted,omitempty"`
+			IsEnabled *bool `json:"isEnabled,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
+			Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
+			UpdateAuthorId *int64 `json:"updateAuthorId,omitempty"`
+			Version *int64 `json:"version,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -727,3 +728,5 @@ func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Version = all.Version
 	return nil
 }
+
+

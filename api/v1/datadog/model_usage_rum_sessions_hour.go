@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -306,14 +307,14 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                *time.Time `json:"hour,omitempty"`
-		OrgName             *string    `json:"org_name,omitempty"`
-		PublicId            *string    `json:"public_id,omitempty"`
-		ReplaySessionCount  *int64     `json:"replay_session_count,omitempty"`
-		SessionCount        *int64     `json:"session_count,omitempty"`
-		SessionCountAndroid *int64     `json:"session_count_android,omitempty"`
-		SessionCountIos     *int64     `json:"session_count_ios,omitempty"`
-	}{}
+			Hour *time.Time `json:"hour,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			ReplaySessionCount *int64 `json:"replay_session_count,omitempty"`
+			SessionCount *int64 `json:"session_count,omitempty"`
+			SessionCountAndroid *int64 `json:"session_count_android,omitempty"`
+			SessionCountIos *int64 `json:"session_count_ios,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -332,3 +333,5 @@ func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.SessionCountIos = all.SessionCountIos
 	return nil
 }
+
+

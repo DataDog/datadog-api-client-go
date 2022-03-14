@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HourlyUsageAttributionResponse Response containing the hourly usage attribution by tag(s).
@@ -119,9 +120,9 @@ func (o HourlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metadata *HourlyUsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    *[]HourlyUsageAttributionBody   `json:"usage,omitempty"`
-	}{}
+			Metadata *HourlyUsageAttributionMetadata `json:"metadata,omitempty"`
+			Usage *[]HourlyUsageAttributionBody `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.Usage = all.Usage
 	return nil
 }
+
+

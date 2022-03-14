@@ -86,7 +86,7 @@ func (o *LogsExclusionFilter) GetSampleRate() float64 {
 // GetSampleRateOk returns a tuple with the SampleRate field value
 // and a boolean to check if the value has been set.
 func (o *LogsExclusionFilter) GetSampleRateOk() (*float64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.SampleRate, true
@@ -115,11 +115,11 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		SampleRate *float64 `json:"sample_rate"`
-	}{}
+		}{}
 	all := struct {
-		Query      *string `json:"query,omitempty"`
-		SampleRate float64 `json:"sample_rate"`
-	}{}
+			Query *string `json:"query,omitempty"`
+			SampleRate float64 `json:"sample_rate"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *LogsExclusionFilter) UnmarshalJSON(bytes []byte) (err error) {
 	o.SampleRate = all.SampleRate
 	return nil
 }
+
+

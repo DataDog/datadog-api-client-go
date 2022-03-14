@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ListStreamColumnWidth Widget column width.
@@ -18,9 +19,9 @@ type ListStreamColumnWidth string
 
 // List of ListStreamColumnWidth
 const (
-	LISTSTREAMCOLUMNWIDTH_AUTO    ListStreamColumnWidth = "auto"
+	LISTSTREAMCOLUMNWIDTH_AUTO ListStreamColumnWidth = "auto"
 	LISTSTREAMCOLUMNWIDTH_COMPACT ListStreamColumnWidth = "compact"
-	LISTSTREAMCOLUMNWIDTH_FULL    ListStreamColumnWidth = "full"
+	LISTSTREAMCOLUMNWIDTH_FULL ListStreamColumnWidth = "full"
 )
 
 var allowedListStreamColumnWidthEnumValues = []ListStreamColumnWidth{
@@ -104,3 +105,4 @@ func (v *NullableListStreamColumnWidth) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

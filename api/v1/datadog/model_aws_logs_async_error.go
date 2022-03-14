@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsAsyncError Description of errors.
@@ -120,9 +121,9 @@ func (o AWSLogsAsyncError) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *string `json:"code,omitempty"`
-		Message *string `json:"message,omitempty"`
-	}{}
+			Code *string `json:"code,omitempty"`
+			Message *string `json:"message,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

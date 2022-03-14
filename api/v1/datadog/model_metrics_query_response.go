@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricsQueryResponse Response Object that includes your query and the list of metrics retrieved.
@@ -379,16 +380,16 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Error    *string                 `json:"error,omitempty"`
-		FromDate *int64                  `json:"from_date,omitempty"`
-		GroupBy  *[]string               `json:"group_by,omitempty"`
-		Message  *string                 `json:"message,omitempty"`
-		Query    *string                 `json:"query,omitempty"`
-		ResType  *string                 `json:"res_type,omitempty"`
-		Series   *[]MetricsQueryMetadata `json:"series,omitempty"`
-		Status   *string                 `json:"status,omitempty"`
-		ToDate   *int64                  `json:"to_date,omitempty"`
-	}{}
+			Error *string `json:"error,omitempty"`
+			FromDate *int64 `json:"from_date,omitempty"`
+			GroupBy *[]string `json:"group_by,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Query *string `json:"query,omitempty"`
+			ResType *string `json:"res_type,omitempty"`
+			Series *[]MetricsQueryMetadata `json:"series,omitempty"`
+			Status *string `json:"status,omitempty"`
+			ToDate *int64 `json:"to_date,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -409,3 +410,5 @@ func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.ToDate = all.ToDate
 	return nil
 }
+
+

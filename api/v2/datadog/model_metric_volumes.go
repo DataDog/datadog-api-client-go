@@ -10,11 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // MetricVolumes - Possible response objects for a metric's volume.
 type MetricVolumes struct {
-	MetricDistinctVolume        *MetricDistinctVolume
+	MetricDistinctVolume *MetricDistinctVolume
 	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -23,13 +25,14 @@ type MetricVolumes struct {
 
 // MetricDistinctVolumeAsMetricVolumes is a convenience function that returns MetricDistinctVolume wrapped in MetricVolumes
 func MetricDistinctVolumeAsMetricVolumes(v *MetricDistinctVolume) MetricVolumes {
-	return MetricVolumes{MetricDistinctVolume: v}
+	return MetricVolumes{ MetricDistinctVolume: v}
 }
 
 // MetricIngestedIndexedVolumeAsMetricVolumes is a convenience function that returns MetricIngestedIndexedVolume wrapped in MetricVolumes
 func MetricIngestedIndexedVolumeAsMetricVolumes(v *MetricIngestedIndexedVolume) MetricVolumes {
-	return MetricVolumes{MetricIngestedIndexedVolume: v}
+	return MetricVolumes{ MetricIngestedIndexedVolume: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *MetricVolumes) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src MetricVolumes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MetricVolumes) GetActualInstance() interface{} {
+func (obj *MetricVolumes) GetActualInstance() (interface{}) {
 	if obj.MetricDistinctVolume != nil {
 		return obj.MetricDistinctVolume
 	}
@@ -144,3 +147,5 @@ func (v *NullableMetricVolumes) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

@@ -55,7 +55,7 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorMessage() string {
 // GetErrorMessageOk returns a tuple with the ErrorMessage field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryResponseErrorWithType) GetErrorMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ErrorMessage, true
@@ -79,7 +79,7 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorType() string {
 // GetErrorTypeOk returns a tuple with the ErrorType field value
 // and a boolean to check if the value has been set.
 func (o *SLOHistoryResponseErrorWithType) GetErrorTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ErrorType, true
@@ -108,12 +108,12 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	required := struct {
 		ErrorMessage *string `json:"error_message"`
-		ErrorType    *string `json:"error_type"`
-	}{}
+		ErrorType *string `json:"error_type"`
+		}{}
 	all := struct {
-		ErrorMessage string `json:"error_message"`
-		ErrorType    string `json:"error_type"`
-	}{}
+			ErrorMessage string `json:"error_message"`
+			ErrorType string `json:"error_type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error
 	o.ErrorType = all.ErrorType
 	return nil
 }
+
+

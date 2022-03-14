@@ -19,14 +19,14 @@ type EventStreamWidgetDefinition struct {
 	// Query to filter the event stream with.
 	Query string `json:"query"`
 	// The execution method for multi-value filters. Can be either and or or.
-	TagsExecution *string     `json:"tags_execution,omitempty"`
-	Time          *WidgetTime `json:"time,omitempty"`
+	TagsExecution *string `json:"tags_execution,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                         `json:"title_size,omitempty"`
-	Type      EventStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type EventStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -97,7 +97,7 @@ func (o *EventStreamWidgetDefinition) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *EventStreamWidgetDefinition) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -281,7 +281,7 @@ func (o *EventStreamWidgetDefinition) GetType() EventStreamWidgetDefinitionType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *EventStreamWidgetDefinition) GetTypeOk() (*EventStreamWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -327,19 +327,19 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string                          `json:"query"`
-		Type  *EventStreamWidgetDefinitionType `json:"type"`
-	}{}
+		Query *string `json:"query"`
+		Type *EventStreamWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		EventSize     *WidgetEventSize                `json:"event_size,omitempty"`
-		Query         string                          `json:"query"`
-		TagsExecution *string                         `json:"tags_execution,omitempty"`
-		Time          *WidgetTime                     `json:"time,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          EventStreamWidgetDefinitionType `json:"type"`
-	}{}
+			EventSize *WidgetEventSize `json:"event_size,omitempty"`
+			Query string `json:"query"`
+			TagsExecution *string `json:"tags_execution,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type EventStreamWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -393,3 +393,5 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

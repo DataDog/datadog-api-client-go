@@ -16,8 +16,8 @@ import (
 // ListStreamWidgetRequest Updated list stream widget.
 type ListStreamWidgetRequest struct {
 	// Widget columns.
-	Columns        []ListStreamColumn       `json:"columns"`
-	Query          ListStreamQuery          `json:"query"`
+	Columns []ListStreamColumn `json:"columns"`
+	Query ListStreamQuery `json:"query"`
 	ResponseFormat ListStreamResponseFormat `json:"response_format"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *ListStreamWidgetRequest) GetColumns() []ListStreamColumn {
 // GetColumnsOk returns a tuple with the Columns field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamWidgetRequest) GetColumnsOk() (*[]ListStreamColumn, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Columns, true
@@ -80,7 +80,7 @@ func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamWidgetRequest) GetQueryOk() (*ListStreamQuery, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -104,7 +104,7 @@ func (o *ListStreamWidgetRequest) GetResponseFormat() ListStreamResponseFormat {
 // GetResponseFormatOk returns a tuple with the ResponseFormat field value
 // and a boolean to check if the value has been set.
 func (o *ListStreamWidgetRequest) GetResponseFormatOk() (*ListStreamResponseFormat, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ResponseFormat, true
@@ -135,15 +135,15 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Columns        *[]ListStreamColumn       `json:"columns"`
-		Query          *ListStreamQuery          `json:"query"`
+		Columns *[]ListStreamColumn `json:"columns"`
+		Query *ListStreamQuery `json:"query"`
 		ResponseFormat *ListStreamResponseFormat `json:"response_format"`
-	}{}
+		}{}
 	all := struct {
-		Columns        []ListStreamColumn       `json:"columns"`
-		Query          ListStreamQuery          `json:"query"`
-		ResponseFormat ListStreamResponseFormat `json:"response_format"`
-	}{}
+			Columns []ListStreamColumn `json:"columns"`
+			Query ListStreamQuery `json:"query"`
+			ResponseFormat ListStreamResponseFormat `json:"response_format"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -179,3 +179,5 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ResponseFormat = all.ResponseFormat
 	return nil
 }
+
+

@@ -51,7 +51,7 @@ func (o *NotebookRelativeTime) GetLiveSpan() WidgetLiveSpan {
 // GetLiveSpanOk returns a tuple with the LiveSpan field value
 // and a boolean to check if the value has been set.
 func (o *NotebookRelativeTime) GetLiveSpanOk() (*WidgetLiveSpan, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.LiveSpan, true
@@ -77,10 +77,10 @@ func (o *NotebookRelativeTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		LiveSpan *WidgetLiveSpan `json:"live_span"`
-	}{}
+		}{}
 	all := struct {
-		LiveSpan WidgetLiveSpan `json:"live_span"`
-	}{}
+			LiveSpan WidgetLiveSpan `json:"live_span"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -144,3 +144,5 @@ func (v *NullableNotebookRelativeTime) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

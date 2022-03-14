@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsArchiveOrder A ordered list of archive IDs.
@@ -82,8 +83,8 @@ func (o LogsArchiveOrder) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveOrder) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *LogsArchiveOrderDefinition `json:"data,omitempty"`
-	}{}
+			Data *LogsArchiveOrderDefinition `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *LogsArchiveOrder) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

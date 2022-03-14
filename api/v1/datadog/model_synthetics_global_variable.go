@@ -21,12 +21,12 @@ type SyntheticsGlobalVariable struct {
 	// Unique identifier of the global variable.
 	Id *string `json:"id,omitempty"`
 	// Name of the global variable. Unique across Synthetics global variables.
-	Name             string                                    `json:"name"`
+	Name string `json:"name"`
 	ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
 	// A Synthetic test ID to use as a test to generate the variable value.
 	ParseTestPublicId *string `json:"parse_test_public_id,omitempty"`
 	// Tags of the global variable.
-	Tags  []string                      `json:"tags"`
+	Tags []string `json:"tags"`
 	Value SyntheticsGlobalVariableValue `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -98,7 +98,7 @@ func (o *SyntheticsGlobalVariable) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariable) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Description, true
@@ -154,7 +154,7 @@ func (o *SyntheticsGlobalVariable) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariable) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -242,7 +242,7 @@ func (o *SyntheticsGlobalVariable) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariable) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tags, true
@@ -266,7 +266,7 @@ func (o *SyntheticsGlobalVariable) GetValue() SyntheticsGlobalVariableValue {
 // GetValueOk returns a tuple with the Value field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsGlobalVariable) GetValueOk() (*SyntheticsGlobalVariableValue, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Value, true
@@ -312,21 +312,21 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Description *string                        `json:"description"`
-		Name        *string                        `json:"name"`
-		Tags        *[]string                      `json:"tags"`
-		Value       *SyntheticsGlobalVariableValue `json:"value"`
-	}{}
+		Description *string `json:"description"`
+		Name *string `json:"name"`
+		Tags *[]string `json:"tags"`
+		Value *SyntheticsGlobalVariableValue `json:"value"`
+		}{}
 	all := struct {
-		Attributes        *SyntheticsGlobalVariableAttributes       `json:"attributes,omitempty"`
-		Description       string                                    `json:"description"`
-		Id                *string                                   `json:"id,omitempty"`
-		Name              string                                    `json:"name"`
-		ParseTestOptions  *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
-		ParseTestPublicId *string                                   `json:"parse_test_public_id,omitempty"`
-		Tags              []string                                  `json:"tags"`
-		Value             SyntheticsGlobalVariableValue             `json:"value"`
-	}{}
+			Attributes *SyntheticsGlobalVariableAttributes `json:"attributes,omitempty"`
+			Description string `json:"description"`
+			Id *string `json:"id,omitempty"`
+			Name string `json:"name"`
+			ParseTestOptions *SyntheticsGlobalVariableParseTestOptions `json:"parse_test_options,omitempty"`
+			ParseTestPublicId *string `json:"parse_test_public_id,omitempty"`
+			Tags []string `json:"tags"`
+			Value SyntheticsGlobalVariableValue `json:"value"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -362,3 +362,5 @@ func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
+
+

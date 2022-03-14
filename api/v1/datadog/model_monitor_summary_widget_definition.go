@@ -18,25 +18,25 @@ type MonitorSummaryWidgetDefinition struct {
 	ColorPreference *WidgetColorPreference `json:"color_preference,omitempty"`
 	// The number of monitors to display.
 	// Deprecated
-	Count         *int64                             `json:"count,omitempty"`
+	Count *int64 `json:"count,omitempty"`
 	DisplayFormat *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
 	// Whether to show counts of 0 or not.
 	HideZeroCounts *bool `json:"hide_zero_counts,omitempty"`
 	// Query to filter the monitors with.
 	Query string `json:"query"`
 	// Whether to show the time that has elapsed since the monitor/group triggered.
-	ShowLastTriggered *bool                     `json:"show_last_triggered,omitempty"`
-	Sort              *WidgetMonitorSummarySort `json:"sort,omitempty"`
+	ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
+	Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
 	// The start of the list. Typically 0.
 	// Deprecated
-	Start       *int64             `json:"start,omitempty"`
+	Start *int64 `json:"start,omitempty"`
 	SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                            `json:"title_size,omitempty"`
-	Type      MonitorSummaryWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type MonitorSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -206,7 +206,7 @@ func (o *MonitorSummaryWidgetDefinition) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -457,7 +457,7 @@ func (o *MonitorSummaryWidgetDefinition) GetType() MonitorSummaryWidgetDefinitio
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*MonitorSummaryWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -518,24 +518,24 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string                             `json:"query"`
-		Type  *MonitorSummaryWidgetDefinitionType `json:"type"`
-	}{}
+		Query *string `json:"query"`
+		Type *MonitorSummaryWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		ColorPreference   *WidgetColorPreference             `json:"color_preference,omitempty"`
-		Count             *int64                             `json:"count,omitempty"`
-		DisplayFormat     *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
-		HideZeroCounts    *bool                              `json:"hide_zero_counts,omitempty"`
-		Query             string                             `json:"query"`
-		ShowLastTriggered *bool                              `json:"show_last_triggered,omitempty"`
-		Sort              *WidgetMonitorSummarySort          `json:"sort,omitempty"`
-		Start             *int64                             `json:"start,omitempty"`
-		SummaryType       *WidgetSummaryType                 `json:"summary_type,omitempty"`
-		Title             *string                            `json:"title,omitempty"`
-		TitleAlign        *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize         *string                            `json:"title_size,omitempty"`
-		Type              MonitorSummaryWidgetDefinitionType `json:"type"`
-	}{}
+			ColorPreference *WidgetColorPreference `json:"color_preference,omitempty"`
+			Count *int64 `json:"count,omitempty"`
+			DisplayFormat *WidgetMonitorSummaryDisplayFormat `json:"display_format,omitempty"`
+			HideZeroCounts *bool `json:"hide_zero_counts,omitempty"`
+			Query string `json:"query"`
+			ShowLastTriggered *bool `json:"show_last_triggered,omitempty"`
+			Sort *WidgetMonitorSummarySort `json:"sort,omitempty"`
+			Start *int64 `json:"start,omitempty"`
+			SummaryType *WidgetSummaryType `json:"summary_type,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type MonitorSummaryWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -618,3 +618,5 @@ func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
+
+

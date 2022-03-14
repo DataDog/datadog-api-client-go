@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsTriggerCITestRunResult Information about a single test run.
@@ -193,11 +194,11 @@ func (o SyntheticsTriggerCITestRunResult) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Device   *SyntheticsDeviceID `json:"device,omitempty"`
-		Location *int64              `json:"location,omitempty"`
-		PublicId *string             `json:"public_id,omitempty"`
-		ResultId *string             `json:"result_id,omitempty"`
-	}{}
+			Device *SyntheticsDeviceID `json:"device,omitempty"`
+			Location *int64 `json:"location,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			ResultId *string `json:"result_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -221,3 +222,5 @@ func (o *SyntheticsTriggerCITestRunResult) UnmarshalJSON(bytes []byte) (err erro
 	o.ResultId = all.ResultId
 	return nil
 }
+
+

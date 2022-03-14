@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // FormulaAndFunctionMetricDataSource Data source for metrics queries.
@@ -100,3 +101,4 @@ func (v *NullableFormulaAndFunctionMetricDataSource) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

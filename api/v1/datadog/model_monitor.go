@@ -18,7 +18,7 @@ import (
 type Monitor struct {
 	// Timestamp of the monitor creation.
 	Created *time.Time `json:"created,omitempty"`
-	Creator *Creator   `json:"creator,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
 	Deleted NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
@@ -30,18 +30,18 @@ type Monitor struct {
 	// Whether or not the monitor is broken down on different groups.
 	Multi *bool `json:"multi,omitempty"`
 	// The monitor name.
-	Name         *string               `json:"name,omitempty"`
-	Options      *MonitorOptions       `json:"options,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Options *MonitorOptions `json:"options,omitempty"`
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	Priority NullableInt64 `json:"priority,omitempty"`
 	// The monitor query.
 	Query string `json:"query"`
 	// A list of role identifiers that can be pulled from the Roles API. Cannot be used with `locked` option.
-	RestrictedRoles []string      `json:"restricted_roles,omitempty"`
-	State           *MonitorState `json:"state,omitempty"`
+	RestrictedRoles []string `json:"restricted_roles,omitempty"`
+	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string   `json:"tags,omitempty"`
+	Tags *[]string `json:"tags,omitempty"`
 	Type MonitorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -143,7 +143,7 @@ func (o *Monitor) GetDeleted() time.Time {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Monitor) GetDeletedOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Deleted.Get(), o.Deleted.IsSet()
@@ -162,7 +162,6 @@ func (o *Monitor) HasDeleted() bool {
 func (o *Monitor) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
-
 // SetDeletedNil sets the value for Deleted to be an explicit nil
 func (o *Monitor) SetDeletedNil() {
 	o.Deleted.Set(nil)
@@ -410,7 +409,7 @@ func (o *Monitor) GetPriority() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Monitor) GetPriorityOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -429,7 +428,6 @@ func (o *Monitor) HasPriority() bool {
 func (o *Monitor) SetPriority(v int64) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil
 func (o *Monitor) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -453,7 +451,7 @@ func (o *Monitor) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -466,7 +464,7 @@ func (o *Monitor) SetQuery(v string) {
 
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Monitor) GetRestrictedRoles() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -574,7 +572,7 @@ func (o *Monitor) GetType() MonitorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *Monitor) GetTypeOk() (*MonitorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -644,27 +642,27 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string      `json:"query"`
-		Type  *MonitorType `json:"type"`
-	}{}
+		Query *string `json:"query"`
+		Type *MonitorType `json:"type"`
+		}{}
 	all := struct {
-		Created         *time.Time            `json:"created,omitempty"`
-		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         NullableTime          `json:"deleted,omitempty"`
-		Id              *int64                `json:"id,omitempty"`
-		Message         *string               `json:"message,omitempty"`
-		Modified        *time.Time            `json:"modified,omitempty"`
-		Multi           *bool                 `json:"multi,omitempty"`
-		Name            *string               `json:"name,omitempty"`
-		Options         *MonitorOptions       `json:"options,omitempty"`
-		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
-		Priority        NullableInt64         `json:"priority,omitempty"`
-		Query           string                `json:"query"`
-		RestrictedRoles []string              `json:"restricted_roles,omitempty"`
-		State           *MonitorState         `json:"state,omitempty"`
-		Tags            *[]string             `json:"tags,omitempty"`
-		Type            MonitorType           `json:"type"`
-	}{}
+			Created *time.Time `json:"created,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Deleted NullableTime `json:"deleted,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			Message *string `json:"message,omitempty"`
+			Modified *time.Time `json:"modified,omitempty"`
+			Multi *bool `json:"multi,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Options *MonitorOptions `json:"options,omitempty"`
+			OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
+			Priority NullableInt64 `json:"priority,omitempty"`
+			Query string `json:"query"`
+			RestrictedRoles []string `json:"restricted_roles,omitempty"`
+			State *MonitorState `json:"state,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Type MonitorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -718,3 +716,5 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

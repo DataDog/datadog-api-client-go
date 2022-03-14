@@ -54,7 +54,7 @@ func (o *DashboardListItems) GetDashboards() []DashboardListItem {
 // GetDashboardsOk returns a tuple with the Dashboards field value
 // and a boolean to check if the value has been set.
 func (o *DashboardListItems) GetDashboardsOk() (*[]DashboardListItem, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Dashboards, true
@@ -115,11 +115,11 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Dashboards *[]DashboardListItem `json:"dashboards"`
-	}{}
+		}{}
 	all := struct {
-		Dashboards []DashboardListItem `json:"dashboards"`
-		Total      *int64              `json:"total,omitempty"`
-	}{}
+			Dashboards []DashboardListItem `json:"dashboards"`
+			Total *int64 `json:"total,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -140,3 +140,5 @@ func (o *DashboardListItems) UnmarshalJSON(bytes []byte) (err error) {
 	o.Total = all.Total
 	return nil
 }
+
+

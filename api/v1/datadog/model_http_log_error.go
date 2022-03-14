@@ -55,7 +55,7 @@ func (o *HTTPLogError) GetCode() int32 {
 // GetCodeOk returns a tuple with the Code field value
 // and a boolean to check if the value has been set.
 func (o *HTTPLogError) GetCodeOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Code, true
@@ -79,7 +79,7 @@ func (o *HTTPLogError) GetMessage() string {
 // GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *HTTPLogError) GetMessageOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Message, true
@@ -107,13 +107,13 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Code    *int32  `json:"code"`
+		Code *int32 `json:"code"`
 		Message *string `json:"message"`
-	}{}
+		}{}
 	all := struct {
-		Code    int32  `json:"code"`
-		Message string `json:"message"`
-	}{}
+			Code int32 `json:"code"`
+			Message string `json:"message"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	return nil
 }
+
+

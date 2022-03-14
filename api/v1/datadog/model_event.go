@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Event Object representing an event.
@@ -26,7 +27,7 @@ type Event struct {
 	// Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages. Instead, use the string representation of the Event ID to avoid losing accuracy.
 	IdStr *string `json:"id_str,omitempty"`
 	// Payload of the event.
-	Payload  *string               `json:"payload,omitempty"`
+	Payload *string `json:"payload,omitempty"`
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc. A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
@@ -296,7 +297,7 @@ func (o *Event) GetPriority() EventPriority {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Event) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -315,7 +316,6 @@ func (o *Event) HasPriority() bool {
 func (o *Event) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil
 func (o *Event) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -536,20 +536,20 @@ func (o Event) MarshalJSON() ([]byte, error) {
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
-		DateHappened   *int64                `json:"date_happened,omitempty"`
-		DeviceName     *string               `json:"device_name,omitempty"`
-		Host           *string               `json:"host,omitempty"`
-		Id             *int64                `json:"id,omitempty"`
-		IdStr          *string               `json:"id_str,omitempty"`
-		Payload        *string               `json:"payload,omitempty"`
-		Priority       NullableEventPriority `json:"priority,omitempty"`
-		SourceTypeName *string               `json:"source_type_name,omitempty"`
-		Tags           *[]string             `json:"tags,omitempty"`
-		Text           *string               `json:"text,omitempty"`
-		Title          *string               `json:"title,omitempty"`
-		Url            *string               `json:"url,omitempty"`
-	}{}
+			AlertType *EventAlertType `json:"alert_type,omitempty"`
+			DateHappened *int64 `json:"date_happened,omitempty"`
+			DeviceName *string `json:"device_name,omitempty"`
+			Host *string `json:"host,omitempty"`
+			Id *int64 `json:"id,omitempty"`
+			IdStr *string `json:"id_str,omitempty"`
+			Payload *string `json:"payload,omitempty"`
+			Priority NullableEventPriority `json:"priority,omitempty"`
+			SourceTypeName *string `json:"source_type_name,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Text *string `json:"text,omitempty"`
+			Title *string `json:"title,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -590,3 +590,5 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

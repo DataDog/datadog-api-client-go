@@ -20,8 +20,8 @@ type SyntheticsBrowserError struct {
 	// Name of the error.
 	Name string `json:"name"`
 	// Status Code of the error.
-	Status *int64                     `json:"status,omitempty"`
-	Type   SyntheticsBrowserErrorType `json:"type"`
+	Status *int64 `json:"status,omitempty"`
+	Type SyntheticsBrowserErrorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -59,7 +59,7 @@ func (o *SyntheticsBrowserError) GetDescription() string {
 // GetDescriptionOk returns a tuple with the Description field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Description, true
@@ -83,7 +83,7 @@ func (o *SyntheticsBrowserError) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -139,7 +139,7 @@ func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserError) GetTypeOk() (*SyntheticsBrowserErrorType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -173,16 +173,16 @@ func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Description *string                     `json:"description"`
-		Name        *string                     `json:"name"`
-		Type        *SyntheticsBrowserErrorType `json:"type"`
-	}{}
+		Description *string `json:"description"`
+		Name *string `json:"name"`
+		Type *SyntheticsBrowserErrorType `json:"type"`
+		}{}
 	all := struct {
-		Description string                     `json:"description"`
-		Name        string                     `json:"name"`
-		Status      *int64                     `json:"status,omitempty"`
-		Type        SyntheticsBrowserErrorType `json:"type"`
-	}{}
+			Description string `json:"description"`
+			Name string `json:"name"`
+			Status *int64 `json:"status,omitempty"`
+			Type SyntheticsBrowserErrorType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -219,3 +219,5 @@ func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

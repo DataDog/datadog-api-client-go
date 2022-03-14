@@ -17,7 +17,7 @@ import (
 type SAMLAssertionAttribute struct {
 	Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
 	// The ID of the SAML assertion attribute.
-	Id   int32                       `json:"id"`
+	Id int32 `json:"id"`
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -89,7 +89,7 @@ func (o *SAMLAssertionAttribute) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *SAMLAssertionAttribute) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -113,7 +113,7 @@ func (o *SAMLAssertionAttribute) GetType() SAMLAssertionAttributesType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SAMLAssertionAttribute) GetTypeOk() (*SAMLAssertionAttributesType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -144,14 +144,14 @@ func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *int32                       `json:"id"`
+		Id *int32 `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
-		Id         int32                             `json:"id"`
-		Type       SAMLAssertionAttributesType       `json:"type"`
-	}{}
+			Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
+			Id int32 `json:"id"`
+			Type SAMLAssertionAttributesType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -184,3 +184,5 @@ func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

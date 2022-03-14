@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsQueryOptions Global query options that are used during the query. Note: You should only supply timezone or time offset but not both otherwise the query will fail.
@@ -124,9 +125,9 @@ func (o LogsQueryOptions) MarshalJSON() ([]byte, error) {
 func (o *LogsQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TimeOffset *int64  `json:"timeOffset,omitempty"`
-		Timezone   *string `json:"timezone,omitempty"`
-	}{}
+			TimeOffset *int64 `json:"timeOffset,omitempty"`
+			Timezone *string `json:"timezone,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -140,3 +141,5 @@ func (o *LogsQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timezone = all.Timezone
 	return nil
 }
+
+

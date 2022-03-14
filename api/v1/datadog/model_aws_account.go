@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSAccount Returns the AWS account associated with this integration.
@@ -465,18 +466,18 @@ func (o AWSAccount) MarshalJSON() ([]byte, error) {
 func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccessKeyId                   *string          `json:"access_key_id,omitempty"`
-		AccountId                     *string          `json:"account_id,omitempty"`
-		AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
-		CspmResourceCollectionEnabled *bool            `json:"cspm_resource_collection_enabled,omitempty"`
-		ExcludedRegions               *[]string        `json:"excluded_regions,omitempty"`
-		FilterTags                    *[]string        `json:"filter_tags,omitempty"`
-		HostTags                      *[]string        `json:"host_tags,omitempty"`
-		MetricsCollectionEnabled      *bool            `json:"metrics_collection_enabled,omitempty"`
-		ResourceCollectionEnabled     *bool            `json:"resource_collection_enabled,omitempty"`
-		RoleName                      *string          `json:"role_name,omitempty"`
-		SecretAccessKey               *string          `json:"secret_access_key,omitempty"`
-	}{}
+			AccessKeyId *string `json:"access_key_id,omitempty"`
+			AccountId *string `json:"account_id,omitempty"`
+			AccountSpecificNamespaceRules *map[string]bool `json:"account_specific_namespace_rules,omitempty"`
+			CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
+			ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
+			FilterTags *[]string `json:"filter_tags,omitempty"`
+			HostTags *[]string `json:"host_tags,omitempty"`
+			MetricsCollectionEnabled *bool `json:"metrics_collection_enabled,omitempty"`
+			ResourceCollectionEnabled *bool `json:"resource_collection_enabled,omitempty"`
+			RoleName *string `json:"role_name,omitempty"`
+			SecretAccessKey *string `json:"secret_access_key,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -499,3 +500,5 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 	o.SecretAccessKey = all.SecretAccessKey
 	return nil
 }
+
+

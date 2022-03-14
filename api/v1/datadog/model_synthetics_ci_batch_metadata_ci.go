@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
@@ -118,9 +119,9 @@ func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Pipeline *SyntheticsCIBatchMetadataPipeline `json:"pipeline,omitempty"`
-		Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
-	}{}
+			Pipeline *SyntheticsCIBatchMetadataPipeline `json:"pipeline,omitempty"`
+			Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	o.Provider = all.Provider
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageIncidentManagementResponse Response containing the incident management usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageIncidentManagementResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIncidentManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIncidentManagementHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageIncidentManagementHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageIncidentManagementResponse) UnmarshalJSON(bytes []byte) (err error
 	o.Usage = all.Usage
 	return nil
 }
+
+

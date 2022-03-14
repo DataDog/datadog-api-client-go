@@ -16,8 +16,8 @@ import (
 // WebhooksIntegration Datadog-Webhooks integration.
 type WebhooksIntegration struct {
 	// If `null`, uses no header. If given a JSON payload, these will be headers attached to your webhook.
-	CustomHeaders NullableString               `json:"custom_headers,omitempty"`
-	EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+	CustomHeaders NullableString `json:"custom_headers,omitempty"`
+	EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
 	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`. Learn more on how to use it in [monitor notifications](https://docs.datadoghq.com/monitors/notify).
 	Name string `json:"name"`
 	// If `null`, uses the default payload. If given a JSON payload, the webhook returns the payload specified by the given payload. [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
@@ -64,7 +64,7 @@ func (o *WebhooksIntegration) GetCustomHeaders() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WebhooksIntegration) GetCustomHeadersOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.CustomHeaders.Get(), o.CustomHeaders.IsSet()
@@ -83,7 +83,6 @@ func (o *WebhooksIntegration) HasCustomHeaders() bool {
 func (o *WebhooksIntegration) SetCustomHeaders(v string) {
 	o.CustomHeaders.Set(&v)
 }
-
 // SetCustomHeadersNil sets the value for CustomHeaders to be an explicit nil
 func (o *WebhooksIntegration) SetCustomHeadersNil() {
 	o.CustomHeaders.Set(nil)
@@ -139,7 +138,7 @@ func (o *WebhooksIntegration) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *WebhooksIntegration) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -163,7 +162,7 @@ func (o *WebhooksIntegration) GetPayload() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *WebhooksIntegration) GetPayloadOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Payload.Get(), o.Payload.IsSet()
@@ -182,7 +181,6 @@ func (o *WebhooksIntegration) HasPayload() bool {
 func (o *WebhooksIntegration) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
-
 // SetPayloadNil sets the value for Payload to be an explicit nil
 func (o *WebhooksIntegration) SetPayloadNil() {
 	o.Payload.Set(nil)
@@ -206,7 +204,7 @@ func (o *WebhooksIntegration) GetUrl() string {
 // GetUrlOk returns a tuple with the Url field value
 // and a boolean to check if the value has been set.
 func (o *WebhooksIntegration) GetUrlOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Url, true
@@ -244,15 +242,15 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-		Url  *string `json:"url"`
-	}{}
+		Url *string `json:"url"`
+		}{}
 	all := struct {
-		CustomHeaders NullableString               `json:"custom_headers,omitempty"`
-		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
-		Name          string                       `json:"name"`
-		Payload       NullableString               `json:"payload,omitempty"`
-		Url           string                       `json:"url"`
-	}{}
+			CustomHeaders NullableString `json:"custom_headers,omitempty"`
+			EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
+			Name string `json:"name"`
+			Payload NullableString `json:"payload,omitempty"`
+			Url string `json:"url"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -287,3 +285,5 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

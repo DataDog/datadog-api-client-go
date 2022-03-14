@@ -17,7 +17,7 @@ import (
 type NotebookCellUpdateRequest struct {
 	Attributes NotebookCellUpdateRequestAttributes `json:"attributes"`
 	// Notebook cell ID.
-	Id   string                   `json:"id"`
+	Id string `json:"id"`
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -58,7 +58,7 @@ func (o *NotebookCellUpdateRequest) GetAttributes() NotebookCellUpdateRequestAtt
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCellUpdateRequest) GetAttributesOk() (*NotebookCellUpdateRequestAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -82,7 +82,7 @@ func (o *NotebookCellUpdateRequest) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCellUpdateRequest) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -106,7 +106,7 @@ func (o *NotebookCellUpdateRequest) GetType() NotebookCellResourceType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCellUpdateRequest) GetTypeOk() (*NotebookCellResourceType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -138,14 +138,14 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellUpdateRequestAttributes `json:"attributes"`
-		Id         *string                              `json:"id"`
-		Type       *NotebookCellResourceType            `json:"type"`
-	}{}
+		Id *string `json:"id"`
+		Type *NotebookCellResourceType `json:"type"`
+		}{}
 	all := struct {
-		Attributes NotebookCellUpdateRequestAttributes `json:"attributes"`
-		Id         string                              `json:"id"`
-		Type       NotebookCellResourceType            `json:"type"`
-	}{}
+			Attributes NotebookCellUpdateRequestAttributes `json:"attributes"`
+			Id string `json:"id"`
+			Type NotebookCellResourceType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -181,3 +181,5 @@ func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

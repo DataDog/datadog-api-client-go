@@ -10,20 +10,21 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IPRanges IP ranges.
 type IPRanges struct {
 	Agents *IPPrefixesAgents `json:"agents,omitempty"`
-	Api    *IPPrefixesAPI    `json:"api,omitempty"`
-	Apm    *IPPrefixesAPM    `json:"apm,omitempty"`
-	Logs   *IPPrefixesLogs   `json:"logs,omitempty"`
+	Api *IPPrefixesAPI `json:"api,omitempty"`
+	Apm *IPPrefixesAPM `json:"apm,omitempty"`
+	Logs *IPPrefixesLogs `json:"logs,omitempty"`
 	// Date when last updated, in the form `YYYY-MM-DD-hh-mm-ss`.
-	Modified   *string               `json:"modified,omitempty"`
-	Process    *IPPrefixesProcess    `json:"process,omitempty"`
+	Modified *string `json:"modified,omitempty"`
+	Process *IPPrefixesProcess `json:"process,omitempty"`
 	Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
 	// Version of the IP list.
-	Version  *int64              `json:"version,omitempty"`
+	Version *int64 `json:"version,omitempty"`
 	Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -372,16 +373,16 @@ func (o IPRanges) MarshalJSON() ([]byte, error) {
 func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Agents     *IPPrefixesAgents     `json:"agents,omitempty"`
-		Api        *IPPrefixesAPI        `json:"api,omitempty"`
-		Apm        *IPPrefixesAPM        `json:"apm,omitempty"`
-		Logs       *IPPrefixesLogs       `json:"logs,omitempty"`
-		Modified   *string               `json:"modified,omitempty"`
-		Process    *IPPrefixesProcess    `json:"process,omitempty"`
-		Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
-		Version    *int64                `json:"version,omitempty"`
-		Webhooks   *IPPrefixesWebhooks   `json:"webhooks,omitempty"`
-	}{}
+			Agents *IPPrefixesAgents `json:"agents,omitempty"`
+			Api *IPPrefixesAPI `json:"api,omitempty"`
+			Apm *IPPrefixesAPM `json:"apm,omitempty"`
+			Logs *IPPrefixesLogs `json:"logs,omitempty"`
+			Modified *string `json:"modified,omitempty"`
+			Process *IPPrefixesProcess `json:"process,omitempty"`
+			Synthetics *IPPrefixesSynthetics `json:"synthetics,omitempty"`
+			Version *int64 `json:"version,omitempty"`
+			Webhooks *IPPrefixesWebhooks `json:"webhooks,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -402,3 +403,5 @@ func (o *IPRanges) UnmarshalJSON(bytes []byte) (err error) {
 	o.Webhooks = all.Webhooks
 	return nil
 }
+
+

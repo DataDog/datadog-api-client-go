@@ -16,7 +16,7 @@ import (
 // RelationshipToSAMLAssertionAttributeData Data of AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttributeData struct {
 	// The ID of the SAML assertion attribute.
-	Id   int32                       `json:"id"`
+	Id int32 `json:"id"`
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -56,7 +56,7 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*int32, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -80,7 +80,7 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetType() SAMLAssertionAttrib
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *RelationshipToSAMLAssertionAttributeData) GetTypeOk() (*SAMLAssertionAttributesType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,13 +108,13 @@ func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) 
 func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *int32                       `json:"id"`
+		Id *int32 `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Id   int32                       `json:"id"`
-		Type SAMLAssertionAttributesType `json:"type"`
-	}{}
+			Id int32 `json:"id"`
+			Type SAMLAssertionAttributesType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -146,3 +146,5 @@ func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (
 	o.Type = all.Type
 	return nil
 }
+
+

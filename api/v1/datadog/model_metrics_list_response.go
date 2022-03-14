@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricsListResponse Object listing all metric names stored by Datadog since a given time.
@@ -120,9 +121,9 @@ func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From    *string   `json:"from,omitempty"`
-		Metrics *[]string `json:"metrics,omitempty"`
-	}{}
+			From *string `json:"from,omitempty"`
+			Metrics *[]string `json:"metrics,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Metrics = all.Metrics
 	return nil
 }
+
+

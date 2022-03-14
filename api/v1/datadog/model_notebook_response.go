@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // NotebookResponse The description of a notebook response.
@@ -82,8 +83,8 @@ func (o NotebookResponse) MarshalJSON() ([]byte, error) {
 func (o *NotebookResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *NotebookResponseData `json:"data,omitempty"`
-	}{}
+			Data *NotebookResponseData `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *NotebookResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

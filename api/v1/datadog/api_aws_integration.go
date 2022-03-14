@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type AWSIntegrationApiService service
 
 type apiCreateAWSAccountRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
+
 
 /*
  * CreateAWSAccount Create an AWS integration
@@ -36,15 +39,16 @@ type apiCreateAWSAccountRequest struct {
 Using the `POST` method updates your integration configuration
 by adding your new configuration to the existing one in your Datadog organization.
 A unique AWS Account ID for role based authentication.
-*/
+ */
 func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateAWSAccountRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAWSAccountExecute(req)
+
+    return req.ApiService.createAWSAccountExecute(req)
 }
 
 /*
@@ -60,6 +64,7 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSAccountCreateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSAccount")
 	if err != nil {
@@ -200,10 +205,11 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 }
 
 type apiCreateAWSTagFilterRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterCreateRequest
+	body *AWSTagFilterCreateRequest
 }
+
 
 /*
  * CreateAWSTagFilter Set an AWS tag filter
@@ -212,11 +218,12 @@ type apiCreateAWSTagFilterRequest struct {
 func (a *AWSIntegrationApiService) CreateAWSTagFilter(ctx _context.Context, body AWSTagFilterCreateRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiCreateAWSTagFilterRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAWSTagFilterExecute(req)
+
+    return req.ApiService.createAWSTagFilterExecute(req)
 }
 
 /*
@@ -232,6 +239,7 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSTagFilter")
 	if err != nil {
@@ -362,10 +370,11 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 }
 
 type apiCreateNewAWSExternalIDRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
+
 
 /*
  * CreateNewAWSExternalID Generate a new external ID
@@ -374,11 +383,12 @@ type apiCreateNewAWSExternalIDRequest struct {
 func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context, body AWSAccount) (AWSAccountCreateResponse, *_nethttp.Response, error) {
 	req := apiCreateNewAWSExternalIDRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createNewAWSExternalIDExecute(req)
+
+    return req.ApiService.createNewAWSExternalIDExecute(req)
 }
 
 /*
@@ -394,6 +404,7 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSAccountCreateResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateNewAWSExternalID")
 	if err != nil {
@@ -524,10 +535,11 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 }
 
 type apiDeleteAWSAccountRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccountDeleteRequest
+	body *AWSAccountDeleteRequest
 }
+
 
 /*
  * DeleteAWSAccount Delete an AWS integration
@@ -536,11 +548,12 @@ type apiDeleteAWSAccountRequest struct {
 func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body AWSAccountDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteAWSAccountRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteAWSAccountExecute(req)
+
+    return req.ApiService.deleteAWSAccountExecute(req)
 }
 
 /*
@@ -556,6 +569,7 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSAccount")
 	if err != nil {
@@ -696,10 +710,11 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 }
 
 type apiDeleteAWSTagFilterRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterDeleteRequest
+	body *AWSTagFilterDeleteRequest
 }
+
 
 /*
  * DeleteAWSTagFilter Delete a tag filtering entry
@@ -708,11 +723,12 @@ type apiDeleteAWSTagFilterRequest struct {
 func (a *AWSIntegrationApiService) DeleteAWSTagFilter(ctx _context.Context, body AWSTagFilterDeleteRequest) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteAWSTagFilterRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteAWSTagFilterExecute(req)
+
+    return req.ApiService.deleteAWSTagFilterExecute(req)
 }
 
 /*
@@ -728,6 +744,7 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSTagFilter")
 	if err != nil {
@@ -858,34 +875,34 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 }
 
 type apiListAWSAccountsRequest struct {
-	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
-	accountId   *string
-	roleName    *string
+	ctx _context.Context
+	ApiService *AWSIntegrationApiService
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
 
 type ListAWSAccountsOptionalParameters struct {
-	AccountId   *string
-	RoleName    *string
-	AccessKeyId *string
+    AccountId *string
+    RoleName *string
+    AccessKeyId *string
 }
 
 func NewListAWSAccountsOptionalParameters() *ListAWSAccountsOptionalParameters {
-	this := ListAWSAccountsOptionalParameters{}
-	return &this
+    this := ListAWSAccountsOptionalParameters{}
+    return &this
 }
 func (r *ListAWSAccountsOptionalParameters) WithAccountId(accountId string) *ListAWSAccountsOptionalParameters {
-	r.AccountId = &accountId
-	return r
+    r.AccountId = &accountId
+    return r
 }
 func (r *ListAWSAccountsOptionalParameters) WithRoleName(roleName string) *ListAWSAccountsOptionalParameters {
-	r.RoleName = &roleName
-	return r
+    r.RoleName = &roleName
+    return r
 }
 func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) *ListAWSAccountsOptionalParameters {
-	r.AccessKeyId = &accessKeyId
-	return r
+    r.AccessKeyId = &accessKeyId
+    return r
 }
 
 /*
@@ -895,21 +912,21 @@ func (r *ListAWSAccountsOptionalParameters) WithAccessKeyId(accessKeyId string) 
 func (a *AWSIntegrationApiService) ListAWSAccounts(ctx _context.Context, o ...ListAWSAccountsOptionalParameters) (AWSAccountListResponse, *_nethttp.Response, error) {
 	req := apiListAWSAccountsRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue AWSAccountListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListAWSAccountsOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue AWSAccountListResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListAWSAccountsOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.accountId = o[0].AccountId
-		req.roleName = o[0].RoleName
-		req.accessKeyId = o[0].AccessKeyId
-	}
+    if o != nil {
+        req.accountId = o[0].AccountId
+        req.roleName = o[0].RoleName
+        req.accessKeyId = o[0].AccessKeyId
+    }
 
-	return req.ApiService.listAWSAccountsExecute(req)
+    return req.ApiService.listAWSAccountsExecute(req)
 }
 
 /*
@@ -925,6 +942,7 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSAccountListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSAccounts")
 	if err != nil {
@@ -1059,10 +1077,11 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 }
 
 type apiListAWSTagFiltersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
-	accountId  *string
+	accountId *string
 }
+
 
 /*
  * ListAWSTagFilters Get all AWS tag filters
@@ -1071,11 +1090,12 @@ type apiListAWSTagFiltersRequest struct {
 func (a *AWSIntegrationApiService) ListAWSTagFilters(ctx _context.Context, accountId string) (AWSTagFilterListResponse, *_nethttp.Response, error) {
 	req := apiListAWSTagFiltersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		accountId:  &accountId,
+		ctx: ctx,
+		accountId: &accountId,
 	}
 
-	return req.ApiService.listAWSTagFiltersExecute(req)
+
+    return req.ApiService.listAWSTagFiltersExecute(req)
 }
 
 /*
@@ -1091,6 +1111,7 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 		localVarFileBytes    []byte
 		localVarReturnValue  AWSTagFilterListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSTagFilters")
 	if err != nil {
@@ -1220,9 +1241,10 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 }
 
 type apiListAvailableAWSNamespacesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AWSIntegrationApiService
 }
+
 
 /*
  * ListAvailableAWSNamespaces List namespace rules
@@ -1231,10 +1253,11 @@ type apiListAvailableAWSNamespacesRequest struct {
 func (a *AWSIntegrationApiService) ListAvailableAWSNamespaces(ctx _context.Context) ([]string, *_nethttp.Response, error) {
 	req := apiListAvailableAWSNamespacesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listAvailableAWSNamespacesExecute(req)
+
+    return req.ApiService.listAvailableAWSNamespacesExecute(req)
 }
 
 /*
@@ -1250,6 +1273,7 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 		localVarFileBytes    []byte
 		localVarReturnValue  []string
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
 	if err != nil {
@@ -1365,35 +1389,35 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 }
 
 type apiUpdateAWSAccountRequest struct {
-	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
-	body        *AWSAccount
-	accountId   *string
-	roleName    *string
+	ctx _context.Context
+	ApiService *AWSIntegrationApiService
+	body *AWSAccount
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
 
 type UpdateAWSAccountOptionalParameters struct {
-	AccountId   *string
-	RoleName    *string
-	AccessKeyId *string
+    AccountId *string
+    RoleName *string
+    AccessKeyId *string
 }
 
 func NewUpdateAWSAccountOptionalParameters() *UpdateAWSAccountOptionalParameters {
-	this := UpdateAWSAccountOptionalParameters{}
-	return &this
+    this := UpdateAWSAccountOptionalParameters{}
+    return &this
 }
 func (r *UpdateAWSAccountOptionalParameters) WithAccountId(accountId string) *UpdateAWSAccountOptionalParameters {
-	r.AccountId = &accountId
-	return r
+    r.AccountId = &accountId
+    return r
 }
 func (r *UpdateAWSAccountOptionalParameters) WithRoleName(roleName string) *UpdateAWSAccountOptionalParameters {
-	r.RoleName = &roleName
-	return r
+    r.RoleName = &roleName
+    return r
 }
 func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string) *UpdateAWSAccountOptionalParameters {
-	r.AccessKeyId = &accessKeyId
-	return r
+    r.AccessKeyId = &accessKeyId
+    return r
 }
 
 /*
@@ -1403,22 +1427,22 @@ func (r *UpdateAWSAccountOptionalParameters) WithAccessKeyId(accessKeyId string)
 func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, body AWSAccount, o ...UpdateAWSAccountOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateAWSAccountRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type UpdateAWSAccountOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue interface{}
+        return localVarReturnValue, nil, reportError("only one argument of type UpdateAWSAccountOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.accountId = o[0].AccountId
-		req.roleName = o[0].RoleName
-		req.accessKeyId = o[0].AccessKeyId
-	}
+    if o != nil {
+        req.accountId = o[0].AccountId
+        req.roleName = o[0].RoleName
+        req.accessKeyId = o[0].AccessKeyId
+    }
 
-	return req.ApiService.updateAWSAccountExecute(req)
+    return req.ApiService.updateAWSAccountExecute(req)
 }
 
 /*
@@ -1434,6 +1458,7 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.UpdateAWSAccount")
 	if err != nil {

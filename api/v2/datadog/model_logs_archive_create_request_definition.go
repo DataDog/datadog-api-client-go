@@ -87,7 +87,7 @@ func (o *LogsArchiveCreateRequestDefinition) GetType() string {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveCreateRequestDefinition) GetTypeOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -116,11 +116,11 @@ func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *string `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"`
-		Type       string                              `json:"type"`
-	}{}
+			Attributes *LogsArchiveCreateRequestAttributes `json:"attributes,omitempty"`
+			Type string `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -141,3 +141,5 @@ func (o *LogsArchiveCreateRequestDefinition) UnmarshalJSON(bytes []byte) (err er
 	o.Type = all.Type
 	return nil
 }
+
+

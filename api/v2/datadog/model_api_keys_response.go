@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // APIKeysResponse Response for a list of API keys.
@@ -120,9 +121,9 @@ func (o APIKeysResponse) MarshalJSON() ([]byte, error) {
 func (o *APIKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]PartialAPIKey              `json:"data,omitempty"`
-		Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
-	}{}
+			Data *[]PartialAPIKey `json:"data,omitempty"`
+			Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *APIKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Included = all.Included
 	return nil
 }
+
+

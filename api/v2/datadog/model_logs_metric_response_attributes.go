@@ -10,12 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsMetricResponseAttributes The object describing a Datadog log-based metric.
 type LogsMetricResponseAttributes struct {
 	Compute *LogsMetricResponseCompute `json:"compute,omitempty"`
-	Filter  *LogsMetricResponseFilter  `json:"filter,omitempty"`
+	Filter *LogsMetricResponseFilter `json:"filter,omitempty"`
 	// The rules for the group by.
 	GroupBy *[]LogsMetricResponseGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -155,10 +156,10 @@ func (o LogsMetricResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *LogsMetricResponseCompute   `json:"compute,omitempty"`
-		Filter  *LogsMetricResponseFilter    `json:"filter,omitempty"`
-		GroupBy *[]LogsMetricResponseGroupBy `json:"group_by,omitempty"`
-	}{}
+			Compute *LogsMetricResponseCompute `json:"compute,omitempty"`
+			Filter *LogsMetricResponseFilter `json:"filter,omitempty"`
+			GroupBy *[]LogsMetricResponseGroupBy `json:"group_by,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *LogsMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // WidgetCustomLink Custom links help you connect a data value to a URL, like a Datadog page or your AWS console.
@@ -194,11 +195,11 @@ func (o WidgetCustomLink) MarshalJSON() ([]byte, error) {
 func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IsHidden      *bool   `json:"is_hidden,omitempty"`
-		Label         *string `json:"label,omitempty"`
-		Link          *string `json:"link,omitempty"`
-		OverrideLabel *string `json:"override_label,omitempty"`
-	}{}
+			IsHidden *bool `json:"is_hidden,omitempty"`
+			Label *string `json:"label,omitempty"`
+			Link *string `json:"link,omitempty"`
+			OverrideLabel *string `json:"override_label,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *WidgetCustomLink) UnmarshalJSON(bytes []byte) (err error) {
 	o.OverrideLabel = all.OverrideLabel
 	return nil
 }
+
+

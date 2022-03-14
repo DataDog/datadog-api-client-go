@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityFilterResponse Response object which includes a single security filter.
 type SecurityFilterResponse struct {
-	Data *SecurityFilter     `json:"data,omitempty"`
+	Data *SecurityFilter `json:"data,omitempty"`
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o SecurityFilterResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *SecurityFilter     `json:"data,omitempty"`
-		Meta *SecurityFilterMeta `json:"meta,omitempty"`
-	}{}
+			Data *SecurityFilter `json:"data,omitempty"`
+			Meta *SecurityFilterMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *SecurityFilterResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

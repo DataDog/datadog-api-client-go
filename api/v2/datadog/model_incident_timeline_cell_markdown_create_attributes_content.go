@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTimelineCellMarkdownCreateAttributesContent The Markdown timeline cell contents.
@@ -83,8 +84,8 @@ func (o IncidentTimelineCellMarkdownCreateAttributesContent) MarshalJSON() ([]by
 func (o *IncidentTimelineCellMarkdownCreateAttributesContent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Content *string `json:"content,omitempty"`
-	}{}
+			Content *string `json:"content,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *IncidentTimelineCellMarkdownCreateAttributesContent) UnmarshalJSON(byte
 	o.Content = all.Content
 	return nil
 }
+
+

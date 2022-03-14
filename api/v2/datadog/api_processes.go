@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,52 +27,52 @@ var (
 type ProcessesApiService service
 
 type apiListProcessesRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *ProcessesApiService
-	search     *string
-	tags       *string
-	from       *int64
-	to         *int64
-	pageLimit  *int32
+	search *string
+	tags *string
+	from *int64
+	to *int64
+	pageLimit *int32
 	pageCursor *string
 }
 
 type ListProcessesOptionalParameters struct {
-	Search     *string
-	Tags       *string
-	From       *int64
-	To         *int64
-	PageLimit  *int32
-	PageCursor *string
+    Search *string
+    Tags *string
+    From *int64
+    To *int64
+    PageLimit *int32
+    PageCursor *string
 }
 
 func NewListProcessesOptionalParameters() *ListProcessesOptionalParameters {
-	this := ListProcessesOptionalParameters{}
-	return &this
+    this := ListProcessesOptionalParameters{}
+    return &this
 }
 func (r *ListProcessesOptionalParameters) WithSearch(search string) *ListProcessesOptionalParameters {
-	r.Search = &search
-	return r
+    r.Search = &search
+    return r
 }
 func (r *ListProcessesOptionalParameters) WithTags(tags string) *ListProcessesOptionalParameters {
-	r.Tags = &tags
-	return r
+    r.Tags = &tags
+    return r
 }
 func (r *ListProcessesOptionalParameters) WithFrom(from int64) *ListProcessesOptionalParameters {
-	r.From = &from
-	return r
+    r.From = &from
+    return r
 }
 func (r *ListProcessesOptionalParameters) WithTo(to int64) *ListProcessesOptionalParameters {
-	r.To = &to
-	return r
+    r.To = &to
+    return r
 }
 func (r *ListProcessesOptionalParameters) WithPageLimit(pageLimit int32) *ListProcessesOptionalParameters {
-	r.PageLimit = &pageLimit
-	return r
+    r.PageLimit = &pageLimit
+    return r
 }
 func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *ListProcessesOptionalParameters {
-	r.PageCursor = &pageCursor
-	return r
+    r.PageCursor = &pageCursor
+    return r
 }
 
 /*
@@ -80,24 +82,24 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	req := apiListProcessesRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue ProcessSummariesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue ProcessSummariesResponse
+        return localVarReturnValue, nil, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.search = o[0].Search
-		req.tags = o[0].Tags
-		req.from = o[0].From
-		req.to = o[0].To
-		req.pageLimit = o[0].PageLimit
-		req.pageCursor = o[0].PageCursor
-	}
+    if o != nil {
+        req.search = o[0].Search
+        req.tags = o[0].Tags
+        req.from = o[0].From
+        req.to = o[0].To
+        req.pageLimit = o[0].PageLimit
+        req.pageCursor = o[0].PageCursor
+    }
 
-	return req.ApiService.listProcessesExecute(req)
+    return req.ApiService.listProcessesExecute(req)
 }
 
 /*
@@ -113,6 +115,7 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 		localVarFileBytes    []byte
 		localVarReturnValue  ProcessSummariesResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ProcessesApiService.ListProcesses")
 	if err != nil {

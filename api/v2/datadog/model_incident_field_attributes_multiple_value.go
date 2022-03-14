@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentFieldAttributesMultipleValue A field with potentially multiple values selected.
@@ -76,7 +77,7 @@ func (o *IncidentFieldAttributesMultipleValue) SetType(v IncidentFieldAttributes
 
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentFieldAttributesMultipleValue) GetValue() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -124,9 +125,9 @@ func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Type  *IncidentFieldAttributesValueType `json:"type,omitempty"`
-		Value []string                          `json:"value,omitempty"`
-	}{}
+			Type *IncidentFieldAttributesValueType `json:"type,omitempty"`
+			Value []string `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -148,3 +149,5 @@ func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err 
 	o.Value = all.Value
 	return nil
 }
+
+

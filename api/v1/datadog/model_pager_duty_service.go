@@ -55,7 +55,7 @@ func (o *PagerDutyService) GetServiceKey() string {
 // GetServiceKeyOk returns a tuple with the ServiceKey field value
 // and a boolean to check if the value has been set.
 func (o *PagerDutyService) GetServiceKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ServiceKey, true
@@ -79,7 +79,7 @@ func (o *PagerDutyService) GetServiceName() string {
 // GetServiceNameOk returns a tuple with the ServiceName field value
 // and a boolean to check if the value has been set.
 func (o *PagerDutyService) GetServiceNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ServiceName, true
@@ -107,13 +107,13 @@ func (o PagerDutyService) MarshalJSON() ([]byte, error) {
 func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		ServiceKey  *string `json:"service_key"`
+		ServiceKey *string `json:"service_key"`
 		ServiceName *string `json:"service_name"`
-	}{}
+		}{}
 	all := struct {
-		ServiceKey  string `json:"service_key"`
-		ServiceName string `json:"service_name"`
-	}{}
+			ServiceKey string `json:"service_key"`
+			ServiceName string `json:"service_name"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *PagerDutyService) UnmarshalJSON(bytes []byte) (err error) {
 	o.ServiceName = all.ServiceName
 	return nil
 }
+
+

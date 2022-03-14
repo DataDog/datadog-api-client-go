@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsListRequest The request for a logs list.
 type LogsListRequest struct {
-	Filter  *LogsQueryFilter     `json:"filter,omitempty"`
-	Options *LogsQueryOptions    `json:"options,omitempty"`
-	Page    *LogsListRequestPage `json:"page,omitempty"`
-	Sort    *LogsSort            `json:"sort,omitempty"`
+	Filter *LogsQueryFilter `json:"filter,omitempty"`
+	Options *LogsQueryOptions `json:"options,omitempty"`
+	Page *LogsListRequestPage `json:"page,omitempty"`
+	Sort *LogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -190,11 +191,11 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *LogsQueryFilter     `json:"filter,omitempty"`
-		Options *LogsQueryOptions    `json:"options,omitempty"`
-		Page    *LogsListRequestPage `json:"page,omitempty"`
-		Sort    *LogsSort            `json:"sort,omitempty"`
-	}{}
+			Filter *LogsQueryFilter `json:"filter,omitempty"`
+			Options *LogsQueryOptions `json:"options,omitempty"`
+			Page *LogsListRequestPage `json:"page,omitempty"`
+			Sort *LogsSort `json:"sort,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -218,3 +219,5 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sort = all.Sort
 	return nil
 }
+
+

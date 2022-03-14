@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -28,8 +29,8 @@ type UsageBillableSummaryHour struct {
 	// Shows usage aggregation for a billing period.
 	RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
 	// Shows the first date of usage.
-	StartDate *time.Time                `json:"start_date,omitempty"`
-	Usage     *UsageBillableSummaryKeys `json:"usage,omitempty"`
+	StartDate *time.Time `json:"start_date,omitempty"`
+	Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -342,15 +343,15 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BillingPlan  *string                   `json:"billing_plan,omitempty"`
-		EndDate      *time.Time                `json:"end_date,omitempty"`
-		NumOrgs      *int64                    `json:"num_orgs,omitempty"`
-		OrgName      *string                   `json:"org_name,omitempty"`
-		PublicId     *string                   `json:"public_id,omitempty"`
-		RatioInMonth *float64                  `json:"ratio_in_month,omitempty"`
-		StartDate    *time.Time                `json:"start_date,omitempty"`
-		Usage        *UsageBillableSummaryKeys `json:"usage,omitempty"`
-	}{}
+			BillingPlan *string `json:"billing_plan,omitempty"`
+			EndDate *time.Time `json:"end_date,omitempty"`
+			NumOrgs *int64 `json:"num_orgs,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			RatioInMonth *float64 `json:"ratio_in_month,omitempty"`
+			StartDate *time.Time `json:"start_date,omitempty"`
+			Usage *UsageBillableSummaryKeys `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -370,3 +371,5 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardTemplateVariablePreset Template variables saved views.
@@ -120,9 +121,9 @@ func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name              *string                                 `json:"name,omitempty"`
-		TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
-	}{}
+			Name *string `json:"name,omitempty"`
+			TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error
 	o.TemplateVariables = all.TemplateVariables
 	return nil
 }
+
+

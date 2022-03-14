@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOCorrectionResponseAttributes The attribute object associated with the SLO correction.
 type SLOCorrectionResponseAttributes struct {
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
 	// The epoch timestamp of when the correction was created at
-	CreatedAt *int64   `json:"created_at,omitempty"`
-	Creator   *Creator `json:"creator,omitempty"`
+	CreatedAt *int64 `json:"created_at,omitempty"`
+	Creator *Creator `json:"creator,omitempty"`
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
 	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
@@ -25,8 +26,8 @@ type SLOCorrectionResponseAttributes struct {
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
 	// The epoch timestamp of when the correction was modified at
-	ModifiedAt *int64                                          `json:"modified_at,omitempty"`
-	Modifier   NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
+	ModifiedAt *int64 `json:"modified_at,omitempty"`
+	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
 	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
@@ -197,7 +198,7 @@ func (o *SLOCorrectionResponseAttributes) GetDuration() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Duration.Get(), o.Duration.IsSet()
@@ -216,7 +217,6 @@ func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
 func (o *SLOCorrectionResponseAttributes) SetDuration(v int64) {
 	o.Duration.Set(&v)
 }
-
 // SetDurationNil sets the value for Duration to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetDurationNil() {
 	o.Duration.Set(nil)
@@ -304,7 +304,7 @@ func (o *SLOCorrectionResponseAttributes) GetModifier() SLOCorrectionResponseAtt
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetModifierOk() (*SLOCorrectionResponseAttributesModifier, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Modifier.Get(), o.Modifier.IsSet()
@@ -323,7 +323,6 @@ func (o *SLOCorrectionResponseAttributes) HasModifier() bool {
 func (o *SLOCorrectionResponseAttributes) SetModifier(v SLOCorrectionResponseAttributesModifier) {
 	o.Modifier.Set(&v)
 }
-
 // SetModifierNil sets the value for Modifier to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetModifierNil() {
 	o.Modifier.Set(nil)
@@ -347,7 +346,7 @@ func (o *SLOCorrectionResponseAttributes) GetRrule() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Rrule.Get(), o.Rrule.IsSet()
@@ -366,7 +365,6 @@ func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
 func (o *SLOCorrectionResponseAttributes) SetRrule(v string) {
 	o.Rrule.Set(&v)
 }
-
 // SetRruleNil sets the value for Rrule to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetRruleNil() {
 	o.Rrule.Set(nil)
@@ -520,19 +518,19 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category    *SLOCorrectionCategory                          `json:"category,omitempty"`
-		CreatedAt   *int64                                          `json:"created_at,omitempty"`
-		Creator     *Creator                                        `json:"creator,omitempty"`
-		Description *string                                         `json:"description,omitempty"`
-		Duration    NullableInt64                                   `json:"duration,omitempty"`
-		End         *int64                                          `json:"end,omitempty"`
-		ModifiedAt  *int64                                          `json:"modified_at,omitempty"`
-		Modifier    NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-		Rrule       NullableString                                  `json:"rrule,omitempty"`
-		SloId       *string                                         `json:"slo_id,omitempty"`
-		Start       *int64                                          `json:"start,omitempty"`
-		Timezone    *string                                         `json:"timezone,omitempty"`
-	}{}
+			Category *SLOCorrectionCategory `json:"category,omitempty"`
+			CreatedAt *int64 `json:"created_at,omitempty"`
+			Creator *Creator `json:"creator,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Duration NullableInt64 `json:"duration,omitempty"`
+			End *int64 `json:"end,omitempty"`
+			ModifiedAt *int64 `json:"modified_at,omitempty"`
+			Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
+			Rrule NullableString `json:"rrule,omitempty"`
+			SloId *string `json:"slo_id,omitempty"`
+			Start *int64 `json:"start,omitempty"`
+			Timezone *string `json:"timezone,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -564,3 +562,5 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Timezone = all.Timezone
 	return nil
 }
+
+

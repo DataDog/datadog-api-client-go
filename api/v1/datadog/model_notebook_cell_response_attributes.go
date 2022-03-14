@@ -10,16 +10,18 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // NotebookCellResponseAttributes - The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`, `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 type NotebookCellResponseAttributes struct {
 	NotebookDistributionCellAttributes *NotebookDistributionCellAttributes
-	NotebookHeatMapCellAttributes      *NotebookHeatMapCellAttributes
-	NotebookLogStreamCellAttributes    *NotebookLogStreamCellAttributes
-	NotebookMarkdownCellAttributes     *NotebookMarkdownCellAttributes
-	NotebookTimeseriesCellAttributes   *NotebookTimeseriesCellAttributes
-	NotebookToplistCellAttributes      *NotebookToplistCellAttributes
+	NotebookHeatMapCellAttributes *NotebookHeatMapCellAttributes
+	NotebookLogStreamCellAttributes *NotebookLogStreamCellAttributes
+	NotebookMarkdownCellAttributes *NotebookMarkdownCellAttributes
+	NotebookTimeseriesCellAttributes *NotebookTimeseriesCellAttributes
+	NotebookToplistCellAttributes *NotebookToplistCellAttributes
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -27,33 +29,34 @@ type NotebookCellResponseAttributes struct {
 
 // NotebookDistributionCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookDistributionCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookDistributionCellAttributesAsNotebookCellResponseAttributes(v *NotebookDistributionCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookDistributionCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookDistributionCellAttributes: v}
 }
 
 // NotebookHeatMapCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookHeatMapCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookHeatMapCellAttributesAsNotebookCellResponseAttributes(v *NotebookHeatMapCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookHeatMapCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookHeatMapCellAttributes: v}
 }
 
 // NotebookLogStreamCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookLogStreamCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookLogStreamCellAttributesAsNotebookCellResponseAttributes(v *NotebookLogStreamCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookLogStreamCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookLogStreamCellAttributes: v}
 }
 
 // NotebookMarkdownCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookMarkdownCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookMarkdownCellAttributesAsNotebookCellResponseAttributes(v *NotebookMarkdownCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookMarkdownCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookMarkdownCellAttributes: v}
 }
 
 // NotebookTimeseriesCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookTimeseriesCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookTimeseriesCellAttributesAsNotebookCellResponseAttributes(v *NotebookTimeseriesCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookTimeseriesCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookTimeseriesCellAttributes: v}
 }
 
 // NotebookToplistCellAttributesAsNotebookCellResponseAttributes is a convenience function that returns NotebookToplistCellAttributes wrapped in NotebookCellResponseAttributes
 func NotebookToplistCellAttributesAsNotebookCellResponseAttributes(v *NotebookToplistCellAttributes) NotebookCellResponseAttributes {
-	return NotebookCellResponseAttributes{NotebookToplistCellAttributes: v}
+	return NotebookCellResponseAttributes{ NotebookToplistCellAttributes: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *NotebookCellResponseAttributes) UnmarshalJSON(data []byte) error {
@@ -208,7 +211,7 @@ func (src NotebookCellResponseAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookCellResponseAttributes) GetActualInstance() interface{} {
+func (obj *NotebookCellResponseAttributes) GetActualInstance() (interface{}) {
 	if obj.NotebookDistributionCellAttributes != nil {
 		return obj.NotebookDistributionCellAttributes
 	}
@@ -272,3 +275,5 @@ func (v *NullableNotebookCellResponseAttributes) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

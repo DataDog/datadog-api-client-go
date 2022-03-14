@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateResponseData The query results
@@ -83,8 +84,8 @@ func (o LogsAggregateResponseData) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Buckets *[]LogsAggregateBucket `json:"buckets,omitempty"`
-	}{}
+			Buckets *[]LogsAggregateBucket `json:"buckets,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *LogsAggregateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Buckets = all.Buckets
 	return nil
 }
+
+

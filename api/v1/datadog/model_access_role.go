@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // AccessRole The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
@@ -18,10 +19,10 @@ type AccessRole string
 
 // List of AccessRole
 const (
-	ACCESSROLE_STANDARD  AccessRole = "st"
-	ACCESSROLE_ADMIN     AccessRole = "adm"
+	ACCESSROLE_STANDARD AccessRole = "st"
+	ACCESSROLE_ADMIN AccessRole = "adm"
 	ACCESSROLE_READ_ONLY AccessRole = "ro"
-	ACCESSROLE_ERROR     AccessRole = "ERROR"
+	ACCESSROLE_ERROR AccessRole = "ERROR"
 )
 
 var allowedAccessRoleEnumValues = []AccessRole{
@@ -106,3 +107,4 @@ func (v *NullableAccessRole) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -21,22 +21,22 @@ type LogStreamWidgetDefinition struct {
 	Indexes *[]string `json:"indexes,omitempty"`
 	// ID of the log set to use.
 	// Deprecated
-	Logset         *string               `json:"logset,omitempty"`
+	Logset *string `json:"logset,omitempty"`
 	MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
 	// Query to filter the log stream with.
 	Query *string `json:"query,omitempty"`
 	// Whether to show the date column or not
 	ShowDateColumn *bool `json:"show_date_column,omitempty"`
 	// Whether to show the message column or not
-	ShowMessageColumn *bool            `json:"show_message_column,omitempty"`
-	Sort              *WidgetFieldSort `json:"sort,omitempty"`
-	Time              *WidgetTime      `json:"time,omitempty"`
+	ShowMessageColumn *bool `json:"show_message_column,omitempty"`
+	Sort *WidgetFieldSort `json:"sort,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                       `json:"title_size,omitempty"`
-	Type      LogStreamWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type LogStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -461,7 +461,7 @@ func (o *LogStreamWidgetDefinition) GetType() LogStreamWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogStreamWidgetDefinition) GetTypeOk() (*LogStreamWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -523,22 +523,22 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogStreamWidgetDefinitionType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Columns           *[]string                     `json:"columns,omitempty"`
-		Indexes           *[]string                     `json:"indexes,omitempty"`
-		Logset            *string                       `json:"logset,omitempty"`
-		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
-		Query             *string                       `json:"query,omitempty"`
-		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"`
-		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"`
-		Sort              *WidgetFieldSort              `json:"sort,omitempty"`
-		Time              *WidgetTime                   `json:"time,omitempty"`
-		Title             *string                       `json:"title,omitempty"`
-		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"`
-		TitleSize         *string                       `json:"title_size,omitempty"`
-		Type              LogStreamWidgetDefinitionType `json:"type"`
-	}{}
+			Columns *[]string `json:"columns,omitempty"`
+			Indexes *[]string `json:"indexes,omitempty"`
+			Logset *string `json:"logset,omitempty"`
+			MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
+			Query *string `json:"query,omitempty"`
+			ShowDateColumn *bool `json:"show_date_column,omitempty"`
+			ShowMessageColumn *bool `json:"show_message_column,omitempty"`
+			Sort *WidgetFieldSort `json:"sort,omitempty"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type LogStreamWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -594,3 +594,5 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

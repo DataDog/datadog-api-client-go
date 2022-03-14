@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
 	// List of notebook definitions.
 	Data *[]NotebooksResponseData `json:"data,omitempty"`
-	Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
+	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,9 +120,9 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]NotebooksResponseData `json:"data,omitempty"`
-		Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
-	}{}
+			Data *[]NotebooksResponseData `json:"data,omitempty"`
+			Meta *NotebooksResponseMeta `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

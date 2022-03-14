@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // NotebooksResponseMeta Searches metadata returned by the API.
@@ -82,8 +83,8 @@ func (o NotebooksResponseMeta) MarshalJSON() ([]byte, error) {
 func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Page *NotebooksResponsePage `json:"page,omitempty"`
-	}{}
+			Page *NotebooksResponsePage `json:"page,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *NotebooksResponseMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.Page = all.Page
 	return nil
 }
+
+

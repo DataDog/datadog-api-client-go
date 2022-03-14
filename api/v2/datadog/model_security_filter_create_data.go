@@ -16,7 +16,7 @@ import (
 // SecurityFilterCreateData Object for a single security filter.
 type SecurityFilterCreateData struct {
 	Attributes SecurityFilterCreateAttributes `json:"attributes"`
-	Type       SecurityFilterType             `json:"type"`
+	Type SecurityFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *SecurityFilterCreateData) GetAttributes() SecurityFilterCreateAttribute
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateData) GetAttributesOk() (*SecurityFilterCreateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *SecurityFilterCreateData) GetType() SecurityFilterType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SecurityFilterCreateData) GetTypeOk() (*SecurityFilterType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *SecurityFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *SecurityFilterCreateAttributes `json:"attributes"`
-		Type       *SecurityFilterType             `json:"type"`
-	}{}
+		Type *SecurityFilterType `json:"type"`
+		}{}
 	all := struct {
-		Attributes SecurityFilterCreateAttributes `json:"attributes"`
-		Type       SecurityFilterType             `json:"type"`
-	}{}
+			Attributes SecurityFilterCreateAttributes `json:"attributes"`
+			Type SecurityFilterType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *SecurityFilterCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

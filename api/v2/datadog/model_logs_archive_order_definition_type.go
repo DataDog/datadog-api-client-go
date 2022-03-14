@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsArchiveOrderDefinitionType Type of the archive order definition.
@@ -100,3 +101,4 @@ func (v *NullableLogsArchiveOrderDefinitionType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

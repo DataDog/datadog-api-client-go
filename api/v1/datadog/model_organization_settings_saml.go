@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML. See the SAML documentation for more information about all SAML settings.
@@ -83,8 +84,8 @@ func (o OrganizationSettingsSaml) MarshalJSON() ([]byte, error) {
 func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Enabled *bool `json:"enabled,omitempty"`
-	}{}
+			Enabled *bool `json:"enabled,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *OrganizationSettingsSaml) UnmarshalJSON(bytes []byte) (err error) {
 	o.Enabled = all.Enabled
 	return nil
 }
+
+

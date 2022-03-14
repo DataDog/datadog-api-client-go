@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsAssertionJSONPathTargetTarget Composed target for `validatesJSONPath` operator.
@@ -107,7 +108,7 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) SetOperator(v string) {
 
 // GetTargetValue returns the TargetValue field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsAssertionJSONPathTargetTarget) GetTargetValue() interface{} {
-	if o == nil {
+	if o == nil  {
 		var ret interface{}
 		return ret
 	}
@@ -158,10 +159,10 @@ func (o SyntheticsAssertionJSONPathTargetTarget) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		JsonPath    *string     `json:"jsonPath,omitempty"`
-		Operator    *string     `json:"operator,omitempty"`
-		TargetValue interface{} `json:"targetValue,omitempty"`
-	}{}
+			JsonPath *string `json:"jsonPath,omitempty"`
+			Operator *string `json:"operator,omitempty"`
+			TargetValue interface{} `json:"targetValue,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -176,3 +177,5 @@ func (o *SyntheticsAssertionJSONPathTargetTarget) UnmarshalJSON(bytes []byte) (e
 	o.TargetValue = all.TargetValue
 	return nil
 }
+
+

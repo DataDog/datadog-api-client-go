@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Pagination Pagination object.
@@ -120,9 +121,9 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalCount         *int64 `json:"total_count,omitempty"`
-		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
-	}{}
+			TotalCount *int64 `json:"total_count,omitempty"`
+			TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalFilteredCount = all.TotalFilteredCount
 	return nil
 }
+
+

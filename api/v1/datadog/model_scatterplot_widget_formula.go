@@ -16,7 +16,7 @@ import (
 // ScatterplotWidgetFormula Formula to be used in a Scatterplot widget query.
 type ScatterplotWidgetFormula struct {
 	// Expression alias.
-	Alias     *string              `json:"alias,omitempty"`
+	Alias *string `json:"alias,omitempty"`
 	Dimension ScatterplotDimension `json:"dimension"`
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
@@ -88,7 +88,7 @@ func (o *ScatterplotWidgetFormula) GetDimension() ScatterplotDimension {
 // GetDimensionOk returns a tuple with the Dimension field value
 // and a boolean to check if the value has been set.
 func (o *ScatterplotWidgetFormula) GetDimensionOk() (*ScatterplotDimension, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Dimension, true
@@ -112,7 +112,7 @@ func (o *ScatterplotWidgetFormula) GetFormula() string {
 // GetFormulaOk returns a tuple with the Formula field value
 // and a boolean to check if the value has been set.
 func (o *ScatterplotWidgetFormula) GetFormulaOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Formula, true
@@ -144,13 +144,13 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Dimension *ScatterplotDimension `json:"dimension"`
-		Formula   *string               `json:"formula"`
-	}{}
+		Formula *string `json:"formula"`
+		}{}
 	all := struct {
-		Alias     *string              `json:"alias,omitempty"`
-		Dimension ScatterplotDimension `json:"dimension"`
-		Formula   string               `json:"formula"`
-	}{}
+			Alias *string `json:"alias,omitempty"`
+			Dimension ScatterplotDimension `json:"dimension"`
+			Formula string `json:"formula"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -183,3 +183,5 @@ func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	o.Formula = all.Formula
 	return nil
 }
+
+

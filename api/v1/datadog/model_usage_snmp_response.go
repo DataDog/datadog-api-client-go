@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageSNMPResponse Response containing the number of SNMP devices for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageSNMPResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSNMPResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageSNMPHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageSNMPHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageSNMPResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

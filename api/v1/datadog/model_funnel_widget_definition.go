@@ -13,17 +13,17 @@ import (
 	"fmt"
 )
 
-// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
+// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application. 
 type FunnelWidgetDefinition struct {
 	// Request payload used to query items.
 	Requests []FunnelWidgetRequest `json:"requests"`
-	Time     *WidgetTime           `json:"time,omitempty"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// The title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// The size of the title.
-	TitleSize *string                    `json:"title_size,omitempty"`
-	Type      FunnelWidgetDefinitionType `json:"type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type FunnelWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -62,7 +62,7 @@ func (o *FunnelWidgetDefinition) GetRequests() []FunnelWidgetRequest {
 // GetRequestsOk returns a tuple with the Requests field value
 // and a boolean to check if the value has been set.
 func (o *FunnelWidgetDefinition) GetRequestsOk() (*[]FunnelWidgetRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Requests, true
@@ -214,7 +214,7 @@ func (o *FunnelWidgetDefinition) GetType() FunnelWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *FunnelWidgetDefinition) GetTypeOk() (*FunnelWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -254,17 +254,17 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]FunnelWidgetRequest      `json:"requests"`
-		Type     *FunnelWidgetDefinitionType `json:"type"`
-	}{}
+		Requests *[]FunnelWidgetRequest `json:"requests"`
+		Type *FunnelWidgetDefinitionType `json:"type"`
+		}{}
 	all := struct {
-		Requests   []FunnelWidgetRequest      `json:"requests"`
-		Time       *WidgetTime                `json:"time,omitempty"`
-		Title      *string                    `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign           `json:"title_align,omitempty"`
-		TitleSize  *string                    `json:"title_size,omitempty"`
-		Type       FunnelWidgetDefinitionType `json:"type"`
-	}{}
+			Requests []FunnelWidgetRequest `json:"requests"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type FunnelWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -308,3 +308,5 @@ func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

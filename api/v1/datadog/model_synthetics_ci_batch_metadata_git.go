@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCIBatchMetadataGit Git information.
@@ -120,9 +121,9 @@ func (o SyntheticsCIBatchMetadataGit) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Branch    *string `json:"branch,omitempty"`
-		CommitSha *string `json:"commitSha,omitempty"`
-	}{}
+			Branch *string `json:"branch,omitempty"`
+			CommitSha *string `json:"commitSha,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *SyntheticsCIBatchMetadataGit) UnmarshalJSON(bytes []byte) (err error) {
 	o.CommitSha = all.CommitSha
 	return nil
 }
+
+

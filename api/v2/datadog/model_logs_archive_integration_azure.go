@@ -55,7 +55,7 @@ func (o *LogsArchiveIntegrationAzure) GetClientId() string {
 // GetClientIdOk returns a tuple with the ClientId field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationAzure) GetClientIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.ClientId, true
@@ -79,7 +79,7 @@ func (o *LogsArchiveIntegrationAzure) GetTenantId() string {
 // GetTenantIdOk returns a tuple with the TenantId field value
 // and a boolean to check if the value has been set.
 func (o *LogsArchiveIntegrationAzure) GetTenantIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.TenantId, true
@@ -109,11 +109,11 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
 		ClientId *string `json:"client_id"`
 		TenantId *string `json:"tenant_id"`
-	}{}
+		}{}
 	all := struct {
-		ClientId string `json:"client_id"`
-		TenantId string `json:"tenant_id"`
-	}{}
+			ClientId string `json:"client_id"`
+			TenantId string `json:"tenant_id"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *LogsArchiveIntegrationAzure) UnmarshalJSON(bytes []byte) (err error) {
 	o.TenantId = all.TenantId
 	return nil
 }
+
+

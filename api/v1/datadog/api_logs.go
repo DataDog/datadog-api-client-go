@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type LogsApiService service
 
 type apiListLogsRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *LogsApiService
-	body       *LogsListRequest
+	body *LogsListRequest
 }
+
 
 /*
  * ListLogs Search logs
@@ -41,15 +44,16 @@ See [Datadog Logs Archive documentation][2].**
 
 [1]: /logs/guide/collect-multiple-logs-with-pagination
 [2]: https://docs.datadoghq.com/logs/archives
-*/
+ */
 func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
 	req := apiListLogsRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.listLogsExecute(req)
+
+    return req.ApiService.listLogsExecute(req)
 }
 
 /*
@@ -65,6 +69,7 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 		localVarFileBytes    []byte
 		localVarReturnValue  LogsListResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
 	if err != nil {
@@ -195,29 +200,29 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 }
 
 type apiSubmitLogRequest struct {
-	ctx             _context.Context
-	ApiService      *LogsApiService
-	body            *[]HTTPLogItem
+	ctx _context.Context
+	ApiService *LogsApiService
+	body *[]HTTPLogItem
 	contentEncoding *ContentEncoding
-	ddtags          *string
+	ddtags *string
 }
 
 type SubmitLogOptionalParameters struct {
-	ContentEncoding *ContentEncoding
-	Ddtags          *string
+    ContentEncoding *ContentEncoding
+    Ddtags *string
 }
 
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
-	this := SubmitLogOptionalParameters{}
-	return &this
+    this := SubmitLogOptionalParameters{}
+    return &this
 }
 func (r *SubmitLogOptionalParameters) WithContentEncoding(contentEncoding ContentEncoding) *SubmitLogOptionalParameters {
-	r.ContentEncoding = &contentEncoding
-	return r
+    r.ContentEncoding = &contentEncoding
+    return r
 }
 func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOptionalParameters {
-	r.Ddtags = &ddtags
-	return r
+    r.Ddtags = &ddtags
+    return r
 }
 
 /*
@@ -241,25 +246,25 @@ The status codes answered by the HTTP API are:
 - 403: Permission issue (likely using an invalid API Key)
 - 413: Payload too large (batch is above 5MB uncompressed)
 - 5xx: Internal error, request should be retried after some time
-*/
+ */
 func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req := apiSubmitLogRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	if len(o) > 1 {
-		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
-	}
+    if len(o) > 1 {
+         var localVarReturnValue interface{}
+        return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+    }
 
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
-		req.ddtags = o[0].Ddtags
-	}
+    if o != nil {
+        req.contentEncoding = o[0].ContentEncoding
+        req.ddtags = o[0].Ddtags
+    }
 
-	return req.ApiService.submitLogExecute(req)
+    return req.ApiService.submitLogExecute(req)
 }
 
 /*
@@ -275,6 +280,7 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.SubmitLog")
 	if err != nil {

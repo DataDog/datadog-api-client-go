@@ -10,31 +10,32 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ChangeWidgetRequest Updated change widget.
 type ChangeWidgetRequest struct {
-	ApmQuery   *LogQueryDefinition `json:"apm_query,omitempty"`
-	ChangeType *WidgetChangeType   `json:"change_type,omitempty"`
-	CompareTo  *WidgetCompareTo    `json:"compare_to,omitempty"`
+	ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+	ChangeType *WidgetChangeType `json:"change_type,omitempty"`
+	CompareTo *WidgetCompareTo `json:"compare_to,omitempty"`
 	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries. **This feature is currently in beta.**
 	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
 	// Whether to show increase as good.
-	IncreaseGood        *bool                   `json:"increase_good,omitempty"`
-	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-	OrderBy             *WidgetOrderBy          `json:"order_by,omitempty"`
-	OrderDir            *WidgetSort             `json:"order_dir,omitempty"`
-	ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+	IncreaseGood *bool `json:"increase_good,omitempty"`
+	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+	OrderBy *WidgetOrderBy `json:"order_by,omitempty"`
+	OrderDir *WidgetSort `json:"order_dir,omitempty"`
+	ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Query definition.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
-	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-	SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// Whether to show the present value.
 	ShowPresent *bool `json:"show_present,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -699,25 +700,25 @@ func (o ChangeWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		ChangeType          *WidgetChangeType                    `json:"change_type,omitempty"`
-		CompareTo           *WidgetCompareTo                     `json:"compare_to,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		IncreaseGood        *bool                                `json:"increase_good,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		OrderBy             *WidgetOrderBy                       `json:"order_by,omitempty"`
-		OrderDir            *WidgetSort                          `json:"order_dir,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
-		ShowPresent         *bool                                `json:"show_present,omitempty"`
-	}{}
+			ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+			ChangeType *WidgetChangeType `json:"change_type,omitempty"`
+			CompareTo *WidgetCompareTo `json:"compare_to,omitempty"`
+			EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+			Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+			IncreaseGood *bool `json:"increase_good,omitempty"`
+			LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+			NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+			OrderBy *WidgetOrderBy `json:"order_by,omitempty"`
+			OrderDir *WidgetSort `json:"order_dir,omitempty"`
+			ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+			ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+			Q *string `json:"q,omitempty"`
+			Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+			ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+			RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+			SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+			ShowPresent *bool `json:"show_present,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -787,3 +788,5 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShowPresent = all.ShowPresent
 	return nil
 }
+
+

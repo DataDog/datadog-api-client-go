@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostMapWidgetDefinitionRequests List of definitions.
@@ -118,9 +119,9 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Fill *HostMapRequest `json:"fill,omitempty"`
-		Size *HostMapRequest `json:"size,omitempty"`
-	}{}
+			Fill *HostMapRequest `json:"fill,omitempty"`
+			Size *HostMapRequest `json:"size,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error
 	o.Size = all.Size
 	return nil
 }
+
+

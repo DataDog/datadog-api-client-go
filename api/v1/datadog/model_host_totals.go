@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HostTotals Total number of host currently monitored by Datadog.
@@ -120,9 +121,9 @@ func (o HostTotals) MarshalJSON() ([]byte, error) {
 func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalActive *int64 `json:"total_active,omitempty"`
-		TotalUp     *int64 `json:"total_up,omitempty"`
-	}{}
+			TotalActive *int64 `json:"total_active,omitempty"`
+			TotalUp *int64 `json:"total_up,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 	o.TotalUp = all.TotalUp
 	return nil
 }
+
+

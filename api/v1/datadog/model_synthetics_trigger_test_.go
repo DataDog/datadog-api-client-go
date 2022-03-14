@@ -85,7 +85,7 @@ func (o *SyntheticsTriggerTest) GetPublicId() string {
 // GetPublicIdOk returns a tuple with the PublicId field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsTriggerTest) GetPublicIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.PublicId, true
@@ -114,11 +114,11 @@ func (o *SyntheticsTriggerTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		PublicId *string `json:"public_id"`
-	}{}
+		}{}
 	all := struct {
-		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-		PublicId string                     `json:"public_id"`
-	}{}
+			Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+			PublicId string `json:"public_id"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -139,3 +139,5 @@ func (o *SyntheticsTriggerTest) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	return nil
 }
+
+

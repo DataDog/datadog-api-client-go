@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageDBMResponse Response containing the Database Monitoring usage for each hour for a given organization.
@@ -83,8 +84,8 @@ func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageDBMResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageDBMHour `json:"usage,omitempty"`
-	}{}
+			Usage *[]UsageDBMHour `json:"usage,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *UsageDBMResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Usage = all.Usage
 	return nil
 }
+
+

@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuditLogsSearchEventsRequest The request for a Audit Logs events list.
 type AuditLogsSearchEventsRequest struct {
-	Filter  *AuditLogsQueryFilter      `json:"filter,omitempty"`
-	Options *AuditLogsQueryOptions     `json:"options,omitempty"`
-	Page    *AuditLogsQueryPageOptions `json:"page,omitempty"`
-	Sort    *AuditLogsSort             `json:"sort,omitempty"`
+	Filter *AuditLogsQueryFilter `json:"filter,omitempty"`
+	Options *AuditLogsQueryOptions `json:"options,omitempty"`
+	Page *AuditLogsQueryPageOptions `json:"page,omitempty"`
+	Sort *AuditLogsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -190,11 +191,11 @@ func (o AuditLogsSearchEventsRequest) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filter  *AuditLogsQueryFilter      `json:"filter,omitempty"`
-		Options *AuditLogsQueryOptions     `json:"options,omitempty"`
-		Page    *AuditLogsQueryPageOptions `json:"page,omitempty"`
-		Sort    *AuditLogsSort             `json:"sort,omitempty"`
-	}{}
+			Filter *AuditLogsQueryFilter `json:"filter,omitempty"`
+			Options *AuditLogsQueryOptions `json:"options,omitempty"`
+			Page *AuditLogsQueryPageOptions `json:"page,omitempty"`
+			Sort *AuditLogsSort `json:"sort,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -218,3 +219,5 @@ func (o *AuditLogsSearchEventsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sort = all.Sort
 	return nil
 }
+
+

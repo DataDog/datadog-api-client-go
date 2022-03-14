@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // HTTPMethod The HTTP method.
@@ -18,12 +19,12 @@ type HTTPMethod string
 
 // List of HTTPMethod
 const (
-	HTTPMETHOD_GET     HTTPMethod = "GET"
-	HTTPMETHOD_POST    HTTPMethod = "POST"
-	HTTPMETHOD_PATCH   HTTPMethod = "PATCH"
-	HTTPMETHOD_PUT     HTTPMethod = "PUT"
-	HTTPMETHOD_DELETE  HTTPMethod = "DELETE"
-	HTTPMETHOD_HEAD    HTTPMethod = "HEAD"
+	HTTPMETHOD_GET HTTPMethod = "GET"
+	HTTPMETHOD_POST HTTPMethod = "POST"
+	HTTPMETHOD_PATCH HTTPMethod = "PATCH"
+	HTTPMETHOD_PUT HTTPMethod = "PUT"
+	HTTPMETHOD_DELETE HTTPMethod = "DELETE"
+	HTTPMETHOD_HEAD HTTPMethod = "HEAD"
 	HTTPMETHOD_OPTIONS HTTPMethod = "OPTIONS"
 )
 
@@ -112,3 +113,4 @@ func (v *NullableHTTPMethod) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

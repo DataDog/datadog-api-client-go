@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleData Object for a single Agent rule.
 type CloudWorkloadSecurityAgentRuleData struct {
 	Attributes *CloudWorkloadSecurityAgentRuleAttributes `json:"attributes,omitempty"`
 	// The ID of the Agent rule.
-	Id   *string                             `json:"id,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Type *CloudWorkloadSecurityAgentRuleType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -159,10 +160,10 @@ func (o CloudWorkloadSecurityAgentRuleData) MarshalJSON() ([]byte, error) {
 func (o *CloudWorkloadSecurityAgentRuleData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *CloudWorkloadSecurityAgentRuleAttributes `json:"attributes,omitempty"`
-		Id         *string                                   `json:"id,omitempty"`
-		Type       *CloudWorkloadSecurityAgentRuleType       `json:"type,omitempty"`
-	}{}
+			Attributes *CloudWorkloadSecurityAgentRuleAttributes `json:"attributes,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Type *CloudWorkloadSecurityAgentRuleType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -185,3 +186,5 @@ func (o *CloudWorkloadSecurityAgentRuleData) UnmarshalJSON(bytes []byte) (err er
 	o.Type = all.Type
 	return nil
 }
+
+

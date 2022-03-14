@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsListResponse Response object with all logs matching the request and pagination information.
@@ -157,10 +158,10 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Logs      *[]Log  `json:"logs,omitempty"`
-		NextLogId *string `json:"nextLogId,omitempty"`
-		Status    *string `json:"status,omitempty"`
-	}{}
+			Logs *[]Log `json:"logs,omitempty"`
+			NextLogId *string `json:"nextLogId,omitempty"`
+			Status *string `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

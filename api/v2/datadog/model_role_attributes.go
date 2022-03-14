@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -195,11 +196,11 @@ func (o RoleAttributes) MarshalJSON() ([]byte, error) {
 func (o *RoleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name       *string    `json:"name,omitempty"`
-		UserCount  *int64     `json:"user_count,omitempty"`
-	}{}
+			CreatedAt *time.Time `json:"created_at,omitempty"`
+			ModifiedAt *time.Time `json:"modified_at,omitempty"`
+			Name *string `json:"name,omitempty"`
+			UserCount *int64 `json:"user_count,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -215,3 +216,5 @@ func (o *RoleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.UserCount = all.UserCount
 	return nil
 }
+
+

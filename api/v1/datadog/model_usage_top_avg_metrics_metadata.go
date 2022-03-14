@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -18,7 +19,7 @@ type UsageTopAvgMetricsMetadata struct {
 	// The day value from the user request that contains the returned usage data. (If day was used the request)
 	Day *time.Time `json:"day,omitempty"`
 	// The month value from the user request that contains the returned usage data. (If month was used the request)
-	Month      *time.Time                  `json:"month,omitempty"`
+	Month *time.Time `json:"month,omitempty"`
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -157,10 +158,10 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Day        *time.Time                  `json:"day,omitempty"`
-		Month      *time.Time                  `json:"month,omitempty"`
-		Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
-	}{}
+			Day *time.Time `json:"day,omitempty"`
+			Month *time.Time `json:"month,omitempty"`
+			Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Pagination = all.Pagination
 	return nil
 }
+
+

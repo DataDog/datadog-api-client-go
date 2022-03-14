@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CloudWorkloadSecurityAgentRuleUpdaterAttributes The attributes of the user who last updated the Agent rule.
@@ -120,9 +121,9 @@ func (o CloudWorkloadSecurityAgentRuleUpdaterAttributes) MarshalJSON() ([]byte, 
 func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Handle *string `json:"handle,omitempty"`
-		Name   *string `json:"name,omitempty"`
-	}{}
+			Handle *string `json:"handle,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -136,3 +137,5 @@ func (o *CloudWorkloadSecurityAgentRuleUpdaterAttributes) UnmarshalJSON(bytes []
 	o.Name = all.Name
 	return nil
 }
+
+

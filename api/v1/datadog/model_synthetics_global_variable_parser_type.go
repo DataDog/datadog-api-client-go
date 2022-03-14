@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsGlobalVariableParserType Type of parser for a Synthetics global variable from a synthetics test.
@@ -18,10 +19,10 @@ type SyntheticsGlobalVariableParserType string
 
 // List of SyntheticsGlobalVariableParserType
 const (
-	SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW       SyntheticsGlobalVariableParserType = "raw"
+	SYNTHETICSGLOBALVARIABLEPARSERTYPE_RAW SyntheticsGlobalVariableParserType = "raw"
 	SYNTHETICSGLOBALVARIABLEPARSERTYPE_JSON_PATH SyntheticsGlobalVariableParserType = "json_path"
-	SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX     SyntheticsGlobalVariableParserType = "regex"
-	SYNTHETICSGLOBALVARIABLEPARSERTYPE_X_PATH    SyntheticsGlobalVariableParserType = "x_path"
+	SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX SyntheticsGlobalVariableParserType = "regex"
+	SYNTHETICSGLOBALVARIABLEPARSERTYPE_X_PATH SyntheticsGlobalVariableParserType = "x_path"
 )
 
 var allowedSyntheticsGlobalVariableParserTypeEnumValues = []SyntheticsGlobalVariableParserType{
@@ -106,3 +107,4 @@ func (v *NullableSyntheticsGlobalVariableParserType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

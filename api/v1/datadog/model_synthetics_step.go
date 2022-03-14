@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsStep The steps used in a Synthetics browser test.
@@ -23,8 +24,8 @@ type SyntheticsStep struct {
 	// The parameters of the step.
 	Params *interface{} `json:"params,omitempty"`
 	// The time before declaring a step failed.
-	Timeout *int64              `json:"timeout,omitempty"`
-	Type    *SyntheticsStepType `json:"type,omitempty"`
+	Timeout *int64 `json:"timeout,omitempty"`
+	Type *SyntheticsStepType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -267,13 +268,13 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowFailure *bool               `json:"allowFailure,omitempty"`
-		IsCritical   *bool               `json:"isCritical,omitempty"`
-		Name         *string             `json:"name,omitempty"`
-		Params       *interface{}        `json:"params,omitempty"`
-		Timeout      *int64              `json:"timeout,omitempty"`
-		Type         *SyntheticsStepType `json:"type,omitempty"`
-	}{}
+			AllowFailure *bool `json:"allowFailure,omitempty"`
+			IsCritical *bool `json:"isCritical,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Params *interface{} `json:"params,omitempty"`
+			Timeout *int64 `json:"timeout,omitempty"`
+			Type *SyntheticsStepType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -299,3 +300,5 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

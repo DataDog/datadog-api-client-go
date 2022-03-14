@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // MetricBulkConfigureTagsType The metric bulk configure tags resource.
@@ -100,3 +101,4 @@ func (v *NullableMetricBulkConfigureTagsType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

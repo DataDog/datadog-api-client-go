@@ -16,7 +16,7 @@ import (
 // NotebookCellCreateRequest The description of a notebook cell create request.
 type NotebookCellCreateRequest struct {
 	Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
-	Type       NotebookCellResourceType            `json:"type"`
+	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *NotebookCellCreateRequest) GetAttributes() NotebookCellCreateRequestAtt
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCellCreateRequest) GetAttributesOk() (*NotebookCellCreateRequestAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *NotebookCellCreateRequest) GetType() NotebookCellResourceType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *NotebookCellCreateRequest) GetTypeOk() (*NotebookCellResourceType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellCreateRequestAttributes `json:"attributes"`
-		Type       *NotebookCellResourceType            `json:"type"`
-	}{}
+		Type *NotebookCellResourceType `json:"type"`
+		}{}
 	all := struct {
-		Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
-		Type       NotebookCellResourceType            `json:"type"`
-	}{}
+			Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
+			Type NotebookCellResourceType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // TimeseriesWidgetDefinitionType Type of the timeseries widget.
@@ -100,3 +101,4 @@ func (v *NullableTimeseriesWidgetDefinitionType) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

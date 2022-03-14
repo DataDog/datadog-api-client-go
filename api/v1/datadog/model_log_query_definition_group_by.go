@@ -18,8 +18,8 @@ type LogQueryDefinitionGroupBy struct {
 	// Facet name.
 	Facet string `json:"facet"`
 	// Maximum number of items in the group.
-	Limit *int64                         `json:"limit,omitempty"`
-	Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
+	Limit *int64 `json:"limit,omitempty"`
+	Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *LogQueryDefinitionGroupBy) GetFacet() string {
 // GetFacetOk returns a tuple with the Facet field value
 // and a boolean to check if the value has been set.
 func (o *LogQueryDefinitionGroupBy) GetFacetOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Facet, true
@@ -151,12 +151,12 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Facet *string `json:"facet"`
-	}{}
+		}{}
 	all := struct {
-		Facet string                         `json:"facet"`
-		Limit *int64                         `json:"limit,omitempty"`
-		Sort  *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
-	}{}
+			Facet string `json:"facet"`
+			Limit *int64 `json:"limit,omitempty"`
+			Sort *LogQueryDefinitionGroupBySort `json:"sort,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -178,3 +178,5 @@ func (o *LogQueryDefinitionGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	o.Sort = all.Sort
 	return nil
 }
+
+

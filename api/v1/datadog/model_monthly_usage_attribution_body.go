@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -26,8 +27,8 @@ type MonthlyUsageAttributionBody struct {
 	// Usage Summary by tag name.
 	Tags *map[string][]string `json:"tags,omitempty"`
 	// Datetime of the most recent update to the usage values.
-	UpdatedAt *time.Time                     `json:"updated_at,omitempty"`
-	Values    *MonthlyUsageAttributionValues `json:"values,omitempty"`
+	UpdatedAt *time.Time `json:"updated_at,omitempty"`
+	Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -305,14 +306,14 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Month           *time.Time                     `json:"month,omitempty"`
-		OrgName         *string                        `json:"org_name,omitempty"`
-		PublicId        *string                        `json:"public_id,omitempty"`
-		TagConfigSource *string                        `json:"tag_config_source,omitempty"`
-		Tags            *map[string][]string           `json:"tags,omitempty"`
-		UpdatedAt       *time.Time                     `json:"updated_at,omitempty"`
-		Values          *MonthlyUsageAttributionValues `json:"values,omitempty"`
-	}{}
+			Month *time.Time `json:"month,omitempty"`
+			OrgName *string `json:"org_name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			TagConfigSource *string `json:"tag_config_source,omitempty"`
+			Tags *map[string][]string `json:"tags,omitempty"`
+			UpdatedAt *time.Time `json:"updated_at,omitempty"`
+			Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -331,3 +332,5 @@ func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.Values = all.Values
 	return nil
 }
+
+

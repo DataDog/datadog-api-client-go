@@ -51,7 +51,7 @@ func (o *MetricBulkTagConfigCreateRequest) GetData() MetricBulkTagConfigCreate {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *MetricBulkTagConfigCreateRequest) GetDataOk() (*MetricBulkTagConfigCreate, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *MetricBulkTagConfigCreateRequest) UnmarshalJSON(bytes []byte) (err erro
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *MetricBulkTagConfigCreate `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data MetricBulkTagConfigCreate `json:"data"`
-	}{}
+			Data MetricBulkTagConfigCreate `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *MetricBulkTagConfigCreateRequest) UnmarshalJSON(bytes []byte) (err erro
 	o.Data = all.Data
 	return nil
 }
+
+

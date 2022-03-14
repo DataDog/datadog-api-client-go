@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HourlyUsageAttributionPagination The metadata for the current pagination.
@@ -83,8 +84,8 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		NextRecordId *string `json:"next_record_id,omitempty"`
-	}{}
+			NextRecordId *string `json:"next_record_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err erro
 	o.NextRecordId = all.NextRecordId
 	return nil
 }
+
+

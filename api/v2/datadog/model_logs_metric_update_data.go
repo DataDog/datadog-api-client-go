@@ -16,7 +16,7 @@ import (
 // LogsMetricUpdateData The new log-based metric properties.
 type LogsMetricUpdateData struct {
 	Attributes LogsMetricUpdateAttributes `json:"attributes"`
-	Type       LogsMetricType             `json:"type"`
+	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -55,7 +55,7 @@ func (o *LogsMetricUpdateData) GetAttributes() LogsMetricUpdateAttributes {
 // GetAttributesOk returns a tuple with the Attributes field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricUpdateData) GetAttributesOk() (*LogsMetricUpdateAttributes, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Attributes, true
@@ -79,7 +79,7 @@ func (o *LogsMetricUpdateData) GetType() LogsMetricType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *LogsMetricUpdateData) GetTypeOk() (*LogsMetricType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -108,12 +108,12 @@ func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *LogsMetricUpdateAttributes `json:"attributes"`
-		Type       *LogsMetricType             `json:"type"`
-	}{}
+		Type *LogsMetricType `json:"type"`
+		}{}
 	all := struct {
-		Attributes LogsMetricUpdateAttributes `json:"attributes"`
-		Type       LogsMetricType             `json:"type"`
-	}{}
+			Attributes LogsMetricUpdateAttributes `json:"attributes"`
+			Type LogsMetricType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -145,3 +145,5 @@ func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

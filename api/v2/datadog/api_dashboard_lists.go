@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -26,11 +28,12 @@ var (
 type DashboardListsApiService service
 
 type apiCreateDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListAddItemsRequest
+	body *DashboardListAddItemsRequest
 }
+
 
 /*
  * CreateDashboardListItems Add Items to a Dashboard List
@@ -38,13 +41,14 @@ type apiCreateDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	req := apiCreateDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx: ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
-	return req.ApiService.createDashboardListItemsExecute(req)
+
+    return req.ApiService.createDashboardListItemsExecute(req)
 }
 
 /*
@@ -60,6 +64,7 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 		localVarFileBytes    []byte
 		localVarReturnValue  DashboardListAddItemsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardListItems")
 	if err != nil {
@@ -201,11 +206,12 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 }
 
 type apiDeleteDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListDeleteItemsRequest
+	body *DashboardListDeleteItemsRequest
 }
+
 
 /*
  * DeleteDashboardListItems Delete items from a dashboard list
@@ -213,13 +219,14 @@ type apiDeleteDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	req := apiDeleteDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx: ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
-	return req.ApiService.deleteDashboardListItemsExecute(req)
+
+    return req.ApiService.deleteDashboardListItemsExecute(req)
 }
 
 /*
@@ -235,6 +242,7 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 		localVarFileBytes    []byte
 		localVarReturnValue  DashboardListDeleteItemsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.DeleteDashboardListItems")
 	if err != nil {
@@ -376,10 +384,11 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 }
 
 type apiGetDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
 }
+
 
 /*
  * GetDashboardListItems Get items of a Dashboard List
@@ -387,12 +396,13 @@ type apiGetDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
 	req := apiGetDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx: ctx,
 		dashboardListId: dashboardListId,
 	}
 
-	return req.ApiService.getDashboardListItemsExecute(req)
+
+    return req.ApiService.getDashboardListItemsExecute(req)
 }
 
 /*
@@ -408,6 +418,7 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 		localVarFileBytes    []byte
 		localVarReturnValue  DashboardListItems
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.GetDashboardListItems")
 	if err != nil {
@@ -534,11 +545,12 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 }
 
 type apiUpdateDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListUpdateItemsRequest
+	body *DashboardListUpdateItemsRequest
 }
+
 
 /*
  * UpdateDashboardListItems Update items of a dashboard list
@@ -546,13 +558,14 @@ type apiUpdateDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
 	req := apiUpdateDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx: ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
-	return req.ApiService.updateDashboardListItemsExecute(req)
+
+    return req.ApiService.updateDashboardListItemsExecute(req)
 }
 
 /*
@@ -568,6 +581,7 @@ func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDa
 		localVarFileBytes    []byte
 		localVarReturnValue  DashboardListUpdateItemsResponse
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.UpdateDashboardListItems")
 	if err != nil {

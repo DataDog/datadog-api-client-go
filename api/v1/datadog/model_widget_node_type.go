@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetNodeType Which type of node to use in the map.
@@ -18,7 +19,7 @@ type WidgetNodeType string
 
 // List of WidgetNodeType
 const (
-	WIDGETNODETYPE_HOST      WidgetNodeType = "host"
+	WIDGETNODETYPE_HOST WidgetNodeType = "host"
 	WIDGETNODETYPE_CONTAINER WidgetNodeType = "container"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableWidgetNodeType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

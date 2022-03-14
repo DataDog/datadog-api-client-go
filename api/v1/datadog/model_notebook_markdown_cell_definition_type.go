@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // NotebookMarkdownCellDefinitionType Type of the markdown cell.
@@ -100,3 +101,4 @@ func (v *NullableNotebookMarkdownCellDefinitionType) UnmarshalJSON(src []byte) e
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

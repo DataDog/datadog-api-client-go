@@ -59,7 +59,7 @@ func (o *FunnelQuery) GetDataSource() FunnelSource {
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *FunnelQuery) GetDataSourceOk() (*FunnelSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -83,7 +83,7 @@ func (o *FunnelQuery) GetQueryString() string {
 // GetQueryStringOk returns a tuple with the QueryString field value
 // and a boolean to check if the value has been set.
 func (o *FunnelQuery) GetQueryStringOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.QueryString, true
@@ -107,7 +107,7 @@ func (o *FunnelQuery) GetSteps() []FunnelStep {
 // GetStepsOk returns a tuple with the Steps field value
 // and a boolean to check if the value has been set.
 func (o *FunnelQuery) GetStepsOk() (*[]FunnelStep, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Steps, true
@@ -138,15 +138,15 @@ func (o FunnelQuery) MarshalJSON() ([]byte, error) {
 func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		DataSource  *FunnelSource `json:"data_source"`
-		QueryString *string       `json:"query_string"`
-		Steps       *[]FunnelStep `json:"steps"`
-	}{}
+		DataSource *FunnelSource `json:"data_source"`
+		QueryString *string `json:"query_string"`
+		Steps *[]FunnelStep `json:"steps"`
+		}{}
 	all := struct {
-		DataSource  FunnelSource `json:"data_source"`
-		QueryString string       `json:"query_string"`
-		Steps       []FunnelStep `json:"steps"`
-	}{}
+			DataSource FunnelSource `json:"data_source"`
+			QueryString string `json:"query_string"`
+			Steps []FunnelStep `json:"steps"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -182,3 +182,5 @@ func (o *FunnelQuery) UnmarshalJSON(bytes []byte) (err error) {
 	o.Steps = all.Steps
 	return nil
 }
+
+

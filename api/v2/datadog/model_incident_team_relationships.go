@@ -10,11 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentTeamRelationships The incident team's relationships.
 type IncidentTeamRelationships struct {
-	CreatedBy      *RelationshipToUser `json:"created_by,omitempty"`
+	CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
 	LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -118,9 +119,9 @@ func (o IncidentTeamRelationships) MarshalJSON() ([]byte, error) {
 func (o *IncidentTeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedBy      *RelationshipToUser `json:"created_by,omitempty"`
-		LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
-	}{}
+			CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+			LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -134,3 +135,5 @@ func (o *IncidentTeamRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastModifiedBy = all.LastModifiedBy
 	return nil
 }
+
+

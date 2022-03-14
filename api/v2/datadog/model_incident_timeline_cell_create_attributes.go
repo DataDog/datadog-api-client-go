@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.
@@ -22,8 +24,9 @@ type IncidentTimelineCellCreateAttributes struct {
 
 // IncidentTimelineCellMarkdownCreateAttributesAsIncidentTimelineCellCreateAttributes is a convenience function that returns IncidentTimelineCellMarkdownCreateAttributes wrapped in IncidentTimelineCellCreateAttributes
 func IncidentTimelineCellMarkdownCreateAttributesAsIncidentTimelineCellCreateAttributes(v *IncidentTimelineCellMarkdownCreateAttributes) IncidentTimelineCellCreateAttributes {
-	return IncidentTimelineCellCreateAttributes{IncidentTimelineCellMarkdownCreateAttributes: v}
+	return IncidentTimelineCellCreateAttributes{ IncidentTimelineCellMarkdownCreateAttributes: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *IncidentTimelineCellCreateAttributes) UnmarshalJSON(data []byte) error {
@@ -68,7 +71,7 @@ func (src IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() interface{} {
+func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() (interface{}) {
 	if obj.IncidentTimelineCellMarkdownCreateAttributes != nil {
 		return obj.IncidentTimelineCellMarkdownCreateAttributes
 	}
@@ -112,3 +115,5 @@ func (v *NullableIncidentTimelineCellCreateAttributes) UnmarshalJSON(src []byte)
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

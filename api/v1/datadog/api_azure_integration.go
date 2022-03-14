@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type AzureIntegrationApiService service
 
 type apiCreateAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 /*
  * CreateAzureIntegration Create an Azure integration
@@ -39,15 +42,16 @@ configuration to the existing one in your Datadog organization.
 
 Using the `PUT` method updates your integration configuration by replacing your
 current configuration with the new one sent to your Datadog organization.
-*/
+ */
 func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiCreateAzureIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.createAzureIntegrationExecute(req)
+
+    return req.ApiService.createAzureIntegrationExecute(req)
 }
 
 /*
@@ -63,6 +67,7 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.CreateAzureIntegration")
 	if err != nil {
@@ -193,10 +198,11 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 }
 
 type apiDeleteAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 /*
  * DeleteAzureIntegration Delete an Azure integration
@@ -205,11 +211,12 @@ type apiDeleteAzureIntegrationRequest struct {
 func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiDeleteAzureIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.deleteAzureIntegrationExecute(req)
+
+    return req.ApiService.deleteAzureIntegrationExecute(req)
 }
 
 /*
@@ -225,6 +232,7 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
 	if err != nil {
@@ -355,9 +363,10 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 }
 
 type apiListAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AzureIntegrationApiService
 }
+
 
 /*
  * ListAzureIntegration List all Azure integrations
@@ -366,10 +375,11 @@ type apiListAzureIntegrationRequest struct {
 func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
 	req := apiListAzureIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
+		ctx: ctx,
 	}
 
-	return req.ApiService.listAzureIntegrationExecute(req)
+
+    return req.ApiService.listAzureIntegrationExecute(req)
 }
 
 /*
@@ -385,6 +395,7 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 		localVarFileBytes    []byte
 		localVarReturnValue  []AzureAccount
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.ListAzureIntegration")
 	if err != nil {
@@ -510,10 +521,11 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 }
 
 type apiUpdateAzureHostFiltersRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 /*
  * UpdateAzureHostFilters Update Azure integration host filters
@@ -522,11 +534,12 @@ type apiUpdateAzureHostFiltersRequest struct {
 func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateAzureHostFiltersRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateAzureHostFiltersExecute(req)
+
+    return req.ApiService.updateAzureHostFiltersExecute(req)
 }
 
 /*
@@ -542,6 +555,7 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureHostFilters")
 	if err != nil {
@@ -672,25 +686,27 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 }
 
 type apiUpdateAzureIntegrationRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
+
 
 /*
  * UpdateAzureIntegration Update an Azure integration
  * Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
 Any other fields supplied will overwrite existing values. To overwrite `tenant_name` or `client_id`,
 use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
-*/
+ */
 func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
 	req := apiUpdateAzureIntegrationRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.updateAzureIntegrationExecute(req)
+
+    return req.ApiService.updateAzureIntegrationExecute(req)
 }
 
 /*
@@ -706,6 +722,7 @@ func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAz
 		localVarFileBytes    []byte
 		localVarReturnValue  interface{}
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
 	if err != nil {

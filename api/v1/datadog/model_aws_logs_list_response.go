@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AWSLogsListResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
@@ -157,10 +158,10 @@ func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId *string          `json:"account_id,omitempty"`
-		Lambdas   *[]AWSLogsLambda `json:"lambdas,omitempty"`
-		Services  *[]string        `json:"services,omitempty"`
-	}{}
+			AccountId *string `json:"account_id,omitempty"`
+			Lambdas *[]AWSLogsLambda `json:"lambdas,omitempty"`
+			Services *[]string `json:"services,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Services = all.Services
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RoleResponseRelationships Relationships of the role object returned by the API.
@@ -82,8 +83,8 @@ func (o RoleResponseRelationships) MarshalJSON() ([]byte, error) {
 func (o *RoleResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
-	}{}
+			Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *RoleResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	o.Permissions = all.Permissions
 	return nil
 }
+
+

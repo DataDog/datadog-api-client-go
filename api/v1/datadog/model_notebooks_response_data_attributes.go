@@ -20,14 +20,14 @@ type NotebooksResponseDataAttributes struct {
 	// List of cells to display in the notebook.
 	Cells *[]NotebookCellResponse `json:"cells,omitempty"`
 	// UTC time stamp for when the notebook was created.
-	Created  *time.Time        `json:"created,omitempty"`
+	Created *time.Time `json:"created,omitempty"`
 	Metadata *NotebookMetadata `json:"metadata,omitempty"`
 	// UTC time stamp for when the notebook was last modified.
 	Modified *time.Time `json:"modified,omitempty"`
 	// The name of the notebook.
-	Name   string              `json:"name"`
-	Status *NotebookStatus     `json:"status,omitempty"`
-	Time   *NotebookGlobalTime `json:"time,omitempty"`
+	Name string `json:"name"`
+	Status *NotebookStatus `json:"status,omitempty"`
+	Time *NotebookGlobalTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -227,7 +227,7 @@ func (o *NotebooksResponseDataAttributes) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *NotebooksResponseDataAttributes) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -338,17 +338,17 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
-	}{}
+		}{}
 	all := struct {
-		Author   *NotebookAuthor         `json:"author,omitempty"`
-		Cells    *[]NotebookCellResponse `json:"cells,omitempty"`
-		Created  *time.Time              `json:"created,omitempty"`
-		Metadata *NotebookMetadata       `json:"metadata,omitempty"`
-		Modified *time.Time              `json:"modified,omitempty"`
-		Name     string                  `json:"name"`
-		Status   *NotebookStatus         `json:"status,omitempty"`
-		Time     *NotebookGlobalTime     `json:"time,omitempty"`
-	}{}
+			Author *NotebookAuthor `json:"author,omitempty"`
+			Cells *[]NotebookCellResponse `json:"cells,omitempty"`
+			Created *time.Time `json:"created,omitempty"`
+			Metadata *NotebookMetadata `json:"metadata,omitempty"`
+			Modified *time.Time `json:"modified,omitempty"`
+			Name string `json:"name"`
+			Status *NotebookStatus `json:"status,omitempty"`
+			Time *NotebookGlobalTime `json:"time,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -383,3 +383,5 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 	o.Time = all.Time
 	return nil
 }
+
+

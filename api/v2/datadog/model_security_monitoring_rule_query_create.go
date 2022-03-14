@@ -221,7 +221,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetQuery() string {
 // GetQueryOk returns a tuple with the Query field value
 // and a boolean to check if the value has been set.
 func (o *SecurityMonitoringRuleQueryCreate) GetQueryOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Query, true
@@ -262,15 +262,15 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 	raw := map[string]interface{}{}
 	required := struct {
 		Query *string `json:"query"`
-	}{}
+		}{}
 	all := struct {
-		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
-		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
-		Metric         *string                                 `json:"metric,omitempty"`
-		Name           *string                                 `json:"name,omitempty"`
-		Query          string                                  `json:"query"`
-	}{}
+			Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
+			DistinctFields *[]string `json:"distinctFields,omitempty"`
+			GroupByFields *[]string `json:"groupByFields,omitempty"`
+			Metric *string `json:"metric,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Query string `json:"query"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -303,3 +303,5 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 	o.Query = all.Query
 	return nil
 }
+
+

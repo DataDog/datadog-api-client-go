@@ -17,7 +17,7 @@ import (
 type MetricBulkTagConfigCreate struct {
 	Attributes *MetricBulkTagConfigCreateAttributes `json:"attributes,omitempty"`
 	// A text prefix to match against metric names.
-	Id   string                      `json:"id"`
+	Id string `json:"id"`
 	Type MetricBulkConfigureTagsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -89,7 +89,7 @@ func (o *MetricBulkTagConfigCreate) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *MetricBulkTagConfigCreate) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -113,7 +113,7 @@ func (o *MetricBulkTagConfigCreate) GetType() MetricBulkConfigureTagsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *MetricBulkTagConfigCreate) GetTypeOk() (*MetricBulkConfigureTagsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -144,14 +144,14 @@ func (o MetricBulkTagConfigCreate) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                      `json:"id"`
+		Id *string `json:"id"`
 		Type *MetricBulkConfigureTagsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes *MetricBulkTagConfigCreateAttributes `json:"attributes,omitempty"`
-		Id         string                               `json:"id"`
-		Type       MetricBulkConfigureTagsType          `json:"type"`
-	}{}
+			Attributes *MetricBulkTagConfigCreateAttributes `json:"attributes,omitempty"`
+			Id string `json:"id"`
+			Type MetricBulkConfigureTagsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -184,3 +184,5 @@ func (o *MetricBulkTagConfigCreate) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

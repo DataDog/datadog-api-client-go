@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsParsingOptions Parsing options for variables to extract.
@@ -17,9 +18,9 @@ type SyntheticsParsingOptions struct {
 	// When type is `http_header`, name of the header to use to extract the value.
 	Field *string `json:"field,omitempty"`
 	// Name of the variable to extract.
-	Name   *string                                       `json:"name,omitempty"`
-	Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
-	Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+	Name *string `json:"name,omitempty"`
+	Parser *SyntheticsVariableParser `json:"parser,omitempty"`
+	Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -192,11 +193,11 @@ func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Field  *string                                       `json:"field,omitempty"`
-		Name   *string                                       `json:"name,omitempty"`
-		Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
-		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
-	}{}
+			Field *string `json:"field,omitempty"`
+			Name *string `json:"name,omitempty"`
+			Parser *SyntheticsVariableParser `json:"parser,omitempty"`
+			Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -220,3 +221,5 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

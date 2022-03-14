@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // IncidentIntegrationMetadataType Integration metadata resource type.
@@ -100,3 +101,4 @@ func (v *NullableIncidentIntegrationMetadataType) UnmarshalJSON(src []byte) erro
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

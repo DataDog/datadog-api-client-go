@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ServiceCheckStatus The status of a service check.
@@ -18,10 +19,10 @@ type ServiceCheckStatus int32
 
 // List of ServiceCheckStatus
 const (
-	SERVICECHECKSTATUS_OK       ServiceCheckStatus = 0
-	SERVICECHECKSTATUS_WARNING  ServiceCheckStatus = 1
+	SERVICECHECKSTATUS_OK ServiceCheckStatus = 0
+	SERVICECHECKSTATUS_WARNING ServiceCheckStatus = 1
 	SERVICECHECKSTATUS_CRITICAL ServiceCheckStatus = 2
-	SERVICECHECKSTATUS_UNKNOWN  ServiceCheckStatus = 3
+	SERVICECHECKSTATUS_UNKNOWN ServiceCheckStatus = 3
 )
 
 var allowedServiceCheckStatusEnumValues = []ServiceCheckStatus{
@@ -106,3 +107,4 @@ func (v *NullableServiceCheckStatus) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOHistoryResponse A service level objective history response.
@@ -119,9 +120,9 @@ func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOHistoryResponseData    `json:"data,omitempty"`
-		Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
-	}{}
+			Data *SLOHistoryResponseData `json:"data,omitempty"`
+			Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

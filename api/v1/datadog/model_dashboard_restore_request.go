@@ -52,7 +52,7 @@ func (o *DashboardRestoreRequest) GetData() []DashboardBulkActionData {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *DashboardRestoreRequest) GetDataOk() (*[]DashboardBulkActionData, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -78,10 +78,10 @@ func (o *DashboardRestoreRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *[]DashboardBulkActionData `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data []DashboardBulkActionData `json:"data"`
-	}{}
+			Data []DashboardBulkActionData `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -101,3 +101,5 @@ func (o *DashboardRestoreRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

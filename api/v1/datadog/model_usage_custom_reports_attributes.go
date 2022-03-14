@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // UsageCustomReportsAttributes The response containing attributes for custom reports.
@@ -231,12 +232,12 @@ func (o UsageCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ComputedOn *string   `json:"computed_on,omitempty"`
-		EndDate    *string   `json:"end_date,omitempty"`
-		Size       *int64    `json:"size,omitempty"`
-		StartDate  *string   `json:"start_date,omitempty"`
-		Tags       *[]string `json:"tags,omitempty"`
-	}{}
+			ComputedOn *string `json:"computed_on,omitempty"`
+			EndDate *string `json:"end_date,omitempty"`
+			Size *int64 `json:"size,omitempty"`
+			StartDate *string `json:"start_date,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -253,3 +254,5 @@ func (o *UsageCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

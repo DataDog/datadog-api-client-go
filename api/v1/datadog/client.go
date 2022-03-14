@@ -10,9 +10,9 @@ package datadog
 
 import (
 	"bytes"
-	"compress/gzip"
-	"compress/zlib"
 	"context"
+	"compress/zlib"
+	"compress/gzip"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -254,14 +254,14 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		if err != nil {
 			return nil, err
 		}
-		// Strip any api keys from the response being logged
-		keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
-		if keys != nil && ok {
-			for _, apiKey := range keys {
-				valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s", apiKey.Key))
-				dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
-			}
-		}
+        // Strip any api keys from the response being logged
+        keys, ok := request.Context().Value(ContextAPIKeys).(map[string]APIKey)
+        if keys != nil && ok {
+            for _, apiKey := range keys  {
+                valueRegex := regexp.MustCompile(fmt.Sprintf("(?m)%s",apiKey.Key))
+                dump = valueRegex.ReplaceAll(dump, []byte("REDACTED"))
+            }
+        }
 		log.Printf("\n%s\n", string(dump))
 	}
 
@@ -398,10 +398,10 @@ func (c *APIClient) PrepareRequest(
 			var buf bytes.Buffer
 			compressor := gzip.NewWriter(&buf)
 			if _, err = compressor.Write(body.Bytes()); err != nil {
-				return nil, err
+			    return nil, err
 			}
 			if err = compressor.Close(); err != nil {
-				return nil, err
+			    return nil, err
 			}
 			body = &buf
 
@@ -409,10 +409,10 @@ func (c *APIClient) PrepareRequest(
 			var buf bytes.Buffer
 			compressor := zlib.NewWriter(&buf)
 			if _, err = compressor.Write(body.Bytes()); err != nil {
-				return nil, err
+			    return nil, err
 			}
 			if err = compressor.Close(); err != nil {
-				return nil, err
+			    return nil, err
 			}
 			body = &buf
 		}

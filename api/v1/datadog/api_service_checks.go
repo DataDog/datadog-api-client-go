@@ -11,7 +11,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,10 +27,11 @@ var (
 type ServiceChecksApiService service
 
 type apiSubmitServiceCheckRequest struct {
-	ctx        _context.Context
+	ctx _context.Context
 	ApiService *ServiceChecksApiService
-	body       *[]ServiceCheck
+	body *[]ServiceCheck
 }
+
 
 /*
  * SubmitServiceCheck Submit a Service Check
@@ -37,15 +40,16 @@ type apiSubmitServiceCheckRequest struct {
 **Notes**:
 - A valid API key is required.
 - Service checks can be submitted up to 10 minutes in the past.
-*/
+ */
 func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req := apiSubmitServiceCheckRequest{
 		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+		ctx: ctx,
+		body: &body,
 	}
 
-	return req.ApiService.submitServiceCheckExecute(req)
+
+    return req.ApiService.submitServiceCheckExecute(req)
 }
 
 /*
@@ -61,6 +65,7 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 		localVarFileBytes    []byte
 		localVarReturnValue  IntakePayloadAccepted
 	)
+
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceChecksApiService.SubmitServiceCheck")
 	if err != nil {

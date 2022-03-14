@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsCoreWebVitals Core Web Vitals attached to a browser test step.
@@ -157,10 +158,10 @@ func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cls *int64  `json:"cls,omitempty"`
-		Lcp *int64  `json:"lcp,omitempty"`
-		Url *string `json:"url,omitempty"`
-	}{}
+			Cls *int64 `json:"cls,omitempty"`
+			Lcp *int64 `json:"lcp,omitempty"`
+			Url *string `json:"url,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -175,3 +176,5 @@ func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	o.Url = all.Url
 	return nil
 }
+
+

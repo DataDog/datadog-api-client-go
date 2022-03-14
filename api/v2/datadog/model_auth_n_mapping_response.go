@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // AuthNMappingResponse AuthN Mapping response from the API.
@@ -82,8 +83,8 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *AuthNMapping `json:"data,omitempty"`
-	}{}
+			Data *AuthNMapping `json:"data,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -96,3 +97,5 @@ func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Data = all.Data
 	return nil
 }
+
+

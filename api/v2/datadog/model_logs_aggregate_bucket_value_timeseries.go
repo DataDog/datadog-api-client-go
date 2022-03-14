@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // LogsAggregateBucketValueTimeseries A timeseries array
@@ -54,3 +55,5 @@ func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {
 	return json.Unmarshal(bytes, &o.Items)
 }
+
+

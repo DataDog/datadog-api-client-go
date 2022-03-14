@@ -55,7 +55,7 @@ func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 // GetAccountIdOk returns a tuple with the AccountId field value
 // and a boolean to check if the value has been set.
 func (o *AWSAccountAndLambdaRequest) GetAccountIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AccountId, true
@@ -79,7 +79,7 @@ func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
 // GetLambdaArnOk returns a tuple with the LambdaArn field value
 // and a boolean to check if the value has been set.
 func (o *AWSAccountAndLambdaRequest) GetLambdaArnOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.LambdaArn, true
@@ -109,11 +109,11 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
 		AccountId *string `json:"account_id"`
 		LambdaArn *string `json:"lambda_arn"`
-	}{}
+		}{}
 	all := struct {
-		AccountId string `json:"account_id"`
-		LambdaArn string `json:"lambda_arn"`
-	}{}
+			AccountId string `json:"account_id"`
+			LambdaArn string `json:"lambda_arn"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -137,3 +137,5 @@ func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.LambdaArn = all.LambdaArn
 	return nil
 }
+
+

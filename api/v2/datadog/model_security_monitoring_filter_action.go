@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SecurityMonitoringFilterAction The type of filtering action.
@@ -18,7 +19,7 @@ type SecurityMonitoringFilterAction string
 
 // List of SecurityMonitoringFilterAction
 const (
-	SECURITYMONITORINGFILTERACTION_REQUIRE  SecurityMonitoringFilterAction = "require"
+	SECURITYMONITORINGFILTERACTION_REQUIRE SecurityMonitoringFilterAction = "require"
 	SECURITYMONITORINGFILTERACTION_SUPPRESS SecurityMonitoringFilterAction = "suppress"
 )
 
@@ -102,3 +103,4 @@ func (v *NullableSecurityMonitoringFilterAction) UnmarshalJSON(src []byte) error
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

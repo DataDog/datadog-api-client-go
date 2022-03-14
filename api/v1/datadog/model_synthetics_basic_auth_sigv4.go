@@ -24,8 +24,8 @@ type SyntheticsBasicAuthSigv4 struct {
 	// Service name for the `SIGV4` authentication.
 	ServiceName *string `json:"serviceName,omitempty"`
 	// Session token for the `SIGV4` authentication.
-	SessionToken *string                      `json:"sessionToken,omitempty"`
-	Type         SyntheticsBasicAuthSigv4Type `json:"type"`
+	SessionToken *string `json:"sessionToken,omitempty"`
+	Type SyntheticsBasicAuthSigv4Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -65,7 +65,7 @@ func (o *SyntheticsBasicAuthSigv4) GetAccessKey() string {
 // GetAccessKeyOk returns a tuple with the AccessKey field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBasicAuthSigv4) GetAccessKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AccessKey, true
@@ -121,7 +121,7 @@ func (o *SyntheticsBasicAuthSigv4) GetSecretKey() string {
 // GetSecretKeyOk returns a tuple with the SecretKey field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBasicAuthSigv4) GetSecretKeyOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.SecretKey, true
@@ -209,7 +209,7 @@ func (o *SyntheticsBasicAuthSigv4) GetType() SyntheticsBasicAuthSigv4Type {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBasicAuthSigv4) GetTypeOk() (*SyntheticsBasicAuthSigv4Type, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -249,18 +249,18 @@ func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AccessKey *string                       `json:"accessKey"`
-		SecretKey *string                       `json:"secretKey"`
-		Type      *SyntheticsBasicAuthSigv4Type `json:"type"`
-	}{}
+		AccessKey *string `json:"accessKey"`
+		SecretKey *string `json:"secretKey"`
+		Type *SyntheticsBasicAuthSigv4Type `json:"type"`
+		}{}
 	all := struct {
-		AccessKey    string                       `json:"accessKey"`
-		Region       *string                      `json:"region,omitempty"`
-		SecretKey    string                       `json:"secretKey"`
-		ServiceName  *string                      `json:"serviceName,omitempty"`
-		SessionToken *string                      `json:"sessionToken,omitempty"`
-		Type         SyntheticsBasicAuthSigv4Type `json:"type"`
-	}{}
+			AccessKey string `json:"accessKey"`
+			Region *string `json:"region,omitempty"`
+			SecretKey string `json:"secretKey"`
+			ServiceName *string `json:"serviceName,omitempty"`
+			SessionToken *string `json:"sessionToken,omitempty"`
+			Type SyntheticsBasicAuthSigv4Type `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -299,3 +299,5 @@ func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // NotebookMetadata Metadata associated with the notebook.
@@ -17,8 +18,8 @@ type NotebookMetadata struct {
 	// Whether or not the notebook is a template.
 	IsTemplate *bool `json:"is_template,omitempty"`
 	// Whether or not the notebook takes snapshot image backups of the notebook's fixed-time graphs.
-	TakeSnapshots *bool                        `json:"take_snapshots,omitempty"`
-	Type          NullableNotebookMetadataType `json:"type,omitempty"`
+	TakeSnapshots *bool `json:"take_snapshots,omitempty"`
+	Type NullableNotebookMetadataType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -125,7 +126,7 @@ func (o *NotebookMetadata) GetType() NotebookMetadataType {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookMetadata) GetTypeOk() (*NotebookMetadataType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Type.Get(), o.Type.IsSet()
@@ -144,7 +145,6 @@ func (o *NotebookMetadata) HasType() bool {
 func (o *NotebookMetadata) SetType(v NotebookMetadataType) {
 	o.Type.Set(&v)
 }
-
 // SetTypeNil sets the value for Type to be an explicit nil
 func (o *NotebookMetadata) SetTypeNil() {
 	o.Type.Set(nil)
@@ -175,10 +175,10 @@ func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IsTemplate    *bool                        `json:"is_template,omitempty"`
-		TakeSnapshots *bool                        `json:"take_snapshots,omitempty"`
-		Type          NullableNotebookMetadataType `json:"type,omitempty"`
-	}{}
+			IsTemplate *bool `json:"is_template,omitempty"`
+			TakeSnapshots *bool `json:"take_snapshots,omitempty"`
+			Type NullableNotebookMetadataType `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -201,3 +201,5 @@ func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

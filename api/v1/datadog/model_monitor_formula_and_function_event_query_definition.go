@@ -15,14 +15,14 @@ import (
 
 // MonitorFormulaAndFunctionEventQueryDefinition A formula and functions events query.
 type MonitorFormulaAndFunctionEventQueryDefinition struct {
-	Compute    MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-	DataSource MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
+	Compute MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+	DataSource MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
 	GroupBy *[]MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
 	Indexes *[]string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
-	Name   string                                               `json:"name"`
+	Name string `json:"name"`
 	Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
@@ -61,7 +61,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetCompute() MonitorForm
 // GetComputeOk returns a tuple with the Compute field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetComputeOk() (*MonitorFormulaAndFunctionEventQueryDefinitionCompute, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Compute, true
@@ -85,7 +85,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSource() MonitorF
 // GetDataSourceOk returns a tuple with the DataSource field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*MonitorFormulaAndFunctionEventsDataSource, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.DataSource, true
@@ -173,7 +173,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -245,18 +245,18 @@ func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, er
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Compute    *MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource *MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
-		Name       *string                                               `json:"name"`
-	}{}
+		Compute *MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+		DataSource *MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
+		Name *string `json:"name"`
+		}{}
 	all := struct {
-		Compute    MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
-		DataSource MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    *[]MonitorFormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
-		Indexes    *[]string                                            `json:"indexes,omitempty"`
-		Name       string                                               `json:"name"`
-		Search     *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
-	}{}
+			Compute MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
+			DataSource MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
+			GroupBy *[]MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+			Indexes *[]string `json:"indexes,omitempty"`
+			Name string `json:"name"`
+			Search *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -295,3 +295,5 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []by
 	o.Search = all.Search
 	return nil
 }
+
+

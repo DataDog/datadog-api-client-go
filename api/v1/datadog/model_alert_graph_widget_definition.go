@@ -16,15 +16,15 @@ import (
 // AlertGraphWidgetDefinition Alert graphs are timeseries graphs showing the current status of any monitor defined on your system.
 type AlertGraphWidgetDefinition struct {
 	// ID of the alert to use in the widget.
-	AlertId string      `json:"alert_id"`
-	Time    *WidgetTime `json:"time,omitempty"`
+	AlertId string `json:"alert_id"`
+	Time *WidgetTime `json:"time,omitempty"`
 	// The title of the widget.
-	Title      *string          `json:"title,omitempty"`
+	Title *string `json:"title,omitempty"`
 	TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
 	// Size of the title.
-	TitleSize *string                        `json:"title_size,omitempty"`
-	Type      AlertGraphWidgetDefinitionType `json:"type"`
-	VizType   WidgetVizType                  `json:"viz_type"`
+	TitleSize *string `json:"title_size,omitempty"`
+	Type AlertGraphWidgetDefinitionType `json:"type"`
+	VizType WidgetVizType `json:"viz_type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -64,7 +64,7 @@ func (o *AlertGraphWidgetDefinition) GetAlertId() string {
 // GetAlertIdOk returns a tuple with the AlertId field value
 // and a boolean to check if the value has been set.
 func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.AlertId, true
@@ -216,7 +216,7 @@ func (o *AlertGraphWidgetDefinition) GetType() AlertGraphWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *AlertGraphWidgetDefinition) GetTypeOk() (*AlertGraphWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -240,7 +240,7 @@ func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType {
 // GetVizTypeOk returns a tuple with the VizType field value
 // and a boolean to check if the value has been set.
 func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (*WidgetVizType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.VizType, true
@@ -283,19 +283,19 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AlertId *string                         `json:"alert_id"`
-		Type    *AlertGraphWidgetDefinitionType `json:"type"`
-		VizType *WidgetVizType                  `json:"viz_type"`
-	}{}
+		AlertId *string `json:"alert_id"`
+		Type *AlertGraphWidgetDefinitionType `json:"type"`
+		VizType *WidgetVizType `json:"viz_type"`
+		}{}
 	all := struct {
-		AlertId    string                         `json:"alert_id"`
-		Time       *WidgetTime                    `json:"time,omitempty"`
-		Title      *string                        `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize  *string                        `json:"title_size,omitempty"`
-		Type       AlertGraphWidgetDefinitionType `json:"type"`
-		VizType    WidgetVizType                  `json:"viz_type"`
-	}{}
+			AlertId string `json:"alert_id"`
+			Time *WidgetTime `json:"time,omitempty"`
+			Title *string `json:"title,omitempty"`
+			TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+			TitleSize *string `json:"title_size,omitempty"`
+			Type AlertGraphWidgetDefinitionType `json:"type"`
+			VizType WidgetVizType `json:"viz_type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -351,3 +351,5 @@ func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.VizType = all.VizType
 	return nil
 }
+
+

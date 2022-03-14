@@ -19,7 +19,7 @@ type SyntheticsBrowserTestConfig struct {
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of variables used for the test.
 	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-	Request         SyntheticsTestRequest       `json:"request"`
+	Request SyntheticsTestRequest `json:"request"`
 	// Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax.
 	SetCookie *string `json:"setCookie,omitempty"`
 	// Array of variables used for the test steps.
@@ -60,7 +60,7 @@ func (o *SyntheticsBrowserTestConfig) GetAssertions() []SyntheticsAssertion {
 // GetAssertionsOk returns a tuple with the Assertions field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Assertions, true
@@ -116,7 +116,7 @@ func (o *SyntheticsBrowserTestConfig) GetRequest() SyntheticsTestRequest {
 // GetRequestOk returns a tuple with the Request field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBrowserTestConfig) GetRequestOk() (*SyntheticsTestRequest, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Request, true
@@ -218,15 +218,15 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Assertions *[]SyntheticsAssertion `json:"assertions"`
-		Request    *SyntheticsTestRequest `json:"request"`
-	}{}
+		Request *SyntheticsTestRequest `json:"request"`
+		}{}
 	all := struct {
-		Assertions      []SyntheticsAssertion        `json:"assertions"`
-		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         SyntheticsTestRequest        `json:"request"`
-		SetCookie       *string                      `json:"setCookie,omitempty"`
-		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
-	}{}
+			Assertions []SyntheticsAssertion `json:"assertions"`
+			ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+			Request SyntheticsTestRequest `json:"request"`
+			SetCookie *string `json:"setCookie,omitempty"`
+			Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -253,3 +253,5 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	o.Variables = all.Variables
 	return nil
 }
+
+

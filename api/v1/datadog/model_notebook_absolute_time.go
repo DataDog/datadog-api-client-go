@@ -58,7 +58,7 @@ func (o *NotebookAbsoluteTime) GetEnd() time.Time {
 // GetEndOk returns a tuple with the End field value
 // and a boolean to check if the value has been set.
 func (o *NotebookAbsoluteTime) GetEndOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.End, true
@@ -114,7 +114,7 @@ func (o *NotebookAbsoluteTime) GetStart() time.Time {
 // GetStartOk returns a tuple with the Start field value
 // and a boolean to check if the value has been set.
 func (o *NotebookAbsoluteTime) GetStartOk() (*time.Time, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Start, true
@@ -145,14 +145,14 @@ func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
 func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		End   *time.Time `json:"end"`
+		End *time.Time `json:"end"`
 		Start *time.Time `json:"start"`
-	}{}
+		}{}
 	all := struct {
-		End   time.Time `json:"end"`
-		Live  *bool     `json:"live,omitempty"`
-		Start time.Time `json:"start"`
-	}{}
+			End time.Time `json:"end"`
+			Live *bool `json:"live,omitempty"`
+			Start time.Time `json:"start"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -177,3 +177,5 @@ func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Start = all.Start
 	return nil
 }
+
+

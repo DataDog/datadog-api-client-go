@@ -22,8 +22,8 @@ type SyntheticsConfigVariable struct {
 	// Name of the variable.
 	Name string `json:"name"`
 	// Pattern of the variable.
-	Pattern *string                      `json:"pattern,omitempty"`
-	Type    SyntheticsConfigVariableType `json:"type"`
+	Pattern *string `json:"pattern,omitempty"`
+	Type SyntheticsConfigVariableType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -124,7 +124,7 @@ func (o *SyntheticsConfigVariable) GetName() string {
 // GetNameOk returns a tuple with the Name field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsConfigVariable) GetNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Name, true
@@ -180,7 +180,7 @@ func (o *SyntheticsConfigVariable) GetType() SyntheticsConfigVariableType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsConfigVariable) GetTypeOk() (*SyntheticsConfigVariableType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -217,16 +217,16 @@ func (o SyntheticsConfigVariable) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name *string                       `json:"name"`
+		Name *string `json:"name"`
 		Type *SyntheticsConfigVariableType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Example *string                      `json:"example,omitempty"`
-		Id      *string                      `json:"id,omitempty"`
-		Name    string                       `json:"name"`
-		Pattern *string                      `json:"pattern,omitempty"`
-		Type    SyntheticsConfigVariableType `json:"type"`
-	}{}
+			Example *string `json:"example,omitempty"`
+			Id *string `json:"id,omitempty"`
+			Name string `json:"name"`
+			Pattern *string `json:"pattern,omitempty"`
+			Type SyntheticsConfigVariableType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -261,3 +261,5 @@ func (o *SyntheticsConfigVariable) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

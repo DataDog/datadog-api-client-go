@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // ApiKey Datadog API key.
@@ -194,11 +195,11 @@ func (o ApiKey) MarshalJSON() ([]byte, error) {
 func (o *ApiKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created   *string `json:"created,omitempty"`
-		CreatedBy *string `json:"created_by,omitempty"`
-		Key       *string `json:"key,omitempty"`
-		Name      *string `json:"name,omitempty"`
-	}{}
+			Created *string `json:"created,omitempty"`
+			CreatedBy *string `json:"created_by,omitempty"`
+			Key *string `json:"key,omitempty"`
+			Name *string `json:"name,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *ApiKey) UnmarshalJSON(bytes []byte) (err error) {
 	o.Name = all.Name
 	return nil
 }
+
+

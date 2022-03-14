@@ -20,8 +20,8 @@ type ServiceCheck struct {
 	// The host name correlated with the check.
 	HostName string `json:"host_name"`
 	// Message containing check status.
-	Message *string            `json:"message,omitempty"`
-	Status  ServiceCheckStatus `json:"status"`
+	Message *string `json:"message,omitempty"`
+	Status ServiceCheckStatus `json:"status"`
 	// Tags related to a check.
 	Tags []string `json:"tags"`
 	// Time of check.
@@ -64,7 +64,7 @@ func (o *ServiceCheck) GetCheck() string {
 // GetCheckOk returns a tuple with the Check field value
 // and a boolean to check if the value has been set.
 func (o *ServiceCheck) GetCheckOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Check, true
@@ -88,7 +88,7 @@ func (o *ServiceCheck) GetHostName() string {
 // GetHostNameOk returns a tuple with the HostName field value
 // and a boolean to check if the value has been set.
 func (o *ServiceCheck) GetHostNameOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.HostName, true
@@ -144,7 +144,7 @@ func (o *ServiceCheck) GetStatus() ServiceCheckStatus {
 // GetStatusOk returns a tuple with the Status field value
 // and a boolean to check if the value has been set.
 func (o *ServiceCheck) GetStatusOk() (*ServiceCheckStatus, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Status, true
@@ -168,7 +168,7 @@ func (o *ServiceCheck) GetTags() []string {
 // GetTagsOk returns a tuple with the Tags field value
 // and a boolean to check if the value has been set.
 func (o *ServiceCheck) GetTagsOk() (*[]string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Tags, true
@@ -240,19 +240,19 @@ func (o ServiceCheck) MarshalJSON() ([]byte, error) {
 func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Check    *string             `json:"check"`
-		HostName *string             `json:"host_name"`
-		Status   *ServiceCheckStatus `json:"status"`
-		Tags     *[]string           `json:"tags"`
-	}{}
+		Check *string `json:"check"`
+		HostName *string `json:"host_name"`
+		Status *ServiceCheckStatus `json:"status"`
+		Tags *[]string `json:"tags"`
+		}{}
 	all := struct {
-		Check     string             `json:"check"`
-		HostName  string             `json:"host_name"`
-		Message   *string            `json:"message,omitempty"`
-		Status    ServiceCheckStatus `json:"status"`
-		Tags      []string           `json:"tags"`
-		Timestamp *int64             `json:"timestamp,omitempty"`
-	}{}
+			Check string `json:"check"`
+			HostName string `json:"host_name"`
+			Message *string `json:"message,omitempty"`
+			Status ServiceCheckStatus `json:"status"`
+			Tags []string `json:"tags"`
+			Timestamp *int64 `json:"timestamp,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -294,3 +294,5 @@ func (o *ServiceCheck) UnmarshalJSON(bytes []byte) (err error) {
 	o.Timestamp = all.Timestamp
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WebhooksIntegrationEncoding Encoding type. Can be given either `json` or `form`.
@@ -102,3 +103,4 @@ func (v *NullableWebhooksIntegrationEncoding) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

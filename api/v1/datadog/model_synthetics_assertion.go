@@ -10,12 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator, which property they apply, and upon which target.
 type SyntheticsAssertion struct {
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
-	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
+	SyntheticsAssertionTarget *SyntheticsAssertionTarget
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -23,13 +25,14 @@ type SyntheticsAssertion struct {
 
 // SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion is a convenience function that returns SyntheticsAssertionJSONPathTarget wrapped in SyntheticsAssertion
 func SyntheticsAssertionJSONPathTargetAsSyntheticsAssertion(v *SyntheticsAssertionJSONPathTarget) SyntheticsAssertion {
-	return SyntheticsAssertion{SyntheticsAssertionJSONPathTarget: v}
+	return SyntheticsAssertion{ SyntheticsAssertionJSONPathTarget: v}
 }
 
 // SyntheticsAssertionTargetAsSyntheticsAssertion is a convenience function that returns SyntheticsAssertionTarget wrapped in SyntheticsAssertion
 func SyntheticsAssertionTargetAsSyntheticsAssertion(v *SyntheticsAssertionTarget) SyntheticsAssertion {
-	return SyntheticsAssertion{SyntheticsAssertionTarget: v}
+	return SyntheticsAssertion{ SyntheticsAssertionTarget: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *SyntheticsAssertion) UnmarshalJSON(data []byte) error {
@@ -96,7 +99,7 @@ func (src SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SyntheticsAssertion) GetActualInstance() interface{} {
+func (obj *SyntheticsAssertion) GetActualInstance() (interface{}) {
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return obj.SyntheticsAssertionJSONPathTarget
 	}
@@ -144,3 +147,5 @@ func (v *NullableSyntheticsAssertion) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

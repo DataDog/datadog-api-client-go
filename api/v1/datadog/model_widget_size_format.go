@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // WidgetSizeFormat Size of the widget.
@@ -18,9 +19,9 @@ type WidgetSizeFormat string
 
 // List of WidgetSizeFormat
 const (
-	WIDGETSIZEFORMAT_SMALL  WidgetSizeFormat = "small"
+	WIDGETSIZEFORMAT_SMALL WidgetSizeFormat = "small"
 	WIDGETSIZEFORMAT_MEDIUM WidgetSizeFormat = "medium"
-	WIDGETSIZEFORMAT_LARGE  WidgetSizeFormat = "large"
+	WIDGETSIZEFORMAT_LARGE WidgetSizeFormat = "large"
 )
 
 var allowedWidgetSizeFormatEnumValues = []WidgetSizeFormat{
@@ -104,3 +105,4 @@ func (v *NullableWidgetSizeFormat) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

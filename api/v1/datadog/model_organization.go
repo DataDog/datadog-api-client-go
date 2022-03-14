@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // Organization Create, edit, and manage organizations.
@@ -23,7 +24,7 @@ type Organization struct {
 	// The name of the new child-organization, limited to 32 characters.
 	Name *string `json:"name,omitempty"`
 	// The `public_id` of the organization you are operating within.
-	PublicId *string               `json:"public_id,omitempty"`
+	PublicId *string `json:"public_id,omitempty"`
 	Settings *OrganizationSettings `json:"settings,omitempty"`
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
@@ -310,14 +311,14 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Billing      *OrganizationBilling      `json:"billing,omitempty"`
-		Created      *string                   `json:"created,omitempty"`
-		Description  *string                   `json:"description,omitempty"`
-		Name         *string                   `json:"name,omitempty"`
-		PublicId     *string                   `json:"public_id,omitempty"`
-		Settings     *OrganizationSettings     `json:"settings,omitempty"`
-		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
-	}{}
+			Billing *OrganizationBilling `json:"billing,omitempty"`
+			Created *string `json:"created,omitempty"`
+			Description *string `json:"description,omitempty"`
+			Name *string `json:"name,omitempty"`
+			PublicId *string `json:"public_id,omitempty"`
+			Settings *OrganizationSettings `json:"settings,omitempty"`
+			Subscription *OrganizationSubscription `json:"subscription,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -336,3 +337,5 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	o.Subscription = all.Subscription
 	return nil
 }
+
+

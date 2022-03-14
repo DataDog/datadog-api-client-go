@@ -10,6 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+	"fmt"
 )
 
 // APIKeyResponseIncludedItem - An object related to an API key.
@@ -22,8 +24,9 @@ type APIKeyResponseIncludedItem struct {
 
 // UserAsAPIKeyResponseIncludedItem is a convenience function that returns User wrapped in APIKeyResponseIncludedItem
 func UserAsAPIKeyResponseIncludedItem(v *User) APIKeyResponseIncludedItem {
-	return APIKeyResponseIncludedItem{User: v}
+	return APIKeyResponseIncludedItem{ User: v}
 }
+
 
 // Unmarshal JSON data into one of the pointers in the struct
 func (dst *APIKeyResponseIncludedItem) UnmarshalJSON(data []byte) error {
@@ -68,7 +71,7 @@ func (src APIKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *APIKeyResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *APIKeyResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
@@ -112,3 +115,5 @@ func (v *NullableAPIKeyResponseIncludedItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+
+

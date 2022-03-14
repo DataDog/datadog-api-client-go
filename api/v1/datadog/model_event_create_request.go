@@ -16,14 +16,14 @@ import (
 // EventCreateRequest Object representing an event.
 type EventCreateRequest struct {
 	// An arbitrary string to use for aggregation. Limited to 100 characters. If you specify a key, all events using that key are grouped together in the Event Stream.
-	AggregationKey *string         `json:"aggregation_key,omitempty"`
-	AlertType      *EventAlertType `json:"alert_type,omitempty"`
+	AggregationKey *string `json:"aggregation_key,omitempty"`
+	AlertType *EventAlertType `json:"alert_type,omitempty"`
 	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes). Limited to events no older than 7 days.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
 	// Host name to associate with the event. Any tags associated with the host are also applied to this event.
-	Host     *string               `json:"host,omitempty"`
+	Host *string `json:"host,omitempty"`
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// ID of the parent event. Must be sent as an integer (that is no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
@@ -231,7 +231,7 @@ func (o *EventCreateRequest) GetPriority() EventPriority {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *EventCreateRequest) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -250,7 +250,6 @@ func (o *EventCreateRequest) HasPriority() bool {
 func (o *EventCreateRequest) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
-
 // SetPriorityNil sets the value for Priority to be an explicit nil
 func (o *EventCreateRequest) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -370,7 +369,7 @@ func (o *EventCreateRequest) GetText() string {
 // GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
 func (o *EventCreateRequest) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Text, true
@@ -394,7 +393,7 @@ func (o *EventCreateRequest) GetTitle() string {
 // GetTitleOk returns a tuple with the Title field value
 // and a boolean to check if the value has been set.
 func (o *EventCreateRequest) GetTitleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Title, true
@@ -449,22 +448,22 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text  *string `json:"text"`
+		Text *string `json:"text"`
 		Title *string `json:"title"`
-	}{}
+		}{}
 	all := struct {
-		AggregationKey *string               `json:"aggregation_key,omitempty"`
-		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
-		DateHappened   *int64                `json:"date_happened,omitempty"`
-		DeviceName     *string               `json:"device_name,omitempty"`
-		Host           *string               `json:"host,omitempty"`
-		Priority       NullableEventPriority `json:"priority,omitempty"`
-		RelatedEventId *int64                `json:"related_event_id,omitempty"`
-		SourceTypeName *string               `json:"source_type_name,omitempty"`
-		Tags           *[]string             `json:"tags,omitempty"`
-		Text           string                `json:"text"`
-		Title          string                `json:"title"`
-	}{}
+			AggregationKey *string `json:"aggregation_key,omitempty"`
+			AlertType *EventAlertType `json:"alert_type,omitempty"`
+			DateHappened *int64 `json:"date_happened,omitempty"`
+			DeviceName *string `json:"device_name,omitempty"`
+			Host *string `json:"host,omitempty"`
+			Priority NullableEventPriority `json:"priority,omitempty"`
+			RelatedEventId *int64 `json:"related_event_id,omitempty"`
+			SourceTypeName *string `json:"source_type_name,omitempty"`
+			Tags *[]string `json:"tags,omitempty"`
+			Text string `json:"text"`
+			Title string `json:"title"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -513,3 +512,5 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Title = all.Title
 	return nil
 }
+
+

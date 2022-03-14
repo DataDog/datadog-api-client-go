@@ -10,15 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
-	CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-	CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
-	Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-	LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
-	Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+	CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+	CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+	Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+	LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -226,12 +227,12 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
-		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
-		Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
-	}{}
+			CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+			CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+			Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+			LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+			Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -248,3 +249,5 @@ func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) 
 	o.Postmortem = all.Postmortem
 	return nil
 }
+
+

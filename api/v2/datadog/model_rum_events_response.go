@@ -10,14 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // RUMEventsResponse Response object with all events matching the request and pagination information.
 type RUMEventsResponse struct {
 	// Array of events matching the request.
-	Data  *[]RUMEvent          `json:"data,omitempty"`
-	Links *RUMResponseLinks    `json:"links,omitempty"`
-	Meta  *RUMResponseMetadata `json:"meta,omitempty"`
+	Data *[]RUMEvent `json:"data,omitempty"`
+	Links *RUMResponseLinks `json:"links,omitempty"`
+	Meta *RUMResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -155,10 +156,10 @@ func (o RUMEventsResponse) MarshalJSON() ([]byte, error) {
 func (o *RUMEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]RUMEvent          `json:"data,omitempty"`
-		Links *RUMResponseLinks    `json:"links,omitempty"`
-		Meta  *RUMResponseMetadata `json:"meta,omitempty"`
-	}{}
+			Data *[]RUMEvent `json:"data,omitempty"`
+			Links *RUMResponseLinks `json:"links,omitempty"`
+			Meta *RUMResponseMetadata `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -173,3 +174,5 @@ func (o *RUMEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Meta = all.Meta
 	return nil
 }
+
+

@@ -20,9 +20,9 @@ type FreeTextWidgetDefinition struct {
 	// Size of the text.
 	FontSize *string `json:"font_size,omitempty"`
 	// Text to display.
-	Text      string                       `json:"text"`
-	TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
-	Type      FreeTextWidgetDefinitionType `json:"type"`
+	Text string `json:"text"`
+	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+	Type FreeTextWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -125,7 +125,7 @@ func (o *FreeTextWidgetDefinition) GetText() string {
 // GetTextOk returns a tuple with the Text field value
 // and a boolean to check if the value has been set.
 func (o *FreeTextWidgetDefinition) GetTextOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Text, true
@@ -181,7 +181,7 @@ func (o *FreeTextWidgetDefinition) GetType() FreeTextWidgetDefinitionType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *FreeTextWidgetDefinition) GetTypeOk() (*FreeTextWidgetDefinitionType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -218,16 +218,16 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text *string                       `json:"text"`
+		Text *string `json:"text"`
 		Type *FreeTextWidgetDefinitionType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Color     *string                      `json:"color,omitempty"`
-		FontSize  *string                      `json:"font_size,omitempty"`
-		Text      string                       `json:"text"`
-		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
-		Type      FreeTextWidgetDefinitionType `json:"type"`
-	}{}
+			Color *string `json:"color,omitempty"`
+			FontSize *string `json:"font_size,omitempty"`
+			Text string `json:"text"`
+			TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+			Type FreeTextWidgetDefinitionType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -270,3 +270,5 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // SyntheticsDeviceID The device ID.
@@ -18,18 +19,18 @@ type SyntheticsDeviceID string
 
 // List of SyntheticsDeviceID
 const (
-	SYNTHETICSDEVICEID_LAPTOP_LARGE         SyntheticsDeviceID = "laptop_large"
-	SYNTHETICSDEVICEID_TABLET               SyntheticsDeviceID = "tablet"
-	SYNTHETICSDEVICEID_MOBILE_SMALL         SyntheticsDeviceID = "mobile_small"
-	SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE  SyntheticsDeviceID = "chrome.laptop_large"
-	SYNTHETICSDEVICEID_CHROME_TABLET        SyntheticsDeviceID = "chrome.tablet"
-	SYNTHETICSDEVICEID_CHROME_MOBILE_SMALL  SyntheticsDeviceID = "chrome.mobile_small"
+	SYNTHETICSDEVICEID_LAPTOP_LARGE SyntheticsDeviceID = "laptop_large"
+	SYNTHETICSDEVICEID_TABLET SyntheticsDeviceID = "tablet"
+	SYNTHETICSDEVICEID_MOBILE_SMALL SyntheticsDeviceID = "mobile_small"
+	SYNTHETICSDEVICEID_CHROME_LAPTOP_LARGE SyntheticsDeviceID = "chrome.laptop_large"
+	SYNTHETICSDEVICEID_CHROME_TABLET SyntheticsDeviceID = "chrome.tablet"
+	SYNTHETICSDEVICEID_CHROME_MOBILE_SMALL SyntheticsDeviceID = "chrome.mobile_small"
 	SYNTHETICSDEVICEID_FIREFOX_LAPTOP_LARGE SyntheticsDeviceID = "firefox.laptop_large"
-	SYNTHETICSDEVICEID_FIREFOX_TABLET       SyntheticsDeviceID = "firefox.tablet"
+	SYNTHETICSDEVICEID_FIREFOX_TABLET SyntheticsDeviceID = "firefox.tablet"
 	SYNTHETICSDEVICEID_FIREFOX_MOBILE_SMALL SyntheticsDeviceID = "firefox.mobile_small"
-	SYNTHETICSDEVICEID_EDGE_LAPTOP_LARGE    SyntheticsDeviceID = "edge.laptop_large"
-	SYNTHETICSDEVICEID_EDGE_TABLET          SyntheticsDeviceID = "edge.tablet"
-	SYNTHETICSDEVICEID_EDGE_MOBILE_SMALL    SyntheticsDeviceID = "edge.mobile_small"
+	SYNTHETICSDEVICEID_EDGE_LAPTOP_LARGE SyntheticsDeviceID = "edge.laptop_large"
+	SYNTHETICSDEVICEID_EDGE_TABLET SyntheticsDeviceID = "edge.tablet"
+	SYNTHETICSDEVICEID_EDGE_MOBILE_SMALL SyntheticsDeviceID = "edge.mobile_small"
 )
 
 var allowedSyntheticsDeviceIDEnumValues = []SyntheticsDeviceID{
@@ -122,3 +123,4 @@ func (v *NullableSyntheticsDeviceID) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

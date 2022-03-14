@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // CheckCanDeleteSLOResponse A service level objective response containing the requested object.
@@ -119,9 +120,9 @@ func (o CheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
 func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
-		Errors *map[string]string             `json:"errors,omitempty"`
-	}{}
+			Data *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
+			Errors *map[string]string `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

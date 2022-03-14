@@ -51,7 +51,7 @@ func (o *MetricBulkTagConfigDeleteRequest) GetData() MetricBulkTagConfigDelete {
 // GetDataOk returns a tuple with the Data field value
 // and a boolean to check if the value has been set.
 func (o *MetricBulkTagConfigDeleteRequest) GetDataOk() (*MetricBulkTagConfigDelete, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Data, true
@@ -77,10 +77,10 @@ func (o *MetricBulkTagConfigDeleteRequest) UnmarshalJSON(bytes []byte) (err erro
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *MetricBulkTagConfigDelete `json:"data"`
-	}{}
+		}{}
 	all := struct {
-		Data MetricBulkTagConfigDelete `json:"data"`
-	}{}
+			Data MetricBulkTagConfigDelete `json:"data"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -100,3 +100,5 @@ func (o *MetricBulkTagConfigDeleteRequest) UnmarshalJSON(bytes []byte) (err erro
 	o.Data = all.Data
 	return nil
 }
+
+

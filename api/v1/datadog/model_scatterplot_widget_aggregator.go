@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // ScatterplotWidgetAggregator Aggregator used for the request.
@@ -19,10 +20,10 @@ type ScatterplotWidgetAggregator string
 // List of ScatterplotWidgetAggregator
 const (
 	SCATTERPLOTWIDGETAGGREGATOR_AVERAGE ScatterplotWidgetAggregator = "avg"
-	SCATTERPLOTWIDGETAGGREGATOR_LAST    ScatterplotWidgetAggregator = "last"
+	SCATTERPLOTWIDGETAGGREGATOR_LAST ScatterplotWidgetAggregator = "last"
 	SCATTERPLOTWIDGETAGGREGATOR_MAXIMUM ScatterplotWidgetAggregator = "max"
 	SCATTERPLOTWIDGETAGGREGATOR_MINIMUM ScatterplotWidgetAggregator = "min"
-	SCATTERPLOTWIDGETAGGREGATOR_SUM     ScatterplotWidgetAggregator = "sum"
+	SCATTERPLOTWIDGETAGGREGATOR_SUM ScatterplotWidgetAggregator = "sum"
 )
 
 var allowedScatterplotWidgetAggregatorEnumValues = []ScatterplotWidgetAggregator{
@@ -108,3 +109,4 @@ func (v *NullableScatterplotWidgetAggregator) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

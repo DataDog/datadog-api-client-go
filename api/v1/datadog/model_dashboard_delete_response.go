@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // DashboardDeleteResponse Response from the delete dashboard call.
@@ -83,8 +84,8 @@ func (o DashboardDeleteResponse) MarshalJSON() ([]byte, error) {
 func (o *DashboardDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
-	}{}
+			DeletedDashboardId *string `json:"deleted_dashboard_id,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *DashboardDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.DeletedDashboardId = all.DeletedDashboardId
 	return nil
 }
+
+

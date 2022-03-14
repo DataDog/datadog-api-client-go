@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 	"time"
 )
 
@@ -306,14 +307,14 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
-		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
-		FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
-		LastBillableUsageHour  *time.Time `json:"last_billable_usage_hour,omitempty"`
-		OrgBillableUsage       *int64     `json:"org_billable_usage,omitempty"`
-		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
-		UsageUnit              *string    `json:"usage_unit,omitempty"`
-	}{}
+			AccountBillableUsage *int64 `json:"account_billable_usage,omitempty"`
+			ElapsedUsageHours *int64 `json:"elapsed_usage_hours,omitempty"`
+			FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
+			LastBillableUsageHour *time.Time `json:"last_billable_usage_hour,omitempty"`
+			OrgBillableUsage *int64 `json:"org_billable_usage,omitempty"`
+			PercentageInAccount *float64 `json:"percentage_in_account,omitempty"`
+			UsageUnit *string `json:"usage_unit,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -332,3 +333,5 @@ func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.UsageUnit = all.UsageUnit
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MonitorSearchResponseCounts The counts of monitors per different criteria.
@@ -194,11 +195,11 @@ func (o MonitorSearchResponseCounts) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Muted  *[]interface{} `json:"muted,omitempty"`
-		Status *[]interface{} `json:"status,omitempty"`
-		Tag    *[]interface{} `json:"tag,omitempty"`
-		Type   *[]interface{} `json:"type,omitempty"`
-	}{}
+			Muted *[]interface{} `json:"muted,omitempty"`
+			Status *[]interface{} `json:"status,omitempty"`
+			Tag *[]interface{} `json:"tag,omitempty"`
+			Type *[]interface{} `json:"type,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -214,3 +215,5 @@ func (o *MonitorSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

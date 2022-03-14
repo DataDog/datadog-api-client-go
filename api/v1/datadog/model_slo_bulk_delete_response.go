@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SLOBulkDeleteResponse The bulk partial delete service level objective object endpoint response.  This endpoint operates on multiple service level objective objects, so it may be partially successful. In such cases, the \"data\" and \"error\" fields in this response indicate which deletions succeeded and failed.
@@ -119,9 +120,9 @@ func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOBulkDeleteResponseData `json:"data,omitempty"`
-		Errors *[]SLOBulkDeleteError      `json:"errors,omitempty"`
-	}{}
+			Data *SLOBulkDeleteResponseData `json:"data,omitempty"`
+			Errors *[]SLOBulkDeleteError `json:"errors,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SLOBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.Errors = all.Errors
 	return nil
 }
+
+

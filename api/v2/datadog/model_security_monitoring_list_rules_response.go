@@ -10,13 +10,14 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SecurityMonitoringListRulesResponse List of rules.
 type SecurityMonitoringListRulesResponse struct {
 	// Array containing the list of rules.
 	Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
-	Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
+	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -119,9 +120,9 @@ func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringListRulesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
-		Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
-	}{}
+			Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
+			Meta *ResponseMetaAttributes `json:"meta,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -135,3 +136,5 @@ func (o *SecurityMonitoringListRulesResponse) UnmarshalJSON(bytes []byte) (err e
 	o.Meta = all.Meta
 	return nil
 }
+
+

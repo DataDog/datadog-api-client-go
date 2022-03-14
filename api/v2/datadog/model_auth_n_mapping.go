@@ -19,9 +19,9 @@ type AuthNMapping struct {
 	// ID of the AuthN Mapping.
 	Id string `json:"id"`
 	// Included data in the AuthN Mapping response.
-	Included      *[]AuthNMappingIncluded    `json:"included,omitempty"`
+	Included *[]AuthNMappingIncluded `json:"included,omitempty"`
 	Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
-	Type          AuthNMappingsType          `json:"type"`
+	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -92,7 +92,7 @@ func (o *AuthNMapping) GetId() string {
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMapping) GetIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Id, true
@@ -180,7 +180,7 @@ func (o *AuthNMapping) GetType() AuthNMappingsType {
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *AuthNMapping) GetTypeOk() (*AuthNMappingsType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -217,16 +217,16 @@ func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string            `json:"id"`
+		Id *string `json:"id"`
 		Type *AuthNMappingsType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Attributes    *AuthNMappingAttributes    `json:"attributes,omitempty"`
-		Id            string                     `json:"id"`
-		Included      *[]AuthNMappingIncluded    `json:"included,omitempty"`
-		Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType          `json:"type"`
-	}{}
+			Attributes *AuthNMappingAttributes `json:"attributes,omitempty"`
+			Id string `json:"id"`
+			Included *[]AuthNMappingIncluded `json:"included,omitempty"`
+			Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
+			Type AuthNMappingsType `json:"type"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -261,3 +261,5 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	o.Type = all.Type
 	return nil
 }
+
+

@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // MetricAllTagsAttributes Object containing the definition of a metric's tags.
@@ -83,8 +84,8 @@ func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tags *[]string `json:"tags,omitempty"`
-	}{}
+			Tags *[]string `json:"tags,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	o.Tags = all.Tags
 	return nil
 }
+
+

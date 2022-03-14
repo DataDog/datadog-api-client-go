@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // TableWidgetHasSearchBar Controls the display of the search bar.
@@ -19,8 +20,8 @@ type TableWidgetHasSearchBar string
 // List of TableWidgetHasSearchBar
 const (
 	TABLEWIDGETHASSEARCHBAR_ALWAYS TableWidgetHasSearchBar = "always"
-	TABLEWIDGETHASSEARCHBAR_NEVER  TableWidgetHasSearchBar = "never"
-	TABLEWIDGETHASSEARCHBAR_AUTO   TableWidgetHasSearchBar = "auto"
+	TABLEWIDGETHASSEARCHBAR_NEVER TableWidgetHasSearchBar = "never"
+	TABLEWIDGETHASSEARCHBAR_AUTO TableWidgetHasSearchBar = "auto"
 )
 
 var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{
@@ -104,3 +105,4 @@ func (v *NullableTableWidgetHasSearchBar) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

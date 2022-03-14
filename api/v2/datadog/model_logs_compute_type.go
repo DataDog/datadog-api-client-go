@@ -11,6 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+	"fmt"
 )
 
 // LogsComputeType The type of compute
@@ -19,7 +20,7 @@ type LogsComputeType string
 // List of LogsComputeType
 const (
 	LOGSCOMPUTETYPE_TIMESERIES LogsComputeType = "timeseries"
-	LOGSCOMPUTETYPE_TOTAL      LogsComputeType = "total"
+	LOGSCOMPUTETYPE_TOTAL LogsComputeType = "total"
 )
 
 var allowedLogsComputeTypeEnumValues = []LogsComputeType{
@@ -102,3 +103,4 @@ func (v *NullableLogsComputeType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)
 }
+

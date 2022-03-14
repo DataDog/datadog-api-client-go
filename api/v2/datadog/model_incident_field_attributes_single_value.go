@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // IncidentFieldAttributesSingleValue A field with a single value selected.
@@ -87,7 +88,7 @@ func (o *IncidentFieldAttributesSingleValue) GetValue() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IncidentFieldAttributesSingleValue) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Value.Get(), o.Value.IsSet()
@@ -106,7 +107,6 @@ func (o *IncidentFieldAttributesSingleValue) HasValue() bool {
 func (o *IncidentFieldAttributesSingleValue) SetValue(v string) {
 	o.Value.Set(&v)
 }
-
 // SetValueNil sets the value for Value to be an explicit nil
 func (o *IncidentFieldAttributesSingleValue) SetValueNil() {
 	o.Value.Set(nil)
@@ -134,9 +134,9 @@ func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Type  *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
-		Value NullableString                          `json:"value,omitempty"`
-	}{}
+			Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
+			Value NullableString `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -158,3 +158,5 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 	o.Value = all.Value
 	return nil
 }
+
+

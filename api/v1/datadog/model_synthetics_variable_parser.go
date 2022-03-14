@@ -53,7 +53,7 @@ func (o *SyntheticsVariableParser) GetType() SyntheticsGlobalVariableParserType 
 // GetTypeOk returns a tuple with the Type field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsVariableParser) GetTypeOk() (*SyntheticsGlobalVariableParserType, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return &o.Type, true
@@ -114,11 +114,11 @@ func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SyntheticsGlobalVariableParserType `json:"type"`
-	}{}
+		}{}
 	all := struct {
-		Type  SyntheticsGlobalVariableParserType `json:"type"`
-		Value *string                            `json:"value,omitempty"`
-	}{}
+			Type SyntheticsGlobalVariableParserType `json:"type"`
+			Value *string `json:"value,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
 		return err
@@ -147,3 +147,5 @@ func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	o.Value = all.Value
 	return nil
 }
+
+

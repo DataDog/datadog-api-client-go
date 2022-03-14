@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsBatchDetailsData Wrapper object that contains the details of a batch.
@@ -17,7 +18,7 @@ type SyntheticsBatchDetailsData struct {
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// List of results for the batch.
 	Results *[]SyntheticsBatchResult `json:"results,omitempty"`
-	Status  *SyntheticsStatus        `json:"status,omitempty"`
+	Status *SyntheticsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
@@ -155,10 +156,10 @@ func (o SyntheticsBatchDetailsData) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBatchDetailsData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-		Results  *[]SyntheticsBatchResult   `json:"results,omitempty"`
-		Status   *SyntheticsStatus          `json:"status,omitempty"`
-	}{}
+			Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
+			Results *[]SyntheticsBatchResult `json:"results,omitempty"`
+			Status *SyntheticsStatus `json:"status,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -181,3 +182,5 @@ func (o *SyntheticsBatchDetailsData) UnmarshalJSON(bytes []byte) (err error) {
 	o.Status = all.Status
 	return nil
 }
+
+

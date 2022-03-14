@@ -10,6 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // SyntheticsDeleteTestsResponse Response object for deleting Synthetic tests.
@@ -83,8 +84,8 @@ func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsDeleteTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
-	}{}
+			DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
+		}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
@@ -97,3 +98,5 @@ func (o *SyntheticsDeleteTestsResponse) UnmarshalJSON(bytes []byte) (err error) 
 	o.DeletedTests = all.DeletedTests
 	return nil
 }
+
+
