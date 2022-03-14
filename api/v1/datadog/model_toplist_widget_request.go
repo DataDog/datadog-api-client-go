@@ -19,7 +19,7 @@ type ToplistWidgetRequest struct {
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
-	// List of formulas that operate on queries. **This feature is currently in beta.**
+	// List of formulas that operate on queries.
 	Formulas            *[]WidgetFormula        `json:"formulas,omitempty"`
 	LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
 	NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
@@ -27,7 +27,7 @@ type ToplistWidgetRequest struct {
 	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
-	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
+	// List of queries that can be returned directly or used in formulas.
 	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
 	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
