@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SecurityMonitoringRuleNewValueOptionsLearningDuration The duration in days during which values are learned, and after which signals will be generated for values that// weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
+// SecurityMonitoringRuleNewValueOptionsLearningDuration The duration in days during which values are learned, and after which signals will be generated for values that
+// weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
 type SecurityMonitoringRuleNewValueOptionsLearningDuration int32
 
 // List of SecurityMonitoringRuleNewValueOptionsLearningDuration

@@ -21,7 +21,8 @@ type SyntheticsAPIStep struct {
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of values to parse and save as variables from the response.
 	ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
-	// Determines whether or not to consider the entire test as failed if this step fails.// Can be used only if `allowFailure` is `true`.
+	// Determines whether or not to consider the entire test as failed if this step fails.
+	// Can be used only if `allowFailure` is `true`.
 	IsCritical *bool `json:"isCritical,omitempty"`
 	// The name of the step.
 	Name string `json:"name"`
@@ -35,8 +36,6 @@ type SyntheticsAPIStep struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsAPIStep SyntheticsAPIStep
 
 // NewSyntheticsAPIStep instantiates a new SyntheticsAPIStep object
 // This constructor will assign default values to properties that have it defined,

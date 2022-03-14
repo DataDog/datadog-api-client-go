@@ -15,7 +15,8 @@ import (
 
 // NotebookCellCreateRequest The description of a notebook cell create request.
 type NotebookCellCreateRequest struct {
-	// The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
+	// The attributes of a notebook cell in create cell request. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,
+	// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 	Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
 	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`

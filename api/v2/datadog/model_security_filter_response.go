@@ -23,8 +23,6 @@ type SecurityFilterResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SecurityFilterResponse SecurityFilterResponse
-
 // NewSecurityFilterResponse instantiates a new SecurityFilterResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

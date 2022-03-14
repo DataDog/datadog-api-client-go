@@ -29,8 +29,6 @@ type IncidentResponseRelationships struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _IncidentResponseRelationships IncidentResponseRelationships
-
 // NewIncidentResponseRelationships instantiates a new IncidentResponseRelationships object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -23,8 +23,6 @@ type SyntheticsPrivateLocationCreationResponseResultEncryption struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SyntheticsPrivateLocationCreationResponseResultEncryption SyntheticsPrivateLocationCreationResponseResultEncryption
-
 // NewSyntheticsPrivateLocationCreationResponseResultEncryption instantiates a new SyntheticsPrivateLocationCreationResponseResultEncryption object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

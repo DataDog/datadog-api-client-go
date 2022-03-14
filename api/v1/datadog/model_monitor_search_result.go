@@ -32,7 +32,8 @@ type MonitorSearchResult struct {
 	OrgId *int64 `json:"org_id,omitempty"`
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
-	// The scope(s) to which the downtime applies, for example `host:app2`.// Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`.
+	// The scope(s) to which the downtime applies, for example `host:app2`.
+	// Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`.
 	// The resulting downtime applies to sources that matches ALL provided scopes
 	// (that is `env:dev AND env:prod`), NOT any of them.
 	Scopes *[]string `json:"scopes,omitempty"`
@@ -46,8 +47,6 @@ type MonitorSearchResult struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _MonitorSearchResult MonitorSearchResult
 
 // NewMonitorSearchResult instantiates a new MonitorSearchResult object
 // This constructor will assign default values to properties that have it defined,

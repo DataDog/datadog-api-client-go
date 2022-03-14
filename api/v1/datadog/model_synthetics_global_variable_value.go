@@ -16,14 +16,13 @@ import (
 type SyntheticsGlobalVariableValue struct {
 	// Determines if the value of the variable is hidden.
 	Secure *bool `json:"secure,omitempty"`
-	// Value of the global variable. When reading a global variable,// the value will not be present if the variable is hidden with the `secure` property.
+	// Value of the global variable. When reading a global variable,
+	// the value will not be present if the variable is hidden with the `secure` property.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsGlobalVariableValue SyntheticsGlobalVariableValue
 
 // NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object
 // This constructor will assign default values to properties that have it defined,

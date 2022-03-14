@@ -28,8 +28,6 @@ type ProcessQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ProcessQueryDefinition ProcessQueryDefinition
-
 // NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

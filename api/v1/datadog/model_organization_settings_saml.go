@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML.// See the SAML documentation for more information about all SAML settings.
+// OrganizationSettingsSaml Set the boolean property enabled to enable or disable single sign on with SAML.
+// See the SAML documentation for more information about all SAML settings.
 type OrganizationSettingsSaml struct {
 	// Whether or not SAML is enabled for this organization.
 	Enabled *bool `json:"enabled,omitempty"`
@@ -20,8 +21,6 @@ type OrganizationSettingsSaml struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _OrganizationSettingsSaml OrganizationSettingsSaml
 
 // NewOrganizationSettingsSaml instantiates a new OrganizationSettingsSaml object
 // This constructor will assign default values to properties that have it defined,

@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want// to delete.
+// SyntheticsDeleteTestsPayload A JSON list of the ID or IDs of the Synthetic tests that you want
+// to delete.
 type SyntheticsDeleteTestsPayload struct {
 	// An array of Synthetic test IDs you want to delete.
 	PublicIds *[]string `json:"public_ids,omitempty"`
@@ -20,8 +21,6 @@ type SyntheticsDeleteTestsPayload struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsDeleteTestsPayload SyntheticsDeleteTestsPayload
 
 // NewSyntheticsDeleteTestsPayload instantiates a new SyntheticsDeleteTestsPayload object
 // This constructor will assign default values to properties that have it defined,

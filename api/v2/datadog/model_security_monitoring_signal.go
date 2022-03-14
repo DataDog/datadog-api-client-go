@@ -14,7 +14,8 @@ import (
 
 // SecurityMonitoringSignal Object description of a security signal.
 type SecurityMonitoringSignal struct {
-	// The object containing all signal attributes and their// associated values.
+	// The object containing all signal attributes and their
+	// associated values.
 	Attributes *SecurityMonitoringSignalAttributes `json:"attributes,omitempty"`
 	// The unique ID of the security signal.
 	Id *string `json:"id,omitempty"`
@@ -24,8 +25,6 @@ type SecurityMonitoringSignal struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringSignal SecurityMonitoringSignal
 
 // NewSecurityMonitoringSignal instantiates a new SecurityMonitoringSignal object
 // This constructor will assign default values to properties that have it defined,

@@ -21,8 +21,6 @@ type MetricSearchResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MetricSearchResponse MetricSearchResponse
-
 // NewMetricSearchResponse instantiates a new MetricSearchResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

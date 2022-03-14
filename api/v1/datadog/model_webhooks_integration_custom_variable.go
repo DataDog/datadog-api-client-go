@@ -15,7 +15,8 @@ import (
 
 // WebhooksIntegrationCustomVariable Custom variable for Webhook integration.
 type WebhooksIntegrationCustomVariable struct {
-	// Make custom variable is secret or not.// If the custom variable is secret, the value is not returned in the response payload.
+	// Make custom variable is secret or not.
+	// If the custom variable is secret, the value is not returned in the response payload.
 	IsSecret bool `json:"is_secret"`
 	// The name of the variable. It corresponds with `<CUSTOM_VARIABLE_NAME>`.
 	Name string `json:"name"`
@@ -25,8 +26,6 @@ type WebhooksIntegrationCustomVariable struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _WebhooksIntegrationCustomVariable WebhooksIntegrationCustomVariable
 
 // NewWebhooksIntegrationCustomVariable instantiates a new WebhooksIntegrationCustomVariable object
 // This constructor will assign default values to properties that have it defined,

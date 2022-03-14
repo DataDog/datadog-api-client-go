@@ -25,8 +25,6 @@ type ApplicationKey struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ApplicationKey ApplicationKey
-
 // NewApplicationKey instantiates a new ApplicationKey object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

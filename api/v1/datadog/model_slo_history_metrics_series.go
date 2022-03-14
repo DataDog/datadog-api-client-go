@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries.// This is the same response type from `batch_query` endpoint.
+// SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries.
+// This is the same response type from `batch_query` endpoint.
 type SLOHistoryMetricsSeries struct {
 	// Count of submitted metrics.
 	Count int64 `json:"count"`
@@ -27,8 +28,6 @@ type SLOHistoryMetricsSeries struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOHistoryMetricsSeries SLOHistoryMetricsSeries
 
 // NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object
 // This constructor will assign default values to properties that have it defined,

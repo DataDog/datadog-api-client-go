@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsStatusRemapper Use this Processor if you want to assign some attributes as the official status.//
+// LogsStatusRemapper Use this Processor if you want to assign some attributes as the official status.
+//
 // Each incoming status value is mapped as follows.
 //
 //   - Integers from 0 to 7 map to the Syslog severity standards
@@ -43,8 +44,6 @@ type LogsStatusRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsStatusRemapper LogsStatusRemapper
 
 // NewLogsStatusRemapper instantiates a new LogsStatusRemapper object
 // This constructor will assign default values to properties that have it defined,

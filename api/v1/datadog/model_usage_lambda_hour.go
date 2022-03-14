@@ -13,7 +13,8 @@ import (
 	"time"
 )
 
-// UsageLambdaHour Number of lambda functions and sum of the invocations of all lambda functions// for each hour for a given organization.
+// UsageLambdaHour Number of lambda functions and sum of the invocations of all lambda functions
+// for each hour for a given organization.
 type UsageLambdaHour struct {
 	// Contains the number of different functions for each region and AWS account.
 	FuncCount *int64 `json:"func_count,omitempty"`
@@ -29,8 +30,6 @@ type UsageLambdaHour struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _UsageLambdaHour UsageLambdaHour
 
 // NewUsageLambdaHour instantiates a new UsageLambdaHour object
 // This constructor will assign default values to properties that have it defined,

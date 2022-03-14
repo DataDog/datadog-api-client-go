@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsUserAgentParser The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data.// It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
+// LogsUserAgentParser The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data.
+// It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
 type LogsUserAgentParser struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -31,8 +32,6 @@ type LogsUserAgentParser struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsUserAgentParser LogsUserAgentParser
 
 // NewLogsUserAgentParser instantiates a new LogsUserAgentParser object
 // This constructor will assign default values to properties that have it defined,

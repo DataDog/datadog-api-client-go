@@ -17,7 +17,8 @@ import (
 type LogsCompute struct {
 	// An aggregation function
 	Aggregation LogsAggregationFunction `json:"aggregation"`
-	// The time buckets' size (only used for type=timeseries)// Defaults to a resolution of 150 points
+	// The time buckets' size (only used for type=timeseries)
+	// Defaults to a resolution of 150 points
 	Interval *string `json:"interval,omitempty"`
 	// The metric to use
 	Metric *string `json:"metric,omitempty"`
@@ -27,8 +28,6 @@ type LogsCompute struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsCompute LogsCompute
 
 // NewLogsCompute instantiates a new LogsCompute object
 // This constructor will assign default values to properties that have it defined,

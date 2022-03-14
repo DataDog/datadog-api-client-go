@@ -30,8 +30,6 @@ type AuthNMapping struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AuthNMapping AuthNMapping
-
 // NewAuthNMapping instantiates a new AuthNMapping object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -15,26 +15,32 @@ import (
 
 // EventCreateRequest Object representing an event.
 type EventCreateRequest struct {
-	// An arbitrary string to use for aggregation. Limited to 100 characters.// If you specify a key, all events using that key are grouped together in the Event Stream.
+	// An arbitrary string to use for aggregation. Limited to 100 characters.
+	// If you specify a key, all events using that key are grouped together in the Event Stream.
 	AggregationKey *string `json:"aggregation_key,omitempty"`
-	// If an alert event is enabled, set its type.// For example, `error`, `warning`, `info`, `success`, `user_update`,
+	// If an alert event is enabled, set its type.
+	// For example, `error`, `warning`, `info`, `success`, `user_update`,
 	// `recommendation`, and `snapshot`.
 	AlertType *EventAlertType `json:"alert_type,omitempty"`
-	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes).// Limited to events no older than 7 days.
+	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes).
+	// Limited to events no older than 7 days.
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
-	// Host name to associate with the event.// Any tags associated with the host are also applied to this event.
+	// Host name to associate with the event.
+	// Any tags associated with the host are also applied to this event.
 	Host *string `json:"host,omitempty"`
 	// The priority of the event. For example, `normal` or `low`.
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// ID of the parent event. Must be sent as an integer (that is no quotes).
 	RelatedEventId *int64 `json:"related_event_id,omitempty"`
-	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc.// A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
+	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc.
+	// A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags to apply to the event.
 	Tags *[]string `json:"tags,omitempty"`
-	// The body of the event. Limited to 4000 characters. The text supports markdown.// To use markdown in the event text, start the text block with `%%% \n` and end the text block with `\n %%%`.
+	// The body of the event. Limited to 4000 characters. The text supports markdown.
+	// To use markdown in the event text, start the text block with `%%% \n` and end the text block with `\n %%%`.
 	// Use `msg_text` with the Datadog Ruby library.
 	Text string `json:"text"`
 	// The event title.
@@ -43,8 +49,6 @@ type EventCreateRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _EventCreateRequest EventCreateRequest
 
 // NewEventCreateRequest instantiates a new EventCreateRequest object
 // This constructor will assign default values to properties that have it defined,

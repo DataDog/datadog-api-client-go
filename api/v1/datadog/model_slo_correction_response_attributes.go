@@ -30,7 +30,8 @@ type SLOCorrectionResponseAttributes struct {
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// Modifier of the object.
 	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
+	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections
+	// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
 	Rrule NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
@@ -42,8 +43,6 @@ type SLOCorrectionResponseAttributes struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOCorrectionResponseAttributes SLOCorrectionResponseAttributes
 
 // NewSLOCorrectionResponseAttributes instantiates a new SLOCorrectionResponseAttributes object
 // This constructor will assign default values to properties that have it defined,

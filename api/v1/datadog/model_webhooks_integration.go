@@ -15,14 +15,17 @@ import (
 
 // WebhooksIntegration Datadog-Webhooks integration.
 type WebhooksIntegration struct {
-	// If `null`, uses no header.// If given a JSON payload, these will be headers attached to your webhook.
+	// If `null`, uses no header.
+	// If given a JSON payload, these will be headers attached to your webhook.
 	CustomHeaders NullableString `json:"custom_headers,omitempty"`
 	// Encoding type. Can be given either `json` or `form`.
 	EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
-	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.// Learn more on how to use it in
+	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
+	// Learn more on how to use it in
 	// [monitor notifications](https://docs.datadoghq.com/monitors/notify).
 	Name string `json:"name"`
-	// If `null`, uses the default payload.// If given a JSON payload, the webhook returns the payload
+	// If `null`, uses the default payload.
+	// If given a JSON payload, the webhook returns the payload
 	// specified by the given payload.
 	// [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
 	Payload NullableString `json:"payload,omitempty"`
@@ -32,8 +35,6 @@ type WebhooksIntegration struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _WebhooksIntegration WebhooksIntegration
 
 // NewWebhooksIntegration instantiates a new WebhooksIntegration object
 // This constructor will assign default values to properties that have it defined,

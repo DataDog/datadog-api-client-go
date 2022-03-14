@@ -21,8 +21,6 @@ type PermissionsResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _PermissionsResponse PermissionsResponse
-
 // NewPermissionsResponse instantiates a new PermissionsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

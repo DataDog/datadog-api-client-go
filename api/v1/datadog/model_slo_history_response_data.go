@@ -16,18 +16,23 @@ import (
 type SLOHistoryResponseData struct {
 	// The `from` timestamp in epoch seconds.
 	FromTs *int64 `json:"from_ts,omitempty"`
-	// For `metric` based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.//
+	// For `metric` based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.
+	//
 	// This is not included in responses for `monitor` based SLOs.
 	GroupBy *[]string `json:"group_by,omitempty"`
-	// For grouped SLOs, this represents SLI data for specific groups.//
+	// For grouped SLOs, this represents SLI data for specific groups.
+	//
 	// This is not included in the responses for `metric` based SLOs.
 	Groups *[]SLOHistoryMonitor `json:"groups,omitempty"`
-	// For multi-monitor SLOs, this represents SLI data for specific monitors.//
+	// For multi-monitor SLOs, this represents SLI data for specific monitors.
+	//
 	// This is not included in the responses for `metric` based SLOs.
 	Monitors *[]SLOHistoryMonitor `json:"monitors,omitempty"`
-	// An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+	// An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
+	// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 	Overall *SLOHistorySLIData `json:"overall,omitempty"`
-	// A `metric` based SLO history response.//
+	// A `metric` based SLO history response.
+	//
 	// This is not included in responses for `monitor` based SLOs.
 	Series *SLOHistoryMetrics `json:"series,omitempty"`
 	// mapping of string timeframe to the SLO threshold.
@@ -36,15 +41,14 @@ type SLOHistoryResponseData struct {
 	ToTs *int64 `json:"to_ts,omitempty"`
 	// The type of the service level objective.
 	Type *SLOType `json:"type,omitempty"`
-	// A numeric representation of the type of the service level objective (`0` for// monitor, `1` for metric). Always included in service level objective responses.
+	// A numeric representation of the type of the service level objective (`0` for
+	// monitor, `1` for metric). Always included in service level objective responses.
 	// Ignored in create/update requests.
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOHistoryResponseData SLOHistoryResponseData
 
 // NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object
 // This constructor will assign default values to properties that have it defined,

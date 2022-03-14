@@ -19,10 +19,12 @@ type LogContent struct {
 	Attributes map[string]interface{} `json:"attributes,omitempty"`
 	// Name of the machine from where the logs are being sent.
 	Host *string `json:"host,omitempty"`
-	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes)// of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry.
+	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes)
+	// of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry.
 	// That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
 	Message *string `json:"message,omitempty"`
-	// The name of the application or service generating the log events.// It is used to switch from Logs to APM, so make sure you define the same
+	// The name of the application or service generating the log events.
+	// It is used to switch from Logs to APM, so make sure you define the same
 	// value when you use both products.
 	Service *string `json:"service,omitempty"`
 	// Array of tags associated with your log.
@@ -33,8 +35,6 @@ type LogContent struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogContent LogContent
 
 // NewLogContent instantiates a new LogContent object
 // This constructor will assign default values to properties that have it defined,

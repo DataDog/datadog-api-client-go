@@ -21,8 +21,6 @@ type RelationshipToPermissions struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _RelationshipToPermissions RelationshipToPermissions
-
 // NewRelationshipToPermissions instantiates a new RelationshipToPermissions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

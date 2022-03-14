@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test.// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
+// SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test.
+// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 type SyntheticsTiming struct {
 	// The duration in millisecond of the DNS lookup.
 	Dns *float64 `json:"dns,omitempty"`
@@ -36,8 +37,6 @@ type SyntheticsTiming struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsTiming SyntheticsTiming
 
 // NewSyntheticsTiming instantiates a new SyntheticsTiming object
 // This constructor will assign default values to properties that have it defined,

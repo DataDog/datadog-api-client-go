@@ -21,8 +21,6 @@ type SyntheticsGlobalVariableAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SyntheticsGlobalVariableAttributes SyntheticsGlobalVariableAttributes
-
 // NewSyntheticsGlobalVariableAttributes instantiates a new SyntheticsGlobalVariableAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

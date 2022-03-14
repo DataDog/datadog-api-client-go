@@ -14,14 +14,13 @@ import (
 
 // SyntheticsDeleteTestsResponse Response object for deleting Synthetic tests.
 type SyntheticsDeleteTestsResponse struct {
-	// Array of objects containing a deleted Synthetic test ID with// the associated deletion timestamp.
+	// Array of objects containing a deleted Synthetic test ID with
+	// the associated deletion timestamp.
 	DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsDeleteTestsResponse SyntheticsDeleteTestsResponse
 
 // NewSyntheticsDeleteTestsResponse instantiates a new SyntheticsDeleteTestsResponse object
 // This constructor will assign default values to properties that have it defined,

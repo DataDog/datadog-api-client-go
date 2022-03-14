@@ -27,8 +27,6 @@ type IPPrefixesSynthetics struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _IPPrefixesSynthetics IPPrefixesSynthetics
-
 // NewIPPrefixesSynthetics instantiates a new IPPrefixesSynthetics object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

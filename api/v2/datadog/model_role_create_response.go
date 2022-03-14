@@ -21,8 +21,6 @@ type RoleCreateResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _RoleCreateResponse RoleCreateResponse
-
 // NewRoleCreateResponse instantiates a new RoleCreateResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -12,13 +12,15 @@ import (
 	"encoding/json"
 )
 
-// Downtime Downtiming gives you greater control over monitor notifications by// allowing you to globally exclude scopes from alerting.
+// Downtime Downtiming gives you greater control over monitor notifications by
+// allowing you to globally exclude scopes from alerting.
 // Downtime settings, which can be scheduled with start and end times,
 // prevent all alerting related to specified Datadog tags.
 type Downtime struct {
 	// If a scheduled downtime currently exists.
 	Active *bool `json:"active,omitempty"`
-	// The downtime object definition of the active child for the original parent recurring downtime. This// field will only exist on recurring downtimes.
+	// The downtime object definition of the active child for the original parent recurring downtime. This
+	// field will only exist on recurring downtimes.
 	ActiveChild NullableDowntimeChild `json:"active_child,omitempty"`
 	// If a scheduled downtime is canceled.
 	Canceled NullableInt64 `json:"canceled,omitempty"`
@@ -26,18 +28,23 @@ type Downtime struct {
 	CreatorId *int32 `json:"creator_id,omitempty"`
 	// If a downtime has been disabled.
 	Disabled *bool `json:"disabled,omitempty"`
-	// `0` for a downtime applied on `*` or all,// `1` when the downtime is only scoped to hosts,
+	// `0` for a downtime applied on `*` or all,
+	// `1` when the downtime is only scoped to hosts,
 	// or `2` when the downtime is scoped to anything but hosts.
 	DowntimeType *int32 `json:"downtime_type,omitempty"`
-	// POSIX timestamp to end the downtime. If not provided,// the downtime is in effect indefinitely until you cancel it.
+	// POSIX timestamp to end the downtime. If not provided,
+	// the downtime is in effect indefinitely until you cancel it.
 	End NullableInt64 `json:"end,omitempty"`
 	// The downtime ID.
 	Id *int64 `json:"id,omitempty"`
-	// A message to include with notifications for this downtime.// Email notifications can be sent to specific users by using the same `@username` notation as events.
+	// A message to include with notifications for this downtime.
+	// Email notifications can be sent to specific users by using the same `@username` notation as events.
 	Message *string `json:"message,omitempty"`
-	// A single monitor to which the downtime applies.// If not provided, the downtime applies to all monitors.
+	// A single monitor to which the downtime applies.
+	// If not provided, the downtime applies to all monitors.
 	MonitorId NullableInt64 `json:"monitor_id,omitempty"`
-	// A comma-separated list of monitor tags. For example, tags that are applied directly to monitors,// not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies.
+	// A comma-separated list of monitor tags. For example, tags that are applied directly to monitors,
+	// not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies.
 	// The resulting downtime applies to monitors that match ALL provided monitor tags.
 	// For example, `service:postgres` **AND** `team:frontend`.
 	MonitorTags *[]string `json:"monitor_tags,omitempty"`
@@ -45,10 +52,12 @@ type Downtime struct {
 	ParentId NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
 	Recurrence NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-	// The scope(s) to which the downtime applies. For example, `host:app2`.// Provide multiple scopes as a comma-separated list like `env:dev,env:prod`.
+	// The scope(s) to which the downtime applies. For example, `host:app2`.
+	// Provide multiple scopes as a comma-separated list like `env:dev,env:prod`.
 	// The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
 	Scope *[]string `json:"scope,omitempty"`
-	// POSIX timestamp to start the downtime.// If not provided, the downtime starts the moment it is created.
+	// POSIX timestamp to start the downtime.
+	// If not provided, the downtime starts the moment it is created.
 	Start *int64 `json:"start,omitempty"`
 	// The timezone in which to display the downtime's start and end times in Datadog applications.
 	Timezone *string `json:"timezone,omitempty"`
@@ -58,8 +67,6 @@ type Downtime struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _Downtime Downtime
 
 // NewDowntime instantiates a new Downtime object
 // This constructor will assign default values to properties that have it defined,

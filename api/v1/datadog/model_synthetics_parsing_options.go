@@ -27,8 +27,6 @@ type SyntheticsParsingOptions struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SyntheticsParsingOptions SyntheticsParsingOptions
-
 // NewSyntheticsParsingOptions instantiates a new SyntheticsParsingOptions object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

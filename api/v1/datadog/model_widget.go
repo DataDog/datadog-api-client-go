@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// Widget Information about widget.//
+// Widget Information about widget.
+//
 // **Note**: The `layout` property is required for widgets in dashboards with `free` `layout_type`.
 //       For the **new dashboard layout**, the `layout` property depends on the `reflow_type` of the dashboard.
 //       - If `reflow_type` is `fixed`, `layout` is required.
@@ -29,8 +30,6 @@ type Widget struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _Widget Widget
 
 // NewWidget instantiates a new Widget object
 // This constructor will assign default values to properties that have it defined,

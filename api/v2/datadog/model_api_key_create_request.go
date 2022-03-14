@@ -22,8 +22,6 @@ type APIKeyCreateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _APIKeyCreateRequest APIKeyCreateRequest
-
 // NewAPIKeyCreateRequest instantiates a new APIKeyCreateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

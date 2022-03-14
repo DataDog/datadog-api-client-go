@@ -40,8 +40,6 @@ type UsageLogsHour struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UsageLogsHour UsageLogsHour
-
 // NewUsageLogsHour instantiates a new UsageLogsHour object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

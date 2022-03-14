@@ -34,8 +34,6 @@ type UsageRumSessionsHour struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UsageRumSessionsHour UsageRumSessionsHour
-
 // NewUsageRumSessionsHour instantiates a new UsageRumSessionsHour object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

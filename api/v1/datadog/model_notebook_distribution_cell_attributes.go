@@ -15,7 +15,8 @@ import (
 
 // NotebookDistributionCellAttributes The attributes of a notebook `distribution` cell.
 type NotebookDistributionCellAttributes struct {
-	// The Distribution visualization is another way of showing metrics// aggregated across one or several tags, such as hosts.
+	// The Distribution visualization is another way of showing metrics
+	// aggregated across one or several tags, such as hosts.
 	// Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
 	Definition DistributionWidgetDefinition `json:"definition"`
 	// The size of the graph.
@@ -28,8 +29,6 @@ type NotebookDistributionCellAttributes struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _NotebookDistributionCellAttributes NotebookDistributionCellAttributes
 
 // NewNotebookDistributionCellAttributes instantiates a new NotebookDistributionCellAttributes object
 // This constructor will assign default values to properties that have it defined,

@@ -26,7 +26,8 @@ type SyntheticsBrowserTestResultFull struct {
 	Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
 	// ID of the browser test result.
 	ResultId *string `json:"result_id,omitempty"`
-	// The status of your Synthetic monitor.// * `O` for not triggered
+	// The status of your Synthetic monitor.
+	// * `O` for not triggered
 	// * `1` for triggered
 	// * `2` for no data
 	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
@@ -34,8 +35,6 @@ type SyntheticsBrowserTestResultFull struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsBrowserTestResultFull SyntheticsBrowserTestResultFull
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
 // This constructor will assign default values to properties that have it defined,

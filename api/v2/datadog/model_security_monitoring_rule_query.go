@@ -20,7 +20,8 @@ type SecurityMonitoringRuleQuery struct {
 	DistinctFields *[]string `json:"distinctFields,omitempty"`
 	// Fields to group by.
 	GroupByFields *[]string `json:"groupByFields,omitempty"`
-	// The target field to aggregate over when using the sum or max// aggregations.
+	// The target field to aggregate over when using the sum or max
+	// aggregations.
 	Metric *string `json:"metric,omitempty"`
 	// Name of the query.
 	Name *string `json:"name,omitempty"`
@@ -30,8 +31,6 @@ type SecurityMonitoringRuleQuery struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringRuleQuery SecurityMonitoringRuleQuery
 
 // NewSecurityMonitoringRuleQuery instantiates a new SecurityMonitoringRuleQuery object
 // This constructor will assign default values to properties that have it defined,

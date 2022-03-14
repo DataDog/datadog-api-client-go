@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// LogsQueryOptions Global query options that are used during the query.// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+// LogsQueryOptions Global query options that are used during the query.
+// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
 type LogsQueryOptions struct {
 	// The time offset (in seconds) to apply to the query.
 	TimeOffset *int64 `json:"timeOffset,omitempty"`
@@ -22,8 +23,6 @@ type LogsQueryOptions struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsQueryOptions LogsQueryOptions
 
 // NewLogsQueryOptions instantiates a new LogsQueryOptions object
 // This constructor will assign default values to properties that have it defined,

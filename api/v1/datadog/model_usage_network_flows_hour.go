@@ -28,8 +28,6 @@ type UsageNetworkFlowsHour struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UsageNetworkFlowsHour UsageNetworkFlowsHour
-
 // NewUsageNetworkFlowsHour instantiates a new UsageNetworkFlowsHour object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -15,7 +15,8 @@ import (
 
 // MetricTagConfigurationCreateAttributes Object containing the definition of a metric tag configuration to be created.
 type MetricTagConfigurationCreateAttributes struct {
-	// A list of queryable aggregation combinations for a count, rate, or gauge metric.// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
+	// A list of queryable aggregation combinations for a count, rate, or gauge metric.
+	// By default, count and rate metrics require the (time: sum, space: sum) aggregation and
 	// Gauge metrics require the (time: avg, space: avg) aggregation.
 	// Additional time & space combinations are also available:
 	//
@@ -31,7 +32,8 @@ type MetricTagConfigurationCreateAttributes struct {
 	//
 	// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
 	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-	// Toggle to include/exclude percentiles for a distribution metric.// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
+	// Toggle to include/exclude percentiles for a distribution metric.
+	// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// The metric's type.
 	MetricType MetricTagConfigurationMetricTypes `json:"metric_type"`
@@ -41,8 +43,6 @@ type MetricTagConfigurationCreateAttributes struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _MetricTagConfigurationCreateAttributes MetricTagConfigurationCreateAttributes
 
 // NewMetricTagConfigurationCreateAttributes instantiates a new MetricTagConfigurationCreateAttributes object
 // This constructor will assign default values to properties that have it defined,

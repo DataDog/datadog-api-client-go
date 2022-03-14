@@ -27,8 +27,6 @@ type DistributionWidgetXAxis struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DistributionWidgetXAxis DistributionWidgetXAxis
-
 // NewDistributionWidgetXAxis instantiates a new DistributionWidgetXAxis object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

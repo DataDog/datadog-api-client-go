@@ -21,8 +21,6 @@ type CheckCanDeleteMonitorResponseData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _CheckCanDeleteMonitorResponseData CheckCanDeleteMonitorResponseData
-
 // NewCheckCanDeleteMonitorResponseData instantiates a new CheckCanDeleteMonitorResponseData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

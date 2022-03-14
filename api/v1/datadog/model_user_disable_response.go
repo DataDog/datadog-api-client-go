@@ -21,8 +21,6 @@ type UserDisableResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UserDisableResponse UserDisableResponse
-
 // NewUserDisableResponse instantiates a new UserDisableResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

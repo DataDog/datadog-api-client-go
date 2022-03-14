@@ -22,8 +22,6 @@ type PagerDutyServiceName struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _PagerDutyServiceName PagerDutyServiceName
-
 // NewPagerDutyServiceName instantiates a new PagerDutyServiceName object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

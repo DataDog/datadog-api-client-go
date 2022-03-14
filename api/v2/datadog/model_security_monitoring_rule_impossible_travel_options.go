@@ -14,14 +14,13 @@ import (
 
 // SecurityMonitoringRuleImpossibleTravelOptions Options on impossible travel rules.
 type SecurityMonitoringRuleImpossibleTravelOptions struct {
-	// If true, signals are suppressed for the first 24 hours. In that time, Datadog learns the user's regular// access locations. This can be helpful to reduce noise and infer VPN usage or credentialed API access.
+	// If true, signals are suppressed for the first 24 hours. In that time, Datadog learns the user's regular
+	// access locations. This can be helpful to reduce noise and infer VPN usage or credentialed API access.
 	BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringRuleImpossibleTravelOptions SecurityMonitoringRuleImpossibleTravelOptions
 
 // NewSecurityMonitoringRuleImpossibleTravelOptions instantiates a new SecurityMonitoringRuleImpossibleTravelOptions object
 // This constructor will assign default values to properties that have it defined,

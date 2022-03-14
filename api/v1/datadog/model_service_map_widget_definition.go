@@ -34,8 +34,6 @@ type ServiceMapWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ServiceMapWidgetDefinition ServiceMapWidgetDefinition
-
 // NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

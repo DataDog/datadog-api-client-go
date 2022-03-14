@@ -23,8 +23,6 @@ type SyntheticsCIBatchMetadataCI struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SyntheticsCIBatchMetadataCI SyntheticsCIBatchMetadataCI
-
 // NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -26,8 +26,6 @@ type IncidentServiceCreateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _IncidentServiceCreateData IncidentServiceCreateData
-
 // NewIncidentServiceCreateData instantiates a new IncidentServiceCreateData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

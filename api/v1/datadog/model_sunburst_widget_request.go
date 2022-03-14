@@ -45,8 +45,6 @@ type SunburstWidgetRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SunburstWidgetRequest SunburstWidgetRequest
-
 // NewSunburstWidgetRequest instantiates a new SunburstWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

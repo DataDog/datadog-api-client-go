@@ -14,14 +14,13 @@ import (
 
 // OrganizationSettingsSamlIdpInitiatedLogin Has one property enabled (boolean).
 type OrganizationSettingsSamlIdpInitiatedLogin struct {
-	// Whether SAML IdP initiated login is enabled, learn more// in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
+	// Whether SAML IdP initiated login is enabled, learn more
+	// in the [SAML documentation](https://docs.datadoghq.com/account_management/saml/#idp-initiated-login).
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _OrganizationSettingsSamlIdpInitiatedLogin OrganizationSettingsSamlIdpInitiatedLogin
 
 // NewOrganizationSettingsSamlIdpInitiatedLogin instantiates a new OrganizationSettingsSamlIdpInitiatedLogin object
 // This constructor will assign default values to properties that have it defined,

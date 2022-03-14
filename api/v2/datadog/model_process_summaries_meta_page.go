@@ -14,7 +14,8 @@ import (
 
 // ProcessSummariesMetaPage Paging attributes.
 type ProcessSummariesMetaPage struct {
-	// The cursor used to get the next results, if any. To make the next request, use the same// parameters with the addition of the `page[cursor]`.
+	// The cursor used to get the next results, if any. To make the next request, use the same
+	// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// Number of results returned.
 	Size *int32 `json:"size,omitempty"`
@@ -22,8 +23,6 @@ type ProcessSummariesMetaPage struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _ProcessSummariesMetaPage ProcessSummariesMetaPage
 
 // NewProcessSummariesMetaPage instantiates a new ProcessSummariesMetaPage object
 // This constructor will assign default values to properties that have it defined,

@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// EventStreamWidgetDefinition The event stream is a widget version of the stream of events// on the Event Stream view. Only available on FREE layout dashboards.
+// EventStreamWidgetDefinition The event stream is a widget version of the stream of events
+// on the Event Stream view. Only available on FREE layout dashboards.
 type EventStreamWidgetDefinition struct {
 	// Size to use to display an event.
 	EventSize *WidgetEventSize `json:"event_size,omitempty"`
@@ -35,8 +36,6 @@ type EventStreamWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _EventStreamWidgetDefinition EventStreamWidgetDefinition
 
 // NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

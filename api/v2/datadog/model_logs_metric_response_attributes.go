@@ -25,8 +25,6 @@ type LogsMetricResponseAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsMetricResponseAttributes LogsMetricResponseAttributes
-
 // NewLogsMetricResponseAttributes instantiates a new LogsMetricResponseAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

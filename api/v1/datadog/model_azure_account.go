@@ -22,7 +22,8 @@ type AzureAccount struct {
 	ClientSecret *string `json:"client_secret,omitempty"`
 	// Errors in your configuration.
 	Errors *[]string `json:"errors,omitempty"`
-	// Limit the Azure instances that are pulled into Datadog by using tags.// Only hosts that match one of the defined tags are imported into Datadog.
+	// Limit the Azure instances that are pulled into Datadog by using tags.
+	// Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
 	// Your New Azure web application ID.
 	NewClientId *string `json:"new_client_id,omitempty"`
@@ -34,8 +35,6 @@ type AzureAccount struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _AzureAccount AzureAccount
 
 // NewAzureAccount instantiates a new AzureAccount object
 // This constructor will assign default values to properties that have it defined,

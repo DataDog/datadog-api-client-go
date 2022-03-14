@@ -21,8 +21,6 @@ type UsageTimeseriesResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _UsageTimeseriesResponse UsageTimeseriesResponse
-
 // NewUsageTimeseriesResponse instantiates a new UsageTimeseriesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

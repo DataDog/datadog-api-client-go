@@ -22,8 +22,6 @@ type AuthNMappingUpdateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AuthNMappingUpdateRequest AuthNMappingUpdateRequest
-
 // NewAuthNMappingUpdateRequest instantiates a new AuthNMappingUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

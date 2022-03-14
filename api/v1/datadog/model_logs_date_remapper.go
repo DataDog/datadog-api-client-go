@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.//
+// LogsDateRemapper As Datadog receives logs, it timestamps them using the value(s) from any of these default attributes.
+//
 //   - `timestamp`
 //   - `date`
 //   - `_timestamp`
@@ -44,8 +45,6 @@ type LogsDateRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsDateRemapper LogsDateRemapper
 
 // NewLogsDateRemapper instantiates a new LogsDateRemapper object
 // This constructor will assign default values to properties that have it defined,

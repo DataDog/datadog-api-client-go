@@ -27,8 +27,6 @@ type MonitorSearchResponseCounts struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MonitorSearchResponseCounts MonitorSearchResponseCounts
-
 // NewMonitorSearchResponseCounts instantiates a new MonitorSearchResponseCounts object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

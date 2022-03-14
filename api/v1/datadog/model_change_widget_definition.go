@@ -17,7 +17,8 @@ import (
 type ChangeWidgetDefinition struct {
 	// List of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
-	// Array of one request object to display in the widget.//
+	// Array of one request object to display in the widget.
+	//
 	// See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
 	//  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []ChangeWidgetRequest `json:"requests"`
@@ -35,8 +36,6 @@ type ChangeWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _ChangeWidgetDefinition ChangeWidgetDefinition
 
 // NewChangeWidgetDefinition instantiates a new ChangeWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

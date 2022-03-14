@@ -21,8 +21,6 @@ type WidgetStyle struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _WidgetStyle WidgetStyle
-
 // NewWidgetStyle instantiates a new WidgetStyle object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

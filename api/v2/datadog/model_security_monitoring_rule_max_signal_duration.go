@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SecurityMonitoringRuleMaxSignalDuration A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.// This time is calculated from the first seen timestamp.
+// SecurityMonitoringRuleMaxSignalDuration A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.
+// This time is calculated from the first seen timestamp.
 type SecurityMonitoringRuleMaxSignalDuration int32
 
 // List of SecurityMonitoringRuleMaxSignalDuration

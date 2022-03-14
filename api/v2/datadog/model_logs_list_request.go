@@ -16,7 +16,8 @@ import (
 type LogsListRequest struct {
 	// The search and filter query settings
 	Filter *LogsQueryFilter `json:"filter,omitempty"`
-	// Global query options that are used during the query.// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
+	// Global query options that are used during the query.
+	// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
 	Options *LogsQueryOptions `json:"options,omitempty"`
 	// Paging attributes for listing logs.
 	Page *LogsListRequestPage `json:"page,omitempty"`
@@ -26,8 +27,6 @@ type LogsListRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsListRequest LogsListRequest
 
 // NewLogsListRequest instantiates a new LogsListRequest object
 // This constructor will assign default values to properties that have it defined,

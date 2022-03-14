@@ -25,8 +25,6 @@ type LogsAPIError struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsAPIError LogsAPIError
-
 // NewLogsAPIError instantiates a new LogsAPIError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

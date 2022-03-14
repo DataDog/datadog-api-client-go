@@ -18,7 +18,8 @@ import (
 type IncidentResponseAttributes struct {
 	// Timestamp when the incident was created.
 	Created *time.Time `json:"created,omitempty"`
-	// Length of the incident's customer impact in seconds.// Equals the difference between `customer_impact_start` and `customer_impact_end`.
+	// Length of the incident's customer impact in seconds.
+	// Equals the difference between `customer_impact_start` and `customer_impact_end`.
 	CustomerImpactDuration *int64 `json:"customer_impact_duration,omitempty"`
 	// Timestamp when customers were no longer impacted by the incident.
 	CustomerImpactEnd NullableTime `json:"customer_impact_end,omitempty"`
@@ -42,7 +43,8 @@ type IncidentResponseAttributes struct {
 	PublicId *int64 `json:"public_id,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
 	Resolved NullableTime `json:"resolved,omitempty"`
-	// The amount of time in seconds to detect the incident.// Equals the difference between `customer_impact_start` and `detected`.
+	// The amount of time in seconds to detect the incident.
+	// Equals the difference between `customer_impact_start` and `detected`.
 	TimeToDetect *int64 `json:"time_to_detect,omitempty"`
 	// The amount of time in seconds to call incident after detection. Equals the difference of `detected` and `created`.
 	TimeToInternalResponse *int64 `json:"time_to_internal_response,omitempty"`
@@ -56,8 +58,6 @@ type IncidentResponseAttributes struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _IncidentResponseAttributes IncidentResponseAttributes
 
 // NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object
 // This constructor will assign default values to properties that have it defined,

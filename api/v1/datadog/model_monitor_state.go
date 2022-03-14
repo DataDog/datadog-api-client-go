@@ -14,14 +14,13 @@ import (
 
 // MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
-	// Dictionary where the keys are groups (comma separated lists of tags) and the values are// the list of groups your monitor is broken down on.
+	// Dictionary where the keys are groups (comma separated lists of tags) and the values are
+	// the list of groups your monitor is broken down on.
 	Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _MonitorState MonitorState
 
 // NewMonitorState instantiates a new MonitorState object
 // This constructor will assign default values to properties that have it defined,

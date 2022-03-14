@@ -22,8 +22,6 @@ type DashboardBulkDeleteRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DashboardBulkDeleteRequest DashboardBulkDeleteRequest
-
 // NewDashboardBulkDeleteRequest instantiates a new DashboardBulkDeleteRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

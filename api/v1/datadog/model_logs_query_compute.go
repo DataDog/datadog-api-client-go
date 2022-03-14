@@ -26,8 +26,6 @@ type LogsQueryCompute struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsQueryCompute LogsQueryCompute
-
 // NewLogsQueryCompute instantiates a new LogsQueryCompute object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

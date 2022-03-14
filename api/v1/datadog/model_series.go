@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// Series A metric to submit to Datadog.// See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
+// Series A metric to submit to Datadog.
+// See [Datadog metrics](https://docs.datadoghq.com/developers/metrics/#custom-metrics-properties).
 type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`
@@ -31,8 +32,6 @@ type Series struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _Series Series
 
 // NewSeries instantiates a new Series object
 // This constructor will assign default values to properties that have it defined,

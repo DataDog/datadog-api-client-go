@@ -21,8 +21,6 @@ type SyntheticsListTestsResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SyntheticsListTestsResponse SyntheticsListTestsResponse
-
 // NewSyntheticsListTestsResponse instantiates a new SyntheticsListTestsResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

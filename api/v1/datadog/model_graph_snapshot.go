@@ -14,7 +14,8 @@ import (
 
 // GraphSnapshot Object representing a graph snapshot.
 type GraphSnapshot struct {
-	// A JSON document defining the graph. `graph_def` can be used instead of `metric_query`.// The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
+	// A JSON document defining the graph. `graph_def` can be used instead of `metric_query`.
+	// The JSON document uses the [grammar defined here](https://docs.datadoghq.com/graphing/graphing_json/#grammar)
 	// and should be formatted to a single line then URL encoded.
 	GraphDef *string `json:"graph_def,omitempty"`
 	// The metric query. One of `metric_query` or `graph_def` is required.
@@ -25,8 +26,6 @@ type GraphSnapshot struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _GraphSnapshot GraphSnapshot
 
 // NewGraphSnapshot instantiates a new GraphSnapshot object
 // This constructor will assign default values to properties that have it defined,

@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsMessageRemapper The message is a key attribute in Datadog.// It is displayed in the message column of the Log Explorer and you can do full string search on it.
+// LogsMessageRemapper The message is a key attribute in Datadog.
+// It is displayed in the message column of the Log Explorer and you can do full string search on it.
 // Use this Processor to define one or more attributes as the official log message.
 //
 // **Note:** If multiple log message remapper processors can be applied to a given log,
@@ -31,8 +32,6 @@ type LogsMessageRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsMessageRemapper LogsMessageRemapper
 
 // NewLogsMessageRemapper instantiates a new LogsMessageRemapper object
 // This constructor will assign default values to properties that have it defined,

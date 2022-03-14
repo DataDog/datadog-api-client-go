@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsPipeline Pipelines and processors operate on incoming logs,// parsing and transforming them into structured attributes for easier querying.
+// LogsPipeline Pipelines and processors operate on incoming logs,
+// parsing and transforming them into structured attributes for easier querying.
 //
 // **Note**: These endpoints are only available for admin users.
 // Make sure to use an application key created by an admin.
@@ -36,8 +37,6 @@ type LogsPipeline struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsPipeline LogsPipeline
 
 // NewLogsPipeline instantiates a new LogsPipeline object
 // This constructor will assign default values to properties that have it defined,

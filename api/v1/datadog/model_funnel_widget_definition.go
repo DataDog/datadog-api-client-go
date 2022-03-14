@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.//
+// FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
+//
 type FunnelWidgetDefinition struct {
 	// Request payload used to query items.
 	Requests []FunnelWidgetRequest `json:"requests"`
@@ -31,8 +32,6 @@ type FunnelWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _FunnelWidgetDefinition FunnelWidgetDefinition
 
 // NewFunnelWidgetDefinition instantiates a new FunnelWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

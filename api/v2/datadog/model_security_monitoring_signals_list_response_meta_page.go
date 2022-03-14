@@ -14,14 +14,13 @@ import (
 
 // SecurityMonitoringSignalsListResponseMetaPage Paging attributes.
 type SecurityMonitoringSignalsListResponseMetaPage struct {
-	// The cursor used to get the next results, if any. To make the next request, use the same// parameters with the addition of the `page[cursor]`.
+	// The cursor used to get the next results, if any. To make the next request, use the same
+	// parameters with the addition of the `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringSignalsListResponseMetaPage SecurityMonitoringSignalsListResponseMetaPage
 
 // NewSecurityMonitoringSignalsListResponseMetaPage instantiates a new SecurityMonitoringSignalsListResponseMetaPage object
 // This constructor will assign default values to properties that have it defined,

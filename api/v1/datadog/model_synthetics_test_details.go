@@ -30,11 +30,13 @@ type SyntheticsTestDetails struct {
 	Options *SyntheticsTestOptions `json:"options,omitempty"`
 	// The test public ID.
 	PublicId *string `json:"public_id,omitempty"`
-	// Define whether you want to start (`live`) or pause (`paused`) a// Synthetic test.
+	// Define whether you want to start (`live`) or pause (`paused`) a
+	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// For browser test, the steps of the test.
 	Steps *[]SyntheticsStep `json:"steps,omitempty"`
-	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,// `dns`, `icmp`, `udp`, `websocket` or `multi`.
+	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
+	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
 	Tags *[]string `json:"tags,omitempty"`
@@ -44,8 +46,6 @@ type SyntheticsTestDetails struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsTestDetails SyntheticsTestDetails
 
 // NewSyntheticsTestDetails instantiates a new SyntheticsTestDetails object
 // This constructor will assign default values to properties that have it defined,

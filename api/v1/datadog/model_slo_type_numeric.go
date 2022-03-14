@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SLOTypeNumeric A numeric representation of the type of the service level objective (`0` for// monitor, `1` for metric). Always included in service level objective responses.
+// SLOTypeNumeric A numeric representation of the type of the service level objective (`0` for
+// monitor, `1` for metric). Always included in service level objective responses.
 // Ignored in create/update requests.
 type SLOTypeNumeric int32
 

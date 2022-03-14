@@ -21,8 +21,6 @@ type LogsFilter struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsFilter LogsFilter
-
 // NewLogsFilter instantiates a new LogsFilter object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

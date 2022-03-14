@@ -22,8 +22,6 @@ type GeomapWidgetDefinitionView struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _GeomapWidgetDefinitionView GeomapWidgetDefinitionView
-
 // NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

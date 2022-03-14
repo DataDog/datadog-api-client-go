@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters// in the new attribute name) to a log with the result of the provided formula.
+// LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters
+// in the new attribute name) to a log with the result of the provided formula.
 // This enables you to remap different time attributes with different units into a single attribute,
 // or to compute operations on attributes within the same log.
 //
@@ -38,7 +39,8 @@ type LogsArithmeticProcessor struct {
 	Expression string `json:"expression"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// If `true`, it replaces all missing attributes of expression by `0`, `false`// skip the operation if an attribute is missing.
+	// If `true`, it replaces all missing attributes of expression by `0`, `false`
+	// skip the operation if an attribute is missing.
 	IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
@@ -50,8 +52,6 @@ type LogsArithmeticProcessor struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsArithmeticProcessor LogsArithmeticProcessor
 
 // NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
 // This constructor will assign default values to properties that have it defined,

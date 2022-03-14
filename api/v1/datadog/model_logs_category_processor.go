@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)// to a log matching a provided search query. Use categories to create groups for an analytical view.
+// LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)
+// to a log matching a provided search query. Use categories to create groups for an analytical view.
 // For example, URL groups, machine groups, environments, and response time buckets.
 //
 // **Notes**:
@@ -26,7 +27,8 @@ import (
 // - The names of the categories must be unique.
 // - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
 type LogsCategoryProcessor struct {
-	// Array of filters to match or not a log and their// corresponding `name`to assign a custom value to the log.
+	// Array of filters to match or not a log and their
+	// corresponding `name`to assign a custom value to the log.
 	Categories []LogsCategoryProcessorCategory `json:"categories"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -40,8 +42,6 @@ type LogsCategoryProcessor struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsCategoryProcessor LogsCategoryProcessor
 
 // NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
 // This constructor will assign default values to properties that have it defined,

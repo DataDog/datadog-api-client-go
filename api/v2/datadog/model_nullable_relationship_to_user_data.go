@@ -24,8 +24,6 @@ type NullableRelationshipToUserData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _NullableRelationshipToUserData NullableRelationshipToUserData
-
 // NewNullableRelationshipToUserData instantiates a new NullableRelationshipToUserData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

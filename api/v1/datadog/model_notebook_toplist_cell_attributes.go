@@ -28,8 +28,6 @@ type NotebookToplistCellAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _NotebookToplistCellAttributes NotebookToplistCellAttributes
-
 // NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

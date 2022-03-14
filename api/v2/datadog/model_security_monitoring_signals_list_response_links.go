@@ -14,14 +14,13 @@ import (
 
 // SecurityMonitoringSignalsListResponseLinks Links attributes.
 type SecurityMonitoringSignalsListResponseLinks struct {
-	// The link for the next set of results. **Note**: The request can also be made using the// POST endpoint.
+	// The link for the next set of results. **Note**: The request can also be made using the
+	// POST endpoint.
 	Next *string `json:"next,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringSignalsListResponseLinks SecurityMonitoringSignalsListResponseLinks
 
 // NewSecurityMonitoringSignalsListResponseLinks instantiates a new SecurityMonitoringSignalsListResponseLinks object
 // This constructor will assign default values to properties that have it defined,

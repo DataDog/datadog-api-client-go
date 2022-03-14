@@ -21,16 +21,19 @@ type MonitorOptions struct {
 	DeviceIds *[]MonitorDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to send a log sample when the log monitor triggers.
 	EnableLogsSample *bool `json:"enable_logs_sample,omitempty"`
-	// We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),// block in the original message instead.
+	// We recommend using the [is_renotify](https://docs.datadoghq.com/monitors/notify/?tab=is_alert#renotify),
+	// block in the original message instead.
 	// A message to include with a re-notification. Supports the `@username` notification we allow elsewhere.
 	// Not applicable if `renotify_interval` is `None`.
 	EscalationMessage *string `json:"escalation_message,omitempty"`
-	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min),// the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55.
+	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min),
+	// the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55.
 	// This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
 	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
 	// Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.
 	GroupbySimpleMonitor *bool `json:"groupby_simple_monitor,omitempty"`
-	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.//
+	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.
+	//
 	// **Examples**
 	// - If `True`, `[Triggered on {host:h1}] Monitor Title`
 	// - If `False`, `[Triggered] Monitor Title`
@@ -39,34 +42,40 @@ type MonitorOptions struct {
 	Locked *bool `json:"locked,omitempty"`
 	// How long the test should be in failure before alerting (integer, number of seconds, max 7200).
 	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
-	// The minimum number of locations in failure at the same time during// at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration`
+	// The minimum number of locations in failure at the same time during
+	// at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration`
 	// are part of the advanced alerting rules - integer, >= 1).
 	MinLocationFailed NullableInt64 `json:"min_location_failed,omitempty"`
-	// Time (in seconds) to skip evaluations for new groups.//
+	// Time (in seconds) to skip evaluations for new groups.
+	//
 	// For example, this option can be used to skip evaluations for new hosts while they initialize.
 	//
 	// Must be a non negative integer.
 	NewGroupDelay NullableInt64 `json:"new_group_delay,omitempty"`
-	// Time (in seconds) to allow a host to boot and applications// to fully start before starting the evaluation of monitor results.
+	// Time (in seconds) to allow a host to boot and applications
+	// to fully start before starting the evaluation of monitor results.
 	// Should be a non negative integer.
 	//
 	// Use new_group_delay instead.
 	// Deprecated
 	NewHostDelay NullableInt64 `json:"new_host_delay,omitempty"`
-	// The number of minutes before a monitor notifies after data stops reporting.// Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks.
+	// The number of minutes before a monitor notifies after data stops reporting.
+	// Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks.
 	// If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks.
 	NoDataTimeframe NullableInt64 `json:"no_data_timeframe,omitempty"`
 	// A Boolean indicating whether tagged users is notified on changes to this monitor.
 	NotifyAudit *bool `json:"notify_audit,omitempty"`
 	// A Boolean indicating whether this monitor notifies when data stops reporting.
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
-	// The number of minutes after the last notification before a monitor re-notifies on the current status.// It only re-notifies if it’s not resolved.
+	// The number of minutes after the last notification before a monitor re-notifies on the current status.
+	// It only re-notifies if it’s not resolved.
 	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
 	// The number of times re-notification messages should be sent on the current status at the provided re-notification interval.
 	RenotifyOccurrences NullableInt64 `json:"renotify_occurrences,omitempty"`
 	// The types of monitor statuses for which re-notification messages are sent.
 	RenotifyStatuses []MonitorRenotifyStatusType `json:"renotify_statuses,omitempty"`
-	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.// We highly recommend you set this to `false` for sparse metrics,
+	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.
+	// We highly recommend you set this to `false` for sparse metrics,
 	// otherwise some evaluations are skipped. Default is false.
 	RequireFullWindow *bool `json:"require_full_window,omitempty"`
 	// Information about the downtime applied to the monitor.
@@ -87,8 +96,6 @@ type MonitorOptions struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _MonitorOptions MonitorOptions
 
 // NewMonitorOptions instantiates a new MonitorOptions object
 // This constructor will assign default values to properties that have it defined,

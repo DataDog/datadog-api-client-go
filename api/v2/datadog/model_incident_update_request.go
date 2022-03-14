@@ -22,8 +22,6 @@ type IncidentUpdateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _IncidentUpdateRequest IncidentUpdateRequest
-
 // NewIncidentUpdateRequest instantiates a new IncidentUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

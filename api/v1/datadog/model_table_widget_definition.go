@@ -36,8 +36,6 @@ type TableWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _TableWidgetDefinition TableWidgetDefinition
-
 // NewTableWidgetDefinition instantiates a new TableWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

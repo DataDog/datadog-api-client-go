@@ -15,7 +15,8 @@ import (
 
 // NotebookCellResponse The description of a notebook cell response.
 type NotebookCellResponse struct {
-	// The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
+	// The attributes of a notebook cell response. Valid cell types are `markdown`, `timeseries`, `toplist`, `heatmap`, `distribution`,
+	// `log_stream`. [More information on each graph visualization type.](https://docs.datadoghq.com/dashboards/widgets/)
 	Attributes NotebookCellResponseAttributes `json:"attributes"`
 	// Notebook cell ID.
 	Id string `json:"id"`
@@ -25,8 +26,6 @@ type NotebookCellResponse struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _NotebookCellResponse NotebookCellResponse
 
 // NewNotebookCellResponse instantiates a new NotebookCellResponse object
 // This constructor will assign default values to properties that have it defined,

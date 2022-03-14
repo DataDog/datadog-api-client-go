@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsLocation Synthetic location that can be used when creating or editing a// test.
+// SyntheticsLocation Synthetic location that can be used when creating or editing a
+// test.
 type SyntheticsLocation struct {
 	// Unique identifier of the location.
 	Id *string `json:"id,omitempty"`
@@ -22,8 +23,6 @@ type SyntheticsLocation struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsLocation SyntheticsLocation
 
 // NewSyntheticsLocation instantiates a new SyntheticsLocation object
 // This constructor will assign default values to properties that have it defined,

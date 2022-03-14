@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SyntheticsTestMonitorStatus The status of your Synthetic monitor.// * `O` for not triggered
+// SyntheticsTestMonitorStatus The status of your Synthetic monitor.
+// * `O` for not triggered
 // * `1` for triggered
 // * `2` for no data
 type SyntheticsTestMonitorStatus int64

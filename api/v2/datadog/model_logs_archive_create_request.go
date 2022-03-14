@@ -21,8 +21,6 @@ type LogsArchiveCreateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsArchiveCreateRequest LogsArchiveCreateRequest
-
 // NewLogsArchiveCreateRequest instantiates a new LogsArchiveCreateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -32,8 +32,6 @@ type LogsArchiveDestinationAzure struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsArchiveDestinationAzure LogsArchiveDestinationAzure
-
 // NewLogsArchiveDestinationAzure instantiates a new LogsArchiveDestinationAzure object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

@@ -14,9 +14,11 @@ import (
 
 // DowntimeRecurrence An object defining the recurrence of the downtime.
 type DowntimeRecurrence struct {
-	// How often to repeat as an integer.// For example, to repeat every 3 days, select a type of `days` and a period of `3`.
+	// How often to repeat as an integer.
+	// For example, to repeat every 3 days, select a type of `days` and a period of `3`.
 	Period *int32 `json:"period,omitempty"`
-	// The `RRULE` standard for defining recurring events (**requires to set "type" to rrule**)// For example, to have a recurring event on the first day of each month, set the type to `rrule` and set the `FREQ` to `MONTHLY` and `BYMONTHDAY` to `1`.
+	// The `RRULE` standard for defining recurring events (**requires to set "type" to rrule**)
+	// For example, to have a recurring event on the first day of each month, set the type to `rrule` and set the `FREQ` to `MONTHLY` and `BYMONTHDAY` to `1`.
 	// Most common `rrule` options from the [iCalendar Spec](https://tools.ietf.org/html/rfc5545) are supported.
 	//
 	// **Note**: Attributes specifying the duration in `RRULE` are not supported (for example, `DTSTART`, `DTEND`, `DURATION`).
@@ -24,18 +26,19 @@ type DowntimeRecurrence struct {
 	Rrule *string `json:"rrule,omitempty"`
 	// The type of recurrence. Choose from `days`, `weeks`, `months`, `years`, `rrule`.
 	Type *string `json:"type,omitempty"`
-	// The date at which the recurrence should end as a POSIX timestamp.// `until_occurences` and `until_date` are mutually exclusive.
+	// The date at which the recurrence should end as a POSIX timestamp.
+	// `until_occurences` and `until_date` are mutually exclusive.
 	UntilDate NullableInt64 `json:"until_date,omitempty"`
-	// How many times the downtime is rescheduled.// `until_occurences` and `until_date` are mutually exclusive.
+	// How many times the downtime is rescheduled.
+	// `until_occurences` and `until_date` are mutually exclusive.
 	UntilOccurrences NullableInt32 `json:"until_occurrences,omitempty"`
-	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`.// Only applicable when type is weeks. First letter must be capitalized.
+	// A list of week days to repeat on. Choose from `Mon`, `Tue`, `Wed`, `Thu`, `Fri`, `Sat` or `Sun`.
+	// Only applicable when type is weeks. First letter must be capitalized.
 	WeekDays []string `json:"week_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _DowntimeRecurrence DowntimeRecurrence
 
 // NewDowntimeRecurrence instantiates a new DowntimeRecurrence object
 // This constructor will assign default values to properties that have it defined,

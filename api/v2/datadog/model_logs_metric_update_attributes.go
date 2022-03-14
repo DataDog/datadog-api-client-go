@@ -23,8 +23,6 @@ type LogsMetricUpdateAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsMetricUpdateAttributes LogsMetricUpdateAttributes
-
 // NewLogsMetricUpdateAttributes instantiates a new LogsMetricUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

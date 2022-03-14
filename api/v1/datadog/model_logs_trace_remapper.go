@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsTraceRemapper There are two ways to improve correlation between application traces and logs.//
+// LogsTraceRemapper There are two ways to improve correlation between application traces and logs.
+//
 //   1. Follow the documentation on [how to inject a trace ID in the application logs](https://docs.datadoghq.com/tracing/connect_logs_and_traces)
 //   and by default log integrations take care of all the rest of the setup.
 //
@@ -31,8 +32,6 @@ type LogsTraceRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsTraceRemapper LogsTraceRemapper
 
 // NewLogsTraceRemapper instantiates a new LogsTraceRemapper object
 // This constructor will assign default values to properties that have it defined,

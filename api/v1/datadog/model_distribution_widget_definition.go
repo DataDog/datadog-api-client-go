@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// DistributionWidgetDefinition The Distribution visualization is another way of showing metrics// aggregated across one or several tags, such as hosts.
+// DistributionWidgetDefinition The Distribution visualization is another way of showing metrics
+// aggregated across one or several tags, such as hosts.
 // Unlike the heat map, a distribution graph’s x-axis is quantity rather than time.
 type DistributionWidgetDefinition struct {
 	// (Deprecated) The widget legend was replaced by a tooltip and sidebar.
@@ -21,7 +22,8 @@ type DistributionWidgetDefinition struct {
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
 	Markers *[]WidgetMarker `json:"markers,omitempty"`
-	// Array of one request object to display in the widget.//
+	// Array of one request object to display in the widget.
+	//
 	// See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
 	//  to learn how to build the `REQUEST_SCHEMA`.
 	Requests []DistributionWidgetRequest `json:"requests"`
@@ -46,8 +48,6 @@ type DistributionWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _DistributionWidgetDefinition DistributionWidgetDefinition
 
 // NewDistributionWidgetDefinition instantiates a new DistributionWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

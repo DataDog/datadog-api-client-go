@@ -16,7 +16,8 @@ import (
 type SLOListResponse struct {
 	// An array of service level objective objects.
 	Data *[]ServiceLevelObjective `json:"data,omitempty"`
-	// An array of error messages. Each endpoint documents how/whether this field is// used.
+	// An array of error messages. Each endpoint documents how/whether this field is
+	// used.
 	Errors *[]string `json:"errors,omitempty"`
 	// The metadata object containing additional information about the list of SLOs.
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
@@ -24,8 +25,6 @@ type SLOListResponse struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOListResponse SLOListResponse
 
 // NewSLOListResponse instantiates a new SLOListResponse object
 // This constructor will assign default values to properties that have it defined,

@@ -15,9 +15,11 @@ import (
 
 // SLOThreshold SLO thresholds (target and optionally warning) for a single time window.
 type SLOThreshold struct {
-	// The target value for the service level indicator within the corresponding// timeframe.
+	// The target value for the service level indicator within the corresponding
+	// timeframe.
 	Target float64 `json:"target"`
-	// A string representation of the target that indicates its precision.// It uses trailing zeros to show significant decimal places (for example `98.00`).
+	// A string representation of the target that indicates its precision.
+	// It uses trailing zeros to show significant decimal places (for example `98.00`).
 	//
 	// Always included in service level objective responses. Ignored in
 	// create/update requests.
@@ -26,7 +28,8 @@ type SLOThreshold struct {
 	Timeframe SLOTimeframe `json:"timeframe"`
 	// The warning value for the service level objective.
 	Warning *float64 `json:"warning,omitempty"`
-	// A string representation of the warning target (see the description of// the `target_display` field for details).
+	// A string representation of the warning target (see the description of
+	// the `target_display` field for details).
 	//
 	// Included in service level objective responses if a warning target exists.
 	// Ignored in create/update requests.
@@ -35,8 +38,6 @@ type SLOThreshold struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOThreshold SLOThreshold
 
 // NewSLOThreshold instantiates a new SLOThreshold object
 // This constructor will assign default values to properties that have it defined,

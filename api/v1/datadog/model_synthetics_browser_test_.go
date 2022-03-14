@@ -29,7 +29,8 @@ type SyntheticsBrowserTest struct {
 	Options SyntheticsTestOptions `json:"options"`
 	// The public ID of the test.
 	PublicId *string `json:"public_id,omitempty"`
-	// Define whether you want to start (`live`) or pause (`paused`) a// Synthetic test.
+	// Define whether you want to start (`live`) or pause (`paused`) a
+	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test.
 	Steps *[]SyntheticsStep `json:"steps,omitempty"`
@@ -41,8 +42,6 @@ type SyntheticsBrowserTest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsBrowserTest SyntheticsBrowserTest
 
 // NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object
 // This constructor will assign default values to properties that have it defined,

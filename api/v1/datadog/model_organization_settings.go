@@ -16,7 +16,8 @@ import (
 type OrganizationSettings struct {
 	// Whether or not the organization users can share widgets outside of Datadog.
 	PrivateWidgetShare *bool `json:"private_widget_share,omitempty"`
-	// Set the boolean property enabled to enable or disable single sign on with SAML.// See the SAML documentation for more information about all SAML settings.
+	// Set the boolean property enabled to enable or disable single sign on with SAML.
+	// See the SAML documentation for more information about all SAML settings.
 	Saml *OrganizationSettingsSaml `json:"saml,omitempty"`
 	// The access role of the user. Options are **st** (standard user), **adm** (admin user), or **ro** (read-only user).
 	SamlAutocreateAccessRole *AccessRole `json:"saml_autocreate_access_role,omitempty"`
@@ -38,8 +39,6 @@ type OrganizationSettings struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _OrganizationSettings OrganizationSettings
 
 // NewOrganizationSettings instantiates a new OrganizationSettings object
 // This constructor will assign default values to properties that have it defined,

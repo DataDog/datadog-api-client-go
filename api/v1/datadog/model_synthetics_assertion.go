@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsAssertion - Object describing the assertions type, their associated operator,// which property they apply, and upon which target.
+// SyntheticsAssertion - Object describing the assertions type, their associated operator,
+// which property they apply, and upon which target.
 type SyntheticsAssertion struct {
 	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget

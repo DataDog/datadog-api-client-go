@@ -13,7 +13,8 @@ import (
 	"time"
 )
 
-// SyntheticsDeletedTest Object containing a deleted Synthetic test ID with the associated// deletion timestamp.
+// SyntheticsDeletedTest Object containing a deleted Synthetic test ID with the associated
+// deletion timestamp.
 type SyntheticsDeletedTest struct {
 	// Deletion timestamp of the Synthetic test ID.
 	DeletedAt *time.Time `json:"deleted_at,omitempty"`
@@ -23,8 +24,6 @@ type SyntheticsDeletedTest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsDeletedTest SyntheticsDeletedTest
 
 // NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object
 // This constructor will assign default values to properties that have it defined,

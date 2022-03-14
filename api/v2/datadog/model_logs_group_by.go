@@ -17,7 +17,8 @@ import (
 type LogsGroupBy struct {
 	// The name of the facet to use (required)
 	Facet string `json:"facet"`
-	// Used to perform a histogram computation (only for measure facets).// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+	// Used to perform a histogram computation (only for measure facets).
+	// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 	Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
 	// The maximum buckets to return for this group by
 	Limit *int64 `json:"limit,omitempty"`
@@ -31,8 +32,6 @@ type LogsGroupBy struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsGroupBy LogsGroupBy
 
 // NewLogsGroupBy instantiates a new LogsGroupBy object
 // This constructor will assign default values to properties that have it defined,

@@ -29,9 +29,11 @@ type SyntheticsAPITest struct {
 	Options SyntheticsTestOptions `json:"options"`
 	// The public ID for the test.
 	PublicId *string `json:"public_id,omitempty"`
-	// Define whether you want to start (`live`) or pause (`paused`) a// Synthetic test.
+	// Define whether you want to start (`live`) or pause (`paused`) a
+	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
-	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,// `dns`, `icmp`, `udp`, `websocket` or `multi`.
+	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
+	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
 	Tags *[]string `json:"tags,omitempty"`
@@ -41,8 +43,6 @@ type SyntheticsAPITest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsAPITest SyntheticsAPITest
 
 // NewSyntheticsAPITest instantiates a new SyntheticsAPITest object
 // This constructor will assign default values to properties that have it defined,

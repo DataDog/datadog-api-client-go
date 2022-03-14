@@ -25,8 +25,6 @@ type MonitorOptionsAggregation struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MonitorOptionsAggregation MonitorOptionsAggregation
-
 // NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

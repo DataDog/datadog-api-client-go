@@ -18,7 +18,8 @@ import (
 type LogsListRequestTime struct {
 	// Minimum timestamp for requested logs.
 	From time.Time `json:"from"`
-	// Timezone can be specified both as an offset (for example "UTC+03:00")// or a regional zone (for example "Europe/Paris").
+	// Timezone can be specified both as an offset (for example "UTC+03:00")
+	// or a regional zone (for example "Europe/Paris").
 	Timezone *string `json:"timezone,omitempty"`
 	// Maximum timestamp for requested logs.
 	To time.Time `json:"to"`
@@ -26,8 +27,6 @@ type LogsListRequestTime struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsListRequestTime LogsListRequestTime
 
 // NewLogsListRequestTime instantiates a new LogsListRequestTime object
 // This constructor will assign default values to properties that have it defined,

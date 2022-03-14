@@ -17,15 +17,18 @@ import (
 type LogsIndexUpdateRequest struct {
 	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
-	// If true, sets the `daily_limit` value to null and the index is not limited on a daily basis (any// specified `daily_limit` value in the request is ignored). If false or omitted, the index's current
+	// If true, sets the `daily_limit` value to null and the index is not limited on a daily basis (any
+	// specified `daily_limit` value in the request is ignored). If false or omitted, the index's current
 	// `daily_limit` is maintained.
 	DisableDailyLimit *bool `json:"disable_daily_limit,omitempty"`
-	// An array of exclusion objects. The logs are tested against the query of each filter,// following the order of the array. Only the first matching active exclusion matters,
+	// An array of exclusion objects. The logs are tested against the query of each filter,
+	// following the order of the array. Only the first matching active exclusion matters,
 	// others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
 	// Filter for logs.
 	Filter LogsFilter `json:"filter"`
-	// The number of days before logs are deleted from this index. Available values depend on// retention plans specified in your organization's contract/subscriptions.
+	// The number of days before logs are deleted from this index. Available values depend on
+	// retention plans specified in your organization's contract/subscriptions.
 	//
 	// **Note:** Changing the retention for an index adjusts the length of retention for all logs
 	// already in this index. It may also affect billing.
@@ -34,8 +37,6 @@ type LogsIndexUpdateRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsIndexUpdateRequest LogsIndexUpdateRequest
 
 // NewLogsIndexUpdateRequest instantiates a new LogsIndexUpdateRequest object
 // This constructor will assign default values to properties that have it defined,

@@ -22,8 +22,6 @@ type FormulaAndFunctionEventQueryDefinitionSearch struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _FormulaAndFunctionEventQueryDefinitionSearch FormulaAndFunctionEventQueryDefinitionSearch
-
 // NewFormulaAndFunctionEventQueryDefinitionSearch instantiates a new FormulaAndFunctionEventQueryDefinitionSearch object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

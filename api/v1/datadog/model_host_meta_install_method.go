@@ -25,8 +25,6 @@ type HostMetaInstallMethod struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _HostMetaInstallMethod HostMetaInstallMethod
-
 // NewHostMetaInstallMethod instantiates a new HostMetaInstallMethod object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

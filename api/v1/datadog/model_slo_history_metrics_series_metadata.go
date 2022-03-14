@@ -24,15 +24,14 @@ type SLOHistoryMetricsSeriesMetadata struct {
 	QueryIndex *int64 `json:"query_index,omitempty"`
 	// Query scope.
 	Scope *string `json:"scope,omitempty"`
-	// An array of metric units that contains up to two unit objects.// For example, bytes represents one unit object and bytes per second represents two unit objects.
+	// An array of metric units that contains up to two unit objects.
+	// For example, bytes represents one unit object and bytes per second represents two unit objects.
 	// If a metric query only has one unit object, the second array element is null.
 	Unit []SLOHistoryMetricsSeriesMetadataUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOHistoryMetricsSeriesMetadata SLOHistoryMetricsSeriesMetadata
 
 // NewSLOHistoryMetricsSeriesMetadata instantiates a new SLOHistoryMetricsSeriesMetadata object
 // This constructor will assign default values to properties that have it defined,

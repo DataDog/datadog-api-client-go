@@ -15,7 +15,8 @@ import (
 
 // SecurityMonitoringRuleCaseCreate Case when signal is generated.
 type SecurityMonitoringRuleCaseCreate struct {
-	// A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated// based on the event counts in the previously defined queries.
+	// A rule case contains logical operations (`>`,`>=`, `&&`, `||`) to determine if a signal should be generated
+	// based on the event counts in the previously defined queries.
 	Condition *string `json:"condition,omitempty"`
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
@@ -27,8 +28,6 @@ type SecurityMonitoringRuleCaseCreate struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringRuleCaseCreate SecurityMonitoringRuleCaseCreate
 
 // NewSecurityMonitoringRuleCaseCreate instantiates a new SecurityMonitoringRuleCaseCreate object
 // This constructor will assign default values to properties that have it defined,

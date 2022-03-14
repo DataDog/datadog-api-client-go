@@ -26,8 +26,6 @@ type RoleUpdateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _RoleUpdateData RoleUpdateData
-
 // NewRoleUpdateData instantiates a new RoleUpdateData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

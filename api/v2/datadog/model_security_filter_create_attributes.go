@@ -30,8 +30,6 @@ type SecurityFilterCreateAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SecurityFilterCreateAttributes SecurityFilterCreateAttributes
-
 // NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

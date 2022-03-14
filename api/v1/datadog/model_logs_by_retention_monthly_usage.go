@@ -24,8 +24,6 @@ type LogsByRetentionMonthlyUsage struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _LogsByRetentionMonthlyUsage LogsByRetentionMonthlyUsage
-
 // NewLogsByRetentionMonthlyUsage instantiates a new LogsByRetentionMonthlyUsage object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

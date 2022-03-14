@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters)// to a log with the result of the provided template.
+// LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters)
+// to a log with the result of the provided template.
 // This enables aggregation of different attributes or raw strings into a single attribute.
 //
 // The template is defined by both raw text and blocks with the syntax `%{attribute_path}`.
@@ -28,7 +29,8 @@ import (
 type LogsStringBuilderProcessor struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
-	// If true, it replaces all missing attributes of `template` by an empty string.// If `false` (default), skips the operation for missing attributes.
+	// If true, it replaces all missing attributes of `template` by an empty string.
+	// If `false` (default), skips the operation for missing attributes.
 	IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
@@ -42,8 +44,6 @@ type LogsStringBuilderProcessor struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsStringBuilderProcessor LogsStringBuilderProcessor
 
 // NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
 // This constructor will assign default values to properties that have it defined,

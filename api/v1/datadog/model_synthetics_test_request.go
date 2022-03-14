@@ -46,7 +46,8 @@ type SyntheticsTestRequest struct {
 	Proxy *SyntheticsTestRequestProxy `json:"proxy,omitempty"`
 	// Query to use for the test.
 	Query interface{} `json:"query,omitempty"`
-	// For SSL tests, it specifies on which server you want to initiate the TLS handshake,// allowing the server to present one of multiple possible certificates on
+	// For SSL tests, it specifies on which server you want to initiate the TLS handshake,
+	// allowing the server to present one of multiple possible certificates on
 	// the same IP address and TCP port number.
 	Servername *string `json:"servername,omitempty"`
 	// Turns on a traceroute probe to discover all gateways along the path to the host destination.
@@ -59,8 +60,6 @@ type SyntheticsTestRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsTestRequest SyntheticsTestRequest
 
 // NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
 // This constructor will assign default values to properties that have it defined,

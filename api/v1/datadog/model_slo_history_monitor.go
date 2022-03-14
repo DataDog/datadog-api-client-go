@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
+// SLOHistoryMonitor An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
+// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 type SLOHistoryMonitor struct {
 	// A mapping of threshold `timeframe` to the remaining error budget.
 	ErrorBudgetRemaining map[string]float64 `json:"error_budget_remaining,omitempty"`
@@ -31,7 +32,8 @@ type SLOHistoryMonitor struct {
 	// The amount of decimal places the SLI value is accurate to for the given from `&&` to timestamp. Use `span_precision` instead.
 	// Deprecated
 	Precision *float64 `json:"precision,omitempty"`
-	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime// calculation.
+	// For `monitor` based SLOs, when `true` this indicates that a replay is in progress to give an accurate uptime
+	// calculation.
 	Preview *bool `json:"preview,omitempty"`
 	// The current SLI value of the SLO over the history window.
 	SliValue *float64 `json:"sli_value,omitempty"`
@@ -44,8 +46,6 @@ type SLOHistoryMonitor struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOHistoryMonitor SLOHistoryMonitor
 
 // NewSLOHistoryMonitor instantiates a new SLOHistoryMonitor object
 // This constructor will assign default values to properties that have it defined,

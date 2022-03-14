@@ -36,14 +36,13 @@ type SyntheticsBrowserTestResultData struct {
 	StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
 	// Whether or not a thumbnail is associated with the browser test.
 	ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
-	// Time in second to wait before the browser test starts after// reaching the start URL.
+	// Time in second to wait before the browser test starts after
+	// reaching the start URL.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsBrowserTestResultData SyntheticsBrowserTestResultData
 
 // NewSyntheticsBrowserTestResultData instantiates a new SyntheticsBrowserTestResultData object
 // This constructor will assign default values to properties that have it defined,

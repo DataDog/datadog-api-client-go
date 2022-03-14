@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.// Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
+// LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
+// Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
 // Some additional constraints are applied as `:` or `,` are not allowed in the target tag/attribute name.
 type LogsAttributeRemapper struct {
 	// Whether or not the processor is enabled.
@@ -30,7 +31,8 @@ type LogsAttributeRemapper struct {
 	Sources []string `json:"sources"`
 	// Final attribute or tag name to remap the sources to.
 	Target string `json:"target"`
-	// If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.// If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
+	// If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.
+	// If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
 	// If the `target_type` is `tag`, this parameter may not be specified.
 	TargetFormat *TargetFormatType `json:"target_format,omitempty"`
 	// Defines if the final attribute or tag name is from log `attribute` or `tag`.
@@ -41,8 +43,6 @@ type LogsAttributeRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsAttributeRemapper LogsAttributeRemapper
 
 // NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 // This constructor will assign default values to properties that have it defined,

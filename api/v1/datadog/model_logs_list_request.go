@@ -15,7 +15,8 @@ import (
 
 // LogsListRequest Object to send with the request to retrieve a list of logs from your Organization.
 type LogsListRequest struct {
-	// The log index on which the request is performed. For multi-index organizations,// the default is all live indexes. Historical indexes of rehydrated logs must be specified.
+	// The log index on which the request is performed. For multi-index organizations,
+	// the default is all live indexes. Historical indexes of rehydrated logs must be specified.
 	Index *string `json:"index,omitempty"`
 	// Number of logs return in the response.
 	Limit *int32 `json:"limit,omitempty"`
@@ -23,7 +24,8 @@ type LogsListRequest struct {
 	Query *string `json:"query,omitempty"`
 	// Time-ascending `asc` or time-descending `desc`results.
 	Sort *LogsSort `json:"sort,omitempty"`
-	// Hash identifier of the first log to return in the list, available in a log `id` attribute.// This parameter is used for the pagination feature.
+	// Hash identifier of the first log to return in the list, available in a log `id` attribute.
+	// This parameter is used for the pagination feature.
 	//
 	// **Note**: This parameter is ignored if the corresponding log
 	// is out of the scope of the specified time window.
@@ -34,8 +36,6 @@ type LogsListRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsListRequest LogsListRequest
 
 // NewLogsListRequest instantiates a new LogsListRequest object
 // This constructor will assign default values to properties that have it defined,

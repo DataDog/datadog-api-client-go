@@ -34,7 +34,8 @@ type SyntheticsStepDetail struct {
 	SnapshotBucketKey *bool `json:"snapshotBucketKey,omitempty"`
 	// The step ID.
 	StepId *int64 `json:"stepId,omitempty"`
-	// If this steps include a sub-test.// [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
+	// If this steps include a sub-test.
+	// [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
 	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
@@ -52,8 +53,6 @@ type SyntheticsStepDetail struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsStepDetail SyntheticsStepDetail
 
 // NewSyntheticsStepDetail instantiates a new SyntheticsStepDetail object
 // This constructor will assign default values to properties that have it defined,

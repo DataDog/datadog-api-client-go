@@ -17,7 +17,8 @@ import (
 type LogsArchiveAttributes struct {
 	// An archive's destination.
 	Destination NullableLogsArchiveDestination `json:"destination"`
-	// To store the tags in the archive, set the value "true".// If it is set to "false", the tags will be deleted when the logs are sent to the archive.
+	// To store the tags in the archive, set the value "true".
+	// If it is set to "false", the tags will be deleted when the logs are sent to the archive.
 	IncludeTags *bool `json:"include_tags,omitempty"`
 	// The archive name.
 	Name string `json:"name"`
@@ -31,8 +32,6 @@ type LogsArchiveAttributes struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsArchiveAttributes LogsArchiveAttributes
 
 // NewLogsArchiveAttributes instantiates a new LogsArchiveAttributes object
 // This constructor will assign default values to properties that have it defined,

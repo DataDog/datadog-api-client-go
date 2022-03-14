@@ -24,8 +24,6 @@ type DashboardBulkActionData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DashboardBulkActionData DashboardBulkActionData
-
 // NewDashboardBulkActionData instantiates a new DashboardBulkActionData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

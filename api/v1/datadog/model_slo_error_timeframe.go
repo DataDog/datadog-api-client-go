@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SLOErrorTimeframe The timeframe of the threshold associated with this error// or "all" if all thresholds are affected.
+// SLOErrorTimeframe The timeframe of the threshold associated with this error
+// or "all" if all thresholds are affected.
 type SLOErrorTimeframe string
 
 // List of SLOErrorTimeframe

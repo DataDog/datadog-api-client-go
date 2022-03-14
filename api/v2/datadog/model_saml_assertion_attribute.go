@@ -26,8 +26,6 @@ type SAMLAssertionAttribute struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SAMLAssertionAttribute SAMLAssertionAttribute
-
 // NewSAMLAssertionAttribute instantiates a new SAMLAssertionAttribute object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

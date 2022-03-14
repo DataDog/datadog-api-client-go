@@ -74,10 +74,12 @@ type UsageAttributionValues struct {
 	LambdaInvocationsPercentage *float64 `json:"lambda_invocations_percentage,omitempty"`
 	// The Lambda invocation usage by tag(s).
 	LambdaInvocationsUsage *float64 `json:"lambda_invocations_usage,omitempty"`
-	// The percentage of Lambda function usage by tag(s).//
+	// The percentage of Lambda function usage by tag(s).
+	//
 	// **Note** this field is deprecated. Use lambda_functions_percentage instead.
 	LambdaPercentage *float64 `json:"lambda_percentage,omitempty"`
-	// The Lambda function usage by tag(s).//
+	// The Lambda function usage by tag(s).
+	//
 	// **Note** this field is deprecated. Use lambda_functions_usage instead.
 	LambdaUsage *float64 `json:"lambda_usage,omitempty"`
 	// The percentage of network host usage by tag(s).
@@ -100,8 +102,6 @@ type UsageAttributionValues struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _UsageAttributionValues UsageAttributionValues
 
 // NewUsageAttributionValues instantiates a new UsageAttributionValues object
 // This constructor will assign default values to properties that have it defined,

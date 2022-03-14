@@ -13,20 +13,21 @@ import (
 	"fmt"
 )
 
-// LogsGroupByHistogram Used to perform a histogram computation (only for measure facets).// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
+// LogsGroupByHistogram Used to perform a histogram computation (only for measure facets).
+// Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
 type LogsGroupByHistogram struct {
 	// The bin size of the histogram buckets
 	Interval float64 `json:"interval"`
-	// The maximum value for the measure used in the histogram// (values greater than this one are filtered out)
+	// The maximum value for the measure used in the histogram
+	// (values greater than this one are filtered out)
 	Max float64 `json:"max"`
-	// The minimum value for the measure used in the histogram// (values smaller than this one are filtered out)
+	// The minimum value for the measure used in the histogram
+	// (values smaller than this one are filtered out)
 	Min float64 `json:"min"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsGroupByHistogram LogsGroupByHistogram
 
 // NewLogsGroupByHistogram instantiates a new LogsGroupByHistogram object
 // This constructor will assign default values to properties that have it defined,

@@ -30,8 +30,6 @@ type NotebookCreateDataAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _NotebookCreateDataAttributes NotebookCreateDataAttributes
-
 // NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

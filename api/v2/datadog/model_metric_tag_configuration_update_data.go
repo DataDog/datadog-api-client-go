@@ -26,8 +26,6 @@ type MetricTagConfigurationUpdateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _MetricTagConfigurationUpdateData MetricTagConfigurationUpdateData
-
 // NewMetricTagConfigurationUpdateData instantiates a new MetricTagConfigurationUpdateData object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

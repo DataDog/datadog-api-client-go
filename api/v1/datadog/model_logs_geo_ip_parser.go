@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsGeoIPParser The GeoIP parser takes an IP address attribute and extracts if available// the Continent, Country, Subdivision, and City information in the target attribute path.
+// LogsGeoIPParser The GeoIP parser takes an IP address attribute and extracts if available
+// the Continent, Country, Subdivision, and City information in the target attribute path.
 type LogsGeoIPParser struct {
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`
@@ -29,8 +30,6 @@ type LogsGeoIPParser struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsGeoIPParser LogsGeoIPParser
 
 // NewLogsGeoIPParser instantiates a new LogsGeoIPParser object
 // This constructor will assign default values to properties that have it defined,

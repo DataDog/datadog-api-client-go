@@ -12,16 +12,16 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor// (for example, renotification).
+// SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor
+// (for example, renotification).
 type SyntheticsTestOptionsMonitorOptions struct {
-	// Time interval before renotifying if the test is still failing// (in minutes).
+	// Time interval before renotifying if the test is still failing
+	// (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsTestOptionsMonitorOptions SyntheticsTestOptionsMonitorOptions
 
 // NewSyntheticsTestOptionsMonitorOptions instantiates a new SyntheticsTestOptionsMonitorOptions object
 // This constructor will assign default values to properties that have it defined,

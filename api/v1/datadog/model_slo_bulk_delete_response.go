@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SLOBulkDeleteResponse The bulk partial delete service level objective object endpoint// response.
+// SLOBulkDeleteResponse The bulk partial delete service level objective object endpoint
+// response.
 //
 // This endpoint operates on multiple service level objective objects, so
 // it may be partially successful. In such cases, the "data" and "error"
@@ -26,8 +27,6 @@ type SLOBulkDeleteResponse struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOBulkDeleteResponse SLOBulkDeleteResponse
 
 // NewSLOBulkDeleteResponse instantiates a new SLOBulkDeleteResponse object
 // This constructor will assign default values to properties that have it defined,

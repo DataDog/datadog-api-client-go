@@ -47,8 +47,6 @@ type Host struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _Host Host
-
 // NewHost instantiates a new Host object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

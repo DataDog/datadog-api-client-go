@@ -29,10 +29,10 @@ type {{ name }} struct {
 {%- endif %}
 {%- endif %}
 }
-{%- if model.type != "array" and model.get("additionalProperties", True) %}
+{#%- if model.type != "array" and model.get("additionalProperties", True) %}
 
 type _{{ name }} {{ name }}
-{%- endif %}
+{%- endif %#}
 
 
 // New{{ name }} instantiates a new {{ name }} object

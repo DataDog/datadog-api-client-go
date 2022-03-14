@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SecurityMonitoringRuleKeepAlive Once a signal is generated, the signal will remain “open” if a case is matched at least once within// this keep alive window.
+// SecurityMonitoringRuleKeepAlive Once a signal is generated, the signal will remain “open” if a case is matched at least once within
+// this keep alive window.
 type SecurityMonitoringRuleKeepAlive int32
 
 // List of SecurityMonitoringRuleKeepAlive

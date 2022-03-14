@@ -15,18 +15,18 @@ import (
 
 // SLOBulkDeleteError Object describing the error.
 type SLOBulkDeleteError struct {
-	// The ID of the service level objective object associated with// this error.
+	// The ID of the service level objective object associated with
+	// this error.
 	Id string `json:"id"`
 	// The error message.
 	Message string `json:"message"`
-	// The timeframe of the threshold associated with this error// or "all" if all thresholds are affected.
+	// The timeframe of the threshold associated with this error
+	// or "all" if all thresholds are affected.
 	Timeframe SLOErrorTimeframe `json:"timeframe"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SLOBulkDeleteError SLOBulkDeleteError
 
 // NewSLOBulkDeleteError instantiates a new SLOBulkDeleteError object
 // This constructor will assign default values to properties that have it defined,

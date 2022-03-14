@@ -14,7 +14,8 @@ import (
 
 // SyntheticsTestOptions Object describing the extra options for a Synthetic test.
 type SyntheticsTestOptions struct {
-	// For SSL test, whether or not the test should allow self signed// certificates.
+	// For SSL test, whether or not the test should allow self signed
+	// certificates.
 	AcceptSelfSigned *bool `json:"accept_self_signed,omitempty"`
 	// Allows loading insecure content for an HTTP request.
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
@@ -28,11 +29,13 @@ type SyntheticsTestOptions struct {
 	FollowRedirects *bool `json:"follow_redirects,omitempty"`
 	// Minimum amount of time in failure required to trigger an alert.
 	MinFailureDuration *int64 `json:"min_failure_duration,omitempty"`
-	// Minimum number of locations in failure required to trigger// an alert.
+	// Minimum number of locations in failure required to trigger
+	// an alert.
 	MinLocationFailed *int64 `json:"min_location_failed,omitempty"`
 	// The monitor name is used for the alert title as well as for all monitor dashboard widgets and SLOs.
 	MonitorName *string `json:"monitor_name,omitempty"`
-	// Object containing the options for a Synthetic test as a monitor// (for example, renotification).
+	// Object containing the options for a Synthetic test as a monitor
+	// (for example, renotification).
 	MonitorOptions *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
 	MonitorPriority *int32 `json:"monitor_priority,omitempty"`
@@ -46,8 +49,6 @@ type SyntheticsTestOptions struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsTestOptions SyntheticsTestOptions
 
 // NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
 // This constructor will assign default values to properties that have it defined,

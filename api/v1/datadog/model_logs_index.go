@@ -17,23 +17,24 @@ import (
 type LogsIndex struct {
 	// The number of log events you can send in this index per day before you are rate-limited.
 	DailyLimit *int64 `json:"daily_limit,omitempty"`
-	// An array of exclusion objects. The logs are tested against the query of each filter,// following the order of the array. Only the first matching active exclusion matters,
+	// An array of exclusion objects. The logs are tested against the query of each filter,
+	// following the order of the array. Only the first matching active exclusion matters,
 	// others (if any) are ignored.
 	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
 	// Filter for logs.
 	Filter LogsFilter `json:"filter"`
-	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent.// Rate limit is reset every-day at 2pm UTC.
+	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent.
+	// Rate limit is reset every-day at 2pm UTC.
 	IsRateLimited *bool `json:"is_rate_limited,omitempty"`
 	// The name of the index.
 	Name string `json:"name"`
-	// The number of days before logs are deleted from this index. Available values depend on// retention plans specified in your organization's contract/subscriptions.
+	// The number of days before logs are deleted from this index. Available values depend on
+	// retention plans specified in your organization's contract/subscriptions.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsIndex LogsIndex
 
 // NewLogsIndex instantiates a new LogsIndex object
 // This constructor will assign default values to properties that have it defined,

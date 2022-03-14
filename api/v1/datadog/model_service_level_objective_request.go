@@ -13,28 +13,35 @@ import (
 	"fmt"
 )
 
-// ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds// for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
+// ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds
+// for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type ServiceLevelObjectiveRequest struct {
-	// A user-defined description of the service level objective.//
+	// A user-defined description of the service level objective.
+	//
 	// Always included in service level objective responses (but may be `null`).
 	// Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
-	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.//
+	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.
+	//
 	// Included in service level objective responses if it is not empty. Optional in
 	// create/update requests for monitor service level objectives, but may only be
 	// used when then length of the `monitor_ids` field is one.
 	Groups *[]string `json:"groups,omitempty"`
-	// A list of monitor ids that defines the scope of a monitor service level// objective. **Required if type is `monitor`**.
+	// A list of monitor ids that defines the scope of a monitor service level
+	// objective. **Required if type is `monitor`**.
 	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
 	Name string `json:"name"`
-	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator// to be used because this will sum up all request counts instead of averaging them, or taking the max or
+	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-	// A list of tags associated with this service level objective.// Always included in service level objective responses (but may be empty).
+	// A list of tags associated with this service level objective.
+	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
 	Tags *[]string `json:"tags,omitempty"`
-	// The thresholds (timeframes and associated targets) for this service level// objective object.
+	// The thresholds (timeframes and associated targets) for this service level
+	// objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
 	// The type of the service level objective.
 	Type SLOType `json:"type"`
@@ -42,8 +49,6 @@ type ServiceLevelObjectiveRequest struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _ServiceLevelObjectiveRequest ServiceLevelObjectiveRequest
 
 // NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object
 // This constructor will assign default values to properties that have it defined,

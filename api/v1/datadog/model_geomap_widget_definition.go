@@ -17,7 +17,8 @@ import (
 type GeomapWidgetDefinition struct {
 	// A list of custom links.
 	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
-	// Array of one request object to display in the widget. The request must contain a `group-by` tag whose value is a country ISO code.//
+	// Array of one request object to display in the widget. The request must contain a `group-by` tag whose value is a country ISO code.
+	//
 	// See the [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
 	// for information about building the `REQUEST_SCHEMA`.
 	Requests []GeomapWidgetRequest `json:"requests"`
@@ -39,8 +40,6 @@ type GeomapWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _GeomapWidgetDefinition GeomapWidgetDefinition
 
 // NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

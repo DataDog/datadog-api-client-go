@@ -23,8 +23,6 @@ type AWSLogsListServicesResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _AWSLogsListServicesResponse AWSLogsListServicesResponse
-
 // NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

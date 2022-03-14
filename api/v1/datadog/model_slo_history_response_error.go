@@ -21,8 +21,6 @@ type SLOHistoryResponseError struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _SLOHistoryResponseError SLOHistoryResponseError
-
 // NewSLOHistoryResponseError instantiates a new SLOHistoryResponseError object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

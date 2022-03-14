@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// WidgetEvent Event overlay control options.//
+// WidgetEvent Event overlay control options.
+//
 // See the dedicated [Events JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/widget_json/#events-schema)
 // to learn how to build the `<EVENTS_SCHEMA>`.
 type WidgetEvent struct {
@@ -25,8 +26,6 @@ type WidgetEvent struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _WidgetEvent WidgetEvent
 
 // NewWidgetEvent instantiates a new WidgetEvent object
 // This constructor will assign default values to properties that have it defined,

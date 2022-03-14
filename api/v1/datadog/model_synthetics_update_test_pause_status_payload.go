@@ -14,14 +14,13 @@ import (
 
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
 type SyntheticsUpdateTestPauseStatusPayload struct {
-	// Define whether you want to start (`live`) or pause (`paused`) a// Synthetic test.
+	// Define whether you want to start (`live`) or pause (`paused`) a
+	// Synthetic test.
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsUpdateTestPauseStatusPayload SyntheticsUpdateTestPauseStatusPayload
 
 // NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object
 // This constructor will assign default values to properties that have it defined,

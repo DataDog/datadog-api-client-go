@@ -21,9 +21,11 @@ type ImageWidgetDefinition struct {
 	HasBorder *bool `json:"has_border,omitempty"`
 	// Horizontal alignment.
 	HorizontalAlign *WidgetHorizontalAlign `json:"horizontal_align,omitempty"`
-	// Size of the margins around the image.// **Note**: `small` and `large` values are deprecated.
+	// Size of the margins around the image.
+	// **Note**: `small` and `large` values are deprecated.
 	Margin *WidgetMargin `json:"margin,omitempty"`
-	// How to size the image on the widget. The values are based on the image `object-fit` CSS properties.// **Note**: `zoom`, `fit` and `center` values are deprecated.
+	// How to size the image on the widget. The values are based on the image `object-fit` CSS properties.
+	// **Note**: `zoom`, `fit` and `center` values are deprecated.
 	Sizing *WidgetImageSizing `json:"sizing,omitempty"`
 	// Type of the image widget.
 	Type ImageWidgetDefinitionType `json:"type"`
@@ -37,8 +39,6 @@ type ImageWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _ImageWidgetDefinition ImageWidgetDefinition
 
 // NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

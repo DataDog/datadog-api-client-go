@@ -22,14 +22,13 @@ type LogsResponseMetadata struct {
 	RequestId *string `json:"request_id,omitempty"`
 	// The status of the response
 	Status *LogsAggregateResponseStatus `json:"status,omitempty"`
-	// A list of warnings (non fatal errors) encountered, partial results might be returned if// warnings are present in the response.
+	// A list of warnings (non fatal errors) encountered, partial results might be returned if
+	// warnings are present in the response.
 	Warnings *[]LogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsResponseMetadata LogsResponseMetadata
 
 // NewLogsResponseMetadata instantiates a new LogsResponseMetadata object
 // This constructor will assign default values to properties that have it defined,

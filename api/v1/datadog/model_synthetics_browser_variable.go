@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// SyntheticsBrowserVariable Object defining a variable that can be used in your browser test.// Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
+// SyntheticsBrowserVariable Object defining a variable that can be used in your browser test.
+// Learn more in the [Browser test Actions documentation](https://docs.datadoghq.com/synthetics/browser_tests/actions#variable).
 type SyntheticsBrowserVariable struct {
 	// Example for the variable.
 	Example *string `json:"example,omitempty"`
@@ -29,8 +30,6 @@ type SyntheticsBrowserVariable struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SyntheticsBrowserVariable SyntheticsBrowserVariable
 
 // NewSyntheticsBrowserVariable instantiates a new SyntheticsBrowserVariable object
 // This constructor will assign default values to properties that have it defined,

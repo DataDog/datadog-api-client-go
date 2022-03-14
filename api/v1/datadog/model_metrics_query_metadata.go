@@ -38,15 +38,14 @@ type MetricsQueryMetadata struct {
 	Start *int64 `json:"start,omitempty"`
 	// Unique tags identifying this series.
 	TagSet *[]string `json:"tag_set,omitempty"`
-	// Detailed information about the metric unit.// First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
+	// Detailed information about the metric unit.
+	// First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
 	// second describes the "per unit" (for example, `second` in `bytes per second`).
 	Unit *[]MetricsQueryUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _MetricsQueryMetadata MetricsQueryMetadata
 
 // NewMetricsQueryMetadata instantiates a new MetricsQueryMetadata object
 // This constructor will assign default values to properties that have it defined,

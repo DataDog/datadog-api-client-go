@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that// match a search criteria using user-defined columns.
+// ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that
+// match a search criteria using user-defined columns.
 //
 type ListStreamWidgetDefinition struct {
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
@@ -36,8 +37,6 @@ type ListStreamWidgetDefinition struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _ListStreamWidgetDefinition ListStreamWidgetDefinition
 
 // NewListStreamWidgetDefinition instantiates a new ListStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,

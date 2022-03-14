@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).// For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
+// LogsGrokParser Create custom grok rules to parse the full message or [a specific attribute of your raw event](https://docs.datadoghq.com/logs/log_configuration/parsing/#advanced-settings).
+// For more information, see the [parsing section](https://docs.datadoghq.com/logs/log_configuration/parsing).
 type LogsGrokParser struct {
 	// Set of rules for the grok parser.
 	Grok LogsGrokParserRules `json:"grok"`
@@ -31,8 +32,6 @@ type LogsGrokParser struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsGrokParser LogsGrokParser
 
 // NewLogsGrokParser instantiates a new LogsGrokParser object
 // This constructor will assign default values to properties that have it defined,

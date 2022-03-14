@@ -22,8 +22,6 @@ type RoleCreateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _RoleCreateRequest RoleCreateRequest
-
 // NewRoleCreateRequest instantiates a new RoleCreateRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

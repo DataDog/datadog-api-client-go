@@ -45,8 +45,6 @@ type DashboardListItem struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _DashboardListItem DashboardListItem
-
 // NewDashboardListItem instantiates a new DashboardListItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

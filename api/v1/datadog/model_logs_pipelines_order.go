@@ -15,14 +15,13 @@ import (
 
 // LogsPipelinesOrder Object containing the ordered list of pipeline IDs.
 type LogsPipelinesOrder struct {
-	// Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array// define the overall Pipelines order for Datadog.
+	// Ordered Array of `<PIPELINE_ID>` strings, the order of pipeline IDs in the array
+	// define the overall Pipelines order for Datadog.
 	PipelineIds []string `json:"pipeline_ids"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsPipelinesOrder LogsPipelinesOrder
 
 // NewLogsPipelinesOrder instantiates a new LogsPipelinesOrder object
 // This constructor will assign default values to properties that have it defined,

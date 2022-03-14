@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.//
+// LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.
+//
 // **Note:** If multiple service remapper processors can be applied to a given log,
 // only the first one (according to the pipeline order) is taken into account.
 type LogsServiceRemapper struct {
@@ -29,8 +30,6 @@ type LogsServiceRemapper struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsServiceRemapper LogsServiceRemapper
 
 // NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
 // This constructor will assign default values to properties that have it defined,

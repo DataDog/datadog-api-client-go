@@ -12,7 +12,8 @@ import (
 	"encoding/json"
 )
 
-// SecurityMonitoringSignalsListResponse The response object with all security signals matching the request// and pagination information.
+// SecurityMonitoringSignalsListResponse The response object with all security signals matching the request
+// and pagination information.
 type SecurityMonitoringSignalsListResponse struct {
 	// An array of security signals matching the request.
 	Data *[]SecurityMonitoringSignal `json:"data,omitempty"`
@@ -24,8 +25,6 @@ type SecurityMonitoringSignalsListResponse struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _SecurityMonitoringSignalsListResponse SecurityMonitoringSignalsListResponse
 
 // NewSecurityMonitoringSignalsListResponse instantiates a new SecurityMonitoringSignalsListResponse object
 // This constructor will assign default values to properties that have it defined,

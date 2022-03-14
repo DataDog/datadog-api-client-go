@@ -39,8 +39,6 @@ type ScatterPlotRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _ScatterPlotRequest ScatterPlotRequest
-
 // NewScatterPlotRequest instantiates a new ScatterPlotRequest object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

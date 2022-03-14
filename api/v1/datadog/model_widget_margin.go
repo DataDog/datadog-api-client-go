@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// WidgetMargin Size of the margins around the image.// **Note**: `small` and `large` values are deprecated.
+// WidgetMargin Size of the margins around the image.
+// **Note**: `small` and `large` values are deprecated.
 type WidgetMargin string
 
 // List of WidgetMargin

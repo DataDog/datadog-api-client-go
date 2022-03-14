@@ -13,7 +13,8 @@ import (
 	"fmt"
 )
 
-// EventAlertType If an alert event is enabled, set its type.// For example, `error`, `warning`, `info`, `success`, `user_update`,
+// EventAlertType If an alert event is enabled, set its type.
+// For example, `error`, `warning`, `info`, `success`, `user_update`,
 // `recommendation`, and `snapshot`.
 type EventAlertType string
 

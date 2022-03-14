@@ -14,7 +14,8 @@ import (
 	"time"
 )
 
-// Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying// key performance metrics, which enable you to monitor the health of your infrastructure.
+// Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying
+// key performance metrics, which enable you to monitor the health of your infrastructure.
 type Dashboard struct {
 	// Identifier of the dashboard author.
 	AuthorHandle *string `json:"author_handle,omitempty"`
@@ -35,7 +36,8 @@ type Dashboard struct {
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// List of handles of users to notify when changes are made to this dashboard.
 	NotifyList []string `json:"notify_list,omitempty"`
-	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
+	// Reflow type for a **new dashboard layout** dashboard. Set this only when layout type is 'ordered'.
+	// If set to 'fixed', the dashboard expects all widgets to have a layout, and if it's set to 'auto',
 	// widgets should not have layouts.
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
@@ -54,8 +56,6 @@ type Dashboard struct {
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _Dashboard Dashboard
 
 // NewDashboard instantiates a new Dashboard object
 // This constructor will assign default values to properties that have it defined,

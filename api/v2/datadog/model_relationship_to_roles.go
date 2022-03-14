@@ -21,8 +21,6 @@ type RelationshipToRoles struct {
 	AdditionalProperties map[string]interface{}
 }
 
-type _RelationshipToRoles RelationshipToRoles
-
 // NewRelationshipToRoles instantiates a new RelationshipToRoles object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments

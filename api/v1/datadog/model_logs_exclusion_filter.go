@@ -15,16 +15,16 @@ import (
 
 // LogsExclusionFilter Exclusion filter is defined by a query, a sampling rule, and a active/inactive toggle.
 type LogsExclusionFilter struct {
-	// Default query is `*`, meaning all logs flowing in the index would be excluded.// Scope down exclusion filter to only a subset of logs with a log query.
+	// Default query is `*`, meaning all logs flowing in the index would be excluded.
+	// Scope down exclusion filter to only a subset of logs with a log query.
 	Query *string `json:"query,omitempty"`
-	// Sample rate to apply to logs going through this exclusion filter,// a value of 1.0 excludes all logs matching the query.
+	// Sample rate to apply to logs going through this exclusion filter,
+	// a value of 1.0 excludes all logs matching the query.
 	SampleRate float64 `json:"sample_rate"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-type _LogsExclusionFilter LogsExclusionFilter
 
 // NewLogsExclusionFilter instantiates a new LogsExclusionFilter object
 // This constructor will assign default values to properties that have it defined,
