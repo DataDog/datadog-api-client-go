@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsCompute A compute rule to compute metrics or timeseries
 type LogsCompute struct {
@@ -27,11 +25,9 @@ type LogsCompute struct {
 	// The type of compute
 	Type *LogsComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsCompute instantiates a new LogsCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +50,7 @@ func NewLogsComputeWithDefaults() *LogsCompute {
 	this.Type = &type_
 	return &this
 }
+
 // GetAggregation returns the Aggregation field value
 func (o *LogsCompute) GetAggregation() LogsAggregationFunction {
 	if o == nil {
@@ -76,7 +73,6 @@ func (o *LogsCompute) GetAggregationOk() (*LogsAggregationFunction, bool) {
 func (o *LogsCompute) SetAggregation(v LogsAggregationFunction) {
 	o.Aggregation = v
 }
-
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *LogsCompute) GetInterval() string {
@@ -110,7 +106,6 @@ func (o *LogsCompute) SetInterval(v string) {
 	o.Interval = &v
 }
 
-
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *LogsCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -142,7 +137,6 @@ func (o *LogsCompute) HasMetric() bool {
 func (o *LogsCompute) SetMetric(v string) {
 	o.Metric = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *LogsCompute) GetType() LogsComputeType {
@@ -176,8 +170,6 @@ func (o *LogsCompute) SetType(v LogsComputeType) {
 	o.Type = &v
 }
 
-
-
 func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -200,7 +192,6 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -208,9 +199,9 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Aggregation LogsAggregationFunction `json:"aggregation"`
-		Interval *string `json:"interval,omitempty"`
-		Metric *string `json:"metric,omitempty"`
-		Type *LogsComputeType `json:"type,omitempty"`
+		Interval    *string                 `json:"interval,omitempty"`
+		Metric      *string                 `json:"metric,omitempty"`
+		Type        *LogsComputeType        `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -236,7 +227,7 @@ func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

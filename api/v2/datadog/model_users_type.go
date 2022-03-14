@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // UsersType Users resource type.
 type UsersType string

@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentTeamUpdateAttributes The incident team's attributes for an update request.
 type IncidentTeamUpdateAttributes struct {
 	// Name of the incident team.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentTeamUpdateAttributes instantiates a new IncidentTeamUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewIncidentTeamUpdateAttributesWithDefaults() *IncidentTeamUpdateAttributes
 	this := IncidentTeamUpdateAttributes{}
 	return &this
 }
+
 // GetName returns the Name field value
 func (o *IncidentTeamUpdateAttributes) GetName() string {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *IncidentTeamUpdateAttributes) SetName(v string) {
 	o.Name = v
 }
 
-
-
 func (o IncidentTeamUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o IncidentTeamUpdateAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *IncidentTeamUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

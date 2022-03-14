@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HourlyUsageAttributionPagination The metadata for the current pagination.
 type HourlyUsageAttributionPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
 	NextRecordId *string `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHourlyUsageAttributionPagination instantiates a new HourlyUsageAttributionPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewHourlyUsageAttributionPaginationWithDefaults() *HourlyUsageAttributionPa
 	this := HourlyUsageAttributionPagination{}
 	return &this
 }
+
 // GetNextRecordId returns the NextRecordId field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionPagination) GetNextRecordId() string {
 	if o == nil || o.NextRecordId == nil {
@@ -74,8 +70,6 @@ func (o *HourlyUsageAttributionPagination) SetNextRecordId(v string) {
 	o.NextRecordId = &v
 }
 
-
-
 func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

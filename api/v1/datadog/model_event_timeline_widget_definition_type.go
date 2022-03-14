@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // EventTimelineWidgetDefinitionType Type of the event timeline widget.
 type EventTimelineWidgetDefinitionType string

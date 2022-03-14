@@ -10,14 +10,11 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SunburstWidgetLegend - Configuration of the legend.
 type SunburstWidgetLegend struct {
-	SunburstWidgetLegendTable *SunburstWidgetLegendTable
+	SunburstWidgetLegendTable           *SunburstWidgetLegendTable
 	SunburstWidgetLegendInlineAutomatic *SunburstWidgetLegendInlineAutomatic
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -88,11 +85,9 @@ func (src SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SunburstWidgetLegendTable)
 	}
 
-
 	if src.SunburstWidgetLegendInlineAutomatic != nil {
 		return json.Marshal(&src.SunburstWidgetLegendInlineAutomatic)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -101,16 +96,14 @@ func (src SunburstWidgetLegend) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SunburstWidgetLegend) GetActualInstance() (interface{}) {
+func (obj *SunburstWidgetLegend) GetActualInstance() interface{} {
 	if obj.SunburstWidgetLegendTable != nil {
 		return obj.SunburstWidgetLegendTable
 	}
 
-
 	if obj.SunburstWidgetLegendInlineAutomatic != nil {
 		return obj.SunburstWidgetLegendInlineAutomatic
 	}
-
 
 	// all schemas are nil
 	return nil

@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsGlobalVariableParseTestOptionsType Property of the Synthetics Test Response to use for a Synthetics global variable.
 type SyntheticsGlobalVariableParseTestOptionsType string
 
 // List of SyntheticsGlobalVariableParseTestOptionsType
 const (
-	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY SyntheticsGlobalVariableParseTestOptionsType = "http_body"
+	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY   SyntheticsGlobalVariableParseTestOptionsType = "http_body"
 	SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_HEADER SyntheticsGlobalVariableParseTestOptionsType = "http_header"
 )
 

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ApplicationKeysType Application Keys resource type.
 type ApplicationKeysType string

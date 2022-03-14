@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // RoleResponseRelationships Relationships of the role object returned by the API.
 type RoleResponseRelationships struct {
 	// Relationship to multiple permissions objects.
 	Permissions *RelationshipToPermissions `json:"permissions,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRoleResponseRelationships instantiates a new RoleResponseRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewRoleResponseRelationshipsWithDefaults() *RoleResponseRelationships {
 	this := RoleResponseRelationships{}
 	return &this
 }
+
 // GetPermissions returns the Permissions field value if set, zero value otherwise.
 func (o *RoleResponseRelationships) GetPermissions() RelationshipToPermissions {
 	if o == nil || o.Permissions == nil {
@@ -74,8 +70,6 @@ func (o *RoleResponseRelationships) SetPermissions(v RelationshipToPermissions) 
 	o.Permissions = &v
 }
 
-
-
 func (o RoleResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o RoleResponseRelationships) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *RoleResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

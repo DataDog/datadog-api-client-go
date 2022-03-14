@@ -10,18 +10,15 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // FormulaAndFunctionQueryDefinition - A formula and function query.
 type FormulaAndFunctionQueryDefinition struct {
-	FormulaAndFunctionMetricQueryDefinition *FormulaAndFunctionMetricQueryDefinition
-	FormulaAndFunctionEventQueryDefinition *FormulaAndFunctionEventQueryDefinition
-	FormulaAndFunctionProcessQueryDefinition *FormulaAndFunctionProcessQueryDefinition
+	FormulaAndFunctionMetricQueryDefinition             *FormulaAndFunctionMetricQueryDefinition
+	FormulaAndFunctionEventQueryDefinition              *FormulaAndFunctionEventQueryDefinition
+	FormulaAndFunctionProcessQueryDefinition            *FormulaAndFunctionProcessQueryDefinition
 	FormulaAndFunctionApmDependencyStatsQueryDefinition *FormulaAndFunctionApmDependencyStatsQueryDefinition
-	FormulaAndFunctionApmResourceStatsQueryDefinition *FormulaAndFunctionApmResourceStatsQueryDefinition
+	FormulaAndFunctionApmResourceStatsQueryDefinition   *FormulaAndFunctionApmResourceStatsQueryDefinition
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -160,26 +157,21 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.FormulaAndFunctionMetricQueryDefinition)
 	}
 
-
 	if src.FormulaAndFunctionEventQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionEventQueryDefinition)
 	}
-
 
 	if src.FormulaAndFunctionProcessQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionProcessQueryDefinition)
 	}
 
-
 	if src.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionApmDependencyStatsQueryDefinition)
 	}
 
-
 	if src.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return json.Marshal(&src.FormulaAndFunctionApmResourceStatsQueryDefinition)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -188,31 +180,26 @@ func (src FormulaAndFunctionQueryDefinition) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() (interface{}) {
+func (obj *FormulaAndFunctionQueryDefinition) GetActualInstance() interface{} {
 	if obj.FormulaAndFunctionMetricQueryDefinition != nil {
 		return obj.FormulaAndFunctionMetricQueryDefinition
 	}
-
 
 	if obj.FormulaAndFunctionEventQueryDefinition != nil {
 		return obj.FormulaAndFunctionEventQueryDefinition
 	}
 
-
 	if obj.FormulaAndFunctionProcessQueryDefinition != nil {
 		return obj.FormulaAndFunctionProcessQueryDefinition
 	}
-
 
 	if obj.FormulaAndFunctionApmDependencyStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmDependencyStatsQueryDefinition
 	}
 
-
 	if obj.FormulaAndFunctionApmResourceStatsQueryDefinition != nil {
 		return obj.FormulaAndFunctionApmResourceStatsQueryDefinition
 	}
-
 
 	// all schemas are nil
 	return nil

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SecurityMonitoringRuleImpossibleTravelOptions Options on impossible travel rules.
 type SecurityMonitoringRuleImpossibleTravelOptions struct {
@@ -21,11 +18,9 @@ type SecurityMonitoringRuleImpossibleTravelOptions struct {
 	// access locations. This can be helpful to reduce noise and infer VPN usage or credentialed API access.
 	BaselineUserLocations *bool `json:"baselineUserLocations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSecurityMonitoringRuleImpossibleTravelOptions instantiates a new SecurityMonitoringRuleImpossibleTravelOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewSecurityMonitoringRuleImpossibleTravelOptionsWithDefaults() *SecurityMon
 	this := SecurityMonitoringRuleImpossibleTravelOptions{}
 	return &this
 }
+
 // GetBaselineUserLocations returns the BaselineUserLocations field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleImpossibleTravelOptions) GetBaselineUserLocations() bool {
 	if o == nil || o.BaselineUserLocations == nil {
@@ -75,8 +71,6 @@ func (o *SecurityMonitoringRuleImpossibleTravelOptions) SetBaselineUserLocations
 	o.BaselineUserLocations = &v
 }
 
-
-
 func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -91,7 +85,6 @@ func (o SecurityMonitoringRuleImpossibleTravelOptions) MarshalJSON() ([]byte, er
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SecurityMonitoringRuleImpossibleTravelOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

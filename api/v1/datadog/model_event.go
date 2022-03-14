@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // Event Object representing an event.
 type Event struct {
@@ -52,11 +49,9 @@ type Event struct {
 	// URL of the event.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewEvent instantiates a new Event object
 // This constructor will assign default values to properties that have it defined,
@@ -74,6 +69,7 @@ func NewEventWithDefaults() *Event {
 	this := Event{}
 	return &this
 }
+
 // GetAlertType returns the AlertType field value if set, zero value otherwise.
 func (o *Event) GetAlertType() EventAlertType {
 	if o == nil || o.AlertType == nil {
@@ -105,7 +101,6 @@ func (o *Event) HasAlertType() bool {
 func (o *Event) SetAlertType(v EventAlertType) {
 	o.AlertType = &v
 }
-
 
 // GetDateHappened returns the DateHappened field value if set, zero value otherwise.
 func (o *Event) GetDateHappened() int64 {
@@ -139,7 +134,6 @@ func (o *Event) SetDateHappened(v int64) {
 	o.DateHappened = &v
 }
 
-
 // GetDeviceName returns the DeviceName field value if set, zero value otherwise.
 func (o *Event) GetDeviceName() string {
 	if o == nil || o.DeviceName == nil {
@@ -171,7 +165,6 @@ func (o *Event) HasDeviceName() bool {
 func (o *Event) SetDeviceName(v string) {
 	o.DeviceName = &v
 }
-
 
 // GetHost returns the Host field value if set, zero value otherwise.
 func (o *Event) GetHost() string {
@@ -205,7 +198,6 @@ func (o *Event) SetHost(v string) {
 	o.Host = &v
 }
 
-
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Event) GetId() int64 {
 	if o == nil || o.Id == nil {
@@ -237,7 +229,6 @@ func (o *Event) HasId() bool {
 func (o *Event) SetId(v int64) {
 	o.Id = &v
 }
-
 
 // GetIdStr returns the IdStr field value if set, zero value otherwise.
 func (o *Event) GetIdStr() string {
@@ -271,7 +262,6 @@ func (o *Event) SetIdStr(v string) {
 	o.IdStr = &v
 }
 
-
 // GetPayload returns the Payload field value if set, zero value otherwise.
 func (o *Event) GetPayload() string {
 	if o == nil || o.Payload == nil {
@@ -304,7 +294,6 @@ func (o *Event) SetPayload(v string) {
 	o.Payload = &v
 }
 
-
 // GetPriority returns the Priority field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Event) GetPriority() EventPriority {
 	if o == nil || o.Priority.Get() == nil {
@@ -318,7 +307,7 @@ func (o *Event) GetPriority() EventPriority {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Event) GetPriorityOk() (*EventPriority, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Priority.Get(), o.Priority.IsSet()
@@ -337,6 +326,7 @@ func (o *Event) HasPriority() bool {
 func (o *Event) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
+
 // SetPriorityNil sets the value for Priority to be an explicit nil
 func (o *Event) SetPriorityNil() {
 	o.Priority.Set(nil)
@@ -346,7 +336,6 @@ func (o *Event) SetPriorityNil() {
 func (o *Event) UnsetPriority() {
 	o.Priority.Unset()
 }
-
 
 // GetSourceTypeName returns the SourceTypeName field value if set, zero value otherwise.
 func (o *Event) GetSourceTypeName() string {
@@ -380,7 +369,6 @@ func (o *Event) SetSourceTypeName(v string) {
 	o.SourceTypeName = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *Event) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -412,7 +400,6 @@ func (o *Event) HasTags() bool {
 func (o *Event) SetTags(v []string) {
 	o.Tags = &v
 }
-
 
 // GetText returns the Text field value if set, zero value otherwise.
 func (o *Event) GetText() string {
@@ -446,7 +433,6 @@ func (o *Event) SetText(v string) {
 	o.Text = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *Event) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -479,7 +465,6 @@ func (o *Event) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *Event) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -511,8 +496,6 @@ func (o *Event) HasUrl() bool {
 func (o *Event) SetUrl(v string) {
 	o.Url = &v
 }
-
-
 
 func (o Event) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -565,23 +548,22 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AlertType *EventAlertType `json:"alert_type,omitempty"`
-		DateHappened *int64 `json:"date_happened,omitempty"`
-		DeviceName *string `json:"device_name,omitempty"`
-		Host *string `json:"host,omitempty"`
-		Id *int64 `json:"id,omitempty"`
-		IdStr *string `json:"id_str,omitempty"`
-		Payload *string `json:"payload,omitempty"`
-		Priority NullableEventPriority `json:"priority,omitempty"`
-		SourceTypeName *string `json:"source_type_name,omitempty"`
-		Tags *[]string `json:"tags,omitempty"`
-		Text *string `json:"text,omitempty"`
-		Title *string `json:"title,omitempty"`
-		Url *string `json:"url,omitempty"`
+		AlertType      *EventAlertType       `json:"alert_type,omitempty"`
+		DateHappened   *int64                `json:"date_happened,omitempty"`
+		DeviceName     *string               `json:"device_name,omitempty"`
+		Host           *string               `json:"host,omitempty"`
+		Id             *int64                `json:"id,omitempty"`
+		IdStr          *string               `json:"id_str,omitempty"`
+		Payload        *string               `json:"payload,omitempty"`
+		Priority       NullableEventPriority `json:"priority,omitempty"`
+		SourceTypeName *string               `json:"source_type_name,omitempty"`
+		Tags           *[]string             `json:"tags,omitempty"`
+		Text           *string               `json:"text,omitempty"`
+		Title          *string               `json:"title,omitempty"`
+		Url            *string               `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -592,7 +574,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.AlertType; v != nil &&!v.IsValid() {
+	if v := all.AlertType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // APIKeyUpdateData Object used to update an API key.
 type APIKeyUpdateData struct {
@@ -24,11 +22,9 @@ type APIKeyUpdateData struct {
 	// API Keys resource type.
 	Type APIKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +47,7 @@ func NewAPIKeyUpdateDataWithDefaults() *APIKeyUpdateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *APIKeyUpdateData) GetAttributes() APIKeyUpdateAttributes {
 	if o == nil {
@@ -73,7 +70,6 @@ func (o *APIKeyUpdateData) GetAttributesOk() (*APIKeyUpdateAttributes, bool) {
 func (o *APIKeyUpdateData) SetAttributes(v APIKeyUpdateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetId returns the Id field value
 func (o *APIKeyUpdateData) GetId() string {
@@ -98,7 +94,6 @@ func (o *APIKeyUpdateData) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetType returns the Type field value
 func (o *APIKeyUpdateData) GetType() APIKeysType {
 	if o == nil {
@@ -122,8 +117,6 @@ func (o *APIKeyUpdateData) SetType(v APIKeysType) {
 	o.Type = v
 }
 
-
-
 func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -139,18 +132,17 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *APIKeyUpdateAttributes `json:"attributes"`
-		Id *string `json:"id"`
-		Type *APIKeysType `json:"type"`
+		Id         *string                 `json:"id"`
+		Type       *APIKeysType            `json:"type"`
 	}{}
 	all := struct {
 		Attributes APIKeyUpdateAttributes `json:"attributes"`
-		Id string `json:"id"`
-		Type APIKeysType `json:"type"`
+		Id         string                 `json:"id"`
+		Type       APIKeysType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

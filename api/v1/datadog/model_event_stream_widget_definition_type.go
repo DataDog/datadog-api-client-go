@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // EventStreamWidgetDefinitionType Type of the event stream widget.
 type EventStreamWidgetDefinitionType string

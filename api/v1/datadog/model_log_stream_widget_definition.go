@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
 type LogStreamWidgetDefinition struct {
@@ -45,11 +43,9 @@ type LogStreamWidgetDefinition struct {
 	// Type of the log stream widget.
 	Type LogStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogStreamWidgetDefinition instantiates a new LogStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -70,6 +66,7 @@ func NewLogStreamWidgetDefinitionWithDefaults() *LogStreamWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetColumns returns the Columns field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetColumns() []string {
 	if o == nil || o.Columns == nil {
@@ -102,7 +99,6 @@ func (o *LogStreamWidgetDefinition) SetColumns(v []string) {
 	o.Columns = &v
 }
 
-
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetIndexes() []string {
 	if o == nil || o.Indexes == nil {
@@ -134,7 +130,6 @@ func (o *LogStreamWidgetDefinition) HasIndexes() bool {
 func (o *LogStreamWidgetDefinition) SetIndexes(v []string) {
 	o.Indexes = &v
 }
-
 
 // GetLogset returns the Logset field value if set, zero value otherwise.
 // Deprecated
@@ -171,7 +166,6 @@ func (o *LogStreamWidgetDefinition) SetLogset(v string) {
 	o.Logset = &v
 }
 
-
 // GetMessageDisplay returns the MessageDisplay field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetMessageDisplay() WidgetMessageDisplay {
 	if o == nil || o.MessageDisplay == nil {
@@ -203,7 +197,6 @@ func (o *LogStreamWidgetDefinition) HasMessageDisplay() bool {
 func (o *LogStreamWidgetDefinition) SetMessageDisplay(v WidgetMessageDisplay) {
 	o.MessageDisplay = &v
 }
-
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetQuery() string {
@@ -237,7 +230,6 @@ func (o *LogStreamWidgetDefinition) SetQuery(v string) {
 	o.Query = &v
 }
 
-
 // GetShowDateColumn returns the ShowDateColumn field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetShowDateColumn() bool {
 	if o == nil || o.ShowDateColumn == nil {
@@ -269,7 +261,6 @@ func (o *LogStreamWidgetDefinition) HasShowDateColumn() bool {
 func (o *LogStreamWidgetDefinition) SetShowDateColumn(v bool) {
 	o.ShowDateColumn = &v
 }
-
 
 // GetShowMessageColumn returns the ShowMessageColumn field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetShowMessageColumn() bool {
@@ -303,7 +294,6 @@ func (o *LogStreamWidgetDefinition) SetShowMessageColumn(v bool) {
 	o.ShowMessageColumn = &v
 }
 
-
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetSort() WidgetFieldSort {
 	if o == nil || o.Sort == nil {
@@ -335,7 +325,6 @@ func (o *LogStreamWidgetDefinition) HasSort() bool {
 func (o *LogStreamWidgetDefinition) SetSort(v WidgetFieldSort) {
 	o.Sort = &v
 }
-
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetTime() WidgetTime {
@@ -369,7 +358,6 @@ func (o *LogStreamWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -401,7 +389,6 @@ func (o *LogStreamWidgetDefinition) HasTitle() bool {
 func (o *LogStreamWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
-
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -435,7 +422,6 @@ func (o *LogStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
-
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *LogStreamWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -468,7 +454,6 @@ func (o *LogStreamWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value
 func (o *LogStreamWidgetDefinition) GetType() LogStreamWidgetDefinitionType {
 	if o == nil {
@@ -491,8 +476,6 @@ func (o *LogStreamWidgetDefinition) GetTypeOk() (*LogStreamWidgetDefinitionType,
 func (o *LogStreamWidgetDefinition) SetType(v LogStreamWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -543,26 +526,25 @@ func (o LogStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Columns *[]string `json:"columns,omitempty"`
-		Indexes *[]string `json:"indexes,omitempty"`
-		Logset *string `json:"logset,omitempty"`
-		MessageDisplay *WidgetMessageDisplay `json:"message_display,omitempty"`
-		Query *string `json:"query,omitempty"`
-		ShowDateColumn *bool `json:"show_date_column,omitempty"`
-		ShowMessageColumn *bool `json:"show_message_column,omitempty"`
-		Sort *WidgetFieldSort `json:"sort,omitempty"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type LogStreamWidgetDefinitionType `json:"type"`
+		Columns           *[]string                     `json:"columns,omitempty"`
+		Indexes           *[]string                     `json:"indexes,omitempty"`
+		Logset            *string                       `json:"logset,omitempty"`
+		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
+		Query             *string                       `json:"query,omitempty"`
+		ShowDateColumn    *bool                         `json:"show_date_column,omitempty"`
+		ShowMessageColumn *bool                         `json:"show_message_column,omitempty"`
+		Sort              *WidgetFieldSort              `json:"sort,omitempty"`
+		Time              *WidgetTime                   `json:"time,omitempty"`
+		Title             *string                       `json:"title,omitempty"`
+		TitleAlign        *WidgetTextAlign              `json:"title_align,omitempty"`
+		TitleSize         *string                       `json:"title_size,omitempty"`
+		Type              LogStreamWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -580,7 +562,7 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.MessageDisplay; v != nil &&!v.IsValid() {
+	if v := all.MessageDisplay; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -588,7 +570,7 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil &&!v.IsValid() {
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

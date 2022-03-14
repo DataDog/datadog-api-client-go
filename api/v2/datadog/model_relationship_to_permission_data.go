@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // RelationshipToPermissionData Relationship to permission object.
 type RelationshipToPermissionData struct {
@@ -22,11 +19,9 @@ type RelationshipToPermissionData struct {
 	// Permissions resource type.
 	Type *PermissionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRelationshipToPermissionData instantiates a new RelationshipToPermissionData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewRelationshipToPermissionDataWithDefaults() *RelationshipToPermissionData
 	this.Type = &type_
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *RelationshipToPermissionData) GetId() string {
 	if o == nil || o.Id == nil {
@@ -79,7 +75,6 @@ func (o *RelationshipToPermissionData) HasId() bool {
 func (o *RelationshipToPermissionData) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RelationshipToPermissionData) GetType() PermissionsType {
@@ -113,8 +108,6 @@ func (o *RelationshipToPermissionData) SetType(v PermissionsType) {
 	o.Type = &v
 }
 
-
-
 func (o RelationshipToPermissionData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -133,11 +126,10 @@ func (o RelationshipToPermissionData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RelationshipToPermissionData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Id   *string          `json:"id,omitempty"`
 		Type *PermissionsType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -149,7 +141,7 @@ func (o *RelationshipToPermissionData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

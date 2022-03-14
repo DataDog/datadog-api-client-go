@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // AuditLogsEventType Type of the event.
 type AuditLogsEventType string

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NotebookCellResponse The description of a notebook cell response.
 type NotebookCellResponse struct {
@@ -25,11 +23,9 @@ type NotebookCellResponse struct {
 	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewNotebookCellResponse instantiates a new NotebookCellResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +48,7 @@ func NewNotebookCellResponseWithDefaults() *NotebookCellResponse {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *NotebookCellResponse) GetAttributes() NotebookCellResponseAttributes {
 	if o == nil {
@@ -74,7 +71,6 @@ func (o *NotebookCellResponse) GetAttributesOk() (*NotebookCellResponseAttribute
 func (o *NotebookCellResponse) SetAttributes(v NotebookCellResponseAttributes) {
 	o.Attributes = v
 }
-
 
 // GetId returns the Id field value
 func (o *NotebookCellResponse) GetId() string {
@@ -99,7 +95,6 @@ func (o *NotebookCellResponse) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetType returns the Type field value
 func (o *NotebookCellResponse) GetType() NotebookCellResourceType {
 	if o == nil {
@@ -123,8 +118,6 @@ func (o *NotebookCellResponse) SetType(v NotebookCellResourceType) {
 	o.Type = v
 }
 
-
-
 func (o NotebookCellResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,18 +133,17 @@ func (o NotebookCellResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *NotebookCellResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellResponseAttributes `json:"attributes"`
-		Id *string `json:"id"`
-		Type *NotebookCellResourceType `json:"type"`
+		Id         *string                         `json:"id"`
+		Type       *NotebookCellResourceType       `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebookCellResponseAttributes `json:"attributes"`
-		Id string `json:"id"`
-		Type NotebookCellResourceType `json:"type"`
+		Id         string                         `json:"id"`
+		Type       NotebookCellResourceType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

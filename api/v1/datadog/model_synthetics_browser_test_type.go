@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsBrowserTestType Type of the Synthetic test, `browser`.
 type SyntheticsBrowserTestType string

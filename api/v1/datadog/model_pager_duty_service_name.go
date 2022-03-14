@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // PagerDutyServiceName PagerDuty service object name.
 type PagerDutyServiceName struct {
 	// Your service name associated service key in PagerDuty.
 	ServiceName string `json:"service_name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewPagerDutyServiceName instantiates a new PagerDutyServiceName object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewPagerDutyServiceNameWithDefaults() *PagerDutyServiceName {
 	this := PagerDutyServiceName{}
 	return &this
 }
+
 // GetServiceName returns the ServiceName field value
 func (o *PagerDutyServiceName) GetServiceName() string {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *PagerDutyServiceName) SetServiceName(v string) {
 	o.ServiceName = v
 }
 
-
-
 func (o PagerDutyServiceName) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o PagerDutyServiceName) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *PagerDutyServiceName) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

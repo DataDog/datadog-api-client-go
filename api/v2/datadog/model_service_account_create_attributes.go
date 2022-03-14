@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ServiceAccountCreateAttributes Attributes of the created user.
 type ServiceAccountCreateAttributes struct {
@@ -26,11 +24,9 @@ type ServiceAccountCreateAttributes struct {
 	// The title of the user.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewServiceAccountCreateAttributes instantiates a new ServiceAccountCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +46,7 @@ func NewServiceAccountCreateAttributesWithDefaults() *ServiceAccountCreateAttrib
 	this := ServiceAccountCreateAttributes{}
 	return &this
 }
+
 // GetEmail returns the Email field value
 func (o *ServiceAccountCreateAttributes) GetEmail() string {
 	if o == nil {
@@ -72,7 +69,6 @@ func (o *ServiceAccountCreateAttributes) GetEmailOk() (*string, bool) {
 func (o *ServiceAccountCreateAttributes) SetEmail(v string) {
 	o.Email = v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ServiceAccountCreateAttributes) GetName() string {
@@ -106,7 +102,6 @@ func (o *ServiceAccountCreateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetServiceAccount returns the ServiceAccount field value
 func (o *ServiceAccountCreateAttributes) GetServiceAccount() bool {
 	if o == nil {
@@ -129,7 +124,6 @@ func (o *ServiceAccountCreateAttributes) GetServiceAccountOk() (*bool, bool) {
 func (o *ServiceAccountCreateAttributes) SetServiceAccount(v bool) {
 	o.ServiceAccount = v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ServiceAccountCreateAttributes) GetTitle() string {
@@ -163,8 +157,6 @@ func (o *ServiceAccountCreateAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
-
-
 func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -185,18 +177,17 @@ func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Email *string `json:"email"`
-		ServiceAccount *bool `json:"service_account"`
+		Email          *string `json:"email"`
+		ServiceAccount *bool   `json:"service_account"`
 	}{}
 	all := struct {
-		Email string `json:"email"`
-		Name *string `json:"name,omitempty"`
-		ServiceAccount bool `json:"service_account"`
-		Title *string `json:"title,omitempty"`
+		Email          string  `json:"email"`
+		Name           *string `json:"name,omitempty"`
+		ServiceAccount bool    `json:"service_account"`
+		Title          *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

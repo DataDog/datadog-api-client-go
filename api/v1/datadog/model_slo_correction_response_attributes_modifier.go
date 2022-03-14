@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SLOCorrectionResponseAttributesModifier Modifier of the object.
 type SLOCorrectionResponseAttributesModifier struct {
@@ -24,11 +21,9 @@ type SLOCorrectionResponseAttributesModifier struct {
 	// Name of the Modifier.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSLOCorrectionResponseAttributesModifier instantiates a new SLOCorrectionResponseAttributesModifier object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewSLOCorrectionResponseAttributesModifierWithDefaults() *SLOCorrectionResp
 	this := SLOCorrectionResponseAttributesModifier{}
 	return &this
 }
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributesModifier) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -77,7 +73,6 @@ func (o *SLOCorrectionResponseAttributesModifier) HasEmail() bool {
 func (o *SLOCorrectionResponseAttributesModifier) SetEmail(v string) {
 	o.Email = &v
 }
-
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributesModifier) GetHandle() string {
@@ -111,7 +106,6 @@ func (o *SLOCorrectionResponseAttributesModifier) SetHandle(v string) {
 	o.Handle = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributesModifier) GetName() string {
 	if o == nil || o.Name == nil {
@@ -144,8 +138,6 @@ func (o *SLOCorrectionResponseAttributesModifier) SetName(v string) {
 	o.Name = &v
 }
 
-
-
 func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email *string `json:"email,omitempty"`
+		Email  *string `json:"email,omitempty"`
 		Handle *string `json:"handle,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Name   *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -189,6 +180,7 @@ func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (e
 	o.Name = all.Name
 	return nil
 }
+
 type NullableSLOCorrectionResponseAttributesModifier struct {
 	value *SLOCorrectionResponseAttributesModifier
 	isSet bool

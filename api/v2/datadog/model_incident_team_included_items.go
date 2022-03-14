@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // IncidentTeamIncludedItems - An object related to an incident team which is present in the included payload.
 type IncidentTeamIncludedItems struct {
@@ -64,7 +61,6 @@ func (src IncidentTeamIncludedItems) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.User)
 	}
 
-
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -72,11 +68,10 @@ func (src IncidentTeamIncludedItems) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentTeamIncludedItems) GetActualInstance() (interface{}) {
+func (obj *IncidentTeamIncludedItems) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
 	}
-
 
 	// all schemas are nil
 	return nil

@@ -11,11 +11,10 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -29,9 +28,9 @@ type TagsApiService service
 type apiCreateHostTagsRequest struct {
 	ctx        _context.Context
 	ApiService *TagsApiService
-	hostName string
-	body *HostTags
-	source *string
+	hostName   string
+	body       *HostTags
+	source     *string
 }
 
 type CreateHostTagsOptionalParameters struct {
@@ -56,8 +55,8 @@ func (a *TagsApiService) CreateHostTags(ctx _context.Context, hostName string, b
 	req := apiCreateHostTagsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName: hostName,
-		body: &body,
+		hostName:   hostName,
+		body:       &body,
 	}
 
 	if len(o) > 1 {
@@ -221,8 +220,8 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 type apiDeleteHostTagsRequest struct {
 	ctx        _context.Context
 	ApiService *TagsApiService
-	hostName string
-	source *string
+	hostName   string
+	source     *string
 }
 
 type DeleteHostTagsOptionalParameters struct {
@@ -247,7 +246,7 @@ func (a *TagsApiService) DeleteHostTags(ctx _context.Context, hostName string, o
 	req := apiDeleteHostTagsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName: hostName,
+		hostName:   hostName,
 	}
 
 	if len(o) > 1 {
@@ -384,8 +383,8 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 type apiGetHostTagsRequest struct {
 	ctx        _context.Context
 	ApiService *TagsApiService
-	hostName string
-	source *string
+	hostName   string
+	source     *string
 }
 
 type GetHostTagsOptionalParameters struct {
@@ -409,7 +408,7 @@ func (a *TagsApiService) GetHostTags(ctx _context.Context, hostName string, o ..
 	req := apiGetHostTagsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName: hostName,
+		hostName:   hostName,
 	}
 
 	if len(o) > 1 {
@@ -558,7 +557,7 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 type apiListHostTagsRequest struct {
 	ctx        _context.Context
 	ApiService *TagsApiService
-	source *string
+	source     *string
 }
 
 type ListHostTagsOptionalParameters struct {
@@ -729,9 +728,9 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 type apiUpdateHostTagsRequest struct {
 	ctx        _context.Context
 	ApiService *TagsApiService
-	hostName string
-	body *HostTags
-	source *string
+	hostName   string
+	body       *HostTags
+	source     *string
 }
 
 type UpdateHostTagsOptionalParameters struct {
@@ -756,8 +755,8 @@ func (a *TagsApiService) UpdateHostTags(ctx _context.Context, hostName string, b
 	req := apiUpdateHostTagsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName: hostName,
-		body: &body,
+		hostName:   hostName,
+		body:       &body,
 	}
 
 	if len(o) > 1 {

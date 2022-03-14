@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsArchiveOrderDefinitionType Type of the archive order definition.
 type LogsArchiveOrderDefinitionType string

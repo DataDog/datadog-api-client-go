@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsAggregateResponseData The query results
 type LogsAggregateResponseData struct {
 	// The list of matching buckets, one item per bucket
 	Buckets *[]LogsAggregateBucket `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsAggregateResponseData instantiates a new LogsAggregateResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewLogsAggregateResponseDataWithDefaults() *LogsAggregateResponseData {
 	this := LogsAggregateResponseData{}
 	return &this
 }
+
 // GetBuckets returns the Buckets field value if set, zero value otherwise.
 func (o *LogsAggregateResponseData) GetBuckets() []LogsAggregateBucket {
 	if o == nil || o.Buckets == nil {
@@ -74,8 +70,6 @@ func (o *LogsAggregateResponseData) SetBuckets(v []LogsAggregateBucket) {
 	o.Buckets = &v
 }
 
-
-
 func (o LogsAggregateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o LogsAggregateResponseData) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *LogsAggregateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

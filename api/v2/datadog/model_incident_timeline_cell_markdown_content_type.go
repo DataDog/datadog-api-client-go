@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentTimelineCellMarkdownContentType Type of the Markdown timeline cell.
 type IncidentTimelineCellMarkdownContentType string

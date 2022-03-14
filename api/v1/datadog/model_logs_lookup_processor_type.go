@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsLookupProcessorType Type of logs lookup processor.
 type LogsLookupProcessorType string

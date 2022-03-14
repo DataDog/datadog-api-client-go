@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FreeTextWidgetDefinitionType Type of the free text widget.
 type FreeTextWidgetDefinitionType string

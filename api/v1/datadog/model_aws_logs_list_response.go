@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AWSLogsListResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
 type AWSLogsListResponse struct {
@@ -24,11 +21,9 @@ type AWSLogsListResponse struct {
 	// Array of services IDs.
 	Services *[]string `json:"services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAWSLogsListResponse instantiates a new AWSLogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewAWSLogsListResponseWithDefaults() *AWSLogsListResponse {
 	this := AWSLogsListResponse{}
 	return &this
 }
+
 // GetAccountId returns the AccountId field value if set, zero value otherwise.
 func (o *AWSLogsListResponse) GetAccountId() string {
 	if o == nil || o.AccountId == nil {
@@ -77,7 +73,6 @@ func (o *AWSLogsListResponse) HasAccountId() bool {
 func (o *AWSLogsListResponse) SetAccountId(v string) {
 	o.AccountId = &v
 }
-
 
 // GetLambdas returns the Lambdas field value if set, zero value otherwise.
 func (o *AWSLogsListResponse) GetLambdas() []AWSLogsLambda {
@@ -111,7 +106,6 @@ func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsLambda) {
 	o.Lambdas = &v
 }
 
-
 // GetServices returns the Services field value if set, zero value otherwise.
 func (o *AWSLogsListResponse) GetServices() []string {
 	if o == nil || o.Services == nil {
@@ -144,8 +138,6 @@ func (o *AWSLogsListResponse) SetServices(v []string) {
 	o.Services = &v
 }
 
-
-
 func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId *string `json:"account_id,omitempty"`
-		Lambdas *[]AWSLogsLambda `json:"lambdas,omitempty"`
-		Services *[]string `json:"services,omitempty"`
+		AccountId *string          `json:"account_id,omitempty"`
+		Lambdas   *[]AWSLogsLambda `json:"lambdas,omitempty"`
+		Services  *[]string        `json:"services,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

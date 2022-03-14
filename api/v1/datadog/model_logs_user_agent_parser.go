@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsUserAgentParser The User-Agent parser takes a User-Agent attribute and extracts the OS, browser, device, and other user data.
 // It recognizes major bots like the Google Bot, Yahoo Slurp, and Bing.
@@ -31,11 +29,9 @@ type LogsUserAgentParser struct {
 	// Type of logs User-Agent parser.
 	Type LogsUserAgentParserType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsUserAgentParser instantiates a new LogsUserAgentParser object
 // This constructor will assign default values to properties that have it defined,
@@ -68,6 +64,7 @@ func NewLogsUserAgentParserWithDefaults() *LogsUserAgentParser {
 	this.Type = type_
 	return &this
 }
+
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -99,7 +96,6 @@ func (o *LogsUserAgentParser) HasIsEnabled() bool {
 func (o *LogsUserAgentParser) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetIsEncoded returns the IsEncoded field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetIsEncoded() bool {
@@ -133,7 +129,6 @@ func (o *LogsUserAgentParser) SetIsEncoded(v bool) {
 	o.IsEncoded = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsUserAgentParser) GetName() string {
 	if o == nil || o.Name == nil {
@@ -166,7 +161,6 @@ func (o *LogsUserAgentParser) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetSources returns the Sources field value
 func (o *LogsUserAgentParser) GetSources() []string {
 	if o == nil {
@@ -189,7 +183,6 @@ func (o *LogsUserAgentParser) GetSourcesOk() (*[]string, bool) {
 func (o *LogsUserAgentParser) SetSources(v []string) {
 	o.Sources = v
 }
-
 
 // GetTarget returns the Target field value
 func (o *LogsUserAgentParser) GetTarget() string {
@@ -214,7 +207,6 @@ func (o *LogsUserAgentParser) SetTarget(v string) {
 	o.Target = v
 }
 
-
 // GetType returns the Type field value
 func (o *LogsUserAgentParser) GetType() LogsUserAgentParserType {
 	if o == nil {
@@ -237,8 +229,6 @@ func (o *LogsUserAgentParser) GetTypeOk() (*LogsUserAgentParserType, bool) {
 func (o *LogsUserAgentParser) SetType(v LogsUserAgentParserType) {
 	o.Type = v
 }
-
-
 
 func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -264,21 +254,20 @@ func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string `json:"sources"`
-		Target *string `json:"target"`
-		Type *LogsUserAgentParserType `json:"type"`
+		Sources *[]string                `json:"sources"`
+		Target  *string                  `json:"target"`
+		Type    *LogsUserAgentParserType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		IsEncoded *bool `json:"is_encoded,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Sources []string `json:"sources"`
-		Target string `json:"target"`
-		Type LogsUserAgentParserType `json:"type"`
+		IsEnabled *bool                   `json:"is_enabled,omitempty"`
+		IsEncoded *bool                   `json:"is_encoded,omitempty"`
+		Name      *string                 `json:"name,omitempty"`
+		Sources   []string                `json:"sources"`
+		Target    string                  `json:"target"`
+		Type      LogsUserAgentParserType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

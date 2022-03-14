@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageNetworkFlowsHour Number of netflow events indexed for each hour for a given organization.
 type UsageNetworkFlowsHour struct {
@@ -26,11 +24,9 @@ type UsageNetworkFlowsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageNetworkFlowsHour instantiates a new UsageNetworkFlowsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewUsageNetworkFlowsHourWithDefaults() *UsageNetworkFlowsHour {
 	this := UsageNetworkFlowsHour{}
 	return &this
 }
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageNetworkFlowsHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -79,7 +76,6 @@ func (o *UsageNetworkFlowsHour) HasHour() bool {
 func (o *UsageNetworkFlowsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageNetworkFlowsHour) GetIndexedEventsCount() int64 {
@@ -113,7 +109,6 @@ func (o *UsageNetworkFlowsHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageNetworkFlowsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -145,7 +140,6 @@ func (o *UsageNetworkFlowsHour) HasOrgName() bool {
 func (o *UsageNetworkFlowsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageNetworkFlowsHour) GetPublicId() string {
@@ -179,8 +173,6 @@ func (o *UsageNetworkFlowsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
-
 func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -205,14 +197,13 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageNetworkFlowsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour *time.Time `json:"hour,omitempty"`
-		IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		Hour               *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
+		OrgName            *string    `json:"org_name,omitempty"`
+		PublicId           *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

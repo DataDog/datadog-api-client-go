@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SLOHistoryMetricsSeries A representation of `metric` based SLO time series for the provided queries.
 // This is the same response type from `batch_query` endpoint.
@@ -27,11 +25,9 @@ type SLOHistoryMetricsSeries struct {
 	// The query values for each metric.
 	Values []float64 `json:"values"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +48,7 @@ func NewSLOHistoryMetricsSeriesWithDefaults() *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	return &this
 }
+
 // GetCount returns the Count field value
 func (o *SLOHistoryMetricsSeries) GetCount() int64 {
 	if o == nil {
@@ -74,7 +71,6 @@ func (o *SLOHistoryMetricsSeries) GetCountOk() (*int64, bool) {
 func (o *SLOHistoryMetricsSeries) SetCount(v int64) {
 	o.Count = v
 }
-
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SLOHistoryMetricsSeries) GetMetadata() SLOHistoryMetricsSeriesMetadata {
@@ -108,7 +104,6 @@ func (o *SLOHistoryMetricsSeries) SetMetadata(v SLOHistoryMetricsSeriesMetadata)
 	o.Metadata = &v
 }
 
-
 // GetSum returns the Sum field value
 func (o *SLOHistoryMetricsSeries) GetSum() float64 {
 	if o == nil {
@@ -131,7 +126,6 @@ func (o *SLOHistoryMetricsSeries) GetSumOk() (*float64, bool) {
 func (o *SLOHistoryMetricsSeries) SetSum(v float64) {
 	o.Sum = v
 }
-
 
 // GetValues returns the Values field value
 func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
@@ -156,8 +150,6 @@ func (o *SLOHistoryMetricsSeries) SetValues(v []float64) {
 	o.Values = v
 }
 
-
-
 func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -176,19 +168,18 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Count *int64 `json:"count"`
-		Sum *float64 `json:"sum"`
+		Count  *int64     `json:"count"`
+		Sum    *float64   `json:"sum"`
 		Values *[]float64 `json:"values"`
 	}{}
 	all := struct {
-		Count int64 `json:"count"`
+		Count    int64                            `json:"count"`
 		Metadata *SLOHistoryMetricsSeriesMetadata `json:"metadata,omitempty"`
-		Sum float64 `json:"sum"`
-		Values []float64 `json:"values"`
+		Sum      float64                          `json:"sum"`
+		Values   []float64                        `json:"values"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

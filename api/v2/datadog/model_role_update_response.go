@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // RoleUpdateResponse Response containing information about an updated role.
 type RoleUpdateResponse struct {
 	// Role object returned by the API.
 	Data *RoleUpdateResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRoleUpdateResponse instantiates a new RoleUpdateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewRoleUpdateResponseWithDefaults() *RoleUpdateResponse {
 	this := RoleUpdateResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RoleUpdateResponse) GetData() RoleUpdateResponseData {
 	if o == nil || o.Data == nil {
@@ -74,8 +70,6 @@ func (o *RoleUpdateResponse) SetData(v RoleUpdateResponseData) {
 	o.Data = &v
 }
 
-
-
 func (o RoleUpdateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o RoleUpdateResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *RoleUpdateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

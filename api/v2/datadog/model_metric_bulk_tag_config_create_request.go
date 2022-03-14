@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MetricBulkTagConfigCreateRequest Wrapper object for a single bulk tag configuration request.
 type MetricBulkTagConfigCreateRequest struct {
 	// Request object to bulk configure tags for metrics matching the given prefix.
 	Data MetricBulkTagConfigCreate `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricBulkTagConfigCreateRequest instantiates a new MetricBulkTagConfigCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewMetricBulkTagConfigCreateRequestWithDefaults() *MetricBulkTagConfigCreat
 	this := MetricBulkTagConfigCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value
 func (o *MetricBulkTagConfigCreateRequest) GetData() MetricBulkTagConfigCreate {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *MetricBulkTagConfigCreateRequest) SetData(v MetricBulkTagConfigCreate) 
 	o.Data = v
 }
 
-
-
 func (o MetricBulkTagConfigCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o MetricBulkTagConfigCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *MetricBulkTagConfigCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

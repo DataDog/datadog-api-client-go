@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.
 type SyntheticsListTestsResponse struct {
 	// Array of Synthetic tests configuration.
 	Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsListTestsResponse instantiates a new SyntheticsListTestsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewSyntheticsListTestsResponseWithDefaults() *SyntheticsListTestsResponse {
 	this := SyntheticsListTestsResponse{}
 	return &this
 }
+
 // GetTests returns the Tests field value if set, zero value otherwise.
 func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetails {
 	if o == nil || o.Tests == nil {
@@ -74,8 +70,6 @@ func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
 	o.Tests = &v
 }
 
-
-
 func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

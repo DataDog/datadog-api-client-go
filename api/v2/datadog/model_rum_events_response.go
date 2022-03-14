@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // RUMEventsResponse Response object with all events matching the request and pagination information.
 type RUMEventsResponse struct {
@@ -24,11 +21,9 @@ type RUMEventsResponse struct {
 	// The metadata associated with a request.
 	Meta *RUMResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRUMEventsResponse instantiates a new RUMEventsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewRUMEventsResponseWithDefaults() *RUMEventsResponse {
 	this := RUMEventsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RUMEventsResponse) GetData() []RUMEvent {
 	if o == nil || o.Data == nil {
@@ -77,7 +73,6 @@ func (o *RUMEventsResponse) HasData() bool {
 func (o *RUMEventsResponse) SetData(v []RUMEvent) {
 	o.Data = &v
 }
-
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *RUMEventsResponse) GetLinks() RUMResponseLinks {
@@ -111,7 +106,6 @@ func (o *RUMEventsResponse) SetLinks(v RUMResponseLinks) {
 	o.Links = &v
 }
 
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RUMEventsResponse) GetMeta() RUMResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -144,8 +138,6 @@ func (o *RUMEventsResponse) SetMeta(v RUMResponseMetadata) {
 	o.Meta = &v
 }
 
-
-
 func (o RUMEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o RUMEventsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RUMEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]RUMEvent `json:"data,omitempty"`
-		Links *RUMResponseLinks `json:"links,omitempty"`
-		Meta *RUMResponseMetadata `json:"meta,omitempty"`
+		Data  *[]RUMEvent          `json:"data,omitempty"`
+		Links *RUMResponseLinks    `json:"links,omitempty"`
+		Meta  *RUMResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

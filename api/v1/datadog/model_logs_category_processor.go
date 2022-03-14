@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsCategoryProcessor Use the Category Processor to add a new attribute (without spaces or special characters in the new attribute name)
 // to a log matching a provided search query. Use categories to create groups for an analytical view.
@@ -41,11 +39,9 @@ type LogsCategoryProcessor struct {
 	// Type of logs category processor.
 	Type LogsCategoryProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsCategoryProcessor instantiates a new LogsCategoryProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -72,6 +68,7 @@ func NewLogsCategoryProcessorWithDefaults() *LogsCategoryProcessor {
 	this.Type = type_
 	return &this
 }
+
 // GetCategories returns the Categories field value
 func (o *LogsCategoryProcessor) GetCategories() []LogsCategoryProcessorCategory {
 	if o == nil {
@@ -94,7 +91,6 @@ func (o *LogsCategoryProcessor) GetCategoriesOk() (*[]LogsCategoryProcessorCateg
 func (o *LogsCategoryProcessor) SetCategories(v []LogsCategoryProcessorCategory) {
 	o.Categories = v
 }
-
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsCategoryProcessor) GetIsEnabled() bool {
@@ -128,7 +124,6 @@ func (o *LogsCategoryProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsCategoryProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -161,7 +156,6 @@ func (o *LogsCategoryProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetTarget returns the Target field value
 func (o *LogsCategoryProcessor) GetTarget() string {
 	if o == nil {
@@ -184,7 +178,6 @@ func (o *LogsCategoryProcessor) GetTargetOk() (*string, bool) {
 func (o *LogsCategoryProcessor) SetTarget(v string) {
 	o.Target = v
 }
-
 
 // GetType returns the Type field value
 func (o *LogsCategoryProcessor) GetType() LogsCategoryProcessorType {
@@ -209,8 +202,6 @@ func (o *LogsCategoryProcessor) SetType(v LogsCategoryProcessorType) {
 	o.Type = v
 }
 
-
-
 func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -232,20 +223,19 @@ func (o LogsCategoryProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsCategoryProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Categories *[]LogsCategoryProcessorCategory `json:"categories"`
-		Target *string `json:"target"`
-		Type *LogsCategoryProcessorType `json:"type"`
+		Target     *string                          `json:"target"`
+		Type       *LogsCategoryProcessorType       `json:"type"`
 	}{}
 	all := struct {
 		Categories []LogsCategoryProcessorCategory `json:"categories"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Target string `json:"target"`
-		Type LogsCategoryProcessorType `json:"type"`
+		IsEnabled  *bool                           `json:"is_enabled,omitempty"`
+		Name       *string                         `json:"name,omitempty"`
+		Target     string                          `json:"target"`
+		Type       LogsCategoryProcessorType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

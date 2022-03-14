@@ -10,14 +10,11 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MetricVolumes - Possible response objects for a metric's volume.
 type MetricVolumes struct {
-	MetricDistinctVolume *MetricDistinctVolume
+	MetricDistinctVolume        *MetricDistinctVolume
 	MetricIngestedIndexedVolume *MetricIngestedIndexedVolume
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -88,11 +85,9 @@ func (src MetricVolumes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.MetricDistinctVolume)
 	}
 
-
 	if src.MetricIngestedIndexedVolume != nil {
 		return json.Marshal(&src.MetricIngestedIndexedVolume)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -101,16 +96,14 @@ func (src MetricVolumes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *MetricVolumes) GetActualInstance() (interface{}) {
+func (obj *MetricVolumes) GetActualInstance() interface{} {
 	if obj.MetricDistinctVolume != nil {
 		return obj.MetricDistinctVolume
 	}
 
-
 	if obj.MetricIngestedIndexedVolume != nil {
 		return obj.MetricIngestedIndexedVolume
 	}
-
 
 	// all schemas are nil
 	return nil

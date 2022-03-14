@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
@@ -25,11 +22,9 @@ type LogsListResponse struct {
 	// Status of the response.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsListResponse instantiates a new LogsListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +42,7 @@ func NewLogsListResponseWithDefaults() *LogsListResponse {
 	this := LogsListResponse{}
 	return &this
 }
+
 // GetLogs returns the Logs field value if set, zero value otherwise.
 func (o *LogsListResponse) GetLogs() []Log {
 	if o == nil || o.Logs == nil {
@@ -78,7 +74,6 @@ func (o *LogsListResponse) HasLogs() bool {
 func (o *LogsListResponse) SetLogs(v []Log) {
 	o.Logs = &v
 }
-
 
 // GetNextLogId returns the NextLogId field value if set, zero value otherwise.
 func (o *LogsListResponse) GetNextLogId() string {
@@ -112,7 +107,6 @@ func (o *LogsListResponse) SetNextLogId(v string) {
 	o.NextLogId = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LogsListResponse) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -145,8 +139,6 @@ func (o *LogsListResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-
-
 func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -168,13 +160,12 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Logs *[]Log `json:"logs,omitempty"`
+		Logs      *[]Log  `json:"logs,omitempty"`
 		NextLogId *string `json:"nextLogId,omitempty"`
-		Status *string `json:"status,omitempty"`
+		Status    *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

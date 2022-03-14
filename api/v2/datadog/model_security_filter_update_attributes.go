@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SecurityFilterUpdateAttributes The security filters properties to be updated.
 type SecurityFilterUpdateAttributes struct {
@@ -30,11 +27,9 @@ type SecurityFilterUpdateAttributes struct {
 	// The version of the security filter to update.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSecurityFilterUpdateAttributes instantiates a new SecurityFilterUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewSecurityFilterUpdateAttributesWithDefaults() *SecurityFilterUpdateAttrib
 	this := SecurityFilterUpdateAttributes{}
 	return &this
 }
+
 // GetExclusionFilters returns the ExclusionFilters field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetExclusionFilters() []SecurityFilterExclusionFilter {
 	if o == nil || o.ExclusionFilters == nil {
@@ -83,7 +79,6 @@ func (o *SecurityFilterUpdateAttributes) HasExclusionFilters() bool {
 func (o *SecurityFilterUpdateAttributes) SetExclusionFilters(v []SecurityFilterExclusionFilter) {
 	o.ExclusionFilters = &v
 }
-
 
 // GetFilteredDataType returns the FilteredDataType field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetFilteredDataType() SecurityFilterFilteredDataType {
@@ -117,7 +112,6 @@ func (o *SecurityFilterUpdateAttributes) SetFilteredDataType(v SecurityFilterFil
 	o.FilteredDataType = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -149,7 +143,6 @@ func (o *SecurityFilterUpdateAttributes) HasIsEnabled() bool {
 func (o *SecurityFilterUpdateAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetName() string {
@@ -183,7 +176,6 @@ func (o *SecurityFilterUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -215,7 +207,6 @@ func (o *SecurityFilterUpdateAttributes) HasQuery() bool {
 func (o *SecurityFilterUpdateAttributes) SetQuery(v string) {
 	o.Query = &v
 }
-
 
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityFilterUpdateAttributes) GetVersion() int32 {
@@ -249,8 +240,6 @@ func (o *SecurityFilterUpdateAttributes) SetVersion(v int32) {
 	o.Version = &v
 }
 
-
-
 func (o SecurityFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -281,16 +270,15 @@ func (o SecurityFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
-		FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		Name *string `json:"name,omitempty"`
-		Query *string `json:"query,omitempty"`
-		Version *int32 `json:"version,omitempty"`
+		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type,omitempty"`
+		IsEnabled        *bool                            `json:"is_enabled,omitempty"`
+		Name             *string                          `json:"name,omitempty"`
+		Query            *string                          `json:"query,omitempty"`
+		Version          *int32                           `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -301,7 +289,7 @@ func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.FilteredDataType; v != nil &&!v.IsValid() {
+	if v := all.FilteredDataType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -11,11 +11,10 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +28,7 @@ type PagerDutyIntegrationApiService service
 type apiCreatePagerDutyIntegrationServiceRequest struct {
 	ctx        _context.Context
 	ApiService *PagerDutyIntegrationApiService
-	body *PagerDutyService
+	body       *PagerDutyService
 }
 
 /*
@@ -40,7 +39,7 @@ func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _
 	req := apiCreatePagerDutyIntegrationServiceRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
@@ -189,8 +188,8 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 }
 
 type apiDeletePagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
-	ApiService *PagerDutyIntegrationApiService
+	ctx         _context.Context
+	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
@@ -200,8 +199,8 @@ type apiDeletePagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	req := apiDeletePagerDutyIntegrationServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		serviceName: serviceName,
 	}
 
@@ -326,8 +325,8 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 }
 
 type apiGetPagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
-	ApiService *PagerDutyIntegrationApiService
+	ctx         _context.Context
+	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
 }
 
@@ -337,8 +336,8 @@ type apiGetPagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req := apiGetPagerDutyIntegrationServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		serviceName: serviceName,
 	}
 
@@ -474,10 +473,10 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 }
 
 type apiUpdatePagerDutyIntegrationServiceRequest struct {
-	ctx        _context.Context
-	ApiService *PagerDutyIntegrationApiService
+	ctx         _context.Context
+	ApiService  *PagerDutyIntegrationApiService
 	serviceName string
-	body *PagerDutyServiceKey
+	body        *PagerDutyServiceKey
 }
 
 /*
@@ -486,10 +485,10 @@ type apiUpdatePagerDutyIntegrationServiceRequest struct {
  */
 func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
 	req := apiUpdatePagerDutyIntegrationServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		serviceName: serviceName,
-		body: &body,
+		body:        &body,
 	}
 
 	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)

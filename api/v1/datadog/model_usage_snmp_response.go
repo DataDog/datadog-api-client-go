@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // UsageSNMPResponse Response containing the number of SNMP devices for each hour for a given organization.
 type UsageSNMPResponse struct {
 	// Get hourly usage for SNMP devices.
 	Usage *[]UsageSNMPHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageSNMPResponse instantiates a new UsageSNMPResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewUsageSNMPResponseWithDefaults() *UsageSNMPResponse {
 	this := UsageSNMPResponse{}
 	return &this
 }
+
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageSNMPResponse) GetUsage() []UsageSNMPHour {
 	if o == nil || o.Usage == nil {
@@ -74,8 +70,6 @@ func (o *UsageSNMPResponse) SetUsage(v []UsageSNMPHour) {
 	o.Usage = &v
 }
 
-
-
 func (o UsageSNMPResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o UsageSNMPResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *UsageSNMPResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

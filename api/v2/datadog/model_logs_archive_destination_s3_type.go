@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsArchiveDestinationS3Type Type of the S3 archive destination.
 type LogsArchiveDestinationS3Type string

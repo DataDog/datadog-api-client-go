@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // Permission Permission object.
 type Permission struct {
@@ -24,11 +22,9 @@ type Permission struct {
 	// Permissions resource type.
 	Type PermissionsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewPermission instantiates a new Permission object
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +45,7 @@ func NewPermissionWithDefaults() *Permission {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *Permission) GetAttributes() PermissionAttributes {
 	if o == nil || o.Attributes == nil {
@@ -80,7 +77,6 @@ func (o *Permission) HasAttributes() bool {
 func (o *Permission) SetAttributes(v PermissionAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Permission) GetId() string {
@@ -114,7 +110,6 @@ func (o *Permission) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetType returns the Type field value
 func (o *Permission) GetType() PermissionsType {
 	if o == nil {
@@ -138,8 +133,6 @@ func (o *Permission) SetType(v PermissionsType) {
 	o.Type = v
 }
 
-
-
 func (o Permission) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,7 +152,6 @@ func (o Permission) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -167,8 +159,8 @@ func (o *Permission) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Attributes *PermissionAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Type PermissionsType `json:"type"`
+		Id         *string               `json:"id,omitempty"`
+		Type       PermissionsType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

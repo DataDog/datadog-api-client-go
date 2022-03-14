@@ -10,15 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AuthNMappingIncluded - Included data in the AuthN Mapping response.
 type AuthNMappingIncluded struct {
 	SAMLAssertionAttribute *SAMLAssertionAttribute
-	Role *Role
+	Role                   *Role
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -88,11 +85,9 @@ func (src AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SAMLAssertionAttribute)
 	}
 
-
 	if src.Role != nil {
 		return json.Marshal(&src.Role)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -101,16 +96,14 @@ func (src AuthNMappingIncluded) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *AuthNMappingIncluded) GetActualInstance() (interface{}) {
+func (obj *AuthNMappingIncluded) GetActualInstance() interface{} {
 	if obj.SAMLAssertionAttribute != nil {
 		return obj.SAMLAssertionAttribute
 	}
 
-
 	if obj.Role != nil {
 		return obj.Role
 	}
-
 
 	// all schemas are nil
 	return nil

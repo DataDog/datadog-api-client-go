@@ -11,11 +11,10 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +28,7 @@ type UsersApiService service
 type apiCreateServiceAccountRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	body *ServiceAccountCreateRequest
+	body       *ServiceAccountCreateRequest
 }
 
 /*
@@ -40,7 +39,7 @@ func (a *UsersApiService) CreateServiceAccount(ctx _context.Context, body Servic
 	req := apiCreateServiceAccountRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createServiceAccountExecute(req)
@@ -191,7 +190,7 @@ func (a *UsersApiService) createServiceAccountExecute(r apiCreateServiceAccountR
 type apiCreateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	body *UserCreateRequest
+	body       *UserCreateRequest
 }
 
 /*
@@ -202,7 +201,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, body UserCreateReques
 	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createUserExecute(req)
@@ -353,7 +352,7 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 type apiDisableUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	userId string
+	userId     string
 }
 
 /*
@@ -365,7 +364,7 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_ne
 	req := apiDisableUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		userId: userId,
+		userId:     userId,
 	}
 
 	return req.ApiService.disableUserExecute(req)
@@ -489,8 +488,8 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp
 }
 
 type apiGetInvitationRequest struct {
-	ctx        _context.Context
-	ApiService *UsersApiService
+	ctx                _context.Context
+	ApiService         *UsersApiService
 	userInvitationUuid string
 }
 
@@ -500,8 +499,8 @@ type apiGetInvitationRequest struct {
  */
 func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
 	req := apiGetInvitationRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:         a,
+		ctx:                ctx,
 		userInvitationUuid: userInvitationUuid,
 	}
 
@@ -639,7 +638,7 @@ func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserI
 type apiGetUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	userId string
+	userId     string
 }
 
 /*
@@ -650,7 +649,7 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userId string) (UserResp
 	req := apiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		userId: userId,
+		userId:     userId,
 	}
 
 	return req.ApiService.getUserExecute(req)
@@ -787,7 +786,7 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 type apiListUserOrganizationsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	userId string
+	userId     string
 }
 
 /*
@@ -799,7 +798,7 @@ func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId str
 	req := apiListUserOrganizationsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		userId: userId,
+		userId:     userId,
 	}
 
 	return req.ApiService.listUserOrganizationsExecute(req)
@@ -936,7 +935,7 @@ func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganization
 type apiListUserPermissionsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	userId string
+	userId     string
 }
 
 /*
@@ -948,7 +947,7 @@ func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId strin
 	req := apiListUserPermissionsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		userId: userId,
+		userId:     userId,
 	}
 
 	return req.ApiService.listUserPermissionsExecute(req)
@@ -1083,22 +1082,22 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 }
 
 type apiListUsersRequest struct {
-	ctx        _context.Context
-	ApiService *UsersApiService
-	pageSize *int64
-	pageNumber *int64
-	sort *string
-	sortDir *QuerySortOrder
-	filter *string
+	ctx          _context.Context
+	ApiService   *UsersApiService
+	pageSize     *int64
+	pageNumber   *int64
+	sort         *string
+	sortDir      *QuerySortOrder
+	filter       *string
 	filterStatus *string
 }
 
 type ListUsersOptionalParameters struct {
-	PageSize *int64
-	PageNumber *int64
-	Sort *string
-	SortDir *QuerySortOrder
-	Filter *string
+	PageSize     *int64
+	PageNumber   *int64
+	Sort         *string
+	SortDir      *QuerySortOrder
+	Filter       *string
 	FilterStatus *string
 }
 
@@ -1307,7 +1306,7 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 type apiSendInvitationsRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	body *UserInvitationsRequest
+	body       *UserInvitationsRequest
 }
 
 /*
@@ -1318,7 +1317,7 @@ func (a *UsersApiService) SendInvitations(ctx _context.Context, body UserInvitat
 	req := apiSendInvitationsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.sendInvitationsExecute(req)
@@ -1469,8 +1468,8 @@ func (a *UsersApiService) sendInvitationsExecute(r apiSendInvitationsRequest) (U
 type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	userId string
-	body *UserUpdateRequest
+	userId     string
+	body       *UserUpdateRequest
 }
 
 /*
@@ -1482,8 +1481,8 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body U
 	req := apiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		userId: userId,
-		body: &body,
+		userId:     userId,
+		body:       &body,
 	}
 
 	return req.ApiService.updateUserExecute(req)

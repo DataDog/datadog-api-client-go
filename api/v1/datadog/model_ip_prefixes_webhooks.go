@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // IPPrefixesWebhooks Available prefix information for the Webhook endpoints.
 type IPPrefixesWebhooks struct {
@@ -22,11 +19,9 @@ type IPPrefixesWebhooks struct {
 	// List of IPv6 prefixes.
 	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIPPrefixesWebhooks instantiates a new IPPrefixesWebhooks object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewIPPrefixesWebhooksWithDefaults() *IPPrefixesWebhooks {
 	this := IPPrefixesWebhooks{}
 	return &this
 }
+
 // GetPrefixesIpv4 returns the PrefixesIpv4 field value if set, zero value otherwise.
 func (o *IPPrefixesWebhooks) GetPrefixesIpv4() []string {
 	if o == nil || o.PrefixesIpv4 == nil {
@@ -75,7 +71,6 @@ func (o *IPPrefixesWebhooks) HasPrefixesIpv4() bool {
 func (o *IPPrefixesWebhooks) SetPrefixesIpv4(v []string) {
 	o.PrefixesIpv4 = &v
 }
-
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
 func (o *IPPrefixesWebhooks) GetPrefixesIpv6() []string {
@@ -109,8 +104,6 @@ func (o *IPPrefixesWebhooks) SetPrefixesIpv6(v []string) {
 	o.PrefixesIpv6 = &v
 }
 
-
-
 func (o IPPrefixesWebhooks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -128,7 +121,6 @@ func (o IPPrefixesWebhooks) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *IPPrefixesWebhooks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

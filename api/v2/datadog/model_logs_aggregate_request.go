@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsAggregateRequest The object sent with the request to retrieve a list of logs from your organization.
 type LogsAggregateRequest struct {
@@ -29,11 +26,9 @@ type LogsAggregateRequest struct {
 	// Paging settings
 	Page *LogsAggregateRequestPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsAggregateRequest instantiates a new LogsAggregateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +46,7 @@ func NewLogsAggregateRequestWithDefaults() *LogsAggregateRequest {
 	this := LogsAggregateRequest{}
 	return &this
 }
+
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetCompute() []LogsCompute {
 	if o == nil || o.Compute == nil {
@@ -82,7 +78,6 @@ func (o *LogsAggregateRequest) HasCompute() bool {
 func (o *LogsAggregateRequest) SetCompute(v []LogsCompute) {
 	o.Compute = &v
 }
-
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetFilter() LogsQueryFilter {
@@ -116,7 +111,6 @@ func (o *LogsAggregateRequest) SetFilter(v LogsQueryFilter) {
 	o.Filter = &v
 }
 
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetGroupBy() []LogsGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -148,7 +142,6 @@ func (o *LogsAggregateRequest) HasGroupBy() bool {
 func (o *LogsAggregateRequest) SetGroupBy(v []LogsGroupBy) {
 	o.GroupBy = &v
 }
-
 
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetOptions() LogsQueryOptions {
@@ -182,7 +175,6 @@ func (o *LogsAggregateRequest) SetOptions(v LogsQueryOptions) {
 	o.Options = &v
 }
 
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *LogsAggregateRequest) GetPage() LogsAggregateRequestPage {
 	if o == nil || o.Page == nil {
@@ -215,8 +207,6 @@ func (o *LogsAggregateRequest) SetPage(v LogsAggregateRequestPage) {
 	o.Page = &v
 }
 
-
-
 func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -244,15 +234,14 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *[]LogsCompute `json:"compute,omitempty"`
-		Filter *LogsQueryFilter `json:"filter,omitempty"`
-		GroupBy *[]LogsGroupBy `json:"group_by,omitempty"`
-		Options *LogsQueryOptions `json:"options,omitempty"`
-		Page *LogsAggregateRequestPage `json:"page,omitempty"`
+		Compute *[]LogsCompute            `json:"compute,omitempty"`
+		Filter  *LogsQueryFilter          `json:"filter,omitempty"`
+		GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
+		Options *LogsQueryOptions         `json:"options,omitempty"`
+		Page    *LogsAggregateRequestPage `json:"page,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

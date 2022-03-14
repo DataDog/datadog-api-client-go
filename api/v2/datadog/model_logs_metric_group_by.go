@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsMetricGroupBy A group by rule.
 type LogsMetricGroupBy struct {
@@ -22,11 +20,9 @@ type LogsMetricGroupBy struct {
 	// Eventual name of the tag that gets created. By default, the path attribute is used as the tag name.
 	TagName *string `json:"tag_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsMetricGroupBy instantiates a new LogsMetricGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +41,7 @@ func NewLogsMetricGroupByWithDefaults() *LogsMetricGroupBy {
 	this := LogsMetricGroupBy{}
 	return &this
 }
+
 // GetPath returns the Path field value
 func (o *LogsMetricGroupBy) GetPath() string {
 	if o == nil {
@@ -67,7 +64,6 @@ func (o *LogsMetricGroupBy) GetPathOk() (*string, bool) {
 func (o *LogsMetricGroupBy) SetPath(v string) {
 	o.Path = v
 }
-
 
 // GetTagName returns the TagName field value if set, zero value otherwise.
 func (o *LogsMetricGroupBy) GetTagName() string {
@@ -101,8 +97,6 @@ func (o *LogsMetricGroupBy) SetTagName(v string) {
 	o.TagName = &v
 }
 
-
-
 func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -119,14 +113,13 @@ func (o LogsMetricGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsMetricGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Path *string `json:"path"`
 	}{}
 	all := struct {
-		Path string `json:"path"`
+		Path    string  `json:"path"`
 		TagName *string `json:"tag_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MonitorGroupSearchResult A single monitor group search result.
 type MonitorGroupSearchResult struct {
@@ -32,11 +29,9 @@ type MonitorGroupSearchResult struct {
 	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMonitorGroupSearchResult instantiates a new MonitorGroupSearchResult object
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +49,7 @@ func NewMonitorGroupSearchResultWithDefaults() *MonitorGroupSearchResult {
 	this := MonitorGroupSearchResult{}
 	return &this
 }
+
 // GetGroup returns the Group field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetGroup() string {
 	if o == nil || o.Group == nil {
@@ -85,7 +81,6 @@ func (o *MonitorGroupSearchResult) HasGroup() bool {
 func (o *MonitorGroupSearchResult) SetGroup(v string) {
 	o.Group = &v
 }
-
 
 // GetGroupTags returns the GroupTags field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetGroupTags() []string {
@@ -119,7 +114,6 @@ func (o *MonitorGroupSearchResult) SetGroupTags(v []string) {
 	o.GroupTags = &v
 }
 
-
 // GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetLastNodataTs() int64 {
 	if o == nil || o.LastNodataTs == nil {
@@ -152,7 +146,6 @@ func (o *MonitorGroupSearchResult) SetLastNodataTs(v int64) {
 	o.LastNodataTs = &v
 }
 
-
 // GetLastTriggeredTs returns the LastTriggeredTs field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorGroupSearchResult) GetLastTriggeredTs() int64 {
 	if o == nil || o.LastTriggeredTs.Get() == nil {
@@ -166,7 +159,7 @@ func (o *MonitorGroupSearchResult) GetLastTriggeredTs() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorGroupSearchResult) GetLastTriggeredTsOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.LastTriggeredTs.Get(), o.LastTriggeredTs.IsSet()
@@ -185,6 +178,7 @@ func (o *MonitorGroupSearchResult) HasLastTriggeredTs() bool {
 func (o *MonitorGroupSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
+
 // SetLastTriggeredTsNil sets the value for LastTriggeredTs to be an explicit nil
 func (o *MonitorGroupSearchResult) SetLastTriggeredTsNil() {
 	o.LastTriggeredTs.Set(nil)
@@ -194,7 +188,6 @@ func (o *MonitorGroupSearchResult) SetLastTriggeredTsNil() {
 func (o *MonitorGroupSearchResult) UnsetLastTriggeredTs() {
 	o.LastTriggeredTs.Unset()
 }
-
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetMonitorId() int64 {
@@ -228,7 +221,6 @@ func (o *MonitorGroupSearchResult) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-
 // GetMonitorName returns the MonitorName field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetMonitorName() string {
 	if o == nil || o.MonitorName == nil {
@@ -261,7 +253,6 @@ func (o *MonitorGroupSearchResult) SetMonitorName(v string) {
 	o.MonitorName = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResult) GetStatus() MonitorOverallStates {
 	if o == nil || o.Status == nil {
@@ -293,8 +284,6 @@ func (o *MonitorGroupSearchResult) HasStatus() bool {
 func (o *MonitorGroupSearchResult) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
-
-
 
 func (o MonitorGroupSearchResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -329,17 +318,16 @@ func (o MonitorGroupSearchResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Group *string `json:"group,omitempty"`
-		GroupTags *[]string `json:"group_tags,omitempty"`
-		LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
-		LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
-		MonitorId *int64 `json:"monitor_id,omitempty"`
-		MonitorName *string `json:"monitor_name,omitempty"`
-		Status *MonitorOverallStates `json:"status,omitempty"`
+		Group           *string               `json:"group,omitempty"`
+		GroupTags       *[]string             `json:"group_tags,omitempty"`
+		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
+		LastTriggeredTs NullableInt64         `json:"last_triggered_ts,omitempty"`
+		MonitorId       *int64                `json:"monitor_id,omitempty"`
+		MonitorName     *string               `json:"monitor_name,omitempty"`
+		Status          *MonitorOverallStates `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -350,7 +338,7 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil &&!v.IsValid() {
+	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsTestRequestCertificate Client certificate to use when performing the test request.
 type SyntheticsTestRequestCertificate struct {
@@ -22,11 +19,9 @@ type SyntheticsTestRequestCertificate struct {
 	// Define a request certificate.
 	Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsTestRequestCertificate instantiates a new SyntheticsTestRequestCertificate object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSyntheticsTestRequestCertificateWithDefaults() *SyntheticsTestRequestCer
 	this := SyntheticsTestRequestCertificate{}
 	return &this
 }
+
 // GetCert returns the Cert field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificate) GetCert() SyntheticsTestRequestCertificateItem {
 	if o == nil || o.Cert == nil {
@@ -75,7 +71,6 @@ func (o *SyntheticsTestRequestCertificate) HasCert() bool {
 func (o *SyntheticsTestRequestCertificate) SetCert(v SyntheticsTestRequestCertificateItem) {
 	o.Cert = &v
 }
-
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsTestRequestCertificate) GetKey() SyntheticsTestRequestCertificateItem {
@@ -109,8 +104,6 @@ func (o *SyntheticsTestRequestCertificate) SetKey(v SyntheticsTestRequestCertifi
 	o.Key = &v
 }
 
-
-
 func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,12 +122,11 @@ func (o SyntheticsTestRequestCertificate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsTestRequestCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Cert *SyntheticsTestRequestCertificateItem `json:"cert,omitempty"`
-		Key *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
+		Key  *SyntheticsTestRequestCertificateItem `json:"key,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

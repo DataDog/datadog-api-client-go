@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsAPITestType Type of the Synthetic test, `api`.
 type SyntheticsAPITestType string

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentServiceUpdateData Incident Service payload for update requests.
 type IncidentServiceUpdateData struct {
@@ -26,11 +24,9 @@ type IncidentServiceUpdateData struct {
 	// Incident service resource type.
 	Type IncidentServiceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentServiceUpdateData instantiates a new IncidentServiceUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +47,7 @@ func NewIncidentServiceUpdateDataWithDefaults() *IncidentServiceUpdateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *IncidentServiceUpdateData) GetAttributes() IncidentServiceUpdateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -82,7 +79,6 @@ func (o *IncidentServiceUpdateData) HasAttributes() bool {
 func (o *IncidentServiceUpdateData) SetAttributes(v IncidentServiceUpdateAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *IncidentServiceUpdateData) GetId() string {
@@ -116,7 +112,6 @@ func (o *IncidentServiceUpdateData) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentServiceUpdateData) GetRelationships() IncidentServiceRelationships {
 	if o == nil || o.Relationships == nil {
@@ -149,7 +144,6 @@ func (o *IncidentServiceUpdateData) SetRelationships(v IncidentServiceRelationsh
 	o.Relationships = &v
 }
 
-
 // GetType returns the Type field value
 func (o *IncidentServiceUpdateData) GetType() IncidentServiceType {
 	if o == nil {
@@ -173,8 +167,6 @@ func (o *IncidentServiceUpdateData) SetType(v IncidentServiceType) {
 	o.Type = v
 }
 
-
-
 func (o IncidentServiceUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -197,17 +189,16 @@ func (o IncidentServiceUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *IncidentServiceUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *IncidentServiceType `json:"type"`
 	}{}
 	all := struct {
-		Attributes *IncidentServiceUpdateAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Relationships *IncidentServiceRelationships `json:"relationships,omitempty"`
-		Type IncidentServiceType `json:"type"`
+		Attributes    *IncidentServiceUpdateAttributes `json:"attributes,omitempty"`
+		Id            *string                          `json:"id,omitempty"`
+		Relationships *IncidentServiceRelationships    `json:"relationships,omitempty"`
+		Type          IncidentServiceType              `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

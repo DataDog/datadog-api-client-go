@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsVariableParser Details of the parser to use for the global variable.
 type SyntheticsVariableParser struct {
@@ -22,11 +20,9 @@ type SyntheticsVariableParser struct {
 	// Regex or JSON path used for the parser. Not used with type `raw`.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsVariableParser instantiates a new SyntheticsVariableParser object
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +41,7 @@ func NewSyntheticsVariableParserWithDefaults() *SyntheticsVariableParser {
 	this := SyntheticsVariableParser{}
 	return &this
 }
+
 // GetType returns the Type field value
 func (o *SyntheticsVariableParser) GetType() SyntheticsGlobalVariableParserType {
 	if o == nil {
@@ -67,7 +64,6 @@ func (o *SyntheticsVariableParser) GetTypeOk() (*SyntheticsGlobalVariableParserT
 func (o *SyntheticsVariableParser) SetType(v SyntheticsGlobalVariableParserType) {
 	o.Type = v
 }
-
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsVariableParser) GetValue() string {
@@ -101,8 +97,6 @@ func (o *SyntheticsVariableParser) SetValue(v string) {
 	o.Value = &v
 }
 
-
-
 func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -119,15 +113,14 @@ func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SyntheticsGlobalVariableParserType `json:"type"`
 	}{}
 	all := struct {
-		Type SyntheticsGlobalVariableParserType `json:"type"`
-		Value *string `json:"value,omitempty"`
+		Type  SyntheticsGlobalVariableParserType `json:"type"`
+		Value *string                            `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

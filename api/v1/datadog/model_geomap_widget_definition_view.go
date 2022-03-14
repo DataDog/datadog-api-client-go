@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // GeomapWidgetDefinitionView The view of the world that the map should render.
 type GeomapWidgetDefinitionView struct {
 	// The 2-letter ISO code of a country to focus the map on. Or `WORLD`.
 	Focus string `json:"focus"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewGeomapWidgetDefinitionViewWithDefaults() *GeomapWidgetDefinitionView {
 	this := GeomapWidgetDefinitionView{}
 	return &this
 }
+
 // GetFocus returns the Focus field value
 func (o *GeomapWidgetDefinitionView) GetFocus() string {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *GeomapWidgetDefinitionView) SetFocus(v string) {
 	o.Focus = v
 }
 
-
-
 func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsURLParserType Type of logs URL parser.
 type LogsURLParserType string

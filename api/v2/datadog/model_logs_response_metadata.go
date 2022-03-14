@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsResponseMetadata The metadata associated with a request
 type LogsResponseMetadata struct {
@@ -29,11 +26,9 @@ type LogsResponseMetadata struct {
 	// warnings are present in the response.
 	Warnings *[]LogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsResponseMetadata instantiates a new LogsResponseMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +46,7 @@ func NewLogsResponseMetadataWithDefaults() *LogsResponseMetadata {
 	this := LogsResponseMetadata{}
 	return &this
 }
+
 // GetElapsed returns the Elapsed field value if set, zero value otherwise.
 func (o *LogsResponseMetadata) GetElapsed() int64 {
 	if o == nil || o.Elapsed == nil {
@@ -82,7 +78,6 @@ func (o *LogsResponseMetadata) HasElapsed() bool {
 func (o *LogsResponseMetadata) SetElapsed(v int64) {
 	o.Elapsed = &v
 }
-
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *LogsResponseMetadata) GetPage() LogsResponseMetadataPage {
@@ -116,7 +111,6 @@ func (o *LogsResponseMetadata) SetPage(v LogsResponseMetadataPage) {
 	o.Page = &v
 }
 
-
 // GetRequestId returns the RequestId field value if set, zero value otherwise.
 func (o *LogsResponseMetadata) GetRequestId() string {
 	if o == nil || o.RequestId == nil {
@@ -148,7 +142,6 @@ func (o *LogsResponseMetadata) HasRequestId() bool {
 func (o *LogsResponseMetadata) SetRequestId(v string) {
 	o.RequestId = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *LogsResponseMetadata) GetStatus() LogsAggregateResponseStatus {
@@ -182,7 +175,6 @@ func (o *LogsResponseMetadata) SetStatus(v LogsAggregateResponseStatus) {
 	o.Status = &v
 }
 
-
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
 func (o *LogsResponseMetadata) GetWarnings() []LogsWarning {
 	if o == nil || o.Warnings == nil {
@@ -215,8 +207,6 @@ func (o *LogsResponseMetadata) SetWarnings(v []LogsWarning) {
 	o.Warnings = &v
 }
 
-
-
 func (o LogsResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -244,15 +234,14 @@ func (o LogsResponseMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Elapsed *int64 `json:"elapsed,omitempty"`
-		Page *LogsResponseMetadataPage `json:"page,omitempty"`
-		RequestId *string `json:"request_id,omitempty"`
-		Status *LogsAggregateResponseStatus `json:"status,omitempty"`
-		Warnings *[]LogsWarning `json:"warnings,omitempty"`
+		Elapsed   *int64                       `json:"elapsed,omitempty"`
+		Page      *LogsResponseMetadataPage    `json:"page,omitempty"`
+		RequestId *string                      `json:"request_id,omitempty"`
+		Status    *LogsAggregateResponseStatus `json:"status,omitempty"`
+		Warnings  *[]LogsWarning               `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -263,7 +252,7 @@ func (o *LogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil &&!v.IsValid() {
+	if v := all.Status; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

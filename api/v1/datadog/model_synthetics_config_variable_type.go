@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsConfigVariableType Type of the configuration variable.
 type SyntheticsConfigVariableType string
@@ -21,7 +19,7 @@ type SyntheticsConfigVariableType string
 // List of SyntheticsConfigVariableType
 const (
 	SYNTHETICSCONFIGVARIABLETYPE_GLOBAL SyntheticsConfigVariableType = "global"
-	SYNTHETICSCONFIGVARIABLETYPE_TEXT SyntheticsConfigVariableType = "text"
+	SYNTHETICSCONFIGVARIABLETYPE_TEXT   SyntheticsConfigVariableType = "text"
 )
 
 var allowedSyntheticsConfigVariableTypeEnumValues = []SyntheticsConfigVariableType{

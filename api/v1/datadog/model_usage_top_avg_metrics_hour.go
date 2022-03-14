@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // UsageTopAvgMetricsHour Number of hourly recorded custom metrics for a given organization.
 type UsageTopAvgMetricsHour struct {
@@ -26,11 +23,9 @@ type UsageTopAvgMetricsHour struct {
 	// Contains the custom metric name.
 	MetricName *string `json:"metric_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageTopAvgMetricsHour instantiates a new UsageTopAvgMetricsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewUsageTopAvgMetricsHourWithDefaults() *UsageTopAvgMetricsHour {
 	this := UsageTopAvgMetricsHour{}
 	return &this
 }
+
 // GetAvgMetricHour returns the AvgMetricHour field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsHour) GetAvgMetricHour() int64 {
 	if o == nil || o.AvgMetricHour == nil {
@@ -79,7 +75,6 @@ func (o *UsageTopAvgMetricsHour) HasAvgMetricHour() bool {
 func (o *UsageTopAvgMetricsHour) SetAvgMetricHour(v int64) {
 	o.AvgMetricHour = &v
 }
-
 
 // GetMaxMetricHour returns the MaxMetricHour field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsHour) GetMaxMetricHour() int64 {
@@ -113,7 +108,6 @@ func (o *UsageTopAvgMetricsHour) SetMaxMetricHour(v int64) {
 	o.MaxMetricHour = &v
 }
 
-
 // GetMetricCategory returns the MetricCategory field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsHour) GetMetricCategory() UsageMetricCategory {
 	if o == nil || o.MetricCategory == nil {
@@ -145,7 +139,6 @@ func (o *UsageTopAvgMetricsHour) HasMetricCategory() bool {
 func (o *UsageTopAvgMetricsHour) SetMetricCategory(v UsageMetricCategory) {
 	o.MetricCategory = &v
 }
-
 
 // GetMetricName returns the MetricName field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsHour) GetMetricName() string {
@@ -179,8 +172,6 @@ func (o *UsageTopAvgMetricsHour) SetMetricName(v string) {
 	o.MetricName = &v
 }
 
-
-
 func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -205,14 +196,13 @@ func (o UsageTopAvgMetricsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AvgMetricHour *int64 `json:"avg_metric_hour,omitempty"`
-		MaxMetricHour *int64 `json:"max_metric_hour,omitempty"`
+		AvgMetricHour  *int64               `json:"avg_metric_hour,omitempty"`
+		MaxMetricHour  *int64               `json:"max_metric_hour,omitempty"`
 		MetricCategory *UsageMetricCategory `json:"metric_category,omitempty"`
-		MetricName *string `json:"metric_name,omitempty"`
+		MetricName     *string              `json:"metric_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -223,7 +213,7 @@ func (o *UsageTopAvgMetricsHour) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.MetricCategory; v != nil &&!v.IsValid() {
+	if v := all.MetricCategory; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

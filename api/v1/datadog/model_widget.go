@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // Widget Information about widget.
 //
@@ -29,11 +27,9 @@ type Widget struct {
 	// The layout for a widget on a `free` or **new dashboard layout** dashboard.
 	Layout *WidgetLayout `json:"layout,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewWidget instantiates a new Widget object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +48,7 @@ func NewWidgetWithDefaults() *Widget {
 	this := Widget{}
 	return &this
 }
+
 // GetDefinition returns the Definition field value
 func (o *Widget) GetDefinition() WidgetDefinition {
 	if o == nil {
@@ -74,7 +71,6 @@ func (o *Widget) GetDefinitionOk() (*WidgetDefinition, bool) {
 func (o *Widget) SetDefinition(v WidgetDefinition) {
 	o.Definition = v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Widget) GetId() int64 {
@@ -108,7 +104,6 @@ func (o *Widget) SetId(v int64) {
 	o.Id = &v
 }
 
-
 // GetLayout returns the Layout field value if set, zero value otherwise.
 func (o *Widget) GetLayout() WidgetLayout {
 	if o == nil || o.Layout == nil {
@@ -141,8 +136,6 @@ func (o *Widget) SetLayout(v WidgetLayout) {
 	o.Layout = &v
 }
 
-
-
 func (o Widget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -162,7 +155,6 @@ func (o Widget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -170,8 +162,8 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Definition WidgetDefinition `json:"definition"`
-		Id *int64 `json:"id,omitempty"`
-		Layout *WidgetLayout `json:"layout,omitempty"`
+		Id         *int64           `json:"id,omitempty"`
+		Layout     *WidgetLayout    `json:"layout,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

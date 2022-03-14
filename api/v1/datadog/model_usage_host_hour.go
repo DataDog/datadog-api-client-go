@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageHostHour Number of hosts/containers recorded for each hour for a given organization.
 type UsageHostHour struct {
@@ -59,11 +57,9 @@ type UsageHostHour struct {
 	// (and were NOT running the Datadog Agent).
 	VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageHostHour instantiates a new UsageHostHour object
 // This constructor will assign default values to properties that have it defined,
@@ -81,6 +77,7 @@ func NewUsageHostHourWithDefaults() *UsageHostHour {
 	this := UsageHostHour{}
 	return &this
 }
+
 // GetAgentHostCount returns the AgentHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAgentHostCount() int64 {
 	if o == nil || o.AgentHostCount == nil {
@@ -112,7 +109,6 @@ func (o *UsageHostHour) HasAgentHostCount() bool {
 func (o *UsageHostHour) SetAgentHostCount(v int64) {
 	o.AgentHostCount = &v
 }
-
 
 // GetAlibabaHostCount returns the AlibabaHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAlibabaHostCount() int64 {
@@ -146,7 +142,6 @@ func (o *UsageHostHour) SetAlibabaHostCount(v int64) {
 	o.AlibabaHostCount = &v
 }
 
-
 // GetApmAzureAppServiceHostCount returns the ApmAzureAppServiceHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetApmAzureAppServiceHostCount() int64 {
 	if o == nil || o.ApmAzureAppServiceHostCount == nil {
@@ -178,7 +173,6 @@ func (o *UsageHostHour) HasApmAzureAppServiceHostCount() bool {
 func (o *UsageHostHour) SetApmAzureAppServiceHostCount(v int64) {
 	o.ApmAzureAppServiceHostCount = &v
 }
-
 
 // GetApmHostCount returns the ApmHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetApmHostCount() int64 {
@@ -212,7 +206,6 @@ func (o *UsageHostHour) SetApmHostCount(v int64) {
 	o.ApmHostCount = &v
 }
 
-
 // GetAwsHostCount returns the AwsHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAwsHostCount() int64 {
 	if o == nil || o.AwsHostCount == nil {
@@ -244,7 +237,6 @@ func (o *UsageHostHour) HasAwsHostCount() bool {
 func (o *UsageHostHour) SetAwsHostCount(v int64) {
 	o.AwsHostCount = &v
 }
-
 
 // GetAzureHostCount returns the AzureHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetAzureHostCount() int64 {
@@ -278,7 +270,6 @@ func (o *UsageHostHour) SetAzureHostCount(v int64) {
 	o.AzureHostCount = &v
 }
 
-
 // GetContainerCount returns the ContainerCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetContainerCount() int64 {
 	if o == nil || o.ContainerCount == nil {
@@ -310,7 +301,6 @@ func (o *UsageHostHour) HasContainerCount() bool {
 func (o *UsageHostHour) SetContainerCount(v int64) {
 	o.ContainerCount = &v
 }
-
 
 // GetGcpHostCount returns the GcpHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetGcpHostCount() int64 {
@@ -344,7 +334,6 @@ func (o *UsageHostHour) SetGcpHostCount(v int64) {
 	o.GcpHostCount = &v
 }
 
-
 // GetHerokuHostCount returns the HerokuHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHerokuHostCount() int64 {
 	if o == nil || o.HerokuHostCount == nil {
@@ -376,7 +365,6 @@ func (o *UsageHostHour) HasHerokuHostCount() bool {
 func (o *UsageHostHour) SetHerokuHostCount(v int64) {
 	o.HerokuHostCount = &v
 }
-
 
 // GetHostCount returns the HostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHostCount() int64 {
@@ -410,7 +398,6 @@ func (o *UsageHostHour) SetHostCount(v int64) {
 	o.HostCount = &v
 }
 
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageHostHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -442,7 +429,6 @@ func (o *UsageHostHour) HasHour() bool {
 func (o *UsageHostHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetInfraAzureAppService returns the InfraAzureAppService field value if set, zero value otherwise.
 func (o *UsageHostHour) GetInfraAzureAppService() int64 {
@@ -476,7 +462,6 @@ func (o *UsageHostHour) SetInfraAzureAppService(v int64) {
 	o.InfraAzureAppService = &v
 }
 
-
 // GetOpentelemetryHostCount returns the OpentelemetryHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetOpentelemetryHostCount() int64 {
 	if o == nil || o.OpentelemetryHostCount == nil {
@@ -508,7 +493,6 @@ func (o *UsageHostHour) HasOpentelemetryHostCount() bool {
 func (o *UsageHostHour) SetOpentelemetryHostCount(v int64) {
 	o.OpentelemetryHostCount = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageHostHour) GetOrgName() string {
@@ -542,7 +526,6 @@ func (o *UsageHostHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageHostHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -575,7 +558,6 @@ func (o *UsageHostHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetVsphereHostCount returns the VsphereHostCount field value if set, zero value otherwise.
 func (o *UsageHostHour) GetVsphereHostCount() int64 {
 	if o == nil || o.VsphereHostCount == nil {
@@ -607,8 +589,6 @@ func (o *UsageHostHour) HasVsphereHostCount() bool {
 func (o *UsageHostHour) SetVsphereHostCount(v int64) {
 	o.VsphereHostCount = &v
 }
-
-
 
 func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -670,26 +650,25 @@ func (o UsageHostHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageHostHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentHostCount *int64 `json:"agent_host_count,omitempty"`
-		AlibabaHostCount *int64 `json:"alibaba_host_count,omitempty"`
-		ApmAzureAppServiceHostCount *int64 `json:"apm_azure_app_service_host_count,omitempty"`
-		ApmHostCount *int64 `json:"apm_host_count,omitempty"`
-		AwsHostCount *int64 `json:"aws_host_count,omitempty"`
-		AzureHostCount *int64 `json:"azure_host_count,omitempty"`
-		ContainerCount *int64 `json:"container_count,omitempty"`
-		GcpHostCount *int64 `json:"gcp_host_count,omitempty"`
-		HerokuHostCount *int64 `json:"heroku_host_count,omitempty"`
-		HostCount *int64 `json:"host_count,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		InfraAzureAppService *int64 `json:"infra_azure_app_service,omitempty"`
-		OpentelemetryHostCount *int64 `json:"opentelemetry_host_count,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		VsphereHostCount *int64 `json:"vsphere_host_count,omitempty"`
+		AgentHostCount              *int64     `json:"agent_host_count,omitempty"`
+		AlibabaHostCount            *int64     `json:"alibaba_host_count,omitempty"`
+		ApmAzureAppServiceHostCount *int64     `json:"apm_azure_app_service_host_count,omitempty"`
+		ApmHostCount                *int64     `json:"apm_host_count,omitempty"`
+		AwsHostCount                *int64     `json:"aws_host_count,omitempty"`
+		AzureHostCount              *int64     `json:"azure_host_count,omitempty"`
+		ContainerCount              *int64     `json:"container_count,omitempty"`
+		GcpHostCount                *int64     `json:"gcp_host_count,omitempty"`
+		HerokuHostCount             *int64     `json:"heroku_host_count,omitempty"`
+		HostCount                   *int64     `json:"host_count,omitempty"`
+		Hour                        *time.Time `json:"hour,omitempty"`
+		InfraAzureAppService        *int64     `json:"infra_azure_app_service,omitempty"`
+		OpentelemetryHostCount      *int64     `json:"opentelemetry_host_count,omitempty"`
+		OrgName                     *string    `json:"org_name,omitempty"`
+		PublicId                    *string    `json:"public_id,omitempty"`
+		VsphereHostCount            *int64     `json:"vsphere_host_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

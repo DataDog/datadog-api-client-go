@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // DistributionWidgetXAxis X Axis controls for the distribution widget.
 type DistributionWidgetXAxis struct {
@@ -26,11 +23,9 @@ type DistributionWidgetXAxis struct {
 	// Specifies the scale type. Possible values are `linear`.
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewDistributionWidgetXAxis instantiates a new DistributionWidgetXAxis object
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +55,7 @@ func NewDistributionWidgetXAxisWithDefaults() *DistributionWidgetXAxis {
 	this.Scale = &scale
 	return &this
 }
+
 // GetIncludeZero returns the IncludeZero field value if set, zero value otherwise.
 func (o *DistributionWidgetXAxis) GetIncludeZero() bool {
 	if o == nil || o.IncludeZero == nil {
@@ -91,7 +87,6 @@ func (o *DistributionWidgetXAxis) HasIncludeZero() bool {
 func (o *DistributionWidgetXAxis) SetIncludeZero(v bool) {
 	o.IncludeZero = &v
 }
-
 
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *DistributionWidgetXAxis) GetMax() string {
@@ -125,7 +120,6 @@ func (o *DistributionWidgetXAxis) SetMax(v string) {
 	o.Max = &v
 }
 
-
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *DistributionWidgetXAxis) GetMin() string {
 	if o == nil || o.Min == nil {
@@ -157,7 +151,6 @@ func (o *DistributionWidgetXAxis) HasMin() bool {
 func (o *DistributionWidgetXAxis) SetMin(v string) {
 	o.Min = &v
 }
-
 
 // GetScale returns the Scale field value if set, zero value otherwise.
 func (o *DistributionWidgetXAxis) GetScale() string {
@@ -191,8 +184,6 @@ func (o *DistributionWidgetXAxis) SetScale(v string) {
 	o.Scale = &v
 }
 
-
-
 func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -217,14 +208,13 @@ func (o DistributionWidgetXAxis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *DistributionWidgetXAxis) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IncludeZero *bool `json:"include_zero,omitempty"`
-		Max *string `json:"max,omitempty"`
-		Min *string `json:"min,omitempty"`
-		Scale *string `json:"scale,omitempty"`
+		IncludeZero *bool   `json:"include_zero,omitempty"`
+		Max         *string `json:"max,omitempty"`
+		Min         *string `json:"min,omitempty"`
+		Scale       *string `json:"scale,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // TreeMapColorBy The attribute used to determine color in the widget.
 type TreeMapColorBy string

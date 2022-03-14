@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ProcessSummaryType Type of process summary.
 type ProcessSummaryType string

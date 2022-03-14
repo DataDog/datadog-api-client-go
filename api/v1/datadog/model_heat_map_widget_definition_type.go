@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // HeatMapWidgetDefinitionType Type of the heat map widget.
 type HeatMapWidgetDefinitionType string

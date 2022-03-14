@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetEventSize Size to use to display an event.
 type WidgetEventSize string

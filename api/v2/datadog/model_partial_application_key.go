@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // PartialApplicationKey Partial Datadog application key.
 type PartialApplicationKey struct {
@@ -26,11 +23,9 @@ type PartialApplicationKey struct {
 	// Application Keys resource type.
 	Type *ApplicationKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewPartialApplicationKey instantiates a new PartialApplicationKey object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewPartialApplicationKeyWithDefaults() *PartialApplicationKey {
 	this.Type = &type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *PartialApplicationKey) GetAttributes() PartialApplicationKeyAttributes {
 	if o == nil || o.Attributes == nil {
@@ -83,7 +79,6 @@ func (o *PartialApplicationKey) HasAttributes() bool {
 func (o *PartialApplicationKey) SetAttributes(v PartialApplicationKeyAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *PartialApplicationKey) GetId() string {
@@ -117,7 +112,6 @@ func (o *PartialApplicationKey) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *PartialApplicationKey) GetRelationships() ApplicationKeyRelationships {
 	if o == nil || o.Relationships == nil {
@@ -149,7 +143,6 @@ func (o *PartialApplicationKey) HasRelationships() bool {
 func (o *PartialApplicationKey) SetRelationships(v ApplicationKeyRelationships) {
 	o.Relationships = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *PartialApplicationKey) GetType() ApplicationKeysType {
@@ -183,8 +176,6 @@ func (o *PartialApplicationKey) SetType(v ApplicationKeysType) {
 	o.Type = &v
 }
 
-
-
 func (o PartialApplicationKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -209,14 +200,13 @@ func (o PartialApplicationKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
-		Type *ApplicationKeysType `json:"type,omitempty"`
+		Attributes    *PartialApplicationKeyAttributes `json:"attributes,omitempty"`
+		Id            *string                          `json:"id,omitempty"`
+		Relationships *ApplicationKeyRelationships     `json:"relationships,omitempty"`
+		Type          *ApplicationKeysType             `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -227,7 +217,7 @@ func (o *PartialApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

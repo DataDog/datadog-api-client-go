@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsTriggerBody Object describing the synthetics tests to trigger.
 type SyntheticsTriggerBody struct {
 	// Individual synthetics test.
 	Tests []SyntheticsTriggerTest `json:"tests"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsTriggerBody instantiates a new SyntheticsTriggerBody object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewSyntheticsTriggerBodyWithDefaults() *SyntheticsTriggerBody {
 	this := SyntheticsTriggerBody{}
 	return &this
 }
+
 // GetTests returns the Tests field value
 func (o *SyntheticsTriggerBody) GetTests() []SyntheticsTriggerTest {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *SyntheticsTriggerBody) SetTests(v []SyntheticsTriggerTest) {
 	o.Tests = v
 }
 
-
-
 func (o SyntheticsTriggerBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o SyntheticsTriggerBody) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsTriggerBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // RUMResponseStatus The status of the response.
 type RUMResponseStatus string
 
 // List of RUMResponseStatus
 const (
-	RUMRESPONSESTATUS_DONE RUMResponseStatus = "done"
+	RUMRESPONSESTATUS_DONE    RUMResponseStatus = "done"
 	RUMRESPONSESTATUS_TIMEOUT RUMResponseStatus = "timeout"
 )
 

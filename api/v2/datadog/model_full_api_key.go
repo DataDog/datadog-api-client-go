@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // FullAPIKey Datadog API key.
 type FullAPIKey struct {
@@ -26,11 +23,9 @@ type FullAPIKey struct {
 	// API Keys resource type.
 	Type *APIKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewFullAPIKey instantiates a new FullAPIKey object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewFullAPIKeyWithDefaults() *FullAPIKey {
 	this.Type = &type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *FullAPIKey) GetAttributes() FullAPIKeyAttributes {
 	if o == nil || o.Attributes == nil {
@@ -83,7 +79,6 @@ func (o *FullAPIKey) HasAttributes() bool {
 func (o *FullAPIKey) SetAttributes(v FullAPIKeyAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FullAPIKey) GetId() string {
@@ -117,7 +112,6 @@ func (o *FullAPIKey) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *FullAPIKey) GetRelationships() APIKeyRelationships {
 	if o == nil || o.Relationships == nil {
@@ -149,7 +143,6 @@ func (o *FullAPIKey) HasRelationships() bool {
 func (o *FullAPIKey) SetRelationships(v APIKeyRelationships) {
 	o.Relationships = &v
 }
-
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FullAPIKey) GetType() APIKeysType {
@@ -183,8 +176,6 @@ func (o *FullAPIKey) SetType(v APIKeysType) {
 	o.Type = &v
 }
 
-
-
 func (o FullAPIKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -209,14 +200,13 @@ func (o FullAPIKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes *FullAPIKeyAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Relationships *APIKeyRelationships `json:"relationships,omitempty"`
-		Type *APIKeysType `json:"type,omitempty"`
+		Attributes    *FullAPIKeyAttributes `json:"attributes,omitempty"`
+		Id            *string               `json:"id,omitempty"`
+		Relationships *APIKeyRelationships  `json:"relationships,omitempty"`
+		Type          *APIKeysType          `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -227,7 +217,7 @@ func (o *FullAPIKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

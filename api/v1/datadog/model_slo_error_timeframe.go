@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SLOErrorTimeframe The timeframe of the threshold associated with this error
 // or "all" if all thresholds are affected.
@@ -21,10 +19,10 @@ type SLOErrorTimeframe string
 
 // List of SLOErrorTimeframe
 const (
-	SLOERRORTIMEFRAME_SEVEN_DAYS SLOErrorTimeframe = "7d"
+	SLOERRORTIMEFRAME_SEVEN_DAYS  SLOErrorTimeframe = "7d"
 	SLOERRORTIMEFRAME_THIRTY_DAYS SLOErrorTimeframe = "30d"
 	SLOERRORTIMEFRAME_NINETY_DAYS SLOErrorTimeframe = "90d"
-	SLOERRORTIMEFRAME_ALL SLOErrorTimeframe = "all"
+	SLOERRORTIMEFRAME_ALL         SLOErrorTimeframe = "all"
 )
 
 var allowedSLOErrorTimeframeEnumValues = []SLOErrorTimeframe{

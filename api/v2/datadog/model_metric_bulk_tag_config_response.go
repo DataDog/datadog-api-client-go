@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MetricBulkTagConfigResponse Wrapper for a single bulk tag configuration status response.
 type MetricBulkTagConfigResponse struct {
@@ -21,11 +18,9 @@ type MetricBulkTagConfigResponse struct {
 	// It contains the fields from the original request for reference.
 	Data *MetricBulkTagConfigStatus `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricBulkTagConfigResponse instantiates a new MetricBulkTagConfigResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewMetricBulkTagConfigResponseWithDefaults() *MetricBulkTagConfigResponse {
 	this := MetricBulkTagConfigResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigResponse) GetData() MetricBulkTagConfigStatus {
 	if o == nil || o.Data == nil {
@@ -75,8 +71,6 @@ func (o *MetricBulkTagConfigResponse) SetData(v MetricBulkTagConfigStatus) {
 	o.Data = &v
 }
 
-
-
 func (o MetricBulkTagConfigResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -91,7 +85,6 @@ func (o MetricBulkTagConfigResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *MetricBulkTagConfigResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

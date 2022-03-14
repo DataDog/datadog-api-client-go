@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsApiTestResultFailure The API test failure details.
 type SyntheticsApiTestResultFailure struct {
@@ -22,11 +19,9 @@ type SyntheticsApiTestResultFailure struct {
 	// The API test error message.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsApiTestResultFailure instantiates a new SyntheticsApiTestResultFailure object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSyntheticsApiTestResultFailureWithDefaults() *SyntheticsApiTestResultFai
 	this := SyntheticsApiTestResultFailure{}
 	return &this
 }
+
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *SyntheticsApiTestResultFailure) GetCode() SyntheticsApiTestFailureCode {
 	if o == nil || o.Code == nil {
@@ -75,7 +71,6 @@ func (o *SyntheticsApiTestResultFailure) HasCode() bool {
 func (o *SyntheticsApiTestResultFailure) SetCode(v SyntheticsApiTestFailureCode) {
 	o.Code = &v
 }
-
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsApiTestResultFailure) GetMessage() string {
@@ -109,8 +104,6 @@ func (o *SyntheticsApiTestResultFailure) SetMessage(v string) {
 	o.Message = &v
 }
 
-
-
 func (o SyntheticsApiTestResultFailure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,12 +122,11 @@ func (o SyntheticsApiTestResultFailure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsApiTestResultFailure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code *SyntheticsApiTestFailureCode `json:"code,omitempty"`
-		Message *string `json:"message,omitempty"`
+		Code    *SyntheticsApiTestFailureCode `json:"code,omitempty"`
+		Message *string                       `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -145,7 +137,7 @@ func (o *SyntheticsApiTestResultFailure) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Code; v != nil &&!v.IsValid() {
+	if v := all.Code; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

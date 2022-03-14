@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // AuditLogsResponseStatus The status of the response.
 type AuditLogsResponseStatus string
 
 // List of AuditLogsResponseStatus
 const (
-	AUDITLOGSRESPONSESTATUS_DONE AuditLogsResponseStatus = "done"
+	AUDITLOGSRESPONSESTATUS_DONE    AuditLogsResponseStatus = "done"
 	AUDITLOGSRESPONSESTATUS_TIMEOUT AuditLogsResponseStatus = "timeout"
 )
 

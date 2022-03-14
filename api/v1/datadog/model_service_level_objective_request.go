@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ServiceLevelObjectiveRequest A service level objective object includes a service level indicator, thresholds
 // for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
@@ -48,11 +46,9 @@ type ServiceLevelObjectiveRequest struct {
 	// The type of the service level objective.
 	Type SLOType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -73,6 +69,7 @@ func NewServiceLevelObjectiveRequestWithDefaults() *ServiceLevelObjectiveRequest
 	this := ServiceLevelObjectiveRequest{}
 	return &this
 }
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -86,7 +83,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -105,6 +102,7 @@ func (o *ServiceLevelObjectiveRequest) HasDescription() bool {
 func (o *ServiceLevelObjectiveRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
+
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -114,7 +112,6 @@ func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 func (o *ServiceLevelObjectiveRequest) UnsetDescription() {
 	o.Description.Unset()
 }
-
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetGroups() []string {
@@ -148,7 +145,6 @@ func (o *ServiceLevelObjectiveRequest) SetGroups(v []string) {
 	o.Groups = &v
 }
 
-
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetMonitorIds() []int64 {
 	if o == nil || o.MonitorIds == nil {
@@ -181,7 +177,6 @@ func (o *ServiceLevelObjectiveRequest) SetMonitorIds(v []int64) {
 	o.MonitorIds = &v
 }
 
-
 // GetName returns the Name field value
 func (o *ServiceLevelObjectiveRequest) GetName() string {
 	if o == nil {
@@ -204,7 +199,6 @@ func (o *ServiceLevelObjectiveRequest) GetNameOk() (*string, bool) {
 func (o *ServiceLevelObjectiveRequest) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetQuery() ServiceLevelObjectiveQuery {
@@ -238,7 +232,6 @@ func (o *ServiceLevelObjectiveRequest) SetQuery(v ServiceLevelObjectiveQuery) {
 	o.Query = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *ServiceLevelObjectiveRequest) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -271,7 +264,6 @@ func (o *ServiceLevelObjectiveRequest) SetTags(v []string) {
 	o.Tags = &v
 }
 
-
 // GetThresholds returns the Thresholds field value
 func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
 	if o == nil {
@@ -295,7 +287,6 @@ func (o *ServiceLevelObjectiveRequest) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 
-
 // GetType returns the Type field value
 func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
 	if o == nil {
@@ -318,8 +309,6 @@ func (o *ServiceLevelObjectiveRequest) GetTypeOk() (*SLOType, bool) {
 func (o *ServiceLevelObjectiveRequest) SetType(v SLOType) {
 	o.Type = v
 }
-
-
 
 func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -351,23 +340,22 @@ func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Name *string `json:"name"`
+		Name       *string         `json:"name"`
 		Thresholds *[]SLOThreshold `json:"thresholds"`
-		Type *SLOType `json:"type"`
+		Type       *SLOType        `json:"type"`
 	}{}
 	all := struct {
-		Description NullableString `json:"description,omitempty"`
-		Groups *[]string `json:"groups,omitempty"`
-		MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
-		Name string `json:"name"`
-		Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags *[]string `json:"tags,omitempty"`
-		Thresholds []SLOThreshold `json:"thresholds"`
-		Type SLOType `json:"type"`
+		Description NullableString              `json:"description,omitempty"`
+		Groups      *[]string                   `json:"groups,omitempty"`
+		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
+		Name        string                      `json:"name"`
+		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
+		Tags        *[]string                   `json:"tags,omitempty"`
+		Thresholds  []SLOThreshold              `json:"thresholds"`
+		Type        SLOType                     `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

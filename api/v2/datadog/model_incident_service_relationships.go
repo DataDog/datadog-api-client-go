@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // IncidentServiceRelationships The incident service's relationships.
 type IncidentServiceRelationships struct {
@@ -22,11 +19,9 @@ type IncidentServiceRelationships struct {
 	// Relationship to user.
 	LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentServiceRelationships instantiates a new IncidentServiceRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewIncidentServiceRelationshipsWithDefaults() *IncidentServiceRelationships
 	this := IncidentServiceRelationships{}
 	return &this
 }
+
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *IncidentServiceRelationships) GetCreatedBy() RelationshipToUser {
 	if o == nil || o.CreatedBy == nil {
@@ -75,7 +71,6 @@ func (o *IncidentServiceRelationships) HasCreatedBy() bool {
 func (o *IncidentServiceRelationships) SetCreatedBy(v RelationshipToUser) {
 	o.CreatedBy = &v
 }
-
 
 // GetLastModifiedBy returns the LastModifiedBy field value if set, zero value otherwise.
 func (o *IncidentServiceRelationships) GetLastModifiedBy() RelationshipToUser {
@@ -109,8 +104,6 @@ func (o *IncidentServiceRelationships) SetLastModifiedBy(v RelationshipToUser) {
 	o.LastModifiedBy = &v
 }
 
-
-
 func (o IncidentServiceRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o IncidentServiceRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *IncidentServiceRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedBy *RelationshipToUser `json:"created_by,omitempty"`
+		CreatedBy      *RelationshipToUser `json:"created_by,omitempty"`
 		LastModifiedBy *RelationshipToUser `json:"last_modified_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

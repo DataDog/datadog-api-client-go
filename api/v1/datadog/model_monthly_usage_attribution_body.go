@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // MonthlyUsageAttributionBody Usage Summary by tag for a given organization.
 type MonthlyUsageAttributionBody struct {
@@ -32,11 +30,9 @@ type MonthlyUsageAttributionBody struct {
 	// Fields in Usage Summary by tag(s).
 	Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMonthlyUsageAttributionBody instantiates a new MonthlyUsageAttributionBody object
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +50,7 @@ func NewMonthlyUsageAttributionBodyWithDefaults() *MonthlyUsageAttributionBody {
 	this := MonthlyUsageAttributionBody{}
 	return &this
 }
+
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetMonth() time.Time {
 	if o == nil || o.Month == nil {
@@ -85,7 +82,6 @@ func (o *MonthlyUsageAttributionBody) HasMonth() bool {
 func (o *MonthlyUsageAttributionBody) SetMonth(v time.Time) {
 	o.Month = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetOrgName() string {
@@ -119,7 +115,6 @@ func (o *MonthlyUsageAttributionBody) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -151,7 +146,6 @@ func (o *MonthlyUsageAttributionBody) HasPublicId() bool {
 func (o *MonthlyUsageAttributionBody) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetTagConfigSource returns the TagConfigSource field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetTagConfigSource() string {
@@ -185,7 +179,6 @@ func (o *MonthlyUsageAttributionBody) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetTags() map[string][]string {
 	if o == nil || o.Tags == nil {
@@ -217,7 +210,6 @@ func (o *MonthlyUsageAttributionBody) HasTags() bool {
 func (o *MonthlyUsageAttributionBody) SetTags(v map[string][]string) {
 	o.Tags = v
 }
-
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetUpdatedAt() time.Time {
@@ -251,7 +243,6 @@ func (o *MonthlyUsageAttributionBody) SetUpdatedAt(v time.Time) {
 	o.UpdatedAt = &v
 }
 
-
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionBody) GetValues() MonthlyUsageAttributionValues {
 	if o == nil || o.Values == nil {
@@ -283,8 +274,6 @@ func (o *MonthlyUsageAttributionBody) HasValues() bool {
 func (o *MonthlyUsageAttributionBody) SetValues(v MonthlyUsageAttributionValues) {
 	o.Values = &v
 }
-
-
 
 func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -319,17 +308,16 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *MonthlyUsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Month *time.Time `json:"month,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		TagConfigSource *string `json:"tag_config_source,omitempty"`
-		Tags map[string][]string `json:"tags,omitempty"`
-		UpdatedAt *time.Time `json:"updated_at,omitempty"`
-		Values *MonthlyUsageAttributionValues `json:"values,omitempty"`
+		Month           *time.Time                     `json:"month,omitempty"`
+		OrgName         *string                        `json:"org_name,omitempty"`
+		PublicId        *string                        `json:"public_id,omitempty"`
+		TagConfigSource *string                        `json:"tag_config_source,omitempty"`
+		Tags            map[string][]string            `json:"tags,omitempty"`
+		UpdatedAt       *time.Time                     `json:"updated_at,omitempty"`
+		Values          *MonthlyUsageAttributionValues `json:"values,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

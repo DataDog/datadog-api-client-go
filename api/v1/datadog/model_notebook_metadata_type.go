@@ -11,20 +11,18 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NotebookMetadataType Metadata type of the notebook.
 type NotebookMetadataType string
 
 // List of NotebookMetadataType
 const (
-	NOTEBOOKMETADATATYPE_POSTMORTEM NotebookMetadataType = "postmortem"
-	NOTEBOOKMETADATATYPE_RUNBOOK NotebookMetadataType = "runbook"
+	NOTEBOOKMETADATATYPE_POSTMORTEM    NotebookMetadataType = "postmortem"
+	NOTEBOOKMETADATATYPE_RUNBOOK       NotebookMetadataType = "runbook"
 	NOTEBOOKMETADATATYPE_INVESTIGATION NotebookMetadataType = "investigation"
 	NOTEBOOKMETADATATYPE_DOCUMENTATION NotebookMetadataType = "documentation"
-	NOTEBOOKMETADATATYPE_REPORT NotebookMetadataType = "report"
+	NOTEBOOKMETADATATYPE_REPORT        NotebookMetadataType = "report"
 )
 
 var allowedNotebookMetadataTypeEnumValues = []NotebookMetadataType{

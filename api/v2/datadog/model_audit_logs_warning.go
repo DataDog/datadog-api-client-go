@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AuditLogsWarning Warning message indicating something that went wrong with the query.
 type AuditLogsWarning struct {
@@ -24,11 +21,9 @@ type AuditLogsWarning struct {
 	// Short human-readable summary of the warning.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAuditLogsWarning instantiates a new AuditLogsWarning object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewAuditLogsWarningWithDefaults() *AuditLogsWarning {
 	this := AuditLogsWarning{}
 	return &this
 }
+
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *AuditLogsWarning) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -77,7 +73,6 @@ func (o *AuditLogsWarning) HasCode() bool {
 func (o *AuditLogsWarning) SetCode(v string) {
 	o.Code = &v
 }
-
 
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *AuditLogsWarning) GetDetail() string {
@@ -111,7 +106,6 @@ func (o *AuditLogsWarning) SetDetail(v string) {
 	o.Detail = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *AuditLogsWarning) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -144,8 +138,6 @@ func (o *AuditLogsWarning) SetTitle(v string) {
 	o.Title = &v
 }
 
-
-
 func (o AuditLogsWarning) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o AuditLogsWarning) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AuditLogsWarning) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code *string `json:"code,omitempty"`
+		Code   *string `json:"code,omitempty"`
 		Detail *string `json:"detail,omitempty"`
-		Title *string `json:"title,omitempty"`
+		Title  *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

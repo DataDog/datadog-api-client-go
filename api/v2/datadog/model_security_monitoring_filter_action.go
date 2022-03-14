@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityMonitoringFilterAction The type of filtering action.
 type SecurityMonitoringFilterAction string
 
 // List of SecurityMonitoringFilterAction
 const (
-	SECURITYMONITORINGFILTERACTION_REQUIRE SecurityMonitoringFilterAction = "require"
+	SECURITYMONITORINGFILTERACTION_REQUIRE  SecurityMonitoringFilterAction = "require"
 	SECURITYMONITORINGFILTERACTION_SUPPRESS SecurityMonitoringFilterAction = "suppress"
 )
 

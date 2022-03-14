@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsListRequestPage Paging attributes for listing logs.
 type LogsListRequestPage struct {
@@ -22,11 +19,9 @@ type LogsListRequestPage struct {
 	// Maximum number of logs in the response.
 	Limit *int32 `json:"limit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsListRequestPage instantiates a new LogsListRequestPage object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewLogsListRequestPageWithDefaults() *LogsListRequestPage {
 	this.Limit = &limit
 	return &this
 }
+
 // GetCursor returns the Cursor field value if set, zero value otherwise.
 func (o *LogsListRequestPage) GetCursor() string {
 	if o == nil || o.Cursor == nil {
@@ -79,7 +75,6 @@ func (o *LogsListRequestPage) HasCursor() bool {
 func (o *LogsListRequestPage) SetCursor(v string) {
 	o.Cursor = &v
 }
-
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogsListRequestPage) GetLimit() int32 {
@@ -113,8 +108,6 @@ func (o *LogsListRequestPage) SetLimit(v int32) {
 	o.Limit = &v
 }
 
-
-
 func (o LogsListRequestPage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -133,12 +126,11 @@ func (o LogsListRequestPage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsListRequestPage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Cursor *string `json:"cursor,omitempty"`
-		Limit *int32 `json:"limit,omitempty"`
+		Limit  *int32  `json:"limit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

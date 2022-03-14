@@ -11,11 +11,10 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +28,7 @@ type LogsMetricsApiService service
 type apiCreateLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
-	body *LogsMetricCreateRequest
+	body       *LogsMetricCreateRequest
 }
 
 /*
@@ -41,7 +40,7 @@ func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context, body Logs
 	req := apiCreateLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createLogsMetricExecute(req)
@@ -202,7 +201,7 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 type apiDeleteLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
-	metricId string
+	metricId   string
 }
 
 /*
@@ -213,7 +212,7 @@ func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId 
 	req := apiDeleteLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
-		metricId: metricId,
+		metricId:   metricId,
 	}
 
 	return req.ApiService.deleteLogsMetricExecute(req)
@@ -339,7 +338,7 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 type apiGetLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
-	metricId string
+	metricId   string
 }
 
 /*
@@ -350,7 +349,7 @@ func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId str
 	req := apiGetLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
-		metricId: metricId,
+		metricId:   metricId,
 	}
 
 	return req.ApiService.getLogsMetricExecute(req)
@@ -622,8 +621,8 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 type apiUpdateLogsMetricRequest struct {
 	ctx        _context.Context
 	ApiService *LogsMetricsApiService
-	metricId string
-	body *LogsMetricUpdateRequest
+	metricId   string
+	body       *LogsMetricUpdateRequest
 }
 
 /*
@@ -635,8 +634,8 @@ func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId 
 	req := apiUpdateLogsMetricRequest{
 		ApiService: a,
 		ctx:        ctx,
-		metricId: metricId,
-		body: &body,
+		metricId:   metricId,
+		body:       &body,
 	}
 
 	return req.ApiService.updateLogsMetricExecute(req)

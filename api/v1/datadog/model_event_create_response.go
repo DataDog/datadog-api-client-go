@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // EventCreateResponse Object containing an event response.
 type EventCreateResponse struct {
@@ -22,11 +19,9 @@ type EventCreateResponse struct {
 	// A status.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewEventCreateResponse instantiates a new EventCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewEventCreateResponseWithDefaults() *EventCreateResponse {
 	this := EventCreateResponse{}
 	return &this
 }
+
 // GetEvent returns the Event field value if set, zero value otherwise.
 func (o *EventCreateResponse) GetEvent() Event {
 	if o == nil || o.Event == nil {
@@ -75,7 +71,6 @@ func (o *EventCreateResponse) HasEvent() bool {
 func (o *EventCreateResponse) SetEvent(v Event) {
 	o.Event = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *EventCreateResponse) GetStatus() string {
@@ -109,8 +104,6 @@ func (o *EventCreateResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
-
-
 func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o EventCreateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *EventCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Event *Event `json:"event,omitempty"`
+		Event  *Event  `json:"event,omitempty"`
 		Status *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

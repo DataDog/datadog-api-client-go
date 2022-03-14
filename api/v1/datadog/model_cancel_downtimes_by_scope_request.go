@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // CancelDowntimesByScopeRequest Cancel downtimes according to scope.
 type CancelDowntimesByScopeRequest struct {
@@ -22,11 +20,9 @@ type CancelDowntimesByScopeRequest struct {
 	// The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
 	Scope string `json:"scope"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewCancelDowntimesByScopeRequest instantiates a new CancelDowntimesByScopeRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +41,7 @@ func NewCancelDowntimesByScopeRequestWithDefaults() *CancelDowntimesByScopeReque
 	this := CancelDowntimesByScopeRequest{}
 	return &this
 }
+
 // GetScope returns the Scope field value
 func (o *CancelDowntimesByScopeRequest) GetScope() string {
 	if o == nil {
@@ -68,8 +65,6 @@ func (o *CancelDowntimesByScopeRequest) SetScope(v string) {
 	o.Scope = v
 }
 
-
-
 func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,7 +77,6 @@ func (o CancelDowntimesByScopeRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *CancelDowntimesByScopeRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

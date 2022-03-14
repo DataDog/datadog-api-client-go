@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentCreateAttributes The incident's attributes for a create request.
 type IncidentCreateAttributes struct {
@@ -28,11 +26,9 @@ type IncidentCreateAttributes struct {
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentCreateAttributes instantiates a new IncidentCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +48,7 @@ func NewIncidentCreateAttributesWithDefaults() *IncidentCreateAttributes {
 	this := IncidentCreateAttributes{}
 	return &this
 }
+
 // GetCustomerImpacted returns the CustomerImpacted field value
 func (o *IncidentCreateAttributes) GetCustomerImpacted() bool {
 	if o == nil {
@@ -74,7 +71,6 @@ func (o *IncidentCreateAttributes) GetCustomerImpactedOk() (*bool, bool) {
 func (o *IncidentCreateAttributes) SetCustomerImpacted(v bool) {
 	o.CustomerImpacted = v
 }
-
 
 // GetFields returns the Fields field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetFields() map[string]IncidentFieldAttributes {
@@ -108,7 +104,6 @@ func (o *IncidentCreateAttributes) SetFields(v map[string]IncidentFieldAttribute
 	o.Fields = v
 }
 
-
 // GetInitialCells returns the InitialCells field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetInitialCells() []IncidentTimelineCellCreateAttributes {
 	if o == nil || o.InitialCells == nil {
@@ -140,7 +135,6 @@ func (o *IncidentCreateAttributes) HasInitialCells() bool {
 func (o *IncidentCreateAttributes) SetInitialCells(v []IncidentTimelineCellCreateAttributes) {
 	o.InitialCells = &v
 }
-
 
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
 func (o *IncidentCreateAttributes) GetNotificationHandles() []IncidentNotificationHandle {
@@ -174,7 +168,6 @@ func (o *IncidentCreateAttributes) SetNotificationHandles(v []IncidentNotificati
 	o.NotificationHandles = &v
 }
 
-
 // GetTitle returns the Title field value
 func (o *IncidentCreateAttributes) GetTitle() string {
 	if o == nil {
@@ -197,8 +190,6 @@ func (o *IncidentCreateAttributes) GetTitleOk() (*string, bool) {
 func (o *IncidentCreateAttributes) SetTitle(v string) {
 	o.Title = v
 }
-
-
 
 func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -223,19 +214,18 @@ func (o IncidentCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		CustomerImpacted *bool `json:"customer_impacted"`
-		Title *string `json:"title"`
+		CustomerImpacted *bool   `json:"customer_impacted"`
+		Title            *string `json:"title"`
 	}{}
 	all := struct {
-		CustomerImpacted bool `json:"customer_impacted"`
-		Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		InitialCells *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
-		NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
-		Title string `json:"title"`
+		CustomerImpacted    bool                                    `json:"customer_impacted"`
+		Fields              map[string]IncidentFieldAttributes      `json:"fields,omitempty"`
+		InitialCells        *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
+		NotificationHandles *[]IncidentNotificationHandle           `json:"notification_handles,omitempty"`
+		Title               string                                  `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

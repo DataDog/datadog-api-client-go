@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsBrowserTestResultData Object containing results for your Synthetic browser test.
 type SyntheticsBrowserTestResultData struct {
@@ -43,11 +40,9 @@ type SyntheticsBrowserTestResultData struct {
 	// reaching the start URL.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsBrowserTestResultData instantiates a new SyntheticsBrowserTestResultData object
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +60,7 @@ func NewSyntheticsBrowserTestResultDataWithDefaults() *SyntheticsBrowserTestResu
 	this := SyntheticsBrowserTestResultData{}
 	return &this
 }
+
 // GetBrowserType returns the BrowserType field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetBrowserType() string {
 	if o == nil || o.BrowserType == nil {
@@ -96,7 +92,6 @@ func (o *SyntheticsBrowserTestResultData) HasBrowserType() bool {
 func (o *SyntheticsBrowserTestResultData) SetBrowserType(v string) {
 	o.BrowserType = &v
 }
-
 
 // GetBrowserVersion returns the BrowserVersion field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetBrowserVersion() string {
@@ -130,7 +125,6 @@ func (o *SyntheticsBrowserTestResultData) SetBrowserVersion(v string) {
 	o.BrowserVersion = &v
 }
 
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetDevice() SyntheticsDevice {
 	if o == nil || o.Device == nil {
@@ -162,7 +156,6 @@ func (o *SyntheticsBrowserTestResultData) HasDevice() bool {
 func (o *SyntheticsBrowserTestResultData) SetDevice(v SyntheticsDevice) {
 	o.Device = &v
 }
-
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetDuration() float64 {
@@ -196,7 +189,6 @@ func (o *SyntheticsBrowserTestResultData) SetDuration(v float64) {
 	o.Duration = &v
 }
 
-
 // GetError returns the Error field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetError() string {
 	if o == nil || o.Error == nil {
@@ -228,7 +220,6 @@ func (o *SyntheticsBrowserTestResultData) HasError() bool {
 func (o *SyntheticsBrowserTestResultData) SetError(v string) {
 	o.Error = &v
 }
-
 
 // GetFailure returns the Failure field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetFailure() SyntheticsBrowserTestResultFailure {
@@ -262,7 +253,6 @@ func (o *SyntheticsBrowserTestResultData) SetFailure(v SyntheticsBrowserTestResu
 	o.Failure = &v
 }
 
-
 // GetPassed returns the Passed field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetPassed() bool {
 	if o == nil || o.Passed == nil {
@@ -294,7 +284,6 @@ func (o *SyntheticsBrowserTestResultData) HasPassed() bool {
 func (o *SyntheticsBrowserTestResultData) SetPassed(v bool) {
 	o.Passed = &v
 }
-
 
 // GetReceivedEmailCount returns the ReceivedEmailCount field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetReceivedEmailCount() int64 {
@@ -328,7 +317,6 @@ func (o *SyntheticsBrowserTestResultData) SetReceivedEmailCount(v int64) {
 	o.ReceivedEmailCount = &v
 }
 
-
 // GetStartUrl returns the StartUrl field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetStartUrl() string {
 	if o == nil || o.StartUrl == nil {
@@ -360,7 +348,6 @@ func (o *SyntheticsBrowserTestResultData) HasStartUrl() bool {
 func (o *SyntheticsBrowserTestResultData) SetStartUrl(v string) {
 	o.StartUrl = &v
 }
-
 
 // GetStepDetails returns the StepDetails field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetStepDetails() []SyntheticsStepDetail {
@@ -394,7 +381,6 @@ func (o *SyntheticsBrowserTestResultData) SetStepDetails(v []SyntheticsStepDetai
 	o.StepDetails = &v
 }
 
-
 // GetThumbnailsBucketKey returns the ThumbnailsBucketKey field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetThumbnailsBucketKey() bool {
 	if o == nil || o.ThumbnailsBucketKey == nil {
@@ -427,7 +413,6 @@ func (o *SyntheticsBrowserTestResultData) SetThumbnailsBucketKey(v bool) {
 	o.ThumbnailsBucketKey = &v
 }
 
-
 // GetTimeToInteractive returns the TimeToInteractive field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultData) GetTimeToInteractive() float64 {
 	if o == nil || o.TimeToInteractive == nil {
@@ -459,8 +444,6 @@ func (o *SyntheticsBrowserTestResultData) HasTimeToInteractive() bool {
 func (o *SyntheticsBrowserTestResultData) SetTimeToInteractive(v float64) {
 	o.TimeToInteractive = &v
 }
-
-
 
 func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -510,22 +493,21 @@ func (o SyntheticsBrowserTestResultData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserType *string `json:"browserType,omitempty"`
-		BrowserVersion *string `json:"browserVersion,omitempty"`
-		Device *SyntheticsDevice `json:"device,omitempty"`
-		Duration *float64 `json:"duration,omitempty"`
-		Error *string `json:"error,omitempty"`
-		Failure *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
-		Passed *bool `json:"passed,omitempty"`
-		ReceivedEmailCount *int64 `json:"receivedEmailCount,omitempty"`
-		StartUrl *string `json:"startUrl,omitempty"`
-		StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
-		ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
-		TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
+		BrowserType         *string                             `json:"browserType,omitempty"`
+		BrowserVersion      *string                             `json:"browserVersion,omitempty"`
+		Device              *SyntheticsDevice                   `json:"device,omitempty"`
+		Duration            *float64                            `json:"duration,omitempty"`
+		Error               *string                             `json:"error,omitempty"`
+		Failure             *SyntheticsBrowserTestResultFailure `json:"failure,omitempty"`
+		Passed              *bool                               `json:"passed,omitempty"`
+		ReceivedEmailCount  *int64                              `json:"receivedEmailCount,omitempty"`
+		StartUrl            *string                             `json:"startUrl,omitempty"`
+		StepDetails         *[]SyntheticsStepDetail             `json:"stepDetails,omitempty"`
+		ThumbnailsBucketKey *bool                               `json:"thumbnailsBucketKey,omitempty"`
+		TimeToInteractive   *float64                            `json:"timeToInteractive,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

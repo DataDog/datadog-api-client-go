@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NotebookUpdateData The data for a notebook update request.
 type NotebookUpdateData struct {
@@ -22,11 +20,9 @@ type NotebookUpdateData struct {
 	// Type of the Notebook resource.
 	Type NotebookResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewNotebookUpdateData instantiates a new NotebookUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewNotebookUpdateDataWithDefaults() *NotebookUpdateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *NotebookUpdateData) GetAttributes() NotebookUpdateDataAttributes {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *NotebookUpdateData) GetAttributesOk() (*NotebookUpdateDataAttributes, b
 func (o *NotebookUpdateData) SetAttributes(v NotebookUpdateDataAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value
 func (o *NotebookUpdateData) GetType() NotebookResourceType {
@@ -95,8 +91,6 @@ func (o *NotebookUpdateData) SetType(v NotebookResourceType) {
 	o.Type = v
 }
 
-
-
 func (o NotebookUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,16 +105,15 @@ func (o NotebookUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *NotebookUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookUpdateDataAttributes `json:"attributes"`
-		Type *NotebookResourceType `json:"type"`
+		Type       *NotebookResourceType         `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebookUpdateDataAttributes `json:"attributes"`
-		Type NotebookResourceType `json:"type"`
+		Type       NotebookResourceType         `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HostMapWidgetDefinitionRequests List of definitions.
 type HostMapWidgetDefinitionRequests struct {
@@ -22,11 +19,9 @@ type HostMapWidgetDefinitionRequests struct {
 	// Updated host map.
 	Size *HostMapRequest `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHostMapWidgetDefinitionRequests instantiates a new HostMapWidgetDefinitionRequests object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewHostMapWidgetDefinitionRequestsWithDefaults() *HostMapWidgetDefinitionRe
 	this := HostMapWidgetDefinitionRequests{}
 	return &this
 }
+
 // GetFill returns the Fill field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionRequests) GetFill() HostMapRequest {
 	if o == nil || o.Fill == nil {
@@ -75,7 +71,6 @@ func (o *HostMapWidgetDefinitionRequests) HasFill() bool {
 func (o *HostMapWidgetDefinitionRequests) SetFill(v HostMapRequest) {
 	o.Fill = &v
 }
-
 
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionRequests) GetSize() HostMapRequest {
@@ -109,8 +104,6 @@ func (o *HostMapWidgetDefinitionRequests) SetSize(v HostMapRequest) {
 	o.Size = &v
 }
 
-
-
 func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -128,7 +121,6 @@ func (o HostMapWidgetDefinitionRequests) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *HostMapWidgetDefinitionRequests) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

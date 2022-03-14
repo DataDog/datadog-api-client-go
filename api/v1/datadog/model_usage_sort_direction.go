@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // UsageSortDirection The direction to sort by.
 type UsageSortDirection string
@@ -21,7 +19,7 @@ type UsageSortDirection string
 // List of UsageSortDirection
 const (
 	USAGESORTDIRECTION_DESC UsageSortDirection = "desc"
-	USAGESORTDIRECTION_ASC UsageSortDirection = "asc"
+	USAGESORTDIRECTION_ASC  UsageSortDirection = "asc"
 )
 
 var allowedUsageSortDirectionEnumValues = []UsageSortDirection{

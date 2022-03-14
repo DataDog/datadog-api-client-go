@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // TreeMapSizeBy The attribute used to determine size in the widget.
 type TreeMapSizeBy string

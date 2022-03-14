@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageSNMPHour The number of SNMP devices for each hour for a given organization.
 type UsageSNMPHour struct {
@@ -26,11 +24,9 @@ type UsageSNMPHour struct {
 	// Contains the number of SNMP devices.
 	SnmpDevices *int64 `json:"snmp_devices,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageSNMPHour instantiates a new UsageSNMPHour object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewUsageSNMPHourWithDefaults() *UsageSNMPHour {
 	this := UsageSNMPHour{}
 	return &this
 }
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -79,7 +76,6 @@ func (o *UsageSNMPHour) HasHour() bool {
 func (o *UsageSNMPHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetOrgName() string {
@@ -113,7 +109,6 @@ func (o *UsageSNMPHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -145,7 +140,6 @@ func (o *UsageSNMPHour) HasPublicId() bool {
 func (o *UsageSNMPHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetSnmpDevices returns the SnmpDevices field value if set, zero value otherwise.
 func (o *UsageSNMPHour) GetSnmpDevices() int64 {
@@ -179,8 +173,6 @@ func (o *UsageSNMPHour) SetSnmpDevices(v int64) {
 	o.SnmpDevices = &v
 }
 
-
-
 func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -205,14 +197,13 @@ func (o UsageSNMPHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageSNMPHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		SnmpDevices *int64 `json:"snmp_devices,omitempty"`
+		Hour        *time.Time `json:"hour,omitempty"`
+		OrgName     *string    `json:"org_name,omitempty"`
+		PublicId    *string    `json:"public_id,omitempty"`
+		SnmpDevices *int64     `json:"snmp_devices,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

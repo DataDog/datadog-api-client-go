@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HTTPLogError List of errors.
 type HTTPLogError struct {
@@ -24,11 +21,9 @@ type HTTPLogError struct {
 	// Error title.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHTTPLogError instantiates a new HTTPLogError object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewHTTPLogErrorWithDefaults() *HTTPLogError {
 	this := HTTPLogError{}
 	return &this
 }
+
 // GetDetail returns the Detail field value if set, zero value otherwise.
 func (o *HTTPLogError) GetDetail() string {
 	if o == nil || o.Detail == nil {
@@ -77,7 +73,6 @@ func (o *HTTPLogError) HasDetail() bool {
 func (o *HTTPLogError) SetDetail(v string) {
 	o.Detail = &v
 }
-
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *HTTPLogError) GetStatus() string {
@@ -111,7 +106,6 @@ func (o *HTTPLogError) SetStatus(v string) {
 	o.Status = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *HTTPLogError) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -144,8 +138,6 @@ func (o *HTTPLogError) SetTitle(v string) {
 	o.Title = &v
 }
 
-
-
 func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Detail *string `json:"detail,omitempty"`
 		Status *string `json:"status,omitempty"`
-		Title *string `json:"title,omitempty"`
+		Title  *string `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

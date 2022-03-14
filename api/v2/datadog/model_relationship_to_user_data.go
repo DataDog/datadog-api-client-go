@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // RelationshipToUserData Relationship to user object.
 type RelationshipToUserData struct {
@@ -22,11 +20,9 @@ type RelationshipToUserData struct {
 	// Users resource type.
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRelationshipToUserData instantiates a new RelationshipToUserData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewRelationshipToUserDataWithDefaults() *RelationshipToUserData {
 	this.Type = type_
 	return &this
 }
+
 // GetId returns the Id field value
 func (o *RelationshipToUserData) GetId() string {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *RelationshipToUserData) GetIdOk() (*string, bool) {
 func (o *RelationshipToUserData) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetType returns the Type field value
 func (o *RelationshipToUserData) GetType() UsersType {
@@ -95,8 +91,6 @@ func (o *RelationshipToUserData) SetType(v UsersType) {
 	o.Type = v
 }
 
-
-
 func (o RelationshipToUserData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,15 +105,14 @@ func (o RelationshipToUserData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RelationshipToUserData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id *string `json:"id"`
+		Id   *string    `json:"id"`
 		Type *UsersType `json:"type"`
 	}{}
 	all := struct {
-		Id string `json:"id"`
+		Id   string    `json:"id"`
 		Type UsersType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

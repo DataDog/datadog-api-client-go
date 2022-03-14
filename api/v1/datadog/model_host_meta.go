@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HostMeta Metadata associated with your host.
 type HostMeta struct {
@@ -48,11 +45,9 @@ type HostMeta struct {
 	// An array of Windows versions.
 	WinV *[]string `json:"winV,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHostMeta instantiates a new HostMeta object
 // This constructor will assign default values to properties that have it defined,
@@ -70,6 +65,7 @@ func NewHostMetaWithDefaults() *HostMeta {
 	this := HostMeta{}
 	return &this
 }
+
 // GetAgentChecks returns the AgentChecks field value if set, zero value otherwise.
 func (o *HostMeta) GetAgentChecks() [][]interface{} {
 	if o == nil || o.AgentChecks == nil {
@@ -101,7 +97,6 @@ func (o *HostMeta) HasAgentChecks() bool {
 func (o *HostMeta) SetAgentChecks(v [][]interface{}) {
 	o.AgentChecks = &v
 }
-
 
 // GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
 func (o *HostMeta) GetAgentVersion() string {
@@ -135,7 +130,6 @@ func (o *HostMeta) SetAgentVersion(v string) {
 	o.AgentVersion = &v
 }
 
-
 // GetCpuCores returns the CpuCores field value if set, zero value otherwise.
 func (o *HostMeta) GetCpuCores() int64 {
 	if o == nil || o.CpuCores == nil {
@@ -167,7 +161,6 @@ func (o *HostMeta) HasCpuCores() bool {
 func (o *HostMeta) SetCpuCores(v int64) {
 	o.CpuCores = &v
 }
-
 
 // GetFbsdV returns the FbsdV field value if set, zero value otherwise.
 func (o *HostMeta) GetFbsdV() []string {
@@ -201,7 +194,6 @@ func (o *HostMeta) SetFbsdV(v []string) {
 	o.FbsdV = &v
 }
 
-
 // GetGohai returns the Gohai field value if set, zero value otherwise.
 func (o *HostMeta) GetGohai() string {
 	if o == nil || o.Gohai == nil {
@@ -233,7 +225,6 @@ func (o *HostMeta) HasGohai() bool {
 func (o *HostMeta) SetGohai(v string) {
 	o.Gohai = &v
 }
-
 
 // GetInstallMethod returns the InstallMethod field value if set, zero value otherwise.
 func (o *HostMeta) GetInstallMethod() HostMetaInstallMethod {
@@ -267,7 +258,6 @@ func (o *HostMeta) SetInstallMethod(v HostMetaInstallMethod) {
 	o.InstallMethod = &v
 }
 
-
 // GetMacV returns the MacV field value if set, zero value otherwise.
 func (o *HostMeta) GetMacV() []string {
 	if o == nil || o.MacV == nil {
@@ -299,7 +289,6 @@ func (o *HostMeta) HasMacV() bool {
 func (o *HostMeta) SetMacV(v []string) {
 	o.MacV = &v
 }
-
 
 // GetMachine returns the Machine field value if set, zero value otherwise.
 func (o *HostMeta) GetMachine() string {
@@ -333,7 +322,6 @@ func (o *HostMeta) SetMachine(v string) {
 	o.Machine = &v
 }
 
-
 // GetNixV returns the NixV field value if set, zero value otherwise.
 func (o *HostMeta) GetNixV() []string {
 	if o == nil || o.NixV == nil {
@@ -365,7 +353,6 @@ func (o *HostMeta) HasNixV() bool {
 func (o *HostMeta) SetNixV(v []string) {
 	o.NixV = &v
 }
-
 
 // GetPlatform returns the Platform field value if set, zero value otherwise.
 func (o *HostMeta) GetPlatform() string {
@@ -399,7 +386,6 @@ func (o *HostMeta) SetPlatform(v string) {
 	o.Platform = &v
 }
 
-
 // GetProcessor returns the Processor field value if set, zero value otherwise.
 func (o *HostMeta) GetProcessor() string {
 	if o == nil || o.Processor == nil {
@@ -431,7 +417,6 @@ func (o *HostMeta) HasProcessor() bool {
 func (o *HostMeta) SetProcessor(v string) {
 	o.Processor = &v
 }
-
 
 // GetPythonV returns the PythonV field value if set, zero value otherwise.
 func (o *HostMeta) GetPythonV() string {
@@ -465,7 +450,6 @@ func (o *HostMeta) SetPythonV(v string) {
 	o.PythonV = &v
 }
 
-
 // GetSocketFqdn returns the SocketFqdn field value if set, zero value otherwise.
 func (o *HostMeta) GetSocketFqdn() string {
 	if o == nil || o.SocketFqdn == nil {
@@ -497,7 +481,6 @@ func (o *HostMeta) HasSocketFqdn() bool {
 func (o *HostMeta) SetSocketFqdn(v string) {
 	o.SocketFqdn = &v
 }
-
 
 // GetSocketHostname returns the SocketHostname field value if set, zero value otherwise.
 func (o *HostMeta) GetSocketHostname() string {
@@ -531,7 +514,6 @@ func (o *HostMeta) SetSocketHostname(v string) {
 	o.SocketHostname = &v
 }
 
-
 // GetWinV returns the WinV field value if set, zero value otherwise.
 func (o *HostMeta) GetWinV() []string {
 	if o == nil || o.WinV == nil {
@@ -563,8 +545,6 @@ func (o *HostMeta) HasWinV() bool {
 func (o *HostMeta) SetWinV(v []string) {
 	o.WinV = &v
 }
-
-
 
 func (o HostMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -623,25 +603,24 @@ func (o HostMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentChecks *[][]interface{} `json:"agent_checks,omitempty"`
-		AgentVersion *string `json:"agent_version,omitempty"`
-		CpuCores *int64 `json:"cpuCores,omitempty"`
-		FbsdV *[]string `json:"fbsdV,omitempty"`
-		Gohai *string `json:"gohai,omitempty"`
-		InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
-		MacV *[]string `json:"macV,omitempty"`
-		Machine *string `json:"machine,omitempty"`
-		NixV *[]string `json:"nixV,omitempty"`
-		Platform *string `json:"platform,omitempty"`
-		Processor *string `json:"processor,omitempty"`
-		PythonV *string `json:"pythonV,omitempty"`
-		SocketFqdn *string `json:"socket-fqdn,omitempty"`
-		SocketHostname *string `json:"socket-hostname,omitempty"`
-		WinV *[]string `json:"winV,omitempty"`
+		AgentChecks    *[][]interface{}       `json:"agent_checks,omitempty"`
+		AgentVersion   *string                `json:"agent_version,omitempty"`
+		CpuCores       *int64                 `json:"cpuCores,omitempty"`
+		FbsdV          *[]string              `json:"fbsdV,omitempty"`
+		Gohai          *string                `json:"gohai,omitempty"`
+		InstallMethod  *HostMetaInstallMethod `json:"install_method,omitempty"`
+		MacV           *[]string              `json:"macV,omitempty"`
+		Machine        *string                `json:"machine,omitempty"`
+		NixV           *[]string              `json:"nixV,omitempty"`
+		Platform       *string                `json:"platform,omitempty"`
+		Processor      *string                `json:"processor,omitempty"`
+		PythonV        *string                `json:"pythonV,omitempty"`
+		SocketFqdn     *string                `json:"socket-fqdn,omitempty"`
+		SocketHostname *string                `json:"socket-hostname,omitempty"`
+		WinV           *[]string              `json:"winV,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

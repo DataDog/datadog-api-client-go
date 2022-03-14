@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FunnelRequestType Widget request type.
 type FunnelRequestType string

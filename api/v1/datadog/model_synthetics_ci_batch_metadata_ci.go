@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsCIBatchMetadataCI Description of the CI provider.
 type SyntheticsCIBatchMetadataCI struct {
@@ -22,11 +19,9 @@ type SyntheticsCIBatchMetadataCI struct {
 	// Description of the CI provider.
 	Provider *SyntheticsCIBatchMetadataProvider `json:"provider,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsCIBatchMetadataCI instantiates a new SyntheticsCIBatchMetadataCI object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSyntheticsCIBatchMetadataCIWithDefaults() *SyntheticsCIBatchMetadataCI {
 	this := SyntheticsCIBatchMetadataCI{}
 	return &this
 }
+
 // GetPipeline returns the Pipeline field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetPipeline() SyntheticsCIBatchMetadataPipeline {
 	if o == nil || o.Pipeline == nil {
@@ -75,7 +71,6 @@ func (o *SyntheticsCIBatchMetadataCI) HasPipeline() bool {
 func (o *SyntheticsCIBatchMetadataCI) SetPipeline(v SyntheticsCIBatchMetadataPipeline) {
 	o.Pipeline = &v
 }
-
 
 // GetProvider returns the Provider field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataCI) GetProvider() SyntheticsCIBatchMetadataProvider {
@@ -109,8 +104,6 @@ func (o *SyntheticsCIBatchMetadataCI) SetProvider(v SyntheticsCIBatchMetadataPro
 	o.Provider = &v
 }
 
-
-
 func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -128,7 +121,6 @@ func (o SyntheticsCIBatchMetadataCI) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsCIBatchMetadataCI) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

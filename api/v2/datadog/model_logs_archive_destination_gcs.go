@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsArchiveDestinationGCS The GCS archive destination.
 type LogsArchiveDestinationGCS struct {
@@ -26,11 +24,9 @@ type LogsArchiveDestinationGCS struct {
 	// Type of the GCS archive destination.
 	Type LogsArchiveDestinationGCSType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsArchiveDestinationGCS instantiates a new LogsArchiveDestinationGCS object
 // This constructor will assign default values to properties that have it defined,
@@ -53,6 +49,7 @@ func NewLogsArchiveDestinationGCSWithDefaults() *LogsArchiveDestinationGCS {
 	this.Type = type_
 	return &this
 }
+
 // GetBucket returns the Bucket field value
 func (o *LogsArchiveDestinationGCS) GetBucket() string {
 	if o == nil {
@@ -76,7 +73,6 @@ func (o *LogsArchiveDestinationGCS) SetBucket(v string) {
 	o.Bucket = v
 }
 
-
 // GetIntegration returns the Integration field value
 func (o *LogsArchiveDestinationGCS) GetIntegration() LogsArchiveIntegrationGCS {
 	if o == nil {
@@ -99,7 +95,6 @@ func (o *LogsArchiveDestinationGCS) GetIntegrationOk() (*LogsArchiveIntegrationG
 func (o *LogsArchiveDestinationGCS) SetIntegration(v LogsArchiveIntegrationGCS) {
 	o.Integration = v
 }
-
 
 // GetPath returns the Path field value if set, zero value otherwise.
 func (o *LogsArchiveDestinationGCS) GetPath() string {
@@ -133,7 +128,6 @@ func (o *LogsArchiveDestinationGCS) SetPath(v string) {
 	o.Path = &v
 }
 
-
 // GetType returns the Type field value
 func (o *LogsArchiveDestinationGCS) GetType() LogsArchiveDestinationGCSType {
 	if o == nil {
@@ -157,8 +151,6 @@ func (o *LogsArchiveDestinationGCS) SetType(v LogsArchiveDestinationGCSType) {
 	o.Type = v
 }
 
-
-
 func (o LogsArchiveDestinationGCS) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -177,19 +169,18 @@ func (o LogsArchiveDestinationGCS) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsArchiveDestinationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Bucket *string `json:"bucket"`
-		Integration *LogsArchiveIntegrationGCS `json:"integration"`
-		Type *LogsArchiveDestinationGCSType `json:"type"`
+		Bucket      *string                        `json:"bucket"`
+		Integration *LogsArchiveIntegrationGCS     `json:"integration"`
+		Type        *LogsArchiveDestinationGCSType `json:"type"`
 	}{}
 	all := struct {
-		Bucket string `json:"bucket"`
-		Integration LogsArchiveIntegrationGCS `json:"integration"`
-		Path *string `json:"path,omitempty"`
-		Type LogsArchiveDestinationGCSType `json:"type"`
+		Bucket      string                        `json:"bucket"`
+		Integration LogsArchiveIntegrationGCS     `json:"integration"`
+		Path        *string                       `json:"path,omitempty"`
+		Type        LogsArchiveDestinationGCSType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

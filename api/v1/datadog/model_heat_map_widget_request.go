@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HeatMapWidgetRequest Updated heat map widget.
 type HeatMapWidgetRequest struct {
@@ -38,11 +35,9 @@ type HeatMapWidgetRequest struct {
 	// Widget style definition.
 	Style *WidgetStyle `json:"style,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHeatMapWidgetRequest instantiates a new HeatMapWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +55,7 @@ func NewHeatMapWidgetRequestWithDefaults() *HeatMapWidgetRequest {
 	this := HeatMapWidgetRequest{}
 	return &this
 }
+
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -91,7 +87,6 @@ func (o *HeatMapWidgetRequest) HasApmQuery() bool {
 func (o *HeatMapWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
-
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetEventQuery() EventQueryDefinition {
@@ -125,7 +120,6 @@ func (o *HeatMapWidgetRequest) SetEventQuery(v EventQueryDefinition) {
 	o.EventQuery = &v
 }
 
-
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -157,7 +151,6 @@ func (o *HeatMapWidgetRequest) HasLogQuery() bool {
 func (o *HeatMapWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
-
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetNetworkQuery() LogQueryDefinition {
@@ -191,7 +184,6 @@ func (o *HeatMapWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
-
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -223,7 +215,6 @@ func (o *HeatMapWidgetRequest) HasProcessQuery() bool {
 func (o *HeatMapWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
-
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -257,7 +248,6 @@ func (o *HeatMapWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
-
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -289,7 +279,6 @@ func (o *HeatMapWidgetRequest) HasQ() bool {
 func (o *HeatMapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
-
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -323,7 +312,6 @@ func (o *HeatMapWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
-
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -356,7 +344,6 @@ func (o *HeatMapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
 
-
 // GetStyle returns the Style field value if set, zero value otherwise.
 func (o *HeatMapWidgetRequest) GetStyle() WidgetStyle {
 	if o == nil || o.Style == nil {
@@ -388,8 +375,6 @@ func (o *HeatMapWidgetRequest) HasStyle() bool {
 func (o *HeatMapWidgetRequest) SetStyle(v WidgetStyle) {
 	o.Style = &v
 }
-
-
 
 func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -433,20 +418,19 @@ func (o HeatMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *HeatMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
-		EventQuery *EventQueryDefinition `json:"event_query,omitempty"`
-		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
-		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
-		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
-		Q *string `json:"q,omitempty"`
-		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
-		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
-		Style *WidgetStyle `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
+		EventQuery          *EventQueryDefinition   `json:"event_query,omitempty"`
+		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
+		Q                   *string                 `json:"q,omitempty"`
+		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
+		Style               *WidgetStyle            `json:"style,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

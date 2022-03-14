@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsArchiveAttributes The attributes associated with the archive.
 type LogsArchiveAttributes struct {
@@ -31,11 +29,9 @@ type LogsArchiveAttributes struct {
 	// The state of the archive.
 	State *LogsArchiveState `json:"state,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsArchiveAttributes instantiates a new LogsArchiveAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +56,7 @@ func NewLogsArchiveAttributesWithDefaults() *LogsArchiveAttributes {
 	this.IncludeTags = &includeTags
 	return &this
 }
+
 // GetDestination returns the Destination field value
 // If the value is explicit nil, the zero value for LogsArchiveDestination will be returned
 func (o *LogsArchiveAttributes) GetDestination() LogsArchiveDestination {
@@ -84,7 +81,6 @@ func (o *LogsArchiveAttributes) GetDestinationOk() (*LogsArchiveDestination, boo
 func (o *LogsArchiveAttributes) SetDestination(v LogsArchiveDestination) {
 	o.Destination.Set(&v)
 }
-
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetIncludeTags() bool {
@@ -118,7 +114,6 @@ func (o *LogsArchiveAttributes) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
-
 // GetName returns the Name field value
 func (o *LogsArchiveAttributes) GetName() string {
 	if o == nil {
@@ -142,7 +137,6 @@ func (o *LogsArchiveAttributes) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetQuery returns the Query field value
 func (o *LogsArchiveAttributes) GetQuery() string {
 	if o == nil {
@@ -165,7 +159,6 @@ func (o *LogsArchiveAttributes) GetQueryOk() (*string, bool) {
 func (o *LogsArchiveAttributes) SetQuery(v string) {
 	o.Query = v
 }
-
 
 // GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetRehydrationTags() []string {
@@ -199,7 +192,6 @@ func (o *LogsArchiveAttributes) SetRehydrationTags(v []string) {
 	o.RehydrationTags = &v
 }
 
-
 // GetState returns the State field value if set, zero value otherwise.
 func (o *LogsArchiveAttributes) GetState() LogsArchiveState {
 	if o == nil || o.State == nil {
@@ -232,8 +224,6 @@ func (o *LogsArchiveAttributes) SetState(v LogsArchiveState) {
 	o.State = &v
 }
 
-
-
 func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -258,21 +248,20 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Destination *NullableLogsArchiveDestination `json:"destination"`
-		Name *string `json:"name"`
-		Query *string `json:"query"`
+		Name        *string                         `json:"name"`
+		Query       *string                         `json:"query"`
 	}{}
 	all := struct {
-		Destination NullableLogsArchiveDestination `json:"destination"`
-		IncludeTags *bool `json:"include_tags,omitempty"`
-		Name string `json:"name"`
-		Query string `json:"query"`
-		RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
-		State *LogsArchiveState `json:"state,omitempty"`
+		Destination     NullableLogsArchiveDestination `json:"destination"`
+		IncludeTags     *bool                          `json:"include_tags,omitempty"`
+		Name            string                         `json:"name"`
+		Query           string                         `json:"query"`
+		RehydrationTags *[]string                      `json:"rehydration_tags,omitempty"`
+		State           *LogsArchiveState              `json:"state,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -296,7 +285,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.State; v != nil &&!v.IsValid() {
+	if v := all.State; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentTeamsResponse Response with a list of incident team payloads.
 type IncidentTeamsResponse struct {
@@ -24,11 +22,9 @@ type IncidentTeamsResponse struct {
 	// The metadata object containing pagination metadata.
 	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentTeamsResponse instantiates a new IncidentTeamsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -47,6 +43,7 @@ func NewIncidentTeamsResponseWithDefaults() *IncidentTeamsResponse {
 	this := IncidentTeamsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value
 func (o *IncidentTeamsResponse) GetData() []IncidentTeamResponseData {
 	if o == nil {
@@ -69,7 +66,6 @@ func (o *IncidentTeamsResponse) GetDataOk() (*[]IncidentTeamResponseData, bool) 
 func (o *IncidentTeamsResponse) SetData(v []IncidentTeamResponseData) {
 	o.Data = v
 }
-
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentTeamsResponse) GetIncluded() []IncidentTeamIncludedItems {
@@ -103,7 +99,6 @@ func (o *IncidentTeamsResponse) SetIncluded(v []IncidentTeamIncludedItems) {
 	o.Included = &v
 }
 
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *IncidentTeamsResponse) GetMeta() IncidentResponseMeta {
 	if o == nil || o.Meta == nil {
@@ -136,8 +131,6 @@ func (o *IncidentTeamsResponse) SetMeta(v IncidentResponseMeta) {
 	o.Meta = &v
 }
 
-
-
 func (o IncidentTeamsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,16 +150,15 @@ func (o IncidentTeamsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *IncidentTeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *[]IncidentTeamResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data []IncidentTeamResponseData `json:"data"`
+		Data     []IncidentTeamResponseData   `json:"data"`
 		Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
-		Meta *IncidentResponseMeta `json:"meta,omitempty"`
+		Meta     *IncidentResponseMeta        `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

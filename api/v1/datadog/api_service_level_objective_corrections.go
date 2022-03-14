@@ -16,6 +16,7 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +30,7 @@ type ServiceLevelObjectiveCorrectionsApiService service
 type apiCreateSLOCorrectionRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectiveCorrectionsApiService
-	body *SLOCorrectionCreateRequest
+	body       *SLOCorrectionCreateRequest
 }
 
 /*
@@ -40,7 +41,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _co
 	req := apiCreateSLOCorrectionRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createSLOCorrectionExecute(req)
@@ -59,12 +60,12 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOCorrectionResponse
 	)
-	
+
 	operationId := "CreateSLOCorrection"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectiveCorrectionsApiService.CreateSLOCorrection")
@@ -206,8 +207,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(
 }
 
 type apiDeleteSLOCorrectionRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectiveCorrectionsApiService
+	ctx             _context.Context
+	ApiService      *ServiceLevelObjectiveCorrectionsApiService
 	sloCorrectionId string
 }
 
@@ -217,8 +218,8 @@ type apiDeleteSLOCorrectionRequest struct {
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
 	req := apiDeleteSLOCorrectionRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
 
@@ -236,10 +237,10 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(
 		localVarFileName     string
 		localVarFileBytes    []byte
 	)
-	
+
 	operationId := "DeleteSLOCorrection"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
 		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -350,8 +351,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(
 }
 
 type apiGetSLOCorrectionRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectiveCorrectionsApiService
+	ctx             _context.Context
+	ApiService      *ServiceLevelObjectiveCorrectionsApiService
 	sloCorrectionId string
 }
 
@@ -361,8 +362,8 @@ type apiGetSLOCorrectionRequest struct {
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req := apiGetSLOCorrectionRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
 	}
 
@@ -382,12 +383,12 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r a
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOCorrectionResponse
 	)
-	
+
 	operationId := "GetSLOCorrection"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectiveCorrectionsApiService.GetSLOCorrection")
@@ -535,12 +536,12 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r 
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOCorrectionListResponse
 	)
-	
+
 	operationId := "ListSLOCorrection"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectiveCorrectionsApiService.ListSLOCorrection")
@@ -647,10 +648,10 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r 
 }
 
 type apiUpdateSLOCorrectionRequest struct {
-	ctx        _context.Context
-	ApiService *ServiceLevelObjectiveCorrectionsApiService
+	ctx             _context.Context
+	ApiService      *ServiceLevelObjectiveCorrectionsApiService
 	sloCorrectionId string
-	body *SLOCorrectionUpdateRequest
+	body            *SLOCorrectionUpdateRequest
 }
 
 /*
@@ -659,10 +660,10 @@ type apiUpdateSLOCorrectionRequest struct {
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req := apiUpdateSLOCorrectionRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:      a,
+		ctx:             ctx,
 		sloCorrectionId: sloCorrectionId,
-		body: &body,
+		body:            &body,
 	}
 
 	return req.ApiService.updateSLOCorrectionExecute(req)
@@ -681,12 +682,12 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOCorrectionResponse
 	)
-	
+
 	operationId := "UpdateSLOCorrection"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
-		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectiveCorrectionsApiService.UpdateSLOCorrection")

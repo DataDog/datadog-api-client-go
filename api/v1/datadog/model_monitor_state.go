@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MonitorState Wrapper object with the different monitor states.
 type MonitorState struct {
@@ -21,11 +18,9 @@ type MonitorState struct {
 	// the list of groups your monitor is broken down on.
 	Groups map[string]MonitorStateGroup `json:"groups,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMonitorState instantiates a new MonitorState object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewMonitorStateWithDefaults() *MonitorState {
 	this := MonitorState{}
 	return &this
 }
+
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *MonitorState) GetGroups() map[string]MonitorStateGroup {
 	if o == nil || o.Groups == nil {
@@ -75,8 +71,6 @@ func (o *MonitorState) SetGroups(v map[string]MonitorStateGroup) {
 	o.Groups = v
 }
 
-
-
 func (o MonitorState) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -91,7 +85,6 @@ func (o MonitorState) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *MonitorState) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsArchiveCreateRequest The logs archive.
 type LogsArchiveCreateRequest struct {
 	// The definition of an archive.
 	Data *LogsArchiveCreateRequestDefinition `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsArchiveCreateRequest instantiates a new LogsArchiveCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewLogsArchiveCreateRequestWithDefaults() *LogsArchiveCreateRequest {
 	this := LogsArchiveCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequest) GetData() LogsArchiveCreateRequestDefinition {
 	if o == nil || o.Data == nil {
@@ -74,8 +70,6 @@ func (o *LogsArchiveCreateRequest) SetData(v LogsArchiveCreateRequestDefinition)
 	o.Data = &v
 }
 
-
-
 func (o LogsArchiveCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o LogsArchiveCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *LogsArchiveCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ListStreamWidgetDefinition The list stream visualization displays a table of recent events in your application that
 // match a search criteria using user-defined columns.
@@ -36,11 +34,9 @@ type ListStreamWidgetDefinition struct {
 	// Type of the list stream widget.
 	Type ListStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewListStreamWidgetDefinition instantiates a new ListStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -62,6 +58,7 @@ func NewListStreamWidgetDefinitionWithDefaults() *ListStreamWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetLegendSize returns the LegendSize field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetLegendSize() string {
 	if o == nil || o.LegendSize == nil {
@@ -94,7 +91,6 @@ func (o *ListStreamWidgetDefinition) SetLegendSize(v string) {
 	o.LegendSize = &v
 }
 
-
 // GetRequests returns the Requests field value
 func (o *ListStreamWidgetDefinition) GetRequests() []ListStreamWidgetRequest {
 	if o == nil {
@@ -117,7 +113,6 @@ func (o *ListStreamWidgetDefinition) GetRequestsOk() (*[]ListStreamWidgetRequest
 func (o *ListStreamWidgetDefinition) SetRequests(v []ListStreamWidgetRequest) {
 	o.Requests = v
 }
-
 
 // GetShowLegend returns the ShowLegend field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetShowLegend() bool {
@@ -151,7 +146,6 @@ func (o *ListStreamWidgetDefinition) SetShowLegend(v bool) {
 	o.ShowLegend = &v
 }
 
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -183,7 +177,6 @@ func (o *ListStreamWidgetDefinition) HasTime() bool {
 func (o *ListStreamWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitle() string {
@@ -217,7 +210,6 @@ func (o *ListStreamWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -249,7 +241,6 @@ func (o *ListStreamWidgetDefinition) HasTitleAlign() bool {
 func (o *ListStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ListStreamWidgetDefinition) GetTitleSize() string {
@@ -283,7 +274,6 @@ func (o *ListStreamWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value
 func (o *ListStreamWidgetDefinition) GetType() ListStreamWidgetDefinitionType {
 	if o == nil {
@@ -306,8 +296,6 @@ func (o *ListStreamWidgetDefinition) GetTypeOk() (*ListStreamWidgetDefinitionTyp
 func (o *ListStreamWidgetDefinition) SetType(v ListStreamWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -341,22 +329,21 @@ func (o ListStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ListStreamWidgetRequest `json:"requests"`
-		Type *ListStreamWidgetDefinitionType `json:"type"`
+		Requests *[]ListStreamWidgetRequest      `json:"requests"`
+		Type     *ListStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		LegendSize *string `json:"legend_size,omitempty"`
-		Requests []ListStreamWidgetRequest `json:"requests"`
-		ShowLegend *bool `json:"show_legend,omitempty"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type ListStreamWidgetDefinitionType `json:"type"`
+		LegendSize *string                        `json:"legend_size,omitempty"`
+		Requests   []ListStreamWidgetRequest      `json:"requests"`
+		ShowLegend *bool                          `json:"show_legend,omitempty"`
+		Time       *WidgetTime                    `json:"time,omitempty"`
+		Title      *string                        `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize  *string                        `json:"title_size,omitempty"`
+		Type       ListStreamWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -377,7 +364,7 @@ func (o *ListStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil &&!v.IsValid() {
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

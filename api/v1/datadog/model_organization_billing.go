@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // OrganizationBilling A JSON array of billing type.
 type OrganizationBilling struct {
 	// The type of billing. Only `parent_billing` is supported.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewOrganizationBilling instantiates a new OrganizationBilling object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewOrganizationBillingWithDefaults() *OrganizationBilling {
 	this := OrganizationBilling{}
 	return &this
 }
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *OrganizationBilling) GetType() string {
 	if o == nil || o.Type == nil {
@@ -74,8 +70,6 @@ func (o *OrganizationBilling) SetType(v string) {
 	o.Type = &v
 }
 
-
-
 func (o OrganizationBilling) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o OrganizationBilling) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *OrganizationBilling) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

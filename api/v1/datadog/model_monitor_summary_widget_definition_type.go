@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MonitorSummaryWidgetDefinitionType Type of the monitor summary widget.
 type MonitorSummaryWidgetDefinitionType string

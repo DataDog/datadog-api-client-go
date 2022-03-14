@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentCreateData Incident data for a create request.
 type IncidentCreateData struct {
@@ -24,11 +22,9 @@ type IncidentCreateData struct {
 	// Incident resource type.
 	Type IncidentType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentCreateData instantiates a new IncidentCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +46,7 @@ func NewIncidentCreateDataWithDefaults() *IncidentCreateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *IncidentCreateData) GetAttributes() IncidentCreateAttributes {
 	if o == nil {
@@ -72,7 +69,6 @@ func (o *IncidentCreateData) GetAttributesOk() (*IncidentCreateAttributes, bool)
 func (o *IncidentCreateData) SetAttributes(v IncidentCreateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *IncidentCreateData) GetRelationships() IncidentCreateRelationships {
@@ -106,7 +102,6 @@ func (o *IncidentCreateData) SetRelationships(v IncidentCreateRelationships) {
 	o.Relationships = &v
 }
 
-
 // GetType returns the Type field value
 func (o *IncidentCreateData) GetType() IncidentType {
 	if o == nil {
@@ -130,8 +125,6 @@ func (o *IncidentCreateData) SetType(v IncidentType) {
 	o.Type = v
 }
 
-
-
 func (o IncidentCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -149,17 +142,16 @@ func (o IncidentCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *IncidentCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *IncidentCreateAttributes `json:"attributes"`
-		Type *IncidentType `json:"type"`
+		Type       *IncidentType             `json:"type"`
 	}{}
 	all := struct {
-		Attributes IncidentCreateAttributes `json:"attributes"`
+		Attributes    IncidentCreateAttributes     `json:"attributes"`
 		Relationships *IncidentCreateRelationships `json:"relationships,omitempty"`
-		Type IncidentType `json:"type"`
+		Type          IncidentType                 `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

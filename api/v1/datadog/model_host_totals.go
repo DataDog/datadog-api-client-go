@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // HostTotals Total number of host currently monitored by Datadog.
 type HostTotals struct {
@@ -22,11 +19,9 @@ type HostTotals struct {
 	// Number of host that are UP and reporting to Datadog.
 	TotalUp *int64 `json:"total_up,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewHostTotals instantiates a new HostTotals object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewHostTotalsWithDefaults() *HostTotals {
 	this := HostTotals{}
 	return &this
 }
+
 // GetTotalActive returns the TotalActive field value if set, zero value otherwise.
 func (o *HostTotals) GetTotalActive() int64 {
 	if o == nil || o.TotalActive == nil {
@@ -75,7 +71,6 @@ func (o *HostTotals) HasTotalActive() bool {
 func (o *HostTotals) SetTotalActive(v int64) {
 	o.TotalActive = &v
 }
-
 
 // GetTotalUp returns the TotalUp field value if set, zero value otherwise.
 func (o *HostTotals) GetTotalUp() int64 {
@@ -109,8 +104,6 @@ func (o *HostTotals) SetTotalUp(v int64) {
 	o.TotalUp = &v
 }
 
-
-
 func (o HostTotals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,12 +122,11 @@ func (o HostTotals) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *HostTotals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		TotalActive *int64 `json:"total_active,omitempty"`
-		TotalUp *int64 `json:"total_up,omitempty"`
+		TotalUp     *int64 `json:"total_up,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

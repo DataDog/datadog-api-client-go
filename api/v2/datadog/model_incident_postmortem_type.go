@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentPostmortemType Incident postmortem resource type.
 type IncidentPostmortemType string

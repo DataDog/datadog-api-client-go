@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // TimeseriesWidgetLegendColumn Legend column.
 type TimeseriesWidgetLegendColumn string
@@ -21,10 +19,10 @@ type TimeseriesWidgetLegendColumn string
 // List of TimeseriesWidgetLegendColumn
 const (
 	TIMESERIESWIDGETLEGENDCOLUMN_VALUE TimeseriesWidgetLegendColumn = "value"
-	TIMESERIESWIDGETLEGENDCOLUMN_AVG TimeseriesWidgetLegendColumn = "avg"
-	TIMESERIESWIDGETLEGENDCOLUMN_SUM TimeseriesWidgetLegendColumn = "sum"
-	TIMESERIESWIDGETLEGENDCOLUMN_MIN TimeseriesWidgetLegendColumn = "min"
-	TIMESERIESWIDGETLEGENDCOLUMN_MAX TimeseriesWidgetLegendColumn = "max"
+	TIMESERIESWIDGETLEGENDCOLUMN_AVG   TimeseriesWidgetLegendColumn = "avg"
+	TIMESERIESWIDGETLEGENDCOLUMN_SUM   TimeseriesWidgetLegendColumn = "sum"
+	TIMESERIESWIDGETLEGENDCOLUMN_MIN   TimeseriesWidgetLegendColumn = "min"
+	TIMESERIESWIDGETLEGENDCOLUMN_MAX   TimeseriesWidgetLegendColumn = "max"
 )
 
 var allowedTimeseriesWidgetLegendColumnEnumValues = []TimeseriesWidgetLegendColumn{

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FormulaAndFunctionApmResourceStatsDataSource Data source for APM resource stats queries.
 type FormulaAndFunctionApmResourceStatsDataSource string

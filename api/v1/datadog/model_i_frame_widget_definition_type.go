@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IFrameWidgetDefinitionType Type of the iframe widget.
 type IFrameWidgetDefinitionType string

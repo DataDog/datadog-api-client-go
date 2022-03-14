@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AWSAccountListResponse List of enabled AWS accounts.
 type AWSAccountListResponse struct {
 	// List of enabled AWS accounts.
 	Accounts *[]AWSAccount `json:"accounts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAWSAccountListResponse instantiates a new AWSAccountListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewAWSAccountListResponseWithDefaults() *AWSAccountListResponse {
 	this := AWSAccountListResponse{}
 	return &this
 }
+
 // GetAccounts returns the Accounts field value if set, zero value otherwise.
 func (o *AWSAccountListResponse) GetAccounts() []AWSAccount {
 	if o == nil || o.Accounts == nil {
@@ -74,8 +70,6 @@ func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount) {
 	o.Accounts = &v
 }
 
-
-
 func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

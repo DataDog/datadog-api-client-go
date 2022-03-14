@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MetricIngestedIndexedVolumeType The metric ingested and indexed volume type.
 type MetricIngestedIndexedVolumeType string

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SLOHistoryMetrics A `metric` based SLO history response.
 //
@@ -38,11 +36,9 @@ type SLOHistoryMetrics struct {
 	// An array of query timestamps in EPOCH milliseconds
 	Times []float64 `json:"times"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object
 // This constructor will assign default values to properties that have it defined,
@@ -67,6 +63,7 @@ func NewSLOHistoryMetricsWithDefaults() *SLOHistoryMetrics {
 	this := SLOHistoryMetrics{}
 	return &this
 }
+
 // GetDenominator returns the Denominator field value
 func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
 	if o == nil {
@@ -90,7 +87,6 @@ func (o *SLOHistoryMetrics) SetDenominator(v SLOHistoryMetricsSeries) {
 	o.Denominator = v
 }
 
-
 // GetInterval returns the Interval field value
 func (o *SLOHistoryMetrics) GetInterval() int64 {
 	if o == nil {
@@ -113,7 +109,6 @@ func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool) {
 func (o *SLOHistoryMetrics) SetInterval(v int64) {
 	o.Interval = v
 }
-
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SLOHistoryMetrics) GetMessage() string {
@@ -147,7 +142,6 @@ func (o *SLOHistoryMetrics) SetMessage(v string) {
 	o.Message = &v
 }
 
-
 // GetNumerator returns the Numerator field value
 func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
 	if o == nil {
@@ -170,7 +164,6 @@ func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool) {
 func (o *SLOHistoryMetrics) SetNumerator(v SLOHistoryMetricsSeries) {
 	o.Numerator = v
 }
-
 
 // GetQuery returns the Query field value
 func (o *SLOHistoryMetrics) GetQuery() string {
@@ -195,7 +188,6 @@ func (o *SLOHistoryMetrics) SetQuery(v string) {
 	o.Query = v
 }
 
-
 // GetResType returns the ResType field value
 func (o *SLOHistoryMetrics) GetResType() string {
 	if o == nil {
@@ -218,7 +210,6 @@ func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool) {
 func (o *SLOHistoryMetrics) SetResType(v string) {
 	o.ResType = v
 }
-
 
 // GetRespVersion returns the RespVersion field value
 func (o *SLOHistoryMetrics) GetRespVersion() int64 {
@@ -243,7 +234,6 @@ func (o *SLOHistoryMetrics) SetRespVersion(v int64) {
 	o.RespVersion = v
 }
 
-
 // GetTimes returns the Times field value
 func (o *SLOHistoryMetrics) GetTimes() []float64 {
 	if o == nil {
@@ -267,8 +257,6 @@ func (o *SLOHistoryMetrics) SetTimes(v []float64) {
 	o.Times = v
 }
 
-
-
 func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -291,27 +279,26 @@ func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Denominator *SLOHistoryMetricsSeries `json:"denominator"`
-		Interval *int64 `json:"interval"`
-		Numerator *SLOHistoryMetricsSeries `json:"numerator"`
-		Query *string `json:"query"`
-		ResType *string `json:"res_type"`
-		RespVersion *int64 `json:"resp_version"`
-		Times *[]float64 `json:"times"`
+		Interval    *int64                   `json:"interval"`
+		Numerator   *SLOHistoryMetricsSeries `json:"numerator"`
+		Query       *string                  `json:"query"`
+		ResType     *string                  `json:"res_type"`
+		RespVersion *int64                   `json:"resp_version"`
+		Times       *[]float64               `json:"times"`
 	}{}
 	all := struct {
 		Denominator SLOHistoryMetricsSeries `json:"denominator"`
-		Interval int64 `json:"interval"`
-		Message *string `json:"message,omitempty"`
-		Numerator SLOHistoryMetricsSeries `json:"numerator"`
-		Query string `json:"query"`
-		ResType string `json:"res_type"`
-		RespVersion int64 `json:"resp_version"`
-		Times []float64 `json:"times"`
+		Interval    int64                   `json:"interval"`
+		Message     *string                 `json:"message,omitempty"`
+		Numerator   SLOHistoryMetricsSeries `json:"numerator"`
+		Query       string                  `json:"query"`
+		ResType     string                  `json:"res_type"`
+		RespVersion int64                   `json:"resp_version"`
+		Times       []float64               `json:"times"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

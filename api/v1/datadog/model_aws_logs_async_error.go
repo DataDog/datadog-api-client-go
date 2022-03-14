@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AWSLogsAsyncError Description of errors.
 type AWSLogsAsyncError struct {
@@ -22,11 +19,9 @@ type AWSLogsAsyncError struct {
 	// Message content.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAWSLogsAsyncError instantiates a new AWSLogsAsyncError object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewAWSLogsAsyncErrorWithDefaults() *AWSLogsAsyncError {
 	this := AWSLogsAsyncError{}
 	return &this
 }
+
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *AWSLogsAsyncError) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -75,7 +71,6 @@ func (o *AWSLogsAsyncError) HasCode() bool {
 func (o *AWSLogsAsyncError) SetCode(v string) {
 	o.Code = &v
 }
-
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *AWSLogsAsyncError) GetMessage() string {
@@ -109,8 +104,6 @@ func (o *AWSLogsAsyncError) SetMessage(v string) {
 	o.Message = &v
 }
 
-
-
 func (o AWSLogsAsyncError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o AWSLogsAsyncError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AWSLogsAsyncError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code *string `json:"code,omitempty"`
+		Code    *string `json:"code,omitempty"`
 		Message *string `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

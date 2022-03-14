@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsFilter Filter for logs.
 type LogsFilter struct {
 	// The filter query.
 	Query *string `json:"query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsFilter instantiates a new LogsFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewLogsFilterWithDefaults() *LogsFilter {
 	this := LogsFilter{}
 	return &this
 }
+
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -74,8 +70,6 @@ func (o *LogsFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
-
-
 func (o LogsFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o LogsFilter) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *LogsFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

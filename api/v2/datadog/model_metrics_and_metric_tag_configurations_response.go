@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MetricsAndMetricTagConfigurationsResponse Response object that includes metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurationsResponse struct {
 	// Array of metrics and metric tag configurations.
 	Data *[]MetricsAndMetricTagConfigurations `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricsAndMetricTagConfigurationsResponse instantiates a new MetricsAndMetricTagConfigurationsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewMetricsAndMetricTagConfigurationsResponseWithDefaults() *MetricsAndMetri
 	this := MetricsAndMetricTagConfigurationsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *MetricsAndMetricTagConfigurationsResponse) GetData() []MetricsAndMetricTagConfigurations {
 	if o == nil || o.Data == nil {
@@ -74,8 +70,6 @@ func (o *MetricsAndMetricTagConfigurationsResponse) SetData(v []MetricsAndMetric
 	o.Data = &v
 }
 
-
-
 func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error)
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *MetricsAndMetricTagConfigurationsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

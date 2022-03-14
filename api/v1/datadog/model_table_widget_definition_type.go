@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // TableWidgetDefinitionType Type of the table widget.
 type TableWidgetDefinitionType string

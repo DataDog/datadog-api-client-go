@@ -11,19 +11,17 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityMonitoringRuleSeverity Severity of the Security Signal.
 type SecurityMonitoringRuleSeverity string
 
 // List of SecurityMonitoringRuleSeverity
 const (
-	SECURITYMONITORINGRULESEVERITY_INFO SecurityMonitoringRuleSeverity = "info"
-	SECURITYMONITORINGRULESEVERITY_LOW SecurityMonitoringRuleSeverity = "low"
-	SECURITYMONITORINGRULESEVERITY_MEDIUM SecurityMonitoringRuleSeverity = "medium"
-	SECURITYMONITORINGRULESEVERITY_HIGH SecurityMonitoringRuleSeverity = "high"
+	SECURITYMONITORINGRULESEVERITY_INFO     SecurityMonitoringRuleSeverity = "info"
+	SECURITYMONITORINGRULESEVERITY_LOW      SecurityMonitoringRuleSeverity = "low"
+	SECURITYMONITORINGRULESEVERITY_MEDIUM   SecurityMonitoringRuleSeverity = "medium"
+	SECURITYMONITORINGRULESEVERITY_HIGH     SecurityMonitoringRuleSeverity = "high"
 	SECURITYMONITORINGRULESEVERITY_CRITICAL SecurityMonitoringRuleSeverity = "critical"
 )
 

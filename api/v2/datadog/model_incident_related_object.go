@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentRelatedObject Object related to an incident.
 type IncidentRelatedObject string

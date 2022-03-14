@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetLineWidth Width of line displayed.
 type WidgetLineWidth string
@@ -21,8 +19,8 @@ type WidgetLineWidth string
 // List of WidgetLineWidth
 const (
 	WIDGETLINEWIDTH_NORMAL WidgetLineWidth = "normal"
-	WIDGETLINEWIDTH_THICK WidgetLineWidth = "thick"
-	WIDGETLINEWIDTH_THIN WidgetLineWidth = "thin"
+	WIDGETLINEWIDTH_THICK  WidgetLineWidth = "thick"
+	WIDGETLINEWIDTH_THIN   WidgetLineWidth = "thin"
 )
 
 var allowedWidgetLineWidthEnumValues = []WidgetLineWidth{

@@ -11,11 +11,11 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"os"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +29,7 @@ type OrganizationsApiService service
 type apiCreateChildOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
-	body *OrganizationCreateBody
+	body       *OrganizationCreateBody
 }
 
 /*
@@ -49,7 +49,7 @@ func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body Orga
 	req := apiCreateChildOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createChildOrgExecute(req)
@@ -200,7 +200,7 @@ func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgReque
 type apiGetOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
-	publicId string
+	publicId   string
 }
 
 /*
@@ -211,7 +211,7 @@ func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) 
 	req := apiGetOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId: publicId,
+		publicId:   publicId,
 	}
 
 	return req.ApiService.getOrgExecute(req)
@@ -483,8 +483,8 @@ func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (Organiz
 type apiUpdateOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
-	publicId string
-	body *Organization
+	publicId   string
+	body       *Organization
 }
 
 /*
@@ -495,8 +495,8 @@ func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId strin
 	req := apiUpdateOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId: publicId,
-		body: &body,
+		publicId:   publicId,
+		body:       &body,
 	}
 
 	return req.ApiService.updateOrgExecute(req)
@@ -648,8 +648,8 @@ func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (Organ
 type apiUploadIdPForOrgRequest struct {
 	ctx        _context.Context
 	ApiService *OrganizationsApiService
-	publicId string
-	idpFile **os.File
+	publicId   string
+	idpFile    **os.File
 }
 
 /*
@@ -665,8 +665,8 @@ func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId
 	req := apiUploadIdPForOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
-		publicId: publicId,
-		idpFile: &idpFile,
+		publicId:   publicId,
+		idpFile:    &idpFile,
 	}
 
 	return req.ApiService.uploadIdPForOrgExecute(req)
@@ -718,7 +718,6 @@ func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-	
 
 	localVarFormFileName = "idp_file"
 	localVarFile := *r.idpFile

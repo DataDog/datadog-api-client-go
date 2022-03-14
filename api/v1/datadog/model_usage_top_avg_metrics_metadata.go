@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageTopAvgMetricsMetadata The object containing document metadata.
 type UsageTopAvgMetricsMetadata struct {
@@ -24,11 +22,9 @@ type UsageTopAvgMetricsMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageTopAvgMetricsMetadata instantiates a new UsageTopAvgMetricsMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +42,7 @@ func NewUsageTopAvgMetricsMetadataWithDefaults() *UsageTopAvgMetricsMetadata {
 	this := UsageTopAvgMetricsMetadata{}
 	return &this
 }
+
 // GetDay returns the Day field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsMetadata) GetDay() time.Time {
 	if o == nil || o.Day == nil {
@@ -77,7 +74,6 @@ func (o *UsageTopAvgMetricsMetadata) HasDay() bool {
 func (o *UsageTopAvgMetricsMetadata) SetDay(v time.Time) {
 	o.Day = &v
 }
-
 
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsMetadata) GetMonth() time.Time {
@@ -111,7 +107,6 @@ func (o *UsageTopAvgMetricsMetadata) SetMonth(v time.Time) {
 	o.Month = &v
 }
 
-
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsMetadata) GetPagination() UsageAttributionPagination {
 	if o == nil || o.Pagination == nil {
@@ -144,8 +139,6 @@ func (o *UsageTopAvgMetricsMetadata) SetPagination(v UsageAttributionPagination)
 	o.Pagination = &v
 }
 
-
-
 func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,12 +160,11 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Day *time.Time `json:"day,omitempty"`
-		Month *time.Time `json:"month,omitempty"`
+		Day        *time.Time                  `json:"day,omitempty"`
+		Month      *time.Time                  `json:"month,omitempty"`
 		Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

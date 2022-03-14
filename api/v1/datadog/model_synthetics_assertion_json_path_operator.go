@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsAssertionJSONPathOperator Assertion operator to apply.
 type SyntheticsAssertionJSONPathOperator string

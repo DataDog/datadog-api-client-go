@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsAPIStepSubtype The subtype of the Synthetic multistep API test step, currently only supporting `http`.
 type SyntheticsAPIStepSubtype string

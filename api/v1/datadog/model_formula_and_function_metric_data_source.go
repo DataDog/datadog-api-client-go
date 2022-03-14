@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FormulaAndFunctionMetricDataSource Data source for metrics queries.
 type FormulaAndFunctionMetricDataSource string

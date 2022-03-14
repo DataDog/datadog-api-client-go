@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // IncidentTimelineCellCreateAttributes - The timeline cell's attributes for a create request.
 type IncidentTimelineCellCreateAttributes struct {
@@ -64,7 +61,6 @@ func (src IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.IncidentTimelineCellMarkdownCreateAttributes)
 	}
 
-
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -72,11 +68,10 @@ func (src IncidentTimelineCellCreateAttributes) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() (interface{}) {
+func (obj *IncidentTimelineCellCreateAttributes) GetActualInstance() interface{} {
 	if obj.IncidentTimelineCellMarkdownCreateAttributes != nil {
 		return obj.IncidentTimelineCellMarkdownCreateAttributes
 	}
-
 
 	// all schemas are nil
 	return nil

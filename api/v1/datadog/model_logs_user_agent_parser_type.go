@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsUserAgentParserType Type of logs User-Agent parser.
 type LogsUserAgentParserType string

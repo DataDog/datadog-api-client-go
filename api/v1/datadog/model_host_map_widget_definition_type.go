@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // HostMapWidgetDefinitionType Type of the host map widget.
 type HostMapWidgetDefinitionType string

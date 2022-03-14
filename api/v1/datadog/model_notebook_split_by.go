@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NotebookSplitBy Object describing how to split the graph to display multiple visualizations per request.
 type NotebookSplitBy struct {
@@ -22,11 +20,9 @@ type NotebookSplitBy struct {
 	// Tags to split on.
 	Tags []string `json:"tags"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewNotebookSplitBy instantiates a new NotebookSplitBy object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +42,7 @@ func NewNotebookSplitByWithDefaults() *NotebookSplitBy {
 	this := NotebookSplitBy{}
 	return &this
 }
+
 // GetKeys returns the Keys field value
 func (o *NotebookSplitBy) GetKeys() []string {
 	if o == nil {
@@ -68,7 +65,6 @@ func (o *NotebookSplitBy) GetKeysOk() (*[]string, bool) {
 func (o *NotebookSplitBy) SetKeys(v []string) {
 	o.Keys = v
 }
-
 
 // GetTags returns the Tags field value
 func (o *NotebookSplitBy) GetTags() []string {
@@ -93,8 +89,6 @@ func (o *NotebookSplitBy) SetTags(v []string) {
 	o.Tags = v
 }
 
-
-
 func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -108,7 +102,6 @@ func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

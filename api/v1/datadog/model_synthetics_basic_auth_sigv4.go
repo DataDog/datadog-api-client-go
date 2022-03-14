@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsBasicAuthSigv4 Object to handle `SIGV4` authentication when performing the test.
 type SyntheticsBasicAuthSigv4 struct {
@@ -30,11 +28,9 @@ type SyntheticsBasicAuthSigv4 struct {
 	// The type of authentication to use when performing the test.
 	Type SyntheticsBasicAuthSigv4Type `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsBasicAuthSigv4 instantiates a new SyntheticsBasicAuthSigv4 object
 // This constructor will assign default values to properties that have it defined,
@@ -57,6 +53,7 @@ func NewSyntheticsBasicAuthSigv4WithDefaults() *SyntheticsBasicAuthSigv4 {
 	this.Type = type_
 	return &this
 }
+
 // GetAccessKey returns the AccessKey field value
 func (o *SyntheticsBasicAuthSigv4) GetAccessKey() string {
 	if o == nil {
@@ -79,7 +76,6 @@ func (o *SyntheticsBasicAuthSigv4) GetAccessKeyOk() (*string, bool) {
 func (o *SyntheticsBasicAuthSigv4) SetAccessKey(v string) {
 	o.AccessKey = v
 }
-
 
 // GetRegion returns the Region field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthSigv4) GetRegion() string {
@@ -113,7 +109,6 @@ func (o *SyntheticsBasicAuthSigv4) SetRegion(v string) {
 	o.Region = &v
 }
 
-
 // GetSecretKey returns the SecretKey field value
 func (o *SyntheticsBasicAuthSigv4) GetSecretKey() string {
 	if o == nil {
@@ -136,7 +131,6 @@ func (o *SyntheticsBasicAuthSigv4) GetSecretKeyOk() (*string, bool) {
 func (o *SyntheticsBasicAuthSigv4) SetSecretKey(v string) {
 	o.SecretKey = v
 }
-
 
 // GetServiceName returns the ServiceName field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthSigv4) GetServiceName() string {
@@ -170,7 +164,6 @@ func (o *SyntheticsBasicAuthSigv4) SetServiceName(v string) {
 	o.ServiceName = &v
 }
 
-
 // GetSessionToken returns the SessionToken field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthSigv4) GetSessionToken() string {
 	if o == nil || o.SessionToken == nil {
@@ -203,7 +196,6 @@ func (o *SyntheticsBasicAuthSigv4) SetSessionToken(v string) {
 	o.SessionToken = &v
 }
 
-
 // GetType returns the Type field value
 func (o *SyntheticsBasicAuthSigv4) GetType() SyntheticsBasicAuthSigv4Type {
 	if o == nil {
@@ -226,8 +218,6 @@ func (o *SyntheticsBasicAuthSigv4) GetTypeOk() (*SyntheticsBasicAuthSigv4Type, b
 func (o *SyntheticsBasicAuthSigv4) SetType(v SyntheticsBasicAuthSigv4Type) {
 	o.Type = v
 }
-
-
 
 func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -253,21 +243,20 @@ func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AccessKey *string `json:"accessKey"`
-		SecretKey *string `json:"secretKey"`
-		Type *SyntheticsBasicAuthSigv4Type `json:"type"`
+		AccessKey *string                       `json:"accessKey"`
+		SecretKey *string                       `json:"secretKey"`
+		Type      *SyntheticsBasicAuthSigv4Type `json:"type"`
 	}{}
 	all := struct {
-		AccessKey string `json:"accessKey"`
-		Region *string `json:"region,omitempty"`
-		SecretKey string `json:"secretKey"`
-		ServiceName *string `json:"serviceName,omitempty"`
-		SessionToken *string `json:"sessionToken,omitempty"`
-		Type SyntheticsBasicAuthSigv4Type `json:"type"`
+		AccessKey    string                       `json:"accessKey"`
+		Region       *string                      `json:"region,omitempty"`
+		SecretKey    string                       `json:"secretKey"`
+		ServiceName  *string                      `json:"serviceName,omitempty"`
+		SessionToken *string                      `json:"sessionToken,omitempty"`
+		Type         SyntheticsBasicAuthSigv4Type `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

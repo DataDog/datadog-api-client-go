@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NoteWidgetDefinition The notes and links widget is similar to free text widget, but allows for more formatting options.
 type NoteWidgetDefinition struct {
@@ -38,11 +36,9 @@ type NoteWidgetDefinition struct {
 	// Vertical alignment.
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewNoteWidgetDefinition instantiates a new NoteWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -68,6 +64,7 @@ func NewNoteWidgetDefinitionWithDefaults() *NoteWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetBackgroundColor returns the BackgroundColor field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetBackgroundColor() string {
 	if o == nil || o.BackgroundColor == nil {
@@ -100,7 +97,6 @@ func (o *NoteWidgetDefinition) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
 
-
 // GetContent returns the Content field value
 func (o *NoteWidgetDefinition) GetContent() string {
 	if o == nil {
@@ -123,7 +119,6 @@ func (o *NoteWidgetDefinition) GetContentOk() (*string, bool) {
 func (o *NoteWidgetDefinition) SetContent(v string) {
 	o.Content = v
 }
-
 
 // GetFontSize returns the FontSize field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetFontSize() string {
@@ -157,7 +152,6 @@ func (o *NoteWidgetDefinition) SetFontSize(v string) {
 	o.FontSize = &v
 }
 
-
 // GetHasPadding returns the HasPadding field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetHasPadding() bool {
 	if o == nil || o.HasPadding == nil {
@@ -189,7 +183,6 @@ func (o *NoteWidgetDefinition) HasHasPadding() bool {
 func (o *NoteWidgetDefinition) SetHasPadding(v bool) {
 	o.HasPadding = &v
 }
-
 
 // GetShowTick returns the ShowTick field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetShowTick() bool {
@@ -223,7 +216,6 @@ func (o *NoteWidgetDefinition) SetShowTick(v bool) {
 	o.ShowTick = &v
 }
 
-
 // GetTextAlign returns the TextAlign field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetTextAlign() WidgetTextAlign {
 	if o == nil || o.TextAlign == nil {
@@ -255,7 +247,6 @@ func (o *NoteWidgetDefinition) HasTextAlign() bool {
 func (o *NoteWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
-
 
 // GetTickEdge returns the TickEdge field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetTickEdge() WidgetTickEdge {
@@ -289,7 +280,6 @@ func (o *NoteWidgetDefinition) SetTickEdge(v WidgetTickEdge) {
 	o.TickEdge = &v
 }
 
-
 // GetTickPos returns the TickPos field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetTickPos() string {
 	if o == nil || o.TickPos == nil {
@@ -322,7 +312,6 @@ func (o *NoteWidgetDefinition) SetTickPos(v string) {
 	o.TickPos = &v
 }
 
-
 // GetType returns the Type field value
 func (o *NoteWidgetDefinition) GetType() NoteWidgetDefinitionType {
 	if o == nil {
@@ -345,7 +334,6 @@ func (o *NoteWidgetDefinition) GetTypeOk() (*NoteWidgetDefinitionType, bool) {
 func (o *NoteWidgetDefinition) SetType(v NoteWidgetDefinitionType) {
 	o.Type = v
 }
-
 
 // GetVerticalAlign returns the VerticalAlign field value if set, zero value otherwise.
 func (o *NoteWidgetDefinition) GetVerticalAlign() WidgetVerticalAlign {
@@ -378,8 +366,6 @@ func (o *NoteWidgetDefinition) HasVerticalAlign() bool {
 func (o *NoteWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign) {
 	o.VerticalAlign = &v
 }
-
-
 
 func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -419,24 +405,23 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Content *string `json:"content"`
-		Type *NoteWidgetDefinitionType `json:"type"`
+		Content *string                   `json:"content"`
+		Type    *NoteWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		BackgroundColor *string `json:"background_color,omitempty"`
-		Content string `json:"content"`
-		FontSize *string `json:"font_size,omitempty"`
-		HasPadding *bool `json:"has_padding,omitempty"`
-		ShowTick *bool `json:"show_tick,omitempty"`
-		TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
-		TickEdge *WidgetTickEdge `json:"tick_edge,omitempty"`
-		TickPos *string `json:"tick_pos,omitempty"`
-		Type NoteWidgetDefinitionType `json:"type"`
-		VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
+		BackgroundColor *string                  `json:"background_color,omitempty"`
+		Content         string                   `json:"content"`
+		FontSize        *string                  `json:"font_size,omitempty"`
+		HasPadding      *bool                    `json:"has_padding,omitempty"`
+		ShowTick        *bool                    `json:"show_tick,omitempty"`
+		TextAlign       *WidgetTextAlign         `json:"text_align,omitempty"`
+		TickEdge        *WidgetTickEdge          `json:"tick_edge,omitempty"`
+		TickPos         *string                  `json:"tick_pos,omitempty"`
+		Type            NoteWidgetDefinitionType `json:"type"`
+		VerticalAlign   *WidgetVerticalAlign     `json:"vertical_align,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -457,7 +442,7 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TextAlign; v != nil &&!v.IsValid() {
+	if v := all.TextAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -465,7 +450,7 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TickEdge; v != nil &&!v.IsValid() {
+	if v := all.TickEdge; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -481,7 +466,7 @@ func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.VerticalAlign; v != nil &&!v.IsValid() {
+	if v := all.VerticalAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

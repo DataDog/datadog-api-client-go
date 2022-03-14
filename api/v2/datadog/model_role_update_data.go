@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // RoleUpdateData Data related to the update of a role.
 type RoleUpdateData struct {
@@ -24,11 +22,9 @@ type RoleUpdateData struct {
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRoleUpdateData instantiates a new RoleUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +47,7 @@ func NewRoleUpdateDataWithDefaults() *RoleUpdateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *RoleUpdateData) GetAttributes() RoleUpdateAttributes {
 	if o == nil {
@@ -73,7 +70,6 @@ func (o *RoleUpdateData) GetAttributesOk() (*RoleUpdateAttributes, bool) {
 func (o *RoleUpdateData) SetAttributes(v RoleUpdateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetId returns the Id field value
 func (o *RoleUpdateData) GetId() string {
@@ -98,7 +94,6 @@ func (o *RoleUpdateData) SetId(v string) {
 	o.Id = v
 }
 
-
 // GetType returns the Type field value
 func (o *RoleUpdateData) GetType() RolesType {
 	if o == nil {
@@ -122,8 +117,6 @@ func (o *RoleUpdateData) SetType(v RolesType) {
 	o.Type = v
 }
 
-
-
 func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -139,18 +132,17 @@ func (o RoleUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RoleUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *RoleUpdateAttributes `json:"attributes"`
-		Id *string `json:"id"`
-		Type *RolesType `json:"type"`
+		Id         *string               `json:"id"`
+		Type       *RolesType            `json:"type"`
 	}{}
 	all := struct {
 		Attributes RoleUpdateAttributes `json:"attributes"`
-		Id string `json:"id"`
-		Type RolesType `json:"type"`
+		Id         string               `json:"id"`
+		Type       RolesType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AuthNMappingsResponse Array of AuthN Mappings response.
 type AuthNMappingsResponse struct {
@@ -22,11 +19,9 @@ type AuthNMappingsResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAuthNMappingsResponse instantiates a new AuthNMappingsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewAuthNMappingsResponseWithDefaults() *AuthNMappingsResponse {
 	this := AuthNMappingsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AuthNMappingsResponse) GetData() []AuthNMapping {
 	if o == nil || o.Data == nil {
@@ -75,7 +71,6 @@ func (o *AuthNMappingsResponse) HasData() bool {
 func (o *AuthNMappingsResponse) SetData(v []AuthNMapping) {
 	o.Data = &v
 }
-
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *AuthNMappingsResponse) GetMeta() ResponseMetaAttributes {
@@ -109,8 +104,6 @@ func (o *AuthNMappingsResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
-
-
 func (o AuthNMappingsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o AuthNMappingsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AuthNMappingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]AuthNMapping `json:"data,omitempty"`
+		Data *[]AuthNMapping         `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

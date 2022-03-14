@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MonitorFormulaAndFunctionEventQueryGroupBySort Options for sorting group by results.
 type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
@@ -24,11 +22,9 @@ type MonitorFormulaAndFunctionEventQueryGroupBySort struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMonitorFormulaAndFunctionEventQueryGroupBySort instantiates a new MonitorFormulaAndFunctionEventQueryGroupBySort object
 // This constructor will assign default values to properties that have it defined,
@@ -51,6 +47,7 @@ func NewMonitorFormulaAndFunctionEventQueryGroupBySortWithDefaults() *MonitorFor
 	this.Order = &order
 	return &this
 }
+
 // GetAggregation returns the Aggregation field value
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetAggregation() MonitorFormulaAndFunctionEventAggregation {
 	if o == nil {
@@ -73,7 +70,6 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetAggregationOk() (*Mo
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) SetAggregation(v MonitorFormulaAndFunctionEventAggregation) {
 	o.Aggregation = v
 }
-
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetMetric() string {
@@ -107,7 +103,6 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) SetMetric(v string) {
 	o.Metric = &v
 }
 
-
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) GetOrder() QuerySortOrder {
 	if o == nil || o.Order == nil {
@@ -140,8 +135,6 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) SetOrder(v QuerySortOrd
 	o.Order = &v
 }
 
-
-
 func (o MonitorFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -161,7 +154,6 @@ func (o MonitorFormulaAndFunctionEventQueryGroupBySort) MarshalJSON() ([]byte, e
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -169,8 +161,8 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []b
 	}{}
 	all := struct {
 		Aggregation MonitorFormulaAndFunctionEventAggregation `json:"aggregation"`
-		Metric *string `json:"metric,omitempty"`
-		Order *QuerySortOrder `json:"order,omitempty"`
+		Metric      *string                                   `json:"metric,omitempty"`
+		Order       *QuerySortOrder                           `json:"order,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -196,7 +188,7 @@ func (o *MonitorFormulaAndFunctionEventQueryGroupBySort) UnmarshalJSON(bytes []b
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil &&!v.IsValid() {
+	if v := all.Order; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

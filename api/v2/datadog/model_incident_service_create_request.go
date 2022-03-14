@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IncidentServiceCreateRequest Create request with an incident service payload.
 type IncidentServiceCreateRequest struct {
 	// Incident Service payload for create requests.
 	Data IncidentServiceCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIncidentServiceCreateRequest instantiates a new IncidentServiceCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewIncidentServiceCreateRequestWithDefaults() *IncidentServiceCreateRequest
 	this := IncidentServiceCreateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value
 func (o *IncidentServiceCreateRequest) GetData() IncidentServiceCreateData {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *IncidentServiceCreateRequest) SetData(v IncidentServiceCreateData) {
 	o.Data = v
 }
 
-
-
 func (o IncidentServiceCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o IncidentServiceCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *IncidentServiceCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

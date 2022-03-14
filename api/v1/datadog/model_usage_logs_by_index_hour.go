@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageLogsByIndexHour Number of indexed logs for each hour and index for a given organization.
 type UsageLogsByIndexHour struct {
@@ -32,11 +30,9 @@ type UsageLogsByIndexHour struct {
 	// The retention period (in days) for this index ID.
 	Retention *int64 `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageLogsByIndexHour instantiates a new UsageLogsByIndexHour object
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +50,7 @@ func NewUsageLogsByIndexHourWithDefaults() *UsageLogsByIndexHour {
 	this := UsageLogsByIndexHour{}
 	return &this
 }
+
 // GetEventCount returns the EventCount field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetEventCount() int64 {
 	if o == nil || o.EventCount == nil {
@@ -85,7 +82,6 @@ func (o *UsageLogsByIndexHour) HasEventCount() bool {
 func (o *UsageLogsByIndexHour) SetEventCount(v int64) {
 	o.EventCount = &v
 }
-
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetHour() time.Time {
@@ -119,7 +115,6 @@ func (o *UsageLogsByIndexHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
-
 // GetIndexId returns the IndexId field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetIndexId() string {
 	if o == nil || o.IndexId == nil {
@@ -151,7 +146,6 @@ func (o *UsageLogsByIndexHour) HasIndexId() bool {
 func (o *UsageLogsByIndexHour) SetIndexId(v string) {
 	o.IndexId = &v
 }
-
 
 // GetIndexName returns the IndexName field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetIndexName() string {
@@ -185,7 +179,6 @@ func (o *UsageLogsByIndexHour) SetIndexName(v string) {
 	o.IndexName = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -217,7 +210,6 @@ func (o *UsageLogsByIndexHour) HasOrgName() bool {
 func (o *UsageLogsByIndexHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetPublicId() string {
@@ -251,7 +243,6 @@ func (o *UsageLogsByIndexHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *UsageLogsByIndexHour) GetRetention() int64 {
 	if o == nil || o.Retention == nil {
@@ -283,8 +274,6 @@ func (o *UsageLogsByIndexHour) HasRetention() bool {
 func (o *UsageLogsByIndexHour) SetRetention(v int64) {
 	o.Retention = &v
 }
-
-
 
 func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -319,17 +308,16 @@ func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageLogsByIndexHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		EventCount *int64 `json:"event_count,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		IndexId *string `json:"index_id,omitempty"`
-		IndexName *string `json:"index_name,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		Retention *int64 `json:"retention,omitempty"`
+		EventCount *int64     `json:"event_count,omitempty"`
+		Hour       *time.Time `json:"hour,omitempty"`
+		IndexId    *string    `json:"index_id,omitempty"`
+		IndexName  *string    `json:"index_name,omitempty"`
+		OrgName    *string    `json:"org_name,omitempty"`
+		PublicId   *string    `json:"public_id,omitempty"`
+		Retention  *int64     `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

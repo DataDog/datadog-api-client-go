@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ListStreamQuery Updated list stream widget.
 type ListStreamQuery struct {
@@ -24,11 +22,9 @@ type ListStreamQuery struct {
 	// Widget query.
 	QueryString string `json:"query_string"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewListStreamQuery instantiates a new ListStreamQuery object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +46,7 @@ func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this.DataSource = dataSource
 	return &this
 }
+
 // GetDataSource returns the DataSource field value
 func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 	if o == nil {
@@ -72,7 +69,6 @@ func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
 func (o *ListStreamQuery) SetDataSource(v ListStreamSource) {
 	o.DataSource = v
 }
-
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *ListStreamQuery) GetIndexes() []string {
@@ -106,7 +102,6 @@ func (o *ListStreamQuery) SetIndexes(v []string) {
 	o.Indexes = &v
 }
 
-
 // GetQueryString returns the QueryString field value
 func (o *ListStreamQuery) GetQueryString() string {
 	if o == nil {
@@ -130,8 +125,6 @@ func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
-
-
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -149,17 +142,16 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		DataSource *ListStreamSource `json:"data_source"`
-		QueryString *string `json:"query_string"`
+		DataSource  *ListStreamSource `json:"data_source"`
+		QueryString *string           `json:"query_string"`
 	}{}
 	all := struct {
-		DataSource ListStreamSource `json:"data_source"`
-		Indexes *[]string `json:"indexes,omitempty"`
-		QueryString string `json:"query_string"`
+		DataSource  ListStreamSource `json:"data_source"`
+		Indexes     *[]string        `json:"indexes,omitempty"`
+		QueryString string           `json:"query_string"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // OrganizationSettingsSamlStrictMode Has one property enabled (boolean).
 type OrganizationSettingsSamlStrictMode struct {
@@ -21,11 +18,9 @@ type OrganizationSettingsSamlStrictMode struct {
 	// Learn more on the [SAML Strict documentation](https://docs.datadoghq.com/account_management/saml/#saml-strict).
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewOrganizationSettingsSamlStrictMode instantiates a new OrganizationSettingsSamlStrictMode object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +38,7 @@ func NewOrganizationSettingsSamlStrictModeWithDefaults() *OrganizationSettingsSa
 	this := OrganizationSettingsSamlStrictMode{}
 	return &this
 }
+
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *OrganizationSettingsSamlStrictMode) GetEnabled() bool {
 	if o == nil || o.Enabled == nil {
@@ -75,8 +71,6 @@ func (o *OrganizationSettingsSamlStrictMode) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
-
-
 func (o OrganizationSettingsSamlStrictMode) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -91,7 +85,6 @@ func (o OrganizationSettingsSamlStrictMode) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *OrganizationSettingsSamlStrictMode) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

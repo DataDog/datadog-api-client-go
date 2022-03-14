@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // CheckCanDeleteSLOResponseData An array of service level objective objects.
 type CheckCanDeleteSLOResponseData struct {
 	// An array of of SLO IDs that can be safely deleted.
 	Ok *[]string `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewCheckCanDeleteSLOResponseData instantiates a new CheckCanDeleteSLOResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewCheckCanDeleteSLOResponseDataWithDefaults() *CheckCanDeleteSLOResponseDa
 	this := CheckCanDeleteSLOResponseData{}
 	return &this
 }
+
 // GetOk returns the Ok field value if set, zero value otherwise.
 func (o *CheckCanDeleteSLOResponseData) GetOk() []string {
 	if o == nil || o.Ok == nil {
@@ -74,8 +70,6 @@ func (o *CheckCanDeleteSLOResponseData) SetOk(v []string) {
 	o.Ok = &v
 }
 
-
-
 func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

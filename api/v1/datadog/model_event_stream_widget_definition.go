@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // EventStreamWidgetDefinition The event stream is a widget version of the stream of events
 // on the Event Stream view. Only available on FREE layout dashboards.
@@ -35,11 +33,9 @@ type EventStreamWidgetDefinition struct {
 	// Type of the event stream widget.
 	Type EventStreamWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewEventStreamWidgetDefinition instantiates a new EventStreamWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -61,6 +57,7 @@ func NewEventStreamWidgetDefinitionWithDefaults() *EventStreamWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetEventSize returns the EventSize field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetEventSize() WidgetEventSize {
 	if o == nil || o.EventSize == nil {
@@ -93,7 +90,6 @@ func (o *EventStreamWidgetDefinition) SetEventSize(v WidgetEventSize) {
 	o.EventSize = &v
 }
 
-
 // GetQuery returns the Query field value
 func (o *EventStreamWidgetDefinition) GetQuery() string {
 	if o == nil {
@@ -116,7 +112,6 @@ func (o *EventStreamWidgetDefinition) GetQueryOk() (*string, bool) {
 func (o *EventStreamWidgetDefinition) SetQuery(v string) {
 	o.Query = v
 }
-
 
 // GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTagsExecution() string {
@@ -150,7 +145,6 @@ func (o *EventStreamWidgetDefinition) SetTagsExecution(v string) {
 	o.TagsExecution = &v
 }
 
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTime() WidgetTime {
 	if o == nil || o.Time == nil {
@@ -182,7 +176,6 @@ func (o *EventStreamWidgetDefinition) HasTime() bool {
 func (o *EventStreamWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
-
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitle() string {
@@ -216,7 +209,6 @@ func (o *EventStreamWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
-
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitleAlign() WidgetTextAlign {
 	if o == nil || o.TitleAlign == nil {
@@ -248,7 +240,6 @@ func (o *EventStreamWidgetDefinition) HasTitleAlign() bool {
 func (o *EventStreamWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
-
 
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *EventStreamWidgetDefinition) GetTitleSize() string {
@@ -282,7 +273,6 @@ func (o *EventStreamWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value
 func (o *EventStreamWidgetDefinition) GetType() EventStreamWidgetDefinitionType {
 	if o == nil {
@@ -305,8 +295,6 @@ func (o *EventStreamWidgetDefinition) GetTypeOk() (*EventStreamWidgetDefinitionT
 func (o *EventStreamWidgetDefinition) SetType(v EventStreamWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -340,22 +328,21 @@ func (o EventStreamWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Query *string `json:"query"`
-		Type *EventStreamWidgetDefinitionType `json:"type"`
+		Query *string                          `json:"query"`
+		Type  *EventStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		EventSize *WidgetEventSize `json:"event_size,omitempty"`
-		Query string `json:"query"`
-		TagsExecution *string `json:"tags_execution,omitempty"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type EventStreamWidgetDefinitionType `json:"type"`
+		EventSize     *WidgetEventSize                `json:"event_size,omitempty"`
+		Query         string                          `json:"query"`
+		TagsExecution *string                         `json:"tags_execution,omitempty"`
+		Time          *WidgetTime                     `json:"time,omitempty"`
+		Title         *string                         `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
+		TitleSize     *string                         `json:"title_size,omitempty"`
+		Type          EventStreamWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -376,7 +363,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.EventSize; v != nil &&!v.IsValid() {
+	if v := all.EventSize; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -384,7 +371,7 @@ func (o *EventStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil &&!v.IsValid() {
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

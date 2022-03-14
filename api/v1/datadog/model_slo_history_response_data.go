@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SLOHistoryResponseData An array of service level objective objects.
 type SLOHistoryResponseData struct {
@@ -49,11 +46,9 @@ type SLOHistoryResponseData struct {
 	// Ignored in create/update requests.
 	TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSLOHistoryResponseData instantiates a new SLOHistoryResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -71,6 +66,7 @@ func NewSLOHistoryResponseDataWithDefaults() *SLOHistoryResponseData {
 	this := SLOHistoryResponseData{}
 	return &this
 }
+
 // GetFromTs returns the FromTs field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetFromTs() int64 {
 	if o == nil || o.FromTs == nil {
@@ -102,7 +98,6 @@ func (o *SLOHistoryResponseData) HasFromTs() bool {
 func (o *SLOHistoryResponseData) SetFromTs(v int64) {
 	o.FromTs = &v
 }
-
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetGroupBy() []string {
@@ -136,7 +131,6 @@ func (o *SLOHistoryResponseData) SetGroupBy(v []string) {
 	o.GroupBy = &v
 }
 
-
 // GetGroups returns the Groups field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetGroups() []SLOHistoryMonitor {
 	if o == nil || o.Groups == nil {
@@ -168,7 +162,6 @@ func (o *SLOHistoryResponseData) HasGroups() bool {
 func (o *SLOHistoryResponseData) SetGroups(v []SLOHistoryMonitor) {
 	o.Groups = &v
 }
-
 
 // GetMonitors returns the Monitors field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetMonitors() []SLOHistoryMonitor {
@@ -202,7 +195,6 @@ func (o *SLOHistoryResponseData) SetMonitors(v []SLOHistoryMonitor) {
 	o.Monitors = &v
 }
 
-
 // GetOverall returns the Overall field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetOverall() SLOHistorySLIData {
 	if o == nil || o.Overall == nil {
@@ -234,7 +226,6 @@ func (o *SLOHistoryResponseData) HasOverall() bool {
 func (o *SLOHistoryResponseData) SetOverall(v SLOHistorySLIData) {
 	o.Overall = &v
 }
-
 
 // GetSeries returns the Series field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetSeries() SLOHistoryMetrics {
@@ -268,7 +259,6 @@ func (o *SLOHistoryResponseData) SetSeries(v SLOHistoryMetrics) {
 	o.Series = &v
 }
 
-
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetThresholds() map[string]SLOThreshold {
 	if o == nil || o.Thresholds == nil {
@@ -300,7 +290,6 @@ func (o *SLOHistoryResponseData) HasThresholds() bool {
 func (o *SLOHistoryResponseData) SetThresholds(v map[string]SLOThreshold) {
 	o.Thresholds = v
 }
-
 
 // GetToTs returns the ToTs field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetToTs() int64 {
@@ -334,7 +323,6 @@ func (o *SLOHistoryResponseData) SetToTs(v int64) {
 	o.ToTs = &v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetType() SLOType {
 	if o == nil || o.Type == nil {
@@ -367,7 +355,6 @@ func (o *SLOHistoryResponseData) SetType(v SLOType) {
 	o.Type = &v
 }
 
-
 // GetTypeId returns the TypeId field value if set, zero value otherwise.
 func (o *SLOHistoryResponseData) GetTypeId() SLOTypeNumeric {
 	if o == nil || o.TypeId == nil {
@@ -399,8 +386,6 @@ func (o *SLOHistoryResponseData) HasTypeId() bool {
 func (o *SLOHistoryResponseData) SetTypeId(v SLOTypeNumeric) {
 	o.TypeId = &v
 }
-
-
 
 func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -444,20 +429,19 @@ func (o SLOHistoryResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FromTs *int64 `json:"from_ts,omitempty"`
-		GroupBy *[]string `json:"group_by,omitempty"`
-		Groups *[]SLOHistoryMonitor `json:"groups,omitempty"`
-		Monitors *[]SLOHistoryMonitor `json:"monitors,omitempty"`
-		Overall *SLOHistorySLIData `json:"overall,omitempty"`
-		Series *SLOHistoryMetrics `json:"series,omitempty"`
+		FromTs     *int64                  `json:"from_ts,omitempty"`
+		GroupBy    *[]string               `json:"group_by,omitempty"`
+		Groups     *[]SLOHistoryMonitor    `json:"groups,omitempty"`
+		Monitors   *[]SLOHistoryMonitor    `json:"monitors,omitempty"`
+		Overall    *SLOHistorySLIData      `json:"overall,omitempty"`
+		Series     *SLOHistoryMetrics      `json:"series,omitempty"`
 		Thresholds map[string]SLOThreshold `json:"thresholds,omitempty"`
-		ToTs *int64 `json:"to_ts,omitempty"`
-		Type *SLOType `json:"type,omitempty"`
-		TypeId *SLOTypeNumeric `json:"type_id,omitempty"`
+		ToTs       *int64                  `json:"to_ts,omitempty"`
+		Type       *SLOType                `json:"type,omitempty"`
+		TypeId     *SLOTypeNumeric         `json:"type_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -468,7 +452,7 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -476,7 +460,7 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TypeId; v != nil &&!v.IsValid() {
+	if v := all.TypeId; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

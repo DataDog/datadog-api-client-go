@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityFilterType The type of the resource. The value should always be `security_filters`.
 type SecurityFilterType string

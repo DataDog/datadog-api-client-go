@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SecurityMonitoringListRulesResponse List of rules.
 type SecurityMonitoringListRulesResponse struct {
@@ -22,11 +19,9 @@ type SecurityMonitoringListRulesResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSecurityMonitoringListRulesResponse instantiates a new SecurityMonitoringListRulesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSecurityMonitoringListRulesResponseWithDefaults() *SecurityMonitoringLis
 	this := SecurityMonitoringListRulesResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SecurityMonitoringListRulesResponse) GetData() []SecurityMonitoringRuleResponse {
 	if o == nil || o.Data == nil {
@@ -75,7 +71,6 @@ func (o *SecurityMonitoringListRulesResponse) HasData() bool {
 func (o *SecurityMonitoringListRulesResponse) SetData(v []SecurityMonitoringRuleResponse) {
 	o.Data = &v
 }
-
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SecurityMonitoringListRulesResponse) GetMeta() ResponseMetaAttributes {
@@ -109,8 +104,6 @@ func (o *SecurityMonitoringListRulesResponse) SetMeta(v ResponseMetaAttributes) 
 	o.Meta = &v
 }
 
-
-
 func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,12 +122,11 @@ func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SecurityMonitoringListRulesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
-		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
+		Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NotebookCellCreateRequest The description of a notebook cell create request.
 type NotebookCellCreateRequest struct {
@@ -25,8 +23,6 @@ type NotebookCellCreateRequest struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 }
-
-
 
 // NewNotebookCellCreateRequest instantiates a new NotebookCellCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewNotebookCellCreateRequestWithDefaults() *NotebookCellCreateRequest {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *NotebookCellCreateRequest) GetAttributes() NotebookCellCreateRequestAttributes {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *NotebookCellCreateRequest) GetAttributesOk() (*NotebookCellCreateReques
 func (o *NotebookCellCreateRequest) SetAttributes(v NotebookCellCreateRequestAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value
 func (o *NotebookCellCreateRequest) GetType() NotebookCellResourceType {
@@ -95,8 +91,6 @@ func (o *NotebookCellCreateRequest) SetType(v NotebookCellResourceType) {
 	o.Type = v
 }
 
-
-
 func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -107,16 +101,15 @@ func (o NotebookCellCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *NotebookCellCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellCreateRequestAttributes `json:"attributes"`
-		Type *NotebookCellResourceType `json:"type"`
+		Type       *NotebookCellResourceType            `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebookCellCreateRequestAttributes `json:"attributes"`
-		Type NotebookCellResourceType `json:"type"`
+		Type       NotebookCellResourceType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

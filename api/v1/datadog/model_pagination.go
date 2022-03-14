@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // Pagination Pagination object.
 type Pagination struct {
@@ -22,11 +19,9 @@ type Pagination struct {
 	// Total count of elements matched by the filter.
 	TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewPagination instantiates a new Pagination object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewPaginationWithDefaults() *Pagination {
 	this := Pagination{}
 	return &this
 }
+
 // GetTotalCount returns the TotalCount field value if set, zero value otherwise.
 func (o *Pagination) GetTotalCount() int64 {
 	if o == nil || o.TotalCount == nil {
@@ -75,7 +71,6 @@ func (o *Pagination) HasTotalCount() bool {
 func (o *Pagination) SetTotalCount(v int64) {
 	o.TotalCount = &v
 }
-
 
 // GetTotalFilteredCount returns the TotalFilteredCount field value if set, zero value otherwise.
 func (o *Pagination) GetTotalFilteredCount() int64 {
@@ -109,8 +104,6 @@ func (o *Pagination) SetTotalFilteredCount(v int64) {
 	o.TotalFilteredCount = &v
 }
 
-
-
 func (o Pagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o Pagination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Pagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TotalCount *int64 `json:"total_count,omitempty"`
+		TotalCount         *int64 `json:"total_count,omitempty"`
 		TotalFilteredCount *int64 `json:"total_filtered_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

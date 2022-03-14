@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // NoteWidgetDefinitionType Type of the note widget.
 type NoteWidgetDefinitionType string

@@ -11,29 +11,27 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsCheckType Type of assertion to apply in an API test.
 type SyntheticsCheckType string
 
 // List of SyntheticsCheckType
 const (
-	SYNTHETICSCHECKTYPE_EQUALS SyntheticsCheckType = "equals"
-	SYNTHETICSCHECKTYPE_NOT_EQUALS SyntheticsCheckType = "notEquals"
-	SYNTHETICSCHECKTYPE_CONTAINS SyntheticsCheckType = "contains"
-	SYNTHETICSCHECKTYPE_NOT_CONTAINS SyntheticsCheckType = "notContains"
-	SYNTHETICSCHECKTYPE_STARTS_WITH SyntheticsCheckType = "startsWith"
+	SYNTHETICSCHECKTYPE_EQUALS          SyntheticsCheckType = "equals"
+	SYNTHETICSCHECKTYPE_NOT_EQUALS      SyntheticsCheckType = "notEquals"
+	SYNTHETICSCHECKTYPE_CONTAINS        SyntheticsCheckType = "contains"
+	SYNTHETICSCHECKTYPE_NOT_CONTAINS    SyntheticsCheckType = "notContains"
+	SYNTHETICSCHECKTYPE_STARTS_WITH     SyntheticsCheckType = "startsWith"
 	SYNTHETICSCHECKTYPE_NOT_STARTS_WITH SyntheticsCheckType = "notStartsWith"
-	SYNTHETICSCHECKTYPE_GREATER SyntheticsCheckType = "greater"
-	SYNTHETICSCHECKTYPE_LOWER SyntheticsCheckType = "lower"
-	SYNTHETICSCHECKTYPE_GREATER_EQUALS SyntheticsCheckType = "greaterEquals"
-	SYNTHETICSCHECKTYPE_LOWER_EQUALS SyntheticsCheckType = "lowerEquals"
-	SYNTHETICSCHECKTYPE_MATCH_REGEX SyntheticsCheckType = "matchRegex"
-	SYNTHETICSCHECKTYPE_BETWEEN SyntheticsCheckType = "between"
-	SYNTHETICSCHECKTYPE_IS_EMPTY SyntheticsCheckType = "isEmpty"
-	SYNTHETICSCHECKTYPE_NOT_IS_EMPTY SyntheticsCheckType = "notIsEmpty"
+	SYNTHETICSCHECKTYPE_GREATER         SyntheticsCheckType = "greater"
+	SYNTHETICSCHECKTYPE_LOWER           SyntheticsCheckType = "lower"
+	SYNTHETICSCHECKTYPE_GREATER_EQUALS  SyntheticsCheckType = "greaterEquals"
+	SYNTHETICSCHECKTYPE_LOWER_EQUALS    SyntheticsCheckType = "lowerEquals"
+	SYNTHETICSCHECKTYPE_MATCH_REGEX     SyntheticsCheckType = "matchRegex"
+	SYNTHETICSCHECKTYPE_BETWEEN         SyntheticsCheckType = "between"
+	SYNTHETICSCHECKTYPE_IS_EMPTY        SyntheticsCheckType = "isEmpty"
+	SYNTHETICSCHECKTYPE_NOT_IS_EMPTY    SyntheticsCheckType = "notIsEmpty"
 )
 
 var allowedSyntheticsCheckTypeEnumValues = []SyntheticsCheckType{

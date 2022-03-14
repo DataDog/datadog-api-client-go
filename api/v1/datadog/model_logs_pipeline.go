@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsPipeline Pipelines and processors operate on incoming logs,
 // parsing and transforming them into structured attributes for easier querying.
@@ -36,11 +34,9 @@ type LogsPipeline struct {
 	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsPipeline instantiates a new LogsPipeline object
 // This constructor will assign default values to properties that have it defined,
@@ -59,6 +55,7 @@ func NewLogsPipelineWithDefaults() *LogsPipeline {
 	this := LogsPipeline{}
 	return &this
 }
+
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsPipeline) GetFilter() LogsFilter {
 	if o == nil || o.Filter == nil {
@@ -90,7 +87,6 @@ func (o *LogsPipeline) HasFilter() bool {
 func (o *LogsPipeline) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *LogsPipeline) GetId() string {
@@ -124,7 +120,6 @@ func (o *LogsPipeline) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsPipeline) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -156,7 +151,6 @@ func (o *LogsPipeline) HasIsEnabled() bool {
 func (o *LogsPipeline) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
-
 
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 func (o *LogsPipeline) GetIsReadOnly() bool {
@@ -190,7 +184,6 @@ func (o *LogsPipeline) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
 
-
 // GetName returns the Name field value
 func (o *LogsPipeline) GetName() string {
 	if o == nil {
@@ -213,7 +206,6 @@ func (o *LogsPipeline) GetNameOk() (*string, bool) {
 func (o *LogsPipeline) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *LogsPipeline) GetProcessors() []LogsProcessor {
@@ -247,7 +239,6 @@ func (o *LogsPipeline) SetProcessors(v []LogsProcessor) {
 	o.Processors = &v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *LogsPipeline) GetType() string {
 	if o == nil || o.Type == nil {
@@ -280,8 +271,6 @@ func (o *LogsPipeline) SetType(v string) {
 	o.Type = &v
 }
 
-
-
 func (o LogsPipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -313,20 +302,19 @@ func (o LogsPipeline) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Filter *LogsFilter `json:"filter,omitempty"`
-		Id *string `json:"id,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		IsReadOnly *bool `json:"is_read_only,omitempty"`
-		Name string `json:"name"`
+		Filter     *LogsFilter      `json:"filter,omitempty"`
+		Id         *string          `json:"id,omitempty"`
+		IsEnabled  *bool            `json:"is_enabled,omitempty"`
+		IsReadOnly *bool            `json:"is_read_only,omitempty"`
+		Name       string           `json:"name"`
 		Processors *[]LogsProcessor `json:"processors,omitempty"`
-		Type *string `json:"type,omitempty"`
+		Type       *string          `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageRumSessionsHour Number of RUM Sessions recorded for each hour for a given organization.
 type UsageRumSessionsHour struct {
@@ -32,11 +30,9 @@ type UsageRumSessionsHour struct {
 	// Contains the number of mobile RUM Sessions on iOS (data available beginning December 1, 2020).
 	SessionCountIos *int64 `json:"session_count_ios,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageRumSessionsHour instantiates a new UsageRumSessionsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -54,6 +50,7 @@ func NewUsageRumSessionsHourWithDefaults() *UsageRumSessionsHour {
 	this := UsageRumSessionsHour{}
 	return &this
 }
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -85,7 +82,6 @@ func (o *UsageRumSessionsHour) HasHour() bool {
 func (o *UsageRumSessionsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetOrgName() string {
@@ -119,7 +115,6 @@ func (o *UsageRumSessionsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -151,7 +146,6 @@ func (o *UsageRumSessionsHour) HasPublicId() bool {
 func (o *UsageRumSessionsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
-
 
 // GetReplaySessionCount returns the ReplaySessionCount field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetReplaySessionCount() int64 {
@@ -185,7 +179,6 @@ func (o *UsageRumSessionsHour) SetReplaySessionCount(v int64) {
 	o.ReplaySessionCount = &v
 }
 
-
 // GetSessionCount returns the SessionCount field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetSessionCount() int64 {
 	if o == nil || o.SessionCount == nil {
@@ -217,7 +210,6 @@ func (o *UsageRumSessionsHour) HasSessionCount() bool {
 func (o *UsageRumSessionsHour) SetSessionCount(v int64) {
 	o.SessionCount = &v
 }
-
 
 // GetSessionCountAndroid returns the SessionCountAndroid field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetSessionCountAndroid() int64 {
@@ -251,7 +243,6 @@ func (o *UsageRumSessionsHour) SetSessionCountAndroid(v int64) {
 	o.SessionCountAndroid = &v
 }
 
-
 // GetSessionCountIos returns the SessionCountIos field value if set, zero value otherwise.
 func (o *UsageRumSessionsHour) GetSessionCountIos() int64 {
 	if o == nil || o.SessionCountIos == nil {
@@ -283,8 +274,6 @@ func (o *UsageRumSessionsHour) HasSessionCountIos() bool {
 func (o *UsageRumSessionsHour) SetSessionCountIos(v int64) {
 	o.SessionCountIos = &v
 }
-
-
 
 func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -319,17 +308,16 @@ func (o UsageRumSessionsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageRumSessionsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		ReplaySessionCount *int64 `json:"replay_session_count,omitempty"`
-		SessionCount *int64 `json:"session_count,omitempty"`
-		SessionCountAndroid *int64 `json:"session_count_android,omitempty"`
-		SessionCountIos *int64 `json:"session_count_ios,omitempty"`
+		Hour                *time.Time `json:"hour,omitempty"`
+		OrgName             *string    `json:"org_name,omitempty"`
+		PublicId            *string    `json:"public_id,omitempty"`
+		ReplaySessionCount  *int64     `json:"replay_session_count,omitempty"`
+		SessionCount        *int64     `json:"session_count,omitempty"`
+		SessionCountAndroid *int64     `json:"session_count_android,omitempty"`
+		SessionCountIos     *int64     `json:"session_count_ios,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

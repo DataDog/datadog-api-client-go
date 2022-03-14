@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
 type SyntheticsTriggerCITestsResponse struct {
@@ -26,11 +23,9 @@ type SyntheticsTriggerCITestsResponse struct {
 	// The public IDs of the Synthetics test triggered.
 	TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsTriggerCITestsResponse instantiates a new SyntheticsTriggerCITestsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +43,7 @@ func NewSyntheticsTriggerCITestsResponseWithDefaults() *SyntheticsTriggerCITests
 	this := SyntheticsTriggerCITestsResponse{}
 	return &this
 }
+
 // GetBatchId returns the BatchId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string {
 	if o == nil || o.BatchId.Get() == nil {
@@ -61,7 +57,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetBatchId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SyntheticsTriggerCITestsResponse) GetBatchIdOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.BatchId.Get(), o.BatchId.IsSet()
@@ -80,6 +76,7 @@ func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
 func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string) {
 	o.BatchId.Set(&v)
 }
+
 // SetBatchIdNil sets the value for BatchId to be an explicit nil
 func (o *SyntheticsTriggerCITestsResponse) SetBatchIdNil() {
 	o.BatchId.Set(nil)
@@ -89,7 +86,6 @@ func (o *SyntheticsTriggerCITestsResponse) SetBatchIdNil() {
 func (o *SyntheticsTriggerCITestsResponse) UnsetBatchId() {
 	o.BatchId.Unset()
 }
-
 
 // GetLocations returns the Locations field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCITestLocation {
@@ -123,7 +119,6 @@ func (o *SyntheticsTriggerCITestsResponse) SetLocations(v []SyntheticsTriggerCIT
 	o.Locations = &v
 }
 
-
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestsResponse) GetResults() []SyntheticsTriggerCITestRunResult {
 	if o == nil || o.Results == nil {
@@ -155,7 +150,6 @@ func (o *SyntheticsTriggerCITestsResponse) HasResults() bool {
 func (o *SyntheticsTriggerCITestsResponse) SetResults(v []SyntheticsTriggerCITestRunResult) {
 	o.Results = &v
 }
-
 
 // GetTriggeredCheckIds returns the TriggeredCheckIds field value if set, zero value otherwise.
 func (o *SyntheticsTriggerCITestsResponse) GetTriggeredCheckIds() []string {
@@ -189,8 +183,6 @@ func (o *SyntheticsTriggerCITestsResponse) SetTriggeredCheckIds(v []string) {
 	o.TriggeredCheckIds = &v
 }
 
-
-
 func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -215,14 +207,13 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BatchId NullableString `json:"batch_id,omitempty"`
-		Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
-		Results *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
-		TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
+		BatchId           NullableString                      `json:"batch_id,omitempty"`
+		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
+		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
+		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

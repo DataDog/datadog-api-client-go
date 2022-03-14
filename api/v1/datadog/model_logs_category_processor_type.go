@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsCategoryProcessorType Type of logs category processor.
 type LogsCategoryProcessorType string

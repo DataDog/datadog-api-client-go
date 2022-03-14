@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // RelationshipToSAMLAssertionAttributeData Data of AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttributeData struct {
@@ -22,11 +20,9 @@ type RelationshipToSAMLAssertionAttributeData struct {
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRelationshipToSAMLAssertionAttributeData instantiates a new RelationshipToSAMLAssertionAttributeData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSA
 	this.Type = type_
 	return &this
 }
+
 // GetId returns the Id field value
 func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*int32, bool) {
 func (o *RelationshipToSAMLAssertionAttributeData) SetId(v int32) {
 	o.Id = v
 }
-
 
 // GetType returns the Type field value
 func (o *RelationshipToSAMLAssertionAttributeData) GetType() SAMLAssertionAttributesType {
@@ -95,8 +91,6 @@ func (o *RelationshipToSAMLAssertionAttributeData) SetType(v SAMLAssertionAttrib
 	o.Type = v
 }
 
-
-
 func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,15 +105,14 @@ func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id *int32 `json:"id"`
+		Id   *int32                       `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	all := struct {
-		Id int32 `json:"id"`
+		Id   int32                       `json:"id"`
 		Type SAMLAssertionAttributesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

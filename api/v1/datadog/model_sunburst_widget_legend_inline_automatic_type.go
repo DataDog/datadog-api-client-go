@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SunburstWidgetLegendInlineAutomaticType Whether to show the legend inline or let it be automatically generated.
 type SunburstWidgetLegendInlineAutomaticType string
 
 // List of SunburstWidgetLegendInlineAutomaticType
 const (
-	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_INLINE SunburstWidgetLegendInlineAutomaticType = "inline"
+	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_INLINE    SunburstWidgetLegendInlineAutomaticType = "inline"
 	SUNBURSTWIDGETLEGENDINLINEAUTOMATICTYPE_AUTOMATIC SunburstWidgetLegendInlineAutomaticType = "automatic"
 )
 

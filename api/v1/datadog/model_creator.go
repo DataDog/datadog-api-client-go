@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // Creator Object describing the creator of the shared element.
 type Creator struct {
@@ -24,11 +21,9 @@ type Creator struct {
 	// Name of the creator.
 	Name NullableString `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewCreator instantiates a new Creator object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewCreatorWithDefaults() *Creator {
 	this := Creator{}
 	return &this
 }
+
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *Creator) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -77,7 +73,6 @@ func (o *Creator) HasEmail() bool {
 func (o *Creator) SetEmail(v string) {
 	o.Email = &v
 }
-
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *Creator) GetHandle() string {
@@ -111,7 +106,6 @@ func (o *Creator) SetHandle(v string) {
 	o.Handle = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Creator) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -125,7 +119,7 @@ func (o *Creator) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *Creator) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -144,6 +138,7 @@ func (o *Creator) HasName() bool {
 func (o *Creator) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *Creator) SetNameNil() {
 	o.Name.Set(nil)
@@ -153,8 +148,6 @@ func (o *Creator) SetNameNil() {
 func (o *Creator) UnsetName() {
 	o.Name.Unset()
 }
-
-
 
 func (o Creator) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -177,13 +170,12 @@ func (o Creator) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Creator) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Email *string `json:"email,omitempty"`
-		Handle *string `json:"handle,omitempty"`
-		Name NullableString `json:"name,omitempty"`
+		Email  *string        `json:"email,omitempty"`
+		Handle *string        `json:"handle,omitempty"`
+		Name   NullableString `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

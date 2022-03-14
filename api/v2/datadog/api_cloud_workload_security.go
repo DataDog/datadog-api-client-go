@@ -11,11 +11,11 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
+	"os"
+	"strings"
 )
 
 // Linger please
@@ -29,7 +29,7 @@ type CloudWorkloadSecurityApiService service
 type apiCreateCloudWorkloadSecurityAgentRuleRequest struct {
 	ctx        _context.Context
 	ApiService *CloudWorkloadSecurityApiService
-	body *CloudWorkloadSecurityAgentRuleCreateRequest
+	body       *CloudWorkloadSecurityAgentRuleCreateRequest
 }
 
 /*
@@ -40,7 +40,7 @@ func (a *CloudWorkloadSecurityApiService) CreateCloudWorkloadSecurityAgentRule(c
 	req := apiCreateCloudWorkloadSecurityAgentRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body: &body,
+		body:       &body,
 	}
 
 	return req.ApiService.createCloudWorkloadSecurityAgentRuleExecute(req)
@@ -199,8 +199,8 @@ func (a *CloudWorkloadSecurityApiService) createCloudWorkloadSecurityAgentRuleEx
 }
 
 type apiDeleteCloudWorkloadSecurityAgentRuleRequest struct {
-	ctx        _context.Context
-	ApiService *CloudWorkloadSecurityApiService
+	ctx         _context.Context
+	ApiService  *CloudWorkloadSecurityApiService
 	agentRuleId string
 }
 
@@ -210,8 +210,8 @@ type apiDeleteCloudWorkloadSecurityAgentRuleRequest struct {
  */
 func (a *CloudWorkloadSecurityApiService) DeleteCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (*_nethttp.Response, error) {
 	req := apiDeleteCloudWorkloadSecurityAgentRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		agentRuleId: agentRuleId,
 	}
 
@@ -473,8 +473,8 @@ func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute
 }
 
 type apiGetCloudWorkloadSecurityAgentRuleRequest struct {
-	ctx        _context.Context
-	ApiService *CloudWorkloadSecurityApiService
+	ctx         _context.Context
+	ApiService  *CloudWorkloadSecurityApiService
 	agentRuleId string
 }
 
@@ -484,8 +484,8 @@ type apiGetCloudWorkloadSecurityAgentRuleRequest struct {
  */
 func (a *CloudWorkloadSecurityApiService) GetCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	req := apiGetCloudWorkloadSecurityAgentRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		agentRuleId: agentRuleId,
 	}
 
@@ -756,10 +756,10 @@ func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExe
 }
 
 type apiUpdateCloudWorkloadSecurityAgentRuleRequest struct {
-	ctx        _context.Context
-	ApiService *CloudWorkloadSecurityApiService
+	ctx         _context.Context
+	ApiService  *CloudWorkloadSecurityApiService
 	agentRuleId string
-	body *CloudWorkloadSecurityAgentRuleUpdateRequest
+	body        *CloudWorkloadSecurityAgentRuleUpdateRequest
 }
 
 /*
@@ -769,10 +769,10 @@ type apiUpdateCloudWorkloadSecurityAgentRuleRequest struct {
  */
 func (a *CloudWorkloadSecurityApiService) UpdateCloudWorkloadSecurityAgentRule(ctx _context.Context, agentRuleId string, body CloudWorkloadSecurityAgentRuleUpdateRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	req := apiUpdateCloudWorkloadSecurityAgentRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
+		ApiService:  a,
+		ctx:         ctx,
 		agentRuleId: agentRuleId,
-		body: &body,
+		body:        &body,
 	}
 
 	return req.ApiService.updateCloudWorkloadSecurityAgentRuleExecute(req)

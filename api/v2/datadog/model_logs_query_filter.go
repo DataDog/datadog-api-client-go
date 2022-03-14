@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsQueryFilter The search and filter query settings
 type LogsQueryFilter struct {
@@ -26,11 +23,9 @@ type LogsQueryFilter struct {
 	// The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsQueryFilter instantiates a new LogsQueryFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -60,6 +55,7 @@ func NewLogsQueryFilterWithDefaults() *LogsQueryFilter {
 	this.To = &to
 	return &this
 }
+
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -91,7 +87,6 @@ func (o *LogsQueryFilter) HasFrom() bool {
 func (o *LogsQueryFilter) SetFrom(v string) {
 	o.From = &v
 }
-
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetIndexes() []string {
@@ -125,7 +120,6 @@ func (o *LogsQueryFilter) SetIndexes(v []string) {
 	o.Indexes = &v
 }
 
-
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetQuery() string {
 	if o == nil || o.Query == nil {
@@ -157,7 +151,6 @@ func (o *LogsQueryFilter) HasQuery() bool {
 func (o *LogsQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
-
 
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *LogsQueryFilter) GetTo() string {
@@ -191,8 +184,6 @@ func (o *LogsQueryFilter) SetTo(v string) {
 	o.To = &v
 }
 
-
-
 func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -217,14 +208,13 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From *string `json:"from,omitempty"`
+		From    *string   `json:"from,omitempty"`
 		Indexes *[]string `json:"indexes,omitempty"`
-		Query *string `json:"query,omitempty"`
-		To *string `json:"to,omitempty"`
+		Query   *string   `json:"query,omitempty"`
+		To      *string   `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

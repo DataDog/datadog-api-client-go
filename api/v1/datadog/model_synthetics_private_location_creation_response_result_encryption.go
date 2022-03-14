@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsPrivateLocationCreationResponseResultEncryption Public key for the result encryption.
 type SyntheticsPrivateLocationCreationResponseResultEncryption struct {
@@ -22,11 +19,9 @@ type SyntheticsPrivateLocationCreationResponseResultEncryption struct {
 	// Public key for result encryption.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsPrivateLocationCreationResponseResultEncryption instantiates a new SyntheticsPrivateLocationCreationResponseResultEncryption object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSyntheticsPrivateLocationCreationResponseResultEncryptionWithDefaults() 
 	this := SyntheticsPrivateLocationCreationResponseResultEncryption{}
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) GetId() string {
 	if o == nil || o.Id == nil {
@@ -75,7 +71,6 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) HasId() bool
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) GetKey() string {
@@ -109,8 +104,6 @@ func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) SetKey(v str
 	o.Key = &v
 }
 
-
-
 func (o SyntheticsPrivateLocationCreationResponseResultEncryption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o SyntheticsPrivateLocationCreationResponseResultEncryption) MarshalJSON()
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsPrivateLocationCreationResponseResultEncryption) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Id  *string `json:"id,omitempty"`
 		Key *string `json:"key,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

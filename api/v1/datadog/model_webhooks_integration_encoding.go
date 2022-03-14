@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WebhooksIntegrationEncoding Encoding type. Can be given either `json` or `form`.
 type WebhooksIntegrationEncoding string

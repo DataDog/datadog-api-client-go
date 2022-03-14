@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // RoleUpdateAttributes Attributes of the role.
 type RoleUpdateAttributes struct {
@@ -24,11 +22,9 @@ type RoleUpdateAttributes struct {
 	// Name of the role.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRoleUpdateAttributes instantiates a new RoleUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +42,7 @@ func NewRoleUpdateAttributesWithDefaults() *RoleUpdateAttributes {
 	this := RoleUpdateAttributes{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RoleUpdateAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -77,7 +74,6 @@ func (o *RoleUpdateAttributes) HasCreatedAt() bool {
 func (o *RoleUpdateAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *RoleUpdateAttributes) GetModifiedAt() time.Time {
@@ -111,7 +107,6 @@ func (o *RoleUpdateAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RoleUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -144,8 +139,6 @@ func (o *RoleUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-
-
 func (o RoleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +160,12 @@ func (o RoleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RoleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *time.Time `json:"created_at,omitempty"`
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name *string `json:"name,omitempty"`
+		Name       *string    `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

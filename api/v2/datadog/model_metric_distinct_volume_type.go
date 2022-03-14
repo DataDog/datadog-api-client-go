@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MetricDistinctVolumeType The metric distinct volume type.
 type MetricDistinctVolumeType string

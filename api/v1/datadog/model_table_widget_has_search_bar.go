@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // TableWidgetHasSearchBar Controls the display of the search bar.
 type TableWidgetHasSearchBar string
@@ -21,8 +19,8 @@ type TableWidgetHasSearchBar string
 // List of TableWidgetHasSearchBar
 const (
 	TABLEWIDGETHASSEARCHBAR_ALWAYS TableWidgetHasSearchBar = "always"
-	TABLEWIDGETHASSEARCHBAR_NEVER TableWidgetHasSearchBar = "never"
-	TABLEWIDGETHASSEARCHBAR_AUTO TableWidgetHasSearchBar = "auto"
+	TABLEWIDGETHASSEARCHBAR_NEVER  TableWidgetHasSearchBar = "never"
+	TABLEWIDGETHASSEARCHBAR_AUTO   TableWidgetHasSearchBar = "auto"
 )
 
 var allowedTableWidgetHasSearchBarEnumValues = []TableWidgetHasSearchBar{

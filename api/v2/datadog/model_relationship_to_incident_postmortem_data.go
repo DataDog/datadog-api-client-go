@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // RelationshipToIncidentPostmortemData The postmortem relationship data.
 type RelationshipToIncidentPostmortemData struct {
@@ -22,11 +20,9 @@ type RelationshipToIncidentPostmortemData struct {
 	// Incident postmortem resource type.
 	Type IncidentPostmortemType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRelationshipToIncidentPostmortemData instantiates a new RelationshipToIncidentPostmortemData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewRelationshipToIncidentPostmortemDataWithDefaults() *RelationshipToIncide
 	this.Type = type_
 	return &this
 }
+
 // GetId returns the Id field value
 func (o *RelationshipToIncidentPostmortemData) GetId() string {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *RelationshipToIncidentPostmortemData) GetIdOk() (*string, bool) {
 func (o *RelationshipToIncidentPostmortemData) SetId(v string) {
 	o.Id = v
 }
-
 
 // GetType returns the Type field value
 func (o *RelationshipToIncidentPostmortemData) GetType() IncidentPostmortemType {
@@ -95,8 +91,6 @@ func (o *RelationshipToIncidentPostmortemData) SetType(v IncidentPostmortemType)
 	o.Type = v
 }
 
-
-
 func (o RelationshipToIncidentPostmortemData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,15 +105,14 @@ func (o RelationshipToIncidentPostmortemData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RelationshipToIncidentPostmortemData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id *string `json:"id"`
+		Id   *string                 `json:"id"`
 		Type *IncidentPostmortemType `json:"type"`
 	}{}
 	all := struct {
-		Id string `json:"id"`
+		Id   string                 `json:"id"`
 		Type IncidentPostmortemType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

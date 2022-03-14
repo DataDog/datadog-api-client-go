@@ -11,21 +11,19 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityMonitoringRuleNewValueOptionsForgetAfter The duration in days after which a learned value is forgotten.
 type SecurityMonitoringRuleNewValueOptionsForgetAfter int32
 
 // List of SecurityMonitoringRuleNewValueOptionsForgetAfter
 const (
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY SecurityMonitoringRuleNewValueOptionsForgetAfter = 1
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_DAYS SecurityMonitoringRuleNewValueOptionsForgetAfter = 2
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK SecurityMonitoringRuleNewValueOptionsForgetAfter = 7
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 14
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_DAY     SecurityMonitoringRuleNewValueOptionsForgetAfter = 1
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_DAYS    SecurityMonitoringRuleNewValueOptionsForgetAfter = 2
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_ONE_WEEK    SecurityMonitoringRuleNewValueOptionsForgetAfter = 7
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_TWO_WEEKS   SecurityMonitoringRuleNewValueOptionsForgetAfter = 14
 	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_THREE_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 21
-	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS SecurityMonitoringRuleNewValueOptionsForgetAfter = 28
+	SECURITYMONITORINGRULENEWVALUEOPTIONSFORGETAFTER_FOUR_WEEKS  SecurityMonitoringRuleNewValueOptionsForgetAfter = 28
 )
 
 var allowedSecurityMonitoringRuleNewValueOptionsForgetAfterEnumValues = []SecurityMonitoringRuleNewValueOptionsForgetAfter{

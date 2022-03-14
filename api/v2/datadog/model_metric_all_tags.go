@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MetricAllTags Object for a single metric's indexed tags.
 type MetricAllTags struct {
@@ -24,11 +21,9 @@ type MetricAllTags struct {
 	// The metric resource type.
 	Type *MetricType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricAllTags instantiates a new MetricAllTags object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewMetricAllTagsWithDefaults() *MetricAllTags {
 	this.Type = &type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricAllTags) GetAttributes() MetricAllTagsAttributes {
 	if o == nil || o.Attributes == nil {
@@ -81,7 +77,6 @@ func (o *MetricAllTags) HasAttributes() bool {
 func (o *MetricAllTags) SetAttributes(v MetricAllTagsAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *MetricAllTags) GetId() string {
@@ -115,7 +110,6 @@ func (o *MetricAllTags) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MetricAllTags) GetType() MetricType {
 	if o == nil || o.Type == nil {
@@ -148,8 +142,6 @@ func (o *MetricAllTags) SetType(v MetricType) {
 	o.Type = &v
 }
 
-
-
 func (o MetricAllTags) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -171,13 +163,12 @@ func (o MetricAllTags) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *MetricAllTags) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *MetricAllTagsAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Type *MetricType `json:"type,omitempty"`
+		Id         *string                  `json:"id,omitempty"`
+		Type       *MetricType              `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -188,7 +179,7 @@ func (o *MetricAllTags) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil &&!v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

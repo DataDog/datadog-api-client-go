@@ -10,16 +10,13 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // LogsArchiveCreateRequestDestination - An archive's destination.
 type LogsArchiveCreateRequestDestination struct {
 	LogsArchiveDestinationAzure *LogsArchiveDestinationAzure
-	LogsArchiveDestinationGCS *LogsArchiveDestinationGCS
-	LogsArchiveDestinationS3 *LogsArchiveDestinationS3
+	LogsArchiveDestinationGCS   *LogsArchiveDestinationGCS
+	LogsArchiveDestinationS3    *LogsArchiveDestinationS3
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -112,16 +109,13 @@ func (src LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsArchiveDestinationAzure)
 	}
 
-
 	if src.LogsArchiveDestinationGCS != nil {
 		return json.Marshal(&src.LogsArchiveDestinationGCS)
 	}
 
-
 	if src.LogsArchiveDestinationS3 != nil {
 		return json.Marshal(&src.LogsArchiveDestinationS3)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -130,21 +124,18 @@ func (src LogsArchiveCreateRequestDestination) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() (interface{}) {
+func (obj *LogsArchiveCreateRequestDestination) GetActualInstance() interface{} {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
 	}
-
 
 	if obj.LogsArchiveDestinationGCS != nil {
 		return obj.LogsArchiveDestinationGCS
 	}
 
-
 	if obj.LogsArchiveDestinationS3 != nil {
 		return obj.LogsArchiveDestinationS3
 	}
-
 
 	// all schemas are nil
 	return nil

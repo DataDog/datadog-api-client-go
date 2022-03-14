@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // IdpResponse The IdP response object.
 type IdpResponse struct {
 	// Identity provider response.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewIdpResponse instantiates a new IdpResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewIdpResponseWithDefaults() *IdpResponse {
 	this := IdpResponse{}
 	return &this
 }
+
 // GetMessage returns the Message field value
 func (o *IdpResponse) GetMessage() string {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *IdpResponse) SetMessage(v string) {
 	o.Message = v
 }
 
-
-
 func (o IdpResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o IdpResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *IdpResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -10,15 +10,12 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsAssertion - Object describing the assertions type, their associated operator,
 // which property they apply, and upon which target.
 type SyntheticsAssertion struct {
-	SyntheticsAssertionTarget *SyntheticsAssertionTarget
+	SyntheticsAssertionTarget         *SyntheticsAssertionTarget
 	SyntheticsAssertionJSONPathTarget *SyntheticsAssertionJSONPathTarget
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -89,11 +86,9 @@ func (src SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SyntheticsAssertionTarget)
 	}
 
-
 	if src.SyntheticsAssertionJSONPathTarget != nil {
 		return json.Marshal(&src.SyntheticsAssertionJSONPathTarget)
 	}
-
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -102,16 +97,14 @@ func (src SyntheticsAssertion) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SyntheticsAssertion) GetActualInstance() (interface{}) {
+func (obj *SyntheticsAssertion) GetActualInstance() interface{} {
 	if obj.SyntheticsAssertionTarget != nil {
 		return obj.SyntheticsAssertionTarget
 	}
 
-
 	if obj.SyntheticsAssertionJSONPathTarget != nil {
 		return obj.SyntheticsAssertionJSONPathTarget
 	}
-
 
 	// all schemas are nil
 	return nil

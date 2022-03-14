@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetMargin Size of the margins around the image.
 // **Note**: `small` and `large` values are deprecated.
@@ -21,9 +19,9 @@ type WidgetMargin string
 
 // List of WidgetMargin
 const (
-	WIDGETMARGIN_SM WidgetMargin = "sm"
-	WIDGETMARGIN_MD WidgetMargin = "md"
-	WIDGETMARGIN_LG WidgetMargin = "lg"
+	WIDGETMARGIN_SM    WidgetMargin = "sm"
+	WIDGETMARGIN_MD    WidgetMargin = "md"
+	WIDGETMARGIN_LG    WidgetMargin = "lg"
 	WIDGETMARGIN_SMALL WidgetMargin = "small"
 	WIDGETMARGIN_LARGE WidgetMargin = "large"
 )

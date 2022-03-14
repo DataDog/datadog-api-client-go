@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AWSLogsListServicesResponse The list of current AWS services for which Datadog offers automatic log collection.
 type AWSLogsListServicesResponse struct {
@@ -22,11 +19,9 @@ type AWSLogsListServicesResponse struct {
 	// Name of service available for configuration with Datadog logs.
 	Label *string `json:"label,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAWSLogsListServicesResponse instantiates a new AWSLogsListServicesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewAWSLogsListServicesResponseWithDefaults() *AWSLogsListServicesResponse {
 	this := AWSLogsListServicesResponse{}
 	return &this
 }
+
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *AWSLogsListServicesResponse) GetId() string {
 	if o == nil || o.Id == nil {
@@ -75,7 +71,6 @@ func (o *AWSLogsListServicesResponse) HasId() bool {
 func (o *AWSLogsListServicesResponse) SetId(v string) {
 	o.Id = &v
 }
-
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *AWSLogsListServicesResponse) GetLabel() string {
@@ -109,8 +104,6 @@ func (o *AWSLogsListServicesResponse) SetLabel(v string) {
 	o.Label = &v
 }
 
-
-
 func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o AWSLogsListServicesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AWSLogsListServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Id *string `json:"id,omitempty"`
+		Id    *string `json:"id,omitempty"`
 		Label *string `json:"label,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

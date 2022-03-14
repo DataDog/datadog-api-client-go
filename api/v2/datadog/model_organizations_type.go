@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // OrganizationsType Organizations resource type.
 type OrganizationsType string

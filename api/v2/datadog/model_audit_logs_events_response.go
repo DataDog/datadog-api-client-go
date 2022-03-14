@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // AuditLogsEventsResponse Response object with all events matching the request and pagination information.
 type AuditLogsEventsResponse struct {
@@ -24,11 +21,9 @@ type AuditLogsEventsResponse struct {
 	// The metadata associated with a request.
 	Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAuditLogsEventsResponse instantiates a new AuditLogsEventsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewAuditLogsEventsResponseWithDefaults() *AuditLogsEventsResponse {
 	this := AuditLogsEventsResponse{}
 	return &this
 }
+
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetData() []AuditLogsEvent {
 	if o == nil || o.Data == nil {
@@ -77,7 +73,6 @@ func (o *AuditLogsEventsResponse) HasData() bool {
 func (o *AuditLogsEventsResponse) SetData(v []AuditLogsEvent) {
 	o.Data = &v
 }
-
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetLinks() AuditLogsResponseLinks {
@@ -111,7 +106,6 @@ func (o *AuditLogsEventsResponse) SetLinks(v AuditLogsResponseLinks) {
 	o.Links = &v
 }
 
-
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *AuditLogsEventsResponse) GetMeta() AuditLogsResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -144,8 +138,6 @@ func (o *AuditLogsEventsResponse) SetMeta(v AuditLogsResponseMetadata) {
 	o.Meta = &v
 }
 
-
-
 func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,13 +159,12 @@ func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]AuditLogsEvent `json:"data,omitempty"`
-		Links *AuditLogsResponseLinks `json:"links,omitempty"`
-		Meta *AuditLogsResponseMetadata `json:"meta,omitempty"`
+		Data  *[]AuditLogsEvent          `json:"data,omitempty"`
+		Links *AuditLogsResponseLinks    `json:"links,omitempty"`
+		Meta  *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

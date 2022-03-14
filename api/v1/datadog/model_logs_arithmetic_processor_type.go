@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsArithmeticProcessorType Type of logs arithmetic processor.
 type LogsArithmeticProcessorType string

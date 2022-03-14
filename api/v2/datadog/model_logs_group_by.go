@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsGroupBy A group by rule
 type LogsGroupBy struct {
@@ -31,11 +29,9 @@ type LogsGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *LogsGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsGroupBy instantiates a new LogsGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -58,6 +54,7 @@ func NewLogsGroupByWithDefaults() *LogsGroupBy {
 	this.Limit = &limit
 	return &this
 }
+
 // GetFacet returns the Facet field value
 func (o *LogsGroupBy) GetFacet() string {
 	if o == nil {
@@ -80,7 +77,6 @@ func (o *LogsGroupBy) GetFacetOk() (*string, bool) {
 func (o *LogsGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
-
 
 // GetHistogram returns the Histogram field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetHistogram() LogsGroupByHistogram {
@@ -114,7 +110,6 @@ func (o *LogsGroupBy) SetHistogram(v LogsGroupByHistogram) {
 	o.Histogram = &v
 }
 
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -146,7 +141,6 @@ func (o *LogsGroupBy) HasLimit() bool {
 func (o *LogsGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
-
 
 // GetMissing returns the Missing field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetMissing() LogsGroupByMissing {
@@ -180,7 +174,6 @@ func (o *LogsGroupBy) SetMissing(v LogsGroupByMissing) {
 	o.Missing = &v
 }
 
-
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetSort() LogsAggregateSort {
 	if o == nil || o.Sort == nil {
@@ -212,7 +205,6 @@ func (o *LogsGroupBy) HasSort() bool {
 func (o *LogsGroupBy) SetSort(v LogsAggregateSort) {
 	o.Sort = &v
 }
-
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *LogsGroupBy) GetTotal() LogsGroupByTotal {
@@ -246,8 +238,6 @@ func (o *LogsGroupBy) SetTotal(v LogsGroupByTotal) {
 	o.Total = &v
 }
 
-
-
 func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -276,19 +266,18 @@ func (o LogsGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet string `json:"facet"`
+		Facet     string                `json:"facet"`
 		Histogram *LogsGroupByHistogram `json:"histogram,omitempty"`
-		Limit *int64 `json:"limit,omitempty"`
-		Missing *LogsGroupByMissing `json:"missing,omitempty"`
-		Sort *LogsAggregateSort `json:"sort,omitempty"`
-		Total *LogsGroupByTotal `json:"total,omitempty"`
+		Limit     *int64                `json:"limit,omitempty"`
+		Missing   *LogsGroupByMissing   `json:"missing,omitempty"`
+		Sort      *LogsAggregateSort    `json:"sort,omitempty"`
+		Total     *LogsGroupByTotal     `json:"total,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FunnelWidgetDefinition The funnel visualization displays a funnel of user sessions that maps a sequence of view navigation and user interaction in your application.
 //
@@ -31,11 +29,9 @@ type FunnelWidgetDefinition struct {
 	// Type of funnel widget.
 	Type FunnelWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewFunnelWidgetDefinition instantiates a new FunnelWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -57,6 +53,7 @@ func NewFunnelWidgetDefinitionWithDefaults() *FunnelWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetRequests returns the Requests field value
 func (o *FunnelWidgetDefinition) GetRequests() []FunnelWidgetRequest {
 	if o == nil {
@@ -79,7 +76,6 @@ func (o *FunnelWidgetDefinition) GetRequestsOk() (*[]FunnelWidgetRequest, bool) 
 func (o *FunnelWidgetDefinition) SetRequests(v []FunnelWidgetRequest) {
 	o.Requests = v
 }
-
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *FunnelWidgetDefinition) GetTime() WidgetTime {
@@ -113,7 +109,6 @@ func (o *FunnelWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *FunnelWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -145,7 +140,6 @@ func (o *FunnelWidgetDefinition) HasTitle() bool {
 func (o *FunnelWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
-
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *FunnelWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -179,7 +173,6 @@ func (o *FunnelWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
-
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *FunnelWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -212,7 +205,6 @@ func (o *FunnelWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-
 // GetType returns the Type field value
 func (o *FunnelWidgetDefinition) GetType() FunnelWidgetDefinitionType {
 	if o == nil {
@@ -235,8 +227,6 @@ func (o *FunnelWidgetDefinition) GetTypeOk() (*FunnelWidgetDefinitionType, bool)
 func (o *FunnelWidgetDefinition) SetType(v FunnelWidgetDefinitionType) {
 	o.Type = v
 }
-
-
 
 func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -264,20 +254,19 @@ func (o FunnelWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]FunnelWidgetRequest `json:"requests"`
-		Type *FunnelWidgetDefinitionType `json:"type"`
+		Requests *[]FunnelWidgetRequest      `json:"requests"`
+		Type     *FunnelWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Requests []FunnelWidgetRequest `json:"requests"`
-		Time *WidgetTime `json:"time,omitempty"`
-		Title *string `json:"title,omitempty"`
-		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
-		TitleSize *string `json:"title_size,omitempty"`
-		Type FunnelWidgetDefinitionType `json:"type"`
+		Requests   []FunnelWidgetRequest      `json:"requests"`
+		Time       *WidgetTime                `json:"time,omitempty"`
+		Title      *string                    `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign           `json:"title_align,omitempty"`
+		TitleSize  *string                    `json:"title_size,omitempty"`
+		Type       FunnelWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -298,7 +287,7 @@ func (o *FunnelWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil &&!v.IsValid() {
+	if v := all.TitleAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

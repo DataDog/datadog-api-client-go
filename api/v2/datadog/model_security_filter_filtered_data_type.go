@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityFilterFilteredDataType The filtered data type.
 type SecurityFilterFilteredDataType string

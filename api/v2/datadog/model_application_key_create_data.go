@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ApplicationKeyCreateData Object used to create an application key.
 type ApplicationKeyCreateData struct {
@@ -22,11 +20,9 @@ type ApplicationKeyCreateData struct {
 	// Application Keys resource type.
 	Type ApplicationKeysType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewApplicationKeyCreateData instantiates a new ApplicationKeyCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewApplicationKeyCreateDataWithDefaults() *ApplicationKeyCreateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *ApplicationKeyCreateData) GetAttributes() ApplicationKeyCreateAttributes {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *ApplicationKeyCreateData) GetAttributesOk() (*ApplicationKeyCreateAttri
 func (o *ApplicationKeyCreateData) SetAttributes(v ApplicationKeyCreateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value
 func (o *ApplicationKeyCreateData) GetType() ApplicationKeysType {
@@ -95,8 +91,6 @@ func (o *ApplicationKeyCreateData) SetType(v ApplicationKeysType) {
 	o.Type = v
 }
 
-
-
 func (o ApplicationKeyCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,16 +105,15 @@ func (o ApplicationKeyCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ApplicationKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *ApplicationKeyCreateAttributes `json:"attributes"`
-		Type *ApplicationKeysType `json:"type"`
+		Type       *ApplicationKeysType            `json:"type"`
 	}{}
 	all := struct {
 		Attributes ApplicationKeyCreateAttributes `json:"attributes"`
-		Type ApplicationKeysType `json:"type"`
+		Type       ApplicationKeysType            `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

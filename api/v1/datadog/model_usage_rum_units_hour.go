@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
 type UsageRumUnitsHour struct {
@@ -28,11 +25,9 @@ type UsageRumUnitsHour struct {
 	// Total RUM units across mobile and browser RUM.
 	RumUnits NullableInt64 `json:"rum_units,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageRumUnitsHour instantiates a new UsageRumUnitsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +45,7 @@ func NewUsageRumUnitsHourWithDefaults() *UsageRumUnitsHour {
 	this := UsageRumUnitsHour{}
 	return &this
 }
+
 // GetBrowserRumUnits returns the BrowserRumUnits field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetBrowserRumUnits() int64 {
 	if o == nil || o.BrowserRumUnits == nil {
@@ -81,7 +77,6 @@ func (o *UsageRumUnitsHour) HasBrowserRumUnits() bool {
 func (o *UsageRumUnitsHour) SetBrowserRumUnits(v int64) {
 	o.BrowserRumUnits = &v
 }
-
 
 // GetMobileRumUnits returns the MobileRumUnits field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetMobileRumUnits() int64 {
@@ -115,7 +110,6 @@ func (o *UsageRumUnitsHour) SetMobileRumUnits(v int64) {
 	o.MobileRumUnits = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -147,7 +141,6 @@ func (o *UsageRumUnitsHour) HasOrgName() bool {
 func (o *UsageRumUnitsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageRumUnitsHour) GetPublicId() string {
@@ -181,7 +174,6 @@ func (o *UsageRumUnitsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
 // GetRumUnits returns the RumUnits field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageRumUnitsHour) GetRumUnits() int64 {
 	if o == nil || o.RumUnits.Get() == nil {
@@ -195,7 +187,7 @@ func (o *UsageRumUnitsHour) GetRumUnits() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageRumUnitsHour) GetRumUnitsOk() (*int64, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.RumUnits.Get(), o.RumUnits.IsSet()
@@ -214,6 +206,7 @@ func (o *UsageRumUnitsHour) HasRumUnits() bool {
 func (o *UsageRumUnitsHour) SetRumUnits(v int64) {
 	o.RumUnits.Set(&v)
 }
+
 // SetRumUnitsNil sets the value for RumUnits to be an explicit nil
 func (o *UsageRumUnitsHour) SetRumUnitsNil() {
 	o.RumUnits.Set(nil)
@@ -223,8 +216,6 @@ func (o *UsageRumUnitsHour) SetRumUnitsNil() {
 func (o *UsageRumUnitsHour) UnsetRumUnits() {
 	o.RumUnits.Unset()
 }
-
-
 
 func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -253,15 +244,14 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserRumUnits *int64 `json:"browser_rum_units,omitempty"`
-		MobileRumUnits *int64 `json:"mobile_rum_units,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
-		RumUnits NullableInt64 `json:"rum_units,omitempty"`
+		BrowserRumUnits *int64        `json:"browser_rum_units,omitempty"`
+		MobileRumUnits  *int64        `json:"mobile_rum_units,omitempty"`
+		OrgName         *string       `json:"org_name,omitempty"`
+		PublicId        *string       `json:"public_id,omitempty"`
+		RumUnits        NullableInt64 `json:"rum_units,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UsageCWSHour Cloud Workload Security usage for a given organization for a given hour.
 type UsageCWSHour struct {
@@ -28,11 +26,9 @@ type UsageCWSHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageCWSHour instantiates a new UsageCWSHour object
 // This constructor will assign default values to properties that have it defined,
@@ -50,6 +46,7 @@ func NewUsageCWSHourWithDefaults() *UsageCWSHour {
 	this := UsageCWSHour{}
 	return &this
 }
+
 // GetCwsContainerCount returns the CwsContainerCount field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetCwsContainerCount() int64 {
 	if o == nil || o.CwsContainerCount == nil {
@@ -81,7 +78,6 @@ func (o *UsageCWSHour) HasCwsContainerCount() bool {
 func (o *UsageCWSHour) SetCwsContainerCount(v int64) {
 	o.CwsContainerCount = &v
 }
-
 
 // GetCwsHostCount returns the CwsHostCount field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetCwsHostCount() int64 {
@@ -115,7 +111,6 @@ func (o *UsageCWSHour) SetCwsHostCount(v int64) {
 	o.CwsHostCount = &v
 }
 
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -147,7 +142,6 @@ func (o *UsageCWSHour) HasHour() bool {
 func (o *UsageCWSHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
-
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetOrgName() string {
@@ -181,7 +175,6 @@ func (o *UsageCWSHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
-
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageCWSHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -214,8 +207,6 @@ func (o *UsageCWSHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
-
 func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -243,15 +234,14 @@ func (o UsageCWSHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageCWSHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CwsContainerCount *int64 `json:"cws_container_count,omitempty"`
-		CwsHostCount *int64 `json:"cws_host_count,omitempty"`
-		Hour *time.Time `json:"hour,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		CwsContainerCount *int64     `json:"cws_container_count,omitempty"`
+		CwsHostCount      *int64     `json:"cws_host_count,omitempty"`
+		Hour              *time.Time `json:"hour,omitempty"`
+		OrgName           *string    `json:"org_name,omitempty"`
+		PublicId          *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

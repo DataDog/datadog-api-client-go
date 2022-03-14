@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ToplistWidgetDefinitionType Type of the top list widget.
 type ToplistWidgetDefinitionType string

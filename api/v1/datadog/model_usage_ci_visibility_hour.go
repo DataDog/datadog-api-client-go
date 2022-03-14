@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // UsageCIVisibilityHour CI visibility usage in a given hour.
 type UsageCIVisibilityHour struct {
@@ -30,11 +27,9 @@ type UsageCIVisibilityHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUsageCIVisibilityHour instantiates a new UsageCIVisibilityHour object
 // This constructor will assign default values to properties that have it defined,
@@ -52,6 +47,7 @@ func NewUsageCIVisibilityHourWithDefaults() *UsageCIVisibilityHour {
 	this := UsageCIVisibilityHour{}
 	return &this
 }
+
 // GetCiPipelineIndexedSpans returns the CiPipelineIndexedSpans field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetCiPipelineIndexedSpans() int32 {
 	if o == nil || o.CiPipelineIndexedSpans == nil {
@@ -83,7 +79,6 @@ func (o *UsageCIVisibilityHour) HasCiPipelineIndexedSpans() bool {
 func (o *UsageCIVisibilityHour) SetCiPipelineIndexedSpans(v int32) {
 	o.CiPipelineIndexedSpans = &v
 }
-
 
 // GetCiTestIndexedSpans returns the CiTestIndexedSpans field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetCiTestIndexedSpans() int32 {
@@ -117,7 +112,6 @@ func (o *UsageCIVisibilityHour) SetCiTestIndexedSpans(v int32) {
 	o.CiTestIndexedSpans = &v
 }
 
-
 // GetCiVisibilityPipelineCommitters returns the CiVisibilityPipelineCommitters field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetCiVisibilityPipelineCommitters() int32 {
 	if o == nil || o.CiVisibilityPipelineCommitters == nil {
@@ -149,7 +143,6 @@ func (o *UsageCIVisibilityHour) HasCiVisibilityPipelineCommitters() bool {
 func (o *UsageCIVisibilityHour) SetCiVisibilityPipelineCommitters(v int32) {
 	o.CiVisibilityPipelineCommitters = &v
 }
-
 
 // GetCiVisibilityTestCommitters returns the CiVisibilityTestCommitters field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetCiVisibilityTestCommitters() int32 {
@@ -183,7 +176,6 @@ func (o *UsageCIVisibilityHour) SetCiVisibilityTestCommitters(v int32) {
 	o.CiVisibilityTestCommitters = &v
 }
 
-
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -215,7 +207,6 @@ func (o *UsageCIVisibilityHour) HasOrgName() bool {
 func (o *UsageCIVisibilityHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
-
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageCIVisibilityHour) GetPublicId() string {
@@ -249,8 +240,6 @@ func (o *UsageCIVisibilityHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
-
-
 func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -281,16 +270,15 @@ func (o UsageCIVisibilityHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UsageCIVisibilityHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CiPipelineIndexedSpans *int32 `json:"ci_pipeline_indexed_spans,omitempty"`
-		CiTestIndexedSpans *int32 `json:"ci_test_indexed_spans,omitempty"`
-		CiVisibilityPipelineCommitters *int32 `json:"ci_visibility_pipeline_committers,omitempty"`
-		CiVisibilityTestCommitters *int32 `json:"ci_visibility_test_committers,omitempty"`
-		OrgName *string `json:"org_name,omitempty"`
-		PublicId *string `json:"public_id,omitempty"`
+		CiPipelineIndexedSpans         *int32  `json:"ci_pipeline_indexed_spans,omitempty"`
+		CiTestIndexedSpans             *int32  `json:"ci_test_indexed_spans,omitempty"`
+		CiVisibilityPipelineCommitters *int32  `json:"ci_visibility_pipeline_committers,omitempty"`
+		CiVisibilityTestCommitters     *int32  `json:"ci_visibility_test_committers,omitempty"`
+		OrgName                        *string `json:"org_name,omitempty"`
+		PublicId                       *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

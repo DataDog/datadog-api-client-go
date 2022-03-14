@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsLookupProcessor Use the Lookup Processor to define a mapping between a log attribute
 // and a human readable value saved in the processors mapping table.
@@ -39,11 +37,9 @@ type LogsLookupProcessor struct {
 	// Type of logs lookup processor.
 	Type LogsLookupProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewLogsLookupProcessor instantiates a new LogsLookupProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -71,6 +67,7 @@ func NewLogsLookupProcessorWithDefaults() *LogsLookupProcessor {
 	this.Type = type_
 	return &this
 }
+
 // GetDefaultLookup returns the DefaultLookup field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetDefaultLookup() string {
 	if o == nil || o.DefaultLookup == nil {
@@ -102,7 +99,6 @@ func (o *LogsLookupProcessor) HasDefaultLookup() bool {
 func (o *LogsLookupProcessor) SetDefaultLookup(v string) {
 	o.DefaultLookup = &v
 }
-
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetIsEnabled() bool {
@@ -136,7 +132,6 @@ func (o *LogsLookupProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-
 // GetLookupTable returns the LookupTable field value
 func (o *LogsLookupProcessor) GetLookupTable() []string {
 	if o == nil {
@@ -159,7 +154,6 @@ func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool) {
 func (o *LogsLookupProcessor) SetLookupTable(v []string) {
 	o.LookupTable = v
 }
-
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsLookupProcessor) GetName() string {
@@ -193,7 +187,6 @@ func (o *LogsLookupProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-
 // GetSource returns the Source field value
 func (o *LogsLookupProcessor) GetSource() string {
 	if o == nil {
@@ -216,7 +209,6 @@ func (o *LogsLookupProcessor) GetSourceOk() (*string, bool) {
 func (o *LogsLookupProcessor) SetSource(v string) {
 	o.Source = v
 }
-
 
 // GetTarget returns the Target field value
 func (o *LogsLookupProcessor) GetTarget() string {
@@ -241,7 +233,6 @@ func (o *LogsLookupProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
-
 // GetType returns the Type field value
 func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType {
 	if o == nil {
@@ -264,8 +255,6 @@ func (o *LogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorType, bool) {
 func (o *LogsLookupProcessor) SetType(v LogsLookupProcessorType) {
 	o.Type = v
 }
-
-
 
 func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -292,23 +281,22 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		LookupTable *[]string `json:"lookup_table"`
-		Source *string `json:"source"`
-		Target *string `json:"target"`
-		Type *LogsLookupProcessorType `json:"type"`
+		LookupTable *[]string                `json:"lookup_table"`
+		Source      *string                  `json:"source"`
+		Target      *string                  `json:"target"`
+		Type        *LogsLookupProcessorType `json:"type"`
 	}{}
 	all := struct {
-		DefaultLookup *string `json:"default_lookup,omitempty"`
-		IsEnabled *bool `json:"is_enabled,omitempty"`
-		LookupTable []string `json:"lookup_table"`
-		Name *string `json:"name,omitempty"`
-		Source string `json:"source"`
-		Target string `json:"target"`
-		Type LogsLookupProcessorType `json:"type"`
+		DefaultLookup *string                 `json:"default_lookup,omitempty"`
+		IsEnabled     *bool                   `json:"is_enabled,omitempty"`
+		LookupTable   []string                `json:"lookup_table"`
+		Name          *string                 `json:"name,omitempty"`
+		Source        string                  `json:"source"`
+		Target        string                  `json:"target"`
+		Type          LogsLookupProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

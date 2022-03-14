@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetChangeType Show the absolute or the relative change.
 type WidgetChangeType string

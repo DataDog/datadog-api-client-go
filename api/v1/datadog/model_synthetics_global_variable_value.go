@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsGlobalVariableValue Value of the global variable.
 type SyntheticsGlobalVariableValue struct {
@@ -23,11 +20,9 @@ type SyntheticsGlobalVariableValue struct {
 	// the value will not be present if the variable is hidden with the `secure` property.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsGlobalVariableValue instantiates a new SyntheticsGlobalVariableValue object
 // This constructor will assign default values to properties that have it defined,
@@ -45,6 +40,7 @@ func NewSyntheticsGlobalVariableValueWithDefaults() *SyntheticsGlobalVariableVal
 	this := SyntheticsGlobalVariableValue{}
 	return &this
 }
+
 // GetSecure returns the Secure field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetSecure() bool {
 	if o == nil || o.Secure == nil {
@@ -76,7 +72,6 @@ func (o *SyntheticsGlobalVariableValue) HasSecure() bool {
 func (o *SyntheticsGlobalVariableValue) SetSecure(v bool) {
 	o.Secure = &v
 }
-
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *SyntheticsGlobalVariableValue) GetValue() string {
@@ -110,8 +105,6 @@ func (o *SyntheticsGlobalVariableValue) SetValue(v string) {
 	o.Value = &v
 }
 
-
-
 func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -130,12 +123,11 @@ func (o SyntheticsGlobalVariableValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsGlobalVariableValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Secure *bool `json:"secure,omitempty"`
-		Value *string `json:"value,omitempty"`
+		Secure *bool   `json:"secure,omitempty"`
+		Value  *string `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

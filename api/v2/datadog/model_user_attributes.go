@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // UserAttributes Attributes of user object returned by the API.
 type UserAttributes struct {
@@ -40,11 +38,9 @@ type UserAttributes struct {
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewUserAttributes instantiates a new UserAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -62,6 +58,7 @@ func NewUserAttributesWithDefaults() *UserAttributes {
 	this := UserAttributes{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *UserAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -93,7 +90,6 @@ func (o *UserAttributes) HasCreatedAt() bool {
 func (o *UserAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *UserAttributes) GetDisabled() bool {
@@ -127,7 +123,6 @@ func (o *UserAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
 
-
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UserAttributes) GetEmail() string {
 	if o == nil || o.Email == nil {
@@ -159,7 +154,6 @@ func (o *UserAttributes) HasEmail() bool {
 func (o *UserAttributes) SetEmail(v string) {
 	o.Email = &v
 }
-
 
 // GetHandle returns the Handle field value if set, zero value otherwise.
 func (o *UserAttributes) GetHandle() string {
@@ -193,7 +187,6 @@ func (o *UserAttributes) SetHandle(v string) {
 	o.Handle = &v
 }
 
-
 // GetIcon returns the Icon field value if set, zero value otherwise.
 func (o *UserAttributes) GetIcon() string {
 	if o == nil || o.Icon == nil {
@@ -225,7 +218,6 @@ func (o *UserAttributes) HasIcon() bool {
 func (o *UserAttributes) SetIcon(v string) {
 	o.Icon = &v
 }
-
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *UserAttributes) GetModifiedAt() time.Time {
@@ -259,7 +251,6 @@ func (o *UserAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserAttributes) GetName() string {
 	if o == nil || o.Name.Get() == nil {
@@ -273,7 +264,7 @@ func (o *UserAttributes) GetName() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserAttributes) GetNameOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Name.Get(), o.Name.IsSet()
@@ -292,6 +283,7 @@ func (o *UserAttributes) HasName() bool {
 func (o *UserAttributes) SetName(v string) {
 	o.Name.Set(&v)
 }
+
 // SetNameNil sets the value for Name to be an explicit nil
 func (o *UserAttributes) SetNameNil() {
 	o.Name.Set(nil)
@@ -301,7 +293,6 @@ func (o *UserAttributes) SetNameNil() {
 func (o *UserAttributes) UnsetName() {
 	o.Name.Unset()
 }
-
 
 // GetServiceAccount returns the ServiceAccount field value if set, zero value otherwise.
 func (o *UserAttributes) GetServiceAccount() bool {
@@ -335,7 +326,6 @@ func (o *UserAttributes) SetServiceAccount(v bool) {
 	o.ServiceAccount = &v
 }
 
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *UserAttributes) GetStatus() string {
 	if o == nil || o.Status == nil {
@@ -368,7 +358,6 @@ func (o *UserAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
-
 // GetTitle returns the Title field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UserAttributes) GetTitle() string {
 	if o == nil || o.Title.Get() == nil {
@@ -382,7 +371,7 @@ func (o *UserAttributes) GetTitle() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UserAttributes) GetTitleOk() (*string, bool) {
-	if o == nil  {
+	if o == nil {
 		return nil, false
 	}
 	return o.Title.Get(), o.Title.IsSet()
@@ -401,6 +390,7 @@ func (o *UserAttributes) HasTitle() bool {
 func (o *UserAttributes) SetTitle(v string) {
 	o.Title.Set(&v)
 }
+
 // SetTitleNil sets the value for Title to be an explicit nil
 func (o *UserAttributes) SetTitleNil() {
 	o.Title.Set(nil)
@@ -410,7 +400,6 @@ func (o *UserAttributes) SetTitleNil() {
 func (o *UserAttributes) UnsetTitle() {
 	o.Title.Unset()
 }
-
 
 // GetVerified returns the Verified field value if set, zero value otherwise.
 func (o *UserAttributes) GetVerified() bool {
@@ -443,8 +432,6 @@ func (o *UserAttributes) HasVerified() bool {
 func (o *UserAttributes) SetVerified(v bool) {
 	o.Verified = &v
 }
-
-
 
 func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -491,21 +478,20 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *UserAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *time.Time `json:"created_at,omitempty"`
-		Disabled *bool `json:"disabled,omitempty"`
-		Email *string `json:"email,omitempty"`
-		Handle *string `json:"handle,omitempty"`
-		Icon *string `json:"icon,omitempty"`
-		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name NullableString `json:"name,omitempty"`
-		ServiceAccount *bool `json:"service_account,omitempty"`
-		Status *string `json:"status,omitempty"`
-		Title NullableString `json:"title,omitempty"`
-		Verified *bool `json:"verified,omitempty"`
+		CreatedAt      *time.Time     `json:"created_at,omitempty"`
+		Disabled       *bool          `json:"disabled,omitempty"`
+		Email          *string        `json:"email,omitempty"`
+		Handle         *string        `json:"handle,omitempty"`
+		Icon           *string        `json:"icon,omitempty"`
+		ModifiedAt     *time.Time     `json:"modified_at,omitempty"`
+		Name           NullableString `json:"name,omitempty"`
+		ServiceAccount *bool          `json:"service_account,omitempty"`
+		Status         *string        `json:"status,omitempty"`
+		Title          NullableString `json:"title,omitempty"`
+		Verified       *bool          `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

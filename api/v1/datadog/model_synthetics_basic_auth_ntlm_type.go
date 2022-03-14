@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SyntheticsBasicAuthNTLMType The type of authentication to use when performing the test.
 type SyntheticsBasicAuthNTLMType string

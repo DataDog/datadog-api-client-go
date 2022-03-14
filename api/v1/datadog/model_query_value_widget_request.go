@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // QueryValueWidgetRequest Updated query value widget.
 type QueryValueWidgetRequest struct {
@@ -48,11 +45,9 @@ type QueryValueWidgetRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewQueryValueWidgetRequest instantiates a new QueryValueWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -70,6 +65,7 @@ func NewQueryValueWidgetRequestWithDefaults() *QueryValueWidgetRequest {
 	this := QueryValueWidgetRequest{}
 	return &this
 }
+
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetAggregator() WidgetAggregator {
 	if o == nil || o.Aggregator == nil {
@@ -101,7 +97,6 @@ func (o *QueryValueWidgetRequest) HasAggregator() bool {
 func (o *QueryValueWidgetRequest) SetAggregator(v WidgetAggregator) {
 	o.Aggregator = &v
 }
-
 
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetApmQuery() LogQueryDefinition {
@@ -135,7 +130,6 @@ func (o *QueryValueWidgetRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
 
-
 // GetAuditQuery returns the AuditQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetAuditQuery() LogQueryDefinition {
 	if o == nil || o.AuditQuery == nil {
@@ -167,7 +161,6 @@ func (o *QueryValueWidgetRequest) HasAuditQuery() bool {
 func (o *QueryValueWidgetRequest) SetAuditQuery(v LogQueryDefinition) {
 	o.AuditQuery = &v
 }
-
 
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetConditionalFormats() []WidgetConditionalFormat {
@@ -201,7 +194,6 @@ func (o *QueryValueWidgetRequest) SetConditionalFormats(v []WidgetConditionalFor
 	o.ConditionalFormats = &v
 }
 
-
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetEventQuery() LogQueryDefinition {
 	if o == nil || o.EventQuery == nil {
@@ -233,7 +225,6 @@ func (o *QueryValueWidgetRequest) HasEventQuery() bool {
 func (o *QueryValueWidgetRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
-
 
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetFormulas() []WidgetFormula {
@@ -267,7 +258,6 @@ func (o *QueryValueWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = &v
 }
 
-
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -299,7 +289,6 @@ func (o *QueryValueWidgetRequest) HasLogQuery() bool {
 func (o *QueryValueWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
-
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetNetworkQuery() LogQueryDefinition {
@@ -333,7 +322,6 @@ func (o *QueryValueWidgetRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
-
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -365,7 +353,6 @@ func (o *QueryValueWidgetRequest) HasProcessQuery() bool {
 func (o *QueryValueWidgetRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
-
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -399,7 +386,6 @@ func (o *QueryValueWidgetRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
-
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -431,7 +417,6 @@ func (o *QueryValueWidgetRequest) HasQ() bool {
 func (o *QueryValueWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
-
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -465,7 +450,6 @@ func (o *QueryValueWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefiniti
 	o.Queries = &v
 }
 
-
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -497,7 +481,6 @@ func (o *QueryValueWidgetRequest) HasResponseFormat() bool {
 func (o *QueryValueWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
-
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -531,7 +514,6 @@ func (o *QueryValueWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
-
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *QueryValueWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -563,8 +545,6 @@ func (o *QueryValueWidgetRequest) HasSecurityQuery() bool {
 func (o *QueryValueWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
-
-
 
 func (o QueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -623,25 +603,24 @@ func (o QueryValueWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *QueryValueWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregator *WidgetAggregator `json:"aggregator,omitempty"`
-		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
-		AuditQuery *LogQueryDefinition `json:"audit_query,omitempty"`
-		ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
-		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
-		Formulas *[]WidgetFormula `json:"formulas,omitempty"`
-		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
-		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
-		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
-		Q *string `json:"q,omitempty"`
-		Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
-		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
-		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
+		Aggregator          *WidgetAggregator                    `json:"aggregator,omitempty"`
+		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
+		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
+		ConditionalFormats  *[]WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
+		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
+		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
+		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
+		Q                   *string                              `json:"q,omitempty"`
+		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -652,7 +631,7 @@ func (o *QueryValueWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregator; v != nil &&!v.IsValid() {
+	if v := all.Aggregator; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -660,7 +639,7 @@ func (o *QueryValueWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
+	if v := all.ResponseFormat; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

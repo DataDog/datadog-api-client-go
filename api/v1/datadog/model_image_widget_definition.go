@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // ImageWidgetDefinition The image widget allows you to embed an image on your dashboard. An image can be a PNG, JPG, or animated GIF. Only available on FREE layout dashboards.
 type ImageWidgetDefinition struct {
@@ -38,11 +36,9 @@ type ImageWidgetDefinition struct {
 	// Vertical alignment.
 	VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -72,6 +68,7 @@ func NewImageWidgetDefinitionWithDefaults() *ImageWidgetDefinition {
 	this.Type = type_
 	return &this
 }
+
 // GetHasBackground returns the HasBackground field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetHasBackground() bool {
 	if o == nil || o.HasBackground == nil {
@@ -103,7 +100,6 @@ func (o *ImageWidgetDefinition) HasHasBackground() bool {
 func (o *ImageWidgetDefinition) SetHasBackground(v bool) {
 	o.HasBackground = &v
 }
-
 
 // GetHasBorder returns the HasBorder field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetHasBorder() bool {
@@ -137,7 +133,6 @@ func (o *ImageWidgetDefinition) SetHasBorder(v bool) {
 	o.HasBorder = &v
 }
 
-
 // GetHorizontalAlign returns the HorizontalAlign field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetHorizontalAlign() WidgetHorizontalAlign {
 	if o == nil || o.HorizontalAlign == nil {
@@ -169,7 +164,6 @@ func (o *ImageWidgetDefinition) HasHorizontalAlign() bool {
 func (o *ImageWidgetDefinition) SetHorizontalAlign(v WidgetHorizontalAlign) {
 	o.HorizontalAlign = &v
 }
-
 
 // GetMargin returns the Margin field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetMargin() WidgetMargin {
@@ -203,7 +197,6 @@ func (o *ImageWidgetDefinition) SetMargin(v WidgetMargin) {
 	o.Margin = &v
 }
 
-
 // GetSizing returns the Sizing field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetSizing() WidgetImageSizing {
 	if o == nil || o.Sizing == nil {
@@ -236,7 +229,6 @@ func (o *ImageWidgetDefinition) SetSizing(v WidgetImageSizing) {
 	o.Sizing = &v
 }
 
-
 // GetType returns the Type field value
 func (o *ImageWidgetDefinition) GetType() ImageWidgetDefinitionType {
 	if o == nil {
@@ -260,7 +252,6 @@ func (o *ImageWidgetDefinition) SetType(v ImageWidgetDefinitionType) {
 	o.Type = v
 }
 
-
 // GetUrl returns the Url field value
 func (o *ImageWidgetDefinition) GetUrl() string {
 	if o == nil {
@@ -283,7 +274,6 @@ func (o *ImageWidgetDefinition) GetUrlOk() (*string, bool) {
 func (o *ImageWidgetDefinition) SetUrl(v string) {
 	o.Url = v
 }
-
 
 // GetUrlDarkTheme returns the UrlDarkTheme field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetUrlDarkTheme() string {
@@ -317,7 +307,6 @@ func (o *ImageWidgetDefinition) SetUrlDarkTheme(v string) {
 	o.UrlDarkTheme = &v
 }
 
-
 // GetVerticalAlign returns the VerticalAlign field value if set, zero value otherwise.
 func (o *ImageWidgetDefinition) GetVerticalAlign() WidgetVerticalAlign {
 	if o == nil || o.VerticalAlign == nil {
@@ -349,8 +338,6 @@ func (o *ImageWidgetDefinition) HasVerticalAlign() bool {
 func (o *ImageWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign) {
 	o.VerticalAlign = &v
 }
-
-
 
 func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -387,23 +374,22 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *ImageWidgetDefinitionType `json:"type"`
-		Url *string `json:"url"`
+		Url  *string                    `json:"url"`
 	}{}
 	all := struct {
-		HasBackground *bool `json:"has_background,omitempty"`
-		HasBorder *bool `json:"has_border,omitempty"`
-		HorizontalAlign *WidgetHorizontalAlign `json:"horizontal_align,omitempty"`
-		Margin *WidgetMargin `json:"margin,omitempty"`
-		Sizing *WidgetImageSizing `json:"sizing,omitempty"`
-		Type ImageWidgetDefinitionType `json:"type"`
-		Url string `json:"url"`
-		UrlDarkTheme *string `json:"url_dark_theme,omitempty"`
-		VerticalAlign *WidgetVerticalAlign `json:"vertical_align,omitempty"`
+		HasBackground   *bool                     `json:"has_background,omitempty"`
+		HasBorder       *bool                     `json:"has_border,omitempty"`
+		HorizontalAlign *WidgetHorizontalAlign    `json:"horizontal_align,omitempty"`
+		Margin          *WidgetMargin             `json:"margin,omitempty"`
+		Sizing          *WidgetImageSizing        `json:"sizing,omitempty"`
+		Type            ImageWidgetDefinitionType `json:"type"`
+		Url             string                    `json:"url"`
+		UrlDarkTheme    *string                   `json:"url_dark_theme,omitempty"`
+		VerticalAlign   *WidgetVerticalAlign      `json:"vertical_align,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -424,7 +410,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.HorizontalAlign; v != nil &&!v.IsValid() {
+	if v := all.HorizontalAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -432,7 +418,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Margin; v != nil &&!v.IsValid() {
+	if v := all.Margin; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -440,7 +426,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sizing; v != nil &&!v.IsValid() {
+	if v := all.Sizing; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -456,7 +442,7 @@ func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.VerticalAlign; v != nil &&!v.IsValid() {
+	if v := all.VerticalAlign; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

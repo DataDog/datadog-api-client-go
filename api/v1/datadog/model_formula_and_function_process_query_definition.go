@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FormulaAndFunctionProcessQueryDefinition Process query using formulas and functions.
 type FormulaAndFunctionProcessQueryDefinition struct {
@@ -36,11 +34,9 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Text to use as filter.
 	TextFilter *string `json:"text_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -65,6 +61,7 @@ func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFuncti
 	this.Sort = &sort
 	return &this
 }
+
 // GetAggregator returns the Aggregator field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetAggregator() FormulaAndFunctionMetricAggregation {
 	if o == nil || o.Aggregator == nil {
@@ -97,7 +94,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFun
 	o.Aggregator = &v
 }
 
-
 // GetDataSource returns the DataSource field value
 func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource {
 	if o == nil {
@@ -120,7 +116,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAn
 func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource) {
 	o.DataSource = v
 }
-
 
 // GetIsNormalizedCpu returns the IsNormalizedCpu field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetIsNormalizedCpu() bool {
@@ -154,7 +149,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetIsNormalizedCpu(v bool) {
 	o.IsNormalizedCpu = &v
 }
 
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -187,7 +181,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-
 // GetMetric returns the Metric field value
 func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 	if o == nil {
@@ -211,7 +204,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
 
-
 // GetName returns the Name field value
 func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 	if o == nil {
@@ -234,7 +226,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
 func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string) {
 	o.Name = v
 }
-
 
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetSort() QuerySortOrder {
@@ -268,7 +259,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetSort(v QuerySortOrder) {
 	o.Sort = &v
 }
 
-
 // GetTagFilters returns the TagFilters field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string {
 	if o == nil || o.TagFilters == nil {
@@ -301,7 +291,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string) {
 	o.TagFilters = &v
 }
 
-
 // GetTextFilter returns the TextFilter field value if set, zero value otherwise.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetTextFilter() string {
 	if o == nil || o.TextFilter == nil {
@@ -333,8 +322,6 @@ func (o *FormulaAndFunctionProcessQueryDefinition) HasTextFilter() bool {
 func (o *FormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string) {
 	o.TextFilter = &v
 }
-
-
 
 func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -369,24 +356,23 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		DataSource *FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
-		Metric *string `json:"metric"`
-		Name *string `json:"name"`
+		Metric     *string                                   `json:"metric"`
+		Name       *string                                   `json:"name"`
 	}{}
 	all := struct {
-		Aggregator *FormulaAndFunctionMetricAggregation `json:"aggregator,omitempty"`
-		DataSource FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
-		IsNormalizedCpu *bool `json:"is_normalized_cpu,omitempty"`
-		Limit *int64 `json:"limit,omitempty"`
-		Metric string `json:"metric"`
-		Name string `json:"name"`
-		Sort *QuerySortOrder `json:"sort,omitempty"`
-		TagFilters *[]string `json:"tag_filters,omitempty"`
-		TextFilter *string `json:"text_filter,omitempty"`
+		Aggregator      *FormulaAndFunctionMetricAggregation     `json:"aggregator,omitempty"`
+		DataSource      FormulaAndFunctionProcessQueryDataSource `json:"data_source"`
+		IsNormalizedCpu *bool                                    `json:"is_normalized_cpu,omitempty"`
+		Limit           *int64                                   `json:"limit,omitempty"`
+		Metric          string                                   `json:"metric"`
+		Name            string                                   `json:"name"`
+		Sort            *QuerySortOrder                          `json:"sort,omitempty"`
+		TagFilters      *[]string                                `json:"tag_filters,omitempty"`
+		TextFilter      *string                                  `json:"text_filter,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -410,7 +396,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregator; v != nil &&!v.IsValid() {
+	if v := all.Aggregator; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -426,7 +412,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil &&!v.IsValid() {
+	if v := all.Sort; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

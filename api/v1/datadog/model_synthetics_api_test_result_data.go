@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsAPITestResultData Object containing results for your Synthetic API test.
 type SyntheticsAPITestResultData struct {
@@ -37,11 +34,9 @@ type SyntheticsAPITestResultData struct {
 	// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsAPITestResultData instantiates a new SyntheticsAPITestResultData object
 // This constructor will assign default values to properties that have it defined,
@@ -59,6 +54,7 @@ func NewSyntheticsAPITestResultDataWithDefaults() *SyntheticsAPITestResultData {
 	this := SyntheticsAPITestResultData{}
 	return &this
 }
+
 // GetCert returns the Cert field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetCert() SyntheticsSSLCertificate {
 	if o == nil || o.Cert == nil {
@@ -90,7 +86,6 @@ func (o *SyntheticsAPITestResultData) HasCert() bool {
 func (o *SyntheticsAPITestResultData) SetCert(v SyntheticsSSLCertificate) {
 	o.Cert = &v
 }
-
 
 // GetEventType returns the EventType field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetEventType() SyntheticsTestProcessStatus {
@@ -124,7 +119,6 @@ func (o *SyntheticsAPITestResultData) SetEventType(v SyntheticsTestProcessStatus
 	o.EventType = &v
 }
 
-
 // GetFailure returns the Failure field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetFailure() SyntheticsApiTestResultFailure {
 	if o == nil || o.Failure == nil {
@@ -156,7 +150,6 @@ func (o *SyntheticsAPITestResultData) HasFailure() bool {
 func (o *SyntheticsAPITestResultData) SetFailure(v SyntheticsApiTestResultFailure) {
 	o.Failure = &v
 }
-
 
 // GetHttpStatusCode returns the HttpStatusCode field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetHttpStatusCode() int64 {
@@ -190,7 +183,6 @@ func (o *SyntheticsAPITestResultData) SetHttpStatusCode(v int64) {
 	o.HttpStatusCode = &v
 }
 
-
 // GetRequestHeaders returns the RequestHeaders field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetRequestHeaders() map[string]interface{} {
 	if o == nil || o.RequestHeaders == nil {
@@ -222,7 +214,6 @@ func (o *SyntheticsAPITestResultData) HasRequestHeaders() bool {
 func (o *SyntheticsAPITestResultData) SetRequestHeaders(v map[string]interface{}) {
 	o.RequestHeaders = v
 }
-
 
 // GetResponseBody returns the ResponseBody field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetResponseBody() string {
@@ -256,7 +247,6 @@ func (o *SyntheticsAPITestResultData) SetResponseBody(v string) {
 	o.ResponseBody = &v
 }
 
-
 // GetResponseHeaders returns the ResponseHeaders field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetResponseHeaders() map[string]interface{} {
 	if o == nil || o.ResponseHeaders == nil {
@@ -288,7 +278,6 @@ func (o *SyntheticsAPITestResultData) HasResponseHeaders() bool {
 func (o *SyntheticsAPITestResultData) SetResponseHeaders(v map[string]interface{}) {
 	o.ResponseHeaders = v
 }
-
 
 // GetResponseSize returns the ResponseSize field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetResponseSize() int64 {
@@ -322,7 +311,6 @@ func (o *SyntheticsAPITestResultData) SetResponseSize(v int64) {
 	o.ResponseSize = &v
 }
 
-
 // GetTimings returns the Timings field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultData) GetTimings() SyntheticsTiming {
 	if o == nil || o.Timings == nil {
@@ -354,8 +342,6 @@ func (o *SyntheticsAPITestResultData) HasTimings() bool {
 func (o *SyntheticsAPITestResultData) SetTimings(v SyntheticsTiming) {
 	o.Timings = &v
 }
-
-
 
 func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -396,19 +382,18 @@ func (o SyntheticsAPITestResultData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cert *SyntheticsSSLCertificate `json:"cert,omitempty"`
-		EventType *SyntheticsTestProcessStatus `json:"eventType,omitempty"`
-		Failure *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
-		HttpStatusCode *int64 `json:"httpStatusCode,omitempty"`
-		RequestHeaders map[string]interface{} `json:"requestHeaders,omitempty"`
-		ResponseBody *string `json:"responseBody,omitempty"`
-		ResponseHeaders map[string]interface{} `json:"responseHeaders,omitempty"`
-		ResponseSize *int64 `json:"responseSize,omitempty"`
-		Timings *SyntheticsTiming `json:"timings,omitempty"`
+		Cert            *SyntheticsSSLCertificate       `json:"cert,omitempty"`
+		EventType       *SyntheticsTestProcessStatus    `json:"eventType,omitempty"`
+		Failure         *SyntheticsApiTestResultFailure `json:"failure,omitempty"`
+		HttpStatusCode  *int64                          `json:"httpStatusCode,omitempty"`
+		RequestHeaders  map[string]interface{}          `json:"requestHeaders,omitempty"`
+		ResponseBody    *string                         `json:"responseBody,omitempty"`
+		ResponseHeaders map[string]interface{}          `json:"responseHeaders,omitempty"`
+		ResponseSize    *int64                          `json:"responseSize,omitempty"`
+		Timings         *SyntheticsTiming               `json:"timings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -419,7 +404,7 @@ func (o *SyntheticsAPITestResultData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.EventType; v != nil &&!v.IsValid() {
+	if v := all.EventType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

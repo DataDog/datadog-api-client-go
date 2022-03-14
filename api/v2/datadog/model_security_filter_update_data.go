@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityFilterUpdateData The new security filter properties.
 type SecurityFilterUpdateData struct {
@@ -22,11 +20,9 @@ type SecurityFilterUpdateData struct {
 	// The type of the resource. The value should always be `security_filters`.
 	Type SecurityFilterType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSecurityFilterUpdateData instantiates a new SecurityFilterUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewSecurityFilterUpdateDataWithDefaults() *SecurityFilterUpdateData {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value
 func (o *SecurityFilterUpdateData) GetAttributes() SecurityFilterUpdateAttributes {
 	if o == nil {
@@ -70,7 +67,6 @@ func (o *SecurityFilterUpdateData) GetAttributesOk() (*SecurityFilterUpdateAttri
 func (o *SecurityFilterUpdateData) SetAttributes(v SecurityFilterUpdateAttributes) {
 	o.Attributes = v
 }
-
 
 // GetType returns the Type field value
 func (o *SecurityFilterUpdateData) GetType() SecurityFilterType {
@@ -95,8 +91,6 @@ func (o *SecurityFilterUpdateData) SetType(v SecurityFilterType) {
 	o.Type = v
 }
 
-
-
 func (o SecurityFilterUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,16 +105,15 @@ func (o SecurityFilterUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SecurityFilterUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *SecurityFilterUpdateAttributes `json:"attributes"`
-		Type *SecurityFilterType `json:"type"`
+		Type       *SecurityFilterType             `json:"type"`
 	}{}
 	all := struct {
 		Attributes SecurityFilterUpdateAttributes `json:"attributes"`
-		Type SecurityFilterType `json:"type"`
+		Type       SecurityFilterType             `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

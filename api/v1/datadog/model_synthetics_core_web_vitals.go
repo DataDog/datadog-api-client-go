@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsCoreWebVitals Core Web Vitals attached to a browser test step.
 type SyntheticsCoreWebVitals struct {
@@ -24,11 +21,9 @@ type SyntheticsCoreWebVitals struct {
 	// URL attached to the metrics.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object
 // This constructor will assign default values to properties that have it defined,
@@ -46,6 +41,7 @@ func NewSyntheticsCoreWebVitalsWithDefaults() *SyntheticsCoreWebVitals {
 	this := SyntheticsCoreWebVitals{}
 	return &this
 }
+
 // GetCls returns the Cls field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetCls() int64 {
 	if o == nil || o.Cls == nil {
@@ -77,7 +73,6 @@ func (o *SyntheticsCoreWebVitals) HasCls() bool {
 func (o *SyntheticsCoreWebVitals) SetCls(v int64) {
 	o.Cls = &v
 }
-
 
 // GetLcp returns the Lcp field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetLcp() int64 {
@@ -111,7 +106,6 @@ func (o *SyntheticsCoreWebVitals) SetLcp(v int64) {
 	o.Lcp = &v
 }
 
-
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsCoreWebVitals) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -144,8 +138,6 @@ func (o *SyntheticsCoreWebVitals) SetUrl(v string) {
 	o.Url = &v
 }
 
-
-
 func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,12 +159,11 @@ func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cls *int64 `json:"cls,omitempty"`
-		Lcp *int64 `json:"lcp,omitempty"`
+		Cls *int64  `json:"cls,omitempty"`
+		Lcp *int64  `json:"lcp,omitempty"`
 		Url *string `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

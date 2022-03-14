@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsCIBatchMetadataProvider Description of the CI provider.
 type SyntheticsCIBatchMetadataProvider struct {
 	// Name of the CI provider.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsCIBatchMetadataProvider instantiates a new SyntheticsCIBatchMetadataProvider object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewSyntheticsCIBatchMetadataProviderWithDefaults() *SyntheticsCIBatchMetada
 	this := SyntheticsCIBatchMetadataProvider{}
 	return &this
 }
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataProvider) GetName() string {
 	if o == nil || o.Name == nil {
@@ -74,8 +70,6 @@ func (o *SyntheticsCIBatchMetadataProvider) SetName(v string) {
 	o.Name = &v
 }
 
-
-
 func (o SyntheticsCIBatchMetadataProvider) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o SyntheticsCIBatchMetadataProvider) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsCIBatchMetadataProvider) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

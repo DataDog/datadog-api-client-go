@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // APIKeyUpdateRequest Request used to update an API key.
 type APIKeyUpdateRequest struct {
 	// Object used to update an API key.
 	Data APIKeyUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewAPIKeyUpdateRequest instantiates a new APIKeyUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewAPIKeyUpdateRequestWithDefaults() *APIKeyUpdateRequest {
 	this := APIKeyUpdateRequest{}
 	return &this
 }
+
 // GetData returns the Data field value
 func (o *APIKeyUpdateRequest) GetData() APIKeyUpdateData {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *APIKeyUpdateRequest) SetData(v APIKeyUpdateData) {
 	o.Data = v
 }
 
-
-
 func (o APIKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o APIKeyUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *APIKeyUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

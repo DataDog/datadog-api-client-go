@@ -10,21 +10,16 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsPrivateLocationSecretsConfigDecryption Private key for the private location.
 type SyntheticsPrivateLocationSecretsConfigDecryption struct {
 	// Private key for the private location.
 	Key *string `json:"key,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsPrivateLocationSecretsConfigDecryption instantiates a new SyntheticsPrivateLocationSecretsConfigDecryption object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +37,7 @@ func NewSyntheticsPrivateLocationSecretsConfigDecryptionWithDefaults() *Syntheti
 	this := SyntheticsPrivateLocationSecretsConfigDecryption{}
 	return &this
 }
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) GetKey() string {
 	if o == nil || o.Key == nil {
@@ -74,8 +70,6 @@ func (o *SyntheticsPrivateLocationSecretsConfigDecryption) SetKey(v string) {
 	o.Key = &v
 }
 
-
-
 func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -90,7 +84,6 @@ func (o SyntheticsPrivateLocationSecretsConfigDecryption) MarshalJSON() ([]byte,
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsPrivateLocationSecretsConfigDecryption) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

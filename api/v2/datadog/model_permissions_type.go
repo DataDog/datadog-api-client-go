@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // PermissionsType Permissions resource type.
 type PermissionsType string

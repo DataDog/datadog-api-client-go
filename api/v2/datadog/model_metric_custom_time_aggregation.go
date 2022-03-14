@@ -11,20 +11,18 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MetricCustomTimeAggregation A time aggregation for use in query.
 type MetricCustomTimeAggregation string
 
 // List of MetricCustomTimeAggregation
 const (
-	METRICCUSTOMTIMEAGGREGATION_AVG MetricCustomTimeAggregation = "avg"
+	METRICCUSTOMTIMEAGGREGATION_AVG   MetricCustomTimeAggregation = "avg"
 	METRICCUSTOMTIMEAGGREGATION_COUNT MetricCustomTimeAggregation = "count"
-	METRICCUSTOMTIMEAGGREGATION_MAX MetricCustomTimeAggregation = "max"
-	METRICCUSTOMTIMEAGGREGATION_MIN MetricCustomTimeAggregation = "min"
-	METRICCUSTOMTIMEAGGREGATION_SUM MetricCustomTimeAggregation = "sum"
+	METRICCUSTOMTIMEAGGREGATION_MAX   MetricCustomTimeAggregation = "max"
+	METRICCUSTOMTIMEAGGREGATION_MIN   MetricCustomTimeAggregation = "min"
+	METRICCUSTOMTIMEAGGREGATION_SUM   MetricCustomTimeAggregation = "sum"
 )
 
 var allowedMetricCustomTimeAggregationEnumValues = []MetricCustomTimeAggregation{

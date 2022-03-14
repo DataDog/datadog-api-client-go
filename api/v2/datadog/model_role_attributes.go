@@ -10,10 +10,8 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
+	"time"
 )
-
 
 // RoleAttributes Attributes of the role.
 type RoleAttributes struct {
@@ -26,11 +24,9 @@ type RoleAttributes struct {
 	// Number of users with that role.
 	UserCount *int64 `json:"user_count,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewRoleAttributes instantiates a new RoleAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -48,6 +44,7 @@ func NewRoleAttributesWithDefaults() *RoleAttributes {
 	this := RoleAttributes{}
 	return &this
 }
+
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RoleAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -79,7 +76,6 @@ func (o *RoleAttributes) HasCreatedAt() bool {
 func (o *RoleAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
-
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *RoleAttributes) GetModifiedAt() time.Time {
@@ -113,7 +109,6 @@ func (o *RoleAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *RoleAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -145,7 +140,6 @@ func (o *RoleAttributes) HasName() bool {
 func (o *RoleAttributes) SetName(v string) {
 	o.Name = &v
 }
-
 
 // GetUserCount returns the UserCount field value if set, zero value otherwise.
 func (o *RoleAttributes) GetUserCount() int64 {
@@ -179,8 +173,6 @@ func (o *RoleAttributes) SetUserCount(v int64) {
 	o.UserCount = &v
 }
 
-
-
 func (o RoleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -205,14 +197,13 @@ func (o RoleAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *RoleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *time.Time `json:"created_at,omitempty"`
+		CreatedAt  *time.Time `json:"created_at,omitempty"`
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name *string `json:"name,omitempty"`
-		UserCount *int64 `json:"user_count,omitempty"`
+		Name       *string    `json:"name,omitempty"`
+		UserCount  *int64     `json:"user_count,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

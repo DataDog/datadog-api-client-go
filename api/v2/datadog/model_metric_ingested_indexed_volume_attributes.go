@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // MetricIngestedIndexedVolumeAttributes Object containing the definition of a metric's ingested and indexed volume.
 type MetricIngestedIndexedVolumeAttributes struct {
@@ -22,11 +19,9 @@ type MetricIngestedIndexedVolumeAttributes struct {
 	// Ingested volume for the given metric.
 	IngestedVolume *int64 `json:"ingested_volume,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricIngestedIndexedVolumeAttributes instantiates a new MetricIngestedIndexedVolumeAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewMetricIngestedIndexedVolumeAttributesWithDefaults() *MetricIngestedIndex
 	this := MetricIngestedIndexedVolumeAttributes{}
 	return &this
 }
+
 // GetIndexedVolume returns the IndexedVolume field value if set, zero value otherwise.
 func (o *MetricIngestedIndexedVolumeAttributes) GetIndexedVolume() int64 {
 	if o == nil || o.IndexedVolume == nil {
@@ -75,7 +71,6 @@ func (o *MetricIngestedIndexedVolumeAttributes) HasIndexedVolume() bool {
 func (o *MetricIngestedIndexedVolumeAttributes) SetIndexedVolume(v int64) {
 	o.IndexedVolume = &v
 }
-
 
 // GetIngestedVolume returns the IngestedVolume field value if set, zero value otherwise.
 func (o *MetricIngestedIndexedVolumeAttributes) GetIngestedVolume() int64 {
@@ -109,8 +104,6 @@ func (o *MetricIngestedIndexedVolumeAttributes) SetIngestedVolume(v int64) {
 	o.IngestedVolume = &v
 }
 
-
-
 func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -129,11 +122,10 @@ func (o MetricIngestedIndexedVolumeAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *MetricIngestedIndexedVolumeAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IndexedVolume *int64 `json:"indexed_volume,omitempty"`
+		IndexedVolume  *int64 `json:"indexed_volume,omitempty"`
 		IngestedVolume *int64 `json:"ingested_volume,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -10,10 +10,7 @@ package datadog
 
 import (
 	"encoding/json"
-	"fmt"
-
 )
-
 
 // SyntheticsTestOptionsMonitorOptions Object containing the options for a Synthetic test as a monitor
 // (for example, renotification).
@@ -22,11 +19,9 @@ type SyntheticsTestOptionsMonitorOptions struct {
 	// (in minutes).
 	RenotifyInterval *int64 `json:"renotify_interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSyntheticsTestOptionsMonitorOptions instantiates a new SyntheticsTestOptionsMonitorOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -44,6 +39,7 @@ func NewSyntheticsTestOptionsMonitorOptionsWithDefaults() *SyntheticsTestOptions
 	this := SyntheticsTestOptionsMonitorOptions{}
 	return &this
 }
+
 // GetRenotifyInterval returns the RenotifyInterval field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsMonitorOptions) GetRenotifyInterval() int64 {
 	if o == nil || o.RenotifyInterval == nil {
@@ -76,8 +72,6 @@ func (o *SyntheticsTestOptionsMonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval = &v
 }
 
-
-
 func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -92,7 +86,6 @@ func (o SyntheticsTestOptionsMonitorOptions) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *SyntheticsTestOptionsMonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

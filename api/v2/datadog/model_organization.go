@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // Organization Organization object.
 type Organization struct {
@@ -24,11 +22,9 @@ type Organization struct {
 	// Organizations resource type.
 	Type OrganizationsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewOrganization instantiates a new Organization object
 // This constructor will assign default values to properties that have it defined,
@@ -49,6 +45,7 @@ func NewOrganizationWithDefaults() *Organization {
 	this.Type = type_
 	return &this
 }
+
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *Organization) GetAttributes() OrganizationAttributes {
 	if o == nil || o.Attributes == nil {
@@ -80,7 +77,6 @@ func (o *Organization) HasAttributes() bool {
 func (o *Organization) SetAttributes(v OrganizationAttributes) {
 	o.Attributes = &v
 }
-
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *Organization) GetId() string {
@@ -114,7 +110,6 @@ func (o *Organization) SetId(v string) {
 	o.Id = &v
 }
 
-
 // GetType returns the Type field value
 func (o *Organization) GetType() OrganizationsType {
 	if o == nil {
@@ -138,8 +133,6 @@ func (o *Organization) SetType(v OrganizationsType) {
 	o.Type = v
 }
 
-
-
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,7 +152,6 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -167,8 +159,8 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Attributes *OrganizationAttributes `json:"attributes,omitempty"`
-		Id *string `json:"id,omitempty"`
-		Type OrganizationsType `json:"type"`
+		Id         *string                 `json:"id,omitempty"`
+		Type       OrganizationsType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // LogsServiceRemapperType Type of logs service remapper.
 type LogsServiceRemapperType string

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityMonitoringSignalType The type of event.
 type SecurityMonitoringSignalType string

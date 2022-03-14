@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // FunnelWidgetDefinitionType Type of funnel widget.
 type FunnelWidgetDefinitionType string

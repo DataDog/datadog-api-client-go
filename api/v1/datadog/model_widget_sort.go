@@ -11,16 +11,14 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // WidgetSort Widget sorting methods.
 type WidgetSort string
 
 // List of WidgetSort
 const (
-	WIDGETSORT_ASCENDING WidgetSort = "asc"
+	WIDGETSORT_ASCENDING  WidgetSort = "asc"
 	WIDGETSORT_DESCENDING WidgetSort = "desc"
 )
 

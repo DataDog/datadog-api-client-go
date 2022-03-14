@@ -11,20 +11,16 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // MetricsPayload The metrics' payload.
 type MetricsPayload struct {
 	// A list of time series to submit to Datadog.
 	Series []Series `json:"series"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewMetricsPayload instantiates a new MetricsPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -43,6 +39,7 @@ func NewMetricsPayloadWithDefaults() *MetricsPayload {
 	this := MetricsPayload{}
 	return &this
 }
+
 // GetSeries returns the Series field value
 func (o *MetricsPayload) GetSeries() []Series {
 	if o == nil {
@@ -66,8 +63,6 @@ func (o *MetricsPayload) SetSeries(v []Series) {
 	o.Series = v
 }
 
-
-
 func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -80,7 +75,6 @@ func (o MetricsPayload) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
-
 
 func (o *MetricsPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -11,9 +11,7 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
-
 )
-
 
 // SecurityFilterCreateAttributes Object containing the attributes of the security filter to be created.
 type SecurityFilterCreateAttributes struct {
@@ -28,11 +26,9 @@ type SecurityFilterCreateAttributes struct {
 	// The query of the security filter.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject map[string]interface{} `json:-`
+	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
-
-
 
 // NewSecurityFilterCreateAttributes instantiates a new SecurityFilterCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -55,6 +51,7 @@ func NewSecurityFilterCreateAttributesWithDefaults() *SecurityFilterCreateAttrib
 	this := SecurityFilterCreateAttributes{}
 	return &this
 }
+
 // GetExclusionFilters returns the ExclusionFilters field value
 func (o *SecurityFilterCreateAttributes) GetExclusionFilters() []SecurityFilterExclusionFilter {
 	if o == nil {
@@ -77,7 +74,6 @@ func (o *SecurityFilterCreateAttributes) GetExclusionFiltersOk() (*[]SecurityFil
 func (o *SecurityFilterCreateAttributes) SetExclusionFilters(v []SecurityFilterExclusionFilter) {
 	o.ExclusionFilters = v
 }
-
 
 // GetFilteredDataType returns the FilteredDataType field value
 func (o *SecurityFilterCreateAttributes) GetFilteredDataType() SecurityFilterFilteredDataType {
@@ -102,7 +98,6 @@ func (o *SecurityFilterCreateAttributes) SetFilteredDataType(v SecurityFilterFil
 	o.FilteredDataType = v
 }
 
-
 // GetIsEnabled returns the IsEnabled field value
 func (o *SecurityFilterCreateAttributes) GetIsEnabled() bool {
 	if o == nil {
@@ -125,7 +120,6 @@ func (o *SecurityFilterCreateAttributes) GetIsEnabledOk() (*bool, bool) {
 func (o *SecurityFilterCreateAttributes) SetIsEnabled(v bool) {
 	o.IsEnabled = v
 }
-
 
 // GetName returns the Name field value
 func (o *SecurityFilterCreateAttributes) GetName() string {
@@ -150,7 +144,6 @@ func (o *SecurityFilterCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
-
 // GetQuery returns the Query field value
 func (o *SecurityFilterCreateAttributes) GetQuery() string {
 	if o == nil {
@@ -174,8 +167,6 @@ func (o *SecurityFilterCreateAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
-
-
 func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -193,22 +184,21 @@ func (o SecurityFilterCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-
 func (o *SecurityFilterCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters"`
-		FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type"`
-		IsEnabled *bool `json:"is_enabled"`
-		Name *string `json:"name"`
-		Query *string `json:"query"`
+		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type"`
+		IsEnabled        *bool                            `json:"is_enabled"`
+		Name             *string                          `json:"name"`
+		Query            *string                          `json:"query"`
 	}{}
 	all := struct {
 		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters"`
-		FilteredDataType SecurityFilterFilteredDataType `json:"filtered_data_type"`
-		IsEnabled bool `json:"is_enabled"`
-		Name string `json:"name"`
-		Query string `json:"query"`
+		FilteredDataType SecurityFilterFilteredDataType  `json:"filtered_data_type"`
+		IsEnabled        bool                            `json:"is_enabled"`
+		Name             string                          `json:"name"`
+		Query            string                          `json:"query"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
