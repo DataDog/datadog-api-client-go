@@ -6,8 +6,8 @@ env:
 
 on:
   pull_request:
-    branches:
-      - master
+    # branches:
+    #   - master
 
 concurrency:
   group: unit-${{ github.head_ref }}
