@@ -30,4 +30,6 @@
 
 - `CI_PIPELINES_ALERT` (value: `"ci-pipelines alert"`)
 
+- `ERROR_TRACKING_ALERT` (value: `"error-tracking alert"`)
+
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
