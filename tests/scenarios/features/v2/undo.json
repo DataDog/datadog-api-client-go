@@ -60,6 +60,18 @@
       "type": "idempotent"
     }
   },
+  "ListAuditLogs": {
+    "tag": "Audit",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SearchAuditLogs": {
+    "tag": "Audit",
+    "undo": {
+      "type": "safe"
+    }
+  },
   "ListAuthNMappings": {
     "tag": "AuthN Mappings",
     "undo": {
@@ -485,6 +497,18 @@
   },
   "AddUserToRole": {
     "tag": "Roles",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "ListRUMEvents": {
+    "tag": "RUM",
+    "undo": {
+      "type": "safe"
+    }
+  },
+  "SearchRUMEvents": {
+    "tag": "RUM",
     "undo": {
       "type": "safe"
     }
