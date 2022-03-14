@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-./extract-code-blocks.sh examples
+# ./extract-code-blocks.sh examples
 
 for f in examples/*/*/*.go ; do
     df=$(dirname $f)/$(basename $f .go)

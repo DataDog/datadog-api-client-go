@@ -60,7 +60,7 @@ func main() {
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
-				Headers: &map[string]string{
+				Headers: map[string]string{
 					"unique": "examplecreateanapihttptestreturnsokreturnsthecreatedtestdetailsresponse",
 				},
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),
@@ -68,7 +68,7 @@ func main() {
 				Url:     datadog.PtrString("https://datadoghq.com"),
 				Proxy: &datadog.SyntheticsTestRequestProxy{
 					Url:     "https://datadoghq.com",
-					Headers: &map[string]string{},
+					Headers: map[string]string{},
 				},
 			},
 		},
