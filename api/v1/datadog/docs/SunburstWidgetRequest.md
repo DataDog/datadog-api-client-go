@@ -2,21 +2,21 @@
 
 ## Properties
 
-| Name                    | Type                                                                                       | Description                                                                                               | Notes      |
-| ----------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------- |
-| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **AuditQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **Formulas**            | Pointer to [**[]WidgetFormula**](WidgetFormula.md)                                         | List of formulas that operate on queries. **This feature is currently in beta.**                          | [optional] |
-| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)                         |                                                                                                           | [optional] |
-| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **Q**                   | Pointer to **string**                                                                      | Widget query.                                                                                             | [optional] |
-| **Queries**             | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] |
-| **ResponseFormat**      | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                                                           | [optional] |
-| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
-| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                                                           | [optional] |
+| Name                    | Type                                                                                       | Description                                                        | Notes      |
+| ----------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------- |
+| **ApmQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **AuditQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **EventQuery**          | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **Formulas**            | Pointer to [**[]WidgetFormula**](WidgetFormula.md)                                         | List of formulas that operate on queries.                          | [optional] |
+| **LogQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **NetworkQuery**        | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **ProcessQuery**        | Pointer to [**ProcessQueryDefinition**](ProcessQueryDefinition.md)                         |                                                                    | [optional] |
+| **ProfileMetricsQuery** | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **Q**                   | Pointer to **string**                                                                      | Widget query.                                                      | [optional] |
+| **Queries**             | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. | [optional] |
+| **ResponseFormat**      | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                    | [optional] |
+| **RumQuery**            | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
+| **SecurityQuery**       | Pointer to [**LogQueryDefinition**](LogQueryDefinition.md)                                 |                                                                    | [optional] |
 
 ## Methods
 

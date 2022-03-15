@@ -24,7 +24,7 @@ type TableWidgetRequest struct {
 	// List of conditional formats.
 	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	EventQuery         *LogQueryDefinition        `json:"event_query,omitempty"`
-	// List of formulas that operate on queries. **This feature is currently in beta.**
+	// List of formulas that operate on queries.
 	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
 	// For metric queries, the number of lines to show in the table. Only one request should have this property.
 	Limit               *int64                  `json:"limit,omitempty"`
@@ -35,7 +35,7 @@ type TableWidgetRequest struct {
 	ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
 	// Query definition.
 	Q *string `json:"q,omitempty"`
-	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
+	// List of queries that can be returned directly or used in formulas.
 	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
 	RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
