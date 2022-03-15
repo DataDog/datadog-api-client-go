@@ -11,7 +11,7 @@ import (
 	"fmt"
 )
 
-// FormulaAndFunctionResponseFormat Timeseries or Scalar response. **This feature is currently in beta.**
+// FormulaAndFunctionResponseFormat Timeseries or Scalar response.
 type FormulaAndFunctionResponseFormat string
 
 // List of FormulaAndFunctionResponseFormat
