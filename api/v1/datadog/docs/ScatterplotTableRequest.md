@@ -2,11 +2,11 @@
 
 ## Properties
 
-| Name               | Type                                                                                       | Description                                                        | Notes      |
-| ------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ | ---------- |
-| **Formulas**       | Pointer to [**[]ScatterplotWidgetFormula**](ScatterplotWidgetFormula.md)                   | List of Scatterplot formulas that operate on queries.              | [optional] |
-| **Queries**        | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. | [optional] |
-| **ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                    | [optional] |
+| Name               | Type                                                                                       | Description                                                                                               | Notes      |
+| ------------------ | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- | ---------- |
+| **Formulas**       | Pointer to [**[]ScatterplotWidgetFormula**](ScatterplotWidgetFormula.md)                   | List of Scatterplot formulas that operate on queries. **This feature is currently in beta.**              | [optional] |
+| **Queries**        | Pointer to [**[]FormulaAndFunctionQueryDefinition**](FormulaAndFunctionQueryDefinition.md) | List of queries that can be returned directly or used in formulas. **This feature is currently in beta.** | [optional] |
+| **ResponseFormat** | Pointer to [**FormulaAndFunctionResponseFormat**](FormulaAndFunctionResponseFormat.md)     |                                                                                                           | [optional] |
 
 ## Methods
 

@@ -14,9 +14,9 @@ import (
 
 // ScatterplotTableRequest Scatterplot request containing formulas and functions.
 type ScatterplotTableRequest struct {
-	// List of Scatterplot formulas that operate on queries.
+	// List of Scatterplot formulas that operate on queries. **This feature is currently in beta.**
 	Formulas *[]ScatterplotWidgetFormula `json:"formulas,omitempty"`
-	// List of queries that can be returned directly or used in formulas.
+	// List of queries that can be returned directly or used in formulas. **This feature is currently in beta.**
 	Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct

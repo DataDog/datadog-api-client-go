@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"index":"main","limit":5,"query":"service:web* AND @http.status_code:[200 TO 299]","sort":"asc","time":{"from":1647284967,"timezone":"Europe/Paris","to":1647371367}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/logs-queries/list
+  response:
+    body: '{"status":"done","nextLogId":null,"logs":[],"requestId":"pddv1ChZDZUdZdDZPdVRRMk94LTV4U3JEMXFBIiwKHDeSV_fMV3lW8cL2htIQ-ZZdfNnidnlSY_WPRkoSDBVqgPwDzZlgmthWlA"}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1
