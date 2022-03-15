@@ -25,7 +25,7 @@ type {{ name }} struct {
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject map[string]interface{} `json:-`
 {%- if model.get("additionalProperties", True) %}
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]{{ get_type(model.get("additionalProperties", True)) }}
 {%- endif %}
 {%- endif %}
 }
