@@ -63,7 +63,9 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
     if type_ == "array":
         if name and schema.get("x-generate-alias-as-model", False):
             return prefix + name
-        name = type_to_go(schema["items"])
+        if name or alternative_name:
+            alternative_name = (name or alternative_name) + "Item"
+        name = type_to_go(schema["items"], alternative_name=alternative_name)
         # handle nullable arrays
         if formatter.simple_type(schema["items"]) and schema["items"].get("nullable"):
             name = "*" + name

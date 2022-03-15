@@ -13,9 +13,9 @@ import (
 // MonitorGroupSearchResponseCounts The counts of monitor groups per different criteria.
 type MonitorGroupSearchResponseCounts struct {
 	// Search facets.
-	Status *[]interface{} `json:"status,omitempty"`
+	Status *[]MonitorSearchCountItem `json:"status,omitempty"`
 	// Search facets.
-	Type *[]interface{} `json:"type,omitempty"`
+	Type *[]MonitorSearchCountItem `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -39,9 +39,9 @@ func NewMonitorGroupSearchResponseCountsWithDefaults() *MonitorGroupSearchRespon
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
-func (o *MonitorGroupSearchResponseCounts) GetStatus() []interface{} {
+func (o *MonitorGroupSearchResponseCounts) GetStatus() []MonitorSearchCountItem {
 	if o == nil || o.Status == nil {
-		var ret []interface{}
+		var ret []MonitorSearchCountItem
 		return ret
 	}
 	return *o.Status
@@ -49,7 +49,7 @@ func (o *MonitorGroupSearchResponseCounts) GetStatus() []interface{} {
 
 // GetStatusOk returns a tuple with the Status field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorGroupSearchResponseCounts) GetStatusOk() (*[]interface{}, bool) {
+func (o *MonitorGroupSearchResponseCounts) GetStatusOk() (*[]MonitorSearchCountItem, bool) {
 	if o == nil || o.Status == nil {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *MonitorGroupSearchResponseCounts) HasStatus() bool {
 	return false
 }
 
-// SetStatus gets a reference to the given []interface{} and assigns it to the Status field.
-func (o *MonitorGroupSearchResponseCounts) SetStatus(v []interface{}) {
+// SetStatus gets a reference to the given []MonitorSearchCountItem and assigns it to the Status field.
+func (o *MonitorGroupSearchResponseCounts) SetStatus(v []MonitorSearchCountItem) {
 	o.Status = &v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
-func (o *MonitorGroupSearchResponseCounts) GetType() []interface{} {
+func (o *MonitorGroupSearchResponseCounts) GetType() []MonitorSearchCountItem {
 	if o == nil || o.Type == nil {
-		var ret []interface{}
+		var ret []MonitorSearchCountItem
 		return ret
 	}
 	return *o.Type
@@ -81,7 +81,7 @@ func (o *MonitorGroupSearchResponseCounts) GetType() []interface{} {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *MonitorGroupSearchResponseCounts) GetTypeOk() (*[]interface{}, bool) {
+func (o *MonitorGroupSearchResponseCounts) GetTypeOk() (*[]MonitorSearchCountItem, bool) {
 	if o == nil || o.Type == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *MonitorGroupSearchResponseCounts) HasType() bool {
 	return false
 }
 
-// SetType gets a reference to the given []interface{} and assigns it to the Type field.
-func (o *MonitorGroupSearchResponseCounts) SetType(v []interface{}) {
+// SetType gets a reference to the given []MonitorSearchCountItem and assigns it to the Type field.
+func (o *MonitorGroupSearchResponseCounts) SetType(v []MonitorSearchCountItem) {
 	o.Type = &v
 }
 
@@ -123,8 +123,8 @@ func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 func (o *MonitorGroupSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Status *[]interface{} `json:"status,omitempty"`
-		Type   *[]interface{} `json:"type,omitempty"`
+		Status *[]MonitorSearchCountItem `json:"status,omitempty"`
+		Type   *[]MonitorSearchCountItem `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
