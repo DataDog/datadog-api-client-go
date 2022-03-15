@@ -7,6 +7,8 @@ from jinja2 import Environment, FileSystemLoader
 from . import openapi
 from . import formatter
 
+PACKAGE_NAME = "datadog"
+
 
 @click.command()
 @click.option(
@@ -28,8 +30,6 @@ def cli(input, output):
     spec = openapi.load(input)
 
     version = input.parent.name
-    with (input.parent.parent.parent / "config" / f"{version}.json").open() as fp:
-        config = json.load(fp)
 
     env = Environment(
         loader=FileSystemLoader(str(pathlib.Path(__file__).parent / "templates"))
@@ -53,14 +53,14 @@ def cli(input, output):
     env.filters["upperfirst"] = formatter.upperfirst
     env.filters["variable_name"] = formatter.variable_name
 
-    env.globals["config"] = config
     env.globals["enumerate"] = enumerate
-    env.globals["version"] = version
-    env.globals["openapi"] = spec
     env.globals["get_name"] = openapi.get_name
-    env.globals["get_type"] = openapi.type_to_go
     env.globals["get_type_for_attribute"] = openapi.get_type_for_attribute
     env.globals["get_type_for_parameter"] = openapi.get_type_for_parameter
+    env.globals["get_type"] = openapi.type_to_go
+    env.globals["openapi"] = spec
+    env.globals["package_name"] = PACKAGE_NAME
+    env.globals["version"] = version
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")
