@@ -61,7 +61,7 @@ func main() {
 						UpdatedAt: datadog.PtrString("2020-10-16T09:23:24.857Z"),
 					},
 				},
-				Headers: map[string]string{
+				Headers: &map[string]string{
 					"unique": "exampleeditanapitestreturnsokresponse",
 				},
 				Method:  datadog.HTTPMETHOD_GET.Ptr(),

@@ -20,7 +20,7 @@ func main() {
 			Id:   IncidentDataID,
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Attributes: &datadog.IncidentUpdateAttributes{
-				Fields: map[string]datadog.IncidentFieldAttributes{
+				Fields: &map[string]datadog.IncidentFieldAttributes{
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
 							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),
