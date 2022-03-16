@@ -12,7 +12,7 @@ import (
 
 // RelationshipToRoleData Relationship to role object.
 type RelationshipToRoleData struct {
-	// ID of the role.
+	// The unique identifier of the role.
 	Id *string `json:"id,omitempty"`
 	// Roles type.
 	Type *RolesType `json:"type,omitempty"`

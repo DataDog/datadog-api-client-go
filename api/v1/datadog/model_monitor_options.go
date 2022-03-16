@@ -36,7 +36,8 @@ type MonitorOptions struct {
 	// - If `True`, `[Triggered on {host:h1}] Monitor Title`
 	// - If `False`, `[Triggered] Monitor Title`
 	IncludeTags *bool `json:"include_tags,omitempty"`
-	// Whether or not the monitor is locked (only editable by creator and admins).
+	// Whether or not the monitor is locked (only editable by creator and admins). Use `restricted_roles` instead.
+	// Deprecated
 	Locked *bool `json:"locked,omitempty"`
 	// How long the test should be in failure before alerting (integer, number of seconds, max 7200).
 	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
@@ -383,6 +384,7 @@ func (o *MonitorOptions) SetIncludeTags(v bool) {
 }
 
 // GetLocked returns the Locked field value if set, zero value otherwise.
+// Deprecated
 func (o *MonitorOptions) GetLocked() bool {
 	if o == nil || o.Locked == nil {
 		var ret bool
@@ -393,6 +395,7 @@ func (o *MonitorOptions) GetLocked() bool {
 
 // GetLockedOk returns a tuple with the Locked field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *MonitorOptions) GetLockedOk() (*bool, bool) {
 	if o == nil || o.Locked == nil {
 		return nil, false
@@ -410,6 +413,7 @@ func (o *MonitorOptions) HasLocked() bool {
 }
 
 // SetLocked gets a reference to the given bool and assigns it to the Locked field.
+// Deprecated
 func (o *MonitorOptions) SetLocked(v bool) {
 	o.Locked = &v
 }

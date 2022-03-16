@@ -17,7 +17,7 @@ type RoleAttributes struct {
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Time of last role modification.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
-	// Name of the role.
+	// The name of the role. The name is neither unique nor a stable identifier of the role.
 	Name *string `json:"name,omitempty"`
 	// Number of users with that role.
 	UserCount *int64 `json:"user_count,omitempty"`

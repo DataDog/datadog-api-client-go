@@ -15,7 +15,7 @@ import (
 type RoleUpdateData struct {
 	// Attributes of the role.
 	Attributes RoleUpdateAttributes `json:"attributes"`
-	// ID of the role.
+	// The unique identifier of the role.
 	Id string `json:"id"`
 	// Roles type.
 	Type RolesType `json:"type"`

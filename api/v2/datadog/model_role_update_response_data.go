@@ -15,7 +15,7 @@ import (
 type RoleUpdateResponseData struct {
 	// Attributes of the role.
 	Attributes *RoleUpdateAttributes `json:"attributes,omitempty"`
-	// ID of the role.
+	// The unique identifier of the role.
 	Id *string `json:"id,omitempty"`
 	// Relationships of the role object returned by the API.
 	Relationships *RoleResponseRelationships `json:"relationships,omitempty"`
