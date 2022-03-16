@@ -1,0 +1,396 @@
+{% include "partial_header.j2" %}
+package {{ package_name }}
+
+import (
+	"bytes"
+	_context "context"
+	_fmt "fmt"
+	_ioutil "io/ioutil"
+	_log "log"
+	_nethttp "net/http"
+	_neturl "net/url"
+)
+
+// Linger please
+var (
+	_ _context.Context
+)
+{%- set classname = name.replace(" ", "") + "Api" %}
+
+// {{ classname }}Service {{ classname }} service
+type {{ classname }}Service service
+{%- for path, method, operation in operations|sort(attribute="2.operationId", case_sensitive=True) %}
+{%- set httpMethod = method.upper() %}
+{%- set returnType = operation|return_type %}
+
+type api{{ operation.operationId }}Request struct {
+	ctx        _context.Context
+	ApiService *{{ classname }}Service
+
+	{%- for name, parameter in operation|parameters %}
+	{{ name|variable_name}} {% if parameter.in != "path" %}*{% endif %}{{ get_type_for_parameter(parameter) }}
+	{%- endfor %}
+}
+{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
+{%- if loop.first %}
+
+type {{ operation.operationId }}OptionalParameters struct {
+{%- endif %}
+	{{ name|attribute_name }} {% if parameter.in != "path" %}*{% endif %}{{ get_type_for_parameter(parameter) }}
+{%- if loop.last %}
+}
+{% endif %}
+{%- endfor %}
+
+{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
+{%- if loop.first %}
+func New{{ operation.operationId }}OptionalParameters() *{{ operation.operationId }}OptionalParameters {
+	this := {{ operation.operationId }}OptionalParameters{}
+	return &this
+}
+{%- endif %}
+func (r *{{ operation.operationId }}OptionalParameters) With{{ name|camel_case }}({{ name|variable_name}} {{ get_type_for_parameter(parameter) }}) *{{ operation.operationId }}OptionalParameters {
+	r.{{ name|attribute_name }} = &{{ name|variable_name}}
+	return r
+}
+{%- endfor %}
+
+/*
+ * {{ operation.operationId }} {{ operation.summary }}
+{{ operation.description|block_comment(prefix=" *") }}
+ */
+func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+	req := api{{ operation.operationId }}Request{
+		ApiService: a,
+		ctx:        ctx,
+		{%- for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}
+		{%- if loop.first %}
+		
+		{%- endif %}
+		{{ name|variable_name}}: {% if parameter.in != "path" %}&{% endif %}{{ name|variable_name}},
+		{%- endfor %}
+	}
+	{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
+	{%- if loop.first %}
+
+	if len(o) > 1 {
+		{%- if returnType %}
+		var localVarReturnValue {{ returnType }}
+		{%- endif %}
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
+	}
+
+	if o != nil {
+	{%- endif %}
+		req.{{ name|variable_name}} = o[0].{{ name|attribute_name }}
+	{%- if loop.last %}
+	}
+	{%- endif %}
+	{%- endfor %}
+
+	return req.ApiService.{{ operation.operationId|untitle_case }}Execute(req)
+}
+
+/*
+ * Execute executes the request
+ {%- if returnType %}
+ * @return {{ returnType }}
+ {%- endif %}
+ */
+func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute(r api{{ operation.operationId }}Request) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod   = _nethttp.Method{{ httpMethod.lower().title() }}
+		localVarPostBody     interface{}
+		localVarFormFileName string
+		localVarFileName     string
+		localVarFileBytes    []byte
+		{%- if returnType %}
+		localVarReturnValue  {{ returnType }}
+		{%- endif %}
+	)
+	{%- if "x-unstable" in operation %}
+	
+	operationId := "{{ operation.operationId }}"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
+	} else {
+		return {% if returnType %} localVarReturnValue, {% endif %}nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+	{%- endif %}
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "{{ classname }}Service.{{ operation.operationId }}")
+	if err != nil {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "{{ path }}"
+	{%- for name, parameter in operation|parameters if parameter.in == "path" %}
+	localVarPath = strings.Replace(localVarPath, "{"+"{{ name }}"+"}", _neturl.PathEscape(parameterToString(r.{{ name|variable_name}}, "{{ parameter|collection_format }}")), -1)
+	{%- endfor %}
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+
+	{%- for name, parameter in operation|parameters if parameter.required %}
+	{%- set schema = parameter.get("schema") %}
+	{%- set isPathParam = "*" if parameter.in == "path" else "" %}
+	{%- if parameter.in != "path" %}
+	if r.{{ name|variable_name}} == nil {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} is required and must be specified")
+	}
+	{%- endif %}
+	{%- if schema.minItems is defined %}
+	if len({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minItems }} {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have at least {{ schema.minItems }} elements")
+	}
+	{%- endif %}
+	{%- if schema.maxItems is defined %}
+	if len({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxItems }} {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have less than {{ schema.maxItems }} elements")
+	}
+	{%- endif %}
+	{%- if schema.minLength is defined %}
+	if strlen({{ isPathParam }}r.{{ name|variable_name}}) < {{ schema.minLength }} {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have at least {{ schema.minLength }} elements")
+	}
+	{%- endif %}
+	{%- if schema.maxLength is defined %}
+	if strlen({{ isPathParam }}r.{{ name|variable_name}}) > {{ schema.maxLength }} {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must have less than {{ schema.maxLength }} elements")
+	}
+	{%- endif %}
+	{%- if schema.minimum is defined %}
+	{%- if parameter.type == "string" %}
+	{{ name|variable_name}}Txt, err := atoi({{ isPathParam }}r.{{ name|variable_name}})
+	if {{ name|variable_name}}Txt < {{minimum}} {
+	{%- else %}
+	if {{ isPathParam }}r.{{ name|variable_name}} < {{ schema.minimum}} {
+	{%- endif %}
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must be greater than {{ schema.minimum }}")
+	}
+	{%- endif %}
+	{%- if schema.maximum is defined %}
+	{%- if parameter.type == "string" %}
+	{{ name|variable_name}}Txt, err := atoi({{ isPathParam }}r.{{ name|variable_name}})
+	if {{ name|variable_name}}Txt > {{ schema.maximum }} {
+	{%- else %}
+	if {{ isPathParam }}r.{{ name|variable_name}} > {{ schema.maximum }} {
+	{%- endif %}
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("{{ name|variable_name}} must be less than {{ schema.maximum }}")
+	}
+	{%- endif %}
+	{%- endfor %}
+{%- macro add_local_var_query_params(name, parameter) %}
+{%- set collectionFormat = parameter|collection_format %}
+{%- if collectionFormat == "multi" -%}
+t := *r.{{ name|variable_name}}
+if reflect.TypeOf(t).Kind() == reflect.Slice {
+	s := reflect.ValueOf(t)
+	for i := 0; i < s.Len(); i++ {
+		localVarQueryParams.Add("{{ parameter.name }}", parameterToString(s.Index(i), "{{ collectionFormat }}"))
+	}
+} else {
+	localVarQueryParams.Add("{{ parameter.name }}", parameterToString(t, "{{ collectionFormat }}"))
+}
+{%- else -%}
+localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
+{%- endif %}
+{%- endmacro %}
+	{%- for name, parameter in operation|parameters if parameter.in == "query" %}
+	{%- if parameter.required %}
+	{{ add_local_var_query_params(name, parameter)|indent("\t") }}
+	{%- else %}
+	if r.{{ name|variable_name}} != nil {
+		{{ add_local_var_query_params(name, parameter)|indent("\t\t") }}
+	}
+	{%- endif %}
+	{%- endfor %}
+	{%- if operation.requestBody %}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{ {%- for mediaType in operation.requestBody.content.keys() %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+	{%- endif %}
+	{%- if operation.responses %}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{ {%- for mediaType in operation|accept_headers %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	{%- endif %}
+
+	{%- for name, parameter in operation|parameters if parameter.in == "header" %}
+	{%- if parameter.required %}
+
+	localVarHeaderParams["{{ parameter.name }}"] = parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+	{%- else %}
+
+	if r.{{ name|variable_name}} != nil {
+		localVarHeaderParams["{{ parameter.name }}"] = parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}")
+	}
+	{%- endif %}
+	{%- endfor %}
+	
+	{%- for name, parameter in operation|parameters if parameter.in == "form" %}
+	{#isFile#}
+
+	localVarFormFileName = "{{ name }}"
+	{%- if parameter.required %}
+	localVarFile := *r.{{ name|variable_name}}
+	{%- else %}
+	var localVarFile {{ get_type_for_parameter(parameter) }}
+	if r.{{ name|variable_name}} != nil {
+		localVarFile = *r.{{ name|variable_name}}
+	}
+	{%- endif %}
+	if localVarFile != nil {
+		fbs, _ := _ioutil.ReadAll(localVarFile)
+		localVarFileBytes = fbs
+		localVarFileName = localVarFile.Name()
+		localVarFile.Close()
+	}
+{#
+{{/isFile}}
+{{^isFile}}
+{{#required}}
+	localVarFormParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
+{{/required}}
+{{^required}}
+{{#isModel}}
+	if r.{{ name|variable_name}} != nil {
+		paramJson, err := parameterToJson(*r.{{ name|variable_name}})
+		if err != nil {
+			return {% if returnType %}localVarReturnValue, {% endif %}nil, err
+		}
+		localVarFormParams.Add("{{ parameter.name }}", paramJson)
+	}
+{{/isModel}}
+{{^isModel}}
+	if r.{{ name|variable_name}} != nil {
+		localVarFormParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
+	}
+{{/isModel}}
+{{/required}}
+{{/isFile}}
+#}
+	{%- endfor %}
+
+	{%- if operation.requestBody is defined and not "multipart/form-data" in operation.requestBody.content %}
+
+	// body params
+	localVarPostBody = r.{{ operation.get("x-codegen-request-body-name", "body")|variable_name}}
+	{%- endif %}
+	{%- set authMethods = operation.security if "security" in operation else openapi.security %}
+	{%- for authMethod in authMethods %}
+	{%- for name in authMethod %}
+	{%- set schema = openapi.components.securitySchemes[name] %}
+	{%- if schema.type == "apiKey" and schema.in != "cookie" %}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			{%- if "x-auth-id-alias" in schema %}
+			if apiKey, ok := auth["{{ schema["x-auth-id-alias"] }}"]; ok {
+				var key string
+				if prefix, ok := auth["{{ name }}"]; ok && prefix.Prefix != "" {
+					key = prefix.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+			{%- else %}
+			if apiKey, ok := auth["{{ name }}"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+			{%- endif %}
+				{%- if schema.in == "header"%}
+				localVarHeaderParams["{{ schema.name }}"] = key
+				{%- elif schema.in == "query"%}
+				localVarQueryParams.Add("{{ schema.name }}", key)
+				{%- endif %}
+			}
+		}
+	}
+	{%- endif %}
+	{%- endfor %}
+	{%- endfor %}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	if err != nil {
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, err
+	}
+	{%- for responseCode, response in operation.responses.items() if responseCode == "default" or not responseCode.startswith("2") %}
+	{%- if loop.first %}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+	{%- endif %}
+		{%- set code = responseCode|int %}
+		{%- set dataType = response|response_type %}
+		{%- if responseCode == "3xx" %}
+		if localVarHTTPResponse.StatusCode >= 300 && localVarHTTPResponse.StatusCode < 400 {
+		{%- elif responseCode == "4xx" %}
+		if localVarHTTPResponse.StatusCode >= 400 && localVarHTTPResponse.StatusCode < 500 {
+		{%- elif responseCode == "5xx" %}
+		if localVarHTTPResponse.StatusCode >= 500 {
+		{%- elif code >= 300 %}
+		if localVarHTTPResponse.StatusCode == {{ code }} {
+		{%- endif %}
+			var v {{ dataType }}
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			{%- if not loop.last %}
+			return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
+			{%- endif %}
+		}
+	{%- if loop.last %}
+		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
+	}
+	{%- endif %}
+	{%- endfor %}
+	{%- if returnType %}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, newErr
+	}
+	{%- endif %}
+
+	return {% if returnType %}localVarReturnValue, {% endif %}localVarHTTPResponse, nil
+}
+{%- endfor %}
+{# keep new line at the end of file #}

@@ -21,7 +21,7 @@ func main() {
 			Attributes: datadog.IncidentCreateAttributes{
 				Title:            "Example-Create_an_incident_returns_CREATED_response",
 				CustomerImpacted: false,
-				Fields: &map[string]datadog.IncidentFieldAttributes{
+				Fields: map[string]datadog.IncidentFieldAttributes{
 					"state": datadog.IncidentFieldAttributes{
 						IncidentFieldAttributesSingleValue: &datadog.IncidentFieldAttributesSingleValue{
 							Type:  datadog.INCIDENTFIELDATTRIBUTESSINGLEVALUETYPE_DROPDOWN.Ptr(),

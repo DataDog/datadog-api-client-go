@@ -6,8 +6,8 @@ env:
 
 on:
   pull_request:
-    branches:
-      - master
+    # branches:
+    #   - master
 
 concurrency:
   group: unit-${{ github.head_ref }}
@@ -40,6 +40,10 @@ jobs:
         with:
           path: ~/.cache/pre-commit
           key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: 1.16.x
       - id: pre_commit
         name: Run pre-commit
         if: github.event.action != 'closed' && github.event.pull_request.merged != true
