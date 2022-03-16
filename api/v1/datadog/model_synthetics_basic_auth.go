@@ -4,17 +4,21 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBasicAuth - Object to handle basic authentication when performing the test.
 type SyntheticsBasicAuth struct {
-	SyntheticsBasicAuthWeb   *SyntheticsBasicAuthWeb
+	SyntheticsBasicAuthWeb *SyntheticsBasicAuthWeb
 	SyntheticsBasicAuthSigv4 *SyntheticsBasicAuthSigv4
-	SyntheticsBasicAuthNTLM  *SyntheticsBasicAuthNTLM
+	SyntheticsBasicAuthNTLM *SyntheticsBasicAuthNTLM
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -107,13 +111,16 @@ func (src SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.SyntheticsBasicAuthWeb)
 	}
 
+
 	if src.SyntheticsBasicAuthSigv4 != nil {
 		return json.Marshal(&src.SyntheticsBasicAuthSigv4)
 	}
 
+
 	if src.SyntheticsBasicAuthNTLM != nil {
 		return json.Marshal(&src.SyntheticsBasicAuthNTLM)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -122,18 +129,21 @@ func (src SyntheticsBasicAuth) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *SyntheticsBasicAuth) GetActualInstance() interface{} {
+func (obj *SyntheticsBasicAuth) GetActualInstance() (interface{}) {
 	if obj.SyntheticsBasicAuthWeb != nil {
 		return obj.SyntheticsBasicAuthWeb
 	}
+
 
 	if obj.SyntheticsBasicAuthSigv4 != nil {
 		return obj.SyntheticsBasicAuthSigv4
 	}
 
+
 	if obj.SyntheticsBasicAuthNTLM != nil {
 		return obj.SyntheticsBasicAuthNTLM
 	}
+
 
 	// all schemas are nil
 	return nil

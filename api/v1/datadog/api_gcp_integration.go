@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type GCPIntegrationApiService service
 type apiCreateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -36,7 +39,7 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, bo
 	req := apiCreateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createGCPIntegrationExecute(req)
@@ -187,7 +190,7 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 type apiDeleteGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -198,7 +201,7 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, bo
 	req := apiDeleteGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteGCPIntegrationExecute(req)
@@ -494,7 +497,7 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 type apiUpdateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -508,7 +511,7 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, bo
 	req := apiUpdateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateGCPIntegrationExecute(req)

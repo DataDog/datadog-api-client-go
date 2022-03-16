@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetTime Time setting for the widget.
 type WidgetTime struct {
 	// The available timeframes depend on the widget you are using.
 	LiveSpan *WidgetLiveSpan `json:"live_span,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetTime instantiates a new WidgetTime object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewWidgetTimeWithDefaults() *WidgetTime {
 	this := WidgetTime{}
 	return &this
 }
-
 // GetLiveSpan returns the LiveSpan field value if set, zero value otherwise.
 func (o *WidgetTime) GetLiveSpan() WidgetLiveSpan {
 	if o == nil || o.LiveSpan == nil {
@@ -68,6 +73,8 @@ func (o *WidgetTime) SetLiveSpan(v WidgetLiveSpan) {
 	o.LiveSpan = &v
 }
 
+
+
 func (o WidgetTime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +90,7 @@ func (o WidgetTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -97,7 +105,7 @@ func (o *WidgetTime) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.LiveSpan; v != nil && !v.IsValid() {
+	if v := all.LiveSpan; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

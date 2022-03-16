@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetDisplayType Type of display to use for the request.
 type WidgetDisplayType string

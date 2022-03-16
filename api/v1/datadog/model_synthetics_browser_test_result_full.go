@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBrowserTestResultFull Object returned describing a browser test result.
 type SyntheticsBrowserTestResultFull struct {
@@ -30,9 +34,11 @@ type SyntheticsBrowserTestResultFull struct {
 	// * `2` for no data
 	Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserTestResultFull instantiates a new SyntheticsBrowserTestResultFull object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +56,6 @@ func NewSyntheticsBrowserTestResultFullWithDefaults() *SyntheticsBrowserTestResu
 	this := SyntheticsBrowserTestResultFull{}
 	return &this
 }
-
 // GetCheck returns the Check field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetCheck() SyntheticsBrowserTestResultFullCheck {
 	if o == nil || o.Check == nil {
@@ -82,6 +87,7 @@ func (o *SyntheticsBrowserTestResultFull) HasCheck() bool {
 func (o *SyntheticsBrowserTestResultFull) SetCheck(v SyntheticsBrowserTestResultFullCheck) {
 	o.Check = &v
 }
+
 
 // GetCheckTime returns the CheckTime field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetCheckTime() float64 {
@@ -115,6 +121,7 @@ func (o *SyntheticsBrowserTestResultFull) SetCheckTime(v float64) {
 	o.CheckTime = &v
 }
 
+
 // GetCheckVersion returns the CheckVersion field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetCheckVersion() int64 {
 	if o == nil || o.CheckVersion == nil {
@@ -146,6 +153,7 @@ func (o *SyntheticsBrowserTestResultFull) HasCheckVersion() bool {
 func (o *SyntheticsBrowserTestResultFull) SetCheckVersion(v int64) {
 	o.CheckVersion = &v
 }
+
 
 // GetProbeDc returns the ProbeDc field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetProbeDc() string {
@@ -179,6 +187,7 @@ func (o *SyntheticsBrowserTestResultFull) SetProbeDc(v string) {
 	o.ProbeDc = &v
 }
 
+
 // GetResult returns the Result field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetResult() SyntheticsBrowserTestResultData {
 	if o == nil || o.Result == nil {
@@ -210,6 +219,7 @@ func (o *SyntheticsBrowserTestResultFull) HasResult() bool {
 func (o *SyntheticsBrowserTestResultFull) SetResult(v SyntheticsBrowserTestResultData) {
 	o.Result = &v
 }
+
 
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetResultId() string {
@@ -243,6 +253,7 @@ func (o *SyntheticsBrowserTestResultFull) SetResultId(v string) {
 	o.ResultId = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFull) GetStatus() SyntheticsTestMonitorStatus {
 	if o == nil || o.Status == nil {
@@ -274,6 +285,8 @@ func (o *SyntheticsBrowserTestResultFull) HasStatus() bool {
 func (o *SyntheticsBrowserTestResultFull) SetStatus(v SyntheticsTestMonitorStatus) {
 	o.Status = &v
 }
+
+
 
 func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -308,16 +321,17 @@ func (o SyntheticsBrowserTestResultFull) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Check        *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
-		CheckTime    *float64                              `json:"check_time,omitempty"`
-		CheckVersion *int64                                `json:"check_version,omitempty"`
-		ProbeDc      *string                               `json:"probe_dc,omitempty"`
-		Result       *SyntheticsBrowserTestResultData      `json:"result,omitempty"`
-		ResultId     *string                               `json:"result_id,omitempty"`
-		Status       *SyntheticsTestMonitorStatus          `json:"status,omitempty"`
+		Check *SyntheticsBrowserTestResultFullCheck `json:"check,omitempty"`
+		CheckTime *float64 `json:"check_time,omitempty"`
+		CheckVersion *int64 `json:"check_version,omitempty"`
+		ProbeDc *string `json:"probe_dc,omitempty"`
+		Result *SyntheticsBrowserTestResultData `json:"result,omitempty"`
+		ResultId *string `json:"result_id,omitempty"`
+		Status *SyntheticsTestMonitorStatus `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -328,7 +342,7 @@ func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type UsersApiService service
 type apiCreateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	body       *User
+	body *User
 }
 
 /*
@@ -40,7 +42,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserRespo
 	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createUserExecute(req)
@@ -646,7 +648,7 @@ type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	body       *User
+	body *User
 }
 
 /*
@@ -660,7 +662,7 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, bo
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateUserExecute(req)

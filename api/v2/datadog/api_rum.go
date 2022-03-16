@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 )
 
 // Linger please
@@ -24,23 +26,23 @@ var (
 type RUMApiService service
 
 type apiListRUMEventsRequest struct {
-	ctx         _context.Context
-	ApiService  *RUMApiService
+	ctx        _context.Context
+	ApiService *RUMApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *RUMSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *RUMSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListRUMEventsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *RUMSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *RUMSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 func NewListRUMEventsOptionalParameters() *ListRUMEventsOptionalParameters {
@@ -252,7 +254,7 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 type apiSearchRUMEventsRequest struct {
 	ctx        _context.Context
 	ApiService *RUMApiService
-	body       *RUMSearchEventsRequest
+	body *RUMSearchEventsRequest
 }
 
 type SearchRUMEventsOptionalParameters struct {

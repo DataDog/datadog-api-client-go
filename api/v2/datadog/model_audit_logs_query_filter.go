@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuditLogsQueryFilter Search and filter query settings.
 type AuditLogsQueryFilter struct {
@@ -19,9 +23,11 @@ type AuditLogsQueryFilter struct {
 	// Maximum time for the requested events. Supports date, math, and regular timestamps (in milliseconds).
 	To *string `json:"to,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsQueryFilter instantiates a new AuditLogsQueryFilter object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +57,6 @@ func NewAuditLogsQueryFilterWithDefaults() *AuditLogsQueryFilter {
 	this.To = &to
 	return &this
 }
-
 // GetFrom returns the From field value if set, zero value otherwise.
 func (o *AuditLogsQueryFilter) GetFrom() string {
 	if o == nil || o.From == nil {
@@ -83,6 +88,7 @@ func (o *AuditLogsQueryFilter) HasFrom() bool {
 func (o *AuditLogsQueryFilter) SetFrom(v string) {
 	o.From = &v
 }
+
 
 // GetQuery returns the Query field value if set, zero value otherwise.
 func (o *AuditLogsQueryFilter) GetQuery() string {
@@ -116,6 +122,7 @@ func (o *AuditLogsQueryFilter) SetQuery(v string) {
 	o.Query = &v
 }
 
+
 // GetTo returns the To field value if set, zero value otherwise.
 func (o *AuditLogsQueryFilter) GetTo() string {
 	if o == nil || o.To == nil {
@@ -148,6 +155,8 @@ func (o *AuditLogsQueryFilter) SetTo(v string) {
 	o.To = &v
 }
 
+
+
 func (o AuditLogsQueryFilter) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -169,12 +178,13 @@ func (o AuditLogsQueryFilter) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuditLogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From  *string `json:"from,omitempty"`
+		From *string `json:"from,omitempty"`
 		Query *string `json:"query,omitempty"`
-		To    *string `json:"to,omitempty"`
+		To *string `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )

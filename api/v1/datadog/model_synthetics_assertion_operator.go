@@ -4,29 +4,32 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsAssertionOperator Assertion operator to apply.
 type SyntheticsAssertionOperator string
 
 // List of SyntheticsAssertionOperator
 const (
-	SYNTHETICSASSERTIONOPERATOR_CONTAINS             SyntheticsAssertionOperator = "contains"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN     SyntheticsAssertionOperator = "doesNotContain"
-	SYNTHETICSASSERTIONOPERATOR_IS                   SyntheticsAssertionOperator = "is"
-	SYNTHETICSASSERTIONOPERATOR_IS_NOT               SyntheticsAssertionOperator = "isNot"
-	SYNTHETICSASSERTIONOPERATOR_LESS_THAN            SyntheticsAssertionOperator = "lessThan"
-	SYNTHETICSASSERTIONOPERATOR_LESS_THAN_OR_EQUAL   SyntheticsAssertionOperator = "lessThanOrEqual"
-	SYNTHETICSASSERTIONOPERATOR_MORE_THAN            SyntheticsAssertionOperator = "moreThan"
-	SYNTHETICSASSERTIONOPERATOR_MORE_THAN_OR_EQUAL   SyntheticsAssertionOperator = "moreThanOrEqual"
-	SYNTHETICSASSERTIONOPERATOR_MATCHES              SyntheticsAssertionOperator = "matches"
-	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH       SyntheticsAssertionOperator = "doesNotMatch"
-	SYNTHETICSASSERTIONOPERATOR_VALIDATES            SyntheticsAssertionOperator = "validates"
+	SYNTHETICSASSERTIONOPERATOR_CONTAINS SyntheticsAssertionOperator = "contains"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_CONTAIN SyntheticsAssertionOperator = "doesNotContain"
+	SYNTHETICSASSERTIONOPERATOR_IS SyntheticsAssertionOperator = "is"
+	SYNTHETICSASSERTIONOPERATOR_IS_NOT SyntheticsAssertionOperator = "isNot"
+	SYNTHETICSASSERTIONOPERATOR_LESS_THAN SyntheticsAssertionOperator = "lessThan"
+	SYNTHETICSASSERTIONOPERATOR_LESS_THAN_OR_EQUAL SyntheticsAssertionOperator = "lessThanOrEqual"
+	SYNTHETICSASSERTIONOPERATOR_MORE_THAN SyntheticsAssertionOperator = "moreThan"
+	SYNTHETICSASSERTIONOPERATOR_MORE_THAN_OR_EQUAL SyntheticsAssertionOperator = "moreThanOrEqual"
+	SYNTHETICSASSERTIONOPERATOR_MATCHES SyntheticsAssertionOperator = "matches"
+	SYNTHETICSASSERTIONOPERATOR_DOES_NOT_MATCH SyntheticsAssertionOperator = "doesNotMatch"
+	SYNTHETICSASSERTIONOPERATOR_VALIDATES SyntheticsAssertionOperator = "validates"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN SyntheticsAssertionOperator = "isInMoreThan"
 	SYNTHETICSASSERTIONOPERATOR_IS_IN_LESS_DAYS_THAN SyntheticsAssertionOperator = "isInLessThan"
 )

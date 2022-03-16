@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TargetFormatType If the `target_type` of the remapper is `attribute`, try to cast the value to a new specific type.
 // If the cast is not possible, the original type is kept. `string`, `integer`, or `double` are the possible types.
@@ -18,10 +21,10 @@ type TargetFormatType string
 
 // List of TargetFormatType
 const (
-	TARGETFORMATTYPE_AUTO    TargetFormatType = "auto"
-	TARGETFORMATTYPE_STRING  TargetFormatType = "string"
+	TARGETFORMATTYPE_AUTO TargetFormatType = "auto"
+	TARGETFORMATTYPE_STRING TargetFormatType = "string"
 	TARGETFORMATTYPE_INTEGER TargetFormatType = "integer"
-	TARGETFORMATTYPE_DOUBLE  TargetFormatType = "double"
+	TARGETFORMATTYPE_DOUBLE TargetFormatType = "double"
 )
 
 var allowedTargetFormatTypeEnumValues = []TargetFormatType{

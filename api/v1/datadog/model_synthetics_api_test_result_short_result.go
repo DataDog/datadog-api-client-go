@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsAPITestResultShortResult Result of the last API test run.
 type SyntheticsAPITestResultShortResult struct {
@@ -18,9 +22,11 @@ type SyntheticsAPITestResultShortResult struct {
 	// Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
 	Timings *SyntheticsTiming `json:"timings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsAPITestResultShortResult instantiates a new SyntheticsAPITestResultShortResult object
 // This constructor will assign default values to properties that have it defined,
@@ -38,7 +44,6 @@ func NewSyntheticsAPITestResultShortResultWithDefaults() *SyntheticsAPITestResul
 	this := SyntheticsAPITestResultShortResult{}
 	return &this
 }
-
 // GetPassed returns the Passed field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShortResult) GetPassed() bool {
 	if o == nil || o.Passed == nil {
@@ -70,6 +75,7 @@ func (o *SyntheticsAPITestResultShortResult) HasPassed() bool {
 func (o *SyntheticsAPITestResultShortResult) SetPassed(v bool) {
 	o.Passed = &v
 }
+
 
 // GetTimings returns the Timings field value if set, zero value otherwise.
 func (o *SyntheticsAPITestResultShortResult) GetTimings() SyntheticsTiming {
@@ -103,6 +109,8 @@ func (o *SyntheticsAPITestResultShortResult) SetTimings(v SyntheticsTiming) {
 	o.Timings = &v
 }
 
+
+
 func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -121,10 +129,11 @@ func (o SyntheticsAPITestResultShortResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsAPITestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Passed  *bool             `json:"passed,omitempty"`
+		Passed *bool `json:"passed,omitempty"`
 		Timings *SyntheticsTiming `json:"timings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

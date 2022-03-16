@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignal Object description of a security signal.
 type SecurityMonitoringSignal struct {
@@ -20,9 +24,11 @@ type SecurityMonitoringSignal struct {
 	// The type of event.
 	Type *SecurityMonitoringSignalType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignal instantiates a new SecurityMonitoringSignal object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +50,6 @@ func NewSecurityMonitoringSignalWithDefaults() *SecurityMonitoringSignal {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetAttributes() SecurityMonitoringSignalAttributes {
 	if o == nil || o.Attributes == nil {
@@ -76,6 +81,7 @@ func (o *SecurityMonitoringSignal) HasAttributes() bool {
 func (o *SecurityMonitoringSignal) SetAttributes(v SecurityMonitoringSignalAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetId() string {
@@ -109,6 +115,7 @@ func (o *SecurityMonitoringSignal) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignal) GetType() SecurityMonitoringSignalType {
 	if o == nil || o.Type == nil {
@@ -141,6 +148,8 @@ func (o *SecurityMonitoringSignal) SetType(v SecurityMonitoringSignalType) {
 	o.Type = &v
 }
 
+
+
 func (o SecurityMonitoringSignal) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -162,12 +171,13 @@ func (o SecurityMonitoringSignal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringSignal) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *SecurityMonitoringSignalAttributes `json:"attributes,omitempty"`
-		Id         *string                             `json:"id,omitempty"`
-		Type       *SecurityMonitoringSignalType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *SecurityMonitoringSignalType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -178,7 +188,7 @@ func (o *SecurityMonitoringSignal) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

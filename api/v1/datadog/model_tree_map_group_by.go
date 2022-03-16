@@ -4,20 +4,23 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TreeMapGroupBy The attribute used to group elements in the widget.
 type TreeMapGroupBy string
 
 // List of TreeMapGroupBy
 const (
-	TREEMAPGROUPBY_USER    TreeMapGroupBy = "user"
-	TREEMAPGROUPBY_FAMILY  TreeMapGroupBy = "family"
+	TREEMAPGROUPBY_USER TreeMapGroupBy = "user"
+	TREEMAPGROUPBY_FAMILY TreeMapGroupBy = "family"
 	TREEMAPGROUPBY_PROCESS TreeMapGroupBy = "process"
 )
 

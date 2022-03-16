@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ChangeWidgetDefinitionType Type of the change widget.
 type ChangeWidgetDefinitionType string

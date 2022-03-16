@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleMaxSignalDuration A signal will “close” regardless of the query being matched once the time exceeds the maximum duration.
 // This time is calculated from the first seen timestamp.
@@ -17,18 +20,18 @@ type SecurityMonitoringRuleMaxSignalDuration int32
 
 // List of SecurityMonitoringRuleMaxSignalDuration
 const (
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES    SecurityMonitoringRuleMaxSignalDuration = 0
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_MINUTE      SecurityMonitoringRuleMaxSignalDuration = 60
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_FIVE_MINUTES    SecurityMonitoringRuleMaxSignalDuration = 300
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_TEN_MINUTES     SecurityMonitoringRuleMaxSignalDuration = 600
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_ZERO_MINUTES SecurityMonitoringRuleMaxSignalDuration = 0
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_MINUTE SecurityMonitoringRuleMaxSignalDuration = 60
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_FIVE_MINUTES SecurityMonitoringRuleMaxSignalDuration = 300
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_TEN_MINUTES SecurityMonitoringRuleMaxSignalDuration = 600
 	SECURITYMONITORINGRULEMAXSIGNALDURATION_FIFTEEN_MINUTES SecurityMonitoringRuleMaxSignalDuration = 900
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_THIRTY_MINUTES  SecurityMonitoringRuleMaxSignalDuration = 1800
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_HOUR        SecurityMonitoringRuleMaxSignalDuration = 3600
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_TWO_HOURS       SecurityMonitoringRuleMaxSignalDuration = 7200
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_THREE_HOURS     SecurityMonitoringRuleMaxSignalDuration = 10800
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_SIX_HOURS       SecurityMonitoringRuleMaxSignalDuration = 21600
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_TWELVE_HOURS    SecurityMonitoringRuleMaxSignalDuration = 43200
-	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY         SecurityMonitoringRuleMaxSignalDuration = 86400
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_THIRTY_MINUTES SecurityMonitoringRuleMaxSignalDuration = 1800
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_HOUR SecurityMonitoringRuleMaxSignalDuration = 3600
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_TWO_HOURS SecurityMonitoringRuleMaxSignalDuration = 7200
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_THREE_HOURS SecurityMonitoringRuleMaxSignalDuration = 10800
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_SIX_HOURS SecurityMonitoringRuleMaxSignalDuration = 21600
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_TWELVE_HOURS SecurityMonitoringRuleMaxSignalDuration = 43200
+	SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY SecurityMonitoringRuleMaxSignalDuration = 86400
 )
 
 var allowedSecurityMonitoringRuleMaxSignalDurationEnumValues = []SecurityMonitoringRuleMaxSignalDuration{

@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceAccountCreateRequest Create a service account.
 type ServiceAccountCreateRequest struct {
 	// Object to create a service account User.
 	Data ServiceAccountCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceAccountCreateRequest instantiates a new ServiceAccountCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewServiceAccountCreateRequestWithDefaults() *ServiceAccountCreateRequest {
 	this := ServiceAccountCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *ServiceAccountCreateRequest) GetData() ServiceAccountCreateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *ServiceAccountCreateRequest) SetData(v ServiceAccountCreateData) {
 	o.Data = v
 }
 
+
+
 func (o ServiceAccountCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o ServiceAccountCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *ServiceAccountCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

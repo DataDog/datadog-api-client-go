@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentCreateRelationships The relationships the incident will have with other resources once created.
 type IncidentCreateRelationships struct {
 	// Relationship to user.
 	CommanderUser NullableRelationshipToUser `json:"commander_user"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentCreateRelationships instantiates a new IncidentCreateRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewIncidentCreateRelationshipsWithDefaults() *IncidentCreateRelationships {
 	this := IncidentCreateRelationships{}
 	return &this
 }
-
 // GetCommanderUser returns the CommanderUser field value
 func (o *IncidentCreateRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *IncidentCreateRelationships) SetCommanderUser(v NullableRelationshipToU
 	o.CommanderUser = v
 }
 
+
+
 func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o IncidentCreateRelationships) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *IncidentCreateRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

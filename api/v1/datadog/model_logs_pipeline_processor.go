@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsPipelineProcessor Nested Pipelines are pipelines within a pipeline. Use Nested Pipelines to split the processing into two steps.
 // For example, first use a high-level filtering such as team and then a second level of filtering based on the
@@ -28,9 +31,11 @@ type LogsPipelineProcessor struct {
 	// Type of logs pipeline processor.
 	Type LogsPipelineProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsPipelineProcessor instantiates a new LogsPipelineProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +60,6 @@ func NewLogsPipelineProcessorWithDefaults() *LogsPipelineProcessor {
 	this.Type = type_
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetFilter() LogsFilter {
 	if o == nil || o.Filter == nil {
@@ -87,6 +91,7 @@ func (o *LogsPipelineProcessor) HasFilter() bool {
 func (o *LogsPipelineProcessor) SetFilter(v LogsFilter) {
 	o.Filter = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetIsEnabled() bool {
@@ -120,6 +125,7 @@ func (o *LogsPipelineProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -151,6 +157,7 @@ func (o *LogsPipelineProcessor) HasName() bool {
 func (o *LogsPipelineProcessor) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetProcessors returns the Processors field value if set, zero value otherwise.
 func (o *LogsPipelineProcessor) GetProcessors() []LogsProcessor {
@@ -184,6 +191,7 @@ func (o *LogsPipelineProcessor) SetProcessors(v []LogsProcessor) {
 	o.Processors = &v
 }
 
+
 // GetType returns the Type field value
 func (o *LogsPipelineProcessor) GetType() LogsPipelineProcessorType {
 	if o == nil {
@@ -206,6 +214,8 @@ func (o *LogsPipelineProcessor) GetTypeOk() (*LogsPipelineProcessorType, bool) {
 func (o *LogsPipelineProcessor) SetType(v LogsPipelineProcessorType) {
 	o.Type = v
 }
+
+
 
 func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -232,17 +242,18 @@ func (o LogsPipelineProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *LogsPipelineProcessorType `json:"type"`
 	}{}
 	all := struct {
-		Filter     *LogsFilter               `json:"filter,omitempty"`
-		IsEnabled  *bool                     `json:"is_enabled,omitempty"`
-		Name       *string                   `json:"name,omitempty"`
-		Processors *[]LogsProcessor          `json:"processors,omitempty"`
-		Type       LogsPipelineProcessorType `json:"type"`
+		Filter *LogsFilter `json:"filter,omitempty"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Processors *[]LogsProcessor `json:"processors,omitempty"`
+		Type LogsPipelineProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

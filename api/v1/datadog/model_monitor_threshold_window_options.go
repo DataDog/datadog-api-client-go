@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorThresholdWindowOptions Alerting time window options.
 type MonitorThresholdWindowOptions struct {
@@ -17,9 +21,11 @@ type MonitorThresholdWindowOptions struct {
 	// Describes how long a metric must be anomalous before an alert triggers.
 	TriggerWindow NullableString `json:"trigger_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorThresholdWindowOptions instantiates a new MonitorThresholdWindowOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewMonitorThresholdWindowOptionsWithDefaults() *MonitorThresholdWindowOptio
 	this := MonitorThresholdWindowOptions{}
 	return &this
 }
-
 // GetRecoveryWindow returns the RecoveryWindow field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 	if o == nil || o.RecoveryWindow.Get() == nil {
@@ -51,7 +56,7 @@ func (o *MonitorThresholdWindowOptions) GetRecoveryWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorThresholdWindowOptions) GetRecoveryWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.RecoveryWindow.Get(), o.RecoveryWindow.IsSet()
@@ -70,7 +75,6 @@ func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
 	o.RecoveryWindow.Set(&v)
 }
-
 // SetRecoveryWindowNil sets the value for RecoveryWindow to be an explicit nil
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
 	o.RecoveryWindow.Set(nil)
@@ -80,6 +84,7 @@ func (o *MonitorThresholdWindowOptions) SetRecoveryWindowNil() {
 func (o *MonitorThresholdWindowOptions) UnsetRecoveryWindow() {
 	o.RecoveryWindow.Unset()
 }
+
 
 // GetTriggerWindow returns the TriggerWindow field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
@@ -94,7 +99,7 @@ func (o *MonitorThresholdWindowOptions) GetTriggerWindow() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *MonitorThresholdWindowOptions) GetTriggerWindowOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.TriggerWindow.Get(), o.TriggerWindow.IsSet()
@@ -113,7 +118,6 @@ func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
 func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow.Set(&v)
 }
-
 // SetTriggerWindowNil sets the value for TriggerWindow to be an explicit nil
 func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
 	o.TriggerWindow.Set(nil)
@@ -123,6 +127,8 @@ func (o *MonitorThresholdWindowOptions) SetTriggerWindowNil() {
 func (o *MonitorThresholdWindowOptions) UnsetTriggerWindow() {
 	o.TriggerWindow.Unset()
 }
+
+
 
 func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -142,11 +148,12 @@ func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		RecoveryWindow NullableString `json:"recovery_window,omitempty"`
-		TriggerWindow  NullableString `json:"trigger_window,omitempty"`
+		TriggerWindow NullableString `json:"trigger_window,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

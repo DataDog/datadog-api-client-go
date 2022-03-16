@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HostMapRequest Updated host map.
 type HostMapRequest struct {
@@ -31,9 +35,11 @@ type HostMapRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHostMapRequest instantiates a new HostMapRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +57,6 @@ func NewHostMapRequestWithDefaults() *HostMapRequest {
 	this := HostMapRequest{}
 	return &this
 }
-
 // GetApmQuery returns the ApmQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetApmQuery() LogQueryDefinition {
 	if o == nil || o.ApmQuery == nil {
@@ -83,6 +88,7 @@ func (o *HostMapRequest) HasApmQuery() bool {
 func (o *HostMapRequest) SetApmQuery(v LogQueryDefinition) {
 	o.ApmQuery = &v
 }
+
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetEventQuery() LogQueryDefinition {
@@ -116,6 +122,7 @@ func (o *HostMapRequest) SetEventQuery(v LogQueryDefinition) {
 	o.EventQuery = &v
 }
 
+
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetLogQuery() LogQueryDefinition {
 	if o == nil || o.LogQuery == nil {
@@ -147,6 +154,7 @@ func (o *HostMapRequest) HasLogQuery() bool {
 func (o *HostMapRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
+
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetNetworkQuery() LogQueryDefinition {
@@ -180,6 +188,7 @@ func (o *HostMapRequest) SetNetworkQuery(v LogQueryDefinition) {
 	o.NetworkQuery = &v
 }
 
+
 // GetProcessQuery returns the ProcessQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetProcessQuery() ProcessQueryDefinition {
 	if o == nil || o.ProcessQuery == nil {
@@ -211,6 +220,7 @@ func (o *HostMapRequest) HasProcessQuery() bool {
 func (o *HostMapRequest) SetProcessQuery(v ProcessQueryDefinition) {
 	o.ProcessQuery = &v
 }
+
 
 // GetProfileMetricsQuery returns the ProfileMetricsQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetProfileMetricsQuery() LogQueryDefinition {
@@ -244,6 +254,7 @@ func (o *HostMapRequest) SetProfileMetricsQuery(v LogQueryDefinition) {
 	o.ProfileMetricsQuery = &v
 }
 
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *HostMapRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -275,6 +286,7 @@ func (o *HostMapRequest) HasQ() bool {
 func (o *HostMapRequest) SetQ(v string) {
 	o.Q = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetRumQuery() LogQueryDefinition {
@@ -308,6 +320,7 @@ func (o *HostMapRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *HostMapRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -339,6 +352,8 @@ func (o *HostMapRequest) HasSecurityQuery() bool {
 func (o *HostMapRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
+
+
 
 func (o HostMapRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -379,18 +394,19 @@ func (o HostMapRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HostMapRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition     `json:"apm_query,omitempty"`
-		EventQuery          *LogQueryDefinition     `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition     `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition     `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition     `json:"profile_metrics_query,omitempty"`
-		Q                   *string                 `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition     `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition     `json:"security_query,omitempty"`
+		ApmQuery *LogQueryDefinition `json:"apm_query,omitempty"`
+		EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
+		ProcessQuery *ProcessQueryDefinition `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

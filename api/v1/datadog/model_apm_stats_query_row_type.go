@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApmStatsQueryRowType The level of detail for the request.
 type ApmStatsQueryRowType string
 
 // List of ApmStatsQueryRowType
 const (
-	APMSTATSQUERYROWTYPE_SERVICE  ApmStatsQueryRowType = "service"
+	APMSTATSQUERYROWTYPE_SERVICE ApmStatsQueryRowType = "service"
 	APMSTATSQUERYROWTYPE_RESOURCE ApmStatsQueryRowType = "resource"
-	APMSTATSQUERYROWTYPE_SPAN     ApmStatsQueryRowType = "span"
+	APMSTATSQUERYROWTYPE_SPAN ApmStatsQueryRowType = "span"
 )
 
 var allowedApmStatsQueryRowTypeEnumValues = []ApmStatsQueryRowType{

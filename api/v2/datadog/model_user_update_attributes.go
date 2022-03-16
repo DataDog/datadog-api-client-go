@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserUpdateAttributes Attributes of the edited user.
 type UserUpdateAttributes struct {
@@ -19,9 +23,11 @@ type UserUpdateAttributes struct {
 	// The name of the user.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserUpdateAttributes instantiates a new UserUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewUserUpdateAttributesWithDefaults() *UserUpdateAttributes {
 	this := UserUpdateAttributes{}
 	return &this
 }
-
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *UserUpdateAttributes) GetDisabled() bool {
 	if o == nil || o.Disabled == nil {
@@ -71,6 +76,7 @@ func (o *UserUpdateAttributes) HasDisabled() bool {
 func (o *UserUpdateAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
+
 
 // GetEmail returns the Email field value if set, zero value otherwise.
 func (o *UserUpdateAttributes) GetEmail() string {
@@ -104,6 +110,7 @@ func (o *UserUpdateAttributes) SetEmail(v string) {
 	o.Email = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *UserUpdateAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -136,6 +143,8 @@ func (o *UserUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o UserUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o UserUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UserUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Disabled *bool   `json:"disabled,omitempty"`
-		Email    *string `json:"email,omitempty"`
-		Name     *string `json:"name,omitempty"`
+		Disabled *bool `json:"disabled,omitempty"`
+		Email *string `json:"email,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

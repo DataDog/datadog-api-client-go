@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetNodeType Which type of node to use in the map.
 type WidgetNodeType string
 
 // List of WidgetNodeType
 const (
-	WIDGETNODETYPE_HOST      WidgetNodeType = "host"
+	WIDGETNODETYPE_HOST WidgetNodeType = "host"
 	WIDGETNODETYPE_CONTAINER WidgetNodeType = "container"
 )
 

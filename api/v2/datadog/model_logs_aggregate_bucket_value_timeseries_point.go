@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateBucketValueTimeseriesPoint A timeseries point
 type LogsAggregateBucketValueTimeseriesPoint struct {
@@ -17,9 +21,11 @@ type LogsAggregateBucketValueTimeseriesPoint struct {
 	// The value for this point
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAggregateBucketValueTimeseriesPoint instantiates a new LogsAggregateBucketValueTimeseriesPoint object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewLogsAggregateBucketValueTimeseriesPointWithDefaults() *LogsAggregateBuck
 	this := LogsAggregateBucketValueTimeseriesPoint{}
 	return &this
 }
-
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *LogsAggregateBucketValueTimeseriesPoint) GetTime() string {
 	if o == nil || o.Time == nil {
@@ -69,6 +74,7 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) HasTime() bool {
 func (o *LogsAggregateBucketValueTimeseriesPoint) SetTime(v string) {
 	o.Time = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *LogsAggregateBucketValueTimeseriesPoint) GetValue() float64 {
@@ -102,6 +108,8 @@ func (o *LogsAggregateBucketValueTimeseriesPoint) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o LogsAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsAggregateBucketValueTimeseriesPoint) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Time  *string  `json:"time,omitempty"`
+		Time *string `json:"time,omitempty"`
 		Value *float64 `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

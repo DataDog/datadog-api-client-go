@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleAttributes A Cloud Workload Security Agent rule returned by the API.
 type CloudWorkloadSecurityAgentRuleAttributes struct {
@@ -35,9 +39,11 @@ type CloudWorkloadSecurityAgentRuleAttributes struct {
 	// The version of the Agent rule.
 	Version *int64 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleAttributes instantiates a new CloudWorkloadSecurityAgentRuleAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +61,6 @@ func NewCloudWorkloadSecurityAgentRuleAttributesWithDefaults() *CloudWorkloadSec
 	this := CloudWorkloadSecurityAgentRuleAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCategory() string {
 	if o == nil || o.Category == nil {
@@ -87,6 +92,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasCategory() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetCategory(v string) {
 	o.Category = &v
 }
+
 
 // GetCreationDate returns the CreationDate field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCreationDate() int64 {
@@ -120,6 +126,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetCreationDate(v int64) {
 	o.CreationDate = &v
 }
 
+
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetCreator() CloudWorkloadSecurityAgentRuleCreatorAttributes {
 	if o == nil || o.Creator == nil {
@@ -151,6 +158,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasCreator() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetCreator(v CloudWorkloadSecurityAgentRuleCreatorAttributes) {
 	o.Creator = &v
 }
+
 
 // GetDefaultRule returns the DefaultRule field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDefaultRule() bool {
@@ -184,6 +192,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetDefaultRule(v bool) {
 	o.DefaultRule = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetDescription() string {
 	if o == nil || o.Description == nil {
@@ -215,6 +224,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasDescription() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetDescription(v string) {
 	o.Description = &v
 }
+
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetEnabled() bool {
@@ -248,6 +258,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetEnabled(v bool) {
 	o.Enabled = &v
 }
 
+
 // GetExpression returns the Expression field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetExpression() string {
 	if o == nil || o.Expression == nil {
@@ -279,6 +290,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasExpression() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetExpression(v string) {
 	o.Expression = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetName() string {
@@ -312,6 +324,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetUpdatedAt() int64 {
 	if o == nil || o.UpdatedAt == nil {
@@ -343,6 +356,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasUpdatedAt() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetUpdatedAt(v int64) {
 	o.UpdatedAt = &v
 }
+
 
 // GetUpdater returns the Updater field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetUpdater() CloudWorkloadSecurityAgentRuleUpdaterAttributes {
@@ -376,6 +390,7 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) SetUpdater(v CloudWorkloadSec
 	o.Updater = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *CloudWorkloadSecurityAgentRuleAttributes) GetVersion() int64 {
 	if o == nil || o.Version == nil {
@@ -407,6 +422,8 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) HasVersion() bool {
 func (o *CloudWorkloadSecurityAgentRuleAttributes) SetVersion(v int64) {
 	o.Version = &v
 }
+
+
 
 func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -453,20 +470,21 @@ func (o CloudWorkloadSecurityAgentRuleAttributes) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category     *string                                          `json:"category,omitempty"`
-		CreationDate *int64                                           `json:"creationDate,omitempty"`
-		Creator      *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
-		DefaultRule  *bool                                            `json:"defaultRule,omitempty"`
-		Description  *string                                          `json:"description,omitempty"`
-		Enabled      *bool                                            `json:"enabled,omitempty"`
-		Expression   *string                                          `json:"expression,omitempty"`
-		Name         *string                                          `json:"name,omitempty"`
-		UpdatedAt    *int64                                           `json:"updatedAt,omitempty"`
-		Updater      *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
-		Version      *int64                                           `json:"version,omitempty"`
+		Category *string `json:"category,omitempty"`
+		CreationDate *int64 `json:"creationDate,omitempty"`
+		Creator *CloudWorkloadSecurityAgentRuleCreatorAttributes `json:"creator,omitempty"`
+		DefaultRule *bool `json:"defaultRule,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Enabled *bool `json:"enabled,omitempty"`
+		Expression *string `json:"expression,omitempty"`
+		Name *string `json:"name,omitempty"`
+		UpdatedAt *int64 `json:"updatedAt,omitempty"`
+		Updater *CloudWorkloadSecurityAgentRuleUpdaterAttributes `json:"updater,omitempty"`
+		Version *int64 `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

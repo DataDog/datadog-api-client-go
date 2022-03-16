@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveCreateRequestAttributes The attributes associated with the archive.
 type LogsArchiveCreateRequestAttributes struct {
@@ -25,9 +28,11 @@ type LogsArchiveCreateRequestAttributes struct {
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveCreateRequestAttributes instantiates a new LogsArchiveCreateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewLogsArchiveCreateRequestAttributesWithDefaults() *LogsArchiveCreateReque
 	this.IncludeTags = &includeTags
 	return &this
 }
-
 // GetDestination returns the Destination field value
 func (o *LogsArchiveCreateRequestAttributes) GetDestination() LogsArchiveCreateRequestDestination {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetDestinationOk() (*LogsArchiveCre
 func (o *LogsArchiveCreateRequestAttributes) SetDestination(v LogsArchiveCreateRequestDestination) {
 	o.Destination = v
 }
+
 
 // GetIncludeTags returns the IncludeTags field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestAttributes) GetIncludeTags() bool {
@@ -108,6 +113,7 @@ func (o *LogsArchiveCreateRequestAttributes) SetIncludeTags(v bool) {
 	o.IncludeTags = &v
 }
 
+
 // GetName returns the Name field value
 func (o *LogsArchiveCreateRequestAttributes) GetName() string {
 	if o == nil {
@@ -131,6 +137,7 @@ func (o *LogsArchiveCreateRequestAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetQuery returns the Query field value
 func (o *LogsArchiveCreateRequestAttributes) GetQuery() string {
 	if o == nil {
@@ -153,6 +160,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetQueryOk() (*string, bool) {
 func (o *LogsArchiveCreateRequestAttributes) SetQuery(v string) {
 	o.Query = v
 }
+
 
 // GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTags() []string {
@@ -186,6 +194,8 @@ func (o *LogsArchiveCreateRequestAttributes) SetRehydrationTags(v []string) {
 	o.RehydrationTags = &v
 }
 
+
+
 func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -207,19 +217,20 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Destination *LogsArchiveCreateRequestDestination `json:"destination"`
-		Name        *string                              `json:"name"`
-		Query       *string                              `json:"query"`
+		Name *string `json:"name"`
+		Query *string `json:"query"`
 	}{}
 	all := struct {
-		Destination     LogsArchiveCreateRequestDestination `json:"destination"`
-		IncludeTags     *bool                               `json:"include_tags,omitempty"`
-		Name            string                              `json:"name"`
-		Query           string                              `json:"query"`
-		RehydrationTags *[]string                           `json:"rehydration_tags,omitempty"`
+		Destination LogsArchiveCreateRequestDestination `json:"destination"`
+		IncludeTags *bool `json:"include_tags,omitempty"`
+		Name string `json:"name"`
+		Query string `json:"query"`
+		RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricTagConfigurationUpdateAttributes Object containing the definition of a metric tag configuration to be updated.
 type MetricTagConfigurationUpdateAttributes struct {
@@ -35,9 +39,11 @@ type MetricTagConfigurationUpdateAttributes struct {
 	// A list of tag keys that will be queryable for your metric.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricTagConfigurationUpdateAttributes instantiates a new MetricTagConfigurationUpdateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -59,7 +65,6 @@ func NewMetricTagConfigurationUpdateAttributesWithDefaults() *MetricTagConfigura
 	this.IncludePercentiles = &includePercentiles
 	return &this
 }
-
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
 func (o *MetricTagConfigurationUpdateAttributes) GetAggregations() []MetricCustomAggregation {
 	if o == nil || o.Aggregations == nil {
@@ -91,6 +96,7 @@ func (o *MetricTagConfigurationUpdateAttributes) HasAggregations() bool {
 func (o *MetricTagConfigurationUpdateAttributes) SetAggregations(v []MetricCustomAggregation) {
 	o.Aggregations = &v
 }
+
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *MetricTagConfigurationUpdateAttributes) GetIncludePercentiles() bool {
@@ -124,6 +130,7 @@ func (o *MetricTagConfigurationUpdateAttributes) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricTagConfigurationUpdateAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -156,6 +163,8 @@ func (o *MetricTagConfigurationUpdateAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
+
 func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -177,12 +186,13 @@ func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                      `json:"include_percentiles,omitempty"`
-		Tags               *[]string                  `json:"tags,omitempty"`
+		Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

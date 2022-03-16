@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ApiKeyListResponse List of API and application keys available for a given organization.
 type ApiKeyListResponse struct {
 	// Array of API keys.
 	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApiKeyListResponse instantiates a new ApiKeyListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewApiKeyListResponseWithDefaults() *ApiKeyListResponse {
 	this := ApiKeyListResponse{}
 	return &this
 }
-
 // GetApiKeys returns the ApiKeys field value if set, zero value otherwise.
 func (o *ApiKeyListResponse) GetApiKeys() []ApiKey {
 	if o == nil || o.ApiKeys == nil {
@@ -68,6 +73,8 @@ func (o *ApiKeyListResponse) SetApiKeys(v []ApiKey) {
 	o.ApiKeys = &v
 }
 
+
+
 func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *ApiKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

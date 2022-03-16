@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type KeyManagementApiService service
 type apiCreateAPIKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	body       *ApiKey
+	body *ApiKey
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context, body ApiKey
 	req := apiCreateAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAPIKeyExecute(req)
@@ -188,7 +190,7 @@ func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) 
 type apiCreateApplicationKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	body       *ApplicationKey
+	body *ApplicationKey
 }
 
 /*
@@ -199,7 +201,7 @@ func (a *KeyManagementApiService) CreateApplicationKey(ctx _context.Context, bod
 	req := apiCreateApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createApplicationKeyExecute(req)
@@ -360,7 +362,7 @@ func (a *KeyManagementApiService) createApplicationKeyExecute(r apiCreateApplica
 type apiDeleteAPIKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
 
 /*
@@ -371,7 +373,7 @@ func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, key string)
 	req := apiDeleteAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
+		key: key,
 	}
 
 	return req.ApiService.deleteAPIKeyExecute(req)
@@ -518,7 +520,7 @@ func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) 
 type apiDeleteApplicationKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
 
 /*
@@ -529,7 +531,7 @@ func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, key
 	req := apiDeleteApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
+		key: key,
 	}
 
 	return req.ApiService.deleteApplicationKeyExecute(req)
@@ -666,7 +668,7 @@ func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplica
 type apiGetAPIKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
 
 /*
@@ -677,7 +679,7 @@ func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, key string) (A
 	req := apiGetAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
+		key: key,
 	}
 
 	return req.ApiService.getAPIKeyExecute(req)
@@ -814,7 +816,7 @@ func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKe
 type apiGetApplicationKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
+	key string
 }
 
 /*
@@ -825,7 +827,7 @@ func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, key st
 	req := apiGetApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
+		key: key,
 	}
 
 	return req.ApiService.getApplicationKeyExecute(req)
@@ -1232,8 +1234,8 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 type apiUpdateAPIKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
-	body       *ApiKey
+	key string
+	body *ApiKey
 }
 
 /*
@@ -1244,8 +1246,8 @@ func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, key string,
 	req := apiUpdateAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
-		body:       &body,
+		key: key,
+		body: &body,
 	}
 
 	return req.ApiService.updateAPIKeyExecute(req)
@@ -1407,8 +1409,8 @@ func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) 
 type apiUpdateApplicationKeyRequest struct {
 	ctx        _context.Context
 	ApiService *KeyManagementApiService
-	key        string
-	body       *ApplicationKey
+	key string
+	body *ApplicationKey
 }
 
 /*
@@ -1419,8 +1421,8 @@ func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, key
 	req := apiUpdateApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
-		key:        key,
-		body:       &body,
+		key: key,
+		body: &body,
 	}
 
 	return req.ApiService.updateApplicationKeyExecute(req)

@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApplicationKeyCreateRequest Request used to create an application key.
 type ApplicationKeyCreateRequest struct {
 	// Object used to create an application key.
 	Data ApplicationKeyCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApplicationKeyCreateRequest instantiates a new ApplicationKeyCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewApplicationKeyCreateRequestWithDefaults() *ApplicationKeyCreateRequest {
 	this := ApplicationKeyCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *ApplicationKeyCreateRequest) GetData() ApplicationKeyCreateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *ApplicationKeyCreateRequest) SetData(v ApplicationKeyCreateData) {
 	o.Data = v
 }
 
+
+
 func (o ApplicationKeyCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o ApplicationKeyCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *ApplicationKeyCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

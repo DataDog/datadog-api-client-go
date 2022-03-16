@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // HeatMapWidgetDefinitionType Type of the heat map widget.
 type HeatMapWidgetDefinitionType string

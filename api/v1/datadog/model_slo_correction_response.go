@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCorrectionResponse The response object of an SLO correction.
 type SLOCorrectionResponse struct {
 	// The response object of a list of SLO corrections.
 	Data *SLOCorrection `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionResponse instantiates a new SLOCorrectionResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSLOCorrectionResponseWithDefaults() *SLOCorrectionResponse {
 	this := SLOCorrectionResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOCorrectionResponse) GetData() SLOCorrection {
 	if o == nil || o.Data == nil {
@@ -68,6 +73,8 @@ func (o *SLOCorrectionResponse) SetData(v SLOCorrection) {
 	o.Data = &v
 }
 
+
+
 func (o SLOCorrectionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o SLOCorrectionResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SLOCorrectionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

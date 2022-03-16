@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArithmeticProcessor Use the Arithmetic Processor to add a new attribute (without spaces or special characters
 // in the new attribute name) to a log with the result of the provided formula.
@@ -47,9 +50,11 @@ type LogsArithmeticProcessor struct {
 	// Type of logs arithmetic processor.
 	Type LogsArithmeticProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -80,7 +85,6 @@ func NewLogsArithmeticProcessorWithDefaults() *LogsArithmeticProcessor {
 	this.Type = type_
 	return &this
 }
-
 // GetExpression returns the Expression field value
 func (o *LogsArithmeticProcessor) GetExpression() string {
 	if o == nil {
@@ -103,6 +107,7 @@ func (o *LogsArithmeticProcessor) GetExpressionOk() (*string, bool) {
 func (o *LogsArithmeticProcessor) SetExpression(v string) {
 	o.Expression = v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsArithmeticProcessor) GetIsEnabled() bool {
@@ -136,6 +141,7 @@ func (o *LogsArithmeticProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetIsReplaceMissing returns the IsReplaceMissing field value if set, zero value otherwise.
 func (o *LogsArithmeticProcessor) GetIsReplaceMissing() bool {
 	if o == nil || o.IsReplaceMissing == nil {
@@ -167,6 +173,7 @@ func (o *LogsArithmeticProcessor) HasIsReplaceMissing() bool {
 func (o *LogsArithmeticProcessor) SetIsReplaceMissing(v bool) {
 	o.IsReplaceMissing = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsArithmeticProcessor) GetName() string {
@@ -200,6 +207,7 @@ func (o *LogsArithmeticProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetTarget returns the Target field value
 func (o *LogsArithmeticProcessor) GetTarget() string {
 	if o == nil {
@@ -223,6 +231,7 @@ func (o *LogsArithmeticProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
+
 // GetType returns the Type field value
 func (o *LogsArithmeticProcessor) GetType() LogsArithmeticProcessorType {
 	if o == nil {
@@ -245,6 +254,8 @@ func (o *LogsArithmeticProcessor) GetTypeOk() (*LogsArithmeticProcessorType, boo
 func (o *LogsArithmeticProcessor) SetType(v LogsArithmeticProcessorType) {
 	o.Type = v
 }
+
+
 
 func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -270,20 +281,21 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Expression *string                      `json:"expression"`
-		Target     *string                      `json:"target"`
-		Type       *LogsArithmeticProcessorType `json:"type"`
+		Expression *string `json:"expression"`
+		Target *string `json:"target"`
+		Type *LogsArithmeticProcessorType `json:"type"`
 	}{}
 	all := struct {
-		Expression       string                      `json:"expression"`
-		IsEnabled        *bool                       `json:"is_enabled,omitempty"`
-		IsReplaceMissing *bool                       `json:"is_replace_missing,omitempty"`
-		Name             *string                     `json:"name,omitempty"`
-		Target           string                      `json:"target"`
-		Type             LogsArithmeticProcessorType `json:"type"`
+		Expression string `json:"expression"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Target string `json:"target"`
+		Type LogsArithmeticProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

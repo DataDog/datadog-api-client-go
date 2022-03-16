@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // HostMapWidgetDefinitionType Type of the host map widget.
 type HostMapWidgetDefinitionType string

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FreeTextWidgetDefinition Free text is a widget that allows you to add headings to your screenboard. Commonly used to state the overall purpose of the dashboard. Only available on FREE layout dashboards.
 type FreeTextWidgetDefinition struct {
@@ -24,9 +27,11 @@ type FreeTextWidgetDefinition struct {
 	// Type of the free text widget.
 	Type FreeTextWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewFreeTextWidgetDefinitionWithDefaults() *FreeTextWidgetDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetColor returns the Color field value if set, zero value otherwise.
 func (o *FreeTextWidgetDefinition) GetColor() string {
 	if o == nil || o.Color == nil {
@@ -80,6 +84,7 @@ func (o *FreeTextWidgetDefinition) HasColor() bool {
 func (o *FreeTextWidgetDefinition) SetColor(v string) {
 	o.Color = &v
 }
+
 
 // GetFontSize returns the FontSize field value if set, zero value otherwise.
 func (o *FreeTextWidgetDefinition) GetFontSize() string {
@@ -113,6 +118,7 @@ func (o *FreeTextWidgetDefinition) SetFontSize(v string) {
 	o.FontSize = &v
 }
 
+
 // GetText returns the Text field value
 func (o *FreeTextWidgetDefinition) GetText() string {
 	if o == nil {
@@ -135,6 +141,7 @@ func (o *FreeTextWidgetDefinition) GetTextOk() (*string, bool) {
 func (o *FreeTextWidgetDefinition) SetText(v string) {
 	o.Text = v
 }
+
 
 // GetTextAlign returns the TextAlign field value if set, zero value otherwise.
 func (o *FreeTextWidgetDefinition) GetTextAlign() WidgetTextAlign {
@@ -168,6 +175,7 @@ func (o *FreeTextWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
 
+
 // GetType returns the Type field value
 func (o *FreeTextWidgetDefinition) GetType() FreeTextWidgetDefinitionType {
 	if o == nil {
@@ -190,6 +198,8 @@ func (o *FreeTextWidgetDefinition) GetTypeOk() (*FreeTextWidgetDefinitionType, b
 func (o *FreeTextWidgetDefinition) SetType(v FreeTextWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -214,18 +224,19 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text *string                       `json:"text"`
+		Text *string `json:"text"`
 		Type *FreeTextWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Color     *string                      `json:"color,omitempty"`
-		FontSize  *string                      `json:"font_size,omitempty"`
-		Text      string                       `json:"text"`
-		TextAlign *WidgetTextAlign             `json:"text_align,omitempty"`
-		Type      FreeTextWidgetDefinitionType `json:"type"`
+		Color *string `json:"color,omitempty"`
+		FontSize *string `json:"font_size,omitempty"`
+		Text string `json:"text"`
+		TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
+		Type FreeTextWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -246,7 +257,7 @@ func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TextAlign; v != nil && !v.IsValid() {
+	if v := all.TextAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageDBMHour Database Monitoring usage for a given organization for a given hour.
 type UsageDBMHour struct {
@@ -24,9 +27,11 @@ type UsageDBMHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageDBMHour instantiates a new UsageDBMHour object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewUsageDBMHourWithDefaults() *UsageDBMHour {
 	this := UsageDBMHour{}
 	return &this
 }
-
 // GetDbmHostCount returns the DbmHostCount field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetDbmHostCount() int64 {
 	if o == nil || o.DbmHostCount == nil {
@@ -76,6 +80,7 @@ func (o *UsageDBMHour) HasDbmHostCount() bool {
 func (o *UsageDBMHour) SetDbmHostCount(v int64) {
 	o.DbmHostCount = &v
 }
+
 
 // GetDbmQueriesCount returns the DbmQueriesCount field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetDbmQueriesCount() int64 {
@@ -109,6 +114,7 @@ func (o *UsageDBMHour) SetDbmQueriesCount(v int64) {
 	o.DbmQueriesCount = &v
 }
 
+
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -140,6 +146,7 @@ func (o *UsageDBMHour) HasHour() bool {
 func (o *UsageDBMHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetOrgName() string {
@@ -173,6 +180,7 @@ func (o *UsageDBMHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageDBMHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -205,6 +213,8 @@ func (o *UsageDBMHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
+
 func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -232,14 +242,15 @@ func (o UsageDBMHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageDBMHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DbmHostCount    *int64     `json:"dbm_host_count,omitempty"`
-		DbmQueriesCount *int64     `json:"dbm_queries_count,omitempty"`
-		Hour            *time.Time `json:"hour,omitempty"`
-		OrgName         *string    `json:"org_name,omitempty"`
-		PublicId        *string    `json:"public_id,omitempty"`
+		DbmHostCount *int64 `json:"dbm_host_count,omitempty"`
+		DbmQueriesCount *int64 `json:"dbm_queries_count,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

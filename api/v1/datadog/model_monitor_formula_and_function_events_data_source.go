@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorFormulaAndFunctionEventsDataSource Data source for event platform-based queries.
 type MonitorFormulaAndFunctionEventsDataSource string

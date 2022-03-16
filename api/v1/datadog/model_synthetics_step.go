@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsStep The steps used in a Synthetics browser test.
 type SyntheticsStep struct {
@@ -25,9 +29,11 @@ type SyntheticsStep struct {
 	// Step type used in your Synthetic test.
 	Type *SyntheticsStepType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsStep instantiates a new SyntheticsStep object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +51,6 @@ func NewSyntheticsStepWithDefaults() *SyntheticsStep {
 	this := SyntheticsStep{}
 	return &this
 }
-
 // GetAllowFailure returns the AllowFailure field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetAllowFailure() bool {
 	if o == nil || o.AllowFailure == nil {
@@ -77,6 +82,7 @@ func (o *SyntheticsStep) HasAllowFailure() bool {
 func (o *SyntheticsStep) SetAllowFailure(v bool) {
 	o.AllowFailure = &v
 }
+
 
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetIsCritical() bool {
@@ -110,6 +116,7 @@ func (o *SyntheticsStep) SetIsCritical(v bool) {
 	o.IsCritical = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetName() string {
 	if o == nil || o.Name == nil {
@@ -141,6 +148,7 @@ func (o *SyntheticsStep) HasName() bool {
 func (o *SyntheticsStep) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetParams returns the Params field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetParams() interface{} {
@@ -174,6 +182,7 @@ func (o *SyntheticsStep) SetParams(v interface{}) {
 	o.Params = v
 }
 
+
 // GetTimeout returns the Timeout field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetTimeout() int64 {
 	if o == nil || o.Timeout == nil {
@@ -205,6 +214,7 @@ func (o *SyntheticsStep) HasTimeout() bool {
 func (o *SyntheticsStep) SetTimeout(v int64) {
 	o.Timeout = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsStep) GetType() SyntheticsStepType {
@@ -238,6 +248,8 @@ func (o *SyntheticsStep) SetType(v SyntheticsStepType) {
 	o.Type = &v
 }
 
+
+
 func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -268,15 +280,16 @@ func (o SyntheticsStep) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AllowFailure *bool               `json:"allowFailure,omitempty"`
-		IsCritical   *bool               `json:"isCritical,omitempty"`
-		Name         *string             `json:"name,omitempty"`
-		Params       interface{}         `json:"params,omitempty"`
-		Timeout      *int64              `json:"timeout,omitempty"`
-		Type         *SyntheticsStepType `json:"type,omitempty"`
+		AllowFailure *bool `json:"allowFailure,omitempty"`
+		IsCritical *bool `json:"isCritical,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Params interface{} `json:"params,omitempty"`
+		Timeout *int64 `json:"timeout,omitempty"`
+		Type *SyntheticsStepType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -287,7 +300,7 @@ func (o *SyntheticsStep) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

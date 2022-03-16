@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsMetricUpdateData The new log-based metric properties.
 type LogsMetricUpdateData struct {
@@ -18,9 +21,11 @@ type LogsMetricUpdateData struct {
 	// The type of the resource. The value should always be logs_metrics.
 	Type LogsMetricType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricUpdateData instantiates a new LogsMetricUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewLogsMetricUpdateDataWithDefaults() *LogsMetricUpdateData {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *LogsMetricUpdateData) GetAttributes() LogsMetricUpdateAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *LogsMetricUpdateData) GetAttributesOk() (*LogsMetricUpdateAttributes, b
 func (o *LogsMetricUpdateData) SetAttributes(v LogsMetricUpdateAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value
 func (o *LogsMetricUpdateData) GetType() LogsMetricType {
@@ -89,6 +94,8 @@ func (o *LogsMetricUpdateData) SetType(v LogsMetricType) {
 	o.Type = v
 }
 
+
+
 func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,15 +110,16 @@ func (o LogsMetricUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsMetricUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *LogsMetricUpdateAttributes `json:"attributes"`
-		Type       *LogsMetricType             `json:"type"`
+		Type *LogsMetricType `json:"type"`
 	}{}
 	all := struct {
 		Attributes LogsMetricUpdateAttributes `json:"attributes"`
-		Type       LogsMetricType             `json:"type"`
+		Type LogsMetricType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

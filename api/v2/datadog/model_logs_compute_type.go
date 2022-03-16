@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsComputeType The type of compute
 type LogsComputeType string
@@ -17,7 +20,7 @@ type LogsComputeType string
 // List of LogsComputeType
 const (
 	LOGSCOMPUTETYPE_TIMESERIES LogsComputeType = "timeseries"
-	LOGSCOMPUTETYPE_TOTAL      LogsComputeType = "total"
+	LOGSCOMPUTETYPE_TOTAL LogsComputeType = "total"
 )
 
 var allowedLogsComputeTypeEnumValues = []LogsComputeType{

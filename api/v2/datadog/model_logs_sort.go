@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsSort Sort parameters when querying logs.
 type LogsSort string
 
 // List of LogsSort
 const (
-	LOGSSORT_TIMESTAMP_ASCENDING  LogsSort = "timestamp"
+	LOGSSORT_TIMESTAMP_ASCENDING LogsSort = "timestamp"
 	LOGSSORT_TIMESTAMP_DESCENDING LogsSort = "-timestamp"
 )
 

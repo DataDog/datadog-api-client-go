@@ -4,22 +4,25 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOTimeframe The SLO time window options.
 type SLOTimeframe string
 
 // List of SLOTimeframe
 const (
-	SLOTIMEFRAME_SEVEN_DAYS  SLOTimeframe = "7d"
+	SLOTIMEFRAME_SEVEN_DAYS SLOTimeframe = "7d"
 	SLOTIMEFRAME_THIRTY_DAYS SLOTimeframe = "30d"
 	SLOTIMEFRAME_NINETY_DAYS SLOTimeframe = "90d"
-	SLOTIMEFRAME_CUSTOM      SLOTimeframe = "custom"
+	SLOTIMEFRAME_CUSTOM SLOTimeframe = "custom"
 )
 
 var allowedSLOTimeframeEnumValues = []SLOTimeframe{

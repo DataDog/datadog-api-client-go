@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAPIError Error returned by the Logs API
 type LogsAPIError struct {
@@ -19,9 +23,11 @@ type LogsAPIError struct {
 	// Error message
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAPIError instantiates a new LogsAPIError object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewLogsAPIErrorWithDefaults() *LogsAPIError {
 	this := LogsAPIError{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *LogsAPIError) GetCode() string {
 	if o == nil || o.Code == nil {
@@ -71,6 +76,7 @@ func (o *LogsAPIError) HasCode() bool {
 func (o *LogsAPIError) SetCode(v string) {
 	o.Code = &v
 }
+
 
 // GetDetails returns the Details field value if set, zero value otherwise.
 func (o *LogsAPIError) GetDetails() []LogsAPIError {
@@ -104,6 +110,7 @@ func (o *LogsAPIError) SetDetails(v []LogsAPIError) {
 	o.Details = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *LogsAPIError) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -136,6 +143,8 @@ func (o *LogsAPIError) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *string         `json:"code,omitempty"`
+		Code *string `json:"code,omitempty"`
 		Details *[]LogsAPIError `json:"details,omitempty"`
-		Message *string         `json:"message,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

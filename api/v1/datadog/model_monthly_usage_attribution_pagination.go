@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonthlyUsageAttributionPagination The metadata for the current pagination.
 type MonthlyUsageAttributionPagination struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of the `next_record_id`.
 	NextRecordId *string `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonthlyUsageAttributionPagination instantiates a new MonthlyUsageAttributionPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMonthlyUsageAttributionPaginationWithDefaults() *MonthlyUsageAttribution
 	this := MonthlyUsageAttributionPagination{}
 	return &this
 }
-
 // GetNextRecordId returns the NextRecordId field value if set, zero value otherwise.
 func (o *MonthlyUsageAttributionPagination) GetNextRecordId() string {
 	if o == nil || o.NextRecordId == nil {
@@ -68,6 +73,8 @@ func (o *MonthlyUsageAttributionPagination) SetNextRecordId(v string) {
 	o.NextRecordId = &v
 }
 
+
+
 func (o MonthlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o MonthlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *MonthlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

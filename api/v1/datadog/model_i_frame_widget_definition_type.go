@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IFrameWidgetDefinitionType Type of the iframe widget.
 type IFrameWidgetDefinitionType string

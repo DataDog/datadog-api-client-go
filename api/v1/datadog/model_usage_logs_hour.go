@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageLogsHour Hour usage for logs.
 type UsageLogsHour struct {
@@ -34,9 +37,11 @@ type UsageLogsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageLogsHour instantiates a new UsageLogsHour object
 // This constructor will assign default values to properties that have it defined,
@@ -54,7 +59,6 @@ func NewUsageLogsHourWithDefaults() *UsageLogsHour {
 	this := UsageLogsHour{}
 	return &this
 }
-
 // GetBillableIngestedBytes returns the BillableIngestedBytes field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetBillableIngestedBytes() int64 {
 	if o == nil || o.BillableIngestedBytes == nil {
@@ -86,6 +90,7 @@ func (o *UsageLogsHour) HasBillableIngestedBytes() bool {
 func (o *UsageLogsHour) SetBillableIngestedBytes(v int64) {
 	o.BillableIngestedBytes = &v
 }
+
 
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetHour() time.Time {
@@ -119,6 +124,7 @@ func (o *UsageLogsHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
 
+
 // GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetIndexedEventsCount() int64 {
 	if o == nil || o.IndexedEventsCount == nil {
@@ -150,6 +156,7 @@ func (o *UsageLogsHour) HasIndexedEventsCount() bool {
 func (o *UsageLogsHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
+
 
 // GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetIngestedEventsBytes() int64 {
@@ -183,6 +190,7 @@ func (o *UsageLogsHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes = &v
 }
 
+
 // GetLogsLiveIndexedCount returns the LogsLiveIndexedCount field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetLogsLiveIndexedCount() int64 {
 	if o == nil || o.LogsLiveIndexedCount == nil {
@@ -214,6 +222,7 @@ func (o *UsageLogsHour) HasLogsLiveIndexedCount() bool {
 func (o *UsageLogsHour) SetLogsLiveIndexedCount(v int64) {
 	o.LogsLiveIndexedCount = &v
 }
+
 
 // GetLogsLiveIngestedBytes returns the LogsLiveIngestedBytes field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetLogsLiveIngestedBytes() int64 {
@@ -247,6 +256,7 @@ func (o *UsageLogsHour) SetLogsLiveIngestedBytes(v int64) {
 	o.LogsLiveIngestedBytes = &v
 }
 
+
 // GetLogsRehydratedIndexedCount returns the LogsRehydratedIndexedCount field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetLogsRehydratedIndexedCount() int64 {
 	if o == nil || o.LogsRehydratedIndexedCount == nil {
@@ -278,6 +288,7 @@ func (o *UsageLogsHour) HasLogsRehydratedIndexedCount() bool {
 func (o *UsageLogsHour) SetLogsRehydratedIndexedCount(v int64) {
 	o.LogsRehydratedIndexedCount = &v
 }
+
 
 // GetLogsRehydratedIngestedBytes returns the LogsRehydratedIngestedBytes field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetLogsRehydratedIngestedBytes() int64 {
@@ -311,6 +322,7 @@ func (o *UsageLogsHour) SetLogsRehydratedIngestedBytes(v int64) {
 	o.LogsRehydratedIngestedBytes = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -343,6 +355,7 @@ func (o *UsageLogsHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageLogsHour) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -374,6 +387,8 @@ func (o *UsageLogsHour) HasPublicId() bool {
 func (o *UsageLogsHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
+
 
 func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -417,19 +432,20 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageLogsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BillableIngestedBytes       *int64     `json:"billable_ingested_bytes,omitempty"`
-		Hour                        *time.Time `json:"hour,omitempty"`
-		IndexedEventsCount          *int64     `json:"indexed_events_count,omitempty"`
-		IngestedEventsBytes         *int64     `json:"ingested_events_bytes,omitempty"`
-		LogsLiveIndexedCount        *int64     `json:"logs_live_indexed_count,omitempty"`
-		LogsLiveIngestedBytes       *int64     `json:"logs_live_ingested_bytes,omitempty"`
-		LogsRehydratedIndexedCount  *int64     `json:"logs_rehydrated_indexed_count,omitempty"`
-		LogsRehydratedIngestedBytes *int64     `json:"logs_rehydrated_ingested_bytes,omitempty"`
-		OrgName                     *string    `json:"org_name,omitempty"`
-		PublicId                    *string    `json:"public_id,omitempty"`
+		BillableIngestedBytes *int64 `json:"billable_ingested_bytes,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+		IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+		LogsLiveIndexedCount *int64 `json:"logs_live_indexed_count,omitempty"`
+		LogsLiveIngestedBytes *int64 `json:"logs_live_ingested_bytes,omitempty"`
+		LogsRehydratedIndexedCount *int64 `json:"logs_rehydrated_indexed_count,omitempty"`
+		LogsRehydratedIngestedBytes *int64 `json:"logs_rehydrated_ingested_bytes,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

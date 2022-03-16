@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageIngestedSpansResponse Response containing the ingested spans usage for each hour for a given organization.
 type UsageIngestedSpansResponse struct {
 	// Get hourly usage for ingested spans.
 	Usage *[]UsageIngestedSpansHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageIngestedSpansResponse instantiates a new UsageIngestedSpansResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewUsageIngestedSpansResponseWithDefaults() *UsageIngestedSpansResponse {
 	this := UsageIngestedSpansResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageIngestedSpansResponse) GetUsage() []UsageIngestedSpansHour {
 	if o == nil || o.Usage == nil {
@@ -68,6 +73,8 @@ func (o *UsageIngestedSpansResponse) SetUsage(v []UsageIngestedSpansHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageIngestedSpansResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o UsageIngestedSpansResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageIngestedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

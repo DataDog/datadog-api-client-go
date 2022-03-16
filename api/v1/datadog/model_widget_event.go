@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetEvent Event overlay control options.
 //
@@ -21,9 +24,11 @@ type WidgetEvent struct {
 	// The execution method for multi-value filters.
 	TagsExecution *string `json:"tags_execution,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetEvent instantiates a new WidgetEvent object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewWidgetEventWithDefaults() *WidgetEvent {
 	this := WidgetEvent{}
 	return &this
 }
-
 // GetQ returns the Q field value
 func (o *WidgetEvent) GetQ() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *WidgetEvent) GetQOk() (*string, bool) {
 func (o *WidgetEvent) SetQ(v string) {
 	o.Q = v
 }
+
 
 // GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
 func (o *WidgetEvent) GetTagsExecution() string {
@@ -98,6 +103,8 @@ func (o *WidgetEvent) SetTagsExecution(v string) {
 	o.TagsExecution = &v
 }
 
+
+
 func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -114,13 +121,14 @@ func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Q *string `json:"q"`
 	}{}
 	all := struct {
-		Q             string  `json:"q"`
+		Q string `json:"q"`
 		TagsExecution *string `json:"tags_execution,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type LogsApiService service
 type apiListLogsRequest struct {
 	ctx        _context.Context
 	ApiService *LogsApiService
-	body       *LogsListRequest
+	body *LogsListRequest
 }
 
 /*
@@ -44,7 +47,7 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (L
 	req := apiListLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.listLogsExecute(req)
@@ -193,16 +196,16 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 }
 
 type apiSubmitLogRequest struct {
-	ctx             _context.Context
-	ApiService      *LogsApiService
-	body            *[]HTTPLogItem
+	ctx        _context.Context
+	ApiService *LogsApiService
+	body *[]HTTPLogItem
 	contentEncoding *ContentEncoding
-	ddtags          *string
+	ddtags *string
 }
 
 type SubmitLogOptionalParameters struct {
 	ContentEncoding *ContentEncoding
-	Ddtags          *string
+	Ddtags *string
 }
 
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
@@ -244,7 +247,7 @@ func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o .
 	req := apiSubmitLogRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {

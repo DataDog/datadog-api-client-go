@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookMarkdownCellDefinition Text in a notebook is formatted with [Markdown](https://daringfireball.net/projects/markdown/), which enables the use of headings, subheadings, links, images, lists, and code blocks.
 type NotebookMarkdownCellDefinition struct {
@@ -18,9 +21,11 @@ type NotebookMarkdownCellDefinition struct {
 	// Type of the markdown cell.
 	Type NotebookMarkdownCellDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookMarkdownCellDefinition instantiates a new NotebookMarkdownCellDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewNotebookMarkdownCellDefinitionWithDefaults() *NotebookMarkdownCellDefini
 	this.Type = type_
 	return &this
 }
-
 // GetText returns the Text field value
 func (o *NotebookMarkdownCellDefinition) GetText() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *NotebookMarkdownCellDefinition) GetTextOk() (*string, bool) {
 func (o *NotebookMarkdownCellDefinition) SetText(v string) {
 	o.Text = v
 }
+
 
 // GetType returns the Type field value
 func (o *NotebookMarkdownCellDefinition) GetType() NotebookMarkdownCellDefinitionType {
@@ -89,6 +94,8 @@ func (o *NotebookMarkdownCellDefinition) SetType(v NotebookMarkdownCellDefinitio
 	o.Type = v
 }
 
+
+
 func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,14 +110,15 @@ func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Text *string                             `json:"text"`
+		Text *string `json:"text"`
 		Type *NotebookMarkdownCellDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Text string                             `json:"text"`
+		Text string `json:"text"`
 		Type NotebookMarkdownCellDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

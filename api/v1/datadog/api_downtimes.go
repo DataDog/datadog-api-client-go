@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -163,7 +165,7 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 type apiCancelDowntimesByScopeRequest struct {
 	ctx        _context.Context
 	ApiService *DowntimesApiService
-	body       *CancelDowntimesByScopeRequest
+	body *CancelDowntimesByScopeRequest
 }
 
 /*
@@ -174,7 +176,7 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, body 
 	req := apiCancelDowntimesByScopeRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.cancelDowntimesByScopeExecute(req)
@@ -335,7 +337,7 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 type apiCreateDowntimeRequest struct {
 	ctx        _context.Context
 	ApiService *DowntimesApiService
-	body       *Downtime
+	body *Downtime
 }
 
 /*
@@ -346,7 +348,7 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, body Downtime
 	req := apiCreateDowntimeRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createDowntimeExecute(req)
@@ -643,8 +645,8 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 }
 
 type apiListDowntimesRequest struct {
-	ctx         _context.Context
-	ApiService  *DowntimesApiService
+	ctx        _context.Context
+	ApiService *DowntimesApiService
 	currentOnly *bool
 }
 
@@ -806,7 +808,7 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 type apiListMonitorDowntimesRequest struct {
 	ctx        _context.Context
 	ApiService *DowntimesApiService
-	monitorId  int64
+	monitorId int64
 }
 
 /*
@@ -817,7 +819,7 @@ func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitor
 	req := apiListMonitorDowntimesRequest{
 		ApiService: a,
 		ctx:        ctx,
-		monitorId:  monitorId,
+		monitorId: monitorId,
 	}
 
 	return req.ApiService.listMonitorDowntimesExecute(req)
@@ -955,7 +957,7 @@ type apiUpdateDowntimeRequest struct {
 	ctx        _context.Context
 	ApiService *DowntimesApiService
 	downtimeId int64
-	body       *Downtime
+	body *Downtime
 }
 
 /*
@@ -967,7 +969,7 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 		ApiService: a,
 		ctx:        ctx,
 		downtimeId: downtimeId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateDowntimeExecute(req)

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterplotWidgetFormula Formula to be used in a Scatterplot widget query.
 type ScatterplotWidgetFormula struct {
@@ -20,9 +23,11 @@ type ScatterplotWidgetFormula struct {
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewScatterplotWidgetFormula instantiates a new ScatterplotWidgetFormula object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewScatterplotWidgetFormulaWithDefaults() *ScatterplotWidgetFormula {
 	this := ScatterplotWidgetFormula{}
 	return &this
 }
-
 // GetAlias returns the Alias field value if set, zero value otherwise.
 func (o *ScatterplotWidgetFormula) GetAlias() string {
 	if o == nil || o.Alias == nil {
@@ -75,6 +79,7 @@ func (o *ScatterplotWidgetFormula) SetAlias(v string) {
 	o.Alias = &v
 }
 
+
 // GetDimension returns the Dimension field value
 func (o *ScatterplotWidgetFormula) GetDimension() ScatterplotDimension {
 	if o == nil {
@@ -97,6 +102,7 @@ func (o *ScatterplotWidgetFormula) GetDimensionOk() (*ScatterplotDimension, bool
 func (o *ScatterplotWidgetFormula) SetDimension(v ScatterplotDimension) {
 	o.Dimension = v
 }
+
 
 // GetFormula returns the Formula field value
 func (o *ScatterplotWidgetFormula) GetFormula() string {
@@ -121,6 +127,8 @@ func (o *ScatterplotWidgetFormula) SetFormula(v string) {
 	o.Formula = v
 }
 
+
+
 func (o ScatterplotWidgetFormula) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -138,16 +146,17 @@ func (o ScatterplotWidgetFormula) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ScatterplotWidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Dimension *ScatterplotDimension `json:"dimension"`
-		Formula   *string               `json:"formula"`
+		Formula *string `json:"formula"`
 	}{}
 	all := struct {
-		Alias     *string              `json:"alias,omitempty"`
+		Alias *string `json:"alias,omitempty"`
 		Dimension ScatterplotDimension `json:"dimension"`
-		Formula   string               `json:"formula"`
+		Formula string `json:"formula"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

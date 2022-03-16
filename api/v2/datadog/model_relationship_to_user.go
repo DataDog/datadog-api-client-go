@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RelationshipToUser Relationship to user.
 type RelationshipToUser struct {
 	// Relationship to user object.
 	Data RelationshipToUserData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToUser instantiates a new RelationshipToUser object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewRelationshipToUserWithDefaults() *RelationshipToUser {
 	this := RelationshipToUser{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *RelationshipToUser) GetData() RelationshipToUserData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *RelationshipToUser) SetData(v RelationshipToUserData) {
 	o.Data = v
 }
 
+
+
 func (o RelationshipToUser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o RelationshipToUser) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *RelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

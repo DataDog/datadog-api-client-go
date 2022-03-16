@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NullableRelationshipToUserData Relationship to user object.
 type NullableRelationshipToUserData struct {
@@ -18,9 +21,11 @@ type NullableRelationshipToUserData struct {
 	// Users resource type.
 	Type UsersType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNullableRelationshipToUserData instantiates a new NullableRelationshipToUserData object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewNullableRelationshipToUserDataWithDefaults() *NullableRelationshipToUser
 	this.Type = type_
 	return &this
 }
-
 // GetId returns the Id field value
 func (o *NullableRelationshipToUserData) GetId() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *NullableRelationshipToUserData) GetIdOk() (*string, bool) {
 func (o *NullableRelationshipToUserData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value
 func (o *NullableRelationshipToUserData) GetType() UsersType {
@@ -89,6 +94,8 @@ func (o *NullableRelationshipToUserData) SetType(v UsersType) {
 	o.Type = v
 }
 
+
+
 func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,14 +110,15 @@ func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NullableRelationshipToUserData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string    `json:"id"`
+		Id *string `json:"id"`
 		Type *UsersType `json:"type"`
 	}{}
 	all := struct {
-		Id   string    `json:"id"`
+		Id string `json:"id"`
 		Type UsersType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -144,7 +152,6 @@ func (o *NullableRelationshipToUserData) UnmarshalJSON(bytes []byte) (err error)
 	o.Type = all.Type
 	return nil
 }
-
 type NullableNullableRelationshipToUserData struct {
 	value *NullableRelationshipToUserData
 	isSet bool

@@ -4,13 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // DashboardList Your Datadog Dashboards.
 type DashboardList struct {
@@ -31,9 +33,11 @@ type DashboardList struct {
 	// The type of dashboard list.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardList instantiates a new DashboardList object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +56,6 @@ func NewDashboardListWithDefaults() *DashboardList {
 	this := DashboardList{}
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *DashboardList) GetAuthor() Creator {
 	if o == nil || o.Author == nil {
@@ -84,6 +87,7 @@ func (o *DashboardList) HasAuthor() bool {
 func (o *DashboardList) SetAuthor(v Creator) {
 	o.Author = &v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *DashboardList) GetCreated() time.Time {
@@ -117,6 +121,7 @@ func (o *DashboardList) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetDashboardCount returns the DashboardCount field value if set, zero value otherwise.
 func (o *DashboardList) GetDashboardCount() int64 {
 	if o == nil || o.DashboardCount == nil {
@@ -148,6 +153,7 @@ func (o *DashboardList) HasDashboardCount() bool {
 func (o *DashboardList) SetDashboardCount(v int64) {
 	o.DashboardCount = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DashboardList) GetId() int64 {
@@ -181,6 +187,7 @@ func (o *DashboardList) SetId(v int64) {
 	o.Id = &v
 }
 
+
 // GetIsFavorite returns the IsFavorite field value if set, zero value otherwise.
 func (o *DashboardList) GetIsFavorite() bool {
 	if o == nil || o.IsFavorite == nil {
@@ -212,6 +219,7 @@ func (o *DashboardList) HasIsFavorite() bool {
 func (o *DashboardList) SetIsFavorite(v bool) {
 	o.IsFavorite = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *DashboardList) GetModified() time.Time {
@@ -245,6 +253,7 @@ func (o *DashboardList) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value
 func (o *DashboardList) GetName() string {
 	if o == nil {
@@ -267,6 +276,7 @@ func (o *DashboardList) GetNameOk() (*string, bool) {
 func (o *DashboardList) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *DashboardList) GetType() string {
@@ -299,6 +309,8 @@ func (o *DashboardList) HasType() bool {
 func (o *DashboardList) SetType(v string) {
 	o.Type = &v
 }
+
+
 
 func (o DashboardList) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -334,20 +346,21 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardList) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Author         *Creator   `json:"author,omitempty"`
-		Created        *time.Time `json:"created,omitempty"`
-		DashboardCount *int64     `json:"dashboard_count,omitempty"`
-		Id             *int64     `json:"id,omitempty"`
-		IsFavorite     *bool      `json:"is_favorite,omitempty"`
-		Modified       *time.Time `json:"modified,omitempty"`
-		Name           string     `json:"name"`
-		Type           *string    `json:"type,omitempty"`
+		Author *Creator `json:"author,omitempty"`
+		Created *time.Time `json:"created,omitempty"`
+		DashboardCount *int64 `json:"dashboard_count,omitempty"`
+		Id *int64 `json:"id,omitempty"`
+		IsFavorite *bool `json:"is_favorite,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Name string `json:"name"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

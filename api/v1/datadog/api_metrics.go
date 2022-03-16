@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -174,13 +176,13 @@ func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataReque
 type apiListActiveMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
-	from       *int64
-	host       *string
-	tagFilter  *string
+	from *int64
+	host *string
+	tagFilter *string
 }
 
 type ListActiveMetricsOptionalParameters struct {
-	Host      *string
+	Host *string
 	TagFilter *string
 }
 
@@ -205,7 +207,7 @@ func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, 
 	req := apiListActiveMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		from:       &from,
+		from: &from,
 	}
 
 	if len(o) > 1 {
@@ -361,7 +363,7 @@ func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsReque
 type apiListMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
-	q          *string
+	q *string
 }
 
 /*
@@ -372,7 +374,7 @@ func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricS
 	req := apiListMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		q:          &q,
+		q: &q,
 	}
 
 	return req.ApiService.listMetricsExecute(req)
@@ -512,9 +514,9 @@ func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricS
 type apiQueryMetricsRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
-	from       *int64
-	to         *int64
-	query      *string
+	from *int64
+	to *int64
+	query *string
 }
 
 /*
@@ -525,9 +527,9 @@ func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to in
 	req := apiQueryMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		from:       &from,
-		to:         &to,
-		query:      &query,
+		from: &from,
+		to: &to,
+		query: &query,
 	}
 
 	return req.ApiService.queryMetricsExecute(req)
@@ -673,9 +675,9 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 }
 
 type apiSubmitMetricsRequest struct {
-	ctx             _context.Context
-	ApiService      *MetricsApiService
-	body            *MetricsPayload
+	ctx        _context.Context
+	ApiService *MetricsApiService
+	body *MetricsPayload
 	contentEncoding *MetricContentEncoding
 }
 
@@ -710,7 +712,7 @@ func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayl
 	req := apiSubmitMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -881,7 +883,7 @@ type apiUpdateMetricMetadataRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
 	metricName string
-	body       *MetricMetadata
+	body *MetricMetadata
 }
 
 /*
@@ -893,7 +895,7 @@ func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricNam
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateMetricMetadataExecute(req)

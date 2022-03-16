@@ -4,13 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // NotebookResponseDataAttributes The attributes of a notebook.
 type NotebookResponseDataAttributes struct {
@@ -31,9 +33,11 @@ type NotebookResponseDataAttributes struct {
 	// Notebook global timeframe.
 	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookResponseDataAttributes instantiates a new NotebookResponseDataAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +62,6 @@ func NewNotebookResponseDataAttributesWithDefaults() *NotebookResponseDataAttrib
 	this.Status = &status
 	return &this
 }
-
 // GetAuthor returns the Author field value if set, zero value otherwise.
 func (o *NotebookResponseDataAttributes) GetAuthor() NotebookAuthor {
 	if o == nil || o.Author == nil {
@@ -91,6 +94,7 @@ func (o *NotebookResponseDataAttributes) SetAuthor(v NotebookAuthor) {
 	o.Author = &v
 }
 
+
 // GetCells returns the Cells field value
 func (o *NotebookResponseDataAttributes) GetCells() []NotebookCellResponse {
 	if o == nil {
@@ -113,6 +117,7 @@ func (o *NotebookResponseDataAttributes) GetCellsOk() (*[]NotebookCellResponse, 
 func (o *NotebookResponseDataAttributes) SetCells(v []NotebookCellResponse) {
 	o.Cells = v
 }
+
 
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *NotebookResponseDataAttributes) GetCreated() time.Time {
@@ -146,6 +151,7 @@ func (o *NotebookResponseDataAttributes) SetCreated(v time.Time) {
 	o.Created = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *NotebookResponseDataAttributes) GetMetadata() NotebookMetadata {
 	if o == nil || o.Metadata == nil {
@@ -177,6 +183,7 @@ func (o *NotebookResponseDataAttributes) HasMetadata() bool {
 func (o *NotebookResponseDataAttributes) SetMetadata(v NotebookMetadata) {
 	o.Metadata = &v
 }
+
 
 // GetModified returns the Modified field value if set, zero value otherwise.
 func (o *NotebookResponseDataAttributes) GetModified() time.Time {
@@ -210,6 +217,7 @@ func (o *NotebookResponseDataAttributes) SetModified(v time.Time) {
 	o.Modified = &v
 }
 
+
 // GetName returns the Name field value
 func (o *NotebookResponseDataAttributes) GetName() string {
 	if o == nil {
@@ -232,6 +240,7 @@ func (o *NotebookResponseDataAttributes) GetNameOk() (*string, bool) {
 func (o *NotebookResponseDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NotebookResponseDataAttributes) GetStatus() NotebookStatus {
@@ -265,6 +274,7 @@ func (o *NotebookResponseDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
+
 // GetTime returns the Time field value
 func (o *NotebookResponseDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil {
@@ -287,6 +297,8 @@ func (o *NotebookResponseDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool)
 func (o *NotebookResponseDataAttributes) SetTime(v NotebookGlobalTime) {
 	o.Time = v
 }
+
+
 
 func (o NotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -318,22 +330,23 @@ func (o NotebookResponseDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Cells *[]NotebookCellResponse `json:"cells"`
-		Name  *string                 `json:"name"`
-		Time  *NotebookGlobalTime     `json:"time"`
+		Name *string `json:"name"`
+		Time *NotebookGlobalTime `json:"time"`
 	}{}
 	all := struct {
-		Author   *NotebookAuthor        `json:"author,omitempty"`
-		Cells    []NotebookCellResponse `json:"cells"`
-		Created  *time.Time             `json:"created,omitempty"`
-		Metadata *NotebookMetadata      `json:"metadata,omitempty"`
-		Modified *time.Time             `json:"modified,omitempty"`
-		Name     string                 `json:"name"`
-		Status   *NotebookStatus        `json:"status,omitempty"`
-		Time     NotebookGlobalTime     `json:"time"`
+		Author *NotebookAuthor `json:"author,omitempty"`
+		Cells []NotebookCellResponse `json:"cells"`
+		Created *time.Time `json:"created,omitempty"`
+		Metadata *NotebookMetadata `json:"metadata,omitempty"`
+		Modified *time.Time `json:"modified,omitempty"`
+		Name string `json:"name"`
+		Status *NotebookStatus `json:"status,omitempty"`
+		Time NotebookGlobalTime `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -357,7 +370,7 @@ func (o *NotebookResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

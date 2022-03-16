@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricTagConfigurationMetricTypes The metric's type.
 type MetricTagConfigurationMetricTypes string
 
 // List of MetricTagConfigurationMetricTypes
 const (
-	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE        MetricTagConfigurationMetricTypes = "gauge"
-	METRICTAGCONFIGURATIONMETRICTYPES_COUNT        MetricTagConfigurationMetricTypes = "count"
-	METRICTAGCONFIGURATIONMETRICTYPES_RATE         MetricTagConfigurationMetricTypes = "rate"
+	METRICTAGCONFIGURATIONMETRICTYPES_GAUGE MetricTagConfigurationMetricTypes = "gauge"
+	METRICTAGCONFIGURATIONMETRICTYPES_COUNT MetricTagConfigurationMetricTypes = "count"
+	METRICTAGCONFIGURATIONMETRICTYPES_RATE MetricTagConfigurationMetricTypes = "rate"
 	METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION MetricTagConfigurationMetricTypes = "distribution"
 )
 

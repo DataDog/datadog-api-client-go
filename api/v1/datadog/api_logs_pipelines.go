@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type LogsPipelinesApiService service
 type apiCreateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipeline
+	body *LogsPipeline
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body 
 	req := apiCreateLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createLogsPipelineExecute(req)
@@ -748,7 +750,7 @@ type apiUpdateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
-	body       *LogsPipeline
+	body *LogsPipeline
 }
 
 /*
@@ -763,7 +765,7 @@ func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipel
 		ApiService: a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsPipelineExecute(req)
@@ -915,7 +917,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 type apiUpdateLogsPipelineOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipelinesOrder
+	body *LogsPipelinesOrder
 }
 
 /*
@@ -930,7 +932,7 @@ func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, 
 	req := apiUpdateLogsPipelineOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsPipelineOrderExecute(req)

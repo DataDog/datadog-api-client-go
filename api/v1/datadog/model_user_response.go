@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserResponse A Datadog User.
 type UserResponse struct {
 	// Create, edit, and disable users.
 	User *User `json:"user,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserResponse instantiates a new UserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewUserResponseWithDefaults() *UserResponse {
 	this := UserResponse{}
 	return &this
 }
-
 // GetUser returns the User field value if set, zero value otherwise.
 func (o *UserResponse) GetUser() User {
 	if o == nil || o.User == nil {
@@ -68,6 +73,8 @@ func (o *UserResponse) SetUser(v User) {
 	o.User = &v
 }
 
+
+
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o UserResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorOptionsAggregation Type of aggregation performed in the monitor query.
 type MonitorOptionsAggregation struct {
@@ -19,9 +23,11 @@ type MonitorOptionsAggregation struct {
 	// Metric type used in the monitor.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorOptionsAggregation instantiates a new MonitorOptionsAggregation object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewMonitorOptionsAggregationWithDefaults() *MonitorOptionsAggregation {
 	this := MonitorOptionsAggregation{}
 	return &this
 }
-
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *MonitorOptionsAggregation) GetGroupBy() string {
 	if o == nil || o.GroupBy == nil {
@@ -71,6 +76,7 @@ func (o *MonitorOptionsAggregation) HasGroupBy() bool {
 func (o *MonitorOptionsAggregation) SetGroupBy(v string) {
 	o.GroupBy = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *MonitorOptionsAggregation) GetMetric() string {
@@ -104,6 +110,7 @@ func (o *MonitorOptionsAggregation) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorOptionsAggregation) GetType() string {
 	if o == nil || o.Type == nil {
@@ -136,6 +143,8 @@ func (o *MonitorOptionsAggregation) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 func (o MonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o MonitorOptionsAggregation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorOptionsAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		GroupBy *string `json:"group_by,omitempty"`
-		Metric  *string `json:"metric,omitempty"`
-		Type    *string `json:"type,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Type *string `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ListStreamColumnWidth Widget column width.
 type ListStreamColumnWidth string
 
 // List of ListStreamColumnWidth
 const (
-	LISTSTREAMCOLUMNWIDTH_AUTO    ListStreamColumnWidth = "auto"
+	LISTSTREAMCOLUMNWIDTH_AUTO ListStreamColumnWidth = "auto"
 	LISTSTREAMCOLUMNWIDTH_COMPACT ListStreamColumnWidth = "compact"
-	LISTSTREAMCOLUMNWIDTH_FULL    ListStreamColumnWidth = "full"
+	LISTSTREAMCOLUMNWIDTH_FULL ListStreamColumnWidth = "full"
 )
 
 var allowedListStreamColumnWidthEnumValues = []ListStreamColumnWidth{

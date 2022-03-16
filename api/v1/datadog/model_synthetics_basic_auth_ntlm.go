@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBasicAuthNTLM Object to handle `NTLM` authentication when performing the test.
 type SyntheticsBasicAuthNTLM struct {
@@ -24,9 +27,11 @@ type SyntheticsBasicAuthNTLM struct {
 	// Workstation for the authentication to use when performing the test.
 	Workstation *string `json:"workstation,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBasicAuthNTLM instantiates a new SyntheticsBasicAuthNTLM object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewSyntheticsBasicAuthNTLMWithDefaults() *SyntheticsBasicAuthNTLM {
 	this.Type = type_
 	return &this
 }
-
 // GetDomain returns the Domain field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetDomain() string {
 	if o == nil || o.Domain == nil {
@@ -79,6 +83,7 @@ func (o *SyntheticsBasicAuthNTLM) HasDomain() bool {
 func (o *SyntheticsBasicAuthNTLM) SetDomain(v string) {
 	o.Domain = &v
 }
+
 
 // GetPassword returns the Password field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetPassword() string {
@@ -112,6 +117,7 @@ func (o *SyntheticsBasicAuthNTLM) SetPassword(v string) {
 	o.Password = &v
 }
 
+
 // GetType returns the Type field value
 func (o *SyntheticsBasicAuthNTLM) GetType() SyntheticsBasicAuthNTLMType {
 	if o == nil {
@@ -134,6 +140,7 @@ func (o *SyntheticsBasicAuthNTLM) GetTypeOk() (*SyntheticsBasicAuthNTLMType, boo
 func (o *SyntheticsBasicAuthNTLM) SetType(v SyntheticsBasicAuthNTLMType) {
 	o.Type = v
 }
+
 
 // GetUsername returns the Username field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetUsername() string {
@@ -167,6 +174,7 @@ func (o *SyntheticsBasicAuthNTLM) SetUsername(v string) {
 	o.Username = &v
 }
 
+
 // GetWorkstation returns the Workstation field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthNTLM) GetWorkstation() string {
 	if o == nil || o.Workstation == nil {
@@ -199,6 +207,8 @@ func (o *SyntheticsBasicAuthNTLM) SetWorkstation(v string) {
 	o.Workstation = &v
 }
 
+
+
 func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -224,17 +234,18 @@ func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Type *SyntheticsBasicAuthNTLMType `json:"type"`
 	}{}
 	all := struct {
-		Domain      *string                     `json:"domain,omitempty"`
-		Password    *string                     `json:"password,omitempty"`
-		Type        SyntheticsBasicAuthNTLMType `json:"type"`
-		Username    *string                     `json:"username,omitempty"`
-		Workstation *string                     `json:"workstation,omitempty"`
+		Domain *string `json:"domain,omitempty"`
+		Password *string `json:"password,omitempty"`
+		Type SyntheticsBasicAuthNTLMType `json:"type"`
+		Username *string `json:"username,omitempty"`
+		Workstation *string `json:"workstation,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

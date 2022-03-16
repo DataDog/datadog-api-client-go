@@ -4,6 +4,7 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
@@ -14,7 +15,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -28,7 +28,7 @@ type ServiceLevelObjectivesApiService service
 type apiCheckCanDeleteSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	ids        *string
+	ids *string
 }
 
 /*
@@ -40,7 +40,7 @@ func (a *ServiceLevelObjectivesApiService) CheckCanDeleteSLO(ctx _context.Contex
 	req := apiCheckCanDeleteSLORequest{
 		ApiService: a,
 		ctx:        ctx,
-		ids:        &ids,
+		ids: &ids,
 	}
 
 	return req.ApiService.checkCanDeleteSLOExecute(req)
@@ -190,7 +190,7 @@ func (a *ServiceLevelObjectivesApiService) checkCanDeleteSLOExecute(r apiCheckCa
 type apiCreateSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	body       *ServiceLevelObjectiveRequest
+	body *ServiceLevelObjectiveRequest
 }
 
 /*
@@ -201,7 +201,7 @@ func (a *ServiceLevelObjectivesApiService) CreateSLO(ctx _context.Context, body 
 	req := apiCreateSLORequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSLOExecute(req)
@@ -352,8 +352,8 @@ func (a *ServiceLevelObjectivesApiService) createSLOExecute(r apiCreateSLOReques
 type apiDeleteSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	force      *string
+	sloId string
+	force *string
 }
 
 type DeleteSLOOptionalParameters struct {
@@ -380,7 +380,7 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLO(ctx _context.Context, sloId
 	req := apiDeleteSLORequest{
 		ApiService: a,
 		ctx:        ctx,
-		sloId:      sloId,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
@@ -539,7 +539,7 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOExecute(r apiDeleteSLOReques
 type apiDeleteSLOTimeframeInBulkRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	body       *map[string][]SLOTimeframe
+	body *map[string][]SLOTimeframe
 }
 
 /*
@@ -554,7 +554,7 @@ func (a *ServiceLevelObjectivesApiService) DeleteSLOTimeframeInBulk(ctx _context
 	req := apiDeleteSLOTimeframeInBulkRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteSLOTimeframeInBulkExecute(req)
@@ -703,9 +703,9 @@ func (a *ServiceLevelObjectivesApiService) deleteSLOTimeframeInBulkExecute(r api
 }
 
 type apiGetSLORequest struct {
-	ctx                    _context.Context
-	ApiService             *ServiceLevelObjectivesApiService
-	sloId                  string
+	ctx        _context.Context
+	ApiService *ServiceLevelObjectivesApiService
+	sloId string
 	withConfiguredAlertIds *bool
 }
 
@@ -730,7 +730,7 @@ func (a *ServiceLevelObjectivesApiService) GetSLO(ctx _context.Context, sloId st
 	req := apiGetSLORequest{
 		ApiService: a,
 		ctx:        ctx,
-		sloId:      sloId,
+		sloId: sloId,
 	}
 
 	if len(o) > 1 {
@@ -879,7 +879,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOExecute(r apiGetSLORequest) (SL
 type apiGetSLOCorrectionsRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
+	sloId string
 }
 
 /*
@@ -890,7 +890,7 @@ func (a *ServiceLevelObjectivesApiService) GetSLOCorrections(ctx _context.Contex
 	req := apiGetSLOCorrectionsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		sloId:      sloId,
+		sloId: sloId,
 	}
 
 	return req.ApiService.getSLOCorrectionsExecute(req)
@@ -909,12 +909,12 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOCorrectionListResponse
 	)
-
+	
 	operationId := "GetSLOCorrections"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOCorrections")
@@ -1042,17 +1042,17 @@ func (a *ServiceLevelObjectivesApiService) getSLOCorrectionsExecute(r apiGetSLOC
 }
 
 type apiGetSLOHistoryRequest struct {
-	ctx             _context.Context
-	ApiService      *ServiceLevelObjectivesApiService
-	sloId           string
-	fromTs          *int64
-	toTs            *int64
-	target          *float64
+	ctx        _context.Context
+	ApiService *ServiceLevelObjectivesApiService
+	sloId string
+	fromTs *int64
+	toTs *int64
+	target *float64
 	applyCorrection *bool
 }
 
 type GetSLOHistoryOptionalParameters struct {
-	Target          *float64
+	Target *float64
 	ApplyCorrection *bool
 }
 
@@ -1084,9 +1084,9 @@ func (a *ServiceLevelObjectivesApiService) GetSLOHistory(ctx _context.Context, s
 	req := apiGetSLOHistoryRequest{
 		ApiService: a,
 		ctx:        ctx,
-		sloId:      sloId,
-		fromTs:     &fromTs,
-		toTs:       &toTs,
+		sloId: sloId,
+		fromTs: &fromTs,
+		toTs: &toTs,
 	}
 
 	if len(o) > 1 {
@@ -1115,12 +1115,12 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 		localVarFileBytes    []byte
 		localVarReturnValue  SLOHistoryResponse
 	)
-
+	
 	operationId := "GetSLOHistory"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceLevelObjectivesApiService.GetSLOHistory")
@@ -1262,23 +1262,23 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 }
 
 type apiListSLOsRequest struct {
-	ctx          _context.Context
-	ApiService   *ServiceLevelObjectivesApiService
-	ids          *string
-	query        *string
-	tagsQuery    *string
+	ctx        _context.Context
+	ApiService *ServiceLevelObjectivesApiService
+	ids *string
+	query *string
+	tagsQuery *string
 	metricsQuery *string
-	limit        *int64
-	offset       *int64
+	limit *int64
+	offset *int64
 }
 
 type ListSLOsOptionalParameters struct {
-	Ids          *string
-	Query        *string
-	TagsQuery    *string
+	Ids *string
+	Query *string
+	TagsQuery *string
 	MetricsQuery *string
-	Limit        *int64
-	Offset       *int64
+	Limit *int64
+	Offset *int64
 }
 
 func NewListSLOsOptionalParameters() *ListSLOsOptionalParameters {
@@ -1495,8 +1495,8 @@ func (a *ServiceLevelObjectivesApiService) listSLOsExecute(r apiListSLOsRequest)
 type apiUpdateSLORequest struct {
 	ctx        _context.Context
 	ApiService *ServiceLevelObjectivesApiService
-	sloId      string
-	body       *ServiceLevelObjective
+	sloId string
+	body *ServiceLevelObjective
 }
 
 /*
@@ -1507,8 +1507,8 @@ func (a *ServiceLevelObjectivesApiService) UpdateSLO(ctx _context.Context, sloId
 	req := apiUpdateSLORequest{
 		ApiService: a,
 		ctx:        ctx,
-		sloId:      sloId,
-		body:       &body,
+		sloId: sloId,
+		body: &body,
 	}
 
 	return req.ApiService.updateSLOExecute(req)

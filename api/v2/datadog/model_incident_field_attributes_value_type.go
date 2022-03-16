@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentFieldAttributesValueType Type of the multiple value field definitions.
 type IncidentFieldAttributesValueType string
 
 // List of IncidentFieldAttributesValueType
 const (
-	INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT  IncidentFieldAttributesValueType = "multiselect"
-	INCIDENTFIELDATTRIBUTESVALUETYPE_TEXTARRAY    IncidentFieldAttributesValueType = "textarray"
-	INCIDENTFIELDATTRIBUTESVALUETYPE_METRICTAG    IncidentFieldAttributesValueType = "metrictag"
+	INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT IncidentFieldAttributesValueType = "multiselect"
+	INCIDENTFIELDATTRIBUTESVALUETYPE_TEXTARRAY IncidentFieldAttributesValueType = "textarray"
+	INCIDENTFIELDATTRIBUTESVALUETYPE_METRICTAG IncidentFieldAttributesValueType = "metrictag"
 	INCIDENTFIELDATTRIBUTESVALUETYPE_AUTOCOMPLETE IncidentFieldAttributesValueType = "autocomplete"
 )
 

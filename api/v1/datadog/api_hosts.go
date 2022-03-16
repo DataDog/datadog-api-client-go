@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type HostsApiService service
 type apiGetHostTotalsRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
-	from       *int64
+	from *int64
 }
 
 type GetHostTotalsOptionalParameters struct {
@@ -196,27 +198,27 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 }
 
 type apiListHostsRequest struct {
-	ctx                   _context.Context
-	ApiService            *HostsApiService
-	filter                *string
-	sortField             *string
-	sortDir               *string
-	start                 *int64
-	count                 *int64
-	from                  *int64
+	ctx        _context.Context
+	ApiService *HostsApiService
+	filter *string
+	sortField *string
+	sortDir *string
+	start *int64
+	count *int64
+	from *int64
 	includeMutedHostsData *bool
-	includeHostsMetadata  *bool
+	includeHostsMetadata *bool
 }
 
 type ListHostsOptionalParameters struct {
-	Filter                *string
-	SortField             *string
-	SortDir               *string
-	Start                 *int64
-	Count                 *int64
-	From                  *int64
+	Filter *string
+	SortField *string
+	SortDir *string
+	Start *int64
+	Count *int64
+	From *int64
 	IncludeMutedHostsData *bool
-	IncludeHostsMetadata  *bool
+	IncludeHostsMetadata *bool
 }
 
 func NewListHostsOptionalParameters() *ListHostsOptionalParameters {
@@ -442,8 +444,8 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 type apiMuteHostRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
-	hostName   string
-	body       *HostMuteSettings
+	hostName string
+	body *HostMuteSettings
 }
 
 /*
@@ -454,8 +456,8 @@ func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body H
 	req := apiMuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName:   hostName,
-		body:       &body,
+		hostName: hostName,
+		body: &body,
 	}
 
 	return req.ApiService.muteHostExecute(req)
@@ -607,7 +609,7 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 type apiUnmuteHostRequest struct {
 	ctx        _context.Context
 	ApiService *HostsApiService
-	hostName   string
+	hostName string
 }
 
 /*
@@ -618,7 +620,7 @@ func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (Hos
 	req := apiUnmuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
-		hostName:   hostName,
+		hostName: hostName,
 	}
 
 	return req.ApiService.unmuteHostExecute(req)

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogQueryDefinitionGroupBySort Define a sorting method.
 type LogQueryDefinitionGroupBySort struct {
@@ -20,9 +23,11 @@ type LogQueryDefinitionGroupBySort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogQueryDefinitionGroupBySort instantiates a new LogQueryDefinitionGroupBySort object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewLogQueryDefinitionGroupBySortWithDefaults() *LogQueryDefinitionGroupBySo
 	this := LogQueryDefinitionGroupBySort{}
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value
 func (o *LogQueryDefinitionGroupBySort) GetAggregation() string {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *LogQueryDefinitionGroupBySort) GetAggregationOk() (*string, bool) {
 func (o *LogQueryDefinitionGroupBySort) SetAggregation(v string) {
 	o.Aggregation = v
 }
+
 
 // GetFacet returns the Facet field value if set, zero value otherwise.
 func (o *LogQueryDefinitionGroupBySort) GetFacet() string {
@@ -98,6 +103,7 @@ func (o *LogQueryDefinitionGroupBySort) SetFacet(v string) {
 	o.Facet = &v
 }
 
+
 // GetOrder returns the Order field value
 func (o *LogQueryDefinitionGroupBySort) GetOrder() WidgetSort {
 	if o == nil {
@@ -121,6 +127,8 @@ func (o *LogQueryDefinitionGroupBySort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
+
+
 func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -138,16 +146,17 @@ func (o LogQueryDefinitionGroupBySort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogQueryDefinitionGroupBySort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Aggregation *string     `json:"aggregation"`
-		Order       *WidgetSort `json:"order"`
+		Aggregation *string `json:"aggregation"`
+		Order *WidgetSort `json:"order"`
 	}{}
 	all := struct {
-		Aggregation string     `json:"aggregation"`
-		Facet       *string    `json:"facet,omitempty"`
-		Order       WidgetSort `json:"order"`
+		Aggregation string `json:"aggregation"`
+		Facet *string `json:"facet,omitempty"`
+		Order WidgetSort `json:"order"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

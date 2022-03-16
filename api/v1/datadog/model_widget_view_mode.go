@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetViewMode Define how you want the SLO to be displayed.
 type WidgetViewMode string
 
 // List of WidgetViewMode
 const (
-	WIDGETVIEWMODE_OVERALL   WidgetViewMode = "overall"
+	WIDGETVIEWMODE_OVERALL WidgetViewMode = "overall"
 	WIDGETVIEWMODE_COMPONENT WidgetViewMode = "component"
-	WIDGETVIEWMODE_BOTH      WidgetViewMode = "both"
+	WIDGETVIEWMODE_BOTH WidgetViewMode = "both"
 )
 
 var allowedWidgetViewModeEnumValues = []WidgetViewMode{

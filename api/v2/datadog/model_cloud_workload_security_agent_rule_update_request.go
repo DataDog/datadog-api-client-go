@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // CloudWorkloadSecurityAgentRuleUpdateRequest Request object that includes the Agent rule with the attributes to update.
 type CloudWorkloadSecurityAgentRuleUpdateRequest struct {
 	// Object for a single Agent rule.
 	Data CloudWorkloadSecurityAgentRuleUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCloudWorkloadSecurityAgentRuleUpdateRequest instantiates a new CloudWorkloadSecurityAgentRuleUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewCloudWorkloadSecurityAgentRuleUpdateRequestWithDefaults() *CloudWorkload
 	this := CloudWorkloadSecurityAgentRuleUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *CloudWorkloadSecurityAgentRuleUpdateRequest) GetData() CloudWorkloadSecurityAgentRuleUpdateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *CloudWorkloadSecurityAgentRuleUpdateRequest) SetData(v CloudWorkloadSec
 	o.Data = v
 }
 
+
+
 func (o CloudWorkloadSecurityAgentRuleUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o CloudWorkloadSecurityAgentRuleUpdateRequest) MarshalJSON() ([]byte, erro
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *CloudWorkloadSecurityAgentRuleUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

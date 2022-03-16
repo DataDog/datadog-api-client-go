@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ProcessSummary Process summary object.
 type ProcessSummary struct {
@@ -19,9 +23,11 @@ type ProcessSummary struct {
 	// Type of process summary.
 	Type *ProcessSummaryType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewProcessSummary instantiates a new ProcessSummary object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewProcessSummaryWithDefaults() *ProcessSummary {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *ProcessSummary) GetAttributes() ProcessSummaryAttributes {
 	if o == nil || o.Attributes == nil {
@@ -75,6 +80,7 @@ func (o *ProcessSummary) HasAttributes() bool {
 func (o *ProcessSummary) SetAttributes(v ProcessSummaryAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *ProcessSummary) GetId() string {
@@ -108,6 +114,7 @@ func (o *ProcessSummary) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *ProcessSummary) GetType() ProcessSummaryType {
 	if o == nil || o.Type == nil {
@@ -140,6 +147,8 @@ func (o *ProcessSummary) SetType(v ProcessSummaryType) {
 	o.Type = &v
 }
 
+
+
 func (o ProcessSummary) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -161,12 +170,13 @@ func (o ProcessSummary) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ProcessSummary) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *ProcessSummaryAttributes `json:"attributes,omitempty"`
-		Id         *string                   `json:"id,omitempty"`
-		Type       *ProcessSummaryType       `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *ProcessSummaryType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -177,7 +187,7 @@ func (o *ProcessSummary) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

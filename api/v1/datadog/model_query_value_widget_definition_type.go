@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // QueryValueWidgetDefinitionType Type of the query value widget.
 type QueryValueWidgetDefinitionType string

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RolesResponse Response containing information about multiple roles.
 type RolesResponse struct {
@@ -17,9 +21,11 @@ type RolesResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRolesResponse instantiates a new RolesResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewRolesResponseWithDefaults() *RolesResponse {
 	this := RolesResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RolesResponse) GetData() []Role {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *RolesResponse) HasData() bool {
 func (o *RolesResponse) SetData(v []Role) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RolesResponse) GetMeta() ResponseMetaAttributes {
@@ -102,6 +108,8 @@ func (o *RolesResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
+
+
 func (o RolesResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o RolesResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RolesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]Role                 `json:"data,omitempty"`
+		Data *[]Role `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

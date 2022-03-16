@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AWSLogsAsyncResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
 type AWSLogsAsyncResponse struct {
@@ -17,9 +21,11 @@ type AWSLogsAsyncResponse struct {
 	// Status of the properties.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSLogsAsyncResponse instantiates a new AWSLogsAsyncResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewAWSLogsAsyncResponseWithDefaults() *AWSLogsAsyncResponse {
 	this := AWSLogsAsyncResponse{}
 	return &this
 }
-
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncError {
 	if o == nil || o.Errors == nil {
@@ -69,6 +74,7 @@ func (o *AWSLogsAsyncResponse) HasErrors() bool {
 func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncError) {
 	o.Errors = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *AWSLogsAsyncResponse) GetStatus() string {
@@ -102,6 +108,8 @@ func (o *AWSLogsAsyncResponse) SetStatus(v string) {
 	o.Status = &v
 }
 
+
+
 func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AWSLogsAsyncResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
-		Status *string              `json:"status,omitempty"`
+		Status *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

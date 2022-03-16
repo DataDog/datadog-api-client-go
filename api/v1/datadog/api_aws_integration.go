@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type AWSIntegrationApiService service
 type apiCreateAWSAccountRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
 
 /*
@@ -39,7 +42,7 @@ func (a *AWSIntegrationApiService) CreateAWSAccount(ctx _context.Context, body A
 	req := apiCreateAWSAccountRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAWSAccountExecute(req)
@@ -200,7 +203,7 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 type apiCreateAWSTagFilterRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterCreateRequest
+	body *AWSTagFilterCreateRequest
 }
 
 /*
@@ -211,7 +214,7 @@ func (a *AWSIntegrationApiService) CreateAWSTagFilter(ctx _context.Context, body
 	req := apiCreateAWSTagFilterRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAWSTagFilterExecute(req)
@@ -362,7 +365,7 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 type apiCreateNewAWSExternalIDRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccount
+	body *AWSAccount
 }
 
 /*
@@ -373,7 +376,7 @@ func (a *AWSIntegrationApiService) CreateNewAWSExternalID(ctx _context.Context, 
 	req := apiCreateNewAWSExternalIDRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createNewAWSExternalIDExecute(req)
@@ -524,7 +527,7 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 type apiDeleteAWSAccountRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSAccountDeleteRequest
+	body *AWSAccountDeleteRequest
 }
 
 /*
@@ -535,7 +538,7 @@ func (a *AWSIntegrationApiService) DeleteAWSAccount(ctx _context.Context, body A
 	req := apiDeleteAWSAccountRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteAWSAccountExecute(req)
@@ -696,7 +699,7 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 type apiDeleteAWSTagFilterRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	body       *AWSTagFilterDeleteRequest
+	body *AWSTagFilterDeleteRequest
 }
 
 /*
@@ -707,7 +710,7 @@ func (a *AWSIntegrationApiService) DeleteAWSTagFilter(ctx _context.Context, body
 	req := apiDeleteAWSTagFilterRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteAWSTagFilterExecute(req)
@@ -856,16 +859,16 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 }
 
 type apiListAWSAccountsRequest struct {
-	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
-	accountId   *string
-	roleName    *string
+	ctx        _context.Context
+	ApiService *AWSIntegrationApiService
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
 
 type ListAWSAccountsOptionalParameters struct {
-	AccountId   *string
-	RoleName    *string
+	AccountId *string
+	RoleName *string
 	AccessKeyId *string
 }
 
@@ -1049,7 +1052,7 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 type apiListAWSTagFiltersRequest struct {
 	ctx        _context.Context
 	ApiService *AWSIntegrationApiService
-	accountId  *string
+	accountId *string
 }
 
 /*
@@ -1060,7 +1063,7 @@ func (a *AWSIntegrationApiService) ListAWSTagFilters(ctx _context.Context, accou
 	req := apiListAWSTagFiltersRequest{
 		ApiService: a,
 		ctx:        ctx,
-		accountId:  &accountId,
+		accountId: &accountId,
 	}
 
 	return req.ApiService.listAWSTagFiltersExecute(req)
@@ -1333,17 +1336,17 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 }
 
 type apiUpdateAWSAccountRequest struct {
-	ctx         _context.Context
-	ApiService  *AWSIntegrationApiService
-	body        *AWSAccount
-	accountId   *string
-	roleName    *string
+	ctx        _context.Context
+	ApiService *AWSIntegrationApiService
+	body *AWSAccount
+	accountId *string
+	roleName *string
 	accessKeyId *string
 }
 
 type UpdateAWSAccountOptionalParameters struct {
-	AccountId   *string
-	RoleName    *string
+	AccountId *string
+	RoleName *string
 	AccessKeyId *string
 }
 
@@ -1372,7 +1375,7 @@ func (a *AWSIntegrationApiService) UpdateAWSAccount(ctx _context.Context, body A
 	req := apiUpdateAWSAccountRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {

@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentTeamCreateRequest Create request with an incident team payload.
 type IncidentTeamCreateRequest struct {
 	// Incident Team data for a create request.
 	Data IncidentTeamCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentTeamCreateRequest instantiates a new IncidentTeamCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewIncidentTeamCreateRequestWithDefaults() *IncidentTeamCreateRequest {
 	this := IncidentTeamCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *IncidentTeamCreateRequest) GetData() IncidentTeamCreateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *IncidentTeamCreateRequest) SetData(v IncidentTeamCreateData) {
 	o.Data = v
 }
 
+
+
 func (o IncidentTeamCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o IncidentTeamCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *IncidentTeamCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

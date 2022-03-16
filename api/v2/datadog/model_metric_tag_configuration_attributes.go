@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // MetricTagConfigurationAttributes Object containing the definition of a metric tag configuration attributes.
 type MetricTagConfigurationAttributes struct {
@@ -42,9 +45,11 @@ type MetricTagConfigurationAttributes struct {
 	// List of tag keys on which to group.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricTagConfigurationAttributes instantiates a new MetricTagConfigurationAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -66,7 +71,6 @@ func NewMetricTagConfigurationAttributesWithDefaults() *MetricTagConfigurationAt
 	this.MetricType = &metricType
 	return &this
 }
-
 // GetAggregations returns the Aggregations field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetAggregations() []MetricCustomAggregation {
 	if o == nil || o.Aggregations == nil {
@@ -98,6 +102,7 @@ func (o *MetricTagConfigurationAttributes) HasAggregations() bool {
 func (o *MetricTagConfigurationAttributes) SetAggregations(v []MetricCustomAggregation) {
 	o.Aggregations = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetCreatedAt() time.Time {
@@ -131,6 +136,7 @@ func (o *MetricTagConfigurationAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetIncludePercentiles() bool {
 	if o == nil || o.IncludePercentiles == nil {
@@ -162,6 +168,7 @@ func (o *MetricTagConfigurationAttributes) HasIncludePercentiles() bool {
 func (o *MetricTagConfigurationAttributes) SetIncludePercentiles(v bool) {
 	o.IncludePercentiles = &v
 }
+
 
 // GetMetricType returns the MetricType field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetMetricType() MetricTagConfigurationMetricTypes {
@@ -195,6 +202,7 @@ func (o *MetricTagConfigurationAttributes) SetMetricType(v MetricTagConfiguratio
 	o.MetricType = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -226,6 +234,7 @@ func (o *MetricTagConfigurationAttributes) HasModifiedAt() bool {
 func (o *MetricTagConfigurationAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricTagConfigurationAttributes) GetTags() []string {
@@ -259,6 +268,8 @@ func (o *MetricTagConfigurationAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
+
 func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -289,15 +300,16 @@ func (o MetricTagConfigurationAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation         `json:"aggregations,omitempty"`
-		CreatedAt          *time.Time                         `json:"created_at,omitempty"`
-		IncludePercentiles *bool                              `json:"include_percentiles,omitempty"`
-		MetricType         *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
-		ModifiedAt         *time.Time                         `json:"modified_at,omitempty"`
-		Tags               *[]string                          `json:"tags,omitempty"`
+		Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		IncludePercentiles *bool `json:"include_percentiles,omitempty"`
+		MetricType *MetricTagConfigurationMetricTypes `json:"metric_type,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -308,7 +320,7 @@ func (o *MetricTagConfigurationAttributes) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.MetricType; v != nil && !v.IsValid() {
+	if v := all.MetricType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookToplistCellAttributes The attributes of a notebook `toplist` cell.
 type NotebookToplistCellAttributes struct {
@@ -22,9 +25,11 @@ type NotebookToplistCellAttributes struct {
 	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
 	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookToplistCellAttributes instantiates a new NotebookToplistCellAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewNotebookToplistCellAttributesWithDefaults() *NotebookToplistCellAttribut
 	this := NotebookToplistCellAttributes{}
 	return &this
 }
-
 // GetDefinition returns the Definition field value
 func (o *NotebookToplistCellAttributes) GetDefinition() ToplistWidgetDefinition {
 	if o == nil {
@@ -66,6 +70,7 @@ func (o *NotebookToplistCellAttributes) GetDefinitionOk() (*ToplistWidgetDefinit
 func (o *NotebookToplistCellAttributes) SetDefinition(v ToplistWidgetDefinition) {
 	o.Definition = v
 }
+
 
 // GetGraphSize returns the GraphSize field value if set, zero value otherwise.
 func (o *NotebookToplistCellAttributes) GetGraphSize() NotebookGraphSize {
@@ -99,6 +104,7 @@ func (o *NotebookToplistCellAttributes) SetGraphSize(v NotebookGraphSize) {
 	o.GraphSize = &v
 }
 
+
 // GetSplitBy returns the SplitBy field value if set, zero value otherwise.
 func (o *NotebookToplistCellAttributes) GetSplitBy() NotebookSplitBy {
 	if o == nil || o.SplitBy == nil {
@@ -131,6 +137,7 @@ func (o *NotebookToplistCellAttributes) SetSplitBy(v NotebookSplitBy) {
 	o.SplitBy = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookToplistCellAttributes) GetTime() NotebookCellTime {
 	if o == nil || o.Time.Get() == nil {
@@ -144,7 +151,7 @@ func (o *NotebookToplistCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookToplistCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -163,7 +170,6 @@ func (o *NotebookToplistCellAttributes) HasTime() bool {
 func (o *NotebookToplistCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookToplistCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -173,6 +179,8 @@ func (o *NotebookToplistCellAttributes) SetTimeNil() {
 func (o *NotebookToplistCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
+
+
 
 func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -196,16 +204,17 @@ func (o NotebookToplistCellAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Definition *ToplistWidgetDefinition `json:"definition"`
 	}{}
 	all := struct {
-		Definition ToplistWidgetDefinition  `json:"definition"`
-		GraphSize  *NotebookGraphSize       `json:"graph_size,omitempty"`
-		SplitBy    *NotebookSplitBy         `json:"split_by,omitempty"`
-		Time       NullableNotebookCellTime `json:"time,omitempty"`
+		Definition ToplistWidgetDefinition `json:"definition"`
+		GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+		SplitBy *NotebookSplitBy `json:"split_by,omitempty"`
+		Time NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -223,7 +232,7 @@ func (o *NotebookToplistCellAttributes) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.GraphSize; v != nil && !v.IsValid() {
+	if v := all.GraphSize; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

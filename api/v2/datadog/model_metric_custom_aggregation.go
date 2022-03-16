@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricCustomAggregation A time and space aggregation combination for use in query.
 type MetricCustomAggregation struct {
@@ -18,9 +21,11 @@ type MetricCustomAggregation struct {
 	// A time aggregation for use in query.
 	Time MetricCustomTimeAggregation `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricCustomAggregation instantiates a new MetricCustomAggregation object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewMetricCustomAggregationWithDefaults() *MetricCustomAggregation {
 	this := MetricCustomAggregation{}
 	return &this
 }
-
 // GetSpace returns the Space field value
 func (o *MetricCustomAggregation) GetSpace() MetricCustomSpaceAggregation {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *MetricCustomAggregation) GetSpaceOk() (*MetricCustomSpaceAggregation, b
 func (o *MetricCustomAggregation) SetSpace(v MetricCustomSpaceAggregation) {
 	o.Space = v
 }
+
 
 // GetTime returns the Time field value
 func (o *MetricCustomAggregation) GetTime() MetricCustomTimeAggregation {
@@ -87,6 +92,8 @@ func (o *MetricCustomAggregation) SetTime(v MetricCustomTimeAggregation) {
 	o.Time = v
 }
 
+
+
 func (o MetricCustomAggregation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,15 +108,16 @@ func (o MetricCustomAggregation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricCustomAggregation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Space *MetricCustomSpaceAggregation `json:"space"`
-		Time  *MetricCustomTimeAggregation  `json:"time"`
+		Time *MetricCustomTimeAggregation `json:"time"`
 	}{}
 	all := struct {
 		Space MetricCustomSpaceAggregation `json:"space"`
-		Time  MetricCustomTimeAggregation  `json:"time"`
+		Time MetricCustomTimeAggregation `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

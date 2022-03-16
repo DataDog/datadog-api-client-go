@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type AWSLogsIntegrationApiService service
 type apiCheckAWSLogsLambdaAsyncRequest struct {
 	ctx        _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
 
 /*
@@ -43,7 +46,7 @@ func (a *AWSLogsIntegrationApiService) CheckAWSLogsLambdaAsync(ctx _context.Cont
 	req := apiCheckAWSLogsLambdaAsyncRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.checkAWSLogsLambdaAsyncExecute(req)
@@ -194,7 +197,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 type apiCheckAWSLogsServicesAsyncRequest struct {
 	ctx        _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
 
 /*
@@ -214,7 +217,7 @@ func (a *AWSLogsIntegrationApiService) CheckAWSLogsServicesAsync(ctx _context.Co
 	req := apiCheckAWSLogsServicesAsyncRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.checkAWSLogsServicesAsyncExecute(req)
@@ -365,7 +368,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 type apiCreateAWSLambdaARNRequest struct {
 	ctx        _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
 
 /*
@@ -376,7 +379,7 @@ func (a *AWSLogsIntegrationApiService) CreateAWSLambdaARN(ctx _context.Context, 
 	req := apiCreateAWSLambdaARNRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAWSLambdaARNExecute(req)
@@ -527,7 +530,7 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 type apiDeleteAWSLambdaARNRequest struct {
 	ctx        _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSAccountAndLambdaRequest
+	body *AWSAccountAndLambdaRequest
 }
 
 /*
@@ -538,7 +541,7 @@ func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context, 
 	req := apiDeleteAWSLambdaARNRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteAWSLambdaARNExecute(req)
@@ -689,7 +692,7 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 type apiEnableAWSLogServicesRequest struct {
 	ctx        _context.Context
 	ApiService *AWSLogsIntegrationApiService
-	body       *AWSLogsServicesRequest
+	body *AWSLogsServicesRequest
 }
 
 /*
@@ -700,7 +703,7 @@ func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context
 	req := apiEnableAWSLogServicesRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.enableAWSLogServicesExecute(req)

@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsAggregateResponseStatus The status of the response
 type LogsAggregateResponseStatus string
 
 // List of LogsAggregateResponseStatus
 const (
-	LOGSAGGREGATERESPONSESTATUS_DONE    LogsAggregateResponseStatus = "done"
+	LOGSAGGREGATERESPONSESTATUS_DONE LogsAggregateResponseStatus = "done"
 	LOGSAGGREGATERESPONSESTATUS_TIMEOUT LogsAggregateResponseStatus = "timeout"
 )
 

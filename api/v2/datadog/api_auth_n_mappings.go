@@ -4,16 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
-	"strings"
 )
 
 // Linger please
@@ -27,7 +28,7 @@ type AuthNMappingsApiService service
 type apiCreateAuthNMappingRequest struct {
 	ctx        _context.Context
 	ApiService *AuthNMappingsApiService
-	body       *AuthNMappingCreateRequest
+	body *AuthNMappingCreateRequest
 }
 
 /*
@@ -38,7 +39,7 @@ func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body 
 	req := apiCreateAuthNMappingRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAuthNMappingExecute(req)
@@ -197,8 +198,8 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 }
 
 type apiDeleteAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx        _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
 }
 
@@ -208,8 +209,8 @@ type apiDeleteAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	req := apiDeleteAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx:        ctx,
 		authnMappingId: authnMappingId,
 	}
 
@@ -334,8 +335,8 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 }
 
 type apiGetAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx        _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
 }
 
@@ -345,8 +346,8 @@ type apiGetAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req := apiGetAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx:        ctx,
 		authnMappingId: authnMappingId,
 	}
 
@@ -484,19 +485,19 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 type apiListAuthNMappingsRequest struct {
 	ctx        _context.Context
 	ApiService *AuthNMappingsApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sort       *AuthNMappingsSort
-	include    *[]string
-	filter     *string
+	sort *AuthNMappingsSort
+	include *[]string
+	filter *string
 }
 
 type ListAuthNMappingsOptionalParameters struct {
-	PageSize   *int64
+	PageSize *int64
 	PageNumber *int64
-	Sort       *AuthNMappingsSort
-	Include    *[]string
-	Filter     *string
+	Sort *AuthNMappingsSort
+	Include *[]string
+	Filter *string
 }
 
 func NewListAuthNMappingsOptionalParameters() *ListAuthNMappingsOptionalParameters {
@@ -691,10 +692,10 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 }
 
 type apiUpdateAuthNMappingRequest struct {
-	ctx            _context.Context
-	ApiService     *AuthNMappingsApiService
+	ctx        _context.Context
+	ApiService *AuthNMappingsApiService
 	authnMappingId string
-	body           *AuthNMappingUpdateRequest
+	body *AuthNMappingUpdateRequest
 }
 
 /*
@@ -703,10 +704,10 @@ type apiUpdateAuthNMappingRequest struct {
  */
 func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req := apiUpdateAuthNMappingRequest{
-		ApiService:     a,
-		ctx:            ctx,
+		ApiService: a,
+		ctx:        ctx,
 		authnMappingId: authnMappingId,
-		body:           &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateAuthNMappingExecute(req)

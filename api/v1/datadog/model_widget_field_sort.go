@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetFieldSort Which column and order to sort by
 type WidgetFieldSort struct {
@@ -18,9 +21,11 @@ type WidgetFieldSort struct {
 	// Widget sorting methods.
 	Order WidgetSort `json:"order"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetFieldSort instantiates a new WidgetFieldSort object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewWidgetFieldSortWithDefaults() *WidgetFieldSort {
 	this := WidgetFieldSort{}
 	return &this
 }
-
 // GetColumn returns the Column field value
 func (o *WidgetFieldSort) GetColumn() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *WidgetFieldSort) GetColumnOk() (*string, bool) {
 func (o *WidgetFieldSort) SetColumn(v string) {
 	o.Column = v
 }
+
 
 // GetOrder returns the Order field value
 func (o *WidgetFieldSort) GetOrder() WidgetSort {
@@ -87,6 +92,8 @@ func (o *WidgetFieldSort) SetOrder(v WidgetSort) {
 	o.Order = v
 }
 
+
+
 func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,15 +108,16 @@ func (o WidgetFieldSort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetFieldSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Column *string     `json:"column"`
-		Order  *WidgetSort `json:"order"`
+		Column *string `json:"column"`
+		Order *WidgetSort `json:"order"`
 	}{}
 	all := struct {
-		Column string     `json:"column"`
-		Order  WidgetSort `json:"order"`
+		Column string `json:"column"`
+		Order WidgetSort `json:"order"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

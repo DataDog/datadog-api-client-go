@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTestOptionsRetry Object describing the retry strategy to apply to a Synthetic test.
 type SyntheticsTestOptionsRetry struct {
@@ -19,9 +23,11 @@ type SyntheticsTestOptionsRetry struct {
 	// 300ms.
 	Interval *float64 `json:"interval,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTestOptionsRetry instantiates a new SyntheticsTestOptionsRetry object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewSyntheticsTestOptionsRetryWithDefaults() *SyntheticsTestOptionsRetry {
 	this := SyntheticsTestOptionsRetry{}
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsRetry) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -71,6 +76,7 @@ func (o *SyntheticsTestOptionsRetry) HasCount() bool {
 func (o *SyntheticsTestOptionsRetry) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *SyntheticsTestOptionsRetry) GetInterval() float64 {
@@ -104,6 +110,8 @@ func (o *SyntheticsTestOptionsRetry) SetInterval(v float64) {
 	o.Interval = &v
 }
 
+
+
 func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,10 +130,11 @@ func (o SyntheticsTestOptionsRetry) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsTestOptionsRetry) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Count    *int64   `json:"count,omitempty"`
+		Count *int64 `json:"count,omitempty"`
 		Interval *float64 `json:"interval,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

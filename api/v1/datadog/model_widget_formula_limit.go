@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetFormulaLimit Options for limiting results returned.
 type WidgetFormulaLimit struct {
@@ -17,9 +21,11 @@ type WidgetFormulaLimit struct {
 	// Direction of sort.
 	Order *QuerySortOrder `json:"order,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetFormulaLimit instantiates a new WidgetFormulaLimit object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewWidgetFormulaLimitWithDefaults() *WidgetFormulaLimit {
 	this.Order = &order
 	return &this
 }
-
 // GetCount returns the Count field value if set, zero value otherwise.
 func (o *WidgetFormulaLimit) GetCount() int64 {
 	if o == nil || o.Count == nil {
@@ -73,6 +78,7 @@ func (o *WidgetFormulaLimit) HasCount() bool {
 func (o *WidgetFormulaLimit) SetCount(v int64) {
 	o.Count = &v
 }
+
 
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *WidgetFormulaLimit) GetOrder() QuerySortOrder {
@@ -106,6 +112,8 @@ func (o *WidgetFormulaLimit) SetOrder(v QuerySortOrder) {
 	o.Order = &v
 }
 
+
+
 func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -124,10 +132,11 @@ func (o WidgetFormulaLimit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Count *int64          `json:"count,omitempty"`
+		Count *int64 `json:"count,omitempty"`
 		Order *QuerySortOrder `json:"order,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -139,7 +148,7 @@ func (o *WidgetFormulaLimit) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
+	if v := all.Order; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

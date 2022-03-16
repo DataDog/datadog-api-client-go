@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // QuerySortOrder Direction of sort.
 type QuerySortOrder string
 
 // List of QuerySortOrder
 const (
-	QUERYSORTORDER_ASC  QuerySortOrder = "asc"
+	QUERYSORTORDER_ASC QuerySortOrder = "asc"
 	QUERYSORTORDER_DESC QuerySortOrder = "desc"
 )
 

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsMetricCreateAttributes The object describing the Datadog log-based metric to create.
 type LogsMetricCreateAttributes struct {
@@ -20,9 +23,11 @@ type LogsMetricCreateAttributes struct {
 	// The rules for the group by.
 	GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricCreateAttributes instantiates a new LogsMetricCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewLogsMetricCreateAttributesWithDefaults() *LogsMetricCreateAttributes {
 	this := LogsMetricCreateAttributes{}
 	return &this
 }
-
 // GetCompute returns the Compute field value
 func (o *LogsMetricCreateAttributes) GetCompute() LogsMetricCompute {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *LogsMetricCreateAttributes) GetComputeOk() (*LogsMetricCompute, bool) {
 func (o *LogsMetricCreateAttributes) SetCompute(v LogsMetricCompute) {
 	o.Compute = v
 }
+
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *LogsMetricCreateAttributes) GetFilter() LogsMetricFilter {
@@ -97,6 +102,7 @@ func (o *LogsMetricCreateAttributes) SetFilter(v LogsMetricFilter) {
 	o.Filter = &v
 }
 
+
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogsMetricCreateAttributes) GetGroupBy() []LogsMetricGroupBy {
 	if o == nil || o.GroupBy == nil {
@@ -129,6 +135,8 @@ func (o *LogsMetricCreateAttributes) SetGroupBy(v []LogsMetricGroupBy) {
 	o.GroupBy = &v
 }
 
+
+
 func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -148,14 +156,15 @@ func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Compute *LogsMetricCompute `json:"compute"`
 	}{}
 	all := struct {
-		Compute LogsMetricCompute    `json:"compute"`
-		Filter  *LogsMetricFilter    `json:"filter,omitempty"`
+		Compute LogsMetricCompute `json:"compute"`
+		Filter *LogsMetricFilter `json:"filter,omitempty"`
 		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

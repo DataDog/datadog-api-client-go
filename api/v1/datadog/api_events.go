@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type EventsApiService service
 type apiCreateEventRequest struct {
 	ctx        _context.Context
 	ApiService *EventsApiService
-	body       *EventCreateRequest
+	body *EventCreateRequest
 }
 
 /*
@@ -38,7 +40,7 @@ func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateReq
 	req := apiCreateEventRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createEventExecute(req)
@@ -165,7 +167,7 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 type apiGetEventRequest struct {
 	ctx        _context.Context
 	ApiService *EventsApiService
-	eventId    int64
+	eventId int64
 }
 
 /*
@@ -179,7 +181,7 @@ func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventR
 	req := apiGetEventRequest{
 		ApiService: a,
 		ctx:        ctx,
-		eventId:    eventId,
+		eventId: eventId,
 	}
 
 	return req.ApiService.getEventExecute(req)
@@ -314,25 +316,25 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 }
 
 type apiListEventsRequest struct {
-	ctx              _context.Context
-	ApiService       *EventsApiService
-	start            *int64
-	end              *int64
-	priority         *EventPriority
-	sources          *string
-	tags             *string
-	unaggregated     *bool
+	ctx        _context.Context
+	ApiService *EventsApiService
+	start *int64
+	end *int64
+	priority *EventPriority
+	sources *string
+	tags *string
+	unaggregated *bool
 	excludeAggregate *bool
-	page             *int32
+	page *int32
 }
 
 type ListEventsOptionalParameters struct {
-	Priority         *EventPriority
-	Sources          *string
-	Tags             *string
-	Unaggregated     *bool
+	Priority *EventPriority
+	Sources *string
+	Tags *string
+	Unaggregated *bool
 	ExcludeAggregate *bool
-	Page             *int32
+	Page *int32
 }
 
 func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
@@ -380,8 +382,8 @@ func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int
 	req := apiListEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		start:      &start,
-		end:        &end,
+		start: &start,
+		end: &end,
 	}
 
 	if len(o) > 1 {

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveDestinationAzureType Type of the Azure archive destination.
 type LogsArchiveDestinationAzureType string

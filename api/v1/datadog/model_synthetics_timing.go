@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsTiming Object containing all metrics and their values collected for a Synthetic API test.
 // Learn more about those metrics in [Synthetics documentation](https://docs.datadoghq.com/synthetics/#metrics).
@@ -32,9 +36,11 @@ type SyntheticsTiming struct {
 	// Time spent in millisecond waiting for a response.
 	Wait *float64 `json:"wait,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsTiming instantiates a new SyntheticsTiming object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +58,6 @@ func NewSyntheticsTimingWithDefaults() *SyntheticsTiming {
 	this := SyntheticsTiming{}
 	return &this
 }
-
 // GetDns returns the Dns field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetDns() float64 {
 	if o == nil || o.Dns == nil {
@@ -84,6 +89,7 @@ func (o *SyntheticsTiming) HasDns() bool {
 func (o *SyntheticsTiming) SetDns(v float64) {
 	o.Dns = &v
 }
+
 
 // GetDownload returns the Download field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetDownload() float64 {
@@ -117,6 +123,7 @@ func (o *SyntheticsTiming) SetDownload(v float64) {
 	o.Download = &v
 }
 
+
 // GetFirstByte returns the FirstByte field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetFirstByte() float64 {
 	if o == nil || o.FirstByte == nil {
@@ -148,6 +155,7 @@ func (o *SyntheticsTiming) HasFirstByte() bool {
 func (o *SyntheticsTiming) SetFirstByte(v float64) {
 	o.FirstByte = &v
 }
+
 
 // GetHandshake returns the Handshake field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetHandshake() float64 {
@@ -181,6 +189,7 @@ func (o *SyntheticsTiming) SetHandshake(v float64) {
 	o.Handshake = &v
 }
 
+
 // GetRedirect returns the Redirect field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetRedirect() float64 {
 	if o == nil || o.Redirect == nil {
@@ -212,6 +221,7 @@ func (o *SyntheticsTiming) HasRedirect() bool {
 func (o *SyntheticsTiming) SetRedirect(v float64) {
 	o.Redirect = &v
 }
+
 
 // GetSsl returns the Ssl field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetSsl() float64 {
@@ -245,6 +255,7 @@ func (o *SyntheticsTiming) SetSsl(v float64) {
 	o.Ssl = &v
 }
 
+
 // GetTcp returns the Tcp field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetTcp() float64 {
 	if o == nil || o.Tcp == nil {
@@ -276,6 +287,7 @@ func (o *SyntheticsTiming) HasTcp() bool {
 func (o *SyntheticsTiming) SetTcp(v float64) {
 	o.Tcp = &v
 }
+
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetTotal() float64 {
@@ -309,6 +321,7 @@ func (o *SyntheticsTiming) SetTotal(v float64) {
 	o.Total = &v
 }
 
+
 // GetWait returns the Wait field value if set, zero value otherwise.
 func (o *SyntheticsTiming) GetWait() float64 {
 	if o == nil || o.Wait == nil {
@@ -340,6 +353,8 @@ func (o *SyntheticsTiming) HasWait() bool {
 func (o *SyntheticsTiming) SetWait(v float64) {
 	o.Wait = &v
 }
+
+
 
 func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -380,18 +395,19 @@ func (o SyntheticsTiming) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsTiming) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dns       *float64 `json:"dns,omitempty"`
-		Download  *float64 `json:"download,omitempty"`
+		Dns *float64 `json:"dns,omitempty"`
+		Download *float64 `json:"download,omitempty"`
 		FirstByte *float64 `json:"firstByte,omitempty"`
 		Handshake *float64 `json:"handshake,omitempty"`
-		Redirect  *float64 `json:"redirect,omitempty"`
-		Ssl       *float64 `json:"ssl,omitempty"`
-		Tcp       *float64 `json:"tcp,omitempty"`
-		Total     *float64 `json:"total,omitempty"`
-		Wait      *float64 `json:"wait,omitempty"`
+		Redirect *float64 `json:"redirect,omitempty"`
+		Ssl *float64 `json:"ssl,omitempty"`
+		Tcp *float64 `json:"tcp,omitempty"`
+		Total *float64 `json:"total,omitempty"`
+		Wait *float64 `json:"wait,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

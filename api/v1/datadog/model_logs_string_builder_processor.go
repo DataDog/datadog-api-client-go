@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsStringBuilderProcessor Use the string builder processor to add a new attribute (without spaces or special characters)
 // to a log with the result of the provided template.
@@ -39,9 +42,11 @@ type LogsStringBuilderProcessor struct {
 	// Type of logs string builder processor.
 	Type LogsStringBuilderProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +77,6 @@ func NewLogsStringBuilderProcessorWithDefaults() *LogsStringBuilderProcessor {
 	this.Type = type_
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsStringBuilderProcessor) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -104,6 +108,7 @@ func (o *LogsStringBuilderProcessor) HasIsEnabled() bool {
 func (o *LogsStringBuilderProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetIsReplaceMissing returns the IsReplaceMissing field value if set, zero value otherwise.
 func (o *LogsStringBuilderProcessor) GetIsReplaceMissing() bool {
@@ -137,6 +142,7 @@ func (o *LogsStringBuilderProcessor) SetIsReplaceMissing(v bool) {
 	o.IsReplaceMissing = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsStringBuilderProcessor) GetName() string {
 	if o == nil || o.Name == nil {
@@ -169,6 +175,7 @@ func (o *LogsStringBuilderProcessor) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetTarget returns the Target field value
 func (o *LogsStringBuilderProcessor) GetTarget() string {
 	if o == nil {
@@ -191,6 +198,7 @@ func (o *LogsStringBuilderProcessor) GetTargetOk() (*string, bool) {
 func (o *LogsStringBuilderProcessor) SetTarget(v string) {
 	o.Target = v
 }
+
 
 // GetTemplate returns the Template field value
 func (o *LogsStringBuilderProcessor) GetTemplate() string {
@@ -215,6 +223,7 @@ func (o *LogsStringBuilderProcessor) SetTemplate(v string) {
 	o.Template = v
 }
 
+
 // GetType returns the Type field value
 func (o *LogsStringBuilderProcessor) GetType() LogsStringBuilderProcessorType {
 	if o == nil {
@@ -237,6 +246,8 @@ func (o *LogsStringBuilderProcessor) GetTypeOk() (*LogsStringBuilderProcessorTyp
 func (o *LogsStringBuilderProcessor) SetType(v LogsStringBuilderProcessorType) {
 	o.Type = v
 }
+
+
 
 func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -262,20 +273,21 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Target   *string                         `json:"target"`
-		Template *string                         `json:"template"`
-		Type     *LogsStringBuilderProcessorType `json:"type"`
+		Target *string `json:"target"`
+		Template *string `json:"template"`
+		Type *LogsStringBuilderProcessorType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled        *bool                          `json:"is_enabled,omitempty"`
-		IsReplaceMissing *bool                          `json:"is_replace_missing,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Target           string                         `json:"target"`
-		Template         string                         `json:"template"`
-		Type             LogsStringBuilderProcessorType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		IsReplaceMissing *bool `json:"is_replace_missing,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Target string `json:"target"`
+		Template string `json:"template"`
+		Type LogsStringBuilderProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

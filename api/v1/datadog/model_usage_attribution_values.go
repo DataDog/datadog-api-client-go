@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageAttributionValues Fields in Usage Summary by tag(s).
 type UsageAttributionValues struct {
@@ -97,9 +101,11 @@ type UsageAttributionValues struct {
 	// The network device usage by tag(s).
 	SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAttributionValues instantiates a new UsageAttributionValues object
 // This constructor will assign default values to properties that have it defined,
@@ -117,7 +123,6 @@ func NewUsageAttributionValuesWithDefaults() *UsageAttributionValues {
 	this := UsageAttributionValues{}
 	return &this
 }
-
 // GetApiPercentage returns the ApiPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetApiPercentage() float64 {
 	if o == nil || o.ApiPercentage == nil {
@@ -149,6 +154,7 @@ func (o *UsageAttributionValues) HasApiPercentage() bool {
 func (o *UsageAttributionValues) SetApiPercentage(v float64) {
 	o.ApiPercentage = &v
 }
+
 
 // GetApiUsage returns the ApiUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetApiUsage() float64 {
@@ -182,6 +188,7 @@ func (o *UsageAttributionValues) SetApiUsage(v float64) {
 	o.ApiUsage = &v
 }
 
+
 // GetApmHostPercentage returns the ApmHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetApmHostPercentage() float64 {
 	if o == nil || o.ApmHostPercentage == nil {
@@ -213,6 +220,7 @@ func (o *UsageAttributionValues) HasApmHostPercentage() bool {
 func (o *UsageAttributionValues) SetApmHostPercentage(v float64) {
 	o.ApmHostPercentage = &v
 }
+
 
 // GetApmHostUsage returns the ApmHostUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetApmHostUsage() float64 {
@@ -246,6 +254,7 @@ func (o *UsageAttributionValues) SetApmHostUsage(v float64) {
 	o.ApmHostUsage = &v
 }
 
+
 // GetBrowserPercentage returns the BrowserPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetBrowserPercentage() float64 {
 	if o == nil || o.BrowserPercentage == nil {
@@ -277,6 +286,7 @@ func (o *UsageAttributionValues) HasBrowserPercentage() bool {
 func (o *UsageAttributionValues) SetBrowserPercentage(v float64) {
 	o.BrowserPercentage = &v
 }
+
 
 // GetBrowserUsage returns the BrowserUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetBrowserUsage() float64 {
@@ -310,6 +320,7 @@ func (o *UsageAttributionValues) SetBrowserUsage(v float64) {
 	o.BrowserUsage = &v
 }
 
+
 // GetContainerPercentage returns the ContainerPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetContainerPercentage() float64 {
 	if o == nil || o.ContainerPercentage == nil {
@@ -341,6 +352,7 @@ func (o *UsageAttributionValues) HasContainerPercentage() bool {
 func (o *UsageAttributionValues) SetContainerPercentage(v float64) {
 	o.ContainerPercentage = &v
 }
+
 
 // GetContainerUsage returns the ContainerUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetContainerUsage() float64 {
@@ -374,6 +386,7 @@ func (o *UsageAttributionValues) SetContainerUsage(v float64) {
 	o.ContainerUsage = &v
 }
 
+
 // GetCspmContainerPercentage returns the CspmContainerPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCspmContainerPercentage() float64 {
 	if o == nil || o.CspmContainerPercentage == nil {
@@ -405,6 +418,7 @@ func (o *UsageAttributionValues) HasCspmContainerPercentage() bool {
 func (o *UsageAttributionValues) SetCspmContainerPercentage(v float64) {
 	o.CspmContainerPercentage = &v
 }
+
 
 // GetCspmContainerUsage returns the CspmContainerUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCspmContainerUsage() float64 {
@@ -438,6 +452,7 @@ func (o *UsageAttributionValues) SetCspmContainerUsage(v float64) {
 	o.CspmContainerUsage = &v
 }
 
+
 // GetCspmHostPercentage returns the CspmHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCspmHostPercentage() float64 {
 	if o == nil || o.CspmHostPercentage == nil {
@@ -469,6 +484,7 @@ func (o *UsageAttributionValues) HasCspmHostPercentage() bool {
 func (o *UsageAttributionValues) SetCspmHostPercentage(v float64) {
 	o.CspmHostPercentage = &v
 }
+
 
 // GetCspmHostUsage returns the CspmHostUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCspmHostUsage() float64 {
@@ -502,6 +518,7 @@ func (o *UsageAttributionValues) SetCspmHostUsage(v float64) {
 	o.CspmHostUsage = &v
 }
 
+
 // GetCustomTimeseriesPercentage returns the CustomTimeseriesPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCustomTimeseriesPercentage() float64 {
 	if o == nil || o.CustomTimeseriesPercentage == nil {
@@ -533,6 +550,7 @@ func (o *UsageAttributionValues) HasCustomTimeseriesPercentage() bool {
 func (o *UsageAttributionValues) SetCustomTimeseriesPercentage(v float64) {
 	o.CustomTimeseriesPercentage = &v
 }
+
 
 // GetCustomTimeseriesUsage returns the CustomTimeseriesUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCustomTimeseriesUsage() float64 {
@@ -566,6 +584,7 @@ func (o *UsageAttributionValues) SetCustomTimeseriesUsage(v float64) {
 	o.CustomTimeseriesUsage = &v
 }
 
+
 // GetCwsContainerPercentage returns the CwsContainerPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCwsContainerPercentage() float64 {
 	if o == nil || o.CwsContainerPercentage == nil {
@@ -597,6 +616,7 @@ func (o *UsageAttributionValues) HasCwsContainerPercentage() bool {
 func (o *UsageAttributionValues) SetCwsContainerPercentage(v float64) {
 	o.CwsContainerPercentage = &v
 }
+
 
 // GetCwsContainerUsage returns the CwsContainerUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCwsContainerUsage() float64 {
@@ -630,6 +650,7 @@ func (o *UsageAttributionValues) SetCwsContainerUsage(v float64) {
 	o.CwsContainerUsage = &v
 }
 
+
 // GetCwsHostPercentage returns the CwsHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCwsHostPercentage() float64 {
 	if o == nil || o.CwsHostPercentage == nil {
@@ -661,6 +682,7 @@ func (o *UsageAttributionValues) HasCwsHostPercentage() bool {
 func (o *UsageAttributionValues) SetCwsHostPercentage(v float64) {
 	o.CwsHostPercentage = &v
 }
+
 
 // GetCwsHostUsage returns the CwsHostUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetCwsHostUsage() float64 {
@@ -694,6 +716,7 @@ func (o *UsageAttributionValues) SetCwsHostUsage(v float64) {
 	o.CwsHostUsage = &v
 }
 
+
 // GetDbmHostsPercentage returns the DbmHostsPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetDbmHostsPercentage() float64 {
 	if o == nil || o.DbmHostsPercentage == nil {
@@ -725,6 +748,7 @@ func (o *UsageAttributionValues) HasDbmHostsPercentage() bool {
 func (o *UsageAttributionValues) SetDbmHostsPercentage(v float64) {
 	o.DbmHostsPercentage = &v
 }
+
 
 // GetDbmHostsUsage returns the DbmHostsUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetDbmHostsUsage() float64 {
@@ -758,6 +782,7 @@ func (o *UsageAttributionValues) SetDbmHostsUsage(v float64) {
 	o.DbmHostsUsage = &v
 }
 
+
 // GetDbmQueriesPercentage returns the DbmQueriesPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetDbmQueriesPercentage() float64 {
 	if o == nil || o.DbmQueriesPercentage == nil {
@@ -789,6 +814,7 @@ func (o *UsageAttributionValues) HasDbmQueriesPercentage() bool {
 func (o *UsageAttributionValues) SetDbmQueriesPercentage(v float64) {
 	o.DbmQueriesPercentage = &v
 }
+
 
 // GetDbmQueriesUsage returns the DbmQueriesUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetDbmQueriesUsage() float64 {
@@ -822,6 +848,7 @@ func (o *UsageAttributionValues) SetDbmQueriesUsage(v float64) {
 	o.DbmQueriesUsage = &v
 }
 
+
 // GetEstimatedIndexedLogsPercentage returns the EstimatedIndexedLogsPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetEstimatedIndexedLogsPercentage() float64 {
 	if o == nil || o.EstimatedIndexedLogsPercentage == nil {
@@ -853,6 +880,7 @@ func (o *UsageAttributionValues) HasEstimatedIndexedLogsPercentage() bool {
 func (o *UsageAttributionValues) SetEstimatedIndexedLogsPercentage(v float64) {
 	o.EstimatedIndexedLogsPercentage = &v
 }
+
 
 // GetEstimatedIndexedLogsUsage returns the EstimatedIndexedLogsUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetEstimatedIndexedLogsUsage() float64 {
@@ -886,6 +914,7 @@ func (o *UsageAttributionValues) SetEstimatedIndexedLogsUsage(v float64) {
 	o.EstimatedIndexedLogsUsage = &v
 }
 
+
 // GetInfraHostPercentage returns the InfraHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetInfraHostPercentage() float64 {
 	if o == nil || o.InfraHostPercentage == nil {
@@ -917,6 +946,7 @@ func (o *UsageAttributionValues) HasInfraHostPercentage() bool {
 func (o *UsageAttributionValues) SetInfraHostPercentage(v float64) {
 	o.InfraHostPercentage = &v
 }
+
 
 // GetInfraHostUsage returns the InfraHostUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetInfraHostUsage() float64 {
@@ -950,6 +980,7 @@ func (o *UsageAttributionValues) SetInfraHostUsage(v float64) {
 	o.InfraHostUsage = &v
 }
 
+
 // GetLambdaFunctionsPercentage returns the LambdaFunctionsPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaFunctionsPercentage() float64 {
 	if o == nil || o.LambdaFunctionsPercentage == nil {
@@ -981,6 +1012,7 @@ func (o *UsageAttributionValues) HasLambdaFunctionsPercentage() bool {
 func (o *UsageAttributionValues) SetLambdaFunctionsPercentage(v float64) {
 	o.LambdaFunctionsPercentage = &v
 }
+
 
 // GetLambdaFunctionsUsage returns the LambdaFunctionsUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaFunctionsUsage() float64 {
@@ -1014,6 +1046,7 @@ func (o *UsageAttributionValues) SetLambdaFunctionsUsage(v float64) {
 	o.LambdaFunctionsUsage = &v
 }
 
+
 // GetLambdaInvocationsPercentage returns the LambdaInvocationsPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaInvocationsPercentage() float64 {
 	if o == nil || o.LambdaInvocationsPercentage == nil {
@@ -1045,6 +1078,7 @@ func (o *UsageAttributionValues) HasLambdaInvocationsPercentage() bool {
 func (o *UsageAttributionValues) SetLambdaInvocationsPercentage(v float64) {
 	o.LambdaInvocationsPercentage = &v
 }
+
 
 // GetLambdaInvocationsUsage returns the LambdaInvocationsUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaInvocationsUsage() float64 {
@@ -1078,6 +1112,7 @@ func (o *UsageAttributionValues) SetLambdaInvocationsUsage(v float64) {
 	o.LambdaInvocationsUsage = &v
 }
 
+
 // GetLambdaPercentage returns the LambdaPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaPercentage() float64 {
 	if o == nil || o.LambdaPercentage == nil {
@@ -1109,6 +1144,7 @@ func (o *UsageAttributionValues) HasLambdaPercentage() bool {
 func (o *UsageAttributionValues) SetLambdaPercentage(v float64) {
 	o.LambdaPercentage = &v
 }
+
 
 // GetLambdaUsage returns the LambdaUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetLambdaUsage() float64 {
@@ -1142,6 +1178,7 @@ func (o *UsageAttributionValues) SetLambdaUsage(v float64) {
 	o.LambdaUsage = &v
 }
 
+
 // GetNpmHostPercentage returns the NpmHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetNpmHostPercentage() float64 {
 	if o == nil || o.NpmHostPercentage == nil {
@@ -1173,6 +1210,7 @@ func (o *UsageAttributionValues) HasNpmHostPercentage() bool {
 func (o *UsageAttributionValues) SetNpmHostPercentage(v float64) {
 	o.NpmHostPercentage = &v
 }
+
 
 // GetNpmHostUsage returns the NpmHostUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetNpmHostUsage() float64 {
@@ -1206,6 +1244,7 @@ func (o *UsageAttributionValues) SetNpmHostUsage(v float64) {
 	o.NpmHostUsage = &v
 }
 
+
 // GetProfiledContainerPercentage returns the ProfiledContainerPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetProfiledContainerPercentage() float64 {
 	if o == nil || o.ProfiledContainerPercentage == nil {
@@ -1237,6 +1276,7 @@ func (o *UsageAttributionValues) HasProfiledContainerPercentage() bool {
 func (o *UsageAttributionValues) SetProfiledContainerPercentage(v float64) {
 	o.ProfiledContainerPercentage = &v
 }
+
 
 // GetProfiledContainerUsage returns the ProfiledContainerUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetProfiledContainerUsage() float64 {
@@ -1270,6 +1310,7 @@ func (o *UsageAttributionValues) SetProfiledContainerUsage(v float64) {
 	o.ProfiledContainerUsage = &v
 }
 
+
 // GetProfiledHostsPercentage returns the ProfiledHostsPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetProfiledHostsPercentage() float64 {
 	if o == nil || o.ProfiledHostsPercentage == nil {
@@ -1301,6 +1342,7 @@ func (o *UsageAttributionValues) HasProfiledHostsPercentage() bool {
 func (o *UsageAttributionValues) SetProfiledHostsPercentage(v float64) {
 	o.ProfiledHostsPercentage = &v
 }
+
 
 // GetProfiledHostsUsage returns the ProfiledHostsUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetProfiledHostsUsage() float64 {
@@ -1334,6 +1376,7 @@ func (o *UsageAttributionValues) SetProfiledHostsUsage(v float64) {
 	o.ProfiledHostsUsage = &v
 }
 
+
 // GetSnmpPercentage returns the SnmpPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetSnmpPercentage() float64 {
 	if o == nil || o.SnmpPercentage == nil {
@@ -1366,6 +1409,7 @@ func (o *UsageAttributionValues) SetSnmpPercentage(v float64) {
 	o.SnmpPercentage = &v
 }
 
+
 // GetSnmpUsage returns the SnmpUsage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetSnmpUsage() float64 {
 	if o == nil || o.SnmpUsage == nil {
@@ -1397,6 +1441,8 @@ func (o *UsageAttributionValues) HasSnmpUsage() bool {
 func (o *UsageAttributionValues) SetSnmpUsage(v float64) {
 	o.SnmpUsage = &v
 }
+
+
 
 func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -1530,49 +1576,50 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiPercentage                  *float64 `json:"api_percentage,omitempty"`
-		ApiUsage                       *float64 `json:"api_usage,omitempty"`
-		ApmHostPercentage              *float64 `json:"apm_host_percentage,omitempty"`
-		ApmHostUsage                   *float64 `json:"apm_host_usage,omitempty"`
-		BrowserPercentage              *float64 `json:"browser_percentage,omitempty"`
-		BrowserUsage                   *float64 `json:"browser_usage,omitempty"`
-		ContainerPercentage            *float64 `json:"container_percentage,omitempty"`
-		ContainerUsage                 *float64 `json:"container_usage,omitempty"`
-		CspmContainerPercentage        *float64 `json:"cspm_container_percentage,omitempty"`
-		CspmContainerUsage             *float64 `json:"cspm_container_usage,omitempty"`
-		CspmHostPercentage             *float64 `json:"cspm_host_percentage,omitempty"`
-		CspmHostUsage                  *float64 `json:"cspm_host_usage,omitempty"`
-		CustomTimeseriesPercentage     *float64 `json:"custom_timeseries_percentage,omitempty"`
-		CustomTimeseriesUsage          *float64 `json:"custom_timeseries_usage,omitempty"`
-		CwsContainerPercentage         *float64 `json:"cws_container_percentage,omitempty"`
-		CwsContainerUsage              *float64 `json:"cws_container_usage,omitempty"`
-		CwsHostPercentage              *float64 `json:"cws_host_percentage,omitempty"`
-		CwsHostUsage                   *float64 `json:"cws_host_usage,omitempty"`
-		DbmHostsPercentage             *float64 `json:"dbm_hosts_percentage,omitempty"`
-		DbmHostsUsage                  *float64 `json:"dbm_hosts_usage,omitempty"`
-		DbmQueriesPercentage           *float64 `json:"dbm_queries_percentage,omitempty"`
-		DbmQueriesUsage                *float64 `json:"dbm_queries_usage,omitempty"`
+		ApiPercentage *float64 `json:"api_percentage,omitempty"`
+		ApiUsage *float64 `json:"api_usage,omitempty"`
+		ApmHostPercentage *float64 `json:"apm_host_percentage,omitempty"`
+		ApmHostUsage *float64 `json:"apm_host_usage,omitempty"`
+		BrowserPercentage *float64 `json:"browser_percentage,omitempty"`
+		BrowserUsage *float64 `json:"browser_usage,omitempty"`
+		ContainerPercentage *float64 `json:"container_percentage,omitempty"`
+		ContainerUsage *float64 `json:"container_usage,omitempty"`
+		CspmContainerPercentage *float64 `json:"cspm_container_percentage,omitempty"`
+		CspmContainerUsage *float64 `json:"cspm_container_usage,omitempty"`
+		CspmHostPercentage *float64 `json:"cspm_host_percentage,omitempty"`
+		CspmHostUsage *float64 `json:"cspm_host_usage,omitempty"`
+		CustomTimeseriesPercentage *float64 `json:"custom_timeseries_percentage,omitempty"`
+		CustomTimeseriesUsage *float64 `json:"custom_timeseries_usage,omitempty"`
+		CwsContainerPercentage *float64 `json:"cws_container_percentage,omitempty"`
+		CwsContainerUsage *float64 `json:"cws_container_usage,omitempty"`
+		CwsHostPercentage *float64 `json:"cws_host_percentage,omitempty"`
+		CwsHostUsage *float64 `json:"cws_host_usage,omitempty"`
+		DbmHostsPercentage *float64 `json:"dbm_hosts_percentage,omitempty"`
+		DbmHostsUsage *float64 `json:"dbm_hosts_usage,omitempty"`
+		DbmQueriesPercentage *float64 `json:"dbm_queries_percentage,omitempty"`
+		DbmQueriesUsage *float64 `json:"dbm_queries_usage,omitempty"`
 		EstimatedIndexedLogsPercentage *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
-		EstimatedIndexedLogsUsage      *float64 `json:"estimated_indexed_logs_usage,omitempty"`
-		InfraHostPercentage            *float64 `json:"infra_host_percentage,omitempty"`
-		InfraHostUsage                 *float64 `json:"infra_host_usage,omitempty"`
-		LambdaFunctionsPercentage      *float64 `json:"lambda_functions_percentage,omitempty"`
-		LambdaFunctionsUsage           *float64 `json:"lambda_functions_usage,omitempty"`
-		LambdaInvocationsPercentage    *float64 `json:"lambda_invocations_percentage,omitempty"`
-		LambdaInvocationsUsage         *float64 `json:"lambda_invocations_usage,omitempty"`
-		LambdaPercentage               *float64 `json:"lambda_percentage,omitempty"`
-		LambdaUsage                    *float64 `json:"lambda_usage,omitempty"`
-		NpmHostPercentage              *float64 `json:"npm_host_percentage,omitempty"`
-		NpmHostUsage                   *float64 `json:"npm_host_usage,omitempty"`
-		ProfiledContainerPercentage    *float64 `json:"profiled_container_percentage,omitempty"`
-		ProfiledContainerUsage         *float64 `json:"profiled_container_usage,omitempty"`
-		ProfiledHostsPercentage        *float64 `json:"profiled_hosts_percentage,omitempty"`
-		ProfiledHostsUsage             *float64 `json:"profiled_hosts_usage,omitempty"`
-		SnmpPercentage                 *float64 `json:"snmp_percentage,omitempty"`
-		SnmpUsage                      *float64 `json:"snmp_usage,omitempty"`
+		EstimatedIndexedLogsUsage *float64 `json:"estimated_indexed_logs_usage,omitempty"`
+		InfraHostPercentage *float64 `json:"infra_host_percentage,omitempty"`
+		InfraHostUsage *float64 `json:"infra_host_usage,omitempty"`
+		LambdaFunctionsPercentage *float64 `json:"lambda_functions_percentage,omitempty"`
+		LambdaFunctionsUsage *float64 `json:"lambda_functions_usage,omitempty"`
+		LambdaInvocationsPercentage *float64 `json:"lambda_invocations_percentage,omitempty"`
+		LambdaInvocationsUsage *float64 `json:"lambda_invocations_usage,omitempty"`
+		LambdaPercentage *float64 `json:"lambda_percentage,omitempty"`
+		LambdaUsage *float64 `json:"lambda_usage,omitempty"`
+		NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
+		NpmHostUsage *float64 `json:"npm_host_usage,omitempty"`
+		ProfiledContainerPercentage *float64 `json:"profiled_container_percentage,omitempty"`
+		ProfiledContainerUsage *float64 `json:"profiled_container_usage,omitempty"`
+		ProfiledHostsPercentage *float64 `json:"profiled_hosts_percentage,omitempty"`
+		ProfiledHostsUsage *float64 `json:"profiled_hosts_usage,omitempty"`
+		SnmpPercentage *float64 `json:"snmp_percentage,omitempty"`
+		SnmpUsage *float64 `json:"snmp_usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

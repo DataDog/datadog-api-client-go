@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageIncidentManagementResponse Response containing the incident management usage for each hour for a given organization.
 type UsageIncidentManagementResponse struct {
 	// Get hourly usage for incident management.
 	Usage *[]UsageIncidentManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageIncidentManagementResponse instantiates a new UsageIncidentManagementResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewUsageIncidentManagementResponseWithDefaults() *UsageIncidentManagementRe
 	this := UsageIncidentManagementResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageIncidentManagementResponse) GetUsage() []UsageIncidentManagementHour {
 	if o == nil || o.Usage == nil {
@@ -68,6 +73,8 @@ func (o *UsageIncidentManagementResponse) SetUsage(v []UsageIncidentManagementHo
 	o.Usage = &v
 }
 
+
+
 func (o UsageIncidentManagementResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o UsageIncidentManagementResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageIncidentManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

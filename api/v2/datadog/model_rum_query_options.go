@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMQueryOptions Global query options that are used during the query.
 // Note: Only supply timezone or time offset, not both. Otherwise, the query fails.
@@ -18,9 +22,11 @@ type RUMQueryOptions struct {
 	// The timezone can be specified both as an offset, for example: "UTC+03:00".
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMQueryOptions instantiates a new RUMQueryOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,6 @@ func NewRUMQueryOptionsWithDefaults() *RUMQueryOptions {
 	this.Timezone = &timezone
 	return &this
 }
-
 // GetTimeOffset returns the TimeOffset field value if set, zero value otherwise.
 func (o *RUMQueryOptions) GetTimeOffset() int64 {
 	if o == nil || o.TimeOffset == nil {
@@ -74,6 +79,7 @@ func (o *RUMQueryOptions) HasTimeOffset() bool {
 func (o *RUMQueryOptions) SetTimeOffset(v int64) {
 	o.TimeOffset = &v
 }
+
 
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *RUMQueryOptions) GetTimezone() string {
@@ -107,6 +113,8 @@ func (o *RUMQueryOptions) SetTimezone(v string) {
 	o.Timezone = &v
 }
 
+
+
 func (o RUMQueryOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -125,11 +133,12 @@ func (o RUMQueryOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMQueryOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		TimeOffset *int64  `json:"time_offset,omitempty"`
-		Timezone   *string `json:"timezone,omitempty"`
+		TimeOffset *int64 `json:"time_offset,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

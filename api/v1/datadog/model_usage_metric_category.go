@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // UsageMetricCategory Contains the metric category.
 type UsageMetricCategory string
@@ -17,7 +20,7 @@ type UsageMetricCategory string
 // List of UsageMetricCategory
 const (
 	USAGEMETRICCATEGORY_STANDARD UsageMetricCategory = "standard"
-	USAGEMETRICCATEGORY_CUSTOM   UsageMetricCategory = "custom"
+	USAGEMETRICCATEGORY_CUSTOM UsageMetricCategory = "custom"
 )
 
 var allowedUsageMetricCategoryEnumValues = []UsageMetricCategory{

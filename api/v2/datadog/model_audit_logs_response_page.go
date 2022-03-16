@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuditLogsResponsePage Paging attributes.
 type AuditLogsResponsePage struct {
 	// The cursor to use to get the next results, if any. To make the next request, use the same parameters with the addition of `page[cursor]`.
 	After *string `json:"after,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsResponsePage instantiates a new AuditLogsResponsePage object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAuditLogsResponsePageWithDefaults() *AuditLogsResponsePage {
 	this := AuditLogsResponsePage{}
 	return &this
 }
-
 // GetAfter returns the After field value if set, zero value otherwise.
 func (o *AuditLogsResponsePage) GetAfter() string {
 	if o == nil || o.After == nil {
@@ -68,6 +73,8 @@ func (o *AuditLogsResponsePage) SetAfter(v string) {
 	o.After = &v
 }
 
+
+
 func (o AuditLogsResponsePage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o AuditLogsResponsePage) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AuditLogsResponsePage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

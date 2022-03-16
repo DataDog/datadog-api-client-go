@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetSizeFormat Size of the widget.
 type WidgetSizeFormat string
 
 // List of WidgetSizeFormat
 const (
-	WIDGETSIZEFORMAT_SMALL  WidgetSizeFormat = "small"
+	WIDGETSIZEFORMAT_SMALL WidgetSizeFormat = "small"
 	WIDGETSIZEFORMAT_MEDIUM WidgetSizeFormat = "medium"
-	WIDGETSIZEFORMAT_LARGE  WidgetSizeFormat = "large"
+	WIDGETSIZEFORMAT_LARGE WidgetSizeFormat = "large"
 )
 
 var allowedWidgetSizeFormatEnumValues = []WidgetSizeFormat{

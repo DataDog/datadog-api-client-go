@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookCreateRequest The description of a notebook create request.
 type NotebookCreateRequest struct {
 	// The data for a notebook create request.
 	Data NotebookCreateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookCreateRequest instantiates a new NotebookCreateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewNotebookCreateRequestWithDefaults() *NotebookCreateRequest {
 	this := NotebookCreateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *NotebookCreateRequest) GetData() NotebookCreateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *NotebookCreateRequest) SetData(v NotebookCreateData) {
 	o.Data = v
 }
 
+
+
 func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o NotebookCreateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *NotebookCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

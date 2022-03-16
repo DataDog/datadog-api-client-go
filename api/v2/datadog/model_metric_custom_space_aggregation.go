@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricCustomSpaceAggregation A space aggregation for use in query.
 type MetricCustomSpaceAggregation string

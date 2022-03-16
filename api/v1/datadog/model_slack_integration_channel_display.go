@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SlackIntegrationChannelDisplay Configuration options for what is shown in an alert event message.
 type SlackIntegrationChannelDisplay struct {
@@ -21,9 +25,11 @@ type SlackIntegrationChannelDisplay struct {
 	// Show the scopes on which the monitor alerted.
 	Tags *bool `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSlackIntegrationChannelDisplay instantiates a new SlackIntegrationChannelDisplay object
 // This constructor will assign default values to properties that have it defined,
@@ -57,7 +63,6 @@ func NewSlackIntegrationChannelDisplayWithDefaults() *SlackIntegrationChannelDis
 	this.Tags = &tags
 	return &this
 }
-
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetMessage() bool {
 	if o == nil || o.Message == nil {
@@ -89,6 +94,7 @@ func (o *SlackIntegrationChannelDisplay) HasMessage() bool {
 func (o *SlackIntegrationChannelDisplay) SetMessage(v bool) {
 	o.Message = &v
 }
+
 
 // GetNotified returns the Notified field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetNotified() bool {
@@ -122,6 +128,7 @@ func (o *SlackIntegrationChannelDisplay) SetNotified(v bool) {
 	o.Notified = &v
 }
 
+
 // GetSnapshot returns the Snapshot field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetSnapshot() bool {
 	if o == nil || o.Snapshot == nil {
@@ -153,6 +160,7 @@ func (o *SlackIntegrationChannelDisplay) HasSnapshot() bool {
 func (o *SlackIntegrationChannelDisplay) SetSnapshot(v bool) {
 	o.Snapshot = &v
 }
+
 
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SlackIntegrationChannelDisplay) GetTags() bool {
@@ -186,6 +194,8 @@ func (o *SlackIntegrationChannelDisplay) SetTags(v bool) {
 	o.Tags = &v
 }
 
+
+
 func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -210,13 +220,14 @@ func (o SlackIntegrationChannelDisplay) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SlackIntegrationChannelDisplay) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Message  *bool `json:"message,omitempty"`
+		Message *bool `json:"message,omitempty"`
 		Notified *bool `json:"notified,omitempty"`
 		Snapshot *bool `json:"snapshot,omitempty"`
-		Tags     *bool `json:"tags,omitempty"`
+		Tags *bool `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

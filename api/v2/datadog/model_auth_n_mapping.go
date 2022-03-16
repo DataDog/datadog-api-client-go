@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuthNMapping The AuthN Mapping object returned by API.
 type AuthNMapping struct {
@@ -24,9 +27,11 @@ type AuthNMapping struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMapping instantiates a new AuthNMapping object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewAuthNMappingWithDefaults() *AuthNMapping {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuthNMapping) GetAttributes() AuthNMappingAttributes {
 	if o == nil || o.Attributes == nil {
@@ -81,6 +85,7 @@ func (o *AuthNMapping) SetAttributes(v AuthNMappingAttributes) {
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value
 func (o *AuthNMapping) GetId() string {
 	if o == nil {
@@ -103,6 +108,7 @@ func (o *AuthNMapping) GetIdOk() (*string, bool) {
 func (o *AuthNMapping) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *AuthNMapping) GetIncluded() []AuthNMappingIncluded {
@@ -136,6 +142,7 @@ func (o *AuthNMapping) SetIncluded(v []AuthNMappingIncluded) {
 	o.Included = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *AuthNMapping) GetRelationships() AuthNMappingRelationships {
 	if o == nil || o.Relationships == nil {
@@ -168,6 +175,7 @@ func (o *AuthNMapping) SetRelationships(v AuthNMappingRelationships) {
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value
 func (o *AuthNMapping) GetType() AuthNMappingsType {
 	if o == nil {
@@ -190,6 +198,8 @@ func (o *AuthNMapping) GetTypeOk() (*AuthNMappingsType, bool) {
 func (o *AuthNMapping) SetType(v AuthNMappingsType) {
 	o.Type = v
 }
+
+
 
 func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -214,18 +224,19 @@ func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string            `json:"id"`
+		Id *string `json:"id"`
 		Type *AuthNMappingsType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *AuthNMappingAttributes    `json:"attributes,omitempty"`
-		Id            string                     `json:"id"`
-		Included      *[]AuthNMappingIncluded    `json:"included,omitempty"`
+		Attributes *AuthNMappingAttributes `json:"attributes,omitempty"`
+		Id string `json:"id"`
+		Included *[]AuthNMappingIncluded `json:"included,omitempty"`
 		Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType          `json:"type"`
+		Type AuthNMappingsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

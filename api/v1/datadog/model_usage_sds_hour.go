@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageSDSHour Sensitive Data Scanner usage for a given organization for a given hour.
 type UsageSDSHour struct {
@@ -24,9 +27,11 @@ type UsageSDSHour struct {
 	// The total number of bytes scanned across all usage types by the Sensitive Data Scanner from the start of the given hour’s month until the given hour.
 	TotalScannedBytes *int64 `json:"total_scanned_bytes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageSDSHour instantiates a new UsageSDSHour object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewUsageSDSHourWithDefaults() *UsageSDSHour {
 	this := UsageSDSHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -76,6 +80,7 @@ func (o *UsageSDSHour) HasHour() bool {
 func (o *UsageSDSHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetLogsScannedBytes returns the LogsScannedBytes field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetLogsScannedBytes() int64 {
@@ -109,6 +114,7 @@ func (o *UsageSDSHour) SetLogsScannedBytes(v int64) {
 	o.LogsScannedBytes = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -140,6 +146,7 @@ func (o *UsageSDSHour) HasOrgName() bool {
 func (o *UsageSDSHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetPublicId() string {
@@ -173,6 +180,7 @@ func (o *UsageSDSHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetTotalScannedBytes returns the TotalScannedBytes field value if set, zero value otherwise.
 func (o *UsageSDSHour) GetTotalScannedBytes() int64 {
 	if o == nil || o.TotalScannedBytes == nil {
@@ -205,6 +213,8 @@ func (o *UsageSDSHour) SetTotalScannedBytes(v int64) {
 	o.TotalScannedBytes = &v
 }
 
+
+
 func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -232,14 +242,15 @@ func (o UsageSDSHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageSDSHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour              *time.Time `json:"hour,omitempty"`
-		LogsScannedBytes  *int64     `json:"logs_scanned_bytes,omitempty"`
-		OrgName           *string    `json:"org_name,omitempty"`
-		PublicId          *string    `json:"public_id,omitempty"`
-		TotalScannedBytes *int64     `json:"total_scanned_bytes,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		LogsScannedBytes *int64 `json:"logs_scanned_bytes,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		TotalScannedBytes *int64 `json:"total_scanned_bytes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

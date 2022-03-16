@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetSummaryType Which summary type should be used.
 type WidgetSummaryType string
@@ -17,7 +20,7 @@ type WidgetSummaryType string
 // List of WidgetSummaryType
 const (
 	WIDGETSUMMARYTYPE_MONITORS WidgetSummaryType = "monitors"
-	WIDGETSUMMARYTYPE_GROUPS   WidgetSummaryType = "groups"
+	WIDGETSUMMARYTYPE_GROUPS WidgetSummaryType = "groups"
 	WIDGETSUMMARYTYPE_COMBINED WidgetSummaryType = "combined"
 )
 

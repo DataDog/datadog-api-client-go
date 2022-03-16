@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleUpdatePayload Update an existing rule.
 type SecurityMonitoringRuleUpdatePayload struct {
@@ -33,9 +37,11 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	// The version of the rule being updated.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringRuleUpdatePayload instantiates a new SecurityMonitoringRuleUpdatePayload object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +59,6 @@ func NewSecurityMonitoringRuleUpdatePayloadWithDefaults() *SecurityMonitoringRul
 	this := SecurityMonitoringRuleUpdatePayload{}
 	return &this
 }
-
 // GetCases returns the Cases field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetCases() []SecurityMonitoringRuleCase {
 	if o == nil || o.Cases == nil {
@@ -85,6 +90,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasCases() bool {
 func (o *SecurityMonitoringRuleUpdatePayload) SetCases(v []SecurityMonitoringRuleCase) {
 	o.Cases = &v
 }
+
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetFilters() []SecurityMonitoringFilter {
@@ -118,6 +124,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringF
 	o.Filters = &v
 }
 
+
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetHasExtendedTitle() bool {
 	if o == nil || o.HasExtendedTitle == nil {
@@ -149,6 +156,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasHasExtendedTitle() bool {
 func (o *SecurityMonitoringRuleUpdatePayload) SetHasExtendedTitle(v bool) {
 	o.HasExtendedTitle = &v
 }
+
 
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetIsEnabled() bool {
@@ -182,6 +190,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
+
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetMessage() string {
 	if o == nil || o.Message == nil {
@@ -213,6 +222,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasMessage() bool {
 func (o *SecurityMonitoringRuleUpdatePayload) SetMessage(v string) {
 	o.Message = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetName() string {
@@ -246,6 +256,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOptions returns the Options field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetOptions() SecurityMonitoringRuleOptions {
 	if o == nil || o.Options == nil {
@@ -277,6 +288,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasOptions() bool {
 func (o *SecurityMonitoringRuleUpdatePayload) SetOptions(v SecurityMonitoringRuleOptions) {
 	o.Options = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetQueries() []SecurityMonitoringRuleQuery {
@@ -310,6 +322,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetQueries(v []SecurityMonitoringR
 	o.Queries = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -342,6 +355,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
 // GetVersion returns the Version field value if set, zero value otherwise.
 func (o *SecurityMonitoringRuleUpdatePayload) GetVersion() int32 {
 	if o == nil || o.Version == nil {
@@ -373,6 +387,8 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasVersion() bool {
 func (o *SecurityMonitoringRuleUpdatePayload) SetVersion(v int32) {
 	o.Version = &v
 }
+
+
 
 func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -416,19 +432,20 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase  `json:"cases,omitempty"`
-		Filters          *[]SecurityMonitoringFilter    `json:"filters,omitempty"`
-		HasExtendedTitle *bool                          `json:"hasExtendedTitle,omitempty"`
-		IsEnabled        *bool                          `json:"isEnabled,omitempty"`
-		Message          *string                        `json:"message,omitempty"`
-		Name             *string                        `json:"name,omitempty"`
-		Options          *SecurityMonitoringRuleOptions `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
-		Tags             *[]string                      `json:"tags,omitempty"`
-		Version          *int32                         `json:"version,omitempty"`
+		Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
+		Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+		HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
+		IsEnabled *bool `json:"isEnabled,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
+		Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Version *int32 `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

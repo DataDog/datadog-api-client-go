@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HostMuteResponse Response with the list of muted host for your organization.
 type HostMuteResponse struct {
@@ -21,9 +25,11 @@ type HostMuteResponse struct {
 	// Message associated with the mute.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHostMuteResponse instantiates a new HostMuteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewHostMuteResponseWithDefaults() *HostMuteResponse {
 	this := HostMuteResponse{}
 	return &this
 }
-
 // GetAction returns the Action field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetAction() string {
 	if o == nil || o.Action == nil {
@@ -73,6 +78,7 @@ func (o *HostMuteResponse) HasAction() bool {
 func (o *HostMuteResponse) SetAction(v string) {
 	o.Action = &v
 }
+
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetEnd() int64 {
@@ -106,6 +112,7 @@ func (o *HostMuteResponse) SetEnd(v int64) {
 	o.End = &v
 }
 
+
 // GetHostname returns the Hostname field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetHostname() string {
 	if o == nil || o.Hostname == nil {
@@ -137,6 +144,7 @@ func (o *HostMuteResponse) HasHostname() bool {
 func (o *HostMuteResponse) SetHostname(v string) {
 	o.Hostname = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *HostMuteResponse) GetMessage() string {
@@ -170,6 +178,8 @@ func (o *HostMuteResponse) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o HostMuteResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HostMuteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Action   *string `json:"action,omitempty"`
-		End      *int64  `json:"end,omitempty"`
+		Action *string `json:"action,omitempty"`
+		End *int64 `json:"end,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

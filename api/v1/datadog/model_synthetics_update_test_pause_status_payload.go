@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsUpdateTestPauseStatusPayload Object to start or pause an existing Synthetic test.
 type SyntheticsUpdateTestPauseStatusPayload struct {
@@ -16,9 +20,11 @@ type SyntheticsUpdateTestPauseStatusPayload struct {
 	// Synthetic test.
 	NewStatus *SyntheticsTestPauseStatus `json:"new_status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsUpdateTestPauseStatusPayload instantiates a new SyntheticsUpdateTestPauseStatusPayload object
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +42,6 @@ func NewSyntheticsUpdateTestPauseStatusPayloadWithDefaults() *SyntheticsUpdateTe
 	this := SyntheticsUpdateTestPauseStatusPayload{}
 	return &this
 }
-
 // GetNewStatus returns the NewStatus field value if set, zero value otherwise.
 func (o *SyntheticsUpdateTestPauseStatusPayload) GetNewStatus() SyntheticsTestPauseStatus {
 	if o == nil || o.NewStatus == nil {
@@ -69,6 +74,8 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) SetNewStatus(v SyntheticsTestPa
 	o.NewStatus = &v
 }
 
+
+
 func (o SyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -84,6 +91,7 @@ func (o SyntheticsUpdateTestPauseStatusPayload) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -98,7 +106,7 @@ func (o *SyntheticsUpdateTestPauseStatusPayload) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.NewStatus; v != nil && !v.IsValid() {
+	if v := all.NewStatus; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

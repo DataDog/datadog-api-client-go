@@ -4,6 +4,7 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
@@ -14,8 +15,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
-	"time"
 )
 
 // Linger please
@@ -29,7 +28,7 @@ type SecurityMonitoringApiService service
 type apiCreateSecurityFilterRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	body       *SecurityFilterCreateRequest
+	body *SecurityFilterCreateRequest
 }
 
 /*
@@ -43,7 +42,7 @@ func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context
 	req := apiCreateSecurityFilterRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSecurityFilterExecute(req)
@@ -204,7 +203,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 type apiCreateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringRuleCreatePayload
+	body *SecurityMonitoringRuleCreatePayload
 }
 
 /*
@@ -215,7 +214,7 @@ func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context
 	req := apiCreateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSecurityMonitoringRuleExecute(req)
@@ -364,8 +363,8 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 }
 
 type apiDeleteSecurityFilterRequest struct {
-	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ctx        _context.Context
+	ApiService *SecurityMonitoringApiService
 	securityFilterId string
 }
 
@@ -375,8 +374,8 @@ type apiDeleteSecurityFilterRequest struct {
  */
 func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
 	req := apiDeleteSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx:        ctx,
 		securityFilterId: securityFilterId,
 	}
 
@@ -503,7 +502,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 type apiDeleteSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ruleId string
 }
 
 /*
@@ -514,7 +513,7 @@ func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context
 	req := apiDeleteSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		ruleId:     ruleId,
+		ruleId: ruleId,
 	}
 
 	return req.ApiService.deleteSecurityMonitoringRuleExecute(req)
@@ -638,8 +637,8 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 }
 
 type apiGetSecurityFilterRequest struct {
-	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ctx        _context.Context
+	ApiService *SecurityMonitoringApiService
 	securityFilterId string
 }
 
@@ -652,8 +651,8 @@ type apiGetSecurityFilterRequest struct {
  */
 func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiGetSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx:        ctx,
 		securityFilterId: securityFilterId,
 	}
 
@@ -791,7 +790,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 type apiGetSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	ruleId     string
+	ruleId string
 }
 
 /*
@@ -802,7 +801,7 @@ func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Co
 	req := apiGetSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		ruleId:     ruleId,
+		ruleId: ruleId,
 	}
 
 	return req.ApiService.getSecurityMonitoringRuleExecute(req)
@@ -1064,12 +1063,12 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
 }
 
 type ListSecurityMonitoringRulesOptionalParameters struct {
-	PageSize   *int64
+	PageSize *int64
 	PageNumber *int64
 }
 
@@ -1233,23 +1232,23 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 }
 
 type apiListSecurityMonitoringSignalsRequest struct {
-	ctx         _context.Context
-	ApiService  *SecurityMonitoringApiService
+	ctx        _context.Context
+	ApiService *SecurityMonitoringApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *SecurityMonitoringSignalsSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *SecurityMonitoringSignalsSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListSecurityMonitoringSignalsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *SecurityMonitoringSignalsSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *SecurityMonitoringSignalsSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 func NewListSecurityMonitoringSignalsOptionalParameters() *ListSecurityMonitoringSignalsOptionalParameters {
@@ -1323,12 +1322,12 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 		localVarFileBytes    []byte
 		localVarReturnValue  SecurityMonitoringSignalsListResponse
 	)
-
+	
 	operationId := "ListSecurityMonitoringSignals"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringSignals")
@@ -1465,7 +1464,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 type apiSearchSecurityMonitoringSignalsRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	body       *SecurityMonitoringSignalListRequest
+	body *SecurityMonitoringSignalListRequest
 }
 
 type SearchSecurityMonitoringSignalsOptionalParameters struct {
@@ -1518,12 +1517,12 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 		localVarFileBytes    []byte
 		localVarReturnValue  SecurityMonitoringSignalsListResponse
 	)
-
+	
 	operationId := "SearchSecurityMonitoringSignals"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
@@ -1652,10 +1651,10 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 }
 
 type apiUpdateSecurityFilterRequest struct {
-	ctx              _context.Context
-	ApiService       *SecurityMonitoringApiService
+	ctx        _context.Context
+	ApiService *SecurityMonitoringApiService
 	securityFilterId string
-	body             *SecurityFilterUpdateRequest
+	body *SecurityFilterUpdateRequest
 }
 
 /*
@@ -1665,10 +1664,10 @@ type apiUpdateSecurityFilterRequest struct {
  */
 func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	req := apiUpdateSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
+		ApiService: a,
+		ctx:        ctx,
 		securityFilterId: securityFilterId,
-		body:             &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateSecurityFilterExecute(req)
@@ -1840,8 +1839,8 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 type apiUpdateSecurityMonitoringRuleRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	ruleId     string
-	body       *SecurityMonitoringRuleUpdatePayload
+	ruleId string
+	body *SecurityMonitoringRuleUpdatePayload
 }
 
 /*
@@ -1854,8 +1853,8 @@ func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context
 	req := apiUpdateSecurityMonitoringRuleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		ruleId:     ruleId,
-		body:       &body,
+		ruleId: ruleId,
+		body: &body,
 	}
 
 	return req.ApiService.updateSecurityMonitoringRuleExecute(req)

@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type DashboardListsApiService service
 type apiCreateDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
-	body       *DashboardList
+	body *DashboardList
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *DashboardListsApiService) CreateDashboardList(ctx _context.Context, bod
 	req := apiCreateDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createDashboardListExecute(req)
@@ -188,7 +190,7 @@ func (a *DashboardListsApiService) createDashboardListExecute(r apiCreateDashboa
 type apiDeleteDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
-	listId     int64
+	listId int64
 }
 
 /*
@@ -199,7 +201,7 @@ func (a *DashboardListsApiService) DeleteDashboardList(ctx _context.Context, lis
 	req := apiDeleteDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
-		listId:     listId,
+		listId: listId,
 	}
 
 	return req.ApiService.deleteDashboardListExecute(req)
@@ -336,7 +338,7 @@ func (a *DashboardListsApiService) deleteDashboardListExecute(r apiDeleteDashboa
 type apiGetDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
-	listId     int64
+	listId int64
 }
 
 /*
@@ -347,7 +349,7 @@ func (a *DashboardListsApiService) GetDashboardList(ctx _context.Context, listId
 	req := apiGetDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
-		listId:     listId,
+		listId: listId,
 	}
 
 	return req.ApiService.getDashboardListExecute(req)
@@ -619,8 +621,8 @@ func (a *DashboardListsApiService) listDashboardListsExecute(r apiListDashboardL
 type apiUpdateDashboardListRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardListsApiService
-	listId     int64
-	body       *DashboardList
+	listId int64
+	body *DashboardList
 }
 
 /*
@@ -631,8 +633,8 @@ func (a *DashboardListsApiService) UpdateDashboardList(ctx _context.Context, lis
 	req := apiUpdateDashboardListRequest{
 		ApiService: a,
 		ctx:        ctx,
-		listId:     listId,
-		body:       &body,
+		listId: listId,
+		body: &body,
 	}
 
 	return req.ApiService.updateDashboardListExecute(req)

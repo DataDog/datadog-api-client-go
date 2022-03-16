@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsAttributeRemapper The remapper processor remaps any source attribute(s) or tag to another target attribute or tag.
 // Constraints on the tag/attribute name are explained in the [Tag Best Practice documentation](https://docs.datadoghq.com/logs/guide/log-parsing-best-practice).
@@ -38,9 +41,11 @@ type LogsAttributeRemapper struct {
 	// Type of logs attribute remapper.
 	Type LogsAttributeRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -83,7 +88,6 @@ func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
 	this.Type = type_
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -115,6 +119,7 @@ func (o *LogsAttributeRemapper) HasIsEnabled() bool {
 func (o *LogsAttributeRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetName() string {
@@ -148,6 +153,7 @@ func (o *LogsAttributeRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOverrideOnConflict returns the OverrideOnConflict field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetOverrideOnConflict() bool {
 	if o == nil || o.OverrideOnConflict == nil {
@@ -179,6 +185,7 @@ func (o *LogsAttributeRemapper) HasOverrideOnConflict() bool {
 func (o *LogsAttributeRemapper) SetOverrideOnConflict(v bool) {
 	o.OverrideOnConflict = &v
 }
+
 
 // GetPreserveSource returns the PreserveSource field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetPreserveSource() bool {
@@ -212,6 +219,7 @@ func (o *LogsAttributeRemapper) SetPreserveSource(v bool) {
 	o.PreserveSource = &v
 }
 
+
 // GetSourceType returns the SourceType field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetSourceType() string {
 	if o == nil || o.SourceType == nil {
@@ -244,6 +252,7 @@ func (o *LogsAttributeRemapper) SetSourceType(v string) {
 	o.SourceType = &v
 }
 
+
 // GetSources returns the Sources field value
 func (o *LogsAttributeRemapper) GetSources() []string {
 	if o == nil {
@@ -267,6 +276,7 @@ func (o *LogsAttributeRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
+
 // GetTarget returns the Target field value
 func (o *LogsAttributeRemapper) GetTarget() string {
 	if o == nil {
@@ -289,6 +299,7 @@ func (o *LogsAttributeRemapper) GetTargetOk() (*string, bool) {
 func (o *LogsAttributeRemapper) SetTarget(v string) {
 	o.Target = v
 }
+
 
 // GetTargetFormat returns the TargetFormat field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetTargetFormat() TargetFormatType {
@@ -322,6 +333,7 @@ func (o *LogsAttributeRemapper) SetTargetFormat(v TargetFormatType) {
 	o.TargetFormat = &v
 }
 
+
 // GetTargetType returns the TargetType field value if set, zero value otherwise.
 func (o *LogsAttributeRemapper) GetTargetType() string {
 	if o == nil || o.TargetType == nil {
@@ -354,6 +366,7 @@ func (o *LogsAttributeRemapper) SetTargetType(v string) {
 	o.TargetType = &v
 }
 
+
 // GetType returns the Type field value
 func (o *LogsAttributeRemapper) GetType() LogsAttributeRemapperType {
 	if o == nil {
@@ -376,6 +389,8 @@ func (o *LogsAttributeRemapper) GetTypeOk() (*LogsAttributeRemapperType, bool) {
 func (o *LogsAttributeRemapper) SetType(v LogsAttributeRemapperType) {
 	o.Type = v
 }
+
+
 
 func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -413,24 +428,25 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string                  `json:"sources"`
-		Target  *string                    `json:"target"`
-		Type    *LogsAttributeRemapperType `json:"type"`
+		Sources *[]string `json:"sources"`
+		Target *string `json:"target"`
+		Type *LogsAttributeRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled          *bool                     `json:"is_enabled,omitempty"`
-		Name               *string                   `json:"name,omitempty"`
-		OverrideOnConflict *bool                     `json:"override_on_conflict,omitempty"`
-		PreserveSource     *bool                     `json:"preserve_source,omitempty"`
-		SourceType         *string                   `json:"source_type,omitempty"`
-		Sources            []string                  `json:"sources"`
-		Target             string                    `json:"target"`
-		TargetFormat       *TargetFormatType         `json:"target_format,omitempty"`
-		TargetType         *string                   `json:"target_type,omitempty"`
-		Type               LogsAttributeRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		OverrideOnConflict *bool `json:"override_on_conflict,omitempty"`
+		PreserveSource *bool `json:"preserve_source,omitempty"`
+		SourceType *string `json:"source_type,omitempty"`
+		Sources []string `json:"sources"`
+		Target string `json:"target"`
+		TargetFormat *TargetFormatType `json:"target_format,omitempty"`
+		TargetType *string `json:"target_type,omitempty"`
+		Type LogsAttributeRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -454,7 +470,7 @@ func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TargetFormat; v != nil && !v.IsValid() {
+	if v := all.TargetFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

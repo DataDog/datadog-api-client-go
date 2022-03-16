@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type LogsIndexesApiService service
 type apiCreateLogsIndexRequest struct {
 	ctx        _context.Context
 	ApiService *LogsIndexesApiService
-	body       *LogsIndex
+	body *LogsIndex
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *LogsIndexesApiService) CreateLogsIndex(ctx _context.Context, body LogsI
 	req := apiCreateLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createLogsIndexExecute(req)
@@ -188,7 +190,7 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 type apiGetLogsIndexRequest struct {
 	ctx        _context.Context
 	ApiService *LogsIndexesApiService
-	name       string
+	name string
 }
 
 /*
@@ -199,7 +201,7 @@ func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) 
 	req := apiGetLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
-		name:       name,
+		name: name,
 	}
 
 	return req.ApiService.getLogsIndexExecute(req)
@@ -607,8 +609,8 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 type apiUpdateLogsIndexRequest struct {
 	ctx        _context.Context
 	ApiService *LogsIndexesApiService
-	name       string
-	body       *LogsIndexUpdateRequest
+	name string
+	body *LogsIndexUpdateRequest
 }
 
 /*
@@ -623,8 +625,8 @@ func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name strin
 	req := apiUpdateLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
-		name:       name,
-		body:       &body,
+		name: name,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsIndexExecute(req)
@@ -776,7 +778,7 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 type apiUpdateLogsIndexOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsIndexesApiService
-	body       *LogsIndexesOrder
+	body *LogsIndexesOrder
 }
 
 /*
@@ -788,7 +790,7 @@ func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body 
 	req := apiUpdateLogsIndexOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsIndexOrderExecute(req)

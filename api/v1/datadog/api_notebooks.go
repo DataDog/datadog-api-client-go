@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type NotebooksApiService service
 type apiCreateNotebookRequest struct {
 	ctx        _context.Context
 	ApiService *NotebooksApiService
-	body       *NotebookCreateRequest
+	body *NotebookCreateRequest
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body Notebook
 	req := apiCreateNotebookRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createNotebookExecute(req)
@@ -491,31 +493,31 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 }
 
 type apiListNotebooksRequest struct {
-	ctx                 _context.Context
-	ApiService          *NotebooksApiService
-	authorHandle        *string
+	ctx        _context.Context
+	ApiService *NotebooksApiService
+	authorHandle *string
 	excludeAuthorHandle *string
-	start               *int64
-	count               *int64
-	sortField           *string
-	sortDir             *string
-	query               *string
-	includeCells        *bool
-	isTemplate          *bool
-	type_               *string
+	start *int64
+	count *int64
+	sortField *string
+	sortDir *string
+	query *string
+	includeCells *bool
+	isTemplate *bool
+	type_ *string
 }
 
 type ListNotebooksOptionalParameters struct {
-	AuthorHandle        *string
+	AuthorHandle *string
 	ExcludeAuthorHandle *string
-	Start               *int64
-	Count               *int64
-	SortField           *string
-	SortDir             *string
-	Query               *string
-	IncludeCells        *bool
-	IsTemplate          *bool
-	Type                *string
+	Start *int64
+	Count *int64
+	SortField *string
+	SortDir *string
+	Query *string
+	IncludeCells *bool
+	IsTemplate *bool
+	Type *string
 }
 
 func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
@@ -756,7 +758,7 @@ type apiUpdateNotebookRequest struct {
 	ctx        _context.Context
 	ApiService *NotebooksApiService
 	notebookId int64
-	body       *NotebookUpdateRequest
+	body *NotebookUpdateRequest
 }
 
 /*
@@ -768,7 +770,7 @@ func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId in
 		ApiService: a,
 		ctx:        ctx,
 		notebookId: notebookId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateNotebookExecute(req)

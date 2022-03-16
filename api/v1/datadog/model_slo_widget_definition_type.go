@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOWidgetDefinitionType Type of the SLO widget.
 type SLOWidgetDefinitionType string

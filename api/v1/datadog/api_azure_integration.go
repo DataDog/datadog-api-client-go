@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type AzureIntegrationApiService service
 type apiCreateAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -42,7 +45,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 	req := apiCreateAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAzureIntegrationExecute(req)
@@ -193,7 +196,7 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 type apiDeleteAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -204,7 +207,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 	req := apiDeleteAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteAzureIntegrationExecute(req)
@@ -500,7 +503,7 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 type apiUpdateAzureHostFiltersRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -511,7 +514,7 @@ func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context
 	req := apiUpdateAzureHostFiltersRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateAzureHostFiltersExecute(req)
@@ -662,7 +665,7 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 type apiUpdateAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -675,7 +678,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 	req := apiUpdateAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateAzureIntegrationExecute(req)

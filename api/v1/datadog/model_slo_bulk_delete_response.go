@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOBulkDeleteResponse The bulk partial delete service level objective object endpoint
 // response.
@@ -22,9 +26,11 @@ type SLOBulkDeleteResponse struct {
 	// Array of errors object returned.
 	Errors *[]SLOBulkDeleteError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOBulkDeleteResponse instantiates a new SLOBulkDeleteResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +48,6 @@ func NewSLOBulkDeleteResponseWithDefaults() *SLOBulkDeleteResponse {
 	this := SLOBulkDeleteResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponse) GetData() SLOBulkDeleteResponseData {
 	if o == nil || o.Data == nil {
@@ -74,6 +79,7 @@ func (o *SLOBulkDeleteResponse) HasData() bool {
 func (o *SLOBulkDeleteResponse) SetData(v SLOBulkDeleteResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteError {
@@ -107,6 +113,8 @@ func (o *SLOBulkDeleteResponse) SetErrors(v []SLOBulkDeleteError) {
 	o.Errors = &v
 }
 
+
+
 func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -125,11 +133,12 @@ func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOBulkDeleteResponseData `json:"data,omitempty"`
-		Errors *[]SLOBulkDeleteError      `json:"errors,omitempty"`
+		Data *SLOBulkDeleteResponseData `json:"data,omitempty"`
+		Errors *[]SLOBulkDeleteError `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ApplicationKey An application key with its associated metadata.
 type ApplicationKey struct {
@@ -19,9 +23,11 @@ type ApplicationKey struct {
 	// Owner of an application key.
 	Owner *string `json:"owner,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApplicationKey instantiates a new ApplicationKey object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewApplicationKeyWithDefaults() *ApplicationKey {
 	this := ApplicationKey{}
 	return &this
 }
-
 // GetHash returns the Hash field value if set, zero value otherwise.
 func (o *ApplicationKey) GetHash() string {
 	if o == nil || o.Hash == nil {
@@ -71,6 +76,7 @@ func (o *ApplicationKey) HasHash() bool {
 func (o *ApplicationKey) SetHash(v string) {
 	o.Hash = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApplicationKey) GetName() string {
@@ -104,6 +110,7 @@ func (o *ApplicationKey) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetOwner returns the Owner field value if set, zero value otherwise.
 func (o *ApplicationKey) GetOwner() string {
 	if o == nil || o.Owner == nil {
@@ -136,6 +143,8 @@ func (o *ApplicationKey) SetOwner(v string) {
 	o.Owner = &v
 }
 
+
+
 func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,11 +166,12 @@ func (o ApplicationKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hash  *string `json:"hash,omitempty"`
-		Name  *string `json:"name,omitempty"`
+		Hash *string `json:"hash,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Owner *string `json:"owner,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseRelationships The incident's relationships from a response.
 type IncidentResponseRelationships struct {
@@ -23,9 +27,11 @@ type IncidentResponseRelationships struct {
 	// A relationship reference for postmortems.
 	Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentResponseRelationships instantiates a new IncidentResponseRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewIncidentResponseRelationshipsWithDefaults() *IncidentResponseRelationshi
 	this := IncidentResponseRelationships{}
 	return &this
 }
-
 // GetCommanderUser returns the CommanderUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetCommanderUser() NullableRelationshipToUser {
 	if o == nil || o.CommanderUser == nil {
@@ -75,6 +80,7 @@ func (o *IncidentResponseRelationships) HasCommanderUser() bool {
 func (o *IncidentResponseRelationships) SetCommanderUser(v NullableRelationshipToUser) {
 	o.CommanderUser = &v
 }
+
 
 // GetCreatedByUser returns the CreatedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetCreatedByUser() RelationshipToUser {
@@ -108,6 +114,7 @@ func (o *IncidentResponseRelationships) SetCreatedByUser(v RelationshipToUser) {
 	o.CreatedByUser = &v
 }
 
+
 // GetIntegrations returns the Integrations field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetIntegrations() RelationshipToIncidentIntegrationMetadatas {
 	if o == nil || o.Integrations == nil {
@@ -139,6 +146,7 @@ func (o *IncidentResponseRelationships) HasIntegrations() bool {
 func (o *IncidentResponseRelationships) SetIntegrations(v RelationshipToIncidentIntegrationMetadatas) {
 	o.Integrations = &v
 }
+
 
 // GetLastModifiedByUser returns the LastModifiedByUser field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetLastModifiedByUser() RelationshipToUser {
@@ -172,6 +180,7 @@ func (o *IncidentResponseRelationships) SetLastModifiedByUser(v RelationshipToUs
 	o.LastModifiedByUser = &v
 }
 
+
 // GetPostmortem returns the Postmortem field value if set, zero value otherwise.
 func (o *IncidentResponseRelationships) GetPostmortem() RelationshipToIncidentPostmortem {
 	if o == nil || o.Postmortem == nil {
@@ -204,6 +213,8 @@ func (o *IncidentResponseRelationships) SetPostmortem(v RelationshipToIncidentPo
 	o.Postmortem = &v
 }
 
+
+
 func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -231,14 +242,15 @@ func (o IncidentResponseRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CommanderUser      *NullableRelationshipToUser                 `json:"commander_user,omitempty"`
-		CreatedByUser      *RelationshipToUser                         `json:"created_by_user,omitempty"`
-		Integrations       *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
-		LastModifiedByUser *RelationshipToUser                         `json:"last_modified_by_user,omitempty"`
-		Postmortem         *RelationshipToIncidentPostmortem           `json:"postmortem,omitempty"`
+		CommanderUser *NullableRelationshipToUser `json:"commander_user,omitempty"`
+		CreatedByUser *RelationshipToUser `json:"created_by_user,omitempty"`
+		Integrations *RelationshipToIncidentIntegrationMetadatas `json:"integrations,omitempty"`
+		LastModifiedByUser *RelationshipToUser `json:"last_modified_by_user,omitempty"`
+		Postmortem *RelationshipToIncidentPostmortem `json:"postmortem,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

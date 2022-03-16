@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type DashboardsApiService service
 type apiCreateDashboardRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardsApiService
-	body       *Dashboard
+	body *Dashboard
 }
 
 /*
@@ -38,7 +40,7 @@ func (a *DashboardsApiService) CreateDashboard(ctx _context.Context, body Dashbo
 	req := apiCreateDashboardRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createDashboardExecute(req)
@@ -187,8 +189,8 @@ func (a *DashboardsApiService) createDashboardExecute(r apiCreateDashboardReques
 }
 
 type apiDeleteDashboardRequest struct {
-	ctx         _context.Context
-	ApiService  *DashboardsApiService
+	ctx        _context.Context
+	ApiService *DashboardsApiService
 	dashboardId string
 }
 
@@ -198,8 +200,8 @@ type apiDeleteDashboardRequest struct {
  */
 func (a *DashboardsApiService) DeleteDashboard(ctx _context.Context, dashboardId string) (DashboardDeleteResponse, *_nethttp.Response, error) {
 	req := apiDeleteDashboardRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardId: dashboardId,
 	}
 
@@ -337,7 +339,7 @@ func (a *DashboardsApiService) deleteDashboardExecute(r apiDeleteDashboardReques
 type apiDeleteDashboardsRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardsApiService
-	body       *DashboardBulkDeleteRequest
+	body *DashboardBulkDeleteRequest
 }
 
 /*
@@ -348,7 +350,7 @@ func (a *DashboardsApiService) DeleteDashboards(ctx _context.Context, body Dashb
 	req := apiDeleteDashboardsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteDashboardsExecute(req)
@@ -496,8 +498,8 @@ func (a *DashboardsApiService) deleteDashboardsExecute(r apiDeleteDashboardsRequ
 }
 
 type apiGetDashboardRequest struct {
-	ctx         _context.Context
-	ApiService  *DashboardsApiService
+	ctx        _context.Context
+	ApiService *DashboardsApiService
 	dashboardId string
 }
 
@@ -507,8 +509,8 @@ type apiGetDashboardRequest struct {
  */
 func (a *DashboardsApiService) GetDashboard(ctx _context.Context, dashboardId string) (Dashboard, *_nethttp.Response, error) {
 	req := apiGetDashboardRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardId: dashboardId,
 	}
 
@@ -644,14 +646,14 @@ func (a *DashboardsApiService) getDashboardExecute(r apiGetDashboardRequest) (Da
 }
 
 type apiListDashboardsRequest struct {
-	ctx           _context.Context
-	ApiService    *DashboardsApiService
-	filterShared  *bool
+	ctx        _context.Context
+	ApiService *DashboardsApiService
+	filterShared *bool
 	filterDeleted *bool
 }
 
 type ListDashboardsOptionalParameters struct {
-	FilterShared  *bool
+	FilterShared *bool
 	FilterDeleted *bool
 }
 
@@ -820,7 +822,7 @@ func (a *DashboardsApiService) listDashboardsExecute(r apiListDashboardsRequest)
 type apiRestoreDashboardsRequest struct {
 	ctx        _context.Context
 	ApiService *DashboardsApiService
-	body       *DashboardRestoreRequest
+	body *DashboardRestoreRequest
 }
 
 /*
@@ -831,7 +833,7 @@ func (a *DashboardsApiService) RestoreDashboards(ctx _context.Context, body Dash
 	req := apiRestoreDashboardsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.restoreDashboardsExecute(req)
@@ -979,10 +981,10 @@ func (a *DashboardsApiService) restoreDashboardsExecute(r apiRestoreDashboardsRe
 }
 
 type apiUpdateDashboardRequest struct {
-	ctx         _context.Context
-	ApiService  *DashboardsApiService
+	ctx        _context.Context
+	ApiService *DashboardsApiService
 	dashboardId string
-	body        *Dashboard
+	body *Dashboard
 }
 
 /*
@@ -991,10 +993,10 @@ type apiUpdateDashboardRequest struct {
  */
 func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string, body Dashboard) (Dashboard, *_nethttp.Response, error) {
 	req := apiUpdateDashboardRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardId: dashboardId,
-		body:        &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateDashboardExecute(req)

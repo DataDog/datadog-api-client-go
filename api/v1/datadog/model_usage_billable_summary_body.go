@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageBillableSummaryBody Response with properties for each aggregated usage type.
 type UsageBillableSummaryBody struct {
@@ -28,9 +31,11 @@ type UsageBillableSummaryBody struct {
 	// Units pertaining to the usage.
 	UsageUnit *string `json:"usage_unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageBillableSummaryBody instantiates a new UsageBillableSummaryBody object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewUsageBillableSummaryBodyWithDefaults() *UsageBillableSummaryBody {
 	this := UsageBillableSummaryBody{}
 	return &this
 }
-
 // GetAccountBillableUsage returns the AccountBillableUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetAccountBillableUsage() int64 {
 	if o == nil || o.AccountBillableUsage == nil {
@@ -80,6 +84,7 @@ func (o *UsageBillableSummaryBody) HasAccountBillableUsage() bool {
 func (o *UsageBillableSummaryBody) SetAccountBillableUsage(v int64) {
 	o.AccountBillableUsage = &v
 }
+
 
 // GetElapsedUsageHours returns the ElapsedUsageHours field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetElapsedUsageHours() int64 {
@@ -113,6 +118,7 @@ func (o *UsageBillableSummaryBody) SetElapsedUsageHours(v int64) {
 	o.ElapsedUsageHours = &v
 }
 
+
 // GetFirstBillableUsageHour returns the FirstBillableUsageHour field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetFirstBillableUsageHour() time.Time {
 	if o == nil || o.FirstBillableUsageHour == nil {
@@ -144,6 +150,7 @@ func (o *UsageBillableSummaryBody) HasFirstBillableUsageHour() bool {
 func (o *UsageBillableSummaryBody) SetFirstBillableUsageHour(v time.Time) {
 	o.FirstBillableUsageHour = &v
 }
+
 
 // GetLastBillableUsageHour returns the LastBillableUsageHour field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetLastBillableUsageHour() time.Time {
@@ -177,6 +184,7 @@ func (o *UsageBillableSummaryBody) SetLastBillableUsageHour(v time.Time) {
 	o.LastBillableUsageHour = &v
 }
 
+
 // GetOrgBillableUsage returns the OrgBillableUsage field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetOrgBillableUsage() int64 {
 	if o == nil || o.OrgBillableUsage == nil {
@@ -208,6 +216,7 @@ func (o *UsageBillableSummaryBody) HasOrgBillableUsage() bool {
 func (o *UsageBillableSummaryBody) SetOrgBillableUsage(v int64) {
 	o.OrgBillableUsage = &v
 }
+
 
 // GetPercentageInAccount returns the PercentageInAccount field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetPercentageInAccount() float64 {
@@ -241,6 +250,7 @@ func (o *UsageBillableSummaryBody) SetPercentageInAccount(v float64) {
 	o.PercentageInAccount = &v
 }
 
+
 // GetUsageUnit returns the UsageUnit field value if set, zero value otherwise.
 func (o *UsageBillableSummaryBody) GetUsageUnit() string {
 	if o == nil || o.UsageUnit == nil {
@@ -272,6 +282,8 @@ func (o *UsageBillableSummaryBody) HasUsageUnit() bool {
 func (o *UsageBillableSummaryBody) SetUsageUnit(v string) {
 	o.UsageUnit = &v
 }
+
+
 
 func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -306,16 +318,17 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageBillableSummaryBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountBillableUsage   *int64     `json:"account_billable_usage,omitempty"`
-		ElapsedUsageHours      *int64     `json:"elapsed_usage_hours,omitempty"`
+		AccountBillableUsage *int64 `json:"account_billable_usage,omitempty"`
+		ElapsedUsageHours *int64 `json:"elapsed_usage_hours,omitempty"`
 		FirstBillableUsageHour *time.Time `json:"first_billable_usage_hour,omitempty"`
-		LastBillableUsageHour  *time.Time `json:"last_billable_usage_hour,omitempty"`
-		OrgBillableUsage       *int64     `json:"org_billable_usage,omitempty"`
-		PercentageInAccount    *float64   `json:"percentage_in_account,omitempty"`
-		UsageUnit              *string    `json:"usage_unit,omitempty"`
+		LastBillableUsageHour *time.Time `json:"last_billable_usage_hour,omitempty"`
+		OrgBillableUsage *int64 `json:"org_billable_usage,omitempty"`
+		PercentageInAccount *float64 `json:"percentage_in_account,omitempty"`
+		UsageUnit *string `json:"usage_unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

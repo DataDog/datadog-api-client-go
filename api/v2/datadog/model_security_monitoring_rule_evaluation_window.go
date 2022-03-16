@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringRuleEvaluationWindow A time window is specified to match when at least one of the cases matches true. This is a sliding window
 // and evaluates in real time.
@@ -17,14 +20,14 @@ type SecurityMonitoringRuleEvaluationWindow int32
 
 // List of SecurityMonitoringRuleEvaluationWindow
 const (
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES    SecurityMonitoringRuleEvaluationWindow = 0
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_MINUTE      SecurityMonitoringRuleEvaluationWindow = 60
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES    SecurityMonitoringRuleEvaluationWindow = 300
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_TEN_MINUTES     SecurityMonitoringRuleEvaluationWindow = 600
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES SecurityMonitoringRuleEvaluationWindow = 0
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_MINUTE SecurityMonitoringRuleEvaluationWindow = 60
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIVE_MINUTES SecurityMonitoringRuleEvaluationWindow = 300
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_TEN_MINUTES SecurityMonitoringRuleEvaluationWindow = 600
 	SECURITYMONITORINGRULEEVALUATIONWINDOW_FIFTEEN_MINUTES SecurityMonitoringRuleEvaluationWindow = 900
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_THIRTY_MINUTES  SecurityMonitoringRuleEvaluationWindow = 1800
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_HOUR        SecurityMonitoringRuleEvaluationWindow = 3600
-	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWO_HOURS       SecurityMonitoringRuleEvaluationWindow = 7200
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_THIRTY_MINUTES SecurityMonitoringRuleEvaluationWindow = 1800
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_ONE_HOUR SecurityMonitoringRuleEvaluationWindow = 3600
+	SECURITYMONITORINGRULEEVALUATIONWINDOW_TWO_HOURS SecurityMonitoringRuleEvaluationWindow = 7200
 )
 
 var allowedSecurityMonitoringRuleEvaluationWindowEnumValues = []SecurityMonitoringRuleEvaluationWindow{

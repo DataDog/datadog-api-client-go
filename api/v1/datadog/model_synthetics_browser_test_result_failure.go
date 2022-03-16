@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBrowserTestResultFailure The browser test failure details.
 type SyntheticsBrowserTestResultFailure struct {
@@ -17,9 +21,11 @@ type SyntheticsBrowserTestResultFailure struct {
 	// The browser test error message.
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserTestResultFailure instantiates a new SyntheticsBrowserTestResultFailure object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSyntheticsBrowserTestResultFailureWithDefaults() *SyntheticsBrowserTestR
 	this := SyntheticsBrowserTestResultFailure{}
 	return &this
 }
-
 // GetCode returns the Code field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFailure) GetCode() SyntheticsBrowserTestFailureCode {
 	if o == nil || o.Code == nil {
@@ -69,6 +74,7 @@ func (o *SyntheticsBrowserTestResultFailure) HasCode() bool {
 func (o *SyntheticsBrowserTestResultFailure) SetCode(v SyntheticsBrowserTestFailureCode) {
 	o.Code = &v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultFailure) GetMessage() string {
@@ -102,6 +108,8 @@ func (o *SyntheticsBrowserTestResultFailure) SetMessage(v string) {
 	o.Message = &v
 }
 
+
+
 func (o SyntheticsBrowserTestResultFailure) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o SyntheticsBrowserTestResultFailure) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
-		Message *string                           `json:"message,omitempty"`
+		Code *SyntheticsBrowserTestFailureCode `json:"code,omitempty"`
+		Message *string `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,7 +144,7 @@ func (o *SyntheticsBrowserTestResultFailure) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Code; v != nil && !v.IsValid() {
+	if v := all.Code; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
