@@ -1541,7 +1541,7 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 
 /*
  * ListRoles List roles
- * Returns all roles, including their names and IDs.
+ * Returns all roles, including their names and their unique identifiers.
  */
 func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
 	req := apiListRolesRequest{

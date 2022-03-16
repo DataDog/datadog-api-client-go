@@ -12,7 +12,7 @@ import (
 
 // RelationshipToRoles Relationship to roles.
 type RelationshipToRoles struct {
-	// An array containing type and ID of a role.
+	// An array containing type and the unique identifier of a role.
 	Data *[]RelationshipToRoleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
