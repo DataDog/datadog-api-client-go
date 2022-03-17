@@ -1,8 +1,9 @@
 .travis.yml
+build/
 git_push.sh
 gotestsum.json
 coverage.txt
-examples
+examples/
 .generator/lib
 __pycache__
 
