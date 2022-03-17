@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"filter":{"from":"now-15m","query":"@type:session AND @session.type:user","to":"now"},"options":{"time_offset":0,"timezone":"GMT"},"page":{"cursor":"eyJzdGFydEF0IjoiQVFBQUFYS2tMS3pPbm40NGV3QUFBQUJCV0V0clRFdDZVbG8zY3pCRmNsbHJiVmxDWlEifQ==","limit":25},"sort":"timestamp"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/audit/events/search
+  response:
+    body: '{"errors":["input_validation_error(Field ''page'' is invalid: invalid cursor)"]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1
