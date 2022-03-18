@@ -40,7 +40,7 @@ func main() {
 					Metric:      datadog.PtrString("@duration"),
 				},
 				Total: &datadog.LogsGroupByTotal{
-					LogsAggregateBucketValueSingleString: datadog.PtrString("recall")},
+					LogsGroupByTotalString: datadog.PtrString("recall")},
 			},
 		},
 	}
