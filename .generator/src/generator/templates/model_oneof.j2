@@ -2,7 +2,7 @@
 type {{ name }} struct {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
-	{%- set attributeName = dataType|upperfirst %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 	{{ attributeName }} *{{ dataType }}
 {%- endfor%}
 
@@ -12,7 +12,7 @@ type {{ name }} struct {
 
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
-	{%- set attributeName = dataType|upperfirst %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 
 // {{ attributeName }}As{{ name }} is a convenience function that returns {{ dataType }} wrapped in {{ name }}
 func {{ attributeName }}As{{ name }}(v *{{ dataType }}) {{ name }} {
@@ -57,7 +57,7 @@ func (dst *{{ name }}) UnmarshalJSON(data []byte) error {
 	match := 0
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
-	{%- set attributeName = dataType|upperfirst %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 	// try to unmarshal data into {{ attributeName }}
 	err = json.Unmarshal(data, &dst.{{ attributeName }})
 	if err == nil {
@@ -79,7 +79,7 @@ func (dst *{{ name }}) UnmarshalJSON(data []byte) error {
 		// reset to nil
 		{%- for oneOf in model.oneOf %}
 		{%- set dataType = get_type(oneOf) %}
-		{%- set attributeName = dataType|upperfirst %}
+		{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 		dst.{{ attributeName }} = nil
 		{%- endfor %}
 		return json.Unmarshal(data, &dst.UnparsedObject)
@@ -93,7 +93,7 @@ func (dst *{{ name }}) UnmarshalJSON(data []byte) error {
 func (src {{ name }}) MarshalJSON() ([]byte, error) {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
-	{%- set attributeName = dataType|upperfirst %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 	if src.{{ attributeName }} != nil {
 		return json.Marshal(&src.{{ attributeName }})
 	}
@@ -109,7 +109,7 @@ func (src {{ name }}) MarshalJSON() ([]byte, error) {
 func (obj *{{ name }}) GetActualInstance() (interface{}) {
 {%- for oneOf in model.oneOf %}
 	{%- set dataType = get_type(oneOf) %}
-	{%- set attributeName = dataType|upperfirst %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
 	if obj.{{ attributeName }} != nil {
 		return obj.{{ attributeName }}
 	}
