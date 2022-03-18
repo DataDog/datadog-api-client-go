@@ -32,7 +32,7 @@ func main() {
 			{
 				Facet: "host",
 				Missing: &datadog.LogsGroupByMissing{
-					String: datadog.PtrString("miss")},
+					LogsAggregateBucketValueSingleString: datadog.PtrString("miss")},
 				Sort: &datadog.LogsAggregateSort{
 					Type:        datadog.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
 					Order:       datadog.LOGSSORTORDER_ASCENDING.Ptr(),
@@ -40,7 +40,7 @@ func main() {
 					Metric:      datadog.PtrString("@duration"),
 				},
 				Total: &datadog.LogsGroupByTotal{
-					String: datadog.PtrString("recall")},
+					LogsAggregateBucketValueSingleString: datadog.PtrString("recall")},
 			},
 		},
 	}
