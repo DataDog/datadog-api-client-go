@@ -18,7 +18,7 @@ type UsageTopAvgMetricsMetadata struct {
 	// The month value from the user request that contains the returned usage data. (If month was used the request)
 	Month *time.Time `json:"month,omitempty"`
 	// The metadata for the current pagination.
-	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+	Pagination *UsageTopAvgMetricsPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -106,9 +106,9 @@ func (o *UsageTopAvgMetricsMetadata) SetMonth(v time.Time) {
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
-func (o *UsageTopAvgMetricsMetadata) GetPagination() UsageAttributionPagination {
+func (o *UsageTopAvgMetricsMetadata) GetPagination() UsageTopAvgMetricsPagination {
 	if o == nil || o.Pagination == nil {
-		var ret UsageAttributionPagination
+		var ret UsageTopAvgMetricsPagination
 		return ret
 	}
 	return *o.Pagination
@@ -116,7 +116,7 @@ func (o *UsageTopAvgMetricsMetadata) GetPagination() UsageAttributionPagination 
 
 // GetPaginationOk returns a tuple with the Pagination field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *UsageTopAvgMetricsMetadata) GetPaginationOk() (*UsageAttributionPagination, bool) {
+func (o *UsageTopAvgMetricsMetadata) GetPaginationOk() (*UsageTopAvgMetricsPagination, bool) {
 	if o == nil || o.Pagination == nil {
 		return nil, false
 	}
@@ -132,8 +132,8 @@ func (o *UsageTopAvgMetricsMetadata) HasPagination() bool {
 	return false
 }
 
-// SetPagination gets a reference to the given UsageAttributionPagination and assigns it to the Pagination field.
-func (o *UsageTopAvgMetricsMetadata) SetPagination(v UsageAttributionPagination) {
+// SetPagination gets a reference to the given UsageTopAvgMetricsPagination and assigns it to the Pagination field.
+func (o *UsageTopAvgMetricsMetadata) SetPagination(v UsageTopAvgMetricsPagination) {
 	o.Pagination = &v
 }
 
@@ -161,9 +161,9 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 func (o *UsageTopAvgMetricsMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Day        *time.Time                  `json:"day,omitempty"`
-		Month      *time.Time                  `json:"month,omitempty"`
-		Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
+		Day        *time.Time                    `json:"day,omitempty"`
+		Month      *time.Time                    `json:"month,omitempty"`
+		Pagination *UsageTopAvgMetricsPagination `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
