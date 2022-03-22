@@ -283,7 +283,7 @@ func TestUsageMobileRumSessions(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType_("mobile"))
+	usage, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType("mobile"))
 	if err != nil {
 		t.Errorf("Error getting Usage RUM Sessions: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -1079,7 +1079,7 @@ func TestUsageRumSessionBadType(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 
 	startHr, endHr := getStartEndHr(ctx)
-	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType_("invalid"))
+	_, httpresp, err := Client(ctx).UsageMeteringApi.GetUsageRumSessions(ctx, startHr, *datadog.NewGetUsageRumSessionsOptionalParameters().WithEndHr(endHr).WithType("invalid"))
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)

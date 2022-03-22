@@ -1,0 +1,20 @@
+{% include "partial_header.j2" %}
+package {{ package_name }}
+
+import (
+	"encoding/json"
+	"fmt"
+{#imports
+	"{{import}}"
+#}
+)
+
+{# {{ model.description.rstrip()|replace('\n', '\n# ')|indent(2) }}#}
+{% if "enum" in model -%}
+{% include "model_enum.j2" %}
+{%- elif "oneOf" in model -%}
+{% include "model_oneof.j2" %}
+{%- else -%}
+{% include "model_simple.j2" %}
+{%- endif %}
+{# keep new line #}
