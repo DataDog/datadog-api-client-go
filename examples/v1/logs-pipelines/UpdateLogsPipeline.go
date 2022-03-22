@@ -34,7 +34,6 @@ rule_name_2 bar
 					Type:      datadog.LOGSGROKPARSERTYPE_GROK_PARSER,
 				}},
 		},
-		Type: datadog.PtrString("pipeline"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
