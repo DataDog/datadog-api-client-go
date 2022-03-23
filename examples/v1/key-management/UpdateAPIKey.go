@@ -13,10 +13,7 @@ import (
 
 func main() {
 	body := datadog.ApiKey{
-		Created:   datadog.PtrString("2019-08-02 15:31:07"),
-		CreatedBy: datadog.PtrString("john@example.com"),
-		Key:       datadog.PtrString("1234512345123456abcabc912349abcd"),
-		Name:      datadog.PtrString("example user"),
+		Name: datadog.PtrString("example user"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

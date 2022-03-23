@@ -26,7 +26,6 @@ func main() {
 		Filter: datadog.LogsFilter{
 			Query: datadog.PtrString("source:python"),
 		},
-		IsRateLimited:    datadog.PtrBool(false),
 		Name:             "main",
 		NumRetentionDays: datadog.PtrInt64(15),
 	}
