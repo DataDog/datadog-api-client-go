@@ -30,9 +30,8 @@ func main() {
 		Locations: []string{
 			"aws:eu-west-3",
 		},
-		Message:   datadog.PtrString("Notification message"),
-		MonitorId: datadog.PtrInt64(12345678),
-		Name:      "Example test name",
+		Message: datadog.PtrString("Notification message"),
+		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
 			DeviceIds: &[]datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
@@ -40,9 +39,8 @@ func main() {
 			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
 			Retry:          &datadog.SyntheticsTestOptionsRetry{},
 		},
-		PublicId: datadog.PtrString("123-abc-456"),
-		Status:   datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Subtype:  datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
 		Tags: &[]string{
 			"env:production",
 		},

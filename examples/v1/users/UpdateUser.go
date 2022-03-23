@@ -17,9 +17,7 @@ func main() {
 		Disabled:   datadog.PtrBool(false),
 		Email:      datadog.PtrString("test@datadoghq.com"),
 		Handle:     datadog.PtrString("test@datadoghq.com"),
-		Icon:       datadog.PtrString("/path/to/matching/gravatar/icon"),
 		Name:       datadog.PtrString("test user"),
-		Verified:   datadog.PtrBool(true),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
