@@ -2,10 +2,10 @@ package tests
 
 import (
 	"errors"
+	"fmt"
 	"reflect"
 	"strconv"
 	"strings"
-	"fmt"
 )
 
 // ErrNotFound is returned when the key didn't match
@@ -50,7 +50,7 @@ func lookupPartI(value reflect.Value, key string) (reflect.Value, error) {
 				}
 				switch value.Elem().Kind() {
 				case reflect.Float32, reflect.Float64:
-					valueString := fmt.Sprintf("%v", value.Elem().Float())
+					valueString := fmt.Sprintf("%f", value.Elem().Float())
 					if strings.Contains(valueString, ".") {
 						return value.Elem(), nil
 					}
