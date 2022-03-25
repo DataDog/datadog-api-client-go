@@ -2,7 +2,6 @@ package tests
 
 import (
 	"errors"
-	"fmt"
 	"reflect"
 	"strconv"
 	"strings"
@@ -47,15 +46,6 @@ func lookupPartI(value reflect.Value, key string) (reflect.Value, error) {
 				value = iter.Value()
 				if value.IsNil() {
 					return value, nil
-				}
-				switch value.Elem().Kind() {
-				case reflect.Float32, reflect.Float64:
-					valueString := fmt.Sprintf("%f", value.Elem().Float())
-					if strings.Contains(valueString, ".") {
-						return value.Elem(), nil
-					}
-					valueInt64 := int64(value.Elem().Float())
-					return reflect.ValueOf(valueInt64), nil
 				}
 				return value.Elem(), nil
 			}

@@ -58,7 +58,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		return v.Elem()
 	}
 	v, _ := tests.LookupStringI(GetData(ctx), *p.Source)
-	return v
+	return v.Convert(tp)
 }
 
 // GivenStep defines a step.
