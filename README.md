@@ -6,7 +6,7 @@ and [apigentools](https://github.com/DataDog/apigentools).
 
 ## Requirements
 
-- Go 1.14+
+- Go 1.16+
 
 ## Layout
 
