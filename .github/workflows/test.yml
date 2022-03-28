@@ -43,7 +43,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16.x
+          go-version: 1.18.x
       - id: pre_commit
         name: Run pre-commit
         if: github.event.action != 'closed' && github.event.pull_request.merged != true
@@ -62,7 +62,7 @@ jobs:
   test:
     strategy:
       matrix:
-        go-version: [1.14.x, 1.16.x]
+        go-version: [1.16.x, 1.18.x]
         platform: [ubuntu-latest, macos-latest]
     runs-on: ${{ matrix.platform }}
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
@@ -84,7 +84,7 @@ jobs:
       - name: Install Go
         uses: actions/setup-go@v2
         with:
-          go-version: 1.16.x
+          go-version: 1.18.x
       - name: Check examples
         run: ./check-examples.sh
         shell: bash
