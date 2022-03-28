@@ -24,8 +24,8 @@ fi
 # unfortunately there's no better way to fix this than change directory
 # this might get solved in Go 1.14: https://github.com/golang/go/issues/30515
 cd "$(mktemp -d)"
-GO111MODULE=on go get -u golang.org/x/lint/golint
-GO111MODULE=on go get -u gotest.tools/gotestsum
+GO111MODULE=on go install golang.org/x/lint/golint@latest
+GO111MODULE=on go install gotest.tools/gotestsum@latest
 cd -
 
 golint ./...
