@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // WebhooksIntegrationUpdateRequest Update request of a Webhooks integration object.
@@ -27,7 +29,7 @@ type WebhooksIntegrationUpdateRequest struct {
 	// If given a JSON payload, the webhook returns the payload
 	// specified by the given payload.
 	// [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
-	Payload NullableString `json:"payload,omitempty"`
+	Payload client.NullableString `json:"payload,omitempty"`
 	// URL of the webhook.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -180,7 +182,7 @@ func (o *WebhooksIntegrationUpdateRequest) HasPayload() bool {
 	return false
 }
 
-// SetPayload gets a reference to the given NullableString and assigns it to the Payload field.
+// SetPayload gets a reference to the given client.NullableString and assigns it to the Payload field.
 func (o *WebhooksIntegrationUpdateRequest) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
@@ -260,7 +262,7 @@ func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err erro
 		CustomHeaders *string                      `json:"custom_headers,omitempty"`
 		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
 		Name          *string                      `json:"name,omitempty"`
-		Payload       NullableString               `json:"payload,omitempty"`
+		Payload       client.NullableString        `json:"payload,omitempty"`
 		Url           *string                      `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

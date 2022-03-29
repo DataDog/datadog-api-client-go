@@ -9,13 +9,15 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // WebhooksIntegration Datadog-Webhooks integration.
 type WebhooksIntegration struct {
 	// If `null`, uses no header.
 	// If given a JSON payload, these will be headers attached to your webhook.
-	CustomHeaders NullableString `json:"custom_headers,omitempty"`
+	CustomHeaders client.NullableString `json:"custom_headers,omitempty"`
 	// Encoding type. Can be given either `json` or `form`.
 	EncodeAs *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
 	// The name of the webhook. It corresponds with `<WEBHOOK_NAME>`.
@@ -26,7 +28,7 @@ type WebhooksIntegration struct {
 	// If given a JSON payload, the webhook returns the payload
 	// specified by the given payload.
 	// [Webhooks variable usage](https://docs.datadoghq.com/integrations/webhooks/#usage).
-	Payload NullableString `json:"payload,omitempty"`
+	Payload client.NullableString `json:"payload,omitempty"`
 	// URL of the webhook.
 	Url string `json:"url"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -85,7 +87,7 @@ func (o *WebhooksIntegration) HasCustomHeaders() bool {
 	return false
 }
 
-// SetCustomHeaders gets a reference to the given NullableString and assigns it to the CustomHeaders field.
+// SetCustomHeaders gets a reference to the given client.NullableString and assigns it to the CustomHeaders field.
 func (o *WebhooksIntegration) SetCustomHeaders(v string) {
 	o.CustomHeaders.Set(&v)
 }
@@ -183,7 +185,7 @@ func (o *WebhooksIntegration) HasPayload() bool {
 	return false
 }
 
-// SetPayload gets a reference to the given NullableString and assigns it to the Payload field.
+// SetPayload gets a reference to the given client.NullableString and assigns it to the Payload field.
 func (o *WebhooksIntegration) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
@@ -251,10 +253,10 @@ func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 		Url  *string `json:"url"`
 	}{}
 	all := struct {
-		CustomHeaders NullableString               `json:"custom_headers,omitempty"`
+		CustomHeaders client.NullableString        `json:"custom_headers,omitempty"`
 		EncodeAs      *WebhooksIntegrationEncoding `json:"encode_as,omitempty"`
 		Name          string                       `json:"name"`
-		Payload       NullableString               `json:"payload,omitempty"`
+		Payload       client.NullableString        `json:"payload,omitempty"`
 		Url           string                       `json:"url"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

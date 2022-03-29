@@ -9,6 +9,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // MonitorUpdateRequest Object describing a monitor update request.
@@ -18,7 +20,7 @@ type MonitorUpdateRequest struct {
 	// Object describing the creator of the shared element.
 	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
-	Deleted NullableTime `json:"deleted,omitempty"`
+	Deleted client.NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
@@ -159,7 +161,7 @@ func (o *MonitorUpdateRequest) HasDeleted() bool {
 	return false
 }
 
-// SetDeleted gets a reference to the given NullableTime and assigns it to the Deleted field.
+// SetDeleted gets a reference to the given client.NullableTime and assigns it to the Deleted field.
 func (o *MonitorUpdateRequest) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
@@ -655,7 +657,7 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Created         *time.Time            `json:"created,omitempty"`
 		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         NullableTime          `json:"deleted,omitempty"`
+		Deleted         client.NullableTime   `json:"deleted,omitempty"`
 		Id              *int64                `json:"id,omitempty"`
 		Message         *string               `json:"message,omitempty"`
 		Modified        *time.Time            `json:"modified,omitempty"`

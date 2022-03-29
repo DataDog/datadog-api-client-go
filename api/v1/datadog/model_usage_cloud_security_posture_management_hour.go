@@ -9,20 +9,22 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // UsageCloudSecurityPostureManagementHour Cloud Security Posture Management usage for a given organization for a given hour.
 type UsageCloudSecurityPostureManagementHour struct {
 	// The number of Cloud Security Posture Management Azure app services hosts during a given hour.
-	AasHostCount NullableFloat64 `json:"aas_host_count,omitempty"`
+	AasHostCount client.NullableFloat64 `json:"aas_host_count,omitempty"`
 	// The number of Cloud Security Posture Management Azure hosts during a given hour.
-	AzureHostCount NullableFloat64 `json:"azure_host_count,omitempty"`
+	AzureHostCount client.NullableFloat64 `json:"azure_host_count,omitempty"`
 	// The number of Cloud Security Posture Management hosts during a given hour.
-	ComplianceHostCount NullableFloat64 `json:"compliance_host_count,omitempty"`
+	ComplianceHostCount client.NullableFloat64 `json:"compliance_host_count,omitempty"`
 	// The total number of Cloud Security Posture Management containers during a given hour.
-	ContainerCount NullableFloat64 `json:"container_count,omitempty"`
+	ContainerCount client.NullableFloat64 `json:"container_count,omitempty"`
 	// The total number of Cloud Security Posture Management hosts during a given hour.
-	HostCount NullableFloat64 `json:"host_count,omitempty"`
+	HostCount client.NullableFloat64 `json:"host_count,omitempty"`
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
 	// The organization name.
@@ -79,7 +81,7 @@ func (o *UsageCloudSecurityPostureManagementHour) HasAasHostCount() bool {
 	return false
 }
 
-// SetAasHostCount gets a reference to the given NullableFloat64 and assigns it to the AasHostCount field.
+// SetAasHostCount gets a reference to the given client.NullableFloat64 and assigns it to the AasHostCount field.
 func (o *UsageCloudSecurityPostureManagementHour) SetAasHostCount(v float64) {
 	o.AasHostCount.Set(&v)
 }
@@ -122,7 +124,7 @@ func (o *UsageCloudSecurityPostureManagementHour) HasAzureHostCount() bool {
 	return false
 }
 
-// SetAzureHostCount gets a reference to the given NullableFloat64 and assigns it to the AzureHostCount field.
+// SetAzureHostCount gets a reference to the given client.NullableFloat64 and assigns it to the AzureHostCount field.
 func (o *UsageCloudSecurityPostureManagementHour) SetAzureHostCount(v float64) {
 	o.AzureHostCount.Set(&v)
 }
@@ -165,7 +167,7 @@ func (o *UsageCloudSecurityPostureManagementHour) HasComplianceHostCount() bool 
 	return false
 }
 
-// SetComplianceHostCount gets a reference to the given NullableFloat64 and assigns it to the ComplianceHostCount field.
+// SetComplianceHostCount gets a reference to the given client.NullableFloat64 and assigns it to the ComplianceHostCount field.
 func (o *UsageCloudSecurityPostureManagementHour) SetComplianceHostCount(v float64) {
 	o.ComplianceHostCount.Set(&v)
 }
@@ -208,7 +210,7 @@ func (o *UsageCloudSecurityPostureManagementHour) HasContainerCount() bool {
 	return false
 }
 
-// SetContainerCount gets a reference to the given NullableFloat64 and assigns it to the ContainerCount field.
+// SetContainerCount gets a reference to the given client.NullableFloat64 and assigns it to the ContainerCount field.
 func (o *UsageCloudSecurityPostureManagementHour) SetContainerCount(v float64) {
 	o.ContainerCount.Set(&v)
 }
@@ -251,7 +253,7 @@ func (o *UsageCloudSecurityPostureManagementHour) HasHostCount() bool {
 	return false
 }
 
-// SetHostCount gets a reference to the given NullableFloat64 and assigns it to the HostCount field.
+// SetHostCount gets a reference to the given client.NullableFloat64 and assigns it to the HostCount field.
 func (o *UsageCloudSecurityPostureManagementHour) SetHostCount(v float64) {
 	o.HostCount.Set(&v)
 }
@@ -401,14 +403,14 @@ func (o UsageCloudSecurityPostureManagementHour) MarshalJSON() ([]byte, error) {
 func (o *UsageCloudSecurityPostureManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AasHostCount        NullableFloat64 `json:"aas_host_count,omitempty"`
-		AzureHostCount      NullableFloat64 `json:"azure_host_count,omitempty"`
-		ComplianceHostCount NullableFloat64 `json:"compliance_host_count,omitempty"`
-		ContainerCount      NullableFloat64 `json:"container_count,omitempty"`
-		HostCount           NullableFloat64 `json:"host_count,omitempty"`
-		Hour                *time.Time      `json:"hour,omitempty"`
-		OrgName             *string         `json:"org_name,omitempty"`
-		PublicId            *string         `json:"public_id,omitempty"`
+		AasHostCount        client.NullableFloat64 `json:"aas_host_count,omitempty"`
+		AzureHostCount      client.NullableFloat64 `json:"azure_host_count,omitempty"`
+		ComplianceHostCount client.NullableFloat64 `json:"compliance_host_count,omitempty"`
+		ContainerCount      client.NullableFloat64 `json:"container_count,omitempty"`
+		HostCount           client.NullableFloat64 `json:"host_count,omitempty"`
+		Hour                *time.Time             `json:"hour,omitempty"`
+		OrgName             *string                `json:"org_name,omitempty"`
+		PublicId            *string                `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

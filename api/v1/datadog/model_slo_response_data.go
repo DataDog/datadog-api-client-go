@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // SLOResponseData A service level objective object includes a service level indicator, thresholds
@@ -25,7 +27,7 @@ type SLOResponseData struct {
 	//
 	// Always included in service level objective responses (but may be `null`).
 	// Optional in create/update requests.
-	Description NullableString `json:"description,omitempty"`
+	Description client.NullableString `json:"description,omitempty"`
 	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.
 	//
 	// Included in service level objective responses if it is not empty. Optional in
@@ -211,7 +213,7 @@ func (o *SLOResponseData) HasDescription() bool {
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given client.NullableString and assigns it to the Description field.
 func (o *SLOResponseData) SetDescription(v string) {
 	o.Description.Set(&v)
 }
@@ -606,7 +608,7 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		ConfiguredAlertIds *[]int64                    `json:"configured_alert_ids,omitempty"`
 		CreatedAt          *int64                      `json:"created_at,omitempty"`
 		Creator            *Creator                    `json:"creator,omitempty"`
-		Description        NullableString              `json:"description,omitempty"`
+		Description        client.NullableString       `json:"description,omitempty"`
 		Groups             *[]string                   `json:"groups,omitempty"`
 		Id                 *string                     `json:"id,omitempty"`
 		ModifiedAt         *int64                      `json:"modified_at,omitempty"`

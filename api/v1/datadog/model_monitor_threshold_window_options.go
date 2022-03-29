@@ -8,14 +8,16 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // MonitorThresholdWindowOptions Alerting time window options.
 type MonitorThresholdWindowOptions struct {
 	// Describes how long an anomalous metric must be normal before the alert recovers.
-	RecoveryWindow NullableString `json:"recovery_window,omitempty"`
+	RecoveryWindow client.NullableString `json:"recovery_window,omitempty"`
 	// Describes how long a metric must be anomalous before an alert triggers.
-	TriggerWindow NullableString `json:"trigger_window,omitempty"`
+	TriggerWindow client.NullableString `json:"trigger_window,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -66,7 +68,7 @@ func (o *MonitorThresholdWindowOptions) HasRecoveryWindow() bool {
 	return false
 }
 
-// SetRecoveryWindow gets a reference to the given NullableString and assigns it to the RecoveryWindow field.
+// SetRecoveryWindow gets a reference to the given client.NullableString and assigns it to the RecoveryWindow field.
 func (o *MonitorThresholdWindowOptions) SetRecoveryWindow(v string) {
 	o.RecoveryWindow.Set(&v)
 }
@@ -109,7 +111,7 @@ func (o *MonitorThresholdWindowOptions) HasTriggerWindow() bool {
 	return false
 }
 
-// SetTriggerWindow gets a reference to the given NullableString and assigns it to the TriggerWindow field.
+// SetTriggerWindow gets a reference to the given client.NullableString and assigns it to the TriggerWindow field.
 func (o *MonitorThresholdWindowOptions) SetTriggerWindow(v string) {
 	o.TriggerWindow.Set(&v)
 }
@@ -145,8 +147,8 @@ func (o MonitorThresholdWindowOptions) MarshalJSON() ([]byte, error) {
 func (o *MonitorThresholdWindowOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		RecoveryWindow NullableString `json:"recovery_window,omitempty"`
-		TriggerWindow  NullableString `json:"trigger_window,omitempty"`
+		RecoveryWindow client.NullableString `json:"recovery_window,omitempty"`
+		TriggerWindow  client.NullableString `json:"trigger_window,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

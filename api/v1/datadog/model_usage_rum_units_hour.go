@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // UsageRumUnitsHour Number of RUM Units used for each hour for a given organization (data available as of November 1, 2021).
@@ -21,7 +23,7 @@ type UsageRumUnitsHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// Total RUM units across mobile and browser RUM.
-	RumUnits NullableInt64 `json:"rum_units,omitempty"`
+	RumUnits client.NullableInt64 `json:"rum_units,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -200,7 +202,7 @@ func (o *UsageRumUnitsHour) HasRumUnits() bool {
 	return false
 }
 
-// SetRumUnits gets a reference to the given NullableInt64 and assigns it to the RumUnits field.
+// SetRumUnits gets a reference to the given client.NullableInt64 and assigns it to the RumUnits field.
 func (o *UsageRumUnitsHour) SetRumUnits(v int64) {
 	o.RumUnits.Set(&v)
 }
@@ -245,11 +247,11 @@ func (o UsageRumUnitsHour) MarshalJSON() ([]byte, error) {
 func (o *UsageRumUnitsHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserRumUnits *int64        `json:"browser_rum_units,omitempty"`
-		MobileRumUnits  *int64        `json:"mobile_rum_units,omitempty"`
-		OrgName         *string       `json:"org_name,omitempty"`
-		PublicId        *string       `json:"public_id,omitempty"`
-		RumUnits        NullableInt64 `json:"rum_units,omitempty"`
+		BrowserRumUnits *int64               `json:"browser_rum_units,omitempty"`
+		MobileRumUnits  *int64               `json:"mobile_rum_units,omitempty"`
+		OrgName         *string              `json:"org_name,omitempty"`
+		PublicId        *string              `json:"public_id,omitempty"`
+		RumUnits        client.NullableInt64 `json:"rum_units,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

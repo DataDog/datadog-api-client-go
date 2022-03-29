@@ -10,6 +10,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // Dashboard A dashboard is Datadog’s tool for visually tracking, analyzing, and displaying
@@ -18,11 +20,11 @@ type Dashboard struct {
 	// Identifier of the dashboard author.
 	AuthorHandle *string `json:"author_handle,omitempty"`
 	// Name of the dashboard author.
-	AuthorName NullableString `json:"author_name,omitempty"`
+	AuthorName client.NullableString `json:"author_name,omitempty"`
 	// Creation date of the dashboard.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Description of the dashboard.
-	Description NullableString `json:"description,omitempty"`
+	Description client.NullableString `json:"description,omitempty"`
 	// ID of the dashboard.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it. Prefer using `restricted_roles` to manage write authorization.
@@ -139,7 +141,7 @@ func (o *Dashboard) HasAuthorName() bool {
 	return false
 }
 
-// SetAuthorName gets a reference to the given NullableString and assigns it to the AuthorName field.
+// SetAuthorName gets a reference to the given client.NullableString and assigns it to the AuthorName field.
 func (o *Dashboard) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
@@ -214,7 +216,7 @@ func (o *Dashboard) HasDescription() bool {
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given client.NullableString and assigns it to the Description field.
 func (o *Dashboard) SetDescription(v string) {
 	o.Description.Set(&v)
 }
@@ -655,9 +657,9 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		AuthorHandle            *string                           `json:"author_handle,omitempty"`
-		AuthorName              NullableString                    `json:"author_name,omitempty"`
+		AuthorName              client.NullableString             `json:"author_name,omitempty"`
 		CreatedAt               *time.Time                        `json:"created_at,omitempty"`
-		Description             NullableString                    `json:"description,omitempty"`
+		Description             client.NullableString             `json:"description,omitempty"`
 		Id                      *string                           `json:"id,omitempty"`
 		IsReadOnly              *bool                             `json:"is_read_only,omitempty"`
 		LayoutType              DashboardLayoutType               `json:"layout_type"`

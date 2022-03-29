@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // SLOCorrectionResponseAttributes The attribute object associated with the SLO correction.
@@ -21,7 +23,7 @@ type SLOCorrectionResponseAttributes struct {
 	// Description of the correction being made.
 	Description *string `json:"description,omitempty"`
 	// Length of time (in seconds) for a specified `rrule` recurring SLO correction.
-	Duration NullableInt64 `json:"duration,omitempty"`
+	Duration client.NullableInt64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
 	// The epoch timestamp of when the correction was modified at
@@ -30,7 +32,7 @@ type SLOCorrectionResponseAttributes struct {
 	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
 	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections
 	// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
-	Rrule NullableString `json:"rrule,omitempty"`
+	Rrule client.NullableString `json:"rrule,omitempty"`
 	// ID of the SLO that this correction will be applied to.
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds.
@@ -215,7 +217,7 @@ func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
 	return false
 }
 
-// SetDuration gets a reference to the given NullableInt64 and assigns it to the Duration field.
+// SetDuration gets a reference to the given client.NullableInt64 and assigns it to the Duration field.
 func (o *SLOCorrectionResponseAttributes) SetDuration(v int64) {
 	o.Duration.Set(&v)
 }
@@ -365,7 +367,7 @@ func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
 	return false
 }
 
-// SetRrule gets a reference to the given NullableString and assigns it to the Rrule field.
+// SetRrule gets a reference to the given client.NullableString and assigns it to the Rrule field.
 func (o *SLOCorrectionResponseAttributes) SetRrule(v string) {
 	o.Rrule.Set(&v)
 }
@@ -531,11 +533,11 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		CreatedAt   *int64                                          `json:"created_at,omitempty"`
 		Creator     *Creator                                        `json:"creator,omitempty"`
 		Description *string                                         `json:"description,omitempty"`
-		Duration    NullableInt64                                   `json:"duration,omitempty"`
+		Duration    client.NullableInt64                            `json:"duration,omitempty"`
 		End         *int64                                          `json:"end,omitempty"`
 		ModifiedAt  *int64                                          `json:"modified_at,omitempty"`
 		Modifier    NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-		Rrule       NullableString                                  `json:"rrule,omitempty"`
+		Rrule       client.NullableString                           `json:"rrule,omitempty"`
 		SloId       *string                                         `json:"slo_id,omitempty"`
 		Start       *int64                                          `json:"start,omitempty"`
 		Timezone    *string                                         `json:"timezone,omitempty"`

@@ -9,6 +9,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // LogsURLParser This processor extracts query parameters and other important parameters from a URL.
@@ -18,7 +20,7 @@ type LogsURLParser struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Normalize the ending slashes or not.
-	NormalizeEndingSlashes NullableBool `json:"normalize_ending_slashes,omitempty"`
+	NormalizeEndingSlashes client.NullableBool `json:"normalize_ending_slashes,omitempty"`
 	// Array of source attributes.
 	Sources []string `json:"sources"`
 	// Name of the parent attribute that contains all the extracted details from the `sources`.
@@ -39,7 +41,7 @@ func NewLogsURLParser(sources []string, target string, type_ LogsURLParserType) 
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	var normalizeEndingSlashes bool = false
-	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
+	this.NormalizeEndingSlashes = *client.NewNullableBool(&normalizeEndingSlashes)
 	this.Sources = sources
 	this.Target = target
 	this.Type = type_
@@ -54,7 +56,7 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	var normalizeEndingSlashes bool = false
-	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
+	this.NormalizeEndingSlashes = *client.NewNullableBool(&normalizeEndingSlashes)
 	var target string = "http.url_details"
 	this.Target = target
 	var type_ LogsURLParserType = LOGSURLPARSERTYPE_URL_PARSER
@@ -154,7 +156,7 @@ func (o *LogsURLParser) HasNormalizeEndingSlashes() bool {
 	return false
 }
 
-// SetNormalizeEndingSlashes gets a reference to the given NullableBool and assigns it to the NormalizeEndingSlashes field.
+// SetNormalizeEndingSlashes gets a reference to the given client.NullableBool and assigns it to the NormalizeEndingSlashes field.
 func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool) {
 	o.NormalizeEndingSlashes.Set(&v)
 }
@@ -270,12 +272,12 @@ func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *LogsURLParserType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled              *bool             `json:"is_enabled,omitempty"`
-		Name                   *string           `json:"name,omitempty"`
-		NormalizeEndingSlashes NullableBool      `json:"normalize_ending_slashes,omitempty"`
-		Sources                []string          `json:"sources"`
-		Target                 string            `json:"target"`
-		Type                   LogsURLParserType `json:"type"`
+		IsEnabled              *bool               `json:"is_enabled,omitempty"`
+		Name                   *string             `json:"name,omitempty"`
+		NormalizeEndingSlashes client.NullableBool `json:"normalize_ending_slashes,omitempty"`
+		Sources                []string            `json:"sources"`
+		Target                 string              `json:"target"`
+		Type                   LogsURLParserType   `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

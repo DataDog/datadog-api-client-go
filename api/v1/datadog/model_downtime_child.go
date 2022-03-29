@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // DowntimeChild The downtime object definition of the active child for the original parent recurring downtime. This
@@ -16,7 +18,7 @@ type DowntimeChild struct {
 	// If a scheduled downtime currently exists.
 	Active *bool `json:"active,omitempty"`
 	// If a scheduled downtime is canceled.
-	Canceled NullableInt64 `json:"canceled,omitempty"`
+	Canceled client.NullableInt64 `json:"canceled,omitempty"`
 	// User ID of the downtime creator.
 	CreatorId *int32 `json:"creator_id,omitempty"`
 	// If a downtime has been disabled.
@@ -27,7 +29,7 @@ type DowntimeChild struct {
 	DowntimeType *int32 `json:"downtime_type,omitempty"`
 	// POSIX timestamp to end the downtime. If not provided,
 	// the downtime is in effect indefinitely until you cancel it.
-	End NullableInt64 `json:"end,omitempty"`
+	End client.NullableInt64 `json:"end,omitempty"`
 	// The downtime ID.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this downtime.
@@ -35,14 +37,14 @@ type DowntimeChild struct {
 	Message *string `json:"message,omitempty"`
 	// A single monitor to which the downtime applies.
 	// If not provided, the downtime applies to all monitors.
-	MonitorId NullableInt64 `json:"monitor_id,omitempty"`
+	MonitorId client.NullableInt64 `json:"monitor_id,omitempty"`
 	// A comma-separated list of monitor tags. For example, tags that are applied directly to monitors,
 	// not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies.
 	// The resulting downtime applies to monitors that match ALL provided monitor tags.
 	// For example, `service:postgres` **AND** `team:frontend`.
 	MonitorTags *[]string `json:"monitor_tags,omitempty"`
 	// ID of the parent Downtime.
-	ParentId NullableInt64 `json:"parent_id,omitempty"`
+	ParentId client.NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
 	Recurrence NullableDowntimeRecurrence `json:"recurrence,omitempty"`
 	// The scope(s) to which the downtime applies. For example, `host:app2`.
@@ -55,7 +57,7 @@ type DowntimeChild struct {
 	// The timezone in which to display the downtime's start and end times in Datadog applications.
 	Timezone *string `json:"timezone,omitempty"`
 	// ID of the last user that updated the downtime.
-	UpdaterId NullableInt32 `json:"updater_id,omitempty"`
+	UpdaterId client.NullableInt32 `json:"updater_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -138,7 +140,7 @@ func (o *DowntimeChild) HasCanceled() bool {
 	return false
 }
 
-// SetCanceled gets a reference to the given NullableInt64 and assigns it to the Canceled field.
+// SetCanceled gets a reference to the given client.NullableInt64 and assigns it to the Canceled field.
 func (o *DowntimeChild) SetCanceled(v int64) {
 	o.Canceled.Set(&v)
 }
@@ -277,7 +279,7 @@ func (o *DowntimeChild) HasEnd() bool {
 	return false
 }
 
-// SetEnd gets a reference to the given NullableInt64 and assigns it to the End field.
+// SetEnd gets a reference to the given client.NullableInt64 and assigns it to the End field.
 func (o *DowntimeChild) SetEnd(v int64) {
 	o.End.Set(&v)
 }
@@ -384,7 +386,7 @@ func (o *DowntimeChild) HasMonitorId() bool {
 	return false
 }
 
-// SetMonitorId gets a reference to the given NullableInt64 and assigns it to the MonitorId field.
+// SetMonitorId gets a reference to the given client.NullableInt64 and assigns it to the MonitorId field.
 func (o *DowntimeChild) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
@@ -459,7 +461,7 @@ func (o *DowntimeChild) HasParentId() bool {
 	return false
 }
 
-// SetParentId gets a reference to the given NullableInt64 and assigns it to the ParentId field.
+// SetParentId gets a reference to the given client.NullableInt64 and assigns it to the ParentId field.
 func (o *DowntimeChild) SetParentId(v int64) {
 	o.ParentId.Set(&v)
 }
@@ -641,7 +643,7 @@ func (o *DowntimeChild) HasUpdaterId() bool {
 	return false
 }
 
-// SetUpdaterId gets a reference to the given NullableInt32 and assigns it to the UpdaterId field.
+// SetUpdaterId gets a reference to the given client.NullableInt32 and assigns it to the UpdaterId field.
 func (o *DowntimeChild) SetUpdaterId(v int32) {
 	o.UpdaterId.Set(&v)
 }
@@ -720,21 +722,21 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Active       *bool                      `json:"active,omitempty"`
-		Canceled     NullableInt64              `json:"canceled,omitempty"`
+		Canceled     client.NullableInt64       `json:"canceled,omitempty"`
 		CreatorId    *int32                     `json:"creator_id,omitempty"`
 		Disabled     *bool                      `json:"disabled,omitempty"`
 		DowntimeType *int32                     `json:"downtime_type,omitempty"`
-		End          NullableInt64              `json:"end,omitempty"`
+		End          client.NullableInt64       `json:"end,omitempty"`
 		Id           *int64                     `json:"id,omitempty"`
 		Message      *string                    `json:"message,omitempty"`
-		MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
+		MonitorId    client.NullableInt64       `json:"monitor_id,omitempty"`
 		MonitorTags  *[]string                  `json:"monitor_tags,omitempty"`
-		ParentId     NullableInt64              `json:"parent_id,omitempty"`
+		ParentId     client.NullableInt64       `json:"parent_id,omitempty"`
 		Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
 		Scope        *[]string                  `json:"scope,omitempty"`
 		Start        *int64                     `json:"start,omitempty"`
 		Timezone     *string                    `json:"timezone,omitempty"`
-		UpdaterId    NullableInt32              `json:"updater_id,omitempty"`
+		UpdaterId    client.NullableInt32       `json:"updater_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -67,7 +67,6 @@ def cli(input, output):
     extra_files = {
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
-        "utils.go": env.get_template("utils.j2"),
     }
 
     apis = openapi.apis(spec)

@@ -9,6 +9,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // NotebookAuthor Attributes of user object returned by the API.
@@ -24,11 +26,11 @@ type NotebookAuthor struct {
 	// URL of the user's icon.
 	Icon *string `json:"icon,omitempty"`
 	// Name of the user.
-	Name NullableString `json:"name,omitempty"`
+	Name client.NullableString `json:"name,omitempty"`
 	// Status of the user.
 	Status *string `json:"status,omitempty"`
 	// Title of the user.
-	Title NullableString `json:"title,omitempty"`
+	Title client.NullableString `json:"title,omitempty"`
 	// Whether the user is verified.
 	Verified *bool `json:"verified,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -241,7 +243,7 @@ func (o *NotebookAuthor) HasName() bool {
 	return false
 }
 
-// SetName gets a reference to the given NullableString and assigns it to the Name field.
+// SetName gets a reference to the given client.NullableString and assigns it to the Name field.
 func (o *NotebookAuthor) SetName(v string) {
 	o.Name.Set(&v)
 }
@@ -316,7 +318,7 @@ func (o *NotebookAuthor) HasTitle() bool {
 	return false
 }
 
-// SetTitle gets a reference to the given NullableString and assigns it to the Title field.
+// SetTitle gets a reference to the given client.NullableString and assigns it to the Title field.
 func (o *NotebookAuthor) SetTitle(v string) {
 	o.Title.Set(&v)
 }
@@ -405,15 +407,15 @@ func (o NotebookAuthor) MarshalJSON() ([]byte, error) {
 func (o *NotebookAuthor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *time.Time     `json:"created_at,omitempty"`
-		Disabled  *bool          `json:"disabled,omitempty"`
-		Email     *string        `json:"email,omitempty"`
-		Handle    *string        `json:"handle,omitempty"`
-		Icon      *string        `json:"icon,omitempty"`
-		Name      NullableString `json:"name,omitempty"`
-		Status    *string        `json:"status,omitempty"`
-		Title     NullableString `json:"title,omitempty"`
-		Verified  *bool          `json:"verified,omitempty"`
+		CreatedAt *time.Time            `json:"created_at,omitempty"`
+		Disabled  *bool                 `json:"disabled,omitempty"`
+		Email     *string               `json:"email,omitempty"`
+		Handle    *string               `json:"handle,omitempty"`
+		Icon      *string               `json:"icon,omitempty"`
+		Name      client.NullableString `json:"name,omitempty"`
+		Status    *string               `json:"status,omitempty"`
+		Title     client.NullableString `json:"title,omitempty"`
+		Verified  *bool                 `json:"verified,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

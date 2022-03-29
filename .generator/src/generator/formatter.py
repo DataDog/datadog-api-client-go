@@ -1,7 +1,5 @@
 """Data formatter."""
 import re
-import warnings
-from functools import singledispatch
 
 
 KEYWORDS = {
@@ -165,27 +163,27 @@ def simple_type(schema, render_nullable=False):
 
     if type_name == "integer":
         return {
-            "int32": "int32" if not nullable else "NullableInt32",
-            "int64": "int64" if not nullable else "NullableInt64",
-            None: "int32" if not nullable else "NullableInt32",
+            "int32": "int32" if not nullable else "client.NullableInt32",
+            "int64": "int64" if not nullable else "client.NullableInt64",
+            None: "int32" if not nullable else "client.NullableInt32",
         }[type_format]
 
     if type_name == "number":
         return {
-            "double": "float64" if not nullable else "NullableFloat64",
-            None: "float" if not nullable else "NullableFloat",
+            "double": "float64" if not nullable else "client.NullableFloat64",
+            None: "float" if not nullable else "client.NullableFloat",
         }[type_format]
 
     if type_name == "string":
         return {
-            "date": "time.Time" if not nullable else "NullableTime",
-            "date-time": "time.Time" if not nullable else "NullableTime",
-            "email": "string" if not nullable else "NullableString",
+            "date": "time.Time" if not nullable else "client.NullableTime",
+            "date-time": "time.Time" if not nullable else "client.NullableTime",
+            "email": "string" if not nullable else "client.NullableString",
             "binary": "*os.File",
-            None: "string" if not nullable else "NullableString",
+            None: "string" if not nullable else "client.NullableString",
         }[type_format]
     if type_name == "boolean":
-        return "bool" if not nullable else "NullableBool"
+        return "bool" if not nullable else "client.NullableBool"
 
     return None
 

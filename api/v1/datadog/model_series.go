@@ -9,6 +9,8 @@ package datadog
 import (
 	"encoding/json"
 	"fmt"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // Series A metric to submit to Datadog.
@@ -17,7 +19,7 @@ type Series struct {
 	// The name of the host that produced the metric.
 	Host *string `json:"host,omitempty"`
 	// If the type of the metric is rate or count, define the corresponding interval.
-	Interval NullableInt64 `json:"interval,omitempty"`
+	Interval client.NullableInt64 `json:"interval,omitempty"`
 	// The name of the timeseries.
 	Metric string `json:"metric"`
 	// Points relating to a metric. All points must be tuples with timestamp and a scalar value (cannot be a string). Timestamps should be in POSIX time in seconds, and cannot be more than ten minutes in the future or more than one hour in the past.
@@ -37,7 +39,7 @@ type Series struct {
 // will change when the set of required properties is changed
 func NewSeries(metric string, points [][]*float64) *Series {
 	this := Series{}
-	this.Interval = *NewNullableInt64(nil)
+	this.Interval = *client.NewNullableInt64(nil)
 	this.Metric = metric
 	this.Points = points
 	var type_ string = "gauge"
@@ -50,7 +52,7 @@ func NewSeries(metric string, points [][]*float64) *Series {
 // but it doesn't guarantee that properties required by API are set
 func NewSeriesWithDefaults() *Series {
 	this := Series{}
-	this.Interval = *NewNullableInt64(nil)
+	this.Interval = *client.NewNullableInt64(nil)
 	var type_ string = "gauge"
 	this.Type = &type_
 	return &this
@@ -116,7 +118,7 @@ func (o *Series) HasInterval() bool {
 	return false
 }
 
-// SetInterval gets a reference to the given NullableInt64 and assigns it to the Interval field.
+// SetInterval gets a reference to the given client.NullableInt64 and assigns it to the Interval field.
 func (o *Series) SetInterval(v int64) {
 	o.Interval.Set(&v)
 }
@@ -274,12 +276,12 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 		Points *[][]*float64 `json:"points"`
 	}{}
 	all := struct {
-		Host     *string       `json:"host,omitempty"`
-		Interval NullableInt64 `json:"interval,omitempty"`
-		Metric   string        `json:"metric"`
-		Points   [][]*float64  `json:"points"`
-		Tags     *[]string     `json:"tags,omitempty"`
-		Type     *string       `json:"type,omitempty"`
+		Host     *string              `json:"host,omitempty"`
+		Interval client.NullableInt64 `json:"interval,omitempty"`
+		Metric   string               `json:"metric"`
+		Points   [][]*float64         `json:"points"`
+		Tags     *[]string            `json:"tags,omitempty"`
+		Type     *string              `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

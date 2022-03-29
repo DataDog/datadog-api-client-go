@@ -9,6 +9,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // DashboardSummaryDefinition Dashboard definition.
@@ -18,7 +20,7 @@ type DashboardSummaryDefinition struct {
 	// Creation date of the dashboard.
 	CreatedAt *time.Time `json:"created_at,omitempty"`
 	// Description of the dashboard.
-	Description NullableString `json:"description,omitempty"`
+	Description client.NullableString `json:"description,omitempty"`
 	// Dashboard identifier.
 	Id *string `json:"id,omitempty"`
 	// Whether this dashboard is read-only. If True, only the author and admins can make changes to it.
@@ -145,7 +147,7 @@ func (o *DashboardSummaryDefinition) HasDescription() bool {
 	return false
 }
 
-// SetDescription gets a reference to the given NullableString and assigns it to the Description field.
+// SetDescription gets a reference to the given client.NullableString and assigns it to the Description field.
 func (o *DashboardSummaryDefinition) SetDescription(v string) {
 	o.Description.Set(&v)
 }
@@ -394,15 +396,15 @@ func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AuthorHandle *string              `json:"author_handle,omitempty"`
-		CreatedAt    *time.Time           `json:"created_at,omitempty"`
-		Description  NullableString       `json:"description,omitempty"`
-		Id           *string              `json:"id,omitempty"`
-		IsReadOnly   *bool                `json:"is_read_only,omitempty"`
-		LayoutType   *DashboardLayoutType `json:"layout_type,omitempty"`
-		ModifiedAt   *time.Time           `json:"modified_at,omitempty"`
-		Title        *string              `json:"title,omitempty"`
-		Url          *string              `json:"url,omitempty"`
+		AuthorHandle *string               `json:"author_handle,omitempty"`
+		CreatedAt    *time.Time            `json:"created_at,omitempty"`
+		Description  client.NullableString `json:"description,omitempty"`
+		Id           *string               `json:"id,omitempty"`
+		IsReadOnly   *bool                 `json:"is_read_only,omitempty"`
+		LayoutType   *DashboardLayoutType  `json:"layout_type,omitempty"`
+		ModifiedAt   *time.Time            `json:"modified_at,omitempty"`
+		Title        *string               `json:"title,omitempty"`
+		Url          *string               `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

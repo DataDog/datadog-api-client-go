@@ -10,6 +10,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // IncidentResponseAttributes The incident's attributes from a response.
@@ -20,15 +22,15 @@ type IncidentResponseAttributes struct {
 	// Equals the difference between `customer_impact_start` and `customer_impact_end`.
 	CustomerImpactDuration *int64 `json:"customer_impact_duration,omitempty"`
 	// Timestamp when customers were no longer impacted by the incident.
-	CustomerImpactEnd NullableTime `json:"customer_impact_end,omitempty"`
+	CustomerImpactEnd client.NullableTime `json:"customer_impact_end,omitempty"`
 	// A summary of the impact customers experienced during the incident.
-	CustomerImpactScope NullableString `json:"customer_impact_scope,omitempty"`
+	CustomerImpactScope client.NullableString `json:"customer_impact_scope,omitempty"`
 	// Timestamp when customers began being impacted by the incident.
-	CustomerImpactStart NullableTime `json:"customer_impact_start,omitempty"`
+	CustomerImpactStart client.NullableTime `json:"customer_impact_start,omitempty"`
 	// A flag indicating whether the incident caused customer impact.
 	CustomerImpacted *bool `json:"customer_impacted,omitempty"`
 	// Timestamp when the incident was detected.
-	Detected NullableTime `json:"detected,omitempty"`
+	Detected client.NullableTime `json:"detected,omitempty"`
 	// A condensed view of the user-defined fields attached to incidents.
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Timestamp when the incident was last modified.
@@ -40,7 +42,7 @@ type IncidentResponseAttributes struct {
 	// The monotonically increasing integer ID for the incident.
 	PublicId *int64 `json:"public_id,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
-	Resolved NullableTime `json:"resolved,omitempty"`
+	Resolved client.NullableTime `json:"resolved,omitempty"`
 	// The amount of time in seconds to detect the incident.
 	// Equals the difference between `customer_impact_start` and `detected`.
 	TimeToDetect *int64 `json:"time_to_detect,omitempty"`
@@ -167,7 +169,7 @@ func (o *IncidentResponseAttributes) HasCustomerImpactEnd() bool {
 	return false
 }
 
-// SetCustomerImpactEnd gets a reference to the given NullableTime and assigns it to the CustomerImpactEnd field.
+// SetCustomerImpactEnd gets a reference to the given client.NullableTime and assigns it to the CustomerImpactEnd field.
 func (o *IncidentResponseAttributes) SetCustomerImpactEnd(v time.Time) {
 	o.CustomerImpactEnd.Set(&v)
 }
@@ -210,7 +212,7 @@ func (o *IncidentResponseAttributes) HasCustomerImpactScope() bool {
 	return false
 }
 
-// SetCustomerImpactScope gets a reference to the given NullableString and assigns it to the CustomerImpactScope field.
+// SetCustomerImpactScope gets a reference to the given client.NullableString and assigns it to the CustomerImpactScope field.
 func (o *IncidentResponseAttributes) SetCustomerImpactScope(v string) {
 	o.CustomerImpactScope.Set(&v)
 }
@@ -253,7 +255,7 @@ func (o *IncidentResponseAttributes) HasCustomerImpactStart() bool {
 	return false
 }
 
-// SetCustomerImpactStart gets a reference to the given NullableTime and assigns it to the CustomerImpactStart field.
+// SetCustomerImpactStart gets a reference to the given client.NullableTime and assigns it to the CustomerImpactStart field.
 func (o *IncidentResponseAttributes) SetCustomerImpactStart(v time.Time) {
 	o.CustomerImpactStart.Set(&v)
 }
@@ -328,7 +330,7 @@ func (o *IncidentResponseAttributes) HasDetected() bool {
 	return false
 }
 
-// SetDetected gets a reference to the given NullableTime and assigns it to the Detected field.
+// SetDetected gets a reference to the given client.NullableTime and assigns it to the Detected field.
 func (o *IncidentResponseAttributes) SetDetected(v time.Time) {
 	o.Detected.Set(&v)
 }
@@ -532,7 +534,7 @@ func (o *IncidentResponseAttributes) HasResolved() bool {
 	return false
 }
 
-// SetResolved gets a reference to the given NullableTime and assigns it to the Resolved field.
+// SetResolved gets a reference to the given client.NullableTime and assigns it to the Resolved field.
 func (o *IncidentResponseAttributes) SetResolved(v time.Time) {
 	o.Resolved.Set(&v)
 }
@@ -770,17 +772,17 @@ func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Created                *time.Time                         `json:"created,omitempty"`
 		CustomerImpactDuration *int64                             `json:"customer_impact_duration,omitempty"`
-		CustomerImpactEnd      NullableTime                       `json:"customer_impact_end,omitempty"`
-		CustomerImpactScope    NullableString                     `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart    NullableTime                       `json:"customer_impact_start,omitempty"`
+		CustomerImpactEnd      client.NullableTime                `json:"customer_impact_end,omitempty"`
+		CustomerImpactScope    client.NullableString              `json:"customer_impact_scope,omitempty"`
+		CustomerImpactStart    client.NullableTime                `json:"customer_impact_start,omitempty"`
 		CustomerImpacted       *bool                              `json:"customer_impacted,omitempty"`
-		Detected               NullableTime                       `json:"detected,omitempty"`
+		Detected               client.NullableTime                `json:"detected,omitempty"`
 		Fields                 map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		Modified               *time.Time                         `json:"modified,omitempty"`
 		NotificationHandles    []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
 		PostmortemId           *string                            `json:"postmortem_id,omitempty"`
 		PublicId               *int64                             `json:"public_id,omitempty"`
-		Resolved               NullableTime                       `json:"resolved,omitempty"`
+		Resolved               client.NullableTime                `json:"resolved,omitempty"`
 		TimeToDetect           *int64                             `json:"time_to_detect,omitempty"`
 		TimeToInternalResponse *int64                             `json:"time_to_internal_response,omitempty"`
 		TimeToRepair           *int64                             `json:"time_to_repair,omitempty"`

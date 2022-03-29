@@ -8,6 +8,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // MonitorOptions List of options associated with your monitor.
@@ -27,7 +29,7 @@ type MonitorOptions struct {
 	// Time (in seconds) to delay evaluation, as a non-negative integer. For example, if the value is set to `300` (5min),
 	// the timeframe is set to `last_5m` and the time is 7:00, the monitor evaluates data from 6:50 to 6:55.
 	// This is useful for AWS CloudWatch and other backfilled metrics to ensure the monitor always has data during evaluation.
-	EvaluationDelay NullableInt64 `json:"evaluation_delay,omitempty"`
+	EvaluationDelay client.NullableInt64 `json:"evaluation_delay,omitempty"`
 	// Whether the log alert monitor triggers a single alert or multiple alerts when any group breaches a threshold.
 	GroupbySimpleMonitor *bool `json:"groupby_simple_monitor,omitempty"`
 	// A Boolean indicating whether notifications from this monitor automatically inserts its triggering tags into the title.
@@ -40,37 +42,37 @@ type MonitorOptions struct {
 	// Deprecated
 	Locked *bool `json:"locked,omitempty"`
 	// How long the test should be in failure before alerting (integer, number of seconds, max 7200).
-	MinFailureDuration NullableInt64 `json:"min_failure_duration,omitempty"`
+	MinFailureDuration client.NullableInt64 `json:"min_failure_duration,omitempty"`
 	// The minimum number of locations in failure at the same time during
 	// at least one moment in the `min_failure_duration` period (`min_location_failed` and `min_failure_duration`
 	// are part of the advanced alerting rules - integer, >= 1).
-	MinLocationFailed NullableInt64 `json:"min_location_failed,omitempty"`
+	MinLocationFailed client.NullableInt64 `json:"min_location_failed,omitempty"`
 	// Time (in seconds) to skip evaluations for new groups.
 	//
 	// For example, this option can be used to skip evaluations for new hosts while they initialize.
 	//
 	// Must be a non negative integer.
-	NewGroupDelay NullableInt64 `json:"new_group_delay,omitempty"`
+	NewGroupDelay client.NullableInt64 `json:"new_group_delay,omitempty"`
 	// Time (in seconds) to allow a host to boot and applications
 	// to fully start before starting the evaluation of monitor results.
 	// Should be a non negative integer.
 	//
 	// Use new_group_delay instead.
 	// Deprecated
-	NewHostDelay NullableInt64 `json:"new_host_delay,omitempty"`
+	NewHostDelay client.NullableInt64 `json:"new_host_delay,omitempty"`
 	// The number of minutes before a monitor notifies after data stops reporting.
 	// Datadog recommends at least 2x the monitor timeframe for query alerts or 2 minutes for service checks.
 	// If omitted, 2x the evaluation timeframe is used for query alerts, and 24 hours is used for service checks.
-	NoDataTimeframe NullableInt64 `json:"no_data_timeframe,omitempty"`
+	NoDataTimeframe client.NullableInt64 `json:"no_data_timeframe,omitempty"`
 	// A Boolean indicating whether tagged users is notified on changes to this monitor.
 	NotifyAudit *bool `json:"notify_audit,omitempty"`
 	// A Boolean indicating whether this monitor notifies when data stops reporting.
 	NotifyNoData *bool `json:"notify_no_data,omitempty"`
 	// The number of minutes after the last notification before a monitor re-notifies on the current status.
 	// It only re-notifies if it’s not resolved.
-	RenotifyInterval NullableInt64 `json:"renotify_interval,omitempty"`
+	RenotifyInterval client.NullableInt64 `json:"renotify_interval,omitempty"`
 	// The number of times re-notification messages should be sent on the current status at the provided re-notification interval.
-	RenotifyOccurrences NullableInt64 `json:"renotify_occurrences,omitempty"`
+	RenotifyOccurrences client.NullableInt64 `json:"renotify_occurrences,omitempty"`
 	// The types of monitor statuses for which re-notification messages are sent.
 	RenotifyStatuses []MonitorRenotifyStatusType `json:"renotify_statuses,omitempty"`
 	// A Boolean indicating whether this monitor needs a full window of data before it’s evaluated.
@@ -82,13 +84,13 @@ type MonitorOptions struct {
 	Silenced map[string]int64 `json:"silenced,omitempty"`
 	// ID of the corresponding Synthetic check.
 	// Deprecated
-	SyntheticsCheckId NullableString `json:"synthetics_check_id,omitempty"`
+	SyntheticsCheckId client.NullableString `json:"synthetics_check_id,omitempty"`
 	// Alerting time window options.
 	ThresholdWindows *MonitorThresholdWindowOptions `json:"threshold_windows,omitempty"`
 	// List of the different monitor threshold available.
 	Thresholds *MonitorThresholds `json:"thresholds,omitempty"`
 	// The number of hours of the monitor not reporting data before it automatically resolves from a triggered state. The minimum allowed value is 0 hours. The maximum allowed value is 24 hours.
-	TimeoutH NullableInt64 `json:"timeout_h,omitempty"`
+	TimeoutH client.NullableInt64 `json:"timeout_h,omitempty"`
 	// List of requests that can be used in the monitor query. **This feature is currently in beta.**
 	Variables *[]MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -107,17 +109,17 @@ func NewMonitorOptions() *MonitorOptions {
 	var includeTags bool = true
 	this.IncludeTags = &includeTags
 	var minFailureDuration int64 = 0
-	this.MinFailureDuration = *NewNullableInt64(&minFailureDuration)
+	this.MinFailureDuration = *client.NewNullableInt64(&minFailureDuration)
 	var minLocationFailed int64 = 1
-	this.MinLocationFailed = *NewNullableInt64(&minLocationFailed)
+	this.MinLocationFailed = *client.NewNullableInt64(&minLocationFailed)
 	var newHostDelay int64 = 300
-	this.NewHostDelay = *NewNullableInt64(&newHostDelay)
+	this.NewHostDelay = *client.NewNullableInt64(&newHostDelay)
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
 	var notifyNoData bool = false
 	this.NotifyNoData = &notifyNoData
-	this.RenotifyInterval = *NewNullableInt64(nil)
-	this.TimeoutH = *NewNullableInt64(nil)
+	this.RenotifyInterval = *client.NewNullableInt64(nil)
+	this.TimeoutH = *client.NewNullableInt64(nil)
 	return &this
 }
 
@@ -131,17 +133,17 @@ func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	var includeTags bool = true
 	this.IncludeTags = &includeTags
 	var minFailureDuration int64 = 0
-	this.MinFailureDuration = *NewNullableInt64(&minFailureDuration)
+	this.MinFailureDuration = *client.NewNullableInt64(&minFailureDuration)
 	var minLocationFailed int64 = 1
-	this.MinLocationFailed = *NewNullableInt64(&minLocationFailed)
+	this.MinLocationFailed = *client.NewNullableInt64(&minLocationFailed)
 	var newHostDelay int64 = 300
-	this.NewHostDelay = *NewNullableInt64(&newHostDelay)
+	this.NewHostDelay = *client.NewNullableInt64(&newHostDelay)
 	var notifyAudit bool = false
 	this.NotifyAudit = &notifyAudit
 	var notifyNoData bool = false
 	this.NotifyNoData = &notifyNoData
-	this.RenotifyInterval = *NewNullableInt64(nil)
-	this.TimeoutH = *NewNullableInt64(nil)
+	this.RenotifyInterval = *client.NewNullableInt64(nil)
+	this.TimeoutH = *client.NewNullableInt64(nil)
 	return &this
 }
 
@@ -304,7 +306,7 @@ func (o *MonitorOptions) HasEvaluationDelay() bool {
 	return false
 }
 
-// SetEvaluationDelay gets a reference to the given NullableInt64 and assigns it to the EvaluationDelay field.
+// SetEvaluationDelay gets a reference to the given client.NullableInt64 and assigns it to the EvaluationDelay field.
 func (o *MonitorOptions) SetEvaluationDelay(v int64) {
 	o.EvaluationDelay.Set(&v)
 }
@@ -446,7 +448,7 @@ func (o *MonitorOptions) HasMinFailureDuration() bool {
 	return false
 }
 
-// SetMinFailureDuration gets a reference to the given NullableInt64 and assigns it to the MinFailureDuration field.
+// SetMinFailureDuration gets a reference to the given client.NullableInt64 and assigns it to the MinFailureDuration field.
 func (o *MonitorOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration.Set(&v)
 }
@@ -489,7 +491,7 @@ func (o *MonitorOptions) HasMinLocationFailed() bool {
 	return false
 }
 
-// SetMinLocationFailed gets a reference to the given NullableInt64 and assigns it to the MinLocationFailed field.
+// SetMinLocationFailed gets a reference to the given client.NullableInt64 and assigns it to the MinLocationFailed field.
 func (o *MonitorOptions) SetMinLocationFailed(v int64) {
 	o.MinLocationFailed.Set(&v)
 }
@@ -532,7 +534,7 @@ func (o *MonitorOptions) HasNewGroupDelay() bool {
 	return false
 }
 
-// SetNewGroupDelay gets a reference to the given NullableInt64 and assigns it to the NewGroupDelay field.
+// SetNewGroupDelay gets a reference to the given client.NullableInt64 and assigns it to the NewGroupDelay field.
 func (o *MonitorOptions) SetNewGroupDelay(v int64) {
 	o.NewGroupDelay.Set(&v)
 }
@@ -577,7 +579,7 @@ func (o *MonitorOptions) HasNewHostDelay() bool {
 	return false
 }
 
-// SetNewHostDelay gets a reference to the given NullableInt64 and assigns it to the NewHostDelay field.
+// SetNewHostDelay gets a reference to the given client.NullableInt64 and assigns it to the NewHostDelay field.
 // Deprecated
 func (o *MonitorOptions) SetNewHostDelay(v int64) {
 	o.NewHostDelay.Set(&v)
@@ -621,7 +623,7 @@ func (o *MonitorOptions) HasNoDataTimeframe() bool {
 	return false
 }
 
-// SetNoDataTimeframe gets a reference to the given NullableInt64 and assigns it to the NoDataTimeframe field.
+// SetNoDataTimeframe gets a reference to the given client.NullableInt64 and assigns it to the NoDataTimeframe field.
 func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
 	o.NoDataTimeframe.Set(&v)
 }
@@ -728,7 +730,7 @@ func (o *MonitorOptions) HasRenotifyInterval() bool {
 	return false
 }
 
-// SetRenotifyInterval gets a reference to the given NullableInt64 and assigns it to the RenotifyInterval field.
+// SetRenotifyInterval gets a reference to the given client.NullableInt64 and assigns it to the RenotifyInterval field.
 func (o *MonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval.Set(&v)
 }
@@ -771,7 +773,7 @@ func (o *MonitorOptions) HasRenotifyOccurrences() bool {
 	return false
 }
 
-// SetRenotifyOccurrences gets a reference to the given NullableInt64 and assigns it to the RenotifyOccurrences field.
+// SetRenotifyOccurrences gets a reference to the given client.NullableInt64 and assigns it to the RenotifyOccurrences field.
 func (o *MonitorOptions) SetRenotifyOccurrences(v int64) {
 	o.RenotifyOccurrences.Set(&v)
 }
@@ -916,7 +918,7 @@ func (o *MonitorOptions) HasSyntheticsCheckId() bool {
 	return false
 }
 
-// SetSyntheticsCheckId gets a reference to the given NullableString and assigns it to the SyntheticsCheckId field.
+// SetSyntheticsCheckId gets a reference to the given client.NullableString and assigns it to the SyntheticsCheckId field.
 // Deprecated
 func (o *MonitorOptions) SetSyntheticsCheckId(v string) {
 	o.SyntheticsCheckId.Set(&v)
@@ -1024,7 +1026,7 @@ func (o *MonitorOptions) HasTimeoutH() bool {
 	return false
 }
 
-// SetTimeoutH gets a reference to the given NullableInt64 and assigns it to the TimeoutH field.
+// SetTimeoutH gets a reference to the given client.NullableInt64 and assigns it to the TimeoutH field.
 func (o *MonitorOptions) SetTimeoutH(v int64) {
 	o.TimeoutH.Set(&v)
 }
@@ -1165,26 +1167,26 @@ func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 		DeviceIds            *[]MonitorDeviceID                          `json:"device_ids,omitempty"`
 		EnableLogsSample     *bool                                       `json:"enable_logs_sample,omitempty"`
 		EscalationMessage    *string                                     `json:"escalation_message,omitempty"`
-		EvaluationDelay      NullableInt64                               `json:"evaluation_delay,omitempty"`
+		EvaluationDelay      client.NullableInt64                        `json:"evaluation_delay,omitempty"`
 		GroupbySimpleMonitor *bool                                       `json:"groupby_simple_monitor,omitempty"`
 		IncludeTags          *bool                                       `json:"include_tags,omitempty"`
 		Locked               *bool                                       `json:"locked,omitempty"`
-		MinFailureDuration   NullableInt64                               `json:"min_failure_duration,omitempty"`
-		MinLocationFailed    NullableInt64                               `json:"min_location_failed,omitempty"`
-		NewGroupDelay        NullableInt64                               `json:"new_group_delay,omitempty"`
-		NewHostDelay         NullableInt64                               `json:"new_host_delay,omitempty"`
-		NoDataTimeframe      NullableInt64                               `json:"no_data_timeframe,omitempty"`
+		MinFailureDuration   client.NullableInt64                        `json:"min_failure_duration,omitempty"`
+		MinLocationFailed    client.NullableInt64                        `json:"min_location_failed,omitempty"`
+		NewGroupDelay        client.NullableInt64                        `json:"new_group_delay,omitempty"`
+		NewHostDelay         client.NullableInt64                        `json:"new_host_delay,omitempty"`
+		NoDataTimeframe      client.NullableInt64                        `json:"no_data_timeframe,omitempty"`
 		NotifyAudit          *bool                                       `json:"notify_audit,omitempty"`
 		NotifyNoData         *bool                                       `json:"notify_no_data,omitempty"`
-		RenotifyInterval     NullableInt64                               `json:"renotify_interval,omitempty"`
-		RenotifyOccurrences  NullableInt64                               `json:"renotify_occurrences,omitempty"`
+		RenotifyInterval     client.NullableInt64                        `json:"renotify_interval,omitempty"`
+		RenotifyOccurrences  client.NullableInt64                        `json:"renotify_occurrences,omitempty"`
 		RenotifyStatuses     []MonitorRenotifyStatusType                 `json:"renotify_statuses,omitempty"`
 		RequireFullWindow    *bool                                       `json:"require_full_window,omitempty"`
 		Silenced             map[string]int64                            `json:"silenced,omitempty"`
-		SyntheticsCheckId    NullableString                              `json:"synthetics_check_id,omitempty"`
+		SyntheticsCheckId    client.NullableString                       `json:"synthetics_check_id,omitempty"`
 		ThresholdWindows     *MonitorThresholdWindowOptions              `json:"threshold_windows,omitempty"`
 		Thresholds           *MonitorThresholds                          `json:"thresholds,omitempty"`
-		TimeoutH             NullableInt64                               `json:"timeout_h,omitempty"`
+		TimeoutH             client.NullableInt64                        `json:"timeout_h,omitempty"`
 		Variables            *[]MonitorFormulaAndFunctionQueryDefinition `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

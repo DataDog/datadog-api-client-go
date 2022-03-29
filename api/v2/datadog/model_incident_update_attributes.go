@@ -9,26 +9,28 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	client "github.com/DataDog/datadog-api-client-go"
 )
 
 // IncidentUpdateAttributes The incident's attributes for an update request.
 type IncidentUpdateAttributes struct {
 	// Timestamp when customers were no longer impacted by the incident.
-	CustomerImpactEnd NullableTime `json:"customer_impact_end,omitempty"`
+	CustomerImpactEnd client.NullableTime `json:"customer_impact_end,omitempty"`
 	// A summary of the impact customers experienced during the incident.
 	CustomerImpactScope *string `json:"customer_impact_scope,omitempty"`
 	// Timestamp when customers began being impacted by the incident.
-	CustomerImpactStart NullableTime `json:"customer_impact_start,omitempty"`
+	CustomerImpactStart client.NullableTime `json:"customer_impact_start,omitempty"`
 	// A flag indicating whether the incident caused customer impact.
 	CustomerImpacted *bool `json:"customer_impacted,omitempty"`
 	// Timestamp when the incident was detected.
-	Detected NullableTime `json:"detected,omitempty"`
+	Detected client.NullableTime `json:"detected,omitempty"`
 	// A condensed view of the user-defined fields for which to update selections.
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Notification handles that will be notified of the incident during update.
 	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
-	Resolved NullableTime `json:"resolved,omitempty"`
+	Resolved client.NullableTime `json:"resolved,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title *string `json:"title,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -81,7 +83,7 @@ func (o *IncidentUpdateAttributes) HasCustomerImpactEnd() bool {
 	return false
 }
 
-// SetCustomerImpactEnd gets a reference to the given NullableTime and assigns it to the CustomerImpactEnd field.
+// SetCustomerImpactEnd gets a reference to the given client.NullableTime and assigns it to the CustomerImpactEnd field.
 func (o *IncidentUpdateAttributes) SetCustomerImpactEnd(v time.Time) {
 	o.CustomerImpactEnd.Set(&v)
 }
@@ -156,7 +158,7 @@ func (o *IncidentUpdateAttributes) HasCustomerImpactStart() bool {
 	return false
 }
 
-// SetCustomerImpactStart gets a reference to the given NullableTime and assigns it to the CustomerImpactStart field.
+// SetCustomerImpactStart gets a reference to the given client.NullableTime and assigns it to the CustomerImpactStart field.
 func (o *IncidentUpdateAttributes) SetCustomerImpactStart(v time.Time) {
 	o.CustomerImpactStart.Set(&v)
 }
@@ -231,7 +233,7 @@ func (o *IncidentUpdateAttributes) HasDetected() bool {
 	return false
 }
 
-// SetDetected gets a reference to the given NullableTime and assigns it to the Detected field.
+// SetDetected gets a reference to the given client.NullableTime and assigns it to the Detected field.
 func (o *IncidentUpdateAttributes) SetDetected(v time.Time) {
 	o.Detected.Set(&v)
 }
@@ -338,7 +340,7 @@ func (o *IncidentUpdateAttributes) HasResolved() bool {
 	return false
 }
 
-// SetResolved gets a reference to the given NullableTime and assigns it to the Resolved field.
+// SetResolved gets a reference to the given client.NullableTime and assigns it to the Resolved field.
 func (o *IncidentUpdateAttributes) SetResolved(v time.Time) {
 	o.Resolved.Set(&v)
 }
@@ -427,14 +429,14 @@ func (o IncidentUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CustomerImpactEnd   NullableTime                       `json:"customer_impact_end,omitempty"`
+		CustomerImpactEnd   client.NullableTime                `json:"customer_impact_end,omitempty"`
 		CustomerImpactScope *string                            `json:"customer_impact_scope,omitempty"`
-		CustomerImpactStart NullableTime                       `json:"customer_impact_start,omitempty"`
+		CustomerImpactStart client.NullableTime                `json:"customer_impact_start,omitempty"`
 		CustomerImpacted    *bool                              `json:"customer_impacted,omitempty"`
-		Detected            NullableTime                       `json:"detected,omitempty"`
+		Detected            client.NullableTime                `json:"detected,omitempty"`
 		Fields              map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 		NotificationHandles *[]IncidentNotificationHandle      `json:"notification_handles,omitempty"`
-		Resolved            NullableTime                       `json:"resolved,omitempty"`
+		Resolved            client.NullableTime                `json:"resolved,omitempty"`
 		Title               *string                            `json:"title,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
