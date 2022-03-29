@@ -12,6 +12,7 @@ import (
 	"testing"
 	"time"
 
+	utils "github.com/DataDog/datadog-api-client-go"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
@@ -21,7 +22,7 @@ import (
 func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAccount {
 	return datadog.AWSAccount{
 		AccountId:                     tests.UniqueEntityName(ctx, t),
-		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
+		RoleName:                      utils.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
 		HostTags:                      &[]string{"filter:one", "filtertwo"},
@@ -30,14 +31,14 @@ func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAcco
 }
 
 var TESTUPDATEAWSACC = datadog.AWSAccount{
-	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
+	RoleName:                      utils.PtrString("DatadogAWSIntegrationRoleUpdated"),
 	AccountSpecificNamespaceRules: map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
 }
 
 var TESTUPDATEAWSACCWITHEXCLUDEDREGION = datadog.AWSAccount{
-	RoleName:                      datadog.PtrString("DatadogAWSIntegrationRoleUpdated"),
+	RoleName:                      utils.PtrString("DatadogAWSIntegrationRoleUpdated"),
 	AccountSpecificNamespaceRules: map[string]bool{"opsworks": false},
 	FilterTags:                    &[]string{"testTagUpdate", "testUpdated:Tag2"},
 	HostTags:                      &[]string{"filter:foo", "bar"},
@@ -255,8 +256,8 @@ func TestAWSIntegrationCreateConflictErrors(t *testing.T) {
 
 	role := *testAWSAccount.RoleName
 	for name, test := range map[string]*string{
-		"Same":      datadog.PtrString(role),
-		"Different": datadog.PtrString("Different-Role"),
+		"Same":      utils.PtrString(role),
+		"Different": utils.PtrString("Different-Role"),
 	} {
 		t.Run(name, func(t *testing.T) {
 			ctx, finish := WithRecorder(ctx, t)

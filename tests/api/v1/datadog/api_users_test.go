@@ -13,6 +13,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 
 	"gopkg.in/h2non/gock.v1"
 )
@@ -21,9 +22,9 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadog.User {
 	prefix := *tests.UniqueEntityName(ctx, t)
 	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
-		Name:       datadog.PtrString(prefix),
-		Email:      datadog.PtrString(email),
-		Handle:     datadog.PtrString(email),
+		Name:       utils.PtrString(prefix),
+		Email:      utils.PtrString(email),
+		Handle:     utils.PtrString(email),
 		AccessRole: datadog.ACCESSROLE_READ_ONLY.Ptr(),
 	}
 }
@@ -33,7 +34,7 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 	// This is based on who owns the APP key that is making the changes
 	return datadog.User{
 		Name:       tests.UniqueEntityName(ctx, t),
-		Disabled:   datadog.PtrBool(true),
+		Disabled:   utils.PtrBool(true),
 		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 	}
 }

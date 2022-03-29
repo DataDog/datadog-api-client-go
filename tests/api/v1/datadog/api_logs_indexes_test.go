@@ -11,9 +11,10 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -140,9 +141,9 @@ func TestUpdateLogsIndex(t *testing.T) {
 		Filter: logsIndex.GetFilter(),
 		ExclusionFilters: &[]datadog.LogsExclusion{{
 			Name:      "datadog-api-client-go",
-			IsEnabled: datadog.PtrBool(false),
+			IsEnabled: utils.PtrBool(false),
 			Filter: &datadog.LogsExclusionFilter{
-				Query:      datadog.PtrString("hostname:datadog-api-client-go"),
+				Query:      utils.PtrString("hostname:datadog-api-client-go"),
 				SampleRate: 1.0,
 			},
 		}},

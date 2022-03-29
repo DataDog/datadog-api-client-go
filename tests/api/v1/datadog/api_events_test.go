@@ -12,19 +12,19 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
+	client "github.com/DataDog/datadog-api-client-go"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 var testEvent = datadog.Event{
-	Text: datadog.PtrString("example text"),
+	Text: client.PtrString("example text"),
 	Tags: &[]string{
 		"test",
 		"client:go",
 	},
 	Priority:       *datadog.NewNullableEventPriority(datadog.EVENTPRIORITY_NORMAL.Ptr()),
-	SourceTypeName: datadog.PtrString("datadog-api-client-go"),
+	SourceTypeName: client.PtrString("datadog-api-client-go"),
 }
 
 type createEventResponse struct {

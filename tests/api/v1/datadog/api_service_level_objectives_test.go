@@ -13,6 +13,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 
 	"gopkg.in/h2non/gock.v1"
 )
@@ -22,7 +23,7 @@ func getTestServiceCheckMonitor(ctx context.Context, t *testing.T) datadog.Monit
 		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_SERVICE_CHECK,
 		Query:   "\"datadog.agent.check_status\".over(\"database\").last(2).count_by_status()",
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: utils.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
 			"test",
 			"client:go",
@@ -34,12 +35,12 @@ func getTestMonitorSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelOb
 	return datadog.ServiceLevelObjectiveRequest{
 		Type:        "monitor",
 		Name:        *tests.UniqueEntityName(ctx, t),
-		Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
+		Description: *utils.NewNullableString(utils.PtrString("Track the uptime of host foo which is critical to us.")),
 		Tags:        &[]string{"app:core", "kpi"},
 		Thresholds: []datadog.SLOThreshold{{
 			Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
 			Target:    95.0,
-			Warning:   datadog.PtrFloat64(98.0),
+			Warning:   utils.PtrFloat64(98.0),
 		}},
 	}
 }
@@ -48,12 +49,12 @@ func getTestEventSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelObje
 	return datadog.ServiceLevelObjectiveRequest{
 		Type:        "metric",
 		Name:        *tests.UniqueEntityName(ctx, t),
-		Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
+		Description: *utils.NewNullableString(utils.PtrString("Make sure we don't have too many failed HTTP responses.")),
 		Tags:        &[]string{"app:httpd"},
 		Thresholds: []datadog.SLOThreshold{{
 			Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 			Target:    95.0,
-			Warning:   datadog.PtrFloat64(98.0),
+			Warning:   utils.PtrFloat64(98.0),
 		}},
 		Query: &datadog.ServiceLevelObjectiveQuery{
 			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
@@ -356,12 +357,12 @@ func TestSLOUpdateErrors(t *testing.T) {
 		"404 Not Found": {WithTestAuth, datadog.ServiceLevelObjective{
 			Type:        "metric",
 			Name:        "Go client HTTP Return Codes",
-			Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
+			Description: *utils.NewNullableString(utils.PtrString("Make sure we don't have too many failed HTTP responses.")),
 			Tags:        &[]string{"app:httpd"},
 			Thresholds: []datadog.SLOThreshold{{
 				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 				Target:    95.0,
-				Warning:   datadog.PtrFloat64(98.0),
+				Warning:   utils.PtrFloat64(98.0),
 			}},
 			Query: &datadog.ServiceLevelObjectiveQuery{
 				Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",

@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"testing"
 
+	client "github.com/DataDog/datadog-api-client-go"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
@@ -22,29 +23,29 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   "logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2",
-		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
+		Message: client.PtrString("some message Notify: @hipchat-channel"),
 		Tags: &[]string{
 			"test",
 			"client:go",
 		},
-		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *client.NewNullableInt64(client.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
-			NotifyAudit:          datadog.PtrBool(false),
-			Locked:               datadog.PtrBool(false),
-			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
-			EnableLogsSample:     datadog.PtrBool(true),
-			GroupbySimpleMonitor: datadog.PtrBool(true),
-			NoDataTimeframe:      *datadog.NewNullableInt64(nil),
-			NewHostDelay:         *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-			RequireFullWindow:    datadog.PtrBool(true),
-			NotifyNoData:         datadog.PtrBool(false),
-			IncludeTags:          datadog.PtrBool(true),
-			EvaluationDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(700)),
-			EscalationMessage:    datadog.PtrString("the situation has escalated"),
+			NotifyAudit:          client.PtrBool(false),
+			Locked:               client.PtrBool(false),
+			TimeoutH:             *client.NewNullableInt64(client.PtrInt64(60)),
+			RenotifyInterval:     *client.NewNullableInt64(client.PtrInt64(60)),
+			EnableLogsSample:     client.PtrBool(true),
+			GroupbySimpleMonitor: client.PtrBool(true),
+			NoDataTimeframe:      *client.NewNullableInt64(nil),
+			NewHostDelay:         *client.NewNullableInt64(client.PtrInt64(600)),
+			RequireFullWindow:    client.PtrBool(true),
+			NotifyNoData:         client.PtrBool(false),
+			IncludeTags:          client.PtrBool(true),
+			EvaluationDelay:      *client.NewNullableInt64(client.PtrInt64(700)),
+			EscalationMessage:    client.PtrString("the situation has escalated"),
 			Thresholds: &datadog.MonitorThresholds{
-				Critical: datadog.PtrFloat64(2),
-				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
+				Critical: client.PtrFloat64(2),
+				Warning:  *client.NewNullableFloat64(client.PtrFloat64(1)),
 			},
 		},
 		RestrictedRoles: []string{
@@ -55,14 +56,14 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 
 var testUpdateMonitor = datadog.MonitorUpdateRequest{
 	Options: &datadog.MonitorOptions{
-		TimeoutH:         *datadog.NewNullableInt64(nil),
-		RenotifyInterval: *datadog.NewNullableInt64(nil),
-		NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-		NewHostDelay:     *datadog.NewNullableInt64(nil),
-		EvaluationDelay:  *datadog.NewNullableInt64(nil),
+		TimeoutH:         *client.NewNullableInt64(nil),
+		RenotifyInterval: *client.NewNullableInt64(nil),
+		NewGroupDelay:    *client.NewNullableInt64(client.PtrInt64(600)),
+		NewHostDelay:     *client.NewNullableInt64(nil),
+		EvaluationDelay:  *client.NewNullableInt64(nil),
 		Thresholds: &datadog.MonitorThresholds{
-			Critical: datadog.PtrFloat64(2),
-			Warning:  *datadog.NewNullableFloat64(nil),
+			Critical: client.PtrFloat64(2),
+			Warning:  *client.NewNullableFloat64(nil),
 		},
 	},
 }

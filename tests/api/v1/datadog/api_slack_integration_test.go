@@ -8,9 +8,10 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
+
 	"gopkg.in/h2non/gock.v1"
 	is "gotest.tools/assert/cmp"
 )
@@ -115,10 +116,10 @@ func TestSlackIntegrationCreateChannelMocked(t *testing.T) {
 	channelPayload := datadog.NewSlackIntegrationChannel()
 	channelPayload.SetName(staticChannelName)
 	channelPayload.Display = &datadog.SlackIntegrationChannelDisplay{
-		Message:  datadog.PtrBool(false),
-		Notified: datadog.PtrBool(true),
-		Snapshot: datadog.PtrBool(true),
-		Tags:     datadog.PtrBool(false),
+		Message:  utils.PtrBool(false),
+		Notified: utils.PtrBool(true),
+		Snapshot: utils.PtrBool(true),
+		Tags:     utils.PtrBool(false),
 	}
 
 	slackChannelsResp, httpResp, err := api.CreateSlackIntegrationChannel(ctx, staticAccountName, *channelPayload)
@@ -302,10 +303,10 @@ func TestSlackIntegrationUpdateChannelMocked(t *testing.T) {
 	channelPayload := datadog.NewSlackIntegrationChannel()
 	channelPayload.SetName(staticChannelName)
 	channelPayload.Display = &datadog.SlackIntegrationChannelDisplay{
-		Message:  datadog.PtrBool(false),
-		Notified: datadog.PtrBool(false),
-		Snapshot: datadog.PtrBool(false),
-		Tags:     datadog.PtrBool(false),
+		Message:  utils.PtrBool(false),
+		Notified: utils.PtrBool(false),
+		Snapshot: utils.PtrBool(false),
+		Tags:     utils.PtrBool(false),
 	}
 
 	slackChannelsResp, httpResp, err := api.UpdateSlackIntegrationChannel(ctx, staticAccountName, staticChannelName, *channelPayload)

@@ -12,6 +12,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 )
 
 func TestLogsPipelinesLifecycle(t *testing.T) {
@@ -27,7 +28,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	grokParser.SetSamples([]string{"sample"})
 	grokParser.SetGrok(datadog.LogsGrokParserRules{
 		MatchRules:   "rule1 foo\nrule2 bar",
-		SupportRules: datadog.PtrString("support baz"),
+		SupportRules: utils.PtrString("support baz"),
 	})
 	grokParser.SetName("grok parser")
 
@@ -79,9 +80,9 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 
 	categoryProcessor := datadog.NewLogsCategoryProcessorWithDefaults()
 	categoryProcessor.SetCategories([]datadog.LogsCategoryProcessorCategory{{
-		Name: datadog.PtrString("category"),
+		Name: utils.PtrString("category"),
 		Filter: &datadog.LogsFilter{
-			Query: datadog.PtrString("query"),
+			Query: utils.PtrString("query"),
 		},
 	},
 	})
@@ -120,7 +121,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	pipelineProcessor := datadog.NewLogsPipelineProcessorWithDefaults()
 	pipelineProcessor.SetName("pipeline processor")
 	pipelineProcessor.SetFilter(datadog.LogsFilter{
-		Query: datadog.PtrString("query"),
+		Query: utils.PtrString("query"),
 	})
 	pipelineProcessor.SetProcessors([]datadog.LogsProcessor{
 		datadog.LogsGrokParserAsLogsProcessor(grokParser),
@@ -129,7 +130,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 
 	pipeline := datadog.LogsPipeline{}
 	pipeline.SetIsEnabled(true)
-	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("query")})
+	pipeline.SetFilter(datadog.LogsFilter{Query: utils.PtrString("query")})
 	pipeline.SetProcessors([]datadog.LogsProcessor{
 		datadog.LogsGrokParserAsLogsProcessor(grokParser),
 		datadog.LogsDateRemapperAsLogsProcessor(logDateRemapper),
@@ -226,7 +227,7 @@ func TestLogsPipelinesLifecycle(t *testing.T) {
 	processors = append(processors[1:], processors[:1]...)
 	pipeline.SetProcessors(processors)
 	pipeline.SetIsEnabled(false)
-	pipeline.SetFilter(datadog.LogsFilter{Query: datadog.PtrString("updated query")})
+	pipeline.SetFilter(datadog.LogsFilter{Query: utils.PtrString("updated query")})
 	pipeline.SetName(pipeline.GetName() + "-updated")
 
 	updatedPipeline, httpresp, err := Client(ctx).LogsPipelinesApi.UpdateLogsPipeline(ctx, createdPipeline.GetId(), pipeline)

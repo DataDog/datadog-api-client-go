@@ -13,6 +13,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 
 	"gopkg.in/h2non/gock.v1"
 )
@@ -20,25 +21,25 @@ import (
 func generateUniqueGCPAccount(ctx context.Context, t *testing.T) (datadog.GCPAccount, datadog.GCPAccount) {
 	name := tests.UniqueEntityName(ctx, t)
 	var testGCPAccount = datadog.GCPAccount{
-		Type:                    datadog.PtrString("service_account"),
+		Type:                    utils.PtrString("service_account"),
 		ProjectId:               name,
-		PrivateKeyId:            datadog.PtrString("fake_private_key_id"),
-		PrivateKey:              datadog.PtrString("fake_key"),
-		ClientEmail:             datadog.PtrString(fmt.Sprintf("%s@fake-sandbox.iam.gserviceaccount.com", *name)),
-		ClientId:                datadog.PtrString("123456712345671234567"),
-		AuthUri:                 datadog.PtrString("fake_uri"),
-		TokenUri:                datadog.PtrString("fake_uri"),
-		AuthProviderX509CertUrl: datadog.PtrString("fake_url"),
-		ClientX509CertUrl:       datadog.PtrString("fake_url"),
-		HostFilters:             datadog.PtrString("fake:tag,example:test"),
-		Automute:                datadog.PtrBool(false),
+		PrivateKeyId:            utils.PtrString("fake_private_key_id"),
+		PrivateKey:              utils.PtrString("fake_key"),
+		ClientEmail:             utils.PtrString(fmt.Sprintf("%s@fake-sandbox.iam.gserviceaccount.com", *name)),
+		ClientId:                utils.PtrString("123456712345671234567"),
+		AuthUri:                 utils.PtrString("fake_uri"),
+		TokenUri:                utils.PtrString("fake_uri"),
+		AuthProviderX509CertUrl: utils.PtrString("fake_url"),
+		ClientX509CertUrl:       utils.PtrString("fake_url"),
+		HostFilters:             utils.PtrString("fake:tag,example:test"),
+		Automute:                utils.PtrBool(false),
 	}
 
 	var testUpdateGCPAccount = datadog.GCPAccount{
-		ProjectId:   datadog.PtrString(testGCPAccount.GetProjectId()),
+		ProjectId:   utils.PtrString(testGCPAccount.GetProjectId()),
 		ClientEmail: testGCPAccount.ClientEmail,
-		HostFilters: datadog.PtrString("fake:update,example:update"),
-		Automute:    datadog.PtrBool(true),
+		HostFilters: utils.PtrString("fake:update,example:update"),
+		Automute:    utils.PtrBool(true),
 	}
 
 	return testGCPAccount, testUpdateGCPAccount

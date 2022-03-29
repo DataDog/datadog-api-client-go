@@ -13,6 +13,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 
 	"gopkg.in/h2non/gock.v1"
 )
@@ -22,8 +23,8 @@ func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.Azur
 	updatedTenantName := *tenantName + "-updated"
 	clock := strconv.FormatInt(tests.ClockFromContext(ctx).Now().Unix(), 10)
 	var testAzureAcct = datadog.AzureAccount{
-		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-tt" + clock),
-		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
+		ClientId:     utils.PtrString("testc7f6-1234-5678-9101-tt" + clock),
+		ClientSecret: utils.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
 		TenantName:   tenantName,
 	}
 
@@ -31,15 +32,15 @@ func generateUniqueAzureAccount(ctx context.Context, t *testing.T) (datadog.Azur
 		ClientId:      testAzureAcct.ClientId,
 		ClientSecret:  testAzureAcct.ClientSecret,
 		TenantName:    testAzureAcct.TenantName,
-		NewClientId:   datadog.PtrString("testc7f6-1234-5678-9101-uu" + clock),
+		NewClientId:   utils.PtrString("testc7f6-1234-5678-9101-uu" + clock),
 		NewTenantName: &updatedTenantName,
-		HostFilters:   datadog.PtrString("filter:foo,test:bar"),
+		HostFilters:   utils.PtrString("filter:foo,test:bar"),
 	}
 
 	var testUpdateAzureHostFilters = datadog.AzureAccount{
 		ClientId:    testUpdateAzureAcct.NewClientId,
 		TenantName:  testUpdateAzureAcct.NewTenantName,
-		HostFilters: datadog.PtrString("test:foo,test:bar"),
+		HostFilters: utils.PtrString("test:foo,test:bar"),
 	}
 
 	return testAzureAcct, testUpdateAzureAcct, testUpdateAzureHostFilters

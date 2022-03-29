@@ -16,13 +16,14 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 )
 
 func generateUniqueAWSLambdaAccounts(ctx context.Context, t *testing.T) (datadog.AWSAccount, datadog.AWSAccountAndLambdaRequest, datadog.AWSLogsServicesRequest) {
 	accountID := fmt.Sprintf("66%d", tests.ClockFromContext(ctx).Now().Unix())
 	var uniqueAWSAccount = datadog.AWSAccount{
 		AccountId:                     &accountID,
-		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
+		RoleName:                      utils.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: map[string]bool{"opsworks": true},
 		FilterTags:                    &[]string{"testTag", "test:Tag2"},
 		HostTags:                      &[]string{"filter:one", "filtertwo"},

@@ -14,9 +14,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -89,8 +90,8 @@ func TestMetrics(t *testing.T) {
 	assert.Equal("avg", series.GetAggr())
 	assert.Equal(testMetric, series.GetDisplayName())
 	assert.Equal(testMetric, series.GetMetric())
-	assert.Equal(series.GetPointlist()[0][0], datadog.PtrFloat64(float64(series.GetStart())))
-	assert.Equal(series.GetPointlist()[1][0], datadog.PtrFloat64(float64(series.GetEnd())))
+	assert.Equal(series.GetPointlist()[0][0], utils.PtrFloat64(float64(series.GetStart())))
+	assert.Equal(series.GetPointlist()[1][0], utils.PtrFloat64(float64(series.GetEnd())))
 	assert.Equal(10.5, *series.GetPointlist()[0][1])
 	assert.Equal(11., *series.GetPointlist()[1][1])
 
@@ -120,12 +121,12 @@ func TestMetrics(t *testing.T) {
 	assert.Nil(metadata.Type)
 
 	newMetadata := datadog.MetricMetadata{
-		Description:    datadog.PtrString("description"),
-		PerUnit:        datadog.PtrString("second"),
-		Unit:           datadog.PtrString("byte"),
-		ShortName:      datadog.PtrString("short_name"),
-		StatsdInterval: datadog.PtrInt64(20),
-		Type:           datadog.PtrString("count"),
+		Description:    utils.PtrString("description"),
+		PerUnit:        utils.PtrString("second"),
+		Unit:           utils.PtrString("byte"),
+		ShortName:      utils.PtrString("short_name"),
+		StatsdInterval: utils.PtrInt64(20),
+		Type:           utils.PtrString("count"),
 	}
 
 	metadata, httpresp, err = api.UpdateMetricMetadata(ctx, testMetric, newMetadata)

@@ -15,9 +15,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
+
 	"gopkg.in/h2non/gock.v1"
 	is "gotest.tools/assert/cmp"
 )
@@ -60,8 +61,8 @@ func TestHosts(t *testing.T) {
 
 	// test methods
 	hostMuteSettings := datadog.HostMuteSettings{
-		Message: datadog.PtrString("muting for test"),
-		End:     datadog.PtrInt64(now + 60),
+		Message: utils.PtrString("muting for test"),
+		End:     utils.PtrInt64(now + 60),
 	}
 	muteHostResp, httpresp, err := api.MuteHost(ctx, hostname, hostMuteSettings)
 	if err != nil {
@@ -74,8 +75,8 @@ func TestHosts(t *testing.T) {
 	assert.Equal("Muted", muteHostResp.GetAction())
 
 	hostMuteSettings = datadog.HostMuteSettings{
-		Message: datadog.PtrString("muting for test override"),
-		End:     datadog.PtrInt64(now + 120),
+		Message: utils.PtrString("muting for test override"),
+		End:     utils.PtrInt64(now + 120),
 	}
 	muteHostResp, httpresp, err = api.MuteHost(ctx, hostname, hostMuteSettings)
 	assert.NotNil(err)
@@ -643,8 +644,8 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 
 	// muting the host
 	hostMuteSettings := datadog.HostMuteSettings{
-		Message: datadog.PtrString("muting for test"),
-		End:     datadog.PtrInt64(now + 1200),
+		Message: utils.PtrString("muting for test"),
+		End:     utils.PtrInt64(now + 1200),
 	}
 	muteHostResp, httpresp, err := api.MuteHost(ctx, hostname, hostMuteSettings)
 	if err != nil {

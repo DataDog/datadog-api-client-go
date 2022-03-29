@@ -5,11 +5,13 @@ import (
 	"strings"
 	"testing"
 
+	client "github.com/DataDog/datadog-api-client-go"
 	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	datadogV2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 	testV1 "github.com/DataDog/datadog-api-client-go/tests/api/v1/datadog"
 	testV2 "github.com/DataDog/datadog-api-client-go/tests/api/v2/datadog"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -102,7 +104,7 @@ func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
 	assert.Len(resp.Config.GetAssertions(), 3)
 	// Unknown assertion is Unparsed
 	assert.Equal("A non existent operator", resp.Config.GetAssertions()[2].UnparsedObject.(map[string]interface{})["operator"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(client.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
@@ -191,7 +193,7 @@ func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
 	// Options object has the 3 expected device IDs
 	assert.Len(resp.Options.GetDeviceIds(), 3)
 	assert.Equal(datadogV1.SyntheticsDeviceID("A non existent device ID"), resp.Options.GetDeviceIds()[2])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(client.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
@@ -253,7 +255,7 @@ func TestDeserializationUnkownTopLevelEnum(t *testing.T) {
 	assert.NotNil(resp.UnparsedObject)
 	assert.Equal("A non existent test type", resp.UnparsedObject["type"])
 	assert.Equal("Check on www.10.0.0.1.xip.io", resp.UnparsedObject["name"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(client.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownNestedEnum(t *testing.T) {
@@ -318,7 +320,7 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	assert.NotNil(resp.Config.Request.UnparsedObject)
 	assert.Equal("A non existent method", resp.Config.Request.UnparsedObject["method"])
 	assert.Equal(float64(30), resp.Config.Request.UnparsedObject["timeout"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(client.ContainsUnparsedObject(resp))
 }
 
 func TestDeserializationUnkownNestedOneOf(t *testing.T) {
@@ -372,5 +374,5 @@ func TestDeserializationUnkownNestedOneOf(t *testing.T) {
 	// OneOf is unparsed
 	assert.NotNil(resp.Data.Attributes.Destination.Get().UnparsedObject)
 	assert.Equal("A non existent destination", resp.Data.Attributes.Destination.Get().UnparsedObject.(map[string]interface{})["type"])
-	assert.True(datadogV1.ContainsUnparsedObject(resp))
+	assert.True(client.ContainsUnparsedObject(resp))
 }

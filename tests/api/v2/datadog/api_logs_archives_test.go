@@ -11,8 +11,10 @@ import (
 	"fmt"
 	"testing"
 
+	utils "github.com/DataDog/datadog-api-client-go"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+
 	"gopkg.in/h2non/gock.v1"
 )
 
@@ -38,7 +40,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 									AccountId: "711111111111",
 									RoleName:  "DatadogGoClientTestIntegrationRole",
 								},
-								Path: datadog.PtrString("/path/blou"),
+								Path: utils.PtrString("/path/blou"),
 								Type: "s3",
 							},
 						},
@@ -63,8 +65,8 @@ func TestLogsArchivesCreate(t *testing.T) {
 									ClientId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 									TenantId: "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 								},
-								Path:           datadog.PtrString("/path/blou"),
-								Region:         datadog.PtrString("my-region"),
+								Path:           utils.PtrString("/path/blou"),
+								Region:         utils.PtrString("my-region"),
 								StorageAccount: "storageAccount",
 								Type:           "azure",
 							},
@@ -90,7 +92,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 									ClientEmail: "email@email.com",
 									ProjectId:   "aaaaaaaa-1a1a-1a1a-1a1a-aaaaaaaaaaaa",
 								},
-								Path: datadog.PtrString("/path/blou"),
+								Path: utils.PtrString("/path/blou"),
 								Type: "gcs",
 							},
 						},
@@ -147,7 +149,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 							AccountId: "711111111111",
 							RoleName:  "DatadogGoClientTestIntegrationRole",
 						},
-						Path: datadog.PtrString("/path/blou"),
+						Path: utils.PtrString("/path/blou"),
 						Type: "s3",
 					},
 				},

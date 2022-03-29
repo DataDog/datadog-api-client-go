@@ -14,6 +14,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 )
 
 func TestDashboardLifecycle(t *testing.T) {
@@ -194,7 +195,7 @@ func TestDashboardLifecycle(t *testing.T) {
 					},
 					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "@geo.country_iso_code",
-						Limit: datadog.PtrInt64(250),
+						Limit: utils.PtrInt64(250),
 						Sort: &datadog.FormulaAndFunctionEventQueryGroupBySort{
 							Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						}}},
@@ -208,11 +209,11 @@ func TestDashboardLifecycle(t *testing.T) {
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTitleSize("16")
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetTime(*widgetTime)
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetStyle(datadog.GeomapWidgetDefinitionStyle{
-		Palette:     *datadog.PtrString("dog_classic"),
-		PaletteFlip: *datadog.PtrBool(true),
+		Palette:     *utils.PtrString("dog_classic"),
+		PaletteFlip: *utils.PtrBool(true),
 	})
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetView(datadog.GeomapWidgetDefinitionView{
-		Focus: *datadog.PtrString("WORLD"),
+		Focus: *utils.PtrString("WORLD"),
 	})
 
 	geoMapWidgetFormulaFunctionsQuery := datadog.NewWidget(datadog.GeomapWidgetDefinitionAsWidgetDefinition(geoMapWidgetDefinitionFormulaFunctionsQuery))
@@ -221,13 +222,13 @@ func TestDashboardLifecycle(t *testing.T) {
 	geoMapWidgetDefinition := datadog.NewGeomapWidgetDefinitionWithDefaults()
 	geoMapWidgetDefinition.SetRequests([]datadog.GeomapWidgetRequest{{
 		LogQuery: &datadog.LogQueryDefinition{
-			Index: datadog.PtrString("*"),
+			Index: utils.PtrString("*"),
 			Compute: &datadog.LogsQueryCompute{
 				Aggregation: "count",
 			},
 			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
 				Facet: "@geo.country_iso_code",
-				Limit: datadog.PtrInt64(250),
+				Limit: utils.PtrInt64(250),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
 					Aggregation: "count",
 					Order:       datadog.WIDGETSORT_DESCENDING,
@@ -236,11 +237,11 @@ func TestDashboardLifecycle(t *testing.T) {
 		},
 	}})
 	geoMapWidgetDefinition.SetStyle(datadog.GeomapWidgetDefinitionStyle{
-		Palette:     *datadog.PtrString("dog_classic"),
-		PaletteFlip: *datadog.PtrBool(true),
+		Palette:     *utils.PtrString("dog_classic"),
+		PaletteFlip: *utils.PtrBool(true),
 	})
 	geoMapWidgetDefinition.SetView(datadog.GeomapWidgetDefinitionView{
-		Focus: *datadog.PtrString("WORLD"),
+		Focus: *utils.PtrString("WORLD"),
 	})
 	geoMapWidget := datadog.NewWidget(datadog.GeomapWidgetDefinitionAsWidgetDefinition(geoMapWidgetDefinition))
 
@@ -261,7 +262,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition := datadog.NewHeatMapWidgetDefinitionWithDefaults()
 
 	heatMapWidgetRequest := datadog.NewHeatMapWidgetRequest()
-	heatMapWidgetRequest.SetStyle(datadog.WidgetStyle{Palette: datadog.PtrString("dog_classic")})
+	heatMapWidgetRequest.SetStyle(datadog.WidgetStyle{Palette: utils.PtrString("dog_classic")})
 	heatMapWidgetRequest.SetQ("avg:system.load.1{*}")
 
 	widgetAxis := datadog.NewWidgetAxis()
@@ -275,7 +276,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	heatMapWidgetDefinition.SetEvents([]datadog.WidgetEvent{
 		{
 			Q:             "Build succeeded",
-			TagsExecution: datadog.PtrString("tags"),
+			TagsExecution: utils.PtrString("tags"),
 		},
 	})
 
@@ -295,18 +296,18 @@ func TestDashboardLifecycle(t *testing.T) {
 	hostMapWidgetDefinition := datadog.NewHostMapWidgetDefinitionWithDefaults()
 	hostMapWidgetDefinition.SetNodeType(datadog.WIDGETNODETYPE_CONTAINER)
 	hostMapWidgetDefinition.SetRequests(datadog.HostMapWidgetDefinitionRequests{
-		Fill: &datadog.HostMapRequest{Q: datadog.PtrString("avg:system.load.1{*}")},
-		Size: &datadog.HostMapRequest{Q: datadog.PtrString("avg:system.load.1{*}")},
+		Fill: &datadog.HostMapRequest{Q: utils.PtrString("avg:system.load.1{*}")},
+		Size: &datadog.HostMapRequest{Q: utils.PtrString("avg:system.load.1{*}")},
 	})
 	hostMapWidgetDefinition.SetNoMetricHosts(true)
 	hostMapWidgetDefinition.SetNoGroupHosts(true)
 	hostMapWidgetDefinition.SetGroup([]string{"env:prod"})
 	hostMapWidgetDefinition.SetScope([]string{"foo"})
 	hostMapWidgetDefinition.SetStyle(datadog.HostMapWidgetDefinitionStyle{
-		Palette:     datadog.PtrString("dog_classic"),
-		PaletteFlip: datadog.PtrBool(true),
-		FillMin:     datadog.PtrString("0"),
-		FillMax:     datadog.PtrString("100"),
+		Palette:     utils.PtrString("dog_classic"),
+		PaletteFlip: utils.PtrBool(true),
+		FillMin:     utils.PtrString("0"),
+		FillMax:     utils.PtrString("100"),
 	})
 	hostMapWidgetDefinition.SetTitle("Test HostMap Widget")
 	hostMapWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -384,15 +385,15 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Query Value Widget
 	queryValueWidgetDefinition := datadog.NewQueryValueWidgetDefinitionWithDefaults()
 	queryValueWidgetDefinition.SetRequests([]datadog.QueryValueWidgetRequest{{
-		Q:          datadog.PtrString("avg:system.load.1{*}"),
+		Q:          utils.PtrString("avg:system.load.1{*}"),
 		Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr(),
 		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
-			CustomBgColor: datadog.PtrString("blue"),
-			CustomFgColor: datadog.PtrString("black"),
-			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
+			CustomBgColor: utils.PtrString("blue"),
+			CustomFgColor: utils.PtrString("black"),
+			ImageUrl:      utils.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
 	}})
 	queryValueWidgetDefinition.SetAutoscale(true)
@@ -415,7 +416,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.QueryValueWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
-			Alias:   datadog.PtrString("sample_performance_calculator"),
+			Alias:   utils.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
@@ -444,9 +445,9 @@ func TestDashboardLifecycle(t *testing.T) {
 			{
 				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
-					TextFilter: datadog.PtrString(""),
+					TextFilter: utils.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
-					Limit:      datadog.PtrInt64(10),
+					Limit:      utils.PtrInt64(10),
 					Name:       "process_query",
 				},
 			},
@@ -462,10 +463,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	scatterPlotWidgetDefinition := datadog.NewScatterPlotWidgetDefinitionWithDefaults()
 	scatterPlotWidgetDefinition.SetRequests(datadog.ScatterPlotWidgetDefinitionRequests{
 		X: &datadog.ScatterPlotRequest{
-			Q:          datadog.PtrString("avg:system.load.1{*}"),
+			Q:          utils.PtrString("avg:system.load.1{*}"),
 			Aggregator: datadog.SCATTERPLOTWIDGETAGGREGATOR_AVERAGE.Ptr()},
 		Y: &datadog.ScatterPlotRequest{
-			Q:          datadog.PtrString("avg:system.load.1{*}"),
+			Q:          utils.PtrString("avg:system.load.1{*}"),
 			Aggregator: datadog.SCATTERPLOTWIDGETAGGREGATOR_AVERAGE.Ptr(),
 		},
 	})
@@ -534,18 +535,18 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Table Widget
 	tableWidgetDefinition := datadog.NewTableWidgetDefinitionWithDefaults()
 	tableWidgetDefinition.SetRequests([]datadog.TableWidgetRequest{{
-		Q:          datadog.PtrString("avg:system.load.1{*}"),
-		Alias:      datadog.PtrString("System Load"),
+		Q:          utils.PtrString("avg:system.load.1{*}"),
+		Alias:      utils.PtrString("System Load"),
 		Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr(),
-		Limit:      datadog.PtrInt64(50),
+		Limit:      utils.PtrInt64(50),
 		Order:      datadog.WIDGETSORT_ASCENDING.Ptr(),
 		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
-			CustomBgColor: datadog.PtrString("blue"),
-			CustomFgColor: datadog.PtrString("black"),
-			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
+			CustomBgColor: utils.PtrString("blue"),
+			CustomFgColor: utils.PtrString("black"),
+			ImageUrl:      utils.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
 		CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
 	}})
@@ -566,14 +567,14 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TableWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
-			Alias:   datadog.PtrString("sample_performance_calculator"),
+			Alias:   utils.PtrString("sample_performance_calculator"),
 			ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
 				Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 				Value:         7.,
 				Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
-				CustomBgColor: datadog.PtrString("blue"),
-				CustomFgColor: datadog.PtrString("black"),
-				ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
+				CustomBgColor: utils.PtrString("blue"),
+				CustomFgColor: utils.PtrString("black"),
+				ImageUrl:      utils.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 			}},
 			CellDisplayMode: datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER.Ptr(),
 		}},
@@ -600,7 +601,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Env:        "prod",
 			Name:       "web",
 			PrimaryTag: "foo:*",
-			Resource:   datadog.PtrString("endpoint"),
+			Resource:   utils.PtrString("endpoint"),
 			RowType:    datadog.APMSTATSQUERYROWTYPE_SPAN,
 			Columns: &[]datadog.ApmStatsQueryColumnType{{
 				Name: "baz",
@@ -620,39 +621,39 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Timeseries Widget
 	timeseriesWidgetDefinition := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinition.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		Q: datadog.PtrString("avg:system.load.1{*}"),
+		Q: utils.PtrString("avg:system.load.1{*}"),
 		Style: &datadog.WidgetRequestStyle{
-			Palette:   datadog.PtrString("dog_classic"),
+			Palette:   utils.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
 		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
-			AliasName:  datadog.PtrString("Aliased metric"),
+			AliasName:  utils.PtrString("Aliased metric"),
 		}},
 		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-		OnRightYaxis: datadog.PtrBool(true),
+		OnRightYaxis: utils.PtrBool(true),
 	}})
 	timeseriesWidgetDefinition.SetYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear"),
-		Label:       datadog.PtrString("Widget Scale")})
+		IncludeZero: utils.PtrBool(true),
+		Min:         utils.PtrString("0"),
+		Max:         utils.PtrString("100"),
+		Scale:       utils.PtrString("linear"),
+		Label:       utils.PtrString("Widget Scale")})
 	timeseriesWidgetDefinition.SetRightYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear"),
-		Label:       datadog.PtrString("Widget Scale")})
+		IncludeZero: utils.PtrBool(true),
+		Min:         utils.PtrString("0"),
+		Max:         utils.PtrString("100"),
+		Scale:       utils.PtrString("linear"),
+		Label:       utils.PtrString("Widget Scale")})
 	timeseriesWidgetDefinition.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
 	timeseriesWidgetDefinition.SetMarkers([]datadog.WidgetMarker{{
 		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
+		DisplayType: utils.PtrString("error dashed"),
+		Label:       utils.PtrString("error threshold"),
+		Time:        utils.PtrString("4h"),
 	}})
 	timeseriesWidgetDefinition.SetTitle("Test Timeseries Widget")
 	timeseriesWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -674,39 +675,39 @@ func TestDashboardLifecycle(t *testing.T) {
 		ProcessQuery: &datadog.ProcessQueryDefinition{
 			Metric:   "process.stat.cpu.total_pct",
 			FilterBy: &[]string{"account:test"},
-			Limit:    datadog.PtrInt64(10),
-			SearchBy: datadog.PtrString("editor"),
+			Limit:    utils.PtrInt64(10),
+			SearchBy: utils.PtrString("editor"),
 		},
 		Style: &datadog.WidgetRequestStyle{
-			Palette:   datadog.PtrString("dog_classic"),
+			Palette:   utils.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
 		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
-			AliasName:  datadog.PtrString("Aliased metric"),
+			AliasName:  utils.PtrString("Aliased metric"),
 		}},
 		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-		OnRightYaxis: datadog.PtrBool(true),
+		OnRightYaxis: utils.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionProcessQuery.SetYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear")})
+		IncludeZero: utils.PtrBool(true),
+		Min:         utils.PtrString("0"),
+		Max:         utils.PtrString("100"),
+		Scale:       utils.PtrString("linear")})
 	timeseriesWidgetDefinitionProcessQuery.SetRightYaxis(datadog.WidgetAxis{
-		IncludeZero: datadog.PtrBool(true),
-		Min:         datadog.PtrString("0"),
-		Max:         datadog.PtrString("100"),
-		Scale:       datadog.PtrString("linear")})
+		IncludeZero: utils.PtrBool(true),
+		Min:         utils.PtrString("0"),
+		Max:         utils.PtrString("100"),
+		Scale:       utils.PtrString("linear")})
 	timeseriesWidgetDefinitionProcessQuery.SetEvents([]datadog.WidgetEvent{{
 		Q: "Build succeeded",
 	}})
 	timeseriesWidgetDefinitionProcessQuery.SetMarkers([]datadog.WidgetMarker{{
 		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
+		DisplayType: utils.PtrString("error dashed"),
+		Label:       utils.PtrString("error threshold"),
+		Time:        utils.PtrString("4h"),
 	}})
 	timeseriesWidgetDefinitionProcessQuery.SetTitle("Test Timeseries Widget with Process Query")
 	timeseriesWidgetDefinitionProcessQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -724,16 +725,16 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionLogQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionLogQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		LogQuery: &datadog.LogQueryDefinition{
-			Index: datadog.PtrString("main"),
+			Index: utils.PtrString("main"),
 			Compute: &datadog.LogsQueryCompute{
 				Aggregation: "count",
-				Facet:       datadog.PtrString("host"),
-				Interval:    datadog.PtrInt64(10),
+				Facet:       utils.PtrString("host"),
+				Interval:    utils.PtrInt64(10),
 			},
 			Search: &datadog.LogQueryDefinitionSearch{Query: "Error parsing"},
 			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
-				Limit: datadog.PtrInt64(5),
+				Limit: utils.PtrInt64(5),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
 					Aggregation: "count",
 					Order:       datadog.WIDGETSORT_ASCENDING,
@@ -741,16 +742,16 @@ func TestDashboardLifecycle(t *testing.T) {
 			}},
 		},
 		Style: &datadog.WidgetRequestStyle{
-			Palette:   datadog.PtrString("dog_classic"),
+			Palette:   utils.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
 		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
-			AliasName:  datadog.PtrString("Aliased metric"),
+			AliasName:  utils.PtrString("Aliased metric"),
 		}},
 		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-		OnRightYaxis: datadog.PtrBool(true),
+		OnRightYaxis: utils.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionLogQuery.SetYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionLogQuery.SetRightYaxis(*widgetAxis)
@@ -759,9 +760,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	}})
 	timeseriesWidgetDefinitionLogQuery.SetMarkers([]datadog.WidgetMarker{{
 		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
+		DisplayType: utils.PtrString("error dashed"),
+		Label:       utils.PtrString("error threshold"),
+		Time:        utils.PtrString("4h"),
 	}})
 	timeseriesWidgetDefinitionLogQuery.SetTitle("Test Timeseries Widget with Log Query")
 	timeseriesWidgetDefinitionLogQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -779,16 +780,16 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionEventQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 	timeseriesWidgetDefinitionEventQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		EventQuery: &datadog.LogQueryDefinition{
-			Index: datadog.PtrString("*"),
+			Index: utils.PtrString("*"),
 			Compute: &datadog.LogsQueryCompute{
 				Aggregation: "count",
-				Facet:       datadog.PtrString("host"),
-				Interval:    datadog.PtrInt64(10),
+				Facet:       utils.PtrString("host"),
+				Interval:    utils.PtrInt64(10),
 			},
 			Search: &datadog.LogQueryDefinitionSearch{Query: "source:kubernetes"},
 			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
-				Limit: datadog.PtrInt64(5),
+				Limit: utils.PtrInt64(5),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
 					Aggregation: "count",
 					Order:       datadog.WIDGETSORT_ASCENDING,
@@ -796,15 +797,15 @@ func TestDashboardLifecycle(t *testing.T) {
 			}},
 		},
 		Style: &datadog.WidgetRequestStyle{
-			Palette:   datadog.PtrString("dog_classic"),
+			Palette:   utils.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr()},
 		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
-			AliasName:  datadog.PtrString("Aliased metric"),
+			AliasName:  utils.PtrString("Aliased metric"),
 		}},
 		DisplayType:  datadog.WIDGETDISPLAYTYPE_LINE.Ptr(),
-		OnRightYaxis: datadog.PtrBool(true),
+		OnRightYaxis: utils.PtrBool(true),
 	}})
 	timeseriesWidgetDefinitionEventQuery.SetYaxis(*widgetAxis)
 	timeseriesWidgetDefinitionEventQuery.SetRightYaxis(*widgetAxis)
@@ -813,9 +814,9 @@ func TestDashboardLifecycle(t *testing.T) {
 	}})
 	timeseriesWidgetDefinitionEventQuery.SetMarkers([]datadog.WidgetMarker{{
 		Value:       "y=15",
-		DisplayType: datadog.PtrString("error dashed"),
-		Label:       datadog.PtrString("error threshold"),
-		Time:        datadog.PtrString("4h"),
+		DisplayType: utils.PtrString("error dashed"),
+		Label:       utils.PtrString("error threshold"),
+		Time:        utils.PtrString("4h"),
 	}})
 	timeseriesWidgetDefinitionEventQuery.SetTitle("Test Timeseries Widget with Event Query")
 	timeseriesWidgetDefinitionEventQuery.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -835,7 +836,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
-			Alias:   datadog.PtrString("sample_performance_calculator"),
+			Alias:   utils.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
@@ -864,9 +865,9 @@ func TestDashboardLifecycle(t *testing.T) {
 			{
 				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
-					TextFilter: datadog.PtrString(""),
+					TextFilter: utils.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
-					Limit:      datadog.PtrInt64(10),
+					Limit:      utils.PtrInt64(10),
 					Name:       "process_query",
 				},
 			},
@@ -881,14 +882,14 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Toplist Widget
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
 	toplistWidgetDefinition.SetRequests([]datadog.ToplistWidgetRequest{{
-		Q: datadog.PtrString("avg:system.load.1{*}"),
+		Q: utils.PtrString("avg:system.load.1{*}"),
 		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
-			CustomBgColor: datadog.PtrString("blue"),
-			CustomFgColor: datadog.PtrString("black"),
-			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
+			CustomBgColor: utils.PtrString("blue"),
+			CustomFgColor: utils.PtrString("black"),
+			ImageUrl:      utils.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
 	}})
 	toplistWidgetDefinition.SetTitle("Test Toplist Widget")
@@ -907,7 +908,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.ToplistWidgetRequest{{
 		Formulas: &[]datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
-			Alias:   datadog.PtrString("sample_performance_calculator"),
+			Alias:   utils.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
 		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
@@ -936,9 +937,9 @@ func TestDashboardLifecycle(t *testing.T) {
 			{
 				FormulaAndFunctionProcessQueryDefinition: &datadog.FormulaAndFunctionProcessQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS,
-					TextFilter: datadog.PtrString(""),
+					TextFilter: utils.PtrString(""),
 					Metric:     "process.stat.cpu.total_pct",
-					Limit:      datadog.PtrInt64(10),
+					Limit:      utils.PtrInt64(10),
 					Name:       "process_query",
 				},
 			},

@@ -8,6 +8,7 @@ import (
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
+	utils "github.com/DataDog/datadog-api-client-go"
 )
 
 func TestLogsList(t *testing.T) {
@@ -49,12 +50,12 @@ func TestLogsList(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	logsRequest := datadog.LogsListRequest{
-		Query: datadog.PtrString(fmt.Sprintf("source:%s", source)),
+		Query: utils.PtrString(fmt.Sprintf("source:%s", source)),
 		Time: datadog.LogsListRequestTime{
 			From: now.Add(time.Duration(-3600) * time.Second),
 			To:   now.Add(time.Duration(3600) * time.Second),
 		},
-		Limit: datadog.PtrInt32(2),
+		Limit: utils.PtrInt32(2),
 		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
 	}
 
