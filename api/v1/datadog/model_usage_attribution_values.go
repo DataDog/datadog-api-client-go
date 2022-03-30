@@ -72,14 +72,6 @@ type UsageAttributionValues struct {
 	LambdaInvocationsPercentage *float64 `json:"lambda_invocations_percentage,omitempty"`
 	// The Lambda invocation usage by tag(s).
 	LambdaInvocationsUsage *float64 `json:"lambda_invocations_usage,omitempty"`
-	// The percentage of Lambda function usage by tag(s).
-	//
-	// **Note** this field is deprecated. Use lambda_functions_percentage instead.
-	LambdaPercentage *float64 `json:"lambda_percentage,omitempty"`
-	// The Lambda function usage by tag(s).
-	//
-	// **Note** this field is deprecated. Use lambda_functions_usage instead.
-	LambdaUsage *float64 `json:"lambda_usage,omitempty"`
 	// The percentage of network host usage by tag(s).
 	NpmHostPercentage *float64 `json:"npm_host_percentage,omitempty"`
 	// The network host usage by tag(s).
@@ -1078,70 +1070,6 @@ func (o *UsageAttributionValues) SetLambdaInvocationsUsage(v float64) {
 	o.LambdaInvocationsUsage = &v
 }
 
-// GetLambdaPercentage returns the LambdaPercentage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetLambdaPercentage() float64 {
-	if o == nil || o.LambdaPercentage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.LambdaPercentage
-}
-
-// GetLambdaPercentageOk returns a tuple with the LambdaPercentage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetLambdaPercentageOk() (*float64, bool) {
-	if o == nil || o.LambdaPercentage == nil {
-		return nil, false
-	}
-	return o.LambdaPercentage, true
-}
-
-// HasLambdaPercentage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasLambdaPercentage() bool {
-	if o != nil && o.LambdaPercentage != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLambdaPercentage gets a reference to the given float64 and assigns it to the LambdaPercentage field.
-func (o *UsageAttributionValues) SetLambdaPercentage(v float64) {
-	o.LambdaPercentage = &v
-}
-
-// GetLambdaUsage returns the LambdaUsage field value if set, zero value otherwise.
-func (o *UsageAttributionValues) GetLambdaUsage() float64 {
-	if o == nil || o.LambdaUsage == nil {
-		var ret float64
-		return ret
-	}
-	return *o.LambdaUsage
-}
-
-// GetLambdaUsageOk returns a tuple with the LambdaUsage field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageAttributionValues) GetLambdaUsageOk() (*float64, bool) {
-	if o == nil || o.LambdaUsage == nil {
-		return nil, false
-	}
-	return o.LambdaUsage, true
-}
-
-// HasLambdaUsage returns a boolean if a field has been set.
-func (o *UsageAttributionValues) HasLambdaUsage() bool {
-	if o != nil && o.LambdaUsage != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLambdaUsage gets a reference to the given float64 and assigns it to the LambdaUsage field.
-func (o *UsageAttributionValues) SetLambdaUsage(v float64) {
-	o.LambdaUsage = &v
-}
-
 // GetNpmHostPercentage returns the NpmHostPercentage field value if set, zero value otherwise.
 func (o *UsageAttributionValues) GetNpmHostPercentage() float64 {
 	if o == nil || o.NpmHostPercentage == nil {
@@ -1493,12 +1421,6 @@ func (o UsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.LambdaInvocationsUsage != nil {
 		toSerialize["lambda_invocations_usage"] = o.LambdaInvocationsUsage
 	}
-	if o.LambdaPercentage != nil {
-		toSerialize["lambda_percentage"] = o.LambdaPercentage
-	}
-	if o.LambdaUsage != nil {
-		toSerialize["lambda_usage"] = o.LambdaUsage
-	}
 	if o.NpmHostPercentage != nil {
 		toSerialize["npm_host_percentage"] = o.NpmHostPercentage
 	}
@@ -1563,8 +1485,6 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 		LambdaFunctionsUsage           *float64 `json:"lambda_functions_usage,omitempty"`
 		LambdaInvocationsPercentage    *float64 `json:"lambda_invocations_percentage,omitempty"`
 		LambdaInvocationsUsage         *float64 `json:"lambda_invocations_usage,omitempty"`
-		LambdaPercentage               *float64 `json:"lambda_percentage,omitempty"`
-		LambdaUsage                    *float64 `json:"lambda_usage,omitempty"`
 		NpmHostPercentage              *float64 `json:"npm_host_percentage,omitempty"`
 		NpmHostUsage                   *float64 `json:"npm_host_usage,omitempty"`
 		ProfiledContainerPercentage    *float64 `json:"profiled_container_percentage,omitempty"`
@@ -1613,8 +1533,6 @@ func (o *UsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	o.LambdaFunctionsUsage = all.LambdaFunctionsUsage
 	o.LambdaInvocationsPercentage = all.LambdaInvocationsPercentage
 	o.LambdaInvocationsUsage = all.LambdaInvocationsUsage
-	o.LambdaPercentage = all.LambdaPercentage
-	o.LambdaUsage = all.LambdaUsage
 	o.NpmHostPercentage = all.NpmHostPercentage
 	o.NpmHostUsage = all.NpmHostUsage
 	o.ProfiledContainerPercentage = all.ProfiledContainerPercentage
