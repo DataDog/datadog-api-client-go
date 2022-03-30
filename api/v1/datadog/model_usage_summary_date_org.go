@@ -18,6 +18,8 @@ type UsageSummaryDateOrg struct {
 	ApmAzureAppServiceHostTop99p *int64 `json:"apm_azure_app_service_host_top99p,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current date for the given org.
 	ApmHostTop99p *int64 `json:"apm_host_top99p,omitempty"`
+	// Shows the sum of all ingested APM span bytes over all hours in the current date for the given org.
+	ApmIngestedSpansBillableBytesSum *int64 `json:"apm_ingested_spans_billable_bytes_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current date for the given org.
 	AuditLogsLinesIndexedSum *int64 `json:"audit_logs_lines_indexed_sum,omitempty"`
 	// The average profiled task count for Fargate Profiling.
@@ -254,6 +256,38 @@ func (o *UsageSummaryDateOrg) HasApmHostTop99p() bool {
 // SetApmHostTop99p gets a reference to the given int64 and assigns it to the ApmHostTop99p field.
 func (o *UsageSummaryDateOrg) SetApmHostTop99p(v int64) {
 	o.ApmHostTop99p = &v
+}
+
+// GetApmIngestedSpansBillableBytesSum returns the ApmIngestedSpansBillableBytesSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetApmIngestedSpansBillableBytesSum() int64 {
+	if o == nil || o.ApmIngestedSpansBillableBytesSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ApmIngestedSpansBillableBytesSum
+}
+
+// GetApmIngestedSpansBillableBytesSumOk returns a tuple with the ApmIngestedSpansBillableBytesSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetApmIngestedSpansBillableBytesSumOk() (*int64, bool) {
+	if o == nil || o.ApmIngestedSpansBillableBytesSum == nil {
+		return nil, false
+	}
+	return o.ApmIngestedSpansBillableBytesSum, true
+}
+
+// HasApmIngestedSpansBillableBytesSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasApmIngestedSpansBillableBytesSum() bool {
+	if o != nil && o.ApmIngestedSpansBillableBytesSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetApmIngestedSpansBillableBytesSum gets a reference to the given int64 and assigns it to the ApmIngestedSpansBillableBytesSum field.
+func (o *UsageSummaryDateOrg) SetApmIngestedSpansBillableBytesSum(v int64) {
+	o.ApmIngestedSpansBillableBytesSum = &v
 }
 
 // GetAuditLogsLinesIndexedSum returns the AuditLogsLinesIndexedSum field value if set, zero value otherwise.
@@ -2190,6 +2224,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.ApmHostTop99p != nil {
 		toSerialize["apm_host_top99p"] = o.ApmHostTop99p
 	}
+	if o.ApmIngestedSpansBillableBytesSum != nil {
+		toSerialize["apm_ingested_spans_billable_bytes_sum"] = o.ApmIngestedSpansBillableBytesSum
+	}
 	if o.AuditLogsLinesIndexedSum != nil {
 		toSerialize["audit_logs_lines_indexed_sum"] = o.AuditLogsLinesIndexedSum
 	}
@@ -2383,6 +2420,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		AgentHostTop99p                         *int64  `json:"agent_host_top99p,omitempty"`
 		ApmAzureAppServiceHostTop99p            *int64  `json:"apm_azure_app_service_host_top99p,omitempty"`
 		ApmHostTop99p                           *int64  `json:"apm_host_top99p,omitempty"`
+		ApmIngestedSpansBillableBytesSum        *int64  `json:"apm_ingested_spans_billable_bytes_sum,omitempty"`
 		AuditLogsLinesIndexedSum                *int64  `json:"audit_logs_lines_indexed_sum,omitempty"`
 		AvgProfiledFargateTasks                 *int64  `json:"avg_profiled_fargate_tasks,omitempty"`
 		AwsHostTop99p                           *int64  `json:"aws_host_top99p,omitempty"`
@@ -2456,6 +2494,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.AgentHostTop99p = all.AgentHostTop99p
 	o.ApmAzureAppServiceHostTop99p = all.ApmAzureAppServiceHostTop99p
 	o.ApmHostTop99p = all.ApmHostTop99p
+	o.ApmIngestedSpansBillableBytesSum = all.ApmIngestedSpansBillableBytesSum
 	o.AuditLogsLinesIndexedSum = all.AuditLogsLinesIndexedSum
 	o.AvgProfiledFargateTasks = all.AvgProfiledFargateTasks
 	o.AwsHostTop99p = all.AwsHostTop99p
