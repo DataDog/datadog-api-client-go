@@ -15,8 +15,11 @@ import (
 type UsageIngestedSpansHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// Contains the total number of bytes ingested during a given hour.
+	// Use `ingested_spans_billable_bytes` as of 2022-03-01. Contains the total number of bytes ingested during a given hour using an old method of calculating span volume.
+	// Deprecated
 	IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
+	// Contains the total number of bytes ingested during a given hour.
+	IngestedSpansBillableBytes *int64 `json:"ingested_spans_billable_bytes,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`
 	// The organization public ID.
@@ -76,6 +79,7 @@ func (o *UsageIngestedSpansHour) SetHour(v time.Time) {
 }
 
 // GetIngestedEventsBytes returns the IngestedEventsBytes field value if set, zero value otherwise.
+// Deprecated
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
 	if o == nil || o.IngestedEventsBytes == nil {
 		var ret int64
@@ -86,6 +90,7 @@ func (o *UsageIngestedSpansHour) GetIngestedEventsBytes() int64 {
 
 // GetIngestedEventsBytesOk returns a tuple with the IngestedEventsBytes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
+// Deprecated
 func (o *UsageIngestedSpansHour) GetIngestedEventsBytesOk() (*int64, bool) {
 	if o == nil || o.IngestedEventsBytes == nil {
 		return nil, false
@@ -103,8 +108,41 @@ func (o *UsageIngestedSpansHour) HasIngestedEventsBytes() bool {
 }
 
 // SetIngestedEventsBytes gets a reference to the given int64 and assigns it to the IngestedEventsBytes field.
+// Deprecated
 func (o *UsageIngestedSpansHour) SetIngestedEventsBytes(v int64) {
 	o.IngestedEventsBytes = &v
+}
+
+// GetIngestedSpansBillableBytes returns the IngestedSpansBillableBytes field value if set, zero value otherwise.
+func (o *UsageIngestedSpansHour) GetIngestedSpansBillableBytes() int64 {
+	if o == nil || o.IngestedSpansBillableBytes == nil {
+		var ret int64
+		return ret
+	}
+	return *o.IngestedSpansBillableBytes
+}
+
+// GetIngestedSpansBillableBytesOk returns a tuple with the IngestedSpansBillableBytes field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageIngestedSpansHour) GetIngestedSpansBillableBytesOk() (*int64, bool) {
+	if o == nil || o.IngestedSpansBillableBytes == nil {
+		return nil, false
+	}
+	return o.IngestedSpansBillableBytes, true
+}
+
+// HasIngestedSpansBillableBytes returns a boolean if a field has been set.
+func (o *UsageIngestedSpansHour) HasIngestedSpansBillableBytes() bool {
+	if o != nil && o.IngestedSpansBillableBytes != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIngestedSpansBillableBytes gets a reference to the given int64 and assigns it to the IngestedSpansBillableBytes field.
+func (o *UsageIngestedSpansHour) SetIngestedSpansBillableBytes(v int64) {
+	o.IngestedSpansBillableBytes = &v
 }
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
@@ -182,6 +220,9 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 	if o.IngestedEventsBytes != nil {
 		toSerialize["ingested_events_bytes"] = o.IngestedEventsBytes
 	}
+	if o.IngestedSpansBillableBytes != nil {
+		toSerialize["ingested_spans_billable_bytes"] = o.IngestedSpansBillableBytes
+	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
 	}
@@ -198,10 +239,11 @@ func (o UsageIngestedSpansHour) MarshalJSON() ([]byte, error) {
 func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour                *time.Time `json:"hour,omitempty"`
-		IngestedEventsBytes *int64     `json:"ingested_events_bytes,omitempty"`
-		OrgName             *string    `json:"org_name,omitempty"`
-		PublicId            *string    `json:"public_id,omitempty"`
+		Hour                       *time.Time `json:"hour,omitempty"`
+		IngestedEventsBytes        *int64     `json:"ingested_events_bytes,omitempty"`
+		IngestedSpansBillableBytes *int64     `json:"ingested_spans_billable_bytes,omitempty"`
+		OrgName                    *string    `json:"org_name,omitempty"`
+		PublicId                   *string    `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -214,6 +256,7 @@ func (o *UsageIngestedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Hour = all.Hour
 	o.IngestedEventsBytes = all.IngestedEventsBytes
+	o.IngestedSpansBillableBytes = all.IngestedSpansBillableBytes
 	o.OrgName = all.OrgName
 	o.PublicId = all.PublicId
 	return nil
