@@ -559,6 +559,13 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Category = all.Category
 	o.CreatedAt = all.CreatedAt
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Duration = all.Duration

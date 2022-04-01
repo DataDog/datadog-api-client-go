@@ -521,10 +521,24 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExtKeyUsage = all.ExtKeyUsage
 	o.Fingerprint = all.Fingerprint
 	o.Fingerprint256 = all.Fingerprint256
+	if all.Issuer != nil && all.Issuer.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Issuer = all.Issuer
 	o.Modulus = all.Modulus
 	o.Protocol = all.Protocol
 	o.SerialNumber = all.SerialNumber
+	if all.Subject != nil && all.Subject.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Subject = all.Subject
 	o.ValidFrom = all.ValidFrom
 	o.ValidTo = all.ValidTo

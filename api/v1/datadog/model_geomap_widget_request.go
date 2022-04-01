@@ -334,11 +334,32 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Formulas = all.Formulas
+	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.LogQuery = all.LogQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	o.ResponseFormat = all.ResponseFormat
+	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.RumQuery = all.RumQuery
+	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }

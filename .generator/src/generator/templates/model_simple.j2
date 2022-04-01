@@ -497,6 +497,16 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- endfor %}
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
+        {%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+        {%- if dataType in models and not spec.enum and not spec.oneOf %}
+        if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+        }
+        {%- endif %}
 	o.{{ propertyName }} = all.{{ propertyName }}
 	{%- endfor %}
 	return nil

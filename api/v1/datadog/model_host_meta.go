@@ -634,6 +634,13 @@ func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	o.CpuCores = all.CpuCores
 	o.FbsdV = all.FbsdV
 	o.Gohai = all.Gohai
+	if all.InstallMethod != nil && all.InstallMethod.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.InstallMethod = all.InstallMethod
 	o.MacV = all.MacV
 	o.Machine = all.Machine

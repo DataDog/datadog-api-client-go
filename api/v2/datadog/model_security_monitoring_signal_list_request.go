@@ -181,7 +181,21 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Filter = all.Filter
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Page = all.Page
 	o.Sort = all.Sort
 	return nil

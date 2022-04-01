@@ -202,6 +202,13 @@ func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Count = all.Count
+	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Metadata = all.Metadata
 	o.Sum = all.Sum
 	o.Values = all.Values

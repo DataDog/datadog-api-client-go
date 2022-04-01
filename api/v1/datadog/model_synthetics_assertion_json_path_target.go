@@ -224,6 +224,13 @@ func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err err
 	}
 	o.Operator = all.Operator
 	o.Property = all.Property
+	if all.Target != nil && all.Target.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Target = all.Target
 	o.Type = all.Type
 	return nil

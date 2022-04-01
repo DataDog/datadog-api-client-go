@@ -249,10 +249,24 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Compute = all.Compute
 	o.GroupBy = all.GroupBy
 	o.Index = all.Index
 	o.MultiCompute = all.MultiCompute
+	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Search = all.Search
 	return nil
 }

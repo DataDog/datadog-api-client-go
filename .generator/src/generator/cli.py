@@ -87,7 +87,7 @@ def cli(input, output):
         model_path = output / filename
         model_path.parent.mkdir(parents=True, exist_ok=True)
         with model_path.open("w") as fp:
-            fp.write(model_j2.render(name=name, model=model))
+            fp.write(model_j2.render(name=name, model=model, models=models))
 
     for name, operations in apis.items():
         filename = "api_" + formatter.snake_case(name) + ".go"

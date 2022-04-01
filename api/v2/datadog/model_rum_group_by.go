@@ -294,9 +294,23 @@ func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Facet = all.Facet
+	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Histogram = all.Histogram
 	o.Limit = all.Limit
 	o.Missing = all.Missing
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Sort = all.Sort
 	o.Total = all.Total
 	return nil

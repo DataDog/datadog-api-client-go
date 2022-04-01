@@ -389,6 +389,13 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Groups = all.Groups
 	o.MonitorIds = all.MonitorIds
 	o.Name = all.Name
+	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Query = all.Query
 	o.Tags = all.Tags
 	o.Thresholds = all.Thresholds

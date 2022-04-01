@@ -832,6 +832,13 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.AllowInsecure = all.AllowInsecure
 	o.BasicAuth = all.BasicAuth
 	o.Body = all.Body
+	if all.Certificate != nil && all.Certificate.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Certificate = all.Certificate
 	o.DnsServer = all.DnsServer
 	o.DnsServerPort = all.DnsServerPort
@@ -843,6 +850,13 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets
 	o.Port = all.Port
+	if all.Proxy != nil && all.Proxy.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Proxy = all.Proxy
 	o.Query = all.Query
 	o.Servername = all.Servername

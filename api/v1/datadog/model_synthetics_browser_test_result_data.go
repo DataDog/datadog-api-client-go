@@ -518,9 +518,23 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.BrowserType = all.BrowserType
 	o.BrowserVersion = all.BrowserVersion
+	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Device = all.Device
 	o.Duration = all.Duration
 	o.Error = all.Error
+	if all.Failure != nil && all.Failure.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Failure = all.Failure
 	o.Passed = all.Passed
 	o.ReceivedEmailCount = all.ReceivedEmailCount

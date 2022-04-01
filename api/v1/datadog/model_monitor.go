@@ -703,6 +703,13 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Created = all.Created
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.Deleted = all.Deleted
 	o.Id = all.Id
@@ -710,11 +717,25 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Modified = all.Modified
 	o.Multi = all.Multi
 	o.Name = all.Name
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Options = all.Options
 	o.OverallState = all.OverallState
 	o.Priority = all.Priority
 	o.Query = all.Query
 	o.RestrictedRoles = all.RestrictedRoles
+	if all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.State = all.State
 	o.Tags = all.Tags
 	o.Type = all.Type
