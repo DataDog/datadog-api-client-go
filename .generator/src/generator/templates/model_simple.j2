@@ -448,7 +448,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	{%- if loop.first %}
 	required := struct {
 	{%- endif %}
-		{{ propertyName }} *{{ dataType }} `json:"{{ attr }}"`
+		{{ propertyName }} {% if not spec.nullable %}*{% endif %}{{ dataType }} `json:"{{ attr }}"`
 	{%- if loop.last %}
 	}{}
 	{%- endif %}
@@ -469,7 +469,11 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 		return err
 	}
 	{%- endif %}
+	{%- if not spec.nullable %}
 	if required.{{ propertyName }} == nil {
+	{%- else %}
+	if !required.{{ propertyName }}.IsSet() {
+	{%- endif %}
 		return fmt.Errorf("Required field {{ attr }} missing")
 	}
 	{%- endfor %}

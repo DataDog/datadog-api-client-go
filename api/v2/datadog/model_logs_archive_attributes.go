@@ -249,9 +249,9 @@ func (o LogsArchiveAttributes) MarshalJSON() ([]byte, error) {
 func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Destination *NullableLogsArchiveDestination `json:"destination"`
-		Name        *string                         `json:"name"`
-		Query       *string                         `json:"query"`
+		Destination NullableLogsArchiveDestination `json:"destination"`
+		Name        *string                        `json:"name"`
+		Query       *string                        `json:"query"`
 	}{}
 	all := struct {
 		Destination     NullableLogsArchiveDestination `json:"destination"`
@@ -265,7 +265,7 @@ func (o *LogsArchiveAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	if err != nil {
 		return err
 	}
-	if required.Destination == nil {
+	if !required.Destination.IsSet() {
 		return fmt.Errorf("Required field destination missing")
 	}
 	if required.Name == nil {
