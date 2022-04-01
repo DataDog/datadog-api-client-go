@@ -79,7 +79,7 @@ func (o NullableRelationshipToUser) MarshalJSON() ([]byte, error) {
 func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Data *NullableNullableRelationshipToUserData `json:"data"`
+		Data NullableNullableRelationshipToUserData `json:"data"`
 	}{}
 	all := struct {
 		Data NullableNullableRelationshipToUserData `json:"data"`
@@ -88,7 +88,7 @@ func (o *NullableRelationshipToUser) UnmarshalJSON(bytes []byte) (err error) {
 	if err != nil {
 		return err
 	}
-	if required.Data == nil {
+	if !required.Data.IsSet() {
 		return fmt.Errorf("Required field data missing")
 	}
 	err = json.Unmarshal(bytes, &all)
