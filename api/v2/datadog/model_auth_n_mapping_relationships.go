@@ -135,7 +135,21 @@ func (o *AuthNMappingRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Role != nil && all.Role.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Role = all.Role
+	if all.SamlAssertionAttribute != nil && all.SamlAssertionAttribute.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SamlAssertionAttribute = all.SamlAssertionAttribute
 	return nil
 }

@@ -262,6 +262,13 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	o.CellDisplayMode = all.CellDisplayMode
 	o.ConditionalFormats = all.ConditionalFormats
 	o.Formula = all.Formula
+	if all.Limit != nil && all.Limit.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Limit = all.Limit
 	return nil
 }

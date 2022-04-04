@@ -181,6 +181,13 @@ func (o *Widget) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Definition = all.Definition
 	o.Id = all.Id
+	if all.Layout != nil && all.Layout.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Layout = all.Layout
 	return nil
 }

@@ -185,6 +185,13 @@ func (o *MetricIngestedIndexedVolume) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

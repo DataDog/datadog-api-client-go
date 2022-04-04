@@ -183,6 +183,13 @@ func (o *IncidentTimelineCellMarkdownCreateAttributes) UnmarshalJSON(bytes []byt
 		return nil
 	}
 	o.CellType = all.CellType
+	if all.Content.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Content = all.Content
 	o.Important = all.Important
 	return nil

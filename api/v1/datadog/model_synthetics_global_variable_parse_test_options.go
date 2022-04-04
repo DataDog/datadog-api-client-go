@@ -177,6 +177,13 @@ func (o *SyntheticsGlobalVariableParseTestOptions) UnmarshalJSON(bytes []byte) (
 		return nil
 	}
 	o.Field = all.Field
+	if all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Parser = all.Parser
 	o.Type = all.Type
 	return nil

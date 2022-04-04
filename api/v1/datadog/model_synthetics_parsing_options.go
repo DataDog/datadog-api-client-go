@@ -221,6 +221,13 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Field = all.Field
 	o.Name = all.Name
+	if all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Parser = all.Parser
 	o.Type = all.Type
 	return nil

@@ -213,6 +213,13 @@ func (o *SyntheticsTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Assertions = all.Assertions
 	o.ConfigVariables = all.ConfigVariables
+	if all.Request != nil && all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Request = all.Request
 	o.Variables = all.Variables
 	return nil

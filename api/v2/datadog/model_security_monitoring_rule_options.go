@@ -324,9 +324,23 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 	}
 	o.DetectionMethod = all.DetectionMethod
 	o.EvaluationWindow = all.EvaluationWindow
+	if all.ImpossibleTravelOptions != nil && all.ImpossibleTravelOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.ImpossibleTravelOptions = all.ImpossibleTravelOptions
 	o.KeepAlive = all.KeepAlive
 	o.MaxSignalDuration = all.MaxSignalDuration
+	if all.NewValueOptions != nil && all.NewValueOptions.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.NewValueOptions = all.NewValueOptions
 	return nil
 }

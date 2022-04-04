@@ -281,6 +281,13 @@ func (o *LogsArchiveDestinationAzure) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Container = all.Container
+	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Integration = all.Integration
 	o.Path = all.Path
 	o.Region = all.Region

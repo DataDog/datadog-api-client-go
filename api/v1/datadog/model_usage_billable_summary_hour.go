@@ -371,6 +371,13 @@ func (o *UsageBillableSummaryHour) UnmarshalJSON(bytes []byte) (err error) {
 	o.PublicId = all.PublicId
 	o.RatioInMonth = all.RatioInMonth
 	o.StartDate = all.StartDate
+	if all.Usage != nil && all.Usage.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Usage = all.Usage
 	return nil
 }

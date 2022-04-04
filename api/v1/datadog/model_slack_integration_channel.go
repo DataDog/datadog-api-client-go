@@ -135,6 +135,13 @@ func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Display = all.Display
 	o.Name = all.Name
 	return nil

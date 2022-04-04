@@ -251,6 +251,13 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Cells = all.Cells
+	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Metadata = all.Metadata
 	o.Name = all.Name
 	o.Status = all.Status

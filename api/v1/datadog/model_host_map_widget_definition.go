@@ -580,8 +580,22 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.NoMetricHosts = all.NoMetricHosts
 	o.NodeType = all.NodeType
 	o.Notes = all.Notes
+	if all.Requests.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Requests = all.Requests
 	o.Scope = all.Scope
+	if all.Style != nil && all.Style.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Style = all.Style
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign

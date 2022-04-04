@@ -311,9 +311,9 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	resp, httpresp, err := testV1.Client(ctx).SyntheticsApi.GetAPITest(ctx, "public_id")
 	assert.Nil(err)
 	assert.Equal(299, httpresp.StatusCode)
-	// Root object is properly deserialized
-	assert.Nil(resp.UnparsedObject)
-	assert.Nil(resp.Config.UnparsedObject)
+	// UnparsedObject is propagated up
+	assert.NotNil(resp.UnparsedObject)
+	assert.NotNil(resp.Config.UnparsedObject)
 	// Direct parent of invalid enum is unparsed
 	assert.NotNil(resp.Config.Request.UnparsedObject)
 	assert.Equal("A non existent method", resp.Config.Request.UnparsedObject["method"])

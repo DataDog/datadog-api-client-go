@@ -724,6 +724,13 @@ func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error)
 	o.IsEnabled = all.IsEnabled
 	o.Message = all.Message
 	o.Name = all.Name
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Options = all.Options
 	o.Queries = all.Queries
 	o.Tags = all.Tags

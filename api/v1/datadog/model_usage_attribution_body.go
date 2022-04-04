@@ -332,6 +332,13 @@ func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagConfigSource = all.TagConfigSource
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
+	if all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Values = all.Values
 	return nil
 }

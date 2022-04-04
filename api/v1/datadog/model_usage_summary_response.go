@@ -19,8 +19,6 @@ type UsageSummaryResponse struct {
 	ApmAzureAppServiceHostTop99pSum *int64 `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 	// Shows the 99th percentile of all distinct APM hosts over all hours in the current months for all organizations.
 	ApmHostTop99pSum *int64 `json:"apm_host_top99p_sum,omitempty"`
-	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
-	ApmIngestedSpansBillableBytesAggSum *int64 `json:"apm_ingested_spans_billable_bytes_agg_sum,omitempty"`
 	// Shows the sum of all audit logs lines indexed over all hours in the current months for all organizations.
 	AuditLogsLinesIndexedAggSum *int64 `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 	// Shows the average of all profiled Fargate tasks over all hours in the current months for all organizations.
@@ -151,7 +149,7 @@ type UsageSummaryResponse struct {
 	SyntheticsCheckCallsCountAggSum *int64 `json:"synthetics_check_calls_count_agg_sum,omitempty"`
 	// Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations.
 	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
-	// Shows the sum of all tracing without limits bytes ingested over all hours in the current months for all organizations.
+	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage *[]UsageSummaryDate `json:"usage,omitempty"`
@@ -273,38 +271,6 @@ func (o *UsageSummaryResponse) HasApmHostTop99pSum() bool {
 // SetApmHostTop99pSum gets a reference to the given int64 and assigns it to the ApmHostTop99pSum field.
 func (o *UsageSummaryResponse) SetApmHostTop99pSum(v int64) {
 	o.ApmHostTop99pSum = &v
-}
-
-// GetApmIngestedSpansBillableBytesAggSum returns the ApmIngestedSpansBillableBytesAggSum field value if set, zero value otherwise.
-func (o *UsageSummaryResponse) GetApmIngestedSpansBillableBytesAggSum() int64 {
-	if o == nil || o.ApmIngestedSpansBillableBytesAggSum == nil {
-		var ret int64
-		return ret
-	}
-	return *o.ApmIngestedSpansBillableBytesAggSum
-}
-
-// GetApmIngestedSpansBillableBytesAggSumOk returns a tuple with the ApmIngestedSpansBillableBytesAggSum field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *UsageSummaryResponse) GetApmIngestedSpansBillableBytesAggSumOk() (*int64, bool) {
-	if o == nil || o.ApmIngestedSpansBillableBytesAggSum == nil {
-		return nil, false
-	}
-	return o.ApmIngestedSpansBillableBytesAggSum, true
-}
-
-// HasApmIngestedSpansBillableBytesAggSum returns a boolean if a field has been set.
-func (o *UsageSummaryResponse) HasApmIngestedSpansBillableBytesAggSum() bool {
-	if o != nil && o.ApmIngestedSpansBillableBytesAggSum != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetApmIngestedSpansBillableBytesAggSum gets a reference to the given int64 and assigns it to the ApmIngestedSpansBillableBytesAggSum field.
-func (o *UsageSummaryResponse) SetApmIngestedSpansBillableBytesAggSum(v int64) {
-	o.ApmIngestedSpansBillableBytesAggSum = &v
 }
 
 // GetAuditLogsLinesIndexedAggSum returns the AuditLogsLinesIndexedAggSum field value if set, zero value otherwise.
@@ -2497,9 +2463,6 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.ApmHostTop99pSum != nil {
 		toSerialize["apm_host_top99p_sum"] = o.ApmHostTop99pSum
 	}
-	if o.ApmIngestedSpansBillableBytesAggSum != nil {
-		toSerialize["apm_ingested_spans_billable_bytes_agg_sum"] = o.ApmIngestedSpansBillableBytesAggSum
-	}
 	if o.AuditLogsLinesIndexedAggSum != nil {
 		toSerialize["audit_logs_lines_indexed_agg_sum"] = o.AuditLogsLinesIndexedAggSum
 	}
@@ -2717,7 +2680,6 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		AgentHostTop99pSum                         *int64              `json:"agent_host_top99p_sum,omitempty"`
 		ApmAzureAppServiceHostTop99pSum            *int64              `json:"apm_azure_app_service_host_top99p_sum,omitempty"`
 		ApmHostTop99pSum                           *int64              `json:"apm_host_top99p_sum,omitempty"`
-		ApmIngestedSpansBillableBytesAggSum        *int64              `json:"apm_ingested_spans_billable_bytes_agg_sum,omitempty"`
 		AuditLogsLinesIndexedAggSum                *int64              `json:"audit_logs_lines_indexed_agg_sum,omitempty"`
 		AvgProfiledFargateTasksSum                 *int64              `json:"avg_profiled_fargate_tasks_sum,omitempty"`
 		AwsHostTop99pSum                           *int64              `json:"aws_host_top99p_sum,omitempty"`
@@ -2799,7 +2761,6 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.AgentHostTop99pSum = all.AgentHostTop99pSum
 	o.ApmAzureAppServiceHostTop99pSum = all.ApmAzureAppServiceHostTop99pSum
 	o.ApmHostTop99pSum = all.ApmHostTop99pSum
-	o.ApmIngestedSpansBillableBytesAggSum = all.ApmIngestedSpansBillableBytesAggSum
 	o.AuditLogsLinesIndexedAggSum = all.AuditLogsLinesIndexedAggSum
 	o.AvgProfiledFargateTasksSum = all.AvgProfiledFargateTasksSum
 	o.AwsHostTop99pSum = all.AwsHostTop99pSum
@@ -2841,6 +2802,13 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastUpdated = all.LastUpdated
 	o.LiveIndexedEventsAggSum = all.LiveIndexedEventsAggSum
 	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
+	if all.LogsByRetention != nil && all.LogsByRetention.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.LogsByRetention = all.LogsByRetention
 	o.MobileRumLiteSessionCountAggSum = all.MobileRumLiteSessionCountAggSum
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
