@@ -306,6 +306,13 @@ func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Query = all.Query
 	o.Sort = all.Sort
 	o.StartAt = all.StartAt
+	if all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Time = all.Time
 	return nil
 }

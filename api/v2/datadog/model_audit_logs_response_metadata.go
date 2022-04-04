@@ -259,6 +259,13 @@ func (o *AuditLogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Elapsed = all.Elapsed
+	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Page = all.Page
 	o.RequestId = all.RequestId
 	o.Status = all.Status

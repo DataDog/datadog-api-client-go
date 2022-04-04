@@ -598,7 +598,21 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	o.Id = all.Id
 	o.IsMuted = all.IsMuted
 	o.LastReportedTime = all.LastReportedTime
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Meta = all.Meta
+	if all.Metrics != nil && all.Metrics.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Metrics = all.Metrics
 	o.MuteTimeout = all.MuteTimeout
 	o.Name = all.Name

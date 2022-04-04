@@ -453,14 +453,42 @@ func (o *OrganizationSettings) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.PrivateWidgetShare = all.PrivateWidgetShare
+	if all.Saml != nil && all.Saml.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Saml = all.Saml
 	o.SamlAutocreateAccessRole = all.SamlAutocreateAccessRole
+	if all.SamlAutocreateUsersDomains != nil && all.SamlAutocreateUsersDomains.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SamlAutocreateUsersDomains = all.SamlAutocreateUsersDomains
 	o.SamlCanBeEnabled = all.SamlCanBeEnabled
 	o.SamlIdpEndpoint = all.SamlIdpEndpoint
+	if all.SamlIdpInitiatedLogin != nil && all.SamlIdpInitiatedLogin.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SamlIdpInitiatedLogin = all.SamlIdpInitiatedLogin
 	o.SamlIdpMetadataUploaded = all.SamlIdpMetadataUploaded
 	o.SamlLoginUrl = all.SamlLoginUrl
+	if all.SamlStrictMode != nil && all.SamlStrictMode.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SamlStrictMode = all.SamlStrictMode
 	return nil
 }

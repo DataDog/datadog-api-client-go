@@ -288,6 +288,13 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.DailyLimit = all.DailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
+	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Filter = all.Filter
 	o.IsRateLimited = all.IsRateLimited
 	o.Name = all.Name

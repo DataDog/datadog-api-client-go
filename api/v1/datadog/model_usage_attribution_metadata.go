@@ -136,6 +136,13 @@ func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Aggregates = all.Aggregates
+	if all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Pagination = all.Pagination
 	return nil
 }

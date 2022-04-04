@@ -211,6 +211,13 @@ func (o *LogsArchiveDestinationGCS) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Bucket = all.Bucket
+	if all.Integration.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Integration = all.Integration
 	o.Path = all.Path
 	o.Type = all.Type

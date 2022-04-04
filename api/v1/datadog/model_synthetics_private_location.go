@@ -241,6 +241,13 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	o.Description = all.Description
 	o.Id = all.Id
 	o.Name = all.Name
+	if all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Secrets = all.Secrets
 	o.Tags = all.Tags
 	return nil
