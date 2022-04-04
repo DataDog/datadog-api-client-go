@@ -17,9 +17,9 @@ func main() {
 			{
 				BasicAuth: &datadog.SyntheticsBasicAuth{
 					SyntheticsBasicAuthWeb: &datadog.SyntheticsBasicAuthWeb{
-						Password: "PaSSw0RD!",
-						Type:     datadog.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
-						Username: "my_username",
+						Password: "",
+						Type:     datadog.SYNTHETICSBASICAUTHWEBTYPE_WEB,
+						Username: "",
 					}},
 				DeviceIds: &[]datadog.SyntheticsDeviceID{
 					datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
