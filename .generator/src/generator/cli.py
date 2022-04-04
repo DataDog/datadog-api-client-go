@@ -1,4 +1,3 @@
-import json
 import pathlib
 
 import click
@@ -68,7 +67,6 @@ def cli(input, output):
     extra_files = {
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
-        "response.go": env.get_template("response.j2"),
         "utils.go": env.get_template("utils.j2"),
     }
 
