@@ -27,6 +27,7 @@ const (
 	RUMAGGREGATIONFUNCTION_MIN           RUMAggregationFunction = "min"
 	RUMAGGREGATIONFUNCTION_MAX           RUMAggregationFunction = "max"
 	RUMAGGREGATIONFUNCTION_AVG           RUMAggregationFunction = "avg"
+	RUMAGGREGATIONFUNCTION_MEDIAN        RUMAggregationFunction = "median"
 )
 
 var allowedRUMAggregationFunctionEnumValues = []RUMAggregationFunction{
@@ -41,6 +42,7 @@ var allowedRUMAggregationFunctionEnumValues = []RUMAggregationFunction{
 	RUMAGGREGATIONFUNCTION_MIN,
 	RUMAGGREGATIONFUNCTION_MAX,
 	RUMAGGREGATIONFUNCTION_AVG,
+	RUMAGGREGATIONFUNCTION_MEDIAN,
 }
 
 func (w *RUMAggregationFunction) GetAllowedValues() []RUMAggregationFunction {
