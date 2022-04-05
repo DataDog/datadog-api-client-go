@@ -49,12 +49,9 @@ func (a *WebhooksIntegrationApiService) CreateWebhooksIntegration(ctx _context.C
  */
 func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCreateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegration
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegration")
@@ -119,7 +116,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -211,12 +208,9 @@ func (a *WebhooksIntegrationApiService) CreateWebhooksIntegrationCustomVariable(
  */
 func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableExecute(r apiCreateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegrationCustomVariableResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegrationCustomVariable")
@@ -281,7 +275,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -372,11 +366,8 @@ func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegration(ctx _context.C
  */
 func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDeleteWebhooksIntegrationRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegration")
@@ -427,7 +418,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -509,11 +500,8 @@ func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegrationCustomVariable(
  */
 func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableExecute(r apiDeleteWebhooksIntegrationCustomVariableRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegrationCustomVariable")
@@ -564,7 +552,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -647,12 +635,9 @@ func (a *WebhooksIntegrationApiService) GetWebhooksIntegration(ctx _context.Cont
  */
 func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegration
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegration")
@@ -703,7 +688,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -808,12 +793,9 @@ func (a *WebhooksIntegrationApiService) GetWebhooksIntegrationCustomVariable(ctx
  */
 func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExecute(r apiGetWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegrationCustomVariableResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegrationCustomVariable")
@@ -864,7 +846,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -968,12 +950,9 @@ func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegration(ctx _context.C
  */
 func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUpdateWebhooksIntegrationRequest) (WebhooksIntegration, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegration
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegration
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegration")
@@ -1039,7 +1018,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1143,12 +1122,9 @@ func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegrationCustomVariable(
  */
 func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableExecute(r apiUpdateWebhooksIntegrationCustomVariableRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  WebhooksIntegrationCustomVariableResponse
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegrationCustomVariable")
@@ -1214,7 +1190,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

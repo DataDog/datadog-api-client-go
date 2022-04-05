@@ -59,12 +59,9 @@ func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body Orga
  */
 func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgRequest) (OrganizationCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  OrganizationCreateResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue OrganizationCreateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateChildOrg")
@@ -129,7 +126,7 @@ func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -221,12 +218,9 @@ func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) 
  */
 func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  OrganizationResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue OrganizationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrg")
@@ -277,7 +271,7 @@ func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (Organizatio
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -367,12 +361,9 @@ func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationLi
  */
 func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (OrganizationListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  OrganizationListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue OrganizationListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.ListOrgs")
@@ -422,7 +413,7 @@ func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (Organiz
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -506,12 +497,9 @@ func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId strin
  */
 func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  OrganizationResponse
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue OrganizationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrg")
@@ -577,7 +565,7 @@ func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (Organ
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -676,12 +664,9 @@ func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId
  */
 func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (IdpResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IdpResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IdpResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UploadIdPForOrg")
@@ -716,16 +701,15 @@ func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgReq
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
-
-	localVarFormFileName = "idp_file"
+	formFile := FormFile{}
+	formFile.formFileName = "idp_file"
 	localVarFile := *r.idpFile
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		formFile.fileBytes = fbs
+		formFile.fileName = localVarFile.Name()
 		localVarFile.Close()
 	}
-
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
@@ -754,7 +738,7 @@ func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, &formFile)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

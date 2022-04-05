@@ -52,12 +52,9 @@ func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body 
  */
 func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IntakePayloadAccepted
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceChecksApiService.SubmitServiceCheck")
@@ -108,7 +105,7 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

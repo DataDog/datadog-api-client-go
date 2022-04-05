@@ -51,12 +51,9 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _co
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(r apiCreateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SLOCorrectionResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SLOCorrectionResponse
 	)
 
 	operationId := "CreateSLOCorrection"
@@ -128,7 +125,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -229,11 +226,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _co
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(r apiDeleteSLOCorrectionRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	operationId := "DeleteSLOCorrection"
@@ -291,7 +285,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -374,12 +368,9 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _conte
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r apiGetSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SLOCorrectionResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SLOCorrectionResponse
 	)
 
 	operationId := "GetSLOCorrection"
@@ -437,7 +428,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r a
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -527,12 +518,9 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrection(ctx _cont
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r apiListSLOCorrectionRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SLOCorrectionListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SLOCorrectionListResponse
 	)
 
 	operationId := "ListSLOCorrection"
@@ -589,7 +577,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -673,12 +661,9 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _co
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(r apiUpdateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SLOCorrectionResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SLOCorrectionResponse
 	)
 
 	operationId := "UpdateSLOCorrection"
@@ -751,7 +736,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

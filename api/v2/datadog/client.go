@@ -82,6 +82,13 @@ type APIClient struct {
 	UsersApi *UsersApiService
 }
 
+// FormFile holds parameters for a file in multipart/form-data request
+type FormFile struct {
+	formFileName string
+	fileName     string
+	fileBytes    []byte
+}
+
 type service struct {
 	client *APIClient
 }
@@ -255,9 +262,7 @@ func (c *APIClient) PrepareRequest(
 	headerParams map[string]string,
 	queryParams url.Values,
 	formParams url.Values,
-	formFileName string,
-	fileName string,
-	fileBytes []byte) (localVarRequest *http.Request, err error) {
+	formFile *FormFile) (localVarRequest *http.Request, err error) {
 
 	var body *bytes.Buffer
 
@@ -276,7 +281,7 @@ func (c *APIClient) PrepareRequest(
 	}
 
 	// add form parameters and file if available.
-	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || (len(fileBytes) > 0 && fileName != "") {
+	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || formFile != nil {
 		if body != nil {
 			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
 		}
@@ -295,14 +300,13 @@ func (c *APIClient) PrepareRequest(
 				}
 			}
 		}
-		if len(fileBytes) > 0 && fileName != "" {
+		if formFile != nil {
 			w.Boundary()
-			//_, fileNm := filepath.Split(fileName)
-			part, err := w.CreateFormFile(formFileName, filepath.Base(fileName))
+			part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
 			if err != nil {
 				return nil, err
 			}
-			_, err = part.Write(fileBytes)
+			_, err = part.Write(formFile.fileBytes)
 			if err != nil {
 				return nil, err
 			}

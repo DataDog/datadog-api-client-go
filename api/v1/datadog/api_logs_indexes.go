@@ -49,12 +49,9 @@ func (a *LogsIndexesApiService) CreateLogsIndex(ctx _context.Context, body LogsI
  */
 func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndex
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndex
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.CreateLogsIndex")
@@ -119,7 +116,7 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -211,12 +208,9 @@ func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) 
  */
 func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndex
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndex
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
@@ -267,7 +261,7 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -357,12 +351,9 @@ func (a *LogsIndexesApiService) GetLogsIndexOrder(ctx _context.Context) (LogsInd
  */
 func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndexesOrder
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndexesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndexOrder")
@@ -412,7 +403,7 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -493,12 +484,9 @@ func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) (LogsIndexL
  */
 func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest) (LogsIndexListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndexListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndexListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.ListLogIndexes")
@@ -548,7 +536,7 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -636,12 +624,9 @@ func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name strin
  */
 func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndex
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndex
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
@@ -707,7 +692,7 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -800,12 +785,9 @@ func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body 
  */
 func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsIndexesOrder
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue LogsIndexesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
@@ -870,7 +852,7 @@ func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndex
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

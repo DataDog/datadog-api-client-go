@@ -56,12 +56,9 @@ func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Cont
  */
 func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricBulkTagConfigResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateBulkTagsMetricsConfiguration")
@@ -126,7 +123,7 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -233,12 +230,9 @@ func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricN
  */
 func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricTagConfigurationResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue MetricTagConfigurationResponse
 	)
 
 	operationId := "CreateTagConfiguration"
@@ -311,7 +305,7 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -416,12 +410,9 @@ func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Cont
  */
 func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricBulkTagConfigResponse
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteBulkTagsMetricsConfiguration")
@@ -486,7 +477,7 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -588,11 +579,8 @@ func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricN
  */
 func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	operationId := "DeleteTagConfiguration"
@@ -650,7 +638,7 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -733,12 +721,9 @@ func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, met
  */
 func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricTagConfigurationResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricTagConfigurationResponse
 	)
 
 	operationId := "ListTagConfigurationByName"
@@ -796,7 +781,7 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -945,12 +930,9 @@ func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...Lis
  */
 func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsAndMetricTagConfigurationsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 	)
 
 	operationId := "ListTagConfigurations"
@@ -1025,7 +1007,7 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1117,12 +1099,9 @@ func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricNam
  */
 func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricAllTagsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricAllTagsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagsByMetricName")
@@ -1173,7 +1152,7 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1279,12 +1258,9 @@ func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metric
  */
 func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricVolumesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricVolumesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListVolumesByMetricName")
@@ -1335,7 +1311,7 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1441,12 +1417,9 @@ func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricN
  */
 func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricTagConfigurationResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue MetricTagConfigurationResponse
 	)
 
 	operationId := "UpdateTagConfiguration"
@@ -1519,7 +1492,7 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
