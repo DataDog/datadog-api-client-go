@@ -16,15 +16,19 @@ type ListStreamSource string
 
 // List of ListStreamSource
 const (
-	LISTSTREAMSOURCE_ISSUE_STREAM ListStreamSource = "issue_stream"
-	LISTSTREAMSOURCE_LOGS_STREAM  ListStreamSource = "logs_stream"
-	LISTSTREAMSOURCE_AUDIT_STREAM ListStreamSource = "audit_stream"
+	LISTSTREAMSOURCE_ISSUE_STREAM     ListStreamSource = "issue_stream"
+	LISTSTREAMSOURCE_LOGS_STREAM      ListStreamSource = "logs_stream"
+	LISTSTREAMSOURCE_AUDIT_STREAM     ListStreamSource = "audit_stream"
+	LISTSTREAMSOURCE_RUM_ISSUE_STREAM ListStreamSource = "rum_issue_stream"
+	LISTSTREAMSOURCE_APM_ISSUE_STREAM ListStreamSource = "apm_issue_stream"
 )
 
 var allowedListStreamSourceEnumValues = []ListStreamSource{
 	LISTSTREAMSOURCE_ISSUE_STREAM,
 	LISTSTREAMSOURCE_LOGS_STREAM,
 	LISTSTREAMSOURCE_AUDIT_STREAM,
+	LISTSTREAMSOURCE_RUM_ISSUE_STREAM,
+	LISTSTREAMSOURCE_APM_ISSUE_STREAM,
 }
 
 func (w *ListStreamSource) GetAllowedValues() []ListStreamSource {
