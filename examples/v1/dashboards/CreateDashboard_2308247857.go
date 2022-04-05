@@ -32,7 +32,7 @@ func main() {
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Time:       &datadog.WidgetTime{},
 						Type:       datadog.ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH,
-						AlertId:    "1",
+						AlertId:    "7",
 						VizType:    datadog.WIDGETVIZTYPE_TIMESERIES,
 					}},
 			},
