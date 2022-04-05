@@ -51,12 +51,9 @@ func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SlackIntegrationChannel
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.CreateSlackIntegrationChannel")
@@ -122,7 +119,7 @@ func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiC
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -226,12 +223,9 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Con
  */
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SlackIntegrationChannel
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannel")
@@ -283,7 +277,7 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetS
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -385,12 +379,9 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Co
  */
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []SlackIntegrationChannel
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannels")
@@ -441,7 +432,7 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -544,11 +535,8 @@ func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.RemoveSlackIntegrationChannel")
@@ -600,7 +588,7 @@ func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiR
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -697,12 +685,9 @@ func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SlackIntegrationChannel
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.UpdateSlackIntegrationChannel")
@@ -769,7 +754,7 @@ func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiU
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

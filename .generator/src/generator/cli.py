@@ -44,6 +44,7 @@ def cli(input, output):
     env.filters["is_reference"] = formatter.is_reference
     env.filters["parameter_schema"] = openapi.parameter_schema
     env.filters["parameters"] = openapi.parameters
+    env.filters["form_parameter"] = openapi.form_parameter
     env.filters["response_type"] = openapi.get_type_for_response
     env.filters["return_type"] = openapi.return_type
     env.filters["simple_type"] = formatter.simple_type
