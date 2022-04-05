@@ -31,7 +31,7 @@ func main() {
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.ALERTVALUEWIDGETDEFINITIONTYPE_ALERT_VALUE,
-						AlertId:    "1",
+						AlertId:    "7",
 						Unit:       datadog.PtrString("auto"),
 						TextAlign:  datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Precision:  datadog.PtrInt64(2),
