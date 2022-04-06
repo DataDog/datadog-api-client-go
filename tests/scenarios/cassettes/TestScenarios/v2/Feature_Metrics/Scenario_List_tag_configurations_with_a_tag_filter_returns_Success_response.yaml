@@ -6,7 +6,7 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags%5D=TestListtagconfigurationswithatagfilterreturnsSuccessresponse1641430311
+    url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags%5D=TestListtagconfigurationswithatagfilterreturnsSuccessresponse1648572657
   response:
     body: '{"data":[]}'
     code: 200
