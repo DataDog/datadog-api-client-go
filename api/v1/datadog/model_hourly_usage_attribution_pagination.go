@@ -13,7 +13,7 @@ import (
 // HourlyUsageAttributionPagination The metadata for the current pagination.
 type HourlyUsageAttributionPagination struct {
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
-	NextRecordId NullableString `json:"next_record_id,omitempty"`
+	NextRecordId *string `json:"next_record_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -36,47 +36,36 @@ func NewHourlyUsageAttributionPaginationWithDefaults() *HourlyUsageAttributionPa
 	return &this
 }
 
-// GetNextRecordId returns the NextRecordId field value if set, zero value otherwise (both if not set or set to explicit null).
+// GetNextRecordId returns the NextRecordId field value if set, zero value otherwise.
 func (o *HourlyUsageAttributionPagination) GetNextRecordId() string {
-	if o == nil || o.NextRecordId.Get() == nil {
+	if o == nil || o.NextRecordId == nil {
 		var ret string
 		return ret
 	}
-	return *o.NextRecordId.Get()
+	return *o.NextRecordId
 }
 
 // GetNextRecordIdOk returns a tuple with the NextRecordId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *HourlyUsageAttributionPagination) GetNextRecordIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil || o.NextRecordId == nil {
 		return nil, false
 	}
-	return o.NextRecordId.Get(), o.NextRecordId.IsSet()
+	return o.NextRecordId, true
 }
 
 // HasNextRecordId returns a boolean if a field has been set.
 func (o *HourlyUsageAttributionPagination) HasNextRecordId() bool {
-	if o != nil && o.NextRecordId.IsSet() {
+	if o != nil && o.NextRecordId != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetNextRecordId gets a reference to the given NullableString and assigns it to the NextRecordId field.
+// SetNextRecordId gets a reference to the given string and assigns it to the NextRecordId field.
 func (o *HourlyUsageAttributionPagination) SetNextRecordId(v string) {
-	o.NextRecordId.Set(&v)
-}
-
-// SetNextRecordIdNil sets the value for NextRecordId to be an explicit nil
-func (o *HourlyUsageAttributionPagination) SetNextRecordIdNil() {
-	o.NextRecordId.Set(nil)
-}
-
-// UnsetNextRecordId ensures that no value is present for NextRecordId, not even an explicit nil
-func (o *HourlyUsageAttributionPagination) UnsetNextRecordId() {
-	o.NextRecordId.Unset()
+	o.NextRecordId = &v
 }
 
 func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
@@ -84,8 +73,8 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.NextRecordId.IsSet() {
-		toSerialize["next_record_id"] = o.NextRecordId.Get()
+	if o.NextRecordId != nil {
+		toSerialize["next_record_id"] = o.NextRecordId
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -97,7 +86,7 @@ func (o HourlyUsageAttributionPagination) MarshalJSON() ([]byte, error) {
 func (o *HourlyUsageAttributionPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		NextRecordId NullableString `json:"next_record_id,omitempty"`
+		NextRecordId *string `json:"next_record_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -7,30 +7,23 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"strconv"
 
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
 func main() {
-	// there is a valid "dashboard_list" in the system
-	DashboardListID, _ := strconv.ParseInt(os.Getenv("DASHBOARD_LIST_ID"), 10, 64)
-
-	// there is a valid "screenboard_dashboard" in the system
-	ScreenboardDashboardID := os.Getenv("SCREENBOARD_DASHBOARD_ID")
-
 	body := datadog.DashboardListUpdateItemsRequest{
 		Dashboards: &[]datadog.DashboardListItemRequest{
 			{
-				Id:   ScreenboardDashboardID,
-				Type: datadog.DASHBOARDTYPE_CUSTOM_SCREENBOARD,
+				Id:   "q5j-nti-fv6",
+				Type: datadog.DASHBOARDTYPE_HOST_TIMEBOARD,
 			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.UpdateDashboardListItems(ctx, DashboardListID, body)
+	resp, r, err := apiClient.DashboardListsApi.UpdateDashboardListItems(ctx, 9223372036854775807, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardListItems`: %v\n", err)

@@ -16,7 +16,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageSyntheticsBrowserOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	resp, r, err := apiClient.UsageMeteringApi.GetUsageSyntheticsBrowser(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageSyntheticsBrowserOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageSyntheticsBrowser`: %v\n", err)

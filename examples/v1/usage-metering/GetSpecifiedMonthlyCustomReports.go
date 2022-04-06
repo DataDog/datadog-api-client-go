@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "2021-05-01")
+	resp, r, err := apiClient.UsageMeteringApi.GetSpecifiedMonthlyCustomReports(ctx, "report_id")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetSpecifiedMonthlyCustomReports`: %v\n", err)

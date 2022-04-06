@@ -30,7 +30,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RUMApi.SearchRUMEvents(ctx, body)
+	resp, r, err := apiClient.RUMApi.SearchRUMEvents(ctx, *datadog.NewSearchRUMEventsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RUMApi.SearchRUMEvents`: %v\n", err)
