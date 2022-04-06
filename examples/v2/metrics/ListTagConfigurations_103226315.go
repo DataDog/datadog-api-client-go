@@ -1,4 +1,4 @@
-// List tag configurations returns "Success" response
+// List tag configurations with configured filter returns "Success" response
 
 package main
 
@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListTagConfigurations", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, *datadog.NewListTagConfigurationsOptionalParameters())
+	resp, r, err := apiClient.MetricsApi.ListTagConfigurations(ctx, *datadog.NewListTagConfigurationsOptionalParameters().WithFilterConfigured(true))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurations`: %v\n", err)

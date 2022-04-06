@@ -21,7 +21,7 @@ func main() {
 					"app",
 					"datacenter",
 				},
-				MetricType: datadog.METRICTAGCONFIGURATIONMETRICTYPES_DISTRIBUTION,
+				MetricType: datadog.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
 			},
 		},
 	}
