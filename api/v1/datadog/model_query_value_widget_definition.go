@@ -27,6 +27,8 @@ type QueryValueWidgetDefinition struct {
 	TextAlign *WidgetTextAlign `json:"text_align,omitempty"`
 	// Time setting for the widget.
 	Time *WidgetTime `json:"time,omitempty"`
+	// Set a timeseries on the widget background.
+	TimeseriesBackground *TimeseriesBackground `json:"timeseries_background,omitempty"`
 	// Title of your widget.
 	Title *string `json:"title,omitempty"`
 	// How to align the text on the widget.
@@ -276,6 +278,38 @@ func (o *QueryValueWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+// GetTimeseriesBackground returns the TimeseriesBackground field value if set, zero value otherwise.
+func (o *QueryValueWidgetDefinition) GetTimeseriesBackground() TimeseriesBackground {
+	if o == nil || o.TimeseriesBackground == nil {
+		var ret TimeseriesBackground
+		return ret
+	}
+	return *o.TimeseriesBackground
+}
+
+// GetTimeseriesBackgroundOk returns a tuple with the TimeseriesBackground field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *QueryValueWidgetDefinition) GetTimeseriesBackgroundOk() (*TimeseriesBackground, bool) {
+	if o == nil || o.TimeseriesBackground == nil {
+		return nil, false
+	}
+	return o.TimeseriesBackground, true
+}
+
+// HasTimeseriesBackground returns a boolean if a field has been set.
+func (o *QueryValueWidgetDefinition) HasTimeseriesBackground() bool {
+	if o != nil && o.TimeseriesBackground != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetTimeseriesBackground gets a reference to the given TimeseriesBackground and assigns it to the TimeseriesBackground field.
+func (o *QueryValueWidgetDefinition) SetTimeseriesBackground(v TimeseriesBackground) {
+	o.TimeseriesBackground = &v
+}
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *QueryValueWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -419,6 +453,9 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	if o.Time != nil {
 		toSerialize["time"] = o.Time
 	}
+	if o.TimeseriesBackground != nil {
+		toSerialize["timeseries_background"] = o.TimeseriesBackground
+	}
 	if o.Title != nil {
 		toSerialize["title"] = o.Title
 	}
@@ -443,17 +480,18 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *QueryValueWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Autoscale   *bool                          `json:"autoscale,omitempty"`
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
-		CustomUnit  *string                        `json:"custom_unit,omitempty"`
-		Precision   *int64                         `json:"precision,omitempty"`
-		Requests    []QueryValueWidgetRequest      `json:"requests"`
-		TextAlign   *WidgetTextAlign               `json:"text_align,omitempty"`
-		Time        *WidgetTime                    `json:"time,omitempty"`
-		Title       *string                        `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign               `json:"title_align,omitempty"`
-		TitleSize   *string                        `json:"title_size,omitempty"`
-		Type        QueryValueWidgetDefinitionType `json:"type"`
+		Autoscale            *bool                          `json:"autoscale,omitempty"`
+		CustomLinks          *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		CustomUnit           *string                        `json:"custom_unit,omitempty"`
+		Precision            *int64                         `json:"precision,omitempty"`
+		Requests             []QueryValueWidgetRequest      `json:"requests"`
+		TextAlign            *WidgetTextAlign               `json:"text_align,omitempty"`
+		Time                 *WidgetTime                    `json:"time,omitempty"`
+		TimeseriesBackground *TimeseriesBackground          `json:"timeseries_background,omitempty"`
+		Title                *string                        `json:"title,omitempty"`
+		TitleAlign           *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize            *string                        `json:"title_size,omitempty"`
+		Type                 QueryValueWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -512,6 +550,14 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Time = all.Time
+	if all.TimeseriesBackground != nil && all.TimeseriesBackground.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.TimeseriesBackground = all.TimeseriesBackground
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign
 	o.TitleSize = all.TitleSize
