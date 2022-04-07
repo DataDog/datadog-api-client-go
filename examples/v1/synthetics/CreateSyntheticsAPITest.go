@@ -37,7 +37,10 @@ func main() {
 				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
 			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
-			Retry:          &datadog.SyntheticsTestOptionsRetry{},
+			RestrictedRoles: &[]string{
+				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			},
+			Retry: &datadog.SyntheticsTestOptionsRetry{},
 		},
 		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),

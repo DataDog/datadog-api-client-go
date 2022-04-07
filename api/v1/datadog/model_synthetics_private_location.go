@@ -17,6 +17,8 @@ type SyntheticsPrivateLocation struct {
 	Description string `json:"description"`
 	// Unique identifier of the private location.
 	Id *string `json:"id,omitempty"`
+	// Object containing metadata about the private location.
+	Metadata *SyntheticsPrivateLocationMetadata `json:"metadata,omitempty"`
 	// Name of the private location.
 	Name string `json:"name"`
 	// Secrets for the private location. Only present in the response when creating the private location.
@@ -101,6 +103,38 @@ func (o *SyntheticsPrivateLocation) HasId() bool {
 // SetId gets a reference to the given string and assigns it to the Id field.
 func (o *SyntheticsPrivateLocation) SetId(v string) {
 	o.Id = &v
+}
+
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *SyntheticsPrivateLocation) GetMetadata() SyntheticsPrivateLocationMetadata {
+	if o == nil || o.Metadata == nil {
+		var ret SyntheticsPrivateLocationMetadata
+		return ret
+	}
+	return *o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsPrivateLocation) GetMetadataOk() (*SyntheticsPrivateLocationMetadata, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *SyntheticsPrivateLocation) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given SyntheticsPrivateLocationMetadata and assigns it to the Metadata field.
+func (o *SyntheticsPrivateLocation) SetMetadata(v SyntheticsPrivateLocationMetadata) {
+	o.Metadata = &v
 }
 
 // GetName returns the Name field value
@@ -190,6 +224,9 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 	if o.Id != nil {
 		toSerialize["id"] = o.Id
 	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
 	toSerialize["name"] = o.Name
 	if o.Secrets != nil {
 		toSerialize["secrets"] = o.Secrets
@@ -210,11 +247,12 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 		Tags        *[]string `json:"tags"`
 	}{}
 	all := struct {
-		Description string                            `json:"description"`
-		Id          *string                           `json:"id,omitempty"`
-		Name        string                            `json:"name"`
-		Secrets     *SyntheticsPrivateLocationSecrets `json:"secrets,omitempty"`
-		Tags        []string                          `json:"tags"`
+		Description string                             `json:"description"`
+		Id          *string                            `json:"id,omitempty"`
+		Metadata    *SyntheticsPrivateLocationMetadata `json:"metadata,omitempty"`
+		Name        string                             `json:"name"`
+		Secrets     *SyntheticsPrivateLocationSecrets  `json:"secrets,omitempty"`
+		Tags        []string                           `json:"tags"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -240,6 +278,14 @@ func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Description = all.Description
 	o.Id = all.Id
+	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Metadata = all.Metadata
 	o.Name = all.Name
 	if all.Secrets != nil && all.Secrets.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
