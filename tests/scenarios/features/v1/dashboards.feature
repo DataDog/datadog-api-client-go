@@ -12,7 +12,7 @@ Feature: Dashboards
   @generated @skip @team:DataDog/dashboards
   Scenario: Create a new dashboard returns "Bad Request" response
     Given new "CreateDashboard" request
-    And body with value {"author_handle": "test@datadoghq.com", "author_name": "John Doe", "description": null, "id": "123-abc-456", "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "url": "/dashboard/123-abc-456/example-dashboard-title", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
+    And body with value {"description": null, "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -58,6 +58,13 @@ Feature: Dashboards
   Scenario: Create a new dashboard with a query value widget using the percentile aggregator
     Given new "CreateDashboard" request
     And body with value {"layout_type": "ordered", "title": "{{ unique }} with QVW Percentile Aggregator", "widgets": [{"definition":{"title_size":"16","title":"","title_align":"left","precision":2,"time":{},"autoscale":true,"requests":[{"formulas":[{"formula":"query1"}],"response_format":"scalar","queries":[{"query":"p90:dist.dd.dogweb.latency{*}","data_source":"metrics","name":"query1","aggregator":"percentile"}]}],"type":"query_value"},"layout":{"y":0,"x":0,"height":2,"width":2}}]}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/dashboards
+  Scenario: Create a new dashboard with a query value widget using timeseries background
+    Given new "CreateDashboard" request
+    And body with value {"layout_type": "ordered", "title": "{{ unique }} with QVW Timeseries Background", "widgets": [{"definition":{"title_size":"16","title":"","title_align":"left","precision":2,"time":{},"autoscale":true,"requests":[{"formulas":[{"formula":"query1"}],"response_format":"scalar","queries":[{"query":"sum:my.cool.count.metric{*}","data_source":"metrics","name":"query1","aggregator":"percentile"}]}],"type":"query_value","timeseries_background":{"type":"area","yaxis":{"include_zero":true}}},"layout":{"y":0,"x":0,"height":2,"width":2}}]}
     When the request is sent
     Then the response status is 200 OK
 
@@ -122,6 +129,13 @@ Feature: Dashboards
     And the response "widgets[0].definition.requests[0].queries[0].env" is equal to "ci"
     And the response "widgets[0].definition.requests[0].queries[0].primary_tag_name" is equal to "datacenter"
     And the response "widgets[0].definition.requests[0].queries[0].operation_name" is equal to "cassandra.query"
+
+  @team:DataDog/dashboards
+  Scenario: Create a new dashboard with apm_issue_stream list_stream widget
+    Given new "CreateDashboard" request
+    And body with value {"layout_type": "ordered", "title": "{{ unique }} with list_stream widget","widgets": [{"definition": {"type": "list_stream","requests": [{"columns":[{"width":"auto","field":"timestamp"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}]}}]}
+    When the request is sent
+    Then the response status is 200 OK
 
   @team:DataDog/dashboards
   Scenario: Create a new dashboard with check_status widget
@@ -298,6 +312,13 @@ Feature: Dashboards
     And the response "widgets[0].definition.requests[0].queries[0].query" is equal to "avg:system.cpu.user{*}"
 
   @team:DataDog/dashboards
+  Scenario: Create a new dashboard with rum_issue_stream list_stream widget
+    Given new "CreateDashboard" request
+    And body with value {"layout_type": "ordered", "title": "{{ unique }} with list_stream widget","widgets": [{"definition": {"type": "list_stream","requests": [{"columns":[{"width":"auto","field":"timestamp"}],"query":{"data_source":"rum_issue_stream","query_string":""},"response_format":"event_list"}]}}]}
+    When the request is sent
+    Then the response status is 200 OK
+
+  @team:DataDog/dashboards
   Scenario: Create a new dashboard with scatterplot widget
     Given new "CreateDashboard" request
     And body from file "dashboards_json_payload/scatterplot_widget.json"
@@ -472,7 +493,7 @@ Feature: Dashboards
   Scenario: Update a dashboard returns "Bad Request" response
     Given new "UpdateDashboard" request
     And request contains "dashboard_id" parameter from "REPLACE.ME"
-    And body with value {"author_handle": "test@datadoghq.com", "author_name": "John Doe", "description": null, "id": "123-abc-456", "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "url": "/dashboard/123-abc-456/example-dashboard-title", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
+    And body with value {"description": null, "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
     When the request is sent
     Then the response status is 400 Bad Request
 
@@ -480,7 +501,7 @@ Feature: Dashboards
   Scenario: Update a dashboard returns "Item Not Found" response
     Given new "UpdateDashboard" request
     And request contains "dashboard_id" parameter from "REPLACE.ME"
-    And body with value {"author_handle": "test@datadoghq.com", "author_name": "John Doe", "description": null, "id": "123-abc-456", "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "url": "/dashboard/123-abc-456/example-dashboard-title", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
+    And body with value {"description": null, "is_read_only": false, "layout_type": "ordered", "notify_list": [], "reflow_type": "auto", "restricted_roles": [], "template_variable_presets": [{"template_variables": [{}]}], "template_variables": [{"available_values": ["my-host", "host1", "host2"], "default": "my-host", "name": "host1", "prefix": "host"}], "title": "", "widgets": [{"definition": {"requests": {"fill": {"q": "avg:system.cpu.user{*}"}}, "type": "hostmap"}}]}
     When the request is sent
     Then the response status is 404 Item Not Found
 

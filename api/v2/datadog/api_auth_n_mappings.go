@@ -50,12 +50,9 @@ func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body 
  */
 func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthNMappingResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue AuthNMappingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.CreateAuthNMapping")
@@ -120,7 +117,7 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -221,11 +218,8 @@ func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authn
  */
 func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.DeleteAuthNMapping")
@@ -276,7 +270,7 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -359,12 +353,9 @@ func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMap
  */
 func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthNMappingResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue AuthNMappingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.GetAuthNMapping")
@@ -415,7 +406,7 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -556,12 +547,9 @@ func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...L
  */
 func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthNMappingsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue AuthNMappingsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.ListAuthNMappings")
@@ -634,7 +622,7 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -718,12 +706,9 @@ func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authn
  */
 func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthNMappingResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue AuthNMappingResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.UpdateAuthNMapping")
@@ -789,7 +774,7 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

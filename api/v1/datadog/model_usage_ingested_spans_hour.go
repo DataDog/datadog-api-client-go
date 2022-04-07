@@ -15,7 +15,7 @@ import (
 type UsageIngestedSpansHour struct {
 	// The hour for the usage.
 	Hour *time.Time `json:"hour,omitempty"`
-	// Contains the total number of bytes ingested during a given hour.
+	// Contains the total number of bytes ingested for APM spans during a given hour.
 	IngestedEventsBytes *int64 `json:"ingested_events_bytes,omitempty"`
 	// The organization name.
 	OrgName *string `json:"org_name,omitempty"`

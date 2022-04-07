@@ -149,7 +149,7 @@ type UsageSummaryResponse struct {
 	SyntheticsCheckCallsCountAggSum *int64 `json:"synthetics_check_calls_count_agg_sum,omitempty"`
 	// Shows the sum of all Indexed Spans indexed over all hours in the current months for all organizations.
 	TraceSearchIndexedEventsCountAggSum *int64 `json:"trace_search_indexed_events_count_agg_sum,omitempty"`
-	// Shows the sum of all tracing without limits bytes ingested over all hours in the current months for all organizations.
+	// Shows the sum of all ingested APM span bytes over all hours in the current months for all organizations.
 	TwolIngestedEventsBytesAggSum *int64 `json:"twol_ingested_events_bytes_agg_sum,omitempty"`
 	// An array of objects regarding hourly usage.
 	Usage *[]UsageSummaryDate `json:"usage,omitempty"`
@@ -2802,6 +2802,13 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.LastUpdated = all.LastUpdated
 	o.LiveIndexedEventsAggSum = all.LiveIndexedEventsAggSum
 	o.LiveIngestedBytesAggSum = all.LiveIngestedBytesAggSum
+	if all.LogsByRetention != nil && all.LogsByRetention.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.LogsByRetention = all.LogsByRetention
 	o.MobileRumLiteSessionCountAggSum = all.MobileRumLiteSessionCountAggSum
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum

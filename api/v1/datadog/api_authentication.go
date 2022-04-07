@@ -46,12 +46,9 @@ func (a *AuthenticationApiService) Validate(ctx _context.Context) (Authenticatio
  */
 func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AuthenticationValidationResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue AuthenticationValidationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.Validate")
@@ -87,7 +84,7 @@ func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (Authen
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

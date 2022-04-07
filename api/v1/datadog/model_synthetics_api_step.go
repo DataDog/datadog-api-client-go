@@ -360,7 +360,21 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	o.ExtractedValues = all.ExtractedValues
 	o.IsCritical = all.IsCritical
 	o.Name = all.Name
+	if all.Request.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Request = all.Request
+	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Retry = all.Retry
 	o.Subtype = all.Subtype
 	return nil

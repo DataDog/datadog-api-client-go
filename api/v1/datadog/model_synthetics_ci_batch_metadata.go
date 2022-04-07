@@ -135,7 +135,21 @@ func (o *SyntheticsCIBatchMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Ci = all.Ci
+	if all.Git != nil && all.Git.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Git = all.Git
 	return nil
 }

@@ -783,22 +783,78 @@ func (o *ChangeWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApmQuery != nil && all.ApmQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.ApmQuery = all.ApmQuery
 	o.ChangeType = all.ChangeType
 	o.CompareTo = all.CompareTo
+	if all.EventQuery != nil && all.EventQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.EventQuery = all.EventQuery
 	o.Formulas = all.Formulas
 	o.IncreaseGood = all.IncreaseGood
+	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.LogQuery = all.LogQuery
+	if all.NetworkQuery != nil && all.NetworkQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.NetworkQuery = all.NetworkQuery
 	o.OrderBy = all.OrderBy
 	o.OrderDir = all.OrderDir
+	if all.ProcessQuery != nil && all.ProcessQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.ProcessQuery = all.ProcessQuery
+	if all.ProfileMetricsQuery != nil && all.ProfileMetricsQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	o.ResponseFormat = all.ResponseFormat
+	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.RumQuery = all.RumQuery
+	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.SecurityQuery = all.SecurityQuery
 	o.ShowPresent = all.ShowPresent
 	return nil

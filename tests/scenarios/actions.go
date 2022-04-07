@@ -58,7 +58,7 @@ func (p operationParameter) Resolve(t gobdd.StepTest, ctx gobdd.Context, tp refl
 		return v.Elem()
 	}
 	v, _ := tests.LookupStringI(GetData(ctx), *p.Source)
-	return v
+	return v.Convert(tp)
 }
 
 // GivenStep defines a step.
@@ -203,10 +203,18 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 		}
 
 		// Assemble method arguments
-		in := make([]reflect.Value, operation.Type().NumIn())
+		numArgs := operation.Type().NumIn()
+		in := make([]reflect.Value, numArgs)
 		// first argument is always context.Context
 		in[0] = reflect.ValueOf(getAuthenticatedContext(ctx))
-		for i := 1; i < operation.Type().NumIn(); i++ {
+
+		// Handle operations that accept optional variadic arguments
+		if operation.Type().IsVariadic() {
+			optionalParams := reflect.New(operation.Type().In(numArgs - 1).Elem())
+			in[numArgs-1] = optionalParams.Elem()
+		}
+
+		for i := 1; i < numArgs && i <= len(s.Parameters); i++ {
 			in[i] = s.Parameters[i-1].Resolve(t, ctx, operation.Type().In(i))
 		}
 
@@ -319,7 +327,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 				in[numArgs-1] = optionalParams.Elem()
 			}
 
-			for i := 1; i < undoOperation.Type().NumIn() && i <= len(undo.Undo.Parameters); i++ {
+			for i := 1; i < numArgs && i <= len(undo.Undo.Parameters); i++ {
 				if undo.Undo.Parameters[i-1].Template != nil {
 					data := Templated(t, responseJSON.(map[string]interface{}), *undo.Undo.Parameters[i-1].Template)
 					object := reflect.New(undoOperation.Type().In(i))

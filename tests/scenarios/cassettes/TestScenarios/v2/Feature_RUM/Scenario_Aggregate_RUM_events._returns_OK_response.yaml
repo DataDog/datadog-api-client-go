@@ -1,0 +1,23 @@
+interactions:
+- request:
+    body: |
+      {"compute":[{"aggregation":"pc90","metric":"@view.time_spent","type":"total"}],"filter":{"from":"now-15m","query":"@type:view AND @session.type:user","to":"now"},"group_by":[{"facet":"@view.time_spent","limit":10,"total":false}],"options":{"timezone":"GMT"},"page":{"limit":25}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/rum/analytics/aggregate
+  response:
+    body: '{"meta":{"status":"done","request_id":"pddv1ChZiX1d1RWNfM1JuaURhSkJ6elFsRHpnIi0KHQJFlSKZaC6T1BR15cquEEJdzvJ8iKfJO5Kr37vkEgyJYfau6iiq_M5ftbo","elapsed":0},"data":{"buckets":[]}}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

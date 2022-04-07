@@ -1,5 +1,49 @@
 # CHANGELOG
 
+## 1.12.0 / 2022-04-06
+
+### Fixed
+* Fix required nullable fields by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1428
+* Propagate unparsed objects by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1425
+* Make type optional for synthetics basic auth model by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1430
+### Added
+* Add aggregate endpoint for RUM by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1417
+* Add  `median` aggregation functions to RUM and logs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1427
+* Add endpoint for validation of existing monitors by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1429
+* Create new ListStreamSource types in order to deprecate ISSUE_STREAM by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1439
+* [Query Value Widget] Add the timeseries background by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1426
+### Changed
+* Cleanup unused modules and functions by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1420
+### Removed
+* Remove `lambda_usage` and `lambda_percentage` from usage API by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1411
+
+## New Contributors
+* @Stoovles made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1423
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.11.0...v1.12.0
+
+## 1.11.0 / 2022-03-28
+
+### Fixed
+* Fix org name maximum by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1393
+* Use `$ref` names for `oneOf` attribute names by @jirikuncar in https://github.com/DataDog/datadog-api-client-go/pull/1397
+* Fix pagination for top avg metrics endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1400
+### Added
+* [RUM] Add search endpoints by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1360
+* Add support for getting online archive usage by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1372
+* Add endpoint for retrieving audit logs by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1371
+* Add support for Error Tracking monitors by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1395
+* Add support for `ci-pipelines` monitor using Formulas and Functions by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1405
+### Changed
+* Use Python port of code generator by @jirikuncar in https://github.com/DataDog/datadog-api-client-go/pull/1376
+### Deprecated
+* [monitors] Deprecate `locked` property and clarify documentation for `restricted_roles` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1387
+
+## New Contributors
+* @juan-fernandez made their first contribution in https://github.com/DataDog/datadog-api-client-go/pull/1379
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.10.0...v1.11.0
+
 ## 1.10.0 / 2022-03-03
 
 ### Fixed

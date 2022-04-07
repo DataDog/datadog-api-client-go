@@ -176,6 +176,13 @@ func (o *FormulaAndFunctionEventQueryGroupBy) UnmarshalJSON(bytes []byte) (err e
 	}
 	o.Facet = all.Facet
 	o.Limit = all.Limit
+	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Sort = all.Sort
 	return nil
 }

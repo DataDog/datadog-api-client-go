@@ -171,6 +171,13 @@ func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Columns = all.Columns
+	if all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Query = all.Query
 	o.ResponseFormat = all.ResponseFormat
 	return nil

@@ -479,6 +479,13 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	}
 	o.Category = all.Category
 	o.CreationDate = all.CreationDate
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.DefaultRule = all.DefaultRule
 	o.Description = all.Description
@@ -486,6 +493,13 @@ func (o *CloudWorkloadSecurityAgentRuleAttributes) UnmarshalJSON(bytes []byte) (
 	o.Expression = all.Expression
 	o.Name = all.Name
 	o.UpdatedAt = all.UpdatedAt
+	if all.Updater != nil && all.Updater.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Updater = all.Updater
 	o.Version = all.Version
 	return nil

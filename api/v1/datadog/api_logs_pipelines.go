@@ -49,12 +49,9 @@ func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body 
  */
 func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsPipeline
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.CreateLogsPipeline")
@@ -119,7 +116,7 @@ func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipel
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -211,11 +208,8 @@ func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipel
  */
 func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.DeleteLogsPipeline")
@@ -266,7 +260,7 @@ func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipel
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -350,12 +344,9 @@ func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipeline
  */
 func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsPipeline
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipeline")
@@ -406,7 +397,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineReq
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -497,12 +488,9 @@ func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) (Lo
  */
 func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsPipelinesOrder
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipelineOrder")
@@ -552,7 +540,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipeli
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -633,12 +621,9 @@ func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) ([]Log
  */
 func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []LogsPipeline
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.ListLogsPipelines")
@@ -688,7 +673,7 @@ func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipeline
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -775,12 +760,9 @@ func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipel
  */
 func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsPipeline
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipeline")
@@ -846,7 +828,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -942,12 +924,9 @@ func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, 
  */
 func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  LogsPipelinesOrder
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipelineOrder")
@@ -1012,7 +991,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogs
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

@@ -11,14 +11,11 @@ import (
 )
 
 func main() {
-	// there is a valid "metric_tag_configuration" in the system
-	MetricTagConfigurationDataID := os.Getenv("METRIC_TAG_CONFIGURATION_DATA_ID")
-
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("DeleteTagConfiguration", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, MetricTagConfigurationDataID)
+	r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, "ExampleDeleteatagconfigurationreturnsNoContentresponse")
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.DeleteTagConfiguration`: %v\n", err)

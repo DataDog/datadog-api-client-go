@@ -176,6 +176,13 @@ func (o *IncidentServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Data = all.Data
 	o.Included = all.Included
+	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Meta = all.Meta
 	return nil
 }

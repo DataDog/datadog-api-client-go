@@ -637,6 +637,13 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ConfiguredAlertIds = all.ConfiguredAlertIds
 	o.CreatedAt = all.CreatedAt
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Groups = all.Groups
@@ -645,6 +652,13 @@ func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorIds = all.MonitorIds
 	o.MonitorTags = all.MonitorTags
 	o.Name = all.Name
+	if all.Query != nil && all.Query.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Query = all.Query
 	o.Tags = all.Tags
 	o.Thresholds = all.Thresholds

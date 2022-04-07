@@ -51,12 +51,9 @@ func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body Incident
  */
 func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
 	)
 
 	operationId := "CreateIncident"
@@ -128,7 +125,7 @@ func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -239,11 +236,8 @@ func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId st
  */
 func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	operationId := "DeleteIncident"
@@ -301,7 +295,7 @@ func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -427,12 +421,9 @@ func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId strin
  */
 func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
 	)
 
 	operationId := "GetIncident"
@@ -493,7 +484,7 @@ func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (Incid
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -640,12 +631,9 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
  */
 func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (IncidentsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentsResponse
 	)
 
 	operationId := "ListIncidents"
@@ -711,7 +699,7 @@ func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (I
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -848,12 +836,9 @@ func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId st
  */
 func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IncidentResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue IncidentResponse
 	)
 
 	operationId := "UpdateIncident"
@@ -929,7 +914,7 @@ func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

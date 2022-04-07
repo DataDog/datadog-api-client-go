@@ -377,9 +377,23 @@ func (o *NotebooksResponseDataAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Author != nil && all.Author.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Author = all.Author
 	o.Cells = all.Cells
 	o.Created = all.Created
+	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Metadata = all.Metadata
 	o.Modified = all.Modified
 	o.Name = all.Name

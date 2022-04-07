@@ -98,6 +98,13 @@ func (o *SyntheticsAPITestResultFullCheck) UnmarshalJSON(bytes []byte) (err erro
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Config.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Config = all.Config
 	return nil
 }

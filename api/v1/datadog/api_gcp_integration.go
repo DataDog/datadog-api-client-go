@@ -48,12 +48,9 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.CreateGCPIntegration")
@@ -118,7 +115,7 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -210,12 +207,9 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.DeleteGCPIntegration")
@@ -280,7 +274,7 @@ func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPInt
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -370,12 +364,9 @@ func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]G
  */
 func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []GCPAccount
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []GCPAccount
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.ListGCPIntegration")
@@ -425,7 +416,7 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -520,12 +511,9 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.UpdateGCPIntegration")
@@ -590,7 +578,7 @@ func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPInt
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

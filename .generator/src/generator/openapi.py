@@ -275,6 +275,20 @@ def parameters(operation):
             yield content["name"], content
 
 
+def form_parameter(operation):
+    if "requestBody" in operation and "multipart/form-data" in operation["requestBody"]["content"]:
+        parent = operation["requestBody"]["content"]["multipart/form-data"][
+            "schema"
+        ]
+        [(name, schema)] = list(parent["properties"].items())
+        return {
+            "schema": schema,
+            "name": name,
+            "description": schema.get("description"),
+            "required": name in parent.get("required", []),
+        }
+
+
 def parameter_schema(parameter):
     if "schema" in parameter:
         return parameter["schema"]

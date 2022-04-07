@@ -55,12 +55,9 @@ func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context
  */
 func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityFilterResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityFilterResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityFilter")
@@ -125,7 +122,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -227,12 +224,9 @@ func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context
  */
 func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r apiCreateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityMonitoringRule")
@@ -297,7 +291,7 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -388,11 +382,8 @@ func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context
  */
 func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSecurityFilterRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityFilter")
@@ -443,7 +434,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -525,11 +516,8 @@ func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context
  */
 func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r apiDeleteSecurityMonitoringRuleRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
@@ -580,7 +568,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -666,12 +654,9 @@ func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, s
  */
 func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityFilterResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityFilterResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityFilter")
@@ -722,7 +707,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -814,12 +799,9 @@ func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Co
  */
 func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGetSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityMonitoringRule")
@@ -870,7 +852,7 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -950,12 +932,9 @@ func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context)
  */
 func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecurityFiltersRequest) (SecurityFiltersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityFiltersResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityFiltersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityFilters")
@@ -1005,7 +984,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1115,12 +1094,9 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.
  */
 func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiListSecurityMonitoringRulesRequest) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringListRulesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringListRulesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringRules")
@@ -1176,7 +1152,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1316,12 +1292,9 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
  */
 func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r apiListSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringSignalsListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
 	operationId := "ListSecurityMonitoringSignals"
@@ -1396,7 +1369,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1511,12 +1484,9 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _cont
  */
 func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r apiSearchSecurityMonitoringSignalsRequest) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringSignalsListResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
 	operationId := "SearchSecurityMonitoringSignals"
@@ -1585,7 +1555,7 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1680,12 +1650,9 @@ func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context
  */
 func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSecurityFilterRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityFilterResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityFilterResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityFilter")
@@ -1751,7 +1718,7 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1867,12 +1834,9 @@ func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context
  */
 func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r apiUpdateSecurityMonitoringRuleRequest) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SecurityMonitoringRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
@@ -1938,7 +1902,7 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

@@ -22,6 +22,7 @@ type {{ classname }}Service service
 {%- for path, method, operation in operations|sort(attribute="2.operationId", case_sensitive=True) %}
 {%- set httpMethod = method.upper() %}
 {%- set returnType = operation|return_type %}
+{%- set formParameter = operation|form_parameter %}
 
 type api{{ operation.operationId }}Request struct {
 	ctx        _context.Context
@@ -101,9 +102,6 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	var (
 		localVarHTTPMethod   = _nethttp.Method{{ httpMethod.lower().title() }}
 		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
 		{%- if returnType %}
 		localVarReturnValue  {{ returnType }}
 		{%- endif %}
@@ -241,51 +239,26 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endif %}
 	{%- endfor %}
 	
-	{%- for name, parameter in operation|parameters if parameter.in == "form" %}
-	{#isFile#}
-
-	localVarFormFileName = "{{ name }}"
-	{%- if parameter.required %}
-	localVarFile := *r.{{ name|variable_name}}
+	{%- if formParameter %}
+        formFile := FormFile{}
+	formFile.formFileName = "{{ formParameter.name }}"
+	{%- if formParameter.required %}
+	localVarFile := *r.{{ formParameter.name|variable_name}}
 	{%- else %}
-	var localVarFile {{ get_type_for_parameter(parameter) }}
-	if r.{{ name|variable_name}} != nil {
-		localVarFile = *r.{{ name|variable_name}}
+	var localVarFile {{ get_type_for_parameter(formParameter) }}
+	if r.{{ formParameter.name|variable_name}} != nil {
+		localVarFile = *r.{{ formParameter.name|variable_name}}
 	}
 	{%- endif %}
 	if localVarFile != nil {
 		fbs, _ := _ioutil.ReadAll(localVarFile)
-		localVarFileBytes = fbs
-		localVarFileName = localVarFile.Name()
+		formFile.fileBytes = fbs
+		formFile.fileName = localVarFile.Name()
 		localVarFile.Close()
 	}
-{#
-{{/isFile}}
-{{^isFile}}
-{{#required}}
-	localVarFormParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
-{{/required}}
-{{^required}}
-{{#isModel}}
-	if r.{{ name|variable_name}} != nil {
-		paramJson, err := parameterToJson(*r.{{ name|variable_name}})
-		if err != nil {
-			return {% if returnType %}localVarReturnValue, {% endif %}nil, err
-		}
-		localVarFormParams.Add("{{ parameter.name }}", paramJson)
-	}
-{{/isModel}}
-{{^isModel}}
-	if r.{{ name|variable_name}} != nil {
-		localVarFormParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|variable_name}}, "{{collectionFormat}}"))
-	}
-{{/isModel}}
-{{/required}}
-{{/isFile}}
-#}
-	{%- endfor %}
+	{%- endif %}
 
-	{%- if operation.requestBody is defined and not "multipart/form-data" in operation.requestBody.content %}
+	{%- if operation.requestBody is defined and not formParameter %}
 
 	// body params
 	localVarPostBody = r.{{ operation.get("x-codegen-request-body-name", "body")|variable_name}}
@@ -326,7 +299,7 @@ localVarQueryParams.Add("{{ parameter.name }}", parameterToString(*r.{{ name|var
 	{%- endif %}
 	{%- endfor %}
 	{%- endfor %}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, {% if formParameter %}&formFile{% else %}nil{% endif %})
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
 	}

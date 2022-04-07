@@ -1,4 +1,3 @@
-import json
 import pathlib
 
 import click
@@ -45,6 +44,7 @@ def cli(input, output):
     env.filters["is_reference"] = formatter.is_reference
     env.filters["parameter_schema"] = openapi.parameter_schema
     env.filters["parameters"] = openapi.parameters
+    env.filters["form_parameter"] = openapi.form_parameter
     env.filters["response_type"] = openapi.get_type_for_response
     env.filters["return_type"] = openapi.return_type
     env.filters["simple_type"] = formatter.simple_type
@@ -68,7 +68,6 @@ def cli(input, output):
     extra_files = {
         "client.go": env.get_template("client.j2"),
         "configuration.go": env.get_template("configuration.j2"),
-        "response.go": env.get_template("response.j2"),
         "utils.go": env.get_template("utils.j2"),
     }
 
@@ -87,7 +86,7 @@ def cli(input, output):
         model_path = output / filename
         model_path.parent.mkdir(parents=True, exist_ok=True)
         with model_path.open("w") as fp:
-            fp.write(model_j2.render(name=name, model=model))
+            fp.write(model_j2.render(name=name, model=model, models=models))
 
     for name, operations in apis.items():
         filename = "api_" + formatter.snake_case(name) + ".go"

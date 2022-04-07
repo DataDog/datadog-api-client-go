@@ -262,6 +262,13 @@ func (o *SyntheticsAPITestResultShort) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.CheckTime = all.CheckTime
 	o.ProbeDc = all.ProbeDc
+	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Result = all.Result
 	o.ResultId = all.ResultId
 	o.Status = all.Status

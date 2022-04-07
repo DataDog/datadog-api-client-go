@@ -16,7 +16,6 @@ func main() {
 		Billing: &datadog.OrganizationBilling{
 			Type: datadog.PtrString("parent_billing"),
 		},
-		Created:     datadog.PtrString("2019-09-26T17:28:28Z"),
 		Description: datadog.PtrString("some description"),
 		Name:        datadog.PtrString("New child org"),
 		PublicId:    datadog.PtrString("abcdef12345"),

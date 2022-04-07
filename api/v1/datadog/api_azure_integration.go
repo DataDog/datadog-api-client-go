@@ -54,12 +54,9 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.CreateAzureIntegration")
@@ -124,7 +121,7 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -216,12 +213,9 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
@@ -286,7 +280,7 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -376,12 +370,9 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
  */
 func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureIntegrationRequest) ([]AzureAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []AzureAccount
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []AzureAccount
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.ListAzureIntegration")
@@ -431,7 +422,7 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -523,12 +514,9 @@ func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAzureHostFiltersRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureHostFilters")
@@ -593,7 +581,7 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -687,12 +675,9 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
@@ -757,7 +742,7 @@ func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAz
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

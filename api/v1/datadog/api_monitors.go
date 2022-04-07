@@ -49,12 +49,9 @@ func (a *MonitorsApiService) CheckCanDeleteMonitor(ctx _context.Context, monitor
  */
 func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorRequest) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  CheckCanDeleteMonitorResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CheckCanDeleteMonitorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CheckCanDeleteMonitor")
@@ -108,7 +105,7 @@ func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMon
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -381,12 +378,9 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (
  */
 func (a *MonitorsApiService) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Monitor
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CreateMonitor")
@@ -451,7 +445,7 @@ func (a *MonitorsApiService) createMonitorExecute(r apiCreateMonitorRequest) (Mo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -566,12 +560,9 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
  */
 func (a *MonitorsApiService) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMonitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  DeletedMonitor
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue DeletedMonitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.DeleteMonitor")
@@ -625,7 +616,7 @@ func (a *MonitorsApiService) deleteMonitorExecute(r apiDeleteMonitorRequest) (De
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -760,12 +751,9 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o
  */
 func (a *MonitorsApiService) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Monitor
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.GetMonitor")
@@ -819,7 +807,7 @@ func (a *MonitorsApiService) getMonitorExecute(r apiGetMonitorRequest) (Monitor,
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -991,12 +979,9 @@ func (a *MonitorsApiService) ListMonitors(ctx _context.Context, o ...ListMonitor
  */
 func (a *MonitorsApiService) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []Monitor
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ListMonitors")
@@ -1070,7 +1055,7 @@ func (a *MonitorsApiService) listMonitorsExecute(r apiListMonitorsRequest) ([]Mo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1204,12 +1189,9 @@ func (a *MonitorsApiService) SearchMonitorGroups(ctx _context.Context, o ...Sear
  */
 func (a *MonitorsApiService) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MonitorGroupSearchResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MonitorGroupSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitorGroups")
@@ -1271,7 +1253,7 @@ func (a *MonitorsApiService) searchMonitorGroupsExecute(r apiSearchMonitorGroups
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1405,12 +1387,9 @@ func (a *MonitorsApiService) SearchMonitors(ctx _context.Context, o ...SearchMon
  */
 func (a *MonitorsApiService) searchMonitorsExecute(r apiSearchMonitorsRequest) (MonitorSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MonitorSearchResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MonitorSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitors")
@@ -1472,7 +1451,7 @@ func (a *MonitorsApiService) searchMonitorsExecute(r apiSearchMonitorsRequest) (
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1566,12 +1545,9 @@ func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64
  */
 func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  Monitor
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.UpdateMonitor")
@@ -1637,7 +1613,7 @@ func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Mo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1723,6 +1699,168 @@ func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Mo
 	return localVarReturnValue, localVarHTTPResponse, nil
 }
 
+type apiValidateExistingMonitorRequest struct {
+	ctx        _context.Context
+	ApiService *MonitorsApiService
+	monitorId  int64
+	body       *Monitor
+}
+
+/*
+ * ValidateExistingMonitor Validate an existing monitor
+ * Validate the monitor provided in the request.
+ */
+func (a *MonitorsApiService) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+	req := apiValidateExistingMonitorRequest{
+		ApiService: a,
+		ctx:        ctx,
+		monitorId:  monitorId,
+		body:       &body,
+	}
+
+	return req.ApiService.validateExistingMonitorExecute(req)
+}
+
+/*
+ * Execute executes the request
+ * @return interface{}
+ */
+func (a *MonitorsApiService) validateExistingMonitorExecute(r apiValidateExistingMonitorRequest) (interface{}, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateExistingMonitor")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v1/monitor/{monitor_id}/validate"
+	localVarPath = strings.Replace(localVarPath, "{"+"monitor_id"+"}", _neturl.PathEscape(parameterToString(r.monitorId, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.body == nil {
+		return localVarReturnValue, nil, reportError("body is required and must be specified")
+	}
+
+	// to determine the Content-Type header
+	localVarHTTPContentTypes := []string{"application/json"}
+
+	// set Content-Type header
+	localVarHTTPContentType := selectHeaderContentType(localVarHTTPContentTypes)
+	if localVarHTTPContentType != "" {
+		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+
+	// body params
+	localVarPostBody = r.body
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiValidateMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
@@ -1749,12 +1887,9 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor)
  */
 func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateMonitor")
@@ -1819,7 +1954,7 @@ func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest)
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

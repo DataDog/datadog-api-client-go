@@ -95,12 +95,9 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64
  */
 func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  GraphSnapshot
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue GraphSnapshot
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SnapshotsApiService.GetGraphSnapshot")
@@ -170,7 +167,7 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

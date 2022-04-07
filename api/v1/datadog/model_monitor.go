@@ -38,7 +38,7 @@ type Monitor struct {
 	Priority NullableInt64 `json:"priority,omitempty"`
 	// The monitor query.
 	Query string `json:"query"`
-	// A list of unique role identifiers to define which roles are allowed to edit the monitor. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. Roles unique identifiers can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) in the `data.id` field.
+	// A list of unique role identifiers to define which roles are allowed to edit the monitor. The unique identifiers for all roles can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) and are located in the `data.id` field. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. `restricted_roles` is the successor of `locked`. For more information about `locked` and `restricted_roles`, see the [monitor options docs](https://docs.datadoghq.com/monitors/guide/monitor_api_options/#permissions-options).
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// Wrapper object with the different monitor states.
 	State *MonitorState `json:"state,omitempty"`
@@ -703,6 +703,13 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Created = all.Created
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.Deleted = all.Deleted
 	o.Id = all.Id
@@ -710,11 +717,25 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	o.Modified = all.Modified
 	o.Multi = all.Multi
 	o.Name = all.Name
+	if all.Options != nil && all.Options.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Options = all.Options
 	o.OverallState = all.OverallState
 	o.Priority = all.Priority
 	o.Query = all.Query
 	o.RestrictedRoles = all.RestrictedRoles
+	if all.State != nil && all.State.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.State = all.State
 	o.Tags = all.Tags
 	o.Type = all.Type

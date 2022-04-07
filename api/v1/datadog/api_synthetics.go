@@ -50,12 +50,9 @@ func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body S
  */
 func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsGlobalVariable
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateGlobalVariable")
@@ -120,7 +117,7 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -212,12 +209,9 @@ func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body 
  */
 func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLocationRequest) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsPrivateLocationCreationResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsPrivateLocationCreationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreatePrivateLocation")
@@ -282,7 +276,7 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -374,12 +368,9 @@ func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, bod
  */
 func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsAPITest
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsAPITest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsAPITest")
@@ -444,7 +435,7 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -546,12 +537,9 @@ func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context,
  */
 func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyntheticsBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsBrowserTest
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsBrowserTest")
@@ -616,7 +604,7 @@ func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyn
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -717,11 +705,8 @@ func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variab
  */
 func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVariableRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteGlobalVariable")
@@ -772,7 +757,7 @@ func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVari
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -864,11 +849,8 @@ func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locat
  */
 func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLocationRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeletePrivateLocation")
@@ -919,7 +901,7 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -992,12 +974,9 @@ func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body Synthetics
  */
 func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsDeleteTestsResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsDeleteTestsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteTests")
@@ -1062,7 +1041,7 @@ func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (Synt
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1166,12 +1145,9 @@ func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variable
  */
 func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsGlobalVariable
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.EditGlobalVariable")
@@ -1237,7 +1213,7 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1330,12 +1306,9 @@ func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string)
  */
 func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsAPITest
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsAPITest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITest")
@@ -1386,7 +1359,7 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1515,12 +1488,9 @@ func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, pub
  */
 func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLatestResultsRequest) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsGetAPITestLatestResultsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestLatestResults")
@@ -1588,7 +1558,7 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1682,12 +1652,9 @@ func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId s
  */
 func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequest) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsAPITestResultFull
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsAPITestResultFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestResult")
@@ -1739,7 +1706,7 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1832,12 +1799,9 @@ func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId str
  */
 func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsBrowserTest
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTest")
@@ -1888,7 +1852,7 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2017,12 +1981,9 @@ func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context,
  */
 func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLatestResultsRequest) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsGetBrowserTestLatestResultsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestLatestResults")
@@ -2090,7 +2051,7 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2184,12 +2145,9 @@ func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, public
  */
 func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestResultRequest) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsBrowserTestResultFull
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsBrowserTestResultFull
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestResult")
@@ -2241,7 +2199,7 @@ func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestRe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2333,12 +2291,9 @@ func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableI
  */
 func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsGlobalVariable
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsGlobalVariable
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetGlobalVariable")
@@ -2389,7 +2344,7 @@ func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2481,12 +2436,9 @@ func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, location
  */
 func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsPrivateLocation
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsPrivateLocation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetPrivateLocation")
@@ -2537,7 +2489,7 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2619,12 +2571,9 @@ func (a *SyntheticsApiService) GetSyntheticsCIBatch(ctx _context.Context, batchI
  */
 func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchRequest) (SyntheticsBatchDetails, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsBatchDetails
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsBatchDetails
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetSyntheticsCIBatch")
@@ -2675,7 +2624,7 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2757,12 +2706,9 @@ func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (S
  */
 func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsTestDetails
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTestDetails
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetTest")
@@ -2813,7 +2759,7 @@ func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -2903,12 +2849,9 @@ func (a *SyntheticsApiService) ListGlobalVariables(ctx _context.Context) (Synthe
  */
 func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariablesRequest) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsListGlobalVariablesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsListGlobalVariablesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListGlobalVariables")
@@ -2958,7 +2901,7 @@ func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariabl
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3039,12 +2982,9 @@ func (a *SyntheticsApiService) ListLocations(ctx _context.Context) (SyntheticsLo
  */
 func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (SyntheticsLocations, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsLocations
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsLocations
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListLocations")
@@ -3094,7 +3034,7 @@ func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3164,12 +3104,9 @@ func (a *SyntheticsApiService) ListTests(ctx _context.Context) (SyntheticsListTe
  */
 func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsListTestsResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsListTestsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListTests")
@@ -3219,7 +3156,7 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3311,12 +3248,9 @@ func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body Synthet
  */
 func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsTriggerCITestsResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTriggerCITestsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerCITests")
@@ -3381,7 +3315,7 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3463,12 +3397,9 @@ func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body Synthetic
  */
 func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsTriggerCITestsResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsTriggerCITestsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerTests")
@@ -3533,7 +3464,7 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3617,12 +3548,9 @@ func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId stri
  */
 func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsAPITest
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsAPITest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateAPITest")
@@ -3688,7 +3616,7 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3792,12 +3720,9 @@ func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId 
  */
 func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsBrowserTest
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsBrowserTest
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateBrowserTest")
@@ -3863,7 +3788,7 @@ func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -3967,12 +3892,9 @@ func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locat
  */
 func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  SyntheticsPrivateLocation
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue SyntheticsPrivateLocation
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdatePrivateLocation")
@@ -4038,7 +3960,7 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -4122,12 +4044,9 @@ func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publi
  */
 func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusRequest) (bool, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  bool
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue bool
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateTestPauseStatus")
@@ -4193,7 +4112,7 @@ func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPause
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

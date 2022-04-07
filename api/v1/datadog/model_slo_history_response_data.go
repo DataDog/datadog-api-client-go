@@ -470,7 +470,21 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	o.GroupBy = all.GroupBy
 	o.Groups = all.Groups
 	o.Monitors = all.Monitors
+	if all.Overall != nil && all.Overall.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Overall = all.Overall
+	if all.Series != nil && all.Series.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Series = all.Series
 	o.Thresholds = all.Thresholds
 	o.ToTs = all.ToTs

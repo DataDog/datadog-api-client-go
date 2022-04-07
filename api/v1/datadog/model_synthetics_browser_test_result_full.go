@@ -336,10 +336,24 @@ func (o *SyntheticsBrowserTestResultFull) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.Check != nil && all.Check.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Check = all.Check
 	o.CheckTime = all.CheckTime
 	o.CheckVersion = all.CheckVersion
 	o.ProbeDc = all.ProbeDc
+	if all.Result != nil && all.Result.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Result = all.Result
 	o.ResultId = all.ResultId
 	o.Status = all.Status

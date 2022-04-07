@@ -55,12 +55,9 @@ func (a *AWSLogsIntegrationApiService) CheckAWSLogsLambdaAsync(ctx _context.Cont
  */
 func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheckAWSLogsLambdaAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AWSLogsAsyncResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue AWSLogsAsyncResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsLambdaAsync")
@@ -125,7 +122,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -226,12 +223,9 @@ func (a *AWSLogsIntegrationApiService) CheckAWSLogsServicesAsync(ctx _context.Co
  */
 func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiCheckAWSLogsServicesAsyncRequest) (AWSLogsAsyncResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  AWSLogsAsyncResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue AWSLogsAsyncResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsServicesAsync")
@@ -296,7 +290,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -388,12 +382,9 @@ func (a *AWSLogsIntegrationApiService) CreateAWSLambdaARN(ctx _context.Context, 
  */
 func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CreateAWSLambdaARN")
@@ -458,7 +449,7 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -550,12 +541,9 @@ func (a *AWSLogsIntegrationApiService) DeleteAWSLambdaARN(ctx _context.Context, 
  */
 func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSLambdaARNRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodDelete
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
@@ -620,7 +608,7 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -712,12 +700,9 @@ func (a *AWSLogsIntegrationApiService) EnableAWSLogServices(ctx _context.Context
  */
 func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAWSLogServicesRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  interface{}
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.EnableAWSLogServices")
@@ -782,7 +767,7 @@ func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAW
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -872,12 +857,9 @@ func (a *AWSLogsIntegrationApiService) ListAWSLogsIntegrations(ctx _context.Cont
  */
 func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListAWSLogsIntegrationsRequest) ([]AWSLogsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []AWSLogsListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []AWSLogsListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
@@ -927,7 +909,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListA
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -1017,12 +999,9 @@ func (a *AWSLogsIntegrationApiService) ListAWSLogsServices(ctx _context.Context)
  */
 func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLogsServicesRequest) ([]AWSLogsListServicesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  []AWSLogsListServicesResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue []AWSLogsListServicesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsServices")
@@ -1072,7 +1051,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLo
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

@@ -6,7 +6,7 @@ and [apigentools](https://github.com/DataDog/apigentools).
 
 ## Requirements
 
-- Go 1.14+
+- Go 1.16+
 
 ## Layout
 
@@ -21,8 +21,6 @@ The client library for Datadog API v1 is located in the `api/v1/datadog` directo
 import "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 ```
 
-All the documentation for this package is available [here](api/v1/datadog/README.md).
-
 ### The API v2 Client
 
 The client library for Datadog API v2 is located in the `api/v2/datadog` directory. Import it with
@@ -30,8 +28,6 @@ The client library for Datadog API v2 is located in the `api/v2/datadog` directo
 ```go
 import "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 ```
-
-All the documentation for this package is available [here](api/v2/datadog/README.md).
 
 ## Getting Started
 
@@ -121,10 +117,7 @@ If you want to enable requests logging, set the `debug` flag on your configurati
 
 ## Documentation
 
-Documentation for API endpoints and models can be found under the docs subdirectories, in [v1](/api/v1/datadog#documentation-for-api-endpoints)
-and [v2](/api/v2/datadog#documentation-for-api-endpoints).
-
-It's also available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go).
+Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go).
 
 ## Contributing
 

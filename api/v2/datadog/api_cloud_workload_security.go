@@ -50,12 +50,9 @@ func (a *CloudWorkloadSecurityApiService) CreateCloudWorkloadSecurityAgentRule(c
  */
 func (a *CloudWorkloadSecurityApiService) createCloudWorkloadSecurityAgentRuleExecute(r apiCreateCloudWorkloadSecurityAgentRuleRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.CreateCloudWorkloadSecurityAgentRule")
@@ -120,7 +117,7 @@ func (a *CloudWorkloadSecurityApiService) createCloudWorkloadSecurityAgentRuleEx
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -221,11 +218,8 @@ func (a *CloudWorkloadSecurityApiService) DeleteCloudWorkloadSecurityAgentRule(c
  */
 func (a *CloudWorkloadSecurityApiService) deleteCloudWorkloadSecurityAgentRuleExecute(r apiDeleteCloudWorkloadSecurityAgentRuleRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodDelete
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
+		localVarHTTPMethod = _nethttp.MethodDelete
+		localVarPostBody   interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.DeleteCloudWorkloadSecurityAgentRule")
@@ -276,7 +270,7 @@ func (a *CloudWorkloadSecurityApiService) deleteCloudWorkloadSecurityAgentRuleEx
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -359,12 +353,9 @@ func (a *CloudWorkloadSecurityApiService) DownloadCloudWorkloadPolicyFile(ctx _c
  */
 func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute(r apiDownloadCloudWorkloadPolicyFileRequest) (*os.File, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  *os.File
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue *os.File
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.DownloadCloudWorkloadPolicyFile")
@@ -414,7 +405,7 @@ func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -496,12 +487,9 @@ func (a *CloudWorkloadSecurityApiService) GetCloudWorkloadSecurityAgentRule(ctx 
  */
 func (a *CloudWorkloadSecurityApiService) getCloudWorkloadSecurityAgentRuleExecute(r apiGetCloudWorkloadSecurityAgentRuleRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.GetCloudWorkloadSecurityAgentRule")
@@ -552,7 +540,7 @@ func (a *CloudWorkloadSecurityApiService) getCloudWorkloadSecurityAgentRuleExecu
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -642,12 +630,9 @@ func (a *CloudWorkloadSecurityApiService) ListCloudWorkloadSecurityAgentRules(ct
  */
 func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExecute(r apiListCloudWorkloadSecurityAgentRulesRequest) (CloudWorkloadSecurityAgentRulesListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  CloudWorkloadSecurityAgentRulesListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.ListCloudWorkloadSecurityAgentRules")
@@ -697,7 +682,7 @@ func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExe
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -782,12 +767,9 @@ func (a *CloudWorkloadSecurityApiService) UpdateCloudWorkloadSecurityAgentRule(c
  */
 func (a *CloudWorkloadSecurityApiService) updateCloudWorkloadSecurityAgentRuleExecute(r apiUpdateCloudWorkloadSecurityAgentRuleRequest) (CloudWorkloadSecurityAgentRuleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPatch
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  CloudWorkloadSecurityAgentRuleResponse
+		localVarHTTPMethod  = _nethttp.MethodPatch
+		localVarPostBody    interface{}
+		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.UpdateCloudWorkloadSecurityAgentRule")
@@ -853,7 +835,7 @@ func (a *CloudWorkloadSecurityApiService) updateCloudWorkloadSecurityAgentRuleEx
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

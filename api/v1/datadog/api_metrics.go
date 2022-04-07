@@ -49,12 +49,9 @@ func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName s
  */
 func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricMetadata
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricMetadata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.GetMetricMetadata")
@@ -105,7 +102,7 @@ func (a *MetricsApiService) getMetricMetadataExecute(r apiGetMetricMetadataReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -227,12 +224,9 @@ func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, 
  */
 func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsRequest) (MetricsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsListResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricsListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListActiveMetrics")
@@ -292,7 +286,7 @@ func (a *MetricsApiService) listActiveMetricsExecute(r apiListActiveMetricsReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -384,12 +378,9 @@ func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricS
  */
 func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricSearchResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListMetrics")
@@ -443,7 +434,7 @@ func (a *MetricsApiService) listMetricsExecute(r apiListMetricsRequest) (MetricS
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -539,12 +530,9 @@ func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to in
  */
 func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (MetricsQueryResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodGet
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricsQueryResponse
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricsQueryResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.QueryMetrics")
@@ -606,7 +594,7 @@ func (a *MetricsApiService) queryMetricsExecute(r apiQueryMetricsRequest) (Metri
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -701,7 +689,7 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
  *
  * - 64 bits for the timestamp
  * - 32 bits for the value
- * - 20 bytes for the metric names
+ * - 40 bytes for the metric names
  * - 50 bytes for the timeseries
  * - The full payload is approximately 100 bytes. However, with the DogStatsD API,
  * compression is applied, which reduces the payload size.
@@ -731,12 +719,9 @@ func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayl
  */
 func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPost
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  IntakePayloadAccepted
+		localVarHTTPMethod  = _nethttp.MethodPost
+		localVarPostBody    interface{}
+		localVarReturnValue IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.SubmitMetrics")
@@ -791,7 +776,7 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
@@ -905,12 +890,9 @@ func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricNam
  */
 func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadataRequest) (MetricMetadata, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod   = _nethttp.MethodPut
-		localVarPostBody     interface{}
-		localVarFormFileName string
-		localVarFileName     string
-		localVarFileBytes    []byte
-		localVarReturnValue  MetricMetadata
+		localVarHTTPMethod  = _nethttp.MethodPut
+		localVarPostBody    interface{}
+		localVarReturnValue MetricMetadata
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateMetricMetadata")
@@ -976,7 +958,7 @@ func (a *MetricsApiService) updateMetricMetadataExecute(r apiUpdateMetricMetadat
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, localVarFormFileName, localVarFileName, localVarFileBytes)
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}

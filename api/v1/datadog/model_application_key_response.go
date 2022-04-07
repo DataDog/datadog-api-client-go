@@ -97,6 +97,13 @@ func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
+	if all.ApplicationKey != nil && all.ApplicationKey.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.ApplicationKey = all.ApplicationKey
 	return nil
 }

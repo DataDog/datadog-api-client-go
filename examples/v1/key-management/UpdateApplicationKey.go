@@ -13,9 +13,7 @@ import (
 
 func main() {
 	body := datadog.ApplicationKey{
-		Hash:  datadog.PtrString("1234512345123459cda4eb9ced49a3d84fd0138c"),
-		Name:  datadog.PtrString("example user"),
-		Owner: datadog.PtrString("example.com"),
+		Name: datadog.PtrString("example user"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

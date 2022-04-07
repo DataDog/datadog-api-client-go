@@ -16,7 +16,7 @@ type SyntheticsBasicAuthWeb struct {
 	// Password to use for the basic authentication.
 	Password string `json:"password"`
 	// The type of basic authentication to use when performing the test.
-	Type SyntheticsBasicAuthWebType `json:"type"`
+	Type *SyntheticsBasicAuthWebType `json:"type,omitempty"`
 	// Username to use for the basic authentication.
 	Username string `json:"username"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -28,10 +28,11 @@ type SyntheticsBasicAuthWeb struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsBasicAuthWeb(password string, type_ SyntheticsBasicAuthWebType, username string) *SyntheticsBasicAuthWeb {
+func NewSyntheticsBasicAuthWeb(password string, username string) *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
 	this.Password = password
-	this.Type = type_
+	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
+	this.Type = &type_
 	this.Username = username
 	return &this
 }
@@ -42,7 +43,7 @@ func NewSyntheticsBasicAuthWeb(password string, type_ SyntheticsBasicAuthWebType
 func NewSyntheticsBasicAuthWebWithDefaults() *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
 	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
-	this.Type = type_
+	this.Type = &type_
 	return &this
 }
 
@@ -69,27 +70,36 @@ func (o *SyntheticsBasicAuthWeb) SetPassword(v string) {
 	o.Password = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsBasicAuthWeb) GetType() SyntheticsBasicAuthWebType {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		var ret SyntheticsBasicAuthWebType
 		return ret
 	}
-	return o.Type
+	return *o.Type
 }
 
-// GetTypeOk returns a tuple with the Type field value
+// GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 func (o *SyntheticsBasicAuthWeb) GetTypeOk() (*SyntheticsBasicAuthWebType, bool) {
-	if o == nil {
+	if o == nil || o.Type == nil {
 		return nil, false
 	}
-	return &o.Type, true
+	return o.Type, true
 }
 
-// SetType sets field value
+// HasType returns a boolean if a field has been set.
+func (o *SyntheticsBasicAuthWeb) HasType() bool {
+	if o != nil && o.Type != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetType gets a reference to the given SyntheticsBasicAuthWebType and assigns it to the Type field.
 func (o *SyntheticsBasicAuthWeb) SetType(v SyntheticsBasicAuthWebType) {
-	o.Type = v
+	o.Type = &v
 }
 
 // GetUsername returns the Username field value
@@ -121,7 +131,9 @@ func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["password"] = o.Password
-	toSerialize["type"] = o.Type
+	if o.Type != nil {
+		toSerialize["type"] = o.Type
+	}
 	toSerialize["username"] = o.Username
 
 	for key, value := range o.AdditionalProperties {
@@ -133,14 +145,13 @@ func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Password *string                     `json:"password"`
-		Type     *SyntheticsBasicAuthWebType `json:"type"`
-		Username *string                     `json:"username"`
+		Password *string `json:"password"`
+		Username *string `json:"username"`
 	}{}
 	all := struct {
-		Password string                     `json:"password"`
-		Type     SyntheticsBasicAuthWebType `json:"type"`
-		Username string                     `json:"username"`
+		Password string                      `json:"password"`
+		Type     *SyntheticsBasicAuthWebType `json:"type,omitempty"`
+		Username string                      `json:"username"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -148,9 +159,6 @@ func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.Password == nil {
 		return fmt.Errorf("Required field password missing")
-	}
-	if required.Type == nil {
-		return fmt.Errorf("Required field type missing")
 	}
 	if required.Username == nil {
 		return fmt.Errorf("Required field username missing")
@@ -164,7 +172,7 @@ func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; !v.IsValid() {
+	if v := all.Type; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

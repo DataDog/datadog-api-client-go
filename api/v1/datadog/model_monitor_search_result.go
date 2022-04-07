@@ -584,6 +584,13 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Classification = all.Classification
+	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
 	o.Creator = all.Creator
 	o.Id = all.Id
 	o.LastTriggeredTs = all.LastTriggeredTs
