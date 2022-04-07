@@ -133,7 +133,7 @@ type UsageSummaryDate struct {
 	SyntheticsCheckCallsCountSum *int64 `json:"synthetics_check_calls_count_sum,omitempty"`
 	// Shows the sum of all Indexed Spans indexed over all hours in the current date for all organizations.
 	TraceSearchIndexedEventsCountSum *int64 `json:"trace_search_indexed_events_count_sum,omitempty"`
-	// Shows the sum of all ingested APM span bytes over all hours in the current date for all organizations.
+	// Shows the sum of all tracing without limits bytes ingested over all hours in the current date for all organizations.
 	TwolIngestedEventsBytesSum *int64 `json:"twol_ingested_events_bytes_sum,omitempty"`
 	// Shows the 99th percentile of all vSphere hosts over all hours in the current date for all organizations.
 	VsphereHostTop99p *int64 `json:"vsphere_host_top99p,omitempty"`

@@ -258,20 +258,6 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBr
 /*
  * GetHourlyUsageAttribution Get Hourly Usage Attribution
  * Get Hourly Usage Attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetHourlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetHourlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
  */
 func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetHourlyUsageAttributionRequest{
@@ -1024,20 +1010,6 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextReco
 /*
  * GetMonthlyUsageAttribution Get Monthly Usage Attribution
  * Get Monthly Usage Attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetMonthlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetMonthlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
  */
 func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req := apiGetMonthlyUsageAttributionRequest{

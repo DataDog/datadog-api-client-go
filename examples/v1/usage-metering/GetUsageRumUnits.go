@@ -16,7 +16,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageRumUnits(ctx, time.Now().AddDate(0, 0, -5), *datadog.NewGetUsageRumUnitsOptionalParameters().WithEndHr(time.Now().AddDate(0, 0, -3)))
+	resp, r, err := apiClient.UsageMeteringApi.GetUsageRumUnits(ctx, time.Date(2021, 11, 11, 11, 11, 11, 111000, time.UTC), *datadog.NewGetUsageRumUnitsOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageRumUnits`: %v\n", err)

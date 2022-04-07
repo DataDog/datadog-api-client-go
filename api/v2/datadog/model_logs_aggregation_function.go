@@ -27,7 +27,6 @@ const (
 	LOGSAGGREGATIONFUNCTION_MIN           LogsAggregationFunction = "min"
 	LOGSAGGREGATIONFUNCTION_MAX           LogsAggregationFunction = "max"
 	LOGSAGGREGATIONFUNCTION_AVG           LogsAggregationFunction = "avg"
-	LOGSAGGREGATIONFUNCTION_MEDIAN        LogsAggregationFunction = "median"
 )
 
 var allowedLogsAggregationFunctionEnumValues = []LogsAggregationFunction{
@@ -42,7 +41,6 @@ var allowedLogsAggregationFunctionEnumValues = []LogsAggregationFunction{
 	LOGSAGGREGATIONFUNCTION_MIN,
 	LOGSAGGREGATIONFUNCTION_MAX,
 	LOGSAGGREGATIONFUNCTION_AVG,
-	LOGSAGGREGATIONFUNCTION_MEDIAN,
 }
 
 func (w *LogsAggregationFunction) GetAllowedValues() []LogsAggregationFunction {
