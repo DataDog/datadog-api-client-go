@@ -321,11 +321,9 @@ def format_data_with_schema(
         elif matched > 1:
             warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
 
-        one_of_schema_name = (
-            simple_type(one_of_schema).title()
-            if simple_type(one_of_schema)
-            else f"{schema_name(one_of_schema)}"
-        )
+        one_of_schema_name = schema_name(one_of_schema)
+        if not one_of_schema_name:
+            one_of_schema_name = simple_type(one_of_schema).title()
         reference = "" if required or nullable else "&"
         return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
 

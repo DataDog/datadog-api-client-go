@@ -420,9 +420,11 @@ def generate_value(schema, use_random=False, prefix=None):
             )
         return "string"
     elif spec["type"] == "integer":
-        return random.randint(0, 32000) if use_random else 1
+        return (
+            random.randint(0, 32000) if use_random else len(str(prefix or schema.keys))
+        )
     elif spec["type"] == "number":
-        return random.random() if use_random else 1.0
+        return random.random() if use_random else 1.0 / len(str(prefix or schema.keys))
     elif spec["type"] == "boolean":
         return True
     elif spec["type"] == "array":
