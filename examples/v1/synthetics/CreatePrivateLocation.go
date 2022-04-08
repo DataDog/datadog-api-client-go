@@ -12,11 +12,19 @@ import (
 )
 
 func main() {
+	// there is a valid "role" in the system
+	RoleDataID := os.Getenv("ROLE_DATA_ID")
+
 	body := datadog.SyntheticsPrivateLocation{
-		Description: "Description of private location",
-		Name:        "New private location",
+		Description: "Test Example-Create_a_private_location_returns_OK_response description",
+		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
+			RestrictedRoles: &[]string{
+				RoleDataID,
+			},
+		},
+		Name: "Example-Create_a_private_location_returns_OK_response",
 		Tags: []string{
-			"team:front",
+			"test:examplecreateaprivatelocationreturnsokresponse",
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

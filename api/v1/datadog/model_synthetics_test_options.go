@@ -39,6 +39,8 @@ type SyntheticsTestOptions struct {
 	MonitorPriority *int32 `json:"monitor_priority,omitempty"`
 	// Prevents saving screenshots of the steps.
 	NoScreenshot *bool `json:"noScreenshot,omitempty"`
+	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
+	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// Object describing the retry strategy to apply to a Synthetic test.
 	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
@@ -449,6 +451,38 @@ func (o *SyntheticsTestOptions) SetNoScreenshot(v bool) {
 	o.NoScreenshot = &v
 }
 
+// GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetRestrictedRoles() []string {
+	if o == nil || o.RestrictedRoles == nil {
+		var ret []string
+		return ret
+	}
+	return *o.RestrictedRoles
+}
+
+// GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
+	if o == nil || o.RestrictedRoles == nil {
+		return nil, false
+	}
+	return o.RestrictedRoles, true
+}
+
+// HasRestrictedRoles returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
+	if o != nil && o.RestrictedRoles != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
+func (o *SyntheticsTestOptions) SetRestrictedRoles(v []string) {
+	o.RestrictedRoles = &v
+}
+
 // GetRetry returns the Retry field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetRetry() SyntheticsTestOptionsRetry {
 	if o == nil || o.Retry == nil {
@@ -554,6 +588,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.NoScreenshot != nil {
 		toSerialize["noScreenshot"] = o.NoScreenshot
 	}
+	if o.RestrictedRoles != nil {
+		toSerialize["restricted_roles"] = o.RestrictedRoles
+	}
 	if o.Retry != nil {
 		toSerialize["retry"] = o.Retry
 	}
@@ -582,6 +619,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		MonitorOptions             *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 		MonitorPriority            *int32                               `json:"monitor_priority,omitempty"`
 		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
+		RestrictedRoles            *[]string                            `json:"restricted_roles,omitempty"`
 		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
 		TickEvery                  *int64                               `json:"tick_every,omitempty"`
 	}{}
@@ -613,6 +651,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.MonitorOptions = all.MonitorOptions
 	o.MonitorPriority = all.MonitorPriority
 	o.NoScreenshot = all.NoScreenshot
+	o.RestrictedRoles = all.RestrictedRoles
 	if all.Retry != nil && all.Retry.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
