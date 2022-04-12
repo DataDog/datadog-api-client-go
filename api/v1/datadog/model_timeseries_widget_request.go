@@ -21,11 +21,11 @@ type TimeseriesWidgetRequest struct {
 	// The log query.
 	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries.
-	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	Formulas []WidgetFormula `json:"formulas,omitempty"`
 	// The log query.
 	LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
 	// Used to define expression aliases.
-	Metadata *[]TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
+	Metadata []TimeseriesWidgetExpressionAlias `json:"metadata,omitempty"`
 	// The log query.
 	NetworkQuery *LogQueryDefinition `json:"network_query,omitempty"`
 	// Whether or not to display a second y-axis on the right.
@@ -37,7 +37,7 @@ type TimeseriesWidgetRequest struct {
 	// Widget query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
-	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// The log query.
@@ -202,7 +202,7 @@ func (o *TimeseriesWidgetRequest) GetFormulas() []WidgetFormula {
 		var ret []WidgetFormula
 		return ret
 	}
-	return *o.Formulas
+	return o.Formulas
 }
 
 // GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
@@ -211,7 +211,7 @@ func (o *TimeseriesWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 	if o == nil || o.Formulas == nil {
 		return nil, false
 	}
-	return o.Formulas, true
+	return &o.Formulas, true
 }
 
 // HasFormulas returns a boolean if a field has been set.
@@ -225,7 +225,7 @@ func (o *TimeseriesWidgetRequest) HasFormulas() bool {
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
 func (o *TimeseriesWidgetRequest) SetFormulas(v []WidgetFormula) {
-	o.Formulas = &v
+	o.Formulas = v
 }
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
@@ -266,7 +266,7 @@ func (o *TimeseriesWidgetRequest) GetMetadata() []TimeseriesWidgetExpressionAlia
 		var ret []TimeseriesWidgetExpressionAlias
 		return ret
 	}
-	return *o.Metadata
+	return o.Metadata
 }
 
 // GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
@@ -275,7 +275,7 @@ func (o *TimeseriesWidgetRequest) GetMetadataOk() (*[]TimeseriesWidgetExpression
 	if o == nil || o.Metadata == nil {
 		return nil, false
 	}
-	return o.Metadata, true
+	return &o.Metadata, true
 }
 
 // HasMetadata returns a boolean if a field has been set.
@@ -289,7 +289,7 @@ func (o *TimeseriesWidgetRequest) HasMetadata() bool {
 
 // SetMetadata gets a reference to the given []TimeseriesWidgetExpressionAlias and assigns it to the Metadata field.
 func (o *TimeseriesWidgetRequest) SetMetadata(v []TimeseriesWidgetExpressionAlias) {
-	o.Metadata = &v
+	o.Metadata = v
 }
 
 // GetNetworkQuery returns the NetworkQuery field value if set, zero value otherwise.
@@ -458,7 +458,7 @@ func (o *TimeseriesWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefiniti
 		var ret []FormulaAndFunctionQueryDefinition
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -467,7 +467,7 @@ func (o *TimeseriesWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefi
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -481,7 +481,7 @@ func (o *TimeseriesWidgetRequest) HasQueries() bool {
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
 func (o *TimeseriesWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
@@ -678,23 +678,23 @@ func (o TimeseriesWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *TimeseriesWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		AuditQuery          *LogQueryDefinition                  `json:"audit_query,omitempty"`
-		DisplayType         *WidgetDisplayType                   `json:"display_type,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		Metadata            *[]TimeseriesWidgetExpressionAlias   `json:"metadata,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		OnRightYaxis        *bool                                `json:"on_right_yaxis,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
-		Style               *WidgetRequestStyle                  `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
+		AuditQuery          *LogQueryDefinition                 `json:"audit_query,omitempty"`
+		DisplayType         *WidgetDisplayType                  `json:"display_type,omitempty"`
+		EventQuery          *LogQueryDefinition                 `json:"event_query,omitempty"`
+		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
+		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
+		Metadata            []TimeseriesWidgetExpressionAlias   `json:"metadata,omitempty"`
+		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
+		OnRightYaxis        *bool                               `json:"on_right_yaxis,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
+		Q                   *string                             `json:"q,omitempty"`
+		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
+		Style               *WidgetRequestStyle                 `json:"style,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

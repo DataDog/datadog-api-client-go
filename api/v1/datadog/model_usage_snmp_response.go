@@ -13,7 +13,7 @@ import (
 // UsageSNMPResponse Response containing the number of SNMP devices for each hour for a given organization.
 type UsageSNMPResponse struct {
 	// Get hourly usage for SNMP devices.
-	Usage *[]UsageSNMPHour `json:"usage,omitempty"`
+	Usage []UsageSNMPHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageSNMPResponse) GetUsage() []UsageSNMPHour {
 		var ret []UsageSNMPHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageSNMPResponse) GetUsageOk() (*[]UsageSNMPHour, bool) {
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageSNMPResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageSNMPHour and assigns it to the Usage field.
 func (o *UsageSNMPResponse) SetUsage(v []UsageSNMPHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageSNMPResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageSNMPResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSNMPResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageSNMPHour `json:"usage,omitempty"`
+		Usage []UsageSNMPHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

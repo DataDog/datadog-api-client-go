@@ -18,7 +18,7 @@ type LogsIndex struct {
 	// An array of exclusion objects. The logs are tested against the query of each filter,
 	// following the order of the array. Only the first matching active exclusion matters,
 	// others (if any) are ignored.
-	ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
+	ExclusionFilters []LogsExclusion `json:"exclusion_filters,omitempty"`
 	// Filter for logs.
 	Filter LogsFilter `json:"filter"`
 	// A boolean stating if the index is rate limited, meaning more logs than the daily limit have been sent.
@@ -91,7 +91,7 @@ func (o *LogsIndex) GetExclusionFilters() []LogsExclusion {
 		var ret []LogsExclusion
 		return ret
 	}
-	return *o.ExclusionFilters
+	return o.ExclusionFilters
 }
 
 // GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, nil otherwise
@@ -100,7 +100,7 @@ func (o *LogsIndex) GetExclusionFiltersOk() (*[]LogsExclusion, bool) {
 	if o == nil || o.ExclusionFilters == nil {
 		return nil, false
 	}
-	return o.ExclusionFilters, true
+	return &o.ExclusionFilters, true
 }
 
 // HasExclusionFilters returns a boolean if a field has been set.
@@ -114,7 +114,7 @@ func (o *LogsIndex) HasExclusionFilters() bool {
 
 // SetExclusionFilters gets a reference to the given []LogsExclusion and assigns it to the ExclusionFilters field.
 func (o *LogsIndex) SetExclusionFilters(v []LogsExclusion) {
-	o.ExclusionFilters = &v
+	o.ExclusionFilters = v
 }
 
 // GetFilter returns the Filter field value
@@ -260,12 +260,12 @@ func (o *LogsIndex) UnmarshalJSON(bytes []byte) (err error) {
 		Name   *string     `json:"name"`
 	}{}
 	all := struct {
-		DailyLimit       *int64           `json:"daily_limit,omitempty"`
-		ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-		Filter           LogsFilter       `json:"filter"`
-		IsRateLimited    *bool            `json:"is_rate_limited,omitempty"`
-		Name             string           `json:"name"`
-		NumRetentionDays *int64           `json:"num_retention_days,omitempty"`
+		DailyLimit       *int64          `json:"daily_limit,omitempty"`
+		ExclusionFilters []LogsExclusion `json:"exclusion_filters,omitempty"`
+		Filter           LogsFilter      `json:"filter"`
+		IsRateLimited    *bool           `json:"is_rate_limited,omitempty"`
+		Name             string          `json:"name"`
+		NumRetentionDays *int64          `json:"num_retention_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

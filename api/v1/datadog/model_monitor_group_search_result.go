@@ -15,7 +15,7 @@ type MonitorGroupSearchResult struct {
 	// The name of the group.
 	Group *string `json:"group,omitempty"`
 	// The list of tags of the monitor group.
-	GroupTags *[]string `json:"group_tags,omitempty"`
+	GroupTags []string `json:"group_tags,omitempty"`
 	// Latest timestamp the monitor group was in NO_DATA state.
 	LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
 	// Latest timestamp the monitor group triggered.
@@ -86,7 +86,7 @@ func (o *MonitorGroupSearchResult) GetGroupTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.GroupTags
+	return o.GroupTags
 }
 
 // GetGroupTagsOk returns a tuple with the GroupTags field value if set, nil otherwise
@@ -95,7 +95,7 @@ func (o *MonitorGroupSearchResult) GetGroupTagsOk() (*[]string, bool) {
 	if o == nil || o.GroupTags == nil {
 		return nil, false
 	}
-	return o.GroupTags, true
+	return &o.GroupTags, true
 }
 
 // HasGroupTags returns a boolean if a field has been set.
@@ -109,7 +109,7 @@ func (o *MonitorGroupSearchResult) HasGroupTags() bool {
 
 // SetGroupTags gets a reference to the given []string and assigns it to the GroupTags field.
 func (o *MonitorGroupSearchResult) SetGroupTags(v []string) {
-	o.GroupTags = &v
+	o.GroupTags = v
 }
 
 // GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
@@ -320,7 +320,7 @@ func (o *MonitorGroupSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Group           *string               `json:"group,omitempty"`
-		GroupTags       *[]string             `json:"group_tags,omitempty"`
+		GroupTags       []string              `json:"group_tags,omitempty"`
 		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
 		LastTriggeredTs NullableInt64         `json:"last_triggered_ts,omitempty"`
 		MonitorId       *int64                `json:"monitor_id,omitempty"`

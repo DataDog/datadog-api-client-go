@@ -13,13 +13,13 @@ import (
 // SyntheticsAPITestConfig Configuration object for a Synthetic API test.
 type SyntheticsAPITestConfig struct {
 	// Array of assertions used for the test. Required for single API tests.
-	Assertions *[]SyntheticsAssertion `json:"assertions,omitempty"`
+	Assertions []SyntheticsAssertion `json:"assertions,omitempty"`
 	// Array of variables used for the test.
-	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+	ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
 	// Object describing the Synthetic test request.
 	Request *SyntheticsTestRequest `json:"request,omitempty"`
 	// When the test subtype is `multi`, the steps of the test.
-	Steps *[]SyntheticsAPIStep `json:"steps,omitempty"`
+	Steps []SyntheticsAPIStep `json:"steps,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -48,7 +48,7 @@ func (o *SyntheticsAPITestConfig) GetAssertions() []SyntheticsAssertion {
 		var ret []SyntheticsAssertion
 		return ret
 	}
-	return *o.Assertions
+	return o.Assertions
 }
 
 // GetAssertionsOk returns a tuple with the Assertions field value if set, nil otherwise
@@ -57,7 +57,7 @@ func (o *SyntheticsAPITestConfig) GetAssertionsOk() (*[]SyntheticsAssertion, boo
 	if o == nil || o.Assertions == nil {
 		return nil, false
 	}
-	return o.Assertions, true
+	return &o.Assertions, true
 }
 
 // HasAssertions returns a boolean if a field has been set.
@@ -71,7 +71,7 @@ func (o *SyntheticsAPITestConfig) HasAssertions() bool {
 
 // SetAssertions gets a reference to the given []SyntheticsAssertion and assigns it to the Assertions field.
 func (o *SyntheticsAPITestConfig) SetAssertions(v []SyntheticsAssertion) {
-	o.Assertions = &v
+	o.Assertions = v
 }
 
 // GetConfigVariables returns the ConfigVariables field value if set, zero value otherwise.
@@ -80,7 +80,7 @@ func (o *SyntheticsAPITestConfig) GetConfigVariables() []SyntheticsConfigVariabl
 		var ret []SyntheticsConfigVariable
 		return ret
 	}
-	return *o.ConfigVariables
+	return o.ConfigVariables
 }
 
 // GetConfigVariablesOk returns a tuple with the ConfigVariables field value if set, nil otherwise
@@ -89,7 +89,7 @@ func (o *SyntheticsAPITestConfig) GetConfigVariablesOk() (*[]SyntheticsConfigVar
 	if o == nil || o.ConfigVariables == nil {
 		return nil, false
 	}
-	return o.ConfigVariables, true
+	return &o.ConfigVariables, true
 }
 
 // HasConfigVariables returns a boolean if a field has been set.
@@ -103,7 +103,7 @@ func (o *SyntheticsAPITestConfig) HasConfigVariables() bool {
 
 // SetConfigVariables gets a reference to the given []SyntheticsConfigVariable and assigns it to the ConfigVariables field.
 func (o *SyntheticsAPITestConfig) SetConfigVariables(v []SyntheticsConfigVariable) {
-	o.ConfigVariables = &v
+	o.ConfigVariables = v
 }
 
 // GetRequest returns the Request field value if set, zero value otherwise.
@@ -144,7 +144,7 @@ func (o *SyntheticsAPITestConfig) GetSteps() []SyntheticsAPIStep {
 		var ret []SyntheticsAPIStep
 		return ret
 	}
-	return *o.Steps
+	return o.Steps
 }
 
 // GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
@@ -153,7 +153,7 @@ func (o *SyntheticsAPITestConfig) GetStepsOk() (*[]SyntheticsAPIStep, bool) {
 	if o == nil || o.Steps == nil {
 		return nil, false
 	}
-	return o.Steps, true
+	return &o.Steps, true
 }
 
 // HasSteps returns a boolean if a field has been set.
@@ -167,7 +167,7 @@ func (o *SyntheticsAPITestConfig) HasSteps() bool {
 
 // SetSteps gets a reference to the given []SyntheticsAPIStep and assigns it to the Steps field.
 func (o *SyntheticsAPITestConfig) SetSteps(v []SyntheticsAPIStep) {
-	o.Steps = &v
+	o.Steps = v
 }
 
 func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
@@ -197,10 +197,10 @@ func (o SyntheticsAPITestConfig) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsAPITestConfig) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Assertions      *[]SyntheticsAssertion      `json:"assertions,omitempty"`
-		ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
-		Request         *SyntheticsTestRequest      `json:"request,omitempty"`
-		Steps           *[]SyntheticsAPIStep        `json:"steps,omitempty"`
+		Assertions      []SyntheticsAssertion      `json:"assertions,omitempty"`
+		ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
+		Request         *SyntheticsTestRequest     `json:"request,omitempty"`
+		Steps           []SyntheticsAPIStep        `json:"steps,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

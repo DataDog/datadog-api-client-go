@@ -28,7 +28,7 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	// Direction of sort.
 	Sort *QuerySortOrder `json:"sort,omitempty"`
 	// An array of tags to filter by.
-	TagFilters *[]string `json:"tag_filters,omitempty"`
+	TagFilters []string `json:"tag_filters,omitempty"`
 	// Text to use as filter.
 	TextFilter *string `json:"text_filter,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -263,7 +263,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFilters() []string {
 		var ret []string
 		return ret
 	}
-	return *o.TagFilters
+	return o.TagFilters
 }
 
 // GetTagFiltersOk returns a tuple with the TagFilters field value if set, nil otherwise
@@ -272,7 +272,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetTagFiltersOk() (*[]string,
 	if o == nil || o.TagFilters == nil {
 		return nil, false
 	}
-	return o.TagFilters, true
+	return &o.TagFilters, true
 }
 
 // HasTagFilters returns a boolean if a field has been set.
@@ -286,7 +286,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) HasTagFilters() bool {
 
 // SetTagFilters gets a reference to the given []string and assigns it to the TagFilters field.
 func (o *FormulaAndFunctionProcessQueryDefinition) SetTagFilters(v []string) {
-	o.TagFilters = &v
+	o.TagFilters = v
 }
 
 // GetTextFilter returns the TextFilter field value if set, zero value otherwise.
@@ -369,7 +369,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (
 		Metric          string                                   `json:"metric"`
 		Name            string                                   `json:"name"`
 		Sort            *QuerySortOrder                          `json:"sort,omitempty"`
-		TagFilters      *[]string                                `json:"tag_filters,omitempty"`
+		TagFilters      []string                                 `json:"tag_filters,omitempty"`
 		TextFilter      *string                                  `json:"text_filter,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

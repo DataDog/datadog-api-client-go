@@ -21,7 +21,7 @@ type LogsGrokParser struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// List of sample logs to test this grok parser.
-	Samples *[]string `json:"samples,omitempty"`
+	Samples []string `json:"samples,omitempty"`
 	// Name of the log attribute to parse.
 	Source string `json:"source"`
 	// Type of logs grok parser.
@@ -152,7 +152,7 @@ func (o *LogsGrokParser) GetSamples() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Samples
+	return o.Samples
 }
 
 // GetSamplesOk returns a tuple with the Samples field value if set, nil otherwise
@@ -161,7 +161,7 @@ func (o *LogsGrokParser) GetSamplesOk() (*[]string, bool) {
 	if o == nil || o.Samples == nil {
 		return nil, false
 	}
-	return o.Samples, true
+	return &o.Samples, true
 }
 
 // HasSamples returns a boolean if a field has been set.
@@ -175,7 +175,7 @@ func (o *LogsGrokParser) HasSamples() bool {
 
 // SetSamples gets a reference to the given []string and assigns it to the Samples field.
 func (o *LogsGrokParser) SetSamples(v []string) {
-	o.Samples = &v
+	o.Samples = v
 }
 
 // GetSource returns the Source field value
@@ -259,7 +259,7 @@ func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 		Grok      LogsGrokParserRules `json:"grok"`
 		IsEnabled *bool               `json:"is_enabled,omitempty"`
 		Name      *string             `json:"name,omitempty"`
-		Samples   *[]string           `json:"samples,omitempty"`
+		Samples   []string            `json:"samples,omitempty"`
 		Source    string              `json:"source"`
 		Type      LogsGrokParserType  `json:"type"`
 	}{}

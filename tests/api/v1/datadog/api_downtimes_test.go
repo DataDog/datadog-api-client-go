@@ -28,7 +28,7 @@ func TestDowntimeLifecycle(t *testing.T) {
 		Start:    datadog.PtrInt64(start.Unix()),
 		End:      *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{"*"},
+		Scope:    []string{"*"},
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(
 			&datadog.DowntimeRecurrence{
 				Type:      datadog.PtrString("weeks"),
@@ -118,7 +118,7 @@ func TestMonitorDowntime(t *testing.T) {
 		Message:   tests.UniqueEntityName(ctx, t),
 		Start:     datadog.PtrInt64(start.Unix()),
 		Timezone:  datadog.PtrString("Etc/UTC"),
-		Scope:     &[]string{"*"},
+		Scope:     []string{"*"},
 		MonitorId: *datadog.NewNullableInt64(datadog.PtrInt64(monitorID)),
 	}
 
@@ -149,17 +149,17 @@ func TestScopedDowntime(t *testing.T) {
 		Message:  tests.UniqueEntityName(ctx, t),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{scopeClient, scopeGo},
+		Scope:    []string{scopeClient, scopeGo},
 	}, {
 		Message:  tests.UniqueEntityName(ctx, t),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{scopeGo},
+		Scope:    []string{scopeGo},
 	}, {
 		Message:  tests.UniqueEntityName(ctx, t),
 		Start:    datadog.PtrInt64(start.Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope:    &[]string{scopeClient},
+		Scope:    []string{scopeClient},
 	},
 	}
 
@@ -220,17 +220,17 @@ func TestDowntimeRecurrence(t *testing.T) {
 		"weekdays only with type weeks not days": { datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("days"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: &[]string{"Mon"},
+			WeekDays: []string{"Mon"},
 		}, 400},
 		"weekdays only with type weeks not months": { datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("months"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: &[]string{"Mon"},
+			WeekDays: []string{"Mon"},
 		}, 400},
 		"weekdays only with type weeks not years": { datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("years"),
 			Period:   datadog.PtrInt32(1),
-			WeekDays: &[]string{"Mon"},
+			WeekDays: []string{"Mon"},
 		}, 400}, */
 		"until date": {datadog.DowntimeRecurrence{
 			Type:     datadog.PtrString("weeks"),
@@ -269,7 +269,7 @@ func TestDowntimeRecurrence(t *testing.T) {
 				Start:      datadog.PtrInt64(start.Unix()),
 				End:        *datadog.NewNullableInt64(datadog.PtrInt64(start.Unix() + 60*60)),
 				Timezone:   datadog.PtrString("Etc/UTC"),
-				Scope:      &[]string{"*"},
+				Scope:      []string{"*"},
 				Recurrence: *datadog.NewNullableDowntimeRecurrence(&tc.DowntimeRecurence),
 			}
 
@@ -429,7 +429,7 @@ func TestDowntimeUpdateErrors(t *testing.T) {
 	for i := 0; i < 50; i++ {
 		tags[i] = fmt.Sprintf("tag%d", i)
 	}
-	badDowntime.MonitorTags = &tags
+	badDowntime.MonitorTags = tags
 
 	testCases := map[string]struct {
 		Ctx                func(context.Context) context.Context

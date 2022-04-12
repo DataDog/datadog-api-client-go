@@ -15,7 +15,7 @@ type ApplicationKeyResponse struct {
 	// Datadog application key.
 	Data *FullApplicationKey `json:"data,omitempty"`
 	// Array of objects related to the application key.
-	Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+	Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *ApplicationKeyResponse) GetIncluded() []ApplicationKeyResponseIncludedI
 		var ret []ApplicationKeyResponseIncludedItem
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *ApplicationKeyResponse) GetIncludedOk() (*[]ApplicationKeyResponseInclu
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *ApplicationKeyResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []ApplicationKeyResponseIncludedItem and assigns it to the Included field.
 func (o *ApplicationKeyResponse) SetIncluded(v []ApplicationKeyResponseIncludedItem) {
-	o.Included = &v
+	o.Included = v
 }
 
 func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o ApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 func (o *ApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *FullApplicationKey                   `json:"data,omitempty"`
-		Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
+		Data     *FullApplicationKey                  `json:"data,omitempty"`
+		Included []ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

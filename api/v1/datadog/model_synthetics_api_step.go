@@ -18,7 +18,7 @@ type SyntheticsAPIStep struct {
 	// Array of assertions used for the test.
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of values to parse and save as variables from the response.
-	ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+	ExtractedValues []SyntheticsParsingOptions `json:"extractedValues,omitempty"`
 	// Determines whether or not to consider the entire test as failed if this step fails.
 	// Can be used only if `allowFailure` is `true`.
 	IsCritical *bool `json:"isCritical,omitempty"`
@@ -117,7 +117,7 @@ func (o *SyntheticsAPIStep) GetExtractedValues() []SyntheticsParsingOptions {
 		var ret []SyntheticsParsingOptions
 		return ret
 	}
-	return *o.ExtractedValues
+	return o.ExtractedValues
 }
 
 // GetExtractedValuesOk returns a tuple with the ExtractedValues field value if set, nil otherwise
@@ -126,7 +126,7 @@ func (o *SyntheticsAPIStep) GetExtractedValuesOk() (*[]SyntheticsParsingOptions,
 	if o == nil || o.ExtractedValues == nil {
 		return nil, false
 	}
-	return o.ExtractedValues, true
+	return &o.ExtractedValues, true
 }
 
 // HasExtractedValues returns a boolean if a field has been set.
@@ -140,7 +140,7 @@ func (o *SyntheticsAPIStep) HasExtractedValues() bool {
 
 // SetExtractedValues gets a reference to the given []SyntheticsParsingOptions and assigns it to the ExtractedValues field.
 func (o *SyntheticsAPIStep) SetExtractedValues(v []SyntheticsParsingOptions) {
-	o.ExtractedValues = &v
+	o.ExtractedValues = v
 }
 
 // GetIsCritical returns the IsCritical field value if set, zero value otherwise.
@@ -315,7 +315,7 @@ func (o *SyntheticsAPIStep) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		AllowFailure    *bool                       `json:"allowFailure,omitempty"`
 		Assertions      []SyntheticsAssertion       `json:"assertions"`
-		ExtractedValues *[]SyntheticsParsingOptions `json:"extractedValues,omitempty"`
+		ExtractedValues []SyntheticsParsingOptions  `json:"extractedValues,omitempty"`
 		IsCritical      *bool                       `json:"isCritical,omitempty"`
 		Name            string                      `json:"name"`
 		Request         SyntheticsTestRequest       `json:"request"`

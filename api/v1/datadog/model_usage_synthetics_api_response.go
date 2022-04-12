@@ -13,7 +13,7 @@ import (
 // UsageSyntheticsAPIResponse Response containing the number of Synthetics API tests run for each hour for a given organization.
 type UsageSyntheticsAPIResponse struct {
 	// Get hourly usage for Synthetics API tests.
-	Usage *[]UsageSyntheticsAPIHour `json:"usage,omitempty"`
+	Usage []UsageSyntheticsAPIHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageSyntheticsAPIResponse) GetUsage() []UsageSyntheticsAPIHour {
 		var ret []UsageSyntheticsAPIHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageSyntheticsAPIResponse) GetUsageOk() (*[]UsageSyntheticsAPIHour, bo
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageSyntheticsAPIResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageSyntheticsAPIHour and assigns it to the Usage field.
 func (o *UsageSyntheticsAPIResponse) SetUsage(v []UsageSyntheticsAPIHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageSyntheticsAPIResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageSyntheticsAPIResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageSyntheticsAPIResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageSyntheticsAPIHour `json:"usage,omitempty"`
+		Usage []UsageSyntheticsAPIHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

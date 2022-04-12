@@ -13,7 +13,7 @@ import (
 // HTTPLogErrors Invalid query performed.
 type HTTPLogErrors struct {
 	// Structured errors.
-	Errors *[]HTTPLogError `json:"errors,omitempty"`
+	Errors []HTTPLogError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *HTTPLogErrors) GetErrors() []HTTPLogError {
 		var ret []HTTPLogError
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *HTTPLogErrors) GetErrorsOk() (*[]HTTPLogError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *HTTPLogErrors) HasErrors() bool {
 
 // SetErrors gets a reference to the given []HTTPLogError and assigns it to the Errors field.
 func (o *HTTPLogErrors) SetErrors(v []HTTPLogError) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o HTTPLogErrors) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o HTTPLogErrors) MarshalJSON() ([]byte, error) {
 func (o *HTTPLogErrors) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Errors *[]HTTPLogError `json:"errors,omitempty"`
+		Errors []HTTPLogError `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

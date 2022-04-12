@@ -15,7 +15,7 @@ type APIKeyResponse struct {
 	// Datadog API key.
 	Data *FullAPIKey `json:"data,omitempty"`
 	// Array of objects related to the API key.
-	Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+	Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *APIKeyResponse) GetIncluded() []APIKeyResponseIncludedItem {
 		var ret []APIKeyResponseIncludedItem
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *APIKeyResponse) GetIncludedOk() (*[]APIKeyResponseIncludedItem, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *APIKeyResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []APIKeyResponseIncludedItem and assigns it to the Included field.
 func (o *APIKeyResponse) SetIncluded(v []APIKeyResponseIncludedItem) {
-	o.Included = &v
+	o.Included = v
 }
 
 func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o APIKeyResponse) MarshalJSON() ([]byte, error) {
 func (o *APIKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *FullAPIKey                   `json:"data,omitempty"`
-		Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+		Data     *FullAPIKey                  `json:"data,omitempty"`
+		Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

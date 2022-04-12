@@ -43,7 +43,7 @@ type Monitor struct {
 	// Wrapper object with the different monitor states.
 	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type MonitorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -538,7 +538,7 @@ func (o *Monitor) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -547,7 +547,7 @@ func (o *Monitor) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -561,7 +561,7 @@ func (o *Monitor) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *Monitor) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value
@@ -664,7 +664,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Query           string                `json:"query"`
 		RestrictedRoles []string              `json:"restricted_roles,omitempty"`
 		State           *MonitorState         `json:"state,omitempty"`
-		Tags            *[]string             `json:"tags,omitempty"`
+		Tags            []string              `json:"tags,omitempty"`
 		Type            MonitorType           `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

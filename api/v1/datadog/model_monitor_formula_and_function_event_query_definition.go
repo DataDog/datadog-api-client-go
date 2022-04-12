@@ -18,9 +18,9 @@ type MonitorFormulaAndFunctionEventQueryDefinition struct {
 	// Data source for event platform-based queries.
 	DataSource MonitorFormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
-	GroupBy *[]MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+	GroupBy []MonitorFormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes []string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
 	// Search options.
@@ -102,7 +102,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetGroupBy() []MonitorFo
 		var ret []MonitorFormulaAndFunctionEventQueryGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -111,7 +111,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]Monit
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -125,7 +125,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []MonitorFormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetGroupBy(v []MonitorFormulaAndFunctionEventQueryGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
@@ -134,7 +134,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetIndexes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -143,7 +143,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]strin
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -157,7 +157,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 // GetName returns the Name field value
@@ -249,8 +249,8 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []by
 	all := struct {
 		Compute    MonitorFormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
 		DataSource MonitorFormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    *[]MonitorFormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
-		Indexes    *[]string                                            `json:"indexes,omitempty"`
+		GroupBy    []MonitorFormulaAndFunctionEventQueryGroupBy         `json:"group_by,omitempty"`
+		Indexes    []string                                             `json:"indexes,omitempty"`
 		Name       string                                               `json:"name"`
 		Search     *MonitorFormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	}{}

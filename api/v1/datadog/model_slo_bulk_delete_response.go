@@ -20,7 +20,7 @@ type SLOBulkDeleteResponse struct {
 	// An array of service level objective objects.
 	Data *SLOBulkDeleteResponseData `json:"data,omitempty"`
 	// Array of errors object returned.
-	Errors *[]SLOBulkDeleteError `json:"errors,omitempty"`
+	Errors []SLOBulkDeleteError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -81,7 +81,7 @@ func (o *SLOBulkDeleteResponse) GetErrors() []SLOBulkDeleteError {
 		var ret []SLOBulkDeleteError
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -90,7 +90,7 @@ func (o *SLOBulkDeleteResponse) GetErrorsOk() (*[]SLOBulkDeleteError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -104,7 +104,7 @@ func (o *SLOBulkDeleteResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given []SLOBulkDeleteError and assigns it to the Errors field.
 func (o *SLOBulkDeleteResponse) SetErrors(v []SLOBulkDeleteError) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o SLOBulkDeleteResponse) MarshalJSON() ([]byte, error) {
@@ -129,7 +129,7 @@ func (o *SLOBulkDeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data   *SLOBulkDeleteResponseData `json:"data,omitempty"`
-		Errors *[]SLOBulkDeleteError      `json:"errors,omitempty"`
+		Errors []SLOBulkDeleteError       `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

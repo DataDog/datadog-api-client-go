@@ -13,7 +13,7 @@ import (
 // SyntheticsGlobalVariableAttributes Attributes of the global variable.
 type SyntheticsGlobalVariableAttributes struct {
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
-	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictedRoles
+	return o.RestrictedRoles
 }
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRolesOk() (*[]string, 
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
 	}
-	return o.RestrictedRoles, true
+	return &o.RestrictedRoles, true
 }
 
 // HasRestrictedRoles returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *SyntheticsGlobalVariableAttributes) HasRestrictedRoles() bool {
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
 func (o *SyntheticsGlobalVariableAttributes) SetRestrictedRoles(v []string) {
-	o.RestrictedRoles = &v
+	o.RestrictedRoles = v
 }
 
 func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+		RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

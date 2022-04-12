@@ -14,9 +14,9 @@ import (
 // LogStreamWidgetDefinition The Log Stream displays a log flow matching the defined query. Only available on FREE layout dashboards.
 type LogStreamWidgetDefinition struct {
 	// Which columns to display on the widget.
-	Columns *[]string `json:"columns,omitempty"`
+	Columns []string `json:"columns,omitempty"`
 	// An array of index names to query in the stream. Use [] to query all indexes at once.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes []string `json:"indexes,omitempty"`
 	// ID of the log set to use.
 	// Deprecated
 	Logset *string `json:"logset,omitempty"`
@@ -71,7 +71,7 @@ func (o *LogStreamWidgetDefinition) GetColumns() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Columns
+	return o.Columns
 }
 
 // GetColumnsOk returns a tuple with the Columns field value if set, nil otherwise
@@ -80,7 +80,7 @@ func (o *LogStreamWidgetDefinition) GetColumnsOk() (*[]string, bool) {
 	if o == nil || o.Columns == nil {
 		return nil, false
 	}
-	return o.Columns, true
+	return &o.Columns, true
 }
 
 // HasColumns returns a boolean if a field has been set.
@@ -94,7 +94,7 @@ func (o *LogStreamWidgetDefinition) HasColumns() bool {
 
 // SetColumns gets a reference to the given []string and assigns it to the Columns field.
 func (o *LogStreamWidgetDefinition) SetColumns(v []string) {
-	o.Columns = &v
+	o.Columns = v
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
@@ -103,7 +103,7 @@ func (o *LogStreamWidgetDefinition) GetIndexes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -112,7 +112,7 @@ func (o *LogStreamWidgetDefinition) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -126,7 +126,7 @@ func (o *LogStreamWidgetDefinition) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *LogStreamWidgetDefinition) SetIndexes(v []string) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 // GetLogset returns the Logset field value if set, zero value otherwise.
@@ -530,8 +530,8 @@ func (o *LogStreamWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type *LogStreamWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		Columns           *[]string                     `json:"columns,omitempty"`
-		Indexes           *[]string                     `json:"indexes,omitempty"`
+		Columns           []string                      `json:"columns,omitempty"`
+		Indexes           []string                      `json:"indexes,omitempty"`
 		Logset            *string                       `json:"logset,omitempty"`
 		MessageDisplay    *WidgetMessageDisplay         `json:"message_display,omitempty"`
 		Query             *string                       `json:"query,omitempty"`

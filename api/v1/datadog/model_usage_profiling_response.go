@@ -13,7 +13,7 @@ import (
 // UsageProfilingResponse Response containing the number of profiled hosts for each hour for a given organization.
 type UsageProfilingResponse struct {
 	// Get hourly usage for profiled hosts.
-	Usage *[]UsageProfilingHour `json:"usage,omitempty"`
+	Usage []UsageProfilingHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageProfilingResponse) GetUsage() []UsageProfilingHour {
 		var ret []UsageProfilingHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageProfilingResponse) GetUsageOk() (*[]UsageProfilingHour, bool) {
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageProfilingResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageProfilingHour and assigns it to the Usage field.
 func (o *UsageProfilingResponse) SetUsage(v []UsageProfilingHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageProfilingResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageProfilingResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageProfilingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageProfilingHour `json:"usage,omitempty"`
+		Usage []UsageProfilingHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

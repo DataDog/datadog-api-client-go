@@ -14,7 +14,7 @@ import (
 // ProcessQueryDefinition The process query to use in the widget.
 type ProcessQueryDefinition struct {
 	// List of processes.
-	FilterBy *[]string `json:"filter_by,omitempty"`
+	FilterBy []string `json:"filter_by,omitempty"`
 	// Max number of items in the filter list.
 	Limit *int64 `json:"limit,omitempty"`
 	// Your chosen metric.
@@ -50,7 +50,7 @@ func (o *ProcessQueryDefinition) GetFilterBy() []string {
 		var ret []string
 		return ret
 	}
-	return *o.FilterBy
+	return o.FilterBy
 }
 
 // GetFilterByOk returns a tuple with the FilterBy field value if set, nil otherwise
@@ -59,7 +59,7 @@ func (o *ProcessQueryDefinition) GetFilterByOk() (*[]string, bool) {
 	if o == nil || o.FilterBy == nil {
 		return nil, false
 	}
-	return o.FilterBy, true
+	return &o.FilterBy, true
 }
 
 // HasFilterBy returns a boolean if a field has been set.
@@ -73,7 +73,7 @@ func (o *ProcessQueryDefinition) HasFilterBy() bool {
 
 // SetFilterBy gets a reference to the given []string and assigns it to the FilterBy field.
 func (o *ProcessQueryDefinition) SetFilterBy(v []string) {
-	o.FilterBy = &v
+	o.FilterBy = v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
@@ -191,10 +191,10 @@ func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Metric *string `json:"metric"`
 	}{}
 	all := struct {
-		FilterBy *[]string `json:"filter_by,omitempty"`
-		Limit    *int64    `json:"limit,omitempty"`
-		Metric   string    `json:"metric"`
-		SearchBy *string   `json:"search_by,omitempty"`
+		FilterBy []string `json:"filter_by,omitempty"`
+		Limit    *int64   `json:"limit,omitempty"`
+		Metric   string   `json:"metric"`
+		SearchBy *string  `json:"search_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -39,7 +39,7 @@ type Dashboard struct {
 	// widgets should not have layouts.
 	ReflowType *DashboardReflowType `json:"reflow_type,omitempty"`
 	// A list of role identifiers. Only the author and users associated with at least one of these roles can edit this dashboard.
-	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// Array of template variables saved views.
 	TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 	// List of template variables for this dashboard.
@@ -422,7 +422,7 @@ func (o *Dashboard) GetRestrictedRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictedRoles
+	return o.RestrictedRoles
 }
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
@@ -431,7 +431,7 @@ func (o *Dashboard) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
 	}
-	return o.RestrictedRoles, true
+	return &o.RestrictedRoles, true
 }
 
 // HasRestrictedRoles returns a boolean if a field has been set.
@@ -445,7 +445,7 @@ func (o *Dashboard) HasRestrictedRoles() bool {
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
 func (o *Dashboard) SetRestrictedRoles(v []string) {
-	o.RestrictedRoles = &v
+	o.RestrictedRoles = v
 }
 
 // GetTemplateVariablePresets returns the TemplateVariablePresets field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -664,7 +664,7 @@ func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 		ModifiedAt              *time.Time                        `json:"modified_at,omitempty"`
 		NotifyList              []string                          `json:"notify_list,omitempty"`
 		ReflowType              *DashboardReflowType              `json:"reflow_type,omitempty"`
-		RestrictedRoles         *[]string                         `json:"restricted_roles,omitempty"`
+		RestrictedRoles         []string                          `json:"restricted_roles,omitempty"`
 		TemplateVariablePresets []DashboardTemplateVariablePreset `json:"template_variable_presets,omitempty"`
 		TemplateVariables       []DashboardTemplateVariable       `json:"template_variables,omitempty"`
 		Title                   string                            `json:"title"`

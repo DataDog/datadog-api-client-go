@@ -13,7 +13,7 @@ import (
 // AuditLogsEventsResponse Response object with all events matching the request and pagination information.
 type AuditLogsEventsResponse struct {
 	// Array of events matching the request.
-	Data *[]AuditLogsEvent `json:"data,omitempty"`
+	Data []AuditLogsEvent `json:"data,omitempty"`
 	// Links attributes.
 	Links *AuditLogsResponseLinks `json:"links,omitempty"`
 	// The metadata associated with a request.
@@ -46,7 +46,7 @@ func (o *AuditLogsEventsResponse) GetData() []AuditLogsEvent {
 		var ret []AuditLogsEvent
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *AuditLogsEventsResponse) GetDataOk() (*[]AuditLogsEvent, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *AuditLogsEventsResponse) HasData() bool {
 
 // SetData gets a reference to the given []AuditLogsEvent and assigns it to the Data field.
 func (o *AuditLogsEventsResponse) SetData(v []AuditLogsEvent) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -160,7 +160,7 @@ func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]AuditLogsEvent          `json:"data,omitempty"`
+		Data  []AuditLogsEvent           `json:"data,omitempty"`
 		Links *AuditLogsResponseLinks    `json:"links,omitempty"`
 		Meta  *AuditLogsResponseMetadata `json:"meta,omitempty"`
 	}{}

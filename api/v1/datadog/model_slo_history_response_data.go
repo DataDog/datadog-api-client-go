@@ -17,15 +17,15 @@ type SLOHistoryResponseData struct {
 	// For `metric` based SLOs where the query includes a group-by clause, this represents the list of grouping parameters.
 	//
 	// This is not included in responses for `monitor` based SLOs.
-	GroupBy *[]string `json:"group_by,omitempty"`
+	GroupBy []string `json:"group_by,omitempty"`
 	// For grouped SLOs, this represents SLI data for specific groups.
 	//
 	// This is not included in the responses for `metric` based SLOs.
-	Groups *[]SLOHistoryMonitor `json:"groups,omitempty"`
+	Groups []SLOHistoryMonitor `json:"groups,omitempty"`
 	// For multi-monitor SLOs, this represents SLI data for specific monitors.
 	//
 	// This is not included in the responses for `metric` based SLOs.
-	Monitors *[]SLOHistoryMonitor `json:"monitors,omitempty"`
+	Monitors []SLOHistoryMonitor `json:"monitors,omitempty"`
 	// An object that holds an SLI value and its associated data. It can represent an SLO's overall SLI value.
 	// This can also represent the SLI value for a specific monitor in multi-monitor SLOs, or a group in grouped SLOs.
 	Overall *SLOHistorySLIData `json:"overall,omitempty"`
@@ -103,7 +103,7 @@ func (o *SLOHistoryResponseData) GetGroupBy() []string {
 		var ret []string
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -112,7 +112,7 @@ func (o *SLOHistoryResponseData) GetGroupByOk() (*[]string, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -126,7 +126,7 @@ func (o *SLOHistoryResponseData) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *SLOHistoryResponseData) SetGroupBy(v []string) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetGroups returns the Groups field value if set, zero value otherwise.
@@ -135,7 +135,7 @@ func (o *SLOHistoryResponseData) GetGroups() []SLOHistoryMonitor {
 		var ret []SLOHistoryMonitor
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
@@ -144,7 +144,7 @@ func (o *SLOHistoryResponseData) GetGroupsOk() (*[]SLOHistoryMonitor, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -158,7 +158,7 @@ func (o *SLOHistoryResponseData) HasGroups() bool {
 
 // SetGroups gets a reference to the given []SLOHistoryMonitor and assigns it to the Groups field.
 func (o *SLOHistoryResponseData) SetGroups(v []SLOHistoryMonitor) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetMonitors returns the Monitors field value if set, zero value otherwise.
@@ -167,7 +167,7 @@ func (o *SLOHistoryResponseData) GetMonitors() []SLOHistoryMonitor {
 		var ret []SLOHistoryMonitor
 		return ret
 	}
-	return *o.Monitors
+	return o.Monitors
 }
 
 // GetMonitorsOk returns a tuple with the Monitors field value if set, nil otherwise
@@ -176,7 +176,7 @@ func (o *SLOHistoryResponseData) GetMonitorsOk() (*[]SLOHistoryMonitor, bool) {
 	if o == nil || o.Monitors == nil {
 		return nil, false
 	}
-	return o.Monitors, true
+	return &o.Monitors, true
 }
 
 // HasMonitors returns a boolean if a field has been set.
@@ -190,7 +190,7 @@ func (o *SLOHistoryResponseData) HasMonitors() bool {
 
 // SetMonitors gets a reference to the given []SLOHistoryMonitor and assigns it to the Monitors field.
 func (o *SLOHistoryResponseData) SetMonitors(v []SLOHistoryMonitor) {
-	o.Monitors = &v
+	o.Monitors = v
 }
 
 // GetOverall returns the Overall field value if set, zero value otherwise.
@@ -431,9 +431,9 @@ func (o *SLOHistoryResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		FromTs     *int64                  `json:"from_ts,omitempty"`
-		GroupBy    *[]string               `json:"group_by,omitempty"`
-		Groups     *[]SLOHistoryMonitor    `json:"groups,omitempty"`
-		Monitors   *[]SLOHistoryMonitor    `json:"monitors,omitempty"`
+		GroupBy    []string                `json:"group_by,omitempty"`
+		Groups     []SLOHistoryMonitor     `json:"groups,omitempty"`
+		Monitors   []SLOHistoryMonitor     `json:"monitors,omitempty"`
 		Overall    *SLOHistorySLIData      `json:"overall,omitempty"`
 		Series     *SLOHistoryMetrics      `json:"series,omitempty"`
 		Thresholds map[string]SLOThreshold `json:"thresholds,omitempty"`

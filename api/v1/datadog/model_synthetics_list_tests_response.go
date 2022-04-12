@@ -13,7 +13,7 @@ import (
 // SyntheticsListTestsResponse Object containing an array of Synthetic tests configuration.
 type SyntheticsListTestsResponse struct {
 	// Array of Synthetic tests configuration.
-	Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
+	Tests []SyntheticsTestDetails `json:"tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *SyntheticsListTestsResponse) GetTests() []SyntheticsTestDetails {
 		var ret []SyntheticsTestDetails
 		return ret
 	}
-	return *o.Tests
+	return o.Tests
 }
 
 // GetTestsOk returns a tuple with the Tests field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *SyntheticsListTestsResponse) GetTestsOk() (*[]SyntheticsTestDetails, bo
 	if o == nil || o.Tests == nil {
 		return nil, false
 	}
-	return o.Tests, true
+	return &o.Tests, true
 }
 
 // HasTests returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *SyntheticsListTestsResponse) HasTests() bool {
 
 // SetTests gets a reference to the given []SyntheticsTestDetails and assigns it to the Tests field.
 func (o *SyntheticsListTestsResponse) SetTests(v []SyntheticsTestDetails) {
-	o.Tests = &v
+	o.Tests = v
 }
 
 func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o SyntheticsListTestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsListTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tests *[]SyntheticsTestDetails `json:"tests,omitempty"`
+		Tests []SyntheticsTestDetails `json:"tests,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

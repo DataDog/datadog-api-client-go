@@ -13,9 +13,9 @@ import (
 // IPPrefixesWebhooks Available prefix information for the Webhook endpoints.
 type IPPrefixesWebhooks struct {
 	// List of IPv4 prefixes.
-	PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
+	PrefixesIpv4 []string `json:"prefixes_ipv4,omitempty"`
 	// List of IPv6 prefixes.
-	PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+	PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -44,7 +44,7 @@ func (o *IPPrefixesWebhooks) GetPrefixesIpv4() []string {
 		var ret []string
 		return ret
 	}
-	return *o.PrefixesIpv4
+	return o.PrefixesIpv4
 }
 
 // GetPrefixesIpv4Ok returns a tuple with the PrefixesIpv4 field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *IPPrefixesWebhooks) GetPrefixesIpv4Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv4 == nil {
 		return nil, false
 	}
-	return o.PrefixesIpv4, true
+	return &o.PrefixesIpv4, true
 }
 
 // HasPrefixesIpv4 returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *IPPrefixesWebhooks) HasPrefixesIpv4() bool {
 
 // SetPrefixesIpv4 gets a reference to the given []string and assigns it to the PrefixesIpv4 field.
 func (o *IPPrefixesWebhooks) SetPrefixesIpv4(v []string) {
-	o.PrefixesIpv4 = &v
+	o.PrefixesIpv4 = v
 }
 
 // GetPrefixesIpv6 returns the PrefixesIpv6 field value if set, zero value otherwise.
@@ -76,7 +76,7 @@ func (o *IPPrefixesWebhooks) GetPrefixesIpv6() []string {
 		var ret []string
 		return ret
 	}
-	return *o.PrefixesIpv6
+	return o.PrefixesIpv6
 }
 
 // GetPrefixesIpv6Ok returns a tuple with the PrefixesIpv6 field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *IPPrefixesWebhooks) GetPrefixesIpv6Ok() (*[]string, bool) {
 	if o == nil || o.PrefixesIpv6 == nil {
 		return nil, false
 	}
-	return o.PrefixesIpv6, true
+	return &o.PrefixesIpv6, true
 }
 
 // HasPrefixesIpv6 returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *IPPrefixesWebhooks) HasPrefixesIpv6() bool {
 
 // SetPrefixesIpv6 gets a reference to the given []string and assigns it to the PrefixesIpv6 field.
 func (o *IPPrefixesWebhooks) SetPrefixesIpv6(v []string) {
-	o.PrefixesIpv6 = &v
+	o.PrefixesIpv6 = v
 }
 
 func (o IPPrefixesWebhooks) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o IPPrefixesWebhooks) MarshalJSON() ([]byte, error) {
 func (o *IPPrefixesWebhooks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		PrefixesIpv4 *[]string `json:"prefixes_ipv4,omitempty"`
-		PrefixesIpv6 *[]string `json:"prefixes_ipv6,omitempty"`
+		PrefixesIpv4 []string `json:"prefixes_ipv4,omitempty"`
+		PrefixesIpv6 []string `json:"prefixes_ipv6,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

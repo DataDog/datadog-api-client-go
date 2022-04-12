@@ -13,9 +13,9 @@ import (
 // APIKeysResponse Response for a list of API keys.
 type APIKeysResponse struct {
 	// Array of API keys.
-	Data *[]PartialAPIKey `json:"data,omitempty"`
+	Data []PartialAPIKey `json:"data,omitempty"`
 	// Array of objects related to the API key.
-	Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+	Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -44,7 +44,7 @@ func (o *APIKeysResponse) GetData() []PartialAPIKey {
 		var ret []PartialAPIKey
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *APIKeysResponse) GetDataOk() (*[]PartialAPIKey, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *APIKeysResponse) HasData() bool {
 
 // SetData gets a reference to the given []PartialAPIKey and assigns it to the Data field.
 func (o *APIKeysResponse) SetData(v []PartialAPIKey) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
@@ -76,7 +76,7 @@ func (o *APIKeysResponse) GetIncluded() []APIKeyResponseIncludedItem {
 		var ret []APIKeyResponseIncludedItem
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *APIKeysResponse) GetIncludedOk() (*[]APIKeyResponseIncludedItem, bool) 
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *APIKeysResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []APIKeyResponseIncludedItem and assigns it to the Included field.
 func (o *APIKeysResponse) SetIncluded(v []APIKeyResponseIncludedItem) {
-	o.Included = &v
+	o.Included = v
 }
 
 func (o APIKeysResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o APIKeysResponse) MarshalJSON() ([]byte, error) {
 func (o *APIKeysResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]PartialAPIKey              `json:"data,omitempty"`
-		Included *[]APIKeyResponseIncludedItem `json:"included,omitempty"`
+		Data     []PartialAPIKey              `json:"data,omitempty"`
+		Included []APIKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

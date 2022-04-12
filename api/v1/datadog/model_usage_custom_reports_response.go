@@ -13,7 +13,7 @@ import (
 // UsageCustomReportsResponse Response containing available custom reports.
 type UsageCustomReportsResponse struct {
 	// An array of available custom reports.
-	Data *[]UsageCustomReportsData `json:"data,omitempty"`
+	Data []UsageCustomReportsData `json:"data,omitempty"`
 	// The object containing document metadata.
 	Meta *UsageCustomReportsMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *UsageCustomReportsResponse) GetData() []UsageCustomReportsData {
 		var ret []UsageCustomReportsData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *UsageCustomReportsResponse) GetDataOk() (*[]UsageCustomReportsData, boo
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *UsageCustomReportsResponse) HasData() bool {
 
 // SetData gets a reference to the given []UsageCustomReportsData and assigns it to the Data field.
 func (o *UsageCustomReportsResponse) SetData(v []UsageCustomReportsData) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o UsageCustomReportsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]UsageCustomReportsData `json:"data,omitempty"`
-		Meta *UsageCustomReportsMeta   `json:"meta,omitempty"`
+		Data []UsageCustomReportsData `json:"data,omitempty"`
+		Meta *UsageCustomReportsMeta  `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

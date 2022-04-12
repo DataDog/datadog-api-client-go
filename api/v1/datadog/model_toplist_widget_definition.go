@@ -14,7 +14,7 @@ import (
 // ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
 type ToplistWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of top list widget requests.
 	Requests []ToplistWidgetRequest `json:"requests"`
 	// Time setting for the widget.
@@ -59,7 +59,7 @@ func (o *ToplistWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -68,7 +68,7 @@ func (o *ToplistWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -82,7 +82,7 @@ func (o *ToplistWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *ToplistWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetRequests returns the Requests field value
@@ -295,7 +295,7 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
+		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
 		Requests    []ToplistWidgetRequest      `json:"requests"`
 		Time        *WidgetTime                 `json:"time,omitempty"`
 		Title       *string                     `json:"title,omitempty"`

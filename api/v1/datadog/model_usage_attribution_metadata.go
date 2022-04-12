@@ -13,7 +13,7 @@ import (
 // UsageAttributionMetadata The object containing document metadata.
 type UsageAttributionMetadata struct {
 	// An array of available aggregates.
-	Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+	Aggregates []UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
 	// The metadata for the current pagination.
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *UsageAttributionMetadata) GetAggregates() []UsageAttributionAggregatesB
 		var ret []UsageAttributionAggregatesBody
 		return ret
 	}
-	return *o.Aggregates
+	return o.Aggregates
 }
 
 // GetAggregatesOk returns a tuple with the Aggregates field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *UsageAttributionMetadata) GetAggregatesOk() (*[]UsageAttributionAggrega
 	if o == nil || o.Aggregates == nil {
 		return nil, false
 	}
-	return o.Aggregates, true
+	return &o.Aggregates, true
 }
 
 // HasAggregates returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *UsageAttributionMetadata) HasAggregates() bool {
 
 // SetAggregates gets a reference to the given []UsageAttributionAggregatesBody and assigns it to the Aggregates field.
 func (o *UsageAttributionMetadata) SetAggregates(v []UsageAttributionAggregatesBody) {
-	o.Aggregates = &v
+	o.Aggregates = v
 }
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
-		Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
+		Aggregates []UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
+		Pagination *UsageAttributionPagination      `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 // CloudWorkloadSecurityAgentRulesListResponse Response object that includes a list of Agent rule.
 type CloudWorkloadSecurityAgentRulesListResponse struct {
 	// A list of Agent rules objects.
-	Data *[]CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
+	Data []CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) GetData() []CloudWorkloadS
 		var ret []CloudWorkloadSecurityAgentRuleData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) GetDataOk() (*[]CloudWorkl
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *CloudWorkloadSecurityAgentRulesListResponse) HasData() bool {
 
 // SetData gets a reference to the given []CloudWorkloadSecurityAgentRuleData and assigns it to the Data field.
 func (o *CloudWorkloadSecurityAgentRulesListResponse) SetData(v []CloudWorkloadSecurityAgentRuleData) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o CloudWorkloadSecurityAgentRulesListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o CloudWorkloadSecurityAgentRulesListResponse) MarshalJSON() ([]byte, erro
 func (o *CloudWorkloadSecurityAgentRulesListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
+		Data []CloudWorkloadSecurityAgentRuleData `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

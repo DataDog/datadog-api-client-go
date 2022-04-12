@@ -15,7 +15,7 @@ type SyntheticsGetAPITestLatestResultsResponse struct {
 	// Timestamp of the latest API test run.
 	LastTimestampFetched *int64 `json:"last_timestamp_fetched,omitempty"`
 	// Result of the latest API test run.
-	Results *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+	Results []SyntheticsAPITestResultShort `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetResults() []SyntheticsAPI
 		var ret []SyntheticsAPITestResultShort
 		return ret
 	}
-	return *o.Results
+	return o.Results
 }
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) GetResultsOk() (*[]Synthetic
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
-	return o.Results, true
+	return &o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *SyntheticsGetAPITestLatestResultsResponse) HasResults() bool {
 
 // SetResults gets a reference to the given []SyntheticsAPITestResultShort and assigns it to the Results field.
 func (o *SyntheticsGetAPITestLatestResultsResponse) SetResults(v []SyntheticsAPITestResultShort) {
-	o.Results = &v
+	o.Results = v
 }
 
 func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o SyntheticsGetAPITestLatestResultsResponse) MarshalJSON() ([]byte, error)
 func (o *SyntheticsGetAPITestLatestResultsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LastTimestampFetched *int64                          `json:"last_timestamp_fetched,omitempty"`
-		Results              *[]SyntheticsAPITestResultShort `json:"results,omitempty"`
+		LastTimestampFetched *int64                         `json:"last_timestamp_fetched,omitempty"`
+		Results              []SyntheticsAPITestResultShort `json:"results,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

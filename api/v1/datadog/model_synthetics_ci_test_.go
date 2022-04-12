@@ -24,13 +24,13 @@ type SyntheticsCITest struct {
 	// Cookies for the request.
 	Cookies *string `json:"cookies,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
-	DeviceIds *[]SyntheticsDeviceID `json:"deviceIds,omitempty"`
+	DeviceIds []SyntheticsDeviceID `json:"deviceIds,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
 	FollowRedirects *bool `json:"followRedirects,omitempty"`
 	// Headers to include when performing the test.
 	Headers map[string]string `json:"headers,omitempty"`
 	// Array of locations used to run the test.
-	Locations *[]string `json:"locations,omitempty"`
+	Locations []string `json:"locations,omitempty"`
 	// Metadata for the Synthetics tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// The public ID of the Synthetics test to trigger.
@@ -230,7 +230,7 @@ func (o *SyntheticsCITest) GetDeviceIds() []SyntheticsDeviceID {
 		var ret []SyntheticsDeviceID
 		return ret
 	}
-	return *o.DeviceIds
+	return o.DeviceIds
 }
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
@@ -239,7 +239,7 @@ func (o *SyntheticsCITest) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
 		return nil, false
 	}
-	return o.DeviceIds, true
+	return &o.DeviceIds, true
 }
 
 // HasDeviceIds returns a boolean if a field has been set.
@@ -253,7 +253,7 @@ func (o *SyntheticsCITest) HasDeviceIds() bool {
 
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
 func (o *SyntheticsCITest) SetDeviceIds(v []SyntheticsDeviceID) {
-	o.DeviceIds = &v
+	o.DeviceIds = v
 }
 
 // GetFollowRedirects returns the FollowRedirects field value if set, zero value otherwise.
@@ -326,7 +326,7 @@ func (o *SyntheticsCITest) GetLocations() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Locations
+	return o.Locations
 }
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
@@ -335,7 +335,7 @@ func (o *SyntheticsCITest) GetLocationsOk() (*[]string, bool) {
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -349,7 +349,7 @@ func (o *SyntheticsCITest) HasLocations() bool {
 
 // SetLocations gets a reference to the given []string and assigns it to the Locations field.
 func (o *SyntheticsCITest) SetLocations(v []string) {
-	o.Locations = &v
+	o.Locations = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -566,10 +566,10 @@ func (o *SyntheticsCITest) UnmarshalJSON(bytes []byte) (err error) {
 		Body                      *string                     `json:"body,omitempty"`
 		BodyType                  *string                     `json:"bodyType,omitempty"`
 		Cookies                   *string                     `json:"cookies,omitempty"`
-		DeviceIds                 *[]SyntheticsDeviceID       `json:"deviceIds,omitempty"`
+		DeviceIds                 []SyntheticsDeviceID        `json:"deviceIds,omitempty"`
 		FollowRedirects           *bool                       `json:"followRedirects,omitempty"`
 		Headers                   map[string]string           `json:"headers,omitempty"`
-		Locations                 *[]string                   `json:"locations,omitempty"`
+		Locations                 []string                    `json:"locations,omitempty"`
 		Metadata                  *SyntheticsCIBatchMetadata  `json:"metadata,omitempty"`
 		PublicId                  string                      `json:"public_id"`
 		Retry                     *SyntheticsTestOptionsRetry `json:"retry,omitempty"`

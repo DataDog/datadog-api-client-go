@@ -15,7 +15,7 @@ type MonitorGroupSearchResponse struct {
 	// The counts of monitor groups per different criteria.
 	Counts *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
 	// The list of found monitor groups.
-	Groups *[]MonitorGroupSearchResult `json:"groups,omitempty"`
+	Groups []MonitorGroupSearchResult `json:"groups,omitempty"`
 	// Metadata about the response.
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -78,7 +78,7 @@ func (o *MonitorGroupSearchResponse) GetGroups() []MonitorGroupSearchResult {
 		var ret []MonitorGroupSearchResult
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *MonitorGroupSearchResponse) GetGroupsOk() (*[]MonitorGroupSearchResult,
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *MonitorGroupSearchResponse) HasGroups() bool {
 
 // SetGroups gets a reference to the given []MonitorGroupSearchResult and assigns it to the Groups field.
 func (o *MonitorGroupSearchResponse) SetGroups(v []MonitorGroupSearchResult) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -161,7 +161,7 @@ func (o *MonitorGroupSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Counts   *MonitorGroupSearchResponseCounts `json:"counts,omitempty"`
-		Groups   *[]MonitorGroupSearchResult       `json:"groups,omitempty"`
+		Groups   []MonitorGroupSearchResult        `json:"groups,omitempty"`
 		Metadata *MonitorSearchResponseMetadata    `json:"metadata,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

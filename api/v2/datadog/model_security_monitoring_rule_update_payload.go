@@ -13,9 +13,9 @@ import (
 // SecurityMonitoringRuleUpdatePayload Update an existing rule.
 type SecurityMonitoringRuleUpdatePayload struct {
 	// Cases for generating signals.
-	Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
+	Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
 	// Additional queries to filter matched events before they are processed.
-	Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+	Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
 	// Whether the notifications include the triggering group-by values in their title.
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// Whether the rule is enabled.
@@ -27,9 +27,9 @@ type SecurityMonitoringRuleUpdatePayload struct {
 	// Options on rules.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
-	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+	Queries []SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The version of the rule being updated.
 	Version *int32 `json:"version,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -60,7 +60,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetCases() []SecurityMonitoringRul
 		var ret []SecurityMonitoringRuleCase
 		return ret
 	}
-	return *o.Cases
+	return o.Cases
 }
 
 // GetCasesOk returns a tuple with the Cases field value if set, nil otherwise
@@ -69,7 +69,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetCasesOk() (*[]SecurityMonitorin
 	if o == nil || o.Cases == nil {
 		return nil, false
 	}
-	return o.Cases, true
+	return &o.Cases, true
 }
 
 // HasCases returns a boolean if a field has been set.
@@ -83,7 +83,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasCases() bool {
 
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetCases(v []SecurityMonitoringRuleCase) {
-	o.Cases = &v
+	o.Cases = v
 }
 
 // GetFilters returns the Filters field value if set, zero value otherwise.
@@ -92,7 +92,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetFilters() []SecurityMonitoringF
 		var ret []SecurityMonitoringFilter
 		return ret
 	}
-	return *o.Filters
+	return o.Filters
 }
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
@@ -101,7 +101,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetFiltersOk() (*[]SecurityMonitor
 	if o == nil || o.Filters == nil {
 		return nil, false
 	}
-	return o.Filters, true
+	return &o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
@@ -115,7 +115,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasFilters() bool {
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetFilters(v []SecurityMonitoringFilter) {
-	o.Filters = &v
+	o.Filters = v
 }
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
@@ -284,7 +284,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetQueries() []SecurityMonitoringR
 		var ret []SecurityMonitoringRuleQuery
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -293,7 +293,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetQueriesOk() (*[]SecurityMonitor
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -307,7 +307,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasQueries() bool {
 
 // SetQueries gets a reference to the given []SecurityMonitoringRuleQuery and assigns it to the Queries field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetQueries(v []SecurityMonitoringRuleQuery) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -316,7 +316,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -325,7 +325,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -339,7 +339,7 @@ func (o *SecurityMonitoringRuleUpdatePayload) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SecurityMonitoringRuleUpdatePayload) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetVersion returns the Version field value if set, zero value otherwise.
@@ -419,15 +419,15 @@ func (o SecurityMonitoringRuleUpdatePayload) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleUpdatePayload) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase  `json:"cases,omitempty"`
-		Filters          *[]SecurityMonitoringFilter    `json:"filters,omitempty"`
+		Cases            []SecurityMonitoringRuleCase   `json:"cases,omitempty"`
+		Filters          []SecurityMonitoringFilter     `json:"filters,omitempty"`
 		HasExtendedTitle *bool                          `json:"hasExtendedTitle,omitempty"`
 		IsEnabled        *bool                          `json:"isEnabled,omitempty"`
 		Message          *string                        `json:"message,omitempty"`
 		Name             *string                        `json:"name,omitempty"`
 		Options          *SecurityMonitoringRuleOptions `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
-		Tags             *[]string                      `json:"tags,omitempty"`
+		Queries          []SecurityMonitoringRuleQuery  `json:"queries,omitempty"`
+		Tags             []string                       `json:"tags,omitempty"`
 		Version          *int32                         `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -14,7 +14,7 @@ import (
 // GeomapWidgetDefinition This visualization displays a series of values by country on a world map.
 type GeomapWidgetDefinition struct {
 	// A list of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Array of one request object to display in the widget. The request must contain a `group-by` tag whose value is a country ISO code.
 	//
 	// See the [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
@@ -68,7 +68,7 @@ func (o *GeomapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -77,7 +77,7 @@ func (o *GeomapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) 
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -91,7 +91,7 @@ func (o *GeomapWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *GeomapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetRequests returns the Requests field value
@@ -354,7 +354,7 @@ func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		View     *GeomapWidgetDefinitionView  `json:"view"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
+		CustomLinks []WidgetCustomLink          `json:"custom_links,omitempty"`
 		Requests    []GeomapWidgetRequest       `json:"requests"`
 		Style       GeomapWidgetDefinitionStyle `json:"style"`
 		Time        *WidgetTime                 `json:"time,omitempty"`

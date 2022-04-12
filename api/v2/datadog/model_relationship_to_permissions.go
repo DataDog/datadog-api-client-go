@@ -13,7 +13,7 @@ import (
 // RelationshipToPermissions Relationship to multiple permissions objects.
 type RelationshipToPermissions struct {
 	// Relationships to permission objects.
-	Data *[]RelationshipToPermissionData `json:"data,omitempty"`
+	Data []RelationshipToPermissionData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *RelationshipToPermissions) GetData() []RelationshipToPermissionData {
 		var ret []RelationshipToPermissionData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *RelationshipToPermissions) GetDataOk() (*[]RelationshipToPermissionData
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *RelationshipToPermissions) HasData() bool {
 
 // SetData gets a reference to the given []RelationshipToPermissionData and assigns it to the Data field.
 func (o *RelationshipToPermissions) SetData(v []RelationshipToPermissionData) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o RelationshipToPermissions) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o RelationshipToPermissions) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToPermissions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]RelationshipToPermissionData `json:"data,omitempty"`
+		Data []RelationshipToPermissionData `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

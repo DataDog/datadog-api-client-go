@@ -23,7 +23,7 @@ type UsageSpecifiedCustomReportsAttributes struct {
 	// The starting date of specified custom report.
 	StartDate *string `json:"start_date,omitempty"`
 	// A list of tags to apply to specified custom reports.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -212,7 +212,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -221,7 +221,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -235,7 +235,7 @@ func (o *UsageSpecifiedCustomReportsAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *UsageSpecifiedCustomReportsAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o UsageSpecifiedCustomReportsAttributes) MarshalJSON() ([]byte, error) {
@@ -271,12 +271,12 @@ func (o UsageSpecifiedCustomReportsAttributes) MarshalJSON() ([]byte, error) {
 func (o *UsageSpecifiedCustomReportsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ComputedOn *string   `json:"computed_on,omitempty"`
-		EndDate    *string   `json:"end_date,omitempty"`
-		Location   *string   `json:"location,omitempty"`
-		Size       *int64    `json:"size,omitempty"`
-		StartDate  *string   `json:"start_date,omitempty"`
-		Tags       *[]string `json:"tags,omitempty"`
+		ComputedOn *string  `json:"computed_on,omitempty"`
+		EndDate    *string  `json:"end_date,omitempty"`
+		Location   *string  `json:"location,omitempty"`
+		Size       *int64   `json:"size,omitempty"`
+		StartDate  *string  `json:"start_date,omitempty"`
+		Tags       []string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

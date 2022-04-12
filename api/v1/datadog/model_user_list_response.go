@@ -13,7 +13,7 @@ import (
 // UserListResponse Array of Datadog users for a given organization.
 type UserListResponse struct {
 	// Array of users.
-	Users *[]User `json:"users,omitempty"`
+	Users []User `json:"users,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UserListResponse) GetUsers() []User {
 		var ret []User
 		return ret
 	}
-	return *o.Users
+	return o.Users
 }
 
 // GetUsersOk returns a tuple with the Users field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UserListResponse) GetUsersOk() (*[]User, bool) {
 	if o == nil || o.Users == nil {
 		return nil, false
 	}
-	return o.Users, true
+	return &o.Users, true
 }
 
 // HasUsers returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UserListResponse) HasUsers() bool {
 
 // SetUsers gets a reference to the given []User and assigns it to the Users field.
 func (o *UserListResponse) SetUsers(v []User) {
-	o.Users = &v
+	o.Users = v
 }
 
 func (o UserListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UserListResponse) MarshalJSON() ([]byte, error) {
 func (o *UserListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Users *[]User `json:"users,omitempty"`
+		Users []User `json:"users,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

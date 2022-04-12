@@ -14,11 +14,11 @@ import (
 type SLOBulkDeleteResponseData struct {
 	// An array of service level objective object IDs that indicates
 	// which objects that were completely deleted.
-	Deleted *[]string `json:"deleted,omitempty"`
+	Deleted []string `json:"deleted,omitempty"`
 	// An array of service level objective object IDs that indicates
 	// which objects that were modified (objects for which at least one
 	// threshold was deleted, but that were not completely deleted).
-	Updated *[]string `json:"updated,omitempty"`
+	Updated []string `json:"updated,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -47,7 +47,7 @@ func (o *SLOBulkDeleteResponseData) GetDeleted() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Deleted
+	return o.Deleted
 }
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
@@ -56,7 +56,7 @@ func (o *SLOBulkDeleteResponseData) GetDeletedOk() (*[]string, bool) {
 	if o == nil || o.Deleted == nil {
 		return nil, false
 	}
-	return o.Deleted, true
+	return &o.Deleted, true
 }
 
 // HasDeleted returns a boolean if a field has been set.
@@ -70,7 +70,7 @@ func (o *SLOBulkDeleteResponseData) HasDeleted() bool {
 
 // SetDeleted gets a reference to the given []string and assigns it to the Deleted field.
 func (o *SLOBulkDeleteResponseData) SetDeleted(v []string) {
-	o.Deleted = &v
+	o.Deleted = v
 }
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
@@ -79,7 +79,7 @@ func (o *SLOBulkDeleteResponseData) GetUpdated() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Updated
+	return o.Updated
 }
 
 // GetUpdatedOk returns a tuple with the Updated field value if set, nil otherwise
@@ -88,7 +88,7 @@ func (o *SLOBulkDeleteResponseData) GetUpdatedOk() (*[]string, bool) {
 	if o == nil || o.Updated == nil {
 		return nil, false
 	}
-	return o.Updated, true
+	return &o.Updated, true
 }
 
 // HasUpdated returns a boolean if a field has been set.
@@ -102,7 +102,7 @@ func (o *SLOBulkDeleteResponseData) HasUpdated() bool {
 
 // SetUpdated gets a reference to the given []string and assigns it to the Updated field.
 func (o *SLOBulkDeleteResponseData) SetUpdated(v []string) {
-	o.Updated = &v
+	o.Updated = v
 }
 
 func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
@@ -126,8 +126,8 @@ func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Deleted *[]string `json:"deleted,omitempty"`
-		Updated *[]string `json:"updated,omitempty"`
+		Deleted []string `json:"deleted,omitempty"`
+		Updated []string `json:"updated,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

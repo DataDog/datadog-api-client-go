@@ -13,7 +13,7 @@ import (
 // UsageCIVisibilityResponse CI visibility usage response
 type UsageCIVisibilityResponse struct {
 	// Response containing CI visibility usage.
-	Usage *[]UsageCIVisibilityHour `json:"usage,omitempty"`
+	Usage []UsageCIVisibilityHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageCIVisibilityResponse) GetUsage() []UsageCIVisibilityHour {
 		var ret []UsageCIVisibilityHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageCIVisibilityResponse) GetUsageOk() (*[]UsageCIVisibilityHour, bool
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageCIVisibilityResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageCIVisibilityHour and assigns it to the Usage field.
 func (o *UsageCIVisibilityResponse) SetUsage(v []UsageCIVisibilityHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageCIVisibilityResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageCIVisibilityResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageCIVisibilityResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageCIVisibilityHour `json:"usage,omitempty"`
+		Usage []UsageCIVisibilityHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

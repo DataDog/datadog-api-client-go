@@ -13,7 +13,7 @@ import (
 // ProcessSummariesResponse List of process summaries.
 type ProcessSummariesResponse struct {
 	// Array of process summary objects.
-	Data *[]ProcessSummary `json:"data,omitempty"`
+	Data []ProcessSummary `json:"data,omitempty"`
 	// Response metadata object.
 	Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *ProcessSummariesResponse) GetData() []ProcessSummary {
 		var ret []ProcessSummary
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *ProcessSummariesResponse) GetDataOk() (*[]ProcessSummary, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *ProcessSummariesResponse) HasData() bool {
 
 // SetData gets a reference to the given []ProcessSummary and assigns it to the Data field.
 func (o *ProcessSummariesResponse) SetData(v []ProcessSummary) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o ProcessSummariesResponse) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummariesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]ProcessSummary     `json:"data,omitempty"`
+		Data []ProcessSummary      `json:"data,omitempty"`
 		Meta *ProcessSummariesMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

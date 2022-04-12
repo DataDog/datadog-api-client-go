@@ -13,7 +13,7 @@ import (
 // RelationshipToRoles Relationship to roles.
 type RelationshipToRoles struct {
 	// An array containing type and the unique identifier of a role.
-	Data *[]RelationshipToRoleData `json:"data,omitempty"`
+	Data []RelationshipToRoleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *RelationshipToRoles) GetData() []RelationshipToRoleData {
 		var ret []RelationshipToRoleData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *RelationshipToRoles) GetDataOk() (*[]RelationshipToRoleData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *RelationshipToRoles) HasData() bool {
 
 // SetData gets a reference to the given []RelationshipToRoleData and assigns it to the Data field.
 func (o *RelationshipToRoles) SetData(v []RelationshipToRoleData) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o RelationshipToRoles) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o RelationshipToRoles) MarshalJSON() ([]byte, error) {
 func (o *RelationshipToRoles) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]RelationshipToRoleData `json:"data,omitempty"`
+		Data []RelationshipToRoleData `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

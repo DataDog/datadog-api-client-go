@@ -13,7 +13,7 @@ import (
 // UsageIncidentManagementResponse Response containing the incident management usage for each hour for a given organization.
 type UsageIncidentManagementResponse struct {
 	// Get hourly usage for incident management.
-	Usage *[]UsageIncidentManagementHour `json:"usage,omitempty"`
+	Usage []UsageIncidentManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageIncidentManagementResponse) GetUsage() []UsageIncidentManagementHo
 		var ret []UsageIncidentManagementHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageIncidentManagementResponse) GetUsageOk() (*[]UsageIncidentManageme
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageIncidentManagementResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageIncidentManagementHour and assigns it to the Usage field.
 func (o *UsageIncidentManagementResponse) SetUsage(v []UsageIncidentManagementHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageIncidentManagementResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageIncidentManagementResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIncidentManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIncidentManagementHour `json:"usage,omitempty"`
+		Usage []UsageIncidentManagementHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

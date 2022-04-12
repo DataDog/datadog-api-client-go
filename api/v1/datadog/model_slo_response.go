@@ -17,7 +17,7 @@ type SLOResponse struct {
 	Data *SLOResponseData `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is
 	// used.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -78,7 +78,7 @@ func (o *SLOResponse) GetErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *SLOResponse) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *SLOResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
 func (o *SLOResponse) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o SLOResponse) MarshalJSON() ([]byte, error) {
@@ -126,7 +126,7 @@ func (o *SLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data   *SLOResponseData `json:"data,omitempty"`
-		Errors *[]string        `json:"errors,omitempty"`
+		Errors []string         `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

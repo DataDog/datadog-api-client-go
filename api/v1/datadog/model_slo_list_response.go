@@ -13,10 +13,10 @@ import (
 // SLOListResponse A response with one or more service level objective.
 type SLOListResponse struct {
 	// An array of service level objective objects.
-	Data *[]ServiceLevelObjective `json:"data,omitempty"`
+	Data []ServiceLevelObjective `json:"data,omitempty"`
 	// An array of error messages. Each endpoint documents how/whether this field is
 	// used.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors,omitempty"`
 	// The metadata object containing additional information about the list of SLOs.
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -47,7 +47,7 @@ func (o *SLOListResponse) GetData() []ServiceLevelObjective {
 		var ret []ServiceLevelObjective
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -56,7 +56,7 @@ func (o *SLOListResponse) GetDataOk() (*[]ServiceLevelObjective, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -70,7 +70,7 @@ func (o *SLOListResponse) HasData() bool {
 
 // SetData gets a reference to the given []ServiceLevelObjective and assigns it to the Data field.
 func (o *SLOListResponse) SetData(v []ServiceLevelObjective) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -79,7 +79,7 @@ func (o *SLOListResponse) GetErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -88,7 +88,7 @@ func (o *SLOListResponse) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -102,7 +102,7 @@ func (o *SLOListResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
 func (o *SLOListResponse) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
@@ -161,8 +161,8 @@ func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]ServiceLevelObjective `json:"data,omitempty"`
-		Errors   *[]string                `json:"errors,omitempty"`
+		Data     []ServiceLevelObjective  `json:"data,omitempty"`
+		Errors   []string                 `json:"errors,omitempty"`
 		Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -37,7 +37,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"unparsed enum in array",
-			datadogV1.SyntheticsTestOptions{DeviceIds: &[]datadogV1.SyntheticsDeviceID{"edge.tablet", "foobar"}},
+			datadogV1.SyntheticsTestOptions{DeviceIds: []datadogV1.SyntheticsDeviceID{"edge.tablet", "foobar"}},
 			true,
 			datadogV1.SyntheticsDeviceID("foobar"),
 		},
@@ -67,7 +67,7 @@ func TestContainsUnparsedObject(t *testing.T) {
 		},
 		{
 			"valid struct",
-			datadogV1.SyntheticsAPITest{Name: "foo", Type: datadogV1.SYNTHETICSAPITESTTYPE_API, Config: datadogV1.SyntheticsAPITestConfig{Assertions: &[]datadogV1.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY, Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_CONTAINS}}}}},
+			datadogV1.SyntheticsAPITest{Name: "foo", Type: datadogV1.SYNTHETICSAPITESTTYPE_API, Config: datadogV1.SyntheticsAPITestConfig{Assertions: []datadogV1.SyntheticsAssertion{{SyntheticsAssertionTarget: &datadogV1.SyntheticsAssertionTarget{Type: datadogV1.SYNTHETICSASSERTIONTYPE_BODY, Operator: datadogV1.SYNTHETICSASSERTIONOPERATOR_CONTAINS}}}}},
 			false,
 			nil,
 		},

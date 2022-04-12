@@ -14,7 +14,7 @@ import (
 // ApmStatsQueryDefinition The APM stats query for table and distributions widgets.
 type ApmStatsQueryDefinition struct {
 	// Column properties used by the front end for display.
-	Columns *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
+	Columns []ApmStatsQueryColumnType `json:"columns,omitempty"`
 	// Environment name.
 	Env string `json:"env"`
 	// Operation name associated with service.
@@ -60,7 +60,7 @@ func (o *ApmStatsQueryDefinition) GetColumns() []ApmStatsQueryColumnType {
 		var ret []ApmStatsQueryColumnType
 		return ret
 	}
-	return *o.Columns
+	return o.Columns
 }
 
 // GetColumnsOk returns a tuple with the Columns field value if set, nil otherwise
@@ -69,7 +69,7 @@ func (o *ApmStatsQueryDefinition) GetColumnsOk() (*[]ApmStatsQueryColumnType, bo
 	if o == nil || o.Columns == nil {
 		return nil, false
 	}
-	return o.Columns, true
+	return &o.Columns, true
 }
 
 // HasColumns returns a boolean if a field has been set.
@@ -83,7 +83,7 @@ func (o *ApmStatsQueryDefinition) HasColumns() bool {
 
 // SetColumns gets a reference to the given []ApmStatsQueryColumnType and assigns it to the Columns field.
 func (o *ApmStatsQueryDefinition) SetColumns(v []ApmStatsQueryColumnType) {
-	o.Columns = &v
+	o.Columns = v
 }
 
 // GetEnv returns the Env field value
@@ -266,13 +266,13 @@ func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Service    *string               `json:"service"`
 	}{}
 	all := struct {
-		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
-		Env        string                     `json:"env"`
-		Name       string                     `json:"name"`
-		PrimaryTag string                     `json:"primary_tag"`
-		Resource   *string                    `json:"resource,omitempty"`
-		RowType    ApmStatsQueryRowType       `json:"row_type"`
-		Service    string                     `json:"service"`
+		Columns    []ApmStatsQueryColumnType `json:"columns,omitempty"`
+		Env        string                    `json:"env"`
+		Name       string                    `json:"name"`
+		PrimaryTag string                    `json:"primary_tag"`
+		Resource   *string                   `json:"resource,omitempty"`
+		RowType    ApmStatsQueryRowType      `json:"row_type"`
+		Service    string                    `json:"service"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

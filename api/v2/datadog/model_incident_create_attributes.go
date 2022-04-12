@@ -18,9 +18,9 @@ type IncidentCreateAttributes struct {
 	// A condensed view of the user-defined fields for which to create initial selections.
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// An array of initial timeline cells to be placed at the beginning of the incident timeline.
-	InitialCells *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
+	InitialCells []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
 	// Notification handles that will be notified of the incident at creation.
-	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
+	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// The title of the incident, which summarizes what happened.
 	Title string `json:"title"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -108,7 +108,7 @@ func (o *IncidentCreateAttributes) GetInitialCells() []IncidentTimelineCellCreat
 		var ret []IncidentTimelineCellCreateAttributes
 		return ret
 	}
-	return *o.InitialCells
+	return o.InitialCells
 }
 
 // GetInitialCellsOk returns a tuple with the InitialCells field value if set, nil otherwise
@@ -117,7 +117,7 @@ func (o *IncidentCreateAttributes) GetInitialCellsOk() (*[]IncidentTimelineCellC
 	if o == nil || o.InitialCells == nil {
 		return nil, false
 	}
-	return o.InitialCells, true
+	return &o.InitialCells, true
 }
 
 // HasInitialCells returns a boolean if a field has been set.
@@ -131,7 +131,7 @@ func (o *IncidentCreateAttributes) HasInitialCells() bool {
 
 // SetInitialCells gets a reference to the given []IncidentTimelineCellCreateAttributes and assigns it to the InitialCells field.
 func (o *IncidentCreateAttributes) SetInitialCells(v []IncidentTimelineCellCreateAttributes) {
-	o.InitialCells = &v
+	o.InitialCells = v
 }
 
 // GetNotificationHandles returns the NotificationHandles field value if set, zero value otherwise.
@@ -140,7 +140,7 @@ func (o *IncidentCreateAttributes) GetNotificationHandles() []IncidentNotificati
 		var ret []IncidentNotificationHandle
 		return ret
 	}
-	return *o.NotificationHandles
+	return o.NotificationHandles
 }
 
 // GetNotificationHandlesOk returns a tuple with the NotificationHandles field value if set, nil otherwise
@@ -149,7 +149,7 @@ func (o *IncidentCreateAttributes) GetNotificationHandlesOk() (*[]IncidentNotifi
 	if o == nil || o.NotificationHandles == nil {
 		return nil, false
 	}
-	return o.NotificationHandles, true
+	return &o.NotificationHandles, true
 }
 
 // HasNotificationHandles returns a boolean if a field has been set.
@@ -163,7 +163,7 @@ func (o *IncidentCreateAttributes) HasNotificationHandles() bool {
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
 func (o *IncidentCreateAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
-	o.NotificationHandles = &v
+	o.NotificationHandles = v
 }
 
 // GetTitle returns the Title field value
@@ -219,11 +219,11 @@ func (o *IncidentCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Title            *string `json:"title"`
 	}{}
 	all := struct {
-		CustomerImpacted    bool                                    `json:"customer_impacted"`
-		Fields              map[string]IncidentFieldAttributes      `json:"fields,omitempty"`
-		InitialCells        *[]IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
-		NotificationHandles *[]IncidentNotificationHandle           `json:"notification_handles,omitempty"`
-		Title               string                                  `json:"title"`
+		CustomerImpacted    bool                                   `json:"customer_impacted"`
+		Fields              map[string]IncidentFieldAttributes     `json:"fields,omitempty"`
+		InitialCells        []IncidentTimelineCellCreateAttributes `json:"initial_cells,omitempty"`
+		NotificationHandles []IncidentNotificationHandle           `json:"notification_handles,omitempty"`
+		Title               string                                 `json:"title"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

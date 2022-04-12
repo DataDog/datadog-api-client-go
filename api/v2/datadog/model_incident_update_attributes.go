@@ -26,7 +26,7 @@ type IncidentUpdateAttributes struct {
 	// A condensed view of the user-defined fields for which to update selections.
 	Fields map[string]IncidentFieldAttributes `json:"fields,omitempty"`
 	// Notification handles that will be notified of the incident during update.
-	NotificationHandles *[]IncidentNotificationHandle `json:"notification_handles,omitempty"`
+	NotificationHandles []IncidentNotificationHandle `json:"notification_handles,omitempty"`
 	// Timestamp when the incident's state was set to resolved.
 	Resolved NullableTime `json:"resolved,omitempty"`
 	// The title of the incident, which summarizes what happened.
@@ -284,7 +284,7 @@ func (o *IncidentUpdateAttributes) GetNotificationHandles() []IncidentNotificati
 		var ret []IncidentNotificationHandle
 		return ret
 	}
-	return *o.NotificationHandles
+	return o.NotificationHandles
 }
 
 // GetNotificationHandlesOk returns a tuple with the NotificationHandles field value if set, nil otherwise
@@ -293,7 +293,7 @@ func (o *IncidentUpdateAttributes) GetNotificationHandlesOk() (*[]IncidentNotifi
 	if o == nil || o.NotificationHandles == nil {
 		return nil, false
 	}
-	return o.NotificationHandles, true
+	return &o.NotificationHandles, true
 }
 
 // HasNotificationHandles returns a boolean if a field has been set.
@@ -307,7 +307,7 @@ func (o *IncidentUpdateAttributes) HasNotificationHandles() bool {
 
 // SetNotificationHandles gets a reference to the given []IncidentNotificationHandle and assigns it to the NotificationHandles field.
 func (o *IncidentUpdateAttributes) SetNotificationHandles(v []IncidentNotificationHandle) {
-	o.NotificationHandles = &v
+	o.NotificationHandles = v
 }
 
 // GetResolved returns the Resolved field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -433,7 +433,7 @@ func (o *IncidentUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		CustomerImpacted    *bool                              `json:"customer_impacted,omitempty"`
 		Detected            NullableTime                       `json:"detected,omitempty"`
 		Fields              map[string]IncidentFieldAttributes `json:"fields,omitempty"`
-		NotificationHandles *[]IncidentNotificationHandle      `json:"notification_handles,omitempty"`
+		NotificationHandles []IncidentNotificationHandle       `json:"notification_handles,omitempty"`
 		Resolved            NullableTime                       `json:"resolved,omitempty"`
 		Title               *string                            `json:"title,omitempty"`
 	}{}

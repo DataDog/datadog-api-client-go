@@ -15,7 +15,7 @@ type UserResponse struct {
 	// User object returned by the API.
 	Data *User `json:"data,omitempty"`
 	// Array of objects related to the user.
-	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
+	Included []UserResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *UserResponse) GetIncluded() []UserResponseIncludedItem {
 		var ret []UserResponseIncludedItem
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *UserResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *UserResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.
 func (o *UserResponse) SetIncluded(v []UserResponseIncludedItem) {
-	o.Included = &v
+	o.Included = v
 }
 
 func (o UserResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o UserResponse) MarshalJSON() ([]byte, error) {
 func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *User                       `json:"data,omitempty"`
-		Included *[]UserResponseIncludedItem `json:"included,omitempty"`
+		Data     *User                      `json:"data,omitempty"`
+		Included []UserResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

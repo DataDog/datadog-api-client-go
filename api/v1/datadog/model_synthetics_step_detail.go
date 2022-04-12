@@ -13,7 +13,7 @@ import (
 // SyntheticsStepDetail Object describing a step for a Synthetic test.
 type SyntheticsStepDetail struct {
 	// Array of errors collected for a browser test.
-	BrowserErrors *[]SyntheticsBrowserError `json:"browserErrors,omitempty"`
+	BrowserErrors []SyntheticsBrowserError `json:"browserErrors,omitempty"`
 	// Type of assertion to apply in an API test.
 	CheckType *SyntheticsCheckType `json:"checkType,omitempty"`
 	// Description of the test.
@@ -34,7 +34,7 @@ type SyntheticsStepDetail struct {
 	StepId *int64 `json:"stepId,omitempty"`
 	// If this steps include a sub-test.
 	// [Subtests documentation](https://docs.datadoghq.com/synthetics/browser_tests/advanced_options/#subtests).
-	SubTestStepDetails *[]SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
+	SubTestStepDetails []SyntheticsStepDetail `json:"subTestStepDetails,omitempty"`
 	// Time before starting the step.
 	TimeToInteractive *float64 `json:"timeToInteractive,omitempty"`
 	// Step type used in your Synthetic test.
@@ -44,9 +44,9 @@ type SyntheticsStepDetail struct {
 	// Value for the step.
 	Value interface{} `json:"value,omitempty"`
 	// Array of Core Web Vitals metrics for the step.
-	VitalsMetrics *[]SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
+	VitalsMetrics []SyntheticsCoreWebVitals `json:"vitalsMetrics,omitempty"`
 	// Warning collected that didn't failed the step.
-	Warnings *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+	Warnings []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -75,7 +75,7 @@ func (o *SyntheticsStepDetail) GetBrowserErrors() []SyntheticsBrowserError {
 		var ret []SyntheticsBrowserError
 		return ret
 	}
-	return *o.BrowserErrors
+	return o.BrowserErrors
 }
 
 // GetBrowserErrorsOk returns a tuple with the BrowserErrors field value if set, nil otherwise
@@ -84,7 +84,7 @@ func (o *SyntheticsStepDetail) GetBrowserErrorsOk() (*[]SyntheticsBrowserError, 
 	if o == nil || o.BrowserErrors == nil {
 		return nil, false
 	}
-	return o.BrowserErrors, true
+	return &o.BrowserErrors, true
 }
 
 // HasBrowserErrors returns a boolean if a field has been set.
@@ -98,7 +98,7 @@ func (o *SyntheticsStepDetail) HasBrowserErrors() bool {
 
 // SetBrowserErrors gets a reference to the given []SyntheticsBrowserError and assigns it to the BrowserErrors field.
 func (o *SyntheticsStepDetail) SetBrowserErrors(v []SyntheticsBrowserError) {
-	o.BrowserErrors = &v
+	o.BrowserErrors = v
 }
 
 // GetCheckType returns the CheckType field value if set, zero value otherwise.
@@ -395,7 +395,7 @@ func (o *SyntheticsStepDetail) GetSubTestStepDetails() []SyntheticsStepDetail {
 		var ret []SyntheticsStepDetail
 		return ret
 	}
-	return *o.SubTestStepDetails
+	return o.SubTestStepDetails
 }
 
 // GetSubTestStepDetailsOk returns a tuple with the SubTestStepDetails field value if set, nil otherwise
@@ -404,7 +404,7 @@ func (o *SyntheticsStepDetail) GetSubTestStepDetailsOk() (*[]SyntheticsStepDetai
 	if o == nil || o.SubTestStepDetails == nil {
 		return nil, false
 	}
-	return o.SubTestStepDetails, true
+	return &o.SubTestStepDetails, true
 }
 
 // HasSubTestStepDetails returns a boolean if a field has been set.
@@ -418,7 +418,7 @@ func (o *SyntheticsStepDetail) HasSubTestStepDetails() bool {
 
 // SetSubTestStepDetails gets a reference to the given []SyntheticsStepDetail and assigns it to the SubTestStepDetails field.
 func (o *SyntheticsStepDetail) SetSubTestStepDetails(v []SyntheticsStepDetail) {
-	o.SubTestStepDetails = &v
+	o.SubTestStepDetails = v
 }
 
 // GetTimeToInteractive returns the TimeToInteractive field value if set, zero value otherwise.
@@ -555,7 +555,7 @@ func (o *SyntheticsStepDetail) GetVitalsMetrics() []SyntheticsCoreWebVitals {
 		var ret []SyntheticsCoreWebVitals
 		return ret
 	}
-	return *o.VitalsMetrics
+	return o.VitalsMetrics
 }
 
 // GetVitalsMetricsOk returns a tuple with the VitalsMetrics field value if set, nil otherwise
@@ -564,7 +564,7 @@ func (o *SyntheticsStepDetail) GetVitalsMetricsOk() (*[]SyntheticsCoreWebVitals,
 	if o == nil || o.VitalsMetrics == nil {
 		return nil, false
 	}
-	return o.VitalsMetrics, true
+	return &o.VitalsMetrics, true
 }
 
 // HasVitalsMetrics returns a boolean if a field has been set.
@@ -578,7 +578,7 @@ func (o *SyntheticsStepDetail) HasVitalsMetrics() bool {
 
 // SetVitalsMetrics gets a reference to the given []SyntheticsCoreWebVitals and assigns it to the VitalsMetrics field.
 func (o *SyntheticsStepDetail) SetVitalsMetrics(v []SyntheticsCoreWebVitals) {
-	o.VitalsMetrics = &v
+	o.VitalsMetrics = v
 }
 
 // GetWarnings returns the Warnings field value if set, zero value otherwise.
@@ -587,7 +587,7 @@ func (o *SyntheticsStepDetail) GetWarnings() []SyntheticsStepDetailWarning {
 		var ret []SyntheticsStepDetailWarning
 		return ret
 	}
-	return *o.Warnings
+	return o.Warnings
 }
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
@@ -596,7 +596,7 @@ func (o *SyntheticsStepDetail) GetWarningsOk() (*[]SyntheticsStepDetailWarning, 
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
-	return o.Warnings, true
+	return &o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
@@ -610,7 +610,7 @@ func (o *SyntheticsStepDetail) HasWarnings() bool {
 
 // SetWarnings gets a reference to the given []SyntheticsStepDetailWarning and assigns it to the Warnings field.
 func (o *SyntheticsStepDetail) SetWarnings(v []SyntheticsStepDetailWarning) {
-	o.Warnings = &v
+	o.Warnings = v
 }
 
 func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
@@ -679,23 +679,23 @@ func (o SyntheticsStepDetail) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsStepDetail) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BrowserErrors       *[]SyntheticsBrowserError      `json:"browserErrors,omitempty"`
-		CheckType           *SyntheticsCheckType           `json:"checkType,omitempty"`
-		Description         *string                        `json:"description,omitempty"`
-		Duration            *float64                       `json:"duration,omitempty"`
-		Error               *string                        `json:"error,omitempty"`
-		PlayingTab          *SyntheticsPlayingTab          `json:"playingTab,omitempty"`
-		ScreenshotBucketKey *bool                          `json:"screenshotBucketKey,omitempty"`
-		Skipped             *bool                          `json:"skipped,omitempty"`
-		SnapshotBucketKey   *bool                          `json:"snapshotBucketKey,omitempty"`
-		StepId              *int64                         `json:"stepId,omitempty"`
-		SubTestStepDetails  *[]SyntheticsStepDetail        `json:"subTestStepDetails,omitempty"`
-		TimeToInteractive   *float64                       `json:"timeToInteractive,omitempty"`
-		Type                *SyntheticsStepType            `json:"type,omitempty"`
-		Url                 *string                        `json:"url,omitempty"`
-		Value               interface{}                    `json:"value,omitempty"`
-		VitalsMetrics       *[]SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
-		Warnings            *[]SyntheticsStepDetailWarning `json:"warnings,omitempty"`
+		BrowserErrors       []SyntheticsBrowserError      `json:"browserErrors,omitempty"`
+		CheckType           *SyntheticsCheckType          `json:"checkType,omitempty"`
+		Description         *string                       `json:"description,omitempty"`
+		Duration            *float64                      `json:"duration,omitempty"`
+		Error               *string                       `json:"error,omitempty"`
+		PlayingTab          *SyntheticsPlayingTab         `json:"playingTab,omitempty"`
+		ScreenshotBucketKey *bool                         `json:"screenshotBucketKey,omitempty"`
+		Skipped             *bool                         `json:"skipped,omitempty"`
+		SnapshotBucketKey   *bool                         `json:"snapshotBucketKey,omitempty"`
+		StepId              *int64                        `json:"stepId,omitempty"`
+		SubTestStepDetails  []SyntheticsStepDetail        `json:"subTestStepDetails,omitempty"`
+		TimeToInteractive   *float64                      `json:"timeToInteractive,omitempty"`
+		Type                *SyntheticsStepType           `json:"type,omitempty"`
+		Url                 *string                       `json:"url,omitempty"`
+		Value               interface{}                   `json:"value,omitempty"`
+		VitalsMetrics       []SyntheticsCoreWebVitals     `json:"vitalsMetrics,omitempty"`
+		Warnings            []SyntheticsStepDetailWarning `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

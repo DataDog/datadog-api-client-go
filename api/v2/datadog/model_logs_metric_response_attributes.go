@@ -17,7 +17,7 @@ type LogsMetricResponseAttributes struct {
 	// The log-based metric filter. Logs matching this filter will be aggregated in this metric.
 	Filter *LogsMetricResponseFilter `json:"filter,omitempty"`
 	// The rules for the group by.
-	GroupBy *[]LogsMetricResponseGroupBy `json:"group_by,omitempty"`
+	GroupBy []LogsMetricResponseGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -110,7 +110,7 @@ func (o *LogsMetricResponseAttributes) GetGroupBy() []LogsMetricResponseGroupBy 
 		var ret []LogsMetricResponseGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -119,7 +119,7 @@ func (o *LogsMetricResponseAttributes) GetGroupByOk() (*[]LogsMetricResponseGrou
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -133,7 +133,7 @@ func (o *LogsMetricResponseAttributes) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []LogsMetricResponseGroupBy and assigns it to the GroupBy field.
 func (o *LogsMetricResponseAttributes) SetGroupBy(v []LogsMetricResponseGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 func (o LogsMetricResponseAttributes) MarshalJSON() ([]byte, error) {
@@ -160,9 +160,9 @@ func (o LogsMetricResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *LogsMetricResponseCompute   `json:"compute,omitempty"`
-		Filter  *LogsMetricResponseFilter    `json:"filter,omitempty"`
-		GroupBy *[]LogsMetricResponseGroupBy `json:"group_by,omitempty"`
+		Compute *LogsMetricResponseCompute  `json:"compute,omitempty"`
+		Filter  *LogsMetricResponseFilter   `json:"filter,omitempty"`
+		GroupBy []LogsMetricResponseGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

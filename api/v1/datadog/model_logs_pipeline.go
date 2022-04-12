@@ -28,7 +28,7 @@ type LogsPipeline struct {
 	// Name of the pipeline.
 	Name string `json:"name"`
 	// Ordered list of processors in this pipeline.
-	Processors *[]LogsProcessor `json:"processors,omitempty"`
+	Processors []LogsProcessor `json:"processors,omitempty"`
 	// Type of pipeline.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -211,7 +211,7 @@ func (o *LogsPipeline) GetProcessors() []LogsProcessor {
 		var ret []LogsProcessor
 		return ret
 	}
-	return *o.Processors
+	return o.Processors
 }
 
 // GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
@@ -220,7 +220,7 @@ func (o *LogsPipeline) GetProcessorsOk() (*[]LogsProcessor, bool) {
 	if o == nil || o.Processors == nil {
 		return nil, false
 	}
-	return o.Processors, true
+	return &o.Processors, true
 }
 
 // HasProcessors returns a boolean if a field has been set.
@@ -234,7 +234,7 @@ func (o *LogsPipeline) HasProcessors() bool {
 
 // SetProcessors gets a reference to the given []LogsProcessor and assigns it to the Processors field.
 func (o *LogsPipeline) SetProcessors(v []LogsProcessor) {
-	o.Processors = &v
+	o.Processors = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -306,13 +306,13 @@ func (o *LogsPipeline) UnmarshalJSON(bytes []byte) (err error) {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Filter     *LogsFilter      `json:"filter,omitempty"`
-		Id         *string          `json:"id,omitempty"`
-		IsEnabled  *bool            `json:"is_enabled,omitempty"`
-		IsReadOnly *bool            `json:"is_read_only,omitempty"`
-		Name       string           `json:"name"`
-		Processors *[]LogsProcessor `json:"processors,omitempty"`
-		Type       *string          `json:"type,omitempty"`
+		Filter     *LogsFilter     `json:"filter,omitempty"`
+		Id         *string         `json:"id,omitempty"`
+		IsEnabled  *bool           `json:"is_enabled,omitempty"`
+		IsReadOnly *bool           `json:"is_read_only,omitempty"`
+		Name       string          `json:"name"`
+		Processors []LogsProcessor `json:"processors,omitempty"`
+		Type       *string         `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

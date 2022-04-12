@@ -24,7 +24,7 @@ type LogsPipelineProcessor struct {
 	// Name of the processor.
 	Name *string `json:"name,omitempty"`
 	// Ordered list of processors in this pipeline.
-	Processors *[]LogsProcessor `json:"processors,omitempty"`
+	Processors []LogsProcessor `json:"processors,omitempty"`
 	// Type of logs pipeline processor.
 	Type LogsPipelineProcessorType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -158,7 +158,7 @@ func (o *LogsPipelineProcessor) GetProcessors() []LogsProcessor {
 		var ret []LogsProcessor
 		return ret
 	}
-	return *o.Processors
+	return o.Processors
 }
 
 // GetProcessorsOk returns a tuple with the Processors field value if set, nil otherwise
@@ -167,7 +167,7 @@ func (o *LogsPipelineProcessor) GetProcessorsOk() (*[]LogsProcessor, bool) {
 	if o == nil || o.Processors == nil {
 		return nil, false
 	}
-	return o.Processors, true
+	return &o.Processors, true
 }
 
 // HasProcessors returns a boolean if a field has been set.
@@ -181,7 +181,7 @@ func (o *LogsPipelineProcessor) HasProcessors() bool {
 
 // SetProcessors gets a reference to the given []LogsProcessor and assigns it to the Processors field.
 func (o *LogsPipelineProcessor) SetProcessors(v []LogsProcessor) {
-	o.Processors = &v
+	o.Processors = v
 }
 
 // GetType returns the Type field value
@@ -241,7 +241,7 @@ func (o *LogsPipelineProcessor) UnmarshalJSON(bytes []byte) (err error) {
 		Filter     *LogsFilter               `json:"filter,omitempty"`
 		IsEnabled  *bool                     `json:"is_enabled,omitempty"`
 		Name       *string                   `json:"name,omitempty"`
-		Processors *[]LogsProcessor          `json:"processors,omitempty"`
+		Processors []LogsProcessor           `json:"processors,omitempty"`
 		Type       LogsPipelineProcessorType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

@@ -13,7 +13,7 @@ import (
 // RUMAggregationBucketsResponse The query results.
 type RUMAggregationBucketsResponse struct {
 	// The list of matching buckets, one item per bucket.
-	Buckets *[]RUMBucketResponse `json:"buckets,omitempty"`
+	Buckets []RUMBucketResponse `json:"buckets,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *RUMAggregationBucketsResponse) GetBuckets() []RUMBucketResponse {
 		var ret []RUMBucketResponse
 		return ret
 	}
-	return *o.Buckets
+	return o.Buckets
 }
 
 // GetBucketsOk returns a tuple with the Buckets field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *RUMAggregationBucketsResponse) GetBucketsOk() (*[]RUMBucketResponse, bo
 	if o == nil || o.Buckets == nil {
 		return nil, false
 	}
-	return o.Buckets, true
+	return &o.Buckets, true
 }
 
 // HasBuckets returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *RUMAggregationBucketsResponse) HasBuckets() bool {
 
 // SetBuckets gets a reference to the given []RUMBucketResponse and assigns it to the Buckets field.
 func (o *RUMAggregationBucketsResponse) SetBuckets(v []RUMBucketResponse) {
-	o.Buckets = &v
+	o.Buckets = v
 }
 
 func (o RUMAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o RUMAggregationBucketsResponse) MarshalJSON() ([]byte, error) {
 func (o *RUMAggregationBucketsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Buckets *[]RUMBucketResponse `json:"buckets,omitempty"`
+		Buckets []RUMBucketResponse `json:"buckets,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,11 +13,11 @@ import (
 // MetricBulkTagConfigStatusAttributes Optional attributes for the status of a bulk tag configuration request.
 type MetricBulkTagConfigStatusAttributes struct {
 	// A list of account emails to notify when the configuration is applied.
-	Emails *[]string `json:"emails,omitempty"`
+	Emails []string `json:"emails,omitempty"`
 	// The status of the request.
 	Status *string `json:"status,omitempty"`
 	// A list of tag names to apply to the configuration.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -46,7 +46,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetEmails() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Emails
+	return o.Emails
 }
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetEmailsOk() (*[]string, bool) {
 	if o == nil || o.Emails == nil {
 		return nil, false
 	}
-	return o.Emails, true
+	return &o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *MetricBulkTagConfigStatusAttributes) HasEmails() bool {
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
 func (o *MetricBulkTagConfigStatusAttributes) SetEmails(v []string) {
-	o.Emails = &v
+	o.Emails = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -110,7 +110,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -119,7 +119,7 @@ func (o *MetricBulkTagConfigStatusAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -133,7 +133,7 @@ func (o *MetricBulkTagConfigStatusAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *MetricBulkTagConfigStatusAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
@@ -160,9 +160,9 @@ func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Emails *[]string `json:"emails,omitempty"`
-		Status *string   `json:"status,omitempty"`
-		Tags   *[]string `json:"tags,omitempty"`
+		Emails []string `json:"emails,omitempty"`
+		Status *string  `json:"status,omitempty"`
+		Tags   []string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

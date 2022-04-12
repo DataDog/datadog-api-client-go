@@ -23,7 +23,7 @@ type LogsArchiveCreateRequestAttributes struct {
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
 	// An array of tags to add to rehydrated logs from an archive.
-	RehydrationTags *[]string `json:"rehydration_tags,omitempty"`
+	RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -160,7 +160,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RehydrationTags
+	return o.RehydrationTags
 }
 
 // GetRehydrationTagsOk returns a tuple with the RehydrationTags field value if set, nil otherwise
@@ -169,7 +169,7 @@ func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTagsOk() (*[]string, 
 	if o == nil || o.RehydrationTags == nil {
 		return nil, false
 	}
-	return o.RehydrationTags, true
+	return &o.RehydrationTags, true
 }
 
 // HasRehydrationTags returns a boolean if a field has been set.
@@ -183,7 +183,7 @@ func (o *LogsArchiveCreateRequestAttributes) HasRehydrationTags() bool {
 
 // SetRehydrationTags gets a reference to the given []string and assigns it to the RehydrationTags field.
 func (o *LogsArchiveCreateRequestAttributes) SetRehydrationTags(v []string) {
-	o.RehydrationTags = &v
+	o.RehydrationTags = v
 }
 
 func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
@@ -219,7 +219,7 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		IncludeTags     *bool                               `json:"include_tags,omitempty"`
 		Name            string                              `json:"name"`
 		Query           string                              `json:"query"`
-		RehydrationTags *[]string                           `json:"rehydration_tags,omitempty"`
+		RehydrationTags []string                            `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

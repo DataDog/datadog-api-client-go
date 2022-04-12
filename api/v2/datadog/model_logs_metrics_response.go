@@ -13,7 +13,7 @@ import (
 // LogsMetricsResponse All the available log-based metric objects.
 type LogsMetricsResponse struct {
 	// A list of log-based metric objects.
-	Data *[]LogsMetricResponseData `json:"data,omitempty"`
+	Data []LogsMetricResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *LogsMetricsResponse) GetData() []LogsMetricResponseData {
 		var ret []LogsMetricResponseData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *LogsMetricsResponse) GetDataOk() (*[]LogsMetricResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *LogsMetricsResponse) HasData() bool {
 
 // SetData gets a reference to the given []LogsMetricResponseData and assigns it to the Data field.
 func (o *LogsMetricsResponse) SetData(v []LogsMetricResponseData) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o LogsMetricsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o LogsMetricsResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]LogsMetricResponseData `json:"data,omitempty"`
+		Data []LogsMetricResponseData `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

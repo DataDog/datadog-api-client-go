@@ -31,7 +31,7 @@ type SyntheticsBrowserTestResultData struct {
 	// Starting URL for the browser test.
 	StartUrl *string `json:"startUrl,omitempty"`
 	// Array containing the different browser test steps.
-	StepDetails *[]SyntheticsStepDetail `json:"stepDetails,omitempty"`
+	StepDetails []SyntheticsStepDetail `json:"stepDetails,omitempty"`
 	// Whether or not a thumbnail is associated with the browser test.
 	ThumbnailsBucketKey *bool `json:"thumbnailsBucketKey,omitempty"`
 	// Time in second to wait before the browser test starts after
@@ -353,7 +353,7 @@ func (o *SyntheticsBrowserTestResultData) GetStepDetails() []SyntheticsStepDetai
 		var ret []SyntheticsStepDetail
 		return ret
 	}
-	return *o.StepDetails
+	return o.StepDetails
 }
 
 // GetStepDetailsOk returns a tuple with the StepDetails field value if set, nil otherwise
@@ -362,7 +362,7 @@ func (o *SyntheticsBrowserTestResultData) GetStepDetailsOk() (*[]SyntheticsStepD
 	if o == nil || o.StepDetails == nil {
 		return nil, false
 	}
-	return o.StepDetails, true
+	return &o.StepDetails, true
 }
 
 // HasStepDetails returns a boolean if a field has been set.
@@ -376,7 +376,7 @@ func (o *SyntheticsBrowserTestResultData) HasStepDetails() bool {
 
 // SetStepDetails gets a reference to the given []SyntheticsStepDetail and assigns it to the StepDetails field.
 func (o *SyntheticsBrowserTestResultData) SetStepDetails(v []SyntheticsStepDetail) {
-	o.StepDetails = &v
+	o.StepDetails = v
 }
 
 // GetThumbnailsBucketKey returns the ThumbnailsBucketKey field value if set, zero value otherwise.
@@ -503,7 +503,7 @@ func (o *SyntheticsBrowserTestResultData) UnmarshalJSON(bytes []byte) (err error
 		Passed              *bool                               `json:"passed,omitempty"`
 		ReceivedEmailCount  *int64                              `json:"receivedEmailCount,omitempty"`
 		StartUrl            *string                             `json:"startUrl,omitempty"`
-		StepDetails         *[]SyntheticsStepDetail             `json:"stepDetails,omitempty"`
+		StepDetails         []SyntheticsStepDetail              `json:"stepDetails,omitempty"`
 		ThumbnailsBucketKey *bool                               `json:"thumbnailsBucketKey,omitempty"`
 		TimeToInteractive   *float64                            `json:"timeToInteractive,omitempty"`
 	}{}

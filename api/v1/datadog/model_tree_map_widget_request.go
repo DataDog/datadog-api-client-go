@@ -13,11 +13,11 @@ import (
 // TreeMapWidgetRequest An updated treemap widget.
 type TreeMapWidgetRequest struct {
 	// List of formulas that operate on queries.
-	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	Formulas []WidgetFormula `json:"formulas,omitempty"`
 	// The widget metrics query.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
-	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -48,7 +48,7 @@ func (o *TreeMapWidgetRequest) GetFormulas() []WidgetFormula {
 		var ret []WidgetFormula
 		return ret
 	}
-	return *o.Formulas
+	return o.Formulas
 }
 
 // GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
@@ -57,7 +57,7 @@ func (o *TreeMapWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 	if o == nil || o.Formulas == nil {
 		return nil, false
 	}
-	return o.Formulas, true
+	return &o.Formulas, true
 }
 
 // HasFormulas returns a boolean if a field has been set.
@@ -71,7 +71,7 @@ func (o *TreeMapWidgetRequest) HasFormulas() bool {
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
 func (o *TreeMapWidgetRequest) SetFormulas(v []WidgetFormula) {
-	o.Formulas = &v
+	o.Formulas = v
 }
 
 // GetQ returns the Q field value if set, zero value otherwise.
@@ -112,7 +112,7 @@ func (o *TreeMapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition 
 		var ret []FormulaAndFunctionQueryDefinition
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -121,7 +121,7 @@ func (o *TreeMapWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinit
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -135,7 +135,7 @@ func (o *TreeMapWidgetRequest) HasQueries() bool {
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
 func (o *TreeMapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
@@ -197,10 +197,10 @@ func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       *[]WidgetFormula                     `json:"formulas,omitempty"`
-		Q              *string                              `json:"q,omitempty"`
-		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		Formulas       []WidgetFormula                     `json:"formulas,omitempty"`
+		Q              *string                             `json:"q,omitempty"`
+		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

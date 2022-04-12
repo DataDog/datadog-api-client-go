@@ -13,7 +13,7 @@ import (
 // AWSLogsAsyncResponse A list of all Datadog-AWS logs integrations available in your Datadog organization.
 type AWSLogsAsyncResponse struct {
 	// List of errors.
-	Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
+	Errors []AWSLogsAsyncError `json:"errors,omitempty"`
 	// Status of the properties.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *AWSLogsAsyncResponse) GetErrors() []AWSLogsAsyncError {
 		var ret []AWSLogsAsyncError
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *AWSLogsAsyncResponse) GetErrorsOk() (*[]AWSLogsAsyncError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *AWSLogsAsyncResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given []AWSLogsAsyncError and assigns it to the Errors field.
 func (o *AWSLogsAsyncResponse) SetErrors(v []AWSLogsAsyncError) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o AWSLogsAsyncResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsAsyncResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Errors *[]AWSLogsAsyncError `json:"errors,omitempty"`
-		Status *string              `json:"status,omitempty"`
+		Errors []AWSLogsAsyncError `json:"errors,omitempty"`
+		Status *string             `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
