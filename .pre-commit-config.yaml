@@ -10,7 +10,7 @@ repos:
   - id: lint
     name: Lint
     language: golang
-    entry: goimports -w api
+    entry: goimports -w api examples
     stages: [manual]
     # files: '^api/.*\.go'
     # types: ["file", "go"]
@@ -44,6 +44,15 @@ repos:
     language: python
     entry: bash -c "cd .generator && poetry install && poetry run python -m generator -i ./schemas/v2/openapi.yaml -o ../api/v2/datadog/"
     files: "^.generator/(config|schemas/v2|src|poetry.lock|pyproject.toml)"
+    stages: [manual]
+    pass_filenames: false
+    additional_dependencies:
+      - "poetry"
+  - id: examples
+    name: examples
+    language: python
+    entry: bash -c "cd .generator && poetry install && poetry run pytest"
+    files: "^.generator/"
     stages: [manual]
     pass_filenames: false
     additional_dependencies:
