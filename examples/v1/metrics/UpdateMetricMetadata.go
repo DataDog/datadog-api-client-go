@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,14 +13,14 @@ import (
 
 func main() {
 	body := datadog.MetricMetadata{
-		PerUnit: datadog.PtrString("second"),
-		Type:    datadog.PtrString("count"),
-		Unit:    datadog.PtrString("byte"),
-	}
+PerUnit: datadog.PtrString("second"),
+Type: datadog.PtrString("count"),
+Unit: datadog.PtrString("byte"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, "metric_name", body)
+	resp, r, err := apiClient.MetricsApi.UpdateMetricMetadata(ctx, "metric_name", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.UpdateMetricMetadata`: %v\n", err)

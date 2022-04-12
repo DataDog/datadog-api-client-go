@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOListResponse A response with one or more service level objective.
 type SLOListResponse struct {
@@ -20,9 +24,11 @@ type SLOListResponse struct {
 	// The metadata object containing additional information about the list of SLOs.
 	Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOListResponse instantiates a new SLOListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewSLOListResponseWithDefaults() *SLOListResponse {
 	this := SLOListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOListResponse) GetData() []ServiceLevelObjective {
 	if o == nil || o.Data == nil {
@@ -72,6 +77,7 @@ func (o *SLOListResponse) HasData() bool {
 func (o *SLOListResponse) SetData(v []ServiceLevelObjective) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *SLOListResponse) GetErrors() []string {
@@ -105,6 +111,7 @@ func (o *SLOListResponse) SetErrors(v []string) {
 	o.Errors = &v
 }
 
+
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *SLOListResponse) GetMetadata() SLOListResponseMetadata {
 	if o == nil || o.Metadata == nil {
@@ -137,6 +144,8 @@ func (o *SLOListResponse) SetMetadata(v SLOListResponseMetadata) {
 	o.Metadata = &v
 }
 
+
+
 func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -158,11 +167,12 @@ func (o SLOListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]ServiceLevelObjective `json:"data,omitempty"`
-		Errors   *[]string                `json:"errors,omitempty"`
+		Data *[]ServiceLevelObjective `json:"data,omitempty"`
+		Errors *[]string `json:"errors,omitempty"`
 		Metadata *SLOListResponseMetadata `json:"metadata,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -176,13 +186,13 @@ func (o *SLOListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Data = all.Data
 	o.Errors = all.Errors
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Metadata = all.Metadata
 	return nil
 }

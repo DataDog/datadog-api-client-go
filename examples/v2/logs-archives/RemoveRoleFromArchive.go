@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -12,15 +14,15 @@ import (
 
 func main() {
 	body := datadog.RelationshipToRole{
-		Data: &datadog.RelationshipToRoleData{
-			Id:   datadog.PtrString("3653d3c6-0c75-11ea-ad28-fb5701eabc7d"),
-			Type: datadog.ROLESTYPE_ROLES.Ptr(),
-		},
-	}
+Data: &datadog.RelationshipToRoleData{
+Id: datadog.PtrString("3653d3c6-0c75-11ea-ad28-fb5701eabc7d"),
+Type: datadog.ROLESTYPE_ROLES.Ptr(),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, "archive_id", body)
+	r, err := apiClient.LogsArchivesApi.RemoveRoleFromArchive(ctx, "archive_id", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.RemoveRoleFromArchive`: %v\n", err)

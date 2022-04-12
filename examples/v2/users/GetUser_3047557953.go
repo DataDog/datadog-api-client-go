@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.GetUser(ctx, UserDataID)
+	resp, r, err := apiClient.UsersApi.GetUser(ctx, UserDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.GetUser`: %v\n", err)

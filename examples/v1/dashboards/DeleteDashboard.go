@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.DeleteDashboard(ctx, DashboardID)
+	resp, r, err := apiClient.DashboardsApi.DeleteDashboard(ctx, DashboardID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.DeleteDashboard`: %v\n", err)

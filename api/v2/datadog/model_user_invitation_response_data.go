@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserInvitationResponseData Object of a user invitation returned by the API.
 type UserInvitationResponseData struct {
@@ -19,9 +23,11 @@ type UserInvitationResponseData struct {
 	// User invitations type.
 	Type *UserInvitationsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserInvitationResponseData instantiates a new UserInvitationResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewUserInvitationResponseDataWithDefaults() *UserInvitationResponseData {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *UserInvitationResponseData) GetAttributes() UserInvitationDataAttributes {
 	if o == nil || o.Attributes == nil {
@@ -75,6 +80,7 @@ func (o *UserInvitationResponseData) HasAttributes() bool {
 func (o *UserInvitationResponseData) SetAttributes(v UserInvitationDataAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *UserInvitationResponseData) GetId() string {
@@ -108,6 +114,7 @@ func (o *UserInvitationResponseData) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *UserInvitationResponseData) GetType() UserInvitationsType {
 	if o == nil || o.Type == nil {
@@ -140,6 +147,8 @@ func (o *UserInvitationResponseData) SetType(v UserInvitationsType) {
 	o.Type = &v
 }
 
+
+
 func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -161,12 +170,13 @@ func (o UserInvitationResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes *UserInvitationDataAttributes `json:"attributes,omitempty"`
-		Id         *string                       `json:"id,omitempty"`
-		Type       *UserInvitationsType          `json:"type,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Type *UserInvitationsType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -177,7 +187,7 @@ func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -185,13 +195,13 @@ func (o *UserInvitationResponseData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetTickEdge Define how you want to align the text on the widget.
 type WidgetTickEdge string
@@ -17,9 +20,9 @@ type WidgetTickEdge string
 // List of WidgetTickEdge
 const (
 	WIDGETTICKEDGE_BOTTOM WidgetTickEdge = "bottom"
-	WIDGETTICKEDGE_LEFT   WidgetTickEdge = "left"
-	WIDGETTICKEDGE_RIGHT  WidgetTickEdge = "right"
-	WIDGETTICKEDGE_TOP    WidgetTickEdge = "top"
+	WIDGETTICKEDGE_LEFT WidgetTickEdge = "left"
+	WIDGETTICKEDGE_RIGHT WidgetTickEdge = "right"
+	WIDGETTICKEDGE_TOP WidgetTickEdge = "top"
 )
 
 var allowedWidgetTickEdgeEnumValues = []WidgetTickEdge{

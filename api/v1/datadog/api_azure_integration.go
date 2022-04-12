@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type AzureIntegrationApiService service
 type apiCreateAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -42,7 +45,7 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
 	req := apiCreateAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createAzureIntegrationExecute(req)
@@ -54,9 +57,9 @@ func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.CreateAzureIntegration")
@@ -190,7 +193,7 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 type apiDeleteAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -201,7 +204,7 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
 	req := apiDeleteAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteAzureIntegrationExecute(req)
@@ -213,9 +216,9 @@ func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
@@ -370,9 +373,9 @@ func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) 
  */
 func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureIntegrationRequest) ([]AzureAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []AzureAccount
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []AzureAccount
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.ListAzureIntegration")
@@ -491,7 +494,7 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 type apiUpdateAzureHostFiltersRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -502,7 +505,7 @@ func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context
 	req := apiUpdateAzureHostFiltersRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateAzureHostFiltersExecute(req)
@@ -514,9 +517,9 @@ func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAzureHostFiltersRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureHostFilters")
@@ -650,7 +653,7 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 type apiUpdateAzureIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *AzureIntegrationApiService
-	body       *AzureAccount
+	body *AzureAccount
 }
 
 /*
@@ -663,7 +666,7 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
 	req := apiUpdateAzureIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateAzureIntegrationExecute(req)
@@ -675,9 +678,9 @@ func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context
  */
 func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAzureIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureIntegration")

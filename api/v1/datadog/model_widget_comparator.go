@@ -4,22 +4,25 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetComparator Comparator to apply.
 type WidgetComparator string
 
 // List of WidgetComparator
 const (
-	WIDGETCOMPARATOR_GREATER_THAN             WidgetComparator = ">"
+	WIDGETCOMPARATOR_GREATER_THAN WidgetComparator = ">"
 	WIDGETCOMPARATOR_GREATER_THAN_OR_EQUAL_TO WidgetComparator = ">="
-	WIDGETCOMPARATOR_LESS_THAN                WidgetComparator = "<"
-	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO    WidgetComparator = "<="
+	WIDGETCOMPARATOR_LESS_THAN WidgetComparator = "<"
+	WIDGETCOMPARATOR_LESS_THAN_OR_EQUAL_TO WidgetComparator = "<="
 )
 
 var allowedWidgetComparatorEnumValues = []WidgetComparator{

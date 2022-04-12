@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,41 +13,41 @@ import (
 
 func main() {
 	body := datadog.LogsAggregateRequest{
-		Compute: &[]datadog.LogsCompute{
-			{
-				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
-				Interval:    datadog.PtrString("5m"),
-				Type:        datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
-			},
-		},
-		Filter: &datadog.LogsQueryFilter{
-			From: datadog.PtrString("now-15m"),
-			Indexes: &[]string{
-				"main",
-			},
-			Query: datadog.PtrString("*"),
-			To:    datadog.PtrString("now"),
-		},
-		GroupBy: &[]datadog.LogsGroupBy{
-			{
-				Facet: "host",
-				Missing: &datadog.LogsGroupByMissing{
-					LogsGroupByMissingString: datadog.PtrString("miss")},
-				Sort: &datadog.LogsAggregateSort{
-					Type:        datadog.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
-					Order:       datadog.LOGSSORTORDER_ASCENDING.Ptr(),
-					Aggregation: datadog.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
-					Metric:      datadog.PtrString("@duration"),
-				},
-				Total: &datadog.LogsGroupByTotal{
-					LogsGroupByTotalString: datadog.PtrString("recall")},
-			},
-		},
-	}
+Compute: &[]datadog.LogsCompute{
+{
+Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
+Interval: datadog.PtrString("5m"),
+Type: datadog.LOGSCOMPUTETYPE_TIMESERIES.Ptr(),
+},
+},
+Filter: &datadog.LogsQueryFilter{
+From: datadog.PtrString("now-15m"),
+Indexes: &[]string{
+"main",
+},
+Query: datadog.PtrString("*"),
+To: datadog.PtrString("now"),
+},
+GroupBy: &[]datadog.LogsGroupBy{
+{
+Facet: "host",
+Missing: &datadog.LogsGroupByMissing{
+LogsGroupByMissingString: datadog.PtrString("miss")},
+Sort: &datadog.LogsAggregateSort{
+Type: datadog.LOGSAGGREGATESORTTYPE_MEASURE.Ptr(),
+Order: datadog.LOGSSORTORDER_ASCENDING.Ptr(),
+Aggregation: datadog.LOGSAGGREGATIONFUNCTION_PERCENTILE_90.Ptr(),
+Metric: datadog.PtrString("@duration"),
+},
+Total: &datadog.LogsGroupByTotal{
+LogsGroupByTotalString: datadog.PtrString("recall")},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body)
+	resp, r, err := apiClient.LogsApi.AggregateLogs(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.AggregateLogs`: %v\n", err)

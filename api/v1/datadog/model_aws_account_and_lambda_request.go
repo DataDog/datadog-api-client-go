@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AWSAccountAndLambdaRequest AWS account ID and Lambda ARN.
 type AWSAccountAndLambdaRequest struct {
@@ -18,9 +21,11 @@ type AWSAccountAndLambdaRequest struct {
 	// ARN of the Datadog Lambda created during the Datadog-Amazon Web services Log collection setup.
 	LambdaArn string `json:"lambda_arn"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSAccountAndLambdaRequest instantiates a new AWSAccountAndLambdaRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewAWSAccountAndLambdaRequestWithDefaults() *AWSAccountAndLambdaRequest {
 	this := AWSAccountAndLambdaRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value
 func (o *AWSAccountAndLambdaRequest) GetAccountId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *AWSAccountAndLambdaRequest) GetAccountIdOk() (*string, bool) {
 func (o *AWSAccountAndLambdaRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetLambdaArn returns the LambdaArn field value
 func (o *AWSAccountAndLambdaRequest) GetLambdaArn() string {
@@ -87,6 +92,8 @@ func (o *AWSAccountAndLambdaRequest) SetLambdaArn(v string) {
 	o.LambdaArn = v
 }
 
+
+
 func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -100,6 +107,7 @@ func (o AWSAccountAndLambdaRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AWSAccountAndLambdaRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

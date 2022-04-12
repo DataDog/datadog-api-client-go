@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,52 +13,53 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_a_query_value_widget_using_the_percentile_aggregator with QVW Percentile Aggregator",
-		Widgets: []datadog.Widget{
-			{
-				Definition: datadog.WidgetDefinition{
-					QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
-						TitleSize:  datadog.PtrString("16"),
-						Title:      datadog.PtrString(""),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Precision:  datadog.PtrInt64(2),
-						Time:       &datadog.WidgetTime{},
-						Autoscale:  datadog.PtrBool(true),
-						Requests: []datadog.QueryValueWidgetRequest{
-							{
-								Formulas: &[]datadog.WidgetFormula{
-									{
-										Formula: "query1",
-									},
-								},
-								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
-									datadog.FormulaAndFunctionQueryDefinition{
-										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
-											Query:      "p90:dist.dd.dogweb.latency{*}",
-											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
-											Name:       "query1",
-											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE.Ptr(),
-										}},
-								},
-							},
-						},
-						Type: datadog.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
-					}},
-				Layout: &datadog.WidgetLayout{
-					Y:      0,
-					X:      0,
-					Height: 2,
-					Width:  2,
-				},
-			},
-		},
-	}
+LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+Title: "Example-Create_a_new_dashboard_with_a_query_value_widget_using_the_percentile_aggregator with QVW Percentile Aggregator",
+Widgets: []datadog.Widget{
+{
+Definition: datadog.WidgetDefinition{
+QueryValueWidgetDefinition: &datadog.QueryValueWidgetDefinition{
+TitleSize: datadog.PtrString("16"),
+Title: datadog.PtrString(""),
+TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
+Precision: datadog.PtrInt64(2),
+Time: &datadog.WidgetTime{
+},
+Autoscale: datadog.PtrBool(true),
+Requests: []datadog.QueryValueWidgetRequest{
+{
+Formulas: &[]datadog.WidgetFormula{
+{
+Formula: "query1",
+},
+},
+ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
+Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+datadog.FormulaAndFunctionQueryDefinition{
+FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
+Query: "p90:dist.dd.dogweb.latency{*}",
+DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
+Name: "query1",
+Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE.Ptr(),
+}},
+},
+},
+},
+Type: datadog.QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE,
+}},
+Layout: &datadog.WidgetLayout{
+Y: 0,
+X: 0,
+Height: 2,
+Width: 2,
+},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

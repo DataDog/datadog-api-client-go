@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,10 +16,11 @@ func main() {
 	// there is a valid "application_key" in the system
 	ApplicationKeyDataID := os.Getenv("APPLICATION_KEY_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.KeyManagementApi.DeleteApplicationKey(ctx, ApplicationKeyDataID)
+	r, err := apiClient.KeyManagementApi.DeleteApplicationKey(ctx, ApplicationKeyDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.DeleteApplicationKey`: %v\n", err)

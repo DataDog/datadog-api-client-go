@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,25 +16,26 @@ func main() {
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 	SloData0Name := os.Getenv("SLO_DATA_0_NAME")
 
+
 	body := datadog.ServiceLevelObjective{
-		Type: datadog.SLOTYPE_METRIC,
-		Name: SloData0Name,
-		Thresholds: []datadog.SLOThreshold{
-			{
-				Target:    97.0,
-				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
-				Warning:   datadog.PtrFloat64(98.0),
-			},
-		},
-		Query: &datadog.ServiceLevelObjectiveQuery{
-			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
-			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
-		},
-	}
+Type: datadog.SLOTYPE_METRIC,
+Name: SloData0Name,
+Thresholds: []datadog.SLOThreshold{
+{
+Target: 97.0,
+Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
+Warning: datadog.PtrFloat64(98.0),
+},
+},
+Query: &datadog.ServiceLevelObjectiveQuery{
+Numerator: "sum:httpservice.hits{code:2xx}.as_count()",
+Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.UpdateSLO(ctx, SloData0ID, body)
+	resp, r, err := apiClient.ServiceLevelObjectivesApi.UpdateSLO(ctx, SloData0ID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.UpdateSLO`: %v\n", err)

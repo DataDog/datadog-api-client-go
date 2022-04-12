@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,7 +16,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, "security_filter_id")
+	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, "security_filter_id", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)

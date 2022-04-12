@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageAttributionMetadata The object containing document metadata.
 type UsageAttributionMetadata struct {
@@ -17,9 +21,11 @@ type UsageAttributionMetadata struct {
 	// The metadata for the current pagination.
 	Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAttributionMetadata instantiates a new UsageAttributionMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewUsageAttributionMetadataWithDefaults() *UsageAttributionMetadata {
 	this := UsageAttributionMetadata{}
 	return &this
 }
-
 // GetAggregates returns the Aggregates field value if set, zero value otherwise.
 func (o *UsageAttributionMetadata) GetAggregates() []UsageAttributionAggregatesBody {
 	if o == nil || o.Aggregates == nil {
@@ -69,6 +74,7 @@ func (o *UsageAttributionMetadata) HasAggregates() bool {
 func (o *UsageAttributionMetadata) SetAggregates(v []UsageAttributionAggregatesBody) {
 	o.Aggregates = &v
 }
+
 
 // GetPagination returns the Pagination field value if set, zero value otherwise.
 func (o *UsageAttributionMetadata) GetPagination() UsageAttributionPagination {
@@ -102,6 +108,8 @@ func (o *UsageAttributionMetadata) SetPagination(v UsageAttributionPagination) {
 	o.Pagination = &v
 }
 
+
+
 func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o UsageAttributionMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Aggregates *[]UsageAttributionAggregatesBody `json:"aggregates,omitempty"`
-		Pagination *UsageAttributionPagination       `json:"pagination,omitempty"`
+		Pagination *UsageAttributionPagination `json:"pagination,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -136,13 +145,13 @@ func (o *UsageAttributionMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Aggregates = all.Aggregates
-	if all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Pagination != nil && all.Pagination.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Pagination = all.Pagination
 	return nil
 }

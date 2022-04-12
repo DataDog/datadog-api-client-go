@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuthNMappingUpdateData Data for updating an AuthN Mapping.
 type AuthNMappingUpdateData struct {
@@ -22,9 +25,11 @@ type AuthNMappingUpdateData struct {
 	// AuthN Mappings resource type.
 	Type AuthNMappingsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuthNMappingUpdateData instantiates a new AuthNMappingUpdateData object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewAuthNMappingUpdateDataWithDefaults() *AuthNMappingUpdateData {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuthNMappingUpdateData) GetAttributes() AuthNMappingUpdateAttributes {
 	if o == nil || o.Attributes == nil {
@@ -79,6 +83,7 @@ func (o *AuthNMappingUpdateData) SetAttributes(v AuthNMappingUpdateAttributes) {
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value
 func (o *AuthNMappingUpdateData) GetId() string {
 	if o == nil {
@@ -101,6 +106,7 @@ func (o *AuthNMappingUpdateData) GetIdOk() (*string, bool) {
 func (o *AuthNMappingUpdateData) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *AuthNMappingUpdateData) GetRelationships() AuthNMappingUpdateRelationships {
@@ -134,6 +140,7 @@ func (o *AuthNMappingUpdateData) SetRelationships(v AuthNMappingUpdateRelationsh
 	o.Relationships = &v
 }
 
+
 // GetType returns the Type field value
 func (o *AuthNMappingUpdateData) GetType() AuthNMappingsType {
 	if o == nil {
@@ -157,6 +164,8 @@ func (o *AuthNMappingUpdateData) SetType(v AuthNMappingsType) {
 	o.Type = v
 }
 
+
+
 func (o AuthNMappingUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -177,17 +186,18 @@ func (o AuthNMappingUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuthNMappingUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string            `json:"id"`
+		Id *string `json:"id"`
 		Type *AuthNMappingsType `json:"type"`
 	}{}
 	all := struct {
-		Attributes    *AuthNMappingUpdateAttributes    `json:"attributes,omitempty"`
-		Id            string                           `json:"id"`
+		Attributes *AuthNMappingUpdateAttributes `json:"attributes,omitempty"`
+		Id string `json:"id"`
 		Relationships *AuthNMappingUpdateRelationships `json:"relationships,omitempty"`
-		Type          AuthNMappingsType                `json:"type"`
+		Type AuthNMappingsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -216,22 +226,22 @@ func (o *AuthNMappingUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil

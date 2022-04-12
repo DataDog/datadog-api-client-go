@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseIncludedItem - An object related to an incident that is included in the response.
 type IncidentResponseIncludedItem struct {
@@ -59,6 +63,7 @@ func (src IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.User)
 	}
 
+
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
 	}
@@ -66,10 +71,11 @@ func (src IncidentResponseIncludedItem) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *IncidentResponseIncludedItem) GetActualInstance() interface{} {
+func (obj *IncidentResponseIncludedItem) GetActualInstance() (interface{}) {
 	if obj.User != nil {
 		return obj.User
 	}
+
 
 	// all schemas are nil
 	return nil

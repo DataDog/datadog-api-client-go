@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOListResponseMetadata The metadata object containing additional information about the list of SLOs.
 type SLOListResponseMetadata struct {
 	// The object containing information about the pages of the list of SLOs.
 	Page *SLOListResponseMetadataPage `json:"page,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOListResponseMetadata instantiates a new SLOListResponseMetadata object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSLOListResponseMetadataWithDefaults() *SLOListResponseMetadata {
 	this := SLOListResponseMetadata{}
 	return &this
 }
-
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *SLOListResponseMetadata) GetPage() SLOListResponseMetadataPage {
 	if o == nil || o.Page == nil {
@@ -68,6 +73,8 @@ func (o *SLOListResponseMetadata) SetPage(v SLOListResponseMetadataPage) {
 	o.Page = &v
 }
 
+
+
 func (o SLOListResponseMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +90,7 @@ func (o SLOListResponseMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOListResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -97,13 +105,13 @@ func (o *SLOListResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	return nil
 }

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricBulkTagConfigStatusAttributes Optional attributes for the status of a bulk tag configuration request.
 type MetricBulkTagConfigStatusAttributes struct {
@@ -19,9 +23,11 @@ type MetricBulkTagConfigStatusAttributes struct {
 	// A list of tag names to apply to the configuration.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricBulkTagConfigStatusAttributes instantiates a new MetricBulkTagConfigStatusAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewMetricBulkTagConfigStatusAttributesWithDefaults() *MetricBulkTagConfigSt
 	this := MetricBulkTagConfigStatusAttributes{}
 	return &this
 }
-
 // GetEmails returns the Emails field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigStatusAttributes) GetEmails() []string {
 	if o == nil || o.Emails == nil {
@@ -71,6 +76,7 @@ func (o *MetricBulkTagConfigStatusAttributes) HasEmails() bool {
 func (o *MetricBulkTagConfigStatusAttributes) SetEmails(v []string) {
 	o.Emails = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigStatusAttributes) GetStatus() string {
@@ -104,6 +110,7 @@ func (o *MetricBulkTagConfigStatusAttributes) SetStatus(v string) {
 	o.Status = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigStatusAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -136,6 +143,8 @@ func (o *MetricBulkTagConfigStatusAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
+
 func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o MetricBulkTagConfigStatusAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricBulkTagConfigStatusAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Emails *[]string `json:"emails,omitempty"`
-		Status *string   `json:"status,omitempty"`
-		Tags   *[]string `json:"tags,omitempty"`
+		Status *string `json:"status,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

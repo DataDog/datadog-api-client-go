@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsMetricsResponse All the available log-based metric objects.
 type LogsMetricsResponse struct {
 	// A list of log-based metric objects.
 	Data *[]LogsMetricResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsMetricsResponse instantiates a new LogsMetricsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewLogsMetricsResponseWithDefaults() *LogsMetricsResponse {
 	this := LogsMetricsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *LogsMetricsResponse) GetData() []LogsMetricResponseData {
 	if o == nil || o.Data == nil {
@@ -68,6 +73,8 @@ func (o *LogsMetricsResponse) SetData(v []LogsMetricResponseData) {
 	o.Data = &v
 }
 
+
+
 func (o LogsMetricsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o LogsMetricsResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *LogsMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

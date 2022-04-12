@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookCellUpdateRequest The description of a notebook cell update request.
 type NotebookCellUpdateRequest struct {
@@ -21,9 +24,11 @@ type NotebookCellUpdateRequest struct {
 	// Type of the Notebook Cell resource.
 	Type NotebookCellResourceType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookCellUpdateRequest instantiates a new NotebookCellUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewNotebookCellUpdateRequestWithDefaults() *NotebookCellUpdateRequest {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *NotebookCellUpdateRequest) GetAttributes() NotebookCellUpdateRequestAttributes {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *NotebookCellUpdateRequest) GetAttributesOk() (*NotebookCellUpdateReques
 func (o *NotebookCellUpdateRequest) SetAttributes(v NotebookCellUpdateRequestAttributes) {
 	o.Attributes = v
 }
+
 
 // GetId returns the Id field value
 func (o *NotebookCellUpdateRequest) GetId() string {
@@ -93,6 +98,7 @@ func (o *NotebookCellUpdateRequest) SetId(v string) {
 	o.Id = v
 }
 
+
 // GetType returns the Type field value
 func (o *NotebookCellUpdateRequest) GetType() NotebookCellResourceType {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *NotebookCellUpdateRequest) SetType(v NotebookCellResourceType) {
 	o.Type = v
 }
 
+
+
 func (o NotebookCellUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -131,17 +139,18 @@ func (o NotebookCellUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookCellUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *NotebookCellUpdateRequestAttributes `json:"attributes"`
-		Id         *string                              `json:"id"`
-		Type       *NotebookCellResourceType            `json:"type"`
+		Id *string `json:"id"`
+		Type *NotebookCellResourceType `json:"type"`
 	}{}
 	all := struct {
 		Attributes NotebookCellUpdateRequestAttributes `json:"attributes"`
-		Id         string                              `json:"id"`
-		Type       NotebookCellResourceType            `json:"type"`
+		Id string `json:"id"`
+		Type NotebookCellResourceType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

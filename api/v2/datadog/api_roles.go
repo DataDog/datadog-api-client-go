@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,8 +28,8 @@ type RolesApiService service
 type apiAddPermissionToRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	roleId string
+	body *RelationshipToPermission
 }
 
 /*
@@ -38,8 +40,8 @@ func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId strin
 	req := apiAddPermissionToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.addPermissionToRoleExecute(req)
@@ -51,9 +53,9 @@ func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId strin
  */
 func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue PermissionsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  PermissionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddPermissionToRole")
@@ -198,8 +200,8 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 type apiAddUserToRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	roleId string
+	body *RelationshipToUser
 }
 
 /*
@@ -210,8 +212,8 @@ func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, bod
 	req := apiAddUserToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.addUserToRoleExecute(req)
@@ -223,9 +225,9 @@ func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, bod
  */
 func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UsersResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddUserToRole")
@@ -370,8 +372,8 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 type apiCloneRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RoleCloneRequest
+	roleId string
+	body *RoleCloneRequest
 }
 
 /*
@@ -382,8 +384,8 @@ func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body Ro
 	req := apiCloneRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.cloneRoleExecute(req)
@@ -395,9 +397,9 @@ func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body Ro
  */
 func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue RoleResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  RoleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CloneRole")
@@ -552,7 +554,7 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 type apiCreateRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	body       *RoleCreateRequest
+	body *RoleCreateRequest
 }
 
 /*
@@ -563,7 +565,7 @@ func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateReques
 	req := apiCreateRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createRoleExecute(req)
@@ -575,9 +577,9 @@ func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateReques
  */
 func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue RoleCreateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  RoleCreateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.CreateRole")
@@ -711,7 +713,7 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 type apiDeleteRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
 
 /*
@@ -722,7 +724,7 @@ func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_net
 	req := apiDeleteRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
+		roleId: roleId,
 	}
 
 	return req.ApiService.deleteRoleExecute(req)
@@ -733,8 +735,8 @@ func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_net
  */
 func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.DeleteRole")
@@ -845,7 +847,7 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 type apiGetRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
 
 /*
@@ -856,7 +858,7 @@ func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResp
 	req := apiGetRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
+		roleId: roleId,
 	}
 
 	return req.ApiService.getRoleExecute(req)
@@ -868,9 +870,9 @@ func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResp
  */
 func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue RoleResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  RoleResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.GetRole")
@@ -1011,9 +1013,9 @@ func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResp
  */
 func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue PermissionsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  PermissionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListPermissions")
@@ -1132,7 +1134,7 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 type apiListRolePermissionsRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
+	roleId string
 }
 
 /*
@@ -1143,7 +1145,7 @@ func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId strin
 	req := apiListRolePermissionsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
+		roleId: roleId,
 	}
 
 	return req.ApiService.listRolePermissionsExecute(req)
@@ -1155,9 +1157,9 @@ func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId strin
  */
 func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue PermissionsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  PermissionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRolePermissions")
@@ -1277,18 +1279,18 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 type apiListRoleUsersRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	pageSize   *int64
+	roleId string
+	pageSize *int64
 	pageNumber *int64
-	sort       *string
-	filter     *string
+	sort *string
+	filter *string
 }
 
 type ListRoleUsersOptionalParameters struct {
-	PageSize   *int64
+	PageSize *int64
 	PageNumber *int64
-	Sort       *string
-	Filter     *string
+	Sort *string
+	Filter *string
 }
 
 func NewListRoleUsersOptionalParameters() *ListRoleUsersOptionalParameters {
@@ -1320,7 +1322,7 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
 	req := apiListRoleUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
+		roleId: roleId,
 	}
 
 	if len(o) > 1 {
@@ -1344,9 +1346,9 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
  */
 func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UsersResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoleUsers")
@@ -1478,17 +1480,17 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 type apiListRolesRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	pageSize   *int64
+	pageSize *int64
 	pageNumber *int64
-	sort       *RolesSort
-	filter     *string
+	sort *RolesSort
+	filter *string
 }
 
 type ListRolesOptionalParameters struct {
-	PageSize   *int64
+	PageSize *int64
 	PageNumber *int64
-	Sort       *RolesSort
-	Filter     *string
+	Sort *RolesSort
+	Filter *string
 }
 
 func NewListRolesOptionalParameters() *ListRolesOptionalParameters {
@@ -1543,9 +1545,9 @@ func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptional
  */
 func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue RolesResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  RolesResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoles")
@@ -1666,8 +1668,8 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 type apiRemovePermissionFromRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToPermission
+	roleId string
+	body *RelationshipToPermission
 }
 
 /*
@@ -1678,8 +1680,8 @@ func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId 
 	req := apiRemovePermissionFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.removePermissionFromRoleExecute(req)
@@ -1691,9 +1693,9 @@ func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId 
  */
 func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionFromRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue PermissionsResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  PermissionsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemovePermissionFromRole")
@@ -1838,8 +1840,8 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 type apiRemoveUserFromRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RelationshipToUser
+	roleId string
+	body *RelationshipToUser
 }
 
 /*
@@ -1850,8 +1852,8 @@ func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string
 	req := apiRemoveUserFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.removeUserFromRoleExecute(req)
@@ -1863,9 +1865,9 @@ func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string
  */
 func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue UsersResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  UsersResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemoveUserFromRole")
@@ -2010,8 +2012,8 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 type apiUpdateRoleRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	roleId     string
-	body       *RoleUpdateRequest
+	roleId string
+	body *RoleUpdateRequest
 }
 
 /*
@@ -2022,8 +2024,8 @@ func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body R
 	req := apiUpdateRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
-		roleId:     roleId,
-		body:       &body,
+		roleId: roleId,
+		body: &body,
 	}
 
 	return req.ApiService.updateRoleExecute(req)
@@ -2035,9 +2037,9 @@ func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body R
  */
 func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue RoleUpdateResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  RoleUpdateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RolesApiService.UpdateRole")

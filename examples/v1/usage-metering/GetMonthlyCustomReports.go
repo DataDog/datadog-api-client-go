@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -16,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetMonthlyCustomReports(ctx, *datadog.NewGetMonthlyCustomReportsOptionalParameters())
+	resp, r, err := apiClient.UsageMeteringApi.GetMonthlyCustomReports(ctx, *datadog.NewGetMonthlyCustomReportsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetMonthlyCustomReports`: %v\n", err)

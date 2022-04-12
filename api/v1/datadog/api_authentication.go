@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -46,9 +49,9 @@ func (a *AuthenticationApiService) Validate(ctx _context.Context) (Authenticatio
  */
 func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue AuthenticationValidationResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  AuthenticationValidationResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.Validate")

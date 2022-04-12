@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsCIBatchMetadataPipeline Description of the CI pipeline.
 type SyntheticsCIBatchMetadataPipeline struct {
 	// URL of the pipeline.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsCIBatchMetadataPipeline instantiates a new SyntheticsCIBatchMetadataPipeline object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewSyntheticsCIBatchMetadataPipelineWithDefaults() *SyntheticsCIBatchMetada
 	this := SyntheticsCIBatchMetadataPipeline{}
 	return &this
 }
-
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *SyntheticsCIBatchMetadataPipeline) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -68,6 +73,8 @@ func (o *SyntheticsCIBatchMetadataPipeline) SetUrl(v string) {
 	o.Url = &v
 }
 
+
+
 func (o SyntheticsCIBatchMetadataPipeline) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o SyntheticsCIBatchMetadataPipeline) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SyntheticsCIBatchMetadataPipeline) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOType The type of the service level objective.
 type SLOType string
 
 // List of SLOType
 const (
-	SLOTYPE_METRIC  SLOType = "metric"
+	SLOTYPE_METRIC SLOType = "metric"
 	SLOTYPE_MONITOR SLOType = "monitor"
 )
 

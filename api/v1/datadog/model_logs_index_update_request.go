@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsIndexUpdateRequest Object for updating a Datadog Log index.
 type LogsIndexUpdateRequest struct {
@@ -32,9 +35,11 @@ type LogsIndexUpdateRequest struct {
 	// already in this index. It may also affect billing.
 	NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsIndexUpdateRequest instantiates a new LogsIndexUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewLogsIndexUpdateRequestWithDefaults() *LogsIndexUpdateRequest {
 	this := LogsIndexUpdateRequest{}
 	return &this
 }
-
 // GetDailyLimit returns the DailyLimit field value if set, zero value otherwise.
 func (o *LogsIndexUpdateRequest) GetDailyLimit() int64 {
 	if o == nil || o.DailyLimit == nil {
@@ -85,6 +89,7 @@ func (o *LogsIndexUpdateRequest) HasDailyLimit() bool {
 func (o *LogsIndexUpdateRequest) SetDailyLimit(v int64) {
 	o.DailyLimit = &v
 }
+
 
 // GetDisableDailyLimit returns the DisableDailyLimit field value if set, zero value otherwise.
 func (o *LogsIndexUpdateRequest) GetDisableDailyLimit() bool {
@@ -118,6 +123,7 @@ func (o *LogsIndexUpdateRequest) SetDisableDailyLimit(v bool) {
 	o.DisableDailyLimit = &v
 }
 
+
 // GetExclusionFilters returns the ExclusionFilters field value if set, zero value otherwise.
 func (o *LogsIndexUpdateRequest) GetExclusionFilters() []LogsExclusion {
 	if o == nil || o.ExclusionFilters == nil {
@@ -150,6 +156,7 @@ func (o *LogsIndexUpdateRequest) SetExclusionFilters(v []LogsExclusion) {
 	o.ExclusionFilters = &v
 }
 
+
 // GetFilter returns the Filter field value
 func (o *LogsIndexUpdateRequest) GetFilter() LogsFilter {
 	if o == nil {
@@ -172,6 +179,7 @@ func (o *LogsIndexUpdateRequest) GetFilterOk() (*LogsFilter, bool) {
 func (o *LogsIndexUpdateRequest) SetFilter(v LogsFilter) {
 	o.Filter = v
 }
+
 
 // GetNumRetentionDays returns the NumRetentionDays field value if set, zero value otherwise.
 func (o *LogsIndexUpdateRequest) GetNumRetentionDays() int64 {
@@ -205,6 +213,8 @@ func (o *LogsIndexUpdateRequest) SetNumRetentionDays(v int64) {
 	o.NumRetentionDays = &v
 }
 
+
+
 func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -230,17 +240,18 @@ func (o LogsIndexUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Filter *LogsFilter `json:"filter"`
 	}{}
 	all := struct {
-		DailyLimit        *int64           `json:"daily_limit,omitempty"`
-		DisableDailyLimit *bool            `json:"disable_daily_limit,omitempty"`
-		ExclusionFilters  *[]LogsExclusion `json:"exclusion_filters,omitempty"`
-		Filter            LogsFilter       `json:"filter"`
-		NumRetentionDays  *int64           `json:"num_retention_days,omitempty"`
+		DailyLimit *int64 `json:"daily_limit,omitempty"`
+		DisableDailyLimit *bool `json:"disable_daily_limit,omitempty"`
+		ExclusionFilters *[]LogsExclusion `json:"exclusion_filters,omitempty"`
+		Filter LogsFilter `json:"filter"`
+		NumRetentionDays *int64 `json:"num_retention_days,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -261,13 +272,13 @@ func (o *LogsIndexUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.DailyLimit = all.DailyLimit
 	o.DisableDailyLimit = all.DisableDailyLimit
 	o.ExclusionFilters = all.ExclusionFilters
-	if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
 	o.NumRetentionDays = all.NumRetentionDays
 	return nil

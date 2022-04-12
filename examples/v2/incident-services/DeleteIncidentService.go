@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,11 +16,12 @@ func main() {
 	// there is a valid "service" in the system
 	ServiceDataID := os.Getenv("SERVICE_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("DeleteIncidentService", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.IncidentServicesApi.DeleteIncidentService(ctx, ServiceDataID)
+	r, err := apiClient.IncidentServicesApi.DeleteIncidentService(ctx, ServiceDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.DeleteIncidentService`: %v\n", err)

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // OrganizationCreateBody Object describing an organization to create.
 type OrganizationCreateBody struct {
@@ -22,9 +25,11 @@ type OrganizationCreateBody struct {
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody {
 	this := OrganizationCreateBody{}
 	return &this
 }
-
 // GetBilling returns the Billing field value if set, zero value otherwise.
 // Deprecated
 func (o *OrganizationCreateBody) GetBilling() OrganizationBilling {
@@ -79,6 +83,7 @@ func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
 
+
 // GetName returns the Name field value
 func (o *OrganizationCreateBody) GetName() string {
 	if o == nil {
@@ -101,6 +106,7 @@ func (o *OrganizationCreateBody) GetNameOk() (*string, bool) {
 func (o *OrganizationCreateBody) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetSubscription returns the Subscription field value if set, zero value otherwise.
 // Deprecated
@@ -137,6 +143,8 @@ func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
+
+
 func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -156,14 +164,15 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Billing      *OrganizationBilling      `json:"billing,omitempty"`
-		Name         string                    `json:"name"`
+		Billing *OrganizationBilling `json:"billing,omitempty"`
+		Name string `json:"name"`
 		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -182,22 +191,22 @@ func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Billing != nil && all.Billing.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Billing = all.Billing
 	o.Name = all.Name
-	if all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Subscription != nil && all.Subscription.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Subscription = all.Subscription
 	return nil
 }

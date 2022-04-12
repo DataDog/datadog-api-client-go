@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,11 +15,12 @@ func main() {
 	// there is a valid "service" in the system
 	ServiceDataAttributesName := os.Getenv("SERVICE_DATA_ATTRIBUTES_NAME")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentServicesApi.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName))
+	resp, r, err := apiClient.IncidentServicesApi.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.ListIncidentServices`: %v\n", err)

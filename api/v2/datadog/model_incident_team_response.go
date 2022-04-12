@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentTeamResponse Response with an incident team payload.
 type IncidentTeamResponse struct {
@@ -18,9 +21,11 @@ type IncidentTeamResponse struct {
 	// Included objects from relationships.
 	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentTeamResponse instantiates a new IncidentTeamResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIncidentTeamResponseWithDefaults() *IncidentTeamResponse {
 	this := IncidentTeamResponse{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *IncidentTeamResponse) GetData() IncidentTeamResponseData {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *IncidentTeamResponse) GetDataOk() (*IncidentTeamResponseData, bool) {
 func (o *IncidentTeamResponse) SetData(v IncidentTeamResponseData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentTeamResponse) GetIncluded() []IncidentTeamIncludedItems {
@@ -95,6 +100,8 @@ func (o *IncidentTeamResponse) SetIncluded(v []IncidentTeamIncludedItems) {
 	o.Included = &v
 }
 
+
+
 func (o IncidentTeamResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,13 +118,14 @@ func (o IncidentTeamResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *IncidentTeamResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     IncidentTeamResponseData     `json:"data"`
+		Data IncidentTeamResponseData `json:"data"`
 		Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -136,13 +144,13 @@ func (o *IncidentTeamResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

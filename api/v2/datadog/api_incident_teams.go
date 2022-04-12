@@ -4,6 +4,7 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
@@ -14,7 +15,6 @@ import (
 	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -28,7 +28,7 @@ type IncidentTeamsApiService service
 type apiCreateIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	body       *IncidentTeamCreateRequest
+	body *IncidentTeamCreateRequest
 }
 
 /*
@@ -39,7 +39,7 @@ func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body 
 	req := apiCreateIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createIncidentTeamExecute(req)
@@ -51,16 +51,16 @@ func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body 
  */
 func (a *IncidentTeamsApiService) createIncidentTeamExecute(r apiCreateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IncidentTeamResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IncidentTeamResponse
 	)
-
+	
 	operationId := "CreateIncidentTeam"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.CreateIncidentTeam")
@@ -214,7 +214,7 @@ func (a *IncidentTeamsApiService) createIncidentTeamExecute(r apiCreateIncidentT
 type apiDeleteIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	teamId     string
+	teamId string
 }
 
 /*
@@ -225,7 +225,7 @@ func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamI
 	req := apiDeleteIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
-		teamId:     teamId,
+		teamId: teamId,
 	}
 
 	return req.ApiService.deleteIncidentTeamExecute(req)
@@ -236,13 +236,13 @@ func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamI
  */
 func (a *IncidentTeamsApiService) deleteIncidentTeamExecute(r apiDeleteIncidentTeamRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
-
+	
 	operationId := "DeleteIncidentTeam"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
 		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
@@ -375,8 +375,8 @@ func (a *IncidentTeamsApiService) deleteIncidentTeamExecute(r apiDeleteIncidentT
 type apiGetIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	teamId     string
-	include    *IncidentRelatedObject
+	teamId string
+	include *IncidentRelatedObject
 }
 
 type GetIncidentTeamOptionalParameters struct {
@@ -401,7 +401,7 @@ func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId s
 	req := apiGetIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
-		teamId:     teamId,
+		teamId: teamId,
 	}
 
 	if len(o) > 1 {
@@ -422,16 +422,16 @@ func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId s
  */
 func (a *IncidentTeamsApiService) getIncidentTeamExecute(r apiGetIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue IncidentTeamResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  IncidentTeamResponse
 	)
-
+	
 	operationId := "GetIncidentTeam"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.GetIncidentTeam")
@@ -574,17 +574,17 @@ func (a *IncidentTeamsApiService) getIncidentTeamExecute(r apiGetIncidentTeamReq
 type apiListIncidentTeamsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	include    *IncidentRelatedObject
-	pageSize   *int64
+	include *IncidentRelatedObject
+	pageSize *int64
 	pageOffset *int64
-	filter     *string
+	filter *string
 }
 
 type ListIncidentTeamsOptionalParameters struct {
-	Include    *IncidentRelatedObject
-	PageSize   *int64
+	Include *IncidentRelatedObject
+	PageSize *int64
 	PageOffset *int64
-	Filter     *string
+	Filter *string
 }
 
 func NewListIncidentTeamsOptionalParameters() *ListIncidentTeamsOptionalParameters {
@@ -639,16 +639,16 @@ func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...L
  */
 func (a *IncidentTeamsApiService) listIncidentTeamsExecute(r apiListIncidentTeamsRequest) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue IncidentTeamsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  IncidentTeamsResponse
 	)
-
+	
 	operationId := "ListIncidentTeams"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.ListIncidentTeams")
@@ -799,8 +799,8 @@ func (a *IncidentTeamsApiService) listIncidentTeamsExecute(r apiListIncidentTeam
 type apiUpdateIncidentTeamRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
-	teamId     string
-	body       *IncidentTeamUpdateRequest
+	teamId string
+	body *IncidentTeamUpdateRequest
 }
 
 /*
@@ -811,8 +811,8 @@ func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamI
 	req := apiUpdateIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
-		teamId:     teamId,
-		body:       &body,
+		teamId: teamId,
+		body: &body,
 	}
 
 	return req.ApiService.updateIncidentTeamExecute(req)
@@ -824,16 +824,16 @@ func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamI
  */
 func (a *IncidentTeamsApiService) updateIncidentTeamExecute(r apiUpdateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue IncidentTeamResponse
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  IncidentTeamResponse
 	)
-
+	
 	operationId := "UpdateIncidentTeam"
 	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+		return  localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.UpdateIncidentTeam")

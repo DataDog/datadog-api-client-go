@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.GetBrowserTestLatestResults(ctx, "public_id", *datadog.NewGetBrowserTestLatestResultsOptionalParameters())
+	resp, r, err := apiClient.SyntheticsApi.GetBrowserTestLatestResults(ctx, "public_id", *datadog.NewGetBrowserTestLatestResultsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.GetBrowserTestLatestResults`: %v\n", err)

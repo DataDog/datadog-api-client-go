@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetAxis Axis controls for the widget.
 type WidgetAxis struct {
@@ -23,9 +27,11 @@ type WidgetAxis struct {
 	// Specifies the scale type. Possible values are `linear`, `log`, `sqrt`, `pow##` (for example `pow2`, `pow0.5` etc.).
 	Scale *string `json:"scale,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetAxis instantiates a new WidgetAxis object
 // This constructor will assign default values to properties that have it defined,
@@ -55,7 +61,6 @@ func NewWidgetAxisWithDefaults() *WidgetAxis {
 	this.Scale = &scale
 	return &this
 }
-
 // GetIncludeZero returns the IncludeZero field value if set, zero value otherwise.
 func (o *WidgetAxis) GetIncludeZero() bool {
 	if o == nil || o.IncludeZero == nil {
@@ -87,6 +92,7 @@ func (o *WidgetAxis) HasIncludeZero() bool {
 func (o *WidgetAxis) SetIncludeZero(v bool) {
 	o.IncludeZero = &v
 }
+
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *WidgetAxis) GetLabel() string {
@@ -120,6 +126,7 @@ func (o *WidgetAxis) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetMax returns the Max field value if set, zero value otherwise.
 func (o *WidgetAxis) GetMax() string {
 	if o == nil || o.Max == nil {
@@ -151,6 +158,7 @@ func (o *WidgetAxis) HasMax() bool {
 func (o *WidgetAxis) SetMax(v string) {
 	o.Max = &v
 }
+
 
 // GetMin returns the Min field value if set, zero value otherwise.
 func (o *WidgetAxis) GetMin() string {
@@ -184,6 +192,7 @@ func (o *WidgetAxis) SetMin(v string) {
 	o.Min = &v
 }
 
+
 // GetScale returns the Scale field value if set, zero value otherwise.
 func (o *WidgetAxis) GetScale() string {
 	if o == nil || o.Scale == nil {
@@ -216,6 +225,8 @@ func (o *WidgetAxis) SetScale(v string) {
 	o.Scale = &v
 }
 
+
+
 func (o WidgetAxis) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -243,14 +254,15 @@ func (o WidgetAxis) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetAxis) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		IncludeZero *bool   `json:"include_zero,omitempty"`
-		Label       *string `json:"label,omitempty"`
-		Max         *string `json:"max,omitempty"`
-		Min         *string `json:"min,omitempty"`
-		Scale       *string `json:"scale,omitempty"`
+		IncludeZero *bool `json:"include_zero,omitempty"`
+		Label *string `json:"label,omitempty"`
+		Max *string `json:"max,omitempty"`
+		Min *string `json:"min,omitempty"`
+		Scale *string `json:"scale,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

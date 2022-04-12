@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCorrectionResponseAttributes The attribute object associated with the SLO correction.
 type SLOCorrectionResponseAttributes struct {
@@ -38,9 +42,11 @@ type SLOCorrectionResponseAttributes struct {
 	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionResponseAttributes instantiates a new SLOCorrectionResponseAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -58,7 +64,6 @@ func NewSLOCorrectionResponseAttributesWithDefaults() *SLOCorrectionResponseAttr
 	this := SLOCorrectionResponseAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetCategory() SLOCorrectionCategory {
 	if o == nil || o.Category == nil {
@@ -90,6 +95,7 @@ func (o *SLOCorrectionResponseAttributes) HasCategory() bool {
 func (o *SLOCorrectionResponseAttributes) SetCategory(v SLOCorrectionCategory) {
 	o.Category = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetCreatedAt() int64 {
@@ -123,6 +129,7 @@ func (o *SLOCorrectionResponseAttributes) SetCreatedAt(v int64) {
 	o.CreatedAt = &v
 }
 
+
 // GetCreator returns the Creator field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetCreator() Creator {
 	if o == nil || o.Creator == nil {
@@ -154,6 +161,7 @@ func (o *SLOCorrectionResponseAttributes) HasCreator() bool {
 func (o *SLOCorrectionResponseAttributes) SetCreator(v Creator) {
 	o.Creator = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetDescription() string {
@@ -187,6 +195,7 @@ func (o *SLOCorrectionResponseAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDuration returns the Duration field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCorrectionResponseAttributes) GetDuration() int64 {
 	if o == nil || o.Duration.Get() == nil {
@@ -200,7 +209,7 @@ func (o *SLOCorrectionResponseAttributes) GetDuration() int64 {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetDurationOk() (*int64, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Duration.Get(), o.Duration.IsSet()
@@ -219,7 +228,6 @@ func (o *SLOCorrectionResponseAttributes) HasDuration() bool {
 func (o *SLOCorrectionResponseAttributes) SetDuration(v int64) {
 	o.Duration.Set(&v)
 }
-
 // SetDurationNil sets the value for Duration to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetDurationNil() {
 	o.Duration.Set(nil)
@@ -229,6 +237,7 @@ func (o *SLOCorrectionResponseAttributes) SetDurationNil() {
 func (o *SLOCorrectionResponseAttributes) UnsetDuration() {
 	o.Duration.Unset()
 }
+
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetEnd() int64 {
@@ -262,6 +271,7 @@ func (o *SLOCorrectionResponseAttributes) SetEnd(v int64) {
 	o.End = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetModifiedAt() int64 {
 	if o == nil || o.ModifiedAt == nil {
@@ -294,6 +304,7 @@ func (o *SLOCorrectionResponseAttributes) SetModifiedAt(v int64) {
 	o.ModifiedAt = &v
 }
 
+
 // GetModifier returns the Modifier field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCorrectionResponseAttributes) GetModifier() SLOCorrectionResponseAttributesModifier {
 	if o == nil || o.Modifier.Get() == nil {
@@ -307,7 +318,7 @@ func (o *SLOCorrectionResponseAttributes) GetModifier() SLOCorrectionResponseAtt
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetModifierOk() (*SLOCorrectionResponseAttributesModifier, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Modifier.Get(), o.Modifier.IsSet()
@@ -326,7 +337,6 @@ func (o *SLOCorrectionResponseAttributes) HasModifier() bool {
 func (o *SLOCorrectionResponseAttributes) SetModifier(v SLOCorrectionResponseAttributesModifier) {
 	o.Modifier.Set(&v)
 }
-
 // SetModifierNil sets the value for Modifier to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetModifierNil() {
 	o.Modifier.Set(nil)
@@ -336,6 +346,7 @@ func (o *SLOCorrectionResponseAttributes) SetModifierNil() {
 func (o *SLOCorrectionResponseAttributes) UnsetModifier() {
 	o.Modifier.Unset()
 }
+
 
 // GetRrule returns the Rrule field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *SLOCorrectionResponseAttributes) GetRrule() string {
@@ -350,7 +361,7 @@ func (o *SLOCorrectionResponseAttributes) GetRrule() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *SLOCorrectionResponseAttributes) GetRruleOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Rrule.Get(), o.Rrule.IsSet()
@@ -369,7 +380,6 @@ func (o *SLOCorrectionResponseAttributes) HasRrule() bool {
 func (o *SLOCorrectionResponseAttributes) SetRrule(v string) {
 	o.Rrule.Set(&v)
 }
-
 // SetRruleNil sets the value for Rrule to be an explicit nil
 func (o *SLOCorrectionResponseAttributes) SetRruleNil() {
 	o.Rrule.Set(nil)
@@ -379,6 +389,7 @@ func (o *SLOCorrectionResponseAttributes) SetRruleNil() {
 func (o *SLOCorrectionResponseAttributes) UnsetRrule() {
 	o.Rrule.Unset()
 }
+
 
 // GetSloId returns the SloId field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetSloId() string {
@@ -412,6 +423,7 @@ func (o *SLOCorrectionResponseAttributes) SetSloId(v string) {
 	o.SloId = &v
 }
 
+
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetStart() int64 {
 	if o == nil || o.Start == nil {
@@ -444,6 +456,7 @@ func (o *SLOCorrectionResponseAttributes) SetStart(v int64) {
 	o.Start = &v
 }
 
+
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SLOCorrectionResponseAttributes) GetTimezone() string {
 	if o == nil || o.Timezone == nil {
@@ -475,6 +488,8 @@ func (o *SLOCorrectionResponseAttributes) HasTimezone() bool {
 func (o *SLOCorrectionResponseAttributes) SetTimezone(v string) {
 	o.Timezone = &v
 }
+
+
 
 func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -524,21 +539,22 @@ func (o SLOCorrectionResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category    *SLOCorrectionCategory                          `json:"category,omitempty"`
-		CreatedAt   *int64                                          `json:"created_at,omitempty"`
-		Creator     *Creator                                        `json:"creator,omitempty"`
-		Description *string                                         `json:"description,omitempty"`
-		Duration    NullableInt64                                   `json:"duration,omitempty"`
-		End         *int64                                          `json:"end,omitempty"`
-		ModifiedAt  *int64                                          `json:"modified_at,omitempty"`
-		Modifier    NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
-		Rrule       NullableString                                  `json:"rrule,omitempty"`
-		SloId       *string                                         `json:"slo_id,omitempty"`
-		Start       *int64                                          `json:"start,omitempty"`
-		Timezone    *string                                         `json:"timezone,omitempty"`
+		Category *SLOCorrectionCategory `json:"category,omitempty"`
+		CreatedAt *int64 `json:"created_at,omitempty"`
+		Creator *Creator `json:"creator,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Duration NullableInt64 `json:"duration,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		ModifiedAt *int64 `json:"modified_at,omitempty"`
+		Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
+		Rrule NullableString `json:"rrule,omitempty"`
+		SloId *string `json:"slo_id,omitempty"`
+		Start *int64 `json:"start,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -549,7 +565,7 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Category; v != nil && !v.IsValid() {
+	if v := all.Category; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -559,13 +575,13 @@ func (o *SLOCorrectionResponseAttributes) UnmarshalJSON(bytes []byte) (err error
 	}
 	o.Category = all.Category
 	o.CreatedAt = all.CreatedAt
-	if all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Creator != nil && all.Creator.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Creator = all.Creator
 	o.Description = all.Description
 	o.Duration = all.Duration

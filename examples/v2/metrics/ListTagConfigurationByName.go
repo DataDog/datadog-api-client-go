@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,11 +15,12 @@ func main() {
 	// there is a valid "metric_tag_configuration" in the system
 	MetricTagConfigurationDataID := os.Getenv("METRIC_TAG_CONFIGURATION_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListTagConfigurationByName", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, MetricTagConfigurationDataID)
+	resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, MetricTagConfigurationDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListTagConfigurationByName`: %v\n", err)

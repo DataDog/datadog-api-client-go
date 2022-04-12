@@ -4,17 +4,21 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMGroupByTotal - A resulting object to put the given computes in over all the matching records.
 type RUMGroupByTotal struct {
 	RUMGroupByTotalBoolean *bool
-	RUMGroupByTotalString  *string
-	RUMGroupByTotalNumber  *float64
+	RUMGroupByTotalString *string
+	RUMGroupByTotalNumber *float64
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -107,13 +111,16 @@ func (src RUMGroupByTotal) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.RUMGroupByTotalBoolean)
 	}
 
+
 	if src.RUMGroupByTotalString != nil {
 		return json.Marshal(&src.RUMGroupByTotalString)
 	}
 
+
 	if src.RUMGroupByTotalNumber != nil {
 		return json.Marshal(&src.RUMGroupByTotalNumber)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -122,18 +129,21 @@ func (src RUMGroupByTotal) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *RUMGroupByTotal) GetActualInstance() interface{} {
+func (obj *RUMGroupByTotal) GetActualInstance() (interface{}) {
 	if obj.RUMGroupByTotalBoolean != nil {
 		return obj.RUMGroupByTotalBoolean
 	}
+
 
 	if obj.RUMGroupByTotalString != nil {
 		return obj.RUMGroupByTotalString
 	}
 
+
 	if obj.RUMGroupByTotalNumber != nil {
 		return obj.RUMGroupByTotalNumber
 	}
+
 
 	// all schemas are nil
 	return nil

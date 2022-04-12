@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,7 +16,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.ServiceAccountsApi.DeleteServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id")
+	r, err := apiClient.ServiceAccountsApi.DeleteServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.DeleteServiceAccountApplicationKey`: %v\n", err)

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // FullApplicationKey Datadog application key.
 type FullApplicationKey struct {
@@ -21,9 +25,11 @@ type FullApplicationKey struct {
 	// Application Keys resource type.
 	Type *ApplicationKeysType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFullApplicationKey instantiates a new FullApplicationKey object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +51,6 @@ func NewFullApplicationKeyWithDefaults() *FullApplicationKey {
 	this.Type = &type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *FullApplicationKey) GetAttributes() FullApplicationKeyAttributes {
 	if o == nil || o.Attributes == nil {
@@ -77,6 +82,7 @@ func (o *FullApplicationKey) HasAttributes() bool {
 func (o *FullApplicationKey) SetAttributes(v FullApplicationKeyAttributes) {
 	o.Attributes = &v
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *FullApplicationKey) GetId() string {
@@ -110,6 +116,7 @@ func (o *FullApplicationKey) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *FullApplicationKey) GetRelationships() ApplicationKeyRelationships {
 	if o == nil || o.Relationships == nil {
@@ -141,6 +148,7 @@ func (o *FullApplicationKey) HasRelationships() bool {
 func (o *FullApplicationKey) SetRelationships(v ApplicationKeyRelationships) {
 	o.Relationships = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *FullApplicationKey) GetType() ApplicationKeysType {
@@ -174,6 +182,8 @@ func (o *FullApplicationKey) SetType(v ApplicationKeysType) {
 	o.Type = &v
 }
 
+
+
 func (o FullApplicationKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -198,13 +208,14 @@ func (o FullApplicationKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Attributes    *FullApplicationKeyAttributes `json:"attributes,omitempty"`
-		Id            *string                       `json:"id,omitempty"`
-		Relationships *ApplicationKeyRelationships  `json:"relationships,omitempty"`
-		Type          *ApplicationKeysType          `json:"type,omitempty"`
+		Attributes *FullApplicationKeyAttributes `json:"attributes,omitempty"`
+		Id *string `json:"id,omitempty"`
+		Relationships *ApplicationKeyRelationships `json:"relationships,omitempty"`
+		Type *ApplicationKeysType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -215,7 +226,7 @@ func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -223,22 +234,22 @@ func (o *FullApplicationKey) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Relationships = all.Relationships
 	o.Type = all.Type
 	return nil

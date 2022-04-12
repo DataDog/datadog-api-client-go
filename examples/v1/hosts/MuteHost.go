@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,14 +13,14 @@ import (
 
 func main() {
 	body := datadog.HostMuteSettings{
-		End:      datadog.PtrInt64(1579098130),
-		Message:  datadog.PtrString("Muting this host for a test!"),
-		Override: datadog.PtrBool(false),
-	}
+End: datadog.PtrInt64(1579098130),
+Message: datadog.PtrString("Muting this host for a test!"),
+Override: datadog.PtrBool(false),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.HostsApi.MuteHost(ctx, "host_name", body)
+	resp, r, err := apiClient.HostsApi.MuteHost(ctx, "host_name", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `HostsApi.MuteHost`: %v\n", err)

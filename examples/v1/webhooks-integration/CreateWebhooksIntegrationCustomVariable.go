@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,14 +13,14 @@ import (
 
 func main() {
 	body := datadog.WebhooksIntegrationCustomVariable{
-		IsSecret: true,
-		Name:     "EXAMPLECREATEACUSTOMVARIABLERETURNSOKRESPONSE",
-		Value:    "CUSTOM_VARIABLE_VALUE",
-	}
+IsSecret: true,
+Name: "EXAMPLECREATEACUSTOMVARIABLERETURNSOKRESPONSE",
+Value: "CUSTOM_VARIABLE_VALUE",
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksIntegrationApi.CreateWebhooksIntegrationCustomVariable(ctx, body)
+	resp, r, err := apiClient.WebhooksIntegrationApi.CreateWebhooksIntegrationCustomVariable(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.CreateWebhooksIntegrationCustomVariable`: %v\n", err)

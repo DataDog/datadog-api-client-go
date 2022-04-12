@@ -4,29 +4,33 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsProcessor - Definition of a logs processor.
 type LogsProcessor struct {
-	LogsGrokParser             *LogsGrokParser
-	LogsDateRemapper           *LogsDateRemapper
-	LogsStatusRemapper         *LogsStatusRemapper
-	LogsServiceRemapper        *LogsServiceRemapper
-	LogsMessageRemapper        *LogsMessageRemapper
-	LogsAttributeRemapper      *LogsAttributeRemapper
-	LogsURLParser              *LogsURLParser
-	LogsUserAgentParser        *LogsUserAgentParser
-	LogsCategoryProcessor      *LogsCategoryProcessor
-	LogsArithmeticProcessor    *LogsArithmeticProcessor
+	LogsGrokParser *LogsGrokParser
+	LogsDateRemapper *LogsDateRemapper
+	LogsStatusRemapper *LogsStatusRemapper
+	LogsServiceRemapper *LogsServiceRemapper
+	LogsMessageRemapper *LogsMessageRemapper
+	LogsAttributeRemapper *LogsAttributeRemapper
+	LogsURLParser *LogsURLParser
+	LogsUserAgentParser *LogsUserAgentParser
+	LogsCategoryProcessor *LogsCategoryProcessor
+	LogsArithmeticProcessor *LogsArithmeticProcessor
 	LogsStringBuilderProcessor *LogsStringBuilderProcessor
-	LogsPipelineProcessor      *LogsPipelineProcessor
-	LogsGeoIPParser            *LogsGeoIPParser
-	LogsLookupProcessor        *LogsLookupProcessor
-	LogsTraceRemapper          *LogsTraceRemapper
+	LogsPipelineProcessor *LogsPipelineProcessor
+	LogsGeoIPParser *LogsGeoIPParser
+	LogsLookupProcessor *LogsLookupProcessor
+	LogsTraceRemapper *LogsTraceRemapper
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -395,61 +399,76 @@ func (src LogsProcessor) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsGrokParser)
 	}
 
+
 	if src.LogsDateRemapper != nil {
 		return json.Marshal(&src.LogsDateRemapper)
 	}
+
 
 	if src.LogsStatusRemapper != nil {
 		return json.Marshal(&src.LogsStatusRemapper)
 	}
 
+
 	if src.LogsServiceRemapper != nil {
 		return json.Marshal(&src.LogsServiceRemapper)
 	}
+
 
 	if src.LogsMessageRemapper != nil {
 		return json.Marshal(&src.LogsMessageRemapper)
 	}
 
+
 	if src.LogsAttributeRemapper != nil {
 		return json.Marshal(&src.LogsAttributeRemapper)
 	}
+
 
 	if src.LogsURLParser != nil {
 		return json.Marshal(&src.LogsURLParser)
 	}
 
+
 	if src.LogsUserAgentParser != nil {
 		return json.Marshal(&src.LogsUserAgentParser)
 	}
+
 
 	if src.LogsCategoryProcessor != nil {
 		return json.Marshal(&src.LogsCategoryProcessor)
 	}
 
+
 	if src.LogsArithmeticProcessor != nil {
 		return json.Marshal(&src.LogsArithmeticProcessor)
 	}
+
 
 	if src.LogsStringBuilderProcessor != nil {
 		return json.Marshal(&src.LogsStringBuilderProcessor)
 	}
 
+
 	if src.LogsPipelineProcessor != nil {
 		return json.Marshal(&src.LogsPipelineProcessor)
 	}
+
 
 	if src.LogsGeoIPParser != nil {
 		return json.Marshal(&src.LogsGeoIPParser)
 	}
 
+
 	if src.LogsLookupProcessor != nil {
 		return json.Marshal(&src.LogsLookupProcessor)
 	}
 
+
 	if src.LogsTraceRemapper != nil {
 		return json.Marshal(&src.LogsTraceRemapper)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -458,66 +477,81 @@ func (src LogsProcessor) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsProcessor) GetActualInstance() interface{} {
+func (obj *LogsProcessor) GetActualInstance() (interface{}) {
 	if obj.LogsGrokParser != nil {
 		return obj.LogsGrokParser
 	}
+
 
 	if obj.LogsDateRemapper != nil {
 		return obj.LogsDateRemapper
 	}
 
+
 	if obj.LogsStatusRemapper != nil {
 		return obj.LogsStatusRemapper
 	}
+
 
 	if obj.LogsServiceRemapper != nil {
 		return obj.LogsServiceRemapper
 	}
 
+
 	if obj.LogsMessageRemapper != nil {
 		return obj.LogsMessageRemapper
 	}
+
 
 	if obj.LogsAttributeRemapper != nil {
 		return obj.LogsAttributeRemapper
 	}
 
+
 	if obj.LogsURLParser != nil {
 		return obj.LogsURLParser
 	}
+
 
 	if obj.LogsUserAgentParser != nil {
 		return obj.LogsUserAgentParser
 	}
 
+
 	if obj.LogsCategoryProcessor != nil {
 		return obj.LogsCategoryProcessor
 	}
+
 
 	if obj.LogsArithmeticProcessor != nil {
 		return obj.LogsArithmeticProcessor
 	}
 
+
 	if obj.LogsStringBuilderProcessor != nil {
 		return obj.LogsStringBuilderProcessor
 	}
+
 
 	if obj.LogsPipelineProcessor != nil {
 		return obj.LogsPipelineProcessor
 	}
 
+
 	if obj.LogsGeoIPParser != nil {
 		return obj.LogsGeoIPParser
 	}
+
 
 	if obj.LogsLookupProcessor != nil {
 		return obj.LogsLookupProcessor
 	}
 
+
 	if obj.LogsTraceRemapper != nil {
 		return obj.LogsTraceRemapper
 	}
+
 
 	// all schemas are nil
 	return nil

@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,20 +13,20 @@ import (
 
 func main() {
 	body := datadog.AWSLogsServicesRequest{
-		AccountId: "1234567",
-		Services: []string{
-			"s3",
-			"elb",
-			"elbv2",
-			"cloudfront",
-			"redshift",
-			"lambda",
-		},
-	}
+AccountId: "1234567",
+Services: []string{
+"s3",
+"elb",
+"elbv2",
+"cloudfront",
+"redshift",
+"lambda",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSLogsIntegrationApi.EnableAWSLogServices(ctx, body)
+	resp, r, err := apiClient.AWSLogsIntegrationApi.EnableAWSLogServices(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSLogsIntegrationApi.EnableAWSLogServices`: %v\n", err)

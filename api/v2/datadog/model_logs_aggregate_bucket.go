@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateBucket A bucket values
 type LogsAggregateBucket struct {
@@ -17,9 +21,11 @@ type LogsAggregateBucket struct {
 	// A map of the metric name -> value for regular compute or list of values for a timeseries
 	Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsAggregateBucket instantiates a new LogsAggregateBucket object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewLogsAggregateBucketWithDefaults() *LogsAggregateBucket {
 	this := LogsAggregateBucket{}
 	return &this
 }
-
 // GetBy returns the By field value if set, zero value otherwise.
 func (o *LogsAggregateBucket) GetBy() map[string]string {
 	if o == nil || o.By == nil {
@@ -69,6 +74,7 @@ func (o *LogsAggregateBucket) HasBy() bool {
 func (o *LogsAggregateBucket) SetBy(v map[string]string) {
 	o.By = v
 }
+
 
 // GetComputes returns the Computes field value if set, zero value otherwise.
 func (o *LogsAggregateBucket) GetComputes() map[string]LogsAggregateBucketValue {
@@ -102,6 +108,8 @@ func (o *LogsAggregateBucket) SetComputes(v map[string]LogsAggregateBucketValue)
 	o.Computes = v
 }
 
+
+
 func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o LogsAggregateBucket) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsAggregateBucket) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		By       map[string]string                   `json:"by,omitempty"`
+		By map[string]string `json:"by,omitempty"`
 		Computes map[string]LogsAggregateBucketValue `json:"computes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

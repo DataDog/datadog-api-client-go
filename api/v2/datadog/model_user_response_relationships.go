@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserResponseRelationships Relationships of the user object returned by the API.
 type UserResponseRelationships struct {
@@ -21,9 +25,11 @@ type UserResponseRelationships struct {
 	// Relationship to roles.
 	Roles *RelationshipToRoles `json:"roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserResponseRelationships instantiates a new UserResponseRelationships object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewUserResponseRelationshipsWithDefaults() *UserResponseRelationships {
 	this := UserResponseRelationships{}
 	return &this
 }
-
 // GetOrg returns the Org field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOrg() RelationshipToOrganization {
 	if o == nil || o.Org == nil {
@@ -73,6 +78,7 @@ func (o *UserResponseRelationships) HasOrg() bool {
 func (o *UserResponseRelationships) SetOrg(v RelationshipToOrganization) {
 	o.Org = &v
 }
+
 
 // GetOtherOrgs returns the OtherOrgs field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOtherOrgs() RelationshipToOrganizations {
@@ -106,6 +112,7 @@ func (o *UserResponseRelationships) SetOtherOrgs(v RelationshipToOrganizations) 
 	o.OtherOrgs = &v
 }
 
+
 // GetOtherUsers returns the OtherUsers field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetOtherUsers() RelationshipToUsers {
 	if o == nil || o.OtherUsers == nil {
@@ -137,6 +144,7 @@ func (o *UserResponseRelationships) HasOtherUsers() bool {
 func (o *UserResponseRelationships) SetOtherUsers(v RelationshipToUsers) {
 	o.OtherUsers = &v
 }
+
 
 // GetRoles returns the Roles field value if set, zero value otherwise.
 func (o *UserResponseRelationships) GetRoles() RelationshipToRoles {
@@ -170,6 +178,8 @@ func (o *UserResponseRelationships) SetRoles(v RelationshipToRoles) {
 	o.Roles = &v
 }
 
+
+
 func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o UserResponseRelationships) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UserResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Org        *RelationshipToOrganization  `json:"org,omitempty"`
-		OtherOrgs  *RelationshipToOrganizations `json:"other_orgs,omitempty"`
-		OtherUsers *RelationshipToUsers         `json:"other_users,omitempty"`
-		Roles      *RelationshipToRoles         `json:"roles,omitempty"`
+		Org *RelationshipToOrganization `json:"org,omitempty"`
+		OtherOrgs *RelationshipToOrganizations `json:"other_orgs,omitempty"`
+		OtherUsers *RelationshipToUsers `json:"other_users,omitempty"`
+		Roles *RelationshipToRoles `json:"roles,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -211,37 +222,37 @@ func (o *UserResponseRelationships) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Org != nil && all.Org.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Org = all.Org
-	if all.OtherOrgs != nil && all.OtherOrgs.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.OtherOrgs != nil && all.OtherOrgs.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.OtherOrgs = all.OtherOrgs
-	if all.OtherUsers != nil && all.OtherUsers.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.OtherUsers != nil && all.OtherUsers.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.OtherUsers = all.OtherUsers
-	if all.Roles != nil && all.Roles.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Roles != nil && all.Roles.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Roles = all.Roles
 	return nil
 }

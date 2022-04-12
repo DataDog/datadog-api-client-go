@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,18 +13,18 @@ import (
 
 func main() {
 	body := datadog.OrganizationCreateBody{
-		Billing: &datadog.OrganizationBilling{
-			Type: datadog.PtrString("parent_billing"),
-		},
-		Name: "New child org",
-		Subscription: &datadog.OrganizationSubscription{
-			Type: datadog.PtrString("pro"),
-		},
-	}
+Billing: &datadog.OrganizationBilling{
+Type: datadog.PtrString("parent_billing"),
+},
+Name: "New child org",
+Subscription: &datadog.OrganizationSubscription{
+Type: datadog.PtrString("pro"),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx, body)
+	resp, r, err := apiClient.OrganizationsApi.CreateChildOrg(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.CreateChildOrg`: %v\n", err)

@@ -4,23 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardType The type of the dashboard.
 type DashboardType string
 
 // List of DashboardType
 const (
-	DASHBOARDTYPE_CUSTOM_TIMEBOARD        DashboardType = "custom_timeboard"
-	DASHBOARDTYPE_CUSTOM_SCREENBOARD      DashboardType = "custom_screenboard"
+	DASHBOARDTYPE_CUSTOM_TIMEBOARD DashboardType = "custom_timeboard"
+	DASHBOARDTYPE_CUSTOM_SCREENBOARD DashboardType = "custom_screenboard"
 	DASHBOARDTYPE_INTEGRATION_SCREENBOARD DashboardType = "integration_screenboard"
-	DASHBOARDTYPE_INTEGRATION_TIMEBOARD   DashboardType = "integration_timeboard"
-	DASHBOARDTYPE_HOST_TIMEBOARD          DashboardType = "host_timeboard"
+	DASHBOARDTYPE_INTEGRATION_TIMEBOARD DashboardType = "integration_timeboard"
+	DASHBOARDTYPE_HOST_TIMEBOARD DashboardType = "host_timeboard"
 )
 
 var allowedDashboardTypeEnumValues = []DashboardType{

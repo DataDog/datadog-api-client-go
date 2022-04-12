@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AuditLogsResponseLinks Links attributes.
 type AuditLogsResponseLinks struct {
@@ -16,9 +20,11 @@ type AuditLogsResponseLinks struct {
 	// POST endpoint.
 	Next *string `json:"next,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsResponseLinks instantiates a new AuditLogsResponseLinks object
 // This constructor will assign default values to properties that have it defined,
@@ -36,7 +42,6 @@ func NewAuditLogsResponseLinksWithDefaults() *AuditLogsResponseLinks {
 	this := AuditLogsResponseLinks{}
 	return &this
 }
-
 // GetNext returns the Next field value if set, zero value otherwise.
 func (o *AuditLogsResponseLinks) GetNext() string {
 	if o == nil || o.Next == nil {
@@ -69,6 +74,8 @@ func (o *AuditLogsResponseLinks) SetNext(v string) {
 	o.Next = &v
 }
 
+
+
 func (o AuditLogsResponseLinks) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +90,7 @@ func (o AuditLogsResponseLinks) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AuditLogsResponseLinks) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApplicationKeyCreateAttributes Attributes used to create an application Key.
 type ApplicationKeyCreateAttributes struct {
@@ -18,9 +21,11 @@ type ApplicationKeyCreateAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApplicationKeyCreateAttributes instantiates a new ApplicationKeyCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewApplicationKeyCreateAttributesWithDefaults() *ApplicationKeyCreateAttrib
 	this := ApplicationKeyCreateAttributes{}
 	return &this
 }
-
 // GetName returns the Name field value
 func (o *ApplicationKeyCreateAttributes) GetName() string {
 	if o == nil {
@@ -63,9 +67,10 @@ func (o *ApplicationKeyCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *ApplicationKeyCreateAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -96,6 +101,8 @@ func (o *ApplicationKeyCreateAttributes) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+
+
 func (o ApplicationKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -112,13 +119,14 @@ func (o ApplicationKeyCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ApplicationKeyCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		Name   string   `json:"name"`
+		Name string `json:"name"`
 		Scopes []string `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

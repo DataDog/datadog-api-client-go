@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -12,12 +14,12 @@ import (
 
 func main() {
 	body := datadog.PagerDutyServiceKey{
-		ServiceKey: "",
-	}
+ServiceKey: "",
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "service_name", body)
+	r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "service_name", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService`: %v\n", err)

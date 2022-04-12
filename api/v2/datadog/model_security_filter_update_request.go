@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityFilterUpdateRequest The new security filter body.
 type SecurityFilterUpdateRequest struct {
 	// The new security filter properties.
 	Data SecurityFilterUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityFilterUpdateRequest instantiates a new SecurityFilterUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewSecurityFilterUpdateRequestWithDefaults() *SecurityFilterUpdateRequest {
 	this := SecurityFilterUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *SecurityFilterUpdateRequest) GetData() SecurityFilterUpdateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *SecurityFilterUpdateRequest) SetData(v SecurityFilterUpdateData) {
 	o.Data = v
 }
 
+
+
 func (o SecurityFilterUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o SecurityFilterUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SecurityFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -98,13 +105,13 @@ func (o *SecurityFilterUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricsQueryUnit Object containing the metric unit family, scale factor, name, and short name.
 type MetricsQueryUnit struct {
@@ -23,9 +27,11 @@ type MetricsQueryUnit struct {
 	// Abbreviation of the unit.
 	ShortName *string `json:"short_name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricsQueryUnit instantiates a new MetricsQueryUnit object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewMetricsQueryUnitWithDefaults() *MetricsQueryUnit {
 	this := MetricsQueryUnit{}
 	return &this
 }
-
 // GetFamily returns the Family field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetFamily() string {
 	if o == nil || o.Family == nil {
@@ -75,6 +80,7 @@ func (o *MetricsQueryUnit) HasFamily() bool {
 func (o *MetricsQueryUnit) SetFamily(v string) {
 	o.Family = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetName() string {
@@ -108,6 +114,7 @@ func (o *MetricsQueryUnit) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetPlural returns the Plural field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetPlural() string {
 	if o == nil || o.Plural == nil {
@@ -139,6 +146,7 @@ func (o *MetricsQueryUnit) HasPlural() bool {
 func (o *MetricsQueryUnit) SetPlural(v string) {
 	o.Plural = &v
 }
+
 
 // GetScaleFactor returns the ScaleFactor field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetScaleFactor() float64 {
@@ -172,6 +180,7 @@ func (o *MetricsQueryUnit) SetScaleFactor(v float64) {
 	o.ScaleFactor = &v
 }
 
+
 // GetShortName returns the ShortName field value if set, zero value otherwise.
 func (o *MetricsQueryUnit) GetShortName() string {
 	if o == nil || o.ShortName == nil {
@@ -204,6 +213,8 @@ func (o *MetricsQueryUnit) SetShortName(v string) {
 	o.ShortName = &v
 }
 
+
+
 func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -231,14 +242,15 @@ func (o MetricsQueryUnit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Family      *string  `json:"family,omitempty"`
-		Name        *string  `json:"name,omitempty"`
-		Plural      *string  `json:"plural,omitempty"`
+		Family *string `json:"family,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Plural *string `json:"plural,omitempty"`
 		ScaleFactor *float64 `json:"scale_factor,omitempty"`
-		ShortName   *string  `json:"short_name,omitempty"`
+		ShortName *string `json:"short_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -256,7 +268,6 @@ func (o *MetricsQueryUnit) UnmarshalJSON(bytes []byte) (err error) {
 	o.ShortName = all.ShortName
 	return nil
 }
-
 type NullableMetricsQueryUnit struct {
 	value *MetricsQueryUnit
 	isSet bool

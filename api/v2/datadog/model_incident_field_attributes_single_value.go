@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentFieldAttributesSingleValue A field with a single value selected.
 type IncidentFieldAttributesSingleValue struct {
@@ -17,9 +21,11 @@ type IncidentFieldAttributesSingleValue struct {
 	// The single value selected for this field.
 	Value NullableString `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentFieldAttributesSingleValue instantiates a new IncidentFieldAttributesSingleValue object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewIncidentFieldAttributesSingleValueWithDefaults() *IncidentFieldAttribute
 	this.Type = &type_
 	return &this
 }
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *IncidentFieldAttributesSingleValue) GetType() IncidentFieldAttributesSingleValueType {
 	if o == nil || o.Type == nil {
@@ -74,6 +79,7 @@ func (o *IncidentFieldAttributesSingleValue) SetType(v IncidentFieldAttributesSi
 	o.Type = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *IncidentFieldAttributesSingleValue) GetValue() string {
 	if o == nil || o.Value.Get() == nil {
@@ -87,7 +93,7 @@ func (o *IncidentFieldAttributesSingleValue) GetValue() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *IncidentFieldAttributesSingleValue) GetValueOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Value.Get(), o.Value.IsSet()
@@ -106,7 +112,6 @@ func (o *IncidentFieldAttributesSingleValue) HasValue() bool {
 func (o *IncidentFieldAttributesSingleValue) SetValue(v string) {
 	o.Value.Set(&v)
 }
-
 // SetValueNil sets the value for Value to be an explicit nil
 func (o *IncidentFieldAttributesSingleValue) SetValueNil() {
 	o.Value.Set(nil)
@@ -116,6 +121,8 @@ func (o *IncidentFieldAttributesSingleValue) SetValueNil() {
 func (o *IncidentFieldAttributesSingleValue) UnsetValue() {
 	o.Value.Unset()
 }
+
+
 
 func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -135,11 +142,12 @@ func (o IncidentFieldAttributesSingleValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Type  *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
-		Value NullableString                          `json:"value,omitempty"`
+		Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
+		Value NullableString `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -150,7 +158,7 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

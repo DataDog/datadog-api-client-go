@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,10 +16,11 @@ func main() {
 	// there is a valid "authn_mapping" in the system
 	AuthnMappingDataID := os.Getenv("AUTHN_MAPPING_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.AuthNMappingsApi.DeleteAuthNMapping(ctx, AuthnMappingDataID)
+	r, err := apiClient.AuthNMappingsApi.DeleteAuthNMapping(ctx, AuthnMappingDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.DeleteAuthNMapping`: %v\n", err)

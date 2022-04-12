@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // PartialApplicationKeyResponse Response for retrieving a partial application key.
 type PartialApplicationKeyResponse struct {
@@ -17,9 +21,11 @@ type PartialApplicationKeyResponse struct {
 	// Array of objects related to the application key.
 	Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPartialApplicationKeyResponse instantiates a new PartialApplicationKeyResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewPartialApplicationKeyResponseWithDefaults() *PartialApplicationKeyRespon
 	this := PartialApplicationKeyResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *PartialApplicationKeyResponse) GetData() PartialApplicationKey {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *PartialApplicationKeyResponse) HasData() bool {
 func (o *PartialApplicationKeyResponse) SetData(v PartialApplicationKey) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *PartialApplicationKeyResponse) GetIncluded() []ApplicationKeyResponseIncludedItem {
@@ -102,6 +108,8 @@ func (o *PartialApplicationKeyResponse) SetIncluded(v []ApplicationKeyResponseIn
 	o.Included = &v
 }
 
+
+
 func (o PartialApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o PartialApplicationKeyResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *PartialApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *PartialApplicationKey                `json:"data,omitempty"`
+		Data *PartialApplicationKey `json:"data,omitempty"`
 		Included *[]ApplicationKeyResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -135,13 +144,13 @@ func (o *PartialApplicationKeyResponse) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

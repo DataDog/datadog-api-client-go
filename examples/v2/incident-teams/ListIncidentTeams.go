@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,11 +15,12 @@ func main() {
 	// there is a valid "team" in the system
 	TeamDataAttributesName := os.Getenv("TEAM_DATA_ATTRIBUTES_NAME")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListIncidentTeams", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx, *datadog.NewListIncidentTeamsOptionalParameters().WithFilter(TeamDataAttributesName))
+	resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx, *datadog.NewListIncidentTeamsOptionalParameters().WithFilter(TeamDataAttributesName), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams`: %v\n", err)

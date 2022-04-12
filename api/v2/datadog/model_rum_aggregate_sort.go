@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMAggregateSort A sort rule.
 type RUMAggregateSort struct {
@@ -21,9 +25,11 @@ type RUMAggregateSort struct {
 	// The type of sorting algorithm.
 	Type *RUMAggregateSortType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMAggregateSort instantiates a new RUMAggregateSort object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +51,6 @@ func NewRUMAggregateSortWithDefaults() *RUMAggregateSort {
 	this.Type = &type_
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetAggregation() RUMAggregationFunction {
 	if o == nil || o.Aggregation == nil {
@@ -77,6 +82,7 @@ func (o *RUMAggregateSort) HasAggregation() bool {
 func (o *RUMAggregateSort) SetAggregation(v RUMAggregationFunction) {
 	o.Aggregation = &v
 }
+
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetMetric() string {
@@ -110,6 +116,7 @@ func (o *RUMAggregateSort) SetMetric(v string) {
 	o.Metric = &v
 }
 
+
 // GetOrder returns the Order field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetOrder() RUMSortOrder {
 	if o == nil || o.Order == nil {
@@ -141,6 +148,7 @@ func (o *RUMAggregateSort) HasOrder() bool {
 func (o *RUMAggregateSort) SetOrder(v RUMSortOrder) {
 	o.Order = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMAggregateSort) GetType() RUMAggregateSortType {
@@ -174,6 +182,8 @@ func (o *RUMAggregateSort) SetType(v RUMAggregateSortType) {
 	o.Type = &v
 }
 
+
+
 func (o RUMAggregateSort) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -198,13 +208,14 @@ func (o RUMAggregateSort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Aggregation *RUMAggregationFunction `json:"aggregation,omitempty"`
-		Metric      *string                 `json:"metric,omitempty"`
-		Order       *RUMSortOrder           `json:"order,omitempty"`
-		Type        *RUMAggregateSortType   `json:"type,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Order *RUMSortOrder `json:"order,omitempty"`
+		Type *RUMAggregateSortType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -215,7 +226,7 @@ func (o *RUMAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Aggregation; v != nil && !v.IsValid() {
+	if v := all.Aggregation; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -223,7 +234,7 @@ func (o *RUMAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Order; v != nil && !v.IsValid() {
+	if v := all.Order; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -231,7 +242,7 @@ func (o *RUMAggregateSort) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

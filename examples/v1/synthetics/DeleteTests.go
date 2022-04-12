@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,15 +15,16 @@ func main() {
 	// there is a valid "synthetics_api_test" in the system
 	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
+
 	body := datadog.SyntheticsDeleteTestsPayload{
-		PublicIds: &[]string{
-			SyntheticsAPITestPublicID,
-		},
-	}
+PublicIds: &[]string{
+SyntheticsAPITestPublicID,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.DeleteTests(ctx, body)
+	resp, r, err := apiClient.SyntheticsApi.DeleteTests(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.DeleteTests`: %v\n", err)

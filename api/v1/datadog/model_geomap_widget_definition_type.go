@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // GeomapWidgetDefinitionType Type of the geomap widget.
 type GeomapWidgetDefinitionType string

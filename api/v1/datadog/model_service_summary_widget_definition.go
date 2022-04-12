@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ServiceSummaryWidgetDefinition The service summary displays the graphs of a chosen service in your screenboard. Only available on FREE layout dashboards.
 type ServiceSummaryWidgetDefinition struct {
@@ -46,9 +49,11 @@ type ServiceSummaryWidgetDefinition struct {
 	// Type of the service summary widget.
 	Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -72,7 +77,6 @@ func NewServiceSummaryWidgetDefinitionWithDefaults() *ServiceSummaryWidgetDefini
 	this.Type = type_
 	return &this
 }
-
 // GetDisplayFormat returns the DisplayFormat field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetDisplayFormat() WidgetServiceSummaryDisplayFormat {
 	if o == nil || o.DisplayFormat == nil {
@@ -105,6 +109,7 @@ func (o *ServiceSummaryWidgetDefinition) SetDisplayFormat(v WidgetServiceSummary
 	o.DisplayFormat = &v
 }
 
+
 // GetEnv returns the Env field value
 func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 	if o == nil {
@@ -128,6 +133,7 @@ func (o *ServiceSummaryWidgetDefinition) SetEnv(v string) {
 	o.Env = v
 }
 
+
 // GetService returns the Service field value
 func (o *ServiceSummaryWidgetDefinition) GetService() string {
 	if o == nil {
@@ -150,6 +156,7 @@ func (o *ServiceSummaryWidgetDefinition) GetServiceOk() (*string, bool) {
 func (o *ServiceSummaryWidgetDefinition) SetService(v string) {
 	o.Service = v
 }
+
 
 // GetShowBreakdown returns the ShowBreakdown field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowBreakdown() bool {
@@ -183,6 +190,7 @@ func (o *ServiceSummaryWidgetDefinition) SetShowBreakdown(v bool) {
 	o.ShowBreakdown = &v
 }
 
+
 // GetShowDistribution returns the ShowDistribution field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowDistribution() bool {
 	if o == nil || o.ShowDistribution == nil {
@@ -214,6 +222,7 @@ func (o *ServiceSummaryWidgetDefinition) HasShowDistribution() bool {
 func (o *ServiceSummaryWidgetDefinition) SetShowDistribution(v bool) {
 	o.ShowDistribution = &v
 }
+
 
 // GetShowErrors returns the ShowErrors field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowErrors() bool {
@@ -247,6 +256,7 @@ func (o *ServiceSummaryWidgetDefinition) SetShowErrors(v bool) {
 	o.ShowErrors = &v
 }
 
+
 // GetShowHits returns the ShowHits field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowHits() bool {
 	if o == nil || o.ShowHits == nil {
@@ -278,6 +288,7 @@ func (o *ServiceSummaryWidgetDefinition) HasShowHits() bool {
 func (o *ServiceSummaryWidgetDefinition) SetShowHits(v bool) {
 	o.ShowHits = &v
 }
+
 
 // GetShowLatency returns the ShowLatency field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowLatency() bool {
@@ -311,6 +322,7 @@ func (o *ServiceSummaryWidgetDefinition) SetShowLatency(v bool) {
 	o.ShowLatency = &v
 }
 
+
 // GetShowResourceList returns the ShowResourceList field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetShowResourceList() bool {
 	if o == nil || o.ShowResourceList == nil {
@@ -342,6 +354,7 @@ func (o *ServiceSummaryWidgetDefinition) HasShowResourceList() bool {
 func (o *ServiceSummaryWidgetDefinition) SetShowResourceList(v bool) {
 	o.ShowResourceList = &v
 }
+
 
 // GetSizeFormat returns the SizeFormat field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetSizeFormat() WidgetSizeFormat {
@@ -375,6 +388,7 @@ func (o *ServiceSummaryWidgetDefinition) SetSizeFormat(v WidgetSizeFormat) {
 	o.SizeFormat = &v
 }
 
+
 // GetSpanName returns the SpanName field value
 func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 	if o == nil {
@@ -397,6 +411,7 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanNameOk() (*string, bool) {
 func (o *ServiceSummaryWidgetDefinition) SetSpanName(v string) {
 	o.SpanName = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetTime() WidgetTime {
@@ -430,6 +445,7 @@ func (o *ServiceSummaryWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -461,6 +477,7 @@ func (o *ServiceSummaryWidgetDefinition) HasTitle() bool {
 func (o *ServiceSummaryWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -494,6 +511,7 @@ func (o *ServiceSummaryWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ServiceSummaryWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -526,6 +544,7 @@ func (o *ServiceSummaryWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitionType {
 	if o == nil {
@@ -548,6 +567,8 @@ func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*ServiceSummaryWidgetDefin
 func (o *ServiceSummaryWidgetDefinition) SetType(v ServiceSummaryWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -601,31 +622,32 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Env      *string                             `json:"env"`
-		Service  *string                             `json:"service"`
-		SpanName *string                             `json:"span_name"`
-		Type     *ServiceSummaryWidgetDefinitionType `json:"type"`
+		Env *string `json:"env"`
+		Service *string `json:"service"`
+		SpanName *string `json:"span_name"`
+		Type *ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		DisplayFormat    *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
-		Env              string                             `json:"env"`
-		Service          string                             `json:"service"`
-		ShowBreakdown    *bool                              `json:"show_breakdown,omitempty"`
-		ShowDistribution *bool                              `json:"show_distribution,omitempty"`
-		ShowErrors       *bool                              `json:"show_errors,omitempty"`
-		ShowHits         *bool                              `json:"show_hits,omitempty"`
-		ShowLatency      *bool                              `json:"show_latency,omitempty"`
-		ShowResourceList *bool                              `json:"show_resource_list,omitempty"`
-		SizeFormat       *WidgetSizeFormat                  `json:"size_format,omitempty"`
-		SpanName         string                             `json:"span_name"`
-		Time             *WidgetTime                        `json:"time,omitempty"`
-		Title            *string                            `json:"title,omitempty"`
-		TitleAlign       *WidgetTextAlign                   `json:"title_align,omitempty"`
-		TitleSize        *string                            `json:"title_size,omitempty"`
-		Type             ServiceSummaryWidgetDefinitionType `json:"type"`
+		DisplayFormat *WidgetServiceSummaryDisplayFormat `json:"display_format,omitempty"`
+		Env string `json:"env"`
+		Service string `json:"service"`
+		ShowBreakdown *bool `json:"show_breakdown,omitempty"`
+		ShowDistribution *bool `json:"show_distribution,omitempty"`
+		ShowErrors *bool `json:"show_errors,omitempty"`
+		ShowHits *bool `json:"show_hits,omitempty"`
+		ShowLatency *bool `json:"show_latency,omitempty"`
+		ShowResourceList *bool `json:"show_resource_list,omitempty"`
+		SizeFormat *WidgetSizeFormat `json:"size_format,omitempty"`
+		SpanName string `json:"span_name"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type ServiceSummaryWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -652,7 +674,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.DisplayFormat; v != nil && !v.IsValid() {
+	if v := all.DisplayFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -660,7 +682,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.SizeFormat; v != nil && !v.IsValid() {
+	if v := all.SizeFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -668,7 +690,7 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -695,13 +717,13 @@ func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error)
 	o.ShowResourceList = all.ShowResourceList
 	o.SizeFormat = all.SizeFormat
 	o.SpanName = all.SpanName
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign

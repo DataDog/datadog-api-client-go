@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type RUMApiService service
 type apiAggregateRUMEventsRequest struct {
 	ctx        _context.Context
 	ApiService *RUMApiService
-	body       *RUMAggregateRequest
+	body *RUMAggregateRequest
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggrega
 	req := apiAggregateRUMEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.aggregateRUMEventsExecute(req)
@@ -49,9 +51,9 @@ func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggrega
  */
 func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue RUMAnalyticsAggregateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  RUMAnalyticsAggregateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.AggregateRUMEvents")
@@ -183,23 +185,23 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 }
 
 type apiListRUMEventsRequest struct {
-	ctx         _context.Context
-	ApiService  *RUMApiService
+	ctx        _context.Context
+	ApiService *RUMApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *RUMSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *RUMSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListRUMEventsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *RUMSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *RUMSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 func NewListRUMEventsOptionalParameters() *ListRUMEventsOptionalParameters {
@@ -269,9 +271,9 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
  */
 func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue RUMEventsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  RUMEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.ListRUMEvents")
@@ -408,7 +410,7 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 type apiSearchRUMEventsRequest struct {
 	ctx        _context.Context
 	ApiService *RUMApiService
-	body       *RUMSearchEventsRequest
+	body *RUMSearchEventsRequest
 }
 
 /*
@@ -424,7 +426,7 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
 	req := apiSearchRUMEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.searchRUMEventsExecute(req)
@@ -436,9 +438,9 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
  */
 func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue RUMEventsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  RUMEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "RUMApiService.SearchRUMEvents")

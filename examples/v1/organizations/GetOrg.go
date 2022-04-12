@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OrganizationsApi.GetOrg(ctx, "abc123")
+	resp, r, err := apiClient.OrganizationsApi.GetOrg(ctx, "abc123", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OrganizationsApi.GetOrg`: %v\n", err)

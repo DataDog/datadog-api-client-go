@@ -2,12 +2,11 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"strconv"
 
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
@@ -16,13 +15,14 @@ func main() {
 	// there is a valid "downtime" in the system
 	DowntimeID, _ := strconv.ParseInt(os.Getenv("DOWNTIME_ID"), 10, 64)
 
+
 	body := datadog.Downtime{
-		Message: datadog.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
-	}
+Message: datadog.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, DowntimeID, body)
+	resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, DowntimeID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime`: %v\n", err)

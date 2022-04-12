@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookCreateDataAttributes The data attributes of a notebook.
 type NotebookCreateDataAttributes struct {
@@ -24,9 +27,11 @@ type NotebookCreateDataAttributes struct {
 	// Notebook global timeframe.
 	Time NotebookGlobalTime `json:"time"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -51,7 +56,6 @@ func NewNotebookCreateDataAttributesWithDefaults() *NotebookCreateDataAttributes
 	this.Status = &status
 	return &this
 }
-
 // GetCells returns the Cells field value
 func (o *NotebookCreateDataAttributes) GetCells() []NotebookCellCreateRequest {
 	if o == nil {
@@ -74,6 +78,7 @@ func (o *NotebookCreateDataAttributes) GetCellsOk() (*[]NotebookCellCreateReques
 func (o *NotebookCreateDataAttributes) SetCells(v []NotebookCellCreateRequest) {
 	o.Cells = v
 }
+
 
 // GetMetadata returns the Metadata field value if set, zero value otherwise.
 func (o *NotebookCreateDataAttributes) GetMetadata() NotebookMetadata {
@@ -107,6 +112,7 @@ func (o *NotebookCreateDataAttributes) SetMetadata(v NotebookMetadata) {
 	o.Metadata = &v
 }
 
+
 // GetName returns the Name field value
 func (o *NotebookCreateDataAttributes) GetName() string {
 	if o == nil {
@@ -129,6 +135,7 @@ func (o *NotebookCreateDataAttributes) GetNameOk() (*string, bool) {
 func (o *NotebookCreateDataAttributes) SetName(v string) {
 	o.Name = v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *NotebookCreateDataAttributes) GetStatus() NotebookStatus {
@@ -162,6 +169,7 @@ func (o *NotebookCreateDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
+
 // GetTime returns the Time field value
 func (o *NotebookCreateDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil {
@@ -185,6 +193,8 @@ func (o *NotebookCreateDataAttributes) SetTime(v NotebookGlobalTime) {
 	o.Time = v
 }
 
+
+
 func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -206,19 +216,20 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Cells *[]NotebookCellCreateRequest `json:"cells"`
-		Name  *string                      `json:"name"`
-		Time  *NotebookGlobalTime          `json:"time"`
+		Name *string `json:"name"`
+		Time *NotebookGlobalTime `json:"time"`
 	}{}
 	all := struct {
-		Cells    []NotebookCellCreateRequest `json:"cells"`
-		Metadata *NotebookMetadata           `json:"metadata,omitempty"`
-		Name     string                      `json:"name"`
-		Status   *NotebookStatus             `json:"status,omitempty"`
-		Time     NotebookGlobalTime          `json:"time"`
+		Cells []NotebookCellCreateRequest `json:"cells"`
+		Metadata *NotebookMetadata `json:"metadata,omitempty"`
+		Name string `json:"name"`
+		Status *NotebookStatus `json:"status,omitempty"`
+		Time NotebookGlobalTime `json:"time"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -242,7 +253,7 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -251,13 +262,13 @@ func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Cells = all.Cells
-	if all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Metadata != nil && all.Metadata.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Metadata = all.Metadata
 	o.Name = all.Name
 	o.Status = all.Status

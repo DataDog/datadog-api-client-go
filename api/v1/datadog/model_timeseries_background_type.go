@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // TimeseriesBackgroundType Timeseries is made using an area or bars.
 type TimeseriesBackgroundType string

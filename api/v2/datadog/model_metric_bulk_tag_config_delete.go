@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricBulkTagConfigDelete Request object to bulk delete all tag configurations for metrics matching the given prefix.
 type MetricBulkTagConfigDelete struct {
@@ -20,9 +23,11 @@ type MetricBulkTagConfigDelete struct {
 	// The metric bulk configure tags resource.
 	Type MetricBulkConfigureTagsType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricBulkTagConfigDelete instantiates a new MetricBulkTagConfigDelete object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewMetricBulkTagConfigDeleteWithDefaults() *MetricBulkTagConfigDelete {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *MetricBulkTagConfigDelete) GetAttributes() MetricBulkTagConfigDeleteAttributes {
 	if o == nil || o.Attributes == nil {
@@ -77,6 +81,7 @@ func (o *MetricBulkTagConfigDelete) SetAttributes(v MetricBulkTagConfigDeleteAtt
 	o.Attributes = &v
 }
 
+
 // GetId returns the Id field value
 func (o *MetricBulkTagConfigDelete) GetId() string {
 	if o == nil {
@@ -99,6 +104,7 @@ func (o *MetricBulkTagConfigDelete) GetIdOk() (*string, bool) {
 func (o *MetricBulkTagConfigDelete) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value
 func (o *MetricBulkTagConfigDelete) GetType() MetricBulkConfigureTagsType {
@@ -123,6 +129,8 @@ func (o *MetricBulkTagConfigDelete) SetType(v MetricBulkConfigureTagsType) {
 	o.Type = v
 }
 
+
+
 func (o MetricBulkTagConfigDelete) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,16 +148,17 @@ func (o MetricBulkTagConfigDelete) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricBulkTagConfigDelete) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string                      `json:"id"`
+		Id *string `json:"id"`
 		Type *MetricBulkConfigureTagsType `json:"type"`
 	}{}
 	all := struct {
 		Attributes *MetricBulkTagConfigDeleteAttributes `json:"attributes,omitempty"`
-		Id         string                               `json:"id"`
-		Type       MetricBulkConfigureTagsType          `json:"type"`
+		Id string `json:"id"`
+		Type MetricBulkConfigureTagsType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -178,13 +187,13 @@ func (o *MetricBulkTagConfigDelete) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Id = all.Id
 	o.Type = all.Type

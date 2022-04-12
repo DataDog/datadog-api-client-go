@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,30 +13,30 @@ import (
 
 func main() {
 	body := datadog.AWSAccount{
-		AccountId: datadog.PtrString("1234567"),
-		AccountSpecificNamespaceRules: map[string]bool{
-			"auto_scaling": false,
-			"opswork":      false,
-		},
-		CspmResourceCollectionEnabled: datadog.PtrBool(true),
-		ExcludedRegions: &[]string{
-			"us-east-1",
-			"us-west-2",
-		},
-		FilterTags: &[]string{
-			"$KEY:$VALUE",
-		},
-		HostTags: &[]string{
-			"$KEY:$VALUE",
-		},
-		MetricsCollectionEnabled:  datadog.PtrBool(false),
-		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("DatadogAWSIntegrationRole"),
-	}
+AccountId: datadog.PtrString("1234567"),
+AccountSpecificNamespaceRules: map[string]bool{
+"auto_scaling": false,
+"opswork": false,
+},
+CspmResourceCollectionEnabled: datadog.PtrBool(true),
+ExcludedRegions: &[]string{
+"us-east-1",
+"us-west-2",
+},
+FilterTags: &[]string{
+"$KEY:$VALUE",
+},
+HostTags: &[]string{
+"$KEY:$VALUE",
+},
+MetricsCollectionEnabled: datadog.PtrBool(false),
+ResourceCollectionEnabled: datadog.PtrBool(true),
+RoleName: datadog.PtrString("DatadogAWSIntegrationRole"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.CreateAWSAccount(ctx, body)
+	resp, r, err := apiClient.AWSIntegrationApi.CreateAWSAccount(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSAccount`: %v\n", err)

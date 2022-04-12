@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type LogsApiService service
 type apiAggregateLogsRequest struct {
 	ctx        _context.Context
 	ApiService *LogsApiService
-	body       *LogsAggregateRequest
+	body *LogsAggregateRequest
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateR
 	req := apiAggregateLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.aggregateLogsExecute(req)
@@ -49,9 +51,9 @@ func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateR
  */
 func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue LogsAggregateResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsAggregateResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.AggregateLogs")
@@ -185,7 +187,7 @@ func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAg
 type apiListLogsRequest struct {
 	ctx        _context.Context
 	ApiService *LogsApiService
-	body       *LogsListRequest
+	body *LogsListRequest
 }
 
 type ListLogsOptionalParameters struct {
@@ -239,9 +241,9 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalPar
  */
 func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue LogsListResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
@@ -370,25 +372,25 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 }
 
 type apiListLogsGetRequest struct {
-	ctx         _context.Context
-	ApiService  *LogsApiService
+	ctx        _context.Context
+	ApiService *LogsApiService
 	filterQuery *string
 	filterIndex *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *LogsSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *LogsSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListLogsGetOptionalParameters struct {
 	FilterQuery *string
 	FilterIndex *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *LogsSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *LogsSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 func NewListLogsGetOptionalParameters() *ListLogsGetOptionalParameters {
@@ -468,9 +470,9 @@ func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptio
  */
 func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogsGet")
@@ -608,16 +610,16 @@ func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListRe
 }
 
 type apiSubmitLogRequest struct {
-	ctx             _context.Context
-	ApiService      *LogsApiService
-	body            *[]HTTPLogItem
+	ctx        _context.Context
+	ApiService *LogsApiService
+	body *[]HTTPLogItem
 	contentEncoding *ContentEncoding
-	ddtags          *string
+	ddtags *string
 }
 
 type SubmitLogOptionalParameters struct {
 	ContentEncoding *ContentEncoding
-	Ddtags          *string
+	Ddtags *string
 }
 
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
@@ -663,7 +665,7 @@ func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o .
 	req := apiSubmitLogRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	if len(o) > 1 {
@@ -685,9 +687,9 @@ func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o .
  */
 func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsApiService.SubmitLog")

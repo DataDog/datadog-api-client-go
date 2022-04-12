@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricAllTagsAttributes Object containing the definition of a metric's tags.
 type MetricAllTagsAttributes struct {
 	// List of indexed tag value pairs.
 	Tags *[]string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricAllTagsAttributes instantiates a new MetricAllTagsAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMetricAllTagsAttributesWithDefaults() *MetricAllTagsAttributes {
 	this := MetricAllTagsAttributes{}
 	return &this
 }
-
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *MetricAllTagsAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -68,6 +73,8 @@ func (o *MetricAllTagsAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
 
+
+
 func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

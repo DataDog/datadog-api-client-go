@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"time"
 )
 
 // Linger please
@@ -24,23 +26,23 @@ var (
 type AuditApiService service
 
 type apiListAuditLogsRequest struct {
-	ctx         _context.Context
-	ApiService  *AuditApiService
+	ctx        _context.Context
+	ApiService *AuditApiService
 	filterQuery *string
-	filterFrom  *time.Time
-	filterTo    *time.Time
-	sort        *AuditLogsSort
-	pageCursor  *string
-	pageLimit   *int32
+	filterFrom *time.Time
+	filterTo *time.Time
+	sort *AuditLogsSort
+	pageCursor *string
+	pageLimit *int32
 }
 
 type ListAuditLogsOptionalParameters struct {
 	FilterQuery *string
-	FilterFrom  *time.Time
-	FilterTo    *time.Time
-	Sort        *AuditLogsSort
-	PageCursor  *string
-	PageLimit   *int32
+	FilterFrom *time.Time
+	FilterTo *time.Time
+	Sort *AuditLogsSort
+	PageCursor *string
+	PageLimit *int32
 }
 
 func NewListAuditLogsOptionalParameters() *ListAuditLogsOptionalParameters {
@@ -110,9 +112,9 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
  */
 func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue AuditLogsEventsResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  AuditLogsEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.ListAuditLogs")
@@ -249,7 +251,7 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 type apiSearchAuditLogsRequest struct {
 	ctx        _context.Context
 	ApiService *AuditApiService
-	body       *AuditLogsSearchEventsRequest
+	body *AuditLogsSearchEventsRequest
 }
 
 type SearchAuditLogsOptionalParameters struct {
@@ -298,9 +300,9 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
  */
 func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue AuditLogsEventsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  AuditLogsEventsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "AuditApiService.SearchAuditLogs")

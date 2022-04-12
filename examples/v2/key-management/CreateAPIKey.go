@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,17 +13,17 @@ import (
 
 func main() {
 	body := datadog.APIKeyCreateRequest{
-		Data: datadog.APIKeyCreateData{
-			Type: datadog.APIKEYSTYPE_API_KEYS,
-			Attributes: datadog.APIKeyCreateAttributes{
-				Name: "Example-Create_an_API_key_returns_Created_response",
-			},
-		},
-	}
+Data: datadog.APIKeyCreateData{
+Type: datadog.APIKEYSTYPE_API_KEYS,
+Attributes: datadog.APIKeyCreateAttributes{
+Name: "Example-Create_an_API_key_returns_Created_response",
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.CreateAPIKey(ctx, body)
+	resp, r, err := apiClient.KeyManagementApi.CreateAPIKey(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.CreateAPIKey`: %v\n", err)

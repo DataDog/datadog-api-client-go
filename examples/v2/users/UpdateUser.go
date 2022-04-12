@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,20 +15,21 @@ func main() {
 	// there is a valid "user" in the system
 	UserDataID := os.Getenv("USER_DATA_ID")
 
+
 	body := datadog.UserUpdateRequest{
-		Data: datadog.UserUpdateData{
-			Id:   UserDataID,
-			Type: datadog.USERSTYPE_USERS,
-			Attributes: datadog.UserUpdateAttributes{
-				Name:     datadog.PtrString("updated"),
-				Disabled: datadog.PtrBool(true),
-			},
-		},
-	}
+Data: datadog.UserUpdateData{
+Id: UserDataID,
+Type: datadog.USERSTYPE_USERS,
+Attributes: datadog.UserUpdateAttributes{
+Name: datadog.PtrString("updated"),
+Disabled: datadog.PtrBool(true),
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.UpdateUser(ctx, UserDataID, body)
+	resp, r, err := apiClient.UsersApi.UpdateUser(ctx, UserDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.UpdateUser`: %v\n", err)

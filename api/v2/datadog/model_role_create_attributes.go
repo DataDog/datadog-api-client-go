@@ -4,13 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
-	"time"
+
 )
+
 
 // RoleCreateAttributes Attributes of the created role.
 type RoleCreateAttributes struct {
@@ -21,9 +23,11 @@ type RoleCreateAttributes struct {
 	// Name of the role.
 	Name string `json:"name"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleCreateAttributes instantiates a new RoleCreateAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +46,6 @@ func NewRoleCreateAttributesWithDefaults() *RoleCreateAttributes {
 	this := RoleCreateAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *RoleCreateAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -74,6 +77,7 @@ func (o *RoleCreateAttributes) HasCreatedAt() bool {
 func (o *RoleCreateAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *RoleCreateAttributes) GetModifiedAt() time.Time {
@@ -107,6 +111,7 @@ func (o *RoleCreateAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetName returns the Name field value
 func (o *RoleCreateAttributes) GetName() string {
 	if o == nil {
@@ -130,6 +135,8 @@ func (o *RoleCreateAttributes) SetName(v string) {
 	o.Name = v
 }
 
+
+
 func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -149,15 +156,16 @@ func (o RoleCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RoleCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Name *string `json:"name"`
 	}{}
 	all := struct {
-		CreatedAt  *time.Time `json:"created_at,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
 		ModifiedAt *time.Time `json:"modified_at,omitempty"`
-		Name       string     `json:"name"`
+		Name string `json:"name"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

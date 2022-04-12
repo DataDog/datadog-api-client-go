@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentTeamUpdateRequest Update request with an incident team payload.
 type IncidentTeamUpdateRequest struct {
 	// Incident Team data for an update request.
 	Data IncidentTeamUpdateData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentTeamUpdateRequest instantiates a new IncidentTeamUpdateRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewIncidentTeamUpdateRequestWithDefaults() *IncidentTeamUpdateRequest {
 	this := IncidentTeamUpdateRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *IncidentTeamUpdateRequest) GetData() IncidentTeamUpdateData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *IncidentTeamUpdateRequest) SetData(v IncidentTeamUpdateData) {
 	o.Data = v
 }
 
+
+
 func (o IncidentTeamUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o IncidentTeamUpdateRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *IncidentTeamUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
@@ -98,13 +105,13 @@ func (o *IncidentTeamUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

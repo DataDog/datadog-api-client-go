@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,26 +13,26 @@ import (
 
 func main() {
 	body := datadog.LogsIndex{
-		DailyLimit: datadog.PtrInt64(300000000),
-		ExclusionFilters: &[]datadog.LogsExclusion{
-			{
-				Filter: &datadog.LogsExclusionFilter{
-					Query:      datadog.PtrString("*"),
-					SampleRate: 1.0,
-				},
-				Name: "payment",
-			},
-		},
-		Filter: datadog.LogsFilter{
-			Query: datadog.PtrString("source:python"),
-		},
-		Name:             "main",
-		NumRetentionDays: datadog.PtrInt64(15),
-	}
+DailyLimit: datadog.PtrInt64(300000000),
+ExclusionFilters: &[]datadog.LogsExclusion{
+{
+Filter: &datadog.LogsExclusionFilter{
+Query: datadog.PtrString("*"),
+SampleRate: 1.0,
+},
+Name: "payment",
+},
+},
+Filter: datadog.LogsFilter{
+Query: datadog.PtrString("source:python"),
+},
+Name: "main",
+NumRetentionDays: datadog.PtrInt64(15),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx, body)
+	resp, r, err := apiClient.LogsIndexesApi.CreateLogsIndex(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.CreateLogsIndex`: %v\n", err)

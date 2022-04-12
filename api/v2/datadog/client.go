@@ -4,13 +4,14 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
-	"compress/gzip"
-	"compress/zlib"
 	"context"
+	"compress/zlib"
+	"compress/gzip"
 	"encoding/json"
 	"encoding/xml"
 	"errors"
@@ -28,6 +29,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"golang.org/x/oauth2"
 )
@@ -85,8 +87,8 @@ type APIClient struct {
 // FormFile holds parameters for a file in multipart/form-data request
 type FormFile struct {
 	formFileName string
-	fileName     string
-	fileBytes    []byte
+	fileName string
+	fileBytes []byte
 }
 
 type service struct {
@@ -262,7 +264,7 @@ func (c *APIClient) PrepareRequest(
 	headerParams map[string]string,
 	queryParams url.Values,
 	formParams url.Values,
-	formFile *FormFile) (localVarRequest *http.Request, err error) {
+        formFile *FormFile) (localVarRequest *http.Request, err error) {
 
 	var body *bytes.Buffer
 

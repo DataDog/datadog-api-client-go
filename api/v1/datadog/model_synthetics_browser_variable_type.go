@@ -4,23 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserVariableType Type of browser test variable.
 type SyntheticsBrowserVariableType string
 
 // List of SyntheticsBrowserVariableType
 const (
-	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT    SyntheticsBrowserVariableType = "element"
-	SYNTHETICSBROWSERVARIABLETYPE_EMAIL      SyntheticsBrowserVariableType = "email"
-	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL     SyntheticsBrowserVariableType = "global"
+	SYNTHETICSBROWSERVARIABLETYPE_ELEMENT SyntheticsBrowserVariableType = "element"
+	SYNTHETICSBROWSERVARIABLETYPE_EMAIL SyntheticsBrowserVariableType = "email"
+	SYNTHETICSBROWSERVARIABLETYPE_GLOBAL SyntheticsBrowserVariableType = "global"
 	SYNTHETICSBROWSERVARIABLETYPE_JAVASCRIPT SyntheticsBrowserVariableType = "javascript"
-	SYNTHETICSBROWSERVARIABLETYPE_TEXT       SyntheticsBrowserVariableType = "text"
+	SYNTHETICSBROWSERVARIABLETYPE_TEXT SyntheticsBrowserVariableType = "text"
 )
 
 var allowedSyntheticsBrowserVariableTypeEnumValues = []SyntheticsBrowserVariableType{

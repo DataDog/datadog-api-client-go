@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AuditLogsSort Sort parameters when querying events.
 type AuditLogsSort string
 
 // List of AuditLogsSort
 const (
-	AUDITLOGSSORT_TIMESTAMP_ASCENDING  AuditLogsSort = "timestamp"
+	AUDITLOGSSORT_TIMESTAMP_ASCENDING AuditLogsSort = "timestamp"
 	AUDITLOGSSORT_TIMESTAMP_DESCENDING AuditLogsSort = "-timestamp"
 )
 

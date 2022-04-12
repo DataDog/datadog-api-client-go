@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,15 +13,15 @@ import (
 
 func main() {
 	body := []datadog.HTTPLogItem{
-		{
-			Message: "Example-Send_gzip_logs_returns_Response_from_server_always_200_empty_JSON_response",
-			Ddtags:  datadog.PtrString("host:ExampleSendgziplogsreturnsResponsefromserveralways200emptyJSONresponse"),
-		},
-	}
+{
+Message: "Example-Send_gzip_logs_returns_Response_from_server_always_200_empty_JSON_response",
+Ddtags: datadog.PtrString("host:ExampleSendgziplogsreturnsResponsefromserveralways200emptyJSONresponse"),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsApi.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters().WithContentEncoding(datadog.CONTENTENCODING_GZIP))
+	resp, r, err := apiClient.LogsApi.SubmitLog(ctx, body, *datadog.NewSubmitLogOptionalParameters().WithContentEncoding(datadog.CONTENTENCODING_GZIP), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsApi.SubmitLog`: %v\n", err)

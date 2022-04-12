@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // HTTPLogError Invalid query performed.
 type HTTPLogError struct {
@@ -18,9 +21,11 @@ type HTTPLogError struct {
 	// Error message.
 	Message string `json:"message"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHTTPLogError instantiates a new HTTPLogError object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewHTTPLogErrorWithDefaults() *HTTPLogError {
 	this := HTTPLogError{}
 	return &this
 }
-
 // GetCode returns the Code field value
 func (o *HTTPLogError) GetCode() int32 {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *HTTPLogError) GetCodeOk() (*int32, bool) {
 func (o *HTTPLogError) SetCode(v int32) {
 	o.Code = v
 }
+
 
 // GetMessage returns the Message field value
 func (o *HTTPLogError) GetMessage() string {
@@ -87,6 +92,8 @@ func (o *HTTPLogError) SetMessage(v string) {
 	o.Message = v
 }
 
+
+
 func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,14 +108,15 @@ func (o HTTPLogError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HTTPLogError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Code    *int32  `json:"code"`
+		Code *int32 `json:"code"`
 		Message *string `json:"message"`
 	}{}
 	all := struct {
-		Code    int32  `json:"code"`
+		Code int32 `json:"code"`
 		Message string `json:"message"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

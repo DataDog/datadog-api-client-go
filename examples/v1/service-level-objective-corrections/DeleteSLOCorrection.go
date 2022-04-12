@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +17,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("DeleteSLOCorrection", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, "slo_correction_id")
+	r, err := apiClient.ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection(ctx, "slo_correction_id", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectiveCorrectionsApi.DeleteSLOCorrection`: %v\n", err)

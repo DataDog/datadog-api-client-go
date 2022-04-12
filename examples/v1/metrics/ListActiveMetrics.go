@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx, 9223372036854775807, *datadog.NewListActiveMetricsOptionalParameters())
+	resp, r, err := apiClient.MetricsApi.ListActiveMetrics(ctx, 9223372036854775807, *datadog.NewListActiveMetricsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.ListActiveMetrics`: %v\n", err)

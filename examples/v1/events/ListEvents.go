@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.EventsApi.ListEvents(ctx, 9223372036854775807, 9223372036854775807, *datadog.NewListEventsOptionalParameters())
+	resp, r, err := apiClient.EventsApi.ListEvents(ctx, 9223372036854775807, 9223372036854775807, *datadog.NewListEventsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `EventsApi.ListEvents`: %v\n", err)

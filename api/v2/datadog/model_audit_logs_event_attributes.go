@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // AuditLogsEventAttributes JSON object containing all event attributes and their associated values.
 type AuditLogsEventAttributes struct {
@@ -24,9 +27,11 @@ type AuditLogsEventAttributes struct {
 	// Timestamp of your event.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAuditLogsEventAttributes instantiates a new AuditLogsEventAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -44,7 +49,6 @@ func NewAuditLogsEventAttributesWithDefaults() *AuditLogsEventAttributes {
 	this := AuditLogsEventAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -76,6 +80,7 @@ func (o *AuditLogsEventAttributes) HasAttributes() bool {
 func (o *AuditLogsEventAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetService returns the Service field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetService() string {
@@ -109,6 +114,7 @@ func (o *AuditLogsEventAttributes) SetService(v string) {
 	o.Service = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -140,6 +146,7 @@ func (o *AuditLogsEventAttributes) HasTags() bool {
 func (o *AuditLogsEventAttributes) SetTags(v []string) {
 	o.Tags = &v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *AuditLogsEventAttributes) GetTimestamp() time.Time {
@@ -173,6 +180,8 @@ func (o *AuditLogsEventAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+
+
 func (o AuditLogsEventAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -197,13 +206,14 @@ func (o AuditLogsEventAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AuditLogsEventAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Service    *string                `json:"service,omitempty"`
-		Tags       *[]string              `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Service *string `json:"service,omitempty"`
+		Tags *[]string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ToplistWidgetDefinition The top list visualization enables you to display a list of Tag value like hostname or service with the most or least of any metric value, such as highest consumers of CPU, hosts with the least disk space, etc.
 type ToplistWidgetDefinition struct {
@@ -28,9 +31,11 @@ type ToplistWidgetDefinition struct {
 	// Type of the top list widget.
 	Type ToplistWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewToplistWidgetDefinition instantiates a new ToplistWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewToplistWidgetDefinitionWithDefaults() *ToplistWidgetDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -85,6 +89,7 @@ func (o *ToplistWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = &v
 }
 
+
 // GetRequests returns the Requests field value
 func (o *ToplistWidgetDefinition) GetRequests() []ToplistWidgetRequest {
 	if o == nil {
@@ -107,6 +112,7 @@ func (o *ToplistWidgetDefinition) GetRequestsOk() (*[]ToplistWidgetRequest, bool
 func (o *ToplistWidgetDefinition) SetRequests(v []ToplistWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTime() WidgetTime {
@@ -140,6 +146,7 @@ func (o *ToplistWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -171,6 +178,7 @@ func (o *ToplistWidgetDefinition) HasTitle() bool {
 func (o *ToplistWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -204,6 +212,7 @@ func (o *ToplistWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *ToplistWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -236,6 +245,7 @@ func (o *ToplistWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *ToplistWidgetDefinition) GetType() ToplistWidgetDefinitionType {
 	if o == nil {
@@ -258,6 +268,8 @@ func (o *ToplistWidgetDefinition) GetTypeOk() (*ToplistWidgetDefinitionType, boo
 func (o *ToplistWidgetDefinition) SetType(v ToplistWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -288,20 +300,21 @@ func (o ToplistWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]ToplistWidgetRequest      `json:"requests"`
-		Type     *ToplistWidgetDefinitionType `json:"type"`
+		Requests *[]ToplistWidgetRequest `json:"requests"`
+		Type *ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink         `json:"custom_links,omitempty"`
-		Requests    []ToplistWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                 `json:"time,omitempty"`
-		Title       *string                     `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign            `json:"title_align,omitempty"`
-		TitleSize   *string                     `json:"title_size,omitempty"`
-		Type        ToplistWidgetDefinitionType `json:"type"`
+		CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+		Requests []ToplistWidgetRequest `json:"requests"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type ToplistWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -322,7 +335,7 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -340,13 +353,13 @@ func (o *ToplistWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.CustomLinks = all.CustomLinks
 	o.Requests = all.Requests
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign

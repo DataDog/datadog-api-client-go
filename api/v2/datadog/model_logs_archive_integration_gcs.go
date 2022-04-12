@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArchiveIntegrationGCS The GCS archive's integration destination.
 type LogsArchiveIntegrationGCS struct {
@@ -18,9 +21,11 @@ type LogsArchiveIntegrationGCS struct {
 	// A project ID.
 	ProjectId string `json:"project_id"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsArchiveIntegrationGCS instantiates a new LogsArchiveIntegrationGCS object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewLogsArchiveIntegrationGCSWithDefaults() *LogsArchiveIntegrationGCS {
 	this := LogsArchiveIntegrationGCS{}
 	return &this
 }
-
 // GetClientEmail returns the ClientEmail field value
 func (o *LogsArchiveIntegrationGCS) GetClientEmail() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *LogsArchiveIntegrationGCS) GetClientEmailOk() (*string, bool) {
 func (o *LogsArchiveIntegrationGCS) SetClientEmail(v string) {
 	o.ClientEmail = v
 }
+
 
 // GetProjectId returns the ProjectId field value
 func (o *LogsArchiveIntegrationGCS) GetProjectId() string {
@@ -87,6 +92,8 @@ func (o *LogsArchiveIntegrationGCS) SetProjectId(v string) {
 	o.ProjectId = v
 }
 
+
+
 func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,15 +108,16 @@ func (o LogsArchiveIntegrationGCS) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsArchiveIntegrationGCS) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		ClientEmail *string `json:"client_email"`
-		ProjectId   *string `json:"project_id"`
+		ProjectId *string `json:"project_id"`
 	}{}
 	all := struct {
 		ClientEmail string `json:"client_email"`
-		ProjectId   string `json:"project_id"`
+		ProjectId string `json:"project_id"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

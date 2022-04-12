@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SyntheticsBrowserErrorType Error type returned by a browser test.
 type SyntheticsBrowserErrorType string
@@ -17,7 +20,7 @@ type SyntheticsBrowserErrorType string
 // List of SyntheticsBrowserErrorType
 const (
 	SYNTHETICSBROWSERERRORTYPE_NETWORK SyntheticsBrowserErrorType = "network"
-	SYNTHETICSBROWSERERRORTYPE_JS      SyntheticsBrowserErrorType = "js"
+	SYNTHETICSBROWSERERRORTYPE_JS SyntheticsBrowserErrorType = "js"
 )
 
 var allowedSyntheticsBrowserErrorTypeEnumValues = []SyntheticsBrowserErrorType{

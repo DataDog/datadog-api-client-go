@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorGroupSearchResponseCounts The counts of monitor groups per different criteria.
 type MonitorGroupSearchResponseCounts struct {
@@ -17,9 +21,11 @@ type MonitorGroupSearchResponseCounts struct {
 	// Search facets.
 	Type *[]MonitorSearchCountItem `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorGroupSearchResponseCounts instantiates a new MonitorGroupSearchResponseCounts object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewMonitorGroupSearchResponseCountsWithDefaults() *MonitorGroupSearchRespon
 	this := MonitorGroupSearchResponseCounts{}
 	return &this
 }
-
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponseCounts) GetStatus() []MonitorSearchCountItem {
 	if o == nil || o.Status == nil {
@@ -69,6 +74,7 @@ func (o *MonitorGroupSearchResponseCounts) HasStatus() bool {
 func (o *MonitorGroupSearchResponseCounts) SetStatus(v []MonitorSearchCountItem) {
 	o.Status = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *MonitorGroupSearchResponseCounts) GetType() []MonitorSearchCountItem {
@@ -102,6 +108,8 @@ func (o *MonitorGroupSearchResponseCounts) SetType(v []MonitorSearchCountItem) {
 	o.Type = &v
 }
 
+
+
 func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o MonitorGroupSearchResponseCounts) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorGroupSearchResponseCounts) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Status *[]MonitorSearchCountItem `json:"status,omitempty"`
-		Type   *[]MonitorSearchCountItem `json:"type,omitempty"`
+		Type *[]MonitorSearchCountItem `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMSortOrder The order to use, ascending or descending.
 type RUMSortOrder string
 
 // List of RUMSortOrder
 const (
-	RUMSORTORDER_ASCENDING  RUMSortOrder = "asc"
+	RUMSORTORDER_ASCENDING RUMSortOrder = "asc"
 	RUMSORTORDER_DESCENDING RUMSortOrder = "desc"
 )
 

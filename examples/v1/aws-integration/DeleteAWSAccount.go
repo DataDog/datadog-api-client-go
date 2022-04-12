@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,13 +13,13 @@ import (
 
 func main() {
 	body := datadog.AWSAccountDeleteRequest{
-		AccountId: datadog.PtrString("1234567"),
-		RoleName:  datadog.PtrString("DatadogAWSIntegrationRole"),
-	}
+AccountId: datadog.PtrString("1234567"),
+RoleName: datadog.PtrString("DatadogAWSIntegrationRole"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSAccount(ctx, body)
+	resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSAccount(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSAccount`: %v\n", err)

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ApmStatsQueryDefinition The APM stats query for table and distributions widgets.
 type ApmStatsQueryDefinition struct {
@@ -28,9 +31,11 @@ type ApmStatsQueryDefinition struct {
 	// Service name.
 	Service string `json:"service"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewApmStatsQueryDefinitionWithDefaults() *ApmStatsQueryDefinition {
 	this := ApmStatsQueryDefinition{}
 	return &this
 }
-
 // GetColumns returns the Columns field value if set, zero value otherwise.
 func (o *ApmStatsQueryDefinition) GetColumns() []ApmStatsQueryColumnType {
 	if o == nil || o.Columns == nil {
@@ -86,6 +90,7 @@ func (o *ApmStatsQueryDefinition) SetColumns(v []ApmStatsQueryColumnType) {
 	o.Columns = &v
 }
 
+
 // GetEnv returns the Env field value
 func (o *ApmStatsQueryDefinition) GetEnv() string {
 	if o == nil {
@@ -108,6 +113,7 @@ func (o *ApmStatsQueryDefinition) GetEnvOk() (*string, bool) {
 func (o *ApmStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
+
 
 // GetName returns the Name field value
 func (o *ApmStatsQueryDefinition) GetName() string {
@@ -132,6 +138,7 @@ func (o *ApmStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
+
 // GetPrimaryTag returns the PrimaryTag field value
 func (o *ApmStatsQueryDefinition) GetPrimaryTag() string {
 	if o == nil {
@@ -154,6 +161,7 @@ func (o *ApmStatsQueryDefinition) GetPrimaryTagOk() (*string, bool) {
 func (o *ApmStatsQueryDefinition) SetPrimaryTag(v string) {
 	o.PrimaryTag = v
 }
+
 
 // GetResource returns the Resource field value if set, zero value otherwise.
 func (o *ApmStatsQueryDefinition) GetResource() string {
@@ -187,6 +195,7 @@ func (o *ApmStatsQueryDefinition) SetResource(v string) {
 	o.Resource = &v
 }
 
+
 // GetRowType returns the RowType field value
 func (o *ApmStatsQueryDefinition) GetRowType() ApmStatsQueryRowType {
 	if o == nil {
@@ -209,6 +218,7 @@ func (o *ApmStatsQueryDefinition) GetRowTypeOk() (*ApmStatsQueryRowType, bool) {
 func (o *ApmStatsQueryDefinition) SetRowType(v ApmStatsQueryRowType) {
 	o.RowType = v
 }
+
 
 // GetService returns the Service field value
 func (o *ApmStatsQueryDefinition) GetService() string {
@@ -233,6 +243,8 @@ func (o *ApmStatsQueryDefinition) SetService(v string) {
 	o.Service = v
 }
 
+
+
 func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -256,23 +268,24 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Env        *string               `json:"env"`
-		Name       *string               `json:"name"`
-		PrimaryTag *string               `json:"primary_tag"`
-		RowType    *ApmStatsQueryRowType `json:"row_type"`
-		Service    *string               `json:"service"`
+		Env *string `json:"env"`
+		Name *string `json:"name"`
+		PrimaryTag *string `json:"primary_tag"`
+		RowType *ApmStatsQueryRowType `json:"row_type"`
+		Service *string `json:"service"`
 	}{}
 	all := struct {
-		Columns    *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
-		Env        string                     `json:"env"`
-		Name       string                     `json:"name"`
-		PrimaryTag string                     `json:"primary_tag"`
-		Resource   *string                    `json:"resource,omitempty"`
-		RowType    ApmStatsQueryRowType       `json:"row_type"`
-		Service    string                     `json:"service"`
+		Columns *[]ApmStatsQueryColumnType `json:"columns,omitempty"`
+		Env string `json:"env"`
+		Name string `json:"name"`
+		PrimaryTag string `json:"primary_tag"`
+		Resource *string `json:"resource,omitempty"`
+		RowType ApmStatsQueryRowType `json:"row_type"`
+		Service string `json:"service"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

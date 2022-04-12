@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AWSAccountCreateResponse The Response returned by the AWS Create Account call.
 type AWSAccountCreateResponse struct {
 	// AWS external_id.
 	ExternalId *string `json:"external_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSAccountCreateResponse instantiates a new AWSAccountCreateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAWSAccountCreateResponseWithDefaults() *AWSAccountCreateResponse {
 	this := AWSAccountCreateResponse{}
 	return &this
 }
-
 // GetExternalId returns the ExternalId field value if set, zero value otherwise.
 func (o *AWSAccountCreateResponse) GetExternalId() string {
 	if o == nil || o.ExternalId == nil {
@@ -68,6 +73,8 @@ func (o *AWSAccountCreateResponse) SetExternalId(v string) {
 	o.ExternalId = &v
 }
 
+
+
 func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o AWSAccountCreateResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AWSAccountCreateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

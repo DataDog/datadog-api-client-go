@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,12 +13,12 @@ import (
 
 func main() {
 	body := datadog.ApplicationKey{
-		Name: datadog.PtrString("example user"),
-	}
+Name: datadog.PtrString("example user"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, "key", body)
+	resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, "key", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey`: %v\n", err)

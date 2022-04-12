@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // NotebookCellTime - Timeframe for the notebook cell. When 'null', the notebook global time is used.
 type NotebookCellTime struct {
@@ -83,9 +87,11 @@ func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.NotebookRelativeTime)
 	}
 
+
 	if src.NotebookAbsoluteTime != nil {
 		return json.Marshal(&src.NotebookAbsoluteTime)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -94,14 +100,16 @@ func (src NotebookCellTime) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *NotebookCellTime) GetActualInstance() interface{} {
+func (obj *NotebookCellTime) GetActualInstance() (interface{}) {
 	if obj.NotebookRelativeTime != nil {
 		return obj.NotebookRelativeTime
 	}
 
+
 	if obj.NotebookAbsoluteTime != nil {
 		return obj.NotebookAbsoluteTime
 	}
+
 
 	// all schemas are nil
 	return nil

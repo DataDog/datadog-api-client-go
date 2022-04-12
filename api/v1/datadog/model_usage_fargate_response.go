@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageFargateResponse Response containing the number of Fargate tasks run and hourly usage.
 type UsageFargateResponse struct {
 	// Array with the number of hourly Fargate tasks recorded for a given organization.
 	Usage *[]UsageFargateHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageFargateResponse instantiates a new UsageFargateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewUsageFargateResponseWithDefaults() *UsageFargateResponse {
 	this := UsageFargateResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageFargateResponse) GetUsage() []UsageFargateHour {
 	if o == nil || o.Usage == nil {
@@ -68,6 +73,8 @@ func (o *UsageFargateResponse) SetUsage(v []UsageFargateHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

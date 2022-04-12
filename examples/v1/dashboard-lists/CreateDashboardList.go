@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,12 +13,12 @@ import (
 
 func main() {
 	body := datadog.DashboardList{
-		Name: "Example-Create_a_dashboard_list_returns_OK_response",
-	}
+Name: "Example-Create_a_dashboard_list_returns_OK_response",
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.CreateDashboardList(ctx, body)
+	resp, r, err := apiClient.DashboardListsApi.CreateDashboardList(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.CreateDashboardList`: %v\n", err)

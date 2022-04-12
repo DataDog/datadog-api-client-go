@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,31 +15,33 @@ func main() {
 	// there is a valid "authn_mapping" in the system
 	AuthnMappingDataID := os.Getenv("AUTHN_MAPPING_DATA_ID")
 
+
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
+
 	body := datadog.AuthNMappingUpdateRequest{
-		Data: datadog.AuthNMappingUpdateData{
-			Attributes: &datadog.AuthNMappingUpdateAttributes{
-				AttributeKey:   datadog.PtrString("member-of"),
-				AttributeValue: datadog.PtrString("Development"),
-			},
-			Id: AuthnMappingDataID,
-			Relationships: &datadog.AuthNMappingUpdateRelationships{
-				Role: &datadog.RelationshipToRole{
-					Data: &datadog.RelationshipToRoleData{
-						Id:   datadog.PtrString(RoleDataID),
-						Type: datadog.ROLESTYPE_ROLES.Ptr(),
-					},
-				},
-			},
-			Type: datadog.AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS,
-		},
-	}
+Data: datadog.AuthNMappingUpdateData{
+Attributes: &datadog.AuthNMappingUpdateAttributes{
+AttributeKey: datadog.PtrString("member-of"),
+AttributeValue: datadog.PtrString("Development"),
+},
+Id: AuthnMappingDataID,
+Relationships: &datadog.AuthNMappingUpdateRelationships{
+Role: &datadog.RelationshipToRole{
+Data: &datadog.RelationshipToRoleData{
+Id: datadog.PtrString(RoleDataID),
+Type: datadog.ROLESTYPE_ROLES.Ptr(),
+},
+},
+},
+Type: datadog.AUTHNMAPPINGSTYPE_AUTHN_MAPPINGS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthNMappingsApi.UpdateAuthNMapping(ctx, AuthnMappingDataID, body)
+	resp, r, err := apiClient.AuthNMappingsApi.UpdateAuthNMapping(ctx, AuthnMappingDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.UpdateAuthNMapping`: %v\n", err)

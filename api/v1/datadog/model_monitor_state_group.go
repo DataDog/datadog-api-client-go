@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MonitorStateGroup Monitor state for a single group.
 type MonitorStateGroup struct {
@@ -25,9 +29,11 @@ type MonitorStateGroup struct {
 	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMonitorStateGroup instantiates a new MonitorStateGroup object
 // This constructor will assign default values to properties that have it defined,
@@ -45,7 +51,6 @@ func NewMonitorStateGroupWithDefaults() *MonitorStateGroup {
 	this := MonitorStateGroup{}
 	return &this
 }
-
 // GetLastNodataTs returns the LastNodataTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNodataTs() int64 {
 	if o == nil || o.LastNodataTs == nil {
@@ -77,6 +82,7 @@ func (o *MonitorStateGroup) HasLastNodataTs() bool {
 func (o *MonitorStateGroup) SetLastNodataTs(v int64) {
 	o.LastNodataTs = &v
 }
+
 
 // GetLastNotifiedTs returns the LastNotifiedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastNotifiedTs() int64 {
@@ -110,6 +116,7 @@ func (o *MonitorStateGroup) SetLastNotifiedTs(v int64) {
 	o.LastNotifiedTs = &v
 }
 
+
 // GetLastResolvedTs returns the LastResolvedTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastResolvedTs() int64 {
 	if o == nil || o.LastResolvedTs == nil {
@@ -141,6 +148,7 @@ func (o *MonitorStateGroup) HasLastResolvedTs() bool {
 func (o *MonitorStateGroup) SetLastResolvedTs(v int64) {
 	o.LastResolvedTs = &v
 }
+
 
 // GetLastTriggeredTs returns the LastTriggeredTs field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetLastTriggeredTs() int64 {
@@ -174,6 +182,7 @@ func (o *MonitorStateGroup) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetName() string {
 	if o == nil || o.Name == nil {
@@ -205,6 +214,7 @@ func (o *MonitorStateGroup) HasName() bool {
 func (o *MonitorStateGroup) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *MonitorStateGroup) GetStatus() MonitorOverallStates {
@@ -238,6 +248,8 @@ func (o *MonitorStateGroup) SetStatus(v MonitorOverallStates) {
 	o.Status = &v
 }
 
+
+
 func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -268,15 +280,16 @@ func (o MonitorStateGroup) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LastNodataTs    *int64                `json:"last_nodata_ts,omitempty"`
-		LastNotifiedTs  *int64                `json:"last_notified_ts,omitempty"`
-		LastResolvedTs  *int64                `json:"last_resolved_ts,omitempty"`
-		LastTriggeredTs *int64                `json:"last_triggered_ts,omitempty"`
-		Name            *string               `json:"name,omitempty"`
-		Status          *MonitorOverallStates `json:"status,omitempty"`
+		LastNodataTs *int64 `json:"last_nodata_ts,omitempty"`
+		LastNotifiedTs *int64 `json:"last_notified_ts,omitempty"`
+		LastResolvedTs *int64 `json:"last_resolved_ts,omitempty"`
+		LastTriggeredTs *int64 `json:"last_triggered_ts,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Status *MonitorOverallStates `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -287,7 +300,7 @@ func (o *MonitorStateGroup) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

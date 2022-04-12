@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx, *datadog.NewListDashboardsOptionalParameters().WithFilterShared(false))
+	resp, r, err := apiClient.DashboardsApi.ListDashboards(ctx, *datadog.NewListDashboardsOptionalParameters().WithFilterShared(false), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.ListDashboards`: %v\n", err)

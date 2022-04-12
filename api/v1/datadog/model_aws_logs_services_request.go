@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AWSLogsServicesRequest A list of current AWS services for which Datadog offers automatic log collection.
 type AWSLogsServicesRequest struct {
@@ -18,9 +21,11 @@ type AWSLogsServicesRequest struct {
 	// Array of services IDs set to enable automatic log collection. Discover the list of available services with the get list of AWS log ready services API endpoint.
 	Services []string `json:"services"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSLogsServicesRequest instantiates a new AWSLogsServicesRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewAWSLogsServicesRequestWithDefaults() *AWSLogsServicesRequest {
 	this := AWSLogsServicesRequest{}
 	return &this
 }
-
 // GetAccountId returns the AccountId field value
 func (o *AWSLogsServicesRequest) GetAccountId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *AWSLogsServicesRequest) GetAccountIdOk() (*string, bool) {
 func (o *AWSLogsServicesRequest) SetAccountId(v string) {
 	o.AccountId = v
 }
+
 
 // GetServices returns the Services field value
 func (o *AWSLogsServicesRequest) GetServices() []string {
@@ -87,6 +92,8 @@ func (o *AWSLogsServicesRequest) SetServices(v []string) {
 	o.Services = v
 }
 
+
+
 func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,15 +108,16 @@ func (o AWSLogsServicesRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *AWSLogsServicesRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		AccountId *string   `json:"account_id"`
-		Services  *[]string `json:"services"`
+		AccountId *string `json:"account_id"`
+		Services *[]string `json:"services"`
 	}{}
 	all := struct {
-		AccountId string   `json:"account_id"`
-		Services  []string `json:"services"`
+		AccountId string `json:"account_id"`
+		Services []string `json:"services"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

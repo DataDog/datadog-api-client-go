@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type ServiceChecksApiService service
 type apiSubmitServiceCheckRequest struct {
 	ctx        _context.Context
 	ApiService *ServiceChecksApiService
-	body       *[]ServiceCheck
+	body *[]ServiceCheck
 }
 
 /*
@@ -40,7 +43,7 @@ func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body 
 	req := apiSubmitServiceCheckRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.submitServiceCheckExecute(req)
@@ -52,9 +55,9 @@ func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body 
  */
 func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue IntakePayloadAccepted
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  IntakePayloadAccepted
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "ServiceChecksApiService.SubmitServiceCheck")

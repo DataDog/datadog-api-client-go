@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // OrganizationAttributes Attributes of the organization.
 type OrganizationAttributes struct {
@@ -30,9 +33,11 @@ type OrganizationAttributes struct {
 	// URL of the site that this organization exists at.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationAttributes instantiates a new OrganizationAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -50,7 +55,6 @@ func NewOrganizationAttributesWithDefaults() *OrganizationAttributes {
 	this := OrganizationAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetCreatedAt() time.Time {
 	if o == nil || o.CreatedAt == nil {
@@ -82,6 +86,7 @@ func (o *OrganizationAttributes) HasCreatedAt() bool {
 func (o *OrganizationAttributes) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetDescription() string {
@@ -115,6 +120,7 @@ func (o *OrganizationAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDisabled returns the Disabled field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetDisabled() bool {
 	if o == nil || o.Disabled == nil {
@@ -146,6 +152,7 @@ func (o *OrganizationAttributes) HasDisabled() bool {
 func (o *OrganizationAttributes) SetDisabled(v bool) {
 	o.Disabled = &v
 }
+
 
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetModifiedAt() time.Time {
@@ -179,6 +186,7 @@ func (o *OrganizationAttributes) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -210,6 +218,7 @@ func (o *OrganizationAttributes) HasName() bool {
 func (o *OrganizationAttributes) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetPublicId() string {
@@ -243,6 +252,7 @@ func (o *OrganizationAttributes) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
 // GetSharing returns the Sharing field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetSharing() string {
 	if o == nil || o.Sharing == nil {
@@ -275,6 +285,7 @@ func (o *OrganizationAttributes) SetSharing(v string) {
 	o.Sharing = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *OrganizationAttributes) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -306,6 +317,8 @@ func (o *OrganizationAttributes) HasUrl() bool {
 func (o *OrganizationAttributes) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 func (o OrganizationAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -343,17 +356,18 @@ func (o OrganizationAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *OrganizationAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt   *time.Time `json:"created_at,omitempty"`
-		Description *string    `json:"description,omitempty"`
-		Disabled    *bool      `json:"disabled,omitempty"`
-		ModifiedAt  *time.Time `json:"modified_at,omitempty"`
-		Name        *string    `json:"name,omitempty"`
-		PublicId    *string    `json:"public_id,omitempty"`
-		Sharing     *string    `json:"sharing,omitempty"`
-		Url         *string    `json:"url,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Disabled *bool `json:"disabled,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Name *string `json:"name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		Sharing *string `json:"sharing,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

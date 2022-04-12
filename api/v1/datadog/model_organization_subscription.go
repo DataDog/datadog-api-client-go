@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // OrganizationSubscription Subscription definition.
 type OrganizationSubscription struct {
 	// The subscription type. Types available are `trial`, `free`, and `pro`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewOrganizationSubscription instantiates a new OrganizationSubscription object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewOrganizationSubscriptionWithDefaults() *OrganizationSubscription {
 	this := OrganizationSubscription{}
 	return &this
 }
-
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *OrganizationSubscription) GetType() string {
 	if o == nil || o.Type == nil {
@@ -68,6 +73,8 @@ func (o *OrganizationSubscription) SetType(v string) {
 	o.Type = &v
 }
 
+
+
 func (o OrganizationSubscription) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o OrganizationSubscription) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *OrganizationSubscription) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -4,22 +4,25 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOCorrectionCategory Category the SLO correction belongs to.
 type SLOCorrectionCategory string
 
 // List of SLOCorrectionCategory
 const (
-	SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE  SLOCorrectionCategory = "Scheduled Maintenance"
+	SLOCORRECTIONCATEGORY_SCHEDULED_MAINTENANCE SLOCorrectionCategory = "Scheduled Maintenance"
 	SLOCORRECTIONCATEGORY_OUTSIDE_BUSINESS_HOURS SLOCorrectionCategory = "Outside Business Hours"
-	SLOCORRECTIONCATEGORY_DEPLOYMENT             SLOCorrectionCategory = "Deployment"
-	SLOCORRECTIONCATEGORY_OTHER                  SLOCorrectionCategory = "Other"
+	SLOCORRECTIONCATEGORY_DEPLOYMENT SLOCorrectionCategory = "Deployment"
+	SLOCORRECTIONCATEGORY_OTHER SLOCorrectionCategory = "Other"
 )
 
 var allowedSLOCorrectionCategoryEnumValues = []SLOCorrectionCategory{

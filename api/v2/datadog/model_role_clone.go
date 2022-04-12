@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RoleClone Data for the clone role request.
 type RoleClone struct {
@@ -18,9 +21,11 @@ type RoleClone struct {
 	// Roles type.
 	Type RolesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRoleClone instantiates a new RoleClone object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewRoleCloneWithDefaults() *RoleClone {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value
 func (o *RoleClone) GetAttributes() RoleCloneAttributes {
 	if o == nil {
@@ -65,6 +69,7 @@ func (o *RoleClone) GetAttributesOk() (*RoleCloneAttributes, bool) {
 func (o *RoleClone) SetAttributes(v RoleCloneAttributes) {
 	o.Attributes = v
 }
+
 
 // GetType returns the Type field value
 func (o *RoleClone) GetType() RolesType {
@@ -89,6 +94,8 @@ func (o *RoleClone) SetType(v RolesType) {
 	o.Type = v
 }
 
+
+
 func (o RoleClone) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,15 +110,16 @@ func (o RoleClone) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Attributes *RoleCloneAttributes `json:"attributes"`
-		Type       *RolesType           `json:"type"`
+		Type *RolesType `json:"type"`
 	}{}
 	all := struct {
 		Attributes RoleCloneAttributes `json:"attributes"`
-		Type       RolesType           `json:"type"`
+		Type RolesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,13 +148,13 @@ func (o *RoleClone) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

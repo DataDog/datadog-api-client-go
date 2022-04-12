@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogQueryDefinitionSearch The query being made on the logs.
 type LogQueryDefinitionSearch struct {
 	// Search value to apply.
 	Query string `json:"query"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogQueryDefinitionSearch instantiates a new LogQueryDefinitionSearch object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewLogQueryDefinitionSearchWithDefaults() *LogQueryDefinitionSearch {
 	this := LogQueryDefinitionSearch{}
 	return &this
 }
-
 // GetQuery returns the Query field value
 func (o *LogQueryDefinitionSearch) GetQuery() string {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *LogQueryDefinitionSearch) SetQuery(v string) {
 	o.Query = v
 }
 
+
+
 func (o LogQueryDefinitionSearch) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o LogQueryDefinitionSearch) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *LogQueryDefinitionSearch) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageIndexedSpansHour The hours of indexed spans usage.
 type UsageIndexedSpansHour struct {
@@ -22,9 +25,11 @@ type UsageIndexedSpansHour struct {
 	// The organization public ID.
 	PublicId *string `json:"public_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageIndexedSpansHour instantiates a new UsageIndexedSpansHour object
 // This constructor will assign default values to properties that have it defined,
@@ -42,7 +47,6 @@ func NewUsageIndexedSpansHourWithDefaults() *UsageIndexedSpansHour {
 	this := UsageIndexedSpansHour{}
 	return &this
 }
-
 // GetHour returns the Hour field value if set, zero value otherwise.
 func (o *UsageIndexedSpansHour) GetHour() time.Time {
 	if o == nil || o.Hour == nil {
@@ -74,6 +78,7 @@ func (o *UsageIndexedSpansHour) HasHour() bool {
 func (o *UsageIndexedSpansHour) SetHour(v time.Time) {
 	o.Hour = &v
 }
+
 
 // GetIndexedEventsCount returns the IndexedEventsCount field value if set, zero value otherwise.
 func (o *UsageIndexedSpansHour) GetIndexedEventsCount() int64 {
@@ -107,6 +112,7 @@ func (o *UsageIndexedSpansHour) SetIndexedEventsCount(v int64) {
 	o.IndexedEventsCount = &v
 }
 
+
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageIndexedSpansHour) GetOrgName() string {
 	if o == nil || o.OrgName == nil {
@@ -138,6 +144,7 @@ func (o *UsageIndexedSpansHour) HasOrgName() bool {
 func (o *UsageIndexedSpansHour) SetOrgName(v string) {
 	o.OrgName = &v
 }
+
 
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageIndexedSpansHour) GetPublicId() string {
@@ -171,6 +178,8 @@ func (o *UsageIndexedSpansHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+
+
 func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -195,13 +204,14 @@ func (o UsageIndexedSpansHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageIndexedSpansHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Hour               *time.Time `json:"hour,omitempty"`
-		IndexedEventsCount *int64     `json:"indexed_events_count,omitempty"`
-		OrgName            *string    `json:"org_name,omitempty"`
-		PublicId           *string    `json:"public_id,omitempty"`
+		Hour *time.Time `json:"hour,omitempty"`
+		IndexedEventsCount *int64 `json:"indexed_events_count,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

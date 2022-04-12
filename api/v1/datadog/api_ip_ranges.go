@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -46,9 +49,9 @@ func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_neth
  */
 func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue IPRanges
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  IPRanges
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "IPRangesApiService.GetIPRanges")

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetMarker Markers allow you to add visual conditional formatting for your graphs.
 type WidgetMarker struct {
@@ -26,9 +29,11 @@ type WidgetMarker struct {
 	// Value to apply. Can be a single value y = 15 or a range of values 0 < y < 10.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetMarker instantiates a new WidgetMarker object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +52,6 @@ func NewWidgetMarkerWithDefaults() *WidgetMarker {
 	this := WidgetMarker{}
 	return &this
 }
-
 // GetDisplayType returns the DisplayType field value if set, zero value otherwise.
 func (o *WidgetMarker) GetDisplayType() string {
 	if o == nil || o.DisplayType == nil {
@@ -79,6 +83,7 @@ func (o *WidgetMarker) HasDisplayType() bool {
 func (o *WidgetMarker) SetDisplayType(v string) {
 	o.DisplayType = &v
 }
+
 
 // GetLabel returns the Label field value if set, zero value otherwise.
 func (o *WidgetMarker) GetLabel() string {
@@ -112,6 +117,7 @@ func (o *WidgetMarker) SetLabel(v string) {
 	o.Label = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *WidgetMarker) GetTime() string {
 	if o == nil || o.Time == nil {
@@ -144,6 +150,7 @@ func (o *WidgetMarker) SetTime(v string) {
 	o.Time = &v
 }
 
+
 // GetValue returns the Value field value
 func (o *WidgetMarker) GetValue() string {
 	if o == nil {
@@ -167,6 +174,8 @@ func (o *WidgetMarker) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -189,6 +198,7 @@ func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -196,9 +206,9 @@ func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		DisplayType *string `json:"display_type,omitempty"`
-		Label       *string `json:"label,omitempty"`
-		Time        *string `json:"time,omitempty"`
-		Value       string  `json:"value"`
+		Label *string `json:"label,omitempty"`
+		Time *string `json:"time,omitempty"`
+		Value string `json:"value"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

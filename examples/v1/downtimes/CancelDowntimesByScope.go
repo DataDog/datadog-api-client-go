@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,13 +15,14 @@ func main() {
 	// there is a valid "downtime" in the system
 	DowntimeScope0 := os.Getenv("DOWNTIME_SCOPE_0")
 
+
 	body := datadog.CancelDowntimesByScopeRequest{
-		Scope: DowntimeScope0,
-	}
+Scope: DowntimeScope0,
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx, body)
+	resp, r, err := apiClient.DowntimesApi.CancelDowntimesByScope(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CancelDowntimesByScope`: %v\n", err)

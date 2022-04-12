@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetVerticalAlign Vertical alignment.
 type WidgetVerticalAlign string
@@ -17,7 +20,7 @@ type WidgetVerticalAlign string
 // List of WidgetVerticalAlign
 const (
 	WIDGETVERTICALALIGN_CENTER WidgetVerticalAlign = "center"
-	WIDGETVERTICALALIGN_TOP    WidgetVerticalAlign = "top"
+	WIDGETVERTICALALIGN_TOP WidgetVerticalAlign = "top"
 	WIDGETVERTICALALIGN_BOTTOM WidgetVerticalAlign = "bottom"
 )
 

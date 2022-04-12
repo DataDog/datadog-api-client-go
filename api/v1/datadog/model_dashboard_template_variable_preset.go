@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DashboardTemplateVariablePreset Template variables saved views.
 type DashboardTemplateVariablePreset struct {
@@ -17,9 +21,11 @@ type DashboardTemplateVariablePreset struct {
 	// List of variables.
 	TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardTemplateVariablePreset instantiates a new DashboardTemplateVariablePreset object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewDashboardTemplateVariablePresetWithDefaults() *DashboardTemplateVariable
 	this := DashboardTemplateVariablePreset{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePreset) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,6 +74,7 @@ func (o *DashboardTemplateVariablePreset) HasName() bool {
 func (o *DashboardTemplateVariablePreset) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetTemplateVariables returns the TemplateVariables field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePreset) GetTemplateVariables() []DashboardTemplateVariablePresetValue {
@@ -102,6 +108,8 @@ func (o *DashboardTemplateVariablePreset) SetTemplateVariables(v []DashboardTemp
 	o.TemplateVariables = &v
 }
 
+
+
 func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name              *string                                 `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

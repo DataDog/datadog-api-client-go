@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // IncidentResponseMetaPagination Pagination properties.
 type IncidentResponseMetaPagination struct {
@@ -19,9 +23,11 @@ type IncidentResponseMetaPagination struct {
 	// Maximum size of pages to return.
 	Size *int64 `json:"size,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentResponseMetaPagination instantiates a new IncidentResponseMetaPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewIncidentResponseMetaPaginationWithDefaults() *IncidentResponseMetaPagina
 	this := IncidentResponseMetaPagination{}
 	return &this
 }
-
 // GetNextOffset returns the NextOffset field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetNextOffset() int64 {
 	if o == nil || o.NextOffset == nil {
@@ -71,6 +76,7 @@ func (o *IncidentResponseMetaPagination) HasNextOffset() bool {
 func (o *IncidentResponseMetaPagination) SetNextOffset(v int64) {
 	o.NextOffset = &v
 }
+
 
 // GetOffset returns the Offset field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetOffset() int64 {
@@ -104,6 +110,7 @@ func (o *IncidentResponseMetaPagination) SetOffset(v int64) {
 	o.Offset = &v
 }
 
+
 // GetSize returns the Size field value if set, zero value otherwise.
 func (o *IncidentResponseMetaPagination) GetSize() int64 {
 	if o == nil || o.Size == nil {
@@ -136,6 +143,8 @@ func (o *IncidentResponseMetaPagination) SetSize(v int64) {
 	o.Size = &v
 }
 
+
+
 func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o IncidentResponseMetaPagination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentResponseMetaPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		NextOffset *int64 `json:"next_offset,omitempty"`
-		Offset     *int64 `json:"offset,omitempty"`
-		Size       *int64 `json:"size,omitempty"`
+		Offset *int64 `json:"offset,omitempty"`
+		Size *int64 `json:"size,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

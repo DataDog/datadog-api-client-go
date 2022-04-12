@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,39 +13,41 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		Title:       "Example-Create_a_new_dashboard_with_servicemap_widget",
-		Description: *datadog.NewNullableString(datadog.PtrString("")),
-		Widgets: []datadog.Widget{
-			{
-				Layout: &datadog.WidgetLayout{
-					X:      0,
-					Y:      0,
-					Width:  47,
-					Height: 15,
-				},
-				Definition: datadog.WidgetDefinition{
-					ServiceMapWidgetDefinition: &datadog.ServiceMapWidgetDefinition{
-						Title:      datadog.PtrString(""),
-						TitleSize:  datadog.PtrString("16"),
-						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:       datadog.SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
-						Service:    "",
-						Filters: []string{
-							"env:none",
-							"environment:*",
-						},
-					}},
-			},
-		},
-		TemplateVariables: []datadog.DashboardTemplateVariable{},
-		LayoutType:        datadog.DASHBOARDLAYOUTTYPE_FREE,
-		IsReadOnly:        datadog.PtrBool(false),
-		NotifyList:        []string{},
-	}
+Title: "Example-Create_a_new_dashboard_with_servicemap_widget",
+Description: *datadog.NewNullableString(datadog.PtrString("")),
+Widgets: []datadog.Widget{
+{
+Layout: &datadog.WidgetLayout{
+X: 0,
+Y: 0,
+Width: 47,
+Height: 15,
+},
+Definition: datadog.WidgetDefinition{
+ServiceMapWidgetDefinition: &datadog.ServiceMapWidgetDefinition{
+Title: datadog.PtrString(""),
+TitleSize: datadog.PtrString("16"),
+TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
+Type: datadog.SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP,
+Service: "",
+Filters: []string{
+"env:none",
+"environment:*",
+},
+}},
+},
+},
+TemplateVariables: []datadog.DashboardTemplateVariable{
+},
+LayoutType: datadog.DASHBOARDLAYOUTTYPE_FREE,
+IsReadOnly: datadog.PtrBool(false),
+NotifyList: []string{
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

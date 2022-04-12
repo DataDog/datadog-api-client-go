@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,23 +13,23 @@ import (
 
 func main() {
 	body := datadog.MetricTagConfigurationCreateRequest{
-		Data: datadog.MetricTagConfigurationCreateData{
-			Type: datadog.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
-			Id:   "ExampleCreateatagconfigurationreturnsCreatedresponse",
-			Attributes: &datadog.MetricTagConfigurationCreateAttributes{
-				Tags: []string{
-					"app",
-					"datacenter",
-				},
-				MetricType: datadog.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
-			},
-		},
-	}
+Data: datadog.MetricTagConfigurationCreateData{
+Type: datadog.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
+Id: "ExampleCreateatagconfigurationreturnsCreatedresponse",
+Attributes: &datadog.MetricTagConfigurationCreateAttributes{
+Tags: []string{
+"app",
+"datacenter",
+},
+MetricType: datadog.METRICTAGCONFIGURATIONMETRICTYPES_GAUGE,
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("CreateTagConfiguration", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, "ExampleCreateatagconfigurationreturnsCreatedresponse", body)
+	resp, r, err := apiClient.MetricsApi.CreateTagConfiguration(ctx, "ExampleCreateatagconfigurationreturnsCreatedresponse", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.CreateTagConfiguration`: %v\n", err)

@@ -2,38 +2,37 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func main() {
 	body := datadog.MetricsPayload{
-		Series: []datadog.Series{
-			{
-				Metric: "system.load.1",
-				Type:   datadog.PtrString("gauge"),
-				Points: [][]*float64{
-					{
-						datadog.PtrFloat64(float64(time.Now().Unix())),
-						datadog.PtrFloat64(1.1),
-					},
-				},
-				Tags: &[]string{
-					"test:ExampleSubmitmetricsreturnsPayloadacceptedresponse",
-				},
-			},
-		},
-	}
+Series: []datadog.Series{
+{
+Metric: "system.load.1",
+Type: datadog.PtrString("gauge"),
+Points: [][]*float64{
+{
+datadog.PtrFloat64(float64(time.Now().Unix())),
+datadog.PtrFloat64(1.1),
+},
+},
+Tags: &[]string{
+"test:ExampleSubmitmetricsreturnsPayloadacceptedresponse",
+},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters())
+	resp, r, err := apiClient.MetricsApi.SubmitMetrics(ctx, body, *datadog.NewSubmitMetricsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitMetrics`: %v\n", err)

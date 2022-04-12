@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // WidgetRequestStyle Define request widget style.
 type WidgetRequestStyle struct {
@@ -19,9 +23,11 @@ type WidgetRequestStyle struct {
 	// Color palette to apply to the widget.
 	Palette *string `json:"palette,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewWidgetRequestStyle instantiates a new WidgetRequestStyle object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewWidgetRequestStyleWithDefaults() *WidgetRequestStyle {
 	this := WidgetRequestStyle{}
 	return &this
 }
-
 // GetLineType returns the LineType field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetLineType() WidgetLineType {
 	if o == nil || o.LineType == nil {
@@ -71,6 +76,7 @@ func (o *WidgetRequestStyle) HasLineType() bool {
 func (o *WidgetRequestStyle) SetLineType(v WidgetLineType) {
 	o.LineType = &v
 }
+
 
 // GetLineWidth returns the LineWidth field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetLineWidth() WidgetLineWidth {
@@ -104,6 +110,7 @@ func (o *WidgetRequestStyle) SetLineWidth(v WidgetLineWidth) {
 	o.LineWidth = &v
 }
 
+
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *WidgetRequestStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -136,6 +143,8 @@ func (o *WidgetRequestStyle) SetPalette(v string) {
 	o.Palette = &v
 }
 
+
+
 func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o WidgetRequestStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LineType  *WidgetLineType  `json:"line_type,omitempty"`
+		LineType *WidgetLineType `json:"line_type,omitempty"`
 		LineWidth *WidgetLineWidth `json:"line_width,omitempty"`
-		Palette   *string          `json:"palette,omitempty"`
+		Palette *string `json:"palette,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -173,7 +183,7 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.LineType; v != nil && !v.IsValid() {
+	if v := all.LineType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -181,7 +191,7 @@ func (o *WidgetRequestStyle) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.LineWidth; v != nil && !v.IsValid() {
+	if v := all.LineWidth; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

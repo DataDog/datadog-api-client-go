@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalListRequest The request for a security signal list.
 type SecurityMonitoringSignalListRequest struct {
@@ -19,9 +23,11 @@ type SecurityMonitoringSignalListRequest struct {
 	// The sort parameters used for querying security signals.
 	Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalListRequest instantiates a new SecurityMonitoringSignalListRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewSecurityMonitoringSignalListRequestWithDefaults() *SecurityMonitoringSig
 	this := SecurityMonitoringSignalListRequest{}
 	return &this
 }
-
 // GetFilter returns the Filter field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetFilter() SecurityMonitoringSignalListRequestFilter {
 	if o == nil || o.Filter == nil {
@@ -71,6 +76,7 @@ func (o *SecurityMonitoringSignalListRequest) HasFilter() bool {
 func (o *SecurityMonitoringSignalListRequest) SetFilter(v SecurityMonitoringSignalListRequestFilter) {
 	o.Filter = &v
 }
+
 
 // GetPage returns the Page field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetPage() SecurityMonitoringSignalListRequestPage {
@@ -104,6 +110,7 @@ func (o *SecurityMonitoringSignalListRequest) SetPage(v SecurityMonitoringSignal
 	o.Page = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalListRequest) GetSort() SecurityMonitoringSignalsSort {
 	if o == nil || o.Sort == nil {
@@ -136,6 +143,8 @@ func (o *SecurityMonitoringSignalListRequest) SetSort(v SecurityMonitoringSignal
 	o.Sort = &v
 }
 
+
+
 func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o SecurityMonitoringSignalListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Filter *SecurityMonitoringSignalListRequestFilter `json:"filter,omitempty"`
-		Page   *SecurityMonitoringSignalListRequestPage   `json:"page,omitempty"`
-		Sort   *SecurityMonitoringSignalsSort             `json:"sort,omitempty"`
+		Page *SecurityMonitoringSignalListRequestPage `json:"page,omitempty"`
+		Sort *SecurityMonitoringSignalsSort `json:"sort,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -173,7 +183,7 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Sort; v != nil && !v.IsValid() {
+	if v := all.Sort; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -181,21 +191,21 @@ func (o *SecurityMonitoringSignalListRequest) UnmarshalJSON(bytes []byte) (err e
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Filter != nil && all.Filter.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Filter = all.Filter
-	if all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Page != nil && all.Page.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Page = all.Page
 	o.Sort = all.Sort
 	return nil

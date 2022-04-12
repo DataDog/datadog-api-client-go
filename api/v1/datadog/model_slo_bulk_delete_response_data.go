@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOBulkDeleteResponseData An array of service level objective objects.
 type SLOBulkDeleteResponseData struct {
@@ -20,9 +24,11 @@ type SLOBulkDeleteResponseData struct {
 	// threshold was deleted, but that were not completely deleted).
 	Updated *[]string `json:"updated,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOBulkDeleteResponseData instantiates a new SLOBulkDeleteResponseData object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +46,6 @@ func NewSLOBulkDeleteResponseDataWithDefaults() *SLOBulkDeleteResponseData {
 	this := SLOBulkDeleteResponseData{}
 	return &this
 }
-
 // GetDeleted returns the Deleted field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponseData) GetDeleted() []string {
 	if o == nil || o.Deleted == nil {
@@ -72,6 +77,7 @@ func (o *SLOBulkDeleteResponseData) HasDeleted() bool {
 func (o *SLOBulkDeleteResponseData) SetDeleted(v []string) {
 	o.Deleted = &v
 }
+
 
 // GetUpdated returns the Updated field value if set, zero value otherwise.
 func (o *SLOBulkDeleteResponseData) GetUpdated() []string {
@@ -105,6 +111,8 @@ func (o *SLOBulkDeleteResponseData) SetUpdated(v []string) {
 	o.Updated = &v
 }
 
+
+
 func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -122,6 +130,7 @@ func (o SLOBulkDeleteResponseData) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *SLOBulkDeleteResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

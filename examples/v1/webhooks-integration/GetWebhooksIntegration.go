@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "webhook" in the system
 	WebhookName := os.Getenv("WEBHOOK_NAME")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.WebhooksIntegrationApi.GetWebhooksIntegration(ctx, WebhookName)
+	resp, r, err := apiClient.WebhooksIntegrationApi.GetWebhooksIntegration(ctx, WebhookName, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `WebhooksIntegrationApi.GetWebhooksIntegration`: %v\n", err)

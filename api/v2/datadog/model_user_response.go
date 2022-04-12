@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UserResponse Response containing information about a single user.
 type UserResponse struct {
@@ -17,9 +21,11 @@ type UserResponse struct {
 	// Array of objects related to the user.
 	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUserResponse instantiates a new UserResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewUserResponseWithDefaults() *UserResponse {
 	this := UserResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UserResponse) GetData() User {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *UserResponse) HasData() bool {
 func (o *UserResponse) SetData(v User) {
 	o.Data = &v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *UserResponse) GetIncluded() []UserResponseIncludedItem {
@@ -102,6 +108,8 @@ func (o *UserResponse) SetIncluded(v []UserResponseIncludedItem) {
 	o.Included = &v
 }
 
+
+
 func (o UserResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o UserResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *User                       `json:"data,omitempty"`
+		Data *User `json:"data,omitempty"`
 		Included *[]UserResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -135,13 +144,13 @@ func (o *UserResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

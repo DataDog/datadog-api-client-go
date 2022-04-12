@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,16 +13,16 @@ import (
 
 func main() {
 	body := datadog.User{
-		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
-		Disabled:   datadog.PtrBool(false),
-		Email:      datadog.PtrString("test@datadoghq.com"),
-		Handle:     datadog.PtrString("test@datadoghq.com"),
-		Name:       datadog.PtrString("test user"),
-	}
+AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
+Disabled: datadog.PtrBool(false),
+Email: datadog.PtrString("test@datadoghq.com"),
+Handle: datadog.PtrString("test@datadoghq.com"),
+Name: datadog.PtrString("test user"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsersApi.CreateUser(ctx, body)
+	resp, r, err := apiClient.UsersApi.CreateUser(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsersApi.CreateUser`: %v\n", err)

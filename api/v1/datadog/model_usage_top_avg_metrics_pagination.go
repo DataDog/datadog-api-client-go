@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageTopAvgMetricsPagination The metadata for the current pagination.
 type UsageTopAvgMetricsPagination struct {
@@ -19,9 +23,11 @@ type UsageTopAvgMetricsPagination struct {
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageTopAvgMetricsPagination instantiates a new UsageTopAvgMetricsPagination object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewUsageTopAvgMetricsPaginationWithDefaults() *UsageTopAvgMetricsPagination
 	this := UsageTopAvgMetricsPagination{}
 	return &this
 }
-
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsPagination) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -72,6 +77,7 @@ func (o *UsageTopAvgMetricsPagination) SetLimit(v int64) {
 	o.Limit = &v
 }
 
+
 // GetNextRecordId returns the NextRecordId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *UsageTopAvgMetricsPagination) GetNextRecordId() string {
 	if o == nil || o.NextRecordId.Get() == nil {
@@ -85,7 +91,7 @@ func (o *UsageTopAvgMetricsPagination) GetNextRecordId() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *UsageTopAvgMetricsPagination) GetNextRecordIdOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.NextRecordId.Get(), o.NextRecordId.IsSet()
@@ -104,7 +110,6 @@ func (o *UsageTopAvgMetricsPagination) HasNextRecordId() bool {
 func (o *UsageTopAvgMetricsPagination) SetNextRecordId(v string) {
 	o.NextRecordId.Set(&v)
 }
-
 // SetNextRecordIdNil sets the value for NextRecordId to be an explicit nil
 func (o *UsageTopAvgMetricsPagination) SetNextRecordIdNil() {
 	o.NextRecordId.Set(nil)
@@ -114,6 +119,7 @@ func (o *UsageTopAvgMetricsPagination) SetNextRecordIdNil() {
 func (o *UsageTopAvgMetricsPagination) UnsetNextRecordId() {
 	o.NextRecordId.Unset()
 }
+
 
 // GetTotalNumberOfRecords returns the TotalNumberOfRecords field value if set, zero value otherwise.
 func (o *UsageTopAvgMetricsPagination) GetTotalNumberOfRecords() int64 {
@@ -147,6 +153,8 @@ func (o *UsageTopAvgMetricsPagination) SetTotalNumberOfRecords(v int64) {
 	o.TotalNumberOfRecords = &v
 }
 
+
+
 func (o UsageTopAvgMetricsPagination) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -168,12 +176,13 @@ func (o UsageTopAvgMetricsPagination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Limit                *int64         `json:"limit,omitempty"`
-		NextRecordId         NullableString `json:"next_record_id,omitempty"`
-		TotalNumberOfRecords *int64         `json:"total_number_of_records,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		NextRecordId NullableString `json:"next_record_id,omitempty"`
+		TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

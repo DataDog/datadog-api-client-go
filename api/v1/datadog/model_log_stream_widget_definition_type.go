@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogStreamWidgetDefinitionType Type of the log stream widget.
 type LogStreamWidgetDefinitionType string

@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RelationshipToRole Relationship to role.
 type RelationshipToRole struct {
 	// Relationship to role object.
 	Data *RelationshipToRoleData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRelationshipToRole instantiates a new RelationshipToRole object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewRelationshipToRoleWithDefaults() *RelationshipToRole {
 	this := RelationshipToRole{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RelationshipToRole) GetData() RelationshipToRoleData {
 	if o == nil || o.Data == nil {
@@ -68,6 +73,8 @@ func (o *RelationshipToRole) SetData(v RelationshipToRoleData) {
 	o.Data = &v
 }
 
+
+
 func (o RelationshipToRole) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +90,7 @@ func (o RelationshipToRole) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RelationshipToRole) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -97,13 +105,13 @@ func (o *RelationshipToRole) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	return nil
 }

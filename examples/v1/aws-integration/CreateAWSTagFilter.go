@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,14 +13,14 @@ import (
 
 func main() {
 	body := datadog.AWSTagFilterCreateRequest{
-		AccountId:    datadog.PtrString("1234567"),
-		Namespace:    datadog.AWSNAMESPACE_ELB.Ptr(),
-		TagFilterStr: datadog.PtrString("prod*"),
-	}
+AccountId: datadog.PtrString("1234567"),
+Namespace: datadog.AWSNAMESPACE_ELB.Ptr(),
+TagFilterStr: datadog.PtrString("prod*"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.CreateAWSTagFilter(ctx, body)
+	resp, r, err := apiClient.AWSIntegrationApi.CreateAWSTagFilter(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.CreateAWSTagFilter`: %v\n", err)

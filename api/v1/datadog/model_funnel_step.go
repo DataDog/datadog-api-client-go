@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FunnelStep The funnel step.
 type FunnelStep struct {
@@ -18,9 +21,11 @@ type FunnelStep struct {
 	// The value of the step.
 	Value string `json:"value"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewFunnelStep instantiates a new FunnelStep object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewFunnelStepWithDefaults() *FunnelStep {
 	this := FunnelStep{}
 	return &this
 }
-
 // GetFacet returns the Facet field value
 func (o *FunnelStep) GetFacet() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *FunnelStep) GetFacetOk() (*string, bool) {
 func (o *FunnelStep) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetValue returns the Value field value
 func (o *FunnelStep) GetValue() string {
@@ -87,6 +92,8 @@ func (o *FunnelStep) SetValue(v string) {
 	o.Value = v
 }
 
+
+
 func (o FunnelStep) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -100,6 +107,7 @@ func (o FunnelStep) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *FunnelStep) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

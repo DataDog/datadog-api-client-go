@@ -4,17 +4,21 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMAggregateBucketValue - A bucket value, can be either a timeseries or a single value.
 type RUMAggregateBucketValue struct {
 	RUMAggregateBucketValueSingleString *string
 	RUMAggregateBucketValueSingleNumber *float64
-	RUMAggregateBucketValueTimeseries   *RUMAggregateBucketValueTimeseries
+	RUMAggregateBucketValueTimeseries *RUMAggregateBucketValueTimeseries
 
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject interface{}
@@ -107,13 +111,16 @@ func (src RUMAggregateBucketValue) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.RUMAggregateBucketValueSingleString)
 	}
 
+
 	if src.RUMAggregateBucketValueSingleNumber != nil {
 		return json.Marshal(&src.RUMAggregateBucketValueSingleNumber)
 	}
 
+
 	if src.RUMAggregateBucketValueTimeseries != nil {
 		return json.Marshal(&src.RUMAggregateBucketValueTimeseries)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -122,18 +129,21 @@ func (src RUMAggregateBucketValue) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *RUMAggregateBucketValue) GetActualInstance() interface{} {
+func (obj *RUMAggregateBucketValue) GetActualInstance() (interface{}) {
 	if obj.RUMAggregateBucketValueSingleString != nil {
 		return obj.RUMAggregateBucketValueSingleString
 	}
+
 
 	if obj.RUMAggregateBucketValueSingleNumber != nil {
 		return obj.RUMAggregateBucketValueSingleNumber
 	}
 
+
 	if obj.RUMAggregateBucketValueTimeseries != nil {
 		return obj.RUMAggregateBucketValueTimeseries
 	}
+
 
 	// all schemas are nil
 	return nil

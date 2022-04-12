@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,10 +16,11 @@ func main() {
 	// there is a valid "security_rule" in the system
 	SecurityRuleID := os.Getenv("SECURITY_RULE_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, SecurityRuleID)
+	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityMonitoringRule(ctx, SecurityRuleID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityMonitoringRule`: %v\n", err)

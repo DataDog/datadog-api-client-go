@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // DashboardSummaryDefinition Dashboard definition.
 type DashboardSummaryDefinition struct {
@@ -32,9 +35,11 @@ type DashboardSummaryDefinition struct {
 	// URL of the dashboard.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardSummaryDefinition instantiates a new DashboardSummaryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewDashboardSummaryDefinitionWithDefaults() *DashboardSummaryDefinition {
 	this := DashboardSummaryDefinition{}
 	return &this
 }
-
 // GetAuthorHandle returns the AuthorHandle field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetAuthorHandle() string {
 	if o == nil || o.AuthorHandle == nil {
@@ -84,6 +88,7 @@ func (o *DashboardSummaryDefinition) HasAuthorHandle() bool {
 func (o *DashboardSummaryDefinition) SetAuthorHandle(v string) {
 	o.AuthorHandle = &v
 }
+
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetCreatedAt() time.Time {
@@ -117,6 +122,7 @@ func (o *DashboardSummaryDefinition) SetCreatedAt(v time.Time) {
 	o.CreatedAt = &v
 }
 
+
 // GetDescription returns the Description field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *DashboardSummaryDefinition) GetDescription() string {
 	if o == nil || o.Description.Get() == nil {
@@ -130,7 +136,7 @@ func (o *DashboardSummaryDefinition) GetDescription() string {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *DashboardSummaryDefinition) GetDescriptionOk() (*string, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Description.Get(), o.Description.IsSet()
@@ -149,7 +155,6 @@ func (o *DashboardSummaryDefinition) HasDescription() bool {
 func (o *DashboardSummaryDefinition) SetDescription(v string) {
 	o.Description.Set(&v)
 }
-
 // SetDescriptionNil sets the value for Description to be an explicit nil
 func (o *DashboardSummaryDefinition) SetDescriptionNil() {
 	o.Description.Set(nil)
@@ -159,6 +164,7 @@ func (o *DashboardSummaryDefinition) SetDescriptionNil() {
 func (o *DashboardSummaryDefinition) UnsetDescription() {
 	o.Description.Unset()
 }
+
 
 // GetId returns the Id field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetId() string {
@@ -192,6 +198,7 @@ func (o *DashboardSummaryDefinition) SetId(v string) {
 	o.Id = &v
 }
 
+
 // GetIsReadOnly returns the IsReadOnly field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetIsReadOnly() bool {
 	if o == nil || o.IsReadOnly == nil {
@@ -223,6 +230,7 @@ func (o *DashboardSummaryDefinition) HasIsReadOnly() bool {
 func (o *DashboardSummaryDefinition) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
+
 
 // GetLayoutType returns the LayoutType field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetLayoutType() DashboardLayoutType {
@@ -256,6 +264,7 @@ func (o *DashboardSummaryDefinition) SetLayoutType(v DashboardLayoutType) {
 	o.LayoutType = &v
 }
 
+
 // GetModifiedAt returns the ModifiedAt field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetModifiedAt() time.Time {
 	if o == nil || o.ModifiedAt == nil {
@@ -287,6 +296,7 @@ func (o *DashboardSummaryDefinition) HasModifiedAt() bool {
 func (o *DashboardSummaryDefinition) SetModifiedAt(v time.Time) {
 	o.ModifiedAt = &v
 }
+
 
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetTitle() string {
@@ -320,6 +330,7 @@ func (o *DashboardSummaryDefinition) SetTitle(v string) {
 	o.Title = &v
 }
 
+
 // GetUrl returns the Url field value if set, zero value otherwise.
 func (o *DashboardSummaryDefinition) GetUrl() string {
 	if o == nil || o.Url == nil {
@@ -351,6 +362,8 @@ func (o *DashboardSummaryDefinition) HasUrl() bool {
 func (o *DashboardSummaryDefinition) SetUrl(v string) {
 	o.Url = &v
 }
+
+
 
 func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -391,18 +404,19 @@ func (o DashboardSummaryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AuthorHandle *string              `json:"author_handle,omitempty"`
-		CreatedAt    *time.Time           `json:"created_at,omitempty"`
-		Description  NullableString       `json:"description,omitempty"`
-		Id           *string              `json:"id,omitempty"`
-		IsReadOnly   *bool                `json:"is_read_only,omitempty"`
-		LayoutType   *DashboardLayoutType `json:"layout_type,omitempty"`
-		ModifiedAt   *time.Time           `json:"modified_at,omitempty"`
-		Title        *string              `json:"title,omitempty"`
-		Url          *string              `json:"url,omitempty"`
+		AuthorHandle *string `json:"author_handle,omitempty"`
+		CreatedAt *time.Time `json:"created_at,omitempty"`
+		Description NullableString `json:"description,omitempty"`
+		Id *string `json:"id,omitempty"`
+		IsReadOnly *bool `json:"is_read_only,omitempty"`
+		LayoutType *DashboardLayoutType `json:"layout_type,omitempty"`
+		ModifiedAt *time.Time `json:"modified_at,omitempty"`
+		Title *string `json:"title,omitempty"`
+		Url *string `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -413,7 +427,7 @@ func (o *DashboardSummaryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.LayoutType; v != nil && !v.IsValid() {
+	if v := all.LayoutType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentResponse Response with an incident.
 type IncidentResponse struct {
@@ -18,9 +21,11 @@ type IncidentResponse struct {
 	// Included related resources that the user requested.
 	Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentResponse instantiates a new IncidentResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIncidentResponseWithDefaults() *IncidentResponse {
 	this := IncidentResponse{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *IncidentResponse) GetData() IncidentResponseData {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *IncidentResponse) GetDataOk() (*IncidentResponseData, bool) {
 func (o *IncidentResponse) SetData(v IncidentResponseData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentResponse) GetIncluded() []IncidentResponseIncludedItem {
@@ -95,6 +100,8 @@ func (o *IncidentResponse) SetIncluded(v []IncidentResponseIncludedItem) {
 	o.Included = &v
 }
 
+
+
 func (o IncidentResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,13 +118,14 @@ func (o IncidentResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *IncidentResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     IncidentResponseData            `json:"data"`
+		Data IncidentResponseData `json:"data"`
 		Included *[]IncidentResponseIncludedItem `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -136,13 +144,13 @@ func (o *IncidentResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

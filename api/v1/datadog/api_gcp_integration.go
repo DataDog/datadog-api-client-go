@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 )
@@ -25,7 +28,7 @@ type GCPIntegrationApiService service
 type apiCreateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -36,7 +39,7 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, bo
 	req := apiCreateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createGCPIntegrationExecute(req)
@@ -48,9 +51,9 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.CreateGCPIntegration")
@@ -184,7 +187,7 @@ func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPInt
 type apiDeleteGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -195,7 +198,7 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, bo
 	req := apiDeleteGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteGCPIntegrationExecute(req)
@@ -207,9 +210,9 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.DeleteGCPIntegration")
@@ -364,9 +367,9 @@ func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]G
  */
 func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []GCPAccount
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []GCPAccount
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.ListGCPIntegration")
@@ -485,7 +488,7 @@ func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegra
 type apiUpdateGCPIntegrationRequest struct {
 	ctx        _context.Context
 	ApiService *GCPIntegrationApiService
-	body       *GCPAccount
+	body *GCPAccount
 }
 
 /*
@@ -499,7 +502,7 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, bo
 	req := apiUpdateGCPIntegrationRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateGCPIntegrationExecute(req)
@@ -511,9 +514,9 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, bo
  */
 func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "GCPIntegrationApiService.UpdateGCPIntegration")

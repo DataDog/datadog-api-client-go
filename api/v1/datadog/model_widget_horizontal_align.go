@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetHorizontalAlign Horizontal alignment.
 type WidgetHorizontalAlign string
@@ -17,8 +20,8 @@ type WidgetHorizontalAlign string
 // List of WidgetHorizontalAlign
 const (
 	WIDGETHORIZONTALALIGN_CENTER WidgetHorizontalAlign = "center"
-	WIDGETHORIZONTALALIGN_LEFT   WidgetHorizontalAlign = "left"
-	WIDGETHORIZONTALALIGN_RIGHT  WidgetHorizontalAlign = "right"
+	WIDGETHORIZONTALALIGN_LEFT WidgetHorizontalAlign = "left"
+	WIDGETHORIZONTALALIGN_RIGHT WidgetHorizontalAlign = "right"
 )
 
 var allowedWidgetHorizontalAlignEnumValues = []WidgetHorizontalAlign{

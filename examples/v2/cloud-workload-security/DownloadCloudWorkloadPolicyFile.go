@@ -2,10 +2,10 @@
 
 package main
 
+
 import (
 	"context"
 	"fmt"
-	"io/ioutil"
 	"os"
 
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsGroupByMissing - The value to use for logs that don't have the facet used to group by
 type LogsGroupByMissing struct {
@@ -83,9 +87,11 @@ func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.LogsGroupByMissingString)
 	}
 
+
 	if src.LogsGroupByMissingNumber != nil {
 		return json.Marshal(&src.LogsGroupByMissingNumber)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -94,14 +100,16 @@ func (src LogsGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *LogsGroupByMissing) GetActualInstance() interface{} {
+func (obj *LogsGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.LogsGroupByMissingString != nil {
 		return obj.LogsGroupByMissingString
 	}
 
+
 	if obj.LogsGroupByMissingNumber != nil {
 		return obj.LogsGroupByMissingNumber
 	}
+
 
 	// all schemas are nil
 	return nil

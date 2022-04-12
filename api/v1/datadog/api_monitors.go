@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -49,9 +51,9 @@ func (a *MonitorsApiService) CheckCanDeleteMonitor(ctx _context.Context, monitor
  */
 func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMonitorRequest) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue CheckCanDeleteMonitorResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  CheckCanDeleteMonitorResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CheckCanDeleteMonitor")
@@ -184,7 +186,7 @@ func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMon
 type apiCreateMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	body       *Monitor
+	body *Monitor
 }
 
 /*
@@ -366,7 +368,7 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (
 	req := apiCreateMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createMonitorExecute(req)
@@ -378,9 +380,9 @@ func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (
  */
 func (a *MonitorsApiService) createMonitorExecute(r apiCreateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CreateMonitor")
@@ -514,8 +516,8 @@ func (a *MonitorsApiService) createMonitorExecute(r apiCreateMonitorRequest) (Mo
 type apiDeleteMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	monitorId  int64
-	force      *string
+	monitorId int64
+	force *string
 }
 
 type DeleteMonitorOptionalParameters struct {
@@ -539,7 +541,7 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 	req := apiDeleteMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		monitorId:  monitorId,
+		monitorId: monitorId,
 	}
 
 	if len(o) > 1 {
@@ -560,9 +562,9 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
  */
 func (a *MonitorsApiService) deleteMonitorExecute(r apiDeleteMonitorRequest) (DeletedMonitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DeletedMonitor
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  DeletedMonitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.DeleteMonitor")
@@ -703,9 +705,9 @@ func (a *MonitorsApiService) deleteMonitorExecute(r apiDeleteMonitorRequest) (De
 }
 
 type apiGetMonitorRequest struct {
-	ctx         _context.Context
-	ApiService  *MonitorsApiService
-	monitorId   int64
+	ctx        _context.Context
+	ApiService *MonitorsApiService
+	monitorId int64
 	groupStates *string
 }
 
@@ -730,7 +732,7 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o
 	req := apiGetMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		monitorId:  monitorId,
+		monitorId: monitorId,
 	}
 
 	if len(o) > 1 {
@@ -751,9 +753,9 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o
  */
 func (a *MonitorsApiService) getMonitorExecute(r apiGetMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.GetMonitor")
@@ -884,27 +886,27 @@ func (a *MonitorsApiService) getMonitorExecute(r apiGetMonitorRequest) (Monitor,
 }
 
 type apiListMonitorsRequest struct {
-	ctx           _context.Context
-	ApiService    *MonitorsApiService
-	groupStates   *string
-	name          *string
-	tags          *string
-	monitorTags   *string
+	ctx        _context.Context
+	ApiService *MonitorsApiService
+	groupStates *string
+	name *string
+	tags *string
+	monitorTags *string
 	withDowntimes *bool
-	idOffset      *int64
-	page          *int64
-	pageSize      *int32
+	idOffset *int64
+	page *int64
+	pageSize *int32
 }
 
 type ListMonitorsOptionalParameters struct {
-	GroupStates   *string
-	Name          *string
-	Tags          *string
-	MonitorTags   *string
+	GroupStates *string
+	Name *string
+	Tags *string
+	MonitorTags *string
 	WithDowntimes *bool
-	IdOffset      *int64
-	Page          *int64
-	PageSize      *int32
+	IdOffset *int64
+	Page *int64
+	PageSize *int32
 }
 
 func NewListMonitorsOptionalParameters() *ListMonitorsOptionalParameters {
@@ -979,9 +981,9 @@ func (a *MonitorsApiService) ListMonitors(ctx _context.Context, o ...ListMonitor
  */
 func (a *MonitorsApiService) listMonitorsExecute(r apiListMonitorsRequest) ([]Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []Monitor
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ListMonitors")
@@ -1124,17 +1126,17 @@ func (a *MonitorsApiService) listMonitorsExecute(r apiListMonitorsRequest) ([]Mo
 type apiSearchMonitorGroupsRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	query      *string
-	page       *int64
-	perPage    *int64
-	sort       *string
+	query *string
+	page *int64
+	perPage *int64
+	sort *string
 }
 
 type SearchMonitorGroupsOptionalParameters struct {
-	Query   *string
-	Page    *int64
+	Query *string
+	Page *int64
 	PerPage *int64
-	Sort    *string
+	Sort *string
 }
 
 func NewSearchMonitorGroupsOptionalParameters() *SearchMonitorGroupsOptionalParameters {
@@ -1189,9 +1191,9 @@ func (a *MonitorsApiService) SearchMonitorGroups(ctx _context.Context, o ...Sear
  */
 func (a *MonitorsApiService) searchMonitorGroupsExecute(r apiSearchMonitorGroupsRequest) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorGroupSearchResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MonitorGroupSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitorGroups")
@@ -1322,17 +1324,17 @@ func (a *MonitorsApiService) searchMonitorGroupsExecute(r apiSearchMonitorGroups
 type apiSearchMonitorsRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	query      *string
-	page       *int64
-	perPage    *int64
-	sort       *string
+	query *string
+	page *int64
+	perPage *int64
+	sort *string
 }
 
 type SearchMonitorsOptionalParameters struct {
-	Query   *string
-	Page    *int64
+	Query *string
+	Page *int64
 	PerPage *int64
-	Sort    *string
+	Sort *string
 }
 
 func NewSearchMonitorsOptionalParameters() *SearchMonitorsOptionalParameters {
@@ -1387,9 +1389,9 @@ func (a *MonitorsApiService) SearchMonitors(ctx _context.Context, o ...SearchMon
  */
 func (a *MonitorsApiService) searchMonitorsExecute(r apiSearchMonitorsRequest) (MonitorSearchResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue MonitorSearchResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  MonitorSearchResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitors")
@@ -1520,8 +1522,8 @@ func (a *MonitorsApiService) searchMonitorsExecute(r apiSearchMonitorsRequest) (
 type apiUpdateMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	monitorId  int64
-	body       *MonitorUpdateRequest
+	monitorId int64
+	body *MonitorUpdateRequest
 }
 
 /*
@@ -1532,8 +1534,8 @@ func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64
 	req := apiUpdateMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		monitorId:  monitorId,
-		body:       &body,
+		monitorId: monitorId,
+		body: &body,
 	}
 
 	return req.ApiService.updateMonitorExecute(req)
@@ -1545,9 +1547,9 @@ func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64
  */
 func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Monitor, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue Monitor
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  Monitor
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.UpdateMonitor")
@@ -1702,8 +1704,8 @@ func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Mo
 type apiValidateExistingMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	monitorId  int64
-	body       *Monitor
+	monitorId int64
+	body *Monitor
 }
 
 /*
@@ -1714,8 +1716,8 @@ func (a *MonitorsApiService) ValidateExistingMonitor(ctx _context.Context, monit
 	req := apiValidateExistingMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		monitorId:  monitorId,
-		body:       &body,
+		monitorId: monitorId,
+		body: &body,
 	}
 
 	return req.ApiService.validateExistingMonitorExecute(req)
@@ -1727,9 +1729,9 @@ func (a *MonitorsApiService) ValidateExistingMonitor(ctx _context.Context, monit
  */
 func (a *MonitorsApiService) validateExistingMonitorExecute(r apiValidateExistingMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateExistingMonitor")
@@ -1864,7 +1866,7 @@ func (a *MonitorsApiService) validateExistingMonitorExecute(r apiValidateExistin
 type apiValidateMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
-	body       *Monitor
+	body *Monitor
 }
 
 /*
@@ -1875,7 +1877,7 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor)
 	req := apiValidateMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.validateMonitorExecute(req)
@@ -1887,9 +1889,9 @@ func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor)
  */
 func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest) (interface{}, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue interface{}
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateMonitor")

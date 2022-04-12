@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,35 +13,35 @@ import (
 
 func main() {
 	body := datadog.SyntheticsGlobalVariable{
-		Attributes: &datadog.SyntheticsGlobalVariableAttributes{
-			RestrictedRoles: &[]string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-		},
-		Description: "Example description",
-		Name:        "MY_VARIABLE",
-		ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
-			Field: datadog.PtrString("content-type"),
-			Parser: datadog.SyntheticsVariableParser{
-				Type:  datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
-				Value: datadog.PtrString(".*"),
-			},
-			Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
-		},
-		ParseTestPublicId: datadog.PtrString("abc-def-123"),
-		Tags: []string{
-			"team:front",
-			"test:workflow-1",
-		},
-		Value: datadog.SyntheticsGlobalVariableValue{
-			Secure: datadog.PtrBool(true),
-			Value:  datadog.PtrString("value"),
-		},
-	}
+Attributes: &datadog.SyntheticsGlobalVariableAttributes{
+RestrictedRoles: &[]string{
+"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+},
+},
+Description: "Example description",
+Name: "MY_VARIABLE",
+ParseTestOptions: &datadog.SyntheticsGlobalVariableParseTestOptions{
+Field: datadog.PtrString("content-type"),
+Parser: datadog.SyntheticsVariableParser{
+Type: datadog.SYNTHETICSGLOBALVARIABLEPARSERTYPE_REGEX,
+Value: datadog.PtrString(".*"),
+},
+Type: datadog.SYNTHETICSGLOBALVARIABLEPARSETESTOPTIONSTYPE_HTTP_BODY,
+},
+ParseTestPublicId: datadog.PtrString("abc-def-123"),
+Tags: []string{
+"team:front",
+"test:workflow-1",
+},
+Value: datadog.SyntheticsGlobalVariableValue{
+Secure: datadog.PtrBool(true),
+Value: datadog.PtrString("value"),
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.EditGlobalVariable(ctx, "variable_id", body)
+	resp, r, err := apiClient.SyntheticsApi.EditGlobalVariable(ctx, "variable_id", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.EditGlobalVariable`: %v\n", err)

@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsSortOrder The order to use, ascending or descending
 type LogsSortOrder string
 
 // List of LogsSortOrder
 const (
-	LOGSSORTORDER_ASCENDING  LogsSortOrder = "asc"
+	LOGSSORTORDER_ASCENDING LogsSortOrder = "asc"
 	LOGSSORTORDER_DESCENDING LogsSortOrder = "desc"
 )
 

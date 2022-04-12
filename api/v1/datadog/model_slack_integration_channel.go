@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SlackIntegrationChannel The Slack channel configuration.
 type SlackIntegrationChannel struct {
@@ -17,9 +21,11 @@ type SlackIntegrationChannel struct {
 	// Your channel name.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSlackIntegrationChannel instantiates a new SlackIntegrationChannel object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSlackIntegrationChannelWithDefaults() *SlackIntegrationChannel {
 	this := SlackIntegrationChannel{}
 	return &this
 }
-
 // GetDisplay returns the Display field value if set, zero value otherwise.
 func (o *SlackIntegrationChannel) GetDisplay() SlackIntegrationChannelDisplay {
 	if o == nil || o.Display == nil {
@@ -69,6 +74,7 @@ func (o *SlackIntegrationChannel) HasDisplay() bool {
 func (o *SlackIntegrationChannel) SetDisplay(v SlackIntegrationChannelDisplay) {
 	o.Display = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SlackIntegrationChannel) GetName() string {
@@ -102,6 +108,8 @@ func (o *SlackIntegrationChannel) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o SlackIntegrationChannel) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Display *SlackIntegrationChannelDisplay `json:"display,omitempty"`
-		Name    *string                         `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,13 +144,13 @@ func (o *SlackIntegrationChannel) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Display != nil && all.Display.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Display = all.Display
 	o.Name = all.Name
 	return nil

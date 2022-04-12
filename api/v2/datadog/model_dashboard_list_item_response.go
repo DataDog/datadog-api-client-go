@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardListItemResponse A dashboard within a list.
 type DashboardListItemResponse struct {
@@ -18,9 +21,11 @@ type DashboardListItemResponse struct {
 	// The type of the dashboard.
 	Type DashboardType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardListItemResponse instantiates a new DashboardListItemResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -40,7 +45,6 @@ func NewDashboardListItemResponseWithDefaults() *DashboardListItemResponse {
 	this := DashboardListItemResponse{}
 	return &this
 }
-
 // GetId returns the Id field value
 func (o *DashboardListItemResponse) GetId() string {
 	if o == nil {
@@ -63,6 +67,7 @@ func (o *DashboardListItemResponse) GetIdOk() (*string, bool) {
 func (o *DashboardListItemResponse) SetId(v string) {
 	o.Id = v
 }
+
 
 // GetType returns the Type field value
 func (o *DashboardListItemResponse) GetType() DashboardType {
@@ -87,6 +92,8 @@ func (o *DashboardListItemResponse) SetType(v DashboardType) {
 	o.Type = v
 }
 
+
+
 func (o DashboardListItemResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,14 +108,15 @@ func (o DashboardListItemResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardListItemResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *string        `json:"id"`
+		Id *string `json:"id"`
 		Type *DashboardType `json:"type"`
 	}{}
 	all := struct {
-		Id   string        `json:"id"`
+		Id string `json:"id"`
 		Type DashboardType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

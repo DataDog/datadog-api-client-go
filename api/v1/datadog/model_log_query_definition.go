@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogQueryDefinition The log query.
 type LogQueryDefinition struct {
@@ -23,9 +27,11 @@ type LogQueryDefinition struct {
 	// The query being made on the logs.
 	Search *LogQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogQueryDefinition instantiates a new LogQueryDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewLogQueryDefinitionWithDefaults() *LogQueryDefinition {
 	this := LogQueryDefinition{}
 	return &this
 }
-
 // GetCompute returns the Compute field value if set, zero value otherwise.
 func (o *LogQueryDefinition) GetCompute() LogsQueryCompute {
 	if o == nil || o.Compute == nil {
@@ -75,6 +80,7 @@ func (o *LogQueryDefinition) HasCompute() bool {
 func (o *LogQueryDefinition) SetCompute(v LogsQueryCompute) {
 	o.Compute = &v
 }
+
 
 // GetGroupBy returns the GroupBy field value if set, zero value otherwise.
 func (o *LogQueryDefinition) GetGroupBy() []LogQueryDefinitionGroupBy {
@@ -108,6 +114,7 @@ func (o *LogQueryDefinition) SetGroupBy(v []LogQueryDefinitionGroupBy) {
 	o.GroupBy = &v
 }
 
+
 // GetIndex returns the Index field value if set, zero value otherwise.
 func (o *LogQueryDefinition) GetIndex() string {
 	if o == nil || o.Index == nil {
@@ -139,6 +146,7 @@ func (o *LogQueryDefinition) HasIndex() bool {
 func (o *LogQueryDefinition) SetIndex(v string) {
 	o.Index = &v
 }
+
 
 // GetMultiCompute returns the MultiCompute field value if set, zero value otherwise.
 func (o *LogQueryDefinition) GetMultiCompute() []LogsQueryCompute {
@@ -172,6 +180,7 @@ func (o *LogQueryDefinition) SetMultiCompute(v []LogsQueryCompute) {
 	o.MultiCompute = &v
 }
 
+
 // GetSearch returns the Search field value if set, zero value otherwise.
 func (o *LogQueryDefinition) GetSearch() LogQueryDefinitionSearch {
 	if o == nil || o.Search == nil {
@@ -204,6 +213,8 @@ func (o *LogQueryDefinition) SetSearch(v LogQueryDefinitionSearch) {
 	o.Search = &v
 }
 
+
+
 func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -231,14 +242,15 @@ func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute      *LogsQueryCompute            `json:"compute,omitempty"`
-		GroupBy      *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
-		Index        *string                      `json:"index,omitempty"`
-		MultiCompute *[]LogsQueryCompute          `json:"multi_compute,omitempty"`
-		Search       *LogQueryDefinitionSearch    `json:"search,omitempty"`
+		Compute *LogsQueryCompute `json:"compute,omitempty"`
+		GroupBy *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
+		Index *string `json:"index,omitempty"`
+		MultiCompute *[]LogsQueryCompute `json:"multi_compute,omitempty"`
+		Search *LogQueryDefinitionSearch `json:"search,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -249,24 +261,24 @@ func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Compute != nil && all.Compute.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Compute = all.Compute
 	o.GroupBy = all.GroupBy
 	o.Index = all.Index
 	o.MultiCompute = all.MultiCompute
-	if all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Search != nil && all.Search.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Search = all.Search
 	return nil
 }

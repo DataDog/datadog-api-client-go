@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,16 +13,16 @@ import (
 
 func main() {
 	body := datadog.LogsIndexesOrder{
-		IndexNames: []string{
-			"main",
-			"payments",
-			"web",
-		},
-	}
+IndexNames: []string{
+"main",
+"payments",
+"web",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndexOrder(ctx, body)
+	resp, r, err := apiClient.LogsIndexesApi.UpdateLogsIndexOrder(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsIndexesApi.UpdateLogsIndexOrder`: %v\n", err)

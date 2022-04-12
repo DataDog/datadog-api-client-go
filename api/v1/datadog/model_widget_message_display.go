@@ -4,21 +4,24 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // WidgetMessageDisplay Amount of log lines to display
 type WidgetMessageDisplay string
 
 // List of WidgetMessageDisplay
 const (
-	WIDGETMESSAGEDISPLAY_INLINE          WidgetMessageDisplay = "inline"
+	WIDGETMESSAGEDISPLAY_INLINE WidgetMessageDisplay = "inline"
 	WIDGETMESSAGEDISPLAY_EXPANDED_MEDIUM WidgetMessageDisplay = "expanded-md"
-	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE  WidgetMessageDisplay = "expanded-lg"
+	WIDGETMESSAGEDISPLAY_EXPANDED_LARGE WidgetMessageDisplay = "expanded-lg"
 )
 
 var allowedWidgetMessageDisplayEnumValues = []WidgetMessageDisplay{

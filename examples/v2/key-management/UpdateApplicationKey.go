@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,19 +15,20 @@ func main() {
 	// there is a valid "application_key" in the system
 	ApplicationKeyDataID := os.Getenv("APPLICATION_KEY_DATA_ID")
 
+
 	body := datadog.ApplicationKeyUpdateRequest{
-		Data: datadog.ApplicationKeyUpdateData{
-			Id:   ApplicationKeyDataID,
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
-			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: datadog.PtrString("Application Key for managing dashboards-updated"),
-			},
-		},
-	}
+Data: datadog.ApplicationKeyUpdateData{
+Id: ApplicationKeyDataID,
+Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+Attributes: datadog.ApplicationKeyUpdateAttributes{
+Name: datadog.PtrString("Application Key for managing dashboards-updated"),
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, ApplicationKeyDataID, body)
+	resp, r, err := apiClient.KeyManagementApi.UpdateApplicationKey(ctx, ApplicationKeyDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.UpdateApplicationKey`: %v\n", err)

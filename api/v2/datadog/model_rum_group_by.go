@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMGroupBy A group-by rule.
 type RUMGroupBy struct {
@@ -27,9 +30,11 @@ type RUMGroupBy struct {
 	// A resulting object to put the given computes in over all the matching records.
 	Total *RUMGroupByTotal `json:"total,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMGroupBy instantiates a new RUMGroupBy object
 // This constructor will assign default values to properties that have it defined,
@@ -52,7 +57,6 @@ func NewRUMGroupByWithDefaults() *RUMGroupBy {
 	this.Limit = &limit
 	return &this
 }
-
 // GetFacet returns the Facet field value
 func (o *RUMGroupBy) GetFacet() string {
 	if o == nil {
@@ -75,6 +79,7 @@ func (o *RUMGroupBy) GetFacetOk() (*string, bool) {
 func (o *RUMGroupBy) SetFacet(v string) {
 	o.Facet = v
 }
+
 
 // GetHistogram returns the Histogram field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetHistogram() RUMGroupByHistogram {
@@ -108,6 +113,7 @@ func (o *RUMGroupBy) SetHistogram(v RUMGroupByHistogram) {
 	o.Histogram = &v
 }
 
+
 // GetLimit returns the Limit field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetLimit() int64 {
 	if o == nil || o.Limit == nil {
@@ -139,6 +145,7 @@ func (o *RUMGroupBy) HasLimit() bool {
 func (o *RUMGroupBy) SetLimit(v int64) {
 	o.Limit = &v
 }
+
 
 // GetMissing returns the Missing field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetMissing() RUMGroupByMissing {
@@ -172,6 +179,7 @@ func (o *RUMGroupBy) SetMissing(v RUMGroupByMissing) {
 	o.Missing = &v
 }
 
+
 // GetSort returns the Sort field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetSort() RUMAggregateSort {
 	if o == nil || o.Sort == nil {
@@ -203,6 +211,7 @@ func (o *RUMGroupBy) HasSort() bool {
 func (o *RUMGroupBy) SetSort(v RUMAggregateSort) {
 	o.Sort = &v
 }
+
 
 // GetTotal returns the Total field value if set, zero value otherwise.
 func (o *RUMGroupBy) GetTotal() RUMGroupByTotal {
@@ -236,6 +245,8 @@ func (o *RUMGroupBy) SetTotal(v RUMGroupByTotal) {
 	o.Total = &v
 }
 
+
+
 func (o RUMGroupBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -264,18 +275,19 @@ func (o RUMGroupBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Facet *string `json:"facet"`
 	}{}
 	all := struct {
-		Facet     string               `json:"facet"`
+		Facet string `json:"facet"`
 		Histogram *RUMGroupByHistogram `json:"histogram,omitempty"`
-		Limit     *int64               `json:"limit,omitempty"`
-		Missing   *RUMGroupByMissing   `json:"missing,omitempty"`
-		Sort      *RUMAggregateSort    `json:"sort,omitempty"`
-		Total     *RUMGroupByTotal     `json:"total,omitempty"`
+		Limit *int64 `json:"limit,omitempty"`
+		Missing *RUMGroupByMissing `json:"missing,omitempty"`
+		Sort *RUMAggregateSort `json:"sort,omitempty"`
+		Total *RUMGroupByTotal `json:"total,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -294,23 +306,23 @@ func (o *RUMGroupBy) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Facet = all.Facet
-	if all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Histogram != nil && all.Histogram.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Histogram = all.Histogram
 	o.Limit = all.Limit
 	o.Missing = all.Missing
-	if all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Sort != nil && all.Sort.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Sort = all.Sort
 	o.Total = all.Total
 	return nil

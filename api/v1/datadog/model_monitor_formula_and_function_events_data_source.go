@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MonitorFormulaAndFunctionEventsDataSource Data source for event platform-based queries.
 type MonitorFormulaAndFunctionEventsDataSource string
 
 // List of MonitorFormulaAndFunctionEventsDataSource
 const (
-	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM          MonitorFormulaAndFunctionEventsDataSource = "rum"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM MonitorFormulaAndFunctionEventsDataSource = "rum"
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
 )
 

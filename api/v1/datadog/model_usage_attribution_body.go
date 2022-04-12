@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // UsageAttributionBody Usage Summary by tag for a given organization.
 type UsageAttributionBody struct {
@@ -28,9 +31,11 @@ type UsageAttributionBody struct {
 	// Fields in Usage Summary by tag(s).
 	Values *UsageAttributionValues `json:"values,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAttributionBody instantiates a new UsageAttributionBody object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewUsageAttributionBodyWithDefaults() *UsageAttributionBody {
 	this := UsageAttributionBody{}
 	return &this
 }
-
 // GetMonth returns the Month field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetMonth() time.Time {
 	if o == nil || o.Month == nil {
@@ -80,6 +84,7 @@ func (o *UsageAttributionBody) HasMonth() bool {
 func (o *UsageAttributionBody) SetMonth(v time.Time) {
 	o.Month = &v
 }
+
 
 // GetOrgName returns the OrgName field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetOrgName() string {
@@ -113,6 +118,7 @@ func (o *UsageAttributionBody) SetOrgName(v string) {
 	o.OrgName = &v
 }
 
+
 // GetPublicId returns the PublicId field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetPublicId() string {
 	if o == nil || o.PublicId == nil {
@@ -144,6 +150,7 @@ func (o *UsageAttributionBody) HasPublicId() bool {
 func (o *UsageAttributionBody) SetPublicId(v string) {
 	o.PublicId = &v
 }
+
 
 // GetTagConfigSource returns the TagConfigSource field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetTagConfigSource() string {
@@ -177,6 +184,7 @@ func (o *UsageAttributionBody) SetTagConfigSource(v string) {
 	o.TagConfigSource = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetTags() map[string][]string {
 	if o == nil || o.Tags == nil {
@@ -208,6 +216,7 @@ func (o *UsageAttributionBody) HasTags() bool {
 func (o *UsageAttributionBody) SetTags(v map[string][]string) {
 	o.Tags = v
 }
+
 
 // GetUpdatedAt returns the UpdatedAt field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetUpdatedAt() string {
@@ -241,6 +250,7 @@ func (o *UsageAttributionBody) SetUpdatedAt(v string) {
 	o.UpdatedAt = &v
 }
 
+
 // GetValues returns the Values field value if set, zero value otherwise.
 func (o *UsageAttributionBody) GetValues() UsageAttributionValues {
 	if o == nil || o.Values == nil {
@@ -272,6 +282,8 @@ func (o *UsageAttributionBody) HasValues() bool {
 func (o *UsageAttributionBody) SetValues(v UsageAttributionValues) {
 	o.Values = &v
 }
+
+
 
 func (o UsageAttributionBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -306,16 +318,17 @@ func (o UsageAttributionBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Month           *time.Time              `json:"month,omitempty"`
-		OrgName         *string                 `json:"org_name,omitempty"`
-		PublicId        *string                 `json:"public_id,omitempty"`
-		TagConfigSource *string                 `json:"tag_config_source,omitempty"`
-		Tags            map[string][]string     `json:"tags,omitempty"`
-		UpdatedAt       *string                 `json:"updated_at,omitempty"`
-		Values          *UsageAttributionValues `json:"values,omitempty"`
+		Month *time.Time `json:"month,omitempty"`
+		OrgName *string `json:"org_name,omitempty"`
+		PublicId *string `json:"public_id,omitempty"`
+		TagConfigSource *string `json:"tag_config_source,omitempty"`
+		Tags map[string][]string `json:"tags,omitempty"`
+		UpdatedAt *string `json:"updated_at,omitempty"`
+		Values *UsageAttributionValues `json:"values,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -332,13 +345,13 @@ func (o *UsageAttributionBody) UnmarshalJSON(bytes []byte) (err error) {
 	o.TagConfigSource = all.TagConfigSource
 	o.Tags = all.Tags
 	o.UpdatedAt = all.UpdatedAt
-	if all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Values != nil && all.Values.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Values = all.Values
 	return nil
 }

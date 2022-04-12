@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithTags("test:examplegetallmonitordetailswithtags").WithPageSize(1))
+	resp, r, err := apiClient.MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithTags("test:examplegetallmonitordetailswithtags").WithPageSize(1), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ListMonitors`: %v\n", err)

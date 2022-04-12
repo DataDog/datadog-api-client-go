@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsServiceRemapper Use this processor if you want to assign one or more attributes as the official service.
 //
@@ -25,9 +28,11 @@ type LogsServiceRemapper struct {
 	// Type of logs service remapper.
 	Type LogsServiceRemapperType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsServiceRemapper instantiates a new LogsServiceRemapper object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +58,6 @@ func NewLogsServiceRemapperWithDefaults() *LogsServiceRemapper {
 	this.Type = type_
 	return &this
 }
-
 // GetIsEnabled returns the IsEnabled field value if set, zero value otherwise.
 func (o *LogsServiceRemapper) GetIsEnabled() bool {
 	if o == nil || o.IsEnabled == nil {
@@ -85,6 +89,7 @@ func (o *LogsServiceRemapper) HasIsEnabled() bool {
 func (o *LogsServiceRemapper) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *LogsServiceRemapper) GetName() string {
@@ -118,6 +123,7 @@ func (o *LogsServiceRemapper) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetSources returns the Sources field value
 func (o *LogsServiceRemapper) GetSources() []string {
 	if o == nil {
@@ -140,6 +146,7 @@ func (o *LogsServiceRemapper) GetSourcesOk() (*[]string, bool) {
 func (o *LogsServiceRemapper) SetSources(v []string) {
 	o.Sources = v
 }
+
 
 // GetType returns the Type field value
 func (o *LogsServiceRemapper) GetType() LogsServiceRemapperType {
@@ -164,6 +171,8 @@ func (o *LogsServiceRemapper) SetType(v LogsServiceRemapperType) {
 	o.Type = v
 }
 
+
+
 func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -184,17 +193,18 @@ func (o LogsServiceRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsServiceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Sources *[]string                `json:"sources"`
-		Type    *LogsServiceRemapperType `json:"type"`
+		Sources *[]string `json:"sources"`
+		Type *LogsServiceRemapperType `json:"type"`
 	}{}
 	all := struct {
-		IsEnabled *bool                   `json:"is_enabled,omitempty"`
-		Name      *string                 `json:"name,omitempty"`
-		Sources   []string                `json:"sources"`
-		Type      LogsServiceRemapperType `json:"type"`
+		IsEnabled *bool `json:"is_enabled,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Sources []string `json:"sources"`
+		Type LogsServiceRemapperType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

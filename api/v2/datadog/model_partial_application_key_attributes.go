@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // PartialApplicationKeyAttributes Attributes of a partial application key.
 type PartialApplicationKeyAttributes struct {
@@ -21,9 +25,11 @@ type PartialApplicationKeyAttributes struct {
 	// Array of scopes to grant the application key. This feature is in private beta, please contact Datadog support to enable scopes for your application keys.
 	Scopes []string `json:"scopes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewPartialApplicationKeyAttributes instantiates a new PartialApplicationKeyAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewPartialApplicationKeyAttributesWithDefaults() *PartialApplicationKeyAttr
 	this := PartialApplicationKeyAttributes{}
 	return &this
 }
-
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetCreatedAt() string {
 	if o == nil || o.CreatedAt == nil {
@@ -73,6 +78,7 @@ func (o *PartialApplicationKeyAttributes) HasCreatedAt() bool {
 func (o *PartialApplicationKeyAttributes) SetCreatedAt(v string) {
 	o.CreatedAt = &v
 }
+
 
 // GetLast4 returns the Last4 field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetLast4() string {
@@ -106,6 +112,7 @@ func (o *PartialApplicationKeyAttributes) SetLast4(v string) {
 	o.Last4 = &v
 }
 
+
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *PartialApplicationKeyAttributes) GetName() string {
 	if o == nil || o.Name == nil {
@@ -138,9 +145,10 @@ func (o *PartialApplicationKeyAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetScopes returns the Scopes field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *PartialApplicationKeyAttributes) GetScopes() []string {
-	if o == nil {
+	if o == nil  {
 		var ret []string
 		return ret
 	}
@@ -171,6 +179,8 @@ func (o *PartialApplicationKeyAttributes) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+
+
 func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -195,13 +205,14 @@ func (o PartialApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *PartialApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CreatedAt *string  `json:"created_at,omitempty"`
-		Last4     *string  `json:"last4,omitempty"`
-		Name      *string  `json:"name,omitempty"`
-		Scopes    []string `json:"scopes,omitempty"`
+		CreatedAt *string `json:"created_at,omitempty"`
+		Last4 *string `json:"last4,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Scopes []string `json:"scopes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

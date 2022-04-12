@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // NotebookLogStreamCellAttributes The attributes of a notebook `log_stream` cell.
 type NotebookLogStreamCellAttributes struct {
@@ -20,9 +23,11 @@ type NotebookLogStreamCellAttributes struct {
 	// Timeframe for the notebook cell. When 'null', the notebook global time is used.
 	Time NullableNotebookCellTime `json:"time,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewNotebookLogStreamCellAttributesWithDefaults() *NotebookLogStreamCellAttr
 	this := NotebookLogStreamCellAttributes{}
 	return &this
 }
-
 // GetDefinition returns the Definition field value
 func (o *NotebookLogStreamCellAttributes) GetDefinition() LogStreamWidgetDefinition {
 	if o == nil {
@@ -64,6 +68,7 @@ func (o *NotebookLogStreamCellAttributes) GetDefinitionOk() (*LogStreamWidgetDef
 func (o *NotebookLogStreamCellAttributes) SetDefinition(v LogStreamWidgetDefinition) {
 	o.Definition = v
 }
+
 
 // GetGraphSize returns the GraphSize field value if set, zero value otherwise.
 func (o *NotebookLogStreamCellAttributes) GetGraphSize() NotebookGraphSize {
@@ -97,6 +102,7 @@ func (o *NotebookLogStreamCellAttributes) SetGraphSize(v NotebookGraphSize) {
 	o.GraphSize = &v
 }
 
+
 // GetTime returns the Time field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 	if o == nil || o.Time.Get() == nil {
@@ -110,7 +116,7 @@ func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 // and a boolean to check if the value has been set.
 // NOTE: If the value is an explicit nil, `nil, true` will be returned
 func (o *NotebookLogStreamCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
-	if o == nil {
+	if o == nil  {
 		return nil, false
 	}
 	return o.Time.Get(), o.Time.IsSet()
@@ -129,7 +135,6 @@ func (o *NotebookLogStreamCellAttributes) HasTime() bool {
 func (o *NotebookLogStreamCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
-
 // SetTimeNil sets the value for Time to be an explicit nil
 func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
@@ -139,6 +144,8 @@ func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 func (o *NotebookLogStreamCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
+
+
 
 func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -159,6 +166,7 @@ func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -166,8 +174,8 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 	}{}
 	all := struct {
 		Definition LogStreamWidgetDefinition `json:"definition"`
-		GraphSize  *NotebookGraphSize        `json:"graph_size,omitempty"`
-		Time       NullableNotebookCellTime  `json:"time,omitempty"`
+		GraphSize *NotebookGraphSize `json:"graph_size,omitempty"`
+		Time NullableNotebookCellTime `json:"time,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -185,7 +193,7 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.GraphSize; v != nil && !v.IsValid() {
+	if v := all.GraphSize; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -193,13 +201,13 @@ func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Definition.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Definition.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Definition = all.Definition
 	o.GraphSize = all.GraphSize
 	o.Time = all.Time

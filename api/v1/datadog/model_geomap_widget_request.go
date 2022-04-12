@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // GeomapWidgetRequest An updated geomap widget.
 type GeomapWidgetRequest struct {
@@ -27,9 +31,11 @@ type GeomapWidgetRequest struct {
 	// The log query.
 	SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewGeomapWidgetRequest instantiates a new GeomapWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -47,7 +53,6 @@ func NewGeomapWidgetRequestWithDefaults() *GeomapWidgetRequest {
 	this := GeomapWidgetRequest{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -79,6 +84,7 @@ func (o *GeomapWidgetRequest) HasFormulas() bool {
 func (o *GeomapWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = &v
 }
+
 
 // GetLogQuery returns the LogQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetLogQuery() LogQueryDefinition {
@@ -112,6 +118,7 @@ func (o *GeomapWidgetRequest) SetLogQuery(v LogQueryDefinition) {
 	o.LogQuery = &v
 }
 
+
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetQ() string {
 	if o == nil || o.Q == nil {
@@ -143,6 +150,7 @@ func (o *GeomapWidgetRequest) HasQ() bool {
 func (o *GeomapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
+
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
@@ -176,6 +184,7 @@ func (o *GeomapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) 
 	o.Queries = &v
 }
 
+
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
 	if o == nil || o.ResponseFormat == nil {
@@ -207,6 +216,7 @@ func (o *GeomapWidgetRequest) HasResponseFormat() bool {
 func (o *GeomapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFormat) {
 	o.ResponseFormat = &v
 }
+
 
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetRumQuery() LogQueryDefinition {
@@ -240,6 +250,7 @@ func (o *GeomapWidgetRequest) SetRumQuery(v LogQueryDefinition) {
 	o.RumQuery = &v
 }
 
+
 // GetSecurityQuery returns the SecurityQuery field value if set, zero value otherwise.
 func (o *GeomapWidgetRequest) GetSecurityQuery() LogQueryDefinition {
 	if o == nil || o.SecurityQuery == nil {
@@ -271,6 +282,8 @@ func (o *GeomapWidgetRequest) HasSecurityQuery() bool {
 func (o *GeomapWidgetRequest) SetSecurityQuery(v LogQueryDefinition) {
 	o.SecurityQuery = &v
 }
+
+
 
 func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -305,16 +318,17 @@ func (o GeomapWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       *[]WidgetFormula                     `json:"formulas,omitempty"`
-		LogQuery       *LogQueryDefinition                  `json:"log_query,omitempty"`
-		Q              *string                              `json:"q,omitempty"`
-		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery       *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery  *LogQueryDefinition                  `json:"security_query,omitempty"`
+		Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+		LogQuery *LogQueryDefinition `json:"log_query,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
+		RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
+		SecurityQuery *LogQueryDefinition `json:"security_query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -325,7 +339,7 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -334,32 +348,32 @@ func (o *GeomapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Formulas = all.Formulas
-	if all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.LogQuery != nil && all.LogQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.LogQuery = all.LogQuery
 	o.Q = all.Q
 	o.Queries = all.Queries
 	o.ResponseFormat = all.ResponseFormat
-	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.RumQuery = all.RumQuery
-	if all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.SecurityQuery != nil && all.SecurityQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.SecurityQuery = all.SecurityQuery
 	return nil
 }

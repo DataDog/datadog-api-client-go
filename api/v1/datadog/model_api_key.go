@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // ApiKey Datadog API key.
 type ApiKey struct {
@@ -21,9 +25,11 @@ type ApiKey struct {
 	// Name of your API key.
 	Name *string `json:"name,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewApiKey instantiates a new ApiKey object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewApiKeyWithDefaults() *ApiKey {
 	this := ApiKey{}
 	return &this
 }
-
 // GetCreated returns the Created field value if set, zero value otherwise.
 func (o *ApiKey) GetCreated() string {
 	if o == nil || o.Created == nil {
@@ -73,6 +78,7 @@ func (o *ApiKey) HasCreated() bool {
 func (o *ApiKey) SetCreated(v string) {
 	o.Created = &v
 }
+
 
 // GetCreatedBy returns the CreatedBy field value if set, zero value otherwise.
 func (o *ApiKey) GetCreatedBy() string {
@@ -106,6 +112,7 @@ func (o *ApiKey) SetCreatedBy(v string) {
 	o.CreatedBy = &v
 }
 
+
 // GetKey returns the Key field value if set, zero value otherwise.
 func (o *ApiKey) GetKey() string {
 	if o == nil || o.Key == nil {
@@ -137,6 +144,7 @@ func (o *ApiKey) HasKey() bool {
 func (o *ApiKey) SetKey(v string) {
 	o.Key = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *ApiKey) GetName() string {
@@ -170,6 +178,8 @@ func (o *ApiKey) SetName(v string) {
 	o.Name = &v
 }
 
+
+
 func (o ApiKey) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o ApiKey) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *ApiKey) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Created   *string `json:"created,omitempty"`
+		Created *string `json:"created,omitempty"`
 		CreatedBy *string `json:"created_by,omitempty"`
-		Key       *string `json:"key,omitempty"`
-		Name      *string `json:"name,omitempty"`
+		Key *string `json:"key,omitempty"`
+		Name *string `json:"name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

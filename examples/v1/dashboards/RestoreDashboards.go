@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,18 +16,19 @@ func main() {
 	// there is a valid "dashboard" in the system
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
+
 	body := datadog.DashboardRestoreRequest{
-		Data: []datadog.DashboardBulkActionData{
-			{
-				Id:   DashboardID,
-				Type: datadog.DASHBOARDRESOURCETYPE_DASHBOARD,
-			},
-		},
-	}
+Data: []datadog.DashboardBulkActionData{
+{
+Id: DashboardID,
+Type: datadog.DASHBOARDRESOURCETYPE_DASHBOARD,
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.DashboardsApi.RestoreDashboards(ctx, body)
+	r, err := apiClient.DashboardsApi.RestoreDashboards(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.RestoreDashboards`: %v\n", err)

@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,22 +15,24 @@ func main() {
 	// there is a valid "service_account_user" in the system
 	ServiceAccountUserDataID := os.Getenv("SERVICE_ACCOUNT_USER_DATA_ID")
 
+
 	// there is a valid "service_account_application_key" for "service_account_user"
 	ServiceAccountApplicationKeyDataID := os.Getenv("SERVICE_ACCOUNT_APPLICATION_KEY_DATA_ID")
 
+
 	body := datadog.ApplicationKeyUpdateRequest{
-		Data: datadog.ApplicationKeyUpdateData{
-			Id:   ServiceAccountApplicationKeyDataID,
-			Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
-			Attributes: datadog.ApplicationKeyUpdateAttributes{
-				Name: datadog.PtrString("Application Key for managing dashboards-updated"),
-			},
-		},
-	}
+Data: datadog.ApplicationKeyUpdateData{
+Id: ServiceAccountApplicationKeyDataID,
+Type: datadog.APPLICATIONKEYSTYPE_APPLICATION_KEYS,
+Attributes: datadog.ApplicationKeyUpdateAttributes{
+Name: datadog.PtrString("Application Key for managing dashboards-updated"),
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.UpdateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, ServiceAccountApplicationKeyDataID, body)
+	resp, r, err := apiClient.ServiceAccountsApi.UpdateServiceAccountApplicationKey(ctx, ServiceAccountUserDataID, ServiceAccountApplicationKeyDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.UpdateServiceAccountApplicationKey`: %v\n", err)

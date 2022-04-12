@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsArithmeticProcessorType Type of logs arithmetic processor.
 type LogsArithmeticProcessorType string

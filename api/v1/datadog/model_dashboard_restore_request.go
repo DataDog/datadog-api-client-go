@@ -4,21 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardRestoreRequest Dashboard restore request body.
 type DashboardRestoreRequest struct {
 	// List of dashboard bulk action request data objects.
 	Data []DashboardBulkActionData `json:"data"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardRestoreRequest instantiates a new DashboardRestoreRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +42,6 @@ func NewDashboardRestoreRequestWithDefaults() *DashboardRestoreRequest {
 	this := DashboardRestoreRequest{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *DashboardRestoreRequest) GetData() []DashboardBulkActionData {
 	if o == nil {
@@ -61,6 +65,8 @@ func (o *DashboardRestoreRequest) SetData(v []DashboardBulkActionData) {
 	o.Data = v
 }
 
+
+
 func (o DashboardRestoreRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -73,6 +79,7 @@ func (o DashboardRestoreRequest) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *DashboardRestoreRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

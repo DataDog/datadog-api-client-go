@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMComputeType The type of compute.
 type RUMComputeType string
@@ -17,7 +20,7 @@ type RUMComputeType string
 // List of RUMComputeType
 const (
 	RUMCOMPUTETYPE_TIMESERIES RUMComputeType = "timeseries"
-	RUMCOMPUTETYPE_TOTAL      RUMComputeType = "total"
+	RUMCOMPUTETYPE_TOTAL RUMComputeType = "total"
 )
 
 var allowedRUMComputeTypeEnumValues = []RUMComputeType{

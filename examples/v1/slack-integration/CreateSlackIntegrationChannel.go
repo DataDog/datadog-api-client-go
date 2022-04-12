@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,18 +13,18 @@ import (
 
 func main() {
 	body := datadog.SlackIntegrationChannel{
-		Display: &datadog.SlackIntegrationChannelDisplay{
-			Message:  datadog.PtrBool(true),
-			Notified: datadog.PtrBool(true),
-			Snapshot: datadog.PtrBool(true),
-			Tags:     datadog.PtrBool(true),
-		},
-		Name: datadog.PtrString("#general"),
-	}
+Display: &datadog.SlackIntegrationChannelDisplay{
+Message: datadog.PtrBool(true),
+Notified: datadog.PtrBool(true),
+Snapshot: datadog.PtrBool(true),
+Tags: datadog.PtrBool(true),
+},
+Name: datadog.PtrString("#general"),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, "account_name", body)
+	resp, r, err := apiClient.SlackIntegrationApi.CreateSlackIntegrationChannel(ctx, "account_name", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SlackIntegrationApi.CreateSlackIntegrationChannel`: %v\n", err)

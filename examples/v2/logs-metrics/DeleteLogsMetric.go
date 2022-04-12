@@ -2,8 +2,10 @@
 
 package main
 
+
 import (
 	"context"
+	"encoding/json"
 	"fmt"
 	"os"
 
@@ -14,10 +16,11 @@ func main() {
 	// there is a valid "logs_metric" in the system
 	LogsMetricDataID := os.Getenv("LOGS_METRIC_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.LogsMetricsApi.DeleteLogsMetric(ctx, LogsMetricDataID)
+	r, err := apiClient.LogsMetricsApi.DeleteLogsMetric(ctx, LogsMetricDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.DeleteLogsMetric`: %v\n", err)

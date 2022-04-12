@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type LogsPipelinesApiService service
 type apiCreateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipeline
+	body *LogsPipeline
 }
 
 /*
@@ -37,7 +39,7 @@ func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body 
 	req := apiCreateLogsPipelineRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createLogsPipelineExecute(req)
@@ -49,9 +51,9 @@ func (a *LogsPipelinesApiService) CreateLogsPipeline(ctx _context.Context, body 
  */
 func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.CreateLogsPipeline")
@@ -208,8 +210,8 @@ func (a *LogsPipelinesApiService) DeleteLogsPipeline(ctx _context.Context, pipel
  */
 func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipelineRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.DeleteLogsPipeline")
@@ -344,9 +346,9 @@ func (a *LogsPipelinesApiService) GetLogsPipeline(ctx _context.Context, pipeline
  */
 func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipeline")
@@ -488,9 +490,9 @@ func (a *LogsPipelinesApiService) GetLogsPipelineOrder(ctx _context.Context) (Lo
  */
 func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipelinesOrder
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipelineOrder")
@@ -621,9 +623,9 @@ func (a *LogsPipelinesApiService) ListLogsPipelines(ctx _context.Context) ([]Log
  */
 func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipelinesRequest) ([]LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.ListLogsPipelines")
@@ -733,7 +735,7 @@ type apiUpdateLogsPipelineRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
 	pipelineId string
-	body       *LogsPipeline
+	body *LogsPipeline
 }
 
 /*
@@ -748,7 +750,7 @@ func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipel
 		ApiService: a,
 		ctx:        ctx,
 		pipelineId: pipelineId,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsPipelineExecute(req)
@@ -760,9 +762,9 @@ func (a *LogsPipelinesApiService) UpdateLogsPipeline(ctx _context.Context, pipel
  */
 func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipelineRequest) (LogsPipeline, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipeline
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipeline
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipeline")
@@ -897,7 +899,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 type apiUpdateLogsPipelineOrderRequest struct {
 	ctx        _context.Context
 	ApiService *LogsPipelinesApiService
-	body       *LogsPipelinesOrder
+	body *LogsPipelinesOrder
 }
 
 /*
@@ -912,7 +914,7 @@ func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, 
 	req := apiUpdateLogsPipelineOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateLogsPipelineOrderExecute(req)
@@ -924,9 +926,9 @@ func (a *LogsPipelinesApiService) UpdateLogsPipelineOrder(ctx _context.Context, 
  */
 func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogsPipelineOrderRequest) (LogsPipelinesOrder, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue LogsPipelinesOrder
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  LogsPipelinesOrder
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipelineOrder")

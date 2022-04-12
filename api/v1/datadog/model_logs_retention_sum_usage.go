@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsRetentionSumUsage Object containing indexed logs usage grouped by retention period and summed.
 type LogsRetentionSumUsage struct {
@@ -21,9 +25,11 @@ type LogsRetentionSumUsage struct {
 	// The retention period in days or "custom" for all custom retention periods.
 	Retention *string `json:"retention,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsRetentionSumUsage instantiates a new LogsRetentionSumUsage object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewLogsRetentionSumUsageWithDefaults() *LogsRetentionSumUsage {
 	this := LogsRetentionSumUsage{}
 	return &this
 }
-
 // GetLogsIndexedLogsUsageSum returns the LogsIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsIndexedLogsUsageSum() int64 {
 	if o == nil || o.LogsIndexedLogsUsageSum == nil {
@@ -73,6 +78,7 @@ func (o *LogsRetentionSumUsage) HasLogsIndexedLogsUsageSum() bool {
 func (o *LogsRetentionSumUsage) SetLogsIndexedLogsUsageSum(v int64) {
 	o.LogsIndexedLogsUsageSum = &v
 }
+
 
 // GetLogsLiveIndexedLogsUsageSum returns the LogsLiveIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsLiveIndexedLogsUsageSum() int64 {
@@ -106,6 +112,7 @@ func (o *LogsRetentionSumUsage) SetLogsLiveIndexedLogsUsageSum(v int64) {
 	o.LogsLiveIndexedLogsUsageSum = &v
 }
 
+
 // GetLogsRehydratedIndexedLogsUsageSum returns the LogsRehydratedIndexedLogsUsageSum field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetLogsRehydratedIndexedLogsUsageSum() int64 {
 	if o == nil || o.LogsRehydratedIndexedLogsUsageSum == nil {
@@ -137,6 +144,7 @@ func (o *LogsRetentionSumUsage) HasLogsRehydratedIndexedLogsUsageSum() bool {
 func (o *LogsRetentionSumUsage) SetLogsRehydratedIndexedLogsUsageSum(v int64) {
 	o.LogsRehydratedIndexedLogsUsageSum = &v
 }
+
 
 // GetRetention returns the Retention field value if set, zero value otherwise.
 func (o *LogsRetentionSumUsage) GetRetention() string {
@@ -170,6 +178,8 @@ func (o *LogsRetentionSumUsage) SetRetention(v string) {
 	o.Retention = &v
 }
 
+
+
 func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o LogsRetentionSumUsage) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsRetentionSumUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		LogsIndexedLogsUsageSum           *int64  `json:"logs_indexed_logs_usage_sum,omitempty"`
-		LogsLiveIndexedLogsUsageSum       *int64  `json:"logs_live_indexed_logs_usage_sum,omitempty"`
-		LogsRehydratedIndexedLogsUsageSum *int64  `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
-		Retention                         *string `json:"retention,omitempty"`
+		LogsIndexedLogsUsageSum *int64 `json:"logs_indexed_logs_usage_sum,omitempty"`
+		LogsLiveIndexedLogsUsageSum *int64 `json:"logs_live_indexed_logs_usage_sum,omitempty"`
+		LogsRehydratedIndexedLogsUsageSum *int64 `json:"logs_rehydrated_indexed_logs_usage_sum,omitempty"`
+		Retention *string `json:"retention,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

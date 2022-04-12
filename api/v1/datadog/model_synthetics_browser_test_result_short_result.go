@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBrowserTestResultShortResult Object with the result of the last browser test run.
 type SyntheticsBrowserTestResultShortResult struct {
@@ -23,9 +27,11 @@ type SyntheticsBrowserTestResultShortResult struct {
 	// Total amount of browser test steps.
 	StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBrowserTestResultShortResult instantiates a new SyntheticsBrowserTestResultShortResult object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +49,6 @@ func NewSyntheticsBrowserTestResultShortResultWithDefaults() *SyntheticsBrowserT
 	this := SyntheticsBrowserTestResultShortResult{}
 	return &this
 }
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetDevice() SyntheticsDevice {
 	if o == nil || o.Device == nil {
@@ -75,6 +80,7 @@ func (o *SyntheticsBrowserTestResultShortResult) HasDevice() bool {
 func (o *SyntheticsBrowserTestResultShortResult) SetDevice(v SyntheticsDevice) {
 	o.Device = &v
 }
+
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetDuration() float64 {
@@ -108,6 +114,7 @@ func (o *SyntheticsBrowserTestResultShortResult) SetDuration(v float64) {
 	o.Duration = &v
 }
 
+
 // GetErrorCount returns the ErrorCount field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetErrorCount() int64 {
 	if o == nil || o.ErrorCount == nil {
@@ -139,6 +146,7 @@ func (o *SyntheticsBrowserTestResultShortResult) HasErrorCount() bool {
 func (o *SyntheticsBrowserTestResultShortResult) SetErrorCount(v int64) {
 	o.ErrorCount = &v
 }
+
 
 // GetStepCountCompleted returns the StepCountCompleted field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetStepCountCompleted() int64 {
@@ -172,6 +180,7 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountCompleted(v int64) 
 	o.StepCountCompleted = &v
 }
 
+
 // GetStepCountTotal returns the StepCountTotal field value if set, zero value otherwise.
 func (o *SyntheticsBrowserTestResultShortResult) GetStepCountTotal() int64 {
 	if o == nil || o.StepCountTotal == nil {
@@ -204,6 +213,8 @@ func (o *SyntheticsBrowserTestResultShortResult) SetStepCountTotal(v int64) {
 	o.StepCountTotal = &v
 }
 
+
+
 func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -231,14 +242,15 @@ func (o SyntheticsBrowserTestResultShortResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Device             *SyntheticsDevice `json:"device,omitempty"`
-		Duration           *float64          `json:"duration,omitempty"`
-		ErrorCount         *int64            `json:"errorCount,omitempty"`
-		StepCountCompleted *int64            `json:"stepCountCompleted,omitempty"`
-		StepCountTotal     *int64            `json:"stepCountTotal,omitempty"`
+		Device *SyntheticsDevice `json:"device,omitempty"`
+		Duration *float64 `json:"duration,omitempty"`
+		ErrorCount *int64 `json:"errorCount,omitempty"`
+		StepCountCompleted *int64 `json:"stepCountCompleted,omitempty"`
+		StepCountTotal *int64 `json:"stepCountTotal,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -249,13 +261,13 @@ func (o *SyntheticsBrowserTestResultShortResult) UnmarshalJSON(bytes []byte) (er
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Device != nil && all.Device.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Device = all.Device
 	o.Duration = all.Duration
 	o.ErrorCount = all.ErrorCount

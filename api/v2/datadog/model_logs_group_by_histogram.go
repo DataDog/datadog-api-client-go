@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // LogsGroupByHistogram Used to perform a histogram computation (only for measure facets).
 // Note: At most 100 buckets are allowed, the number of buckets is (max - min)/interval.
@@ -23,9 +26,11 @@ type LogsGroupByHistogram struct {
 	// (values smaller than this one are filtered out)
 	Min float64 `json:"min"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewLogsGroupByHistogram instantiates a new LogsGroupByHistogram object
 // This constructor will assign default values to properties that have it defined,
@@ -46,7 +51,6 @@ func NewLogsGroupByHistogramWithDefaults() *LogsGroupByHistogram {
 	this := LogsGroupByHistogram{}
 	return &this
 }
-
 // GetInterval returns the Interval field value
 func (o *LogsGroupByHistogram) GetInterval() float64 {
 	if o == nil {
@@ -69,6 +73,7 @@ func (o *LogsGroupByHistogram) GetIntervalOk() (*float64, bool) {
 func (o *LogsGroupByHistogram) SetInterval(v float64) {
 	o.Interval = v
 }
+
 
 // GetMax returns the Max field value
 func (o *LogsGroupByHistogram) GetMax() float64 {
@@ -93,6 +98,7 @@ func (o *LogsGroupByHistogram) SetMax(v float64) {
 	o.Max = v
 }
 
+
 // GetMin returns the Min field value
 func (o *LogsGroupByHistogram) GetMin() float64 {
 	if o == nil {
@@ -116,6 +122,8 @@ func (o *LogsGroupByHistogram) SetMin(v float64) {
 	o.Min = v
 }
 
+
+
 func (o LogsGroupByHistogram) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -131,17 +139,18 @@ func (o LogsGroupByHistogram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *LogsGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Interval *float64 `json:"interval"`
-		Max      *float64 `json:"max"`
-		Min      *float64 `json:"min"`
+		Max *float64 `json:"max"`
+		Min *float64 `json:"min"`
 	}{}
 	all := struct {
 		Interval float64 `json:"interval"`
-		Max      float64 `json:"max"`
-		Min      float64 `json:"min"`
+		Max float64 `json:"max"`
+		Min float64 `json:"min"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

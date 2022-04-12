@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,21 +13,21 @@ import (
 
 func main() {
 	body := datadog.SyntheticsPrivateLocation{
-		Description: "Description of private location",
-		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
-			RestrictedRoles: &[]string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-		},
-		Name: "New private location",
-		Tags: []string{
-			"team:front",
-		},
-	}
+Description: "Description of private location",
+Metadata: &datadog.SyntheticsPrivateLocationMetadata{
+RestrictedRoles: &[]string{
+"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+},
+},
+Name: "New private location",
+Tags: []string{
+"team:front",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, "location_id", body)
+	resp, r, err := apiClient.SyntheticsApi.UpdatePrivateLocation(ctx, "location_id", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdatePrivateLocation`: %v\n", err)

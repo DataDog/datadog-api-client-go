@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsBatchResult Object with the results of a Synthetics batch.
 type SyntheticsBatchResult struct {
@@ -33,9 +37,11 @@ type SyntheticsBatchResult struct {
 	// Type of the Synthetic test, either `api` or `browser`.
 	TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsBatchResult instantiates a new SyntheticsBatchResult object
 // This constructor will assign default values to properties that have it defined,
@@ -53,7 +59,6 @@ func NewSyntheticsBatchResultWithDefaults() *SyntheticsBatchResult {
 	this := SyntheticsBatchResult{}
 	return &this
 }
-
 // GetDevice returns the Device field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetDevice() SyntheticsDeviceID {
 	if o == nil || o.Device == nil {
@@ -85,6 +90,7 @@ func (o *SyntheticsBatchResult) HasDevice() bool {
 func (o *SyntheticsBatchResult) SetDevice(v SyntheticsDeviceID) {
 	o.Device = &v
 }
+
 
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetDuration() float64 {
@@ -118,6 +124,7 @@ func (o *SyntheticsBatchResult) SetDuration(v float64) {
 	o.Duration = &v
 }
 
+
 // GetExecutionRule returns the ExecutionRule field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetExecutionRule() SyntheticsTestExecutionRule {
 	if o == nil || o.ExecutionRule == nil {
@@ -149,6 +156,7 @@ func (o *SyntheticsBatchResult) HasExecutionRule() bool {
 func (o *SyntheticsBatchResult) SetExecutionRule(v SyntheticsTestExecutionRule) {
 	o.ExecutionRule = &v
 }
+
 
 // GetLocation returns the Location field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetLocation() string {
@@ -182,6 +190,7 @@ func (o *SyntheticsBatchResult) SetLocation(v string) {
 	o.Location = &v
 }
 
+
 // GetResultId returns the ResultId field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetResultId() string {
 	if o == nil || o.ResultId == nil {
@@ -213,6 +222,7 @@ func (o *SyntheticsBatchResult) HasResultId() bool {
 func (o *SyntheticsBatchResult) SetResultId(v string) {
 	o.ResultId = &v
 }
+
 
 // GetRetries returns the Retries field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetRetries() float64 {
@@ -246,6 +256,7 @@ func (o *SyntheticsBatchResult) SetRetries(v float64) {
 	o.Retries = &v
 }
 
+
 // GetStatus returns the Status field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetStatus() SyntheticsStatus {
 	if o == nil || o.Status == nil {
@@ -277,6 +288,7 @@ func (o *SyntheticsBatchResult) HasStatus() bool {
 func (o *SyntheticsBatchResult) SetStatus(v SyntheticsStatus) {
 	o.Status = &v
 }
+
 
 // GetTestName returns the TestName field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestName() string {
@@ -310,6 +322,7 @@ func (o *SyntheticsBatchResult) SetTestName(v string) {
 	o.TestName = &v
 }
 
+
 // GetTestPublicId returns the TestPublicId field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestPublicId() string {
 	if o == nil || o.TestPublicId == nil {
@@ -342,6 +355,7 @@ func (o *SyntheticsBatchResult) SetTestPublicId(v string) {
 	o.TestPublicId = &v
 }
 
+
 // GetTestType returns the TestType field value if set, zero value otherwise.
 func (o *SyntheticsBatchResult) GetTestType() SyntheticsTestDetailsType {
 	if o == nil || o.TestType == nil {
@@ -373,6 +387,8 @@ func (o *SyntheticsBatchResult) HasTestType() bool {
 func (o *SyntheticsBatchResult) SetTestType(v SyntheticsTestDetailsType) {
 	o.TestType = &v
 }
+
+
 
 func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -416,19 +432,20 @@ func (o SyntheticsBatchResult) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Device        *SyntheticsDeviceID          `json:"device,omitempty"`
-		Duration      *float64                     `json:"duration,omitempty"`
+		Device *SyntheticsDeviceID `json:"device,omitempty"`
+		Duration *float64 `json:"duration,omitempty"`
 		ExecutionRule *SyntheticsTestExecutionRule `json:"execution_rule,omitempty"`
-		Location      *string                      `json:"location,omitempty"`
-		ResultId      *string                      `json:"result_id,omitempty"`
-		Retries       *float64                     `json:"retries,omitempty"`
-		Status        *SyntheticsStatus            `json:"status,omitempty"`
-		TestName      *string                      `json:"test_name,omitempty"`
-		TestPublicId  *string                      `json:"test_public_id,omitempty"`
-		TestType      *SyntheticsTestDetailsType   `json:"test_type,omitempty"`
+		Location *string `json:"location,omitempty"`
+		ResultId *string `json:"result_id,omitempty"`
+		Retries *float64 `json:"retries,omitempty"`
+		Status *SyntheticsStatus `json:"status,omitempty"`
+		TestName *string `json:"test_name,omitempty"`
+		TestPublicId *string `json:"test_public_id,omitempty"`
+		TestType *SyntheticsTestDetailsType `json:"test_type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -439,7 +456,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Device; v != nil && !v.IsValid() {
+	if v := all.Device; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -447,7 +464,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ExecutionRule; v != nil && !v.IsValid() {
+	if v := all.ExecutionRule; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -455,7 +472,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Status; v != nil && !v.IsValid() {
+	if v := all.Status; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -463,7 +480,7 @@ func (o *SyntheticsBatchResult) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TestType; v != nil && !v.IsValid() {
+	if v := all.TestType; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

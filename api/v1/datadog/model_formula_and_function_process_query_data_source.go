@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // FormulaAndFunctionProcessQueryDataSource Data sources that rely on the process backend.
 type FormulaAndFunctionProcessQueryDataSource string
 
 // List of FormulaAndFunctionProcessQueryDataSource
 const (
-	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS   FormulaAndFunctionProcessQueryDataSource = "process"
+	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_PROCESS FormulaAndFunctionProcessQueryDataSource = "process"
 	FORMULAANDFUNCTIONPROCESSQUERYDATASOURCE_CONTAINER FormulaAndFunctionProcessQueryDataSource = "container"
 )
 

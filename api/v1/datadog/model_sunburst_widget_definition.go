@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SunburstWidgetDefinition Sunbursts are spot on to highlight how groups contribute to the total of a query.
 type SunburstWidgetDefinition struct {
@@ -32,9 +35,11 @@ type SunburstWidgetDefinition struct {
 	// Type of the Sunburst widget.
 	Type SunburstWidgetDefinitionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSunburstWidgetDefinition instantiates a new SunburstWidgetDefinition object
 // This constructor will assign default values to properties that have it defined,
@@ -56,7 +61,6 @@ func NewSunburstWidgetDefinitionWithDefaults() *SunburstWidgetDefinition {
 	this.Type = type_
 	return &this
 }
-
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 	if o == nil || o.CustomLinks == nil {
@@ -88,6 +92,7 @@ func (o *SunburstWidgetDefinition) HasCustomLinks() bool {
 func (o *SunburstWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = &v
 }
+
 
 // GetHideTotal returns the HideTotal field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetHideTotal() bool {
@@ -121,6 +126,7 @@ func (o *SunburstWidgetDefinition) SetHideTotal(v bool) {
 	o.HideTotal = &v
 }
 
+
 // GetLegend returns the Legend field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetLegend() SunburstWidgetLegend {
 	if o == nil || o.Legend == nil {
@@ -153,6 +159,7 @@ func (o *SunburstWidgetDefinition) SetLegend(v SunburstWidgetLegend) {
 	o.Legend = &v
 }
 
+
 // GetRequests returns the Requests field value
 func (o *SunburstWidgetDefinition) GetRequests() []SunburstWidgetRequest {
 	if o == nil {
@@ -175,6 +182,7 @@ func (o *SunburstWidgetDefinition) GetRequestsOk() (*[]SunburstWidgetRequest, bo
 func (o *SunburstWidgetDefinition) SetRequests(v []SunburstWidgetRequest) {
 	o.Requests = v
 }
+
 
 // GetTime returns the Time field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetTime() WidgetTime {
@@ -208,6 +216,7 @@ func (o *SunburstWidgetDefinition) SetTime(v WidgetTime) {
 	o.Time = &v
 }
 
+
 // GetTitle returns the Title field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetTitle() string {
 	if o == nil || o.Title == nil {
@@ -239,6 +248,7 @@ func (o *SunburstWidgetDefinition) HasTitle() bool {
 func (o *SunburstWidgetDefinition) SetTitle(v string) {
 	o.Title = &v
 }
+
 
 // GetTitleAlign returns the TitleAlign field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetTitleAlign() WidgetTextAlign {
@@ -272,6 +282,7 @@ func (o *SunburstWidgetDefinition) SetTitleAlign(v WidgetTextAlign) {
 	o.TitleAlign = &v
 }
 
+
 // GetTitleSize returns the TitleSize field value if set, zero value otherwise.
 func (o *SunburstWidgetDefinition) GetTitleSize() string {
 	if o == nil || o.TitleSize == nil {
@@ -304,6 +315,7 @@ func (o *SunburstWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
+
 // GetType returns the Type field value
 func (o *SunburstWidgetDefinition) GetType() SunburstWidgetDefinitionType {
 	if o == nil {
@@ -326,6 +338,8 @@ func (o *SunburstWidgetDefinition) GetTypeOk() (*SunburstWidgetDefinitionType, b
 func (o *SunburstWidgetDefinition) SetType(v SunburstWidgetDefinitionType) {
 	o.Type = v
 }
+
+
 
 func (o SunburstWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -362,22 +376,23 @@ func (o SunburstWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Requests *[]SunburstWidgetRequest      `json:"requests"`
-		Type     *SunburstWidgetDefinitionType `json:"type"`
+		Requests *[]SunburstWidgetRequest `json:"requests"`
+		Type *SunburstWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink          `json:"custom_links,omitempty"`
-		HideTotal   *bool                        `json:"hide_total,omitempty"`
-		Legend      *SunburstWidgetLegend        `json:"legend,omitempty"`
-		Requests    []SunburstWidgetRequest      `json:"requests"`
-		Time        *WidgetTime                  `json:"time,omitempty"`
-		Title       *string                      `json:"title,omitempty"`
-		TitleAlign  *WidgetTextAlign             `json:"title_align,omitempty"`
-		TitleSize   *string                      `json:"title_size,omitempty"`
-		Type        SunburstWidgetDefinitionType `json:"type"`
+		CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+		HideTotal *bool `json:"hide_total,omitempty"`
+		Legend *SunburstWidgetLegend `json:"legend,omitempty"`
+		Requests []SunburstWidgetRequest `json:"requests"`
+		Time *WidgetTime `json:"time,omitempty"`
+		Title *string `json:"title,omitempty"`
+		TitleAlign *WidgetTextAlign `json:"title_align,omitempty"`
+		TitleSize *string `json:"title_size,omitempty"`
+		Type SunburstWidgetDefinitionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -398,7 +413,7 @@ func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.TitleAlign; v != nil && !v.IsValid() {
+	if v := all.TitleAlign; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -418,13 +433,13 @@ func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	o.HideTotal = all.HideTotal
 	o.Legend = all.Legend
 	o.Requests = all.Requests
-	if all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Time != nil && all.Time.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Time = all.Time
 	o.Title = all.Title
 	o.TitleAlign = all.TitleAlign

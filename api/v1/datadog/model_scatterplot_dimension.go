@@ -4,22 +4,25 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // ScatterplotDimension Dimension of the Scatterplot.
 type ScatterplotDimension string
 
 // List of ScatterplotDimension
 const (
-	SCATTERPLOTDIMENSION_X      ScatterplotDimension = "x"
-	SCATTERPLOTDIMENSION_Y      ScatterplotDimension = "y"
+	SCATTERPLOTDIMENSION_X ScatterplotDimension = "x"
+	SCATTERPLOTDIMENSION_Y ScatterplotDimension = "y"
 	SCATTERPLOTDIMENSION_RADIUS ScatterplotDimension = "radius"
-	SCATTERPLOTDIMENSION_COLOR  ScatterplotDimension = "color"
+	SCATTERPLOTDIMENSION_COLOR ScatterplotDimension = "color"
 )
 
 var allowedScatterplotDimensionEnumValues = []ScatterplotDimension{

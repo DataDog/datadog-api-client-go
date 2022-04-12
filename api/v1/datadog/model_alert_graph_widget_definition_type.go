@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // AlertGraphWidgetDefinitionType Type of the alert graph widget.
 type AlertGraphWidgetDefinitionType string

@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,13 +13,13 @@ import (
 
 func main() {
 	body := datadog.AWSTagFilterDeleteRequest{
-		AccountId: datadog.PtrString("FAKEAC0FAKEAC2FAKEAC"),
-		Namespace: datadog.AWSNAMESPACE_ELB.Ptr(),
-	}
+AccountId: datadog.PtrString("FAKEAC0FAKEAC2FAKEAC"),
+Namespace: datadog.AWSNAMESPACE_ELB.Ptr(),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSTagFilter(ctx, body)
+	resp, r, err := apiClient.AWSIntegrationApi.DeleteAWSTagFilter(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.DeleteAWSTagFilter`: %v\n", err)

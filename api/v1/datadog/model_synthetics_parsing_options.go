@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SyntheticsParsingOptions Parsing options for variables to extract.
 type SyntheticsParsingOptions struct {
@@ -21,9 +25,11 @@ type SyntheticsParsingOptions struct {
 	// Property of the Synthetics Test Response to use for a Synthetics global variable.
 	Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSyntheticsParsingOptions instantiates a new SyntheticsParsingOptions object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewSyntheticsParsingOptionsWithDefaults() *SyntheticsParsingOptions {
 	this := SyntheticsParsingOptions{}
 	return &this
 }
-
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *SyntheticsParsingOptions) GetField() string {
 	if o == nil || o.Field == nil {
@@ -73,6 +78,7 @@ func (o *SyntheticsParsingOptions) HasField() bool {
 func (o *SyntheticsParsingOptions) SetField(v string) {
 	o.Field = &v
 }
+
 
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *SyntheticsParsingOptions) GetName() string {
@@ -106,6 +112,7 @@ func (o *SyntheticsParsingOptions) SetName(v string) {
 	o.Name = &v
 }
 
+
 // GetParser returns the Parser field value if set, zero value otherwise.
 func (o *SyntheticsParsingOptions) GetParser() SyntheticsVariableParser {
 	if o == nil || o.Parser == nil {
@@ -137,6 +144,7 @@ func (o *SyntheticsParsingOptions) HasParser() bool {
 func (o *SyntheticsParsingOptions) SetParser(v SyntheticsVariableParser) {
 	o.Parser = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *SyntheticsParsingOptions) GetType() SyntheticsGlobalVariableParseTestOptionsType {
@@ -170,6 +178,8 @@ func (o *SyntheticsParsingOptions) SetType(v SyntheticsGlobalVariableParseTestOp
 	o.Type = &v
 }
 
+
+
 func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o SyntheticsParsingOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Field  *string                                       `json:"field,omitempty"`
-		Name   *string                                       `json:"name,omitempty"`
-		Parser *SyntheticsVariableParser                     `json:"parser,omitempty"`
-		Type   *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
+		Field *string `json:"field,omitempty"`
+		Name *string `json:"name,omitempty"`
+		Parser *SyntheticsVariableParser `json:"parser,omitempty"`
+		Type *SyntheticsGlobalVariableParseTestOptionsType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -211,7 +222,7 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -221,13 +232,13 @@ func (o *SyntheticsParsingOptions) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Field = all.Field
 	o.Name = all.Name
-	if all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Parser != nil && all.Parser.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Parser = all.Parser
 	o.Type = all.Type
 	return nil

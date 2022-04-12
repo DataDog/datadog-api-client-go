@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceAccountsApi.GetServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id")
+	resp, r, err := apiClient.ServiceAccountsApi.GetServiceAccountApplicationKey(ctx, "00000000-0000-1234-0000-000000000000", "app_key_id", )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceAccountsApi.GetServiceAccountApplicationKey`: %v\n", err)

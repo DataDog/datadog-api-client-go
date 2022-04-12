@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,19 +13,19 @@ import (
 
 func main() {
 	body := map[string][]datadog.SLOTimeframe{
-		"id1": []datadog.SLOTimeframe{
-			datadog.SLOTIMEFRAME_SEVEN_DAYS,
-			datadog.SLOTIMEFRAME_THIRTY_DAYS,
-		},
-		"id2": []datadog.SLOTimeframe{
-			datadog.SLOTIMEFRAME_SEVEN_DAYS,
-			datadog.SLOTIMEFRAME_THIRTY_DAYS,
-		},
-	}
+"id1": []datadog.SLOTimeframe{
+datadog.SLOTIMEFRAME_SEVEN_DAYS,
+datadog.SLOTIMEFRAME_THIRTY_DAYS,
+},
+"id2": []datadog.SLOTimeframe{
+datadog.SLOTIMEFRAME_SEVEN_DAYS,
+datadog.SLOTIMEFRAME_THIRTY_DAYS,
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx, body)
+	resp, r, err := apiClient.ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.DeleteSLOTimeframeInBulk`: %v\n", err)

@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,12 +13,12 @@ import (
 
 func main() {
 	body := datadog.SyntheticsUpdateTestPauseStatusPayload{
-		NewStatus: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-	}
+NewStatus: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, "public_id", body)
+	resp, r, err := apiClient.SyntheticsApi.UpdateTestPauseStatus(ctx, "public_id", body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.UpdateTestPauseStatus`: %v\n", err)

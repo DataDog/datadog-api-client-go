@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,19 +13,19 @@ import (
 
 func main() {
 	body := []datadog.ServiceCheck{
-		{
-			Check:    "app.ok",
-			HostName: "host",
-			Status:   datadog.SERVICECHECKSTATUS_OK,
-			Tags: []string{
-				"test:ExampleSubmitaServiceCheckreturnsPayloadacceptedresponse",
-			},
-		},
-	}
+{
+Check: "app.ok",
+HostName: "host",
+Status: datadog.SERVICECHECKSTATUS_OK,
+Tags: []string{
+"test:ExampleSubmitaServiceCheckreturnsPayloadacceptedresponse",
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceChecksApi.SubmitServiceCheck(ctx, body)
+	resp, r, err := apiClient.ServiceChecksApi.SubmitServiceCheck(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceChecksApi.SubmitServiceCheck`: %v\n", err)

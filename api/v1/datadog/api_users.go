@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -26,7 +28,7 @@ type UsersApiService service
 type apiCreateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
-	body       *User
+	body *User
 }
 
 /*
@@ -40,7 +42,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserRespo
 	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.createUserExecute(req)
@@ -52,9 +54,9 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserRespo
  */
 func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateUser")
@@ -224,9 +226,9 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (
  */
 func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue UserDisableResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  UserDisableResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.DisableUser")
@@ -379,9 +381,9 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (User
  */
 func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetUser")
@@ -522,9 +524,9 @@ func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_n
  */
 func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue UserListResponse
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  UserListResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUsers")
@@ -634,7 +636,7 @@ type apiUpdateUserRequest struct {
 	ctx        _context.Context
 	ApiService *UsersApiService
 	userHandle string
-	body       *User
+	body *User
 }
 
 /*
@@ -648,7 +650,7 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, bo
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
-		body:       &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateUserExecute(req)
@@ -660,9 +662,9 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, bo
  */
 func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue UserResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  UserResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "UsersApiService.UpdateUser")

@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // RUMCompute A compute rule to compute metrics or timeseries.
 type RUMCompute struct {
@@ -23,9 +26,11 @@ type RUMCompute struct {
 	// The type of compute.
 	Type *RUMComputeType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMCompute instantiates a new RUMCompute object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +53,6 @@ func NewRUMComputeWithDefaults() *RUMCompute {
 	this.Type = &type_
 	return &this
 }
-
 // GetAggregation returns the Aggregation field value
 func (o *RUMCompute) GetAggregation() RUMAggregationFunction {
 	if o == nil {
@@ -71,6 +75,7 @@ func (o *RUMCompute) GetAggregationOk() (*RUMAggregationFunction, bool) {
 func (o *RUMCompute) SetAggregation(v RUMAggregationFunction) {
 	o.Aggregation = v
 }
+
 
 // GetInterval returns the Interval field value if set, zero value otherwise.
 func (o *RUMCompute) GetInterval() string {
@@ -104,6 +109,7 @@ func (o *RUMCompute) SetInterval(v string) {
 	o.Interval = &v
 }
 
+
 // GetMetric returns the Metric field value if set, zero value otherwise.
 func (o *RUMCompute) GetMetric() string {
 	if o == nil || o.Metric == nil {
@@ -135,6 +141,7 @@ func (o *RUMCompute) HasMetric() bool {
 func (o *RUMCompute) SetMetric(v string) {
 	o.Metric = &v
 }
+
 
 // GetType returns the Type field value if set, zero value otherwise.
 func (o *RUMCompute) GetType() RUMComputeType {
@@ -168,6 +175,8 @@ func (o *RUMCompute) SetType(v RUMComputeType) {
 	o.Type = &v
 }
 
+
+
 func (o RUMCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -190,6 +199,7 @@ func (o RUMCompute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -197,9 +207,9 @@ func (o *RUMCompute) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Aggregation RUMAggregationFunction `json:"aggregation"`
-		Interval    *string                `json:"interval,omitempty"`
-		Metric      *string                `json:"metric,omitempty"`
-		Type        *RUMComputeType        `json:"type,omitempty"`
+		Interval *string `json:"interval,omitempty"`
+		Metric *string `json:"metric,omitempty"`
+		Type *RUMComputeType `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -225,7 +235,7 @@ func (o *RUMCompute) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Type; v != nil && !v.IsValid() {
+	if v := all.Type; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

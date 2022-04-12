@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // MetricBulkConfigureTagsType The metric bulk configure tags resource.
 type MetricBulkConfigureTagsType string

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCorrectionListResponse A list of  SLO correction objects.
 type SLOCorrectionListResponse struct {
@@ -17,9 +21,11 @@ type SLOCorrectionListResponse struct {
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionListResponse instantiates a new SLOCorrectionListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewSLOCorrectionListResponseWithDefaults() *SLOCorrectionListResponse {
 	this := SLOCorrectionListResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *SLOCorrectionListResponse) GetData() []SLOCorrection {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *SLOCorrectionListResponse) HasData() bool {
 func (o *SLOCorrectionListResponse) SetData(v []SLOCorrection) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *SLOCorrectionListResponse) GetMeta() ResponseMetaAttributes {
@@ -102,6 +108,8 @@ func (o *SLOCorrectionListResponse) SetMeta(v ResponseMetaAttributes) {
 	o.Meta = &v
 }
 
+
+
 func (o SLOCorrectionListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o SLOCorrectionListResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOCorrectionListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]SLOCorrection        `json:"data,omitempty"`
+		Data *[]SLOCorrection `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -136,13 +145,13 @@ func (o *SLOCorrectionListResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

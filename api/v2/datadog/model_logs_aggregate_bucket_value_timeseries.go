@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // LogsAggregateBucketValueTimeseries A timeseries array
 type LogsAggregateBucketValueTimeseries struct {
@@ -17,6 +21,8 @@ type LogsAggregateBucketValueTimeseries struct {
 	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
 	UnparsedObject []interface{} `json:-`
 }
+
+
 
 // NewLogsAggregateBucketValueTimeseries instantiates a new LogsAggregateBucketValueTimeseries object
 // This constructor will assign default values to properties that have it defined,
@@ -42,6 +48,7 @@ func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *LogsAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {
 	return json.Unmarshal(bytes, &o.Items)

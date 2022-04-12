@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // CheckCanDeleteSLOResponse A service level objective response containing the requested object.
 type CheckCanDeleteSLOResponse struct {
@@ -17,9 +21,11 @@ type CheckCanDeleteSLOResponse struct {
 	// A mapping of SLO id to it's current usages.
 	Errors map[string]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewCheckCanDeleteSLOResponse instantiates a new CheckCanDeleteSLOResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewCheckCanDeleteSLOResponseWithDefaults() *CheckCanDeleteSLOResponse {
 	this := CheckCanDeleteSLOResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *CheckCanDeleteSLOResponse) GetData() CheckCanDeleteSLOResponseData {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *CheckCanDeleteSLOResponse) HasData() bool {
 func (o *CheckCanDeleteSLOResponse) SetData(v CheckCanDeleteSLOResponseData) {
 	o.Data = &v
 }
+
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
 func (o *CheckCanDeleteSLOResponse) GetErrors() map[string]string {
@@ -102,6 +108,8 @@ func (o *CheckCanDeleteSLOResponse) SetErrors(v map[string]string) {
 	o.Errors = v
 }
 
+
+
 func (o CheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o CheckCanDeleteSLOResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
-		Errors map[string]string              `json:"errors,omitempty"`
+		Data *CheckCanDeleteSLOResponseData `json:"data,omitempty"`
+		Errors map[string]string `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -135,13 +144,13 @@ func (o *CheckCanDeleteSLOResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Errors = all.Errors
 	return nil

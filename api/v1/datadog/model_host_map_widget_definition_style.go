@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // HostMapWidgetDefinitionStyle The style to apply to the widget.
 type HostMapWidgetDefinitionStyle struct {
@@ -21,9 +25,11 @@ type HostMapWidgetDefinitionStyle struct {
 	// Whether to flip the palette tones.
 	PaletteFlip *bool `json:"palette_flip,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewHostMapWidgetDefinitionStyle instantiates a new HostMapWidgetDefinitionStyle object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewHostMapWidgetDefinitionStyleWithDefaults() *HostMapWidgetDefinitionStyle
 	this := HostMapWidgetDefinitionStyle{}
 	return &this
 }
-
 // GetFillMax returns the FillMax field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionStyle) GetFillMax() string {
 	if o == nil || o.FillMax == nil {
@@ -73,6 +78,7 @@ func (o *HostMapWidgetDefinitionStyle) HasFillMax() bool {
 func (o *HostMapWidgetDefinitionStyle) SetFillMax(v string) {
 	o.FillMax = &v
 }
+
 
 // GetFillMin returns the FillMin field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionStyle) GetFillMin() string {
@@ -106,6 +112,7 @@ func (o *HostMapWidgetDefinitionStyle) SetFillMin(v string) {
 	o.FillMin = &v
 }
 
+
 // GetPalette returns the Palette field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionStyle) GetPalette() string {
 	if o == nil || o.Palette == nil {
@@ -137,6 +144,7 @@ func (o *HostMapWidgetDefinitionStyle) HasPalette() bool {
 func (o *HostMapWidgetDefinitionStyle) SetPalette(v string) {
 	o.Palette = &v
 }
+
 
 // GetPaletteFlip returns the PaletteFlip field value if set, zero value otherwise.
 func (o *HostMapWidgetDefinitionStyle) GetPaletteFlip() bool {
@@ -170,6 +178,8 @@ func (o *HostMapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 	o.PaletteFlip = &v
 }
 
+
+
 func (o HostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o HostMapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *HostMapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		FillMax     *string `json:"fill_max,omitempty"`
-		FillMin     *string `json:"fill_min,omitempty"`
-		Palette     *string `json:"palette,omitempty"`
-		PaletteFlip *bool   `json:"palette_flip,omitempty"`
+		FillMax *string `json:"fill_max,omitempty"`
+		FillMin *string `json:"fill_min,omitempty"`
+		Palette *string `json:"palette,omitempty"`
+		PaletteFlip *bool `json:"palette_flip,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

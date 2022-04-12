@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMAnalyticsAggregateResponse The response object for the RUM events aggregate API endpoint.
 type RUMAnalyticsAggregateResponse struct {
@@ -19,9 +23,11 @@ type RUMAnalyticsAggregateResponse struct {
 	// The metadata associated with a request.
 	Meta *RUMResponseMetadata `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewRUMAnalyticsAggregateResponse instantiates a new RUMAnalyticsAggregateResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewRUMAnalyticsAggregateResponseWithDefaults() *RUMAnalyticsAggregateRespon
 	this := RUMAnalyticsAggregateResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *RUMAnalyticsAggregateResponse) GetData() RUMAggregationBucketsResponse {
 	if o == nil || o.Data == nil {
@@ -71,6 +76,7 @@ func (o *RUMAnalyticsAggregateResponse) HasData() bool {
 func (o *RUMAnalyticsAggregateResponse) SetData(v RUMAggregationBucketsResponse) {
 	o.Data = &v
 }
+
 
 // GetLinks returns the Links field value if set, zero value otherwise.
 func (o *RUMAnalyticsAggregateResponse) GetLinks() RUMResponseLinks {
@@ -104,6 +110,7 @@ func (o *RUMAnalyticsAggregateResponse) SetLinks(v RUMResponseLinks) {
 	o.Links = &v
 }
 
+
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *RUMAnalyticsAggregateResponse) GetMeta() RUMResponseMetadata {
 	if o == nil || o.Meta == nil {
@@ -136,6 +143,8 @@ func (o *RUMAnalyticsAggregateResponse) SetMeta(v RUMResponseMetadata) {
 	o.Meta = &v
 }
 
+
+
 func (o RUMAnalyticsAggregateResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o RUMAnalyticsAggregateResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *RUMAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *RUMAggregationBucketsResponse `json:"data,omitempty"`
-		Links *RUMResponseLinks              `json:"links,omitempty"`
-		Meta  *RUMResponseMetadata           `json:"meta,omitempty"`
+		Data *RUMAggregationBucketsResponse `json:"data,omitempty"`
+		Links *RUMResponseLinks `json:"links,omitempty"`
+		Meta *RUMResponseMetadata `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -173,29 +183,29 @@ func (o *RUMAnalyticsAggregateResponse) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Data != nil && all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
-	if all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Links != nil && all.Links.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Links = all.Links
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

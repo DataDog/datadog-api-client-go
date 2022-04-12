@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "authn_mapping" in the system
 	AuthnMappingDataID := os.Getenv("AUTHN_MAPPING_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthNMappingsApi.GetAuthNMapping(ctx, AuthnMappingDataID)
+	resp, r, err := apiClient.AuthNMappingsApi.GetAuthNMapping(ctx, AuthnMappingDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.GetAuthNMapping`: %v\n", err)

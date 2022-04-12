@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,20 +13,20 @@ import (
 
 func main() {
 	body := datadog.LogsMetricCreateRequest{
-		Data: datadog.LogsMetricCreateData{
-			Id:   "Example-Create_a_log_based_metric_returns_OK_response",
-			Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
-			Attributes: datadog.LogsMetricCreateAttributes{
-				Compute: datadog.LogsMetricCompute{
-					AggregationType: datadog.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
-				},
-			},
-		},
-	}
+Data: datadog.LogsMetricCreateData{
+Id: "Example-Create_a_log_based_metric_returns_OK_response",
+Type: datadog.LOGSMETRICTYPE_LOGS_METRICS,
+Attributes: datadog.LogsMetricCreateAttributes{
+Compute: datadog.LogsMetricCompute{
+AggregationType: datadog.LOGSMETRICCOMPUTEAGGREGATIONTYPE_COUNT,
+},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsMetricsApi.CreateLogsMetric(ctx, body)
+	resp, r, err := apiClient.LogsMetricsApi.CreateLogsMetric(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.CreateLogsMetric`: %v\n", err)

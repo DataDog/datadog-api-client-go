@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "role" in the system
 	RoleDataID := os.Getenv("ROLE_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.RolesApi.ListRolePermissions(ctx, RoleDataID)
+	resp, r, err := apiClient.RolesApi.ListRolePermissions(ctx, RoleDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `RolesApi.ListRolePermissions`: %v\n", err)

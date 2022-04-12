@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageCIVisibilityResponse CI visibility usage response
 type UsageCIVisibilityResponse struct {
 	// Response containing CI visibility usage.
 	Usage *[]UsageCIVisibilityHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCIVisibilityResponse instantiates a new UsageCIVisibilityResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewUsageCIVisibilityResponseWithDefaults() *UsageCIVisibilityResponse {
 	this := UsageCIVisibilityResponse{}
 	return &this
 }
-
 // GetUsage returns the Usage field value if set, zero value otherwise.
 func (o *UsageCIVisibilityResponse) GetUsage() []UsageCIVisibilityHour {
 	if o == nil || o.Usage == nil {
@@ -68,6 +73,8 @@ func (o *UsageCIVisibilityResponse) SetUsage(v []UsageCIVisibilityHour) {
 	o.Usage = &v
 }
 
+
+
 func (o UsageCIVisibilityResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o UsageCIVisibilityResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *UsageCIVisibilityResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

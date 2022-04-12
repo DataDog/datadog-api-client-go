@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,7 +15,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ProcessesApi.ListProcesses(ctx, *datadog.NewListProcessesOptionalParameters().WithSearch("process-agent").WithTags("testing:true").WithPageLimit(2))
+	resp, r, err := apiClient.ProcessesApi.ListProcesses(ctx, *datadog.NewListProcessesOptionalParameters().WithSearch("process-agent").WithTags("testing:true").WithPageLimit(2), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ProcessesApi.ListProcesses`: %v\n", err)

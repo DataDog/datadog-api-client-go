@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,46 +13,48 @@ import (
 
 func main() {
 	body := datadog.SyntheticsAPITest{
-		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: &[]datadog.SyntheticsAssertion{
-				datadog.SyntheticsAssertion{
-					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
-						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
-						Target:   1000,
-						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
-					}},
-			},
-			Request: &datadog.SyntheticsTestRequest{
-				Method: datadog.HTTPMETHOD_GET.Ptr(),
-				Url:    datadog.PtrString("https://example.com"),
-			},
-		},
-		Locations: []string{
-			"aws:eu-west-3",
-		},
-		Message: datadog.PtrString("Notification message"),
-		Name:    "Example test name",
-		Options: datadog.SyntheticsTestOptions{
-			DeviceIds: &[]datadog.SyntheticsDeviceID{
-				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
-			},
-			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
-			RestrictedRoles: &[]string{
-				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-			},
-			Retry: &datadog.SyntheticsTestOptionsRetry{},
-		},
-		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
-		Tags: &[]string{
-			"env:production",
-		},
-		Type: datadog.SYNTHETICSAPITESTTYPE_API,
-	}
+Config: datadog.SyntheticsAPITestConfig{
+Assertions: &[]datadog.SyntheticsAssertion{
+datadog.SyntheticsAssertion{
+SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
+Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
+Target: 1000,
+Type: datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
+}},
+},
+Request: &datadog.SyntheticsTestRequest{
+Method: datadog.HTTPMETHOD_GET.Ptr(),
+Url: datadog.PtrString("https://example.com"),
+},
+},
+Locations: []string{
+"aws:eu-west-3",
+},
+Message: datadog.PtrString("Notification message"),
+Name: "Example test name",
+Options: datadog.SyntheticsTestOptions{
+DeviceIds: &[]datadog.SyntheticsDeviceID{
+datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
+},
+MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{
+},
+RestrictedRoles: &[]string{
+"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+},
+Retry: &datadog.SyntheticsTestOptionsRetry{
+},
+},
+Status: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
+Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
+Tags: &[]string{
+"env:production",
+},
+Type: datadog.SYNTHETICSAPITESTTYPE_API,
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body)
+	resp, r, err := apiClient.SyntheticsApi.CreateSyntheticsAPITest(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `SyntheticsApi.CreateSyntheticsAPITest`: %v\n", err)

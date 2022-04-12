@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,10 +15,11 @@ func main() {
 	// there is a valid "logs_metric" in the system
 	LogsMetricDataID := os.Getenv("LOGS_METRIC_DATA_ID")
 
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsMetricsApi.GetLogsMetric(ctx, LogsMetricDataID)
+	resp, r, err := apiClient.LogsMetricsApi.GetLogsMetric(ctx, LogsMetricDataID, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.GetLogsMetric`: %v\n", err)

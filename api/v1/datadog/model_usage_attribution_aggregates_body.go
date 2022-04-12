@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageAttributionAggregatesBody The object containing the aggregates.
 type UsageAttributionAggregatesBody struct {
@@ -19,9 +23,11 @@ type UsageAttributionAggregatesBody struct {
 	// The value for a given field.
 	Value *float64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageAttributionAggregatesBody instantiates a new UsageAttributionAggregatesBody object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +45,6 @@ func NewUsageAttributionAggregatesBodyWithDefaults() *UsageAttributionAggregates
 	this := UsageAttributionAggregatesBody{}
 	return &this
 }
-
 // GetAggType returns the AggType field value if set, zero value otherwise.
 func (o *UsageAttributionAggregatesBody) GetAggType() string {
 	if o == nil || o.AggType == nil {
@@ -71,6 +76,7 @@ func (o *UsageAttributionAggregatesBody) HasAggType() bool {
 func (o *UsageAttributionAggregatesBody) SetAggType(v string) {
 	o.AggType = &v
 }
+
 
 // GetField returns the Field field value if set, zero value otherwise.
 func (o *UsageAttributionAggregatesBody) GetField() string {
@@ -104,6 +110,7 @@ func (o *UsageAttributionAggregatesBody) SetField(v string) {
 	o.Field = &v
 }
 
+
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *UsageAttributionAggregatesBody) GetValue() float64 {
 	if o == nil || o.Value == nil {
@@ -136,6 +143,8 @@ func (o *UsageAttributionAggregatesBody) SetValue(v float64) {
 	o.Value = &v
 }
 
+
+
 func (o UsageAttributionAggregatesBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,12 +166,13 @@ func (o UsageAttributionAggregatesBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageAttributionAggregatesBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AggType *string  `json:"agg_type,omitempty"`
-		Field   *string  `json:"field,omitempty"`
-		Value   *float64 `json:"value,omitempty"`
+		AggType *string `json:"agg_type,omitempty"`
+		Field *string `json:"field,omitempty"`
+		Value *float64 `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

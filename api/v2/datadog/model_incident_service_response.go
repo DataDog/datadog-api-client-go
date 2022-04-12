@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // IncidentServiceResponse Response with an incident service payload.
 type IncidentServiceResponse struct {
@@ -18,9 +21,11 @@ type IncidentServiceResponse struct {
 	// Included objects from relationships.
 	Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewIncidentServiceResponse instantiates a new IncidentServiceResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -39,7 +44,6 @@ func NewIncidentServiceResponseWithDefaults() *IncidentServiceResponse {
 	this := IncidentServiceResponse{}
 	return &this
 }
-
 // GetData returns the Data field value
 func (o *IncidentServiceResponse) GetData() IncidentServiceResponseData {
 	if o == nil {
@@ -62,6 +66,7 @@ func (o *IncidentServiceResponse) GetDataOk() (*IncidentServiceResponseData, boo
 func (o *IncidentServiceResponse) SetData(v IncidentServiceResponseData) {
 	o.Data = v
 }
+
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *IncidentServiceResponse) GetIncluded() []IncidentServiceIncludedItems {
@@ -95,6 +100,8 @@ func (o *IncidentServiceResponse) SetIncluded(v []IncidentServiceIncludedItems) 
 	o.Included = &v
 }
 
+
+
 func (o IncidentServiceResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,13 +118,14 @@ func (o IncidentServiceResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *IncidentServiceResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
 		Data *IncidentServiceResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     IncidentServiceResponseData     `json:"data"`
+		Data IncidentServiceResponseData `json:"data"`
 		Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
@@ -136,13 +144,13 @@ func (o *IncidentServiceResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
+        if all.Data.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Data = all.Data
 	o.Included = all.Included
 	return nil

@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -15,19 +15,20 @@ func main() {
 	// there is a valid "service" in the system
 	ServiceDataID := os.Getenv("SERVICE_DATA_ID")
 
+
 	body := datadog.IncidentServiceUpdateRequest{
-		Data: datadog.IncidentServiceUpdateData{
-			Type: datadog.INCIDENTSERVICETYPE_SERVICES,
-			Attributes: &datadog.IncidentServiceUpdateAttributes{
-				Name: "service name-updated",
-			},
-		},
-	}
+Data: datadog.IncidentServiceUpdateData{
+Type: datadog.INCIDENTSERVICETYPE_SERVICES,
+Attributes: &datadog.IncidentServiceUpdateAttributes{
+Name: "service name-updated",
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateIncidentService", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, ServiceDataID, body)
+	resp, r, err := apiClient.IncidentServicesApi.UpdateIncidentService(ctx, ServiceDataID, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentServicesApi.UpdateIncidentService`: %v\n", err)

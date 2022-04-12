@@ -4,19 +4,22 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalsSort The sort parameters used for querying security signals.
 type SecurityMonitoringSignalsSort string
 
 // List of SecurityMonitoringSignalsSort
 const (
-	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING  SecurityMonitoringSignalsSort = "timestamp"
+	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_ASCENDING SecurityMonitoringSignalsSort = "timestamp"
 	SECURITYMONITORINGSIGNALSSORT_TIMESTAMP_DESCENDING SecurityMonitoringSignalsSort = "-timestamp"
 )
 

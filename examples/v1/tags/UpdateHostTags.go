@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,15 +13,15 @@ import (
 
 func main() {
 	body := datadog.HostTags{
-		Host: datadog.PtrString("test.host"),
-		Tags: &[]string{
-			"environment:production",
-		},
-	}
+Host: datadog.PtrString("test.host"),
+Tags: &[]string{
+"environment:production",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.TagsApi.UpdateHostTags(ctx, "host_name", body, *datadog.NewUpdateHostTagsOptionalParameters())
+	resp, r, err := apiClient.TagsApi.UpdateHostTags(ctx, "host_name", body, *datadog.NewUpdateHostTagsOptionalParameters(), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `TagsApi.UpdateHostTags`: %v\n", err)

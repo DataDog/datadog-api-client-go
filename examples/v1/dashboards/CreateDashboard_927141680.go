@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,31 +13,32 @@ import (
 
 func main() {
 	body := datadog.Dashboard{
-		LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
-		Title:      "Example-Create_a_new_dashboard_with_funnel_widget with funnel widget",
-		Widgets: []datadog.Widget{
-			{
-				Definition: datadog.WidgetDefinition{
-					FunnelWidgetDefinition: &datadog.FunnelWidgetDefinition{
-						Type: datadog.FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
-						Requests: []datadog.FunnelWidgetRequest{
-							{
-								Query: datadog.FunnelQuery{
-									DataSource:  datadog.FUNNELSOURCE_RUM,
-									QueryString: "",
-									Steps:       []datadog.FunnelStep{},
-								},
-								RequestType: datadog.FUNNELREQUESTTYPE_FUNNEL,
-							},
-						},
-					}},
-			},
-		},
-	}
+LayoutType: datadog.DASHBOARDLAYOUTTYPE_ORDERED,
+Title: "Example-Create_a_new_dashboard_with_funnel_widget with funnel widget",
+Widgets: []datadog.Widget{
+{
+Definition: datadog.WidgetDefinition{
+FunnelWidgetDefinition: &datadog.FunnelWidgetDefinition{
+Type: datadog.FUNNELWIDGETDEFINITIONTYPE_FUNNEL,
+Requests: []datadog.FunnelWidgetRequest{
+{
+Query: datadog.FunnelQuery{
+DataSource: datadog.FUNNELSOURCE_RUM,
+QueryString: "",
+Steps: []datadog.FunnelStep{
+},
+},
+RequestType: datadog.FUNNELREQUESTTYPE_FUNNEL,
+},
+},
+}},
+},
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body)
+	resp, r, err := apiClient.DashboardsApi.CreateDashboard(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardsApi.CreateDashboard`: %v\n", err)

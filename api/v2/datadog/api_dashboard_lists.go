@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -24,10 +26,10 @@ var (
 type DashboardListsApiService service
 
 type apiCreateDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx        _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListAddItemsRequest
+	body *DashboardListAddItemsRequest
 }
 
 /*
@@ -36,10 +38,10 @@ type apiCreateDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	req := apiCreateDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
 	return req.ApiService.createDashboardListItemsExecute(req)
@@ -51,9 +53,9 @@ func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context
  */
 func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDashboardListItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListAddItemsResponse
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListAddItemsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardListItems")
@@ -196,10 +198,10 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 }
 
 type apiDeleteDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx        _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListDeleteItemsRequest
+	body *DashboardListDeleteItemsRequest
 }
 
 /*
@@ -208,10 +210,10 @@ type apiDeleteDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	req := apiDeleteDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
 	return req.ApiService.deleteDashboardListItemsExecute(req)
@@ -223,9 +225,9 @@ func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context
  */
 func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDashboardListItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodDelete
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListDeleteItemsResponse
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListDeleteItemsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.DeleteDashboardListItems")
@@ -368,8 +370,8 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 }
 
 type apiGetDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx        _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
 }
 
@@ -379,8 +381,8 @@ type apiGetDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
 	req := apiGetDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardListId: dashboardListId,
 	}
 
@@ -393,9 +395,9 @@ func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, d
  */
 func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboardListItemsRequest) (DashboardListItems, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListItems
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListItems
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.GetDashboardListItems")
@@ -513,10 +515,10 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 }
 
 type apiUpdateDashboardListItemsRequest struct {
-	ctx             _context.Context
-	ApiService      *DashboardListsApiService
+	ctx        _context.Context
+	ApiService *DashboardListsApiService
 	dashboardListId int64
-	body            *DashboardListUpdateItemsRequest
+	body *DashboardListUpdateItemsRequest
 }
 
 /*
@@ -525,10 +527,10 @@ type apiUpdateDashboardListItemsRequest struct {
  */
 func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
 	req := apiUpdateDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
+		ApiService: a,
+		ctx:        ctx,
 		dashboardListId: dashboardListId,
-		body:            &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateDashboardListItemsExecute(req)
@@ -540,9 +542,9 @@ func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context
  */
 func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDashboardListItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPut
-		localVarPostBody    interface{}
-		localVarReturnValue DashboardListUpdateItemsResponse
+		localVarHTTPMethod   = _nethttp.MethodPut
+		localVarPostBody     interface{}
+		localVarReturnValue  DashboardListUpdateItemsResponse
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.UpdateDashboardListItems")

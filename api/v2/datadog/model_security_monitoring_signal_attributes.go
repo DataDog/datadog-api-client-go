@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
-	"time"
+	"fmt"
+
 )
+
 
 // SecurityMonitoringSignalAttributes The object containing all signal attributes and their
 // associated values.
@@ -23,9 +26,11 @@ type SecurityMonitoringSignalAttributes struct {
 	// The timestamp of the security signal.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSecurityMonitoringSignalAttributes instantiates a new SecurityMonitoringSignalAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -43,7 +48,6 @@ func NewSecurityMonitoringSignalAttributesWithDefaults() *SecurityMonitoringSign
 	this := SecurityMonitoringSignalAttributes{}
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetAttributes() map[string]interface{} {
 	if o == nil || o.Attributes == nil {
@@ -75,6 +79,7 @@ func (o *SecurityMonitoringSignalAttributes) HasAttributes() bool {
 func (o *SecurityMonitoringSignalAttributes) SetAttributes(v map[string]interface{}) {
 	o.Attributes = v
 }
+
 
 // GetMessage returns the Message field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetMessage() string {
@@ -108,6 +113,7 @@ func (o *SecurityMonitoringSignalAttributes) SetMessage(v string) {
 	o.Message = &v
 }
 
+
 // GetTags returns the Tags field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetTags() []string {
 	if o == nil || o.Tags == nil {
@@ -139,6 +145,7 @@ func (o *SecurityMonitoringSignalAttributes) HasTags() bool {
 func (o *SecurityMonitoringSignalAttributes) SetTags(v []string) {
 	o.Tags = v
 }
+
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
 func (o *SecurityMonitoringSignalAttributes) GetTimestamp() time.Time {
@@ -172,6 +179,8 @@ func (o *SecurityMonitoringSignalAttributes) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+
+
 func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,13 +205,14 @@ func (o SecurityMonitoringSignalAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SecurityMonitoringSignalAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Attributes map[string]interface{} `json:"attributes,omitempty"`
-		Message    *string                `json:"message,omitempty"`
-		Tags       []string               `json:"tags,omitempty"`
-		Timestamp  *time.Time             `json:"timestamp,omitempty"`
+		Message *string `json:"message,omitempty"`
+		Tags []string `json:"tags,omitempty"`
+		Timestamp *time.Time `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

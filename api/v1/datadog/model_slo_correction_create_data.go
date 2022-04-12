@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SLOCorrectionCreateData The data object associated with the SLO correction to be created.
 type SLOCorrectionCreateData struct {
@@ -18,9 +21,11 @@ type SLOCorrectionCreateData struct {
 	// SLO correction resource type.
 	Type SLOCorrectionType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +46,6 @@ func NewSLOCorrectionCreateDataWithDefaults() *SLOCorrectionCreateData {
 	this.Type = type_
 	return &this
 }
-
 // GetAttributes returns the Attributes field value if set, zero value otherwise.
 func (o *SLOCorrectionCreateData) GetAttributes() SLOCorrectionCreateRequestAttributes {
 	if o == nil || o.Attributes == nil {
@@ -74,6 +78,7 @@ func (o *SLOCorrectionCreateData) SetAttributes(v SLOCorrectionCreateRequestAttr
 	o.Attributes = &v
 }
 
+
 // GetType returns the Type field value
 func (o *SLOCorrectionCreateData) GetType() SLOCorrectionType {
 	if o == nil {
@@ -97,6 +102,8 @@ func (o *SLOCorrectionCreateData) SetType(v SLOCorrectionType) {
 	o.Type = v
 }
 
+
+
 func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -113,6 +120,7 @@ func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOCorrectionCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -120,7 +128,7 @@ func (o *SLOCorrectionCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Attributes *SLOCorrectionCreateRequestAttributes `json:"attributes,omitempty"`
-		Type       SLOCorrectionType                     `json:"type"`
+		Type SLOCorrectionType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -146,13 +154,13 @@ func (o *SLOCorrectionCreateData) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Attributes != nil && all.Attributes.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Attributes = all.Attributes
 	o.Type = all.Type
 	return nil

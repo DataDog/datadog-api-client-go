@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // SunburstWidgetDefinitionType Type of the Sunburst widget.
 type SunburstWidgetDefinitionType string

@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // DashboardTemplateVariablePresetValue Template variables saved views.
 type DashboardTemplateVariablePresetValue struct {
@@ -17,9 +21,11 @@ type DashboardTemplateVariablePresetValue struct {
 	// The value of the template variable within the saved view.
 	Value *string `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewDashboardTemplateVariablePresetValue instantiates a new DashboardTemplateVariablePresetValue object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewDashboardTemplateVariablePresetValueWithDefaults() *DashboardTemplateVar
 	this := DashboardTemplateVariablePresetValue{}
 	return &this
 }
-
 // GetName returns the Name field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePresetValue) GetName() string {
 	if o == nil || o.Name == nil {
@@ -69,6 +74,7 @@ func (o *DashboardTemplateVariablePresetValue) HasName() bool {
 func (o *DashboardTemplateVariablePresetValue) SetName(v string) {
 	o.Name = &v
 }
+
 
 // GetValue returns the Value field value if set, zero value otherwise.
 func (o *DashboardTemplateVariablePresetValue) GetValue() string {
@@ -102,6 +108,8 @@ func (o *DashboardTemplateVariablePresetValue) SetValue(v string) {
 	o.Value = &v
 }
 
+
+
 func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,10 +128,11 @@ func (o DashboardTemplateVariablePresetValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *DashboardTemplateVariablePresetValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name  *string `json:"name,omitempty"`
+		Name *string `json:"name,omitempty"`
 		Value *string `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

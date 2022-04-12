@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // AWSTagFilterListResponse An array of tag filter rules by `namespace` and tag filter string.
 type AWSTagFilterListResponse struct {
 	// An array of tag filters.
 	Filters *[]AWSTagFilter `json:"filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewAWSTagFilterListResponse instantiates a new AWSTagFilterListResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewAWSTagFilterListResponseWithDefaults() *AWSTagFilterListResponse {
 	this := AWSTagFilterListResponse{}
 	return &this
 }
-
 // GetFilters returns the Filters field value if set, zero value otherwise.
 func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilter {
 	if o == nil || o.Filters == nil {
@@ -68,6 +73,8 @@ func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter) {
 	o.Filters = &v
 }
 
+
+
 func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -82,6 +89,7 @@ func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 	}
 	return json.Marshal(toSerialize)
 }
+
 
 func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}

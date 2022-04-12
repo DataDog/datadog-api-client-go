@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // UsageCustomReportsResponse Response containing available custom reports.
 type UsageCustomReportsResponse struct {
@@ -17,9 +21,11 @@ type UsageCustomReportsResponse struct {
 	// The object containing document metadata.
 	Meta *UsageCustomReportsMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewUsageCustomReportsResponse instantiates a new UsageCustomReportsResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -37,7 +43,6 @@ func NewUsageCustomReportsResponseWithDefaults() *UsageCustomReportsResponse {
 	this := UsageCustomReportsResponse{}
 	return &this
 }
-
 // GetData returns the Data field value if set, zero value otherwise.
 func (o *UsageCustomReportsResponse) GetData() []UsageCustomReportsData {
 	if o == nil || o.Data == nil {
@@ -69,6 +74,7 @@ func (o *UsageCustomReportsResponse) HasData() bool {
 func (o *UsageCustomReportsResponse) SetData(v []UsageCustomReportsData) {
 	o.Data = &v
 }
+
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
 func (o *UsageCustomReportsResponse) GetMeta() UsageCustomReportsMeta {
@@ -102,6 +108,8 @@ func (o *UsageCustomReportsResponse) SetMeta(v UsageCustomReportsMeta) {
 	o.Meta = &v
 }
 
+
+
 func (o UsageCustomReportsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,11 +128,12 @@ func (o UsageCustomReportsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *UsageCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Data *[]UsageCustomReportsData `json:"data,omitempty"`
-		Meta *UsageCustomReportsMeta   `json:"meta,omitempty"`
+		Meta *UsageCustomReportsMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -136,13 +145,13 @@ func (o *UsageCustomReportsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Data = all.Data
-	if all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Meta != nil && all.Meta.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Meta = all.Meta
 	return nil
 }

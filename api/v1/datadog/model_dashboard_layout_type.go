@@ -4,12 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
 	"fmt"
+
 )
+
 
 // DashboardLayoutType Layout type of the dashboard.
 type DashboardLayoutType string
@@ -17,7 +20,7 @@ type DashboardLayoutType string
 // List of DashboardLayoutType
 const (
 	DASHBOARDLAYOUTTYPE_ORDERED DashboardLayoutType = "ordered"
-	DASHBOARDLAYOUTTYPE_FREE    DashboardLayoutType = "free"
+	DASHBOARDLAYOUTTYPE_FREE DashboardLayoutType = "free"
 )
 
 var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{

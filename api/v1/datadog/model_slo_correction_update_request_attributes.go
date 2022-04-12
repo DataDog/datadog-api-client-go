@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // SLOCorrectionUpdateRequestAttributes The attribute object associated with the SLO correction to be updated.
 type SLOCorrectionUpdateRequestAttributes struct {
@@ -28,9 +32,11 @@ type SLOCorrectionUpdateRequestAttributes struct {
 	// The timezone to display in the UI for the correction times (defaults to "UTC").
 	Timezone *string `json:"timezone,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewSLOCorrectionUpdateRequestAttributes instantiates a new SLOCorrectionUpdateRequestAttributes object
 // This constructor will assign default values to properties that have it defined,
@@ -48,7 +54,6 @@ func NewSLOCorrectionUpdateRequestAttributesWithDefaults() *SLOCorrectionUpdateR
 	this := SLOCorrectionUpdateRequestAttributes{}
 	return &this
 }
-
 // GetCategory returns the Category field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetCategory() SLOCorrectionCategory {
 	if o == nil || o.Category == nil {
@@ -80,6 +85,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) HasCategory() bool {
 func (o *SLOCorrectionUpdateRequestAttributes) SetCategory(v SLOCorrectionCategory) {
 	o.Category = &v
 }
+
 
 // GetDescription returns the Description field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetDescription() string {
@@ -113,6 +119,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) SetDescription(v string) {
 	o.Description = &v
 }
 
+
 // GetDuration returns the Duration field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetDuration() int64 {
 	if o == nil || o.Duration == nil {
@@ -144,6 +151,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) HasDuration() bool {
 func (o *SLOCorrectionUpdateRequestAttributes) SetDuration(v int64) {
 	o.Duration = &v
 }
+
 
 // GetEnd returns the End field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetEnd() int64 {
@@ -177,6 +185,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) SetEnd(v int64) {
 	o.End = &v
 }
 
+
 // GetRrule returns the Rrule field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetRrule() string {
 	if o == nil || o.Rrule == nil {
@@ -208,6 +217,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) HasRrule() bool {
 func (o *SLOCorrectionUpdateRequestAttributes) SetRrule(v string) {
 	o.Rrule = &v
 }
+
 
 // GetStart returns the Start field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetStart() int64 {
@@ -241,6 +251,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) SetStart(v int64) {
 	o.Start = &v
 }
 
+
 // GetTimezone returns the Timezone field value if set, zero value otherwise.
 func (o *SLOCorrectionUpdateRequestAttributes) GetTimezone() string {
 	if o == nil || o.Timezone == nil {
@@ -272,6 +283,8 @@ func (o *SLOCorrectionUpdateRequestAttributes) HasTimezone() bool {
 func (o *SLOCorrectionUpdateRequestAttributes) SetTimezone(v string) {
 	o.Timezone = &v
 }
+
+
 
 func (o SLOCorrectionUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -306,16 +319,17 @@ func (o SLOCorrectionUpdateRequestAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *SLOCorrectionUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Category    *SLOCorrectionCategory `json:"category,omitempty"`
-		Description *string                `json:"description,omitempty"`
-		Duration    *int64                 `json:"duration,omitempty"`
-		End         *int64                 `json:"end,omitempty"`
-		Rrule       *string                `json:"rrule,omitempty"`
-		Start       *int64                 `json:"start,omitempty"`
-		Timezone    *string                `json:"timezone,omitempty"`
+		Category *SLOCorrectionCategory `json:"category,omitempty"`
+		Description *string `json:"description,omitempty"`
+		Duration *int64 `json:"duration,omitempty"`
+		End *int64 `json:"end,omitempty"`
+		Rrule *string `json:"rrule,omitempty"`
+		Start *int64 `json:"start,omitempty"`
+		Timezone *string `json:"timezone,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -326,7 +340,7 @@ func (o *SLOCorrectionUpdateRequestAttributes) UnmarshalJSON(bytes []byte) (err 
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.Category; v != nil && !v.IsValid() {
+	if v := all.Category; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

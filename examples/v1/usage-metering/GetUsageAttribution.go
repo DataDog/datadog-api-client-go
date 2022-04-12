@@ -2,12 +2,11 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
-	"time"
 
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
@@ -17,7 +16,7 @@ func main() {
 	configuration := datadog.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetUsageAttribution", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.UsageMeteringApi.GetUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL, *datadog.NewGetUsageAttributionOptionalParameters().WithOffset(0).WithLimit(1))
+	resp, r, err := apiClient.UsageMeteringApi.GetUsageAttribution(ctx, time.Now().AddDate(0, 0, -3), datadog.USAGEATTRIBUTIONSUPPORTEDMETRICS_ALL, *datadog.NewGetUsageAttributionOptionalParameters().WithOffset(0).WithLimit(1), )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `UsageMeteringApi.GetUsageAttribution`: %v\n", err)

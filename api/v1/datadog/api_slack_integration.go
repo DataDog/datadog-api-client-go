@@ -4,15 +4,17 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"strings"
 )
 
 // Linger please
@@ -24,10 +26,10 @@ var (
 type SlackIntegrationApiService service
 
 type apiCreateSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
-	ApiService  *SlackIntegrationApiService
+	ctx        _context.Context
+	ApiService *SlackIntegrationApiService
 	accountName string
-	body        *SlackIntegrationChannel
+	body *SlackIntegrationChannel
 }
 
 /*
@@ -36,10 +38,10 @@ type apiCreateSlackIntegrationChannelRequest struct {
  */
 func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.Context, accountName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req := apiCreateSlackIntegrationChannelRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		accountName: accountName,
-		body:        &body,
+		body: &body,
 	}
 
 	return req.ApiService.createSlackIntegrationChannelExecute(req)
@@ -51,9 +53,9 @@ func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPost
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodPost
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.CreateSlackIntegrationChannel")
@@ -196,8 +198,8 @@ func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiC
 }
 
 type apiGetSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
-	ApiService  *SlackIntegrationApiService
+	ctx        _context.Context
+	ApiService *SlackIntegrationApiService
 	accountName string
 	channelName string
 }
@@ -208,8 +210,8 @@ type apiGetSlackIntegrationChannelRequest struct {
  */
 func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req := apiGetSlackIntegrationChannelRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
@@ -223,9 +225,9 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Con
  */
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannel")
@@ -354,8 +356,8 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetS
 }
 
 type apiGetSlackIntegrationChannelsRequest struct {
-	ctx         _context.Context
-	ApiService  *SlackIntegrationApiService
+	ctx        _context.Context
+	ApiService *SlackIntegrationApiService
 	accountName string
 }
 
@@ -365,8 +367,8 @@ type apiGetSlackIntegrationChannelsRequest struct {
  */
 func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Context, accountName string) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	req := apiGetSlackIntegrationChannelsRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		accountName: accountName,
 	}
 
@@ -379,9 +381,9 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Co
  */
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodGet
-		localVarPostBody    interface{}
-		localVarReturnValue []SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodGet
+		localVarPostBody     interface{}
+		localVarReturnValue  []SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannels")
@@ -509,8 +511,8 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGet
 }
 
 type apiRemoveSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
-	ApiService  *SlackIntegrationApiService
+	ctx        _context.Context
+	ApiService *SlackIntegrationApiService
 	accountName string
 	channelName string
 }
@@ -521,8 +523,8 @@ type apiRemoveSlackIntegrationChannelRequest struct {
  */
 func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (*_nethttp.Response, error) {
 	req := apiRemoveSlackIntegrationChannelRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
 	}
@@ -535,8 +537,8 @@ func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod = _nethttp.MethodDelete
-		localVarPostBody   interface{}
+		localVarHTTPMethod   = _nethttp.MethodDelete
+		localVarPostBody     interface{}
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.RemoveSlackIntegrationChannel")
@@ -656,11 +658,11 @@ func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiR
 }
 
 type apiUpdateSlackIntegrationChannelRequest struct {
-	ctx         _context.Context
-	ApiService  *SlackIntegrationApiService
+	ctx        _context.Context
+	ApiService *SlackIntegrationApiService
 	accountName string
 	channelName string
-	body        *SlackIntegrationChannel
+	body *SlackIntegrationChannel
 }
 
 /*
@@ -669,11 +671,11 @@ type apiUpdateSlackIntegrationChannelRequest struct {
  */
 func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req := apiUpdateSlackIntegrationChannelRequest{
-		ApiService:  a,
-		ctx:         ctx,
+		ApiService: a,
+		ctx:        ctx,
 		accountName: accountName,
 		channelName: channelName,
-		body:        &body,
+		body: &body,
 	}
 
 	return req.ApiService.updateSlackIntegrationChannelExecute(req)
@@ -685,9 +687,9 @@ func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.
  */
 func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
-		localVarHTTPMethod  = _nethttp.MethodPatch
-		localVarPostBody    interface{}
-		localVarReturnValue SlackIntegrationChannel
+		localVarHTTPMethod   = _nethttp.MethodPatch
+		localVarPostBody     interface{}
+		localVarReturnValue  SlackIntegrationChannel
 	)
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.UpdateSlackIntegrationChannel")

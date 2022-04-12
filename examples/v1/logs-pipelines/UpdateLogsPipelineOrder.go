@@ -2,9 +2,9 @@
 
 package main
 
+
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"os"
 
@@ -13,16 +13,16 @@ import (
 
 func main() {
 	body := datadog.LogsPipelinesOrder{
-		PipelineIds: []string{
-			"tags",
-			"org_ids",
-			"products",
-		},
-	}
+PipelineIds: []string{
+"tags",
+"org_ids",
+"products",
+},
+}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx, body)
+	resp, r, err := apiClient.LogsPipelinesApi.UpdateLogsPipelineOrder(ctx, body, )
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsPipelinesApi.UpdateLogsPipelineOrder`: %v\n", err)

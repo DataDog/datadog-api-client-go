@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // RUMGroupByMissing - The value to use for logs that don't have the facet used to group by.
 type RUMGroupByMissing struct {
@@ -83,9 +87,11 @@ func (src RUMGroupByMissing) MarshalJSON() ([]byte, error) {
 		return json.Marshal(&src.RUMGroupByMissingString)
 	}
 
+
 	if src.RUMGroupByMissingNumber != nil {
 		return json.Marshal(&src.RUMGroupByMissingNumber)
 	}
+
 
 	if src.UnparsedObject != nil {
 		return json.Marshal(src.UnparsedObject)
@@ -94,14 +100,16 @@ func (src RUMGroupByMissing) MarshalJSON() ([]byte, error) {
 }
 
 // Get the actual instance
-func (obj *RUMGroupByMissing) GetActualInstance() interface{} {
+func (obj *RUMGroupByMissing) GetActualInstance() (interface{}) {
 	if obj.RUMGroupByMissingString != nil {
 		return obj.RUMGroupByMissingString
 	}
 
+
 	if obj.RUMGroupByMissingNumber != nil {
 		return obj.RUMGroupByMissingNumber
 	}
+
 
 	// all schemas are nil
 	return nil

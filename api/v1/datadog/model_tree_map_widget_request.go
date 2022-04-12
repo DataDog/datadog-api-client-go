@@ -4,11 +4,15 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // TreeMapWidgetRequest An updated treemap widget.
 type TreeMapWidgetRequest struct {
@@ -21,9 +25,11 @@ type TreeMapWidgetRequest struct {
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewTreeMapWidgetRequest instantiates a new TreeMapWidgetRequest object
 // This constructor will assign default values to properties that have it defined,
@@ -41,7 +47,6 @@ func NewTreeMapWidgetRequestWithDefaults() *TreeMapWidgetRequest {
 	this := TreeMapWidgetRequest{}
 	return &this
 }
-
 // GetFormulas returns the Formulas field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetFormulas() []WidgetFormula {
 	if o == nil || o.Formulas == nil {
@@ -73,6 +78,7 @@ func (o *TreeMapWidgetRequest) HasFormulas() bool {
 func (o *TreeMapWidgetRequest) SetFormulas(v []WidgetFormula) {
 	o.Formulas = &v
 }
+
 
 // GetQ returns the Q field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetQ() string {
@@ -106,6 +112,7 @@ func (o *TreeMapWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+
 // GetQueries returns the Queries field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 	if o == nil || o.Queries == nil {
@@ -137,6 +144,7 @@ func (o *TreeMapWidgetRequest) HasQueries() bool {
 func (o *TreeMapWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
 	o.Queries = &v
 }
+
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
 func (o *TreeMapWidgetRequest) GetResponseFormat() FormulaAndFunctionResponseFormat {
@@ -170,6 +178,8 @@ func (o *TreeMapWidgetRequest) SetResponseFormat(v FormulaAndFunctionResponseFor
 	o.ResponseFormat = &v
 }
 
+
+
 func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -194,13 +204,14 @@ func (o TreeMapWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       *[]WidgetFormula                     `json:"formulas,omitempty"`
-		Q              *string                              `json:"q,omitempty"`
-		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+		Q *string `json:"q,omitempty"`
+		Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -211,7 +222,7 @@ func (o *TreeMapWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.ResponseFormat; v != nil && !v.IsValid() {
+	if v := all.ResponseFormat; v != nil &&!v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err

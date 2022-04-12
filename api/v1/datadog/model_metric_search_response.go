@@ -4,20 +4,26 @@
  * Copyright 2019-Present Datadog, Inc.
  */
 
+
 package datadog
 
 import (
 	"encoding/json"
+	"fmt"
+
 )
+
 
 // MetricSearchResponse Object containing the list of metrics matching the search query.
 type MetricSearchResponse struct {
 	// Search result.
 	Results *MetricSearchResponseResults `json:"results,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
-	UnparsedObject       map[string]interface{} `json:-`
+	UnparsedObject map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
+
+
 
 // NewMetricSearchResponse instantiates a new MetricSearchResponse object
 // This constructor will assign default values to properties that have it defined,
@@ -35,7 +41,6 @@ func NewMetricSearchResponseWithDefaults() *MetricSearchResponse {
 	this := MetricSearchResponse{}
 	return &this
 }
-
 // GetResults returns the Results field value if set, zero value otherwise.
 func (o *MetricSearchResponse) GetResults() MetricSearchResponseResults {
 	if o == nil || o.Results == nil {
@@ -68,6 +73,8 @@ func (o *MetricSearchResponse) SetResults(v MetricSearchResponseResults) {
 	o.Results = &v
 }
 
+
+
 func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +90,7 @@ func (o MetricSearchResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+
 func (o *MetricSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -97,13 +105,13 @@ func (o *MetricSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	if all.Results != nil && all.Results.UnparsedObject != nil && o.UnparsedObject == nil {
+        if  all.Results != nil && all.Results.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
 		}
 		o.UnparsedObject = raw
-	}
+        }
 	o.Results = all.Results
 	return nil
 }
