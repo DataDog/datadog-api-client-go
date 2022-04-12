@@ -30,7 +30,7 @@ func main() {
 						Type:       datadog.CHECKSTATUSWIDGETDEFINITIONTYPE_CHECK_STATUS,
 						Check:      "datadog.agent.up",
 						Grouping:   datadog.WIDGETGROUPING_CHECK,
-						Tags: &[]string{
+						Tags: []string{
 							"*",
 						},
 					}},

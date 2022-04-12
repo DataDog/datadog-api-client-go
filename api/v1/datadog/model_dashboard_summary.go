@@ -13,7 +13,7 @@ import (
 // DashboardSummary Dashboard summary response.
 type DashboardSummary struct {
 	// List of dashboard definitions.
-	Dashboards *[]DashboardSummaryDefinition `json:"dashboards,omitempty"`
+	Dashboards []DashboardSummaryDefinition `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *DashboardSummary) GetDashboards() []DashboardSummaryDefinition {
 		var ret []DashboardSummaryDefinition
 		return ret
 	}
-	return *o.Dashboards
+	return o.Dashboards
 }
 
 // GetDashboardsOk returns a tuple with the Dashboards field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *DashboardSummary) GetDashboardsOk() (*[]DashboardSummaryDefinition, boo
 	if o == nil || o.Dashboards == nil {
 		return nil, false
 	}
-	return o.Dashboards, true
+	return &o.Dashboards, true
 }
 
 // HasDashboards returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *DashboardSummary) HasDashboards() bool {
 
 // SetDashboards gets a reference to the given []DashboardSummaryDefinition and assigns it to the Dashboards field.
 func (o *DashboardSummary) SetDashboards(v []DashboardSummaryDefinition) {
-	o.Dashboards = &v
+	o.Dashboards = v
 }
 
 func (o DashboardSummary) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o DashboardSummary) MarshalJSON() ([]byte, error) {
 func (o *DashboardSummary) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dashboards *[]DashboardSummaryDefinition `json:"dashboards,omitempty"`
+		Dashboards []DashboardSummaryDefinition `json:"dashboards,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

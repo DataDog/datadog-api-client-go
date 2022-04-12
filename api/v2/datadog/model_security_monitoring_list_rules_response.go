@@ -13,7 +13,7 @@ import (
 // SecurityMonitoringListRulesResponse List of rules.
 type SecurityMonitoringListRulesResponse struct {
 	// Array containing the list of rules.
-	Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
+	Data []SecurityMonitoringRuleResponse `json:"data,omitempty"`
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *SecurityMonitoringListRulesResponse) GetData() []SecurityMonitoringRule
 		var ret []SecurityMonitoringRuleResponse
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *SecurityMonitoringListRulesResponse) GetDataOk() (*[]SecurityMonitoring
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *SecurityMonitoringListRulesResponse) HasData() bool {
 
 // SetData gets a reference to the given []SecurityMonitoringRuleResponse and assigns it to the Data field.
 func (o *SecurityMonitoringListRulesResponse) SetData(v []SecurityMonitoringRuleResponse) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o SecurityMonitoringListRulesResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringListRulesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]SecurityMonitoringRuleResponse `json:"data,omitempty"`
-		Meta *ResponseMetaAttributes           `json:"meta,omitempty"`
+		Data []SecurityMonitoringRuleResponse `json:"data,omitempty"`
+		Meta *ResponseMetaAttributes          `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

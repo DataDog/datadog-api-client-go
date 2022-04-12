@@ -181,24 +181,24 @@ func TestDashboardLifecycle(t *testing.T) {
 	// Geomap with Formulas and Functions Query
 	geoMapWidgetDefinitionFormulaFunctionsQuery := datadog.NewGeomapWidgetDefinitionWithDefaults()
 	geoMapWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.GeomapWidgetRequest{{
-		Formulas: &[]datadog.WidgetFormula{{
+		Formulas: []datadog.WidgetFormula{{
 			Formula: "query1",
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+		Queries: []datadog.FormulaAndFunctionQueryDefinition{
 			{
 				FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
 					DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
 					Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
 						Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 					},
-					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "@geo.country_iso_code",
 						Limit: datadog.PtrInt64(250),
 						Sort: &datadog.FormulaAndFunctionEventQueryGroupBySort{
 							Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						}}},
-					Indexes: &[]string{"*"},
+					Indexes: []string{"*"},
 					Name:    "query1",
 				},
 			},
@@ -225,7 +225,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Compute: &datadog.LogsQueryCompute{
 				Aggregation: "count",
 			},
-			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+			GroupBy: []datadog.LogQueryDefinitionGroupBy{{
 				Facet: "@geo.country_iso_code",
 				Limit: datadog.PtrInt64(250),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
@@ -386,7 +386,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinition.SetRequests([]datadog.QueryValueWidgetRequest{{
 		Q:          datadog.PtrString("avg:system.load.1{*}"),
 		Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr(),
-		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
+		ConditionalFormats: []datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
@@ -413,12 +413,12 @@ func TestDashboardLifecycle(t *testing.T) {
 	queryValueWidgetDefinitionFormulaFunctionsQuery := datadog.NewQueryValueWidgetDefinitionWithDefaults()
 
 	queryValueWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.QueryValueWidgetRequest{{
-		Formulas: &[]datadog.WidgetFormula{{
+		Formulas: []datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+		Queries: []datadog.FormulaAndFunctionQueryDefinition{{
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
@@ -434,10 +434,10 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
-					Indexes: &[]string{"*"},
+					Indexes: []string{"*"},
 					Name:    "errors",
 				},
 			},
@@ -539,7 +539,7 @@ func TestDashboardLifecycle(t *testing.T) {
 		Aggregator: datadog.WIDGETAGGREGATOR_AVERAGE.Ptr(),
 		Limit:      datadog.PtrInt64(50),
 		Order:      datadog.WIDGETSORT_ASCENDING.Ptr(),
-		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
+		ConditionalFormats: []datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
@@ -547,7 +547,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			CustomFgColor: datadog.PtrString("black"),
 			ImageUrl:      datadog.PtrString("https://docs.datadoghq.com/images/dashboards/widgets/image/image.mp4"),
 		}},
-		CellDisplayMode: &[]datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
+		CellDisplayMode: []datadog.TableWidgetCellDisplayMode{datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER},
 	}})
 	tableWidgetDefinition.SetTitle("Test Table Widget")
 	tableWidgetDefinition.SetTitleAlign(datadog.WIDGETTEXTALIGN_CENTER)
@@ -564,10 +564,10 @@ func TestDashboardLifecycle(t *testing.T) {
 	tableWidgetDefinitionFormulaFunctionsQuery := datadog.NewTableWidgetDefinitionWithDefaults()
 
 	tableWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TableWidgetRequest{{
-		Formulas: &[]datadog.WidgetFormula{{
+		Formulas: []datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
-			ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
+			ConditionalFormats: []datadog.WidgetConditionalFormat{{
 				Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 				Value:         7.,
 				Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
@@ -578,7 +578,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			CellDisplayMode: datadog.TABLEWIDGETCELLDISPLAYMODE_NUMBER.Ptr(),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+		Queries: []datadog.FormulaAndFunctionQueryDefinition{{
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
@@ -602,7 +602,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			PrimaryTag: "foo:*",
 			Resource:   datadog.PtrString("endpoint"),
 			RowType:    datadog.APMSTATSQUERYROWTYPE_SPAN,
-			Columns: &[]datadog.ApmStatsQueryColumnType{{
+			Columns: []datadog.ApmStatsQueryColumnType{{
 				Name: "baz",
 			}},
 		},
@@ -626,7 +626,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
+		Metadata: []datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -673,7 +673,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionProcessQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
 		ProcessQuery: &datadog.ProcessQueryDefinition{
 			Metric:   "process.stat.cpu.total_pct",
-			FilterBy: &[]string{"account:test"},
+			FilterBy: []string{"account:test"},
 			Limit:    datadog.PtrInt64(10),
 			SearchBy: datadog.PtrString("editor"),
 		},
@@ -682,7 +682,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
+		Metadata: []datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -731,7 +731,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				Interval:    datadog.PtrInt64(10),
 			},
 			Search: &datadog.LogQueryDefinitionSearch{Query: "Error parsing"},
-			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+			GroupBy: []datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
 				Limit: datadog.PtrInt64(5),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
@@ -745,7 +745,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr(),
 		},
-		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
+		Metadata: []datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -786,7 +786,7 @@ func TestDashboardLifecycle(t *testing.T) {
 				Interval:    datadog.PtrInt64(10),
 			},
 			Search: &datadog.LogQueryDefinitionSearch{Query: "source:kubernetes"},
-			GroupBy: &[]datadog.LogQueryDefinitionGroupBy{{
+			GroupBy: []datadog.LogQueryDefinitionGroupBy{{
 				Facet: "host",
 				Limit: datadog.PtrInt64(5),
 				Sort: &datadog.LogQueryDefinitionGroupBySort{
@@ -799,7 +799,7 @@ func TestDashboardLifecycle(t *testing.T) {
 			Palette:   datadog.PtrString("dog_classic"),
 			LineType:  datadog.WIDGETLINETYPE_DASHED.Ptr(),
 			LineWidth: datadog.WIDGETLINEWIDTH_THICK.Ptr()},
-		Metadata: &[]datadog.TimeseriesWidgetExpressionAlias{{
+		Metadata: []datadog.TimeseriesWidgetExpressionAlias{{
 			Expression: "avg:system.load.1{*}",
 			AliasName:  datadog.PtrString("Aliased metric"),
 		}},
@@ -833,12 +833,12 @@ func TestDashboardLifecycle(t *testing.T) {
 	timeseriesWidgetDefinitionFormulaFunctionsQuery := datadog.NewTimeseriesWidgetDefinitionWithDefaults()
 
 	timeseriesWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.TimeseriesWidgetRequest{{
-		Formulas: &[]datadog.WidgetFormula{{
+		Formulas: []datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
-		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+		Queries: []datadog.FormulaAndFunctionQueryDefinition{{
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
@@ -854,10 +854,10 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
-					Indexes: &[]string{"*"},
+					Indexes: []string{"*"},
 					Name:    "errors",
 				},
 			},
@@ -882,7 +882,7 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinition := datadog.NewToplistWidgetDefinitionWithDefaults()
 	toplistWidgetDefinition.SetRequests([]datadog.ToplistWidgetRequest{{
 		Q: datadog.PtrString("avg:system.load.1{*}"),
-		ConditionalFormats: &[]datadog.WidgetConditionalFormat{{
+		ConditionalFormats: []datadog.WidgetConditionalFormat{{
 			Comparator:    datadog.WIDGETCOMPARATOR_GREATER_THAN,
 			Value:         7.,
 			Palette:       datadog.WIDGETPALETTE_RED_ON_WHITE,
@@ -905,12 +905,12 @@ func TestDashboardLifecycle(t *testing.T) {
 	toplistWidgetDefinitionFormulaFunctionsQuery := datadog.NewToplistWidgetDefinitionWithDefaults()
 
 	toplistWidgetDefinitionFormulaFunctionsQuery.SetRequests([]datadog.ToplistWidgetRequest{{
-		Formulas: &[]datadog.WidgetFormula{{
+		Formulas: []datadog.WidgetFormula{{
 			Formula: "(((errors * 0.2)) / (query * 0.3))",
 			Alias:   datadog.PtrString("sample_performance_calculator"),
 		}},
 		ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
-		Queries: &[]datadog.FormulaAndFunctionQueryDefinition{{
+		Queries: []datadog.FormulaAndFunctionQueryDefinition{{
 			FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 				DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
 				Query:      "avg:dd.metrics.query.sq.by_source{service:query}.as_count()",
@@ -926,10 +926,10 @@ func TestDashboardLifecycle(t *testing.T) {
 					Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 						Query: "service:query Errors",
 					},
-					GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{{
+					GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{{
 						Facet: "host",
 					}},
-					Indexes: &[]string{"*"},
+					Indexes: []string{"*"},
 					Name:    "errors",
 				},
 			},

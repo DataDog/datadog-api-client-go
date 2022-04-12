@@ -28,12 +28,12 @@ type MetricTagConfigurationUpdateAttributes struct {
 	// - time: sum, space: sum
 	//
 	// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
-	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Toggle to include/exclude percentiles for a distribution metric.
 	// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
 	// A list of tag keys that will be queryable for your metric.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -66,7 +66,7 @@ func (o *MetricTagConfigurationUpdateAttributes) GetAggregations() []MetricCusto
 		var ret []MetricCustomAggregation
 		return ret
 	}
-	return *o.Aggregations
+	return o.Aggregations
 }
 
 // GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
@@ -75,7 +75,7 @@ func (o *MetricTagConfigurationUpdateAttributes) GetAggregationsOk() (*[]MetricC
 	if o == nil || o.Aggregations == nil {
 		return nil, false
 	}
-	return o.Aggregations, true
+	return &o.Aggregations, true
 }
 
 // HasAggregations returns a boolean if a field has been set.
@@ -89,7 +89,7 @@ func (o *MetricTagConfigurationUpdateAttributes) HasAggregations() bool {
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
 func (o *MetricTagConfigurationUpdateAttributes) SetAggregations(v []MetricCustomAggregation) {
-	o.Aggregations = &v
+	o.Aggregations = v
 }
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
@@ -130,7 +130,7 @@ func (o *MetricTagConfigurationUpdateAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -139,7 +139,7 @@ func (o *MetricTagConfigurationUpdateAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -153,7 +153,7 @@ func (o *MetricTagConfigurationUpdateAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *MetricTagConfigurationUpdateAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
@@ -180,9 +180,9 @@ func (o MetricTagConfigurationUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricTagConfigurationUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation `json:"aggregations,omitempty"`
-		IncludePercentiles *bool                      `json:"include_percentiles,omitempty"`
-		Tags               *[]string                  `json:"tags,omitempty"`
+		Aggregations       []MetricCustomAggregation `json:"aggregations,omitempty"`
+		IncludePercentiles *bool                     `json:"include_percentiles,omitempty"`
+		Tags               []string                  `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

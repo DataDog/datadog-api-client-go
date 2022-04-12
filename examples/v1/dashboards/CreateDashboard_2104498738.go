@@ -25,7 +25,7 @@ func main() {
 						Type:       datadog.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 						Requests: datadog.ScatterPlotWidgetDefinitionRequests{
 							Table: &datadog.ScatterplotTableRequest{
-								Formulas: &[]datadog.ScatterplotWidgetFormula{
+								Formulas: []datadog.ScatterplotWidgetFormula{
 									{
 										Formula:   "query1",
 										Dimension: datadog.SCATTERPLOTDIMENSION_X,
@@ -37,7 +37,7 @@ func main() {
 										Alias:     datadog.PtrString("my-query2"),
 									},
 								},
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,

@@ -24,8 +24,8 @@ func generateUniqueAWSLambdaAccounts(ctx context.Context, t *testing.T) (datadog
 		AccountId:                     &accountID,
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: map[string]bool{"opsworks": true},
-		FilterTags:                    &[]string{"testTag", "test:Tag2"},
-		HostTags:                      &[]string{"filter:one", "filtertwo"},
+		FilterTags:                    []string{"testTag", "test:Tag2"},
+		HostTags:                      []string{"filter:one", "filtertwo"},
 	}
 
 	var testLambdaArn = datadog.AWSAccountAndLambdaRequest{

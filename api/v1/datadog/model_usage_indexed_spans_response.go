@@ -13,7 +13,7 @@ import (
 // UsageIndexedSpansResponse A response containing indexed spans usage.
 type UsageIndexedSpansResponse struct {
 	// Array with the number of hourly traces indexed for a given organization.
-	Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
+	Usage []UsageIndexedSpansHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageIndexedSpansResponse) GetUsage() []UsageIndexedSpansHour {
 		var ret []UsageIndexedSpansHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageIndexedSpansResponse) GetUsageOk() (*[]UsageIndexedSpansHour, bool
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageIndexedSpansResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageIndexedSpansHour and assigns it to the Usage field.
 func (o *UsageIndexedSpansResponse) SetUsage(v []UsageIndexedSpansHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageIndexedSpansResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageIndexedSpansResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageIndexedSpansResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageIndexedSpansHour `json:"usage,omitempty"`
+		Usage []UsageIndexedSpansHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

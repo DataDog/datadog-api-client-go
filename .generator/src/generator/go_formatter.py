@@ -383,8 +383,7 @@ def format_data_with_schema_list(
     if in_list:
         return f"{{\n{parameters}}}"
 
-    reference = "" if required or nullable else "&"
-    return f"{reference}{nested_simple_type_name}{{\n{parameters}}}"
+    return f"{nested_simple_type_name}{{\n{parameters}}}"
 
 
 @format_data_with_schema.register(dict)

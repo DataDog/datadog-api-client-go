@@ -13,7 +13,7 @@ import (
 // UsageTimeseriesResponse Response containing hourly usage of timeseries.
 type UsageTimeseriesResponse struct {
 	// An array of objects regarding hourly usage of timeseries.
-	Usage *[]UsageTimeseriesHour `json:"usage,omitempty"`
+	Usage []UsageTimeseriesHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageTimeseriesResponse) GetUsage() []UsageTimeseriesHour {
 		var ret []UsageTimeseriesHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageTimeseriesResponse) GetUsageOk() (*[]UsageTimeseriesHour, bool) {
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageTimeseriesResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageTimeseriesHour and assigns it to the Usage field.
 func (o *UsageTimeseriesResponse) SetUsage(v []UsageTimeseriesHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageTimeseriesResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageTimeseriesResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageTimeseriesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageTimeseriesHour `json:"usage,omitempty"`
+		Usage []UsageTimeseriesHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

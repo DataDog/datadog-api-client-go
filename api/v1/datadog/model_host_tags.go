@@ -15,7 +15,7 @@ type HostTags struct {
 	// Your host name.
 	Host *string `json:"host,omitempty"`
 	// A list of tags to apply to the host.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *HostTags) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *HostTags) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *HostTags) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *HostTags) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o HostTags) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o HostTags) MarshalJSON() ([]byte, error) {
 func (o *HostTags) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Host *string   `json:"host,omitempty"`
-		Tags *[]string `json:"tags,omitempty"`
+		Host *string  `json:"host,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

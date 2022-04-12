@@ -32,7 +32,7 @@ func main() {
 						Type:       datadog.GEOMAPWIDGETDEFINITIONTYPE_GEOMAP,
 						Requests: []datadog.GeomapWidgetRequest{
 							{
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "query1",
 										Limit: &datadog.WidgetFormulaLimit{
@@ -41,7 +41,7 @@ func main() {
 										},
 									},
 								},
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
 											Name:       "query1",
@@ -49,13 +49,13 @@ func main() {
 											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
-											Indexes: &[]string{
+											Indexes: []string{
 												"*",
 											},
 											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{
+											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{
 												{
 													Facet: "@geo.country_iso_code",
 													Limit: datadog.PtrInt64(250),

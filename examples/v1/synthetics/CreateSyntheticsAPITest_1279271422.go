@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.SyntheticsAPITest{
 		Config: datadog.SyntheticsAPITestConfig{
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
@@ -22,7 +22,7 @@ func main() {
 					Type:    datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
 				},
 			},
-			Steps: &[]datadog.SyntheticsAPIStep{
+			Steps: []datadog.SyntheticsAPIStep{
 				{
 					AllowFailure: datadog.PtrBool(true),
 					Assertions: []datadog.SyntheticsAssertion{
@@ -68,7 +68,7 @@ func main() {
 			TickEvery: datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_MULTI.Ptr(),
-		Tags: &[]string{
+		Tags: []string{
 			"testing:api",
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,

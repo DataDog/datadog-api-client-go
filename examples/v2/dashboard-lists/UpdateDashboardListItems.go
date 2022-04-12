@@ -20,7 +20,7 @@ func main() {
 	ScreenboardDashboardID := os.Getenv("SCREENBOARD_DASHBOARD_ID")
 
 	body := datadog.DashboardListUpdateItemsRequest{
-		Dashboards: &[]datadog.DashboardListItemRequest{
+		Dashboards: []datadog.DashboardListItemRequest{
 			{
 				Id:   ScreenboardDashboardID,
 				Type: datadog.DASHBOARDTYPE_CUSTOM_SCREENBOARD,

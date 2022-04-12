@@ -14,7 +14,7 @@ import (
 // and pagination information.
 type SecurityMonitoringSignalsListResponse struct {
 	// An array of security signals matching the request.
-	Data *[]SecurityMonitoringSignal `json:"data,omitempty"`
+	Data []SecurityMonitoringSignal `json:"data,omitempty"`
 	// Links attributes.
 	Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
 	// Meta attributes.
@@ -47,7 +47,7 @@ func (o *SecurityMonitoringSignalsListResponse) GetData() []SecurityMonitoringSi
 		var ret []SecurityMonitoringSignal
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -56,7 +56,7 @@ func (o *SecurityMonitoringSignalsListResponse) GetDataOk() (*[]SecurityMonitori
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -70,7 +70,7 @@ func (o *SecurityMonitoringSignalsListResponse) HasData() bool {
 
 // SetData gets a reference to the given []SecurityMonitoringSignal and assigns it to the Data field.
 func (o *SecurityMonitoringSignalsListResponse) SetData(v []SecurityMonitoringSignal) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -161,7 +161,7 @@ func (o SecurityMonitoringSignalsListResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringSignalsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]SecurityMonitoringSignal                 `json:"data,omitempty"`
+		Data  []SecurityMonitoringSignal                  `json:"data,omitempty"`
 		Links *SecurityMonitoringSignalsListResponseLinks `json:"links,omitempty"`
 		Meta  *SecurityMonitoringSignalsListResponseMeta  `json:"meta,omitempty"`
 	}{}

@@ -29,7 +29,7 @@ func main() {
 						TitleSize:  datadog.PtrString("16"),
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.LOGSTREAMWIDGETDEFINITIONTYPE_LOG_STREAM,
-						Indexes: &[]string{
+						Indexes: []string{
 							"main",
 						},
 						Query: datadog.PtrString(""),
@@ -37,7 +37,7 @@ func main() {
 							Column: "time",
 							Order:  datadog.WIDGETSORT_DESCENDING,
 						},
-						Columns: &[]string{
+						Columns: []string{
 							"host",
 							"service",
 						},

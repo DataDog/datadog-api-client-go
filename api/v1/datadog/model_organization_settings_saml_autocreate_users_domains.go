@@ -13,7 +13,7 @@ import (
 // OrganizationSettingsSamlAutocreateUsersDomains Has two properties, `enabled` (boolean) and `domains`, which is a list of domains without the @ symbol.
 type OrganizationSettingsSamlAutocreateUsersDomains struct {
 	// List of domains where the SAML automated user creation is enabled.
-	Domains *[]string `json:"domains,omitempty"`
+	Domains []string `json:"domains,omitempty"`
 	// Whether or not the automated user creation based on SAML domain is enabled.
 	Enabled *bool `json:"enabled,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetDomains() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Domains
+	return o.Domains
 }
 
 // GetDomainsOk returns a tuple with the Domains field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) GetDomainsOk() (*[]stri
 	if o == nil || o.Domains == nil {
 		return nil, false
 	}
-	return o.Domains, true
+	return &o.Domains, true
 }
 
 // HasDomains returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *OrganizationSettingsSamlAutocreateUsersDomains) HasDomains() bool {
 
 // SetDomains gets a reference to the given []string and assigns it to the Domains field.
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) SetDomains(v []string) {
-	o.Domains = &v
+	o.Domains = v
 }
 
 // GetEnabled returns the Enabled field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o OrganizationSettingsSamlAutocreateUsersDomains) MarshalJSON() ([]byte, e
 func (o *OrganizationSettingsSamlAutocreateUsersDomains) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Domains *[]string `json:"domains,omitempty"`
-		Enabled *bool     `json:"enabled,omitempty"`
+		Domains []string `json:"domains,omitempty"`
+		Enabled *bool    `json:"enabled,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

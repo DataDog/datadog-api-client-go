@@ -18,7 +18,7 @@ type SyntheticsSSLCertificate struct {
 	// Exponent associated to the certificate.
 	Exponent *float64 `json:"exponent,omitempty"`
 	// Array of extensions and details used for the certificate.
-	ExtKeyUsage *[]string `json:"extKeyUsage,omitempty"`
+	ExtKeyUsage []string `json:"extKeyUsage,omitempty"`
 	// MD5 digest of the DER-encoded Certificate information.
 	Fingerprint *string `json:"fingerprint,omitempty"`
 	// SHA-1 digest of the DER-encoded Certificate information.
@@ -129,7 +129,7 @@ func (o *SyntheticsSSLCertificate) GetExtKeyUsage() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ExtKeyUsage
+	return o.ExtKeyUsage
 }
 
 // GetExtKeyUsageOk returns a tuple with the ExtKeyUsage field value if set, nil otherwise
@@ -138,7 +138,7 @@ func (o *SyntheticsSSLCertificate) GetExtKeyUsageOk() (*[]string, bool) {
 	if o == nil || o.ExtKeyUsage == nil {
 		return nil, false
 	}
-	return o.ExtKeyUsage, true
+	return &o.ExtKeyUsage, true
 }
 
 // HasExtKeyUsage returns a boolean if a field has been set.
@@ -152,7 +152,7 @@ func (o *SyntheticsSSLCertificate) HasExtKeyUsage() bool {
 
 // SetExtKeyUsage gets a reference to the given []string and assigns it to the ExtKeyUsage field.
 func (o *SyntheticsSSLCertificate) SetExtKeyUsage(v []string) {
-	o.ExtKeyUsage = &v
+	o.ExtKeyUsage = v
 }
 
 // GetFingerprint returns the Fingerprint field value if set, zero value otherwise.
@@ -496,7 +496,7 @@ func (o *SyntheticsSSLCertificate) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Cipher         *string                          `json:"cipher,omitempty"`
 		Exponent       *float64                         `json:"exponent,omitempty"`
-		ExtKeyUsage    *[]string                        `json:"extKeyUsage,omitempty"`
+		ExtKeyUsage    []string                         `json:"extKeyUsage,omitempty"`
 		Fingerprint    *string                          `json:"fingerprint,omitempty"`
 		Fingerprint256 *string                          `json:"fingerprint256,omitempty"`
 		Issuer         *SyntheticsSSLCertificateIssuer  `json:"issuer,omitempty"`

@@ -13,7 +13,7 @@ import (
 // RUMEventsResponse Response object with all events matching the request and pagination information.
 type RUMEventsResponse struct {
 	// Array of events matching the request.
-	Data *[]RUMEvent `json:"data,omitempty"`
+	Data []RUMEvent `json:"data,omitempty"`
 	// Links attributes.
 	Links *RUMResponseLinks `json:"links,omitempty"`
 	// The metadata associated with a request.
@@ -46,7 +46,7 @@ func (o *RUMEventsResponse) GetData() []RUMEvent {
 		var ret []RUMEvent
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *RUMEventsResponse) GetDataOk() (*[]RUMEvent, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *RUMEventsResponse) HasData() bool {
 
 // SetData gets a reference to the given []RUMEvent and assigns it to the Data field.
 func (o *RUMEventsResponse) SetData(v []RUMEvent) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -160,7 +160,7 @@ func (o RUMEventsResponse) MarshalJSON() ([]byte, error) {
 func (o *RUMEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]RUMEvent          `json:"data,omitempty"`
+		Data  []RUMEvent           `json:"data,omitempty"`
 		Links *RUMResponseLinks    `json:"links,omitempty"`
 		Meta  *RUMResponseMetadata `json:"meta,omitempty"`
 	}{}

@@ -13,7 +13,7 @@ import (
 // EventListResponse An event list response.
 type EventListResponse struct {
 	// An array of events.
-	Events *[]Event `json:"events,omitempty"`
+	Events []Event `json:"events,omitempty"`
 	// A status.
 	Status *string `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *EventListResponse) GetEvents() []Event {
 		var ret []Event
 		return ret
 	}
-	return *o.Events
+	return o.Events
 }
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *EventListResponse) GetEventsOk() (*[]Event, bool) {
 	if o == nil || o.Events == nil {
 		return nil, false
 	}
-	return o.Events, true
+	return &o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *EventListResponse) HasEvents() bool {
 
 // SetEvents gets a reference to the given []Event and assigns it to the Events field.
 func (o *EventListResponse) SetEvents(v []Event) {
-	o.Events = &v
+	o.Events = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o EventListResponse) MarshalJSON() ([]byte, error) {
 func (o *EventListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Events *[]Event `json:"events,omitempty"`
-		Status *string  `json:"status,omitempty"`
+		Events []Event `json:"events,omitempty"`
+		Status *string `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

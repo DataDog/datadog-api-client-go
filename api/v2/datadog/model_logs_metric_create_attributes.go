@@ -18,7 +18,7 @@ type LogsMetricCreateAttributes struct {
 	// The log-based metric filter. Logs matching this filter will be aggregated in this metric.
 	Filter *LogsMetricFilter `json:"filter,omitempty"`
 	// The rules for the group by.
-	GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
+	GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -103,7 +103,7 @@ func (o *LogsMetricCreateAttributes) GetGroupBy() []LogsMetricGroupBy {
 		var ret []LogsMetricGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -112,7 +112,7 @@ func (o *LogsMetricCreateAttributes) GetGroupByOk() (*[]LogsMetricGroupBy, bool)
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -126,7 +126,7 @@ func (o *LogsMetricCreateAttributes) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []LogsMetricGroupBy and assigns it to the GroupBy field.
 func (o *LogsMetricCreateAttributes) SetGroupBy(v []LogsMetricGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 func (o LogsMetricCreateAttributes) MarshalJSON() ([]byte, error) {
@@ -154,9 +154,9 @@ func (o *LogsMetricCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Compute *LogsMetricCompute `json:"compute"`
 	}{}
 	all := struct {
-		Compute LogsMetricCompute    `json:"compute"`
-		Filter  *LogsMetricFilter    `json:"filter,omitempty"`
-		GroupBy *[]LogsMetricGroupBy `json:"group_by,omitempty"`
+		Compute LogsMetricCompute   `json:"compute"`
+		Filter  *LogsMetricFilter   `json:"filter,omitempty"`
+		GroupBy []LogsMetricGroupBy `json:"group_by,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

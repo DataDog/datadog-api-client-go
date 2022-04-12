@@ -20,7 +20,7 @@ type SyntheticsTestOptions struct {
 	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
 	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
-	DeviceIds *[]SyntheticsDeviceID `json:"device_ids,omitempty"`
+	DeviceIds []SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to disable CORS mechanism.
 	DisableCors *bool `json:"disableCors,omitempty"`
 	// For API HTTP test, whether or not the test should follow redirects.
@@ -40,7 +40,7 @@ type SyntheticsTestOptions struct {
 	// Prevents saving screenshots of the steps.
 	NoScreenshot *bool `json:"noScreenshot,omitempty"`
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
-	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// Object describing the retry strategy to apply to a Synthetic test.
 	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
@@ -169,7 +169,7 @@ func (o *SyntheticsTestOptions) GetDeviceIds() []SyntheticsDeviceID {
 		var ret []SyntheticsDeviceID
 		return ret
 	}
-	return *o.DeviceIds
+	return o.DeviceIds
 }
 
 // GetDeviceIdsOk returns a tuple with the DeviceIds field value if set, nil otherwise
@@ -178,7 +178,7 @@ func (o *SyntheticsTestOptions) GetDeviceIdsOk() (*[]SyntheticsDeviceID, bool) {
 	if o == nil || o.DeviceIds == nil {
 		return nil, false
 	}
-	return o.DeviceIds, true
+	return &o.DeviceIds, true
 }
 
 // HasDeviceIds returns a boolean if a field has been set.
@@ -192,7 +192,7 @@ func (o *SyntheticsTestOptions) HasDeviceIds() bool {
 
 // SetDeviceIds gets a reference to the given []SyntheticsDeviceID and assigns it to the DeviceIds field.
 func (o *SyntheticsTestOptions) SetDeviceIds(v []SyntheticsDeviceID) {
-	o.DeviceIds = &v
+	o.DeviceIds = v
 }
 
 // GetDisableCors returns the DisableCors field value if set, zero value otherwise.
@@ -457,7 +457,7 @@ func (o *SyntheticsTestOptions) GetRestrictedRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictedRoles
+	return o.RestrictedRoles
 }
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
@@ -466,7 +466,7 @@ func (o *SyntheticsTestOptions) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
 	}
-	return o.RestrictedRoles, true
+	return &o.RestrictedRoles, true
 }
 
 // HasRestrictedRoles returns a boolean if a field has been set.
@@ -480,7 +480,7 @@ func (o *SyntheticsTestOptions) HasRestrictedRoles() bool {
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
 func (o *SyntheticsTestOptions) SetRestrictedRoles(v []string) {
-	o.RestrictedRoles = &v
+	o.RestrictedRoles = v
 }
 
 // GetRetry returns the Retry field value if set, zero value otherwise.
@@ -610,7 +610,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		AcceptSelfSigned           *bool                                `json:"accept_self_signed,omitempty"`
 		AllowInsecure              *bool                                `json:"allow_insecure,omitempty"`
 		CheckCertificateRevocation *bool                                `json:"checkCertificateRevocation,omitempty"`
-		DeviceIds                  *[]SyntheticsDeviceID                `json:"device_ids,omitempty"`
+		DeviceIds                  []SyntheticsDeviceID                 `json:"device_ids,omitempty"`
 		DisableCors                *bool                                `json:"disableCors,omitempty"`
 		FollowRedirects            *bool                                `json:"follow_redirects,omitempty"`
 		MinFailureDuration         *int64                               `json:"min_failure_duration,omitempty"`
@@ -619,7 +619,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		MonitorOptions             *SyntheticsTestOptionsMonitorOptions `json:"monitor_options,omitempty"`
 		MonitorPriority            *int32                               `json:"monitor_priority,omitempty"`
 		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
-		RestrictedRoles            *[]string                            `json:"restricted_roles,omitempty"`
+		RestrictedRoles            []string                             `json:"restricted_roles,omitempty"`
 		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
 		TickEvery                  *int64                               `json:"tick_every,omitempty"`
 	}{}

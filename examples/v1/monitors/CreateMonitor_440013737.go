@@ -17,7 +17,7 @@ func main() {
 		Type:    datadog.MONITORTYPE_ERROR_TRACKING_ALERT,
 		Query:   `error-tracking-rum("service:foo AND @error.source:source").rollup("count").by("@issue.id").last("1h") >= 1`,
 		Message: datadog.PtrString("some message"),
-		Tags: &[]string{
+		Tags: []string{
 			"test:examplecreateanerrortrackingmonitorreturnsokresponse",
 			"env:ci",
 		},

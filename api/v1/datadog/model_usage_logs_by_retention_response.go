@@ -13,7 +13,7 @@ import (
 // UsageLogsByRetentionResponse Response containing the indexed logs usage broken down by retention period for an organization during a given hour.
 type UsageLogsByRetentionResponse struct {
 	// Get hourly usage for indexed logs by retention period.
-	Usage *[]UsageLogsByRetentionHour `json:"usage,omitempty"`
+	Usage []UsageLogsByRetentionHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageLogsByRetentionResponse) GetUsage() []UsageLogsByRetentionHour {
 		var ret []UsageLogsByRetentionHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageLogsByRetentionResponse) GetUsageOk() (*[]UsageLogsByRetentionHour
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageLogsByRetentionResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageLogsByRetentionHour and assigns it to the Usage field.
 func (o *UsageLogsByRetentionResponse) SetUsage(v []UsageLogsByRetentionHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageLogsByRetentionResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageLogsByRetentionResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByRetentionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageLogsByRetentionHour `json:"usage,omitempty"`
+		Usage []UsageLogsByRetentionHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

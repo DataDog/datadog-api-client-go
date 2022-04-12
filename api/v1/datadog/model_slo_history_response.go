@@ -15,7 +15,7 @@ type SLOHistoryResponse struct {
 	// An array of service level objective objects.
 	Data *SLOHistoryResponseData `json:"data,omitempty"`
 	// A list of errors while querying the history data for the service level objective.
-	Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
+	Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *SLOHistoryResponse) GetErrors() []SLOHistoryResponseError {
 		var ret []SLOHistoryResponseError
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *SLOHistoryResponse) GetErrorsOk() (*[]SLOHistoryResponseError, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *SLOHistoryResponse) HasErrors() bool {
 
 // SetErrors gets a reference to the given []SLOHistoryResponseError and assigns it to the Errors field.
 func (o *SLOHistoryResponse) SetErrors(v []SLOHistoryResponseError) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o SLOHistoryResponse) MarshalJSON() ([]byte, error) {
 func (o *SLOHistoryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *SLOHistoryResponseData    `json:"data,omitempty"`
-		Errors *[]SLOHistoryResponseError `json:"errors,omitempty"`
+		Data   *SLOHistoryResponseData   `json:"data,omitempty"`
+		Errors []SLOHistoryResponseError `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

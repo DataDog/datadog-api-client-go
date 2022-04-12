@@ -15,7 +15,7 @@ type UsageTopAvgMetricsResponse struct {
 	// The object containing document metadata.
 	Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
 	// Number of hourly recorded custom metrics for a given organization.
-	Usage *[]UsageTopAvgMetricsHour `json:"usage,omitempty"`
+	Usage []UsageTopAvgMetricsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *UsageTopAvgMetricsResponse) GetUsage() []UsageTopAvgMetricsHour {
 		var ret []UsageTopAvgMetricsHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *UsageTopAvgMetricsResponse) GetUsageOk() (*[]UsageTopAvgMetricsHour, bo
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *UsageTopAvgMetricsResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageTopAvgMetricsHour and assigns it to the Usage field.
 func (o *UsageTopAvgMetricsResponse) SetUsage(v []UsageTopAvgMetricsHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageTopAvgMetricsResponse) MarshalJSON() ([]byte, error) {
@@ -124,7 +124,7 @@ func (o *UsageTopAvgMetricsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *UsageTopAvgMetricsMetadata `json:"metadata,omitempty"`
-		Usage    *[]UsageTopAvgMetricsHour   `json:"usage,omitempty"`
+		Usage    []UsageTopAvgMetricsHour    `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 // CanceledDowntimesIds Object containing array of IDs of canceled downtimes.
 type CanceledDowntimesIds struct {
 	// ID of downtimes that were canceled.
-	CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+	CancelledIds []int64 `json:"cancelled_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *CanceledDowntimesIds) GetCancelledIds() []int64 {
 		var ret []int64
 		return ret
 	}
-	return *o.CancelledIds
+	return o.CancelledIds
 }
 
 // GetCancelledIdsOk returns a tuple with the CancelledIds field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *CanceledDowntimesIds) GetCancelledIdsOk() (*[]int64, bool) {
 	if o == nil || o.CancelledIds == nil {
 		return nil, false
 	}
-	return o.CancelledIds, true
+	return &o.CancelledIds, true
 }
 
 // HasCancelledIds returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *CanceledDowntimesIds) HasCancelledIds() bool {
 
 // SetCancelledIds gets a reference to the given []int64 and assigns it to the CancelledIds field.
 func (o *CanceledDowntimesIds) SetCancelledIds(v []int64) {
-	o.CancelledIds = &v
+	o.CancelledIds = v
 }
 
 func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o CanceledDowntimesIds) MarshalJSON() ([]byte, error) {
 func (o *CanceledDowntimesIds) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CancelledIds *[]int64 `json:"cancelled_ids,omitempty"`
+		CancelledIds []int64 `json:"cancelled_ids,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

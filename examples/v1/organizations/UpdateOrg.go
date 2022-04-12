@@ -26,7 +26,7 @@ func main() {
 			},
 			SamlAutocreateAccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 			SamlAutocreateUsersDomains: &datadog.OrganizationSettingsSamlAutocreateUsersDomains{
-				Domains: &[]string{
+				Domains: []string{
 					"example.com",
 				},
 				Enabled: datadog.PtrBool(false),

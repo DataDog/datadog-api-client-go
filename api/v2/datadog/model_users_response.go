@@ -13,9 +13,9 @@ import (
 // UsersResponse Response containing information about multiple users.
 type UsersResponse struct {
 	// Array of returned users.
-	Data *[]User `json:"data,omitempty"`
+	Data []User `json:"data,omitempty"`
 	// Array of objects related to the users.
-	Included *[]UserResponseIncludedItem `json:"included,omitempty"`
+	Included []UserResponseIncludedItem `json:"included,omitempty"`
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -46,7 +46,7 @@ func (o *UsersResponse) GetData() []User {
 		var ret []User
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *UsersResponse) GetDataOk() (*[]User, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *UsersResponse) HasData() bool {
 
 // SetData gets a reference to the given []User and assigns it to the Data field.
 func (o *UsersResponse) SetData(v []User) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetIncluded returns the Included field value if set, zero value otherwise.
@@ -78,7 +78,7 @@ func (o *UsersResponse) GetIncluded() []UserResponseIncludedItem {
 		var ret []UserResponseIncludedItem
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *UsersResponse) GetIncludedOk() (*[]UserResponseIncludedItem, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *UsersResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []UserResponseIncludedItem and assigns it to the Included field.
 func (o *UsersResponse) SetIncluded(v []UserResponseIncludedItem) {
-	o.Included = &v
+	o.Included = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -160,9 +160,9 @@ func (o UsersResponse) MarshalJSON() ([]byte, error) {
 func (o *UsersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data     *[]User                     `json:"data,omitempty"`
-		Included *[]UserResponseIncludedItem `json:"included,omitempty"`
-		Meta     *ResponseMetaAttributes     `json:"meta,omitempty"`
+		Data     []User                     `json:"data,omitempty"`
+		Included []UserResponseIncludedItem `json:"included,omitempty"`
+		Meta     *ResponseMetaAttributes    `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

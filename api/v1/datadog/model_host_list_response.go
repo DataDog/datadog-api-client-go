@@ -13,7 +13,7 @@ import (
 // HostListResponse Response with Host information from Datadog.
 type HostListResponse struct {
 	// Array of hosts.
-	HostList *[]Host `json:"host_list,omitempty"`
+	HostList []Host `json:"host_list,omitempty"`
 	// Number of host matching the query.
 	TotalMatching *int64 `json:"total_matching,omitempty"`
 	// Number of host returned.
@@ -46,7 +46,7 @@ func (o *HostListResponse) GetHostList() []Host {
 		var ret []Host
 		return ret
 	}
-	return *o.HostList
+	return o.HostList
 }
 
 // GetHostListOk returns a tuple with the HostList field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *HostListResponse) GetHostListOk() (*[]Host, bool) {
 	if o == nil || o.HostList == nil {
 		return nil, false
 	}
-	return o.HostList, true
+	return &o.HostList, true
 }
 
 // HasHostList returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *HostListResponse) HasHostList() bool {
 
 // SetHostList gets a reference to the given []Host and assigns it to the HostList field.
 func (o *HostListResponse) SetHostList(v []Host) {
-	o.HostList = &v
+	o.HostList = v
 }
 
 // GetTotalMatching returns the TotalMatching field value if set, zero value otherwise.
@@ -160,9 +160,9 @@ func (o HostListResponse) MarshalJSON() ([]byte, error) {
 func (o *HostListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		HostList      *[]Host `json:"host_list,omitempty"`
-		TotalMatching *int64  `json:"total_matching,omitempty"`
-		TotalReturned *int64  `json:"total_returned,omitempty"`
+		HostList      []Host `json:"host_list,omitempty"`
+		TotalMatching *int64 `json:"total_matching,omitempty"`
+		TotalReturned *int64 `json:"total_returned,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

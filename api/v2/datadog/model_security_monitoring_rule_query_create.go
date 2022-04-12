@@ -16,9 +16,9 @@ type SecurityMonitoringRuleQueryCreate struct {
 	// The aggregation type.
 	Aggregation *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
 	// Field for which the cardinality is measured. Sent as an array.
-	DistinctFields *[]string `json:"distinctFields,omitempty"`
+	DistinctFields []string `json:"distinctFields,omitempty"`
 	// Fields to group by.
-	GroupByFields *[]string `json:"groupByFields,omitempty"`
+	GroupByFields []string `json:"groupByFields,omitempty"`
 	// The target field to aggregate over when using the sum or max
 	// aggregations.
 	Metric *string `json:"metric,omitempty"`
@@ -87,7 +87,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFields() []string {
 		var ret []string
 		return ret
 	}
-	return *o.DistinctFields
+	return o.DistinctFields
 }
 
 // GetDistinctFieldsOk returns a tuple with the DistinctFields field value if set, nil otherwise
@@ -96,7 +96,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetDistinctFieldsOk() (*[]string, bo
 	if o == nil || o.DistinctFields == nil {
 		return nil, false
 	}
-	return o.DistinctFields, true
+	return &o.DistinctFields, true
 }
 
 // HasDistinctFields returns a boolean if a field has been set.
@@ -110,7 +110,7 @@ func (o *SecurityMonitoringRuleQueryCreate) HasDistinctFields() bool {
 
 // SetDistinctFields gets a reference to the given []string and assigns it to the DistinctFields field.
 func (o *SecurityMonitoringRuleQueryCreate) SetDistinctFields(v []string) {
-	o.DistinctFields = &v
+	o.DistinctFields = v
 }
 
 // GetGroupByFields returns the GroupByFields field value if set, zero value otherwise.
@@ -119,7 +119,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFields() []string {
 		var ret []string
 		return ret
 	}
-	return *o.GroupByFields
+	return o.GroupByFields
 }
 
 // GetGroupByFieldsOk returns a tuple with the GroupByFields field value if set, nil otherwise
@@ -128,7 +128,7 @@ func (o *SecurityMonitoringRuleQueryCreate) GetGroupByFieldsOk() (*[]string, boo
 	if o == nil || o.GroupByFields == nil {
 		return nil, false
 	}
-	return o.GroupByFields, true
+	return &o.GroupByFields, true
 }
 
 // HasGroupByFields returns a boolean if a field has been set.
@@ -142,7 +142,7 @@ func (o *SecurityMonitoringRuleQueryCreate) HasGroupByFields() bool {
 
 // SetGroupByFields gets a reference to the given []string and assigns it to the GroupByFields field.
 func (o *SecurityMonitoringRuleQueryCreate) SetGroupByFields(v []string) {
-	o.GroupByFields = &v
+	o.GroupByFields = v
 }
 
 // GetMetric returns the Metric field value if set, zero value otherwise.
@@ -267,8 +267,8 @@ func (o *SecurityMonitoringRuleQueryCreate) UnmarshalJSON(bytes []byte) (err err
 	}{}
 	all := struct {
 		Aggregation    *SecurityMonitoringRuleQueryAggregation `json:"aggregation,omitempty"`
-		DistinctFields *[]string                               `json:"distinctFields,omitempty"`
-		GroupByFields  *[]string                               `json:"groupByFields,omitempty"`
+		DistinctFields []string                                `json:"distinctFields,omitempty"`
+		GroupByFields  []string                                `json:"groupByFields,omitempty"`
 		Metric         *string                                 `json:"metric,omitempty"`
 		Name           *string                                 `json:"name,omitempty"`
 		Query          string                                  `json:"query"`

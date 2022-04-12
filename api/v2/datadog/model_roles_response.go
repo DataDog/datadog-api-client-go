@@ -13,7 +13,7 @@ import (
 // RolesResponse Response containing information about multiple roles.
 type RolesResponse struct {
 	// Array of returned roles.
-	Data *[]Role `json:"data,omitempty"`
+	Data []Role `json:"data,omitempty"`
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *RolesResponse) GetData() []Role {
 		var ret []Role
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *RolesResponse) GetDataOk() (*[]Role, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *RolesResponse) HasData() bool {
 
 // SetData gets a reference to the given []Role and assigns it to the Data field.
 func (o *RolesResponse) SetData(v []Role) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o RolesResponse) MarshalJSON() ([]byte, error) {
 func (o *RolesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]Role                 `json:"data,omitempty"`
+		Data []Role                  `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

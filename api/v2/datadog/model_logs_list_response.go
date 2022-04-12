@@ -13,7 +13,7 @@ import (
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
 	// Array of logs matching the request.
-	Data *[]Log `json:"data,omitempty"`
+	Data []Log `json:"data,omitempty"`
 	// Links attributes.
 	Links *LogsListResponseLinks `json:"links,omitempty"`
 	// The metadata associated with a request
@@ -46,7 +46,7 @@ func (o *LogsListResponse) GetData() []Log {
 		var ret []Log
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *LogsListResponse) GetDataOk() (*[]Log, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *LogsListResponse) HasData() bool {
 
 // SetData gets a reference to the given []Log and assigns it to the Data field.
 func (o *LogsListResponse) SetData(v []Log) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetLinks returns the Links field value if set, zero value otherwise.
@@ -160,7 +160,7 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data  *[]Log                 `json:"data,omitempty"`
+		Data  []Log                  `json:"data,omitempty"`
 		Links *LogsListResponseLinks `json:"links,omitempty"`
 		Meta  *LogsResponseMetadata  `json:"meta,omitempty"`
 	}{}

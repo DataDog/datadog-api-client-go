@@ -18,7 +18,7 @@ func main() {
 	body := datadog.SecurityFilterUpdateRequest{
 		Data: datadog.SecurityFilterUpdateData{
 			Attributes: datadog.SecurityFilterUpdateAttributes{
-				ExclusionFilters: &[]datadog.SecurityFilterExclusionFilter{},
+				ExclusionFilters: []datadog.SecurityFilterExclusionFilter{},
 				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS.Ptr(),
 				IsEnabled:        datadog.PtrBool(true),
 				Name:             datadog.PtrString("Example-Update_a_security_filter_returns_OK_response"),

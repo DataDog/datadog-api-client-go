@@ -20,7 +20,7 @@ type SLOWidgetDefinition struct {
 	// ID of the SLO displayed.
 	SloId *string `json:"slo_id,omitempty"`
 	// Times being monitored.
-	TimeWindows *[]WidgetTimeWindows `json:"time_windows,omitempty"`
+	TimeWindows []WidgetTimeWindows `json:"time_windows,omitempty"`
 	// Title of the widget.
 	Title *string `json:"title,omitempty"`
 	// How to align the text on the widget.
@@ -163,7 +163,7 @@ func (o *SLOWidgetDefinition) GetTimeWindows() []WidgetTimeWindows {
 		var ret []WidgetTimeWindows
 		return ret
 	}
-	return *o.TimeWindows
+	return o.TimeWindows
 }
 
 // GetTimeWindowsOk returns a tuple with the TimeWindows field value if set, nil otherwise
@@ -172,7 +172,7 @@ func (o *SLOWidgetDefinition) GetTimeWindowsOk() (*[]WidgetTimeWindows, bool) {
 	if o == nil || o.TimeWindows == nil {
 		return nil, false
 	}
-	return o.TimeWindows, true
+	return &o.TimeWindows, true
 }
 
 // HasTimeWindows returns a boolean if a field has been set.
@@ -186,7 +186,7 @@ func (o *SLOWidgetDefinition) HasTimeWindows() bool {
 
 // SetTimeWindows gets a reference to the given []WidgetTimeWindows and assigns it to the TimeWindows field.
 func (o *SLOWidgetDefinition) SetTimeWindows(v []WidgetTimeWindows) {
-	o.TimeWindows = &v
+	o.TimeWindows = v
 }
 
 // GetTitle returns the Title field value if set, zero value otherwise.
@@ -411,7 +411,7 @@ func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		GlobalTimeTarget *string                 `json:"global_time_target,omitempty"`
 		ShowErrorBudget  *bool                   `json:"show_error_budget,omitempty"`
 		SloId            *string                 `json:"slo_id,omitempty"`
-		TimeWindows      *[]WidgetTimeWindows    `json:"time_windows,omitempty"`
+		TimeWindows      []WidgetTimeWindows     `json:"time_windows,omitempty"`
 		Title            *string                 `json:"title,omitempty"`
 		TitleAlign       *WidgetTextAlign        `json:"title_align,omitempty"`
 		TitleSize        *string                 `json:"title_size,omitempty"`

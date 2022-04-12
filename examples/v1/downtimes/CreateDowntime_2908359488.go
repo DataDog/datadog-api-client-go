@@ -27,7 +27,7 @@ func main() {
 				"Fri",
 			},
 		}),
-		Scope: &[]string{
+		Scope: []string{
 			"*",
 		},
 		Start:    datadog.PtrInt64(time.Now().Unix()),

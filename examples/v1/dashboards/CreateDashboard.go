@@ -30,7 +30,7 @@ func main() {
 									Search: &datadog.LogQueryDefinitionSearch{
 										Query: "runtime:jvm",
 									},
-									GroupBy: &[]datadog.LogQueryDefinitionGroupBy{
+									GroupBy: []datadog.LogQueryDefinitionGroupBy{
 										{
 											Facet: "service",
 											Limit: datadog.PtrInt64(10),

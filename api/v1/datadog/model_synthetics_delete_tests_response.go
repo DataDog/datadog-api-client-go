@@ -14,7 +14,7 @@ import (
 type SyntheticsDeleteTestsResponse struct {
 	// Array of objects containing a deleted Synthetic test ID with
 	// the associated deletion timestamp.
-	DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
+	DeletedTests []SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -43,7 +43,7 @@ func (o *SyntheticsDeleteTestsResponse) GetDeletedTests() []SyntheticsDeletedTes
 		var ret []SyntheticsDeletedTest
 		return ret
 	}
-	return *o.DeletedTests
+	return o.DeletedTests
 }
 
 // GetDeletedTestsOk returns a tuple with the DeletedTests field value if set, nil otherwise
@@ -52,7 +52,7 @@ func (o *SyntheticsDeleteTestsResponse) GetDeletedTestsOk() (*[]SyntheticsDelete
 	if o == nil || o.DeletedTests == nil {
 		return nil, false
 	}
-	return o.DeletedTests, true
+	return &o.DeletedTests, true
 }
 
 // HasDeletedTests returns a boolean if a field has been set.
@@ -66,7 +66,7 @@ func (o *SyntheticsDeleteTestsResponse) HasDeletedTests() bool {
 
 // SetDeletedTests gets a reference to the given []SyntheticsDeletedTest and assigns it to the DeletedTests field.
 func (o *SyntheticsDeleteTestsResponse) SetDeletedTests(v []SyntheticsDeletedTest) {
-	o.DeletedTests = &v
+	o.DeletedTests = v
 }
 
 func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
@@ -87,7 +87,7 @@ func (o SyntheticsDeleteTestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsDeleteTestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DeletedTests *[]SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
+		DeletedTests []SyntheticsDeletedTest `json:"deleted_tests,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

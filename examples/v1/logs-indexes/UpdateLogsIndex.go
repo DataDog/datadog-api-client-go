@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.LogsIndexUpdateRequest{
-		ExclusionFilters: &[]datadog.LogsExclusion{
+		ExclusionFilters: []datadog.LogsExclusion{
 			{
 				Filter: &datadog.LogsExclusionFilter{
 					Query:      datadog.PtrString("*"),

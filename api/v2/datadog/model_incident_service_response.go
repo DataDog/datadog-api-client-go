@@ -16,7 +16,7 @@ type IncidentServiceResponse struct {
 	// Incident Service data from responses.
 	Data IncidentServiceResponseData `json:"data"`
 	// Included objects from relationships.
-	Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
+	Included []IncidentServiceIncludedItems `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -69,7 +69,7 @@ func (o *IncidentServiceResponse) GetIncluded() []IncidentServiceIncludedItems {
 		var ret []IncidentServiceIncludedItems
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -78,7 +78,7 @@ func (o *IncidentServiceResponse) GetIncludedOk() (*[]IncidentServiceIncludedIte
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -92,7 +92,7 @@ func (o *IncidentServiceResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []IncidentServiceIncludedItems and assigns it to the Included field.
 func (o *IncidentServiceResponse) SetIncluded(v []IncidentServiceIncludedItems) {
-	o.Included = &v
+	o.Included = v
 }
 
 func (o IncidentServiceResponse) MarshalJSON() ([]byte, error) {
@@ -117,8 +117,8 @@ func (o *IncidentServiceResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *IncidentServiceResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     IncidentServiceResponseData     `json:"data"`
-		Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
+		Data     IncidentServiceResponseData    `json:"data"`
+		Included []IncidentServiceIncludedItems `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

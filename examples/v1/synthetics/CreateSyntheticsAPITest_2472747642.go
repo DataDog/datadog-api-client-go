@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.SyntheticsAPITest{
 		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: &[]datadog.SyntheticsAssertion{
+			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
 						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
@@ -28,7 +28,7 @@ func main() {
 						Type:     datadog.SYNTHETICSASSERTIONTYPE_RESPONSE_TIME,
 					}},
 			},
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{},
+			ConfigVariables: []datadog.SyntheticsConfigVariable{},
 			Request: &datadog.SyntheticsTestRequest{
 				Url:     datadog.PtrString("ws://datadoghq.com"),
 				Message: datadog.PtrString("message"),
@@ -54,7 +54,7 @@ func main() {
 			TickEvery: datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET.Ptr(),
-		Tags: &[]string{
+		Tags: []string{
 			"testing:api",
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,

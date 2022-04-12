@@ -13,7 +13,7 @@ import (
 // UsageFargateResponse Response containing the number of Fargate tasks run and hourly usage.
 type UsageFargateResponse struct {
 	// Array with the number of hourly Fargate tasks recorded for a given organization.
-	Usage *[]UsageFargateHour `json:"usage,omitempty"`
+	Usage []UsageFargateHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageFargateResponse) GetUsage() []UsageFargateHour {
 		var ret []UsageFargateHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageFargateResponse) GetUsageOk() (*[]UsageFargateHour, bool) {
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageFargateResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageFargateHour and assigns it to the Usage field.
 func (o *UsageFargateResponse) SetUsage(v []UsageFargateHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageFargateResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageFargateResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageFargateHour `json:"usage,omitempty"`
+		Usage []UsageFargateHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

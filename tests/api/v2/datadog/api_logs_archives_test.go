@@ -44,7 +44,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						},
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
-						RehydrationTags: &[]string{"team:intake", "team:app"},
+						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
@@ -71,7 +71,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						},
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
-						RehydrationTags: &[]string{"team:intake", "team:app"},
+						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
@@ -96,7 +96,7 @@ func TestLogsArchivesCreate(t *testing.T) {
 						},
 						Name:            "datadog-api-client-go Tests Archive",
 						Query:           "service:toto",
-						RehydrationTags: &[]string{"team:intake", "team:app"},
+						RehydrationTags: []string{"team:intake", "team:app"},
 						IncludeTags:     &includeTags,
 					},
 					Type: "archives",
@@ -153,7 +153,7 @@ func TestLogsArchivesUpdate(t *testing.T) {
 				},
 				Name:            "datadog-api-client-go Tests Archive",
 				Query:           "service:toto",
-				RehydrationTags: &[]string{"team:intake", "team:app"},
+				RehydrationTags: []string{"team:intake", "team:app"},
 			},
 			Type: "archives",
 		},
@@ -226,7 +226,7 @@ func TestLogsArchivesGetAll(t *testing.T) {
 	result, httpresp, err := client.LogsArchivesApi.ListLogsArchives(ctx)
 	assert.NoError(err)
 	assert.Equal(httpresp.StatusCode, 200)
-	assert.True(len(*result.Data) > 0)
+	assert.True(len(result.Data) > 0)
 	assert.Equal(outputArchives, result)
 }
 

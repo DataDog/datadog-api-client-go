@@ -20,7 +20,7 @@ func main() {
 			Type: datadog.METRICTAGCONFIGURATIONTYPE_MANAGE_TAGS,
 			Id:   MetricTagConfigurationDataID,
 			Attributes: &datadog.MetricTagConfigurationUpdateAttributes{
-				Tags: &[]string{
+				Tags: []string{
 					"app",
 				},
 			},

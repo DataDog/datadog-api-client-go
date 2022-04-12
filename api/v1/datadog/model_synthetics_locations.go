@@ -13,7 +13,7 @@ import (
 // SyntheticsLocations List of Synthetics locations.
 type SyntheticsLocations struct {
 	// List of Synthetics locations.
-	Locations *[]SyntheticsLocation `json:"locations,omitempty"`
+	Locations []SyntheticsLocation `json:"locations,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *SyntheticsLocations) GetLocations() []SyntheticsLocation {
 		var ret []SyntheticsLocation
 		return ret
 	}
-	return *o.Locations
+	return o.Locations
 }
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *SyntheticsLocations) GetLocationsOk() (*[]SyntheticsLocation, bool) {
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *SyntheticsLocations) HasLocations() bool {
 
 // SetLocations gets a reference to the given []SyntheticsLocation and assigns it to the Locations field.
 func (o *SyntheticsLocations) SetLocations(v []SyntheticsLocation) {
-	o.Locations = &v
+	o.Locations = v
 }
 
 func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o SyntheticsLocations) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsLocations) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Locations *[]SyntheticsLocation `json:"locations,omitempty"`
+		Locations []SyntheticsLocation `json:"locations,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,9 +13,9 @@ import (
 // ScatterplotTableRequest Scatterplot request containing formulas and functions.
 type ScatterplotTableRequest struct {
 	// List of Scatterplot formulas that operate on queries.
-	Formulas *[]ScatterplotWidgetFormula `json:"formulas,omitempty"`
+	Formulas []ScatterplotWidgetFormula `json:"formulas,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
-	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -46,7 +46,7 @@ func (o *ScatterplotTableRequest) GetFormulas() []ScatterplotWidgetFormula {
 		var ret []ScatterplotWidgetFormula
 		return ret
 	}
-	return *o.Formulas
+	return o.Formulas
 }
 
 // GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
@@ -55,7 +55,7 @@ func (o *ScatterplotTableRequest) GetFormulasOk() (*[]ScatterplotWidgetFormula, 
 	if o == nil || o.Formulas == nil {
 		return nil, false
 	}
-	return o.Formulas, true
+	return &o.Formulas, true
 }
 
 // HasFormulas returns a boolean if a field has been set.
@@ -69,7 +69,7 @@ func (o *ScatterplotTableRequest) HasFormulas() bool {
 
 // SetFormulas gets a reference to the given []ScatterplotWidgetFormula and assigns it to the Formulas field.
 func (o *ScatterplotTableRequest) SetFormulas(v []ScatterplotWidgetFormula) {
-	o.Formulas = &v
+	o.Formulas = v
 }
 
 // GetQueries returns the Queries field value if set, zero value otherwise.
@@ -78,7 +78,7 @@ func (o *ScatterplotTableRequest) GetQueries() []FormulaAndFunctionQueryDefiniti
 		var ret []FormulaAndFunctionQueryDefinition
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *ScatterplotTableRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefi
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *ScatterplotTableRequest) HasQueries() bool {
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
 func (o *ScatterplotTableRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
@@ -160,9 +160,9 @@ func (o ScatterplotTableRequest) MarshalJSON() ([]byte, error) {
 func (o *ScatterplotTableRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Formulas       *[]ScatterplotWidgetFormula          `json:"formulas,omitempty"`
-		Queries        *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
+		Formulas       []ScatterplotWidgetFormula          `json:"formulas,omitempty"`
+		Queries        []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

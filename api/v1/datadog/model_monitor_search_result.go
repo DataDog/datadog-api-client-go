@@ -21,11 +21,11 @@ type MonitorSearchResult struct {
 	// Latest timestamp the monitor triggered.
 	LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
 	// Metrics used by the monitor.
-	Metrics *[]string `json:"metrics,omitempty"`
+	Metrics []string `json:"metrics,omitempty"`
 	// The monitor name.
 	Name *string `json:"name,omitempty"`
 	// The notification triggered by the monitor.
-	Notifications *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
+	Notifications []MonitorSearchResultNotification `json:"notifications,omitempty"`
 	// The ID of the organization.
 	OrgId *int64 `json:"org_id,omitempty"`
 	// The monitor query.
@@ -34,11 +34,11 @@ type MonitorSearchResult struct {
 	// Provide multiple scopes as a comma-separated list, for example `env:dev,env:prod`.
 	// The resulting downtime applies to sources that matches ALL provided scopes
 	// (that is `env:dev AND env:prod`), NOT any of them.
-	Scopes *[]string `json:"scopes,omitempty"`
+	Scopes []string `json:"scopes,omitempty"`
 	// The different states your monitor can be in.
 	Status *MonitorOverallStates `json:"status,omitempty"`
 	// Tags associated with the monitor.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -208,7 +208,7 @@ func (o *MonitorSearchResult) GetMetrics() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Metrics
+	return o.Metrics
 }
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
@@ -217,7 +217,7 @@ func (o *MonitorSearchResult) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
 		return nil, false
 	}
-	return o.Metrics, true
+	return &o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -231,7 +231,7 @@ func (o *MonitorSearchResult) HasMetrics() bool {
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
 func (o *MonitorSearchResult) SetMetrics(v []string) {
-	o.Metrics = &v
+	o.Metrics = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -272,7 +272,7 @@ func (o *MonitorSearchResult) GetNotifications() []MonitorSearchResultNotificati
 		var ret []MonitorSearchResultNotification
 		return ret
 	}
-	return *o.Notifications
+	return o.Notifications
 }
 
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
@@ -281,7 +281,7 @@ func (o *MonitorSearchResult) GetNotificationsOk() (*[]MonitorSearchResultNotifi
 	if o == nil || o.Notifications == nil {
 		return nil, false
 	}
-	return o.Notifications, true
+	return &o.Notifications, true
 }
 
 // HasNotifications returns a boolean if a field has been set.
@@ -295,7 +295,7 @@ func (o *MonitorSearchResult) HasNotifications() bool {
 
 // SetNotifications gets a reference to the given []MonitorSearchResultNotification and assigns it to the Notifications field.
 func (o *MonitorSearchResult) SetNotifications(v []MonitorSearchResultNotification) {
-	o.Notifications = &v
+	o.Notifications = v
 }
 
 // GetOrgId returns the OrgId field value if set, zero value otherwise.
@@ -368,7 +368,7 @@ func (o *MonitorSearchResult) GetScopes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Scopes
+	return o.Scopes
 }
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
@@ -377,7 +377,7 @@ func (o *MonitorSearchResult) GetScopesOk() (*[]string, bool) {
 	if o == nil || o.Scopes == nil {
 		return nil, false
 	}
-	return o.Scopes, true
+	return &o.Scopes, true
 }
 
 // HasScopes returns a boolean if a field has been set.
@@ -391,7 +391,7 @@ func (o *MonitorSearchResult) HasScopes() bool {
 
 // SetScopes gets a reference to the given []string and assigns it to the Scopes field.
 func (o *MonitorSearchResult) SetScopes(v []string) {
-	o.Scopes = &v
+	o.Scopes = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -432,7 +432,7 @@ func (o *MonitorSearchResult) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -441,7 +441,7 @@ func (o *MonitorSearchResult) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -455,7 +455,7 @@ func (o *MonitorSearchResult) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *MonitorSearchResult) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -544,19 +544,19 @@ func (o MonitorSearchResult) MarshalJSON() ([]byte, error) {
 func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Classification  *string                            `json:"classification,omitempty"`
-		Creator         *Creator                           `json:"creator,omitempty"`
-		Id              *int64                             `json:"id,omitempty"`
-		LastTriggeredTs NullableInt64                      `json:"last_triggered_ts,omitempty"`
-		Metrics         *[]string                          `json:"metrics,omitempty"`
-		Name            *string                            `json:"name,omitempty"`
-		Notifications   *[]MonitorSearchResultNotification `json:"notifications,omitempty"`
-		OrgId           *int64                             `json:"org_id,omitempty"`
-		Query           *string                            `json:"query,omitempty"`
-		Scopes          *[]string                          `json:"scopes,omitempty"`
-		Status          *MonitorOverallStates              `json:"status,omitempty"`
-		Tags            *[]string                          `json:"tags,omitempty"`
-		Type            *MonitorType                       `json:"type,omitempty"`
+		Classification  *string                           `json:"classification,omitempty"`
+		Creator         *Creator                          `json:"creator,omitempty"`
+		Id              *int64                            `json:"id,omitempty"`
+		LastTriggeredTs NullableInt64                     `json:"last_triggered_ts,omitempty"`
+		Metrics         []string                          `json:"metrics,omitempty"`
+		Name            *string                           `json:"name,omitempty"`
+		Notifications   []MonitorSearchResultNotification `json:"notifications,omitempty"`
+		OrgId           *int64                            `json:"org_id,omitempty"`
+		Query           *string                           `json:"query,omitempty"`
+		Scopes          []string                          `json:"scopes,omitempty"`
+		Status          *MonitorOverallStates             `json:"status,omitempty"`
+		Tags            []string                          `json:"tags,omitempty"`
+		Type            *MonitorType                      `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

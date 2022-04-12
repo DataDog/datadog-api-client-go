@@ -23,7 +23,7 @@ type Series struct {
 	// Points relating to a metric. All points must be tuples with timestamp and a scalar value (cannot be a string). Timestamps should be in POSIX time in seconds, and cannot be more than ten minutes in the future or more than one hour in the past.
 	Points [][]*float64 `json:"points"`
 	// A list of tags associated with the metric.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The type of the metric either `count`, `gauge`, or `rate`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -183,7 +183,7 @@ func (o *Series) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -192,7 +192,7 @@ func (o *Series) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -206,7 +206,7 @@ func (o *Series) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *Series) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -278,7 +278,7 @@ func (o *Series) UnmarshalJSON(bytes []byte) (err error) {
 		Interval NullableInt64 `json:"interval,omitempty"`
 		Metric   string        `json:"metric"`
 		Points   [][]*float64  `json:"points"`
-		Tags     *[]string     `json:"tags,omitempty"`
+		Tags     []string      `json:"tags,omitempty"`
 		Type     *string       `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

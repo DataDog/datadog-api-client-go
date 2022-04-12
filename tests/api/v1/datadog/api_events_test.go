@@ -19,7 +19,7 @@ import (
 
 var testEvent = datadog.Event{
 	Text: datadog.PtrString("example text"),
-	Tags: &[]string{
+	Tags: []string{
 		"test",
 		"client:go",
 	},

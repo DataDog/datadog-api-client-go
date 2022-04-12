@@ -27,7 +27,7 @@ type MetricsQueryMetadata struct {
 	// Metric name.
 	Metric *string `json:"metric,omitempty"`
 	// List of points of the time series.
-	Pointlist *[][]*float64 `json:"pointlist,omitempty"`
+	Pointlist [][]*float64 `json:"pointlist,omitempty"`
 	// The index of the series' query within the request.
 	QueryIndex *int64 `json:"query_index,omitempty"`
 	// Metric scope, comma separated list of tags.
@@ -35,11 +35,11 @@ type MetricsQueryMetadata struct {
 	// Start of the time window, milliseconds since Unix epoch.
 	Start *int64 `json:"start,omitempty"`
 	// Unique tags identifying this series.
-	TagSet *[]string `json:"tag_set,omitempty"`
+	TagSet []string `json:"tag_set,omitempty"`
 	// Detailed information about the metric unit.
 	// First element describes the "primary unit" (for example, `bytes` in `bytes per second`),
 	// second describes the "per unit" (for example, `second` in `bytes per second`).
-	Unit *[]MetricsQueryUnit `json:"unit,omitempty"`
+	Unit []MetricsQueryUnit `json:"unit,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -303,7 +303,7 @@ func (o *MetricsQueryMetadata) GetPointlist() [][]*float64 {
 		var ret [][]*float64
 		return ret
 	}
-	return *o.Pointlist
+	return o.Pointlist
 }
 
 // GetPointlistOk returns a tuple with the Pointlist field value if set, nil otherwise
@@ -312,7 +312,7 @@ func (o *MetricsQueryMetadata) GetPointlistOk() (*[][]*float64, bool) {
 	if o == nil || o.Pointlist == nil {
 		return nil, false
 	}
-	return o.Pointlist, true
+	return &o.Pointlist, true
 }
 
 // HasPointlist returns a boolean if a field has been set.
@@ -326,7 +326,7 @@ func (o *MetricsQueryMetadata) HasPointlist() bool {
 
 // SetPointlist gets a reference to the given [][]*float64 and assigns it to the Pointlist field.
 func (o *MetricsQueryMetadata) SetPointlist(v [][]*float64) {
-	o.Pointlist = &v
+	o.Pointlist = v
 }
 
 // GetQueryIndex returns the QueryIndex field value if set, zero value otherwise.
@@ -431,7 +431,7 @@ func (o *MetricsQueryMetadata) GetTagSet() []string {
 		var ret []string
 		return ret
 	}
-	return *o.TagSet
+	return o.TagSet
 }
 
 // GetTagSetOk returns a tuple with the TagSet field value if set, nil otherwise
@@ -440,7 +440,7 @@ func (o *MetricsQueryMetadata) GetTagSetOk() (*[]string, bool) {
 	if o == nil || o.TagSet == nil {
 		return nil, false
 	}
-	return o.TagSet, true
+	return &o.TagSet, true
 }
 
 // HasTagSet returns a boolean if a field has been set.
@@ -454,7 +454,7 @@ func (o *MetricsQueryMetadata) HasTagSet() bool {
 
 // SetTagSet gets a reference to the given []string and assigns it to the TagSet field.
 func (o *MetricsQueryMetadata) SetTagSet(v []string) {
-	o.TagSet = &v
+	o.TagSet = v
 }
 
 // GetUnit returns the Unit field value if set, zero value otherwise.
@@ -463,7 +463,7 @@ func (o *MetricsQueryMetadata) GetUnit() []MetricsQueryUnit {
 		var ret []MetricsQueryUnit
 		return ret
 	}
-	return *o.Unit
+	return o.Unit
 }
 
 // GetUnitOk returns a tuple with the Unit field value if set, nil otherwise
@@ -472,7 +472,7 @@ func (o *MetricsQueryMetadata) GetUnitOk() (*[]MetricsQueryUnit, bool) {
 	if o == nil || o.Unit == nil {
 		return nil, false
 	}
-	return o.Unit, true
+	return &o.Unit, true
 }
 
 // HasUnit returns a boolean if a field has been set.
@@ -486,7 +486,7 @@ func (o *MetricsQueryMetadata) HasUnit() bool {
 
 // SetUnit gets a reference to the given []MetricsQueryUnit and assigns it to the Unit field.
 func (o *MetricsQueryMetadata) SetUnit(v []MetricsQueryUnit) {
-	o.Unit = &v
+	o.Unit = v
 }
 
 func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
@@ -543,19 +543,19 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggr        NullableString      `json:"aggr,omitempty"`
-		DisplayName *string             `json:"display_name,omitempty"`
-		End         *int64              `json:"end,omitempty"`
-		Expression  *string             `json:"expression,omitempty"`
-		Interval    *int64              `json:"interval,omitempty"`
-		Length      *int64              `json:"length,omitempty"`
-		Metric      *string             `json:"metric,omitempty"`
-		Pointlist   *[][]*float64       `json:"pointlist,omitempty"`
-		QueryIndex  *int64              `json:"query_index,omitempty"`
-		Scope       *string             `json:"scope,omitempty"`
-		Start       *int64              `json:"start,omitempty"`
-		TagSet      *[]string           `json:"tag_set,omitempty"`
-		Unit        *[]MetricsQueryUnit `json:"unit,omitempty"`
+		Aggr        NullableString     `json:"aggr,omitempty"`
+		DisplayName *string            `json:"display_name,omitempty"`
+		End         *int64             `json:"end,omitempty"`
+		Expression  *string            `json:"expression,omitempty"`
+		Interval    *int64             `json:"interval,omitempty"`
+		Length      *int64             `json:"length,omitempty"`
+		Metric      *string            `json:"metric,omitempty"`
+		Pointlist   [][]*float64       `json:"pointlist,omitempty"`
+		QueryIndex  *int64             `json:"query_index,omitempty"`
+		Scope       *string            `json:"scope,omitempty"`
+		Start       *int64             `json:"start,omitempty"`
+		TagSet      []string           `json:"tag_set,omitempty"`
+		Unit        []MetricsQueryUnit `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -15,7 +15,7 @@ type MetricsListResponse struct {
 	// Time when the metrics were active, seconds since the Unix epoch.
 	From *string `json:"from,omitempty"`
 	// List of metric names.
-	Metrics *[]string `json:"metrics,omitempty"`
+	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *MetricsListResponse) GetMetrics() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Metrics
+	return o.Metrics
 }
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *MetricsListResponse) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
 		return nil, false
 	}
-	return o.Metrics, true
+	return &o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *MetricsListResponse) HasMetrics() bool {
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
 func (o *MetricsListResponse) SetMetrics(v []string) {
-	o.Metrics = &v
+	o.Metrics = v
 }
 
 func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o MetricsListResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From    *string   `json:"from,omitempty"`
-		Metrics *[]string `json:"metrics,omitempty"`
+		From    *string  `json:"from,omitempty"`
+		Metrics []string `json:"metrics,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

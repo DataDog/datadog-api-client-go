@@ -31,9 +31,9 @@ type SyntheticsBrowserTest struct {
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The steps of the test.
-	Steps *[]SyntheticsStep `json:"steps,omitempty"`
+	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Type of the Synthetic test, `browser`.
 	Type SyntheticsBrowserTestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -291,7 +291,7 @@ func (o *SyntheticsBrowserTest) GetSteps() []SyntheticsStep {
 		var ret []SyntheticsStep
 		return ret
 	}
-	return *o.Steps
+	return o.Steps
 }
 
 // GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
@@ -300,7 +300,7 @@ func (o *SyntheticsBrowserTest) GetStepsOk() (*[]SyntheticsStep, bool) {
 	if o == nil || o.Steps == nil {
 		return nil, false
 	}
-	return o.Steps, true
+	return &o.Steps, true
 }
 
 // HasSteps returns a boolean if a field has been set.
@@ -314,7 +314,7 @@ func (o *SyntheticsBrowserTest) HasSteps() bool {
 
 // SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
 func (o *SyntheticsBrowserTest) SetSteps(v []SyntheticsStep) {
-	o.Steps = &v
+	o.Steps = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -323,7 +323,7 @@ func (o *SyntheticsBrowserTest) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -332,7 +332,7 @@ func (o *SyntheticsBrowserTest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -346,7 +346,7 @@ func (o *SyntheticsBrowserTest) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SyntheticsBrowserTest) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value
@@ -425,8 +425,8 @@ func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 		Options   SyntheticsTestOptions       `json:"options"`
 		PublicId  *string                     `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus  `json:"status,omitempty"`
-		Steps     *[]SyntheticsStep           `json:"steps,omitempty"`
-		Tags      *[]string                   `json:"tags,omitempty"`
+		Steps     []SyntheticsStep            `json:"steps,omitempty"`
+		Tags      []string                    `json:"tags,omitempty"`
 		Type      SyntheticsBrowserTestType   `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

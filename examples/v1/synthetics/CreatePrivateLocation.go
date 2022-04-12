@@ -18,7 +18,7 @@ func main() {
 	body := datadog.SyntheticsPrivateLocation{
 		Description: "Test Example-Create_a_private_location_returns_OK_response description",
 		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
-			RestrictedRoles: &[]string{
+			RestrictedRoles: []string{
 				RoleDataID,
 			},
 		},

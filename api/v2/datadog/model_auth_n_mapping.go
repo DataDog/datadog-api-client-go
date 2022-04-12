@@ -18,7 +18,7 @@ type AuthNMapping struct {
 	// ID of the AuthN Mapping.
 	Id string `json:"id"`
 	// Included data in the AuthN Mapping response.
-	Included *[]AuthNMappingIncluded `json:"included,omitempty"`
+	Included []AuthNMappingIncluded `json:"included,omitempty"`
 	// All relationships associated with AuthN Mapping.
 	Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
 	// AuthN Mappings resource type.
@@ -110,7 +110,7 @@ func (o *AuthNMapping) GetIncluded() []AuthNMappingIncluded {
 		var ret []AuthNMappingIncluded
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -119,7 +119,7 @@ func (o *AuthNMapping) GetIncludedOk() (*[]AuthNMappingIncluded, bool) {
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -133,7 +133,7 @@ func (o *AuthNMapping) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []AuthNMappingIncluded and assigns it to the Included field.
 func (o *AuthNMapping) SetIncluded(v []AuthNMappingIncluded) {
-	o.Included = &v
+	o.Included = v
 }
 
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
@@ -223,7 +223,7 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *AuthNMappingAttributes    `json:"attributes,omitempty"`
 		Id            string                     `json:"id"`
-		Included      *[]AuthNMappingIncluded    `json:"included,omitempty"`
+		Included      []AuthNMappingIncluded     `json:"included,omitempty"`
 		Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
 		Type          AuthNMappingsType          `json:"type"`
 	}{}

@@ -18,11 +18,11 @@ type CheckStatusWidgetDefinition struct {
 	// Group reporting a single check.
 	Group *string `json:"group,omitempty"`
 	// List of tag prefixes to group by in the case of a cluster check.
-	GroupBy *[]string `json:"group_by,omitempty"`
+	GroupBy []string `json:"group_by,omitempty"`
 	// The kind of grouping to use.
 	Grouping WidgetGrouping `json:"grouping"`
 	// List of tags used to filter the groups reporting a cluster check.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Time setting for the widget.
 	Time *WidgetTime `json:"time,omitempty"`
 	// Title of the widget.
@@ -121,7 +121,7 @@ func (o *CheckStatusWidgetDefinition) GetGroupBy() []string {
 		var ret []string
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -130,7 +130,7 @@ func (o *CheckStatusWidgetDefinition) GetGroupByOk() (*[]string, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -144,7 +144,7 @@ func (o *CheckStatusWidgetDefinition) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *CheckStatusWidgetDefinition) SetGroupBy(v []string) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetGrouping returns the Grouping field value
@@ -176,7 +176,7 @@ func (o *CheckStatusWidgetDefinition) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -185,7 +185,7 @@ func (o *CheckStatusWidgetDefinition) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -199,7 +199,7 @@ func (o *CheckStatusWidgetDefinition) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *CheckStatusWidgetDefinition) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetTime returns the Time field value if set, zero value otherwise.
@@ -399,9 +399,9 @@ func (o *CheckStatusWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Check      string                          `json:"check"`
 		Group      *string                         `json:"group,omitempty"`
-		GroupBy    *[]string                       `json:"group_by,omitempty"`
+		GroupBy    []string                        `json:"group_by,omitempty"`
 		Grouping   WidgetGrouping                  `json:"grouping"`
-		Tags       *[]string                       `json:"tags,omitempty"`
+		Tags       []string                        `json:"tags,omitempty"`
 		Time       *WidgetTime                     `json:"time,omitempty"`
 		Title      *string                         `json:"title,omitempty"`
 		TitleAlign *WidgetTextAlign                `json:"title_align,omitempty"`

@@ -13,7 +13,7 @@ import (
 // LogsByRetentionOrgUsage Indexed logs usage by retention for a single organization.
 type LogsByRetentionOrgUsage struct {
 	// Indexed logs usage for each active retention for the organization.
-	Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
+	Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *LogsByRetentionOrgUsage) GetUsage() []LogsRetentionSumUsage {
 		var ret []LogsRetentionSumUsage
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *LogsByRetentionOrgUsage) GetUsageOk() (*[]LogsRetentionSumUsage, bool) 
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *LogsByRetentionOrgUsage) HasUsage() bool {
 
 // SetUsage gets a reference to the given []LogsRetentionSumUsage and assigns it to the Usage field.
 func (o *LogsByRetentionOrgUsage) SetUsage(v []LogsRetentionSumUsage) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o LogsByRetentionOrgUsage) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o LogsByRetentionOrgUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsByRetentionOrgUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
+		Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

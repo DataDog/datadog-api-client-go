@@ -13,11 +13,11 @@ import (
 // LogsAggregateRequest The object sent with the request to retrieve a list of logs from your organization.
 type LogsAggregateRequest struct {
 	// The list of metrics or timeseries to compute for the retrieved buckets.
-	Compute *[]LogsCompute `json:"compute,omitempty"`
+	Compute []LogsCompute `json:"compute,omitempty"`
 	// The search and filter query settings
 	Filter *LogsQueryFilter `json:"filter,omitempty"`
 	// The rules for the group by
-	GroupBy *[]LogsGroupBy `json:"group_by,omitempty"`
+	GroupBy []LogsGroupBy `json:"group_by,omitempty"`
 	// Global query options that are used during the query.
 	// Note: You should only supply timezone or time offset but not both otherwise the query will fail.
 	Options *LogsQueryOptions `json:"options,omitempty"`
@@ -51,7 +51,7 @@ func (o *LogsAggregateRequest) GetCompute() []LogsCompute {
 		var ret []LogsCompute
 		return ret
 	}
-	return *o.Compute
+	return o.Compute
 }
 
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
@@ -60,7 +60,7 @@ func (o *LogsAggregateRequest) GetComputeOk() (*[]LogsCompute, bool) {
 	if o == nil || o.Compute == nil {
 		return nil, false
 	}
-	return o.Compute, true
+	return &o.Compute, true
 }
 
 // HasCompute returns a boolean if a field has been set.
@@ -74,7 +74,7 @@ func (o *LogsAggregateRequest) HasCompute() bool {
 
 // SetCompute gets a reference to the given []LogsCompute and assigns it to the Compute field.
 func (o *LogsAggregateRequest) SetCompute(v []LogsCompute) {
-	o.Compute = &v
+	o.Compute = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -115,7 +115,7 @@ func (o *LogsAggregateRequest) GetGroupBy() []LogsGroupBy {
 		var ret []LogsGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -124,7 +124,7 @@ func (o *LogsAggregateRequest) GetGroupByOk() (*[]LogsGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -138,7 +138,7 @@ func (o *LogsAggregateRequest) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []LogsGroupBy and assigns it to the GroupBy field.
 func (o *LogsAggregateRequest) SetGroupBy(v []LogsGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
@@ -235,9 +235,9 @@ func (o LogsAggregateRequest) MarshalJSON() ([]byte, error) {
 func (o *LogsAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *[]LogsCompute            `json:"compute,omitempty"`
+		Compute []LogsCompute             `json:"compute,omitempty"`
 		Filter  *LogsQueryFilter          `json:"filter,omitempty"`
-		GroupBy *[]LogsGroupBy            `json:"group_by,omitempty"`
+		GroupBy []LogsGroupBy             `json:"group_by,omitempty"`
 		Options *LogsQueryOptions         `json:"options,omitempty"`
 		Page    *LogsAggregateRequestPage `json:"page,omitempty"`
 	}{}

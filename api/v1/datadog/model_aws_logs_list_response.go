@@ -15,9 +15,9 @@ type AWSLogsListResponse struct {
 	// Your AWS Account ID without dashes.
 	AccountId *string `json:"account_id,omitempty"`
 	// List of ARNs configured in your Datadog account.
-	Lambdas *[]AWSLogsLambda `json:"lambdas,omitempty"`
+	Lambdas []AWSLogsLambda `json:"lambdas,omitempty"`
 	// Array of services IDs.
-	Services *[]string `json:"services,omitempty"`
+	Services []string `json:"services,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -78,7 +78,7 @@ func (o *AWSLogsListResponse) GetLambdas() []AWSLogsLambda {
 		var ret []AWSLogsLambda
 		return ret
 	}
-	return *o.Lambdas
+	return o.Lambdas
 }
 
 // GetLambdasOk returns a tuple with the Lambdas field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *AWSLogsListResponse) GetLambdasOk() (*[]AWSLogsLambda, bool) {
 	if o == nil || o.Lambdas == nil {
 		return nil, false
 	}
-	return o.Lambdas, true
+	return &o.Lambdas, true
 }
 
 // HasLambdas returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *AWSLogsListResponse) HasLambdas() bool {
 
 // SetLambdas gets a reference to the given []AWSLogsLambda and assigns it to the Lambdas field.
 func (o *AWSLogsListResponse) SetLambdas(v []AWSLogsLambda) {
-	o.Lambdas = &v
+	o.Lambdas = v
 }
 
 // GetServices returns the Services field value if set, zero value otherwise.
@@ -110,7 +110,7 @@ func (o *AWSLogsListResponse) GetServices() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Services
+	return o.Services
 }
 
 // GetServicesOk returns a tuple with the Services field value if set, nil otherwise
@@ -119,7 +119,7 @@ func (o *AWSLogsListResponse) GetServicesOk() (*[]string, bool) {
 	if o == nil || o.Services == nil {
 		return nil, false
 	}
-	return o.Services, true
+	return &o.Services, true
 }
 
 // HasServices returns a boolean if a field has been set.
@@ -133,7 +133,7 @@ func (o *AWSLogsListResponse) HasServices() bool {
 
 // SetServices gets a reference to the given []string and assigns it to the Services field.
 func (o *AWSLogsListResponse) SetServices(v []string) {
-	o.Services = &v
+	o.Services = v
 }
 
 func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
@@ -160,9 +160,9 @@ func (o AWSLogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSLogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AccountId *string          `json:"account_id,omitempty"`
-		Lambdas   *[]AWSLogsLambda `json:"lambdas,omitempty"`
-		Services  *[]string        `json:"services,omitempty"`
+		AccountId *string         `json:"account_id,omitempty"`
+		Lambdas   []AWSLogsLambda `json:"lambdas,omitempty"`
+		Services  []string        `json:"services,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -23,17 +23,17 @@ type AWSAccount struct {
 	// Whether Datadog collects cloud security posture management resources from your AWS account. This includes additional resources not covered under the general `resource_collection`.
 	CspmResourceCollectionEnabled *bool `json:"cspm_resource_collection_enabled,omitempty"`
 	// An array of AWS regions to exclude from metrics collection.
-	ExcludedRegions *[]string `json:"excluded_regions,omitempty"`
+	ExcludedRegions []string `json:"excluded_regions,omitempty"`
 	// The array of EC2 tags (in the form `key:value`) defines a filter that Datadog uses when collecting metrics from EC2.
 	// Wildcards, such as `?` (for single characters) and `*` (for multiple characters) can also be used.
 	// Only hosts that match one of the defined tags
 	// will be imported into Datadog. The rest will be ignored.
 	// Host matching a given tag can also be excluded by adding `!` before the tag.
 	// For example, `env:production,instance-type:c1.*,!region:us-east-1`
-	FilterTags *[]string `json:"filter_tags,omitempty"`
+	FilterTags []string `json:"filter_tags,omitempty"`
 	// Array of tags (in the form `key:value`) to add to all hosts
 	// and metrics reporting through this integration.
-	HostTags *[]string `json:"host_tags,omitempty"`
+	HostTags []string `json:"host_tags,omitempty"`
 	// Whether Datadog collects metrics for this AWS account.
 	MetricsCollectionEnabled *bool `json:"metrics_collection_enabled,omitempty"`
 	// Whether Datadog collects a standard set of resources from your AWS account.
@@ -210,7 +210,7 @@ func (o *AWSAccount) GetExcludedRegions() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ExcludedRegions
+	return o.ExcludedRegions
 }
 
 // GetExcludedRegionsOk returns a tuple with the ExcludedRegions field value if set, nil otherwise
@@ -219,7 +219,7 @@ func (o *AWSAccount) GetExcludedRegionsOk() (*[]string, bool) {
 	if o == nil || o.ExcludedRegions == nil {
 		return nil, false
 	}
-	return o.ExcludedRegions, true
+	return &o.ExcludedRegions, true
 }
 
 // HasExcludedRegions returns a boolean if a field has been set.
@@ -233,7 +233,7 @@ func (o *AWSAccount) HasExcludedRegions() bool {
 
 // SetExcludedRegions gets a reference to the given []string and assigns it to the ExcludedRegions field.
 func (o *AWSAccount) SetExcludedRegions(v []string) {
-	o.ExcludedRegions = &v
+	o.ExcludedRegions = v
 }
 
 // GetFilterTags returns the FilterTags field value if set, zero value otherwise.
@@ -242,7 +242,7 @@ func (o *AWSAccount) GetFilterTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.FilterTags
+	return o.FilterTags
 }
 
 // GetFilterTagsOk returns a tuple with the FilterTags field value if set, nil otherwise
@@ -251,7 +251,7 @@ func (o *AWSAccount) GetFilterTagsOk() (*[]string, bool) {
 	if o == nil || o.FilterTags == nil {
 		return nil, false
 	}
-	return o.FilterTags, true
+	return &o.FilterTags, true
 }
 
 // HasFilterTags returns a boolean if a field has been set.
@@ -265,7 +265,7 @@ func (o *AWSAccount) HasFilterTags() bool {
 
 // SetFilterTags gets a reference to the given []string and assigns it to the FilterTags field.
 func (o *AWSAccount) SetFilterTags(v []string) {
-	o.FilterTags = &v
+	o.FilterTags = v
 }
 
 // GetHostTags returns the HostTags field value if set, zero value otherwise.
@@ -274,7 +274,7 @@ func (o *AWSAccount) GetHostTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.HostTags
+	return o.HostTags
 }
 
 // GetHostTagsOk returns a tuple with the HostTags field value if set, nil otherwise
@@ -283,7 +283,7 @@ func (o *AWSAccount) GetHostTagsOk() (*[]string, bool) {
 	if o == nil || o.HostTags == nil {
 		return nil, false
 	}
-	return o.HostTags, true
+	return &o.HostTags, true
 }
 
 // HasHostTags returns a boolean if a field has been set.
@@ -297,7 +297,7 @@ func (o *AWSAccount) HasHostTags() bool {
 
 // SetHostTags gets a reference to the given []string and assigns it to the HostTags field.
 func (o *AWSAccount) SetHostTags(v []string) {
-	o.HostTags = &v
+	o.HostTags = v
 }
 
 // GetMetricsCollectionEnabled returns the MetricsCollectionEnabled field value if set, zero value otherwise.
@@ -480,9 +480,9 @@ func (o *AWSAccount) UnmarshalJSON(bytes []byte) (err error) {
 		AccountId                     *string         `json:"account_id,omitempty"`
 		AccountSpecificNamespaceRules map[string]bool `json:"account_specific_namespace_rules,omitempty"`
 		CspmResourceCollectionEnabled *bool           `json:"cspm_resource_collection_enabled,omitempty"`
-		ExcludedRegions               *[]string       `json:"excluded_regions,omitempty"`
-		FilterTags                    *[]string       `json:"filter_tags,omitempty"`
-		HostTags                      *[]string       `json:"host_tags,omitempty"`
+		ExcludedRegions               []string        `json:"excluded_regions,omitempty"`
+		FilterTags                    []string        `json:"filter_tags,omitempty"`
+		HostTags                      []string        `json:"host_tags,omitempty"`
 		MetricsCollectionEnabled      *bool           `json:"metrics_collection_enabled,omitempty"`
 		ResourceCollectionEnabled     *bool           `json:"resource_collection_enabled,omitempty"`
 		RoleName                      *string         `json:"role_name,omitempty"`

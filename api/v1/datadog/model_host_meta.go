@@ -13,23 +13,23 @@ import (
 // HostMeta Metadata associated with your host.
 type HostMeta struct {
 	// A list of Agent checks running on the host.
-	AgentChecks *[][]interface{} `json:"agent_checks,omitempty"`
+	AgentChecks [][]interface{} `json:"agent_checks,omitempty"`
 	// The Datadog Agent version.
 	AgentVersion *string `json:"agent_version,omitempty"`
 	// The number of cores.
 	CpuCores *int64 `json:"cpuCores,omitempty"`
 	// An array of Mac versions.
-	FbsdV *[]string `json:"fbsdV,omitempty"`
+	FbsdV []string `json:"fbsdV,omitempty"`
 	// JSON string containing system information.
 	Gohai *string `json:"gohai,omitempty"`
 	// Agent install method.
 	InstallMethod *HostMetaInstallMethod `json:"install_method,omitempty"`
 	// An array of Mac versions.
-	MacV *[]string `json:"macV,omitempty"`
+	MacV []string `json:"macV,omitempty"`
 	// The machine architecture.
 	Machine *string `json:"machine,omitempty"`
 	// Array of Unix versions.
-	NixV *[]string `json:"nixV,omitempty"`
+	NixV []string `json:"nixV,omitempty"`
 	// The OS platform.
 	Platform *string `json:"platform,omitempty"`
 	// The processor.
@@ -41,7 +41,7 @@ type HostMeta struct {
 	// The socket hostname.
 	SocketHostname *string `json:"socket-hostname,omitempty"`
 	// An array of Windows versions.
-	WinV *[]string `json:"winV,omitempty"`
+	WinV []string `json:"winV,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -70,7 +70,7 @@ func (o *HostMeta) GetAgentChecks() [][]interface{} {
 		var ret [][]interface{}
 		return ret
 	}
-	return *o.AgentChecks
+	return o.AgentChecks
 }
 
 // GetAgentChecksOk returns a tuple with the AgentChecks field value if set, nil otherwise
@@ -79,7 +79,7 @@ func (o *HostMeta) GetAgentChecksOk() (*[][]interface{}, bool) {
 	if o == nil || o.AgentChecks == nil {
 		return nil, false
 	}
-	return o.AgentChecks, true
+	return &o.AgentChecks, true
 }
 
 // HasAgentChecks returns a boolean if a field has been set.
@@ -93,7 +93,7 @@ func (o *HostMeta) HasAgentChecks() bool {
 
 // SetAgentChecks gets a reference to the given [][]interface{} and assigns it to the AgentChecks field.
 func (o *HostMeta) SetAgentChecks(v [][]interface{}) {
-	o.AgentChecks = &v
+	o.AgentChecks = v
 }
 
 // GetAgentVersion returns the AgentVersion field value if set, zero value otherwise.
@@ -166,7 +166,7 @@ func (o *HostMeta) GetFbsdV() []string {
 		var ret []string
 		return ret
 	}
-	return *o.FbsdV
+	return o.FbsdV
 }
 
 // GetFbsdVOk returns a tuple with the FbsdV field value if set, nil otherwise
@@ -175,7 +175,7 @@ func (o *HostMeta) GetFbsdVOk() (*[]string, bool) {
 	if o == nil || o.FbsdV == nil {
 		return nil, false
 	}
-	return o.FbsdV, true
+	return &o.FbsdV, true
 }
 
 // HasFbsdV returns a boolean if a field has been set.
@@ -189,7 +189,7 @@ func (o *HostMeta) HasFbsdV() bool {
 
 // SetFbsdV gets a reference to the given []string and assigns it to the FbsdV field.
 func (o *HostMeta) SetFbsdV(v []string) {
-	o.FbsdV = &v
+	o.FbsdV = v
 }
 
 // GetGohai returns the Gohai field value if set, zero value otherwise.
@@ -262,7 +262,7 @@ func (o *HostMeta) GetMacV() []string {
 		var ret []string
 		return ret
 	}
-	return *o.MacV
+	return o.MacV
 }
 
 // GetMacVOk returns a tuple with the MacV field value if set, nil otherwise
@@ -271,7 +271,7 @@ func (o *HostMeta) GetMacVOk() (*[]string, bool) {
 	if o == nil || o.MacV == nil {
 		return nil, false
 	}
-	return o.MacV, true
+	return &o.MacV, true
 }
 
 // HasMacV returns a boolean if a field has been set.
@@ -285,7 +285,7 @@ func (o *HostMeta) HasMacV() bool {
 
 // SetMacV gets a reference to the given []string and assigns it to the MacV field.
 func (o *HostMeta) SetMacV(v []string) {
-	o.MacV = &v
+	o.MacV = v
 }
 
 // GetMachine returns the Machine field value if set, zero value otherwise.
@@ -326,7 +326,7 @@ func (o *HostMeta) GetNixV() []string {
 		var ret []string
 		return ret
 	}
-	return *o.NixV
+	return o.NixV
 }
 
 // GetNixVOk returns a tuple with the NixV field value if set, nil otherwise
@@ -335,7 +335,7 @@ func (o *HostMeta) GetNixVOk() (*[]string, bool) {
 	if o == nil || o.NixV == nil {
 		return nil, false
 	}
-	return o.NixV, true
+	return &o.NixV, true
 }
 
 // HasNixV returns a boolean if a field has been set.
@@ -349,7 +349,7 @@ func (o *HostMeta) HasNixV() bool {
 
 // SetNixV gets a reference to the given []string and assigns it to the NixV field.
 func (o *HostMeta) SetNixV(v []string) {
-	o.NixV = &v
+	o.NixV = v
 }
 
 // GetPlatform returns the Platform field value if set, zero value otherwise.
@@ -518,7 +518,7 @@ func (o *HostMeta) GetWinV() []string {
 		var ret []string
 		return ret
 	}
-	return *o.WinV
+	return o.WinV
 }
 
 // GetWinVOk returns a tuple with the WinV field value if set, nil otherwise
@@ -527,7 +527,7 @@ func (o *HostMeta) GetWinVOk() (*[]string, bool) {
 	if o == nil || o.WinV == nil {
 		return nil, false
 	}
-	return o.WinV, true
+	return &o.WinV, true
 }
 
 // HasWinV returns a boolean if a field has been set.
@@ -541,7 +541,7 @@ func (o *HostMeta) HasWinV() bool {
 
 // SetWinV gets a reference to the given []string and assigns it to the WinV field.
 func (o *HostMeta) SetWinV(v []string) {
-	o.WinV = &v
+	o.WinV = v
 }
 
 func (o HostMeta) MarshalJSON() ([]byte, error) {
@@ -604,21 +604,21 @@ func (o HostMeta) MarshalJSON() ([]byte, error) {
 func (o *HostMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AgentChecks    *[][]interface{}       `json:"agent_checks,omitempty"`
+		AgentChecks    [][]interface{}        `json:"agent_checks,omitempty"`
 		AgentVersion   *string                `json:"agent_version,omitempty"`
 		CpuCores       *int64                 `json:"cpuCores,omitempty"`
-		FbsdV          *[]string              `json:"fbsdV,omitempty"`
+		FbsdV          []string               `json:"fbsdV,omitempty"`
 		Gohai          *string                `json:"gohai,omitempty"`
 		InstallMethod  *HostMetaInstallMethod `json:"install_method,omitempty"`
-		MacV           *[]string              `json:"macV,omitempty"`
+		MacV           []string               `json:"macV,omitempty"`
 		Machine        *string                `json:"machine,omitempty"`
-		NixV           *[]string              `json:"nixV,omitempty"`
+		NixV           []string               `json:"nixV,omitempty"`
 		Platform       *string                `json:"platform,omitempty"`
 		Processor      *string                `json:"processor,omitempty"`
 		PythonV        *string                `json:"pythonV,omitempty"`
 		SocketFqdn     *string                `json:"socket-fqdn,omitempty"`
 		SocketHostname *string                `json:"socket-hostname,omitempty"`
-		WinV           *[]string              `json:"winV,omitempty"`
+		WinV           []string               `json:"winV,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

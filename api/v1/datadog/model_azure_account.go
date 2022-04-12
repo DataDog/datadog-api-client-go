@@ -19,7 +19,7 @@ type AzureAccount struct {
 	// Your Azure web application secret key.
 	ClientSecret *string `json:"client_secret,omitempty"`
 	// Errors in your configuration.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors,omitempty"`
 	// Limit the Azure instances that are pulled into Datadog by using tags.
 	// Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
@@ -153,7 +153,7 @@ func (o *AzureAccount) GetErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -162,7 +162,7 @@ func (o *AzureAccount) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -176,7 +176,7 @@ func (o *AzureAccount) HasErrors() bool {
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
 func (o *AzureAccount) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
@@ -346,14 +346,14 @@ func (o AzureAccount) MarshalJSON() ([]byte, error) {
 func (o *AzureAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Automute      *bool     `json:"automute,omitempty"`
-		ClientId      *string   `json:"client_id,omitempty"`
-		ClientSecret  *string   `json:"client_secret,omitempty"`
-		Errors        *[]string `json:"errors,omitempty"`
-		HostFilters   *string   `json:"host_filters,omitempty"`
-		NewClientId   *string   `json:"new_client_id,omitempty"`
-		NewTenantName *string   `json:"new_tenant_name,omitempty"`
-		TenantName    *string   `json:"tenant_name,omitempty"`
+		Automute      *bool    `json:"automute,omitempty"`
+		ClientId      *string  `json:"client_id,omitempty"`
+		ClientSecret  *string  `json:"client_secret,omitempty"`
+		Errors        []string `json:"errors,omitempty"`
+		HostFilters   *string  `json:"host_filters,omitempty"`
+		NewClientId   *string  `json:"new_client_id,omitempty"`
+		NewTenantName *string  `json:"new_tenant_name,omitempty"`
+		TenantName    *string  `json:"tenant_name,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

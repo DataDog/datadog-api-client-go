@@ -16,7 +16,7 @@ type IncidentServicesResponse struct {
 	// An array of incident services.
 	Data []IncidentServiceResponseData `json:"data"`
 	// Included related resources which the user requested.
-	Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
+	Included []IncidentServiceIncludedItems `json:"included,omitempty"`
 	// The metadata object containing pagination metadata.
 	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -71,7 +71,7 @@ func (o *IncidentServicesResponse) GetIncluded() []IncidentServiceIncludedItems 
 		var ret []IncidentServiceIncludedItems
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -80,7 +80,7 @@ func (o *IncidentServicesResponse) GetIncludedOk() (*[]IncidentServiceIncludedIt
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -94,7 +94,7 @@ func (o *IncidentServicesResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []IncidentServiceIncludedItems and assigns it to the Included field.
 func (o *IncidentServicesResponse) SetIncluded(v []IncidentServiceIncludedItems) {
-	o.Included = &v
+	o.Included = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -154,9 +154,9 @@ func (o *IncidentServicesResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]IncidentServiceResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     []IncidentServiceResponseData   `json:"data"`
-		Included *[]IncidentServiceIncludedItems `json:"included,omitempty"`
-		Meta     *IncidentResponseMeta           `json:"meta,omitempty"`
+		Data     []IncidentServiceResponseData  `json:"data"`
+		Included []IncidentServiceIncludedItems `json:"included,omitempty"`
+		Meta     *IncidentResponseMeta          `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

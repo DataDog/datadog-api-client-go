@@ -16,7 +16,7 @@ type SecurityMonitoringRuleCreatePayload struct {
 	// Cases for generating signals.
 	Cases []SecurityMonitoringRuleCaseCreate `json:"cases"`
 	// Additional queries to filter matched events before they are processed.
-	Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+	Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
 	// Whether the notifications include the triggering group-by values in their title.
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// Whether the rule is enabled.
@@ -30,7 +30,7 @@ type SecurityMonitoringRuleCreatePayload struct {
 	// Queries for selecting logs which are part of the rule.
 	Queries []SecurityMonitoringRuleQueryCreate `json:"queries"`
 	// Tags for generated signals.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The rule type.
 	Type *SecurityMonitoringRuleTypeCreate `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -90,7 +90,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetFilters() []SecurityMonitoringF
 		var ret []SecurityMonitoringFilter
 		return ret
 	}
-	return *o.Filters
+	return o.Filters
 }
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
@@ -99,7 +99,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetFiltersOk() (*[]SecurityMonitor
 	if o == nil || o.Filters == nil {
 		return nil, false
 	}
-	return o.Filters, true
+	return &o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
@@ -113,7 +113,7 @@ func (o *SecurityMonitoringRuleCreatePayload) HasFilters() bool {
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleCreatePayload) SetFilters(v []SecurityMonitoringFilter) {
-	o.Filters = &v
+	o.Filters = v
 }
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
@@ -269,7 +269,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -278,7 +278,7 @@ func (o *SecurityMonitoringRuleCreatePayload) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -292,7 +292,7 @@ func (o *SecurityMonitoringRuleCreatePayload) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SecurityMonitoringRuleCreatePayload) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -369,14 +369,14 @@ func (o *SecurityMonitoringRuleCreatePayload) UnmarshalJSON(bytes []byte) (err e
 	}{}
 	all := struct {
 		Cases            []SecurityMonitoringRuleCaseCreate  `json:"cases"`
-		Filters          *[]SecurityMonitoringFilter         `json:"filters,omitempty"`
+		Filters          []SecurityMonitoringFilter          `json:"filters,omitempty"`
 		HasExtendedTitle *bool                               `json:"hasExtendedTitle,omitempty"`
 		IsEnabled        bool                                `json:"isEnabled"`
 		Message          string                              `json:"message"`
 		Name             string                              `json:"name"`
 		Options          SecurityMonitoringRuleOptions       `json:"options"`
 		Queries          []SecurityMonitoringRuleQueryCreate `json:"queries"`
-		Tags             *[]string                           `json:"tags,omitempty"`
+		Tags             []string                            `json:"tags,omitempty"`
 		Type             *SecurityMonitoringRuleTypeCreate   `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

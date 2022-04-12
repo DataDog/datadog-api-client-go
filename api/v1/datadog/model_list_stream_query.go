@@ -16,7 +16,7 @@ type ListStreamQuery struct {
 	// Source from which to query items to display in the stream.
 	DataSource ListStreamSource `json:"data_source"`
 	// List of indexes.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes []string `json:"indexes,omitempty"`
 	// Widget query.
 	QueryString string `json:"query_string"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -74,7 +74,7 @@ func (o *ListStreamQuery) GetIndexes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -83,7 +83,7 @@ func (o *ListStreamQuery) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -97,7 +97,7 @@ func (o *ListStreamQuery) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *ListStreamQuery) SetIndexes(v []string) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 // GetQueryString returns the QueryString field value
@@ -148,7 +148,7 @@ func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		DataSource  ListStreamSource `json:"data_source"`
-		Indexes     *[]string        `json:"indexes,omitempty"`
+		Indexes     []string         `json:"indexes,omitempty"`
 		QueryString string           `json:"query_string"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

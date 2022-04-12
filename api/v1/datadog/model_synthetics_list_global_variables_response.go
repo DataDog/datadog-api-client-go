@@ -13,7 +13,7 @@ import (
 // SyntheticsListGlobalVariablesResponse Object containing an array of Synthetic global variables.
 type SyntheticsListGlobalVariablesResponse struct {
 	// Array of Synthetic global variables.
-	Variables *[]SyntheticsGlobalVariable `json:"variables,omitempty"`
+	Variables []SyntheticsGlobalVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *SyntheticsListGlobalVariablesResponse) GetVariables() []SyntheticsGloba
 		var ret []SyntheticsGlobalVariable
 		return ret
 	}
-	return *o.Variables
+	return o.Variables
 }
 
 // GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *SyntheticsListGlobalVariablesResponse) GetVariablesOk() (*[]SyntheticsG
 	if o == nil || o.Variables == nil {
 		return nil, false
 	}
-	return o.Variables, true
+	return &o.Variables, true
 }
 
 // HasVariables returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *SyntheticsListGlobalVariablesResponse) HasVariables() bool {
 
 // SetVariables gets a reference to the given []SyntheticsGlobalVariable and assigns it to the Variables field.
 func (o *SyntheticsListGlobalVariablesResponse) SetVariables(v []SyntheticsGlobalVariable) {
-	o.Variables = &v
+	o.Variables = v
 }
 
 func (o SyntheticsListGlobalVariablesResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o SyntheticsListGlobalVariablesResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsListGlobalVariablesResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Variables *[]SyntheticsGlobalVariable `json:"variables,omitempty"`
+		Variables []SyntheticsGlobalVariable `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

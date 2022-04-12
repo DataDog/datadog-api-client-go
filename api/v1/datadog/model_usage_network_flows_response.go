@@ -13,7 +13,7 @@ import (
 // UsageNetworkFlowsResponse Response containing the number of netflow events indexed for each hour for a given organization.
 type UsageNetworkFlowsResponse struct {
 	// Get hourly usage for Network Flows.
-	Usage *[]UsageNetworkFlowsHour `json:"usage,omitempty"`
+	Usage []UsageNetworkFlowsHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageNetworkFlowsResponse) GetUsage() []UsageNetworkFlowsHour {
 		var ret []UsageNetworkFlowsHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageNetworkFlowsResponse) GetUsageOk() (*[]UsageNetworkFlowsHour, bool
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageNetworkFlowsResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageNetworkFlowsHour and assigns it to the Usage field.
 func (o *UsageNetworkFlowsResponse) SetUsage(v []UsageNetworkFlowsHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageNetworkFlowsResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageNetworkFlowsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageNetworkFlowsHour `json:"usage,omitempty"`
+		Usage []UsageNetworkFlowsHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

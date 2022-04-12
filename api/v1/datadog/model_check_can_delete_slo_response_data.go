@@ -13,7 +13,7 @@ import (
 // CheckCanDeleteSLOResponseData An array of service level objective objects.
 type CheckCanDeleteSLOResponseData struct {
 	// An array of of SLO IDs that can be safely deleted.
-	Ok *[]string `json:"ok,omitempty"`
+	Ok []string `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *CheckCanDeleteSLOResponseData) GetOk() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Ok
+	return o.Ok
 }
 
 // GetOkOk returns a tuple with the Ok field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *CheckCanDeleteSLOResponseData) GetOkOk() (*[]string, bool) {
 	if o == nil || o.Ok == nil {
 		return nil, false
 	}
-	return o.Ok, true
+	return &o.Ok, true
 }
 
 // HasOk returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *CheckCanDeleteSLOResponseData) HasOk() bool {
 
 // SetOk gets a reference to the given []string and assigns it to the Ok field.
 func (o *CheckCanDeleteSLOResponseData) SetOk(v []string) {
-	o.Ok = &v
+	o.Ok = v
 }
 
 func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o CheckCanDeleteSLOResponseData) MarshalJSON() ([]byte, error) {
 func (o *CheckCanDeleteSLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ok *[]string `json:"ok,omitempty"`
+		Ok []string `json:"ok,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

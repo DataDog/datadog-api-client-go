@@ -13,7 +13,7 @@ import (
 // DashboardListDeleteItemsResponse Response containing a list of deleted dashboards.
 type DashboardListDeleteItemsResponse struct {
 	// List of dashboards deleted from the dashboard list.
-	DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
+	DeletedDashboardsFromList []DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromList() []Dash
 		var ret []DashboardListItemResponse
 		return ret
 	}
-	return *o.DeletedDashboardsFromList
+	return o.DeletedDashboardsFromList
 }
 
 // GetDeletedDashboardsFromListOk returns a tuple with the DeletedDashboardsFromList field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *DashboardListDeleteItemsResponse) GetDeletedDashboardsFromListOk() (*[]
 	if o == nil || o.DeletedDashboardsFromList == nil {
 		return nil, false
 	}
-	return o.DeletedDashboardsFromList, true
+	return &o.DeletedDashboardsFromList, true
 }
 
 // HasDeletedDashboardsFromList returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *DashboardListDeleteItemsResponse) HasDeletedDashboardsFromList() bool {
 
 // SetDeletedDashboardsFromList gets a reference to the given []DashboardListItemResponse and assigns it to the DeletedDashboardsFromList field.
 func (o *DashboardListDeleteItemsResponse) SetDeletedDashboardsFromList(v []DashboardListItemResponse) {
-	o.DeletedDashboardsFromList = &v
+	o.DeletedDashboardsFromList = v
 }
 
 func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o DashboardListDeleteItemsResponse) MarshalJSON() ([]byte, error) {
 func (o *DashboardListDeleteItemsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DeletedDashboardsFromList *[]DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
+		DeletedDashboardsFromList []DashboardListItemResponse `json:"deleted_dashboards_from_list,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

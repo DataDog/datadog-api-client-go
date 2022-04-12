@@ -13,7 +13,7 @@ import (
 // UsageBillableSummaryResponse Response with monthly summary of data billed by Datadog.
 type UsageBillableSummaryResponse struct {
 	// An array of objects regarding usage of billable summary.
-	Usage *[]UsageBillableSummaryHour `json:"usage,omitempty"`
+	Usage []UsageBillableSummaryHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageBillableSummaryResponse) GetUsage() []UsageBillableSummaryHour {
 		var ret []UsageBillableSummaryHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageBillableSummaryResponse) GetUsageOk() (*[]UsageBillableSummaryHour
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageBillableSummaryResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageBillableSummaryHour and assigns it to the Usage field.
 func (o *UsageBillableSummaryResponse) SetUsage(v []UsageBillableSummaryHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageBillableSummaryResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageBillableSummaryResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageBillableSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageBillableSummaryHour `json:"usage,omitempty"`
+		Usage []UsageBillableSummaryHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

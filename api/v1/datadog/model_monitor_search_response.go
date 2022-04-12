@@ -17,7 +17,7 @@ type MonitorSearchResponse struct {
 	// Metadata about the response.
 	Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
 	// The list of found monitors.
-	Monitors *[]MonitorSearchResult `json:"monitors,omitempty"`
+	Monitors []MonitorSearchResult `json:"monitors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -110,7 +110,7 @@ func (o *MonitorSearchResponse) GetMonitors() []MonitorSearchResult {
 		var ret []MonitorSearchResult
 		return ret
 	}
-	return *o.Monitors
+	return o.Monitors
 }
 
 // GetMonitorsOk returns a tuple with the Monitors field value if set, nil otherwise
@@ -119,7 +119,7 @@ func (o *MonitorSearchResponse) GetMonitorsOk() (*[]MonitorSearchResult, bool) {
 	if o == nil || o.Monitors == nil {
 		return nil, false
 	}
-	return o.Monitors, true
+	return &o.Monitors, true
 }
 
 // HasMonitors returns a boolean if a field has been set.
@@ -133,7 +133,7 @@ func (o *MonitorSearchResponse) HasMonitors() bool {
 
 // SetMonitors gets a reference to the given []MonitorSearchResult and assigns it to the Monitors field.
 func (o *MonitorSearchResponse) SetMonitors(v []MonitorSearchResult) {
-	o.Monitors = &v
+	o.Monitors = v
 }
 
 func (o MonitorSearchResponse) MarshalJSON() ([]byte, error) {
@@ -162,7 +162,7 @@ func (o *MonitorSearchResponse) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Counts   *MonitorSearchResponseCounts   `json:"counts,omitempty"`
 		Metadata *MonitorSearchResponseMetadata `json:"metadata,omitempty"`
-		Monitors *[]MonitorSearchResult         `json:"monitors,omitempty"`
+		Monitors []MonitorSearchResult          `json:"monitors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

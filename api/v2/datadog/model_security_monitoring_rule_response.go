@@ -13,13 +13,13 @@ import (
 // SecurityMonitoringRuleResponse Rule.
 type SecurityMonitoringRuleResponse struct {
 	// Cases for generating signals.
-	Cases *[]SecurityMonitoringRuleCase `json:"cases,omitempty"`
+	Cases []SecurityMonitoringRuleCase `json:"cases,omitempty"`
 	// When the rule was created, timestamp in milliseconds.
 	CreatedAt *int64 `json:"createdAt,omitempty"`
 	// User ID of the user who created the rule.
 	CreationAuthorId *int64 `json:"creationAuthorId,omitempty"`
 	// Additional queries to filter matched events before they are processed.
-	Filters *[]SecurityMonitoringFilter `json:"filters,omitempty"`
+	Filters []SecurityMonitoringFilter `json:"filters,omitempty"`
 	// Whether the notifications include the triggering group-by values in their title.
 	HasExtendedTitle *bool `json:"hasExtendedTitle,omitempty"`
 	// The ID of the rule.
@@ -37,9 +37,9 @@ type SecurityMonitoringRuleResponse struct {
 	// Options on rules.
 	Options *SecurityMonitoringRuleOptions `json:"options,omitempty"`
 	// Queries for selecting logs which are part of the rule.
-	Queries *[]SecurityMonitoringRuleQuery `json:"queries,omitempty"`
+	Queries []SecurityMonitoringRuleQuery `json:"queries,omitempty"`
 	// Tags for generated signals.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The rule type.
 	Type *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 	// User ID of the user who updated the rule.
@@ -74,7 +74,7 @@ func (o *SecurityMonitoringRuleResponse) GetCases() []SecurityMonitoringRuleCase
 		var ret []SecurityMonitoringRuleCase
 		return ret
 	}
-	return *o.Cases
+	return o.Cases
 }
 
 // GetCasesOk returns a tuple with the Cases field value if set, nil otherwise
@@ -83,7 +83,7 @@ func (o *SecurityMonitoringRuleResponse) GetCasesOk() (*[]SecurityMonitoringRule
 	if o == nil || o.Cases == nil {
 		return nil, false
 	}
-	return o.Cases, true
+	return &o.Cases, true
 }
 
 // HasCases returns a boolean if a field has been set.
@@ -97,7 +97,7 @@ func (o *SecurityMonitoringRuleResponse) HasCases() bool {
 
 // SetCases gets a reference to the given []SecurityMonitoringRuleCase and assigns it to the Cases field.
 func (o *SecurityMonitoringRuleResponse) SetCases(v []SecurityMonitoringRuleCase) {
-	o.Cases = &v
+	o.Cases = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -170,7 +170,7 @@ func (o *SecurityMonitoringRuleResponse) GetFilters() []SecurityMonitoringFilter
 		var ret []SecurityMonitoringFilter
 		return ret
 	}
-	return *o.Filters
+	return o.Filters
 }
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
@@ -179,7 +179,7 @@ func (o *SecurityMonitoringRuleResponse) GetFiltersOk() (*[]SecurityMonitoringFi
 	if o == nil || o.Filters == nil {
 		return nil, false
 	}
-	return o.Filters, true
+	return &o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
@@ -193,7 +193,7 @@ func (o *SecurityMonitoringRuleResponse) HasFilters() bool {
 
 // SetFilters gets a reference to the given []SecurityMonitoringFilter and assigns it to the Filters field.
 func (o *SecurityMonitoringRuleResponse) SetFilters(v []SecurityMonitoringFilter) {
-	o.Filters = &v
+	o.Filters = v
 }
 
 // GetHasExtendedTitle returns the HasExtendedTitle field value if set, zero value otherwise.
@@ -458,7 +458,7 @@ func (o *SecurityMonitoringRuleResponse) GetQueries() []SecurityMonitoringRuleQu
 		var ret []SecurityMonitoringRuleQuery
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -467,7 +467,7 @@ func (o *SecurityMonitoringRuleResponse) GetQueriesOk() (*[]SecurityMonitoringRu
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -481,7 +481,7 @@ func (o *SecurityMonitoringRuleResponse) HasQueries() bool {
 
 // SetQueries gets a reference to the given []SecurityMonitoringRuleQuery and assigns it to the Queries field.
 func (o *SecurityMonitoringRuleResponse) SetQueries(v []SecurityMonitoringRuleQuery) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
@@ -490,7 +490,7 @@ func (o *SecurityMonitoringRuleResponse) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -499,7 +499,7 @@ func (o *SecurityMonitoringRuleResponse) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -513,7 +513,7 @@ func (o *SecurityMonitoringRuleResponse) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SecurityMonitoringRuleResponse) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -678,10 +678,10 @@ func (o SecurityMonitoringRuleResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cases            *[]SecurityMonitoringRuleCase   `json:"cases,omitempty"`
+		Cases            []SecurityMonitoringRuleCase    `json:"cases,omitempty"`
 		CreatedAt        *int64                          `json:"createdAt,omitempty"`
 		CreationAuthorId *int64                          `json:"creationAuthorId,omitempty"`
-		Filters          *[]SecurityMonitoringFilter     `json:"filters,omitempty"`
+		Filters          []SecurityMonitoringFilter      `json:"filters,omitempty"`
 		HasExtendedTitle *bool                           `json:"hasExtendedTitle,omitempty"`
 		Id               *string                         `json:"id,omitempty"`
 		IsDefault        *bool                           `json:"isDefault,omitempty"`
@@ -690,8 +690,8 @@ func (o *SecurityMonitoringRuleResponse) UnmarshalJSON(bytes []byte) (err error)
 		Message          *string                         `json:"message,omitempty"`
 		Name             *string                         `json:"name,omitempty"`
 		Options          *SecurityMonitoringRuleOptions  `json:"options,omitempty"`
-		Queries          *[]SecurityMonitoringRuleQuery  `json:"queries,omitempty"`
-		Tags             *[]string                       `json:"tags,omitempty"`
+		Queries          []SecurityMonitoringRuleQuery   `json:"queries,omitempty"`
+		Tags             []string                        `json:"tags,omitempty"`
 		Type             *SecurityMonitoringRuleTypeRead `json:"type,omitempty"`
 		UpdateAuthorId   *int64                          `json:"updateAuthorId,omitempty"`
 		Version          *int64                          `json:"version,omitempty"`

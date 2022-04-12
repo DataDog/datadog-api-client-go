@@ -26,7 +26,7 @@ type GCPAccount struct {
 	// where `$CLIENT_EMAIL` is the email found in your JSON service account key.
 	ClientX509CertUrl *string `json:"client_x509_cert_url,omitempty"`
 	// An array of errors.
-	Errors *[]string `json:"errors,omitempty"`
+	Errors []string `json:"errors,omitempty"`
 	// Limit the GCE instances that are pulled into Datadog by using tags.
 	// Only hosts that match one of the defined tags are imported into Datadog.
 	HostFilters *string `json:"host_filters,omitempty"`
@@ -260,7 +260,7 @@ func (o *GCPAccount) GetErrors() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Errors
+	return o.Errors
 }
 
 // GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
@@ -269,7 +269,7 @@ func (o *GCPAccount) GetErrorsOk() (*[]string, bool) {
 	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Errors, true
+	return &o.Errors, true
 }
 
 // HasErrors returns a boolean if a field has been set.
@@ -283,7 +283,7 @@ func (o *GCPAccount) HasErrors() bool {
 
 // SetErrors gets a reference to the given []string and assigns it to the Errors field.
 func (o *GCPAccount) SetErrors(v []string) {
-	o.Errors = &v
+	o.Errors = v
 }
 
 // GetHostFilters returns the HostFilters field value if set, zero value otherwise.
@@ -532,19 +532,19 @@ func (o GCPAccount) MarshalJSON() ([]byte, error) {
 func (o *GCPAccount) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AuthProviderX509CertUrl *string   `json:"auth_provider_x509_cert_url,omitempty"`
-		AuthUri                 *string   `json:"auth_uri,omitempty"`
-		Automute                *bool     `json:"automute,omitempty"`
-		ClientEmail             *string   `json:"client_email,omitempty"`
-		ClientId                *string   `json:"client_id,omitempty"`
-		ClientX509CertUrl       *string   `json:"client_x509_cert_url,omitempty"`
-		Errors                  *[]string `json:"errors,omitempty"`
-		HostFilters             *string   `json:"host_filters,omitempty"`
-		PrivateKey              *string   `json:"private_key,omitempty"`
-		PrivateKeyId            *string   `json:"private_key_id,omitempty"`
-		ProjectId               *string   `json:"project_id,omitempty"`
-		TokenUri                *string   `json:"token_uri,omitempty"`
-		Type                    *string   `json:"type,omitempty"`
+		AuthProviderX509CertUrl *string  `json:"auth_provider_x509_cert_url,omitempty"`
+		AuthUri                 *string  `json:"auth_uri,omitempty"`
+		Automute                *bool    `json:"automute,omitempty"`
+		ClientEmail             *string  `json:"client_email,omitempty"`
+		ClientId                *string  `json:"client_id,omitempty"`
+		ClientX509CertUrl       *string  `json:"client_x509_cert_url,omitempty"`
+		Errors                  []string `json:"errors,omitempty"`
+		HostFilters             *string  `json:"host_filters,omitempty"`
+		PrivateKey              *string  `json:"private_key,omitempty"`
+		PrivateKeyId            *string  `json:"private_key_id,omitempty"`
+		ProjectId               *string  `json:"project_id,omitempty"`
+		TokenUri                *string  `json:"token_uri,omitempty"`
+		Type                    *string  `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

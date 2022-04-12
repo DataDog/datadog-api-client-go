@@ -16,7 +16,7 @@ type IncidentTeamsResponse struct {
 	// An array of incident teams.
 	Data []IncidentTeamResponseData `json:"data"`
 	// Included related resources which the user requested.
-	Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
+	Included []IncidentTeamIncludedItems `json:"included,omitempty"`
 	// The metadata object containing pagination metadata.
 	Meta *IncidentResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -71,7 +71,7 @@ func (o *IncidentTeamsResponse) GetIncluded() []IncidentTeamIncludedItems {
 		var ret []IncidentTeamIncludedItems
 		return ret
 	}
-	return *o.Included
+	return o.Included
 }
 
 // GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
@@ -80,7 +80,7 @@ func (o *IncidentTeamsResponse) GetIncludedOk() (*[]IncidentTeamIncludedItems, b
 	if o == nil || o.Included == nil {
 		return nil, false
 	}
-	return o.Included, true
+	return &o.Included, true
 }
 
 // HasIncluded returns a boolean if a field has been set.
@@ -94,7 +94,7 @@ func (o *IncidentTeamsResponse) HasIncluded() bool {
 
 // SetIncluded gets a reference to the given []IncidentTeamIncludedItems and assigns it to the Included field.
 func (o *IncidentTeamsResponse) SetIncluded(v []IncidentTeamIncludedItems) {
-	o.Included = &v
+	o.Included = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -154,9 +154,9 @@ func (o *IncidentTeamsResponse) UnmarshalJSON(bytes []byte) (err error) {
 		Data *[]IncidentTeamResponseData `json:"data"`
 	}{}
 	all := struct {
-		Data     []IncidentTeamResponseData   `json:"data"`
-		Included *[]IncidentTeamIncludedItems `json:"included,omitempty"`
-		Meta     *IncidentResponseMeta        `json:"meta,omitempty"`
+		Data     []IncidentTeamResponseData  `json:"data"`
+		Included []IncidentTeamIncludedItems `json:"included,omitempty"`
+		Meta     *IncidentResponseMeta       `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

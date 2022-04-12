@@ -15,7 +15,7 @@ type LogsAPIError struct {
 	// Code identifying the error
 	Code *string `json:"code,omitempty"`
 	// Additional error details
-	Details *[]LogsAPIError `json:"details,omitempty"`
+	Details []LogsAPIError `json:"details,omitempty"`
 	// Error message
 	Message *string `json:"message,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -78,7 +78,7 @@ func (o *LogsAPIError) GetDetails() []LogsAPIError {
 		var ret []LogsAPIError
 		return ret
 	}
-	return *o.Details
+	return o.Details
 }
 
 // GetDetailsOk returns a tuple with the Details field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *LogsAPIError) GetDetailsOk() (*[]LogsAPIError, bool) {
 	if o == nil || o.Details == nil {
 		return nil, false
 	}
-	return o.Details, true
+	return &o.Details, true
 }
 
 // HasDetails returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *LogsAPIError) HasDetails() bool {
 
 // SetDetails gets a reference to the given []LogsAPIError and assigns it to the Details field.
 func (o *LogsAPIError) SetDetails(v []LogsAPIError) {
-	o.Details = &v
+	o.Details = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -160,9 +160,9 @@ func (o LogsAPIError) MarshalJSON() ([]byte, error) {
 func (o *LogsAPIError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Code    *string         `json:"code,omitempty"`
-		Details *[]LogsAPIError `json:"details,omitempty"`
-		Message *string         `json:"message,omitempty"`
+		Code    *string        `json:"code,omitempty"`
+		Details []LogsAPIError `json:"details,omitempty"`
+		Message *string        `json:"message,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

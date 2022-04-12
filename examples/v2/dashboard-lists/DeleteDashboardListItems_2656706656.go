@@ -20,7 +20,7 @@ func main() {
 	DashboardID := os.Getenv("DASHBOARD_ID")
 
 	body := datadog.DashboardListDeleteItemsRequest{
-		Dashboards: &[]datadog.DashboardListItemRequest{
+		Dashboards: []datadog.DashboardListItemRequest{
 			{
 				Id:   DashboardID,
 				Type: datadog.DASHBOARDTYPE_CUSTOM_TIMEBOARD,

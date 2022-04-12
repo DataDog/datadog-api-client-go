@@ -15,7 +15,7 @@ func main() {
 	body := datadog.EventCreateRequest{
 		Title: "Example-Post_an_event_with_a_long_title_returns_OK_response very very very looooooooong looooooooooooong loooooooooooooooooooooong looooooooooooooooooooooooooong title with 100+ characters",
 		Text:  "A text message.",
-		Tags: &[]string{
+		Tags: []string{
 			"test:ExamplePostaneventwithalongtitlereturnsOKresponse",
 		},
 	}

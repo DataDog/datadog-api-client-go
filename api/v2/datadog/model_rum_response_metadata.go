@@ -22,7 +22,7 @@ type RUMResponseMetadata struct {
 	Status *RUMResponseStatus `json:"status,omitempty"`
 	// A list of warnings (non-fatal errors) encountered. Partial results may return if
 	// warnings are present in the response.
-	Warnings *[]RUMWarning `json:"warnings,omitempty"`
+	Warnings []RUMWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -179,7 +179,7 @@ func (o *RUMResponseMetadata) GetWarnings() []RUMWarning {
 		var ret []RUMWarning
 		return ret
 	}
-	return *o.Warnings
+	return o.Warnings
 }
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
@@ -188,7 +188,7 @@ func (o *RUMResponseMetadata) GetWarningsOk() (*[]RUMWarning, bool) {
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
-	return o.Warnings, true
+	return &o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
@@ -202,7 +202,7 @@ func (o *RUMResponseMetadata) HasWarnings() bool {
 
 // SetWarnings gets a reference to the given []RUMWarning and assigns it to the Warnings field.
 func (o *RUMResponseMetadata) SetWarnings(v []RUMWarning) {
-	o.Warnings = &v
+	o.Warnings = v
 }
 
 func (o RUMResponseMetadata) MarshalJSON() ([]byte, error) {
@@ -239,7 +239,7 @@ func (o *RUMResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		Page      *RUMResponsePage   `json:"page,omitempty"`
 		RequestId *string            `json:"request_id,omitempty"`
 		Status    *RUMResponseStatus `json:"status,omitempty"`
-		Warnings  *[]RUMWarning      `json:"warnings,omitempty"`
+		Warnings  []RUMWarning       `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

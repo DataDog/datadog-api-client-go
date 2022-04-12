@@ -15,7 +15,7 @@ type UsageAttributionResponse struct {
 	// The object containing document metadata.
 	Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
 	// Get Usage Summary by tag(s).
-	Usage *[]UsageAttributionBody `json:"usage,omitempty"`
+	Usage []UsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *UsageAttributionResponse) GetUsage() []UsageAttributionBody {
 		var ret []UsageAttributionBody
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *UsageAttributionResponse) GetUsageOk() (*[]UsageAttributionBody, bool) 
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *UsageAttributionResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageAttributionBody and assigns it to the Usage field.
 func (o *UsageAttributionResponse) SetUsage(v []UsageAttributionBody) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
@@ -124,7 +124,7 @@ func (o *UsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    *[]UsageAttributionBody   `json:"usage,omitempty"`
+		Usage    []UsageAttributionBody    `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

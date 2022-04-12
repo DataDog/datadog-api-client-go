@@ -13,7 +13,7 @@ import (
 // SecurityFilterAttributes The object describing a security filter.
 type SecurityFilterAttributes struct {
 	// The list of exclusion filters applied in this security filter.
-	ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
+	ExclusionFilters []SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
 	// The filtered data type.
 	FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
 	// Whether the security filter is the built-in filter.
@@ -54,7 +54,7 @@ func (o *SecurityFilterAttributes) GetExclusionFilters() []SecurityFilterExclusi
 		var ret []SecurityFilterExclusionFilterResponse
 		return ret
 	}
-	return *o.ExclusionFilters
+	return o.ExclusionFilters
 }
 
 // GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, nil otherwise
@@ -63,7 +63,7 @@ func (o *SecurityFilterAttributes) GetExclusionFiltersOk() (*[]SecurityFilterExc
 	if o == nil || o.ExclusionFilters == nil {
 		return nil, false
 	}
-	return o.ExclusionFilters, true
+	return &o.ExclusionFilters, true
 }
 
 // HasExclusionFilters returns a boolean if a field has been set.
@@ -77,7 +77,7 @@ func (o *SecurityFilterAttributes) HasExclusionFilters() bool {
 
 // SetExclusionFilters gets a reference to the given []SecurityFilterExclusionFilterResponse and assigns it to the ExclusionFilters field.
 func (o *SecurityFilterAttributes) SetExclusionFilters(v []SecurityFilterExclusionFilterResponse) {
-	o.ExclusionFilters = &v
+	o.ExclusionFilters = v
 }
 
 // GetFilteredDataType returns the FilteredDataType field value if set, zero value otherwise.
@@ -308,13 +308,13 @@ func (o SecurityFilterAttributes) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ExclusionFilters *[]SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
-		FilteredDataType *SecurityFilterFilteredDataType          `json:"filtered_data_type,omitempty"`
-		IsBuiltin        *bool                                    `json:"is_builtin,omitempty"`
-		IsEnabled        *bool                                    `json:"is_enabled,omitempty"`
-		Name             *string                                  `json:"name,omitempty"`
-		Query            *string                                  `json:"query,omitempty"`
-		Version          *int32                                   `json:"version,omitempty"`
+		ExclusionFilters []SecurityFilterExclusionFilterResponse `json:"exclusion_filters,omitempty"`
+		FilteredDataType *SecurityFilterFilteredDataType         `json:"filtered_data_type,omitempty"`
+		IsBuiltin        *bool                                   `json:"is_builtin,omitempty"`
+		IsEnabled        *bool                                   `json:"is_enabled,omitempty"`
+		Name             *string                                 `json:"name,omitempty"`
+		Query            *string                                 `json:"query,omitempty"`
+		Version          *int32                                  `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

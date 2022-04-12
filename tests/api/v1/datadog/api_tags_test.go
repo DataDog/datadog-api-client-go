@@ -59,7 +59,7 @@ func TestTags(t *testing.T) {
 
 	// test methods
 	hostTags := datadog.HostTags{
-		Tags: &[]string{"test:client_go"},
+		Tags: []string{"test:client_go"},
 	}
 	sentHostTags, httpresp, err := api.CreateHostTags(ctx, hostname, hostTags, *datadog.NewCreateHostTagsOptionalParameters().
 		WithSource("datadog"))
@@ -113,7 +113,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 	assert.NotContains(hostTagsList.GetTags(), "test:client_go") // filtering on a different source gives 0 tags
 
-	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
+	hostTags.Tags = []string{"foo:bar", "toto:tata"}
 	updatedHostTags, httpresp, err := api.UpdateHostTags(ctx, hostname, hostTags, *datadog.NewUpdateHostTagsOptionalParameters().
 		WithSource("datadog"))
 	if err != nil {
@@ -123,7 +123,7 @@ func TestTags(t *testing.T) {
 	assert.Equal(hostTags.GetTags(), updatedHostTags.GetTags())
 	assert.Equal(hostname, updatedHostTags.GetHost())
 
-	hostTags.Tags = &[]string{"foo:bar", "toto:tata"}
+	hostTags.Tags = []string{"foo:bar", "toto:tata"}
 	httpresp, err = api.DeleteHostTags(ctx, hostname, *datadog.NewDeleteHostTagsOptionalParameters().WithSource("datadog"))
 	if err != nil {
 		t.Errorf("Error deleting tags for %s: Response %s: %v", hostname, err.(datadog.GenericOpenAPIError).Body(), err)

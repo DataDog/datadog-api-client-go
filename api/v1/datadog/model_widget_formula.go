@@ -18,7 +18,7 @@ type WidgetFormula struct {
 	// Define a display mode for the table cell.
 	CellDisplayMode *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// List of conditional formats.
-	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	// String expression built from queries, formulas, and functions.
 	Formula string `json:"formula"`
 	// Options for limiting results returned.
@@ -116,7 +116,7 @@ func (o *WidgetFormula) GetConditionalFormats() []WidgetConditionalFormat {
 		var ret []WidgetConditionalFormat
 		return ret
 	}
-	return *o.ConditionalFormats
+	return o.ConditionalFormats
 }
 
 // GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, nil otherwise
@@ -125,7 +125,7 @@ func (o *WidgetFormula) GetConditionalFormatsOk() (*[]WidgetConditionalFormat, b
 	if o == nil || o.ConditionalFormats == nil {
 		return nil, false
 	}
-	return o.ConditionalFormats, true
+	return &o.ConditionalFormats, true
 }
 
 // HasConditionalFormats returns a boolean if a field has been set.
@@ -139,7 +139,7 @@ func (o *WidgetFormula) HasConditionalFormats() bool {
 
 // SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
 func (o *WidgetFormula) SetConditionalFormats(v []WidgetConditionalFormat) {
-	o.ConditionalFormats = &v
+	o.ConditionalFormats = v
 }
 
 // GetFormula returns the Formula field value
@@ -230,7 +230,7 @@ func (o *WidgetFormula) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Alias              *string                     `json:"alias,omitempty"`
 		CellDisplayMode    *TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
-		ConditionalFormats *[]WidgetConditionalFormat  `json:"conditional_formats,omitempty"`
+		ConditionalFormats []WidgetConditionalFormat   `json:"conditional_formats,omitempty"`
 		Formula            string                      `json:"formula"`
 		Limit              *WidgetFormulaLimit         `json:"limit,omitempty"`
 	}{}

@@ -13,7 +13,7 @@ import (
 // SecurityFilterUpdateAttributes The security filters properties to be updated.
 type SecurityFilterUpdateAttributes struct {
 	// Exclusion filters to exclude some logs from the security filter.
-	ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
+	ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
 	// The filtered data type.
 	FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
 	// Whether the security filter is enabled.
@@ -52,7 +52,7 @@ func (o *SecurityFilterUpdateAttributes) GetExclusionFilters() []SecurityFilterE
 		var ret []SecurityFilterExclusionFilter
 		return ret
 	}
-	return *o.ExclusionFilters
+	return o.ExclusionFilters
 }
 
 // GetExclusionFiltersOk returns a tuple with the ExclusionFilters field value if set, nil otherwise
@@ -61,7 +61,7 @@ func (o *SecurityFilterUpdateAttributes) GetExclusionFiltersOk() (*[]SecurityFil
 	if o == nil || o.ExclusionFilters == nil {
 		return nil, false
 	}
-	return o.ExclusionFilters, true
+	return &o.ExclusionFilters, true
 }
 
 // HasExclusionFilters returns a boolean if a field has been set.
@@ -75,7 +75,7 @@ func (o *SecurityFilterUpdateAttributes) HasExclusionFilters() bool {
 
 // SetExclusionFilters gets a reference to the given []SecurityFilterExclusionFilter and assigns it to the ExclusionFilters field.
 func (o *SecurityFilterUpdateAttributes) SetExclusionFilters(v []SecurityFilterExclusionFilter) {
-	o.ExclusionFilters = &v
+	o.ExclusionFilters = v
 }
 
 // GetFilteredDataType returns the FilteredDataType field value if set, zero value otherwise.
@@ -271,12 +271,12 @@ func (o SecurityFilterUpdateAttributes) MarshalJSON() ([]byte, error) {
 func (o *SecurityFilterUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ExclusionFilters *[]SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
-		FilteredDataType *SecurityFilterFilteredDataType  `json:"filtered_data_type,omitempty"`
-		IsEnabled        *bool                            `json:"is_enabled,omitempty"`
-		Name             *string                          `json:"name,omitempty"`
-		Query            *string                          `json:"query,omitempty"`
-		Version          *int32                           `json:"version,omitempty"`
+		ExclusionFilters []SecurityFilterExclusionFilter `json:"exclusion_filters,omitempty"`
+		FilteredDataType *SecurityFilterFilteredDataType `json:"filtered_data_type,omitempty"`
+		IsEnabled        *bool                           `json:"is_enabled,omitempty"`
+		Name             *string                         `json:"name,omitempty"`
+		Query            *string                         `json:"query,omitempty"`
+		Version          *int32                          `json:"version,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
