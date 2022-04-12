@@ -24,7 +24,7 @@ func main() {
 						datadog.PtrFloat64(1.1),
 					},
 				},
-				Tags: &[]string{
+				Tags: []string{
 					"test:ExampleSubmitdeflatemetricsreturnsPayloadacceptedresponse",
 				},
 			},

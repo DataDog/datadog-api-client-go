@@ -16,7 +16,7 @@ func main() {
 		Automute:     datadog.PtrBool(true),
 		ClientId:     datadog.PtrString("testc7f6-1234-5678-9101-3fcbf464test"),
 		ClientSecret: datadog.PtrString("testingx./Sw*g/Y33t..R1cH+hScMDt"),
-		Errors: &[]string{
+		Errors: []string{
 			"*",
 		},
 		HostFilters:   datadog.PtrString("key:value,filter:example"),

@@ -25,12 +25,12 @@ func main() {
 						Requests: []datadog.SunburstWidgetRequest{
 							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "query1",
 									},
 								},
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											Query:      "sum:system.mem.used{*} by {service}",

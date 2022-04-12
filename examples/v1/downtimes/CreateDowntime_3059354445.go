@@ -19,7 +19,7 @@ func main() {
 			Period: datadog.PtrInt32(1),
 			Type:   datadog.PtrString("years"),
 		}),
-		Scope: &[]string{
+		Scope: []string{
 			"*",
 		},
 		Start:    datadog.PtrInt64(time.Now().Unix()),

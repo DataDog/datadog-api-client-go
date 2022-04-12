@@ -17,7 +17,7 @@ func main() {
 		Type:    datadog.MONITORTYPE_RUM_ALERT,
 		Query:   `formula("query2 / query1 * 100").last("15m") >= 0.8`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test:examplecreatearumformulaandfunctionsmonitorreturnsokresponse",
 			"env:ci",
 		},
@@ -26,7 +26,7 @@ func main() {
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(0.8),
 			},
-			Variables: &[]datadog.MonitorFormulaAndFunctionQueryDefinition{
+			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
 				datadog.MonitorFormulaAndFunctionQueryDefinition{
 					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
 						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
@@ -34,13 +34,13 @@ func main() {
 						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "",
 						},
-						Indexes: &[]string{
+						Indexes: []string{
 							"*",
 						},
 						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
 							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: &[]datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 				datadog.MonitorFormulaAndFunctionQueryDefinition{
 					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
@@ -49,13 +49,13 @@ func main() {
 						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "status:error",
 						},
-						Indexes: &[]string{
+						Indexes: []string{
 							"*",
 						},
 						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
 							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: &[]datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 			},
 		},

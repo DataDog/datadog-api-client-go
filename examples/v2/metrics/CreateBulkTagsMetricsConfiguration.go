@@ -18,10 +18,10 @@ func main() {
 	body := datadog.MetricBulkTagConfigCreateRequest{
 		Data: datadog.MetricBulkTagConfigCreate{
 			Attributes: &datadog.MetricBulkTagConfigCreateAttributes{
-				Emails: &[]string{
+				Emails: []string{
 					UserDataAttributesEmail,
 				},
-				Tags: &[]string{
+				Tags: []string{
 					"test",
 					"exampleconfiguretagsformultiplemetricsreturnsacceptedresponse",
 				},

@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.DashboardListAddItemsRequest{
-		Dashboards: &[]datadog.DashboardListItemRequest{
+		Dashboards: []datadog.DashboardListItemRequest{
 			{
 				Id:   "q5j-nti-fv6",
 				Type: datadog.DASHBOARDTYPE_HOST_TIMEBOARD,

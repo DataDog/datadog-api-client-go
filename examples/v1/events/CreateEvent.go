@@ -15,7 +15,7 @@ func main() {
 	body := datadog.EventCreateRequest{
 		Title: "Example-Post_an_event_returns_OK_response",
 		Text:  "A text message.",
-		Tags: &[]string{
+		Tags: []string{
 			"test:ExamplePostaneventreturnsOKresponse",
 		},
 	}

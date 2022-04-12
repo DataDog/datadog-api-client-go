@@ -27,13 +27,13 @@ func main() {
 						Autoscale:  datadog.PtrBool(true),
 						Requests: []datadog.QueryValueWidgetRequest{
 							{
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "query1",
 									},
 								},
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											Query:      "sum:my.cool.count.metric{*}",

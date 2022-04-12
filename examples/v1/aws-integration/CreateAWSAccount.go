@@ -19,14 +19,14 @@ func main() {
 			"opswork":      false,
 		},
 		CspmResourceCollectionEnabled: datadog.PtrBool(true),
-		ExcludedRegions: &[]string{
+		ExcludedRegions: []string{
 			"us-east-1",
 			"us-west-2",
 		},
-		FilterTags: &[]string{
+		FilterTags: []string{
 			"$KEY:$VALUE",
 		},
-		HostTags: &[]string{
+		HostTags: []string{
 			"$KEY:$VALUE",
 		},
 		MetricsCollectionEnabled:  datadog.PtrBool(false),

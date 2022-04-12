@@ -16,7 +16,7 @@ func main() {
 	SyntheticsAPITestPublicID := os.Getenv("SYNTHETICS_API_TEST_PUBLIC_ID")
 
 	body := datadog.SyntheticsDeleteTestsPayload{
-		PublicIds: &[]string{
+		PublicIds: []string{
 			SyntheticsAPITestPublicID,
 		},
 	}

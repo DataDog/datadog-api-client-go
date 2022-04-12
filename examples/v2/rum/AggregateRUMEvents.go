@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.RUMAggregateRequest{
-		Compute: &[]datadog.RUMCompute{
+		Compute: []datadog.RUMCompute{
 			{
 				Aggregation: datadog.RUMAGGREGATIONFUNCTION_PERCENTILE_90,
 				Metric:      datadog.PtrString("@view.time_spent"),
@@ -25,7 +25,7 @@ func main() {
 			Query: datadog.PtrString("@type:view AND @session.type:user"),
 			To:    datadog.PtrString("now"),
 		},
-		GroupBy: &[]datadog.RUMGroupBy{
+		GroupBy: []datadog.RUMGroupBy{
 			{
 				Facet: "@view.time_spent",
 				Limit: datadog.PtrInt64(10),

@@ -25,7 +25,7 @@ func main() {
 						Requests: []datadog.TableWidgetRequest{
 							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionApmResourceStatsQueryDefinition: &datadog.FormulaAndFunctionApmResourceStatsQueryDefinition{
 											PrimaryTagValue: datadog.PtrString("edge-eu1.prod.dog"),
@@ -36,7 +36,7 @@ func main() {
 											Env:             "ci",
 											PrimaryTagName:  datadog.PtrString("datacenter"),
 											OperationName:   datadog.PtrString("cassandra.query"),
-											GroupBy: &[]string{
+											GroupBy: []string{
 												"resource_name",
 											},
 										}},

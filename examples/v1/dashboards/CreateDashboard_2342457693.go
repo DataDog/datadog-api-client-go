@@ -32,7 +32,7 @@ func main() {
 						Type:       datadog.SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT,
 						Requests: datadog.ScatterPlotWidgetDefinitionRequests{
 							Table: &datadog.ScatterplotTableRequest{
-								Formulas: &[]datadog.ScatterplotWidgetFormula{
+								Formulas: []datadog.ScatterplotWidgetFormula{
 									{
 										Formula:   "query1",
 										Dimension: datadog.SCATTERPLOTDIMENSION_X,
@@ -44,7 +44,7 @@ func main() {
 										Alias:     datadog.PtrString(""),
 									},
 								},
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
@@ -75,7 +75,7 @@ func main() {
 							Min:         datadog.PtrString("auto"),
 							Max:         datadog.PtrString("auto"),
 						},
-						ColorByGroups: &[]string{},
+						ColorByGroups: []string{},
 					}},
 			},
 		},

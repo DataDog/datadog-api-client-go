@@ -17,7 +17,7 @@ func main() {
 
 	body := datadog.SyntheticsAPITest{
 		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: &[]datadog.SyntheticsAssertion{
+			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
 						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS,
@@ -42,7 +42,7 @@ func main() {
 						Type: datadog.SYNTHETICSASSERTIONTYPE_BODY,
 					}},
 			},
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
@@ -90,7 +90,7 @@ func main() {
 		},
 		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
-		Tags: &[]string{
+		Tags: []string{
 			"testing:api",
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,

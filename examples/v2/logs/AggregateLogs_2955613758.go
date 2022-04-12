@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.LogsAggregateRequest{
-		Compute: &[]datadog.LogsCompute{
+		Compute: []datadog.LogsCompute{
 			{
 				Aggregation: datadog.LOGSAGGREGATIONFUNCTION_COUNT,
 				Interval:    datadog.PtrString("5m"),
@@ -22,13 +22,13 @@ func main() {
 		},
 		Filter: &datadog.LogsQueryFilter{
 			From: datadog.PtrString("now-15m"),
-			Indexes: &[]string{
+			Indexes: []string{
 				"main",
 			},
 			Query: datadog.PtrString("*"),
 			To:    datadog.PtrString("now"),
 		},
-		GroupBy: &[]datadog.LogsGroupBy{
+		GroupBy: []datadog.LogsGroupBy{
 			{
 				Facet: "host",
 				Missing: &datadog.LogsGroupByMissing{

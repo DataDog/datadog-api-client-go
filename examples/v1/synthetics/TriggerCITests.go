@@ -13,7 +13,7 @@ import (
 
 func main() {
 	body := datadog.SyntheticsCITestBody{
-		Tests: &[]datadog.SyntheticsCITest{
+		Tests: []datadog.SyntheticsCITest{
 			{
 				BasicAuth: &datadog.SyntheticsBasicAuth{
 					SyntheticsBasicAuthWeb: &datadog.SyntheticsBasicAuthWeb{
@@ -21,10 +21,10 @@ func main() {
 						Type:     datadog.SYNTHETICSBASICAUTHWEBTYPE_WEB.Ptr(),
 						Username: "my_username",
 					}},
-				DeviceIds: &[]datadog.SyntheticsDeviceID{
+				DeviceIds: []datadog.SyntheticsDeviceID{
 					datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 				},
-				Locations: &[]string{
+				Locations: []string{
 					"aws:eu-west-3",
 				},
 				Metadata: &datadog.SyntheticsCIBatchMetadata{

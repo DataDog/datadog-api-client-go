@@ -17,7 +17,7 @@ func main() {
 		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `ci-pipelines("ci_level:pipeline @git.branch:staging* @ci.status:error").rollup("count").by("@git.branch,@ci.pipeline.name").last("5m") >= 1`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test:examplecreateacipipelinesmonitorreturnsokresponse",
 			"env:ci",
 		},

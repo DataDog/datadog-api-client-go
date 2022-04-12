@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.LogsIndex{
 		DailyLimit: datadog.PtrInt64(300000000),
-		ExclusionFilters: &[]datadog.LogsExclusion{
+		ExclusionFilters: []datadog.LogsExclusion{
 			{
 				Filter: &datadog.LogsExclusionFilter{
 					Query:      datadog.PtrString("*"),

@@ -17,7 +17,7 @@ func main() {
 			Query: datadog.PtrString("source:python"),
 		},
 		Name: "",
-		Processors: &[]datadog.LogsProcessor{
+		Processors: []datadog.LogsProcessor{
 			datadog.LogsProcessor{
 				LogsGrokParser: &datadog.LogsGrokParser{
 					Grok: datadog.LogsGrokParserRules{
@@ -29,7 +29,7 @@ rule_name_2 bar
 `),
 					},
 					IsEnabled: datadog.PtrBool(false),
-					Samples:   &[]string{},
+					Samples:   []string{},
 					Source:    "message",
 					Type:      datadog.LOGSGROKPARSERTYPE_GROK_PARSER,
 				}},

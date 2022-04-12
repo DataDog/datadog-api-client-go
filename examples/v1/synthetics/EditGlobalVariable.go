@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.SyntheticsGlobalVariable{
 		Attributes: &datadog.SyntheticsGlobalVariableAttributes{
-			RestrictedRoles: &[]string{
+			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 		},

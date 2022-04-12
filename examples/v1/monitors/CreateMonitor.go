@@ -20,7 +20,7 @@ func main() {
 		Type:    datadog.MONITORTYPE_LOG_ALERT,
 		Query:   `logs("service:foo AND type:error").index("main").rollup("count").by("source").last("5m") > 2`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test:examplecreateamonitorreturnsokresponse",
 			"env:ci",
 		},

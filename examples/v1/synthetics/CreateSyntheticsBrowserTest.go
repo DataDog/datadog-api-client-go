@@ -15,7 +15,7 @@ func main() {
 	body := datadog.SyntheticsBrowserTest{
 		Config: datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
 					Example: datadog.PtrString("content-type"),
 					Name:    "PROPERTY",
@@ -37,7 +37,7 @@ func main() {
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),
 			AllowInsecure:    datadog.PtrBool(true),
-			DeviceIds: &[]datadog.SyntheticsDeviceID{
+			DeviceIds: []datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_TABLET,
 			},
 			DisableCors:        datadog.PtrBool(true),
@@ -51,11 +51,11 @@ func main() {
 			},
 			TickEvery: datadog.PtrInt64(300),
 		},
-		Tags: &[]string{
+		Tags: []string{
 			"testing:browser",
 		},
 		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,
-		Steps: &[]datadog.SyntheticsStep{
+		Steps: []datadog.SyntheticsStep{
 			{
 				AllowFailure: datadog.PtrBool(false),
 				IsCritical:   datadog.PtrBool(true),
