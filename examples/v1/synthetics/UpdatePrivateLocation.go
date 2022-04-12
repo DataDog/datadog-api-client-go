@@ -14,7 +14,12 @@ import (
 func main() {
 	body := datadog.SyntheticsPrivateLocation{
 		Description: "Description of private location",
-		Name:        "New private location",
+		Metadata: &datadog.SyntheticsPrivateLocationMetadata{
+			RestrictedRoles: &[]string{
+				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+			},
+		},
+		Name: "New private location",
 		Tags: []string{
 			"team:front",
 		},

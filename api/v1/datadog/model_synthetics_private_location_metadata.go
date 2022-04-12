@@ -10,8 +10,8 @@ import (
 	"encoding/json"
 )
 
-// SyntheticsGlobalVariableAttributes Attributes of the global variable.
-type SyntheticsGlobalVariableAttributes struct {
+// SyntheticsPrivateLocationMetadata Object containing metadata about the private location.
+type SyntheticsPrivateLocationMetadata struct {
 	// A list of role identifiers that can be pulled from the Roles API, for restricting read and write access.
 	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -19,25 +19,25 @@ type SyntheticsGlobalVariableAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsGlobalVariableAttributes instantiates a new SyntheticsGlobalVariableAttributes object
+// NewSyntheticsPrivateLocationMetadata instantiates a new SyntheticsPrivateLocationMetadata object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSyntheticsGlobalVariableAttributes() *SyntheticsGlobalVariableAttributes {
-	this := SyntheticsGlobalVariableAttributes{}
+func NewSyntheticsPrivateLocationMetadata() *SyntheticsPrivateLocationMetadata {
+	this := SyntheticsPrivateLocationMetadata{}
 	return &this
 }
 
-// NewSyntheticsGlobalVariableAttributesWithDefaults instantiates a new SyntheticsGlobalVariableAttributes object
+// NewSyntheticsPrivateLocationMetadataWithDefaults instantiates a new SyntheticsPrivateLocationMetadata object
 // This constructor will only assign default values to properties that have it defined,
 // but it doesn't guarantee that properties required by API are set
-func NewSyntheticsGlobalVariableAttributesWithDefaults() *SyntheticsGlobalVariableAttributes {
-	this := SyntheticsGlobalVariableAttributes{}
+func NewSyntheticsPrivateLocationMetadataWithDefaults() *SyntheticsPrivateLocationMetadata {
+	this := SyntheticsPrivateLocationMetadata{}
 	return &this
 }
 
 // GetRestrictedRoles returns the RestrictedRoles field value if set, zero value otherwise.
-func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRoles() []string {
+func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRoles() []string {
 	if o == nil || o.RestrictedRoles == nil {
 		var ret []string
 		return ret
@@ -47,7 +47,7 @@ func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRoles() []string {
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRolesOk() (*[]string, bool) {
+func (o *SyntheticsPrivateLocationMetadata) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
 	}
@@ -55,7 +55,7 @@ func (o *SyntheticsGlobalVariableAttributes) GetRestrictedRolesOk() (*[]string, 
 }
 
 // HasRestrictedRoles returns a boolean if a field has been set.
-func (o *SyntheticsGlobalVariableAttributes) HasRestrictedRoles() bool {
+func (o *SyntheticsPrivateLocationMetadata) HasRestrictedRoles() bool {
 	if o != nil && o.RestrictedRoles != nil {
 		return true
 	}
@@ -64,11 +64,11 @@ func (o *SyntheticsGlobalVariableAttributes) HasRestrictedRoles() bool {
 }
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
-func (o *SyntheticsGlobalVariableAttributes) SetRestrictedRoles(v []string) {
+func (o *SyntheticsPrivateLocationMetadata) SetRestrictedRoles(v []string) {
 	o.RestrictedRoles = &v
 }
 
-func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
+func (o SyntheticsPrivateLocationMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
@@ -83,7 +83,7 @@ func (o SyntheticsGlobalVariableAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
-func (o *SyntheticsGlobalVariableAttributes) UnmarshalJSON(bytes []byte) (err error) {
+func (o *SyntheticsPrivateLocationMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
