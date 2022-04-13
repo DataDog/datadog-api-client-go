@@ -23,7 +23,7 @@ func main() {
 						Requests: []datadog.TimeseriesWidgetRequest{
 							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_TIMESERIES.Ptr(),
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
 											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
@@ -34,10 +34,10 @@ func main() {
 												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
 											Name: "query1",
-											Indexes: &[]string{
+											Indexes: []string{
 												"*",
 											},
-											GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{},
+											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
 							},

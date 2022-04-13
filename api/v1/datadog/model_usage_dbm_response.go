@@ -13,7 +13,7 @@ import (
 // UsageDBMResponse Response containing the Database Monitoring usage for each hour for a given organization.
 type UsageDBMResponse struct {
 	// Get hourly usage for Database Monitoring
-	Usage *[]UsageDBMHour `json:"usage,omitempty"`
+	Usage []UsageDBMHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageDBMResponse) GetUsage() []UsageDBMHour {
 		var ret []UsageDBMHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageDBMResponse) GetUsageOk() (*[]UsageDBMHour, bool) {
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageDBMResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageDBMHour and assigns it to the Usage field.
 func (o *UsageDBMResponse) SetUsage(v []UsageDBMHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageDBMResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageDBMResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageDBMHour `json:"usage,omitempty"`
+		Usage []UsageDBMHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

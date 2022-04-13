@@ -36,7 +36,7 @@ type EventCreateRequest struct {
 	// A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags to apply to the event.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The body of the event. Limited to 4000 characters. The text supports markdown.
 	// To use markdown in the event text, start the text block with `%%% \n` and end the text block with `\n %%%`.
 	// Use `msg_text` with the Datadog Ruby library.
@@ -340,7 +340,7 @@ func (o *EventCreateRequest) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -349,7 +349,7 @@ func (o *EventCreateRequest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -363,7 +363,7 @@ func (o *EventCreateRequest) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *EventCreateRequest) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetText returns the Text field value
@@ -468,7 +468,7 @@ func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Priority       NullableEventPriority `json:"priority,omitempty"`
 		RelatedEventId *int64                `json:"related_event_id,omitempty"`
 		SourceTypeName *string               `json:"source_type_name,omitempty"`
-		Tags           *[]string             `json:"tags,omitempty"`
+		Tags           []string              `json:"tags,omitempty"`
 		Text           string                `json:"text"`
 		Title          string                `json:"title"`
 	}{}

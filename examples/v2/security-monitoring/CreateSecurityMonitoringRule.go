@@ -18,18 +18,18 @@ func main() {
 			{
 				Query:          "@test:true",
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				GroupByFields:  &[]string{},
-				DistinctFields: &[]string{},
+				GroupByFields:  []string{},
+				DistinctFields: []string{},
 				Metric:         datadog.PtrString(""),
 			},
 		},
-		Filters: &[]datadog.SecurityMonitoringFilter{},
+		Filters: []datadog.SecurityMonitoringFilter{},
 		Cases: []datadog.SecurityMonitoringRuleCaseCreate{
 			{
 				Name:          datadog.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
 				Condition:     datadog.PtrString("a > 0"),
-				Notifications: &[]string{},
+				Notifications: []string{},
 			},
 		},
 		Options: datadog.SecurityMonitoringRuleOptions{
@@ -38,7 +38,7 @@ func main() {
 			MaxSignalDuration: datadog.SECURITYMONITORINGRULEMAXSIGNALDURATION_ONE_DAY.Ptr(),
 		},
 		Message:   "Test rule",
-		Tags:      &[]string{},
+		Tags:      []string{},
 		IsEnabled: true,
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

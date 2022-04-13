@@ -13,7 +13,7 @@ import (
 // UserInvitationsResponse User invitations as returned by the API.
 type UserInvitationsResponse struct {
 	// Array of user invitations.
-	Data *[]UserInvitationResponseData `json:"data,omitempty"`
+	Data []UserInvitationResponseData `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UserInvitationsResponse) GetData() []UserInvitationResponseData {
 		var ret []UserInvitationResponseData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UserInvitationsResponse) GetDataOk() (*[]UserInvitationResponseData, bo
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UserInvitationsResponse) HasData() bool {
 
 // SetData gets a reference to the given []UserInvitationResponseData and assigns it to the Data field.
 func (o *UserInvitationsResponse) SetData(v []UserInvitationResponseData) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o UserInvitationsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UserInvitationsResponse) MarshalJSON() ([]byte, error) {
 func (o *UserInvitationsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]UserInvitationResponseData `json:"data,omitempty"`
+		Data []UserInvitationResponseData `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

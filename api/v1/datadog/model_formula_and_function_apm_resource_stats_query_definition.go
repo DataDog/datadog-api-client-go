@@ -18,7 +18,7 @@ type FormulaAndFunctionApmResourceStatsQueryDefinition struct {
 	// APM environment.
 	Env string `json:"env"`
 	// Array of fields to group results by.
-	GroupBy *[]string `json:"group_by,omitempty"`
+	GroupBy []string `json:"group_by,omitempty"`
 	// Name of this query to use in formulas.
 	Name string `json:"name"`
 	// Name of operation on service.
@@ -112,7 +112,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupBy() []strin
 		var ret []string
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -121,7 +121,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) GetGroupByOk() (*[]s
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -135,7 +135,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) SetGroupBy(v []string) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetName returns the Name field value
@@ -379,7 +379,7 @@ func (o *FormulaAndFunctionApmResourceStatsQueryDefinition) UnmarshalJSON(bytes 
 	all := struct {
 		DataSource      FormulaAndFunctionApmResourceStatsDataSource `json:"data_source"`
 		Env             string                                       `json:"env"`
-		GroupBy         *[]string                                    `json:"group_by,omitempty"`
+		GroupBy         []string                                     `json:"group_by,omitempty"`
 		Name            string                                       `json:"name"`
 		OperationName   *string                                      `json:"operation_name,omitempty"`
 		PrimaryTagName  *string                                      `json:"primary_tag_name,omitempty"`

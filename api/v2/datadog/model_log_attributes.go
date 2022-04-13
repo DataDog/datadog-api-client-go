@@ -28,7 +28,7 @@ type LogAttributes struct {
 	// Status of the message associated with your log.
 	Status *string `json:"status,omitempty"`
 	// Array of tags associated with your log.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -219,7 +219,7 @@ func (o *LogAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -228,7 +228,7 @@ func (o *LogAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -242,7 +242,7 @@ func (o *LogAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *LogAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
@@ -318,7 +318,7 @@ func (o *LogAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		Message    *string                `json:"message,omitempty"`
 		Service    *string                `json:"service,omitempty"`
 		Status     *string                `json:"status,omitempty"`
-		Tags       *[]string              `json:"tags,omitempty"`
+		Tags       []string               `json:"tags,omitempty"`
 		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

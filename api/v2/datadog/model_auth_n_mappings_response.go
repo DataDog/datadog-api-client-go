@@ -13,7 +13,7 @@ import (
 // AuthNMappingsResponse Array of AuthN Mappings response.
 type AuthNMappingsResponse struct {
 	// Array of returned AuthN Mappings.
-	Data *[]AuthNMapping `json:"data,omitempty"`
+	Data []AuthNMapping `json:"data,omitempty"`
 	// Object describing meta attributes of response.
 	Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *AuthNMappingsResponse) GetData() []AuthNMapping {
 		var ret []AuthNMapping
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *AuthNMappingsResponse) GetDataOk() (*[]AuthNMapping, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *AuthNMappingsResponse) HasData() bool {
 
 // SetData gets a reference to the given []AuthNMapping and assigns it to the Data field.
 func (o *AuthNMappingsResponse) SetData(v []AuthNMapping) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o AuthNMappingsResponse) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]AuthNMapping         `json:"data,omitempty"`
+		Data []AuthNMapping          `json:"data,omitempty"`
 		Meta *ResponseMetaAttributes `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

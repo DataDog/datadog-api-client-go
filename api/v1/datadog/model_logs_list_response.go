@@ -13,7 +13,7 @@ import (
 // LogsListResponse Response object with all logs matching the request and pagination information.
 type LogsListResponse struct {
 	// Array of logs matching the request and the `nextLogId` if sent.
-	Logs *[]Log `json:"logs,omitempty"`
+	Logs []Log `json:"logs,omitempty"`
 	// Hash identifier of the next log to return in the list.
 	// This parameter is used for the pagination feature.
 	NextLogId *string `json:"nextLogId,omitempty"`
@@ -47,7 +47,7 @@ func (o *LogsListResponse) GetLogs() []Log {
 		var ret []Log
 		return ret
 	}
-	return *o.Logs
+	return o.Logs
 }
 
 // GetLogsOk returns a tuple with the Logs field value if set, nil otherwise
@@ -56,7 +56,7 @@ func (o *LogsListResponse) GetLogsOk() (*[]Log, bool) {
 	if o == nil || o.Logs == nil {
 		return nil, false
 	}
-	return o.Logs, true
+	return &o.Logs, true
 }
 
 // HasLogs returns a boolean if a field has been set.
@@ -70,7 +70,7 @@ func (o *LogsListResponse) HasLogs() bool {
 
 // SetLogs gets a reference to the given []Log and assigns it to the Logs field.
 func (o *LogsListResponse) SetLogs(v []Log) {
-	o.Logs = &v
+	o.Logs = v
 }
 
 // GetNextLogId returns the NextLogId field value if set, zero value otherwise.
@@ -161,7 +161,7 @@ func (o LogsListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Logs      *[]Log  `json:"logs,omitempty"`
+		Logs      []Log   `json:"logs,omitempty"`
 		NextLogId *string `json:"nextLogId,omitempty"`
 		Status    *string `json:"status,omitempty"`
 	}{}

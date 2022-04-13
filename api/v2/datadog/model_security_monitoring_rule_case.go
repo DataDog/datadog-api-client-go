@@ -18,7 +18,7 @@ type SecurityMonitoringRuleCase struct {
 	// Name of the case.
 	Name *string `json:"name,omitempty"`
 	// Notification targets for each rule case.
-	Notifications *[]string `json:"notifications,omitempty"`
+	Notifications []string `json:"notifications,omitempty"`
 	// Severity of the Security Signal.
 	Status *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -113,7 +113,7 @@ func (o *SecurityMonitoringRuleCase) GetNotifications() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Notifications
+	return o.Notifications
 }
 
 // GetNotificationsOk returns a tuple with the Notifications field value if set, nil otherwise
@@ -122,7 +122,7 @@ func (o *SecurityMonitoringRuleCase) GetNotificationsOk() (*[]string, bool) {
 	if o == nil || o.Notifications == nil {
 		return nil, false
 	}
-	return o.Notifications, true
+	return &o.Notifications, true
 }
 
 // HasNotifications returns a boolean if a field has been set.
@@ -136,7 +136,7 @@ func (o *SecurityMonitoringRuleCase) HasNotifications() bool {
 
 // SetNotifications gets a reference to the given []string and assigns it to the Notifications field.
 func (o *SecurityMonitoringRuleCase) SetNotifications(v []string) {
-	o.Notifications = &v
+	o.Notifications = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -200,7 +200,7 @@ func (o *SecurityMonitoringRuleCase) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Condition     *string                         `json:"condition,omitempty"`
 		Name          *string                         `json:"name,omitempty"`
-		Notifications *[]string                       `json:"notifications,omitempty"`
+		Notifications []string                        `json:"notifications,omitempty"`
 		Status        *SecurityMonitoringRuleSeverity `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

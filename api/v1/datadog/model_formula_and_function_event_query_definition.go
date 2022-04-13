@@ -18,9 +18,9 @@ type FormulaAndFunctionEventQueryDefinition struct {
 	// Data source for event platform-based queries.
 	DataSource FormulaAndFunctionEventsDataSource `json:"data_source"`
 	// Group by options.
-	GroupBy *[]FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
+	GroupBy []FormulaAndFunctionEventQueryGroupBy `json:"group_by,omitempty"`
 	// An array of index names to query in the stream. Omit or use `[]` to query all indexes at once.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes []string `json:"indexes,omitempty"`
 	// Name of the query for use in formulas.
 	Name string `json:"name"`
 	// Search options.
@@ -102,7 +102,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetGroupBy() []FormulaAndFuncti
 		var ret []FormulaAndFunctionEventQueryGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -111,7 +111,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetGroupByOk() (*[]FormulaAndFu
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -125,7 +125,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []FormulaAndFunctionEventQueryGroupBy and assigns it to the GroupBy field.
 func (o *FormulaAndFunctionEventQueryDefinition) SetGroupBy(v []FormulaAndFunctionEventQueryGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetIndexes returns the Indexes field value if set, zero value otherwise.
@@ -134,7 +134,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetIndexes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -143,7 +143,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) GetIndexesOk() (*[]string, bool
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -157,7 +157,7 @@ func (o *FormulaAndFunctionEventQueryDefinition) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *FormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 // GetName returns the Name field value
@@ -249,8 +249,8 @@ func (o *FormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (er
 	all := struct {
 		Compute    FormulaAndFunctionEventQueryDefinitionCompute `json:"compute"`
 		DataSource FormulaAndFunctionEventsDataSource            `json:"data_source"`
-		GroupBy    *[]FormulaAndFunctionEventQueryGroupBy        `json:"group_by,omitempty"`
-		Indexes    *[]string                                     `json:"indexes,omitempty"`
+		GroupBy    []FormulaAndFunctionEventQueryGroupBy         `json:"group_by,omitempty"`
+		Indexes    []string                                      `json:"indexes,omitempty"`
 		Name       string                                        `json:"name"`
 		Search     *FormulaAndFunctionEventQueryDefinitionSearch `json:"search,omitempty"`
 	}{}

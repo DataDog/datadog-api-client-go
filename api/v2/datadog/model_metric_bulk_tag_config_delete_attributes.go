@@ -13,7 +13,7 @@ import (
 // MetricBulkTagConfigDeleteAttributes Optional parameters for bulk deleting metric tag configurations.
 type MetricBulkTagConfigDeleteAttributes struct {
 	// A list of account emails to notify when the configuration is applied.
-	Emails *[]string `json:"emails,omitempty"`
+	Emails []string `json:"emails,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) GetEmails() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Emails
+	return o.Emails
 }
 
 // GetEmailsOk returns a tuple with the Emails field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) GetEmailsOk() (*[]string, bool) {
 	if o == nil || o.Emails == nil {
 		return nil, false
 	}
-	return o.Emails, true
+	return &o.Emails, true
 }
 
 // HasEmails returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *MetricBulkTagConfigDeleteAttributes) HasEmails() bool {
 
 // SetEmails gets a reference to the given []string and assigns it to the Emails field.
 func (o *MetricBulkTagConfigDeleteAttributes) SetEmails(v []string) {
-	o.Emails = &v
+	o.Emails = v
 }
 
 func (o MetricBulkTagConfigDeleteAttributes) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o MetricBulkTagConfigDeleteAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricBulkTagConfigDeleteAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Emails *[]string `json:"emails,omitempty"`
+		Emails []string `json:"emails,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

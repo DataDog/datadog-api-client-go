@@ -211,4 +211,8 @@ def is_reference(schema, attribute):
     if is_anytype:
         return False
 
+    # no reference to arrays
+    if attribute_schema.get("type", "object") == "array" or "items" in attribute_schema:
+        return False
+
     return True

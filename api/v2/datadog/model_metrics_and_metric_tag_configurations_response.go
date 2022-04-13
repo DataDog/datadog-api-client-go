@@ -13,7 +13,7 @@ import (
 // MetricsAndMetricTagConfigurationsResponse Response object that includes metrics and metric tag configurations.
 type MetricsAndMetricTagConfigurationsResponse struct {
 	// Array of metrics and metric tag configurations.
-	Data *[]MetricsAndMetricTagConfigurations `json:"data,omitempty"`
+	Data []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) GetData() []MetricsAndMetric
 		var ret []MetricsAndMetricTagConfigurations
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) GetDataOk() (*[]MetricsAndMe
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *MetricsAndMetricTagConfigurationsResponse) HasData() bool {
 
 // SetData gets a reference to the given []MetricsAndMetricTagConfigurations and assigns it to the Data field.
 func (o *MetricsAndMetricTagConfigurationsResponse) SetData(v []MetricsAndMetricTagConfigurations) {
-	o.Data = &v
+	o.Data = v
 }
 
 func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o MetricsAndMetricTagConfigurationsResponse) MarshalJSON() ([]byte, error)
 func (o *MetricsAndMetricTagConfigurationsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]MetricsAndMetricTagConfigurations `json:"data,omitempty"`
+		Data []MetricsAndMetricTagConfigurations `json:"data,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

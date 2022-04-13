@@ -13,7 +13,7 @@ import (
 // CheckCanDeleteMonitorResponseData Wrapper object with the list of monitor IDs.
 type CheckCanDeleteMonitorResponseData struct {
 	// An array of of Monitor IDs that can be safely deleted.
-	Ok *[]int64 `json:"ok,omitempty"`
+	Ok []int64 `json:"ok,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *CheckCanDeleteMonitorResponseData) GetOk() []int64 {
 		var ret []int64
 		return ret
 	}
-	return *o.Ok
+	return o.Ok
 }
 
 // GetOkOk returns a tuple with the Ok field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *CheckCanDeleteMonitorResponseData) GetOkOk() (*[]int64, bool) {
 	if o == nil || o.Ok == nil {
 		return nil, false
 	}
-	return o.Ok, true
+	return &o.Ok, true
 }
 
 // HasOk returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *CheckCanDeleteMonitorResponseData) HasOk() bool {
 
 // SetOk gets a reference to the given []int64 and assigns it to the Ok field.
 func (o *CheckCanDeleteMonitorResponseData) SetOk(v []int64) {
-	o.Ok = &v
+	o.Ok = v
 }
 
 func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o CheckCanDeleteMonitorResponseData) MarshalJSON() ([]byte, error) {
 func (o *CheckCanDeleteMonitorResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Ok *[]int64 `json:"ok,omitempty"`
+		Ok []int64 `json:"ok,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

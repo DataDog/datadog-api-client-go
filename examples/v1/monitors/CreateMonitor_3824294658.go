@@ -17,7 +17,7 @@ func main() {
 		Type:    datadog.MONITORTYPE_CI_PIPELINES_ALERT,
 		Query:   `formula("query1 / query2 * 100").last("15m") >= 0.8`,
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test:examplecreateacipipelinesformulaandfunctionsmonitorreturnsokresponse",
 			"env:ci",
 		},
@@ -26,7 +26,7 @@ func main() {
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(0.8),
 			},
-			Variables: &[]datadog.MonitorFormulaAndFunctionQueryDefinition{
+			Variables: []datadog.MonitorFormulaAndFunctionQueryDefinition{
 				datadog.MonitorFormulaAndFunctionQueryDefinition{
 					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
 						DataSource: datadog.MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
@@ -34,13 +34,13 @@ func main() {
 						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "@ci.status:error",
 						},
-						Indexes: &[]string{
+						Indexes: []string{
 							"*",
 						},
 						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
 							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: &[]datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 				datadog.MonitorFormulaAndFunctionQueryDefinition{
 					MonitorFormulaAndFunctionEventQueryDefinition: &datadog.MonitorFormulaAndFunctionEventQueryDefinition{
@@ -49,13 +49,13 @@ func main() {
 						Search: &datadog.MonitorFormulaAndFunctionEventQueryDefinitionSearch{
 							Query: "",
 						},
-						Indexes: &[]string{
+						Indexes: []string{
 							"*",
 						},
 						Compute: datadog.MonitorFormulaAndFunctionEventQueryDefinitionCompute{
 							Aggregation: datadog.MONITORFORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 						},
-						GroupBy: &[]datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
+						GroupBy: []datadog.MonitorFormulaAndFunctionEventQueryGroupBy{},
 					}},
 			},
 		},

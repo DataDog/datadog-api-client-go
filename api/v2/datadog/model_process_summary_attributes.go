@@ -23,7 +23,7 @@ type ProcessSummaryAttributes struct {
 	// Time the process was started.
 	Start *string `json:"start,omitempty"`
 	// List of tags associated with the process.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Time the process was seen.
 	Timestamp *string `json:"timestamp,omitempty"`
 	// Process owner.
@@ -216,7 +216,7 @@ func (o *ProcessSummaryAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -225,7 +225,7 @@ func (o *ProcessSummaryAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -239,7 +239,7 @@ func (o *ProcessSummaryAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *ProcessSummaryAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetTimestamp returns the Timestamp field value if set, zero value otherwise.
@@ -345,14 +345,14 @@ func (o ProcessSummaryAttributes) MarshalJSON() ([]byte, error) {
 func (o *ProcessSummaryAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cmdline   *string   `json:"cmdline,omitempty"`
-		Host      *string   `json:"host,omitempty"`
-		Pid       *int64    `json:"pid,omitempty"`
-		Ppid      *int64    `json:"ppid,omitempty"`
-		Start     *string   `json:"start,omitempty"`
-		Tags      *[]string `json:"tags,omitempty"`
-		Timestamp *string   `json:"timestamp,omitempty"`
-		User      *string   `json:"user,omitempty"`
+		Cmdline   *string  `json:"cmdline,omitempty"`
+		Host      *string  `json:"host,omitempty"`
+		Pid       *int64   `json:"pid,omitempty"`
+		Ppid      *int64   `json:"ppid,omitempty"`
+		Start     *string  `json:"start,omitempty"`
+		Tags      []string `json:"tags,omitempty"`
+		Timestamp *string  `json:"timestamp,omitempty"`
+		User      *string  `json:"user,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

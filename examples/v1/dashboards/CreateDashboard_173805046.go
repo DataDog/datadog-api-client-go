@@ -32,7 +32,7 @@ func main() {
 						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
 						Type:       datadog.SLOWIDGETDEFINITIONTYPE_SLO,
 						ViewType:   "detail",
-						TimeWindows: &[]datadog.WidgetTimeWindows{
+						TimeWindows: []datadog.WidgetTimeWindows{
 							datadog.WIDGETTIMEWINDOWS_SEVEN_DAYS,
 						},
 						SloId:            datadog.PtrString(SloData0ID),

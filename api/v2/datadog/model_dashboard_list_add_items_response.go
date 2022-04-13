@@ -13,7 +13,7 @@ import (
 // DashboardListAddItemsResponse Response containing a list of added dashboards.
 type DashboardListAddItemsResponse struct {
 	// List of dashboards added to the dashboard list.
-	AddedDashboardsToList *[]DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
+	AddedDashboardsToList []DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *DashboardListAddItemsResponse) GetAddedDashboardsToList() []DashboardLi
 		var ret []DashboardListItemResponse
 		return ret
 	}
-	return *o.AddedDashboardsToList
+	return o.AddedDashboardsToList
 }
 
 // GetAddedDashboardsToListOk returns a tuple with the AddedDashboardsToList field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *DashboardListAddItemsResponse) GetAddedDashboardsToListOk() (*[]Dashboa
 	if o == nil || o.AddedDashboardsToList == nil {
 		return nil, false
 	}
-	return o.AddedDashboardsToList, true
+	return &o.AddedDashboardsToList, true
 }
 
 // HasAddedDashboardsToList returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *DashboardListAddItemsResponse) HasAddedDashboardsToList() bool {
 
 // SetAddedDashboardsToList gets a reference to the given []DashboardListItemResponse and assigns it to the AddedDashboardsToList field.
 func (o *DashboardListAddItemsResponse) SetAddedDashboardsToList(v []DashboardListItemResponse) {
-	o.AddedDashboardsToList = &v
+	o.AddedDashboardsToList = v
 }
 
 func (o DashboardListAddItemsResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o DashboardListAddItemsResponse) MarshalJSON() ([]byte, error) {
 func (o *DashboardListAddItemsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		AddedDashboardsToList *[]DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
+		AddedDashboardsToList []DashboardListItemResponse `json:"added_dashboards_to_list,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

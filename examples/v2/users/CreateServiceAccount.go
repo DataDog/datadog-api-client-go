@@ -25,7 +25,7 @@ func main() {
 			},
 			Relationships: &datadog.UserRelationships{
 				Roles: &datadog.RelationshipToRoles{
-					Data: &[]datadog.RelationshipToRoleData{
+					Data: []datadog.RelationshipToRoleData{
 						{
 							Id:   datadog.PtrString(RoleDataID),
 							Type: datadog.ROLESTYPE_ROLES.Ptr(),

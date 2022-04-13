@@ -15,7 +15,7 @@ type SyntheticsBatchDetailsData struct {
 	// Metadata for the Synthetics tests run.
 	Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
 	// List of results for the batch.
-	Results *[]SyntheticsBatchResult `json:"results,omitempty"`
+	Results []SyntheticsBatchResult `json:"results,omitempty"`
 	// Determines whether or not the batch has passed, failed, or is in progress.
 	Status *SyntheticsStatus `json:"status,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -78,7 +78,7 @@ func (o *SyntheticsBatchDetailsData) GetResults() []SyntheticsBatchResult {
 		var ret []SyntheticsBatchResult
 		return ret
 	}
-	return *o.Results
+	return o.Results
 }
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
@@ -87,7 +87,7 @@ func (o *SyntheticsBatchDetailsData) GetResultsOk() (*[]SyntheticsBatchResult, b
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
-	return o.Results, true
+	return &o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
@@ -101,7 +101,7 @@ func (o *SyntheticsBatchDetailsData) HasResults() bool {
 
 // SetResults gets a reference to the given []SyntheticsBatchResult and assigns it to the Results field.
 func (o *SyntheticsBatchDetailsData) SetResults(v []SyntheticsBatchResult) {
-	o.Results = &v
+	o.Results = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -161,7 +161,7 @@ func (o *SyntheticsBatchDetailsData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *SyntheticsCIBatchMetadata `json:"metadata,omitempty"`
-		Results  *[]SyntheticsBatchResult   `json:"results,omitempty"`
+		Results  []SyntheticsBatchResult    `json:"results,omitempty"`
 		Status   *SyntheticsStatus          `json:"status,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -13,7 +13,7 @@ import (
 // DashboardListUpdateItemsRequest Request containing the list of dashboards to update to.
 type DashboardListUpdateItemsRequest struct {
 	// List of dashboards to update the dashboard list to.
-	Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
+	Dashboards []DashboardListItemRequest `json:"dashboards,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *DashboardListUpdateItemsRequest) GetDashboards() []DashboardListItemReq
 		var ret []DashboardListItemRequest
 		return ret
 	}
-	return *o.Dashboards
+	return o.Dashboards
 }
 
 // GetDashboardsOk returns a tuple with the Dashboards field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *DashboardListUpdateItemsRequest) GetDashboardsOk() (*[]DashboardListIte
 	if o == nil || o.Dashboards == nil {
 		return nil, false
 	}
-	return o.Dashboards, true
+	return &o.Dashboards, true
 }
 
 // HasDashboards returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *DashboardListUpdateItemsRequest) HasDashboards() bool {
 
 // SetDashboards gets a reference to the given []DashboardListItemRequest and assigns it to the Dashboards field.
 func (o *DashboardListUpdateItemsRequest) SetDashboards(v []DashboardListItemRequest) {
-	o.Dashboards = &v
+	o.Dashboards = v
 }
 
 func (o DashboardListUpdateItemsRequest) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o DashboardListUpdateItemsRequest) MarshalJSON() ([]byte, error) {
 func (o *DashboardListUpdateItemsRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Dashboards *[]DashboardListItemRequest `json:"dashboards,omitempty"`
+		Dashboards []DashboardListItemRequest `json:"dashboards,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 // AWSTagFilterListResponse An array of tag filter rules by `namespace` and tag filter string.
 type AWSTagFilterListResponse struct {
 	// An array of tag filters.
-	Filters *[]AWSTagFilter `json:"filters,omitempty"`
+	Filters []AWSTagFilter `json:"filters,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *AWSTagFilterListResponse) GetFilters() []AWSTagFilter {
 		var ret []AWSTagFilter
 		return ret
 	}
-	return *o.Filters
+	return o.Filters
 }
 
 // GetFiltersOk returns a tuple with the Filters field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *AWSTagFilterListResponse) GetFiltersOk() (*[]AWSTagFilter, bool) {
 	if o == nil || o.Filters == nil {
 		return nil, false
 	}
-	return o.Filters, true
+	return &o.Filters, true
 }
 
 // HasFilters returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *AWSTagFilterListResponse) HasFilters() bool {
 
 // SetFilters gets a reference to the given []AWSTagFilter and assigns it to the Filters field.
 func (o *AWSTagFilterListResponse) SetFilters(v []AWSTagFilter) {
-	o.Filters = &v
+	o.Filters = v
 }
 
 func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o AWSTagFilterListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSTagFilterListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Filters *[]AWSTagFilter `json:"filters,omitempty"`
+		Filters []AWSTagFilter `json:"filters,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

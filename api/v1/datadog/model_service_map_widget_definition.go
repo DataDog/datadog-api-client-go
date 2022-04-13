@@ -14,7 +14,7 @@ import (
 // ServiceMapWidgetDefinition This widget displays a map of a service to all of the services that call it, and all of the services that it calls.
 type ServiceMapWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Your environment and primary tag (or * if enabled for your account).
 	Filters []string `json:"filters"`
 	// The ID of the service you want to map.
@@ -60,7 +60,7 @@ func (o *ServiceMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -69,7 +69,7 @@ func (o *ServiceMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bo
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -83,7 +83,7 @@ func (o *ServiceMapWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *ServiceMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetFilters returns the Filters field value
@@ -286,7 +286,7 @@ func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type    *ServiceMapWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		CustomLinks []WidgetCustomLink             `json:"custom_links,omitempty"`
 		Filters     []string                       `json:"filters"`
 		Service     string                         `json:"service"`
 		Title       *string                        `json:"title,omitempty"`

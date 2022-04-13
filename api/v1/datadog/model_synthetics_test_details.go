@@ -17,7 +17,7 @@ type SyntheticsTestDetails struct {
 	// Object describing the creator of the shared element.
 	Creator *Creator `json:"creator,omitempty"`
 	// Array of locations used to run the test.
-	Locations *[]string `json:"locations,omitempty"`
+	Locations []string `json:"locations,omitempty"`
 	// Notification message associated with the test.
 	Message *string `json:"message,omitempty"`
 	// The associated monitor ID.
@@ -32,12 +32,12 @@ type SyntheticsTestDetails struct {
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// For browser test, the steps of the test.
-	Steps *[]SyntheticsStep `json:"steps,omitempty"`
+	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
 	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Type of the Synthetic test, either `api` or `browser`.
 	Type *SyntheticsTestDetailsType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -132,7 +132,7 @@ func (o *SyntheticsTestDetails) GetLocations() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Locations
+	return o.Locations
 }
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
@@ -141,7 +141,7 @@ func (o *SyntheticsTestDetails) GetLocationsOk() (*[]string, bool) {
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -155,7 +155,7 @@ func (o *SyntheticsTestDetails) HasLocations() bool {
 
 // SetLocations gets a reference to the given []string and assigns it to the Locations field.
 func (o *SyntheticsTestDetails) SetLocations(v []string) {
-	o.Locations = &v
+	o.Locations = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -356,7 +356,7 @@ func (o *SyntheticsTestDetails) GetSteps() []SyntheticsStep {
 		var ret []SyntheticsStep
 		return ret
 	}
-	return *o.Steps
+	return o.Steps
 }
 
 // GetStepsOk returns a tuple with the Steps field value if set, nil otherwise
@@ -365,7 +365,7 @@ func (o *SyntheticsTestDetails) GetStepsOk() (*[]SyntheticsStep, bool) {
 	if o == nil || o.Steps == nil {
 		return nil, false
 	}
-	return o.Steps, true
+	return &o.Steps, true
 }
 
 // HasSteps returns a boolean if a field has been set.
@@ -379,7 +379,7 @@ func (o *SyntheticsTestDetails) HasSteps() bool {
 
 // SetSteps gets a reference to the given []SyntheticsStep and assigns it to the Steps field.
 func (o *SyntheticsTestDetails) SetSteps(v []SyntheticsStep) {
-	o.Steps = &v
+	o.Steps = v
 }
 
 // GetSubtype returns the Subtype field value if set, zero value otherwise.
@@ -420,7 +420,7 @@ func (o *SyntheticsTestDetails) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -429,7 +429,7 @@ func (o *SyntheticsTestDetails) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -443,7 +443,7 @@ func (o *SyntheticsTestDetails) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SyntheticsTestDetails) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -534,16 +534,16 @@ func (o *SyntheticsTestDetails) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Config    *SyntheticsTestConfig         `json:"config,omitempty"`
 		Creator   *Creator                      `json:"creator,omitempty"`
-		Locations *[]string                     `json:"locations,omitempty"`
+		Locations []string                      `json:"locations,omitempty"`
 		Message   *string                       `json:"message,omitempty"`
 		MonitorId *int64                        `json:"monitor_id,omitempty"`
 		Name      *string                       `json:"name,omitempty"`
 		Options   *SyntheticsTestOptions        `json:"options,omitempty"`
 		PublicId  *string                       `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
-		Steps     *[]SyntheticsStep             `json:"steps,omitempty"`
+		Steps     []SyntheticsStep              `json:"steps,omitempty"`
 		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags      *[]string                     `json:"tags,omitempty"`
+		Tags      []string                      `json:"tags,omitempty"`
 		Type      *SyntheticsTestDetailsType    `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

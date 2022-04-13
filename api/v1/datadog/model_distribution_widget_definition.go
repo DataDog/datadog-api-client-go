@@ -19,7 +19,7 @@ type DistributionWidgetDefinition struct {
 	// Deprecated
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
-	Markers *[]WidgetMarker `json:"markers,omitempty"`
+	Markers []WidgetMarker `json:"markers,omitempty"`
 	// Array of one request object to display in the widget.
 	//
 	// See the dedicated [Request JSON schema documentation](https://docs.datadoghq.com/dashboards/graphing_json/request_json)
@@ -109,7 +109,7 @@ func (o *DistributionWidgetDefinition) GetMarkers() []WidgetMarker {
 		var ret []WidgetMarker
 		return ret
 	}
-	return *o.Markers
+	return o.Markers
 }
 
 // GetMarkersOk returns a tuple with the Markers field value if set, nil otherwise
@@ -118,7 +118,7 @@ func (o *DistributionWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
 	if o == nil || o.Markers == nil {
 		return nil, false
 	}
-	return o.Markers, true
+	return &o.Markers, true
 }
 
 // HasMarkers returns a boolean if a field has been set.
@@ -132,7 +132,7 @@ func (o *DistributionWidgetDefinition) HasMarkers() bool {
 
 // SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
 func (o *DistributionWidgetDefinition) SetMarkers(v []WidgetMarker) {
-	o.Markers = &v
+	o.Markers = v
 }
 
 // GetRequests returns the Requests field value
@@ -457,7 +457,7 @@ func (o *DistributionWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		LegendSize *string                          `json:"legend_size,omitempty"`
-		Markers    *[]WidgetMarker                  `json:"markers,omitempty"`
+		Markers    []WidgetMarker                   `json:"markers,omitempty"`
 		Requests   []DistributionWidgetRequest      `json:"requests"`
 		ShowLegend *bool                            `json:"show_legend,omitempty"`
 		Time       *WidgetTime                      `json:"time,omitempty"`

@@ -14,9 +14,9 @@ import (
 // ScatterPlotWidgetDefinition The scatter plot visualization allows you to graph a chosen scope over two different metrics with their respective aggregation.
 type ScatterPlotWidgetDefinition struct {
 	// List of groups used for colors.
-	ColorByGroups *[]string `json:"color_by_groups,omitempty"`
+	ColorByGroups []string `json:"color_by_groups,omitempty"`
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Widget definition.
 	Requests ScatterPlotWidgetDefinitionRequests `json:"requests"`
 	// Time setting for the widget.
@@ -65,7 +65,7 @@ func (o *ScatterPlotWidgetDefinition) GetColorByGroups() []string {
 		var ret []string
 		return ret
 	}
-	return *o.ColorByGroups
+	return o.ColorByGroups
 }
 
 // GetColorByGroupsOk returns a tuple with the ColorByGroups field value if set, nil otherwise
@@ -74,7 +74,7 @@ func (o *ScatterPlotWidgetDefinition) GetColorByGroupsOk() (*[]string, bool) {
 	if o == nil || o.ColorByGroups == nil {
 		return nil, false
 	}
-	return o.ColorByGroups, true
+	return &o.ColorByGroups, true
 }
 
 // HasColorByGroups returns a boolean if a field has been set.
@@ -88,7 +88,7 @@ func (o *ScatterPlotWidgetDefinition) HasColorByGroups() bool {
 
 // SetColorByGroups gets a reference to the given []string and assigns it to the ColorByGroups field.
 func (o *ScatterPlotWidgetDefinition) SetColorByGroups(v []string) {
-	o.ColorByGroups = &v
+	o.ColorByGroups = v
 }
 
 // GetCustomLinks returns the CustomLinks field value if set, zero value otherwise.
@@ -97,7 +97,7 @@ func (o *ScatterPlotWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -106,7 +106,7 @@ func (o *ScatterPlotWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, b
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -120,7 +120,7 @@ func (o *ScatterPlotWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *ScatterPlotWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetRequests returns the Requests field value
@@ -406,8 +406,8 @@ func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *ScatterPlotWidgetDefinitionType     `json:"type"`
 	}{}
 	all := struct {
-		ColorByGroups *[]string                           `json:"color_by_groups,omitempty"`
-		CustomLinks   *[]WidgetCustomLink                 `json:"custom_links,omitempty"`
+		ColorByGroups []string                            `json:"color_by_groups,omitempty"`
+		CustomLinks   []WidgetCustomLink                  `json:"custom_links,omitempty"`
 		Requests      ScatterPlotWidgetDefinitionRequests `json:"requests"`
 		Time          *WidgetTime                         `json:"time,omitempty"`
 		Title         *string                             `json:"title,omitempty"`

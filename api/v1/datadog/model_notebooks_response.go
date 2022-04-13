@@ -13,7 +13,7 @@ import (
 // NotebooksResponse Notebooks get all response.
 type NotebooksResponse struct {
 	// List of notebook definitions.
-	Data *[]NotebooksResponseData `json:"data,omitempty"`
+	Data []NotebooksResponseData `json:"data,omitempty"`
 	// Searches metadata returned by the API.
 	Meta *NotebooksResponseMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *NotebooksResponse) GetData() []NotebooksResponseData {
 		var ret []NotebooksResponseData
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *NotebooksResponse) GetDataOk() (*[]NotebooksResponseData, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *NotebooksResponse) HasData() bool {
 
 // SetData gets a reference to the given []NotebooksResponseData and assigns it to the Data field.
 func (o *NotebooksResponse) SetData(v []NotebooksResponseData) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,8 +123,8 @@ func (o NotebooksResponse) MarshalJSON() ([]byte, error) {
 func (o *NotebooksResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]NotebooksResponseData `json:"data,omitempty"`
-		Meta *NotebooksResponseMeta   `json:"meta,omitempty"`
+		Data []NotebooksResponseData `json:"data,omitempty"`
+		Meta *NotebooksResponseMeta  `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

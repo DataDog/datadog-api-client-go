@@ -13,7 +13,7 @@ import (
 // UsageCloudSecurityPostureManagementResponse The response containing the Cloud Security Posture Management usage for each hour for a given organization.
 type UsageCloudSecurityPostureManagementResponse struct {
 	// Get hourly usage for Cloud Security Posture Management.
-	Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
+	Usage []UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageCloudSecurityPostureManagementResponse) GetUsage() []UsageCloudSec
 		var ret []UsageCloudSecurityPostureManagementHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageCloudSecurityPostureManagementResponse) GetUsageOk() (*[]UsageClou
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageCloudSecurityPostureManagementResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageCloudSecurityPostureManagementHour and assigns it to the Usage field.
 func (o *UsageCloudSecurityPostureManagementResponse) SetUsage(v []UsageCloudSecurityPostureManagementHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageCloudSecurityPostureManagementResponse) MarshalJSON() ([]byte, erro
 func (o *UsageCloudSecurityPostureManagementResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
+		Usage []UsageCloudSecurityPostureManagementHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

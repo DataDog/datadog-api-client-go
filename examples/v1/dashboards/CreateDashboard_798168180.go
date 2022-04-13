@@ -25,7 +25,7 @@ func main() {
 						Requests: []datadog.TableWidgetRequest{
 							{
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionApmDependencyStatsQueryDefinition: &datadog.FormulaAndFunctionApmDependencyStatsQueryDefinition{
 											PrimaryTagValue: datadog.PtrString("edge-eu1.prod.dog"),

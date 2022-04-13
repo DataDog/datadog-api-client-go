@@ -13,7 +13,7 @@ import (
 // AWSAccountListResponse List of enabled AWS accounts.
 type AWSAccountListResponse struct {
 	// List of enabled AWS accounts.
-	Accounts *[]AWSAccount `json:"accounts,omitempty"`
+	Accounts []AWSAccount `json:"accounts,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *AWSAccountListResponse) GetAccounts() []AWSAccount {
 		var ret []AWSAccount
 		return ret
 	}
-	return *o.Accounts
+	return o.Accounts
 }
 
 // GetAccountsOk returns a tuple with the Accounts field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *AWSAccountListResponse) GetAccountsOk() (*[]AWSAccount, bool) {
 	if o == nil || o.Accounts == nil {
 		return nil, false
 	}
-	return o.Accounts, true
+	return &o.Accounts, true
 }
 
 // HasAccounts returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *AWSAccountListResponse) HasAccounts() bool {
 
 // SetAccounts gets a reference to the given []AWSAccount and assigns it to the Accounts field.
 func (o *AWSAccountListResponse) SetAccounts(v []AWSAccount) {
-	o.Accounts = &v
+	o.Accounts = v
 }
 
 func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o AWSAccountListResponse) MarshalJSON() ([]byte, error) {
 func (o *AWSAccountListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Accounts *[]AWSAccount `json:"accounts,omitempty"`
+		Accounts []AWSAccount `json:"accounts,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

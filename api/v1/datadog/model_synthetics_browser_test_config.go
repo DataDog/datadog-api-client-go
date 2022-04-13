@@ -16,13 +16,13 @@ type SyntheticsBrowserTestConfig struct {
 	// Array of assertions used for the test.
 	Assertions []SyntheticsAssertion `json:"assertions"`
 	// Array of variables used for the test.
-	ConfigVariables *[]SyntheticsConfigVariable `json:"configVariables,omitempty"`
+	ConfigVariables []SyntheticsConfigVariable `json:"configVariables,omitempty"`
 	// Object describing the Synthetic test request.
 	Request SyntheticsTestRequest `json:"request"`
 	// Cookies to be used for the request, using the [Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Set-Cookie) syntax.
 	SetCookie *string `json:"setCookie,omitempty"`
 	// Array of variables used for the test steps.
-	Variables *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+	Variables []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *SyntheticsBrowserTestConfig) GetConfigVariables() []SyntheticsConfigVar
 		var ret []SyntheticsConfigVariable
 		return ret
 	}
-	return *o.ConfigVariables
+	return o.ConfigVariables
 }
 
 // GetConfigVariablesOk returns a tuple with the ConfigVariables field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *SyntheticsBrowserTestConfig) GetConfigVariablesOk() (*[]SyntheticsConfi
 	if o == nil || o.ConfigVariables == nil {
 		return nil, false
 	}
-	return o.ConfigVariables, true
+	return &o.ConfigVariables, true
 }
 
 // HasConfigVariables returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *SyntheticsBrowserTestConfig) HasConfigVariables() bool {
 
 // SetConfigVariables gets a reference to the given []SyntheticsConfigVariable and assigns it to the ConfigVariables field.
 func (o *SyntheticsBrowserTestConfig) SetConfigVariables(v []SyntheticsConfigVariable) {
-	o.ConfigVariables = &v
+	o.ConfigVariables = v
 }
 
 // GetRequest returns the Request field value
@@ -163,7 +163,7 @@ func (o *SyntheticsBrowserTestConfig) GetVariables() []SyntheticsBrowserVariable
 		var ret []SyntheticsBrowserVariable
 		return ret
 	}
-	return *o.Variables
+	return o.Variables
 }
 
 // GetVariablesOk returns a tuple with the Variables field value if set, nil otherwise
@@ -172,7 +172,7 @@ func (o *SyntheticsBrowserTestConfig) GetVariablesOk() (*[]SyntheticsBrowserVari
 	if o == nil || o.Variables == nil {
 		return nil, false
 	}
-	return o.Variables, true
+	return &o.Variables, true
 }
 
 // HasVariables returns a boolean if a field has been set.
@@ -186,7 +186,7 @@ func (o *SyntheticsBrowserTestConfig) HasVariables() bool {
 
 // SetVariables gets a reference to the given []SyntheticsBrowserVariable and assigns it to the Variables field.
 func (o *SyntheticsBrowserTestConfig) SetVariables(v []SyntheticsBrowserVariable) {
-	o.Variables = &v
+	o.Variables = v
 }
 
 func (o SyntheticsBrowserTestConfig) MarshalJSON() ([]byte, error) {
@@ -219,11 +219,11 @@ func (o *SyntheticsBrowserTestConfig) UnmarshalJSON(bytes []byte) (err error) {
 		Request    *SyntheticsTestRequest `json:"request"`
 	}{}
 	all := struct {
-		Assertions      []SyntheticsAssertion        `json:"assertions"`
-		ConfigVariables *[]SyntheticsConfigVariable  `json:"configVariables,omitempty"`
-		Request         SyntheticsTestRequest        `json:"request"`
-		SetCookie       *string                      `json:"setCookie,omitempty"`
-		Variables       *[]SyntheticsBrowserVariable `json:"variables,omitempty"`
+		Assertions      []SyntheticsAssertion       `json:"assertions"`
+		ConfigVariables []SyntheticsConfigVariable  `json:"configVariables,omitempty"`
+		Request         SyntheticsTestRequest       `json:"request"`
+		SetCookie       *string                     `json:"setCookie,omitempty"`
+		Variables       []SyntheticsBrowserVariable `json:"variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

@@ -15,11 +15,11 @@ type SyntheticsTriggerCITestsResponse struct {
 	// The public ID of the batch triggered.
 	BatchId NullableString `json:"batch_id,omitempty"`
 	// List of Synthetics locations.
-	Locations *[]SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
+	Locations []SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
-	Results *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
+	Results []SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 	// The public IDs of the Synthetics test triggered.
-	TriggeredCheckIds *[]string `json:"triggered_check_ids,omitempty"`
+	TriggeredCheckIds []string `json:"triggered_check_ids,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -91,7 +91,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetLocations() []SyntheticsTriggerCIT
 		var ret []SyntheticsTriggerCITestLocation
 		return ret
 	}
-	return *o.Locations
+	return o.Locations
 }
 
 // GetLocationsOk returns a tuple with the Locations field value if set, nil otherwise
@@ -100,7 +100,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetLocationsOk() (*[]SyntheticsTrigge
 	if o == nil || o.Locations == nil {
 		return nil, false
 	}
-	return o.Locations, true
+	return &o.Locations, true
 }
 
 // HasLocations returns a boolean if a field has been set.
@@ -114,7 +114,7 @@ func (o *SyntheticsTriggerCITestsResponse) HasLocations() bool {
 
 // SetLocations gets a reference to the given []SyntheticsTriggerCITestLocation and assigns it to the Locations field.
 func (o *SyntheticsTriggerCITestsResponse) SetLocations(v []SyntheticsTriggerCITestLocation) {
-	o.Locations = &v
+	o.Locations = v
 }
 
 // GetResults returns the Results field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetResults() []SyntheticsTriggerCITes
 		var ret []SyntheticsTriggerCITestRunResult
 		return ret
 	}
-	return *o.Results
+	return o.Results
 }
 
 // GetResultsOk returns a tuple with the Results field value if set, nil otherwise
@@ -132,7 +132,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetResultsOk() (*[]SyntheticsTriggerC
 	if o == nil || o.Results == nil {
 		return nil, false
 	}
-	return o.Results, true
+	return &o.Results, true
 }
 
 // HasResults returns a boolean if a field has been set.
@@ -146,7 +146,7 @@ func (o *SyntheticsTriggerCITestsResponse) HasResults() bool {
 
 // SetResults gets a reference to the given []SyntheticsTriggerCITestRunResult and assigns it to the Results field.
 func (o *SyntheticsTriggerCITestsResponse) SetResults(v []SyntheticsTriggerCITestRunResult) {
-	o.Results = &v
+	o.Results = v
 }
 
 // GetTriggeredCheckIds returns the TriggeredCheckIds field value if set, zero value otherwise.
@@ -155,7 +155,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetTriggeredCheckIds() []string {
 		var ret []string
 		return ret
 	}
-	return *o.TriggeredCheckIds
+	return o.TriggeredCheckIds
 }
 
 // GetTriggeredCheckIdsOk returns a tuple with the TriggeredCheckIds field value if set, nil otherwise
@@ -164,7 +164,7 @@ func (o *SyntheticsTriggerCITestsResponse) GetTriggeredCheckIdsOk() (*[]string, 
 	if o == nil || o.TriggeredCheckIds == nil {
 		return nil, false
 	}
-	return o.TriggeredCheckIds, true
+	return &o.TriggeredCheckIds, true
 }
 
 // HasTriggeredCheckIds returns a boolean if a field has been set.
@@ -178,7 +178,7 @@ func (o *SyntheticsTriggerCITestsResponse) HasTriggeredCheckIds() bool {
 
 // SetTriggeredCheckIds gets a reference to the given []string and assigns it to the TriggeredCheckIds field.
 func (o *SyntheticsTriggerCITestsResponse) SetTriggeredCheckIds(v []string) {
-	o.TriggeredCheckIds = &v
+	o.TriggeredCheckIds = v
 }
 
 func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
@@ -208,10 +208,10 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BatchId           NullableString                      `json:"batch_id,omitempty"`
-		Locations         *[]SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
-		Results           *[]SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
-		TriggeredCheckIds *[]string                           `json:"triggered_check_ids,omitempty"`
+		BatchId           NullableString                     `json:"batch_id,omitempty"`
+		Locations         []SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
+		Results           []SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
+		TriggeredCheckIds []string                           `json:"triggered_check_ids,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

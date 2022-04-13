@@ -13,7 +13,7 @@ import (
 // MetricSearchResponseResults Search result.
 type MetricSearchResponseResults struct {
 	// List of metrics that match the search query.
-	Metrics *[]string `json:"metrics,omitempty"`
+	Metrics []string `json:"metrics,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *MetricSearchResponseResults) GetMetrics() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Metrics
+	return o.Metrics
 }
 
 // GetMetricsOk returns a tuple with the Metrics field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *MetricSearchResponseResults) GetMetricsOk() (*[]string, bool) {
 	if o == nil || o.Metrics == nil {
 		return nil, false
 	}
-	return o.Metrics, true
+	return &o.Metrics, true
 }
 
 // HasMetrics returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *MetricSearchResponseResults) HasMetrics() bool {
 
 // SetMetrics gets a reference to the given []string and assigns it to the Metrics field.
 func (o *MetricSearchResponseResults) SetMetrics(v []string) {
-	o.Metrics = &v
+	o.Metrics = v
 }
 
 func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o MetricSearchResponseResults) MarshalJSON() ([]byte, error) {
 func (o *MetricSearchResponseResults) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Metrics *[]string `json:"metrics,omitempty"`
+		Metrics []string `json:"metrics,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

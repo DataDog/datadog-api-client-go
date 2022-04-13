@@ -18,7 +18,7 @@ func main() {
 		ClientEmail:             datadog.PtrString("api-dev@datadog-sandbox.iam.gserviceaccount.com"),
 		ClientId:                datadog.PtrString("123456712345671234567"),
 		ClientX509CertUrl:       datadog.PtrString("https://www.googleapis.com/robot/v1/metadata/x509/$CLIENT_EMAIL"),
-		Errors: &[]string{
+		Errors: []string{
 			"*",
 		},
 		HostFilters:  datadog.PtrString("key:value,filter:example"),

@@ -15,7 +15,7 @@ func main() {
 	body := datadog.LogsListRequest{
 		Filter: &datadog.LogsQueryFilter{
 			Query: datadog.PtrString("datadog-agent"),
-			Indexes: &[]string{
+			Indexes: []string{
 				"main",
 			},
 			From: datadog.PtrString("2020-09-17T11:48:36+01:00"),

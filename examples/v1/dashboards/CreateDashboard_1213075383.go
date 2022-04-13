@@ -32,7 +32,7 @@ func main() {
 						Type:       datadog.TOPLISTWIDGETDEFINITIONTYPE_TOPLIST,
 						Requests: []datadog.ToplistWidgetRequest{
 							{
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
@@ -41,7 +41,7 @@ func main() {
 											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
 								},
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "query1",
 										Limit: &datadog.WidgetFormulaLimit{

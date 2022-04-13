@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.SyntheticsAPITest{
 		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: &[]datadog.SyntheticsAssertion{
+			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
 						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_LESS_THAN,
@@ -33,18 +33,18 @@ func main() {
 		Message: datadog.PtrString("Notification message"),
 		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
-			DeviceIds: &[]datadog.SyntheticsDeviceID{
+			DeviceIds: []datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
 			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
-			RestrictedRoles: &[]string{
+			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 			Retry: &datadog.SyntheticsTestOptionsRetry{},
 		},
 		Status:  datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_HTTP.Ptr(),
-		Tags: &[]string{
+		Tags: []string{
 			"env:production",
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,

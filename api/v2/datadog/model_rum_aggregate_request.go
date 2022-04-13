@@ -13,11 +13,11 @@ import (
 // RUMAggregateRequest The object sent with the request to retrieve aggregation buckets of RUM events from your organization.
 type RUMAggregateRequest struct {
 	// The list of metrics or timeseries to compute for the retrieved buckets.
-	Compute *[]RUMCompute `json:"compute,omitempty"`
+	Compute []RUMCompute `json:"compute,omitempty"`
 	// The search and filter query settings.
 	Filter *RUMQueryFilter `json:"filter,omitempty"`
 	// The rules for the group by.
-	GroupBy *[]RUMGroupBy `json:"group_by,omitempty"`
+	GroupBy []RUMGroupBy `json:"group_by,omitempty"`
 	// Global query options that are used during the query.
 	// Note: Only supply timezone or time offset, not both. Otherwise, the query fails.
 	Options *RUMQueryOptions `json:"options,omitempty"`
@@ -51,7 +51,7 @@ func (o *RUMAggregateRequest) GetCompute() []RUMCompute {
 		var ret []RUMCompute
 		return ret
 	}
-	return *o.Compute
+	return o.Compute
 }
 
 // GetComputeOk returns a tuple with the Compute field value if set, nil otherwise
@@ -60,7 +60,7 @@ func (o *RUMAggregateRequest) GetComputeOk() (*[]RUMCompute, bool) {
 	if o == nil || o.Compute == nil {
 		return nil, false
 	}
-	return o.Compute, true
+	return &o.Compute, true
 }
 
 // HasCompute returns a boolean if a field has been set.
@@ -74,7 +74,7 @@ func (o *RUMAggregateRequest) HasCompute() bool {
 
 // SetCompute gets a reference to the given []RUMCompute and assigns it to the Compute field.
 func (o *RUMAggregateRequest) SetCompute(v []RUMCompute) {
-	o.Compute = &v
+	o.Compute = v
 }
 
 // GetFilter returns the Filter field value if set, zero value otherwise.
@@ -115,7 +115,7 @@ func (o *RUMAggregateRequest) GetGroupBy() []RUMGroupBy {
 		var ret []RUMGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -124,7 +124,7 @@ func (o *RUMAggregateRequest) GetGroupByOk() (*[]RUMGroupBy, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -138,7 +138,7 @@ func (o *RUMAggregateRequest) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []RUMGroupBy and assigns it to the GroupBy field.
 func (o *RUMAggregateRequest) SetGroupBy(v []RUMGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetOptions returns the Options field value if set, zero value otherwise.
@@ -235,9 +235,9 @@ func (o RUMAggregateRequest) MarshalJSON() ([]byte, error) {
 func (o *RUMAggregateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute *[]RUMCompute        `json:"compute,omitempty"`
+		Compute []RUMCompute         `json:"compute,omitempty"`
 		Filter  *RUMQueryFilter      `json:"filter,omitempty"`
-		GroupBy *[]RUMGroupBy        `json:"group_by,omitempty"`
+		GroupBy []RUMGroupBy         `json:"group_by,omitempty"`
 		Options *RUMQueryOptions     `json:"options,omitempty"`
 		Page    *RUMQueryPageOptions `json:"page,omitempty"`
 	}{}

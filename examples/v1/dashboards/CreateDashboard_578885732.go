@@ -25,7 +25,7 @@ func main() {
 						Type:       datadog.CHANGEWIDGETDEFINITIONTYPE_CHANGE,
 						Requests: []datadog.ChangeWidgetRequest{
 							{
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "hour_before(query1)",
 									},
@@ -33,7 +33,7 @@ func main() {
 										Formula: "query1",
 									},
 								},
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionEventQueryDefinition: &datadog.FormulaAndFunctionEventQueryDefinition{
 											DataSource: datadog.FORMULAANDFUNCTIONEVENTSDATASOURCE_LOGS,
@@ -41,13 +41,13 @@ func main() {
 											Search: &datadog.FormulaAndFunctionEventQueryDefinitionSearch{
 												Query: "",
 											},
-											Indexes: &[]string{
+											Indexes: []string{
 												"*",
 											},
 											Compute: datadog.FormulaAndFunctionEventQueryDefinitionCompute{
 												Aggregation: datadog.FORMULAANDFUNCTIONEVENTAGGREGATION_COUNT,
 											},
-											GroupBy: &[]datadog.FormulaAndFunctionEventQueryGroupBy{},
+											GroupBy: []datadog.FormulaAndFunctionEventQueryGroupBy{},
 										}},
 								},
 								ResponseFormat: datadog.FORMULAANDFUNCTIONRESPONSEFORMAT_SCALAR.Ptr(),

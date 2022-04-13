@@ -22,7 +22,7 @@ type AuditLogsResponseMetadata struct {
 	Status *AuditLogsResponseStatus `json:"status,omitempty"`
 	// A list of warnings (non-fatal errors) encountered. Partial results may return if
 	// warnings are present in the response.
-	Warnings *[]AuditLogsWarning `json:"warnings,omitempty"`
+	Warnings []AuditLogsWarning `json:"warnings,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -179,7 +179,7 @@ func (o *AuditLogsResponseMetadata) GetWarnings() []AuditLogsWarning {
 		var ret []AuditLogsWarning
 		return ret
 	}
-	return *o.Warnings
+	return o.Warnings
 }
 
 // GetWarningsOk returns a tuple with the Warnings field value if set, nil otherwise
@@ -188,7 +188,7 @@ func (o *AuditLogsResponseMetadata) GetWarningsOk() (*[]AuditLogsWarning, bool) 
 	if o == nil || o.Warnings == nil {
 		return nil, false
 	}
-	return o.Warnings, true
+	return &o.Warnings, true
 }
 
 // HasWarnings returns a boolean if a field has been set.
@@ -202,7 +202,7 @@ func (o *AuditLogsResponseMetadata) HasWarnings() bool {
 
 // SetWarnings gets a reference to the given []AuditLogsWarning and assigns it to the Warnings field.
 func (o *AuditLogsResponseMetadata) SetWarnings(v []AuditLogsWarning) {
-	o.Warnings = &v
+	o.Warnings = v
 }
 
 func (o AuditLogsResponseMetadata) MarshalJSON() ([]byte, error) {
@@ -239,7 +239,7 @@ func (o *AuditLogsResponseMetadata) UnmarshalJSON(bytes []byte) (err error) {
 		Page      *AuditLogsResponsePage   `json:"page,omitempty"`
 		RequestId *string                  `json:"request_id,omitempty"`
 		Status    *AuditLogsResponseStatus `json:"status,omitempty"`
-		Warnings  *[]AuditLogsWarning      `json:"warnings,omitempty"`
+		Warnings  []AuditLogsWarning       `json:"warnings,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

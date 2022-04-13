@@ -13,7 +13,7 @@ import (
 // ApplicationKeyListResponse An application key response.
 type ApplicationKeyListResponse struct {
 	// Array of application keys.
-	ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
+	ApplicationKeys []ApplicationKey `json:"application_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *ApplicationKeyListResponse) GetApplicationKeys() []ApplicationKey {
 		var ret []ApplicationKey
 		return ret
 	}
-	return *o.ApplicationKeys
+	return o.ApplicationKeys
 }
 
 // GetApplicationKeysOk returns a tuple with the ApplicationKeys field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *ApplicationKeyListResponse) GetApplicationKeysOk() (*[]ApplicationKey, 
 	if o == nil || o.ApplicationKeys == nil {
 		return nil, false
 	}
-	return o.ApplicationKeys, true
+	return &o.ApplicationKeys, true
 }
 
 // HasApplicationKeys returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *ApplicationKeyListResponse) HasApplicationKeys() bool {
 
 // SetApplicationKeys gets a reference to the given []ApplicationKey and assigns it to the ApplicationKeys field.
 func (o *ApplicationKeyListResponse) SetApplicationKeys(v []ApplicationKey) {
-	o.ApplicationKeys = &v
+	o.ApplicationKeys = v
 }
 
 func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o ApplicationKeyListResponse) MarshalJSON() ([]byte, error) {
 func (o *ApplicationKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApplicationKeys *[]ApplicationKey `json:"application_keys,omitempty"`
+		ApplicationKeys []ApplicationKey `json:"application_keys,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

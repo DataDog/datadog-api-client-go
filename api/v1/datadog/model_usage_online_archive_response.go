@@ -13,7 +13,7 @@ import (
 // UsageOnlineArchiveResponse Online Archive usage response.
 type UsageOnlineArchiveResponse struct {
 	// Response containing Online Archive usage.
-	Usage *[]UsageOnlineArchiveHour `json:"usage,omitempty"`
+	Usage []UsageOnlineArchiveHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageOnlineArchiveResponse) GetUsage() []UsageOnlineArchiveHour {
 		var ret []UsageOnlineArchiveHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageOnlineArchiveResponse) GetUsageOk() (*[]UsageOnlineArchiveHour, bo
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageOnlineArchiveResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageOnlineArchiveHour and assigns it to the Usage field.
 func (o *UsageOnlineArchiveResponse) SetUsage(v []UsageOnlineArchiveHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageOnlineArchiveResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageOnlineArchiveResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageOnlineArchiveResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageOnlineArchiveHour `json:"usage,omitempty"`
+		Usage []UsageOnlineArchiveHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

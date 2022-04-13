@@ -15,17 +15,17 @@ func main() {
 	body := datadog.ServiceLevelObjectiveRequest{
 		Type:        datadog.SLOTYPE_METRIC,
 		Description: *datadog.NewNullableString(datadog.PtrString("string")),
-		Groups: &[]string{
+		Groups: []string{
 			"env:test",
 			"role:mysql",
 		},
-		MonitorIds: &[]int64{},
+		MonitorIds: []int64{},
 		Name:       "Example-Create_an_SLO_object_returns_OK_response",
 		Query: &datadog.ServiceLevelObjectiveQuery{
 			Denominator: "sum:httpservice.hits{!code:3xx}.as_count()",
 			Numerator:   "sum:httpservice.hits{code:2xx}.as_count()",
 		},
-		Tags: &[]string{
+		Tags: []string{
 			"env:prod",
 			"app:core",
 		},

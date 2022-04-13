@@ -15,7 +15,7 @@ type DashboardTemplateVariablePreset struct {
 	// The name of the variable.
 	Name *string `json:"name,omitempty"`
 	// List of variables.
-	TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
+	TemplateVariables []DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *DashboardTemplateVariablePreset) GetTemplateVariables() []DashboardTemp
 		var ret []DashboardTemplateVariablePresetValue
 		return ret
 	}
-	return *o.TemplateVariables
+	return o.TemplateVariables
 }
 
 // GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *DashboardTemplateVariablePreset) GetTemplateVariablesOk() (*[]Dashboard
 	if o == nil || o.TemplateVariables == nil {
 		return nil, false
 	}
-	return o.TemplateVariables, true
+	return &o.TemplateVariables, true
 }
 
 // HasTemplateVariables returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *DashboardTemplateVariablePreset) HasTemplateVariables() bool {
 
 // SetTemplateVariables gets a reference to the given []DashboardTemplateVariablePresetValue and assigns it to the TemplateVariables field.
 func (o *DashboardTemplateVariablePreset) SetTemplateVariables(v []DashboardTemplateVariablePresetValue) {
-	o.TemplateVariables = &v
+	o.TemplateVariables = v
 }
 
 func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
@@ -123,8 +123,8 @@ func (o DashboardTemplateVariablePreset) MarshalJSON() ([]byte, error) {
 func (o *DashboardTemplateVariablePreset) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Name              *string                                 `json:"name,omitempty"`
-		TemplateVariables *[]DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
+		Name              *string                                `json:"name,omitempty"`
+		TemplateVariables []DashboardTemplateVariablePresetValue `json:"template_variables,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -13,7 +13,7 @@ import (
 // SLODeleteResponse A response list of all service level objective deleted.
 type SLODeleteResponse struct {
 	// An array containing the ID of the deleted service level objective object.
-	Data *[]string `json:"data,omitempty"`
+	Data []string `json:"data,omitempty"`
 	// An dictionary containing the ID of the SLO as key and a deletion error as value.
 	Errors map[string]string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *SLODeleteResponse) GetData() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *SLODeleteResponse) GetDataOk() (*[]string, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *SLODeleteResponse) HasData() bool {
 
 // SetData gets a reference to the given []string and assigns it to the Data field.
 func (o *SLODeleteResponse) SetData(v []string) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetErrors returns the Errors field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o SLODeleteResponse) MarshalJSON() ([]byte, error) {
 func (o *SLODeleteResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data   *[]string         `json:"data,omitempty"`
+		Data   []string          `json:"data,omitempty"`
 		Errors map[string]string `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

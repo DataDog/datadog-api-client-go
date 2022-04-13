@@ -14,9 +14,9 @@ import (
 // HostMapWidgetDefinition The host map widget graphs any metric across your hosts using the same visualization available from the main Host Map page.
 type HostMapWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of tag prefixes to group by.
-	Group *[]string `json:"group,omitempty"`
+	Group []string `json:"group,omitempty"`
 	// Whether to show the hosts that don’t fit in a group.
 	NoGroupHosts *bool `json:"no_group_hosts,omitempty"`
 	// Whether to show the hosts with no metrics.
@@ -28,7 +28,7 @@ type HostMapWidgetDefinition struct {
 	// List of definitions.
 	Requests HostMapWidgetDefinitionRequests `json:"requests"`
 	// List of tags used to filter the map.
-	Scope *[]string `json:"scope,omitempty"`
+	Scope []string `json:"scope,omitempty"`
 	// The style to apply to the widget.
 	Style *HostMapWidgetDefinitionStyle `json:"style,omitempty"`
 	// Title of the widget.
@@ -71,7 +71,7 @@ func (o *HostMapWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -80,7 +80,7 @@ func (o *HostMapWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool)
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -94,7 +94,7 @@ func (o *HostMapWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *HostMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetGroup returns the Group field value if set, zero value otherwise.
@@ -103,7 +103,7 @@ func (o *HostMapWidgetDefinition) GetGroup() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Group
+	return o.Group
 }
 
 // GetGroupOk returns a tuple with the Group field value if set, nil otherwise
@@ -112,7 +112,7 @@ func (o *HostMapWidgetDefinition) GetGroupOk() (*[]string, bool) {
 	if o == nil || o.Group == nil {
 		return nil, false
 	}
-	return o.Group, true
+	return &o.Group, true
 }
 
 // HasGroup returns a boolean if a field has been set.
@@ -126,7 +126,7 @@ func (o *HostMapWidgetDefinition) HasGroup() bool {
 
 // SetGroup gets a reference to the given []string and assigns it to the Group field.
 func (o *HostMapWidgetDefinition) SetGroup(v []string) {
-	o.Group = &v
+	o.Group = v
 }
 
 // GetNoGroupHosts returns the NoGroupHosts field value if set, zero value otherwise.
@@ -286,7 +286,7 @@ func (o *HostMapWidgetDefinition) GetScope() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Scope
+	return o.Scope
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
@@ -295,7 +295,7 @@ func (o *HostMapWidgetDefinition) GetScopeOk() (*[]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
-	return o.Scope, true
+	return &o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -309,7 +309,7 @@ func (o *HostMapWidgetDefinition) HasScope() bool {
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
 func (o *HostMapWidgetDefinition) SetScope(v []string) {
-	o.Scope = &v
+	o.Scope = v
 }
 
 // GetStyle returns the Style field value if set, zero value otherwise.
@@ -517,14 +517,14 @@ func (o *HostMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *HostMapWidgetDefinitionType     `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
-		Group         *[]string                       `json:"group,omitempty"`
+		CustomLinks   []WidgetCustomLink              `json:"custom_links,omitempty"`
+		Group         []string                        `json:"group,omitempty"`
 		NoGroupHosts  *bool                           `json:"no_group_hosts,omitempty"`
 		NoMetricHosts *bool                           `json:"no_metric_hosts,omitempty"`
 		NodeType      *WidgetNodeType                 `json:"node_type,omitempty"`
 		Notes         *string                         `json:"notes,omitempty"`
 		Requests      HostMapWidgetDefinitionRequests `json:"requests"`
-		Scope         *[]string                       `json:"scope,omitempty"`
+		Scope         []string                        `json:"scope,omitempty"`
 		Style         *HostMapWidgetDefinitionStyle   `json:"style,omitempty"`
 		Title         *string                         `json:"title,omitempty"`
 		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`

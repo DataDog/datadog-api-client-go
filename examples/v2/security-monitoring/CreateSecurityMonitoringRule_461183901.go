@@ -16,10 +16,10 @@ func main() {
 		Queries: []datadog.SecurityMonitoringRuleQueryCreate{
 			{
 				Aggregation: datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_GEO_DATA.Ptr(),
-				GroupByFields: &[]string{
+				GroupByFields: []string{
 					"@usr.id",
 				},
-				DistinctFields: &[]string{},
+				DistinctFields: []string{},
 				Metric:         datadog.PtrString("@network.client.geoip"),
 				Query:          "*",
 			},
@@ -28,7 +28,7 @@ func main() {
 			{
 				Name:          datadog.PtrString(""),
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_INFO,
-				Notifications: &[]string{},
+				Notifications: []string{},
 			},
 		},
 		HasExtendedTitle: datadog.PtrBool(true),
@@ -45,8 +45,8 @@ func main() {
 		},
 		Name:    "Example-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response",
 		Type:    datadog.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
-		Tags:    &[]string{},
-		Filters: &[]datadog.SecurityMonitoringFilter{},
+		Tags:    []string{},
+		Filters: []datadog.SecurityMonitoringFilter{},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

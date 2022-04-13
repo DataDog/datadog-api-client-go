@@ -16,7 +16,7 @@ type QueryValueWidgetDefinition struct {
 	// Whether to use auto-scaling or not.
 	Autoscale *bool `json:"autoscale,omitempty"`
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Display a unit of your choice on the widget.
 	CustomUnit *string `json:"custom_unit,omitempty"`
 	// Number of decimals to show. If not defined, the widget uses the raw value.
@@ -101,7 +101,7 @@ func (o *QueryValueWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -110,7 +110,7 @@ func (o *QueryValueWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bo
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -124,7 +124,7 @@ func (o *QueryValueWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *QueryValueWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetCustomUnit returns the CustomUnit field value if set, zero value otherwise.
@@ -481,7 +481,7 @@ func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Autoscale            *bool                          `json:"autoscale,omitempty"`
-		CustomLinks          *[]WidgetCustomLink            `json:"custom_links,omitempty"`
+		CustomLinks          []WidgetCustomLink             `json:"custom_links,omitempty"`
 		CustomUnit           *string                        `json:"custom_unit,omitempty"`
 		Precision            *int64                         `json:"precision,omitempty"`
 		Requests             []QueryValueWidgetRequest      `json:"requests"`

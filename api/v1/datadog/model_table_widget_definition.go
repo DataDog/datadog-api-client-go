@@ -14,7 +14,7 @@ import (
 // TableWidgetDefinition The table visualization is available on timeboards and screenboards. It displays columns of metrics grouped by tag key.
 type TableWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Controls the display of the search bar.
 	HasSearchBar *TableWidgetHasSearchBar `json:"has_search_bar,omitempty"`
 	// Widget definition.
@@ -61,7 +61,7 @@ func (o *TableWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -70,7 +70,7 @@ func (o *TableWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool) {
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -84,7 +84,7 @@ func (o *TableWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *TableWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetHasSearchBar returns the HasSearchBar field value if set, zero value otherwise.
@@ -332,7 +332,7 @@ func (o *TableWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *TableWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks  *[]WidgetCustomLink       `json:"custom_links,omitempty"`
+		CustomLinks  []WidgetCustomLink        `json:"custom_links,omitempty"`
 		HasSearchBar *TableWidgetHasSearchBar  `json:"has_search_bar,omitempty"`
 		Requests     []TableWidgetRequest      `json:"requests"`
 		Time         *WidgetTime               `json:"time,omitempty"`

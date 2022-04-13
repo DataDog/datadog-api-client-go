@@ -15,7 +15,7 @@ func main() {
 	body := datadog.LogsAggregateRequest{
 		Filter: &datadog.LogsQueryFilter{
 			From: datadog.PtrString("now-15m"),
-			Indexes: &[]string{
+			Indexes: []string{
 				"main",
 			},
 			Query: datadog.PtrString("*"),

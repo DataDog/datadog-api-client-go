@@ -13,9 +13,9 @@ import (
 // Host Object representing a host.
 type Host struct {
 	// Host aliases collected by Datadog.
-	Aliases *[]string `json:"aliases,omitempty"`
+	Aliases []string `json:"aliases,omitempty"`
 	// The Datadog integrations reporting metrics for the host.
-	Apps *[]string `json:"apps,omitempty"`
+	Apps []string `json:"apps,omitempty"`
 	// AWS name of your host.
 	AwsName *string `json:"aws_name,omitempty"`
 	// The host name.
@@ -35,7 +35,7 @@ type Host struct {
 	// The host name.
 	Name *string `json:"name,omitempty"`
 	// Source or cloud provider associated with your host.
-	Sources *[]string `json:"sources,omitempty"`
+	Sources []string `json:"sources,omitempty"`
 	// List of tags for each source (AWS, Datadog Agent, Chef..).
 	TagsBySource map[string][]string `json:"tags_by_source,omitempty"`
 	// Displays UP when the expected metrics are received and displays `???` if no metrics are received.
@@ -68,7 +68,7 @@ func (o *Host) GetAliases() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Aliases
+	return o.Aliases
 }
 
 // GetAliasesOk returns a tuple with the Aliases field value if set, nil otherwise
@@ -77,7 +77,7 @@ func (o *Host) GetAliasesOk() (*[]string, bool) {
 	if o == nil || o.Aliases == nil {
 		return nil, false
 	}
-	return o.Aliases, true
+	return &o.Aliases, true
 }
 
 // HasAliases returns a boolean if a field has been set.
@@ -91,7 +91,7 @@ func (o *Host) HasAliases() bool {
 
 // SetAliases gets a reference to the given []string and assigns it to the Aliases field.
 func (o *Host) SetAliases(v []string) {
-	o.Aliases = &v
+	o.Aliases = v
 }
 
 // GetApps returns the Apps field value if set, zero value otherwise.
@@ -100,7 +100,7 @@ func (o *Host) GetApps() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Apps
+	return o.Apps
 }
 
 // GetAppsOk returns a tuple with the Apps field value if set, nil otherwise
@@ -109,7 +109,7 @@ func (o *Host) GetAppsOk() (*[]string, bool) {
 	if o == nil || o.Apps == nil {
 		return nil, false
 	}
-	return o.Apps, true
+	return &o.Apps, true
 }
 
 // HasApps returns a boolean if a field has been set.
@@ -123,7 +123,7 @@ func (o *Host) HasApps() bool {
 
 // SetApps gets a reference to the given []string and assigns it to the Apps field.
 func (o *Host) SetApps(v []string) {
-	o.Apps = &v
+	o.Apps = v
 }
 
 // GetAwsName returns the AwsName field value if set, zero value otherwise.
@@ -420,7 +420,7 @@ func (o *Host) GetSources() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Sources
+	return o.Sources
 }
 
 // GetSourcesOk returns a tuple with the Sources field value if set, nil otherwise
@@ -429,7 +429,7 @@ func (o *Host) GetSourcesOk() (*[]string, bool) {
 	if o == nil || o.Sources == nil {
 		return nil, false
 	}
-	return o.Sources, true
+	return &o.Sources, true
 }
 
 // HasSources returns a boolean if a field has been set.
@@ -443,7 +443,7 @@ func (o *Host) HasSources() bool {
 
 // SetSources gets a reference to the given []string and assigns it to the Sources field.
 func (o *Host) SetSources(v []string) {
-	o.Sources = &v
+	o.Sources = v
 }
 
 // GetTagsBySource returns the TagsBySource field value if set, zero value otherwise.
@@ -567,8 +567,8 @@ func (o Host) MarshalJSON() ([]byte, error) {
 func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aliases          *[]string           `json:"aliases,omitempty"`
-		Apps             *[]string           `json:"apps,omitempty"`
+		Aliases          []string            `json:"aliases,omitempty"`
+		Apps             []string            `json:"apps,omitempty"`
 		AwsName          *string             `json:"aws_name,omitempty"`
 		HostName         *string             `json:"host_name,omitempty"`
 		Id               *int64              `json:"id,omitempty"`
@@ -578,7 +578,7 @@ func (o *Host) UnmarshalJSON(bytes []byte) (err error) {
 		Metrics          *HostMetrics        `json:"metrics,omitempty"`
 		MuteTimeout      *int64              `json:"mute_timeout,omitempty"`
 		Name             *string             `json:"name,omitempty"`
-		Sources          *[]string           `json:"sources,omitempty"`
+		Sources          []string            `json:"sources,omitempty"`
 		TagsBySource     map[string][]string `json:"tags_by_source,omitempty"`
 		Up               *bool               `json:"up,omitempty"`
 	}{}

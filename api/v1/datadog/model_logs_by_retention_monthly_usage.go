@@ -16,7 +16,7 @@ type LogsByRetentionMonthlyUsage struct {
 	// The month for the usage.
 	Date *time.Time `json:"date,omitempty"`
 	// Indexed logs usage for each active retention for the month.
-	Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
+	Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -77,7 +77,7 @@ func (o *LogsByRetentionMonthlyUsage) GetUsage() []LogsRetentionSumUsage {
 		var ret []LogsRetentionSumUsage
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -86,7 +86,7 @@ func (o *LogsByRetentionMonthlyUsage) GetUsageOk() (*[]LogsRetentionSumUsage, bo
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -100,7 +100,7 @@ func (o *LogsByRetentionMonthlyUsage) HasUsage() bool {
 
 // SetUsage gets a reference to the given []LogsRetentionSumUsage and assigns it to the Usage field.
 func (o *LogsByRetentionMonthlyUsage) SetUsage(v []LogsRetentionSumUsage) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
@@ -124,8 +124,8 @@ func (o LogsByRetentionMonthlyUsage) MarshalJSON() ([]byte, error) {
 func (o *LogsByRetentionMonthlyUsage) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Date  *time.Time               `json:"date,omitempty"`
-		Usage *[]LogsRetentionSumUsage `json:"usage,omitempty"`
+		Date  *time.Time              `json:"date,omitempty"`
+		Usage []LogsRetentionSumUsage `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

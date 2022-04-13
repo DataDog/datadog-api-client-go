@@ -40,7 +40,7 @@ type DowntimeChild struct {
 	// not tags that are used in monitor queries (which are filtered by the scope parameter), to which the downtime applies.
 	// The resulting downtime applies to monitors that match ALL provided monitor tags.
 	// For example, `service:postgres` **AND** `team:frontend`.
-	MonitorTags *[]string `json:"monitor_tags,omitempty"`
+	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// ID of the parent Downtime.
 	ParentId NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
@@ -48,7 +48,7 @@ type DowntimeChild struct {
 	// The scope(s) to which the downtime applies. For example, `host:app2`.
 	// Provide multiple scopes as a comma-separated list like `env:dev,env:prod`.
 	// The resulting downtime applies to sources that matches ALL provided scopes (`env:dev` **AND** `env:prod`).
-	Scope *[]string `json:"scope,omitempty"`
+	Scope []string `json:"scope,omitempty"`
 	// POSIX timestamp to start the downtime.
 	// If not provided, the downtime starts the moment it is created.
 	Start *int64 `json:"start,omitempty"`
@@ -405,7 +405,7 @@ func (o *DowntimeChild) GetMonitorTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.MonitorTags
+	return o.MonitorTags
 }
 
 // GetMonitorTagsOk returns a tuple with the MonitorTags field value if set, nil otherwise
@@ -414,7 +414,7 @@ func (o *DowntimeChild) GetMonitorTagsOk() (*[]string, bool) {
 	if o == nil || o.MonitorTags == nil {
 		return nil, false
 	}
-	return o.MonitorTags, true
+	return &o.MonitorTags, true
 }
 
 // HasMonitorTags returns a boolean if a field has been set.
@@ -428,7 +428,7 @@ func (o *DowntimeChild) HasMonitorTags() bool {
 
 // SetMonitorTags gets a reference to the given []string and assigns it to the MonitorTags field.
 func (o *DowntimeChild) SetMonitorTags(v []string) {
-	o.MonitorTags = &v
+	o.MonitorTags = v
 }
 
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
@@ -523,7 +523,7 @@ func (o *DowntimeChild) GetScope() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Scope
+	return o.Scope
 }
 
 // GetScopeOk returns a tuple with the Scope field value if set, nil otherwise
@@ -532,7 +532,7 @@ func (o *DowntimeChild) GetScopeOk() (*[]string, bool) {
 	if o == nil || o.Scope == nil {
 		return nil, false
 	}
-	return o.Scope, true
+	return &o.Scope, true
 }
 
 // HasScope returns a boolean if a field has been set.
@@ -546,7 +546,7 @@ func (o *DowntimeChild) HasScope() bool {
 
 // SetScope gets a reference to the given []string and assigns it to the Scope field.
 func (o *DowntimeChild) SetScope(v []string) {
-	o.Scope = &v
+	o.Scope = v
 }
 
 // GetStart returns the Start field value if set, zero value otherwise.
@@ -728,10 +728,10 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 		Id           *int64                     `json:"id,omitempty"`
 		Message      *string                    `json:"message,omitempty"`
 		MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
-		MonitorTags  *[]string                  `json:"monitor_tags,omitempty"`
+		MonitorTags  []string                   `json:"monitor_tags,omitempty"`
 		ParentId     NullableInt64              `json:"parent_id,omitempty"`
 		Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-		Scope        *[]string                  `json:"scope,omitempty"`
+		Scope        []string                   `json:"scope,omitempty"`
 		Start        *int64                     `json:"start,omitempty"`
 		Timezone     *string                    `json:"timezone,omitempty"`
 		UpdaterId    NullableInt32              `json:"updater_id,omitempty"`

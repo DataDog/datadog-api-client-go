@@ -13,7 +13,7 @@ import (
 // OrganizationListResponse Response with the list of organizations.
 type OrganizationListResponse struct {
 	// Array of organization objects.
-	Orgs *[]Organization `json:"orgs,omitempty"`
+	Orgs []Organization `json:"orgs,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *OrganizationListResponse) GetOrgs() []Organization {
 		var ret []Organization
 		return ret
 	}
-	return *o.Orgs
+	return o.Orgs
 }
 
 // GetOrgsOk returns a tuple with the Orgs field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *OrganizationListResponse) GetOrgsOk() (*[]Organization, bool) {
 	if o == nil || o.Orgs == nil {
 		return nil, false
 	}
-	return o.Orgs, true
+	return &o.Orgs, true
 }
 
 // HasOrgs returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *OrganizationListResponse) HasOrgs() bool {
 
 // SetOrgs gets a reference to the given []Organization and assigns it to the Orgs field.
 func (o *OrganizationListResponse) SetOrgs(v []Organization) {
-	o.Orgs = &v
+	o.Orgs = v
 }
 
 func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o OrganizationListResponse) MarshalJSON() ([]byte, error) {
 func (o *OrganizationListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Orgs *[]Organization `json:"orgs,omitempty"`
+		Orgs []Organization `json:"orgs,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

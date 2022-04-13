@@ -13,7 +13,7 @@ import (
 // UsageLogsByIndexResponse Response containing the number of indexed logs for each hour and index for a given organization.
 type UsageLogsByIndexResponse struct {
 	// An array of objects regarding hourly usage of logs by index response.
-	Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
+	Usage []UsageLogsByIndexHour `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *UsageLogsByIndexResponse) GetUsage() []UsageLogsByIndexHour {
 		var ret []UsageLogsByIndexHour
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *UsageLogsByIndexResponse) GetUsageOk() (*[]UsageLogsByIndexHour, bool) 
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *UsageLogsByIndexResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []UsageLogsByIndexHour and assigns it to the Usage field.
 func (o *UsageLogsByIndexResponse) SetUsage(v []UsageLogsByIndexHour) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o UsageLogsByIndexResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o UsageLogsByIndexResponse) MarshalJSON() ([]byte, error) {
 func (o *UsageLogsByIndexResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Usage *[]UsageLogsByIndexHour `json:"usage,omitempty"`
+		Usage []UsageLogsByIndexHour `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -14,17 +14,17 @@ import (
 // TimeseriesWidgetDefinition The timeseries visualization allows you to display the evolution of one or more metrics, log events, or Indexed Spans over time.
 type TimeseriesWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// List of widget events.
-	Events *[]WidgetEvent `json:"events,omitempty"`
+	Events []WidgetEvent `json:"events,omitempty"`
 	// Columns displayed in the legend.
-	LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+	LegendColumns []TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
 	// Layout of the legend.
 	LegendLayout *TimeseriesWidgetLegendLayout `json:"legend_layout,omitempty"`
 	// Available legend sizes for a widget. Should be one of "0", "2", "4", "8", "16", or "auto".
 	LegendSize *string `json:"legend_size,omitempty"`
 	// List of markers.
-	Markers *[]WidgetMarker `json:"markers,omitempty"`
+	Markers []WidgetMarker `json:"markers,omitempty"`
 	// List of timeseries widget requests.
 	Requests []TimeseriesWidgetRequest `json:"requests"`
 	// Axis controls for the widget.
@@ -75,7 +75,7 @@ func (o *TimeseriesWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -84,7 +84,7 @@ func (o *TimeseriesWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bo
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -98,7 +98,7 @@ func (o *TimeseriesWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *TimeseriesWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetEvents returns the Events field value if set, zero value otherwise.
@@ -107,7 +107,7 @@ func (o *TimeseriesWidgetDefinition) GetEvents() []WidgetEvent {
 		var ret []WidgetEvent
 		return ret
 	}
-	return *o.Events
+	return o.Events
 }
 
 // GetEventsOk returns a tuple with the Events field value if set, nil otherwise
@@ -116,7 +116,7 @@ func (o *TimeseriesWidgetDefinition) GetEventsOk() (*[]WidgetEvent, bool) {
 	if o == nil || o.Events == nil {
 		return nil, false
 	}
-	return o.Events, true
+	return &o.Events, true
 }
 
 // HasEvents returns a boolean if a field has been set.
@@ -130,7 +130,7 @@ func (o *TimeseriesWidgetDefinition) HasEvents() bool {
 
 // SetEvents gets a reference to the given []WidgetEvent and assigns it to the Events field.
 func (o *TimeseriesWidgetDefinition) SetEvents(v []WidgetEvent) {
-	o.Events = &v
+	o.Events = v
 }
 
 // GetLegendColumns returns the LegendColumns field value if set, zero value otherwise.
@@ -139,7 +139,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendColumns() []TimeseriesWidgetLegend
 		var ret []TimeseriesWidgetLegendColumn
 		return ret
 	}
-	return *o.LegendColumns
+	return o.LegendColumns
 }
 
 // GetLegendColumnsOk returns a tuple with the LegendColumns field value if set, nil otherwise
@@ -148,7 +148,7 @@ func (o *TimeseriesWidgetDefinition) GetLegendColumnsOk() (*[]TimeseriesWidgetLe
 	if o == nil || o.LegendColumns == nil {
 		return nil, false
 	}
-	return o.LegendColumns, true
+	return &o.LegendColumns, true
 }
 
 // HasLegendColumns returns a boolean if a field has been set.
@@ -162,7 +162,7 @@ func (o *TimeseriesWidgetDefinition) HasLegendColumns() bool {
 
 // SetLegendColumns gets a reference to the given []TimeseriesWidgetLegendColumn and assigns it to the LegendColumns field.
 func (o *TimeseriesWidgetDefinition) SetLegendColumns(v []TimeseriesWidgetLegendColumn) {
-	o.LegendColumns = &v
+	o.LegendColumns = v
 }
 
 // GetLegendLayout returns the LegendLayout field value if set, zero value otherwise.
@@ -235,7 +235,7 @@ func (o *TimeseriesWidgetDefinition) GetMarkers() []WidgetMarker {
 		var ret []WidgetMarker
 		return ret
 	}
-	return *o.Markers
+	return o.Markers
 }
 
 // GetMarkersOk returns a tuple with the Markers field value if set, nil otherwise
@@ -244,7 +244,7 @@ func (o *TimeseriesWidgetDefinition) GetMarkersOk() (*[]WidgetMarker, bool) {
 	if o == nil || o.Markers == nil {
 		return nil, false
 	}
-	return o.Markers, true
+	return &o.Markers, true
 }
 
 // HasMarkers returns a boolean if a field has been set.
@@ -258,7 +258,7 @@ func (o *TimeseriesWidgetDefinition) HasMarkers() bool {
 
 // SetMarkers gets a reference to the given []WidgetMarker and assigns it to the Markers field.
 func (o *TimeseriesWidgetDefinition) SetMarkers(v []WidgetMarker) {
-	o.Markers = &v
+	o.Markers = v
 }
 
 // GetRequests returns the Requests field value
@@ -591,21 +591,21 @@ func (o *TimeseriesWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *TimeseriesWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks   *[]WidgetCustomLink             `json:"custom_links,omitempty"`
-		Events        *[]WidgetEvent                  `json:"events,omitempty"`
-		LegendColumns *[]TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
-		LegendLayout  *TimeseriesWidgetLegendLayout   `json:"legend_layout,omitempty"`
-		LegendSize    *string                         `json:"legend_size,omitempty"`
-		Markers       *[]WidgetMarker                 `json:"markers,omitempty"`
-		Requests      []TimeseriesWidgetRequest       `json:"requests"`
-		RightYaxis    *WidgetAxis                     `json:"right_yaxis,omitempty"`
-		ShowLegend    *bool                           `json:"show_legend,omitempty"`
-		Time          *WidgetTime                     `json:"time,omitempty"`
-		Title         *string                         `json:"title,omitempty"`
-		TitleAlign    *WidgetTextAlign                `json:"title_align,omitempty"`
-		TitleSize     *string                         `json:"title_size,omitempty"`
-		Type          TimeseriesWidgetDefinitionType  `json:"type"`
-		Yaxis         *WidgetAxis                     `json:"yaxis,omitempty"`
+		CustomLinks   []WidgetCustomLink             `json:"custom_links,omitempty"`
+		Events        []WidgetEvent                  `json:"events,omitempty"`
+		LegendColumns []TimeseriesWidgetLegendColumn `json:"legend_columns,omitempty"`
+		LegendLayout  *TimeseriesWidgetLegendLayout  `json:"legend_layout,omitempty"`
+		LegendSize    *string                        `json:"legend_size,omitempty"`
+		Markers       []WidgetMarker                 `json:"markers,omitempty"`
+		Requests      []TimeseriesWidgetRequest      `json:"requests"`
+		RightYaxis    *WidgetAxis                    `json:"right_yaxis,omitempty"`
+		ShowLegend    *bool                          `json:"show_legend,omitempty"`
+		Time          *WidgetTime                    `json:"time,omitempty"`
+		Title         *string                        `json:"title,omitempty"`
+		TitleAlign    *WidgetTextAlign               `json:"title_align,omitempty"`
+		TitleSize     *string                        `json:"title_size,omitempty"`
+		Type          TimeseriesWidgetDefinitionType `json:"type"`
+		Yaxis         *WidgetAxis                    `json:"yaxis,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {

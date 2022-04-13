@@ -21,13 +21,13 @@ type TableWidgetRequest struct {
 	// The APM stats query for table and distributions widgets.
 	ApmStatsQuery *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
 	// A list of display modes for each table cell.
-	CellDisplayMode *[]TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
+	CellDisplayMode []TableWidgetCellDisplayMode `json:"cell_display_mode,omitempty"`
 	// List of conditional formats.
-	ConditionalFormats *[]WidgetConditionalFormat `json:"conditional_formats,omitempty"`
+	ConditionalFormats []WidgetConditionalFormat `json:"conditional_formats,omitempty"`
 	// The log query.
 	EventQuery *LogQueryDefinition `json:"event_query,omitempty"`
 	// List of formulas that operate on queries.
-	Formulas *[]WidgetFormula `json:"formulas,omitempty"`
+	Formulas []WidgetFormula `json:"formulas,omitempty"`
 	// For metric queries, the number of lines to show in the table. Only one request should have this property.
 	Limit *int64 `json:"limit,omitempty"`
 	// The log query.
@@ -43,7 +43,7 @@ type TableWidgetRequest struct {
 	// Query definition.
 	Q *string `json:"q,omitempty"`
 	// List of queries that can be returned directly or used in formulas.
-	Queries *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+	Queries []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
 	// Timeseries or Scalar response.
 	ResponseFormat *FormulaAndFunctionResponseFormat `json:"response_format,omitempty"`
 	// The log query.
@@ -206,7 +206,7 @@ func (o *TableWidgetRequest) GetCellDisplayMode() []TableWidgetCellDisplayMode {
 		var ret []TableWidgetCellDisplayMode
 		return ret
 	}
-	return *o.CellDisplayMode
+	return o.CellDisplayMode
 }
 
 // GetCellDisplayModeOk returns a tuple with the CellDisplayMode field value if set, nil otherwise
@@ -215,7 +215,7 @@ func (o *TableWidgetRequest) GetCellDisplayModeOk() (*[]TableWidgetCellDisplayMo
 	if o == nil || o.CellDisplayMode == nil {
 		return nil, false
 	}
-	return o.CellDisplayMode, true
+	return &o.CellDisplayMode, true
 }
 
 // HasCellDisplayMode returns a boolean if a field has been set.
@@ -229,7 +229,7 @@ func (o *TableWidgetRequest) HasCellDisplayMode() bool {
 
 // SetCellDisplayMode gets a reference to the given []TableWidgetCellDisplayMode and assigns it to the CellDisplayMode field.
 func (o *TableWidgetRequest) SetCellDisplayMode(v []TableWidgetCellDisplayMode) {
-	o.CellDisplayMode = &v
+	o.CellDisplayMode = v
 }
 
 // GetConditionalFormats returns the ConditionalFormats field value if set, zero value otherwise.
@@ -238,7 +238,7 @@ func (o *TableWidgetRequest) GetConditionalFormats() []WidgetConditionalFormat {
 		var ret []WidgetConditionalFormat
 		return ret
 	}
-	return *o.ConditionalFormats
+	return o.ConditionalFormats
 }
 
 // GetConditionalFormatsOk returns a tuple with the ConditionalFormats field value if set, nil otherwise
@@ -247,7 +247,7 @@ func (o *TableWidgetRequest) GetConditionalFormatsOk() (*[]WidgetConditionalForm
 	if o == nil || o.ConditionalFormats == nil {
 		return nil, false
 	}
-	return o.ConditionalFormats, true
+	return &o.ConditionalFormats, true
 }
 
 // HasConditionalFormats returns a boolean if a field has been set.
@@ -261,7 +261,7 @@ func (o *TableWidgetRequest) HasConditionalFormats() bool {
 
 // SetConditionalFormats gets a reference to the given []WidgetConditionalFormat and assigns it to the ConditionalFormats field.
 func (o *TableWidgetRequest) SetConditionalFormats(v []WidgetConditionalFormat) {
-	o.ConditionalFormats = &v
+	o.ConditionalFormats = v
 }
 
 // GetEventQuery returns the EventQuery field value if set, zero value otherwise.
@@ -302,7 +302,7 @@ func (o *TableWidgetRequest) GetFormulas() []WidgetFormula {
 		var ret []WidgetFormula
 		return ret
 	}
-	return *o.Formulas
+	return o.Formulas
 }
 
 // GetFormulasOk returns a tuple with the Formulas field value if set, nil otherwise
@@ -311,7 +311,7 @@ func (o *TableWidgetRequest) GetFormulasOk() (*[]WidgetFormula, bool) {
 	if o == nil || o.Formulas == nil {
 		return nil, false
 	}
-	return o.Formulas, true
+	return &o.Formulas, true
 }
 
 // HasFormulas returns a boolean if a field has been set.
@@ -325,7 +325,7 @@ func (o *TableWidgetRequest) HasFormulas() bool {
 
 // SetFormulas gets a reference to the given []WidgetFormula and assigns it to the Formulas field.
 func (o *TableWidgetRequest) SetFormulas(v []WidgetFormula) {
-	o.Formulas = &v
+	o.Formulas = v
 }
 
 // GetLimit returns the Limit field value if set, zero value otherwise.
@@ -558,7 +558,7 @@ func (o *TableWidgetRequest) GetQueries() []FormulaAndFunctionQueryDefinition {
 		var ret []FormulaAndFunctionQueryDefinition
 		return ret
 	}
-	return *o.Queries
+	return o.Queries
 }
 
 // GetQueriesOk returns a tuple with the Queries field value if set, nil otherwise
@@ -567,7 +567,7 @@ func (o *TableWidgetRequest) GetQueriesOk() (*[]FormulaAndFunctionQueryDefinitio
 	if o == nil || o.Queries == nil {
 		return nil, false
 	}
-	return o.Queries, true
+	return &o.Queries, true
 }
 
 // HasQueries returns a boolean if a field has been set.
@@ -581,7 +581,7 @@ func (o *TableWidgetRequest) HasQueries() bool {
 
 // SetQueries gets a reference to the given []FormulaAndFunctionQueryDefinition and assigns it to the Queries field.
 func (o *TableWidgetRequest) SetQueries(v []FormulaAndFunctionQueryDefinition) {
-	o.Queries = &v
+	o.Queries = v
 }
 
 // GetResponseFormat returns the ResponseFormat field value if set, zero value otherwise.
@@ -752,25 +752,25 @@ func (o TableWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *TableWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggregator          *WidgetAggregator                    `json:"aggregator,omitempty"`
-		Alias               *string                              `json:"alias,omitempty"`
-		ApmQuery            *LogQueryDefinition                  `json:"apm_query,omitempty"`
-		ApmStatsQuery       *ApmStatsQueryDefinition             `json:"apm_stats_query,omitempty"`
-		CellDisplayMode     *[]TableWidgetCellDisplayMode        `json:"cell_display_mode,omitempty"`
-		ConditionalFormats  *[]WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
-		EventQuery          *LogQueryDefinition                  `json:"event_query,omitempty"`
-		Formulas            *[]WidgetFormula                     `json:"formulas,omitempty"`
-		Limit               *int64                               `json:"limit,omitempty"`
-		LogQuery            *LogQueryDefinition                  `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition                  `json:"network_query,omitempty"`
-		Order               *WidgetSort                          `json:"order,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition              `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition                  `json:"profile_metrics_query,omitempty"`
-		Q                   *string                              `json:"q,omitempty"`
-		Queries             *[]FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
-		ResponseFormat      *FormulaAndFunctionResponseFormat    `json:"response_format,omitempty"`
-		RumQuery            *LogQueryDefinition                  `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition                  `json:"security_query,omitempty"`
+		Aggregator          *WidgetAggregator                   `json:"aggregator,omitempty"`
+		Alias               *string                             `json:"alias,omitempty"`
+		ApmQuery            *LogQueryDefinition                 `json:"apm_query,omitempty"`
+		ApmStatsQuery       *ApmStatsQueryDefinition            `json:"apm_stats_query,omitempty"`
+		CellDisplayMode     []TableWidgetCellDisplayMode        `json:"cell_display_mode,omitempty"`
+		ConditionalFormats  []WidgetConditionalFormat           `json:"conditional_formats,omitempty"`
+		EventQuery          *LogQueryDefinition                 `json:"event_query,omitempty"`
+		Formulas            []WidgetFormula                     `json:"formulas,omitempty"`
+		Limit               *int64                              `json:"limit,omitempty"`
+		LogQuery            *LogQueryDefinition                 `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                 `json:"network_query,omitempty"`
+		Order               *WidgetSort                         `json:"order,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition             `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                 `json:"profile_metrics_query,omitempty"`
+		Q                   *string                             `json:"q,omitempty"`
+		Queries             []FormulaAndFunctionQueryDefinition `json:"queries,omitempty"`
+		ResponseFormat      *FormulaAndFunctionResponseFormat   `json:"response_format,omitempty"`
+		RumQuery            *LogQueryDefinition                 `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                 `json:"security_query,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

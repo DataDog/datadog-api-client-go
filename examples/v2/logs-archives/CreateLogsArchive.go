@@ -28,7 +28,7 @@ func main() {
 				IncludeTags: datadog.PtrBool(false),
 				Name:        "Nginx Archive",
 				Query:       "source:nginx",
-				RehydrationTags: &[]string{
+				RehydrationTags: []string{
 					"team:intake",
 					"team:app",
 				},

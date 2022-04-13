@@ -662,13 +662,13 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
-		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *hostListResp.HostList[0].IsMuted
 	})
 
 	// this is the default case, should have the muted data
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(int64(1), *hostListResp.TotalReturned)
-	host := (*hostListResp.HostList)[0]
+	host := hostListResp.HostList[0]
 	assert.True(*host.IsMuted)
 	assert.NotEqual(host.MuteTimeout, nil)
 
@@ -680,11 +680,11 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
-		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *hostListResp.HostList[0].IsMuted
 	})
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(int64(1), *hostListResp.TotalReturned)
-	host = (*hostListResp.HostList)[0]
+	host = hostListResp.HostList[0]
 	assert.True(*host.IsMuted)
 	assert.NotEqual(host.MuteTimeout, nil)
 
@@ -696,11 +696,11 @@ func TestHostsIncludeMutedHostsDataFunctional(t *testing.T) {
 		if err != nil {
 			t.Errorf("Failed to get hosts: %v", err)
 		}
-		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *((*hostListResp.HostList)[0].IsMuted)
+		return httpresp.StatusCode == 200 && *hostListResp.TotalReturned == 1 && *hostListResp.HostList[0].IsMuted
 	})
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(int64(1), *hostListResp.TotalReturned)
-	host = (*hostListResp.HostList)[0]
+	host = hostListResp.HostList[0]
 	assert.False(*host.IsMuted)
 	assert.Nil(host.MuteTimeout)
 }

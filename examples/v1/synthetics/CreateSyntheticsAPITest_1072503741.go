@@ -14,7 +14,7 @@ import (
 func main() {
 	body := datadog.SyntheticsAPITest{
 		Config: datadog.SyntheticsAPITestConfig{
-			Assertions: &[]datadog.SyntheticsAssertion{
+			Assertions: []datadog.SyntheticsAssertion{
 				datadog.SyntheticsAssertion{
 					SyntheticsAssertionTarget: &datadog.SyntheticsAssertionTarget{
 						Operator: datadog.SYNTHETICSASSERTIONOPERATOR_IS_IN_MORE_DAYS_THAN,
@@ -38,7 +38,7 @@ func main() {
 			TickEvery:                  datadog.PtrInt64(60),
 		},
 		Subtype: datadog.SYNTHETICSTESTDETAILSSUBTYPE_SSL.Ptr(),
-		Tags: &[]string{
+		Tags: []string{
 			"testing:api",
 		},
 		Type: datadog.SYNTHETICSAPITESTTYPE_API,

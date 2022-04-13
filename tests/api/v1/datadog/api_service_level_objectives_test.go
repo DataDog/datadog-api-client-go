@@ -23,7 +23,7 @@ func getTestServiceCheckMonitor(ctx context.Context, t *testing.T) datadog.Monit
 		Type:    datadog.MONITORTYPE_SERVICE_CHECK,
 		Query:   "\"datadog.agent.check_status\".over(\"database\").last(2).count_by_status()",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test",
 			"client:go",
 		},
@@ -35,7 +35,7 @@ func getTestMonitorSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelOb
 		Type:        "monitor",
 		Name:        *tests.UniqueEntityName(ctx, t),
 		Description: *datadog.NewNullableString(datadog.PtrString("Track the uptime of host foo which is critical to us.")),
-		Tags:        &[]string{"app:core", "kpi"},
+		Tags:        []string{"app:core", "kpi"},
 		Thresholds: []datadog.SLOThreshold{{
 			Timeframe: datadog.SLOTIMEFRAME_THIRTY_DAYS,
 			Target:    95.0,
@@ -49,7 +49,7 @@ func getTestEventSLO(ctx context.Context, t *testing.T) datadog.ServiceLevelObje
 		Type:        "metric",
 		Name:        *tests.UniqueEntityName(ctx, t),
 		Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
-		Tags:        &[]string{"app:httpd"},
+		Tags:        []string{"app:httpd"},
 		Thresholds: []datadog.SLOThreshold{{
 			Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 			Target:    95.0,
@@ -88,7 +88,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	testMonitorSLO := getTestMonitorSLO(ctx, t)
-	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
+	testMonitorSLO.MonitorIds = []int64{*monitor.Id}
 
 	// Create SLO
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx, testMonitorSLO)
@@ -237,7 +237,7 @@ func TestSLOMultipleInstances(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	testMonitorSLO := getTestMonitorSLO(ctx, t)
-	testMonitorSLO.MonitorIds = &[]int64{*monitor.Id}
+	testMonitorSLO.MonitorIds = []int64{*monitor.Id}
 
 	// Create monitor SLO
 	sloResp, httpresp, err := Client(ctx).ServiceLevelObjectivesApi.CreateSLO(ctx, testMonitorSLO)
@@ -357,7 +357,7 @@ func TestSLOUpdateErrors(t *testing.T) {
 			Type:        "metric",
 			Name:        "Go client HTTP Return Codes",
 			Description: *datadog.NewNullableString(datadog.PtrString("Make sure we don't have too many failed HTTP responses.")),
-			Tags:        &[]string{"app:httpd"},
+			Tags:        []string{"app:httpd"},
 			Thresholds: []datadog.SLOThreshold{{
 				Timeframe: datadog.SLOTIMEFRAME_SEVEN_DAYS,
 				Target:    95.0,

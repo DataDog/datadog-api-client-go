@@ -38,11 +38,11 @@ type MonitorUpdateRequest struct {
 	// The monitor query.
 	Query *string `json:"query,omitempty"`
 	// A list of unique role identifiers to define which roles are allowed to edit the monitor. The unique identifiers for all roles can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) and are located in the `data.id` field. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. `restricted_roles` is the successor of `locked`. For more information about `locked` and `restricted_roles`, see the [monitor options docs](https://docs.datadoghq.com/monitors/guide/monitor_api_options/#permissions-options).
-	RestrictedRoles *[]string `json:"restricted_roles,omitempty"`
+	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// Wrapper object with the different monitor states.
 	State *MonitorState `json:"state,omitempty"`
 	// Tags associated to your monitor.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The type of the monitor. For more information about `type`, see the [monitor options](https://docs.datadoghq.com/monitors/guide/monitor_api_options/) docs.
 	Type *MonitorType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -468,7 +468,7 @@ func (o *MonitorUpdateRequest) GetRestrictedRoles() []string {
 		var ret []string
 		return ret
 	}
-	return *o.RestrictedRoles
+	return o.RestrictedRoles
 }
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
@@ -477,7 +477,7 @@ func (o *MonitorUpdateRequest) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
 	}
-	return o.RestrictedRoles, true
+	return &o.RestrictedRoles, true
 }
 
 // HasRestrictedRoles returns a boolean if a field has been set.
@@ -491,7 +491,7 @@ func (o *MonitorUpdateRequest) HasRestrictedRoles() bool {
 
 // SetRestrictedRoles gets a reference to the given []string and assigns it to the RestrictedRoles field.
 func (o *MonitorUpdateRequest) SetRestrictedRoles(v []string) {
-	o.RestrictedRoles = &v
+	o.RestrictedRoles = v
 }
 
 // GetState returns the State field value if set, zero value otherwise.
@@ -532,7 +532,7 @@ func (o *MonitorUpdateRequest) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -541,7 +541,7 @@ func (o *MonitorUpdateRequest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -555,7 +555,7 @@ func (o *MonitorUpdateRequest) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *MonitorUpdateRequest) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -665,9 +665,9 @@ func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
 		Priority        *int64                `json:"priority,omitempty"`
 		Query           *string               `json:"query,omitempty"`
-		RestrictedRoles *[]string             `json:"restricted_roles,omitempty"`
+		RestrictedRoles []string              `json:"restricted_roles,omitempty"`
 		State           *MonitorState         `json:"state,omitempty"`
-		Tags            *[]string             `json:"tags,omitempty"`
+		Tags            []string              `json:"tags,omitempty"`
 		Type            *MonitorType          `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

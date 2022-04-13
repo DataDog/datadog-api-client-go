@@ -15,11 +15,11 @@ type LogQueryDefinition struct {
 	// Define computation for a log query.
 	Compute *LogsQueryCompute `json:"compute,omitempty"`
 	// List of tag prefixes to group by in the case of a cluster check.
-	GroupBy *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
+	GroupBy []LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
 	// A coma separated-list of index names. Use "*" query all indexes at once. [Multiple Indexes](https://docs.datadoghq.com/logs/indexes/#multiple-indexes)
 	Index *string `json:"index,omitempty"`
 	// This field is mutually exclusive with `compute`.
-	MultiCompute *[]LogsQueryCompute `json:"multi_compute,omitempty"`
+	MultiCompute []LogsQueryCompute `json:"multi_compute,omitempty"`
 	// The query being made on the logs.
 	Search *LogQueryDefinitionSearch `json:"search,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -82,7 +82,7 @@ func (o *LogQueryDefinition) GetGroupBy() []LogQueryDefinitionGroupBy {
 		var ret []LogQueryDefinitionGroupBy
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -91,7 +91,7 @@ func (o *LogQueryDefinition) GetGroupByOk() (*[]LogQueryDefinitionGroupBy, bool)
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -105,7 +105,7 @@ func (o *LogQueryDefinition) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []LogQueryDefinitionGroupBy and assigns it to the GroupBy field.
 func (o *LogQueryDefinition) SetGroupBy(v []LogQueryDefinitionGroupBy) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetIndex returns the Index field value if set, zero value otherwise.
@@ -146,7 +146,7 @@ func (o *LogQueryDefinition) GetMultiCompute() []LogsQueryCompute {
 		var ret []LogsQueryCompute
 		return ret
 	}
-	return *o.MultiCompute
+	return o.MultiCompute
 }
 
 // GetMultiComputeOk returns a tuple with the MultiCompute field value if set, nil otherwise
@@ -155,7 +155,7 @@ func (o *LogQueryDefinition) GetMultiComputeOk() (*[]LogsQueryCompute, bool) {
 	if o == nil || o.MultiCompute == nil {
 		return nil, false
 	}
-	return o.MultiCompute, true
+	return &o.MultiCompute, true
 }
 
 // HasMultiCompute returns a boolean if a field has been set.
@@ -169,7 +169,7 @@ func (o *LogQueryDefinition) HasMultiCompute() bool {
 
 // SetMultiCompute gets a reference to the given []LogsQueryCompute and assigns it to the MultiCompute field.
 func (o *LogQueryDefinition) SetMultiCompute(v []LogsQueryCompute) {
-	o.MultiCompute = &v
+	o.MultiCompute = v
 }
 
 // GetSearch returns the Search field value if set, zero value otherwise.
@@ -234,11 +234,11 @@ func (o LogQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *LogQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Compute      *LogsQueryCompute            `json:"compute,omitempty"`
-		GroupBy      *[]LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
-		Index        *string                      `json:"index,omitempty"`
-		MultiCompute *[]LogsQueryCompute          `json:"multi_compute,omitempty"`
-		Search       *LogQueryDefinitionSearch    `json:"search,omitempty"`
+		Compute      *LogsQueryCompute           `json:"compute,omitempty"`
+		GroupBy      []LogQueryDefinitionGroupBy `json:"group_by,omitempty"`
+		Index        *string                     `json:"index,omitempty"`
+		MultiCompute []LogsQueryCompute          `json:"multi_compute,omitempty"`
+		Search       *LogQueryDefinitionSearch   `json:"search,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

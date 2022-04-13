@@ -15,7 +15,7 @@ type LogsQueryFilter struct {
 	// The minimum time for the requested logs, supports date math and regular timestamps (milliseconds).
 	From *string `json:"from,omitempty"`
 	// For customers with multiple indexes, the indexes to search. Defaults to ['*'] which means all indexes.
-	Indexes *[]string `json:"indexes,omitempty"`
+	Indexes []string `json:"indexes,omitempty"`
 	// The search query - following the log search syntax.
 	Query *string `json:"query,omitempty"`
 	// The maximum time for the requested logs, supports date math and regular timestamps (milliseconds).
@@ -92,7 +92,7 @@ func (o *LogsQueryFilter) GetIndexes() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -101,7 +101,7 @@ func (o *LogsQueryFilter) GetIndexesOk() (*[]string, bool) {
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -115,7 +115,7 @@ func (o *LogsQueryFilter) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []string and assigns it to the Indexes field.
 func (o *LogsQueryFilter) SetIndexes(v []string) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 // GetQuery returns the Query field value if set, zero value otherwise.
@@ -209,10 +209,10 @@ func (o LogsQueryFilter) MarshalJSON() ([]byte, error) {
 func (o *LogsQueryFilter) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		From    *string   `json:"from,omitempty"`
-		Indexes *[]string `json:"indexes,omitempty"`
-		Query   *string   `json:"query,omitempty"`
-		To      *string   `json:"to,omitempty"`
+		From    *string  `json:"from,omitempty"`
+		Indexes []string `json:"indexes,omitempty"`
+		Query   *string  `json:"query,omitempty"`
+		To      *string  `json:"to,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

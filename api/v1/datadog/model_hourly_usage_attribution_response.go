@@ -15,7 +15,7 @@ type HourlyUsageAttributionResponse struct {
 	// The object containing document metadata.
 	Metadata *HourlyUsageAttributionMetadata `json:"metadata,omitempty"`
 	// Get the hourly usage attribution by tag(s).
-	Usage *[]HourlyUsageAttributionBody `json:"usage,omitempty"`
+	Usage []HourlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -76,7 +76,7 @@ func (o *HourlyUsageAttributionResponse) GetUsage() []HourlyUsageAttributionBody
 		var ret []HourlyUsageAttributionBody
 		return ret
 	}
-	return *o.Usage
+	return o.Usage
 }
 
 // GetUsageOk returns a tuple with the Usage field value if set, nil otherwise
@@ -85,7 +85,7 @@ func (o *HourlyUsageAttributionResponse) GetUsageOk() (*[]HourlyUsageAttribution
 	if o == nil || o.Usage == nil {
 		return nil, false
 	}
-	return o.Usage, true
+	return &o.Usage, true
 }
 
 // HasUsage returns a boolean if a field has been set.
@@ -99,7 +99,7 @@ func (o *HourlyUsageAttributionResponse) HasUsage() bool {
 
 // SetUsage gets a reference to the given []HourlyUsageAttributionBody and assigns it to the Usage field.
 func (o *HourlyUsageAttributionResponse) SetUsage(v []HourlyUsageAttributionBody) {
-	o.Usage = &v
+	o.Usage = v
 }
 
 func (o HourlyUsageAttributionResponse) MarshalJSON() ([]byte, error) {
@@ -124,7 +124,7 @@ func (o *HourlyUsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error)
 	raw := map[string]interface{}{}
 	all := struct {
 		Metadata *HourlyUsageAttributionMetadata `json:"metadata,omitempty"`
-		Usage    *[]HourlyUsageAttributionBody   `json:"usage,omitempty"`
+		Usage    []HourlyUsageAttributionBody    `json:"usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

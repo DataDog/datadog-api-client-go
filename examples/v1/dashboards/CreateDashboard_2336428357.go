@@ -32,7 +32,7 @@ func main() {
 						Type:       datadog.TABLEWIDGETDEFINITIONTYPE_QUERY_TABLE,
 						Requests: []datadog.TableWidgetRequest{
 							{
-								Queries: &[]datadog.FormulaAndFunctionQueryDefinition{
+								Queries: []datadog.FormulaAndFunctionQueryDefinition{
 									datadog.FormulaAndFunctionQueryDefinition{
 										FormulaAndFunctionMetricQueryDefinition: &datadog.FormulaAndFunctionMetricQueryDefinition{
 											DataSource: datadog.FORMULAANDFUNCTIONMETRICDATASOURCE_METRICS,
@@ -41,14 +41,14 @@ func main() {
 											Aggregator: datadog.FORMULAANDFUNCTIONMETRICAGGREGATION_AVG.Ptr(),
 										}},
 								},
-								Formulas: &[]datadog.WidgetFormula{
+								Formulas: []datadog.WidgetFormula{
 									{
 										Formula: "query1",
 										Limit: &datadog.WidgetFormulaLimit{
 											Count: datadog.PtrInt64(500),
 											Order: datadog.QUERYSORTORDER_DESC.Ptr(),
 										},
-										ConditionalFormats: &[]datadog.WidgetConditionalFormat{},
+										ConditionalFormats: []datadog.WidgetConditionalFormat{},
 										CellDisplayMode:    datadog.TABLEWIDGETCELLDISPLAYMODE_BAR.Ptr(),
 									},
 								},

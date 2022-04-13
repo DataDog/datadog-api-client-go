@@ -24,10 +24,10 @@ type ServiceLevelObjectiveRequest struct {
 	// Included in service level objective responses if it is not empty. Optional in
 	// create/update requests for monitor service level objectives, but may only be
 	// used when then length of the `monitor_ids` field is one.
-	Groups *[]string `json:"groups,omitempty"`
+	Groups []string `json:"groups,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level
 	// objective. **Required if type is `monitor`**.
-	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+	MonitorIds []int64 `json:"monitor_ids,omitempty"`
 	// The name of the service level objective object.
 	Name string `json:"name"`
 	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
@@ -37,7 +37,7 @@ type ServiceLevelObjectiveRequest struct {
 	// A list of tags associated with this service level objective.
 	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level
 	// objective object.
 	Thresholds []SLOThreshold `json:"thresholds"`
@@ -117,7 +117,7 @@ func (o *ServiceLevelObjectiveRequest) GetGroups() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
@@ -126,7 +126,7 @@ func (o *ServiceLevelObjectiveRequest) GetGroupsOk() (*[]string, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -140,7 +140,7 @@ func (o *ServiceLevelObjectiveRequest) HasGroups() bool {
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
 func (o *ServiceLevelObjectiveRequest) SetGroups(v []string) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetMonitorIds returns the MonitorIds field value if set, zero value otherwise.
@@ -149,7 +149,7 @@ func (o *ServiceLevelObjectiveRequest) GetMonitorIds() []int64 {
 		var ret []int64
 		return ret
 	}
-	return *o.MonitorIds
+	return o.MonitorIds
 }
 
 // GetMonitorIdsOk returns a tuple with the MonitorIds field value if set, nil otherwise
@@ -158,7 +158,7 @@ func (o *ServiceLevelObjectiveRequest) GetMonitorIdsOk() (*[]int64, bool) {
 	if o == nil || o.MonitorIds == nil {
 		return nil, false
 	}
-	return o.MonitorIds, true
+	return &o.MonitorIds, true
 }
 
 // HasMonitorIds returns a boolean if a field has been set.
@@ -172,7 +172,7 @@ func (o *ServiceLevelObjectiveRequest) HasMonitorIds() bool {
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
 func (o *ServiceLevelObjectiveRequest) SetMonitorIds(v []int64) {
-	o.MonitorIds = &v
+	o.MonitorIds = v
 }
 
 // GetName returns the Name field value
@@ -236,7 +236,7 @@ func (o *ServiceLevelObjectiveRequest) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -245,7 +245,7 @@ func (o *ServiceLevelObjectiveRequest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -259,7 +259,7 @@ func (o *ServiceLevelObjectiveRequest) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *ServiceLevelObjectiveRequest) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetThresholds returns the Thresholds field value
@@ -347,11 +347,11 @@ func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}{}
 	all := struct {
 		Description NullableString              `json:"description,omitempty"`
-		Groups      *[]string                   `json:"groups,omitempty"`
-		MonitorIds  *[]int64                    `json:"monitor_ids,omitempty"`
+		Groups      []string                    `json:"groups,omitempty"`
+		MonitorIds  []int64                     `json:"monitor_ids,omitempty"`
 		Name        string                      `json:"name"`
 		Query       *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags        *[]string                   `json:"tags,omitempty"`
+		Tags        []string                    `json:"tags,omitempty"`
 		Thresholds  []SLOThreshold              `json:"thresholds"`
 		Type        SLOType                     `json:"type"`
 	}{}

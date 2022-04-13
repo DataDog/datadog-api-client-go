@@ -14,7 +14,7 @@ import (
 // SunburstWidgetDefinition Sunbursts are spot on to highlight how groups contribute to the total of a query.
 type SunburstWidgetDefinition struct {
 	// List of custom links.
-	CustomLinks *[]WidgetCustomLink `json:"custom_links,omitempty"`
+	CustomLinks []WidgetCustomLink `json:"custom_links,omitempty"`
 	// Show the total value in this widget.
 	HideTotal *bool `json:"hide_total,omitempty"`
 	// Configuration of the legend.
@@ -63,7 +63,7 @@ func (o *SunburstWidgetDefinition) GetCustomLinks() []WidgetCustomLink {
 		var ret []WidgetCustomLink
 		return ret
 	}
-	return *o.CustomLinks
+	return o.CustomLinks
 }
 
 // GetCustomLinksOk returns a tuple with the CustomLinks field value if set, nil otherwise
@@ -72,7 +72,7 @@ func (o *SunburstWidgetDefinition) GetCustomLinksOk() (*[]WidgetCustomLink, bool
 	if o == nil || o.CustomLinks == nil {
 		return nil, false
 	}
-	return o.CustomLinks, true
+	return &o.CustomLinks, true
 }
 
 // HasCustomLinks returns a boolean if a field has been set.
@@ -86,7 +86,7 @@ func (o *SunburstWidgetDefinition) HasCustomLinks() bool {
 
 // SetCustomLinks gets a reference to the given []WidgetCustomLink and assigns it to the CustomLinks field.
 func (o *SunburstWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
-	o.CustomLinks = &v
+	o.CustomLinks = v
 }
 
 // GetHideTotal returns the HideTotal field value if set, zero value otherwise.
@@ -369,7 +369,7 @@ func (o *SunburstWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		Type     *SunburstWidgetDefinitionType `json:"type"`
 	}{}
 	all := struct {
-		CustomLinks *[]WidgetCustomLink          `json:"custom_links,omitempty"`
+		CustomLinks []WidgetCustomLink           `json:"custom_links,omitempty"`
 		HideTotal   *bool                        `json:"hide_total,omitempty"`
 		Legend      *SunburstWidgetLegend        `json:"legend,omitempty"`
 		Requests    []SunburstWidgetRequest      `json:"requests"`

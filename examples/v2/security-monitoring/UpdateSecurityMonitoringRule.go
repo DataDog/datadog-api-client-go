@@ -13,13 +13,13 @@ import (
 
 func main() {
 	body := datadog.SecurityMonitoringRuleUpdatePayload{
-		Cases: &[]datadog.SecurityMonitoringRuleCase{
+		Cases: []datadog.SecurityMonitoringRuleCase{
 			{
-				Notifications: &[]string{},
+				Notifications: []string{},
 				Status:        datadog.SECURITYMONITORINGRULESEVERITY_CRITICAL.Ptr(),
 			},
 		},
-		Filters: &[]datadog.SecurityMonitoringFilter{
+		Filters: []datadog.SecurityMonitoringFilter{
 			{
 				Action: datadog.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
 			},
@@ -38,14 +38,14 @@ func main() {
 				LearningDuration: datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS.Ptr(),
 			},
 		},
-		Queries: &[]datadog.SecurityMonitoringRuleQuery{
+		Queries: []datadog.SecurityMonitoringRuleQuery{
 			{
 				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				DistinctFields: &[]string{},
-				GroupByFields:  &[]string{},
+				DistinctFields: []string{},
+				GroupByFields:  []string{},
 			},
 		},
-		Tags:    &[]string{},
+		Tags:    []string{},
 		Version: datadog.PtrInt32(1),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())

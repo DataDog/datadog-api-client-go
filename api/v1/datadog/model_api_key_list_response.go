@@ -13,7 +13,7 @@ import (
 // ApiKeyListResponse List of API and application keys available for a given organization.
 type ApiKeyListResponse struct {
 	// Array of API keys.
-	ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
+	ApiKeys []ApiKey `json:"api_keys,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *ApiKeyListResponse) GetApiKeys() []ApiKey {
 		var ret []ApiKey
 		return ret
 	}
-	return *o.ApiKeys
+	return o.ApiKeys
 }
 
 // GetApiKeysOk returns a tuple with the ApiKeys field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *ApiKeyListResponse) GetApiKeysOk() (*[]ApiKey, bool) {
 	if o == nil || o.ApiKeys == nil {
 		return nil, false
 	}
-	return o.ApiKeys, true
+	return &o.ApiKeys, true
 }
 
 // HasApiKeys returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *ApiKeyListResponse) HasApiKeys() bool {
 
 // SetApiKeys gets a reference to the given []ApiKey and assigns it to the ApiKeys field.
 func (o *ApiKeyListResponse) SetApiKeys(v []ApiKey) {
-	o.ApiKeys = &v
+	o.ApiKeys = v
 }
 
 func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o ApiKeyListResponse) MarshalJSON() ([]byte, error) {
 func (o *ApiKeyListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiKeys *[]ApiKey `json:"api_keys,omitempty"`
+		ApiKeys []ApiKey `json:"api_keys,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -14,7 +14,7 @@ import (
 // for one or more timeframes, and metadata (`name`, `description`, `tags`, etc.).
 type SLOResponseData struct {
 	// A list of SLO monitors IDs that reference this SLO. This field is returned only when `with_configured_alert_ids` parameter is true in query.
-	ConfiguredAlertIds *[]int64 `json:"configured_alert_ids,omitempty"`
+	ConfiguredAlertIds []int64 `json:"configured_alert_ids,omitempty"`
 	// Creation timestamp (UNIX time in seconds)
 	//
 	// Always included in service level objective responses.
@@ -31,7 +31,7 @@ type SLOResponseData struct {
 	// Included in service level objective responses if it is not empty. Optional in
 	// create/update requests for monitor service level objectives, but may only be
 	// used when then length of the `monitor_ids` field is one.
-	Groups *[]string `json:"groups,omitempty"`
+	Groups []string `json:"groups,omitempty"`
 	// A unique identifier for the service level objective object.
 	//
 	// Always included in service level objective responses.
@@ -42,14 +42,14 @@ type SLOResponseData struct {
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// A list of monitor ids that defines the scope of a monitor service level
 	// objective. **Required if type is `monitor`**.
-	MonitorIds *[]int64 `json:"monitor_ids,omitempty"`
+	MonitorIds []int64 `json:"monitor_ids,omitempty"`
 	// The union of monitor tags for all monitors referenced by the `monitor_ids`
 	// field.
 	// Always included in service level objective responses for monitor service level
 	// objectives (but may be empty). Ignored in create/update requests. Does not
 	// affect which monitors are included in the service level objective (that is
 	// determined entirely by the `monitor_ids` field).
-	MonitorTags *[]string `json:"monitor_tags,omitempty"`
+	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
 	Name *string `json:"name,omitempty"`
 	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
@@ -59,10 +59,10 @@ type SLOResponseData struct {
 	// A list of tags associated with this service level objective.
 	// Always included in service level objective responses (but may be empty).
 	// Optional in create/update requests.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// The thresholds (timeframes and associated targets) for this service level
 	// objective object.
-	Thresholds *[]SLOThreshold `json:"thresholds,omitempty"`
+	Thresholds []SLOThreshold `json:"thresholds,omitempty"`
 	// The type of the service level objective.
 	Type *SLOType `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -93,7 +93,7 @@ func (o *SLOResponseData) GetConfiguredAlertIds() []int64 {
 		var ret []int64
 		return ret
 	}
-	return *o.ConfiguredAlertIds
+	return o.ConfiguredAlertIds
 }
 
 // GetConfiguredAlertIdsOk returns a tuple with the ConfiguredAlertIds field value if set, nil otherwise
@@ -102,7 +102,7 @@ func (o *SLOResponseData) GetConfiguredAlertIdsOk() (*[]int64, bool) {
 	if o == nil || o.ConfiguredAlertIds == nil {
 		return nil, false
 	}
-	return o.ConfiguredAlertIds, true
+	return &o.ConfiguredAlertIds, true
 }
 
 // HasConfiguredAlertIds returns a boolean if a field has been set.
@@ -116,7 +116,7 @@ func (o *SLOResponseData) HasConfiguredAlertIds() bool {
 
 // SetConfiguredAlertIds gets a reference to the given []int64 and assigns it to the ConfiguredAlertIds field.
 func (o *SLOResponseData) SetConfiguredAlertIds(v []int64) {
-	o.ConfiguredAlertIds = &v
+	o.ConfiguredAlertIds = v
 }
 
 // GetCreatedAt returns the CreatedAt field value if set, zero value otherwise.
@@ -232,7 +232,7 @@ func (o *SLOResponseData) GetGroups() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Groups
+	return o.Groups
 }
 
 // GetGroupsOk returns a tuple with the Groups field value if set, nil otherwise
@@ -241,7 +241,7 @@ func (o *SLOResponseData) GetGroupsOk() (*[]string, bool) {
 	if o == nil || o.Groups == nil {
 		return nil, false
 	}
-	return o.Groups, true
+	return &o.Groups, true
 }
 
 // HasGroups returns a boolean if a field has been set.
@@ -255,7 +255,7 @@ func (o *SLOResponseData) HasGroups() bool {
 
 // SetGroups gets a reference to the given []string and assigns it to the Groups field.
 func (o *SLOResponseData) SetGroups(v []string) {
-	o.Groups = &v
+	o.Groups = v
 }
 
 // GetId returns the Id field value if set, zero value otherwise.
@@ -328,7 +328,7 @@ func (o *SLOResponseData) GetMonitorIds() []int64 {
 		var ret []int64
 		return ret
 	}
-	return *o.MonitorIds
+	return o.MonitorIds
 }
 
 // GetMonitorIdsOk returns a tuple with the MonitorIds field value if set, nil otherwise
@@ -337,7 +337,7 @@ func (o *SLOResponseData) GetMonitorIdsOk() (*[]int64, bool) {
 	if o == nil || o.MonitorIds == nil {
 		return nil, false
 	}
-	return o.MonitorIds, true
+	return &o.MonitorIds, true
 }
 
 // HasMonitorIds returns a boolean if a field has been set.
@@ -351,7 +351,7 @@ func (o *SLOResponseData) HasMonitorIds() bool {
 
 // SetMonitorIds gets a reference to the given []int64 and assigns it to the MonitorIds field.
 func (o *SLOResponseData) SetMonitorIds(v []int64) {
-	o.MonitorIds = &v
+	o.MonitorIds = v
 }
 
 // GetMonitorTags returns the MonitorTags field value if set, zero value otherwise.
@@ -360,7 +360,7 @@ func (o *SLOResponseData) GetMonitorTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.MonitorTags
+	return o.MonitorTags
 }
 
 // GetMonitorTagsOk returns a tuple with the MonitorTags field value if set, nil otherwise
@@ -369,7 +369,7 @@ func (o *SLOResponseData) GetMonitorTagsOk() (*[]string, bool) {
 	if o == nil || o.MonitorTags == nil {
 		return nil, false
 	}
-	return o.MonitorTags, true
+	return &o.MonitorTags, true
 }
 
 // HasMonitorTags returns a boolean if a field has been set.
@@ -383,7 +383,7 @@ func (o *SLOResponseData) HasMonitorTags() bool {
 
 // SetMonitorTags gets a reference to the given []string and assigns it to the MonitorTags field.
 func (o *SLOResponseData) SetMonitorTags(v []string) {
-	o.MonitorTags = &v
+	o.MonitorTags = v
 }
 
 // GetName returns the Name field value if set, zero value otherwise.
@@ -456,7 +456,7 @@ func (o *SLOResponseData) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -465,7 +465,7 @@ func (o *SLOResponseData) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -479,7 +479,7 @@ func (o *SLOResponseData) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SLOResponseData) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetThresholds returns the Thresholds field value if set, zero value otherwise.
@@ -488,7 +488,7 @@ func (o *SLOResponseData) GetThresholds() []SLOThreshold {
 		var ret []SLOThreshold
 		return ret
 	}
-	return *o.Thresholds
+	return o.Thresholds
 }
 
 // GetThresholdsOk returns a tuple with the Thresholds field value if set, nil otherwise
@@ -497,7 +497,7 @@ func (o *SLOResponseData) GetThresholdsOk() (*[]SLOThreshold, bool) {
 	if o == nil || o.Thresholds == nil {
 		return nil, false
 	}
-	return o.Thresholds, true
+	return &o.Thresholds, true
 }
 
 // HasThresholds returns a boolean if a field has been set.
@@ -511,7 +511,7 @@ func (o *SLOResponseData) HasThresholds() bool {
 
 // SetThresholds gets a reference to the given []SLOThreshold and assigns it to the Thresholds field.
 func (o *SLOResponseData) SetThresholds(v []SLOThreshold) {
-	o.Thresholds = &v
+	o.Thresholds = v
 }
 
 // GetType returns the Type field value if set, zero value otherwise.
@@ -603,19 +603,19 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ConfiguredAlertIds *[]int64                    `json:"configured_alert_ids,omitempty"`
+		ConfiguredAlertIds []int64                     `json:"configured_alert_ids,omitempty"`
 		CreatedAt          *int64                      `json:"created_at,omitempty"`
 		Creator            *Creator                    `json:"creator,omitempty"`
 		Description        NullableString              `json:"description,omitempty"`
-		Groups             *[]string                   `json:"groups,omitempty"`
+		Groups             []string                    `json:"groups,omitempty"`
 		Id                 *string                     `json:"id,omitempty"`
 		ModifiedAt         *int64                      `json:"modified_at,omitempty"`
-		MonitorIds         *[]int64                    `json:"monitor_ids,omitempty"`
-		MonitorTags        *[]string                   `json:"monitor_tags,omitempty"`
+		MonitorIds         []int64                     `json:"monitor_ids,omitempty"`
+		MonitorTags        []string                    `json:"monitor_tags,omitempty"`
 		Name               *string                     `json:"name,omitempty"`
 		Query              *ServiceLevelObjectiveQuery `json:"query,omitempty"`
-		Tags               *[]string                   `json:"tags,omitempty"`
-		Thresholds         *[]SLOThreshold             `json:"thresholds,omitempty"`
+		Tags               []string                    `json:"tags,omitempty"`
+		Thresholds         []SLOThreshold              `json:"thresholds,omitempty"`
 		Type               *SLOType                    `json:"type,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -13,7 +13,7 @@ import (
 // SecurityFiltersResponse All the available security filters objects.
 type SecurityFiltersResponse struct {
 	// A list of security filters objects.
-	Data *[]SecurityFilter `json:"data,omitempty"`
+	Data []SecurityFilter `json:"data,omitempty"`
 	// Optional metadata associated to the response.
 	Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -44,7 +44,7 @@ func (o *SecurityFiltersResponse) GetData() []SecurityFilter {
 		var ret []SecurityFilter
 		return ret
 	}
-	return *o.Data
+	return o.Data
 }
 
 // GetDataOk returns a tuple with the Data field value if set, nil otherwise
@@ -53,7 +53,7 @@ func (o *SecurityFiltersResponse) GetDataOk() (*[]SecurityFilter, bool) {
 	if o == nil || o.Data == nil {
 		return nil, false
 	}
-	return o.Data, true
+	return &o.Data, true
 }
 
 // HasData returns a boolean if a field has been set.
@@ -67,7 +67,7 @@ func (o *SecurityFiltersResponse) HasData() bool {
 
 // SetData gets a reference to the given []SecurityFilter and assigns it to the Data field.
 func (o *SecurityFiltersResponse) SetData(v []SecurityFilter) {
-	o.Data = &v
+	o.Data = v
 }
 
 // GetMeta returns the Meta field value if set, zero value otherwise.
@@ -123,7 +123,7 @@ func (o SecurityFiltersResponse) MarshalJSON() ([]byte, error) {
 func (o *SecurityFiltersResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *[]SecurityFilter   `json:"data,omitempty"`
+		Data []SecurityFilter    `json:"data,omitempty"`
 		Meta *SecurityFilterMeta `json:"meta,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

@@ -29,7 +29,7 @@ type MetricTagConfigurationCreateAttributes struct {
 	// - time: sum, space: sum
 	//
 	// Can only be applied to metrics that have a `metric_type` of `count`, `rate`, or `gauge`.
-	Aggregations *[]MetricCustomAggregation `json:"aggregations,omitempty"`
+	Aggregations []MetricCustomAggregation `json:"aggregations,omitempty"`
 	// Toggle to include/exclude percentiles for a distribution metric.
 	// Defaults to false. Can only be applied to metrics that have a `metric_type` of `distribution`.
 	IncludePercentiles *bool `json:"include_percentiles,omitempty"`
@@ -73,7 +73,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetAggregations() []MetricCusto
 		var ret []MetricCustomAggregation
 		return ret
 	}
-	return *o.Aggregations
+	return o.Aggregations
 }
 
 // GetAggregationsOk returns a tuple with the Aggregations field value if set, nil otherwise
@@ -82,7 +82,7 @@ func (o *MetricTagConfigurationCreateAttributes) GetAggregationsOk() (*[]MetricC
 	if o == nil || o.Aggregations == nil {
 		return nil, false
 	}
-	return o.Aggregations, true
+	return &o.Aggregations, true
 }
 
 // HasAggregations returns a boolean if a field has been set.
@@ -96,7 +96,7 @@ func (o *MetricTagConfigurationCreateAttributes) HasAggregations() bool {
 
 // SetAggregations gets a reference to the given []MetricCustomAggregation and assigns it to the Aggregations field.
 func (o *MetricTagConfigurationCreateAttributes) SetAggregations(v []MetricCustomAggregation) {
-	o.Aggregations = &v
+	o.Aggregations = v
 }
 
 // GetIncludePercentiles returns the IncludePercentiles field value if set, zero value otherwise.
@@ -204,7 +204,7 @@ func (o *MetricTagConfigurationCreateAttributes) UnmarshalJSON(bytes []byte) (er
 		Tags       *[]string                          `json:"tags"`
 	}{}
 	all := struct {
-		Aggregations       *[]MetricCustomAggregation        `json:"aggregations,omitempty"`
+		Aggregations       []MetricCustomAggregation         `json:"aggregations,omitempty"`
 		IncludePercentiles *bool                             `json:"include_percentiles,omitempty"`
 		MetricType         MetricTagConfigurationMetricTypes `json:"metric_type"`
 		Tags               []string                          `json:"tags"`

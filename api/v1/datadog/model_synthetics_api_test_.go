@@ -34,7 +34,7 @@ type SyntheticsAPITest struct {
 	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Type of the Synthetic test, `api`.
 	Type SyntheticsAPITestType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -324,7 +324,7 @@ func (o *SyntheticsAPITest) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -333,7 +333,7 @@ func (o *SyntheticsAPITest) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -347,7 +347,7 @@ func (o *SyntheticsAPITest) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *SyntheticsAPITest) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 // GetType returns the Type field value
@@ -427,7 +427,7 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId  *string                       `json:"public_id,omitempty"`
 		Status    *SyntheticsTestPauseStatus    `json:"status,omitempty"`
 		Subtype   *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
-		Tags      *[]string                     `json:"tags,omitempty"`
+		Tags      []string                      `json:"tags,omitempty"`
 		Type      SyntheticsAPITestType         `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

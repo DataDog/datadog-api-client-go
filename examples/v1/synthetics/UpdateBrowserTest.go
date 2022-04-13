@@ -15,7 +15,7 @@ func main() {
 	body := datadog.SyntheticsBrowserTest{
 		Config: datadog.SyntheticsBrowserTestConfig{
 			Assertions: []datadog.SyntheticsAssertion{},
-			ConfigVariables: &[]datadog.SyntheticsConfigVariable{
+			ConfigVariables: []datadog.SyntheticsConfigVariable{
 				{
 					Name: "VARIABLE_NAME",
 					Type: datadog.SYNTHETICSCONFIGVARIABLETYPE_TEXT,
@@ -38,7 +38,7 @@ func main() {
 				},
 				Url: datadog.PtrString("https://example.com"),
 			},
-			Variables: &[]datadog.SyntheticsBrowserVariable{
+			Variables: []datadog.SyntheticsBrowserVariable{
 				{
 					Name: "VARIABLE_NAME",
 					Type: datadog.SYNTHETICSBROWSERVARIABLETYPE_TEXT,
@@ -51,22 +51,22 @@ func main() {
 		Message: datadog.PtrString(""),
 		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
-			DeviceIds: &[]datadog.SyntheticsDeviceID{
+			DeviceIds: []datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},
 			MonitorOptions: &datadog.SyntheticsTestOptionsMonitorOptions{},
-			RestrictedRoles: &[]string{
+			RestrictedRoles: []string{
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 			Retry: &datadog.SyntheticsTestOptionsRetry{},
 		},
 		Status: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
-		Steps: &[]datadog.SyntheticsStep{
+		Steps: []datadog.SyntheticsStep{
 			{
 				Type: datadog.SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_CONTENT.Ptr(),
 			},
 		},
-		Tags: &[]string{
+		Tags: []string{
 			"env:prod",
 		},
 		Type: datadog.SYNTHETICSBROWSERTESTTYPE_BROWSER,

@@ -17,7 +17,7 @@ type MetricsQueryResponse struct {
 	// Start of requested time window, milliseconds since Unix epoch.
 	FromDate *int64 `json:"from_date,omitempty"`
 	// List of tag keys on which to group.
-	GroupBy *[]string `json:"group_by,omitempty"`
+	GroupBy []string `json:"group_by,omitempty"`
 	// Message indicating `success` if status is `ok`.
 	Message *string `json:"message,omitempty"`
 	// Query string
@@ -25,7 +25,7 @@ type MetricsQueryResponse struct {
 	// Type of response.
 	ResType *string `json:"res_type,omitempty"`
 	// List of timeseries queried.
-	Series *[]MetricsQueryMetadata `json:"series,omitempty"`
+	Series []MetricsQueryMetadata `json:"series,omitempty"`
 	// Status of the query.
 	Status *string `json:"status,omitempty"`
 	// End of requested time window, milliseconds since Unix epoch.
@@ -122,7 +122,7 @@ func (o *MetricsQueryResponse) GetGroupBy() []string {
 		var ret []string
 		return ret
 	}
-	return *o.GroupBy
+	return o.GroupBy
 }
 
 // GetGroupByOk returns a tuple with the GroupBy field value if set, nil otherwise
@@ -131,7 +131,7 @@ func (o *MetricsQueryResponse) GetGroupByOk() (*[]string, bool) {
 	if o == nil || o.GroupBy == nil {
 		return nil, false
 	}
-	return o.GroupBy, true
+	return &o.GroupBy, true
 }
 
 // HasGroupBy returns a boolean if a field has been set.
@@ -145,7 +145,7 @@ func (o *MetricsQueryResponse) HasGroupBy() bool {
 
 // SetGroupBy gets a reference to the given []string and assigns it to the GroupBy field.
 func (o *MetricsQueryResponse) SetGroupBy(v []string) {
-	o.GroupBy = &v
+	o.GroupBy = v
 }
 
 // GetMessage returns the Message field value if set, zero value otherwise.
@@ -250,7 +250,7 @@ func (o *MetricsQueryResponse) GetSeries() []MetricsQueryMetadata {
 		var ret []MetricsQueryMetadata
 		return ret
 	}
-	return *o.Series
+	return o.Series
 }
 
 // GetSeriesOk returns a tuple with the Series field value if set, nil otherwise
@@ -259,7 +259,7 @@ func (o *MetricsQueryResponse) GetSeriesOk() (*[]MetricsQueryMetadata, bool) {
 	if o == nil || o.Series == nil {
 		return nil, false
 	}
-	return o.Series, true
+	return &o.Series, true
 }
 
 // HasSeries returns a boolean if a field has been set.
@@ -273,7 +273,7 @@ func (o *MetricsQueryResponse) HasSeries() bool {
 
 // SetSeries gets a reference to the given []MetricsQueryMetadata and assigns it to the Series field.
 func (o *MetricsQueryResponse) SetSeries(v []MetricsQueryMetadata) {
-	o.Series = &v
+	o.Series = v
 }
 
 // GetStatus returns the Status field value if set, zero value otherwise.
@@ -382,15 +382,15 @@ func (o MetricsQueryResponse) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Error    *string                 `json:"error,omitempty"`
-		FromDate *int64                  `json:"from_date,omitempty"`
-		GroupBy  *[]string               `json:"group_by,omitempty"`
-		Message  *string                 `json:"message,omitempty"`
-		Query    *string                 `json:"query,omitempty"`
-		ResType  *string                 `json:"res_type,omitempty"`
-		Series   *[]MetricsQueryMetadata `json:"series,omitempty"`
-		Status   *string                 `json:"status,omitempty"`
-		ToDate   *int64                  `json:"to_date,omitempty"`
+		Error    *string                `json:"error,omitempty"`
+		FromDate *int64                 `json:"from_date,omitempty"`
+		GroupBy  []string               `json:"group_by,omitempty"`
+		Message  *string                `json:"message,omitempty"`
+		Query    *string                `json:"query,omitempty"`
+		ResType  *string                `json:"res_type,omitempty"`
+		Series   []MetricsQueryMetadata `json:"series,omitempty"`
+		Status   *string                `json:"status,omitempty"`
+		ToDate   *int64                 `json:"to_date,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

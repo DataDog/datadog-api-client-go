@@ -160,7 +160,7 @@ func TestUpdateOrg(t *testing.T) {
 	assert.Equal(settingFixture.GetSamlIdpMetadataUploaded(), settingResp.GetSamlIdpMetadataUploaded())
 	assert.Equal(*settingFixture.GetSamlStrictMode().Enabled, *settingResp.GetSamlStrictMode().Enabled)
 	assert.Equal(*settingFixture.GetSamlAutocreateUsersDomains().Enabled, *settingResp.GetSamlAutocreateUsersDomains().Enabled)
-	assert.Equal(len(*settingFixture.GetSamlAutocreateUsersDomains().Domains), len(*settingResp.GetSamlAutocreateUsersDomains().Domains))
+	assert.Equal(len(settingFixture.GetSamlAutocreateUsersDomains().Domains), len(settingResp.GetSamlAutocreateUsersDomains().Domains))
 }
 
 func TestGetOrg(t *testing.T) {
@@ -210,7 +210,7 @@ func TestGetOrg(t *testing.T) {
 	assert.Equal(settingFixture.GetSamlIdpMetadataUploaded(), settingResp.GetSamlIdpMetadataUploaded())
 	assert.Equal(*settingFixture.GetSamlStrictMode().Enabled, *settingResp.GetSamlStrictMode().Enabled)
 	assert.Equal(*settingFixture.GetSamlAutocreateUsersDomains().Enabled, *settingResp.GetSamlAutocreateUsersDomains().Enabled)
-	assert.Equal(len(*settingFixture.GetSamlAutocreateUsersDomains().Domains), len(*settingResp.GetSamlAutocreateUsersDomains().Domains))
+	assert.Equal(len(settingFixture.GetSamlAutocreateUsersDomains().Domains), len(settingResp.GetSamlAutocreateUsersDomains().Domains))
 }
 
 func TestUploadOrgIdpMeta(t *testing.T) {

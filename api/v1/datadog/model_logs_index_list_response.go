@@ -13,7 +13,7 @@ import (
 // LogsIndexListResponse Object with all Index configurations for a given organization.
 type LogsIndexListResponse struct {
 	// Array of Log index configurations.
-	Indexes *[]LogsIndex `json:"indexes,omitempty"`
+	Indexes []LogsIndex `json:"indexes,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *LogsIndexListResponse) GetIndexes() []LogsIndex {
 		var ret []LogsIndex
 		return ret
 	}
-	return *o.Indexes
+	return o.Indexes
 }
 
 // GetIndexesOk returns a tuple with the Indexes field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *LogsIndexListResponse) GetIndexesOk() (*[]LogsIndex, bool) {
 	if o == nil || o.Indexes == nil {
 		return nil, false
 	}
-	return o.Indexes, true
+	return &o.Indexes, true
 }
 
 // HasIndexes returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *LogsIndexListResponse) HasIndexes() bool {
 
 // SetIndexes gets a reference to the given []LogsIndex and assigns it to the Indexes field.
 func (o *LogsIndexListResponse) SetIndexes(v []LogsIndex) {
-	o.Indexes = &v
+	o.Indexes = v
 }
 
 func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o LogsIndexListResponse) MarshalJSON() ([]byte, error) {
 func (o *LogsIndexListResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Indexes *[]LogsIndex `json:"indexes,omitempty"`
+		Indexes []LogsIndex `json:"indexes,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

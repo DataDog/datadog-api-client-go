@@ -13,7 +13,7 @@ import (
 // MetricAllTagsAttributes Object containing the definition of a metric's tags.
 type MetricAllTagsAttributes struct {
 	// List of indexed tag value pairs.
-	Tags *[]string `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -42,7 +42,7 @@ func (o *MetricAllTagsAttributes) GetTags() []string {
 		var ret []string
 		return ret
 	}
-	return *o.Tags
+	return o.Tags
 }
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
@@ -51,7 +51,7 @@ func (o *MetricAllTagsAttributes) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
-	return o.Tags, true
+	return &o.Tags, true
 }
 
 // HasTags returns a boolean if a field has been set.
@@ -65,7 +65,7 @@ func (o *MetricAllTagsAttributes) HasTags() bool {
 
 // SetTags gets a reference to the given []string and assigns it to the Tags field.
 func (o *MetricAllTagsAttributes) SetTags(v []string) {
-	o.Tags = &v
+	o.Tags = v
 }
 
 func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
@@ -86,7 +86,7 @@ func (o MetricAllTagsAttributes) MarshalJSON() ([]byte, error) {
 func (o *MetricAllTagsAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Tags *[]string `json:"tags,omitempty"`
+		Tags []string `json:"tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

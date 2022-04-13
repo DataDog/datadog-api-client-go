@@ -17,7 +17,7 @@ func main() {
 		Message:  datadog.PtrString("Example-Schedule_a_downtime_returns_OK_response"),
 		Start:    datadog.PtrInt64(time.Now().Unix()),
 		Timezone: datadog.PtrString("Etc/UTC"),
-		Scope: &[]string{
+		Scope: []string{
 			"test:examplescheduleadowntimereturnsokresponse",
 		},
 		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
