@@ -22,7 +22,7 @@ type SyntheticsBatchResult struct {
 	Location *string `json:"location,omitempty"`
 	// The ID of the result to get.
 	ResultId *string `json:"result_id,omitempty"`
-	// Total duration in millisecond of the test.
+	// Number of times this result has been retried.
 	Retries *float64 `json:"retries,omitempty"`
 	// Determines whether or not the batch has passed, failed, or is in progress.
 	Status *SyntheticsStatus `json:"status,omitempty"`
