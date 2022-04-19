@@ -33,7 +33,7 @@ func main() {
 									},
 								},
 								Query: datadog.ListStreamQuery{
-									DataSource:  datadog.LISTSTREAMSOURCE_ISSUE_STREAM,
+									DataSource:  datadog.LISTSTREAMSOURCE_APM_ISSUE_STREAM,
 									QueryString: "",
 								},
 								ResponseFormat: datadog.LISTSTREAMRESPONSEFORMAT_EVENT_LIST,
