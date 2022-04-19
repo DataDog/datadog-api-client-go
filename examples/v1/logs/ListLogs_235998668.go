@@ -15,7 +15,7 @@ import (
 func main() {
 	body := datadog.LogsListRequest{
 		Index: datadog.PtrString("main"),
-		Query: datadog.PtrString("service:web*"),
+		Query: datadog.PtrString("host:Test*"),
 		Sort:  datadog.LOGSSORT_TIME_ASCENDING.Ptr(),
 		Time: datadog.LogsListRequestTime{
 			From:     time.Now().Add(time.Hour * -1),
