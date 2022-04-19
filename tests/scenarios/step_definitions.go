@@ -15,6 +15,7 @@ import (
 	"reflect"
 	"strconv"
 	"strings"
+	"time"
 
 	v1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	v2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
@@ -355,6 +356,10 @@ func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 	}
 }
 
+func setDelay(t gobdd.StepTest, ctx gobdd.Context, sleepTime int) {
+	time.Sleep(time.Duration(sleepTime) * time.Second)
+}
+
 // ConfigureSteps on given suite.
 func ConfigureSteps(s *gobdd.Suite) {
 	steps := map[string]interface{}{
@@ -373,6 +378,7 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
 		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
 		`the response "([^"]+)" is false`:                        expectFalse,
+		`there is a ([0-9]+) second delay`:                       setDelay,
 	}
 	for expr, step := range steps {
 		s.AddStep(expr, step)
