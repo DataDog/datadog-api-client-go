@@ -26,7 +26,7 @@ type LogContent struct {
 	// value when you use both products.
 	Service *string `json:"service,omitempty"`
 	// Array of tags associated with your log.
-	Tags []interface{} `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -180,9 +180,9 @@ func (o *LogContent) SetService(v string) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *LogContent) GetTags() []interface{} {
+func (o *LogContent) GetTags() []string {
 	if o == nil || o.Tags == nil {
-		var ret []interface{}
+		var ret []string
 		return ret
 	}
 	return o.Tags
@@ -190,7 +190,7 @@ func (o *LogContent) GetTags() []interface{} {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetTagsOk() (*[]interface{}, bool) {
+func (o *LogContent) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -206,8 +206,8 @@ func (o *LogContent) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given []interface{} and assigns it to the Tags field.
-func (o *LogContent) SetTags(v []interface{}) {
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *LogContent) SetTags(v []string) {
 	o.Tags = v
 }
 
@@ -280,7 +280,7 @@ func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
 		Host       *string                `json:"host,omitempty"`
 		Message    *string                `json:"message,omitempty"`
 		Service    *string                `json:"service,omitempty"`
-		Tags       []interface{}          `json:"tags,omitempty"`
+		Tags       []string               `json:"tags,omitempty"`
 		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
