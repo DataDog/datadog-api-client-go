@@ -29,6 +29,9 @@ type Event struct {
 	// Handling IDs as large 64-bit numbers can cause loss of accuracy issues with some programming languages.
 	// Instead, use the string representation of the Event ID to avoid losing accuracy.
 	IdStr *string `json:"id_str,omitempty"`
+	// Integer ID of the monitor.
+	// The `monitor_id` is only available if the event has an associated monitor.
+	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Payload of the event.
 	Payload *string `json:"payload,omitempty"`
 	// The priority of the event. For example, `normal` or `low`.
@@ -258,6 +261,38 @@ func (o *Event) HasIdStr() bool {
 // SetIdStr gets a reference to the given string and assigns it to the IdStr field.
 func (o *Event) SetIdStr(v string) {
 	o.IdStr = &v
+}
+
+// GetMonitorId returns the MonitorId field value if set, zero value otherwise.
+func (o *Event) GetMonitorId() int64 {
+	if o == nil || o.MonitorId == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MonitorId
+}
+
+// GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Event) GetMonitorIdOk() (*int64, bool) {
+	if o == nil || o.MonitorId == nil {
+		return nil, false
+	}
+	return o.MonitorId, true
+}
+
+// HasMonitorId returns a boolean if a field has been set.
+func (o *Event) HasMonitorId() bool {
+	if o != nil && o.MonitorId != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMonitorId gets a reference to the given int64 and assigns it to the MonitorId field.
+func (o *Event) SetMonitorId(v int64) {
+	o.MonitorId = &v
 }
 
 // GetPayload returns the Payload field value if set, zero value otherwise.
@@ -518,6 +553,9 @@ func (o Event) MarshalJSON() ([]byte, error) {
 	if o.IdStr != nil {
 		toSerialize["id_str"] = o.IdStr
 	}
+	if o.MonitorId != nil {
+		toSerialize["monitor_id"] = o.MonitorId
+	}
 	if o.Payload != nil {
 		toSerialize["payload"] = o.Payload
 	}
@@ -555,6 +593,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 		Host           *string               `json:"host,omitempty"`
 		Id             *int64                `json:"id,omitempty"`
 		IdStr          *string               `json:"id_str,omitempty"`
+		MonitorId      *int64                `json:"monitor_id,omitempty"`
 		Payload        *string               `json:"payload,omitempty"`
 		Priority       NullableEventPriority `json:"priority,omitempty"`
 		SourceTypeName *string               `json:"source_type_name,omitempty"`
@@ -594,6 +633,7 @@ func (o *Event) UnmarshalJSON(bytes []byte) (err error) {
 	o.Host = all.Host
 	o.Id = all.Id
 	o.IdStr = all.IdStr
+	o.MonitorId = all.MonitorId
 	o.Payload = all.Payload
 	o.Priority = all.Priority
 	o.SourceTypeName = all.SourceTypeName
