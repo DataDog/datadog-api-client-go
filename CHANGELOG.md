@@ -1,5 +1,21 @@
 # CHANGELOG
 
+## 1.13.0 / 2022-04-20
+
+### Fixed
+* Set correct type for `tags` property by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1452
+### Added
+* Add `restricted_roles` to Synthetics tests and private locations by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1443
+* Add v2 SAML config IdP Metadata upload endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1450
+* Support pagination in Python by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1457
+### Changed
+* Remove references to optional arrays by @jirikuncar in https://github.com/DataDog/datadog-api-client-go/pull/1454
+### Removed
+* [dashboards] Removed `issue_stream` type from `ListStreamSource` by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1446
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.12.0...v1.13.0
+
 ## 1.12.0 / 2022-04-06
 
 ### Fixed
