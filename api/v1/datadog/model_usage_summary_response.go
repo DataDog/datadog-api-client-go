@@ -117,6 +117,8 @@ type UsageSummaryResponse struct {
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
+	// Sum of all observability pipelines bytes processed over all hours in the current months for all organizations.
+	ObservabilityPipelinesBytesProcessedAggSum *int64 `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 	// Sum of all online archived events over all hours in the current months for all organizations.
 	OnlineArchiveEventsCountAggSum *int64 `json:"online_archive_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
@@ -1841,6 +1843,38 @@ func (o *UsageSummaryResponse) SetNpmHostTop99pSum(v int64) {
 	o.NpmHostTop99pSum = &v
 }
 
+// GetObservabilityPipelinesBytesProcessedAggSum returns the ObservabilityPipelinesBytesProcessedAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetObservabilityPipelinesBytesProcessedAggSum() int64 {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ObservabilityPipelinesBytesProcessedAggSum
+}
+
+// GetObservabilityPipelinesBytesProcessedAggSumOk returns a tuple with the ObservabilityPipelinesBytesProcessedAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetObservabilityPipelinesBytesProcessedAggSumOk() (*int64, bool) {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedAggSum == nil {
+		return nil, false
+	}
+	return o.ObservabilityPipelinesBytesProcessedAggSum, true
+}
+
+// HasObservabilityPipelinesBytesProcessedAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasObservabilityPipelinesBytesProcessedAggSum() bool {
+	if o != nil && o.ObservabilityPipelinesBytesProcessedAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetObservabilityPipelinesBytesProcessedAggSum gets a reference to the given int64 and assigns it to the ObservabilityPipelinesBytesProcessedAggSum field.
+func (o *UsageSummaryResponse) SetObservabilityPipelinesBytesProcessedAggSum(v int64) {
+	o.ObservabilityPipelinesBytesProcessedAggSum = &v
+}
+
 // GetOnlineArchiveEventsCountAggSum returns the OnlineArchiveEventsCountAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetOnlineArchiveEventsCountAggSum() int64 {
 	if o == nil || o.OnlineArchiveEventsCountAggSum == nil {
@@ -2610,6 +2644,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.NpmHostTop99pSum != nil {
 		toSerialize["npm_host_top99p_sum"] = o.NpmHostTop99pSum
 	}
+	if o.ObservabilityPipelinesBytesProcessedAggSum != nil {
+		toSerialize["observability_pipelines_bytes_processed_agg_sum"] = o.ObservabilityPipelinesBytesProcessedAggSum
+	}
 	if o.OnlineArchiveEventsCountAggSum != nil {
 		toSerialize["online_archive_events_count_agg_sum"] = o.OnlineArchiveEventsCountAggSum
 	}
@@ -2729,6 +2766,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumUnitsAggSum                       *int64             `json:"mobile_rum_units_agg_sum,omitempty"`
 		NetflowIndexedEventsCountAggSum            *int64             `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 		NpmHostTop99pSum                           *int64             `json:"npm_host_top99p_sum,omitempty"`
+		ObservabilityPipelinesBytesProcessedAggSum *int64             `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 		OnlineArchiveEventsCountAggSum             *int64             `json:"online_archive_events_count_agg_sum,omitempty"`
 		OpentelemetryHostTop99pSum                 *int64             `json:"opentelemetry_host_top99p_sum,omitempty"`
 		ProfilingContainerAgentCountAvg            *int64             `json:"profiling_container_agent_count_avg,omitempty"`
@@ -2817,6 +2855,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumUnitsAggSum = all.MobileRumUnitsAggSum
 	o.NetflowIndexedEventsCountAggSum = all.NetflowIndexedEventsCountAggSum
 	o.NpmHostTop99pSum = all.NpmHostTop99pSum
+	o.ObservabilityPipelinesBytesProcessedAggSum = all.ObservabilityPipelinesBytesProcessedAggSum
 	o.OnlineArchiveEventsCountAggSum = all.OnlineArchiveEventsCountAggSum
 	o.OpentelemetryHostTop99pSum = all.OpentelemetryHostTop99pSum
 	o.ProfilingContainerAgentCountAvg = all.ProfilingContainerAgentCountAvg
