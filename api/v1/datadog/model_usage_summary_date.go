@@ -107,6 +107,8 @@ type UsageSummaryDate struct {
 	NetflowIndexedEventsCountSum *int64 `json:"netflow_indexed_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current date for all organizations.
 	NpmHostTop99p *int64 `json:"npm_host_top99p,omitempty"`
+	// Sum of all observability pipelines bytes processed over all hours in the current date for the given org.
+	ObservabilityPipelinesBytesProcessedSum *int64 `json:"observability_pipelines_bytes_processed_sum,omitempty"`
 	// Sum of all online archived events over all hours in the current date for all organizations.
 	OnlineArchiveEventsCountSum *int64 `json:"online_archive_events_count_sum,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current date for all organizations.
@@ -1663,6 +1665,38 @@ func (o *UsageSummaryDate) SetNpmHostTop99p(v int64) {
 	o.NpmHostTop99p = &v
 }
 
+// GetObservabilityPipelinesBytesProcessedSum returns the ObservabilityPipelinesBytesProcessedSum field value if set, zero value otherwise.
+func (o *UsageSummaryDate) GetObservabilityPipelinesBytesProcessedSum() int64 {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ObservabilityPipelinesBytesProcessedSum
+}
+
+// GetObservabilityPipelinesBytesProcessedSumOk returns a tuple with the ObservabilityPipelinesBytesProcessedSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDate) GetObservabilityPipelinesBytesProcessedSumOk() (*int64, bool) {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedSum == nil {
+		return nil, false
+	}
+	return o.ObservabilityPipelinesBytesProcessedSum, true
+}
+
+// HasObservabilityPipelinesBytesProcessedSum returns a boolean if a field has been set.
+func (o *UsageSummaryDate) HasObservabilityPipelinesBytesProcessedSum() bool {
+	if o != nil && o.ObservabilityPipelinesBytesProcessedSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetObservabilityPipelinesBytesProcessedSum gets a reference to the given int64 and assigns it to the ObservabilityPipelinesBytesProcessedSum field.
+func (o *UsageSummaryDate) SetObservabilityPipelinesBytesProcessedSum(v int64) {
+	o.ObservabilityPipelinesBytesProcessedSum = &v
+}
+
 // GetOnlineArchiveEventsCountSum returns the OnlineArchiveEventsCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDate) GetOnlineArchiveEventsCountSum() int64 {
 	if o == nil || o.OnlineArchiveEventsCountSum == nil {
@@ -2289,6 +2323,9 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 	if o.NpmHostTop99p != nil {
 		toSerialize["npm_host_top99p"] = o.NpmHostTop99p
 	}
+	if o.ObservabilityPipelinesBytesProcessedSum != nil {
+		toSerialize["observability_pipelines_bytes_processed_sum"] = o.ObservabilityPipelinesBytesProcessedSum
+	}
 	if o.OnlineArchiveEventsCountSum != nil {
 		toSerialize["online_archive_events_count_sum"] = o.OnlineArchiveEventsCountSum
 	}
@@ -2391,6 +2428,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumUnitsSum                       *int64                `json:"mobile_rum_units_sum,omitempty"`
 		NetflowIndexedEventsCountSum            *int64                `json:"netflow_indexed_events_count_sum,omitempty"`
 		NpmHostTop99p                           *int64                `json:"npm_host_top99p,omitempty"`
+		ObservabilityPipelinesBytesProcessedSum *int64                `json:"observability_pipelines_bytes_processed_sum,omitempty"`
 		OnlineArchiveEventsCountSum             *int64                `json:"online_archive_events_count_sum,omitempty"`
 		OpentelemetryHostTop99p                 *int64                `json:"opentelemetry_host_top99p,omitempty"`
 		Orgs                                    []UsageSummaryDateOrg `json:"orgs,omitempty"`
@@ -2463,6 +2501,7 @@ func (o *UsageSummaryDate) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumUnitsSum = all.MobileRumUnitsSum
 	o.NetflowIndexedEventsCountSum = all.NetflowIndexedEventsCountSum
 	o.NpmHostTop99p = all.NpmHostTop99p
+	o.ObservabilityPipelinesBytesProcessedSum = all.ObservabilityPipelinesBytesProcessedSum
 	o.OnlineArchiveEventsCountSum = all.OnlineArchiveEventsCountSum
 	o.OpentelemetryHostTop99p = all.OpentelemetryHostTop99p
 	o.Orgs = all.Orgs
