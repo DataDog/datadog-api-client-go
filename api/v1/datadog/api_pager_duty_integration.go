@@ -29,15 +29,24 @@ type apiCreatePagerDutyIntegrationServiceRequest struct {
 	body       *PagerDutyService
 }
 
+func (a *PagerDutyIntegrationApiService) buildCreatePagerDutyIntegrationServiceRequest(ctx _context.Context, body PagerDutyService) (apiCreatePagerDutyIntegrationServiceRequest, error) {
+	req := apiCreatePagerDutyIntegrationServiceRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreatePagerDutyIntegrationService Create a new service object
  * Create a new service object in the PagerDuty integration.
  */
 func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
-	req := apiCreatePagerDutyIntegrationServiceRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreatePagerDutyIntegrationServiceRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue PagerDutyServiceName
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
@@ -188,15 +197,23 @@ type apiDeletePagerDutyIntegrationServiceRequest struct {
 	serviceName string
 }
 
+func (a *PagerDutyIntegrationApiService) buildDeletePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiDeletePagerDutyIntegrationServiceRequest, error) {
+	req := apiDeletePagerDutyIntegrationServiceRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		serviceName: serviceName,
+	}
+	return req, nil
+}
+
 /*
  * DeletePagerDutyIntegrationService Delete a single service object
  * Delete a single service object in the Datadog-PagerDuty integration.
  */
 func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
-	req := apiDeletePagerDutyIntegrationServiceRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		serviceName: serviceName,
+	req, err := a.buildDeletePagerDutyIntegrationServiceRequest(ctx, serviceName)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
@@ -322,15 +339,24 @@ type apiGetPagerDutyIntegrationServiceRequest struct {
 	serviceName string
 }
 
+func (a *PagerDutyIntegrationApiService) buildGetPagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string) (apiGetPagerDutyIntegrationServiceRequest, error) {
+	req := apiGetPagerDutyIntegrationServiceRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		serviceName: serviceName,
+	}
+	return req, nil
+}
+
 /*
  * GetPagerDutyIntegrationService Get a single service object
  * Get service name in the Datadog-PagerDuty integration.
  */
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
-	req := apiGetPagerDutyIntegrationServiceRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		serviceName: serviceName,
+	req, err := a.buildGetPagerDutyIntegrationServiceRequest(ctx, serviceName)
+	if err != nil {
+		var localVarReturnValue PagerDutyServiceName
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
@@ -468,16 +494,24 @@ type apiUpdatePagerDutyIntegrationServiceRequest struct {
 	body        *PagerDutyServiceKey
 }
 
-/*
- * UpdatePagerDutyIntegrationService Update a single service object
- * Update a single service object in the Datadog-PagerDuty integration.
- */
-func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
+func (a *PagerDutyIntegrationApiService) buildUpdatePagerDutyIntegrationServiceRequest(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (apiUpdatePagerDutyIntegrationServiceRequest, error) {
 	req := apiUpdatePagerDutyIntegrationServiceRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		serviceName: serviceName,
 		body:        &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdatePagerDutyIntegrationService Update a single service object
+ * Update a single service object in the Datadog-PagerDuty integration.
+ */
+func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
+	req, err := a.buildUpdatePagerDutyIntegrationServiceRequest(ctx, serviceName, body)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)

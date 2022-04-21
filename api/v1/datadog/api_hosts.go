@@ -42,24 +42,32 @@ func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOpt
 	return r
 }
 
-/*
- * GetHostTotals Get the total number of active hosts
- * This endpoint returns the total number of active and up hosts in your Datadog account.
- * Active means the host has reported in the past hour, and up means it has reported in the past two hours.
- */
-func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+func (a *HostsApiService) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
 	req := apiGetHostTotalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue HostTotals
-		return localVarReturnValue, nil, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.from = o[0].From
+	}
+	return req, nil
+}
+
+/*
+ * GetHostTotals Get the total number of active hosts
+ * This endpoint returns the total number of active and up hosts in your Datadog account.
+ * Active means the host has reported in the past hour, and up means it has reported in the past two hours.
+ */
+func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+	req, err := a.buildGetHostTotalsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue HostTotals
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getHostTotalsExecute(req)
@@ -253,22 +261,14 @@ func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetad
 	return r
 }
 
-/*
- * ListHosts Get all hosts for your organization
- * This endpoint allows searching for hosts by name, alias, or tag.
- * Hosts live within the past 3 hours are included by default.
- * Retention is 7 days.
- * Results are paginated with a max of 1000 results at a time.
- */
-func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
 	req := apiListHostsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue HostListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListHostsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListHostsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -280,6 +280,22 @@ func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptional
 		req.from = o[0].From
 		req.includeMutedHostsData = o[0].IncludeMutedHostsData
 		req.includeHostsMetadata = o[0].IncludeHostsMetadata
+	}
+	return req, nil
+}
+
+/*
+ * ListHosts Get all hosts for your organization
+ * This endpoint allows searching for hosts by name, alias, or tag.
+ * Hosts live within the past 3 hours are included by default.
+ * Retention is 7 days.
+ * Results are paginated with a max of 1000 results at a time.
+ */
+func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListHostsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue HostListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listHostsExecute(req)
@@ -440,16 +456,25 @@ type apiMuteHostRequest struct {
 	body       *HostMuteSettings
 }
 
-/*
- * MuteHost Mute a host
- * Mute a host.
- */
-func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
 	req := apiMuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
 		hostName:   hostName,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * MuteHost Mute a host
+ * Mute a host.
+ */
+func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+	req, err := a.buildMuteHostRequest(ctx, hostName, body)
+	if err != nil {
+		var localVarReturnValue HostMuteResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.muteHostExecute(req)
@@ -601,15 +626,24 @@ type apiUnmuteHostRequest struct {
 	hostName   string
 }
 
+func (a *HostsApiService) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
+	req := apiUnmuteHostRequest{
+		ApiService: a,
+		ctx:        ctx,
+		hostName:   hostName,
+	}
+	return req, nil
+}
+
 /*
  * UnmuteHost Unmute a host
  * Unmutes a host. This endpoint takes no JSON arguments.
  */
 func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
-	req := apiUnmuteHostRequest{
-		ApiService: a,
-		ctx:        ctx,
-		hostName:   hostName,
+	req, err := a.buildUnmuteHostRequest(ctx, hostName)
+	if err != nil {
+		var localVarReturnValue HostMuteResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.unmuteHostExecute(req)

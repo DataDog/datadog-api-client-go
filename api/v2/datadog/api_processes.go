@@ -71,19 +71,14 @@ func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *Lis
 	return r
 }
 
-/*
- * ListProcesses Get all processes
- * Get all processes for your organization.
- */
-func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApiService) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
 	req := apiListProcessesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ProcessSummariesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -94,8 +89,90 @@ func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProce
 		req.pageLimit = o[0].PageLimit
 		req.pageCursor = o[0].PageCursor
 	}
+	return req, nil
+}
+
+/*
+ * ListProcesses Get all processes
+ * Get all processes for your organization.
+ */
+func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListProcessesRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue ProcessSummariesResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listProcessesExecute(req)
+}
+
+/*
+ * ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
+ */
+func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (items chan ProcessSummary, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// page[limit] -> PageLimit
+	pageSize_ := 1000
+	if len(o) > 0 && o[0].PageLimit != nil {
+		pageSize_ = int(*o[0].PageLimit)
+	}
+	if len(o) == 0 {
+		o = append(o, ListProcessesOptionalParameters{})
+	}
+	o[0].PageLimit = PtrInt32(int32(pageSize_))
+
+	items = make(chan ProcessSummary, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListProcessesRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listProcessesExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> page[cursor]
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*

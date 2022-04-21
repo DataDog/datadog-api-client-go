@@ -29,15 +29,24 @@ type apiCreateWebhooksIntegrationRequest struct {
 	body       *WebhooksIntegration
 }
 
+func (a *WebhooksIntegrationApiService) buildCreateWebhooksIntegrationRequest(ctx _context.Context, body WebhooksIntegration) (apiCreateWebhooksIntegrationRequest, error) {
+	req := apiCreateWebhooksIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateWebhooksIntegration Create a webhooks integration
  * Creates an endpoint with the name `<WEBHOOK_NAME>`.
  */
 func (a *WebhooksIntegrationApiService) CreateWebhooksIntegration(ctx _context.Context, body WebhooksIntegration) (WebhooksIntegration, *_nethttp.Response, error) {
-	req := apiCreateWebhooksIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateWebhooksIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegration
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createWebhooksIntegrationExecute(req)
@@ -188,15 +197,24 @@ type apiCreateWebhooksIntegrationCustomVariableRequest struct {
 	body       *WebhooksIntegrationCustomVariable
 }
 
+func (a *WebhooksIntegrationApiService) buildCreateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, body WebhooksIntegrationCustomVariable) (apiCreateWebhooksIntegrationCustomVariableRequest, error) {
+	req := apiCreateWebhooksIntegrationCustomVariableRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateWebhooksIntegrationCustomVariable Create a custom variable
  * Creates an endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
  */
 func (a *WebhooksIntegrationApiService) CreateWebhooksIntegrationCustomVariable(ctx _context.Context, body WebhooksIntegrationCustomVariable) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
-	req := apiCreateWebhooksIntegrationCustomVariableRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateWebhooksIntegrationCustomVariableRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createWebhooksIntegrationCustomVariableExecute(req)
@@ -347,15 +365,23 @@ type apiDeleteWebhooksIntegrationRequest struct {
 	webhookName string
 }
 
+func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiDeleteWebhooksIntegrationRequest, error) {
+	req := apiDeleteWebhooksIntegrationRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		webhookName: webhookName,
+	}
+	return req, nil
+}
+
 /*
  * DeleteWebhooksIntegration Delete a webhook
  * Deletes the endpoint with the name `<WEBHOOK NAME>`.
  */
 func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegration(ctx _context.Context, webhookName string) (*_nethttp.Response, error) {
-	req := apiDeleteWebhooksIntegrationRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		webhookName: webhookName,
+	req, err := a.buildDeleteWebhooksIntegrationRequest(ctx, webhookName)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteWebhooksIntegrationExecute(req)
@@ -481,15 +507,23 @@ type apiDeleteWebhooksIntegrationCustomVariableRequest struct {
 	customVariableName string
 }
 
+func (a *WebhooksIntegrationApiService) buildDeleteWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiDeleteWebhooksIntegrationCustomVariableRequest, error) {
+	req := apiDeleteWebhooksIntegrationCustomVariableRequest{
+		ApiService:         a,
+		ctx:                ctx,
+		customVariableName: customVariableName,
+	}
+	return req, nil
+}
+
 /*
  * DeleteWebhooksIntegrationCustomVariable Delete a custom variable
  * Deletes the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
  */
 func (a *WebhooksIntegrationApiService) DeleteWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (*_nethttp.Response, error) {
-	req := apiDeleteWebhooksIntegrationCustomVariableRequest{
-		ApiService:         a,
-		ctx:                ctx,
-		customVariableName: customVariableName,
+	req, err := a.buildDeleteWebhooksIntegrationCustomVariableRequest(ctx, customVariableName)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteWebhooksIntegrationCustomVariableExecute(req)
@@ -615,15 +649,24 @@ type apiGetWebhooksIntegrationRequest struct {
 	webhookName string
 }
 
+func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationRequest(ctx _context.Context, webhookName string) (apiGetWebhooksIntegrationRequest, error) {
+	req := apiGetWebhooksIntegrationRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		webhookName: webhookName,
+	}
+	return req, nil
+}
+
 /*
  * GetWebhooksIntegration Get a webhook integration
  * Gets the content of the webhook with the name `<WEBHOOK_NAME>`.
  */
 func (a *WebhooksIntegrationApiService) GetWebhooksIntegration(ctx _context.Context, webhookName string) (WebhooksIntegration, *_nethttp.Response, error) {
-	req := apiGetWebhooksIntegrationRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		webhookName: webhookName,
+	req, err := a.buildGetWebhooksIntegrationRequest(ctx, webhookName)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegration
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getWebhooksIntegrationExecute(req)
@@ -770,6 +813,15 @@ type apiGetWebhooksIntegrationCustomVariableRequest struct {
 	customVariableName string
 }
 
+func (a *WebhooksIntegrationApiService) buildGetWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string) (apiGetWebhooksIntegrationCustomVariableRequest, error) {
+	req := apiGetWebhooksIntegrationCustomVariableRequest{
+		ApiService:         a,
+		ctx:                ctx,
+		customVariableName: customVariableName,
+	}
+	return req, nil
+}
+
 /*
  * GetWebhooksIntegrationCustomVariable Get a custom variable
  * Shows the content of the custom variable with the name `<CUSTOM_VARIABLE_NAME>`.
@@ -778,10 +830,10 @@ type apiGetWebhooksIntegrationCustomVariableRequest struct {
  * response payload.
  */
 func (a *WebhooksIntegrationApiService) GetWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
-	req := apiGetWebhooksIntegrationCustomVariableRequest{
-		ApiService:         a,
-		ctx:                ctx,
-		customVariableName: customVariableName,
+	req, err := a.buildGetWebhooksIntegrationCustomVariableRequest(ctx, customVariableName)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getWebhooksIntegrationCustomVariableExecute(req)
@@ -929,16 +981,25 @@ type apiUpdateWebhooksIntegrationRequest struct {
 	body        *WebhooksIntegrationUpdateRequest
 }
 
-/*
- * UpdateWebhooksIntegration Update a webhook
- * Updates the endpoint with the name `<WEBHOOK_NAME>`.
- */
-func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegration(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationRequest(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (apiUpdateWebhooksIntegrationRequest, error) {
 	req := apiUpdateWebhooksIntegrationRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		webhookName: webhookName,
 		body:        &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateWebhooksIntegration Update a webhook
+ * Updates the endpoint with the name `<WEBHOOK_NAME>`.
+ */
+func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegration(ctx _context.Context, webhookName string, body WebhooksIntegrationUpdateRequest) (WebhooksIntegration, *_nethttp.Response, error) {
+	req, err := a.buildUpdateWebhooksIntegrationRequest(ctx, webhookName, body)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegration
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateWebhooksIntegrationExecute(req)
@@ -1101,16 +1162,25 @@ type apiUpdateWebhooksIntegrationCustomVariableRequest struct {
 	body               *WebhooksIntegrationCustomVariableUpdateRequest
 }
 
-/*
- * UpdateWebhooksIntegrationCustomVariable Update a custom variable
- * Updates the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
- */
-func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+func (a *WebhooksIntegrationApiService) buildUpdateWebhooksIntegrationCustomVariableRequest(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (apiUpdateWebhooksIntegrationCustomVariableRequest, error) {
 	req := apiUpdateWebhooksIntegrationCustomVariableRequest{
 		ApiService:         a,
 		ctx:                ctx,
 		customVariableName: customVariableName,
 		body:               &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateWebhooksIntegrationCustomVariable Update a custom variable
+ * Updates the endpoint with the name `<CUSTOM_VARIABLE_NAME>`.
+ */
+func (a *WebhooksIntegrationApiService) UpdateWebhooksIntegrationCustomVariable(ctx _context.Context, customVariableName string, body WebhooksIntegrationCustomVariableUpdateRequest) (WebhooksIntegrationCustomVariableResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateWebhooksIntegrationCustomVariableRequest(ctx, customVariableName, body)
+	if err != nil {
+		var localVarReturnValue WebhooksIntegrationCustomVariableResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateWebhooksIntegrationCustomVariableExecute(req)

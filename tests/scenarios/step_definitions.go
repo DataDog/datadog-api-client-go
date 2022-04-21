@@ -7,6 +7,7 @@
 package scenarios
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -105,7 +106,8 @@ func statusIs(t gobdd.StepTest, ctx gobdd.Context, expected int, text string) {
 	resp := GetResponse(ctx)
 	code, err := GetResponseStatusCode(resp)
 	if err != nil {
-		t.Fatal(err)
+		t.Logf("could not extract status code: %v", err)
+		return
 	}
 	if expected != code {
 		t.Fatalf("Expected %d got %d", expected, code)
@@ -267,6 +269,75 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 }
 
+func requestWithPaginationIsSent(t gobdd.StepTest, ctx gobdd.Context) {
+	// use WithPagination method
+	newWithPagination, err := ctx.GetString(requestNameKey{})
+	newWithPagination = newWithPagination + "WithPagination"
+	
+	c, err := ctx.Get(apiKey{})
+	if err != nil {
+		t.Error(err)
+	}
+	r := c.(reflect.Value)
+	f := r.MethodByName(newWithPagination)
+	if !f.IsValid() {
+		t.Errorf("invalid method name %s on API", newWithPagination)
+	}
+
+	ctx.Set(requestKey{}, f)
+	// call the WithPagination method
+	
+	request, in, err := getRequestBuilder(ctx)
+	if err != nil {
+		t.Error(err)
+	}
+
+	result := request.Call(in)
+	ctx.Set(responseKey{}, result)
+
+	resp := result[0].Interface()
+	if resp == nil {
+		return
+	}
+
+	if result[2].Interface() != nil {
+		t.Errorf("unexpected error: %v", result[2].Interface())
+	}
+	var responseJSON interface{}
+	if err != nil {
+		version := GetVersion(ctx)
+		if version == "v1" {
+			err := err.(v1.GenericOpenAPIError)
+			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+				responseJSON = string(err.Body())
+			}
+		} else {
+			err := err.(v2.GenericOpenAPIError)
+			if newErr := json.Unmarshal(err.Body(), &responseJSON); newErr != nil {
+				responseJSON = string(err.Body())
+			}
+		}
+	} else {
+		// Store the unmarshalled JSON in context
+		items, err := readChannel(resp)
+		if err != nil {
+			t.Errorf("Unable to read response channel: %v", err)
+		}
+		buf := &bytes.Buffer{}
+		if err := json.NewEncoder(buf).Encode(items); err != nil {
+			t.Errorf("Unable to decode response object to JSON: %v", err)
+		}
+		if err := json.Unmarshal(buf.Bytes(), &responseJSON); err != nil {
+			t.Errorf("Unable to decode response object to JSON: %v", err)
+		}
+		
+		if err != nil {
+			t.Errorf("Unable to decode response object to JSON: %v", err)
+		}
+	}
+	ctx.Set(jsonResponseKey{}, responseJSON)
+}
+
 func body(t gobdd.StepTest, ctx gobdd.Context, body string) {
 	GetRequestParameters(ctx)["body"] = Templated(t, GetData(ctx), body)
 	pathCount, _ := ctx.Get(pathParamCountKey{})
@@ -345,6 +416,18 @@ func expectLengthEqual(t gobdd.StepTest, ctx gobdd.Context, responsePath string,
 	}
 }
 
+func expectNumberOfItems(t gobdd.StepTest, ctx gobdd.Context, responseLength string) {
+	lengthInt, err := strconv.Atoi(responseLength)
+	if err != nil {
+		t.Fatalf("assertion length value is not a number %s: %v", responseLength, err)
+	}
+	responseValue := GetJSONResponse(ctx)
+	cmp := is.Len(responseValue, lengthInt)()
+	if !cmp.Success() {
+		t.Errorf("%v", cmp)
+	}
+}
+
 func expectFalse(t gobdd.StepTest, ctx gobdd.Context, responsePath string) {
 	responseValue, err := tests.LookupStringI(GetJSONResponse(ctx), CamelToSnakeCase(responsePath))
 	if err != nil {
@@ -366,12 +449,14 @@ func ConfigureSteps(s *gobdd.Suite) {
 		`request contains "([^"]+)" parameter from "([^"]+)"`:    addParameterFrom,
 		`request contains "([^"]+)" parameter with value (.+)`:   addParameterWithValue,
 		`the request is sent`:                                    requestIsSent,
+		`the request with pagination is sent`:                    requestWithPaginationIsSent,
 		`the response status is (\d+) (.*)`:                      statusIs,
 		`body from file "(.*)"`:                                  bodyFromFile,
 		`body with value (.*)`:                                   body,
 		`the response "([^"]+)" is equal to (.*)`:                expectEqual,
 		`the response "([^"]+)" has the same value as "([^"]+)"`: expectEqualValue,
 		`the response "([^"]+)" has length ([0-9]+)`:             expectLengthEqual,
+		`the response has ([0-9]+) items`:                        expectNumberOfItems,
 		`the response "([^"]+)" is false`:                        expectFalse,
 	}
 	for expr, step := range steps {

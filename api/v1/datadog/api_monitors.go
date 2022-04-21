@@ -29,15 +29,24 @@ type apiCheckCanDeleteMonitorRequest struct {
 	monitorIds *[]int64
 }
 
+func (a *MonitorsApiService) buildCheckCanDeleteMonitorRequest(ctx _context.Context, monitorIds []int64) (apiCheckCanDeleteMonitorRequest, error) {
+	req := apiCheckCanDeleteMonitorRequest{
+		ApiService: a,
+		ctx:        ctx,
+		monitorIds: &monitorIds,
+	}
+	return req, nil
+}
+
 /*
  * CheckCanDeleteMonitor Check if a monitor can be deleted
  * Check if the given monitors can be deleted.
  */
 func (a *MonitorsApiService) CheckCanDeleteMonitor(ctx _context.Context, monitorIds []int64) (CheckCanDeleteMonitorResponse, *_nethttp.Response, error) {
-	req := apiCheckCanDeleteMonitorRequest{
-		ApiService: a,
-		ctx:        ctx,
-		monitorIds: &monitorIds,
+	req, err := a.buildCheckCanDeleteMonitorRequest(ctx, monitorIds)
+	if err != nil {
+		var localVarReturnValue CheckCanDeleteMonitorResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.checkCanDeleteMonitorExecute(req)
@@ -185,6 +194,15 @@ type apiCreateMonitorRequest struct {
 	ctx        _context.Context
 	ApiService *MonitorsApiService
 	body       *Monitor
+}
+
+func (a *MonitorsApiService) buildCreateMonitorRequest(ctx _context.Context, body Monitor) (apiCreateMonitorRequest, error) {
+	req := apiCreateMonitorRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
 }
 
 /*
@@ -363,10 +381,10 @@ type apiCreateMonitorRequest struct {
  * - **`#`** an integer or decimal number used to set the threshold.
  */
 func (a *MonitorsApiService) CreateMonitor(ctx _context.Context, body Monitor) (Monitor, *_nethttp.Response, error) {
-	req := apiCreateMonitorRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateMonitorRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue Monitor
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createMonitorExecute(req)
@@ -531,11 +549,7 @@ func (r *DeleteMonitorOptionalParameters) WithForce(force string) *DeleteMonitor
 	return r
 }
 
-/*
- * DeleteMonitor Delete a monitor
- * Delete the specified monitor
- */
-func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildDeleteMonitorRequest(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (apiDeleteMonitorRequest, error) {
 	req := apiDeleteMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -543,12 +557,24 @@ func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue DeletedMonitor
-		return localVarReturnValue, nil, reportError("only one argument of type DeleteMonitorOptionalParameters is allowed")
+		return req, reportError("only one argument of type DeleteMonitorOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.force = o[0].Force
+	}
+	return req, nil
+}
+
+/*
+ * DeleteMonitor Delete a monitor
+ * Delete the specified monitor
+ */
+func (a *MonitorsApiService) DeleteMonitor(ctx _context.Context, monitorId int64, o ...DeleteMonitorOptionalParameters) (DeletedMonitor, *_nethttp.Response, error) {
+	req, err := a.buildDeleteMonitorRequest(ctx, monitorId, o...)
+	if err != nil {
+		var localVarReturnValue DeletedMonitor
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteMonitorExecute(req)
@@ -722,11 +748,7 @@ func (r *GetMonitorOptionalParameters) WithGroupStates(groupStates string) *GetM
 	return r
 }
 
-/*
- * GetMonitor Get a monitor's details
- * Get details about the specified monitor from your organization.
- */
-func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildGetMonitorRequest(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (apiGetMonitorRequest, error) {
 	req := apiGetMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -734,12 +756,24 @@ func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue Monitor
-		return localVarReturnValue, nil, reportError("only one argument of type GetMonitorOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetMonitorOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.groupStates = o[0].GroupStates
+	}
+	return req, nil
+}
+
+/*
+ * GetMonitor Get a monitor's details
+ * Get details about the specified monitor from your organization.
+ */
+func (a *MonitorsApiService) GetMonitor(ctx _context.Context, monitorId int64, o ...GetMonitorOptionalParameters) (Monitor, *_nethttp.Response, error) {
+	req, err := a.buildGetMonitorRequest(ctx, monitorId, o...)
+	if err != nil {
+		var localVarReturnValue Monitor
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getMonitorExecute(req)
@@ -944,19 +978,14 @@ func (r *ListMonitorsOptionalParameters) WithPageSize(pageSize int32) *ListMonit
 	return r
 }
 
-/*
- * ListMonitors Get all monitor details
- * Get details about the specified monitor from your organization.
- */
-func (a *MonitorsApiService) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildListMonitorsRequest(ctx _context.Context, o ...ListMonitorsOptionalParameters) (apiListMonitorsRequest, error) {
 	req := apiListMonitorsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue []Monitor
-		return localVarReturnValue, nil, reportError("only one argument of type ListMonitorsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListMonitorsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -968,6 +997,19 @@ func (a *MonitorsApiService) ListMonitors(ctx _context.Context, o ...ListMonitor
 		req.idOffset = o[0].IdOffset
 		req.page = o[0].Page
 		req.pageSize = o[0].PageSize
+	}
+	return req, nil
+}
+
+/*
+ * ListMonitors Get all monitor details
+ * Get details about the specified monitor from your organization.
+ */
+func (a *MonitorsApiService) ListMonitors(ctx _context.Context, o ...ListMonitorsOptionalParameters) ([]Monitor, *_nethttp.Response, error) {
+	req, err := a.buildListMonitorsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue []Monitor
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listMonitorsExecute(req)
@@ -1158,19 +1200,14 @@ func (r *SearchMonitorGroupsOptionalParameters) WithSort(sort string) *SearchMon
 	return r
 }
 
-/*
- * SearchMonitorGroups Monitors group search
- * Search and filter your monitor groups details.
- */
-func (a *MonitorsApiService) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildSearchMonitorGroupsRequest(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (apiSearchMonitorGroupsRequest, error) {
 	req := apiSearchMonitorGroupsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue MonitorGroupSearchResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchMonitorGroupsOptionalParameters is allowed")
+		return req, reportError("only one argument of type SearchMonitorGroupsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1178,6 +1215,19 @@ func (a *MonitorsApiService) SearchMonitorGroups(ctx _context.Context, o ...Sear
 		req.page = o[0].Page
 		req.perPage = o[0].PerPage
 		req.sort = o[0].Sort
+	}
+	return req, nil
+}
+
+/*
+ * SearchMonitorGroups Monitors group search
+ * Search and filter your monitor groups details.
+ */
+func (a *MonitorsApiService) SearchMonitorGroups(ctx _context.Context, o ...SearchMonitorGroupsOptionalParameters) (MonitorGroupSearchResponse, *_nethttp.Response, error) {
+	req, err := a.buildSearchMonitorGroupsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue MonitorGroupSearchResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.searchMonitorGroupsExecute(req)
@@ -1356,19 +1406,14 @@ func (r *SearchMonitorsOptionalParameters) WithSort(sort string) *SearchMonitors
 	return r
 }
 
-/*
- * SearchMonitors Monitors search
- * Search and filter your monitors details.
- */
-func (a *MonitorsApiService) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildSearchMonitorsRequest(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (apiSearchMonitorsRequest, error) {
 	req := apiSearchMonitorsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue MonitorSearchResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchMonitorsOptionalParameters is allowed")
+		return req, reportError("only one argument of type SearchMonitorsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1376,6 +1421,19 @@ func (a *MonitorsApiService) SearchMonitors(ctx _context.Context, o ...SearchMon
 		req.page = o[0].Page
 		req.perPage = o[0].PerPage
 		req.sort = o[0].Sort
+	}
+	return req, nil
+}
+
+/*
+ * SearchMonitors Monitors search
+ * Search and filter your monitors details.
+ */
+func (a *MonitorsApiService) SearchMonitors(ctx _context.Context, o ...SearchMonitorsOptionalParameters) (MonitorSearchResponse, *_nethttp.Response, error) {
+	req, err := a.buildSearchMonitorsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue MonitorSearchResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.searchMonitorsExecute(req)
@@ -1524,16 +1582,25 @@ type apiUpdateMonitorRequest struct {
 	body       *MonitorUpdateRequest
 }
 
-/*
- * UpdateMonitor Edit a monitor
- * Edit the specified monitor.
- */
-func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildUpdateMonitorRequest(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (apiUpdateMonitorRequest, error) {
 	req := apiUpdateMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
 		monitorId:  monitorId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateMonitor Edit a monitor
+ * Edit the specified monitor.
+ */
+func (a *MonitorsApiService) UpdateMonitor(ctx _context.Context, monitorId int64, body MonitorUpdateRequest) (Monitor, *_nethttp.Response, error) {
+	req, err := a.buildUpdateMonitorRequest(ctx, monitorId, body)
+	if err != nil {
+		var localVarReturnValue Monitor
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateMonitorExecute(req)
@@ -1706,16 +1773,25 @@ type apiValidateExistingMonitorRequest struct {
 	body       *Monitor
 }
 
-/*
- * ValidateExistingMonitor Validate an existing monitor
- * Validate the monitor provided in the request.
- */
-func (a *MonitorsApiService) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+func (a *MonitorsApiService) buildValidateExistingMonitorRequest(ctx _context.Context, monitorId int64, body Monitor) (apiValidateExistingMonitorRequest, error) {
 	req := apiValidateExistingMonitorRequest{
 		ApiService: a,
 		ctx:        ctx,
 		monitorId:  monitorId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * ValidateExistingMonitor Validate an existing monitor
+ * Validate the monitor provided in the request.
+ */
+func (a *MonitorsApiService) ValidateExistingMonitor(ctx _context.Context, monitorId int64, body Monitor) (interface{}, *_nethttp.Response, error) {
+	req, err := a.buildValidateExistingMonitorRequest(ctx, monitorId, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.validateExistingMonitorExecute(req)
@@ -1867,15 +1943,24 @@ type apiValidateMonitorRequest struct {
 	body       *Monitor
 }
 
+func (a *MonitorsApiService) buildValidateMonitorRequest(ctx _context.Context, body Monitor) (apiValidateMonitorRequest, error) {
+	req := apiValidateMonitorRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * ValidateMonitor Validate a monitor
  * Validate the monitor provided in the request.
  */
 func (a *MonitorsApiService) ValidateMonitor(ctx _context.Context, body Monitor) (interface{}, *_nethttp.Response, error) {
-	req := apiValidateMonitorRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildValidateMonitorRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.validateMonitorExecute(req)

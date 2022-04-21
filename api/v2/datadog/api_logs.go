@@ -29,15 +29,24 @@ type apiAggregateLogsRequest struct {
 	body       *LogsAggregateRequest
 }
 
+func (a *LogsApiService) buildAggregateLogsRequest(ctx _context.Context, body LogsAggregateRequest) (apiAggregateLogsRequest, error) {
+	req := apiAggregateLogsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * AggregateLogs Aggregate events
  * The API endpoint to aggregate events into buckets and compute metrics and timeseries.
  */
 func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
-	req := apiAggregateLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildAggregateLogsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsAggregateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.aggregateLogsExecute(req)
@@ -201,6 +210,22 @@ func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOpt
 	return r
 }
 
+func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, o ...ListLogsOptionalParameters) (apiListLogsRequest, error) {
+	req := apiListLogsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type ListLogsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.body = o[0].Body
+	}
+	return req, nil
+}
+
 /*
  * ListLogs Search logs
  * List endpoint returns logs that match a log search query.
@@ -216,21 +241,82 @@ func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOpt
  * [2]: https://docs.datadoghq.com/logs/archives
  */
 func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-	req := apiListLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildListLogsRequest(ctx, o...)
+	if err != nil {
 		var localVarReturnValue LogsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListLogsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLogsExecute(req)
+}
+
+/*
+ * ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
+ */
+func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (items chan Log, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// body.page.limit -> BodyPageLimit
+	pageSize_ := 10
+	if len(o) > 0 && o[0].Body.Page.Limit != nil {
+		pageSize_ = int(*o[0].Body.Page.Limit)
+	}
+	if len(o) == 0 {
+		o = append(o, ListLogsOptionalParameters{})
+	}
+	o[0].Body.Page.Limit = PtrInt32(int32(pageSize_))
+
+	items = make(chan Log, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListLogsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listLogsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> body.page.cursor
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*
@@ -424,6 +510,28 @@ func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogs
 	return r
 }
 
+func (a *LogsApiService) buildListLogsGetRequest(ctx _context.Context, o ...ListLogsGetOptionalParameters) (apiListLogsGetRequest, error) {
+	req := apiListLogsGetRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type ListLogsGetOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterQuery = o[0].FilterQuery
+		req.filterIndex = o[0].FilterIndex
+		req.filterFrom = o[0].FilterFrom
+		req.filterTo = o[0].FilterTo
+		req.sort = o[0].Sort
+		req.pageCursor = o[0].PageCursor
+		req.pageLimit = o[0].PageLimit
+	}
+	return req, nil
+}
+
 /*
  * ListLogsGet Get a list of logs
  * List endpoint returns logs that match a log search query.
@@ -439,27 +547,82 @@ func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogs
  * [2]: https://docs.datadoghq.com/logs/archives
  */
 func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
-	req := apiListLogsGetRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildListLogsGetRequest(ctx, o...)
+	if err != nil {
 		var localVarReturnValue LogsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListLogsGetOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.filterQuery = o[0].FilterQuery
-		req.filterIndex = o[0].FilterIndex
-		req.filterFrom = o[0].FilterFrom
-		req.filterTo = o[0].FilterTo
-		req.sort = o[0].Sort
-		req.pageCursor = o[0].PageCursor
-		req.pageLimit = o[0].PageLimit
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLogsGetExecute(req)
+}
+
+/*
+ * ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
+ */
+func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (items chan Log, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// page[limit] -> PageLimit
+	pageSize_ := 10
+	if len(o) > 0 && o[0].PageLimit != nil {
+		pageSize_ = int(*o[0].PageLimit)
+	}
+	if len(o) == 0 {
+		o = append(o, ListLogsGetOptionalParameters{})
+	}
+	o[0].PageLimit = PtrInt32(int32(pageSize_))
+
+	items = make(chan Log, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListLogsGetRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listLogsGetExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> page[cursor]
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*
@@ -633,6 +796,24 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 	return r
 }
 
+func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
+	req := apiSubmitLogRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.contentEncoding = o[0].ContentEncoding
+		req.ddtags = o[0].Ddtags
+	}
+	return req, nil
+}
+
 /*
  * SubmitLog Send logs
  * Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
@@ -660,20 +841,10 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
  * - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
  */
 func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
-	req := apiSubmitLogRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildSubmitLogRequest(ctx, body, o...)
+	if err != nil {
 		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
-		req.ddtags = o[0].Ddtags
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.submitLogExecute(req)

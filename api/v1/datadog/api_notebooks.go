@@ -29,15 +29,24 @@ type apiCreateNotebookRequest struct {
 	body       *NotebookCreateRequest
 }
 
+func (a *NotebooksApiService) buildCreateNotebookRequest(ctx _context.Context, body NotebookCreateRequest) (apiCreateNotebookRequest, error) {
+	req := apiCreateNotebookRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateNotebook Create a notebook
  * Create a notebook using the specified options.
  */
 func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
-	req := apiCreateNotebookRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateNotebookRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue NotebookResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createNotebookExecute(req)
@@ -188,15 +197,23 @@ type apiDeleteNotebookRequest struct {
 	notebookId int64
 }
 
+func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, notebookId int64) (apiDeleteNotebookRequest, error) {
+	req := apiDeleteNotebookRequest{
+		ApiService: a,
+		ctx:        ctx,
+		notebookId: notebookId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteNotebook Delete a notebook
  * Delete a notebook using the specified ID.
  */
 func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
-	req := apiDeleteNotebookRequest{
-		ApiService: a,
-		ctx:        ctx,
-		notebookId: notebookId,
+	req, err := a.buildDeleteNotebookRequest(ctx, notebookId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteNotebookExecute(req)
@@ -332,15 +349,24 @@ type apiGetNotebookRequest struct {
 	notebookId int64
 }
 
+func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, notebookId int64) (apiGetNotebookRequest, error) {
+	req := apiGetNotebookRequest{
+		ApiService: a,
+		ctx:        ctx,
+		notebookId: notebookId,
+	}
+	return req, nil
+}
+
 /*
  * GetNotebook Get a notebook
  * Get a notebook using the specified notebook ID.
  */
 func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
-	req := apiGetNotebookRequest{
-		ApiService: a,
-		ctx:        ctx,
-		notebookId: notebookId,
+	req, err := a.buildGetNotebookRequest(ctx, notebookId)
+	if err != nil {
+		var localVarReturnValue NotebookResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getNotebookExecute(req)
@@ -554,20 +580,14 @@ func (r *ListNotebooksOptionalParameters) WithType(type_ string) *ListNotebooksO
 	return r
 }
 
-/*
- * ListNotebooks Get all notebooks
- * Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
- * `name` or author `handle`.
- */
-func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
+func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o ...ListNotebooksOptionalParameters) (apiListNotebooksRequest, error) {
 	req := apiListNotebooksRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue NotebooksResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListNotebooksOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListNotebooksOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -581,6 +601,20 @@ func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNoteb
 		req.includeCells = o[0].IncludeCells
 		req.isTemplate = o[0].IsTemplate
 		req.type_ = o[0].Type
+	}
+	return req, nil
+}
+
+/*
+ * ListNotebooks Get all notebooks
+ * Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
+ * `name` or author `handle`.
+ */
+func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
+	req, err := a.buildListNotebooksRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue NotebooksResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listNotebooksExecute(req)
@@ -747,16 +781,25 @@ type apiUpdateNotebookRequest struct {
 	body       *NotebookUpdateRequest
 }
 
-/*
- * UpdateNotebook Update a notebook
- * Update a notebook using the specified ID.
- */
-func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
+func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (apiUpdateNotebookRequest, error) {
 	req := apiUpdateNotebookRequest{
 		ApiService: a,
 		ctx:        ctx,
 		notebookId: notebookId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateNotebook Update a notebook
+ * Update a notebook using the specified ID.
+ */
+func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateNotebookRequest(ctx, notebookId, body)
+	if err != nil {
+		var localVarReturnValue NotebookResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateNotebookExecute(req)

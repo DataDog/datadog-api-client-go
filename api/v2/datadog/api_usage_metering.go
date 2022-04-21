@@ -43,11 +43,7 @@ func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.
 	return r
 }
 
-/*
- * GetUsageObservabilityPipelines Get hourly usage for Observability Pipelines
- * Get hourly usage for Observability Pipelines.
- */
-func (a *UsageMeteringApiService) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApiService) buildGetUsageObservabilityPipelinesRequest(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (apiGetUsageObservabilityPipelinesRequest, error) {
 	req := apiGetUsageObservabilityPipelinesRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -55,12 +51,24 @@ func (a *UsageMeteringApiService) GetUsageObservabilityPipelines(ctx _context.Co
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue UsageObservabilityPipelinesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageObservabilityPipelinesOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetUsageObservabilityPipelinesOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.endHr = o[0].EndHr
+	}
+	return req, nil
+}
+
+/*
+ * GetUsageObservabilityPipelines Get hourly usage for Observability Pipelines
+ * Get hourly usage for Observability Pipelines.
+ */
+func (a *UsageMeteringApiService) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetUsageObservabilityPipelinesRequest(ctx, startHr, o...)
+	if err != nil {
+		var localVarReturnValue UsageObservabilityPipelinesResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getUsageObservabilityPipelinesExecute(req)

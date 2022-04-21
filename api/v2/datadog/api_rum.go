@@ -29,15 +29,24 @@ type apiAggregateRUMEventsRequest struct {
 	body       *RUMAggregateRequest
 }
 
+func (a *RUMApiService) buildAggregateRUMEventsRequest(ctx _context.Context, body RUMAggregateRequest) (apiAggregateRUMEventsRequest, error) {
+	req := apiAggregateRUMEventsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * AggregateRUMEvents Aggregate RUM events
  * The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
  */
 func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
-	req := apiAggregateRUMEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildAggregateRUMEventsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue RUMAnalyticsAggregateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.aggregateRUMEventsExecute(req)
@@ -231,24 +240,14 @@ func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRU
 	return r
 }
 
-/*
- * ListRUMEvents Get a list of RUM events
- * List endpoint returns events that match a RUM search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to see your latest RUM events.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
-func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
+func (a *RUMApiService) buildListRUMEventsRequest(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (apiListRUMEventsRequest, error) {
 	req := apiListRUMEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue RUMEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListRUMEventsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -259,8 +258,95 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
 		req.pageCursor = o[0].PageCursor
 		req.pageLimit = o[0].PageLimit
 	}
+	return req, nil
+}
+
+/*
+ * ListRUMEvents Get a list of RUM events
+ * List endpoint returns events that match a RUM search query.
+ * [Results are paginated][1].
+ *
+ * Use this endpoint to see your latest RUM events.
+ *
+ * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
+ */
+func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRUMEventsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue RUMEventsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listRUMEventsExecute(req)
+}
+
+/*
+ * ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
+ */
+func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (items chan RUMEvent, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// page[limit] -> PageLimit
+	pageSize_ := 10
+	if len(o) > 0 && o[0].PageLimit != nil {
+		pageSize_ = int(*o[0].PageLimit)
+	}
+	if len(o) == 0 {
+		o = append(o, ListRUMEventsOptionalParameters{})
+	}
+	o[0].PageLimit = PtrInt32(int32(pageSize_))
+
+	items = make(chan RUMEvent, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListRUMEventsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listRUMEventsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> page[cursor]
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*
@@ -411,6 +497,15 @@ type apiSearchRUMEventsRequest struct {
 	body       *RUMSearchEventsRequest
 }
 
+func (a *RUMApiService) buildSearchRUMEventsRequest(ctx _context.Context, body RUMSearchEventsRequest) (apiSearchRUMEventsRequest, error) {
+	req := apiSearchRUMEventsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * SearchRUMEvents Search RUM events
  * List endpoint returns RUM events that match a RUM search query.
@@ -421,13 +516,76 @@ type apiSearchRUMEventsRequest struct {
  * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
  */
 func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
-	req := apiSearchRUMEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildSearchRUMEventsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue RUMEventsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.searchRUMEventsExecute(req)
+}
+
+/*
+ * SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
+ */
+func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (items chan RUMEvent, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// body.page.limit -> BodyPageLimit
+	pageSize_ := 10
+	body.Page.Limit = PtrInt32(int32(pageSize_))
+
+	items = make(chan RUMEvent, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildSearchRUMEventsRequest(ctx, body)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.searchRUMEventsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> body.page.cursor
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*

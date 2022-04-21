@@ -58,6 +58,9 @@ def cli(input, output):
     env.globals["openapi"] = spec
     env.globals["package_name"] = PACKAGE_NAME
     env.globals["version"] = version
+    env.globals["get_default"] = openapi.get_default
+    env.globals["get_container"] = openapi.get_container
+    env.globals["get_type_at_path"] = openapi.get_type_at_path
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")

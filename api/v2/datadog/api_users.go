@@ -29,15 +29,24 @@ type apiCreateServiceAccountRequest struct {
 	body       *ServiceAccountCreateRequest
 }
 
+func (a *UsersApiService) buildCreateServiceAccountRequest(ctx _context.Context, body ServiceAccountCreateRequest) (apiCreateServiceAccountRequest, error) {
+	req := apiCreateServiceAccountRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateServiceAccount Create a service account
  * Create a service account for your organization.
  */
 func (a *UsersApiService) CreateServiceAccount(ctx _context.Context, body ServiceAccountCreateRequest) (UserResponse, *_nethttp.Response, error) {
-	req := apiCreateServiceAccountRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateServiceAccountRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createServiceAccountExecute(req)
@@ -188,15 +197,24 @@ type apiCreateUserRequest struct {
 	body       *UserCreateRequest
 }
 
+func (a *UsersApiService) buildCreateUserRequest(ctx _context.Context, body UserCreateRequest) (apiCreateUserRequest, error) {
+	req := apiCreateUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateUser Create a user
  * Create a user for your organization.
  */
 func (a *UsersApiService) CreateUser(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
-	req := apiCreateUserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateUserRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createUserExecute(req)
@@ -347,16 +365,24 @@ type apiDisableUserRequest struct {
 	userId     string
 }
 
+func (a *UsersApiService) buildDisableUserRequest(ctx _context.Context, userId string) (apiDisableUserRequest, error) {
+	req := apiDisableUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userId:     userId,
+	}
+	return req, nil
+}
+
 /*
  * DisableUser Disable a user
  * Disable a user. Can only be used with an application key belonging
  * to an administrator user.
  */
 func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
-	req := apiDisableUserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+	req, err := a.buildDisableUserRequest(ctx, userId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.disableUserExecute(req)
@@ -482,15 +508,24 @@ type apiGetInvitationRequest struct {
 	userInvitationUuid string
 }
 
+func (a *UsersApiService) buildGetInvitationRequest(ctx _context.Context, userInvitationUuid string) (apiGetInvitationRequest, error) {
+	req := apiGetInvitationRequest{
+		ApiService:         a,
+		ctx:                ctx,
+		userInvitationUuid: userInvitationUuid,
+	}
+	return req, nil
+}
+
 /*
  * GetInvitation Get a user invitation
  * Returns a single user invitation by its UUID.
  */
 func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
-	req := apiGetInvitationRequest{
-		ApiService:         a,
-		ctx:                ctx,
-		userInvitationUuid: userInvitationUuid,
+	req, err := a.buildGetInvitationRequest(ctx, userInvitationUuid)
+	if err != nil {
+		var localVarReturnValue UserInvitationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getInvitationExecute(req)
@@ -627,15 +662,24 @@ type apiGetUserRequest struct {
 	userId     string
 }
 
+func (a *UsersApiService) buildGetUserRequest(ctx _context.Context, userId string) (apiGetUserRequest, error) {
+	req := apiGetUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userId:     userId,
+	}
+	return req, nil
+}
+
 /*
  * GetUser Get user details
  * Get a user in the organization specified by the user’s `user_id`.
  */
 func (a *UsersApiService) GetUser(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
-	req := apiGetUserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+	req, err := a.buildGetUserRequest(ctx, userId)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getUserExecute(req)
@@ -772,16 +816,25 @@ type apiListUserOrganizationsRequest struct {
 	userId     string
 }
 
+func (a *UsersApiService) buildListUserOrganizationsRequest(ctx _context.Context, userId string) (apiListUserOrganizationsRequest, error) {
+	req := apiListUserOrganizationsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userId:     userId,
+	}
+	return req, nil
+}
+
 /*
  * ListUserOrganizations Get a user organization
  * Get a user organization. Returns the user information and all organizations
  * joined by this user.
  */
 func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
-	req := apiListUserOrganizationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+	req, err := a.buildListUserOrganizationsRequest(ctx, userId)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listUserOrganizationsExecute(req)
@@ -918,16 +971,25 @@ type apiListUserPermissionsRequest struct {
 	userId     string
 }
 
+func (a *UsersApiService) buildListUserPermissionsRequest(ctx _context.Context, userId string) (apiListUserPermissionsRequest, error) {
+	req := apiListUserPermissionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userId:     userId,
+	}
+	return req, nil
+}
+
 /*
  * ListUserPermissions Get a user permissions
  * Get a user permission set. Returns a list of the user’s permissions
  * granted by the associated user's roles.
  */
 func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
-	req := apiListUserPermissionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
+	req, err := a.buildListUserPermissionsRequest(ctx, userId)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listUserPermissionsExecute(req)
@@ -1107,20 +1169,14 @@ func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *Lis
 	return r
 }
 
-/*
- * ListUsers List all users
- * Get the list of all users in the organization. This list includes
- * all users even if they are deactivated or unverified.
- */
-func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildListUsersRequest(ctx _context.Context, o ...ListUsersOptionalParameters) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue UsersResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListUsersOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListUsersOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1130,6 +1186,20 @@ func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptional
 		req.sortDir = o[0].SortDir
 		req.filter = o[0].Filter
 		req.filterStatus = o[0].FilterStatus
+	}
+	return req, nil
+}
+
+/*
+ * ListUsers List all users
+ * Get the list of all users in the organization. This list includes
+ * all users even if they are deactivated or unverified.
+ */
+func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildListUsersRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listUsersExecute(req)
@@ -1283,15 +1353,24 @@ type apiSendInvitationsRequest struct {
 	body       *UserInvitationsRequest
 }
 
+func (a *UsersApiService) buildSendInvitationsRequest(ctx _context.Context, body UserInvitationsRequest) (apiSendInvitationsRequest, error) {
+	req := apiSendInvitationsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * SendInvitations Send invitation emails
  * Sends emails to one or more users inviting them to join the organization.
  */
 func (a *UsersApiService) SendInvitations(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
-	req := apiSendInvitationsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildSendInvitationsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue UserInvitationsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.sendInvitationsExecute(req)
@@ -1443,17 +1522,26 @@ type apiUpdateUserRequest struct {
 	body       *UserUpdateRequest
 }
 
+func (a *UsersApiService) buildUpdateUserRequest(ctx _context.Context, userId string, body UserUpdateRequest) (apiUpdateUserRequest, error) {
+	req := apiUpdateUserRequest{
+		ApiService: a,
+		ctx:        ctx,
+		userId:     userId,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateUser Update a user
  * Edit a user. Can only be used with an application key belonging
  * to an administrator user.
  */
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
-	req := apiUpdateUserRequest{
-		ApiService: a,
-		ctx:        ctx,
-		userId:     userId,
-		body:       &body,
+	req, err := a.buildUpdateUserRequest(ctx, userId, body)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateUserExecute(req)

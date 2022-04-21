@@ -27,14 +27,23 @@ type apiGetIPRangesRequest struct {
 	ApiService *IPRangesApiService
 }
 
+func (a *IPRangesApiService) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
+	req := apiGetIPRangesRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * GetIPRanges List IP Ranges
  * Get information about Datadog IP ranges.
  */
 func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
-	req := apiGetIPRangesRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildGetIPRangesRequest(ctx)
+	if err != nil {
+		var localVarReturnValue IPRanges
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getIPRangesExecute(req)

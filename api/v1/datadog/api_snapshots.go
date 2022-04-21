@@ -61,12 +61,7 @@ func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSn
 	return r
 }
 
-/*
- * GetGraphSnapshot Take graph snapshots
- * Take graph snapshots.
- * **Note**: When a snapshot is created, there is some delay before it is available.
- */
-func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
+func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
 	req := apiGetGraphSnapshotRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -75,8 +70,7 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue GraphSnapshot
-		return localVarReturnValue, nil, reportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -84,6 +78,20 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64
 		req.eventQuery = o[0].EventQuery
 		req.graphDef = o[0].GraphDef
 		req.title = o[0].Title
+	}
+	return req, nil
+}
+
+/*
+ * GetGraphSnapshot Take graph snapshots
+ * Take graph snapshots.
+ * **Note**: When a snapshot is created, there is some delay before it is available.
+ */
+func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
+	req, err := a.buildGetGraphSnapshotRequest(ctx, start, end, o...)
+	if err != nil {
+		var localVarReturnValue GraphSnapshot
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getGraphSnapshotExecute(req)

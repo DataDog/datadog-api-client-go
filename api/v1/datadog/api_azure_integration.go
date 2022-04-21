@@ -28,6 +28,15 @@ type apiCreateAzureIntegrationRequest struct {
 	body       *AzureAccount
 }
 
+func (a *AzureIntegrationApiService) buildCreateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiCreateAzureIntegrationRequest, error) {
+	req := apiCreateAzureIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateAzureIntegration Create an Azure integration
  * Create a Datadog-Azure integration.
@@ -39,10 +48,10 @@ type apiCreateAzureIntegrationRequest struct {
  * current configuration with the new one sent to your Datadog organization.
  */
 func (a *AzureIntegrationApiService) CreateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiCreateAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateAzureIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createAzureIntegrationExecute(req)
@@ -193,15 +202,24 @@ type apiDeleteAzureIntegrationRequest struct {
 	body       *AzureAccount
 }
 
+func (a *AzureIntegrationApiService) buildDeleteAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiDeleteAzureIntegrationRequest, error) {
+	req := apiDeleteAzureIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * DeleteAzureIntegration Delete an Azure integration
  * Delete a given Datadog-Azure integration from your Datadog account.
  */
 func (a *AzureIntegrationApiService) DeleteAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiDeleteAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildDeleteAzureIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteAzureIntegrationExecute(req)
@@ -351,14 +369,23 @@ type apiListAzureIntegrationRequest struct {
 	ApiService *AzureIntegrationApiService
 }
 
+func (a *AzureIntegrationApiService) buildListAzureIntegrationRequest(ctx _context.Context) (apiListAzureIntegrationRequest, error) {
+	req := apiListAzureIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListAzureIntegration List all Azure integrations
  * List all Datadog-Azure integrations configured in your Datadog account.
  */
 func (a *AzureIntegrationApiService) ListAzureIntegration(ctx _context.Context) ([]AzureAccount, *_nethttp.Response, error) {
-	req := apiListAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListAzureIntegrationRequest(ctx)
+	if err != nil {
+		var localVarReturnValue []AzureAccount
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listAzureIntegrationExecute(req)
@@ -494,15 +521,24 @@ type apiUpdateAzureHostFiltersRequest struct {
 	body       *AzureAccount
 }
 
+func (a *AzureIntegrationApiService) buildUpdateAzureHostFiltersRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureHostFiltersRequest, error) {
+	req := apiUpdateAzureHostFiltersRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateAzureHostFilters Update Azure integration host filters
  * Update the defined list of host filters for a given Datadog-Azure integration.
  */
 func (a *AzureIntegrationApiService) UpdateAzureHostFilters(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiUpdateAzureHostFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildUpdateAzureHostFiltersRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateAzureHostFiltersExecute(req)
@@ -653,6 +689,15 @@ type apiUpdateAzureIntegrationRequest struct {
 	body       *AzureAccount
 }
 
+func (a *AzureIntegrationApiService) buildUpdateAzureIntegrationRequest(ctx _context.Context, body AzureAccount) (apiUpdateAzureIntegrationRequest, error) {
+	req := apiUpdateAzureIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateAzureIntegration Update an Azure integration
  * Update a Datadog-Azure integration. Requires an existing `tenant_name` and `client_id`.
@@ -660,10 +705,10 @@ type apiUpdateAzureIntegrationRequest struct {
  * use `new_tenant_name` and `new_client_id`. To leave a field unchanged, do not supply that field in the payload.
  */
 func (a *AzureIntegrationApiService) UpdateAzureIntegration(ctx _context.Context, body AzureAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiUpdateAzureIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildUpdateAzureIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateAzureIntegrationExecute(req)

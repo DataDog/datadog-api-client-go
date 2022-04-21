@@ -30,6 +30,15 @@ type apiCreateChildOrgRequest struct {
 	body       *OrganizationCreateBody
 }
 
+func (a *OrganizationsApiService) buildCreateChildOrgRequest(ctx _context.Context, body OrganizationCreateBody) (apiCreateChildOrgRequest, error) {
+	req := apiCreateChildOrgRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateChildOrg Create a child organization
  * Create a child organization.
@@ -44,10 +53,10 @@ type apiCreateChildOrgRequest struct {
  * `application_key.hash` provided in the response.
  */
 func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
-	req := apiCreateChildOrgRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateChildOrgRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue OrganizationCreateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createChildOrgExecute(req)
@@ -198,15 +207,24 @@ type apiGetOrgRequest struct {
 	publicId   string
 }
 
+func (a *OrganizationsApiService) buildGetOrgRequest(ctx _context.Context, publicId string) (apiGetOrgRequest, error) {
+	req := apiGetOrgRequest{
+		ApiService: a,
+		ctx:        ctx,
+		publicId:   publicId,
+	}
+	return req, nil
+}
+
 /*
  * GetOrg Get organization information
  * Get organization information.
  */
 func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) (OrganizationResponse, *_nethttp.Response, error) {
-	req := apiGetOrgRequest{
-		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
+	req, err := a.buildGetOrgRequest(ctx, publicId)
+	if err != nil {
+		var localVarReturnValue OrganizationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getOrgExecute(req)
@@ -342,14 +360,23 @@ type apiListOrgsRequest struct {
 	ApiService *OrganizationsApiService
 }
 
+func (a *OrganizationsApiService) buildListOrgsRequest(ctx _context.Context) (apiListOrgsRequest, error) {
+	req := apiListOrgsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListOrgs List your managed organizations
  * List your managed organizations.
  */
 func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
-	req := apiListOrgsRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListOrgsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue OrganizationListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listOrgsExecute(req)
@@ -476,16 +503,25 @@ type apiUpdateOrgRequest struct {
 	body       *Organization
 }
 
-/*
- * UpdateOrg Update your organization
- * Update your organization.
- */
-func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildUpdateOrgRequest(ctx _context.Context, publicId string, body Organization) (apiUpdateOrgRequest, error) {
 	req := apiUpdateOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateOrg Update your organization
+ * Update your organization.
+ */
+func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateOrgRequest(ctx, publicId, body)
+	if err != nil {
+		var localVarReturnValue OrganizationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateOrgExecute(req)
@@ -638,6 +674,16 @@ type apiUploadIdPForOrgRequest struct {
 	idpFile    **os.File
 }
 
+func (a *OrganizationsApiService) buildUploadIdPForOrgRequest(ctx _context.Context, publicId string, idpFile *os.File) (apiUploadIdPForOrgRequest, error) {
+	req := apiUploadIdPForOrgRequest{
+		ApiService: a,
+		ctx:        ctx,
+		publicId:   publicId,
+		idpFile:    &idpFile,
+	}
+	return req, nil
+}
+
 /*
  * UploadIdPForOrg Upload IdP metadata
  * There are a couple of options for updating the Identity Provider (IdP)
@@ -648,11 +694,10 @@ type apiUploadIdPForOrgRequest struct {
  * * **XML Body:** Post the IdP metadata file as the body of the request.
  */
 func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
-	req := apiUploadIdPForOrgRequest{
-		ApiService: a,
-		ctx:        ctx,
-		publicId:   publicId,
-		idpFile:    &idpFile,
+	req, err := a.buildUploadIdPForOrgRequest(ctx, publicId, idpFile)
+	if err != nil {
+		var localVarReturnValue IdpResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.uploadIdPForOrgExecute(req)

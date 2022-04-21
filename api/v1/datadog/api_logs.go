@@ -28,6 +28,15 @@ type apiListLogsRequest struct {
 	body       *LogsListRequest
 }
 
+func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, body LogsListRequest) (apiListLogsRequest, error) {
+	req := apiListLogsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * ListLogs Search logs
  * List endpoint returns logs that match a log search query.
@@ -41,10 +50,10 @@ type apiListLogsRequest struct {
  * [2]: https://docs.datadoghq.com/logs/archives
  */
 func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
-	req := apiListLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildListLogsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLogsExecute(req)
@@ -215,6 +224,24 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
 	return r
 }
 
+func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
+	req := apiSubmitLogRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.contentEncoding = o[0].ContentEncoding
+		req.ddtags = o[0].Ddtags
+	}
+	return req, nil
+}
+
 /*
  * SubmitLog Send logs
  * Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
@@ -238,20 +265,10 @@ func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOption
  * - 5xx: Internal error, request should be retried after some time
  */
 func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
-	req := apiSubmitLogRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildSubmitLogRequest(ctx, body, o...)
+	if err != nil {
 		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
-		req.ddtags = o[0].Ddtags
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.submitLogExecute(req)

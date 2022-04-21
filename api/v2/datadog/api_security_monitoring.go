@@ -32,6 +32,15 @@ type apiCreateSecurityFilterRequest struct {
 	body       *SecurityFilterCreateRequest
 }
 
+func (a *SecurityMonitoringApiService) buildCreateSecurityFilterRequest(ctx _context.Context, body SecurityFilterCreateRequest) (apiCreateSecurityFilterRequest, error) {
+	req := apiCreateSecurityFilterRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateSecurityFilter Create a security filter
  * Create a security filter.
@@ -40,10 +49,10 @@ type apiCreateSecurityFilterRequest struct {
  * for more examples.
  */
 func (a *SecurityMonitoringApiService) CreateSecurityFilter(ctx _context.Context, body SecurityFilterCreateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req := apiCreateSecurityFilterRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateSecurityFilterRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SecurityFilterResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createSecurityFilterExecute(req)
@@ -204,15 +213,24 @@ type apiCreateSecurityMonitoringRuleRequest struct {
 	body       *SecurityMonitoringRuleCreatePayload
 }
 
+func (a *SecurityMonitoringApiService) buildCreateSecurityMonitoringRuleRequest(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (apiCreateSecurityMonitoringRuleRequest, error) {
+	req := apiCreateSecurityMonitoringRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateSecurityMonitoringRule Create a detection rule
  * Create a detection rule.
  */
 func (a *SecurityMonitoringApiService) CreateSecurityMonitoringRule(ctx _context.Context, body SecurityMonitoringRuleCreatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req := apiCreateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateSecurityMonitoringRuleRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SecurityMonitoringRuleResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createSecurityMonitoringRuleExecute(req)
@@ -363,15 +381,23 @@ type apiDeleteSecurityFilterRequest struct {
 	securityFilterId string
 }
 
+func (a *SecurityMonitoringApiService) buildDeleteSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiDeleteSecurityFilterRequest, error) {
+	req := apiDeleteSecurityFilterRequest{
+		ApiService:       a,
+		ctx:              ctx,
+		securityFilterId: securityFilterId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteSecurityFilter Delete a security filter
  * Delete a specific security filter.
  */
 func (a *SecurityMonitoringApiService) DeleteSecurityFilter(ctx _context.Context, securityFilterId string) (*_nethttp.Response, error) {
-	req := apiDeleteSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
+	req, err := a.buildDeleteSecurityFilterRequest(ctx, securityFilterId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteSecurityFilterExecute(req)
@@ -497,15 +523,23 @@ type apiDeleteSecurityMonitoringRuleRequest struct {
 	ruleId     string
 }
 
+func (a *SecurityMonitoringApiService) buildDeleteSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiDeleteSecurityMonitoringRuleRequest, error) {
+	req := apiDeleteSecurityMonitoringRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		ruleId:     ruleId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteSecurityMonitoringRule Delete an existing rule
  * Delete an existing rule. Default rules cannot be deleted.
  */
 func (a *SecurityMonitoringApiService) DeleteSecurityMonitoringRule(ctx _context.Context, ruleId string) (*_nethttp.Response, error) {
-	req := apiDeleteSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+	req, err := a.buildDeleteSecurityMonitoringRuleRequest(ctx, ruleId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteSecurityMonitoringRuleExecute(req)
@@ -631,6 +665,15 @@ type apiGetSecurityFilterRequest struct {
 	securityFilterId string
 }
 
+func (a *SecurityMonitoringApiService) buildGetSecurityFilterRequest(ctx _context.Context, securityFilterId string) (apiGetSecurityFilterRequest, error) {
+	req := apiGetSecurityFilterRequest{
+		ApiService:       a,
+		ctx:              ctx,
+		securityFilterId: securityFilterId,
+	}
+	return req, nil
+}
+
 /*
  * GetSecurityFilter Get a security filter
  * Get the details of a specific security filter.
@@ -639,10 +682,10 @@ type apiGetSecurityFilterRequest struct {
  * for more examples.
  */
 func (a *SecurityMonitoringApiService) GetSecurityFilter(ctx _context.Context, securityFilterId string) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req := apiGetSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
+	req, err := a.buildGetSecurityFilterRequest(ctx, securityFilterId)
+	if err != nil {
+		var localVarReturnValue SecurityFilterResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getSecurityFilterExecute(req)
@@ -779,15 +822,24 @@ type apiGetSecurityMonitoringRuleRequest struct {
 	ruleId     string
 }
 
+func (a *SecurityMonitoringApiService) buildGetSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string) (apiGetSecurityMonitoringRuleRequest, error) {
+	req := apiGetSecurityMonitoringRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		ruleId:     ruleId,
+	}
+	return req, nil
+}
+
 /*
  * GetSecurityMonitoringRule Get a rule's details
  * Get a rule's details.
  */
 func (a *SecurityMonitoringApiService) GetSecurityMonitoringRule(ctx _context.Context, ruleId string) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req := apiGetSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
+	req, err := a.buildGetSecurityMonitoringRuleRequest(ctx, ruleId)
+	if err != nil {
+		var localVarReturnValue SecurityMonitoringRuleResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getSecurityMonitoringRuleExecute(req)
@@ -913,14 +965,23 @@ type apiListSecurityFiltersRequest struct {
 	ApiService *SecurityMonitoringApiService
 }
 
+func (a *SecurityMonitoringApiService) buildListSecurityFiltersRequest(ctx _context.Context) (apiListSecurityFiltersRequest, error) {
+	req := apiListSecurityFiltersRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListSecurityFilters Get all security filters
  * Get the list of configured security filters with their definitions.
  */
 func (a *SecurityMonitoringApiService) ListSecurityFilters(ctx _context.Context) (SecurityFiltersResponse, *_nethttp.Response, error) {
-	req := apiListSecurityFiltersRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListSecurityFiltersRequest(ctx)
+	if err != nil {
+		var localVarReturnValue SecurityFiltersResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listSecurityFiltersExecute(req)
@@ -1065,24 +1126,32 @@ func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumbe
 	return r
 }
 
-/*
- * ListSecurityMonitoringRules List rules
- * List rules.
- */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) buildListSecurityMonitoringRulesRequest(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (apiListSecurityMonitoringRulesRequest, error) {
 	req := apiListSecurityMonitoringRulesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue SecurityMonitoringListRulesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListSecurityMonitoringRulesOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.pageSize = o[0].PageSize
 		req.pageNumber = o[0].PageNumber
+	}
+	return req, nil
+}
+
+/*
+ * ListSecurityMonitoringRules List rules
+ * List rules.
+ */
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringRules(ctx _context.Context, o ...ListSecurityMonitoringRulesOptionalParameters) (SecurityMonitoringListRulesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListSecurityMonitoringRulesRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue SecurityMonitoringListRulesResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listSecurityMonitoringRulesExecute(req)
@@ -1257,21 +1326,14 @@ func (r *ListSecurityMonitoringSignalsOptionalParameters) WithPageLimit(pageLimi
 	return r
 }
 
-/*
- * ListSecurityMonitoringSignals Get a quick list of security signals
- * The list endpoint returns security signals that match a search query.
- * Both this endpoint and the POST endpoint can be used interchangeably when listing
- * security signals.
- */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+func (a *SecurityMonitoringApiService) buildListSecurityMonitoringSignalsRequest(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (apiListSecurityMonitoringSignalsRequest, error) {
 	req := apiListSecurityMonitoringSignalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue SecurityMonitoringSignalsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListSecurityMonitoringSignalsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1282,8 +1344,92 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
 		req.pageCursor = o[0].PageCursor
 		req.pageLimit = o[0].PageLimit
 	}
+	return req, nil
+}
+
+/*
+ * ListSecurityMonitoringSignals Get a quick list of security signals
+ * The list endpoint returns security signals that match a search query.
+ * Both this endpoint and the POST endpoint can be used interchangeably when listing
+ * security signals.
+ */
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue SecurityMonitoringSignalsListResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listSecurityMonitoringSignalsExecute(req)
+}
+
+/*
+ * ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
+ */
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// page[limit] -> PageLimit
+	pageSize_ := 10
+	if len(o) > 0 && o[0].PageLimit != nil {
+		pageSize_ = int(*o[0].PageLimit)
+	}
+	if len(o) == 0 {
+		o = append(o, ListSecurityMonitoringSignalsOptionalParameters{})
+	}
+	o[0].PageLimit = PtrInt32(int32(pageSize_))
+
+	items = make(chan SecurityMonitoringSignal, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListSecurityMonitoringSignalsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listSecurityMonitoringSignalsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> page[cursor]
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*
@@ -1454,6 +1600,22 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
 	return r
 }
 
+func (a *SecurityMonitoringApiService) buildSearchSecurityMonitoringSignalsRequest(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (apiSearchSecurityMonitoringSignalsRequest, error) {
+	req := apiSearchSecurityMonitoringSignalsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.body = o[0].Body
+	}
+	return req, nil
+}
+
 /*
  * SearchSecurityMonitoringSignals Get a list of security signals
  * Returns security signals that match a search query.
@@ -1461,21 +1623,82 @@ func (r *SearchSecurityMonitoringSignalsOptionalParameters) WithBody(body Securi
  * security signals.
  */
 func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (SecurityMonitoringSignalsListResponse, *_nethttp.Response, error) {
-	req := apiSearchSecurityMonitoringSignalsRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
+	if err != nil {
 		var localVarReturnValue SecurityMonitoringSignalsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchSecurityMonitoringSignalsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+}
+
+/*
+ * SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
+ */
+func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
+	ctx, cancel = _context.WithCancel(ctx)
+
+	// body.page.limit -> BodyPageLimit
+	pageSize_ := 10
+	if len(o) > 0 && o[0].Body.Page.Limit != nil {
+		pageSize_ = int(*o[0].Body.Page.Limit)
+	}
+	if len(o) == 0 {
+		o = append(o, SearchSecurityMonitoringSignalsOptionalParameters{})
+	}
+	o[0].Body.Page.Limit = PtrInt32(int32(pageSize_))
+
+	items = make(chan SecurityMonitoringSignal, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildSearchSecurityMonitoringSignalsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.searchSecurityMonitoringSignalsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			// meta.page.after -> body.page.cursor
+			//  -> Meta
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			// Meta -> MetaPage
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			// MetaPage -> MetaPageAfter
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, err
 }
 
 /*
@@ -1628,17 +1851,26 @@ type apiUpdateSecurityFilterRequest struct {
 	body             *SecurityFilterUpdateRequest
 }
 
+func (a *SecurityMonitoringApiService) buildUpdateSecurityFilterRequest(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (apiUpdateSecurityFilterRequest, error) {
+	req := apiUpdateSecurityFilterRequest{
+		ApiService:       a,
+		ctx:              ctx,
+		securityFilterId: securityFilterId,
+		body:             &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateSecurityFilter Update a security filter
  * Update a specific security filter.
  * Returns the security filter object when the request is successful.
  */
 func (a *SecurityMonitoringApiService) UpdateSecurityFilter(ctx _context.Context, securityFilterId string, body SecurityFilterUpdateRequest) (SecurityFilterResponse, *_nethttp.Response, error) {
-	req := apiUpdateSecurityFilterRequest{
-		ApiService:       a,
-		ctx:              ctx,
-		securityFilterId: securityFilterId,
-		body:             &body,
+	req, err := a.buildUpdateSecurityFilterRequest(ctx, securityFilterId, body)
+	if err != nil {
+		var localVarReturnValue SecurityFilterResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateSecurityFilterExecute(req)
@@ -1811,6 +2043,16 @@ type apiUpdateSecurityMonitoringRuleRequest struct {
 	body       *SecurityMonitoringRuleUpdatePayload
 }
 
+func (a *SecurityMonitoringApiService) buildUpdateSecurityMonitoringRuleRequest(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (apiUpdateSecurityMonitoringRuleRequest, error) {
+	req := apiUpdateSecurityMonitoringRuleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		ruleId:     ruleId,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateSecurityMonitoringRule Update an existing rule
  * Update an existing rule. When updating `cases`, `queries` or `options`, the whole field
@@ -1818,11 +2060,10 @@ type apiUpdateSecurityMonitoringRuleRequest struct {
  * Default rules can only be updated to be enabled and to change notifications.
  */
 func (a *SecurityMonitoringApiService) UpdateSecurityMonitoringRule(ctx _context.Context, ruleId string, body SecurityMonitoringRuleUpdatePayload) (SecurityMonitoringRuleResponse, *_nethttp.Response, error) {
-	req := apiUpdateSecurityMonitoringRuleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		ruleId:     ruleId,
-		body:       &body,
+	req, err := a.buildUpdateSecurityMonitoringRuleRequest(ctx, ruleId, body)
+	if err != nil {
+		var localVarReturnValue SecurityMonitoringRuleResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateSecurityMonitoringRuleExecute(req)

@@ -27,14 +27,23 @@ type apiValidateRequest struct {
 	ApiService *AuthenticationApiService
 }
 
+func (a *AuthenticationApiService) buildValidateRequest(ctx _context.Context) (apiValidateRequest, error) {
+	req := apiValidateRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * Validate Validate API key
  * Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
  */
 func (a *AuthenticationApiService) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
-	req := apiValidateRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildValidateRequest(ctx)
+	if err != nil {
+		var localVarReturnValue AuthenticationValidationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.validateExecute(req)

@@ -30,16 +30,25 @@ type apiAddPermissionToRoleRequest struct {
 	body       *RelationshipToPermission
 }
 
-/*
- * AddPermissionToRole Grant permission to a role
- * Adds a permission to a role.
- */
-func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildAddPermissionToRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiAddPermissionToRoleRequest, error) {
 	req := apiAddPermissionToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * AddPermissionToRole Grant permission to a role
+ * Adds a permission to a role.
+ */
+func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildAddPermissionToRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.addPermissionToRoleExecute(req)
@@ -202,16 +211,25 @@ type apiAddUserToRoleRequest struct {
 	body       *RelationshipToUser
 }
 
-/*
- * AddUserToRole Add a user to a role
- * Adds a user to a role.
- */
-func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildAddUserToRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiAddUserToRoleRequest, error) {
 	req := apiAddUserToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * AddUserToRole Add a user to a role
+ * Adds a user to a role.
+ */
+func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildAddUserToRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.addUserToRoleExecute(req)
@@ -374,16 +392,25 @@ type apiCloneRoleRequest struct {
 	body       *RoleCloneRequest
 }
 
-/*
- * CloneRole Create a new role by cloning an existing role
- * Clone an existing role
- */
-func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildCloneRoleRequest(ctx _context.Context, roleId string, body RoleCloneRequest) (apiCloneRoleRequest, error) {
 	req := apiCloneRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * CloneRole Create a new role by cloning an existing role
+ * Clone an existing role
+ */
+func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
+	req, err := a.buildCloneRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue RoleResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.cloneRoleExecute(req)
@@ -555,15 +582,24 @@ type apiCreateRoleRequest struct {
 	body       *RoleCreateRequest
 }
 
+func (a *RolesApiService) buildCreateRoleRequest(ctx _context.Context, body RoleCreateRequest) (apiCreateRoleRequest, error) {
+	req := apiCreateRoleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateRole Create role
  * Create a new role for your organization.
  */
 func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
-	req := apiCreateRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateRoleRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue RoleCreateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createRoleExecute(req)
@@ -714,15 +750,23 @@ type apiDeleteRoleRequest struct {
 	roleId     string
 }
 
+func (a *RolesApiService) buildDeleteRoleRequest(ctx _context.Context, roleId string) (apiDeleteRoleRequest, error) {
+	req := apiDeleteRoleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteRole Delete role
  * Disables a role.
  */
 func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
-	req := apiDeleteRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+	req, err := a.buildDeleteRoleRequest(ctx, roleId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteRoleExecute(req)
@@ -848,15 +892,24 @@ type apiGetRoleRequest struct {
 	roleId     string
 }
 
+func (a *RolesApiService) buildGetRoleRequest(ctx _context.Context, roleId string) (apiGetRoleRequest, error) {
+	req := apiGetRoleRequest{
+		ApiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+	return req, nil
+}
+
 /*
  * GetRole Get a role
  * Get a role in the organization specified by the role’s `role_id`.
  */
 func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
-	req := apiGetRoleRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+	req, err := a.buildGetRoleRequest(ctx, roleId)
+	if err != nil {
+		var localVarReturnValue RoleResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getRoleExecute(req)
@@ -992,14 +1045,23 @@ type apiListPermissionsRequest struct {
 	ApiService *RolesApiService
 }
 
+func (a *RolesApiService) buildListPermissionsRequest(ctx _context.Context) (apiListPermissionsRequest, error) {
+	req := apiListPermissionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListPermissions List permissions
  * Returns a list of all permissions, including name, description, and ID.
  */
 func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
-	req := apiListPermissionsRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListPermissionsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listPermissionsExecute(req)
@@ -1135,15 +1197,24 @@ type apiListRolePermissionsRequest struct {
 	roleId     string
 }
 
+func (a *RolesApiService) buildListRolePermissionsRequest(ctx _context.Context, roleId string) (apiListRolePermissionsRequest, error) {
+	req := apiListRolePermissionsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		roleId:     roleId,
+	}
+	return req, nil
+}
+
 /*
  * ListRolePermissions List permissions for a role
  * Returns a list of all permissions for a single role.
  */
 func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
-	req := apiListRolePermissionsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		roleId:     roleId,
+	req, err := a.buildListRolePermissionsRequest(ctx, roleId)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listRolePermissionsExecute(req)
@@ -1312,11 +1383,7 @@ func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUse
 	return r
 }
 
-/*
- * ListRoleUsers Get all users of a role
- * Gets all users of a role.
- */
-func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListRoleUsersRequest(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (apiListRoleUsersRequest, error) {
 	req := apiListRoleUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1324,8 +1391,7 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue UsersResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1333,6 +1399,19 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
 		req.pageNumber = o[0].PageNumber
 		req.sort = o[0].Sort
 		req.filter = o[0].Filter
+	}
+	return req, nil
+}
+
+/*
+ * ListRoleUsers Get all users of a role
+ * Gets all users of a role.
+ */
+func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRoleUsersRequest(ctx, roleId, o...)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listRoleUsersExecute(req)
@@ -1512,19 +1591,14 @@ func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOption
 	return r
 }
 
-/*
- * ListRoles List roles
- * Returns all roles, including their names and their unique identifiers.
- */
-func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListRolesRequest(ctx _context.Context, o ...ListRolesOptionalParameters) (apiListRolesRequest, error) {
 	req := apiListRolesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue RolesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRolesOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListRolesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1532,6 +1606,19 @@ func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptional
 		req.pageNumber = o[0].PageNumber
 		req.sort = o[0].Sort
 		req.filter = o[0].Filter
+	}
+	return req, nil
+}
+
+/*
+ * ListRoles List roles
+ * Returns all roles, including their names and their unique identifiers.
+ */
+func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRolesRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue RolesResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listRolesExecute(req)
@@ -1670,16 +1757,25 @@ type apiRemovePermissionFromRoleRequest struct {
 	body       *RelationshipToPermission
 }
 
-/*
- * RemovePermissionFromRole Revoke permission
- * Removes a permission from a role.
- */
-func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildRemovePermissionFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiRemovePermissionFromRoleRequest, error) {
 	req := apiRemovePermissionFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * RemovePermissionFromRole Revoke permission
+ * Removes a permission from a role.
+ */
+func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildRemovePermissionFromRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.removePermissionFromRoleExecute(req)
@@ -1842,16 +1938,25 @@ type apiRemoveUserFromRoleRequest struct {
 	body       *RelationshipToUser
 }
 
-/*
- * RemoveUserFromRole Remove a user from a role
- * Removes a user from a role.
- */
-func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildRemoveUserFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiRemoveUserFromRoleRequest, error) {
 	req := apiRemoveUserFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * RemoveUserFromRole Remove a user from a role
+ * Removes a user from a role.
+ */
+func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildRemoveUserFromRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.removeUserFromRoleExecute(req)
@@ -2014,16 +2119,25 @@ type apiUpdateRoleRequest struct {
 	body       *RoleUpdateRequest
 }
 
-/*
- * UpdateRole Update a role
- * Edit a role. Can only be used with application keys belonging to administrators.
- */
-func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildUpdateRoleRequest(ctx _context.Context, roleId string, body RoleUpdateRequest) (apiUpdateRoleRequest, error) {
 	req := apiUpdateRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateRole Update a role
+ * Edit a role. Can only be used with application keys belonging to administrators.
+ */
+func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue RoleUpdateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateRoleExecute(req)
