@@ -397,6 +397,24 @@ def get_container(operation, attribute_path, container_name="o[0]"):
     return f'{container_name}.{formatter.attribute_path(attribute_path)}'
 
 
+def get_container_type(operation, attribute_path, stop=None):
+    attrs = attribute_path.split(".")[:stop]
+    for name, parameter in parameters(operation):
+        if name == attrs[0]:
+            break
+
+    if attrs[0] == "body":
+        parameter = next(iter(parameter["content"].values()))
+        
+    if name == attrs[0] and len(attrs) == 1:
+        return type_to_go(parameter["schema"])
+
+    parameter = parameter["schema"]
+    for attr in attrs[1:]:
+        parameter = parameter["properties"][attr]
+    return type_to_go(parameter)
+
+
 def get_type_at_path(operation, attribute_path):
     content = None
     for code, response in operation.get("responses", {}).items():

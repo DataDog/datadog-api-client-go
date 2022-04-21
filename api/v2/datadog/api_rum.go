@@ -533,7 +533,15 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 
 	// body.page.limit -> BodyPageLimit
 	pageSize_ := 10
-	body.Page.Limit = PtrInt32(int32(pageSize_))
+	if body.Page == nil {
+		body.Page = NewRUMQueryPageOptions()
+	}
+	if body.Page.Limit == nil {
+		// int32
+		body.Page.Limit = PtrInt32(int32(pageSize_))
+	} else {
+		pageSize_ = int(*body.Page.Limit)
+	}
 
 	items = make(chan RUMEvent, pageSize_)
 	go func() {

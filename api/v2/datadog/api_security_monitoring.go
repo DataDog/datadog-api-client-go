@@ -1104,24 +1104,24 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	pageSize   *int64
-	pageNumber *int64
+	pageSize   *int32
+	pageNumber *int32
 }
 
 type ListSecurityMonitoringRulesOptionalParameters struct {
-	PageSize   *int64
-	PageNumber *int64
+	PageSize   *int32
+	PageNumber *int32
 }
 
 func NewListSecurityMonitoringRulesOptionalParameters() *ListSecurityMonitoringRulesOptionalParameters {
 	this := ListSecurityMonitoringRulesOptionalParameters{}
 	return &this
 }
-func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize int64) *ListSecurityMonitoringRulesOptionalParameters {
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize int32) *ListSecurityMonitoringRulesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringRulesOptionalParameters {
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int32) *ListSecurityMonitoringRulesOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

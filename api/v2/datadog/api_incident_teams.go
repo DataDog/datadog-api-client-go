@@ -600,15 +600,15 @@ type apiListIncidentTeamsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentTeamsApiService
 	include    *IncidentRelatedObject
-	pageSize   *int64
-	pageOffset *int64
+	pageSize   *int32
+	pageOffset *int32
 	filter     *string
 }
 
 type ListIncidentTeamsOptionalParameters struct {
 	Include    *IncidentRelatedObject
-	PageSize   *int64
-	PageOffset *int64
+	PageSize   *int32
+	PageOffset *int32
 	Filter     *string
 }
 
@@ -620,11 +620,11 @@ func (r *ListIncidentTeamsOptionalParameters) WithInclude(include IncidentRelate
 	r.Include = &include
 	return r
 }
-func (r *ListIncidentTeamsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentTeamsOptionalParameters {
+func (r *ListIncidentTeamsOptionalParameters) WithPageSize(pageSize int32) *ListIncidentTeamsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentTeamsOptionalParameters {
+func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset int32) *ListIncidentTeamsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

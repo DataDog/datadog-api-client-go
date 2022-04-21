@@ -1310,8 +1310,8 @@ func (a *KeyManagementApiService) getCurrentUserApplicationKeyExecute(r apiGetCu
 type apiListAPIKeysRequest struct {
 	ctx                   _context.Context
 	ApiService            *KeyManagementApiService
-	pageSize              *int64
-	pageNumber            *int64
+	pageSize              *int32
+	pageNumber            *int32
 	sort                  *APIKeysSort
 	filter                *string
 	filterCreatedAtStart  *string
@@ -1322,8 +1322,8 @@ type apiListAPIKeysRequest struct {
 }
 
 type ListAPIKeysOptionalParameters struct {
-	PageSize              *int64
-	PageNumber            *int64
+	PageSize              *int32
+	PageNumber            *int32
 	Sort                  *APIKeysSort
 	Filter                *string
 	FilterCreatedAtStart  *string
@@ -1337,11 +1337,11 @@ func NewListAPIKeysOptionalParameters() *ListAPIKeysOptionalParameters {
 	this := ListAPIKeysOptionalParameters{}
 	return &this
 }
-func (r *ListAPIKeysOptionalParameters) WithPageSize(pageSize int64) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithPageSize(pageSize int32) *ListAPIKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListAPIKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListAPIKeysOptionalParameters {
+func (r *ListAPIKeysOptionalParameters) WithPageNumber(pageNumber int32) *ListAPIKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1566,8 +1566,8 @@ func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (A
 type apiListApplicationKeysRequest struct {
 	ctx                  _context.Context
 	ApiService           *KeyManagementApiService
-	pageSize             *int64
-	pageNumber           *int64
+	pageSize             *int32
+	pageNumber           *int32
 	sort                 *ApplicationKeysSort
 	filter               *string
 	filterCreatedAtStart *string
@@ -1575,8 +1575,8 @@ type apiListApplicationKeysRequest struct {
 }
 
 type ListApplicationKeysOptionalParameters struct {
-	PageSize             *int64
-	PageNumber           *int64
+	PageSize             *int32
+	PageNumber           *int32
 	Sort                 *ApplicationKeysSort
 	Filter               *string
 	FilterCreatedAtStart *string
@@ -1587,11 +1587,11 @@ func NewListApplicationKeysOptionalParameters() *ListApplicationKeysOptionalPara
 	this := ListApplicationKeysOptionalParameters{}
 	return &this
 }
-func (r *ListApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListApplicationKeysOptionalParameters {
+func (r *ListApplicationKeysOptionalParameters) WithPageSize(pageSize int32) *ListApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListApplicationKeysOptionalParameters {
+func (r *ListApplicationKeysOptionalParameters) WithPageNumber(pageNumber int32) *ListApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1802,8 +1802,8 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 type apiListCurrentUserApplicationKeysRequest struct {
 	ctx                  _context.Context
 	ApiService           *KeyManagementApiService
-	pageSize             *int64
-	pageNumber           *int64
+	pageSize             *int32
+	pageNumber           *int32
 	sort                 *ApplicationKeysSort
 	filter               *string
 	filterCreatedAtStart *string
@@ -1811,8 +1811,8 @@ type apiListCurrentUserApplicationKeysRequest struct {
 }
 
 type ListCurrentUserApplicationKeysOptionalParameters struct {
-	PageSize             *int64
-	PageNumber           *int64
+	PageSize             *int32
+	PageNumber           *int32
 	Sort                 *ApplicationKeysSort
 	Filter               *string
 	FilterCreatedAtStart *string
@@ -1823,11 +1823,11 @@ func NewListCurrentUserApplicationKeysOptionalParameters() *ListCurrentUserAppli
 	this := ListCurrentUserApplicationKeysOptionalParameters{}
 	return &this
 }
-func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListCurrentUserApplicationKeysOptionalParameters {
+func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageSize(pageSize int32) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListCurrentUserApplicationKeysOptionalParameters {
+func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageNumber(pageNumber int32) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

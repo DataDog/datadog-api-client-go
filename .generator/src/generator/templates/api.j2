@@ -118,9 +118,23 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 	if len(o) == 0 {
 		o = append(o, {{ operation.operationId }}OptionalParameters{})
 	}
-	{%- endif %}
-	{%- endfor %}
 	{{ get_container(operation, pagination.limitParam) }} = PtrInt32(int32(pageSize_))
+	{%- endif %}
+	{%- else %}
+	{%- set limitParamParts = pagination.limitParam.split(".") %}
+	{%- for numberOfParts in range(2, limitParamParts|length) %}
+	{%- set limitParam = ".".join(limitParamParts[:numberOfParts]) %}
+	if {{ get_container(operation, limitParam) }} == nil {
+		{{ get_container(operation, limitParam) }} = New{{ get_container_type(operation, limitParam) }}()
+	}
+	{%- endfor %}
+	if {{ get_container(operation, pagination.limitParam) }} == nil {
+		// {{ get_container_type(operation, pagination.limitParam) }}
+		{{ get_container(operation, pagination.limitParam) }} = PtrInt32(int32(pageSize_))
+	} else {
+		pageSize_ = int(*{{ get_container(operation, pagination.limitParam) }})
+	}
+	{%- endfor %}
 
 	items = make(chan {{ itemType }}, pageSize_)
 	go func() {
@@ -160,9 +174,9 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 			{%- if pagination.pageOffsetParam %}
 			// {{ pagination.pageOffsetParam }}
 			if {{ get_container(operation, pagination.pageOffsetParam) }} == nil {
-				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(pageSize_)
+				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(int32(pageSize_))
 			} else {
-				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(*{{ get_container(operation, pagination.pageOffsetParam) }} + pageSize_)
+				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(*{{ get_container(operation, pagination.pageOffsetParam) }} + int32(pageSize_))
 			}
 
 			{%- endif %}

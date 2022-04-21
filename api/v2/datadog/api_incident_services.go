@@ -600,15 +600,15 @@ type apiListIncidentServicesRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentServicesApiService
 	include    *IncidentRelatedObject
-	pageSize   *int64
-	pageOffset *int64
+	pageSize   *int32
+	pageOffset *int32
 	filter     *string
 }
 
 type ListIncidentServicesOptionalParameters struct {
 	Include    *IncidentRelatedObject
-	PageSize   *int64
-	PageOffset *int64
+	PageSize   *int32
+	PageOffset *int32
 	Filter     *string
 }
 
@@ -620,11 +620,11 @@ func (r *ListIncidentServicesOptionalParameters) WithInclude(include IncidentRel
 	r.Include = &include
 	return r
 }
-func (r *ListIncidentServicesOptionalParameters) WithPageSize(pageSize int64) *ListIncidentServicesOptionalParameters {
+func (r *ListIncidentServicesOptionalParameters) WithPageSize(pageSize int32) *ListIncidentServicesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListIncidentServicesOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentServicesOptionalParameters {
+func (r *ListIncidentServicesOptionalParameters) WithPageOffset(pageOffset int32) *ListIncidentServicesOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }

@@ -599,14 +599,14 @@ type apiListIncidentsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentsApiService
 	include    *[]IncidentRelatedObject
-	pageSize   *int64
-	pageOffset *int64
+	pageSize   *int32
+	pageOffset *int32
 }
 
 type ListIncidentsOptionalParameters struct {
 	Include    *[]IncidentRelatedObject
-	PageSize   *int64
-	PageOffset *int64
+	PageSize   *int32
+	PageOffset *int32
 }
 
 func NewListIncidentsOptionalParameters() *ListIncidentsOptionalParameters {
@@ -617,11 +617,11 @@ func (r *ListIncidentsOptionalParameters) WithInclude(include []IncidentRelatedO
 	r.Include = &include
 	return r
 }
-func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentsOptionalParameters {
+func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int32) *ListIncidentsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
+func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int32) *ListIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
@@ -672,7 +672,7 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 	if len(o) == 0 {
 		o = append(o, ListIncidentsOptionalParameters{})
 	}
-	o[0].PageSize = PtrInt64(int64(pageSize_))
+	o[0].PageSize = PtrInt32(int32(pageSize_))
 
 	items = make(chan IncidentResponseData, pageSize_)
 	go func() {
@@ -705,9 +705,10 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 			}
 			// page[offset]
 			if o[0].PageOffset == nil {
-				o[0].PageOffset = PtrInt64(0)
+				o[0].PageOffset = PtrInt32(int32(pageSize_))
+			} else {
+				o[0].PageOffset = PtrInt32(*o[0].PageOffset + int32(pageSize_))
 			}
-			o[0].PageOffset = PtrInt64(*o[0].PageOffset + int64(pageSize_))
 		}
 		close(items)
 	}()

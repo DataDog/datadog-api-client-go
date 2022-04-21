@@ -232,7 +232,8 @@ components:
       schema:
         default: 0
         example: 0
-        format: int64
+        format: int32
+        maximum: 2147483647
         type: integer
     PageOffset:
       description: Specific offset to use as the beginning of the returned page.
@@ -242,7 +243,8 @@ components:
       schema:
         default: 0
         example: 0
-        format: int64
+        format: int32
+        maximum: 2147483647
         type: integer
     PageSize:
       description: Size for a given page.
@@ -252,7 +254,8 @@ components:
       schema:
         default: 10
         example: 10
-        format: int64
+        format: int32
+        maximum: 2147483647
         type: integer
     RoleID:
       description: The unique identifier of the role.
