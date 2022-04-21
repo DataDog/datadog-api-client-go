@@ -15,7 +15,12 @@ from jinja2 import Environment, FileSystemLoader, Template
 from pytest_bdd import given, parsers, then, when
 
 from generator import openapi
-from generator.utils import camel_case, given_variables, snake_case, untitle_case
+from generator.utils import (
+    camel_case,
+    given_variables,
+    snake_case,
+    untitle_case,
+)
 
 from generator.go_formatter import (
     format_parameters as format_parameters_go,
@@ -24,11 +29,7 @@ from generator.go_formatter import (
 )
 
 
-MODIFIED_FEATURES = {
-    pathlib.Path(p).resolve()
-    for p in os.getenv("BDD_MODIFIED_FEATURES", "").split(" ")
-    if p
-}
+MODIFIED_FEATURES = {pathlib.Path(p).resolve() for p in os.getenv("BDD_MODIFIED_FEATURES", "").split(" ") if p}
 
 ROOT_PATH = pathlib.Path(__file__).parent.parent
 
@@ -50,9 +51,7 @@ def pytest_bdd_before_scenario(request, feature, scenario):
     if MODIFIED_FEATURES:
         current = pathlib.Path(scenario.feature.filename).resolve()
         if current not in MODIFIED_FEATURES:
-            pytest.skip(
-                f"Feature file {scenario.feature.filename} has not been modified"
-            )
+            pytest.skip(f"Feature file {scenario.feature.filename} has not been modified")
 
 
 def lookup(value, path):
@@ -65,10 +64,6 @@ def lookup(value, path):
             else:
                 result = result[snake_case(part)]
     return result
-
-
-def json_dumps(*args, **kwargs):
-    return json.dumps(*args, **kwargs)
 
 
 JINJA_ENV = Environment(loader=FileSystemLoader(pathlib.Path(__file__).parent / "src" / "generator" / "templates"))
@@ -95,9 +90,7 @@ def pytest_bdd_after_scenario(request, feature, scenario):
 
     status_code = context["status_code"]
     if status_code >= 300:
-        warnings.warn(
-            f"do not generate example for {version}:{operation_id}:{status_code}"
-        )
+        warnings.warn(f"do not generate example for {version}:{operation_id}:{status_code}")
         return
 
     operation_spec = operation_specs[version][operation_id]
@@ -110,15 +103,6 @@ def pytest_bdd_after_scenario(request, feature, scenario):
     if scenario_name != scenario.name:
         unique_suffix = "_" + str(zlib.adler32(scenario.name.encode("utf-8")))
 
-    code_examples = request.getfixturevalue("code_examples")
-    code_examples.setdefault(version, {}).setdefault(operation_id, []).append(
-        {
-            "group": "_".join(operation_spec.spec["tags"][0].split(" ")).lower(),
-            "suffix": unique_suffix,
-            "description": scenario.name,
-        }
-    )
-
     data = GO_EXAMPLE_J2.render(
         context=context,
         version=version,
@@ -126,13 +110,7 @@ def pytest_bdd_after_scenario(request, feature, scenario):
         operation_spec=operation_spec.spec,
     )
 
-    output = (
-        ROOT_PATH
-        / "examples"
-        / version
-        / group_name
-        / f"{operation_id}{unique_suffix}.go"
-    )
+    output = ROOT_PATH / "examples" / version / group_name / f"{operation_id}{unique_suffix}.go"
     output.parent.mkdir(parents=True, exist_ok=True)
 
     with output.open("w") as f:
@@ -141,7 +119,7 @@ def pytest_bdd_after_scenario(request, feature, scenario):
 
 def pytest_bdd_apply_tag(tag, function):
     """Register tags as custom markers and skip test for '@skip' ones."""
-    skip_tags = set()
+    skip_tags = {"with-pagination"}
 
     if tag in skip_tags:
         marker = pytest.mark.skip(reason=f"skipped because '{tag}' in {skip_tags}")
@@ -159,17 +137,6 @@ def _get_prefix(request):
         main = PATTERN_ALPHANUM.sub("_", base_name)[:100]
     prefix = "Example-"
     return f"{prefix}{main}"
-
-
-@pytest.fixture(scope="session")
-def code_examples():
-    return {}
-
-
-@pytest.fixture(scope="session")
-def notifications():
-    with (ROOT_PATH / "notifications.json").open() as f:
-        return json.load(f)
 
 
 @pytest.fixture
@@ -290,12 +257,9 @@ def context(request, unique, freezed_time):
             "unique": prefix + "_{{ timestamp(0, s) }}",
             "unique_lower": prefix.lower() + "_{{ timestamp(0, s) }}",
             "unique_upper": prefix.upper() + "_{{ timestamp(0, s) }}",
-            "unique_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix)
-            + "{{ timestamp(0, s) }}",
-            "unique_lower_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix).lower()
-            + "{{ timestamp(0, s) }}",
-            "unique_upper_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix).upper()
-            + "{{ timestamp(0, s) }}",
+            "unique_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix) + "{{ timestamp(0, s) }}",
+            "unique_lower_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix).lower() + "{{ timestamp(0, s) }}",
+            "unique_upper_alnum": re.sub(r"[^A-Za-z0-9]+", "", prefix).upper() + "{{ timestamp(0, s) }}",
         },
     }
 
@@ -467,18 +431,9 @@ def build_given(version, operation):
                 value = openapi.generate_value(schema, use_random=True, prefix=key)
 
             context["_replace_values"][value] = key
-            keys = (
-                [operation["source"]] + list(schema.keys)
-                if "source" in operation
-                else schema.keys
-            )
-            json_path = "".join(
-                f"[{k}]" if isinstance(k, int) else f".{k}" for k in keys
-            ).strip(".")
-            assert (
-                context["_key_to_json_path"][operation["key"]].get(key, json_path)
-                == json_path
-            )
+            keys = [operation["source"]] + list(schema.keys) if "source" in operation else schema.keys
+            json_path = "".join(f"[{k}]" if isinstance(k, int) else f".{k}" for k in keys).strip(".")
+            assert context["_key_to_json_path"][operation["key"]].get(key, json_path) == json_path
             context["_key_to_json_path"][operation["key"]][key] = json_path
             return value
 
@@ -520,26 +475,18 @@ def the_status_is(context, status, description):
 @then(parsers.parse('the response "{response_path}" is equal to {value}'))
 def expect_equal(context, response_path, value):
     """Compare a response attribute to a value."""
-    pass
 
 
-@then(
-    parsers.parse(
-        'the response "{response_path}" has the same value as "{fixture_path}"'
-    )
-)
+@then(parsers.parse('the response "{response_path}" has the same value as "{fixture_path}"'))
 def expect_equal_value(context, response_path, fixture_path):
     """Compare a response attribute to another attribute."""
-    pass
 
 
 @then(parsers.parse('the response "{response_path}" has length {fixture_length:d}'))
 def expect_equal_length(context, response_path, fixture_length):
     """Check the length of a response attribute."""
-    pass
 
 
 @then(parsers.parse('the response "{response_path}" is false'))
 def expect_false(context, response_path):
     """Check that a response attribute is false."""
-    pass

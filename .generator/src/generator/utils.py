@@ -16,8 +16,12 @@ def snake_case(value):
     return PATTERN_DOUBLE_UNDERSCORE.sub("_", s1)
 
 
+def upperfirst(value):
+    return value[0].upper() + value[1:]
+
+
 def camel_case(value):
-    return "".join(x.title() for x in snake_case(value).split("_"))
+    return "".join(upperfirst(x) for x in snake_case(value).split("_"))
 
 
 def untitle_case(value):

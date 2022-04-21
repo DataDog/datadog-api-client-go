@@ -5,7 +5,7 @@ repos:
     name: Generate
     language: node
     entry: make
-    files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile)'
+    files: '^(\.generator/.*|\.pre-commit-config\.yaml|Makefile|\tests/scenarios/features/.*)'
     pass_filenames: false
   - id: lint
     name: Lint
