@@ -110,15 +110,6 @@ def pytest_bdd_after_scenario(request, feature, scenario):
     if scenario_name != scenario.name:
         unique_suffix = "_" + str(zlib.adler32(scenario.name.encode("utf-8")))
 
-    code_examples = request.getfixturevalue("code_examples")
-    code_examples.setdefault(version, {}).setdefault(operation_id, []).append(
-        {
-            "group": "_".join(operation_spec.spec["tags"][0].split(" ")).lower(),
-            "suffix": unique_suffix,
-            "description": scenario.name,
-        }
-    )
-
     data = GO_EXAMPLE_J2.render(
         context=context,
         version=version,
@@ -141,7 +132,7 @@ def pytest_bdd_after_scenario(request, feature, scenario):
 
 def pytest_bdd_apply_tag(tag, function):
     """Register tags as custom markers and skip test for '@skip' ones."""
-    skip_tags = set()
+    skip_tags = {"with-pagination"}
 
     if tag in skip_tags:
         marker = pytest.mark.skip(reason=f"skipped because '{tag}' in {skip_tags}")
@@ -159,17 +150,6 @@ def _get_prefix(request):
         main = PATTERN_ALPHANUM.sub("_", base_name)[:100]
     prefix = "Example-"
     return f"{prefix}{main}"
-
-
-@pytest.fixture(scope="session")
-def code_examples():
-    return {}
-
-
-@pytest.fixture(scope="session")
-def notifications():
-    with (ROOT_PATH / "notifications.json").open() as f:
-        return json.load(f)
 
 
 @pytest.fixture
