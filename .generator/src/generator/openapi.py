@@ -47,10 +47,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
     if name:
         if "enum" in schema:
             return prefix + name
-        if (
-            not schema.get("additionalProperties")
-            and schema.get("type", "object") == "object"
-        ):
+        if not schema.get("additionalProperties") and schema.get("type", "object") == "object":
             return prefix + name
 
     type_ = schema.get("type")
@@ -61,9 +58,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
             type_ = "object"
         else:
             type_ = "object"
-            warnings.warn(
-                f"Unknown type for schema: {schema} ({name or alternative_name})"
-            )
+            warnings.warn(f"Unknown type for schema: {schema} ({name or alternative_name})")
 
     if type_ == "array":
         if name and schema.get("x-generate-alias-as-model", False):
@@ -81,12 +76,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
         return (
             prefix + alternative_name
             if alternative_name
-            and (
-                "properties" in schema
-                or "oneOf" in schema
-                or "anyOf" in schema
-                or "allOf" in schema
-            )
+            and ("properties" in schema or "oneOf" in schema or "anyOf" in schema or "allOf" in schema)
             else "interface{}"
         )
 
@@ -96,9 +86,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
 def get_type_for_attribute(schema, attribute, current_name=None):
     """Return Go type name for the attribute."""
     child_schema = schema.get("properties", {}).get(attribute)
-    alternative_name = (
-        current_name + formatter.camel_case(attribute) if current_name else None
-    )
+    alternative_name = current_name + formatter.camel_case(attribute) if current_name else None
     return type_to_go(child_schema, alternative_name=alternative_name)
 
 
@@ -157,9 +145,7 @@ def child_models(schema, alternative_name=None, seen=None, parent=None):
             parent=schema,
         )
 
-    if (
-        schema.get("type") == "object" or "properties" in schema or has_sub_models
-    ) and (
+    if (schema.get("type") == "object" or "properties" in schema or has_sub_models) and (
         "additionalProperties" not in schema or schema["additionalProperties"] is False
     ):
         if not has_sub_models and name is None:
@@ -255,9 +241,7 @@ def parameters(operation):
 
     if "requestBody" in operation:
         if "multipart/form-data" in operation["requestBody"]["content"]:
-            parent = operation["requestBody"]["content"]["multipart/form-data"][
-                "schema"
-            ]
+            parent = operation["requestBody"]["content"]["multipart/form-data"]["schema"]
             for name, schema in parent["properties"].items():
                 yield name, {
                     "in": "form",
@@ -277,9 +261,7 @@ def parameters(operation):
 
 def form_parameter(operation):
     if "requestBody" in operation and "multipart/form-data" in operation["requestBody"]["content"]:
-        parent = operation["requestBody"]["content"]["multipart/form-data"][
-            "schema"
-        ]
+        parent = operation["requestBody"]["content"]["multipart/form-data"]["schema"]
         [(name, schema)] = list(parent["properties"].items())
         return {
             "schema": schema,
@@ -350,9 +332,7 @@ def format_server(server, server_variables=None, path=""):
     for variable in server["variables"]:
         if server_variables and variable in server_variables:
             continue
-        url = url.replace(
-            "{" + variable + "}", server["variables"][variable]["default"]
-        )
+        url = url.replace("{" + variable + "}", server["variables"][variable]["default"])
     return urlparse(url)
 
 
@@ -366,9 +346,7 @@ def server_url_and_method(spec, operation_id, server_index=0, server_variables=N
                 else:
                     server = spec["servers"][server_index]
                 return (
-                    format_server(
-                        server, server_variables=server_variables, path=path
-                    ).geturl(),
+                    format_server(server, server_variables=server_variables, path=path).geturl(),
                     method,
                 )
 
@@ -378,13 +356,9 @@ def server_url_and_method(spec, operation_id, server_index=0, server_variables=N
 def response_code_and_accept_type(operation, status_code=None):
     for response in operation["responses"]:
         if status_code is None:
-            return int(response), next(
-                iter(operation["responses"][response].get("content", {None: None}))
-            )
+            return int(response), next(iter(operation["responses"][response].get("content", {None: None})))
         if response == str(status_code):
-            return status_code, next(
-                iter(operation["responses"][response].get("content", {None: None}))
-            )
+            return status_code, next(iter(operation["responses"][response].get("content", {None: None})))
     return status_code, None
 
 
@@ -395,9 +369,7 @@ def request_content_type(operation, status_code=None):
 def response(operation, status_code=None):
     for response in operation["responses"]:
         if status_code is None or response == str(status_code):
-            return list(operation["responses"][response]["content"].values())[0][
-                "schema"
-            ]
+            return list(operation["responses"][response]["content"].values())[0]["schema"]
     return None
 
 
@@ -420,9 +392,7 @@ def generate_value(schema, use_random=False, prefix=None):
             )
         return "string"
     elif spec["type"] == "integer":
-        return (
-            random.randint(0, 32000) if use_random else len(str(prefix or schema.keys))
-        )
+        return random.randint(0, 32000) if use_random else len(str(prefix or schema.keys))
     elif spec["type"] == "number":
         return random.random() if use_random else 1.0 / len(str(prefix or schema.keys))
     elif spec["type"] == "boolean":
@@ -430,10 +400,7 @@ def generate_value(schema, use_random=False, prefix=None):
     elif spec["type"] == "array":
         return [generate_value(schema[0], use_random=use_random)]
     elif spec["type"] == "object":
-        return {
-            key: generate_value(schema[key], use_random=use_random)
-            for key in spec["properties"]
-        }
+        return {key: generate_value(schema[key], use_random=use_random) for key in spec["properties"]}
     else:
         raise TypeError(f"Unknown type: {spec['type']}")
 
@@ -468,13 +435,9 @@ class Schema:
                                 )
                             except KeyError:
                                 pass
-            raise KeyError(
-                f"{key} not found in {self.spec.get('properties', {}).keys()}: {self.spec}"
-            )
+            raise KeyError(f"{key} not found in {self.spec.get('properties', {}).keys()}: {self.spec}")
         if type_ == "array":
-            return self.__class__(
-                self.spec["items"], value=self.value, keys=self.keys + (key,)
-            )
+            return self.__class__(self.spec["items"], value=self.value, keys=self.keys + (key,))
 
         raise KeyError(f"{key} not found in {self.spec}")
 
@@ -503,7 +466,8 @@ class Operation:
                 if variable in server_variables:
                     continue
                 url = url.replace(
-                    "{" + variable + "}", server["variables"][variable]["default"]
+                    "{" + variable + "}",
+                    server["variables"][variable]["default"],
                 )
             return url
 
@@ -516,9 +480,7 @@ class Operation:
 
     def response_code_and_accept_type(self):
         for response in self.spec["responses"]:
-            return int(response), next(
-                iter(self.spec["responses"][response].get("content", {None: None}))
-            )
+            return int(response), next(iter(self.spec["responses"][response].get("content", {None: None})))
         return None, None
 
     def request_content_type(self):
@@ -526,13 +488,7 @@ class Operation:
 
     def response(self):
         for response in self.spec["responses"]:
-            return Schema(
-                next(iter((self.spec["responses"][response]["content"].values())))[
-                    "schema"
-                ]
-            )
+            return Schema(next(iter((self.spec["responses"][response]["content"].values())))["schema"])
 
     def request(self):
-        return Schema(
-            next(iter(self.spec["requestBody"]["content"].values()))["schema"]
-        )
+        return Schema(next(iter(self.spec["requestBody"]["content"].values()))["schema"])

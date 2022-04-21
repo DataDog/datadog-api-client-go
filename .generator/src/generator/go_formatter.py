@@ -18,8 +18,7 @@ def go_name(name):
     DashboardID
     """
     return "".join(
-        part.capitalize() if part not in {"API", "ID", "HTTP", "URL", "DNS"} else part
-        for part in name.split("_")
+        part.capitalize() if part not in {"API", "ID", "HTTP", "URL", "DNS"} else part for part in name.split("_")
     )
 
 
@@ -121,10 +120,7 @@ def reference_to_value(schema, value, print_nullable=True):
 
 def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs):
     parameters_spec = {p["name"]: p for p in spec.get("parameters", [])}
-    if (
-        "requestBody" in spec
-        and "multipart/form-data" in spec["requestBody"]["content"]
-    ):
+    if "requestBody" in spec and "multipart/form-data" in spec["requestBody"]["content"]:
         parent = spec["requestBody"]["content"]["multipart/form-data"]["schema"]
         for name, schema in parent["properties"].items():
             parameters_spec[name] = {
@@ -154,9 +150,7 @@ def format_parameters(data, spec, replace_values=None, has_body=False, **kwargs)
         else:
             has_optional = True
 
-    body_is_required = spec.get("requestBody", {"required": None}).get(
-        "required", False
-    )
+    body_is_required = spec.get("requestBody", {"required": None}).get("required", False)
 
     if has_body and body_is_required:
         parameters += "body, "
@@ -356,9 +350,7 @@ def format_data_with_schema_list(
 
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
     nested_schema_name = schema_name(list_schema)
-    nested_schema_name = (
-        f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
-    )
+    nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
     schema_parts.append(
         (
             not list_schema.get("nullable", False),
@@ -477,9 +469,7 @@ def format_data_with_schema_dict(
         elif matched > 1:
             warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
 
-        one_of_schema_name = (
-            simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
-        )
+        one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
         return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
 
     if schema.get("type") == "object" and "properties" not in schema:
@@ -495,9 +485,7 @@ def format_data_with_schema_dict(
         warnings.warn(f"No schema matched for {data}")
 
     if nullable:
-        return (
-            f"*{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
-        )
+        return f"*{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
 
     if in_list:
         return f"{{\n{parameters}}}"
