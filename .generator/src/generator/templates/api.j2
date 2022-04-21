@@ -159,6 +159,11 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 			}
 			{%- if pagination.pageOffsetParam %}
 			// {{ pagination.pageOffsetParam }}
+			if {{ get_container(operation, pagination.pageOffsetParam) }} == nil {
+				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(pageSize_)
+			} else {
+				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(*{{ get_container(operation, pagination.pageOffsetParam) }} + pageSize_)
+			}
 
 			{%- endif %}
 

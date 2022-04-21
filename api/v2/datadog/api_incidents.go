@@ -704,6 +704,10 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 				break
 			}
 			// page[offset]
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = PtrInt64(0)
+			}
+			o[0].PageOffset = PtrInt64(*o[0].PageOffset + int64(pageSize_))
 		}
 		close(items)
 	}()
