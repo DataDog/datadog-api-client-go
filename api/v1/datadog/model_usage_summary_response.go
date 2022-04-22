@@ -2579,7 +2579,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["dbm_queries_avg_sum"] = o.DbmQueriesAvgSum
 	}
 	if o.EndDate != nil {
-		toSerialize["end_date"] = o.EndDate
+		if o.EndDate.Nanosecond() == 0 {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.FargateTasksCountAvgSum != nil {
 		toSerialize["fargate_tasks_count_avg_sum"] = o.FargateTasksCountAvgSum
@@ -2612,7 +2616,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["iot_device_top99p_sum"] = o.IotDeviceTop99pSum
 	}
 	if o.LastUpdated != nil {
-		toSerialize["last_updated"] = o.LastUpdated
+		if o.LastUpdated.Nanosecond() == 0 {
+			toSerialize["last_updated"] = o.LastUpdated.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["last_updated"] = o.LastUpdated.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.LiveIndexedEventsAggSum != nil {
 		toSerialize["live_indexed_events_agg_sum"] = o.LiveIndexedEventsAggSum
@@ -2684,7 +2692,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["sds_total_scanned_bytes_sum"] = o.SdsTotalScannedBytesSum
 	}
 	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
+		if o.StartDate.Nanosecond() == 0 {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.SyntheticsBrowserCheckCallsCountAggSum != nil {
 		toSerialize["synthetics_browser_check_calls_count_agg_sum"] = o.SyntheticsBrowserCheckCallsCountAggSum

@@ -384,7 +384,11 @@ func (o UsageLogsHour) MarshalJSON() ([]byte, error) {
 		toSerialize["billable_ingested_bytes"] = o.BillableIngestedBytes
 	}
 	if o.Hour != nil {
-		toSerialize["hour"] = o.Hour
+		if o.Hour.Nanosecond() == 0 {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.IndexedEventsCount != nil {
 		toSerialize["indexed_events_count"] = o.IndexedEventsCount

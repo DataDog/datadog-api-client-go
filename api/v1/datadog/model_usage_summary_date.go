@@ -2264,7 +2264,11 @@ func (o UsageSummaryDate) MarshalJSON() ([]byte, error) {
 		toSerialize["cws_host_top99p"] = o.CwsHostTop99p
 	}
 	if o.Date != nil {
-		toSerialize["date"] = o.Date
+		if o.Date.Nanosecond() == 0 {
+			toSerialize["date"] = o.Date.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["date"] = o.Date.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.DbmHostTop99p != nil {
 		toSerialize["dbm_host_top99p"] = o.DbmHostTop99p

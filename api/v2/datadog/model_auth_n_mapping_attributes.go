@@ -217,10 +217,18 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["attribute_value"] = o.AttributeValue
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.ModifiedAt != nil {
-		toSerialize["modified_at"] = o.ModifiedAt
+		if o.ModifiedAt.Nanosecond() == 0 {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.SamlAssertionAttributeId != nil {
 		toSerialize["saml_assertion_attribute_id"] = o.SamlAssertionAttributeId

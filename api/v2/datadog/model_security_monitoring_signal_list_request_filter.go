@@ -143,13 +143,21 @@ func (o SecurityMonitoringSignalListRequestFilter) MarshalJSON() ([]byte, error)
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.From != nil {
-		toSerialize["from"] = o.From
+		if o.From.Nanosecond() == 0 {
+			toSerialize["from"] = o.From.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["from"] = o.From.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Query != nil {
 		toSerialize["query"] = o.Query
 	}
 	if o.To != nil {
-		toSerialize["to"] = o.To
+		if o.To.Nanosecond() == 0 {
+			toSerialize["to"] = o.To.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["to"] = o.To.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 
 	for key, value := range o.AdditionalProperties {

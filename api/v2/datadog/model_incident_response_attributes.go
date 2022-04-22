@@ -704,7 +704,11 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Created != nil {
-		toSerialize["created"] = o.Created
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.CustomerImpactDuration != nil {
 		toSerialize["customer_impact_duration"] = o.CustomerImpactDuration
@@ -728,7 +732,11 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["fields"] = o.Fields
 	}
 	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
+		if o.Modified.Nanosecond() == 0 {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.NotificationHandles != nil {
 		toSerialize["notification_handles"] = o.NotificationHandles

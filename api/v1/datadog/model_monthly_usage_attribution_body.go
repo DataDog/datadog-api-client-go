@@ -279,7 +279,11 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Month != nil {
-		toSerialize["month"] = o.Month
+		if o.Month.Nanosecond() == 0 {
+			toSerialize["month"] = o.Month.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["month"] = o.Month.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.OrgName != nil {
 		toSerialize["org_name"] = o.OrgName
@@ -294,7 +298,11 @@ func (o MonthlyUsageAttributionBody) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	if o.UpdatedAt != nil {
-		toSerialize["updated_at"] = o.UpdatedAt
+		if o.UpdatedAt.Nanosecond() == 0 {
+			toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["updated_at"] = o.UpdatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Values != nil {
 		toSerialize["values"] = o.Values

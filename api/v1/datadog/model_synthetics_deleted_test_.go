@@ -110,7 +110,11 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.DeletedAt != nil {
-		toSerialize["deleted_at"] = o.DeletedAt
+		if o.DeletedAt.Nanosecond() == 0 {
+			toSerialize["deleted_at"] = o.DeletedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["deleted_at"] = o.DeletedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId

@@ -177,7 +177,11 @@ func (o UsageNetworkFlowsHour) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Hour != nil {
-		toSerialize["hour"] = o.Hour
+		if o.Hour.Nanosecond() == 0 {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.IndexedEventsCount != nil {
 		toSerialize["indexed_events_count"] = o.IndexedEventsCount

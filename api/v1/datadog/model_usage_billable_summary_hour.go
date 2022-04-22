@@ -316,7 +316,11 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 		toSerialize["billing_plan"] = o.BillingPlan
 	}
 	if o.EndDate != nil {
-		toSerialize["end_date"] = o.EndDate
+		if o.EndDate.Nanosecond() == 0 {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.NumOrgs != nil {
 		toSerialize["num_orgs"] = o.NumOrgs
@@ -331,7 +335,11 @@ func (o UsageBillableSummaryHour) MarshalJSON() ([]byte, error) {
 		toSerialize["ratio_in_month"] = o.RatioInMonth
 	}
 	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
+		if o.StartDate.Nanosecond() == 0 {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Usage != nil {
 		toSerialize["usage"] = o.Usage

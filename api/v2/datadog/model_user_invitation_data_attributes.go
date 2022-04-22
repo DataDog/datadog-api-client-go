@@ -177,10 +177,18 @@ func (o UserInvitationDataAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.ExpiresAt != nil {
-		toSerialize["expires_at"] = o.ExpiresAt
+		if o.ExpiresAt.Nanosecond() == 0 {
+			toSerialize["expires_at"] = o.ExpiresAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["expires_at"] = o.ExpiresAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.InviteType != nil {
 		toSerialize["invite_type"] = o.InviteType
