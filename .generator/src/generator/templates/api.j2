@@ -108,17 +108,17 @@ func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Contex
 func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (items chan {{ itemType }}, cancel func(), err error) { 
 	ctx, cancel = _context.WithCancel(ctx)
 
-	// {{ pagination.limitParam }} -> {{ pagination.limitParam|attribute_name }}
-	pageSize_ := {{ get_default(operation, pagination.limitParam) }}
+	{%- set pageSizeType = get_container_type(operation, pagination.limitParam) %}
+	pageSize_ := {{ pageSizeType }}({{ get_default(operation, pagination.limitParam) }})
 	{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
 	{%- if loop.first %}
 	if len(o) > 0 && {{ get_container(operation, pagination.limitParam) }} != nil {
-		pageSize_ = int(*{{ get_container(operation, pagination.limitParam) }})
+		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
 	}
 	if len(o) == 0 {
 		o = append(o, {{ operation.operationId }}OptionalParameters{})
 	}
-	{{ get_container(operation, pagination.limitParam) }} = PtrInt32(int32(pageSize_))
+	{{ get_container(operation, pagination.limitParam) }} = &pageSize_
 	{%- endif %}
 	{%- else %}
 	{%- set limitParamParts = pagination.limitParam.split(".") %}
@@ -130,9 +130,9 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 	{%- endfor %}
 	if {{ get_container(operation, pagination.limitParam) }} == nil {
 		// {{ get_container_type(operation, pagination.limitParam) }}
-		{{ get_container(operation, pagination.limitParam) }} = PtrInt32(int32(pageSize_))
+		{{ get_container(operation, pagination.limitParam) }} = &pageSize_
 	} else {
-		pageSize_ = int(*{{ get_container(operation, pagination.limitParam) }})
+		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
 	}
 	{%- endfor %}
 
@@ -172,20 +172,18 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 				break
 			}
 			{%- if pagination.pageOffsetParam %}
-			// {{ pagination.pageOffsetParam }}
 			if {{ get_container(operation, pagination.pageOffsetParam) }} == nil {
-				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(int32(pageSize_))
+				{{ get_container(operation, pagination.pageOffsetParam) }} = &pageSize_
 			} else {
-				{{ get_container(operation, pagination.pageOffsetParam) }} = PtrInt32(*{{ get_container(operation, pagination.pageOffsetParam) }} + int32(pageSize_))
+				pageOffset_ := *{{ get_container(operation, pagination.pageOffsetParam) }} + pageSize_
+				{{ get_container(operation, pagination.pageOffsetParam) }} = &pageOffset_
 			}
 
 			{%- endif %}
 
 			{%- if pagination.cursorParam %}
-			// {{pagination.cursorPath}} -> {{ pagination.cursorParam }}
 			{%- set previous = {"cursor": ""} %}
 			{%- for part in pagination.cursorPath.split(".") %}
-			// {{ previous["cursor"] }} -> {{ previous["cursor"] + (part|attribute_name) }}
 			{%- if loop.first %}
 			cursor{{ previous["cursor"] + (part|attribute_name) }}, ok := resp.Get{{ part|attribute_name }}Ok()
 			{%- else %}
@@ -206,23 +204,6 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 		close(items)
 	}()
 	return items, cancel, err
-	{#-
-        @api_client.set_attribute_from_path({{ get_container(operation, pagination.limitParam, True) }}, page_size)
-        while true do
-            response = {{ operation.operationId|snake_case }}({% for name, parameter in operation|parameters if parameter.required %}{{ name|attribute_name }}, {% endfor %}opts)
-            @api_client.get_attribute_from_path(response, "{{ pagination.resultsPath|attribute_path }}").each { |item| yield(item) }
-            if @api_client.get_attribute_from_path(response, "{{ pagination.resultsPath|attribute_path }}").length < page_size
-              break
-            end
-            {%- if pagination.pageOffsetParam %}
-            @api_client.set_attribute_from_path({{ get_container(operation, pagination.pageOffsetParam, True) }}, @api_client.get_attribute_from_path({{ get_container(operation, pagination.pageOffsetParam) }}, 0) + page_size)
-            {%- endif %}
-            {%- if pagination.cursorParam %}
-            @api_client.set_attribute_from_path({{ get_container(operation, pagination.cursorParam, True) }}, @api_client.get_attribute_from_path(response, "{{ pagination.cursorPath }}"))
-            {%- endif %}
-        end
-    end
-	#}
 }
 {%- endif %}
 

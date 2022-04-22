@@ -501,16 +501,16 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 type apiListAuthNMappingsRequest struct {
 	ctx        _context.Context
 	ApiService *AuthNMappingsApiService
-	pageSize   *int32
-	pageNumber *int32
+	pageSize   *int64
+	pageNumber *int64
 	sort       *AuthNMappingsSort
 	include    *[]string
 	filter     *string
 }
 
 type ListAuthNMappingsOptionalParameters struct {
-	PageSize   *int32
-	PageNumber *int32
+	PageSize   *int64
+	PageNumber *int64
 	Sort       *AuthNMappingsSort
 	Include    *[]string
 	Filter     *string
@@ -520,11 +520,11 @@ func NewListAuthNMappingsOptionalParameters() *ListAuthNMappingsOptionalParamete
 	this := ListAuthNMappingsOptionalParameters{}
 	return &this
 }
-func (r *ListAuthNMappingsOptionalParameters) WithPageSize(pageSize int32) *ListAuthNMappingsOptionalParameters {
+func (r *ListAuthNMappingsOptionalParameters) WithPageSize(pageSize int64) *ListAuthNMappingsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListAuthNMappingsOptionalParameters) WithPageNumber(pageNumber int32) *ListAuthNMappingsOptionalParameters {
+func (r *ListAuthNMappingsOptionalParameters) WithPageNumber(pageNumber int64) *ListAuthNMappingsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

@@ -120,7 +120,11 @@ func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
+		if o.Timestamp.Nanosecond() == 0 {
+			toSerialize["timestamp"] = o.Timestamp.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["timestamp"] = o.Timestamp.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Value.IsSet() {
 		toSerialize["value"] = o.Value.Get()

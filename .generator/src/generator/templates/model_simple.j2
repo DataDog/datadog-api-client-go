@@ -303,11 +303,22 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- endif %}
 	{%- else %}
 	{#- if argument is not nullable, don't set it if it is nil #}
+{%- macro toSerizalize(attr, propertyName, spec) -%}
+{%- if spec.format == "date-time" -%}
+if o.{{ propertyName }}.Nanosecond() == 0 {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05Z07:00")
+} else {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05.000Z07:00")
+}
+{%- else -%}
+toSerialize["{{ attr }}"] = o.{{ propertyName }}
+{%- endif %}
+{%- endmacro %}
 	{%- if isRequired %}
-	toSerialize["{{ attr }}"] = o.{{ propertyName }}
+	{{ toSerizalize(attr, propertyName, spec)|indent("\t") }}
 	{%- else %}
 	if o.{{ propertyName }} != nil {
-		toSerialize["{{ attr }}"] = o.{{ propertyName }}
+		{{ toSerizalize(attr, propertyName, spec)|indent("\t\t") }}
 	}
 	{%- endif %}
 	{%- endif %}

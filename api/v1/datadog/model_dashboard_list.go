@@ -309,7 +309,11 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 		toSerialize["author"] = o.Author
 	}
 	if o.Created != nil {
-		toSerialize["created"] = o.Created
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.DashboardCount != nil {
 		toSerialize["dashboard_count"] = o.DashboardCount
@@ -321,7 +325,11 @@ func (o DashboardList) MarshalJSON() ([]byte, error) {
 		toSerialize["is_favorite"] = o.IsFavorite
 	}
 	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
+		if o.Modified.Nanosecond() == 0 {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	toSerialize["name"] = o.Name
 	if o.Type != nil {

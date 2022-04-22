@@ -279,7 +279,11 @@ func (o PermissionAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Created != nil {
-		toSerialize["created"] = o.Created
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Description != nil {
 		toSerialize["description"] = o.Description

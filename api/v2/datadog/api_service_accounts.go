@@ -500,8 +500,8 @@ type apiListServiceAccountApplicationKeysRequest struct {
 	ctx                  _context.Context
 	ApiService           *ServiceAccountsApiService
 	serviceAccountId     string
-	pageSize             *int32
-	pageNumber           *int32
+	pageSize             *int64
+	pageNumber           *int64
 	sort                 *ApplicationKeysSort
 	filter               *string
 	filterCreatedAtStart *string
@@ -509,8 +509,8 @@ type apiListServiceAccountApplicationKeysRequest struct {
 }
 
 type ListServiceAccountApplicationKeysOptionalParameters struct {
-	PageSize             *int32
-	PageNumber           *int32
+	PageSize             *int64
+	PageNumber           *int64
 	Sort                 *ApplicationKeysSort
 	Filter               *string
 	FilterCreatedAtStart *string
@@ -521,11 +521,11 @@ func NewListServiceAccountApplicationKeysOptionalParameters() *ListServiceAccoun
 	this := ListServiceAccountApplicationKeysOptionalParameters{}
 	return &this
 }
-func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageSize(pageSize int32) *ListServiceAccountApplicationKeysOptionalParameters {
+func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageNumber(pageNumber int32) *ListServiceAccountApplicationKeysOptionalParameters {
+func (r *ListServiceAccountApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListServiceAccountApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

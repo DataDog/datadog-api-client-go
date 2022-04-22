@@ -285,16 +285,14 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
  */
 func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (items chan RUMEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[limit] -> PageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = int(*o[0].PageLimit)
+		pageSize_ = *o[0].PageLimit
 	}
 	if len(o) == 0 {
 		o = append(o, ListRUMEventsOptionalParameters{})
 	}
-	o[0].PageLimit = PtrInt32(int32(pageSize_))
+	o[0].PageLimit = &pageSize_
 
 	items = make(chan RUMEvent, pageSize_)
 	go func() {
@@ -325,18 +323,14 @@ func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...L
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> page[cursor]
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break
@@ -530,17 +524,15 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
  */
 func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (items chan RUMEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// body.page.limit -> BodyPageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if body.Page == nil {
 		body.Page = NewRUMQueryPageOptions()
 	}
 	if body.Page.Limit == nil {
 		// int32
-		body.Page.Limit = PtrInt32(int32(pageSize_))
+		body.Page.Limit = &pageSize_
 	} else {
-		pageSize_ = int(*body.Page.Limit)
+		pageSize_ = *body.Page.Limit
 	}
 
 	items = make(chan RUMEvent, pageSize_)
@@ -572,18 +564,14 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> body.page.cursor
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break

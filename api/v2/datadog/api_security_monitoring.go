@@ -1104,24 +1104,24 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 type apiListSecurityMonitoringRulesRequest struct {
 	ctx        _context.Context
 	ApiService *SecurityMonitoringApiService
-	pageSize   *int32
-	pageNumber *int32
+	pageSize   *int64
+	pageNumber *int64
 }
 
 type ListSecurityMonitoringRulesOptionalParameters struct {
-	PageSize   *int32
-	PageNumber *int32
+	PageSize   *int64
+	PageNumber *int64
 }
 
 func NewListSecurityMonitoringRulesOptionalParameters() *ListSecurityMonitoringRulesOptionalParameters {
 	this := ListSecurityMonitoringRulesOptionalParameters{}
 	return &this
 }
-func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize int32) *ListSecurityMonitoringRulesOptionalParameters {
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageSize(pageSize int64) *ListSecurityMonitoringRulesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int32) *ListSecurityMonitoringRulesOptionalParameters {
+func (r *ListSecurityMonitoringRulesOptionalParameters) WithPageNumber(pageNumber int64) *ListSecurityMonitoringRulesOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1368,16 +1368,14 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
  */
 func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[limit] -> PageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = int(*o[0].PageLimit)
+		pageSize_ = *o[0].PageLimit
 	}
 	if len(o) == 0 {
 		o = append(o, ListSecurityMonitoringSignalsOptionalParameters{})
 	}
-	o[0].PageLimit = PtrInt32(int32(pageSize_))
+	o[0].PageLimit = &pageSize_
 
 	items = make(chan SecurityMonitoringSignal, pageSize_)
 	go func() {
@@ -1408,18 +1406,14 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> page[cursor]
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break
@@ -1637,16 +1631,14 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _cont
  */
 func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// body.page.limit -> BodyPageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].Body.Page.Limit != nil {
-		pageSize_ = int(*o[0].Body.Page.Limit)
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	if len(o) == 0 {
 		o = append(o, SearchSecurityMonitoringSignalsOptionalParameters{})
 	}
-	o[0].Body.Page.Limit = PtrInt32(int32(pageSize_))
+	o[0].Body.Page.Limit = &pageSize_
 
 	items = make(chan SecurityMonitoringSignal, pageSize_)
 	go func() {
@@ -1677,18 +1669,14 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> body.page.cursor
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break

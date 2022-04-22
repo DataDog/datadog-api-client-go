@@ -1349,15 +1349,15 @@ type apiListRoleUsersRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
 	roleId     string
-	pageSize   *int32
-	pageNumber *int32
+	pageSize   *int64
+	pageNumber *int64
 	sort       *string
 	filter     *string
 }
 
 type ListRoleUsersOptionalParameters struct {
-	PageSize   *int32
-	PageNumber *int32
+	PageSize   *int64
+	PageNumber *int64
 	Sort       *string
 	Filter     *string
 }
@@ -1366,11 +1366,11 @@ func NewListRoleUsersOptionalParameters() *ListRoleUsersOptionalParameters {
 	this := ListRoleUsersOptionalParameters{}
 	return &this
 }
-func (r *ListRoleUsersOptionalParameters) WithPageSize(pageSize int32) *ListRoleUsersOptionalParameters {
+func (r *ListRoleUsersOptionalParameters) WithPageSize(pageSize int64) *ListRoleUsersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListRoleUsersOptionalParameters) WithPageNumber(pageNumber int32) *ListRoleUsersOptionalParameters {
+func (r *ListRoleUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListRoleUsersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
@@ -1557,15 +1557,15 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 type apiListRolesRequest struct {
 	ctx        _context.Context
 	ApiService *RolesApiService
-	pageSize   *int32
-	pageNumber *int32
+	pageSize   *int64
+	pageNumber *int64
 	sort       *RolesSort
 	filter     *string
 }
 
 type ListRolesOptionalParameters struct {
-	PageSize   *int32
-	PageNumber *int32
+	PageSize   *int64
+	PageNumber *int64
 	Sort       *RolesSort
 	Filter     *string
 }
@@ -1574,11 +1574,11 @@ func NewListRolesOptionalParameters() *ListRolesOptionalParameters {
 	this := ListRolesOptionalParameters{}
 	return &this
 }
-func (r *ListRolesOptionalParameters) WithPageSize(pageSize int32) *ListRolesOptionalParameters {
+func (r *ListRolesOptionalParameters) WithPageSize(pageSize int64) *ListRolesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListRolesOptionalParameters) WithPageNumber(pageNumber int32) *ListRolesOptionalParameters {
+func (r *ListRolesOptionalParameters) WithPageNumber(pageNumber int64) *ListRolesOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

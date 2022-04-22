@@ -599,14 +599,14 @@ type apiListIncidentsRequest struct {
 	ctx        _context.Context
 	ApiService *IncidentsApiService
 	include    *[]IncidentRelatedObject
-	pageSize   *int32
-	pageOffset *int32
+	pageSize   *int64
+	pageOffset *int64
 }
 
 type ListIncidentsOptionalParameters struct {
 	Include    *[]IncidentRelatedObject
-	PageSize   *int32
-	PageOffset *int32
+	PageSize   *int64
+	PageOffset *int64
 }
 
 func NewListIncidentsOptionalParameters() *ListIncidentsOptionalParameters {
@@ -617,11 +617,11 @@ func (r *ListIncidentsOptionalParameters) WithInclude(include []IncidentRelatedO
 	r.Include = &include
 	return r
 }
-func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int32) *ListIncidentsOptionalParameters {
+func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int32) *ListIncidentsOptionalParameters {
+func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
@@ -663,16 +663,14 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
  */
 func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (items chan IncidentResponseData, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[size] -> PageSize
-	pageSize_ := 10
+	pageSize_ := int64(10)
 	if len(o) > 0 && o[0].PageSize != nil {
-		pageSize_ = int(*o[0].PageSize)
+		pageSize_ = *o[0].PageSize
 	}
 	if len(o) == 0 {
 		o = append(o, ListIncidentsOptionalParameters{})
 	}
-	o[0].PageSize = PtrInt32(int32(pageSize_))
+	o[0].PageSize = &pageSize_
 
 	items = make(chan IncidentResponseData, pageSize_)
 	go func() {
@@ -703,11 +701,11 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// page[offset]
 			if o[0].PageOffset == nil {
-				o[0].PageOffset = PtrInt32(int32(pageSize_))
+				o[0].PageOffset = &pageSize_
 			} else {
-				o[0].PageOffset = PtrInt32(*o[0].PageOffset + int32(pageSize_))
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
 			}
 		}
 		close(items)

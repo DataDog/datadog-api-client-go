@@ -1123,8 +1123,8 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 type apiListUsersRequest struct {
 	ctx          _context.Context
 	ApiService   *UsersApiService
-	pageSize     *int32
-	pageNumber   *int32
+	pageSize     *int64
+	pageNumber   *int64
 	sort         *string
 	sortDir      *QuerySortOrder
 	filter       *string
@@ -1132,8 +1132,8 @@ type apiListUsersRequest struct {
 }
 
 type ListUsersOptionalParameters struct {
-	PageSize     *int32
-	PageNumber   *int32
+	PageSize     *int64
+	PageNumber   *int64
 	Sort         *string
 	SortDir      *QuerySortOrder
 	Filter       *string
@@ -1144,11 +1144,11 @@ func NewListUsersOptionalParameters() *ListUsersOptionalParameters {
 	this := ListUsersOptionalParameters{}
 	return &this
 }
-func (r *ListUsersOptionalParameters) WithPageSize(pageSize int32) *ListUsersOptionalParameters {
+func (r *ListUsersOptionalParameters) WithPageSize(pageSize int64) *ListUsersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
-func (r *ListUsersOptionalParameters) WithPageNumber(pageNumber int32) *ListUsersOptionalParameters {
+func (r *ListUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListUsersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }

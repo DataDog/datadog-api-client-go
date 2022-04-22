@@ -117,16 +117,14 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
  */
 func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (items chan AuditLogsEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[limit] -> PageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = int(*o[0].PageLimit)
+		pageSize_ = *o[0].PageLimit
 	}
 	if len(o) == 0 {
 		o = append(o, ListAuditLogsOptionalParameters{})
 	}
-	o[0].PageLimit = PtrInt32(int32(pageSize_))
+	o[0].PageLimit = &pageSize_
 
 	items = make(chan AuditLogsEvent, pageSize_)
 	go func() {
@@ -157,18 +155,14 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> page[cursor]
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break
@@ -382,16 +376,14 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
  */
 func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (items chan AuditLogsEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// body.page.limit -> BodyPageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].Body.Page.Limit != nil {
-		pageSize_ = int(*o[0].Body.Page.Limit)
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	if len(o) == 0 {
 		o = append(o, SearchAuditLogsOptionalParameters{})
 	}
-	o[0].Body.Page.Limit = PtrInt32(int32(pageSize_))
+	o[0].Body.Page.Limit = &pageSize_
 
 	items = make(chan AuditLogsEvent, pageSize_)
 	go func() {
@@ -422,18 +414,14 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> body.page.cursor
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break

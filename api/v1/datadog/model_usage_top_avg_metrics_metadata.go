@@ -143,10 +143,18 @@ func (o UsageTopAvgMetricsMetadata) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Day != nil {
-		toSerialize["day"] = o.Day
+		if o.Day.Nanosecond() == 0 {
+			toSerialize["day"] = o.Day.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["day"] = o.Day.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Month != nil {
-		toSerialize["month"] = o.Month
+		if o.Month.Nanosecond() == 0 {
+			toSerialize["month"] = o.Month.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["month"] = o.Month.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Pagination != nil {
 		toSerialize["pagination"] = o.Pagination

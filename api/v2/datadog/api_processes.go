@@ -111,16 +111,14 @@ func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProce
  */
 func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (items chan ProcessSummary, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[limit] -> PageLimit
-	pageSize_ := 1000
+	pageSize_ := int32(1000)
 	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = int(*o[0].PageLimit)
+		pageSize_ = *o[0].PageLimit
 	}
 	if len(o) == 0 {
 		o = append(o, ListProcessesOptionalParameters{})
 	}
-	o[0].PageLimit = PtrInt32(int32(pageSize_))
+	o[0].PageLimit = &pageSize_
 
 	items = make(chan ProcessSummary, pageSize_)
 	go func() {
@@ -151,18 +149,14 @@ func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, 
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> page[cursor]
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break

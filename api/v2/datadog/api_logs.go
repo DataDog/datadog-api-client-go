@@ -255,16 +255,14 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalPar
  */
 func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (items chan Log, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// body.page.limit -> BodyPageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].Body.Page.Limit != nil {
-		pageSize_ = int(*o[0].Body.Page.Limit)
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	if len(o) == 0 {
 		o = append(o, ListLogsOptionalParameters{})
 	}
-	o[0].Body.Page.Limit = PtrInt32(int32(pageSize_))
+	o[0].Body.Page.Limit = &pageSize_
 
 	items = make(chan Log, pageSize_)
 	go func() {
@@ -295,18 +293,14 @@ func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListL
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> body.page.cursor
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break
@@ -561,16 +555,14 @@ func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptio
  */
 func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (items chan Log, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
-
-	// page[limit] -> PageLimit
-	pageSize_ := 10
+	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = int(*o[0].PageLimit)
+		pageSize_ = *o[0].PageLimit
 	}
 	if len(o) == 0 {
 		o = append(o, ListLogsGetOptionalParameters{})
 	}
-	o[0].PageLimit = PtrInt32(int32(pageSize_))
+	o[0].PageLimit = &pageSize_
 
 	items = make(chan Log, pageSize_)
 	go func() {
@@ -601,18 +593,14 @@ func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...Li
 			if len(results) < int(pageSize_) {
 				break
 			}
-			// meta.page.after -> page[cursor]
-			//  -> Meta
 			cursorMeta, ok := resp.GetMetaOk()
 			if !ok {
 				break
 			}
-			// Meta -> MetaPage
 			cursorMetaPage, ok := cursorMeta.GetPageOk()
 			if !ok {
 				break
 			}
-			// MetaPage -> MetaPageAfter
 			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
 			if !ok {
 				break
