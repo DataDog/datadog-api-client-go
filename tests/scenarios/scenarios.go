@@ -82,7 +82,7 @@ type pathParamCountKey struct{}
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
 	tags := make([]string, 1)
-	tags = append(tags, "@skip", "@skip-go")
+	tags = append(tags, "@skip", "@skip-go", "@with-pagination")
 	if tests.GetRecording() != tests.ModeIgnore {
 		tags = append(tags, "@integration-only")
 	}
