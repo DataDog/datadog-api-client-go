@@ -1,6 +1,5 @@
 """Go data formatter."""
 from functools import singledispatch
-from datetime import datetime
 import warnings
 import re
 
@@ -338,8 +337,6 @@ def format_data_with_schema_list(
     if not schema:
         return ""
 
-    nullable = schema.get("nullable", False)
-
     parameters = ""
     # collect nested array types until you find a non-array type
     schema_parts = [(required, "[]")]
@@ -402,6 +399,8 @@ def format_data_with_schema_dict(
         required_properties = set(schema.get("required", []))
 
         for k, v in data.items():
+            if k not in schema["properties"]:
+                continue
             value = format_data_with_schema(
                 v,
                 schema["properties"][k],
@@ -414,6 +413,10 @@ def format_data_with_schema_dict(
             parameters += f"{camel_case(k)}: {value},\n"
 
     if schema.get("additionalProperties"):
+        saved_parameters = ""
+        if schema.get("properties"):
+            saved_parameters = parameters
+            parameters = ""
         nested_schema = schema["additionalProperties"]
         nested_schema_name = simple_type(nested_schema)
         if not nested_schema_name:
@@ -421,7 +424,11 @@ def format_data_with_schema_dict(
             if nested_schema_name:
                 nested_schema_name = name_prefix + nested_schema_name
 
+        has_properties = schema.get("properties")
+
         for k, v in data.items():
+            if has_properties and k in schema["properties"]:
+                continue
             value = format_data_with_schema(
                 v,
                 schema["additionalProperties"],
@@ -436,7 +443,13 @@ def format_data_with_schema_dict(
             if not nested_schema_name:
                 nested_schema_name = value.split("{")[0]
 
-        return f"map[string]{nested_schema_name}{{\n{parameters}}}"
+        if has_properties:
+            if parameters:
+                parameters = f"{saved_parameters}AdditionalProperties: map[string]{nested_schema_name}{{\n{parameters}}},\n"
+            else:
+                parameters = saved_parameters
+        else:
+            return f"map[string]{nested_schema_name}{{\n{parameters}}}"
 
     if "oneOf" in schema:
         matched = 0

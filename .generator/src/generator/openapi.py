@@ -47,7 +47,7 @@ def type_to_go(schema, alternative_name=None, render_nullable=False):
     if name:
         if "enum" in schema:
             return prefix + name
-        if not schema.get("additionalProperties") and schema.get("type", "object") == "object":
+        if not (schema.get("additionalProperties") and not schema.get("properties")) and schema.get("type", "object") == "object":
             return prefix + name
 
     type_ = schema.get("type")
@@ -146,7 +146,7 @@ def child_models(schema, alternative_name=None, seen=None, parent=None):
         )
 
     if (schema.get("type") == "object" or "properties" in schema or has_sub_models) and (
-        "additionalProperties" not in schema or schema["additionalProperties"] is False
+        not (schema.get("additionalProperties") and not schema.get("properties"))
     ):
         if not has_sub_models and name is None:
             # this is a basic map object so we don't need a type
