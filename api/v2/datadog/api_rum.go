@@ -283,7 +283,7 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
 /*
  * ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
  */
-func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (items chan RUMEvent, cancel func(), err error) {
+func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (items <-chan RUMEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) > 0 && o[0].PageLimit != nil {
@@ -522,7 +522,7 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
 /*
  * SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
  */
-func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (items chan RUMEvent, cancel func(), err error) {
+func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (items <-chan RUMEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if body.Page == nil {
