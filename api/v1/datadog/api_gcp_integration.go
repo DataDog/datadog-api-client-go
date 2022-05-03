@@ -28,15 +28,24 @@ type apiCreateGCPIntegrationRequest struct {
 	body       *GCPAccount
 }
 
+func (a *GCPIntegrationApiService) buildCreateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiCreateGCPIntegrationRequest, error) {
+	req := apiCreateGCPIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateGCPIntegration Create a GCP integration
  * Create a Datadog-GCP integration.
  */
 func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiCreateGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateGCPIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createGCPIntegrationExecute(req)
@@ -187,15 +196,24 @@ type apiDeleteGCPIntegrationRequest struct {
 	body       *GCPAccount
 }
 
+func (a *GCPIntegrationApiService) buildDeleteGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiDeleteGCPIntegrationRequest, error) {
+	req := apiDeleteGCPIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * DeleteGCPIntegration Delete a GCP integration
  * Delete a given Datadog-GCP integration.
  */
 func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiDeleteGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildDeleteGCPIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteGCPIntegrationExecute(req)
@@ -345,14 +363,23 @@ type apiListGCPIntegrationRequest struct {
 	ApiService *GCPIntegrationApiService
 }
 
+func (a *GCPIntegrationApiService) buildListGCPIntegrationRequest(ctx _context.Context) (apiListGCPIntegrationRequest, error) {
+	req := apiListGCPIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListGCPIntegration List all GCP integrations
  * List all Datadog-GCP integrations configured in your Datadog account.
  */
 func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
-	req := apiListGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListGCPIntegrationRequest(ctx)
+	if err != nil {
+		var localVarReturnValue []GCPAccount
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listGCPIntegrationExecute(req)
@@ -488,6 +515,15 @@ type apiUpdateGCPIntegrationRequest struct {
 	body       *GCPAccount
 }
 
+func (a *GCPIntegrationApiService) buildUpdateGCPIntegrationRequest(ctx _context.Context, body GCPAccount) (apiUpdateGCPIntegrationRequest, error) {
+	req := apiUpdateGCPIntegrationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateGCPIntegration Update a GCP integration
  * Update a Datadog-GCP integrations host_filters and/or auto-mute.
@@ -496,10 +532,10 @@ type apiUpdateGCPIntegrationRequest struct {
  * The unspecified fields will keep their original values.
  */
 func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
-	req := apiUpdateGCPIntegrationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildUpdateGCPIntegrationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateGCPIntegrationExecute(req)

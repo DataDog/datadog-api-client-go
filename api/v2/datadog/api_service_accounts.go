@@ -30,16 +30,25 @@ type apiCreateServiceAccountApplicationKeyRequest struct {
 	body             *ApplicationKeyCreateRequest
 }
 
-/*
- * CreateServiceAccountApplicationKey Create an application key for this service account
- * Create an application key for this service account.
- */
-func (a *ServiceAccountsApiService) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApiService) buildCreateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (apiCreateServiceAccountApplicationKeyRequest, error) {
 	req := apiCreateServiceAccountApplicationKeyRequest{
 		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		body:             &body,
+	}
+	return req, nil
+}
+
+/*
+ * CreateServiceAccountApplicationKey Create an application key for this service account
+ * Create an application key for this service account.
+ */
+func (a *ServiceAccountsApiService) CreateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateServiceAccountApplicationKeyRequest(ctx, serviceAccountId, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createServiceAccountApplicationKeyExecute(req)
@@ -192,16 +201,24 @@ type apiDeleteServiceAccountApplicationKeyRequest struct {
 	appKeyId         string
 }
 
-/*
- * DeleteServiceAccountApplicationKey Delete an application key for this service account
- * Delete an application key owned by this service account.
- */
-func (a *ServiceAccountsApiService) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
+func (a *ServiceAccountsApiService) buildDeleteServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiDeleteServiceAccountApplicationKeyRequest, error) {
 	req := apiDeleteServiceAccountApplicationKeyRequest{
 		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
+	}
+	return req, nil
+}
+
+/*
+ * DeleteServiceAccountApplicationKey Delete an application key for this service account
+ * Delete an application key owned by this service account.
+ */
+func (a *ServiceAccountsApiService) DeleteServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteServiceAccountApplicationKeyExecute(req)
@@ -329,16 +346,25 @@ type apiGetServiceAccountApplicationKeyRequest struct {
 	appKeyId         string
 }
 
-/*
- * GetServiceAccountApplicationKey Get one application key for this service account
- * Get an application key owned by this service account.
- */
-func (a *ServiceAccountsApiService) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApiService) buildGetServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string) (apiGetServiceAccountApplicationKeyRequest, error) {
 	req := apiGetServiceAccountApplicationKeyRequest{
 		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
+	}
+	return req, nil
+}
+
+/*
+ * GetServiceAccountApplicationKey Get one application key for this service account
+ * Get an application key owned by this service account.
+ */
+func (a *ServiceAccountsApiService) GetServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId)
+	if err != nil {
+		var localVarReturnValue PartialApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getServiceAccountApplicationKeyExecute(req)
@@ -520,11 +546,7 @@ func (r *ListServiceAccountApplicationKeysOptionalParameters) WithFilterCreatedA
 	return r
 }
 
-/*
- * ListServiceAccountApplicationKeys List application keys for this service account
- * List all application keys available for this service account.
- */
-func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApiService) buildListServiceAccountApplicationKeysRequest(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (apiListServiceAccountApplicationKeysRequest, error) {
 	req := apiListServiceAccountApplicationKeysRequest{
 		ApiService:       a,
 		ctx:              ctx,
@@ -532,8 +554,7 @@ func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _conte
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ListApplicationKeysResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListServiceAccountApplicationKeysOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -543,6 +564,19 @@ func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _conte
 		req.filter = o[0].Filter
 		req.filterCreatedAtStart = o[0].FilterCreatedAtStart
 		req.filterCreatedAtEnd = o[0].FilterCreatedAtEnd
+	}
+	return req, nil
+}
+
+/*
+ * ListServiceAccountApplicationKeys List application keys for this service account
+ * List all application keys available for this service account.
+ */
+func (a *ServiceAccountsApiService) ListServiceAccountApplicationKeys(ctx _context.Context, serviceAccountId string, o ...ListServiceAccountApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+	req, err := a.buildListServiceAccountApplicationKeysRequest(ctx, serviceAccountId, o...)
+	if err != nil {
+		var localVarReturnValue ListApplicationKeysResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listServiceAccountApplicationKeysExecute(req)
@@ -709,17 +743,26 @@ type apiUpdateServiceAccountApplicationKeyRequest struct {
 	body             *ApplicationKeyUpdateRequest
 }
 
-/*
- * UpdateServiceAccountApplicationKey Edit an application key for this service account
- * Edit an application key owned by this service account.
- */
-func (a *ServiceAccountsApiService) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *ServiceAccountsApiService) buildUpdateServiceAccountApplicationKeyRequest(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateServiceAccountApplicationKeyRequest, error) {
 	req := apiUpdateServiceAccountApplicationKeyRequest{
 		ApiService:       a,
 		ctx:              ctx,
 		serviceAccountId: serviceAccountId,
 		appKeyId:         appKeyId,
 		body:             &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateServiceAccountApplicationKey Edit an application key for this service account
+ * Edit an application key owned by this service account.
+ */
+func (a *ServiceAccountsApiService) UpdateServiceAccountApplicationKey(ctx _context.Context, serviceAccountId string, appKeyId string, body ApplicationKeyUpdateRequest) (PartialApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateServiceAccountApplicationKeyRequest(ctx, serviceAccountId, appKeyId, body)
+	if err != nil {
+		var localVarReturnValue PartialApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateServiceAccountApplicationKeyExecute(req)

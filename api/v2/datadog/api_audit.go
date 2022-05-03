@@ -72,24 +72,14 @@ func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAu
 	return r
 }
 
-/*
- * ListAuditLogs Get a list of Audit Logs events
- * List endpoint returns events that match a Audit Logs search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to see your latest Audit Logs events.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
-func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (apiListAuditLogsRequest, error) {
 	req := apiListAuditLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue AuditLogsEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListAuditLogsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -100,8 +90,89 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
 		req.pageCursor = o[0].PageCursor
 		req.pageLimit = o[0].PageLimit
 	}
+	return req, nil
+}
+
+/*
+ * ListAuditLogs Get a list of Audit Logs events
+ * List endpoint returns events that match a Audit Logs search query.
+ * [Results are paginated][1].
+ *
+ * Use this endpoint to see your latest Audit Logs events.
+ *
+ * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
+ */
+func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListAuditLogsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue AuditLogsEventsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listAuditLogsExecute(req)
+}
+
+/*
+ * ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
+ */
+func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, ListAuditLogsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan AuditLogsEvent, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListAuditLogsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listAuditLogsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, nil
 }
 
 /*
@@ -265,6 +336,22 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
 	return r
 }
 
+func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (apiSearchAuditLogsRequest, error) {
+	req := apiSearchAuditLogsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.body = o[0].Body
+	}
+	return req, nil
+}
+
 /*
  * SearchAuditLogs Search Audit Logs events
  * List endpoint returns Audit Logs events that match an Audit search query.
@@ -275,21 +362,82 @@ func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsR
  * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
  */
 func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
-	req := apiSearchAuditLogsRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildSearchAuditLogsRequest(ctx, o...)
+	if err != nil {
 		var localVarReturnValue AuditLogsEventsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type SearchAuditLogsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.body = o[0].Body
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.searchAuditLogsExecute(req)
+}
+
+/*
+ * SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
+ */
+func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(10)
+	if len(o) == 0 {
+		o = append(o, SearchAuditLogsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewAuditLogsSearchEventsRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewAuditLogsQueryPageOptions()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
+	}
+	o[0].Body.Page.Limit = &pageSize_
+
+	items := make(chan AuditLogsEvent, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildSearchAuditLogsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.searchAuditLogsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].Body.Page.Cursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, nil
 }
 
 /*

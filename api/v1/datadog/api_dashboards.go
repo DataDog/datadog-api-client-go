@@ -29,16 +29,25 @@ type apiCreateDashboardRequest struct {
 	body       *Dashboard
 }
 
+func (a *DashboardsApiService) buildCreateDashboardRequest(ctx _context.Context, body Dashboard) (apiCreateDashboardRequest, error) {
+	req := apiCreateDashboardRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateDashboard Create a new dashboard
  * Create a dashboard using the specified options. When defining queries in your widgets, take note of which queries should have the `as_count()` or `as_rate()` modifiers appended.
  * Refer to the following [documentation](https://docs.datadoghq.com/developers/metrics/type_modifiers/?tab=count#in-application-modifiers) for more information on these modifiers.
  */
 func (a *DashboardsApiService) CreateDashboard(ctx _context.Context, body Dashboard) (Dashboard, *_nethttp.Response, error) {
-	req := apiCreateDashboardRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateDashboardRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue Dashboard
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createDashboardExecute(req)
@@ -189,15 +198,24 @@ type apiDeleteDashboardRequest struct {
 	dashboardId string
 }
 
+func (a *DashboardsApiService) buildDeleteDashboardRequest(ctx _context.Context, dashboardId string) (apiDeleteDashboardRequest, error) {
+	req := apiDeleteDashboardRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		dashboardId: dashboardId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteDashboard Delete a dashboard
  * Delete a dashboard using the specified ID.
  */
 func (a *DashboardsApiService) DeleteDashboard(ctx _context.Context, dashboardId string) (DashboardDeleteResponse, *_nethttp.Response, error) {
-	req := apiDeleteDashboardRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		dashboardId: dashboardId,
+	req, err := a.buildDeleteDashboardRequest(ctx, dashboardId)
+	if err != nil {
+		var localVarReturnValue DashboardDeleteResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteDashboardExecute(req)
@@ -334,15 +352,23 @@ type apiDeleteDashboardsRequest struct {
 	body       *DashboardBulkDeleteRequest
 }
 
+func (a *DashboardsApiService) buildDeleteDashboardsRequest(ctx _context.Context, body DashboardBulkDeleteRequest) (apiDeleteDashboardsRequest, error) {
+	req := apiDeleteDashboardsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * DeleteDashboards Delete dashboards
  * Delete dashboards using the specified IDs. If there are any failures, no dashboards will be deleted (partial success is not allowed).
  */
 func (a *DashboardsApiService) DeleteDashboards(ctx _context.Context, body DashboardBulkDeleteRequest) (*_nethttp.Response, error) {
-	req := apiDeleteDashboardsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildDeleteDashboardsRequest(ctx, body)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteDashboardsExecute(req)
@@ -492,15 +518,24 @@ type apiGetDashboardRequest struct {
 	dashboardId string
 }
 
+func (a *DashboardsApiService) buildGetDashboardRequest(ctx _context.Context, dashboardId string) (apiGetDashboardRequest, error) {
+	req := apiGetDashboardRequest{
+		ApiService:  a,
+		ctx:         ctx,
+		dashboardId: dashboardId,
+	}
+	return req, nil
+}
+
 /*
  * GetDashboard Get a dashboard
  * Get a dashboard using the specified ID.
  */
 func (a *DashboardsApiService) GetDashboard(ctx _context.Context, dashboardId string) (Dashboard, *_nethttp.Response, error) {
-	req := apiGetDashboardRequest{
-		ApiService:  a,
-		ctx:         ctx,
-		dashboardId: dashboardId,
+	req, err := a.buildGetDashboardRequest(ctx, dashboardId)
+	if err != nil {
+		var localVarReturnValue Dashboard
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getDashboardExecute(req)
@@ -656,6 +691,23 @@ func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool)
 	return r
 }
 
+func (a *DashboardsApiService) buildListDashboardsRequest(ctx _context.Context, o ...ListDashboardsOptionalParameters) (apiListDashboardsRequest, error) {
+	req := apiListDashboardsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type ListDashboardsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterShared = o[0].FilterShared
+		req.filterDeleted = o[0].FilterDeleted
+	}
+	return req, nil
+}
+
 /*
  * ListDashboards Get all dashboards
  * Get all dashboards.
@@ -664,19 +716,10 @@ func (r *ListDashboardsOptionalParameters) WithFilterDeleted(filterDeleted bool)
  * This query will not return preset dashboards.
  */
 func (a *DashboardsApiService) ListDashboards(ctx _context.Context, o ...ListDashboardsOptionalParameters) (DashboardSummary, *_nethttp.Response, error) {
-	req := apiListDashboardsRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildListDashboardsRequest(ctx, o...)
+	if err != nil {
 		var localVarReturnValue DashboardSummary
-		return localVarReturnValue, nil, reportError("only one argument of type ListDashboardsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.filterShared = o[0].FilterShared
-		req.filterDeleted = o[0].FilterDeleted
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listDashboardsExecute(req)
@@ -808,15 +851,23 @@ type apiRestoreDashboardsRequest struct {
 	body       *DashboardRestoreRequest
 }
 
+func (a *DashboardsApiService) buildRestoreDashboardsRequest(ctx _context.Context, body DashboardRestoreRequest) (apiRestoreDashboardsRequest, error) {
+	req := apiRestoreDashboardsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * RestoreDashboards Restore deleted dashboards
  * Restore dashboards using the specified IDs. If there are any failures, no dashboards will be restored (partial success is not allowed).
  */
 func (a *DashboardsApiService) RestoreDashboards(ctx _context.Context, body DashboardRestoreRequest) (*_nethttp.Response, error) {
-	req := apiRestoreDashboardsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildRestoreDashboardsRequest(ctx, body)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.restoreDashboardsExecute(req)
@@ -967,16 +1018,25 @@ type apiUpdateDashboardRequest struct {
 	body        *Dashboard
 }
 
-/*
- * UpdateDashboard Update a dashboard
- * Update a dashboard using the specified ID.
- */
-func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string, body Dashboard) (Dashboard, *_nethttp.Response, error) {
+func (a *DashboardsApiService) buildUpdateDashboardRequest(ctx _context.Context, dashboardId string, body Dashboard) (apiUpdateDashboardRequest, error) {
 	req := apiUpdateDashboardRequest{
 		ApiService:  a,
 		ctx:         ctx,
 		dashboardId: dashboardId,
 		body:        &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateDashboard Update a dashboard
+ * Update a dashboard using the specified ID.
+ */
+func (a *DashboardsApiService) UpdateDashboard(ctx _context.Context, dashboardId string, body Dashboard) (Dashboard, *_nethttp.Response, error) {
+	req, err := a.buildUpdateDashboardRequest(ctx, dashboardId, body)
+	if err != nil {
+		var localVarReturnValue Dashboard
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateDashboardExecute(req)

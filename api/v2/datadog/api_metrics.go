@@ -31,6 +31,15 @@ type apiCreateBulkTagsMetricsConfigurationRequest struct {
 	body       *MetricBulkTagConfigCreateRequest
 }
 
+func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (apiCreateBulkTagsMetricsConfigurationRequest, error) {
+	req := apiCreateBulkTagsMetricsConfigurationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateBulkTagsMetricsConfiguration Configure tags for multiple metrics
  * Create and define a list of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
@@ -41,10 +50,10 @@ type apiCreateBulkTagsMetricsConfigurationRequest struct {
  * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
  */
 func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
-	req := apiCreateBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateBulkTagsMetricsConfigurationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue MetricBulkTagConfigResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createBulkTagsMetricsConfigurationExecute(req)
@@ -206,6 +215,16 @@ type apiCreateTagConfigurationRequest struct {
 	body       *MetricTagConfigurationCreateRequest
 }
 
+func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (apiCreateTagConfigurationRequest, error) {
+	req := apiCreateTagConfigurationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateTagConfiguration Create a tag configuration
  * Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
@@ -214,11 +233,10 @@ type apiCreateTagConfigurationRequest struct {
  * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
  */
 func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	req := apiCreateTagConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
-		body:       &body,
+	req, err := a.buildCreateTagConfigurationRequest(ctx, metricName, body)
+	if err != nil {
+		var localVarReturnValue MetricTagConfigurationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createTagConfigurationExecute(req)
@@ -387,6 +405,15 @@ type apiDeleteBulkTagsMetricsConfigurationRequest struct {
 	body       *MetricBulkTagConfigDeleteRequest
 }
 
+func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (apiDeleteBulkTagsMetricsConfigurationRequest, error) {
+	req := apiDeleteBulkTagsMetricsConfigurationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * DeleteBulkTagsMetricsConfiguration Configure tags for multiple metrics
  * Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
@@ -395,10 +422,10 @@ type apiDeleteBulkTagsMetricsConfigurationRequest struct {
  * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
  */
 func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
-	req := apiDeleteBulkTagsMetricsConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildDeleteBulkTagsMetricsConfigurationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue MetricBulkTagConfigResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteBulkTagsMetricsConfigurationExecute(req)
@@ -559,16 +586,24 @@ type apiDeleteTagConfigurationRequest struct {
 	metricName string
 }
 
+func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Context, metricName string) (apiDeleteTagConfigurationRequest, error) {
+	req := apiDeleteTagConfigurationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+	return req, nil
+}
+
 /*
  * DeleteTagConfiguration Delete a tag configuration
  * Deletes a metric's tag configuration. Can only be used with application
  * keys from users with the `Manage Tags for Metrics` permission.
  */
 func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
-	req := apiDeleteTagConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
+	req, err := a.buildDeleteTagConfigurationRequest(ctx, metricName)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteTagConfigurationExecute(req)
@@ -701,15 +736,24 @@ type apiListTagConfigurationByNameRequest struct {
 	metricName string
 }
 
+func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.Context, metricName string) (apiListTagConfigurationByNameRequest, error) {
+	req := apiListTagConfigurationByNameRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+	return req, nil
+}
+
 /*
  * ListTagConfigurationByName List tag configuration by name
  * Returns the tag configuration for the given metric name.
  */
 func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	req := apiListTagConfigurationByNameRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
+	req, err := a.buildListTagConfigurationByNameRequest(ctx, metricName)
+	if err != nil {
+		var localVarReturnValue MetricTagConfigurationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listTagConfigurationByNameExecute(req)
@@ -896,20 +940,14 @@ func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSecond
 	return r
 }
 
-/*
- * ListTagConfigurations List tag configurations
- * Returns all configured count/gauge/rate/distribution metric names
- * (with additional filters if specified).
- */
-func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (apiListTagConfigurationsRequest, error) {
 	req := apiListTagConfigurationsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue MetricsAndMetricTagConfigurationsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListTagConfigurationsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListTagConfigurationsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -919,6 +957,20 @@ func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...Lis
 		req.filterIncludePercentiles = o[0].FilterIncludePercentiles
 		req.filterTags = o[0].FilterTags
 		req.windowSeconds = o[0].WindowSeconds
+	}
+	return req, nil
+}
+
+/*
+ * ListTagConfigurations List tag configurations
+ * Returns all configured count/gauge/rate/distribution metric names
+ * (with additional filters if specified).
+ */
+func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListTagConfigurationsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue MetricsAndMetricTagConfigurationsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listTagConfigurationsExecute(req)
@@ -1079,15 +1131,24 @@ type apiListTagsByMetricNameRequest struct {
 	metricName string
 }
 
+func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Context, metricName string) (apiListTagsByMetricNameRequest, error) {
+	req := apiListTagsByMetricNameRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+	return req, nil
+}
+
 /*
  * ListTagsByMetricName List tags by metric name
  * View indexed tag key-value pairs for a given metric name.
  */
 func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
-	req := apiListTagsByMetricNameRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
+	req, err := a.buildListTagsByMetricNameRequest(ctx, metricName)
+	if err != nil {
+		var localVarReturnValue MetricAllTagsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listTagsByMetricNameExecute(req)
@@ -1234,6 +1295,15 @@ type apiListVolumesByMetricNameRequest struct {
 	metricName string
 }
 
+func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Context, metricName string) (apiListVolumesByMetricNameRequest, error) {
+	req := apiListVolumesByMetricNameRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+	return req, nil
+}
+
 /*
  * ListVolumesByMetricName List distinct metric volumes by metric name
  * View distinct metrics volumes for the given metric name.
@@ -1243,10 +1313,10 @@ type apiListVolumesByMetricNameRequest struct {
  * Custom metrics generated in-app from other products will return `null` for ingested volumes.
  */
 func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
-	req := apiListVolumesByMetricNameRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
+	req, err := a.buildListVolumesByMetricNameRequest(ctx, metricName)
+	if err != nil {
+		var localVarReturnValue MetricVolumesResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listVolumesByMetricNameExecute(req)
@@ -1394,6 +1464,16 @@ type apiUpdateTagConfigurationRequest struct {
 	body       *MetricTagConfigurationUpdateRequest
 }
 
+func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (apiUpdateTagConfigurationRequest, error) {
+	req := apiUpdateTagConfigurationRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateTagConfiguration Update a tag configuration
  * Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
@@ -1401,11 +1481,10 @@ type apiUpdateTagConfigurationRequest struct {
  * Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
  */
 func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
-	req := apiUpdateTagConfigurationRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
-		body:       &body,
+	req, err := a.buildUpdateTagConfigurationRequest(ctx, metricName, body)
+	if err != nil {
+		var localVarReturnValue MetricTagConfigurationResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateTagConfigurationExecute(req)

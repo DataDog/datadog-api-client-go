@@ -56,11 +56,7 @@ func (r *{{ operation.operationId }}OptionalParameters) With{{ name|camel_case }
 }
 {%- endfor %}
 
-/*
- * {{ operation.operationId }} {{ operation.summary }}
-{{ operation.description|block_comment(prefix=" *") }}
- */
-func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+func (a *{{ classname }}Service) build{{ operation.operationId }}Request(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (api{{ operation.operationId }}Request, error) {
 	req := api{{ operation.operationId }}Request{
 		ApiService: a,
 		ctx:        ctx,
@@ -75,10 +71,7 @@ func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Contex
 	{%- if loop.first %}
 
 	if len(o) > 1 {
-		{%- if returnType %}
-		var localVarReturnValue {{ returnType }}
-		{%- endif %}
-		return {% if returnType %}localVarReturnValue, {% endif %}nil, reportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
+		return req, reportError("only one argument of type {{ operation.operationId }}OptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -88,9 +81,138 @@ func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Contex
 	}
 	{%- endif %}
 	{%- endfor %}
+	return req, nil
+}
+
+/*
+ * {{ operation.operationId }} {{ operation.summary }}
+{{ operation.description|block_comment(prefix=" *") }}
+ */
+func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) ({% if returnType %}{{ returnType }}, {% endif %}*_nethttp.Response, error) {
+	req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
+	if err != nil {
+		{%- if returnType %}
+		var localVarReturnValue {{ returnType }}
+		{%- endif %}
+		return {% if returnType %}localVarReturnValue, {% endif %}nil, err
+	}
 
 	return req.ApiService.{{ operation.operationId|untitle_case }}Execute(req)
 }
+{%- if operation["x-pagination"] %}
+{%- set pagination = operation["x-pagination"] %}
+/*
+ * {{ operation.operationId }}WithPagination provides a paginated version of {{ operation.operationId }} returning a channel with all items.
+ */
+{%- set itemType = get_type_at_path(operation, pagination.resultsPath) %}
+func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan {{ itemType }}, func(), error) {
+	ctx, cancel := _context.WithCancel(ctx)
+
+	{%- set pageSizeType = get_container_type(operation, pagination.limitParam) %}
+	pageSize_ := {{ pageSizeType }}({{ get_default(operation, pagination.limitParam) }})
+	{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
+	{%- if loop.first %}
+	if len(o) == 0 {
+		o = append(o, {{ operation.operationId }}OptionalParameters{})
+	}
+	{%- set limitParamParts = pagination.limitParam.split(".") %}
+	{%- for numberOfParts in range(1, limitParamParts|length) %}
+	{%- set limitParam = ".".join(limitParamParts[:numberOfParts]) %}
+	if {{ get_container(operation, limitParam) }} == nil {
+		{{ get_container(operation, limitParam) }} = New{{ get_container_type(operation, limitParam) }}()
+	}
+	{%- endfor %}
+	if {{ get_container(operation, pagination.limitParam) }} != nil {
+		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
+	}
+	{{ get_container(operation, pagination.limitParam) }} = &pageSize_
+	{%- endif %}
+	{%- else %}
+	{%- set limitParamParts = pagination.limitParam.split(".") %}
+	{%- for numberOfParts in range(2, limitParamParts|length) %}
+	{%- set limitParam = ".".join(limitParamParts[:numberOfParts]) %}
+	if {{ get_container(operation, limitParam) }} == nil {
+		{{ get_container(operation, limitParam) }} = New{{ get_container_type(operation, limitParam) }}()
+	}
+	{%- endfor %}
+	if {{ get_container(operation, pagination.limitParam) }} == nil {
+		// {{ get_container_type(operation, pagination.limitParam) }}
+		{{ get_container(operation, pagination.limitParam) }} = &pageSize_
+	} else {
+		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
+	}
+	{%- endfor %}
+
+	items := make(chan {{ itemType }}, pageSize_)
+	go func() {
+		for {
+			req, err := a.build{{ operation.operationId }}Request(ctx{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o...{% endif %}{% endfor %})
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.{{ operation.operationId|untitle_case }}Execute(req)
+			if err != nil {
+				break
+			}
+			{%- set previous = {"part": ""} %}
+			{%- for part in pagination.resultsPath.split(".") %}
+			resp{{ previous["part"] + (part|attribute_name) }}, ok := resp{{ previous["part"] }}.Get{{ part|attribute_name }}Ok()
+			if !ok {
+				break
+			}
+			{%- set _ = previous.update({"part": previous["part"] + (part|attribute_name)}) %}
+			{%- if loop.last %}
+			results := *resp{{ previous["part"] }}
+			{%- endif %}
+			{%- endfor %}
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+				close(items)
+				return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			{%- if pagination.pageOffsetParam %}
+			if {{ get_container(operation, pagination.pageOffsetParam) }} == nil {
+				{{ get_container(operation, pagination.pageOffsetParam) }} = &pageSize_
+			} else {
+				pageOffset_ := *{{ get_container(operation, pagination.pageOffsetParam) }} + pageSize_
+				{{ get_container(operation, pagination.pageOffsetParam) }} = &pageOffset_
+			}
+
+			{%- endif %}
+
+			{%- if pagination.cursorParam %}
+			{%- set previous = {"cursor": ""} %}
+			{%- for part in pagination.cursorPath.split(".") %}
+			{%- if loop.first %}
+			cursor{{ previous["cursor"] + (part|attribute_name) }}, ok := resp.Get{{ part|attribute_name }}Ok()
+			{%- else %}
+			cursor{{ previous["cursor"] + (part|attribute_name) }}, ok := cursor{{ previous["cursor"] }}.Get{{ part|attribute_name }}Ok()
+			{%- endif %}
+			if !ok {
+				break
+			}
+			{%- if loop.last %}
+
+			{{ get_container(operation, pagination.cursorParam) }} = cursor{{ previous["cursor"] + (part|attribute_name) }}
+			{%- endif %}
+			{%- set _ = previous.update({"cursor": previous["cursor"] + (part|attribute_name)}) %}
+			{%- endfor %}
+
+			{%- endif %}
+		}
+		close(items)
+	}()
+	return items, cancel, nil
+}
+{%- endif %}
 
 /*
  * Execute executes the request

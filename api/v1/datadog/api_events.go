@@ -29,16 +29,25 @@ type apiCreateEventRequest struct {
 	body       *EventCreateRequest
 }
 
+func (a *EventsApiService) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
+	req := apiCreateEventRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateEvent Post an event
  * This endpoint allows you to post events to the stream.
  * Tag them, set priority and event aggregate them with other events.
  */
 func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
-	req := apiCreateEventRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateEventRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue EventCreateResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createEventExecute(req)
@@ -165,6 +174,15 @@ type apiGetEventRequest struct {
 	eventId    int64
 }
 
+func (a *EventsApiService) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
+	req := apiGetEventRequest{
+		ApiService: a,
+		ctx:        ctx,
+		eventId:    eventId,
+	}
+	return req, nil
+}
+
 /*
  * GetEvent Get an event
  * This endpoint allows you to query for event details.
@@ -173,10 +191,10 @@ type apiGetEventRequest struct {
  * you may see characters such as `%`,`\`,`n` in your output.
  */
 func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
-	req := apiGetEventRequest{
-		ApiService: a,
-		ctx:        ctx,
-		eventId:    eventId,
+	req, err := a.buildGetEventRequest(ctx, eventId)
+	if err != nil {
+		var localVarReturnValue EventResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getEventExecute(req)
@@ -358,6 +376,29 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
 	return r
 }
 
+func (a *EventsApiService) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
+	req := apiListEventsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		start:      &start,
+		end:        &end,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type ListEventsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.priority = o[0].Priority
+		req.sources = o[0].Sources
+		req.tags = o[0].Tags
+		req.unaggregated = o[0].Unaggregated
+		req.excludeAggregate = o[0].ExcludeAggregate
+		req.page = o[0].Page
+	}
+	return req, nil
+}
+
 /*
  * ListEvents Query the event stream
  * The event stream can be queried and filtered by time, priority, sources and tags.
@@ -371,25 +412,10 @@ func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalP
  * paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
  */
 func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
-	req := apiListEventsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		start:      &start,
-		end:        &end,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildListEventsRequest(ctx, start, end, o...)
+	if err != nil {
 		var localVarReturnValue EventListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListEventsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.priority = o[0].Priority
-		req.sources = o[0].Sources
-		req.tags = o[0].Tags
-		req.unaggregated = o[0].Unaggregated
-		req.excludeAggregate = o[0].ExcludeAggregate
-		req.page = o[0].Page
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listEventsExecute(req)

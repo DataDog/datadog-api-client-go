@@ -29,15 +29,24 @@ type apiCreateAPIKeyRequest struct {
 	body       *ApiKey
 }
 
+func (a *KeyManagementApiService) buildCreateAPIKeyRequest(ctx _context.Context, body ApiKey) (apiCreateAPIKeyRequest, error) {
+	req := apiCreateAPIKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateAPIKey Create an API key
  * Creates an API key with a given name.
  */
 func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
-	req := apiCreateAPIKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateAPIKeyRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue ApiKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createAPIKeyExecute(req)
@@ -188,15 +197,24 @@ type apiCreateApplicationKeyRequest struct {
 	body       *ApplicationKey
 }
 
+func (a *KeyManagementApiService) buildCreateApplicationKeyRequest(ctx _context.Context, body ApplicationKey) (apiCreateApplicationKeyRequest, error) {
+	req := apiCreateApplicationKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateApplicationKey Create an application key
  * Create an application key with a given name.
  */
 func (a *KeyManagementApiService) CreateApplicationKey(ctx _context.Context, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	req := apiCreateApplicationKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateApplicationKeyRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createApplicationKeyExecute(req)
@@ -357,15 +375,24 @@ type apiDeleteAPIKeyRequest struct {
 	key        string
 }
 
+func (a *KeyManagementApiService) buildDeleteAPIKeyRequest(ctx _context.Context, key string) (apiDeleteAPIKeyRequest, error) {
+	req := apiDeleteAPIKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		key:        key,
+	}
+	return req, nil
+}
+
 /*
  * DeleteAPIKey Delete an API key
  * Delete a given API key.
  */
 func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
-	req := apiDeleteAPIKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+	req, err := a.buildDeleteAPIKeyRequest(ctx, key)
+	if err != nil {
+		var localVarReturnValue ApiKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteAPIKeyExecute(req)
@@ -512,15 +539,24 @@ type apiDeleteApplicationKeyRequest struct {
 	key        string
 }
 
+func (a *KeyManagementApiService) buildDeleteApplicationKeyRequest(ctx _context.Context, key string) (apiDeleteApplicationKeyRequest, error) {
+	req := apiDeleteApplicationKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		key:        key,
+	}
+	return req, nil
+}
+
 /*
  * DeleteApplicationKey Delete an application key
  * Delete a given application key.
  */
 func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	req := apiDeleteApplicationKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+	req, err := a.buildDeleteApplicationKeyRequest(ctx, key)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteApplicationKeyExecute(req)
@@ -657,15 +693,24 @@ type apiGetAPIKeyRequest struct {
 	key        string
 }
 
+func (a *KeyManagementApiService) buildGetAPIKeyRequest(ctx _context.Context, key string) (apiGetAPIKeyRequest, error) {
+	req := apiGetAPIKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		key:        key,
+	}
+	return req, nil
+}
+
 /*
  * GetAPIKey Get API key
  * Get a given API key.
  */
 func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, key string) (ApiKeyResponse, *_nethttp.Response, error) {
-	req := apiGetAPIKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+	req, err := a.buildGetAPIKeyRequest(ctx, key)
+	if err != nil {
+		var localVarReturnValue ApiKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getAPIKeyExecute(req)
@@ -802,15 +847,24 @@ type apiGetApplicationKeyRequest struct {
 	key        string
 }
 
+func (a *KeyManagementApiService) buildGetApplicationKeyRequest(ctx _context.Context, key string) (apiGetApplicationKeyRequest, error) {
+	req := apiGetApplicationKeyRequest{
+		ApiService: a,
+		ctx:        ctx,
+		key:        key,
+	}
+	return req, nil
+}
+
 /*
  * GetApplicationKey Get an application key
  * Get a given application key.
  */
 func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, key string) (ApplicationKeyResponse, *_nethttp.Response, error) {
-	req := apiGetApplicationKeyRequest{
-		ApiService: a,
-		ctx:        ctx,
-		key:        key,
+	req, err := a.buildGetApplicationKeyRequest(ctx, key)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getApplicationKeyExecute(req)
@@ -946,14 +1000,23 @@ type apiListAPIKeysRequest struct {
 	ApiService *KeyManagementApiService
 }
 
+func (a *KeyManagementApiService) buildListAPIKeysRequest(ctx _context.Context) (apiListAPIKeysRequest, error) {
+	req := apiListAPIKeysRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListAPIKeys Get all API keys
  * Get all API keys available for your account.
  */
 func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context) (ApiKeyListResponse, *_nethttp.Response, error) {
-	req := apiListAPIKeysRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListAPIKeysRequest(ctx)
+	if err != nil {
+		var localVarReturnValue ApiKeyListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listAPIKeysExecute(req)
@@ -1078,14 +1141,23 @@ type apiListApplicationKeysRequest struct {
 	ApiService *KeyManagementApiService
 }
 
+func (a *KeyManagementApiService) buildListApplicationKeysRequest(ctx _context.Context) (apiListApplicationKeysRequest, error) {
+	req := apiListApplicationKeysRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListApplicationKeys Get all application keys
  * Get all application keys available for your Datadog account.
  */
 func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context) (ApplicationKeyListResponse, *_nethttp.Response, error) {
-	req := apiListApplicationKeysRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListApplicationKeysRequest(ctx)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listApplicationKeysExecute(req)
@@ -1212,16 +1284,25 @@ type apiUpdateAPIKeyRequest struct {
 	body       *ApiKey
 }
 
-/*
- * UpdateAPIKey Edit an API key
- * Edit an API key name.
- */
-func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, key string, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildUpdateAPIKeyRequest(ctx _context.Context, key string, body ApiKey) (apiUpdateAPIKeyRequest, error) {
 	req := apiUpdateAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		key:        key,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateAPIKey Edit an API key
+ * Edit an API key name.
+ */
+func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, key string, body ApiKey) (ApiKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateAPIKeyRequest(ctx, key, body)
+	if err != nil {
+		var localVarReturnValue ApiKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateAPIKeyExecute(req)
@@ -1384,16 +1465,25 @@ type apiUpdateApplicationKeyRequest struct {
 	body       *ApplicationKey
 }
 
-/*
- * UpdateApplicationKey Edit an application key
- * Edit an application key name.
- */
-func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildUpdateApplicationKeyRequest(ctx _context.Context, key string, body ApplicationKey) (apiUpdateApplicationKeyRequest, error) {
 	req := apiUpdateApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		key:        key,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateApplicationKey Edit an application key
+ * Edit an application key name.
+ */
+func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, key string, body ApplicationKey) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateApplicationKeyRequest(ctx, key, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateApplicationKeyExecute(req)

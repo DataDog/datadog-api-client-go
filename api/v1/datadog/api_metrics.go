@@ -29,15 +29,24 @@ type apiGetMetricMetadataRequest struct {
 	metricName string
 }
 
+func (a *MetricsApiService) buildGetMetricMetadataRequest(ctx _context.Context, metricName string) (apiGetMetricMetadataRequest, error) {
+	req := apiGetMetricMetadataRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+	return req, nil
+}
+
 /*
  * GetMetricMetadata Get metric metadata
  * Get metadata about a specific metric.
  */
 func (a *MetricsApiService) GetMetricMetadata(ctx _context.Context, metricName string) (MetricMetadata, *_nethttp.Response, error) {
-	req := apiGetMetricMetadataRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricName: metricName,
+	req, err := a.buildGetMetricMetadataRequest(ctx, metricName)
+	if err != nil {
+		var localVarReturnValue MetricMetadata
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getMetricMetadataExecute(req)
@@ -194,11 +203,7 @@ func (r *ListActiveMetricsOptionalParameters) WithTagFilter(tagFilter string) *L
 	return r
 }
 
-/*
- * ListActiveMetrics Get active metrics list
- * Get the list of actively reporting metrics from a given time until now.
- */
-func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) buildListActiveMetricsRequest(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (apiListActiveMetricsRequest, error) {
 	req := apiListActiveMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -206,13 +211,25 @@ func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, 
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue MetricsListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListActiveMetricsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListActiveMetricsOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.host = o[0].Host
 		req.tagFilter = o[0].TagFilter
+	}
+	return req, nil
+}
+
+/*
+ * ListActiveMetrics Get active metrics list
+ * Get the list of actively reporting metrics from a given time until now.
+ */
+func (a *MetricsApiService) ListActiveMetrics(ctx _context.Context, from int64, o ...ListActiveMetricsOptionalParameters) (MetricsListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListActiveMetricsRequest(ctx, from, o...)
+	if err != nil {
+		var localVarReturnValue MetricsListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listActiveMetricsExecute(req)
@@ -358,15 +375,24 @@ type apiListMetricsRequest struct {
 	q          *string
 }
 
+func (a *MetricsApiService) buildListMetricsRequest(ctx _context.Context, q string) (apiListMetricsRequest, error) {
+	req := apiListMetricsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		q:          &q,
+	}
+	return req, nil
+}
+
 /*
  * ListMetrics Search metrics
  * Search for metrics from the last 24 hours in Datadog.
  */
 func (a *MetricsApiService) ListMetrics(ctx _context.Context, q string) (MetricSearchResponse, *_nethttp.Response, error) {
-	req := apiListMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		q:          &q,
+	req, err := a.buildListMetricsRequest(ctx, q)
+	if err != nil {
+		var localVarReturnValue MetricSearchResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listMetricsExecute(req)
@@ -508,17 +534,26 @@ type apiQueryMetricsRequest struct {
 	query      *string
 }
 
-/*
- * QueryMetrics Query timeseries points
- * Query timeseries points.
- */
-func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
+func (a *MetricsApiService) buildQueryMetricsRequest(ctx _context.Context, from int64, to int64, query string) (apiQueryMetricsRequest, error) {
 	req := apiQueryMetricsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		from:       &from,
 		to:         &to,
 		query:      &query,
+	}
+	return req, nil
+}
+
+/*
+ * QueryMetrics Query timeseries points
+ * Query timeseries points.
+ */
+func (a *MetricsApiService) QueryMetrics(ctx _context.Context, from int64, to int64, query string) (MetricsQueryResponse, *_nethttp.Response, error) {
+	req, err := a.buildQueryMetricsRequest(ctx, from, to, query)
+	if err != nil {
+		var localVarReturnValue MetricsQueryResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.queryMetricsExecute(req)
@@ -680,6 +715,23 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
 	return r
 }
 
+func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (apiSubmitMetricsRequest, error) {
+	req := apiSubmitMetricsRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.contentEncoding = o[0].ContentEncoding
+	}
+	return req, nil
+}
+
 /*
  * SubmitMetrics Submit metrics
  * The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
@@ -695,19 +747,10 @@ func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding Me
  * compression is applied, which reduces the payload size.
  */
 func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricsPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
-	req := apiSubmitMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
-	}
-
-	if len(o) > 1 {
+	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
+	if err != nil {
 		var localVarReturnValue IntakePayloadAccepted
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitMetricsOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.contentEncoding = o[0].ContentEncoding
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.submitMetricsExecute(req)
@@ -869,16 +912,25 @@ type apiUpdateMetricMetadataRequest struct {
 	body       *MetricMetadata
 }
 
-/*
- * UpdateMetricMetadata Edit metric metadata
- * Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
- */
-func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
+func (a *MetricsApiService) buildUpdateMetricMetadataRequest(ctx _context.Context, metricName string, body MetricMetadata) (apiUpdateMetricMetadataRequest, error) {
 	req := apiUpdateMetricMetadataRequest{
 		ApiService: a,
 		ctx:        ctx,
 		metricName: metricName,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateMetricMetadata Edit metric metadata
+ * Edit metadata of a specific metric. Find out more about [supported types](https://docs.datadoghq.com/developers/metrics).
+ */
+func (a *MetricsApiService) UpdateMetricMetadata(ctx _context.Context, metricName string, body MetricMetadata) (MetricMetadata, *_nethttp.Response, error) {
+	req, err := a.buildUpdateMetricMetadataRequest(ctx, metricName, body)
+	if err != nil {
+		var localVarReturnValue MetricMetadata
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateMetricMetadataExecute(req)

@@ -31,15 +31,24 @@ type apiCreateIncidentTeamRequest struct {
 	body       *IncidentTeamCreateRequest
 }
 
+func (a *IncidentTeamsApiService) buildCreateIncidentTeamRequest(ctx _context.Context, body IncidentTeamCreateRequest) (apiCreateIncidentTeamRequest, error) {
+	req := apiCreateIncidentTeamRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateIncidentTeam Create a new incident team
  * Creates a new incident team.
  */
 func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
-	req := apiCreateIncidentTeamRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateIncidentTeamRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue IncidentTeamResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createIncidentTeamExecute(req)
@@ -217,15 +226,23 @@ type apiDeleteIncidentTeamRequest struct {
 	teamId     string
 }
 
+func (a *IncidentTeamsApiService) buildDeleteIncidentTeamRequest(ctx _context.Context, teamId string) (apiDeleteIncidentTeamRequest, error) {
+	req := apiDeleteIncidentTeamRequest{
+		ApiService: a,
+		ctx:        ctx,
+		teamId:     teamId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteIncidentTeam Delete an existing incident team
  * Deletes an existing incident team.
  */
 func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
-	req := apiDeleteIncidentTeamRequest{
-		ApiService: a,
-		ctx:        ctx,
-		teamId:     teamId,
+	req, err := a.buildDeleteIncidentTeamRequest(ctx, teamId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteIncidentTeamExecute(req)
@@ -392,12 +409,7 @@ func (r *GetIncidentTeamOptionalParameters) WithInclude(include IncidentRelatedO
 	return r
 }
 
-/*
- * GetIncidentTeam Get details of an incident team
- * Get details of an incident team. If the `include[users]` query parameter is provided,
- * the included attribute will contain the users related to these incident teams.
- */
-func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) buildGetIncidentTeamRequest(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (apiGetIncidentTeamRequest, error) {
 	req := apiGetIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -405,12 +417,25 @@ func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId s
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue IncidentTeamResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentTeamOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetIncidentTeamOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.include = o[0].Include
+	}
+	return req, nil
+}
+
+/*
+ * GetIncidentTeam Get details of an incident team
+ * Get details of an incident team. If the `include[users]` query parameter is provided,
+ * the included attribute will contain the users related to these incident teams.
+ */
+func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetIncidentTeamRequest(ctx, teamId, o...)
+	if err != nil {
+		var localVarReturnValue IncidentTeamResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getIncidentTeamExecute(req)
@@ -608,19 +633,14 @@ func (r *ListIncidentTeamsOptionalParameters) WithFilter(filter string) *ListInc
 	return r
 }
 
-/*
- * ListIncidentTeams Get a list of all incident teams
- * Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
- */
-func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) buildListIncidentTeamsRequest(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (apiListIncidentTeamsRequest, error) {
 	req := apiListIncidentTeamsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue IncidentTeamsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListIncidentTeamsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListIncidentTeamsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -628,6 +648,19 @@ func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...L
 		req.pageSize = o[0].PageSize
 		req.pageOffset = o[0].PageOffset
 		req.filter = o[0].Filter
+	}
+	return req, nil
+}
+
+/*
+ * ListIncidentTeams Get a list of all incident teams
+ * Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
+ */
+func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListIncidentTeamsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue IncidentTeamsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listIncidentTeamsExecute(req)
@@ -803,16 +836,25 @@ type apiUpdateIncidentTeamRequest struct {
 	body       *IncidentTeamUpdateRequest
 }
 
-/*
- * UpdateIncidentTeam Update an existing incident team
- * Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
- */
-func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+func (a *IncidentTeamsApiService) buildUpdateIncidentTeamRequest(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (apiUpdateIncidentTeamRequest, error) {
 	req := apiUpdateIncidentTeamRequest{
 		ApiService: a,
 		ctx:        ctx,
 		teamId:     teamId,
 		body:       &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateIncidentTeam Update an existing incident team
+ * Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
+ */
+func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateIncidentTeamRequest(ctx, teamId, body)
+	if err != nil {
+		var localVarReturnValue IncidentTeamResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateIncidentTeamExecute(req)
