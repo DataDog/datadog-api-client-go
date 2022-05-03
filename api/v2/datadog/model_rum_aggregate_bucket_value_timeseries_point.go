@@ -109,7 +109,11 @@ func (o RUMAggregateBucketValueTimeseriesPoint) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Time != nil {
-		toSerialize["time"] = o.Time
+		if o.Time.Nanosecond() == 0 {
+			toSerialize["time"] = o.Time.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["time"] = o.Time.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Value != nil {
 		toSerialize["value"] = o.Value

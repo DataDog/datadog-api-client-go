@@ -479,10 +479,18 @@ func (o SyntheticsSSLCertificate) MarshalJSON() ([]byte, error) {
 		toSerialize["subject"] = o.Subject
 	}
 	if o.ValidFrom != nil {
-		toSerialize["validFrom"] = o.ValidFrom
+		if o.ValidFrom.Nanosecond() == 0 {
+			toSerialize["validFrom"] = o.ValidFrom.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["validFrom"] = o.ValidFrom.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.ValidTo != nil {
-		toSerialize["validTo"] = o.ValidTo
+		if o.ValidTo.Nanosecond() == 0 {
+			toSerialize["validTo"] = o.ValidTo.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["validTo"] = o.ValidTo.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 
 	for key, value := range o.AdditionalProperties {

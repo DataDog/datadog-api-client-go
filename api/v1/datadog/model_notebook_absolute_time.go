@@ -127,11 +127,19 @@ func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	toSerialize["end"] = o.End
+	if o.End.Nanosecond() == 0 {
+		toSerialize["end"] = o.End.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["end"] = o.End.Format("2006-01-02T15:04:05.000Z07:00")
+	}
 	if o.Live != nil {
 		toSerialize["live"] = o.Live
 	}
-	toSerialize["start"] = o.Start
+	if o.Start.Nanosecond() == 0 {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05.000Z07:00")
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
