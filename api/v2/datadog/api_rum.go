@@ -284,7 +284,7 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
  * ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
  */
 func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan RUMEvent, func(), error) {
-	ctx, cancel = _context.WithCancel(ctx)
+	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
 		o = append(o, ListRUMEventsOptionalParameters{})
@@ -294,7 +294,7 @@ func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...L
 	}
 	o[0].PageLimit = &pageSize_
 
-	items = make(chan RUMEvent, pageSize_)
+	items := make(chan RUMEvent, pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListRUMEventsRequest(ctx, o...)
@@ -523,7 +523,7 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
  * SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
  */
 func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan RUMEvent, func(), error) {
-	ctx, cancel = _context.WithCancel(ctx)
+	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if body.Page == nil {
 		body.Page = NewRUMQueryPageOptions()
@@ -535,7 +535,7 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 		pageSize_ = *body.Page.Limit
 	}
 
-	items = make(chan RUMEvent, pageSize_)
+	items := make(chan RUMEvent, pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchRUMEventsRequest(ctx, body)

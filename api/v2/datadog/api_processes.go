@@ -110,7 +110,7 @@ func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProce
  * ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
  */
 func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan ProcessSummary, func(), error) {
-	ctx, cancel = _context.WithCancel(ctx)
+	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(1000)
 	if len(o) == 0 {
 		o = append(o, ListProcessesOptionalParameters{})
@@ -120,7 +120,7 @@ func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, 
 	}
 	o[0].PageLimit = &pageSize_
 
-	items = make(chan ProcessSummary, pageSize_)
+	items := make(chan ProcessSummary, pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListProcessesRequest(ctx, o...)

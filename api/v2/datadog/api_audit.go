@@ -116,7 +116,7 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
  * ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
  */
 func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
-	ctx, cancel = _context.WithCancel(ctx)
+	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
 		o = append(o, ListAuditLogsOptionalParameters{})
@@ -126,7 +126,7 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 	}
 	o[0].PageLimit = &pageSize_
 
-	items = make(chan AuditLogsEvent, pageSize_)
+	items := make(chan AuditLogsEvent, pageSize_)
 	go func() {
 		for {
 			req, err := a.buildListAuditLogsRequest(ctx, o...)
@@ -375,7 +375,7 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
  * SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
  */
 func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
-	ctx, cancel = _context.WithCancel(ctx)
+	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
 		o = append(o, SearchAuditLogsOptionalParameters{})
@@ -391,7 +391,7 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
-	items = make(chan AuditLogsEvent, pageSize_)
+	items := make(chan AuditLogsEvent, pageSize_)
 	go func() {
 		for {
 			req, err := a.buildSearchAuditLogsRequest(ctx, o...)
