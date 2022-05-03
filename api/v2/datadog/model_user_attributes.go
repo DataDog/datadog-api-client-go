@@ -437,7 +437,11 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Disabled != nil {
 		toSerialize["disabled"] = o.Disabled
@@ -452,7 +456,11 @@ func (o UserAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["icon"] = o.Icon
 	}
 	if o.ModifiedAt != nil {
-		toSerialize["modified_at"] = o.ModifiedAt
+		if o.ModifiedAt.Nanosecond() == 0 {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Name.IsSet() {
 		toSerialize["name"] = o.Name.Get()

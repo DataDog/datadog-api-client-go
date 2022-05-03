@@ -285,10 +285,18 @@ func (o UsageBillableSummaryBody) MarshalJSON() ([]byte, error) {
 		toSerialize["elapsed_usage_hours"] = o.ElapsedUsageHours
 	}
 	if o.FirstBillableUsageHour != nil {
-		toSerialize["first_billable_usage_hour"] = o.FirstBillableUsageHour
+		if o.FirstBillableUsageHour.Nanosecond() == 0 {
+			toSerialize["first_billable_usage_hour"] = o.FirstBillableUsageHour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["first_billable_usage_hour"] = o.FirstBillableUsageHour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.LastBillableUsageHour != nil {
-		toSerialize["last_billable_usage_hour"] = o.LastBillableUsageHour
+		if o.LastBillableUsageHour.Nanosecond() == 0 {
+			toSerialize["last_billable_usage_hour"] = o.LastBillableUsageHour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["last_billable_usage_hour"] = o.LastBillableUsageHour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.OrgBillableUsage != nil {
 		toSerialize["org_billable_usage"] = o.OrgBillableUsage

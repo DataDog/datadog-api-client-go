@@ -282,7 +282,11 @@ func (o UsageLogsByIndexHour) MarshalJSON() ([]byte, error) {
 		toSerialize["event_count"] = o.EventCount
 	}
 	if o.Hour != nil {
-		toSerialize["hour"] = o.Hour
+		if o.Hour.Nanosecond() == 0 {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.IndexId != nil {
 		toSerialize["index_id"] = o.IndexId
