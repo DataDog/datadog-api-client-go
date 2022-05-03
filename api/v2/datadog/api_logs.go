@@ -256,11 +256,17 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalPar
 func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (items chan Log, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].Body != nil && o[0].Body.Page != nil && o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
 	if len(o) == 0 {
 		o = append(o, ListLogsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewLogsListRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewLogsListRequestPage()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
@@ -556,11 +562,11 @@ func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptio
 func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (items chan Log, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
 	if len(o) == 0 {
 		o = append(o, ListLogsGetOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
 

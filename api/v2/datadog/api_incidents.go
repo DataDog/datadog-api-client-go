@@ -664,11 +664,11 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
 func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (items chan IncidentResponseData, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int64(10)
-	if len(o) > 0 && o[0].PageSize != nil {
-		pageSize_ = *o[0].PageSize
-	}
 	if len(o) == 0 {
 		o = append(o, ListIncidentsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
 	}
 	o[0].PageSize = &pageSize_
 

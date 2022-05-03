@@ -112,11 +112,11 @@ func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProce
 func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (items chan ProcessSummary, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(1000)
-	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
 	if len(o) == 0 {
 		o = append(o, ListProcessesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
 

@@ -118,11 +118,11 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
 func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (items chan AuditLogsEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
 	if len(o) == 0 {
 		o = append(o, ListAuditLogsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
 
@@ -377,11 +377,17 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
 func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (items chan AuditLogsEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].Body != nil && o[0].Body.Page != nil && o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
 	if len(o) == 0 {
 		o = append(o, SearchAuditLogsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewAuditLogsSearchEventsRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewAuditLogsQueryPageOptions()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	o[0].Body.Page.Limit = &pageSize_
 

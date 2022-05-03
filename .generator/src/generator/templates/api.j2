@@ -112,14 +112,18 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 	pageSize_ := {{ pageSizeType }}({{ get_default(operation, pagination.limitParam) }})
 	{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}
 	{%- if loop.first %}
-	if len(o) > 0 {% set previous = ["o[0]"] -%}
-	{%- for part in get_container(operation, pagination.limitParam).split(".")[1:] -%}
-	{%- set _ = previous.extend([part]) %} && {{ ".".join(previous) }} != nil
-	{%- endfor -%} {
-		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
-	}
 	if len(o) == 0 {
 		o = append(o, {{ operation.operationId }}OptionalParameters{})
+	}
+	{%- set limitParamParts = pagination.limitParam.split(".") %}
+	{%- for numberOfParts in range(1, limitParamParts|length) %}
+	{%- set limitParam = ".".join(limitParamParts[:numberOfParts]) %}
+	if {{ get_container(operation, limitParam) }} == nil {
+		{{ get_container(operation, limitParam) }} = New{{ get_container_type(operation, limitParam) }}()
+	}
+	{%- endfor %}
+	if {{ get_container(operation, pagination.limitParam) }} != nil {
+		pageSize_ = *{{ get_container(operation, pagination.limitParam) }}
 	}
 	{{ get_container(operation, pagination.limitParam) }} = &pageSize_
 	{%- endif %}

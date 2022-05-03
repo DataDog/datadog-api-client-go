@@ -286,11 +286,11 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
 func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (items chan RUMEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
 	if len(o) == 0 {
 		o = append(o, ListRUMEventsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
 

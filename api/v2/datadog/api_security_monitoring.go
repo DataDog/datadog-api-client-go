@@ -1369,11 +1369,11 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
 func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].PageLimit != nil {
-		pageSize_ = *o[0].PageLimit
-	}
 	if len(o) == 0 {
 		o = append(o, ListSecurityMonitoringSignalsOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
 	}
 	o[0].PageLimit = &pageSize_
 
@@ -1632,11 +1632,17 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _cont
 func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].Body != nil && o[0].Body.Page != nil && o[0].Body.Page.Limit != nil {
-		pageSize_ = *o[0].Body.Page.Limit
-	}
 	if len(o) == 0 {
 		o = append(o, SearchSecurityMonitoringSignalsOptionalParameters{})
+	}
+	if o[0].Body == nil {
+		o[0].Body = NewSecurityMonitoringSignalListRequest()
+	}
+	if o[0].Body.Page == nil {
+		o[0].Body.Page = NewSecurityMonitoringSignalListRequestPage()
+	}
+	if o[0].Body.Page.Limit != nil {
+		pageSize_ = *o[0].Body.Page.Limit
 	}
 	o[0].Body.Page.Limit = &pageSize_
 
