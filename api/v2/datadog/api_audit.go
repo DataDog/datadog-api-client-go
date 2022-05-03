@@ -377,7 +377,7 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
 func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (items chan AuditLogsEvent, cancel func(), err error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
-	if len(o) > 0 && o[0].Body.Page.Limit != nil {
+	if len(o) > 0 && o[0].Body != nil && o[0].Body.Page != nil && o[0].Body.Page.Limit != nil {
 		pageSize_ = *o[0].Body.Page.Limit
 	}
 	if len(o) == 0 {
