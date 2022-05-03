@@ -1366,7 +1366,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignals(ctx _contex
 /*
  * ListSecurityMonitoringSignalsWithPagination provides a paginated version of ListSecurityMonitoringSignals returning a channel with all items.
  */
-func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
+func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...ListSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1423,7 +1423,7 @@ func (a *SecurityMonitoringApiService) ListSecurityMonitoringSignalsWithPaginati
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 
 /*
@@ -1629,7 +1629,7 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignals(ctx _cont
 /*
  * SearchSecurityMonitoringSignalsWithPagination provides a paginated version of SearchSecurityMonitoringSignals returning a channel with all items.
  */
-func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (items chan SecurityMonitoringSignal, cancel func(), err error) {
+func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagination(ctx _context.Context, o ...SearchSecurityMonitoringSignalsOptionalParameters) (<-chan SecurityMonitoringSignal, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -1692,7 +1692,7 @@ func (a *SecurityMonitoringApiService) SearchSecurityMonitoringSignalsWithPagina
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 
 /*

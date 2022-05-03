@@ -253,7 +253,7 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalPar
 /*
  * ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
  */
-func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (items chan Log, cancel func(), err error) {
+func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan Log, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -316,7 +316,7 @@ func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListL
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 
 /*
@@ -559,7 +559,7 @@ func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptio
 /*
  * ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
  */
-func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (items chan Log, cancel func(), err error) {
+func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan Log, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int32(10)
 	if len(o) == 0 {
@@ -616,7 +616,7 @@ func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...Li
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 
 /*

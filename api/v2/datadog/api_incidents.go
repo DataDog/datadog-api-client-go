@@ -661,7 +661,7 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
 /*
  * ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
  */
-func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (items chan IncidentResponseData, cancel func(), err error) {
+func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 	pageSize_ := int64(10)
 	if len(o) == 0 {
@@ -710,7 +710,7 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 
 /*

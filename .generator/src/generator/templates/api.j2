@@ -105,7 +105,7 @@ func (a *{{ classname }}Service) {{ operation.operationId }}(ctx _context.Contex
  * {{ operation.operationId }}WithPagination provides a paginated version of {{ operation.operationId }} returning a channel with all items.
  */
 {%- set itemType = get_type_at_path(operation, pagination.resultsPath) %}
-func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (items chan {{ itemType }}, cancel func(), err error) {
+func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _context.Context{% for name, parameter in operation|parameters if parameter.required or parameter.in == "path" %}, {{ name|variable_name}} {{ get_type_for_parameter(parameter) }}{% endfor %}{%- for name, parameter in operation|parameters if not parameter.required and parameter.in != "path" %}{%- if loop.first %}, o ...{{ operation.operationId }}OptionalParameters{% endif %}{% endfor %}) (<-chan {{ itemType }}, func(), error) {
 	ctx, cancel = _context.WithCancel(ctx)
 
 	{%- set pageSizeType = get_container_type(operation, pagination.limitParam) %}
@@ -210,7 +210,7 @@ func (a *{{ classname }}Service) {{ operation.operationId }}WithPagination(ctx _
 		}
 		close(items)
 	}()
-	return items, cancel, err
+	return items, cancel, nil
 }
 {%- endif %}
 
