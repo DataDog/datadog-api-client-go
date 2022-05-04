@@ -22,6 +22,8 @@ type LogsArchiveCreateRequestAttributes struct {
 	Name string `json:"name"`
 	// The archive query/filter. Logs matching this query are included in the archive.
 	Query string `json:"query"`
+	// Maximum scan size for rehydration from this archive.
+	RehydrationMaxScanSizeInGb NullableInt64 `json:"rehydration_max_scan_size_in_gb,omitempty"`
 	// An array of tags to add to rehydrated logs from an archive.
 	RehydrationTags []string `json:"rehydration_tags,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -154,6 +156,49 @@ func (o *LogsArchiveCreateRequestAttributes) SetQuery(v string) {
 	o.Query = v
 }
 
+// GetRehydrationMaxScanSizeInGb returns the RehydrationMaxScanSizeInGb field value if set, zero value otherwise (both if not set or set to explicit null).
+func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGb() int64 {
+	if o == nil || o.RehydrationMaxScanSizeInGb.Get() == nil {
+		var ret int64
+		return ret
+	}
+	return *o.RehydrationMaxScanSizeInGb.Get()
+}
+
+// GetRehydrationMaxScanSizeInGbOk returns a tuple with the RehydrationMaxScanSizeInGb field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+// NOTE: If the value is an explicit nil, `nil, true` will be returned
+func (o *LogsArchiveCreateRequestAttributes) GetRehydrationMaxScanSizeInGbOk() (*int64, bool) {
+	if o == nil {
+		return nil, false
+	}
+	return o.RehydrationMaxScanSizeInGb.Get(), o.RehydrationMaxScanSizeInGb.IsSet()
+}
+
+// HasRehydrationMaxScanSizeInGb returns a boolean if a field has been set.
+func (o *LogsArchiveCreateRequestAttributes) HasRehydrationMaxScanSizeInGb() bool {
+	if o != nil && o.RehydrationMaxScanSizeInGb.IsSet() {
+		return true
+	}
+
+	return false
+}
+
+// SetRehydrationMaxScanSizeInGb gets a reference to the given NullableInt64 and assigns it to the RehydrationMaxScanSizeInGb field.
+func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGb(v int64) {
+	o.RehydrationMaxScanSizeInGb.Set(&v)
+}
+
+// SetRehydrationMaxScanSizeInGbNil sets the value for RehydrationMaxScanSizeInGb to be an explicit nil
+func (o *LogsArchiveCreateRequestAttributes) SetRehydrationMaxScanSizeInGbNil() {
+	o.RehydrationMaxScanSizeInGb.Set(nil)
+}
+
+// UnsetRehydrationMaxScanSizeInGb ensures that no value is present for RehydrationMaxScanSizeInGb, not even an explicit nil
+func (o *LogsArchiveCreateRequestAttributes) UnsetRehydrationMaxScanSizeInGb() {
+	o.RehydrationMaxScanSizeInGb.Unset()
+}
+
 // GetRehydrationTags returns the RehydrationTags field value if set, zero value otherwise.
 func (o *LogsArchiveCreateRequestAttributes) GetRehydrationTags() []string {
 	if o == nil || o.RehydrationTags == nil {
@@ -197,6 +242,9 @@ func (o LogsArchiveCreateRequestAttributes) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["name"] = o.Name
 	toSerialize["query"] = o.Query
+	if o.RehydrationMaxScanSizeInGb.IsSet() {
+		toSerialize["rehydration_max_scan_size_in_gb"] = o.RehydrationMaxScanSizeInGb.Get()
+	}
 	if o.RehydrationTags != nil {
 		toSerialize["rehydration_tags"] = o.RehydrationTags
 	}
@@ -215,11 +263,12 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 		Query       *string                              `json:"query"`
 	}{}
 	all := struct {
-		Destination     LogsArchiveCreateRequestDestination `json:"destination"`
-		IncludeTags     *bool                               `json:"include_tags,omitempty"`
-		Name            string                              `json:"name"`
-		Query           string                              `json:"query"`
-		RehydrationTags []string                            `json:"rehydration_tags,omitempty"`
+		Destination                LogsArchiveCreateRequestDestination `json:"destination"`
+		IncludeTags                *bool                               `json:"include_tags,omitempty"`
+		Name                       string                              `json:"name"`
+		Query                      string                              `json:"query"`
+		RehydrationMaxScanSizeInGb NullableInt64                       `json:"rehydration_max_scan_size_in_gb,omitempty"`
+		RehydrationTags            []string                            `json:"rehydration_tags,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -247,6 +296,7 @@ func (o *LogsArchiveCreateRequestAttributes) UnmarshalJSON(bytes []byte) (err er
 	o.IncludeTags = all.IncludeTags
 	o.Name = all.Name
 	o.Query = all.Query
+	o.RehydrationMaxScanSizeInGb = all.RehydrationMaxScanSizeInGb
 	o.RehydrationTags = all.RehydrationTags
 	return nil
 }
