@@ -225,11 +225,7 @@ func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endH
 	return r
 }
 
-/*
- * GetUsageApplicationSecurityMonitoring Get hourly usage for Application Security
- * Get hourly usage for Application Security .
- */
-func (a *UsageMeteringApiService) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
+func (a *UsageMeteringApiService) buildGetUsageApplicationSecurityMonitoringRequest(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (apiGetUsageApplicationSecurityMonitoringRequest, error) {
 	req := apiGetUsageApplicationSecurityMonitoringRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -237,12 +233,24 @@ func (a *UsageMeteringApiService) GetUsageApplicationSecurityMonitoring(ctx _con
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue UsageApplicationSecurityMonitoringResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetUsageApplicationSecurityMonitoringOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetUsageApplicationSecurityMonitoringOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.endHr = o[0].EndHr
+	}
+	return req, nil
+}
+
+/*
+ * GetUsageApplicationSecurityMonitoring Get hourly usage for Application Security
+ * Get hourly usage for Application Security .
+ */
+func (a *UsageMeteringApiService) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetUsageApplicationSecurityMonitoringRequest(ctx, startHr, o...)
+	if err != nil {
+		var localVarReturnValue UsageApplicationSecurityMonitoringResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getUsageApplicationSecurityMonitoringExecute(req)
