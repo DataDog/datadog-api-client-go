@@ -28,6 +28,15 @@ type apiSubmitServiceCheckRequest struct {
 	body       *[]ServiceCheck
 }
 
+func (a *ServiceChecksApiService) buildSubmitServiceCheckRequest(ctx _context.Context, body []ServiceCheck) (apiSubmitServiceCheckRequest, error) {
+	req := apiSubmitServiceCheckRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * SubmitServiceCheck Submit a Service Check
  * Submit a list of Service Checks.
@@ -37,10 +46,10 @@ type apiSubmitServiceCheckRequest struct {
  * - Service checks can be submitted up to 10 minutes in the past.
  */
 func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
-	req := apiSubmitServiceCheckRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildSubmitServiceCheckRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue IntakePayloadAccepted
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.submitServiceCheckExecute(req)

@@ -82,7 +82,7 @@ type pathParamCountKey struct{}
 // GetIgnoredTags returns list of ignored tags.
 func GetIgnoredTags() []string {
 	tags := make([]string, 1)
-	tags = append(tags, "@skip", "@skip-go", "@with-pagination")
+	tags = append(tags, "@skip", "@skip-go")
 	if tests.GetRecording() != tests.ModeIgnore {
 		tags = append(tags, "@integration-only")
 	}
@@ -229,11 +229,14 @@ func GetResponseStatusCode(resp []reflect.Value) (int, error) {
 		return -1, fmt.Errorf("needs at least 2 values, got %d", len(resp))
 	}
 	// Execute() returns triples -> 2nd value is *http.Response -> get StatusCode]
-	response := resp[len(resp)-2].Interface().(*http.Response)
+	response := resp[len(resp)-2].Interface()
 	if response == nil {
 		return -1, errors.New("response is nil")
 	}
-	return response.StatusCode, nil
+	if httpresp, ok := response.(*http.Response); ok {
+		return httpresp.StatusCode, nil
+	}
+	return -1, errors.New("response is not an http.Response")
 }
 
 // SetCtx sets Go context in BDD context.
@@ -450,4 +453,24 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 	default:
 		return nil, fmt.Errorf("unknown type '%T' to convert", t)
 	}
+}
+
+
+func readChannel(ch interface{}) ([]interface{}, error) {
+	t := reflect.TypeOf(ch)
+	if t.Kind() != reflect.Chan || t.ChanDir()&reflect.RecvDir == 0 {
+		return nil, fmt.Errorf("input must be readable channel")
+	}
+	output := make([]interface{}, 0)
+
+	v := reflect.ValueOf(ch)
+	for {
+		x, ok := v.Recv()
+		if !ok {
+			return output, nil
+		}
+		output = append(output, x.Interface())
+	}
+
+	return output, nil
 }

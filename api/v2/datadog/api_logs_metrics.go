@@ -29,16 +29,25 @@ type apiCreateLogsMetricRequest struct {
 	body       *LogsMetricCreateRequest
 }
 
+func (a *LogsMetricsApiService) buildCreateLogsMetricRequest(ctx _context.Context, body LogsMetricCreateRequest) (apiCreateLogsMetricRequest, error) {
+	req := apiCreateLogsMetricRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateLogsMetric Create a log-based metric
  * Create a metric based on your ingested logs in your organization.
  * Returns the log-based metric object from the request body when the request is successful.
  */
 func (a *LogsMetricsApiService) CreateLogsMetric(ctx _context.Context, body LogsMetricCreateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
-	req := apiCreateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateLogsMetricRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsMetricResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createLogsMetricExecute(req)
@@ -199,15 +208,23 @@ type apiDeleteLogsMetricRequest struct {
 	metricId   string
 }
 
+func (a *LogsMetricsApiService) buildDeleteLogsMetricRequest(ctx _context.Context, metricId string) (apiDeleteLogsMetricRequest, error) {
+	req := apiDeleteLogsMetricRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricId:   metricId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteLogsMetric Delete a log-based metric
  * Delete a specific log-based metric from your organization.
  */
 func (a *LogsMetricsApiService) DeleteLogsMetric(ctx _context.Context, metricId string) (*_nethttp.Response, error) {
-	req := apiDeleteLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+	req, err := a.buildDeleteLogsMetricRequest(ctx, metricId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteLogsMetricExecute(req)
@@ -333,15 +350,24 @@ type apiGetLogsMetricRequest struct {
 	metricId   string
 }
 
+func (a *LogsMetricsApiService) buildGetLogsMetricRequest(ctx _context.Context, metricId string) (apiGetLogsMetricRequest, error) {
+	req := apiGetLogsMetricRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricId:   metricId,
+	}
+	return req, nil
+}
+
 /*
  * GetLogsMetric Get a log-based metric
  * Get a specific log-based metric from your organization.
  */
 func (a *LogsMetricsApiService) GetLogsMetric(ctx _context.Context, metricId string) (LogsMetricResponse, *_nethttp.Response, error) {
-	req := apiGetLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
+	req, err := a.buildGetLogsMetricRequest(ctx, metricId)
+	if err != nil {
+		var localVarReturnValue LogsMetricResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getLogsMetricExecute(req)
@@ -477,14 +503,23 @@ type apiListLogsMetricsRequest struct {
 	ApiService *LogsMetricsApiService
 }
 
+func (a *LogsMetricsApiService) buildListLogsMetricsRequest(ctx _context.Context) (apiListLogsMetricsRequest, error) {
+	req := apiListLogsMetricsRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+	return req, nil
+}
+
 /*
  * ListLogsMetrics Get all log-based metrics
  * Get the list of configured log-based metrics with their definitions.
  */
 func (a *LogsMetricsApiService) ListLogsMetrics(ctx _context.Context) (LogsMetricsResponse, *_nethttp.Response, error) {
-	req := apiListLogsMetricsRequest{
-		ApiService: a,
-		ctx:        ctx,
+	req, err := a.buildListLogsMetricsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue LogsMetricsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLogsMetricsExecute(req)
@@ -611,17 +646,26 @@ type apiUpdateLogsMetricRequest struct {
 	body       *LogsMetricUpdateRequest
 }
 
+func (a *LogsMetricsApiService) buildUpdateLogsMetricRequest(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (apiUpdateLogsMetricRequest, error) {
+	req := apiUpdateLogsMetricRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricId:   metricId,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * UpdateLogsMetric Update a log-based metric
  * Update a specific log-based metric from your organization.
  * Returns the log-based metric object from the request body when the request is successful.
  */
 func (a *LogsMetricsApiService) UpdateLogsMetric(ctx _context.Context, metricId string, body LogsMetricUpdateRequest) (LogsMetricResponse, *_nethttp.Response, error) {
-	req := apiUpdateLogsMetricRequest{
-		ApiService: a,
-		ctx:        ctx,
-		metricId:   metricId,
-		body:       &body,
+	req, err := a.buildUpdateLogsMetricRequest(ctx, metricId, body)
+	if err != nil {
+		var localVarReturnValue LogsMetricResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateLogsMetricExecute(req)

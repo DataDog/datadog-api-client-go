@@ -31,15 +31,24 @@ type apiCreateIncidentRequest struct {
 	body       *IncidentCreateRequest
 }
 
+func (a *IncidentsApiService) buildCreateIncidentRequest(ctx _context.Context, body IncidentCreateRequest) (apiCreateIncidentRequest, error) {
+	req := apiCreateIncidentRequest{
+		ApiService: a,
+		ctx:        ctx,
+		body:       &body,
+	}
+	return req, nil
+}
+
 /*
  * CreateIncident Create an incident
  * Create an incident.
  */
 func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
-	req := apiCreateIncidentRequest{
-		ApiService: a,
-		ctx:        ctx,
-		body:       &body,
+	req, err := a.buildCreateIncidentRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue IncidentResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createIncidentExecute(req)
@@ -217,15 +226,23 @@ type apiDeleteIncidentRequest struct {
 	incidentId string
 }
 
+func (a *IncidentsApiService) buildDeleteIncidentRequest(ctx _context.Context, incidentId string) (apiDeleteIncidentRequest, error) {
+	req := apiDeleteIncidentRequest{
+		ApiService: a,
+		ctx:        ctx,
+		incidentId: incidentId,
+	}
+	return req, nil
+}
+
 /*
  * DeleteIncident Delete an existing incident
  * Deletes an existing incident from the users organization.
  */
 func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
-	req := apiDeleteIncidentRequest{
-		ApiService: a,
-		ctx:        ctx,
-		incidentId: incidentId,
+	req, err := a.buildDeleteIncidentRequest(ctx, incidentId)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.deleteIncidentExecute(req)
@@ -392,11 +409,7 @@ func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObj
 	return r
 }
 
-/*
- * GetIncident Get the details of an incident
- * Get the details of an incident by `incident_id`.
- */
-func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApiService) buildGetIncidentRequest(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (apiGetIncidentRequest, error) {
 	req := apiGetIncidentRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -404,12 +417,24 @@ func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId strin
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue IncidentResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetIncidentOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetIncidentOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.include = o[0].Include
+	}
+	return req, nil
+}
+
+/*
+ * GetIncident Get the details of an incident
+ * Get the details of an incident by `incident_id`.
+ */
+func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetIncidentRequest(ctx, incidentId, o...)
+	if err != nil {
+		var localVarReturnValue IncidentResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getIncidentExecute(req)
@@ -601,19 +626,14 @@ func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *List
 	return r
 }
 
-/*
- * ListIncidents Get a list of incidents
- * Get all incidents for the user's organization.
- */
-func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
+func (a *IncidentsApiService) buildListIncidentsRequest(ctx _context.Context, o ...ListIncidentsOptionalParameters) (apiListIncidentsRequest, error) {
 	req := apiListIncidentsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue IncidentsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListIncidentsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListIncidentsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -621,8 +641,76 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
 		req.pageSize = o[0].PageSize
 		req.pageOffset = o[0].PageOffset
 	}
+	return req, nil
+}
+
+/*
+ * ListIncidents Get a list of incidents
+ * Get all incidents for the user's organization.
+ */
+func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListIncidentsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue IncidentsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listIncidentsExecute(req)
+}
+
+/*
+ * ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
+ */
+func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int64(10)
+	if len(o) == 0 {
+		o = append(o, ListIncidentsOptionalParameters{})
+	}
+	if o[0].PageSize != nil {
+		pageSize_ = *o[0].PageSize
+	}
+	o[0].PageSize = &pageSize_
+
+	items := make(chan IncidentResponseData, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListIncidentsRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listIncidentsExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			if o[0].PageOffset == nil {
+				o[0].PageOffset = &pageSize_
+			} else {
+				pageOffset_ := *o[0].PageOffset + pageSize_
+				o[0].PageOffset = &pageOffset_
+			}
+		}
+		close(items)
+	}()
+	return items, cancel, nil
 }
 
 /*
@@ -806,11 +894,7 @@ func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelated
 	return r
 }
 
-/*
- * UpdateIncident Update an existing incident
- * Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
- */
-func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+func (a *IncidentsApiService) buildUpdateIncidentRequest(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (apiUpdateIncidentRequest, error) {
 	req := apiUpdateIncidentRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -819,12 +903,24 @@ func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId st
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue IncidentResponse
-		return localVarReturnValue, nil, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
+		return req, reportError("only one argument of type UpdateIncidentOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.include = o[0].Include
+	}
+	return req, nil
+}
+
+/*
+ * UpdateIncident Update an existing incident
+ * Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
+ */
+func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateIncidentRequest(ctx, incidentId, body, o...)
+	if err != nil {
+		var localVarReturnValue IncidentResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateIncidentExecute(req)

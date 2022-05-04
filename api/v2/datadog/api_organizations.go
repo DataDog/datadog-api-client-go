@@ -42,6 +42,22 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
 	return r
 }
 
+func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (apiUploadIdPMetadataRequest, error) {
+	req := apiUploadIdPMetadataRequest{
+		ApiService: a,
+		ctx:        ctx,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type UploadIdPMetadataOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.idpFile = o[0].IdpFile
+	}
+	return req, nil
+}
+
 /*
  * UploadIdPMetadata Upload IdP metadata
  * Endpoint for uploading IdP metadata for SAML setup.
@@ -49,17 +65,9 @@ func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *Upl
  * Use this endpoint to upload or replace IdP metadata for SAML login configuration.
  */
 func (a *OrganizationsApiService) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
-	req := apiUploadIdPMetadataRequest{
-		ApiService: a,
-		ctx:        ctx,
-	}
-
-	if len(o) > 1 {
-		return nil, reportError("only one argument of type UploadIdPMetadataOptionalParameters is allowed")
-	}
-
-	if o != nil {
-		req.idpFile = o[0].IdpFile
+	req, err := a.buildUploadIdPMetadataRequest(ctx, o...)
+	if err != nil {
+		return nil, err
 	}
 
 	return req.ApiService.uploadIdPMetadataExecute(req)

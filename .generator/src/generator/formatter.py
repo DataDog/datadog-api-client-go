@@ -175,3 +175,7 @@ def is_reference(schema, attribute):
         return False
 
     return True
+
+
+def attribute_path(attribute):
+    return ".".join(attribute_name(a) for a in attribute.split("."))

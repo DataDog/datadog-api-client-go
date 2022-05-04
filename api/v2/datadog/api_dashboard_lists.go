@@ -30,16 +30,25 @@ type apiCreateDashboardListItemsRequest struct {
 	body            *DashboardListAddItemsRequest
 }
 
-/*
- * CreateDashboardListItems Add Items to a Dashboard List
- * Add dashboards to an existing dashboard list.
- */
-func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) buildCreateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (apiCreateDashboardListItemsRequest, error) {
 	req := apiCreateDashboardListItemsRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
+	}
+	return req, nil
+}
+
+/*
+ * CreateDashboardListItems Add Items to a Dashboard List
+ * Add dashboards to an existing dashboard list.
+ */
+func (a *DashboardListsApiService) CreateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListAddItemsRequest) (DashboardListAddItemsResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateDashboardListItemsRequest(ctx, dashboardListId, body)
+	if err != nil {
+		var localVarReturnValue DashboardListAddItemsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.createDashboardListItemsExecute(req)
@@ -202,16 +211,25 @@ type apiDeleteDashboardListItemsRequest struct {
 	body            *DashboardListDeleteItemsRequest
 }
 
-/*
- * DeleteDashboardListItems Delete items from a dashboard list
- * Delete dashboards from an existing dashboard list.
- */
-func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) buildDeleteDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (apiDeleteDashboardListItemsRequest, error) {
 	req := apiDeleteDashboardListItemsRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
+	}
+	return req, nil
+}
+
+/*
+ * DeleteDashboardListItems Delete items from a dashboard list
+ * Delete dashboards from an existing dashboard list.
+ */
+func (a *DashboardListsApiService) DeleteDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListDeleteItemsRequest) (DashboardListDeleteItemsResponse, *_nethttp.Response, error) {
+	req, err := a.buildDeleteDashboardListItemsRequest(ctx, dashboardListId, body)
+	if err != nil {
+		var localVarReturnValue DashboardListDeleteItemsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.deleteDashboardListItemsExecute(req)
@@ -373,15 +391,24 @@ type apiGetDashboardListItemsRequest struct {
 	dashboardListId int64
 }
 
+func (a *DashboardListsApiService) buildGetDashboardListItemsRequest(ctx _context.Context, dashboardListId int64) (apiGetDashboardListItemsRequest, error) {
+	req := apiGetDashboardListItemsRequest{
+		ApiService:      a,
+		ctx:             ctx,
+		dashboardListId: dashboardListId,
+	}
+	return req, nil
+}
+
 /*
  * GetDashboardListItems Get items of a Dashboard List
  * Fetch the dashboard list’s dashboard definitions.
  */
 func (a *DashboardListsApiService) GetDashboardListItems(ctx _context.Context, dashboardListId int64) (DashboardListItems, *_nethttp.Response, error) {
-	req := apiGetDashboardListItemsRequest{
-		ApiService:      a,
-		ctx:             ctx,
-		dashboardListId: dashboardListId,
+	req, err := a.buildGetDashboardListItemsRequest(ctx, dashboardListId)
+	if err != nil {
+		var localVarReturnValue DashboardListItems
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getDashboardListItemsExecute(req)
@@ -519,16 +546,25 @@ type apiUpdateDashboardListItemsRequest struct {
 	body            *DashboardListUpdateItemsRequest
 }
 
-/*
- * UpdateDashboardListItems Update items of a dashboard list
- * Update dashboards of an existing dashboard list.
- */
-func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
+func (a *DashboardListsApiService) buildUpdateDashboardListItemsRequest(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (apiUpdateDashboardListItemsRequest, error) {
 	req := apiUpdateDashboardListItemsRequest{
 		ApiService:      a,
 		ctx:             ctx,
 		dashboardListId: dashboardListId,
 		body:            &body,
+	}
+	return req, nil
+}
+
+/*
+ * UpdateDashboardListItems Update items of a dashboard list
+ * Update dashboards of an existing dashboard list.
+ */
+func (a *DashboardListsApiService) UpdateDashboardListItems(ctx _context.Context, dashboardListId int64, body DashboardListUpdateItemsRequest) (DashboardListUpdateItemsResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateDashboardListItemsRequest(ctx, dashboardListId, body)
+	if err != nil {
+		var localVarReturnValue DashboardListUpdateItemsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.updateDashboardListItemsExecute(req)
