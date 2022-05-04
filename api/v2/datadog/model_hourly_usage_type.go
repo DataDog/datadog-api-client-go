@@ -16,10 +16,12 @@ type HourlyUsageType string
 
 // List of HourlyUsageType
 const (
+	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT                       HourlyUsageType = "app_sec_host_count"
 	HOURLYUSAGETYPE_OBSERVABILITY_PIPELINES_BYTES_PROCESSSED HourlyUsageType = "observability_pipelines_bytes_processed"
 )
 
 var allowedHourlyUsageTypeEnumValues = []HourlyUsageType{
+	HOURLYUSAGETYPE_APP_SEC_HOST_COUNT,
 	HOURLYUSAGETYPE_OBSERVABILITY_PIPELINES_BYTES_PROCESSSED,
 }
 
