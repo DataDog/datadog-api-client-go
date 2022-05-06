@@ -46,6 +46,8 @@ type Downtime struct {
 	// The resulting downtime applies to monitors that match ALL provided monitor tags.
 	// For example, `service:postgres` **AND** `team:frontend`.
 	MonitorTags []string `json:"monitor_tags,omitempty"`
+	// If the first recovery notification during a downtime should be muted.
+	MuteFirstRecoveryNotification *bool `json:"mute_first_recovery_notification,omitempty"`
 	// ID of the parent Downtime.
 	ParentId NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
@@ -479,6 +481,38 @@ func (o *Downtime) SetMonitorTags(v []string) {
 	o.MonitorTags = v
 }
 
+// GetMuteFirstRecoveryNotification returns the MuteFirstRecoveryNotification field value if set, zero value otherwise.
+func (o *Downtime) GetMuteFirstRecoveryNotification() bool {
+	if o == nil || o.MuteFirstRecoveryNotification == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MuteFirstRecoveryNotification
+}
+
+// GetMuteFirstRecoveryNotificationOk returns a tuple with the MuteFirstRecoveryNotification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Downtime) GetMuteFirstRecoveryNotificationOk() (*bool, bool) {
+	if o == nil || o.MuteFirstRecoveryNotification == nil {
+		return nil, false
+	}
+	return o.MuteFirstRecoveryNotification, true
+}
+
+// HasMuteFirstRecoveryNotification returns a boolean if a field has been set.
+func (o *Downtime) HasMuteFirstRecoveryNotification() bool {
+	if o != nil && o.MuteFirstRecoveryNotification != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMuteFirstRecoveryNotification gets a reference to the given bool and assigns it to the MuteFirstRecoveryNotification field.
+func (o *Downtime) SetMuteFirstRecoveryNotification(v bool) {
+	o.MuteFirstRecoveryNotification = &v
+}
+
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Downtime) GetParentId() int64 {
 	if o == nil || o.ParentId.Get() == nil {
@@ -742,6 +776,9 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	if o.MonitorTags != nil {
 		toSerialize["monitor_tags"] = o.MonitorTags
 	}
+	if o.MuteFirstRecoveryNotification != nil {
+		toSerialize["mute_first_recovery_notification"] = o.MuteFirstRecoveryNotification
+	}
 	if o.ParentId.IsSet() {
 		toSerialize["parent_id"] = o.ParentId.Get()
 	}
@@ -770,23 +807,24 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Active       *bool                      `json:"active,omitempty"`
-		ActiveChild  NullableDowntimeChild      `json:"active_child,omitempty"`
-		Canceled     NullableInt64              `json:"canceled,omitempty"`
-		CreatorId    *int32                     `json:"creator_id,omitempty"`
-		Disabled     *bool                      `json:"disabled,omitempty"`
-		DowntimeType *int32                     `json:"downtime_type,omitempty"`
-		End          NullableInt64              `json:"end,omitempty"`
-		Id           *int64                     `json:"id,omitempty"`
-		Message      *string                    `json:"message,omitempty"`
-		MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
-		MonitorTags  []string                   `json:"monitor_tags,omitempty"`
-		ParentId     NullableInt64              `json:"parent_id,omitempty"`
-		Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-		Scope        []string                   `json:"scope,omitempty"`
-		Start        *int64                     `json:"start,omitempty"`
-		Timezone     *string                    `json:"timezone,omitempty"`
-		UpdaterId    NullableInt32              `json:"updater_id,omitempty"`
+		Active                        *bool                      `json:"active,omitempty"`
+		ActiveChild                   NullableDowntimeChild      `json:"active_child,omitempty"`
+		Canceled                      NullableInt64              `json:"canceled,omitempty"`
+		CreatorId                     *int32                     `json:"creator_id,omitempty"`
+		Disabled                      *bool                      `json:"disabled,omitempty"`
+		DowntimeType                  *int32                     `json:"downtime_type,omitempty"`
+		End                           NullableInt64              `json:"end,omitempty"`
+		Id                            *int64                     `json:"id,omitempty"`
+		Message                       *string                    `json:"message,omitempty"`
+		MonitorId                     NullableInt64              `json:"monitor_id,omitempty"`
+		MonitorTags                   []string                   `json:"monitor_tags,omitempty"`
+		MuteFirstRecoveryNotification *bool                      `json:"mute_first_recovery_notification,omitempty"`
+		ParentId                      NullableInt64              `json:"parent_id,omitempty"`
+		Recurrence                    NullableDowntimeRecurrence `json:"recurrence,omitempty"`
+		Scope                         []string                   `json:"scope,omitempty"`
+		Start                         *int64                     `json:"start,omitempty"`
+		Timezone                      *string                    `json:"timezone,omitempty"`
+		UpdaterId                     NullableInt32              `json:"updater_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -808,6 +846,7 @@ func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId
 	o.MonitorTags = all.MonitorTags
+	o.MuteFirstRecoveryNotification = all.MuteFirstRecoveryNotification
 	o.ParentId = all.ParentId
 	o.Recurrence = all.Recurrence
 	o.Scope = all.Scope

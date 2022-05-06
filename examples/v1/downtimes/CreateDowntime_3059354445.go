@@ -22,9 +22,10 @@ func main() {
 		Scope: []string{
 			"*",
 		},
-		Start:    datadog.PtrInt64(time.Now().Unix()),
-		End:      *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
-		Timezone: datadog.PtrString("Etc/UTC"),
+		Start:                         datadog.PtrInt64(time.Now().Unix()),
+		End:                           *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().Add(time.Hour * 1).Unix())),
+		Timezone:                      datadog.PtrString("Etc/UTC"),
+		MuteFirstRecoveryNotification: datadog.PtrBool(true),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
