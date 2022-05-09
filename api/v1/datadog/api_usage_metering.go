@@ -2401,7 +2401,7 @@ func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context
 
 /*
  * GetUsageCIApp Get hourly usage for CI Visibility
- * Get hourly usage for CI Visibility (Tests, Pipeline, Combo, and Spans).
+ * Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
  */
 func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCIAppRequest(ctx, startHr, o...)
