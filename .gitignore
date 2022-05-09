@@ -3,7 +3,6 @@ build/
 git_push.sh
 gotestsum.json
 coverage.txt
-examples/
 .generator/lib
 __pycache__
 
