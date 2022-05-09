@@ -687,7 +687,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildUpdateSLOCorrectionReq
 
 /*
  * UpdateSLOCorrection Update an SLO correction
- * Update the specified SLO correction object object.
+ * Update the specified SLO correction object.
  */
 func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSLOCorrectionRequest(ctx, sloCorrectionId, body)

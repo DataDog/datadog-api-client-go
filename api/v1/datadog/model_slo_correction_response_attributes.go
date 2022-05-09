@@ -14,7 +14,7 @@ import (
 type SLOCorrectionResponseAttributes struct {
 	// Category the SLO correction belongs to.
 	Category *SLOCorrectionCategory `json:"category,omitempty"`
-	// The epoch timestamp of when the correction was created at
+	// The epoch timestamp of when the correction was created at.
 	CreatedAt *int64 `json:"created_at,omitempty"`
 	// Object describing the creator of the shared element.
 	Creator *Creator `json:"creator,omitempty"`
@@ -24,14 +24,14 @@ type SLOCorrectionResponseAttributes struct {
 	Duration NullableInt64 `json:"duration,omitempty"`
 	// Ending time of the correction in epoch seconds.
 	End *int64 `json:"end,omitempty"`
-	// The epoch timestamp of when the correction was modified at
+	// The epoch timestamp of when the correction was modified at.
 	ModifiedAt *int64 `json:"modified_at,omitempty"`
 	// Modifier of the object.
 	Modifier NullableSLOCorrectionResponseAttributesModifier `json:"modifier,omitempty"`
 	// The recurrence rules as defined in the iCalendar RFC 5545. The supported rules for SLO corrections
-	// are `FREQ`, `INTERVAL`, `COUNT` and `UNTIL`.
+	// are `FREQ`, `INTERVAL`, `COUNT`, and `UNTIL`.
 	Rrule NullableString `json:"rrule,omitempty"`
-	// ID of the SLO that this correction will be applied to.
+	// ID of the SLO that this correction applies to.
 	SloId *string `json:"slo_id,omitempty"`
 	// Starting time of the correction in epoch seconds.
 	Start *int64 `json:"start,omitempty"`
