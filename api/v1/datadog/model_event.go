@@ -34,7 +34,7 @@ type Event struct {
 	// The priority of the event. For example, `normal` or `low`.
 	Priority NullableEventPriority `json:"priority,omitempty"`
 	// The type of event being posted. Option examples include nagios, hudson, jenkins, my_apps, chef, puppet, git, bitbucket, etc.
-	// A complete list of source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
+	// The list of standard source attribute values [available here](https://docs.datadoghq.com/integrations/faq/list-of-api-source-attribute-value).
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags to apply to the event.
 	Tags []string `json:"tags,omitempty"`
