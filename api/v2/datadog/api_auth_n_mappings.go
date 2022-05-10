@@ -12,7 +12,6 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
-	"reflect"
 	"strings"
 )
 
@@ -504,7 +503,6 @@ type apiListAuthNMappingsRequest struct {
 	pageSize   *int64
 	pageNumber *int64
 	sort       *AuthNMappingsSort
-	include    *[]string
 	filter     *string
 }
 
@@ -512,7 +510,6 @@ type ListAuthNMappingsOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
 	Sort       *AuthNMappingsSort
-	Include    *[]string
 	Filter     *string
 }
 
@@ -530,10 +527,6 @@ func (r *ListAuthNMappingsOptionalParameters) WithPageNumber(pageNumber int64) *
 }
 func (r *ListAuthNMappingsOptionalParameters) WithSort(sort AuthNMappingsSort) *ListAuthNMappingsOptionalParameters {
 	r.Sort = &sort
-	return r
-}
-func (r *ListAuthNMappingsOptionalParameters) WithInclude(include []string) *ListAuthNMappingsOptionalParameters {
-	r.Include = &include
 	return r
 }
 func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAuthNMappingsOptionalParameters {
@@ -555,7 +548,6 @@ func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Con
 		req.pageSize = o[0].PageSize
 		req.pageNumber = o[0].PageNumber
 		req.sort = o[0].Sort
-		req.include = o[0].Include
 		req.filter = o[0].Filter
 	}
 	return req, nil
@@ -604,17 +596,6 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 	}
 	if r.sort != nil {
 		localVarQueryParams.Add("sort", parameterToString(*r.sort, ""))
-	}
-	if r.include != nil {
-		t := *r.include
-		if reflect.TypeOf(t).Kind() == reflect.Slice {
-			s := reflect.ValueOf(t)
-			for i := 0; i < s.Len(); i++ {
-				localVarQueryParams.Add("include", parameterToString(s.Index(i), "multi"))
-			}
-		} else {
-			localVarQueryParams.Add("include", parameterToString(t, "multi"))
-		}
 	}
 	if r.filter != nil {
 		localVarQueryParams.Add("filter", parameterToString(*r.filter, ""))
