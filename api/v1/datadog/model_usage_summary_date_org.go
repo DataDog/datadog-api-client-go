@@ -98,6 +98,8 @@ type UsageSummaryDateOrg struct {
 	MobileRumSessionCountAndroidSum *int64 `json:"mobile_rum_session_count_android_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current date for the given org.
 	MobileRumSessionCountIosSum *int64 `json:"mobile_rum_session_count_ios_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current date for the given org.
+	MobileRumSessionCountReactnativeSum *int64 `json:"mobile_rum_session_count_reactnative_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions over all hours in the current date for the given org.
 	MobileRumSessionCountSum *int64 `json:"mobile_rum_session_count_sum,omitempty"`
 	// Shows the sum of all mobile RUM units over all hours in the current date for the given org.
@@ -1538,6 +1540,38 @@ func (o *UsageSummaryDateOrg) SetMobileRumSessionCountIosSum(v int64) {
 	o.MobileRumSessionCountIosSum = &v
 }
 
+// GetMobileRumSessionCountReactnativeSum returns the MobileRumSessionCountReactnativeSum field value if set, zero value otherwise.
+func (o *UsageSummaryDateOrg) GetMobileRumSessionCountReactnativeSum() int64 {
+	if o == nil || o.MobileRumSessionCountReactnativeSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountReactnativeSum
+}
+
+// GetMobileRumSessionCountReactnativeSumOk returns a tuple with the MobileRumSessionCountReactnativeSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryDateOrg) GetMobileRumSessionCountReactnativeSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountReactnativeSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountReactnativeSum, true
+}
+
+// HasMobileRumSessionCountReactnativeSum returns a boolean if a field has been set.
+func (o *UsageSummaryDateOrg) HasMobileRumSessionCountReactnativeSum() bool {
+	if o != nil && o.MobileRumSessionCountReactnativeSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountReactnativeSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountReactnativeSum field.
+func (o *UsageSummaryDateOrg) SetMobileRumSessionCountReactnativeSum(v int64) {
+	o.MobileRumSessionCountReactnativeSum = &v
+}
+
 // GetMobileRumSessionCountSum returns the MobileRumSessionCountSum field value if set, zero value otherwise.
 func (o *UsageSummaryDateOrg) GetMobileRumSessionCountSum() int64 {
 	if o == nil || o.MobileRumSessionCountSum == nil {
@@ -2344,6 +2378,9 @@ func (o UsageSummaryDateOrg) MarshalJSON() ([]byte, error) {
 	if o.MobileRumSessionCountIosSum != nil {
 		toSerialize["mobile_rum_session_count_ios_sum"] = o.MobileRumSessionCountIosSum
 	}
+	if o.MobileRumSessionCountReactnativeSum != nil {
+		toSerialize["mobile_rum_session_count_reactnative_sum"] = o.MobileRumSessionCountReactnativeSum
+	}
 	if o.MobileRumSessionCountSum != nil {
 		toSerialize["mobile_rum_session_count_sum"] = o.MobileRumSessionCountSum
 	}
@@ -2460,6 +2497,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumLiteSessionCountSum            *int64  `json:"mobile_rum_lite_session_count_sum,omitempty"`
 		MobileRumSessionCountAndroidSum         *int64  `json:"mobile_rum_session_count_android_sum,omitempty"`
 		MobileRumSessionCountIosSum             *int64  `json:"mobile_rum_session_count_ios_sum,omitempty"`
+		MobileRumSessionCountReactnativeSum     *int64  `json:"mobile_rum_session_count_reactnative_sum,omitempty"`
 		MobileRumSessionCountSum                *int64  `json:"mobile_rum_session_count_sum,omitempty"`
 		MobileRumUnitsSum                       *int64  `json:"mobile_rum_units_sum,omitempty"`
 		Name                                    *string `json:"name,omitempty"`
@@ -2534,6 +2572,7 @@ func (o *UsageSummaryDateOrg) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumLiteSessionCountSum = all.MobileRumLiteSessionCountSum
 	o.MobileRumSessionCountAndroidSum = all.MobileRumSessionCountAndroidSum
 	o.MobileRumSessionCountIosSum = all.MobileRumSessionCountIosSum
+	o.MobileRumSessionCountReactnativeSum = all.MobileRumSessionCountReactnativeSum
 	o.MobileRumSessionCountSum = all.MobileRumSessionCountSum
 	o.MobileRumUnitsSum = all.MobileRumUnitsSum
 	o.Name = all.Name

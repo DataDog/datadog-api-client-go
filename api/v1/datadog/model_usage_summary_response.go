@@ -111,6 +111,8 @@ type UsageSummaryResponse struct {
 	MobileRumSessionCountAndroidAggSum *int64 `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations.
 	MobileRumSessionCountIosAggSum *int64 `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current months for all organizations.
+	MobileRumSessionCountReactnativeAggSum *int64 `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM units over all hours in the current months for all organizations.
 	MobileRumUnitsAggSum *int64 `json:"mobile_rum_units_agg_sum,omitempty"`
 	// Shows the sum of all Network flows indexed over all hours in the current months for all organizations.
@@ -1747,6 +1749,38 @@ func (o *UsageSummaryResponse) SetMobileRumSessionCountIosAggSum(v int64) {
 	o.MobileRumSessionCountIosAggSum = &v
 }
 
+// GetMobileRumSessionCountReactnativeAggSum returns the MobileRumSessionCountReactnativeAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSum() int64 {
+	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountReactnativeAggSum
+}
+
+// GetMobileRumSessionCountReactnativeAggSumOk returns a tuple with the MobileRumSessionCountReactnativeAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountReactnativeAggSum, true
+}
+
+// HasMobileRumSessionCountReactnativeAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasMobileRumSessionCountReactnativeAggSum() bool {
+	if o != nil && o.MobileRumSessionCountReactnativeAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountReactnativeAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountReactnativeAggSum field.
+func (o *UsageSummaryResponse) SetMobileRumSessionCountReactnativeAggSum(v int64) {
+	o.MobileRumSessionCountReactnativeAggSum = &v
+}
+
 // GetMobileRumUnitsAggSum returns the MobileRumUnitsAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetMobileRumUnitsAggSum() int64 {
 	if o == nil || o.MobileRumUnitsAggSum == nil {
@@ -2643,6 +2677,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.MobileRumSessionCountIosAggSum != nil {
 		toSerialize["mobile_rum_session_count_ios_agg_sum"] = o.MobileRumSessionCountIosAggSum
 	}
+	if o.MobileRumSessionCountReactnativeAggSum != nil {
+		toSerialize["mobile_rum_session_count_reactnative_agg_sum"] = o.MobileRumSessionCountReactnativeAggSum
+	}
 	if o.MobileRumUnitsAggSum != nil {
 		toSerialize["mobile_rum_units_agg_sum"] = o.MobileRumUnitsAggSum
 	}
@@ -2775,6 +2812,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumSessionCountAggSum                *int64             `json:"mobile_rum_session_count_agg_sum,omitempty"`
 		MobileRumSessionCountAndroidAggSum         *int64             `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
 		MobileRumSessionCountIosAggSum             *int64             `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
+		MobileRumSessionCountReactnativeAggSum     *int64             `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
 		MobileRumUnitsAggSum                       *int64             `json:"mobile_rum_units_agg_sum,omitempty"`
 		NetflowIndexedEventsCountAggSum            *int64             `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 		NpmHostTop99pSum                           *int64             `json:"npm_host_top99p_sum,omitempty"`
@@ -2864,6 +2902,7 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
 	o.MobileRumSessionCountAndroidAggSum = all.MobileRumSessionCountAndroidAggSum
 	o.MobileRumSessionCountIosAggSum = all.MobileRumSessionCountIosAggSum
+	o.MobileRumSessionCountReactnativeAggSum = all.MobileRumSessionCountReactnativeAggSum
 	o.MobileRumUnitsAggSum = all.MobileRumUnitsAggSum
 	o.NetflowIndexedEventsCountAggSum = all.NetflowIndexedEventsCountAggSum
 	o.NpmHostTop99pSum = all.NpmHostTop99pSum
