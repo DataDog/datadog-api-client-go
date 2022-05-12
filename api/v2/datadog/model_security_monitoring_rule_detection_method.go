@@ -20,6 +20,7 @@ const (
 	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE         SecurityMonitoringRuleDetectionMethod = "new_value"
 	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION SecurityMonitoringRuleDetectionMethod = "anomaly_detection"
 	SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL SecurityMonitoringRuleDetectionMethod = "impossible_travel"
+	SECURITYMONITORINGRULEDETECTIONMETHOD_HARDCODED         SecurityMonitoringRuleDetectionMethod = "hardcoded"
 )
 
 var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitoringRuleDetectionMethod{
@@ -27,6 +28,7 @@ var allowedSecurityMonitoringRuleDetectionMethodEnumValues = []SecurityMonitorin
 	SECURITYMONITORINGRULEDETECTIONMETHOD_NEW_VALUE,
 	SECURITYMONITORINGRULEDETECTIONMETHOD_ANOMALY_DETECTION,
 	SECURITYMONITORINGRULEDETECTIONMETHOD_IMPOSSIBLE_TRAVEL,
+	SECURITYMONITORINGRULEDETECTIONMETHOD_HARDCODED,
 }
 
 func (w *SecurityMonitoringRuleDetectionMethod) GetAllowedValues() []SecurityMonitoringRuleDetectionMethod {
