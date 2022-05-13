@@ -1,7 +1,7 @@
 interactions:
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Edit_an_API_key_returns_OK_response-1641829847"},"type":"api_keys"}}
+      {"data":{"attributes":{"name":"Test-Edit_an_API_key_returns_OK_response-1652349128"},"type":"api_keys"}}
     form: {}
     headers:
       Accept:
@@ -11,7 +11,7 @@ interactions:
     method: POST
     url: https://api.datadoghq.com/api/v2/api_keys
   response:
-    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-01-10T15:50:47.833005+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-01-10T15:50:47.833005+00:00","name":"Test-Edit_an_API_key_returns_OK_response-1641829847"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}},"id":"862954ff-e39e-49b6-bbe4-7983c94024fd"}}'
+    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-05-12T09:52:08.958834+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-05-12T09:52:08.958834+00:00","name":"Test-Edit_an_API_key_returns_OK_response-1652349128"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}},"id":"929dfb7c-2309-46b4-bdfe-998dc339f2db"}}'
     code: 201
     duration: ''
     headers:
@@ -20,7 +20,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"name":"Test-Edit_an_API_key_returns_OK_response-1641829847"},"id":"862954ff-e39e-49b6-bbe4-7983c94024fd","type":"api_keys"}}
+      {"data":{"attributes":{"name":"Test-Edit_an_API_key_returns_OK_response-1652349128"},"id":"929dfb7c-2309-46b4-bdfe-998dc339f2db","type":"api_keys"}}
     form: {}
     headers:
       Accept:
@@ -28,9 +28,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/api_keys/862954ff-e39e-49b6-bbe4-7983c94024fd
+    url: https://api.datadoghq.com/api/v2/api_keys/929dfb7c-2309-46b4-bdfe-998dc339f2db
   response:
-    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-01-10T15:50:47.833005+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-01-10T15:50:47.833005+00:00","name":"Test-Edit_an_API_key_returns_OK_response-1641829847"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}}},"id":"862954ff-e39e-49b6-bbe4-7983c94024fd"}}'
+    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-05-12T09:52:08.958834+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-05-12T09:52:08.958834+00:00","name":"Test-Edit_an_API_key_returns_OK_response-1652349128"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}},"id":"929dfb7c-2309-46b4-bdfe-998dc339f2db"}}'
     code: 200
     duration: ''
     headers:
@@ -42,9 +42,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/api_keys/862954ff-e39e-49b6-bbe4-7983c94024fd
+    url: https://api.datadoghq.com/api/v2/api_keys/929dfb7c-2309-46b4-bdfe-998dc339f2db
   response:
     body: ''
     code: 204
