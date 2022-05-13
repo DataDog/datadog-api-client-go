@@ -1,11 +1,11 @@
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134","points":[[1648845134,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
+      {"series":[{"metric":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","points":[[1652354912,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
-      - text/json
+      - text/json, application/json
       Content-Type:
       - text/json
     method: POST
@@ -20,7 +20,7 @@ interactions:
     status: 202 Accepted
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912"]},"id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -28,9 +28,9 @@ interactions:
       Content-Type:
       - application/json
     method: POST
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134/tags
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/tags
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134","attributes":{"tags":["datacenter","app","TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134"],"created_at":"2022-04-01T20:32:15.216397+00:00","modified_at":"2022-04-01T20:32:15.216397+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","attributes":{"tags":["TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","app","datacenter"],"created_at":"2022-05-12T11:28:37.078639+00:00","modified_at":"2022-05-12T11:28:37.078639+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
     code: 201
     duration: ''
     headers:
@@ -44,9 +44,9 @@ interactions:
       Accept:
       - application/json
     method: GET
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134/volumes
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/volumes
   response:
-    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134","attributes":{"indexed_volume":0,"ingested_volume":0}}}'
+    body: '{"data":{"type":"metric_volumes","id":"TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912","attributes":{"indexed_volume":1,"ingested_volume":1}}}'
     code: 200
     duration: ''
     headers:
@@ -58,9 +58,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1648845134/tags
+    url: https://api.datadoghq.com/api/v2/metrics/TestListdistinctmetricvolumesbymetricnamereturnsSuccessresponse1652354912/tags
   response:
     body: ''
     code: 204
