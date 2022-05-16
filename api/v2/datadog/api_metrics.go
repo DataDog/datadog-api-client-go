@@ -730,6 +730,235 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 	return localVarHTTPResponse, nil
 }
 
+type apiEstimateMetricsOutputSeriesRequest struct {
+	ctx                   _context.Context
+	ApiService            *MetricsApiService
+	metricName            string
+	filterGroups          *string
+	filterHoursAgo        *int32
+	filterNumAggregations *int32
+	filterPct             *bool
+	filterTimespanH       *int32
+}
+
+type EstimateMetricsOutputSeriesOptionalParameters struct {
+	FilterGroups          *string
+	FilterHoursAgo        *int32
+	FilterNumAggregations *int32
+	FilterPct             *bool
+	FilterTimespanH       *int32
+}
+
+func NewEstimateMetricsOutputSeriesOptionalParameters() *EstimateMetricsOutputSeriesOptionalParameters {
+	this := EstimateMetricsOutputSeriesOptionalParameters{}
+	return &this
+}
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterGroups(filterGroups string) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterGroups = &filterGroups
+	return r
+}
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterHoursAgo(filterHoursAgo int32) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterHoursAgo = &filterHoursAgo
+	return r
+}
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterNumAggregations(filterNumAggregations int32) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterNumAggregations = &filterNumAggregations
+	return r
+}
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterPct(filterPct bool) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterPct = &filterPct
+	return r
+}
+func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filterTimespanH int32) *EstimateMetricsOutputSeriesOptionalParameters {
+	r.FilterTimespanH = &filterTimespanH
+	return r
+}
+
+func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (apiEstimateMetricsOutputSeriesRequest, error) {
+	req := apiEstimateMetricsOutputSeriesRequest{
+		ApiService: a,
+		ctx:        ctx,
+		metricName: metricName,
+	}
+
+	if len(o) > 1 {
+		return req, reportError("only one argument of type EstimateMetricsOutputSeriesOptionalParameters is allowed")
+	}
+
+	if o != nil {
+		req.filterGroups = o[0].FilterGroups
+		req.filterHoursAgo = o[0].FilterHoursAgo
+		req.filterNumAggregations = o[0].FilterNumAggregations
+		req.filterPct = o[0].FilterPct
+		req.filterTimespanH = o[0].FilterTimespanH
+	}
+	return req, nil
+}
+
+/*
+ * EstimateMetricsOutputSeries Estimate Output Series - Public v2 API
+ * Returns a cardinality estimate for a metric with a given tag, percentile, and number of aggregations configuration.
+ */
+func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
+	req, err := a.buildEstimateMetricsOutputSeriesRequest(ctx, metricName, o...)
+	if err != nil {
+		var localVarReturnValue MetricEstimateResponse
+		return localVarReturnValue, nil, err
+	}
+
+	return req.ApiService.estimateMetricsOutputSeriesExecute(req)
+}
+
+/*
+ * Execute executes the request
+ * @return MetricEstimateResponse
+ */
+func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
+	var (
+		localVarHTTPMethod  = _nethttp.MethodGet
+		localVarPostBody    interface{}
+		localVarReturnValue MetricEstimateResponse
+	)
+
+	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.EstimateMetricsOutputSeries")
+	if err != nil {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+	}
+
+	localVarPath := localBasePath + "/api/v2/metrics/{metric_name}/estimate"
+	localVarPath = strings.Replace(localVarPath, "{"+"metric_name"+"}", _neturl.PathEscape(parameterToString(r.metricName, "")), -1)
+
+	localVarHeaderParams := make(map[string]string)
+	localVarQueryParams := _neturl.Values{}
+	localVarFormParams := _neturl.Values{}
+	if r.filterGroups != nil {
+		localVarQueryParams.Add("filter[groups]", parameterToString(*r.filterGroups, ""))
+	}
+	if r.filterHoursAgo != nil {
+		localVarQueryParams.Add("filter[hours_ago]", parameterToString(*r.filterHoursAgo, ""))
+	}
+	if r.filterNumAggregations != nil {
+		localVarQueryParams.Add("filter[num_aggregations]", parameterToString(*r.filterNumAggregations, ""))
+	}
+	if r.filterPct != nil {
+		localVarQueryParams.Add("filter[pct]", parameterToString(*r.filterPct, ""))
+	}
+	if r.filterTimespanH != nil {
+		localVarQueryParams.Add("filter[timespan_h]", parameterToString(*r.filterTimespanH, ""))
+	}
+
+	// to determine the Accept header
+	localVarHTTPHeaderAccepts := []string{"application/json"}
+
+	// set Accept header
+	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	if localVarHTTPHeaderAccept != "" {
+		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["apiKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-API-KEY"] = key
+			}
+		}
+	}
+	if r.ctx != nil {
+		// API Key Authentication
+		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+			if apiKey, ok := auth["appKeyAuth"]; ok {
+				var key string
+				if apiKey.Prefix != "" {
+					key = apiKey.Prefix + " " + apiKey.Key
+				} else {
+					key = apiKey.Key
+				}
+				localVarHeaderParams["DD-APPLICATION-KEY"] = key
+			}
+		}
+	}
+	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	if err != nil {
+		return localVarReturnValue, nil, err
+	}
+
+	localVarHTTPResponse, err := a.client.CallAPI(req)
+	if err != nil || localVarHTTPResponse == nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	localVarBody, err := _ioutil.ReadAll(localVarHTTPResponse.Body)
+	localVarHTTPResponse.Body.Close()
+	localVarHTTPResponse.Body = _ioutil.NopCloser(bytes.NewBuffer(localVarBody))
+	if err != nil {
+		return localVarReturnValue, localVarHTTPResponse, err
+	}
+
+	if localVarHTTPResponse.StatusCode >= 300 {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: localVarHTTPResponse.Status,
+		}
+		if localVarHTTPResponse.StatusCode == 400 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 403 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 404 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+			return localVarReturnValue, localVarHTTPResponse, newErr
+		}
+		if localVarHTTPResponse.StatusCode == 429 {
+			var v APIErrorResponse
+			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			if err != nil {
+				newErr.error = err.Error()
+				return localVarReturnValue, localVarHTTPResponse, newErr
+			}
+			newErr.model = v
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	if err != nil {
+		newErr := GenericOpenAPIError{
+			body:  localVarBody,
+			error: err.Error(),
+		}
+		return localVarReturnValue, localVarHTTPResponse, newErr
+	}
+
+	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
 type apiListTagConfigurationByNameRequest struct {
 	ctx        _context.Context
 	ApiService *MetricsApiService
