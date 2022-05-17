@@ -8,6 +8,7 @@ package datadog
 
 import (
 	"encoding/json"
+	"fmt"
 )
 
 // HTTPLogItem Logs that are sent over HTTP.
@@ -23,22 +24,23 @@ type HTTPLogItem struct {
 	// The message [reserved attribute](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes)
 	// of your log. By default, Datadog ingests the value of the message attribute as the body of the log entry.
 	// That value is then highlighted and displayed in the Logstream, where it is indexed for full text search.
-	Message *string `json:"message,omitempty"`
+	Message string `json:"message"`
 	// The name of the application or service generating the log events.
 	// It is used to switch from Logs to APM, so make sure you define the same value when you use both products.
 	// See [reserved attributes](https://docs.datadoghq.com/logs/log_collection/#reserved-attributes).
 	Service *string `json:"service,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
-	AdditionalProperties map[string]interface{}
+	AdditionalProperties map[string]string
 }
 
 // NewHTTPLogItem instantiates a new HTTPLogItem object
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewHTTPLogItem() *HTTPLogItem {
+func NewHTTPLogItem(message string) *HTTPLogItem {
 	this := HTTPLogItem{}
+	this.Message = message
 	return &this
 }
 
@@ -146,36 +148,27 @@ func (o *HTTPLogItem) SetHostname(v string) {
 	o.Hostname = &v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
+// GetMessage returns the Message field value
 func (o *HTTPLogItem) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+	return o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *HTTPLogItem) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Message, true
+	return &o.Message, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *HTTPLogItem) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
+// SetMessage sets field value
 func (o *HTTPLogItem) SetMessage(v string) {
-	o.Message = &v
+	o.Message = v
 }
 
 // GetService returns the Service field value if set, zero value otherwise.
@@ -224,9 +217,7 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 	if o.Hostname != nil {
 		toSerialize["hostname"] = o.Hostname
 	}
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
+	toSerialize["message"] = o.Message
 	if o.Service != nil {
 		toSerialize["service"] = o.Service
 	}
@@ -239,13 +230,23 @@ func (o HTTPLogItem) MarshalJSON() ([]byte, error) {
 
 func (o *HTTPLogItem) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
+	required := struct {
+		Message *string `json:"message"`
+	}{}
 	all := struct {
 		Ddsource *string `json:"ddsource,omitempty"`
 		Ddtags   *string `json:"ddtags,omitempty"`
 		Hostname *string `json:"hostname,omitempty"`
-		Message  *string `json:"message,omitempty"`
+		Message  string  `json:"message"`
 		Service  *string `json:"service,omitempty"`
 	}{}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
+	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
 		err = json.Unmarshal(bytes, &raw)
