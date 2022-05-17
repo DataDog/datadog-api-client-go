@@ -17,8 +17,11 @@ func main() {
 			Ddsource: datadog.PtrString("nginx"),
 			Ddtags:   datadog.PtrString("env:staging,version:5.1"),
 			Hostname: datadog.PtrString("i-012345678"),
-			Message:  datadog.PtrString("2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World"),
+			Message:  "2019-11-19T14:37:58,995 INFO [process.name][20081] Hello World",
 			Service:  datadog.PtrString("payment"),
+			AdditionalProperties: map[string]string{
+				"status": "error",
+			},
 		},
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
