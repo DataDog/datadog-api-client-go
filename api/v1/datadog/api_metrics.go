@@ -740,7 +740,7 @@ func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body
  * If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect:
  *
  * - 64 bits for the timestamp
- * - 32 bits for the value
+ * - 64 bits for the value
  * - 40 bytes for the metric names
  * - 50 bytes for the timeseries
  * - The full payload is approximately 100 bytes. However, with the DogStatsD API,

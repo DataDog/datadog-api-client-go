@@ -24,7 +24,7 @@ type Series struct {
 	Points [][]*float64 `json:"points"`
 	// A list of tags associated with the metric.
 	Tags []string `json:"tags,omitempty"`
-	// The type of the metric either `count`, `gauge`, or `rate`.
+	// The type of the metric. Valid types are "",`count`, `gauge`, and `rate`.
 	Type *string `json:"type,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
@@ -40,7 +40,7 @@ func NewSeries(metric string, points [][]*float64) *Series {
 	this.Interval = *NewNullableInt64(nil)
 	this.Metric = metric
 	this.Points = points
-	var type_ string = "gauge"
+	var type_ string = ""
 	this.Type = &type_
 	return &this
 }
@@ -51,7 +51,7 @@ func NewSeries(metric string, points [][]*float64) *Series {
 func NewSeriesWithDefaults() *Series {
 	this := Series{}
 	this.Interval = *NewNullableInt64(nil)
-	var type_ string = "gauge"
+	var type_ string = ""
 	this.Type = &type_
 	return &this
 }
