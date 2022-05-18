@@ -1,5 +1,29 @@
 # CHANGELOG
 
+## 1.14.0 / 2022-05-18
+
+### Fixed
+* Normalize format of date-time fields by @jirikuncar in https://github.com/DataDog/datadog-api-client-go/pull/1472
+* Remove unused pararameter from authn mapping by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1487
+### Added
+* Add Usage API endpoint for observability-pipelines and add properties to v1 GetUsageSummary by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1422
+* Add Historical Chargeback Summary endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1469
+* Add `...WithPagination` helper methods by @jirikuncar in https://github.com/DataDog/datadog-api-client-go/pull/1468
+* Expose v2 usage endpoint for application security monitoring by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1479
+* Add `rehydration_max_scan_size_in_gb` field to Logs Archives by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1475
+* Add `mute_first_recovery_notification` option to downtime by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1444
+* Add lambda traced invocations usage endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1484
+* Expose new usage field for react sessions by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1488
+* Add missing option and enum value for SecurityMonitoringRule by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1493
+* Adds docs for metric estimate endpoint by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1476
+* Allow additional log attributes by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1467
+* Add v2 endpoint for submitting series by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1409
+### Deprecated
+* Deprecate old usage apis by @api-clients-generation-pipeline in https://github.com/DataDog/datadog-api-client-go/pull/1490
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.13.0...v1.14.0
+
 ## 1.13.0 / 2022-04-20
 
 ### Fixed
