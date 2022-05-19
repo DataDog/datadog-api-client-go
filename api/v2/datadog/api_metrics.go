@@ -796,8 +796,8 @@ func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context
 }
 
 /*
- * EstimateMetricsOutputSeries Estimate Output Series - Public v2 API
- * Returns a cardinality estimate for a metric with a given tag, percentile, and number of aggregations configuration.
+ * EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator
+ * Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
  */
 func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEstimateMetricsOutputSeriesRequest(ctx, metricName, o...)

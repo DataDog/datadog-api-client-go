@@ -30,6 +30,7 @@ const (
 	MONITORTYPE_EVENT_V2_ALERT        MonitorType = "event-v2 alert"
 	MONITORTYPE_AUDIT_ALERT           MonitorType = "audit alert"
 	MONITORTYPE_CI_PIPELINES_ALERT    MonitorType = "ci-pipelines alert"
+	MONITORTYPE_CI_TESTS_ALERT        MonitorType = "ci-tests alert"
 	MONITORTYPE_ERROR_TRACKING_ALERT  MonitorType = "error-tracking alert"
 )
 
@@ -48,6 +49,7 @@ var allowedMonitorTypeEnumValues = []MonitorType{
 	MONITORTYPE_EVENT_V2_ALERT,
 	MONITORTYPE_AUDIT_ALERT,
 	MONITORTYPE_CI_PIPELINES_ALERT,
+	MONITORTYPE_CI_TESTS_ALERT,
 	MONITORTYPE_ERROR_TRACKING_ALERT,
 }
 

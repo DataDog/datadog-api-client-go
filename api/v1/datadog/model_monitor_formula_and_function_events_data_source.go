@@ -18,11 +18,13 @@ type MonitorFormulaAndFunctionEventsDataSource string
 const (
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM          MonitorFormulaAndFunctionEventsDataSource = "rum"
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES MonitorFormulaAndFunctionEventsDataSource = "ci_pipelines"
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS     MonitorFormulaAndFunctionEventsDataSource = "ci_tests"
 )
 
 var allowedMonitorFormulaAndFunctionEventsDataSourceEnumValues = []MonitorFormulaAndFunctionEventsDataSource{
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_RUM,
 	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_PIPELINES,
+	MONITORFORMULAANDFUNCTIONEVENTSDATASOURCE_CI_TESTS,
 }
 
 func (w *MonitorFormulaAndFunctionEventsDataSource) GetAllowedValues() []MonitorFormulaAndFunctionEventsDataSource {
