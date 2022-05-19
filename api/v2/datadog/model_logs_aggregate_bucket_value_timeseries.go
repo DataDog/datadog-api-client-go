@@ -36,11 +36,10 @@ func NewLogsAggregateBucketValueTimeseriesWithDefaults() *LogsAggregateBucketVal
 }
 
 func (o LogsAggregateBucketValueTimeseries) MarshalJSON() ([]byte, error) {
-	toSerialize := make([]interface{}, len(o.Items))
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	return json.Marshal(toSerialize)
+	return json.Marshal(o.Items)
 }
 
 func (o *LogsAggregateBucketValueTimeseries) UnmarshalJSON(bytes []byte) (err error) {
