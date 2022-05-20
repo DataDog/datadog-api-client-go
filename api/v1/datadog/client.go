@@ -85,6 +85,8 @@ type APIClient struct {
 
 	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
 
+	SecurityMonitoringApi *SecurityMonitoringApiService
+
 	ServiceChecksApi *ServiceChecksApiService
 
 	ServiceLevelObjectiveCorrectionsApi *ServiceLevelObjectiveCorrectionsApiService
@@ -149,6 +151,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NotebooksApi = (*NotebooksApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
+	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
 	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
 	c.ServiceLevelObjectiveCorrectionsApi = (*ServiceLevelObjectiveCorrectionsApiService)(&c.common)
 	c.ServiceLevelObjectivesApi = (*ServiceLevelObjectivesApiService)(&c.common)
