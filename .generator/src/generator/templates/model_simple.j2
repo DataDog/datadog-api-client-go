@@ -249,33 +249,14 @@ func (o *{{ name }}) Unset{{ propertyName }}() {
 
 func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	toSerialize := {% if model.type == "array" %}make([]interface{}, len(o.Items)){% else %}map[string]interface{}{}{% endif %}
-{#-
-	{{#parent}}
-	{{^isMap}}
-	{{^isArray}}
-	serialized{{parent}}, err{{parent}} := json.Marshal(o.{{parent}})
-	if err{{parent}} != nil {
-		return []byte{}, err{{parent}}
-	}
-	err{{parent}} = json.Unmarshal([]byte(serialized{{parent}}), &toSerialize)
-	if err{{parent}} != nil {
-		return []byte{}, err{{parent}}
-	}
-	{{/isArray}}
-	{{/isMap}}
-	{{#isArray}}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+{%- if model.type == "array" %}
 	for i, item := range o.Items {
 		toSerialize[i] = item
 	}
-	{{/isArray}}
-	{{/parent}}
-#}
-	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
-	}
+{%- endif %}
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
 	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
