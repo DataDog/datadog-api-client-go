@@ -59,6 +59,11 @@ func main() {
 				"xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
 			},
 			Retry: &datadog.SyntheticsTestOptionsRetry{},
+			RumSettings: &datadog.SyntheticsBrowserTestRumSettings{
+				ApplicationId: datadog.PtrString("xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"),
+				ClientTokenId: datadog.PtrInt64(12345),
+				IsEnabled:     true,
+			},
 		},
 		Status: datadog.SYNTHETICSTESTPAUSESTATUS_LIVE.Ptr(),
 		Steps: []datadog.SyntheticsStep{
