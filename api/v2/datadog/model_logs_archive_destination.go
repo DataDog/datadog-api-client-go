@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -20,108 +18,107 @@ type LogsArchiveDestination struct {
 	UnparsedObject interface{}
 }
 
-// LogsArchiveDestinationAzureAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationAzure wrapped in LogsArchiveDestination
+// LogsArchiveDestinationAzureAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationAzure wrapped in LogsArchiveDestination.
 func LogsArchiveDestinationAzureAsLogsArchiveDestination(v *LogsArchiveDestinationAzure) LogsArchiveDestination {
 	return LogsArchiveDestination{LogsArchiveDestinationAzure: v}
 }
 
-// LogsArchiveDestinationGCSAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationGCS wrapped in LogsArchiveDestination
+// LogsArchiveDestinationGCSAsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationGCS wrapped in LogsArchiveDestination.
 func LogsArchiveDestinationGCSAsLogsArchiveDestination(v *LogsArchiveDestinationGCS) LogsArchiveDestination {
 	return LogsArchiveDestination{LogsArchiveDestinationGCS: v}
 }
 
-// LogsArchiveDestinationS3AsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationS3 wrapped in LogsArchiveDestination
+// LogsArchiveDestinationS3AsLogsArchiveDestination is a convenience function that returns LogsArchiveDestinationS3 wrapped in LogsArchiveDestination.
 func LogsArchiveDestinationS3AsLogsArchiveDestination(v *LogsArchiveDestinationS3) LogsArchiveDestination {
 	return LogsArchiveDestination{LogsArchiveDestinationS3: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *LogsArchiveDestination) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into LogsArchiveDestinationAzure
-	err = json.Unmarshal(data, &dst.LogsArchiveDestinationAzure)
+	err = json.Unmarshal(data, &obj.LogsArchiveDestinationAzure)
 	if err == nil {
-		if dst.LogsArchiveDestinationAzure != nil && dst.LogsArchiveDestinationAzure.UnparsedObject == nil {
-			jsonLogsArchiveDestinationAzure, _ := json.Marshal(dst.LogsArchiveDestinationAzure)
+		if obj.LogsArchiveDestinationAzure != nil && obj.LogsArchiveDestinationAzure.UnparsedObject == nil {
+			jsonLogsArchiveDestinationAzure, _ := json.Marshal(obj.LogsArchiveDestinationAzure)
 			if string(jsonLogsArchiveDestinationAzure) == "{}" { // empty struct
-				dst.LogsArchiveDestinationAzure = nil
+				obj.LogsArchiveDestinationAzure = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsArchiveDestinationAzure = nil
+			obj.LogsArchiveDestinationAzure = nil
 		}
 	} else {
-		dst.LogsArchiveDestinationAzure = nil
+		obj.LogsArchiveDestinationAzure = nil
 	}
 
 	// try to unmarshal data into LogsArchiveDestinationGCS
-	err = json.Unmarshal(data, &dst.LogsArchiveDestinationGCS)
+	err = json.Unmarshal(data, &obj.LogsArchiveDestinationGCS)
 	if err == nil {
-		if dst.LogsArchiveDestinationGCS != nil && dst.LogsArchiveDestinationGCS.UnparsedObject == nil {
-			jsonLogsArchiveDestinationGCS, _ := json.Marshal(dst.LogsArchiveDestinationGCS)
+		if obj.LogsArchiveDestinationGCS != nil && obj.LogsArchiveDestinationGCS.UnparsedObject == nil {
+			jsonLogsArchiveDestinationGCS, _ := json.Marshal(obj.LogsArchiveDestinationGCS)
 			if string(jsonLogsArchiveDestinationGCS) == "{}" { // empty struct
-				dst.LogsArchiveDestinationGCS = nil
+				obj.LogsArchiveDestinationGCS = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsArchiveDestinationGCS = nil
+			obj.LogsArchiveDestinationGCS = nil
 		}
 	} else {
-		dst.LogsArchiveDestinationGCS = nil
+		obj.LogsArchiveDestinationGCS = nil
 	}
 
 	// try to unmarshal data into LogsArchiveDestinationS3
-	err = json.Unmarshal(data, &dst.LogsArchiveDestinationS3)
+	err = json.Unmarshal(data, &obj.LogsArchiveDestinationS3)
 	if err == nil {
-		if dst.LogsArchiveDestinationS3 != nil && dst.LogsArchiveDestinationS3.UnparsedObject == nil {
-			jsonLogsArchiveDestinationS3, _ := json.Marshal(dst.LogsArchiveDestinationS3)
+		if obj.LogsArchiveDestinationS3 != nil && obj.LogsArchiveDestinationS3.UnparsedObject == nil {
+			jsonLogsArchiveDestinationS3, _ := json.Marshal(obj.LogsArchiveDestinationS3)
 			if string(jsonLogsArchiveDestinationS3) == "{}" { // empty struct
-				dst.LogsArchiveDestinationS3 = nil
+				obj.LogsArchiveDestinationS3 = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsArchiveDestinationS3 = nil
+			obj.LogsArchiveDestinationS3 = nil
 		}
 	} else {
-		dst.LogsArchiveDestinationS3 = nil
+		obj.LogsArchiveDestinationS3 = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.LogsArchiveDestinationAzure = nil
-		dst.LogsArchiveDestinationGCS = nil
-		dst.LogsArchiveDestinationS3 = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.LogsArchiveDestinationAzure = nil
+		obj.LogsArchiveDestinationGCS = nil
+		obj.LogsArchiveDestinationS3 = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src LogsArchiveDestination) MarshalJSON() ([]byte, error) {
-	if src.LogsArchiveDestinationAzure != nil {
-		return json.Marshal(&src.LogsArchiveDestinationAzure)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj LogsArchiveDestination) MarshalJSON() ([]byte, error) {
+	if obj.LogsArchiveDestinationAzure != nil {
+		return json.Marshal(&obj.LogsArchiveDestinationAzure)
 	}
 
-	if src.LogsArchiveDestinationGCS != nil {
-		return json.Marshal(&src.LogsArchiveDestinationGCS)
+	if obj.LogsArchiveDestinationGCS != nil {
+		return json.Marshal(&obj.LogsArchiveDestinationGCS)
 	}
 
-	if src.LogsArchiveDestinationS3 != nil {
-		return json.Marshal(&src.LogsArchiveDestinationS3)
+	if obj.LogsArchiveDestinationS3 != nil {
+		return json.Marshal(&obj.LogsArchiveDestinationS3)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *LogsArchiveDestination) GetActualInstance() interface{} {
 	if obj.LogsArchiveDestinationAzure != nil {
 		return obj.LogsArchiveDestinationAzure
@@ -139,37 +136,45 @@ func (obj *LogsArchiveDestination) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableLogsArchiveDestination handles when a null is used for LogsArchiveDestination.
 type NullableLogsArchiveDestination struct {
 	value *LogsArchiveDestination
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableLogsArchiveDestination) Get() *LogsArchiveDestination {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableLogsArchiveDestination) Set(val *LogsArchiveDestination) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableLogsArchiveDestination) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableLogsArchiveDestination) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableLogsArchiveDestination initializes the struct as if Set has been called.
 func NewNullableLogsArchiveDestination(val *LogsArchiveDestination) *NullableLogsArchiveDestination {
 	return &NullableLogsArchiveDestination{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableLogsArchiveDestination) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableLogsArchiveDestination) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

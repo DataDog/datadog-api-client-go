@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // MonthlyUsageAttributionSupportedMetrics Supported metrics for monthly usage attribution requests.
 type MonthlyUsageAttributionSupportedMetrics string
 
-// List of MonthlyUsageAttributionSupportedMetrics
+// List of MonthlyUsageAttributionSupportedMetrics.
 const (
 	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_USAGE                         MonthlyUsageAttributionSupportedMetrics = "api_usage"
 	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_API_PERCENTAGE                    MonthlyUsageAttributionSupportedMetrics = "api_percentage"
@@ -83,10 +81,12 @@ var allowedMonthlyUsageAttributionSupportedMetricsEnumValues = []MonthlyUsageAtt
 	MONTHLYUSAGEATTRIBUTIONSUPPORTEDMETRICS_ALL,
 }
 
-func (w *MonthlyUsageAttributionSupportedMetrics) GetAllowedValues() []MonthlyUsageAttributionSupportedMetrics {
+// GetAllowedValues reeturns the list of possible values.
+func (v *MonthlyUsageAttributionSupportedMetrics) GetAllowedValues() []MonthlyUsageAttributionSupportedMetrics {
 	return allowedMonthlyUsageAttributionSupportedMetricsEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *MonthlyUsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -98,17 +98,16 @@ func (v *MonthlyUsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) erro
 }
 
 // NewMonthlyUsageAttributionSupportedMetricsFromValue returns a pointer to a valid MonthlyUsageAttributionSupportedMetrics
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewMonthlyUsageAttributionSupportedMetricsFromValue(v string) (*MonthlyUsageAttributionSupportedMetrics, error) {
 	ev := MonthlyUsageAttributionSupportedMetrics(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for MonthlyUsageAttributionSupportedMetrics: valid values are %v", v, allowedMonthlyUsageAttributionSupportedMetricsEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for MonthlyUsageAttributionSupportedMetrics: valid values are %v", v, allowedMonthlyUsageAttributionSupportedMetricsEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v MonthlyUsageAttributionSupportedMetrics) IsValid() bool {
 	for _, existing := range allowedMonthlyUsageAttributionSupportedMetricsEnumValues {
 		if existing == v {
@@ -118,42 +117,50 @@ func (v MonthlyUsageAttributionSupportedMetrics) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to MonthlyUsageAttributionSupportedMetrics value
+// Ptr returns reference to MonthlyUsageAttributionSupportedMetrics value.
 func (v MonthlyUsageAttributionSupportedMetrics) Ptr() *MonthlyUsageAttributionSupportedMetrics {
 	return &v
 }
 
+// NullableMonthlyUsageAttributionSupportedMetrics handles when a null is used for MonthlyUsageAttributionSupportedMetrics.
 type NullableMonthlyUsageAttributionSupportedMetrics struct {
 	value *MonthlyUsageAttributionSupportedMetrics
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableMonthlyUsageAttributionSupportedMetrics) Get() *MonthlyUsageAttributionSupportedMetrics {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableMonthlyUsageAttributionSupportedMetrics) Set(val *MonthlyUsageAttributionSupportedMetrics) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableMonthlyUsageAttributionSupportedMetrics) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableMonthlyUsageAttributionSupportedMetrics) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableMonthlyUsageAttributionSupportedMetrics initializes the struct as if Set has been called.
 func NewNullableMonthlyUsageAttributionSupportedMetrics(val *MonthlyUsageAttributionSupportedMetrics) *NullableMonthlyUsageAttributionSupportedMetrics {
 	return &NullableMonthlyUsageAttributionSupportedMetrics{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableMonthlyUsageAttributionSupportedMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableMonthlyUsageAttributionSupportedMetrics) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

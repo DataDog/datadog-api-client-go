@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,18 +20,18 @@ type UsageTimeSeriesObject struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewUsageTimeSeriesObject instantiates a new UsageTimeSeriesObject object
+// NewUsageTimeSeriesObject instantiates a new UsageTimeSeriesObject object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewUsageTimeSeriesObject() *UsageTimeSeriesObject {
 	this := UsageTimeSeriesObject{}
 	return &this
 }
 
-// NewUsageTimeSeriesObjectWithDefaults instantiates a new UsageTimeSeriesObject object
+// NewUsageTimeSeriesObjectWithDefaults instantiates a new UsageTimeSeriesObject object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewUsageTimeSeriesObjectWithDefaults() *UsageTimeSeriesObject {
 	this := UsageTimeSeriesObject{}
 	return &this
@@ -82,7 +80,7 @@ func (o *UsageTimeSeriesObject) GetValue() int64 {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *UsageTimeSeriesObject) GetValueOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -104,16 +102,17 @@ func (o *UsageTimeSeriesObject) SetValue(v int64) {
 	o.Value.Set(&v)
 }
 
-// SetValueNil sets the value for Value to be an explicit nil
+// SetValueNil sets the value for Value to be an explicit nil.
 func (o *UsageTimeSeriesObject) SetValueNil() {
 	o.Value.Set(nil)
 }
 
-// UnsetValue ensures that no value is present for Value, not even an explicit nil
+// UnsetValue ensures that no value is present for Value, not even an explicit nil.
 func (o *UsageTimeSeriesObject) UnsetValue() {
 	o.Value.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -136,6 +135,7 @@ func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *UsageTimeSeriesObject) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

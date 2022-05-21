@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -29,10 +27,10 @@ type WidgetLayout struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewWidgetLayout instantiates a new WidgetLayout object
+// NewWidgetLayout instantiates a new WidgetLayout object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout {
 	this := WidgetLayout{}
 	this.Height = height
@@ -42,15 +40,15 @@ func NewWidgetLayout(height int64, width int64, x int64, y int64) *WidgetLayout 
 	return &this
 }
 
-// NewWidgetLayoutWithDefaults instantiates a new WidgetLayout object
+// NewWidgetLayoutWithDefaults instantiates a new WidgetLayout object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewWidgetLayoutWithDefaults() *WidgetLayout {
 	this := WidgetLayout{}
 	return &this
 }
 
-// GetHeight returns the Height field value
+// GetHeight returns the Height field value.
 func (o *WidgetLayout) GetHeight() int64 {
 	if o == nil {
 		var ret int64
@@ -68,7 +66,7 @@ func (o *WidgetLayout) GetHeightOk() (*int64, bool) {
 	return &o.Height, true
 }
 
-// SetHeight sets field value
+// SetHeight sets field value.
 func (o *WidgetLayout) SetHeight(v int64) {
 	o.Height = v
 }
@@ -105,7 +103,7 @@ func (o *WidgetLayout) SetIsColumnBreak(v bool) {
 	o.IsColumnBreak = &v
 }
 
-// GetWidth returns the Width field value
+// GetWidth returns the Width field value.
 func (o *WidgetLayout) GetWidth() int64 {
 	if o == nil {
 		var ret int64
@@ -123,12 +121,12 @@ func (o *WidgetLayout) GetWidthOk() (*int64, bool) {
 	return &o.Width, true
 }
 
-// SetWidth sets field value
+// SetWidth sets field value.
 func (o *WidgetLayout) SetWidth(v int64) {
 	o.Width = v
 }
 
-// GetX returns the X field value
+// GetX returns the X field value.
 func (o *WidgetLayout) GetX() int64 {
 	if o == nil {
 		var ret int64
@@ -146,12 +144,12 @@ func (o *WidgetLayout) GetXOk() (*int64, bool) {
 	return &o.X, true
 }
 
-// SetX sets field value
+// SetX sets field value.
 func (o *WidgetLayout) SetX(v int64) {
 	o.X = v
 }
 
-// GetY returns the Y field value
+// GetY returns the Y field value.
 func (o *WidgetLayout) GetY() int64 {
 	if o == nil {
 		var ret int64
@@ -169,11 +167,12 @@ func (o *WidgetLayout) GetYOk() (*int64, bool) {
 	return &o.Y, true
 }
 
-// SetY sets field value
+// SetY sets field value.
 func (o *WidgetLayout) SetY(v int64) {
 	o.Y = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -193,6 +192,7 @@ func (o WidgetLayout) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *WidgetLayout) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

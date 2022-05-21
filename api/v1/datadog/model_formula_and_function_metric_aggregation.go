@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // FormulaAndFunctionMetricAggregation The aggregation methods available for metrics queries.
 type FormulaAndFunctionMetricAggregation string
 
-// List of FormulaAndFunctionMetricAggregation
+// List of FormulaAndFunctionMetricAggregation.
 const (
 	FORMULAANDFUNCTIONMETRICAGGREGATION_AVG        FormulaAndFunctionMetricAggregation = "avg"
 	FORMULAANDFUNCTIONMETRICAGGREGATION_MIN        FormulaAndFunctionMetricAggregation = "min"
@@ -37,10 +35,12 @@ var allowedFormulaAndFunctionMetricAggregationEnumValues = []FormulaAndFunctionM
 	FORMULAANDFUNCTIONMETRICAGGREGATION_PERCENTILE,
 }
 
-func (w *FormulaAndFunctionMetricAggregation) GetAllowedValues() []FormulaAndFunctionMetricAggregation {
+// GetAllowedValues reeturns the list of possible values.
+func (v *FormulaAndFunctionMetricAggregation) GetAllowedValues() []FormulaAndFunctionMetricAggregation {
 	return allowedFormulaAndFunctionMetricAggregationEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *FormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -52,17 +52,16 @@ func (v *FormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 }
 
 // NewFormulaAndFunctionMetricAggregationFromValue returns a pointer to a valid FormulaAndFunctionMetricAggregation
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewFormulaAndFunctionMetricAggregationFromValue(v string) (*FormulaAndFunctionMetricAggregation, error) {
 	ev := FormulaAndFunctionMetricAggregation(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for FormulaAndFunctionMetricAggregation: valid values are %v", v, allowedFormulaAndFunctionMetricAggregationEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for FormulaAndFunctionMetricAggregation: valid values are %v", v, allowedFormulaAndFunctionMetricAggregationEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v FormulaAndFunctionMetricAggregation) IsValid() bool {
 	for _, existing := range allowedFormulaAndFunctionMetricAggregationEnumValues {
 		if existing == v {
@@ -72,42 +71,50 @@ func (v FormulaAndFunctionMetricAggregation) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to FormulaAndFunctionMetricAggregation value
+// Ptr returns reference to FormulaAndFunctionMetricAggregation value.
 func (v FormulaAndFunctionMetricAggregation) Ptr() *FormulaAndFunctionMetricAggregation {
 	return &v
 }
 
+// NullableFormulaAndFunctionMetricAggregation handles when a null is used for FormulaAndFunctionMetricAggregation.
 type NullableFormulaAndFunctionMetricAggregation struct {
 	value *FormulaAndFunctionMetricAggregation
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableFormulaAndFunctionMetricAggregation) Get() *FormulaAndFunctionMetricAggregation {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableFormulaAndFunctionMetricAggregation) Set(val *FormulaAndFunctionMetricAggregation) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableFormulaAndFunctionMetricAggregation) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableFormulaAndFunctionMetricAggregation) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableFormulaAndFunctionMetricAggregation initializes the struct as if Set has been called.
 func NewNullableFormulaAndFunctionMetricAggregation(val *FormulaAndFunctionMetricAggregation) *NullableFormulaAndFunctionMetricAggregation {
 	return &NullableFormulaAndFunctionMetricAggregation{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableFormulaAndFunctionMetricAggregation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableFormulaAndFunctionMetricAggregation) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

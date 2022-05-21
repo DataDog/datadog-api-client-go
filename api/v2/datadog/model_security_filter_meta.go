@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -19,18 +17,18 @@ type SecurityFilterMeta struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSecurityFilterMeta instantiates a new SecurityFilterMeta object
+// NewSecurityFilterMeta instantiates a new SecurityFilterMeta object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSecurityFilterMeta() *SecurityFilterMeta {
 	this := SecurityFilterMeta{}
 	return &this
 }
 
-// NewSecurityFilterMetaWithDefaults instantiates a new SecurityFilterMeta object
+// NewSecurityFilterMetaWithDefaults instantiates a new SecurityFilterMeta object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSecurityFilterMetaWithDefaults() *SecurityFilterMeta {
 	this := SecurityFilterMeta{}
 	return &this
@@ -68,6 +66,7 @@ func (o *SecurityFilterMeta) SetWarning(v string) {
 	o.Warning = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +82,7 @@ func (o SecurityFilterMeta) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SecurityFilterMeta) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

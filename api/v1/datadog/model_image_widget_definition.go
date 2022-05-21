@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,32 +36,32 @@ type ImageWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object
+// NewImageWidgetDefinition instantiates a new ImageWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewImageWidgetDefinition(type_ ImageWidgetDefinitionType, url string) *ImageWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewImageWidgetDefinition(typeVar ImageWidgetDefinitionType, url string) *ImageWidgetDefinition {
 	this := ImageWidgetDefinition{}
 	var hasBackground bool = true
 	this.HasBackground = &hasBackground
 	var hasBorder bool = true
 	this.HasBorder = &hasBorder
-	this.Type = type_
+	this.Type = typeVar
 	this.Url = url
 	return &this
 }
 
-// NewImageWidgetDefinitionWithDefaults instantiates a new ImageWidgetDefinition object
+// NewImageWidgetDefinitionWithDefaults instantiates a new ImageWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewImageWidgetDefinitionWithDefaults() *ImageWidgetDefinition {
 	this := ImageWidgetDefinition{}
 	var hasBackground bool = true
 	this.HasBackground = &hasBackground
 	var hasBorder bool = true
 	this.HasBorder = &hasBorder
-	var type_ ImageWidgetDefinitionType = IMAGEWIDGETDEFINITIONTYPE_IMAGE
-	this.Type = type_
+	var typeVar ImageWidgetDefinitionType = IMAGEWIDGETDEFINITIONTYPE_IMAGE
+	this.Type = typeVar
 	return &this
 }
 
@@ -227,7 +225,7 @@ func (o *ImageWidgetDefinition) SetSizing(v WidgetImageSizing) {
 	o.Sizing = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ImageWidgetDefinition) GetType() ImageWidgetDefinitionType {
 	if o == nil {
 		var ret ImageWidgetDefinitionType
@@ -245,12 +243,12 @@ func (o *ImageWidgetDefinition) GetTypeOk() (*ImageWidgetDefinitionType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ImageWidgetDefinition) SetType(v ImageWidgetDefinitionType) {
 	o.Type = v
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value.
 func (o *ImageWidgetDefinition) GetUrl() string {
 	if o == nil {
 		var ret string
@@ -268,7 +266,7 @@ func (o *ImageWidgetDefinition) GetUrlOk() (*string, bool) {
 	return &o.Url, true
 }
 
-// SetUrl sets field value
+// SetUrl sets field value.
 func (o *ImageWidgetDefinition) SetUrl(v string) {
 	o.Url = v
 }
@@ -337,6 +335,7 @@ func (o *ImageWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign) {
 	o.VerticalAlign = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -372,6 +371,7 @@ func (o ImageWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ImageWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

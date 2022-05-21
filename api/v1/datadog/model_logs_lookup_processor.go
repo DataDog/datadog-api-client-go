@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -39,30 +37,30 @@ type LogsLookupProcessor struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsLookupProcessor instantiates a new LogsLookupProcessor object
+// NewLogsLookupProcessor instantiates a new LogsLookupProcessor object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsLookupProcessor(lookupTable []string, source string, target string, type_ LogsLookupProcessorType) *LogsLookupProcessor {
+// will change when the set of required properties is changed.
+func NewLogsLookupProcessor(lookupTable []string, source string, target string, typeVar LogsLookupProcessorType) *LogsLookupProcessor {
 	this := LogsLookupProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	this.LookupTable = lookupTable
 	this.Source = source
 	this.Target = target
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsLookupProcessorWithDefaults instantiates a new LogsLookupProcessor object
+// NewLogsLookupProcessorWithDefaults instantiates a new LogsLookupProcessor object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsLookupProcessorWithDefaults() *LogsLookupProcessor {
 	this := LogsLookupProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsLookupProcessorType = LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR
-	this.Type = type_
+	var typeVar LogsLookupProcessorType = LOGSLOOKUPPROCESSORTYPE_LOOKUP_PROCESSOR
+	this.Type = typeVar
 	return &this
 }
 
@@ -130,7 +128,7 @@ func (o *LogsLookupProcessor) SetIsEnabled(v bool) {
 	o.IsEnabled = &v
 }
 
-// GetLookupTable returns the LookupTable field value
+// GetLookupTable returns the LookupTable field value.
 func (o *LogsLookupProcessor) GetLookupTable() []string {
 	if o == nil {
 		var ret []string
@@ -148,7 +146,7 @@ func (o *LogsLookupProcessor) GetLookupTableOk() (*[]string, bool) {
 	return &o.LookupTable, true
 }
 
-// SetLookupTable sets field value
+// SetLookupTable sets field value.
 func (o *LogsLookupProcessor) SetLookupTable(v []string) {
 	o.LookupTable = v
 }
@@ -185,7 +183,7 @@ func (o *LogsLookupProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-// GetSource returns the Source field value
+// GetSource returns the Source field value.
 func (o *LogsLookupProcessor) GetSource() string {
 	if o == nil {
 		var ret string
@@ -203,12 +201,12 @@ func (o *LogsLookupProcessor) GetSourceOk() (*string, bool) {
 	return &o.Source, true
 }
 
-// SetSource sets field value
+// SetSource sets field value.
 func (o *LogsLookupProcessor) SetSource(v string) {
 	o.Source = v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsLookupProcessor) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -226,12 +224,12 @@ func (o *LogsLookupProcessor) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsLookupProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsLookupProcessor) GetType() LogsLookupProcessorType {
 	if o == nil {
 		var ret LogsLookupProcessorType
@@ -249,11 +247,12 @@ func (o *LogsLookupProcessor) GetTypeOk() (*LogsLookupProcessorType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsLookupProcessor) SetType(v LogsLookupProcessorType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -279,6 +278,7 @@ func (o LogsLookupProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsLookupProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

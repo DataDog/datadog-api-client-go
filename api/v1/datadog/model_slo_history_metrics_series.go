@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -27,10 +25,10 @@ type SLOHistoryMetricsSeries struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object
+// NewSLOHistoryMetricsSeries instantiates a new SLOHistoryMetricsSeries object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOHistoryMetricsSeries(count int64, sum float64, values []float64) *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	this.Count = count
@@ -39,15 +37,15 @@ func NewSLOHistoryMetricsSeries(count int64, sum float64, values []float64) *SLO
 	return &this
 }
 
-// NewSLOHistoryMetricsSeriesWithDefaults instantiates a new SLOHistoryMetricsSeries object
+// NewSLOHistoryMetricsSeriesWithDefaults instantiates a new SLOHistoryMetricsSeries object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOHistoryMetricsSeriesWithDefaults() *SLOHistoryMetricsSeries {
 	this := SLOHistoryMetricsSeries{}
 	return &this
 }
 
-// GetCount returns the Count field value
+// GetCount returns the Count field value.
 func (o *SLOHistoryMetricsSeries) GetCount() int64 {
 	if o == nil {
 		var ret int64
@@ -65,7 +63,7 @@ func (o *SLOHistoryMetricsSeries) GetCountOk() (*int64, bool) {
 	return &o.Count, true
 }
 
-// SetCount sets field value
+// SetCount sets field value.
 func (o *SLOHistoryMetricsSeries) SetCount(v int64) {
 	o.Count = v
 }
@@ -102,7 +100,7 @@ func (o *SLOHistoryMetricsSeries) SetMetadata(v SLOHistoryMetricsSeriesMetadata)
 	o.Metadata = &v
 }
 
-// GetSum returns the Sum field value
+// GetSum returns the Sum field value.
 func (o *SLOHistoryMetricsSeries) GetSum() float64 {
 	if o == nil {
 		var ret float64
@@ -120,12 +118,12 @@ func (o *SLOHistoryMetricsSeries) GetSumOk() (*float64, bool) {
 	return &o.Sum, true
 }
 
-// SetSum sets field value
+// SetSum sets field value.
 func (o *SLOHistoryMetricsSeries) SetSum(v float64) {
 	o.Sum = v
 }
 
-// GetValues returns the Values field value
+// GetValues returns the Values field value.
 func (o *SLOHistoryMetricsSeries) GetValues() []float64 {
 	if o == nil {
 		var ret []float64
@@ -143,11 +141,12 @@ func (o *SLOHistoryMetricsSeries) GetValuesOk() (*[]float64, bool) {
 	return &o.Values, true
 }
 
-// SetValues sets field value
+// SetValues sets field value.
 func (o *SLOHistoryMetricsSeries) SetValues(v []float64) {
 	o.Values = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -166,6 +165,7 @@ func (o SLOHistoryMetricsSeries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

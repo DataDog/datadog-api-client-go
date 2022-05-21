@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -27,10 +25,10 @@ type RUMGroupByHistogram struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRUMGroupByHistogram instantiates a new RUMGroupByHistogram object
+// NewRUMGroupByHistogram instantiates a new RUMGroupByHistogram object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewRUMGroupByHistogram(interval float64, max float64, min float64) *RUMGroupByHistogram {
 	this := RUMGroupByHistogram{}
 	this.Interval = interval
@@ -39,15 +37,15 @@ func NewRUMGroupByHistogram(interval float64, max float64, min float64) *RUMGrou
 	return &this
 }
 
-// NewRUMGroupByHistogramWithDefaults instantiates a new RUMGroupByHistogram object
+// NewRUMGroupByHistogramWithDefaults instantiates a new RUMGroupByHistogram object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewRUMGroupByHistogramWithDefaults() *RUMGroupByHistogram {
 	this := RUMGroupByHistogram{}
 	return &this
 }
 
-// GetInterval returns the Interval field value
+// GetInterval returns the Interval field value.
 func (o *RUMGroupByHistogram) GetInterval() float64 {
 	if o == nil {
 		var ret float64
@@ -65,12 +63,12 @@ func (o *RUMGroupByHistogram) GetIntervalOk() (*float64, bool) {
 	return &o.Interval, true
 }
 
-// SetInterval sets field value
+// SetInterval sets field value.
 func (o *RUMGroupByHistogram) SetInterval(v float64) {
 	o.Interval = v
 }
 
-// GetMax returns the Max field value
+// GetMax returns the Max field value.
 func (o *RUMGroupByHistogram) GetMax() float64 {
 	if o == nil {
 		var ret float64
@@ -88,12 +86,12 @@ func (o *RUMGroupByHistogram) GetMaxOk() (*float64, bool) {
 	return &o.Max, true
 }
 
-// SetMax sets field value
+// SetMax sets field value.
 func (o *RUMGroupByHistogram) SetMax(v float64) {
 	o.Max = v
 }
 
-// GetMin returns the Min field value
+// GetMin returns the Min field value.
 func (o *RUMGroupByHistogram) GetMin() float64 {
 	if o == nil {
 		var ret float64
@@ -111,11 +109,12 @@ func (o *RUMGroupByHistogram) GetMinOk() (*float64, bool) {
 	return &o.Min, true
 }
 
-// SetMin sets field value
+// SetMin sets field value.
 func (o *RUMGroupByHistogram) SetMin(v float64) {
 	o.Min = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o RUMGroupByHistogram) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -131,6 +130,7 @@ func (o RUMGroupByHistogram) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *RUMGroupByHistogram) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -20,108 +18,107 @@ type RUMGroupByTotal struct {
 	UnparsedObject interface{}
 }
 
-// RUMGroupByTotalBooleanAsRUMGroupByTotal is a convenience function that returns bool wrapped in RUMGroupByTotal
+// RUMGroupByTotalBooleanAsRUMGroupByTotal is a convenience function that returns bool wrapped in RUMGroupByTotal.
 func RUMGroupByTotalBooleanAsRUMGroupByTotal(v *bool) RUMGroupByTotal {
 	return RUMGroupByTotal{RUMGroupByTotalBoolean: v}
 }
 
-// RUMGroupByTotalStringAsRUMGroupByTotal is a convenience function that returns string wrapped in RUMGroupByTotal
+// RUMGroupByTotalStringAsRUMGroupByTotal is a convenience function that returns string wrapped in RUMGroupByTotal.
 func RUMGroupByTotalStringAsRUMGroupByTotal(v *string) RUMGroupByTotal {
 	return RUMGroupByTotal{RUMGroupByTotalString: v}
 }
 
-// RUMGroupByTotalNumberAsRUMGroupByTotal is a convenience function that returns float64 wrapped in RUMGroupByTotal
+// RUMGroupByTotalNumberAsRUMGroupByTotal is a convenience function that returns float64 wrapped in RUMGroupByTotal.
 func RUMGroupByTotalNumberAsRUMGroupByTotal(v *float64) RUMGroupByTotal {
 	return RUMGroupByTotal{RUMGroupByTotalNumber: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *RUMGroupByTotal) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *RUMGroupByTotal) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into RUMGroupByTotalBoolean
-	err = json.Unmarshal(data, &dst.RUMGroupByTotalBoolean)
+	err = json.Unmarshal(data, &obj.RUMGroupByTotalBoolean)
 	if err == nil {
-		if dst.RUMGroupByTotalBoolean != nil {
-			jsonRUMGroupByTotalBoolean, _ := json.Marshal(dst.RUMGroupByTotalBoolean)
+		if obj.RUMGroupByTotalBoolean != nil {
+			jsonRUMGroupByTotalBoolean, _ := json.Marshal(obj.RUMGroupByTotalBoolean)
 			if string(jsonRUMGroupByTotalBoolean) == "{}" { // empty struct
-				dst.RUMGroupByTotalBoolean = nil
+				obj.RUMGroupByTotalBoolean = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.RUMGroupByTotalBoolean = nil
+			obj.RUMGroupByTotalBoolean = nil
 		}
 	} else {
-		dst.RUMGroupByTotalBoolean = nil
+		obj.RUMGroupByTotalBoolean = nil
 	}
 
 	// try to unmarshal data into RUMGroupByTotalString
-	err = json.Unmarshal(data, &dst.RUMGroupByTotalString)
+	err = json.Unmarshal(data, &obj.RUMGroupByTotalString)
 	if err == nil {
-		if dst.RUMGroupByTotalString != nil {
-			jsonRUMGroupByTotalString, _ := json.Marshal(dst.RUMGroupByTotalString)
+		if obj.RUMGroupByTotalString != nil {
+			jsonRUMGroupByTotalString, _ := json.Marshal(obj.RUMGroupByTotalString)
 			if string(jsonRUMGroupByTotalString) == "{}" { // empty struct
-				dst.RUMGroupByTotalString = nil
+				obj.RUMGroupByTotalString = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.RUMGroupByTotalString = nil
+			obj.RUMGroupByTotalString = nil
 		}
 	} else {
-		dst.RUMGroupByTotalString = nil
+		obj.RUMGroupByTotalString = nil
 	}
 
 	// try to unmarshal data into RUMGroupByTotalNumber
-	err = json.Unmarshal(data, &dst.RUMGroupByTotalNumber)
+	err = json.Unmarshal(data, &obj.RUMGroupByTotalNumber)
 	if err == nil {
-		if dst.RUMGroupByTotalNumber != nil {
-			jsonRUMGroupByTotalNumber, _ := json.Marshal(dst.RUMGroupByTotalNumber)
+		if obj.RUMGroupByTotalNumber != nil {
+			jsonRUMGroupByTotalNumber, _ := json.Marshal(obj.RUMGroupByTotalNumber)
 			if string(jsonRUMGroupByTotalNumber) == "{}" { // empty struct
-				dst.RUMGroupByTotalNumber = nil
+				obj.RUMGroupByTotalNumber = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.RUMGroupByTotalNumber = nil
+			obj.RUMGroupByTotalNumber = nil
 		}
 	} else {
-		dst.RUMGroupByTotalNumber = nil
+		obj.RUMGroupByTotalNumber = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.RUMGroupByTotalBoolean = nil
-		dst.RUMGroupByTotalString = nil
-		dst.RUMGroupByTotalNumber = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.RUMGroupByTotalBoolean = nil
+		obj.RUMGroupByTotalString = nil
+		obj.RUMGroupByTotalNumber = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src RUMGroupByTotal) MarshalJSON() ([]byte, error) {
-	if src.RUMGroupByTotalBoolean != nil {
-		return json.Marshal(&src.RUMGroupByTotalBoolean)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj RUMGroupByTotal) MarshalJSON() ([]byte, error) {
+	if obj.RUMGroupByTotalBoolean != nil {
+		return json.Marshal(&obj.RUMGroupByTotalBoolean)
 	}
 
-	if src.RUMGroupByTotalString != nil {
-		return json.Marshal(&src.RUMGroupByTotalString)
+	if obj.RUMGroupByTotalString != nil {
+		return json.Marshal(&obj.RUMGroupByTotalString)
 	}
 
-	if src.RUMGroupByTotalNumber != nil {
-		return json.Marshal(&src.RUMGroupByTotalNumber)
+	if obj.RUMGroupByTotalNumber != nil {
+		return json.Marshal(&obj.RUMGroupByTotalNumber)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *RUMGroupByTotal) GetActualInstance() interface{} {
 	if obj.RUMGroupByTotalBoolean != nil {
 		return obj.RUMGroupByTotalBoolean
@@ -139,37 +136,45 @@ func (obj *RUMGroupByTotal) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableRUMGroupByTotal handles when a null is used for RUMGroupByTotal.
 type NullableRUMGroupByTotal struct {
 	value *RUMGroupByTotal
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableRUMGroupByTotal) Get() *RUMGroupByTotal {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableRUMGroupByTotal) Set(val *RUMGroupByTotal) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableRUMGroupByTotal) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableRUMGroupByTotal) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableRUMGroupByTotal initializes the struct as if Set has been called.
 func NewNullableRUMGroupByTotal(val *RUMGroupByTotal) *NullableRUMGroupByTotal {
 	return &NullableRUMGroupByTotal{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableRUMGroupByTotal) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableRUMGroupByTotal) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

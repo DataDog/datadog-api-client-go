@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -21,24 +19,24 @@ type IncidentFieldAttributesMultipleValue struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewIncidentFieldAttributesMultipleValue instantiates a new IncidentFieldAttributesMultipleValue object
+// NewIncidentFieldAttributesMultipleValue instantiates a new IncidentFieldAttributesMultipleValue object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewIncidentFieldAttributesMultipleValue() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
-	this.Type = &type_
+	var typeVar IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
+	this.Type = &typeVar
 	return &this
 }
 
-// NewIncidentFieldAttributesMultipleValueWithDefaults instantiates a new IncidentFieldAttributesMultipleValue object
+// NewIncidentFieldAttributesMultipleValueWithDefaults instantiates a new IncidentFieldAttributesMultipleValue object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewIncidentFieldAttributesMultipleValueWithDefaults() *IncidentFieldAttributesMultipleValue {
 	this := IncidentFieldAttributesMultipleValue{}
-	var type_ IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
-	this.Type = &type_
+	var typeVar IncidentFieldAttributesValueType = INCIDENTFIELDATTRIBUTESVALUETYPE_MULTISELECT
+	this.Type = &typeVar
 	return &this
 }
 
@@ -85,7 +83,7 @@ func (o *IncidentFieldAttributesMultipleValue) GetValue() []string {
 
 // GetValueOk returns a tuple with the Value field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentFieldAttributesMultipleValue) GetValueOk() (*[]string, bool) {
 	if o == nil || o.Value == nil {
 		return nil, false
@@ -107,6 +105,7 @@ func (o *IncidentFieldAttributesMultipleValue) SetValue(v []string) {
 	o.Value = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -125,6 +124,7 @@ func (o IncidentFieldAttributesMultipleValue) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *IncidentFieldAttributesMultipleValue) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

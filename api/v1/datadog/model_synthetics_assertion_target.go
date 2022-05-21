@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,27 +24,27 @@ type SyntheticsAssertionTarget struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object
+// NewSyntheticsAssertionTarget instantiates a new SyntheticsAssertionTarget object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, target interface{}, type_ SyntheticsAssertionType) *SyntheticsAssertionTarget {
+// will change when the set of required properties is changed.
+func NewSyntheticsAssertionTarget(operator SyntheticsAssertionOperator, target interface{}, typeVar SyntheticsAssertionType) *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	this.Operator = operator
 	this.Target = target
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsAssertionTargetWithDefaults instantiates a new SyntheticsAssertionTarget object
+// NewSyntheticsAssertionTargetWithDefaults instantiates a new SyntheticsAssertionTarget object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsAssertionTargetWithDefaults() *SyntheticsAssertionTarget {
 	this := SyntheticsAssertionTarget{}
 	return &this
 }
 
-// GetOperator returns the Operator field value
+// GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionTarget) GetOperator() SyntheticsAssertionOperator {
 	if o == nil {
 		var ret SyntheticsAssertionOperator
@@ -64,7 +62,7 @@ func (o *SyntheticsAssertionTarget) GetOperatorOk() (*SyntheticsAssertionOperato
 	return &o.Operator, true
 }
 
-// SetOperator sets field value
+// SetOperator sets field value.
 func (o *SyntheticsAssertionTarget) SetOperator(v SyntheticsAssertionOperator) {
 	o.Operator = v
 }
@@ -101,7 +99,7 @@ func (o *SyntheticsAssertionTarget) SetProperty(v string) {
 	o.Property = &v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *SyntheticsAssertionTarget) GetTarget() interface{} {
 	if o == nil {
 		var ret interface{}
@@ -119,12 +117,12 @@ func (o *SyntheticsAssertionTarget) GetTargetOk() (*interface{}, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *SyntheticsAssertionTarget) SetTarget(v interface{}) {
 	o.Target = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsAssertionTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
 		var ret SyntheticsAssertionType
@@ -142,11 +140,12 @@ func (o *SyntheticsAssertionTarget) GetTypeOk() (*SyntheticsAssertionType, bool)
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsAssertionTarget) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -165,6 +164,7 @@ func (o SyntheticsAssertionTarget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,28 +20,28 @@ type APIKeyCreateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAPIKeyCreateData instantiates a new APIKeyCreateData object
+// NewAPIKeyCreateData instantiates a new APIKeyCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAPIKeyCreateData(attributes APIKeyCreateAttributes, type_ APIKeysType) *APIKeyCreateData {
+// will change when the set of required properties is changed.
+func NewAPIKeyCreateData(attributes APIKeyCreateAttributes, typeVar APIKeysType) *APIKeyCreateData {
 	this := APIKeyCreateData{}
 	this.Attributes = attributes
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewAPIKeyCreateDataWithDefaults instantiates a new APIKeyCreateData object
+// NewAPIKeyCreateDataWithDefaults instantiates a new APIKeyCreateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAPIKeyCreateDataWithDefaults() *APIKeyCreateData {
 	this := APIKeyCreateData{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
-	this.Type = type_
+	var typeVar APIKeysType = APIKEYSTYPE_API_KEYS
+	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
+// GetAttributes returns the Attributes field value.
 func (o *APIKeyCreateData) GetAttributes() APIKeyCreateAttributes {
 	if o == nil {
 		var ret APIKeyCreateAttributes
@@ -61,12 +59,12 @@ func (o *APIKeyCreateData) GetAttributesOk() (*APIKeyCreateAttributes, bool) {
 	return &o.Attributes, true
 }
 
-// SetAttributes sets field value
+// SetAttributes sets field value.
 func (o *APIKeyCreateData) SetAttributes(v APIKeyCreateAttributes) {
 	o.Attributes = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *APIKeyCreateData) GetType() APIKeysType {
 	if o == nil {
 		var ret APIKeysType
@@ -84,11 +82,12 @@ func (o *APIKeyCreateData) GetTypeOk() (*APIKeysType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *APIKeyCreateData) SetType(v APIKeysType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o APIKeyCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,6 +102,7 @@ func (o APIKeyCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *APIKeyCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

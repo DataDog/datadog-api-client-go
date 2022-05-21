@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -51,11 +49,11 @@ type LogsArithmeticProcessor struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object
+// NewLogsArithmeticProcessor instantiates a new LogsArithmeticProcessor object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsArithmeticProcessor(expression string, target string, type_ LogsArithmeticProcessorType) *LogsArithmeticProcessor {
+// will change when the set of required properties is changed.
+func NewLogsArithmeticProcessor(expression string, target string, typeVar LogsArithmeticProcessorType) *LogsArithmeticProcessor {
 	this := LogsArithmeticProcessor{}
 	this.Expression = expression
 	var isEnabled bool = false
@@ -63,25 +61,25 @@ func NewLogsArithmeticProcessor(expression string, target string, type_ LogsArit
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
 	this.Target = target
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsArithmeticProcessorWithDefaults instantiates a new LogsArithmeticProcessor object
+// NewLogsArithmeticProcessorWithDefaults instantiates a new LogsArithmeticProcessor object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsArithmeticProcessorWithDefaults() *LogsArithmeticProcessor {
 	this := LogsArithmeticProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsArithmeticProcessorType = LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR
-	this.Type = type_
+	var typeVar LogsArithmeticProcessorType = LOGSARITHMETICPROCESSORTYPE_ARITHMETIC_PROCESSOR
+	this.Type = typeVar
 	return &this
 }
 
-// GetExpression returns the Expression field value
+// GetExpression returns the Expression field value.
 func (o *LogsArithmeticProcessor) GetExpression() string {
 	if o == nil {
 		var ret string
@@ -99,7 +97,7 @@ func (o *LogsArithmeticProcessor) GetExpressionOk() (*string, bool) {
 	return &o.Expression, true
 }
 
-// SetExpression sets field value
+// SetExpression sets field value.
 func (o *LogsArithmeticProcessor) SetExpression(v string) {
 	o.Expression = v
 }
@@ -200,7 +198,7 @@ func (o *LogsArithmeticProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsArithmeticProcessor) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -218,12 +216,12 @@ func (o *LogsArithmeticProcessor) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsArithmeticProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsArithmeticProcessor) GetType() LogsArithmeticProcessorType {
 	if o == nil {
 		var ret LogsArithmeticProcessorType
@@ -241,11 +239,12 @@ func (o *LogsArithmeticProcessor) GetTypeOk() (*LogsArithmeticProcessorType, boo
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsArithmeticProcessor) SetType(v LogsArithmeticProcessorType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -270,6 +269,7 @@ func (o LogsArithmeticProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsArithmeticProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

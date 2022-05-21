@@ -84,7 +84,7 @@ def escape_reserved_keyword(word):
     :return: The escaped word if it was a reserved keyword, the word unchanged otherwise
     """
     if word in KEYWORDS:
-        return f"{word}_"
+        return f"{word}Var"
     return word
 
 

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // MetricIntakeType The type of metric.
 type MetricIntakeType int32
 
-// List of MetricIntakeType
+// List of MetricIntakeType.
 const (
 	METRICINTAKETYPE_UNSPECIFIED        MetricIntakeType = 0
 	METRICINTAKETYPE_COUNT              MetricIntakeType = 1
@@ -31,10 +29,12 @@ var allowedMetricIntakeTypeEnumValues = []MetricIntakeType{
 	METRICINTAKETYPE_UNSPECIFIED_LEGACY,
 }
 
-func (w *MetricIntakeType) GetAllowedValues() []MetricIntakeType {
+// GetAllowedValues reeturns the list of possible values.
+func (v *MetricIntakeType) GetAllowedValues() []MetricIntakeType {
 	return allowedMetricIntakeTypeEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *MetricIntakeType) UnmarshalJSON(src []byte) error {
 	var value int32
 	err := json.Unmarshal(src, &value)
@@ -46,17 +46,16 @@ func (v *MetricIntakeType) UnmarshalJSON(src []byte) error {
 }
 
 // NewMetricIntakeTypeFromValue returns a pointer to a valid MetricIntakeType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewMetricIntakeTypeFromValue(v int32) (*MetricIntakeType, error) {
 	ev := MetricIntakeType(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for MetricIntakeType: valid values are %v", v, allowedMetricIntakeTypeEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for MetricIntakeType: valid values are %v", v, allowedMetricIntakeTypeEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v MetricIntakeType) IsValid() bool {
 	for _, existing := range allowedMetricIntakeTypeEnumValues {
 		if existing == v {
@@ -66,42 +65,50 @@ func (v MetricIntakeType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to MetricIntakeType value
+// Ptr returns reference to MetricIntakeType value.
 func (v MetricIntakeType) Ptr() *MetricIntakeType {
 	return &v
 }
 
+// NullableMetricIntakeType handles when a null is used for MetricIntakeType.
 type NullableMetricIntakeType struct {
 	value *MetricIntakeType
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableMetricIntakeType) Get() *MetricIntakeType {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableMetricIntakeType) Set(val *MetricIntakeType) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableMetricIntakeType) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableMetricIntakeType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableMetricIntakeType initializes the struct as if Set has been called.
 func NewNullableMetricIntakeType(val *MetricIntakeType) *NullableMetricIntakeType {
 	return &NullableMetricIntakeType{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableMetricIntakeType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableMetricIntakeType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -28,25 +26,25 @@ type NotebookDistributionCellAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookDistributionCellAttributes instantiates a new NotebookDistributionCellAttributes object
+// NewNotebookDistributionCellAttributes instantiates a new NotebookDistributionCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookDistributionCellAttributes(definition DistributionWidgetDefinition) *NotebookDistributionCellAttributes {
 	this := NotebookDistributionCellAttributes{}
 	this.Definition = definition
 	return &this
 }
 
-// NewNotebookDistributionCellAttributesWithDefaults instantiates a new NotebookDistributionCellAttributes object
+// NewNotebookDistributionCellAttributesWithDefaults instantiates a new NotebookDistributionCellAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookDistributionCellAttributesWithDefaults() *NotebookDistributionCellAttributes {
 	this := NotebookDistributionCellAttributes{}
 	return &this
 }
 
-// GetDefinition returns the Definition field value
+// GetDefinition returns the Definition field value.
 func (o *NotebookDistributionCellAttributes) GetDefinition() DistributionWidgetDefinition {
 	if o == nil {
 		var ret DistributionWidgetDefinition
@@ -64,7 +62,7 @@ func (o *NotebookDistributionCellAttributes) GetDefinitionOk() (*DistributionWid
 	return &o.Definition, true
 }
 
-// SetDefinition sets field value
+// SetDefinition sets field value.
 func (o *NotebookDistributionCellAttributes) SetDefinition(v DistributionWidgetDefinition) {
 	o.Definition = v
 }
@@ -144,7 +142,7 @@ func (o *NotebookDistributionCellAttributes) GetTime() NotebookCellTime {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookDistributionCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
 	if o == nil {
 		return nil, false
@@ -166,16 +164,17 @@ func (o *NotebookDistributionCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
 
-// SetTimeNil sets the value for Time to be an explicit nil
+// SetTimeNil sets the value for Time to be an explicit nil.
 func (o *NotebookDistributionCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
 }
 
-// UnsetTime ensures that no value is present for Time, not even an explicit nil
+// UnsetTime ensures that no value is present for Time, not even an explicit nil.
 func (o *NotebookDistributionCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookDistributionCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -198,6 +197,7 @@ func (o NotebookDistributionCellAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookDistributionCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

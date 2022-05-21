@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,28 +20,28 @@ type UserInvitationData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewUserInvitationData instantiates a new UserInvitationData object
+// NewUserInvitationData instantiates a new UserInvitationData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewUserInvitationData(relationships UserInvitationRelationships, type_ UserInvitationsType) *UserInvitationData {
+// will change when the set of required properties is changed.
+func NewUserInvitationData(relationships UserInvitationRelationships, typeVar UserInvitationsType) *UserInvitationData {
 	this := UserInvitationData{}
 	this.Relationships = relationships
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewUserInvitationDataWithDefaults instantiates a new UserInvitationData object
+// NewUserInvitationDataWithDefaults instantiates a new UserInvitationData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewUserInvitationDataWithDefaults() *UserInvitationData {
 	this := UserInvitationData{}
-	var type_ UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
-	this.Type = type_
+	var typeVar UserInvitationsType = USERINVITATIONSTYPE_USER_INVITATIONS
+	this.Type = typeVar
 	return &this
 }
 
-// GetRelationships returns the Relationships field value
+// GetRelationships returns the Relationships field value.
 func (o *UserInvitationData) GetRelationships() UserInvitationRelationships {
 	if o == nil {
 		var ret UserInvitationRelationships
@@ -61,12 +59,12 @@ func (o *UserInvitationData) GetRelationshipsOk() (*UserInvitationRelationships,
 	return &o.Relationships, true
 }
 
-// SetRelationships sets field value
+// SetRelationships sets field value.
 func (o *UserInvitationData) SetRelationships(v UserInvitationRelationships) {
 	o.Relationships = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *UserInvitationData) GetType() UserInvitationsType {
 	if o == nil {
 		var ret UserInvitationsType
@@ -84,11 +82,12 @@ func (o *UserInvitationData) GetTypeOk() (*UserInvitationsType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *UserInvitationData) SetType(v UserInvitationsType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o UserInvitationData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,6 +102,7 @@ func (o UserInvitationData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *UserInvitationData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

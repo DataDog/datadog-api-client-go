@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,19 +24,19 @@ type ProcessQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object
+// NewProcessQueryDefinition instantiates a new ProcessQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewProcessQueryDefinition(metric string) *ProcessQueryDefinition {
 	this := ProcessQueryDefinition{}
 	this.Metric = metric
 	return &this
 }
 
-// NewProcessQueryDefinitionWithDefaults instantiates a new ProcessQueryDefinition object
+// NewProcessQueryDefinitionWithDefaults instantiates a new ProcessQueryDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewProcessQueryDefinitionWithDefaults() *ProcessQueryDefinition {
 	this := ProcessQueryDefinition{}
 	return &this
@@ -108,7 +106,7 @@ func (o *ProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-// GetMetric returns the Metric field value
+// GetMetric returns the Metric field value.
 func (o *ProcessQueryDefinition) GetMetric() string {
 	if o == nil {
 		var ret string
@@ -126,7 +124,7 @@ func (o *ProcessQueryDefinition) GetMetricOk() (*string, bool) {
 	return &o.Metric, true
 }
 
-// SetMetric sets field value
+// SetMetric sets field value.
 func (o *ProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
@@ -163,6 +161,7 @@ func (o *ProcessQueryDefinition) SetSearchBy(v string) {
 	o.SearchBy = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -185,6 +184,7 @@ func (o ProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

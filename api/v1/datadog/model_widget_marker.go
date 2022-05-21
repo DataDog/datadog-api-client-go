@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -30,19 +28,19 @@ type WidgetMarker struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewWidgetMarker instantiates a new WidgetMarker object
+// NewWidgetMarker instantiates a new WidgetMarker object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewWidgetMarker(value string) *WidgetMarker {
 	this := WidgetMarker{}
 	this.Value = value
 	return &this
 }
 
-// NewWidgetMarkerWithDefaults instantiates a new WidgetMarker object
+// NewWidgetMarkerWithDefaults instantiates a new WidgetMarker object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewWidgetMarkerWithDefaults() *WidgetMarker {
 	this := WidgetMarker{}
 	return &this
@@ -144,7 +142,7 @@ func (o *WidgetMarker) SetTime(v string) {
 	o.Time = &v
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value.
 func (o *WidgetMarker) GetValue() string {
 	if o == nil {
 		var ret string
@@ -162,11 +160,12 @@ func (o *WidgetMarker) GetValueOk() (*string, bool) {
 	return &o.Value, true
 }
 
-// SetValue sets field value
+// SetValue sets field value.
 func (o *WidgetMarker) SetValue(v string) {
 	o.Value = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -189,6 +188,7 @@ func (o WidgetMarker) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *WidgetMarker) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

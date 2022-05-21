@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,28 +20,28 @@ type NullableRelationshipToUserData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNullableRelationshipToUserData instantiates a new NullableRelationshipToUserData object
+// NewNullableRelationshipToUserData instantiates a new NullableRelationshipToUserData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNullableRelationshipToUserData(id string, type_ UsersType) *NullableRelationshipToUserData {
+// will change when the set of required properties is changed.
+func NewNullableRelationshipToUserData(id string, typeVar UsersType) *NullableRelationshipToUserData {
 	this := NullableRelationshipToUserData{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewNullableRelationshipToUserDataWithDefaults instantiates a new NullableRelationshipToUserData object
+// NewNullableRelationshipToUserDataWithDefaults instantiates a new NullableRelationshipToUserData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNullableRelationshipToUserDataWithDefaults() *NullableRelationshipToUserData {
 	this := NullableRelationshipToUserData{}
-	var type_ UsersType = USERSTYPE_USERS
-	this.Type = type_
+	var typeVar UsersType = USERSTYPE_USERS
+	this.Type = typeVar
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *NullableRelationshipToUserData) GetId() string {
 	if o == nil {
 		var ret string
@@ -61,12 +59,12 @@ func (o *NullableRelationshipToUserData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *NullableRelationshipToUserData) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *NullableRelationshipToUserData) GetType() UsersType {
 	if o == nil {
 		var ret UsersType
@@ -84,11 +82,12 @@ func (o *NullableRelationshipToUserData) GetTypeOk() (*UsersType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *NullableRelationshipToUserData) SetType(v UsersType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,6 +102,7 @@ func (o NullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NullableRelationshipToUserData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
@@ -145,37 +145,45 @@ func (o *NullableRelationshipToUserData) UnmarshalJSON(bytes []byte) (err error)
 	return nil
 }
 
+// NullableNullableRelationshipToUserData handles when a null is used for NullableRelationshipToUserData.
 type NullableNullableRelationshipToUserData struct {
 	value *NullableRelationshipToUserData
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableNullableRelationshipToUserData) Get() *NullableRelationshipToUserData {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableNullableRelationshipToUserData) Set(val *NullableRelationshipToUserData) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableNullableRelationshipToUserData) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableNullableRelationshipToUserData) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableNullableRelationshipToUserData initializes the struct as if Set has been called.
 func NewNullableNullableRelationshipToUserData(val *NullableRelationshipToUserData) *NullableNullableRelationshipToUserData {
 	return &NullableNullableRelationshipToUserData{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableNullableRelationshipToUserData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableNullableRelationshipToUserData) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

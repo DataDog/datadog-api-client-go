@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,29 +22,29 @@ type APIKeyUpdateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object
+// NewAPIKeyUpdateData instantiates a new APIKeyUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAPIKeyUpdateData(attributes APIKeyUpdateAttributes, id string, type_ APIKeysType) *APIKeyUpdateData {
+// will change when the set of required properties is changed.
+func NewAPIKeyUpdateData(attributes APIKeyUpdateAttributes, id string, typeVar APIKeysType) *APIKeyUpdateData {
 	this := APIKeyUpdateData{}
 	this.Attributes = attributes
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewAPIKeyUpdateDataWithDefaults instantiates a new APIKeyUpdateData object
+// NewAPIKeyUpdateDataWithDefaults instantiates a new APIKeyUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAPIKeyUpdateDataWithDefaults() *APIKeyUpdateData {
 	this := APIKeyUpdateData{}
-	var type_ APIKeysType = APIKEYSTYPE_API_KEYS
-	this.Type = type_
+	var typeVar APIKeysType = APIKEYSTYPE_API_KEYS
+	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
+// GetAttributes returns the Attributes field value.
 func (o *APIKeyUpdateData) GetAttributes() APIKeyUpdateAttributes {
 	if o == nil {
 		var ret APIKeyUpdateAttributes
@@ -64,12 +62,12 @@ func (o *APIKeyUpdateData) GetAttributesOk() (*APIKeyUpdateAttributes, bool) {
 	return &o.Attributes, true
 }
 
-// SetAttributes sets field value
+// SetAttributes sets field value.
 func (o *APIKeyUpdateData) SetAttributes(v APIKeyUpdateAttributes) {
 	o.Attributes = v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *APIKeyUpdateData) GetId() string {
 	if o == nil {
 		var ret string
@@ -87,12 +85,12 @@ func (o *APIKeyUpdateData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *APIKeyUpdateData) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *APIKeyUpdateData) GetType() APIKeysType {
 	if o == nil {
 		var ret APIKeysType
@@ -110,11 +108,12 @@ func (o *APIKeyUpdateData) GetTypeOk() (*APIKeysType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *APIKeyUpdateData) SetType(v APIKeysType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -130,6 +129,7 @@ func (o APIKeyUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *APIKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

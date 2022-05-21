@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // WidgetMonitorSummarySort Widget sorting methods.
 type WidgetMonitorSummarySort string
 
-// List of WidgetMonitorSummarySort
+// List of WidgetMonitorSummarySort.
 const (
 	WIDGETMONITORSUMMARYSORT_NAME                 WidgetMonitorSummarySort = "name"
 	WIDGETMONITORSUMMARYSORT_GROUP                WidgetMonitorSummarySort = "group"
@@ -51,10 +49,12 @@ var allowedWidgetMonitorSummarySortEnumValues = []WidgetMonitorSummarySort{
 	WIDGETMONITORSUMMARYSORT_TRIGGERED_DESCENDING,
 }
 
-func (w *WidgetMonitorSummarySort) GetAllowedValues() []WidgetMonitorSummarySort {
+// GetAllowedValues reeturns the list of possible values.
+func (v *WidgetMonitorSummarySort) GetAllowedValues() []WidgetMonitorSummarySort {
 	return allowedWidgetMonitorSummarySortEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *WidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -66,17 +66,16 @@ func (v *WidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 }
 
 // NewWidgetMonitorSummarySortFromValue returns a pointer to a valid WidgetMonitorSummarySort
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewWidgetMonitorSummarySortFromValue(v string) (*WidgetMonitorSummarySort, error) {
 	ev := WidgetMonitorSummarySort(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for WidgetMonitorSummarySort: valid values are %v", v, allowedWidgetMonitorSummarySortEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for WidgetMonitorSummarySort: valid values are %v", v, allowedWidgetMonitorSummarySortEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v WidgetMonitorSummarySort) IsValid() bool {
 	for _, existing := range allowedWidgetMonitorSummarySortEnumValues {
 		if existing == v {
@@ -86,42 +85,50 @@ func (v WidgetMonitorSummarySort) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to WidgetMonitorSummarySort value
+// Ptr returns reference to WidgetMonitorSummarySort value.
 func (v WidgetMonitorSummarySort) Ptr() *WidgetMonitorSummarySort {
 	return &v
 }
 
+// NullableWidgetMonitorSummarySort handles when a null is used for WidgetMonitorSummarySort.
 type NullableWidgetMonitorSummarySort struct {
 	value *WidgetMonitorSummarySort
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableWidgetMonitorSummarySort) Get() *WidgetMonitorSummarySort {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableWidgetMonitorSummarySort) Set(val *WidgetMonitorSummarySort) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableWidgetMonitorSummarySort) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableWidgetMonitorSummarySort) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableWidgetMonitorSummarySort initializes the struct as if Set has been called.
 func NewNullableWidgetMonitorSummarySort(val *WidgetMonitorSummarySort) *NullableWidgetMonitorSummarySort {
 	return &NullableWidgetMonitorSummarySort{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableWidgetMonitorSummarySort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableWidgetMonitorSummarySort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

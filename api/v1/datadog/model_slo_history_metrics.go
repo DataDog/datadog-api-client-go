@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,10 +36,10 @@ type SLOHistoryMetrics struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object
+// NewSLOHistoryMetrics instantiates a new SLOHistoryMetrics object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, numerator SLOHistoryMetricsSeries, query string, resType string, respVersion int64, times []float64) *SLOHistoryMetrics {
 	this := SLOHistoryMetrics{}
 	this.Denominator = denominator
@@ -54,15 +52,15 @@ func NewSLOHistoryMetrics(denominator SLOHistoryMetricsSeries, interval int64, n
 	return &this
 }
 
-// NewSLOHistoryMetricsWithDefaults instantiates a new SLOHistoryMetrics object
+// NewSLOHistoryMetricsWithDefaults instantiates a new SLOHistoryMetrics object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOHistoryMetricsWithDefaults() *SLOHistoryMetrics {
 	this := SLOHistoryMetrics{}
 	return &this
 }
 
-// GetDenominator returns the Denominator field value
+// GetDenominator returns the Denominator field value.
 func (o *SLOHistoryMetrics) GetDenominator() SLOHistoryMetricsSeries {
 	if o == nil {
 		var ret SLOHistoryMetricsSeries
@@ -80,12 +78,12 @@ func (o *SLOHistoryMetrics) GetDenominatorOk() (*SLOHistoryMetricsSeries, bool) 
 	return &o.Denominator, true
 }
 
-// SetDenominator sets field value
+// SetDenominator sets field value.
 func (o *SLOHistoryMetrics) SetDenominator(v SLOHistoryMetricsSeries) {
 	o.Denominator = v
 }
 
-// GetInterval returns the Interval field value
+// GetInterval returns the Interval field value.
 func (o *SLOHistoryMetrics) GetInterval() int64 {
 	if o == nil {
 		var ret int64
@@ -103,7 +101,7 @@ func (o *SLOHistoryMetrics) GetIntervalOk() (*int64, bool) {
 	return &o.Interval, true
 }
 
-// SetInterval sets field value
+// SetInterval sets field value.
 func (o *SLOHistoryMetrics) SetInterval(v int64) {
 	o.Interval = v
 }
@@ -140,7 +138,7 @@ func (o *SLOHistoryMetrics) SetMessage(v string) {
 	o.Message = &v
 }
 
-// GetNumerator returns the Numerator field value
+// GetNumerator returns the Numerator field value.
 func (o *SLOHistoryMetrics) GetNumerator() SLOHistoryMetricsSeries {
 	if o == nil {
 		var ret SLOHistoryMetricsSeries
@@ -158,12 +156,12 @@ func (o *SLOHistoryMetrics) GetNumeratorOk() (*SLOHistoryMetricsSeries, bool) {
 	return &o.Numerator, true
 }
 
-// SetNumerator sets field value
+// SetNumerator sets field value.
 func (o *SLOHistoryMetrics) SetNumerator(v SLOHistoryMetricsSeries) {
 	o.Numerator = v
 }
 
-// GetQuery returns the Query field value
+// GetQuery returns the Query field value.
 func (o *SLOHistoryMetrics) GetQuery() string {
 	if o == nil {
 		var ret string
@@ -181,12 +179,12 @@ func (o *SLOHistoryMetrics) GetQueryOk() (*string, bool) {
 	return &o.Query, true
 }
 
-// SetQuery sets field value
+// SetQuery sets field value.
 func (o *SLOHistoryMetrics) SetQuery(v string) {
 	o.Query = v
 }
 
-// GetResType returns the ResType field value
+// GetResType returns the ResType field value.
 func (o *SLOHistoryMetrics) GetResType() string {
 	if o == nil {
 		var ret string
@@ -204,12 +202,12 @@ func (o *SLOHistoryMetrics) GetResTypeOk() (*string, bool) {
 	return &o.ResType, true
 }
 
-// SetResType sets field value
+// SetResType sets field value.
 func (o *SLOHistoryMetrics) SetResType(v string) {
 	o.ResType = v
 }
 
-// GetRespVersion returns the RespVersion field value
+// GetRespVersion returns the RespVersion field value.
 func (o *SLOHistoryMetrics) GetRespVersion() int64 {
 	if o == nil {
 		var ret int64
@@ -227,12 +225,12 @@ func (o *SLOHistoryMetrics) GetRespVersionOk() (*int64, bool) {
 	return &o.RespVersion, true
 }
 
-// SetRespVersion sets field value
+// SetRespVersion sets field value.
 func (o *SLOHistoryMetrics) SetRespVersion(v int64) {
 	o.RespVersion = v
 }
 
-// GetTimes returns the Times field value
+// GetTimes returns the Times field value.
 func (o *SLOHistoryMetrics) GetTimes() []float64 {
 	if o == nil {
 		var ret []float64
@@ -250,11 +248,12 @@ func (o *SLOHistoryMetrics) GetTimesOk() (*[]float64, bool) {
 	return &o.Times, true
 }
 
-// SetTimes sets field value
+// SetTimes sets field value.
 func (o *SLOHistoryMetrics) SetTimes(v []float64) {
 	o.Times = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -277,6 +276,7 @@ func (o SLOHistoryMetrics) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetrics) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

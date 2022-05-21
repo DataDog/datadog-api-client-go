@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -19,12 +17,7 @@ import (
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// UsageMeteringApiService UsageMeteringApi service
+// UsageMeteringApiService UsageMeteringApi service.
 type UsageMeteringApiService service
 
 type apiGetDailyCustomReportsRequest struct {
@@ -36,6 +29,7 @@ type apiGetDailyCustomReportsRequest struct {
 	sort       *UsageSort
 }
 
+// GetDailyCustomReportsOptionalParameters holds optional parameters for GetDailyCustomReports.
 type GetDailyCustomReportsOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
@@ -43,22 +37,31 @@ type GetDailyCustomReportsOptionalParameters struct {
 	Sort       *UsageSort
 }
 
+// NewGetDailyCustomReportsOptionalParameters creates an empty struct for parameters.
 func NewGetDailyCustomReportsOptionalParameters() *GetDailyCustomReportsOptionalParameters {
 	this := GetDailyCustomReportsOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *GetDailyCustomReportsOptionalParameters) WithPageSize(pageSize int64) *GetDailyCustomReportsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *GetDailyCustomReportsOptionalParameters) WithPageNumber(pageNumber int64) *GetDailyCustomReportsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *GetDailyCustomReportsOptionalParameters) WithSortDir(sortDir UsageSortDirection) *GetDailyCustomReportsOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *GetDailyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetDailyCustomReportsOptionalParameters {
 	r.Sort = &sort
 	return r
@@ -83,10 +86,8 @@ func (a *UsageMeteringApiService) buildGetDailyCustomReportsRequest(ctx _context
 	return req, nil
 }
 
-/*
- * GetDailyCustomReports Get the list of available daily custom reports
- * Get daily custom reports.
- */
+// GetDailyCustomReports Get the list of available daily custom reports.
+// Get daily custom reports.
 func (a *UsageMeteringApiService) GetDailyCustomReports(ctx _context.Context, o ...GetDailyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetDailyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -97,10 +98,7 @@ func (a *UsageMeteringApiService) GetDailyCustomReports(ctx _context.Context, o 
 	return req.ApiService.getDailyCustomReportsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageCustomReportsResponse
- */
+// getDailyCustomReportsExecute executes the request.
 func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -240,24 +238,32 @@ type apiGetHourlyUsageAttributionRequest struct {
 	tagBreakdownKeys *string
 }
 
+// GetHourlyUsageAttributionOptionalParameters holds optional parameters for GetHourlyUsageAttribution.
 type GetHourlyUsageAttributionOptionalParameters struct {
 	EndHr            *time.Time
 	NextRecordId     *string
 	TagBreakdownKeys *string
 }
 
+// NewGetHourlyUsageAttributionOptionalParameters creates an empty struct for parameters.
 func NewGetHourlyUsageAttributionOptionalParameters() *GetHourlyUsageAttributionOptionalParameters {
 	this := GetHourlyUsageAttributionOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageAttributionOptionalParameters) WithEndHr(endHr time.Time) *GetHourlyUsageAttributionOptionalParameters {
 	r.EndHr = &endHr
 	return r
 }
+
+// WithNextRecordId sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetHourlyUsageAttributionOptionalParameters {
 	r.NextRecordId = &nextRecordId
 	return r
 }
+
+// WithTagBreakdownKeys sets the corresponding parameter name and returns the struct.
 func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetHourlyUsageAttributionOptionalParameters {
 	r.TagBreakdownKeys = &tagBreakdownKeys
 	return r
@@ -283,6 +289,7 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 	return req, nil
 }
 
+<<<<<<< HEAD
 /*
  * GetHourlyUsageAttribution Get hourly usage attribution
  * Get hourly usage attribution.
@@ -301,6 +308,43 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
  * END
  * ```
  */
+||||||| parent of b1662597 (Remove various lints)
+/*
+ * GetHourlyUsageAttribution Get Hourly Usage Attribution
+ * Get Hourly Usage Attribution.
+ *
+ * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
+ * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
+ * Pseudo code example:
+ *
+ * ```
+ * response := GetHourlyUsageAttribution(start_month)
+ * cursor := response.metadata.pagination.next_record_id
+ * WHILE cursor != null BEGIN
+ *   sleep(5 seconds)  # Avoid running into rate limit
+ *   response := GetHourlyUsageAttribution(start_month, next_record_id=cursor)
+ *   cursor := response.metadata.pagination.next_record_id
+ * END
+ * ```
+ */
+=======
+// GetHourlyUsageAttribution Get Hourly Usage Attribution.
+// Get Hourly Usage Attribution.
+//
+// This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
+// set in the response. If it is, make another request and pass `next_record_id` as a parameter.
+// Pseudo code example:
+//
+// ```
+// response := GetHourlyUsageAttribution(start_month)
+// cursor := response.metadata.pagination.next_record_id
+// WHILE cursor != null BEGIN
+//   sleep(5 seconds)  # Avoid running into rate limit
+//   response := GetHourlyUsageAttribution(start_month, next_record_id=cursor)
+//   cursor := response.metadata.pagination.next_record_id
+// END
+// ```
+>>>>>>> b1662597 (Remove various lints)
 func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetHourlyUsageAttributionRequest(ctx, startHr, usageType, o...)
 	if err != nil {
@@ -311,10 +355,7 @@ func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context
 	return req.ApiService.getHourlyUsageAttributionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return HourlyUsageAttributionResponse
- */
+// getHourlyUsageAttributionExecute executes the request.
 func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourlyUsageAttributionRequest) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -456,14 +497,18 @@ type apiGetIncidentManagementRequest struct {
 	endHr      *time.Time
 }
 
+// GetIncidentManagementOptionalParameters holds optional parameters for GetIncidentManagement.
 type GetIncidentManagementOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetIncidentManagementOptionalParameters creates an empty struct for parameters.
 func NewGetIncidentManagementOptionalParameters() *GetIncidentManagementOptionalParameters {
 	this := GetIncidentManagementOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetIncidentManagementOptionalParameters) WithEndHr(endHr time.Time) *GetIncidentManagementOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -486,10 +531,8 @@ func (a *UsageMeteringApiService) buildGetIncidentManagementRequest(ctx _context
 	return req, nil
 }
 
-/*
- * GetIncidentManagement Get hourly usage for incident management
- * Get hourly usage for incident management.
- */
+// GetIncidentManagement Get hourly usage for incident management.
+// Get hourly usage for incident management.
 func (a *UsageMeteringApiService) GetIncidentManagement(ctx _context.Context, startHr time.Time, o ...GetIncidentManagementOptionalParameters) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentManagementRequest(ctx, startHr, o...)
 	if err != nil {
@@ -500,10 +543,7 @@ func (a *UsageMeteringApiService) GetIncidentManagement(ctx _context.Context, st
 	return req.ApiService.getIncidentManagementExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageIncidentManagementResponse
- */
+// getIncidentManagementExecute executes the request.
 func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentManagementRequest) (UsageIncidentManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -638,14 +678,18 @@ type apiGetIngestedSpansRequest struct {
 	endHr      *time.Time
 }
 
+// GetIngestedSpansOptionalParameters holds optional parameters for GetIngestedSpans.
 type GetIngestedSpansOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetIngestedSpansOptionalParameters creates an empty struct for parameters.
 func NewGetIngestedSpansOptionalParameters() *GetIngestedSpansOptionalParameters {
 	this := GetIngestedSpansOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetIngestedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetIngestedSpansOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -668,10 +712,8 @@ func (a *UsageMeteringApiService) buildGetIngestedSpansRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * GetIngestedSpans Get hourly usage for ingested spans
- * Get hourly usage for ingested spans.
- */
+// GetIngestedSpans Get hourly usage for ingested spans.
+// Get hourly usage for ingested spans.
 func (a *UsageMeteringApiService) GetIngestedSpans(ctx _context.Context, startHr time.Time, o ...GetIngestedSpansOptionalParameters) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIngestedSpansRequest(ctx, startHr, o...)
 	if err != nil {
@@ -682,10 +724,7 @@ func (a *UsageMeteringApiService) GetIngestedSpans(ctx _context.Context, startHr
 	return req.ApiService.getIngestedSpansExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageIngestedSpansResponse
- */
+// getIngestedSpansExecute executes the request.
 func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansRequest) (UsageIngestedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -822,6 +861,7 @@ type apiGetMonthlyCustomReportsRequest struct {
 	sort       *UsageSort
 }
 
+// GetMonthlyCustomReportsOptionalParameters holds optional parameters for GetMonthlyCustomReports.
 type GetMonthlyCustomReportsOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
@@ -829,22 +869,31 @@ type GetMonthlyCustomReportsOptionalParameters struct {
 	Sort       *UsageSort
 }
 
+// NewGetMonthlyCustomReportsOptionalParameters creates an empty struct for parameters.
 func NewGetMonthlyCustomReportsOptionalParameters() *GetMonthlyCustomReportsOptionalParameters {
 	this := GetMonthlyCustomReportsOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCustomReportsOptionalParameters) WithPageSize(pageSize int64) *GetMonthlyCustomReportsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCustomReportsOptionalParameters) WithPageNumber(pageNumber int64) *GetMonthlyCustomReportsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCustomReportsOptionalParameters) WithSortDir(sortDir UsageSortDirection) *GetMonthlyCustomReportsOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyCustomReportsOptionalParameters) WithSort(sort UsageSort) *GetMonthlyCustomReportsOptionalParameters {
 	r.Sort = &sort
 	return r
@@ -869,10 +918,8 @@ func (a *UsageMeteringApiService) buildGetMonthlyCustomReportsRequest(ctx _conte
 	return req, nil
 }
 
-/*
- * GetMonthlyCustomReports Get the list of available monthly custom reports
- * Get monthly custom reports.
- */
+// GetMonthlyCustomReports Get the list of available monthly custom reports.
+// Get monthly custom reports.
 func (a *UsageMeteringApiService) GetMonthlyCustomReports(ctx _context.Context, o ...GetMonthlyCustomReportsOptionalParameters) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyCustomReportsRequest(ctx, o...)
 	if err != nil {
@@ -883,10 +930,7 @@ func (a *UsageMeteringApiService) GetMonthlyCustomReports(ctx _context.Context, 
 	return req.ApiService.getMonthlyCustomReportsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageCustomReportsResponse
- */
+// getMonthlyCustomReportsExecute executes the request.
 func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthlyCustomReportsRequest) (UsageCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1028,6 +1072,7 @@ type apiGetMonthlyUsageAttributionRequest struct {
 	nextRecordId     *string
 }
 
+// GetMonthlyUsageAttributionOptionalParameters holds optional parameters for GetMonthlyUsageAttribution.
 type GetMonthlyUsageAttributionOptionalParameters struct {
 	EndMonth         *time.Time
 	SortDirection    *UsageSortDirection
@@ -1036,26 +1081,37 @@ type GetMonthlyUsageAttributionOptionalParameters struct {
 	NextRecordId     *string
 }
 
+// NewGetMonthlyUsageAttributionOptionalParameters creates an empty struct for parameters.
 func NewGetMonthlyUsageAttributionOptionalParameters() *GetMonthlyUsageAttributionOptionalParameters {
 	this := GetMonthlyUsageAttributionOptionalParameters{}
 	return &this
 }
+
+// WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetMonthlyUsageAttributionOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
 }
+
+// WithSortDirection sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortDirection(sortDirection UsageSortDirection) *GetMonthlyUsageAttributionOptionalParameters {
 	r.SortDirection = &sortDirection
 	return r
 }
+
+// WithSortName sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithSortName(sortName MonthlyUsageAttributionSupportedMetrics) *GetMonthlyUsageAttributionOptionalParameters {
 	r.SortName = &sortName
 	return r
 }
+
+// WithTagBreakdownKeys sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBreakdownKeys string) *GetMonthlyUsageAttributionOptionalParameters {
 	r.TagBreakdownKeys = &tagBreakdownKeys
 	return r
 }
+
+// WithNextRecordId sets the corresponding parameter name and returns the struct.
 func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextRecordId string) *GetMonthlyUsageAttributionOptionalParameters {
 	r.NextRecordId = &nextRecordId
 	return r
@@ -1083,6 +1139,7 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 	return req, nil
 }
 
+<<<<<<< HEAD
 /*
  * GetMonthlyUsageAttribution Get monthly usage attribution
  * Get monthly usage attribution.
@@ -1101,6 +1158,43 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
  * END
  * ```
  */
+||||||| parent of b1662597 (Remove various lints)
+/*
+ * GetMonthlyUsageAttribution Get Monthly Usage Attribution
+ * Get Monthly Usage Attribution.
+ *
+ * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
+ * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
+ * Pseudo code example:
+ *
+ * ```
+ * response := GetMonthlyUsageAttribution(start_month)
+ * cursor := response.metadata.pagination.next_record_id
+ * WHILE cursor != null BEGIN
+ *   sleep(5 seconds)  # Avoid running into rate limit
+ *   response := GetMonthlyUsageAttribution(start_month, next_record_id=cursor)
+ *   cursor := response.metadata.pagination.next_record_id
+ * END
+ * ```
+ */
+=======
+// GetMonthlyUsageAttribution Get Monthly Usage Attribution.
+// Get Monthly Usage Attribution.
+//
+// This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
+// set in the response. If it is, make another request and pass `next_record_id` as a parameter.
+// Pseudo code example:
+//
+// ```
+// response := GetMonthlyUsageAttribution(start_month)
+// cursor := response.metadata.pagination.next_record_id
+// WHILE cursor != null BEGIN
+//   sleep(5 seconds)  # Avoid running into rate limit
+//   response := GetMonthlyUsageAttribution(start_month, next_record_id=cursor)
+//   cursor := response.metadata.pagination.next_record_id
+// END
+// ```
+>>>>>>> b1662597 (Remove various lints)
 func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
@@ -1111,10 +1205,7 @@ func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Contex
 	return req.ApiService.getMonthlyUsageAttributionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MonthlyUsageAttributionResponse
- */
+// getMonthlyUsageAttributionExecute executes the request.
 func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMonthlyUsageAttributionRequest) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1270,10 +1361,8 @@ func (a *UsageMeteringApiService) buildGetSpecifiedDailyCustomReportsRequest(ctx
 	return req, nil
 }
 
-/*
- * GetSpecifiedDailyCustomReports Get specified daily custom reports
- * Get specified daily custom reports.
- */
+// GetSpecifiedDailyCustomReports Get specified daily custom reports.
+// Get specified daily custom reports.
 func (a *UsageMeteringApiService) GetSpecifiedDailyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedDailyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1284,10 +1373,7 @@ func (a *UsageMeteringApiService) GetSpecifiedDailyCustomReports(ctx _context.Co
 	return req.ApiService.getSpecifiedDailyCustomReportsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSpecifiedCustomReportsResponse
- */
+// getSpecifiedDailyCustomReportsExecute executes the request.
 func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGetSpecifiedDailyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1431,10 +1517,8 @@ func (a *UsageMeteringApiService) buildGetSpecifiedMonthlyCustomReportsRequest(c
 	return req, nil
 }
 
-/*
- * GetSpecifiedMonthlyCustomReports Get specified monthly custom reports
- * Get specified monthly custom reports.
- */
+// GetSpecifiedMonthlyCustomReports Get specified monthly custom reports.
+// Get specified monthly custom reports.
 func (a *UsageMeteringApiService) GetSpecifiedMonthlyCustomReports(ctx _context.Context, reportId string) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSpecifiedMonthlyCustomReportsRequest(ctx, reportId)
 	if err != nil {
@@ -1445,10 +1529,7 @@ func (a *UsageMeteringApiService) GetSpecifiedMonthlyCustomReports(ctx _context.
 	return req.ApiService.getSpecifiedMonthlyCustomReportsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSpecifiedCustomReportsResponse
- */
+// getSpecifiedMonthlyCustomReportsExecute executes the request.
 func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiGetSpecifiedMonthlyCustomReportsRequest) (UsageSpecifiedCustomReportsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1594,14 +1675,18 @@ type apiGetUsageAnalyzedLogsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageAnalyzedLogsOptionalParameters holds optional parameters for GetUsageAnalyzedLogs.
 type GetUsageAnalyzedLogsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageAnalyzedLogsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageAnalyzedLogsOptionalParameters() *GetUsageAnalyzedLogsOptionalParameters {
 	this := GetUsageAnalyzedLogsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAnalyzedLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageAnalyzedLogsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -1624,10 +1709,8 @@ func (a *UsageMeteringApiService) buildGetUsageAnalyzedLogsRequest(ctx _context.
 	return req, nil
 }
 
-/*
- * GetUsageAnalyzedLogs Get hourly usage for analyzed logs
- * Get hourly usage for analyzed logs (Security Monitoring).
- */
+// GetUsageAnalyzedLogs Get hourly usage for analyzed logs.
+// Get hourly usage for analyzed logs (Security Monitoring).
 func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAnalyzedLogsOptionalParameters) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAnalyzedLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -1638,10 +1721,7 @@ func (a *UsageMeteringApiService) GetUsageAnalyzedLogs(ctx _context.Context, sta
 	return req.ApiService.getUsageAnalyzedLogsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageAnalyzedLogsResponse
- */
+// getUsageAnalyzedLogsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnalyzedLogsRequest) (UsageAnalyzedLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1782,6 +1862,7 @@ type apiGetUsageAttributionRequest struct {
 	limit              *int64
 }
 
+// GetUsageAttributionOptionalParameters holds optional parameters for GetUsageAttribution.
 type GetUsageAttributionOptionalParameters struct {
 	EndMonth           *time.Time
 	SortDirection      *UsageSortDirection
@@ -1791,30 +1872,43 @@ type GetUsageAttributionOptionalParameters struct {
 	Limit              *int64
 }
 
+// NewGetUsageAttributionOptionalParameters creates an empty struct for parameters.
 func NewGetUsageAttributionOptionalParameters() *GetUsageAttributionOptionalParameters {
 	this := GetUsageAttributionOptionalParameters{}
 	return &this
 }
+
+// WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageAttributionOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
 }
+
+// WithSortDirection sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithSortDirection(sortDirection UsageSortDirection) *GetUsageAttributionOptionalParameters {
 	r.SortDirection = &sortDirection
 	return r
 }
+
+// WithSortName sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithSortName(sortName UsageAttributionSort) *GetUsageAttributionOptionalParameters {
 	r.SortName = &sortName
 	return r
 }
+
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetUsageAttributionOptionalParameters {
 	r.IncludeDescendants = &includeDescendants
 	return r
 }
+
+// WithOffset sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithOffset(offset int64) *GetUsageAttributionOptionalParameters {
 	r.Offset = &offset
 	return r
 }
+
+// WithLimit sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAttributionOptionalParameters) WithLimit(limit int64) *GetUsageAttributionOptionalParameters {
 	r.Limit = &limit
 	return r
@@ -1843,10 +1937,20 @@ func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.C
 	return req, nil
 }
 
+<<<<<<< HEAD
 /*
  * GetUsageAttribution Get usage attribution
  * Get usage attribution.
  */
+||||||| parent of b1662597 (Remove various lints)
+/*
+ * GetUsageAttribution Get Usage Attribution
+ * Get Usage Attribution.
+ */
+=======
+// GetUsageAttribution Get Usage Attribution.
+// Get Usage Attribution.
+>>>>>>> b1662597 (Remove various lints)
 func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
@@ -1857,10 +1961,7 @@ func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, star
 	return req.ApiService.getUsageAttributionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageAttributionResponse
- */
+// getUsageAttributionExecute executes the request.
 func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttributionRequest) (UsageAttributionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2011,14 +2112,18 @@ type apiGetUsageAuditLogsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageAuditLogsOptionalParameters holds optional parameters for GetUsageAuditLogs.
 type GetUsageAuditLogsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageAuditLogsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageAuditLogsOptionalParameters() *GetUsageAuditLogsOptionalParameters {
 	this := GetUsageAuditLogsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageAuditLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageAuditLogsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -2041,10 +2146,8 @@ func (a *UsageMeteringApiService) buildGetUsageAuditLogsRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * GetUsageAuditLogs Get hourly usage for audit logs
- * Get hourly usage for audit logs.
- */
+// GetUsageAuditLogs Get hourly usage for audit logs.
+// Get hourly usage for audit logs.
 func (a *UsageMeteringApiService) GetUsageAuditLogs(ctx _context.Context, startHr time.Time, o ...GetUsageAuditLogsOptionalParameters) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAuditLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2055,10 +2158,7 @@ func (a *UsageMeteringApiService) GetUsageAuditLogs(ctx _context.Context, startH
 	return req.ApiService.getUsageAuditLogsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageAuditLogsResponse
- */
+// getUsageAuditLogsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLogsRequest) (UsageAuditLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2192,14 +2292,18 @@ type apiGetUsageBillableSummaryRequest struct {
 	month      *time.Time
 }
 
+// GetUsageBillableSummaryOptionalParameters holds optional parameters for GetUsageBillableSummary.
 type GetUsageBillableSummaryOptionalParameters struct {
 	Month *time.Time
 }
 
+// NewGetUsageBillableSummaryOptionalParameters creates an empty struct for parameters.
 func NewGetUsageBillableSummaryOptionalParameters() *GetUsageBillableSummaryOptionalParameters {
 	this := GetUsageBillableSummaryOptionalParameters{}
 	return &this
 }
+
+// WithMonth sets the corresponding parameter name and returns the struct.
 func (r *GetUsageBillableSummaryOptionalParameters) WithMonth(month time.Time) *GetUsageBillableSummaryOptionalParameters {
 	r.Month = &month
 	return r
@@ -2221,10 +2325,8 @@ func (a *UsageMeteringApiService) buildGetUsageBillableSummaryRequest(ctx _conte
 	return req, nil
 }
 
-/*
- * GetUsageBillableSummary Get billable usage across your account
- * Get billable usage across your account.
- */
+// GetUsageBillableSummary Get billable usage across your account.
+// Get billable usage across your account.
 func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context, o ...GetUsageBillableSummaryOptionalParameters) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageBillableSummaryRequest(ctx, o...)
 	if err != nil {
@@ -2235,10 +2337,7 @@ func (a *UsageMeteringApiService) GetUsageBillableSummary(ctx _context.Context, 
 	return req.ApiService.getUsageBillableSummaryExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageBillableSummaryResponse
- */
+// getUsageBillableSummaryExecute executes the request.
 func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBillableSummaryRequest) (UsageBillableSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2369,14 +2468,18 @@ type apiGetUsageCIAppRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageCIAppOptionalParameters holds optional parameters for GetUsageCIApp.
 type GetUsageCIAppOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageCIAppOptionalParameters creates an empty struct for parameters.
 func NewGetUsageCIAppOptionalParameters() *GetUsageCIAppOptionalParameters {
 	this := GetUsageCIAppOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageCIAppOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCIAppOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -2399,10 +2502,8 @@ func (a *UsageMeteringApiService) buildGetUsageCIAppRequest(ctx _context.Context
 	return req, nil
 }
 
-/*
- * GetUsageCIApp Get hourly usage for CI Visibility
- * Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
- */
+// GetUsageCIApp Get hourly usage for CI Visibility.
+// Get hourly usage for CI Visibility (Tests, Pipeline, and Spans).
 func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr time.Time, o ...GetUsageCIAppOptionalParameters) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCIAppRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2413,10 +2514,7 @@ func (a *UsageMeteringApiService) GetUsageCIApp(ctx _context.Context, startHr ti
 	return req.ApiService.getUsageCIAppExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageCIVisibilityResponse
- */
+// getUsageCIAppExecute executes the request.
 func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest) (UsageCIVisibilityResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2551,14 +2649,18 @@ type apiGetUsageCWSRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageCWSOptionalParameters holds optional parameters for GetUsageCWS.
 type GetUsageCWSOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageCWSOptionalParameters creates an empty struct for parameters.
 func NewGetUsageCWSOptionalParameters() *GetUsageCWSOptionalParameters {
 	this := GetUsageCWSOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageCWSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCWSOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -2581,10 +2683,8 @@ func (a *UsageMeteringApiService) buildGetUsageCWSRequest(ctx _context.Context, 
 	return req, nil
 }
 
-/*
- * GetUsageCWS Get hourly usage for Cloud Workload Security
- * Get hourly usage for Cloud Workload Security.
- */
+// GetUsageCWS Get hourly usage for Cloud Workload Security.
+// Get hourly usage for Cloud Workload Security.
 func (a *UsageMeteringApiService) GetUsageCWS(ctx _context.Context, startHr time.Time, o ...GetUsageCWSOptionalParameters) (UsageCWSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCWSRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2595,10 +2695,7 @@ func (a *UsageMeteringApiService) GetUsageCWS(ctx _context.Context, startHr time
 	return req.ApiService.getUsageCWSExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageCWSResponse
- */
+// getUsageCWSExecute executes the request.
 func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (UsageCWSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2733,14 +2830,18 @@ type apiGetUsageCloudSecurityPostureManagementRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageCloudSecurityPostureManagementOptionalParameters holds optional parameters for GetUsageCloudSecurityPostureManagement.
 type GetUsageCloudSecurityPostureManagementOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageCloudSecurityPostureManagementOptionalParameters creates an empty struct for parameters.
 func NewGetUsageCloudSecurityPostureManagementOptionalParameters() *GetUsageCloudSecurityPostureManagementOptionalParameters {
 	this := GetUsageCloudSecurityPostureManagementOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageCloudSecurityPostureManagementOptionalParameters) WithEndHr(endHr time.Time) *GetUsageCloudSecurityPostureManagementOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -2763,10 +2864,8 @@ func (a *UsageMeteringApiService) buildGetUsageCloudSecurityPostureManagementReq
 	return req, nil
 }
 
-/*
- * GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM
- * Get hourly usage for Cloud Security Posture Management (CSPM).
- */
+// GetUsageCloudSecurityPostureManagement Get hourly usage for CSPM.
+// Get hourly usage for Cloud Security Posture Management (CSPM).
 func (a *UsageMeteringApiService) GetUsageCloudSecurityPostureManagement(ctx _context.Context, startHr time.Time, o ...GetUsageCloudSecurityPostureManagementOptionalParameters) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageCloudSecurityPostureManagementRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2777,10 +2876,7 @@ func (a *UsageMeteringApiService) GetUsageCloudSecurityPostureManagement(ctx _co
 	return req.ApiService.getUsageCloudSecurityPostureManagementExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageCloudSecurityPostureManagementResponse
- */
+// getUsageCloudSecurityPostureManagementExecute executes the request.
 func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(r apiGetUsageCloudSecurityPostureManagementRequest) (UsageCloudSecurityPostureManagementResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2915,14 +3011,18 @@ type apiGetUsageDBMRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageDBMOptionalParameters holds optional parameters for GetUsageDBM.
 type GetUsageDBMOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageDBMOptionalParameters creates an empty struct for parameters.
 func NewGetUsageDBMOptionalParameters() *GetUsageDBMOptionalParameters {
 	this := GetUsageDBMOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageDBMOptionalParameters) WithEndHr(endHr time.Time) *GetUsageDBMOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -2945,10 +3045,8 @@ func (a *UsageMeteringApiService) buildGetUsageDBMRequest(ctx _context.Context, 
 	return req, nil
 }
 
-/*
- * GetUsageDBM Get hourly usage for Database Monitoring
- * Get hourly usage for Database Monitoring
- */
+// GetUsageDBM Get hourly usage for Database Monitoring.
+// Get hourly usage for Database Monitoring
 func (a *UsageMeteringApiService) GetUsageDBM(ctx _context.Context, startHr time.Time, o ...GetUsageDBMOptionalParameters) (UsageDBMResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageDBMRequest(ctx, startHr, o...)
 	if err != nil {
@@ -2959,10 +3057,7 @@ func (a *UsageMeteringApiService) GetUsageDBM(ctx _context.Context, startHr time
 	return req.ApiService.getUsageDBMExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageDBMResponse
- */
+// getUsageDBMExecute executes the request.
 func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (UsageDBMResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3097,14 +3192,18 @@ type apiGetUsageFargateRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageFargateOptionalParameters holds optional parameters for GetUsageFargate.
 type GetUsageFargateOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageFargateOptionalParameters creates an empty struct for parameters.
 func NewGetUsageFargateOptionalParameters() *GetUsageFargateOptionalParameters {
 	this := GetUsageFargateOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageFargateOptionalParameters) WithEndHr(endHr time.Time) *GetUsageFargateOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -3127,10 +3226,8 @@ func (a *UsageMeteringApiService) buildGetUsageFargateRequest(ctx _context.Conte
 	return req, nil
 }
 
-/*
- * GetUsageFargate Get hourly usage for Fargate
- * Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
- */
+// GetUsageFargate Get hourly usage for Fargate.
+// Get hourly usage for [Fargate](https://docs.datadoghq.com/integrations/ecs_fargate/).
 func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context, startHr time.Time, o ...GetUsageFargateOptionalParameters) (UsageFargateResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageFargateRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3141,10 +3238,7 @@ func (a *UsageMeteringApiService) GetUsageFargate(ctx _context.Context, startHr 
 	return req.ApiService.getUsageFargateExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageFargateResponse
- */
+// getUsageFargateExecute executes the request.
 func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateRequest) (UsageFargateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3279,14 +3373,18 @@ type apiGetUsageHostsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageHostsOptionalParameters holds optional parameters for GetUsageHosts.
 type GetUsageHostsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageHostsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageHostsOptionalParameters() *GetUsageHostsOptionalParameters {
 	this := GetUsageHostsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageHostsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -3309,10 +3407,8 @@ func (a *UsageMeteringApiService) buildGetUsageHostsRequest(ctx _context.Context
 	return req, nil
 }
 
-/*
- * GetUsageHosts Get hourly usage for hosts and containers
- * Get hourly usage for hosts and containers.
- */
+// GetUsageHosts Get hourly usage for hosts and containers.
+// Get hourly usage for hosts and containers.
 func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context, startHr time.Time, o ...GetUsageHostsOptionalParameters) (UsageHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageHostsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3323,10 +3419,7 @@ func (a *UsageMeteringApiService) GetUsageHosts(ctx _context.Context, startHr ti
 	return req.ApiService.getUsageHostsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageHostsResponse
- */
+// getUsageHostsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest) (UsageHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3461,14 +3554,18 @@ type apiGetUsageIndexedSpansRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageIndexedSpansOptionalParameters holds optional parameters for GetUsageIndexedSpans.
 type GetUsageIndexedSpansOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageIndexedSpansOptionalParameters creates an empty struct for parameters.
 func NewGetUsageIndexedSpansOptionalParameters() *GetUsageIndexedSpansOptionalParameters {
 	this := GetUsageIndexedSpansOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageIndexedSpansOptionalParameters) WithEndHr(endHr time.Time) *GetUsageIndexedSpansOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -3491,10 +3588,8 @@ func (a *UsageMeteringApiService) buildGetUsageIndexedSpansRequest(ctx _context.
 	return req, nil
 }
 
-/*
- * GetUsageIndexedSpans Get hourly usage for indexed spans
- * Get hourly usage for indexed spans.
- */
+// GetUsageIndexedSpans Get hourly usage for indexed spans.
+// Get hourly usage for indexed spans.
 func (a *UsageMeteringApiService) GetUsageIndexedSpans(ctx _context.Context, startHr time.Time, o ...GetUsageIndexedSpansOptionalParameters) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageIndexedSpansRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3505,10 +3600,7 @@ func (a *UsageMeteringApiService) GetUsageIndexedSpans(ctx _context.Context, sta
 	return req.ApiService.getUsageIndexedSpansExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageIndexedSpansResponse
- */
+// getUsageIndexedSpansExecute executes the request.
 func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndexedSpansRequest) (UsageIndexedSpansResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3643,14 +3735,18 @@ type apiGetUsageInternetOfThingsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageInternetOfThingsOptionalParameters holds optional parameters for GetUsageInternetOfThings.
 type GetUsageInternetOfThingsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageInternetOfThingsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageInternetOfThingsOptionalParameters() *GetUsageInternetOfThingsOptionalParameters {
 	this := GetUsageInternetOfThingsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageInternetOfThingsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageInternetOfThingsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -3673,10 +3769,8 @@ func (a *UsageMeteringApiService) buildGetUsageInternetOfThingsRequest(ctx _cont
 	return req, nil
 }
 
-/*
- * GetUsageInternetOfThings Get hourly usage for IoT
- * Get hourly usage for IoT.
- */
+// GetUsageInternetOfThings Get hourly usage for IoT.
+// Get hourly usage for IoT.
 func (a *UsageMeteringApiService) GetUsageInternetOfThings(ctx _context.Context, startHr time.Time, o ...GetUsageInternetOfThingsOptionalParameters) (UsageIoTResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageInternetOfThingsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3687,10 +3781,7 @@ func (a *UsageMeteringApiService) GetUsageInternetOfThings(ctx _context.Context,
 	return req.ApiService.getUsageInternetOfThingsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageIoTResponse
- */
+// getUsageInternetOfThingsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageInternetOfThingsRequest) (UsageIoTResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3825,14 +3916,18 @@ type apiGetUsageLambdaRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageLambdaOptionalParameters holds optional parameters for GetUsageLambda.
 type GetUsageLambdaOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageLambdaOptionalParameters creates an empty struct for parameters.
 func NewGetUsageLambdaOptionalParameters() *GetUsageLambdaOptionalParameters {
 	this := GetUsageLambdaOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLambdaOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLambdaOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -3855,10 +3950,8 @@ func (a *UsageMeteringApiService) buildGetUsageLambdaRequest(ctx _context.Contex
 	return req, nil
 }
 
-/*
- * GetUsageLambda Get hourly usage for Lambda
- * Get hourly usage for lambda.
- */
+// GetUsageLambda Get hourly usage for Lambda.
+// Get hourly usage for lambda.
 func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaOptionalParameters) (UsageLambdaResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaRequest(ctx, startHr, o...)
 	if err != nil {
@@ -3869,10 +3962,7 @@ func (a *UsageMeteringApiService) GetUsageLambda(ctx _context.Context, startHr t
 	return req.ApiService.getUsageLambdaExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageLambdaResponse
- */
+// getUsageLambdaExecute executes the request.
 func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaRequest) (UsageLambdaResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4007,14 +4097,18 @@ type apiGetUsageLogsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageLogsOptionalParameters holds optional parameters for GetUsageLogs.
 type GetUsageLogsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageLogsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageLogsOptionalParameters() *GetUsageLogsOptionalParameters {
 	this := GetUsageLogsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLogsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -4037,10 +4131,8 @@ func (a *UsageMeteringApiService) buildGetUsageLogsRequest(ctx _context.Context,
 	return req, nil
 }
 
-/*
- * GetUsageLogs Get hourly usage for Logs
- * Get hourly usage for logs.
- */
+// GetUsageLogs Get hourly usage for Logs.
+// Get hourly usage for logs.
 func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context, startHr time.Time, o ...GetUsageLogsOptionalParameters) (UsageLogsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4051,10 +4143,7 @@ func (a *UsageMeteringApiService) GetUsageLogs(ctx _context.Context, startHr tim
 	return req.ApiService.getUsageLogsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageLogsResponse
- */
+// getUsageLogsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) (UsageLogsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4190,19 +4279,25 @@ type apiGetUsageLogsByIndexRequest struct {
 	indexName  *[]string
 }
 
+// GetUsageLogsByIndexOptionalParameters holds optional parameters for GetUsageLogsByIndex.
 type GetUsageLogsByIndexOptionalParameters struct {
 	EndHr     *time.Time
 	IndexName *[]string
 }
 
+// NewGetUsageLogsByIndexOptionalParameters creates an empty struct for parameters.
 func NewGetUsageLogsByIndexOptionalParameters() *GetUsageLogsByIndexOptionalParameters {
 	this := GetUsageLogsByIndexOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLogsByIndexOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsByIndexOptionalParameters {
 	r.EndHr = &endHr
 	return r
 }
+
+// WithIndexName sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLogsByIndexOptionalParameters) WithIndexName(indexName []string) *GetUsageLogsByIndexOptionalParameters {
 	r.IndexName = &indexName
 	return r
@@ -4226,10 +4321,8 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByIndexRequest(ctx _context.C
 	return req, nil
 }
 
-/*
- * GetUsageLogsByIndex Get hourly usage for Logs by Index
- * Get hourly usage for logs by index.
- */
+// GetUsageLogsByIndex Get hourly usage for Logs by Index.
+// Get hourly usage for logs by index.
 func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByIndexOptionalParameters) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByIndexRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4240,10 +4333,7 @@ func (a *UsageMeteringApiService) GetUsageLogsByIndex(ctx _context.Context, star
 	return req.ApiService.getUsageLogsByIndexExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageLogsByIndexResponse
- */
+// getUsageLogsByIndexExecute executes the request.
 func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsByIndexRequest) (UsageLogsByIndexResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4389,14 +4479,18 @@ type apiGetUsageLogsByRetentionRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageLogsByRetentionOptionalParameters holds optional parameters for GetUsageLogsByRetention.
 type GetUsageLogsByRetentionOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageLogsByRetentionOptionalParameters creates an empty struct for parameters.
 func NewGetUsageLogsByRetentionOptionalParameters() *GetUsageLogsByRetentionOptionalParameters {
 	this := GetUsageLogsByRetentionOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLogsByRetentionOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLogsByRetentionOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -4419,10 +4513,8 @@ func (a *UsageMeteringApiService) buildGetUsageLogsByRetentionRequest(ctx _conte
 	return req, nil
 }
 
-/*
- * GetUsageLogsByRetention Get hourly logs usage by retention
- * Get hourly usage for indexed logs by retention period.
- */
+// GetUsageLogsByRetention Get hourly logs usage by retention.
+// Get hourly usage for indexed logs by retention period.
 func (a *UsageMeteringApiService) GetUsageLogsByRetention(ctx _context.Context, startHr time.Time, o ...GetUsageLogsByRetentionOptionalParameters) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLogsByRetentionRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4433,10 +4525,7 @@ func (a *UsageMeteringApiService) GetUsageLogsByRetention(ctx _context.Context, 
 	return req.ApiService.getUsageLogsByRetentionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageLogsByRetentionResponse
- */
+// getUsageLogsByRetentionExecute executes the request.
 func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLogsByRetentionRequest) (UsageLogsByRetentionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4571,14 +4660,18 @@ type apiGetUsageNetworkFlowsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageNetworkFlowsOptionalParameters holds optional parameters for GetUsageNetworkFlows.
 type GetUsageNetworkFlowsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageNetworkFlowsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageNetworkFlowsOptionalParameters() *GetUsageNetworkFlowsOptionalParameters {
 	this := GetUsageNetworkFlowsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageNetworkFlowsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageNetworkFlowsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -4601,10 +4694,8 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkFlowsRequest(ctx _context.
 	return req, nil
 }
 
-/*
- * GetUsageNetworkFlows Get hourly usage for Network Flows
- * Get hourly usage for network flows.
- */
+// GetUsageNetworkFlows Get hourly usage for Network Flows.
+// Get hourly usage for network flows.
 func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkFlowsOptionalParameters) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkFlowsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4615,10 +4706,7 @@ func (a *UsageMeteringApiService) GetUsageNetworkFlows(ctx _context.Context, sta
 	return req.ApiService.getUsageNetworkFlowsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageNetworkFlowsResponse
- */
+// getUsageNetworkFlowsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetworkFlowsRequest) (UsageNetworkFlowsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4753,14 +4841,18 @@ type apiGetUsageNetworkHostsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageNetworkHostsOptionalParameters holds optional parameters for GetUsageNetworkHosts.
 type GetUsageNetworkHostsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageNetworkHostsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageNetworkHostsOptionalParameters() *GetUsageNetworkHostsOptionalParameters {
 	this := GetUsageNetworkHostsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageNetworkHostsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageNetworkHostsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -4783,10 +4875,8 @@ func (a *UsageMeteringApiService) buildGetUsageNetworkHostsRequest(ctx _context.
 	return req, nil
 }
 
-/*
- * GetUsageNetworkHosts Get hourly usage for Network Hosts
- * Get hourly usage for network hosts.
- */
+// GetUsageNetworkHosts Get hourly usage for Network Hosts.
+// Get hourly usage for network hosts.
 func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context, startHr time.Time, o ...GetUsageNetworkHostsOptionalParameters) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageNetworkHostsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4797,10 +4887,7 @@ func (a *UsageMeteringApiService) GetUsageNetworkHosts(ctx _context.Context, sta
 	return req.ApiService.getUsageNetworkHostsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageNetworkHostsResponse
- */
+// getUsageNetworkHostsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetworkHostsRequest) (UsageNetworkHostsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -4935,14 +5022,18 @@ type apiGetUsageOnlineArchiveRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageOnlineArchiveOptionalParameters holds optional parameters for GetUsageOnlineArchive.
 type GetUsageOnlineArchiveOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageOnlineArchiveOptionalParameters creates an empty struct for parameters.
 func NewGetUsageOnlineArchiveOptionalParameters() *GetUsageOnlineArchiveOptionalParameters {
 	this := GetUsageOnlineArchiveOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageOnlineArchiveOptionalParameters) WithEndHr(endHr time.Time) *GetUsageOnlineArchiveOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -4965,10 +5056,8 @@ func (a *UsageMeteringApiService) buildGetUsageOnlineArchiveRequest(ctx _context
 	return req, nil
 }
 
-/*
- * GetUsageOnlineArchive Get hourly usage for Online Archive
- * Get hourly usage for Online Archive.
- */
+// GetUsageOnlineArchive Get hourly usage for Online Archive.
+// Get hourly usage for Online Archive.
 func (a *UsageMeteringApiService) GetUsageOnlineArchive(ctx _context.Context, startHr time.Time, o ...GetUsageOnlineArchiveOptionalParameters) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageOnlineArchiveRequest(ctx, startHr, o...)
 	if err != nil {
@@ -4979,10 +5068,7 @@ func (a *UsageMeteringApiService) GetUsageOnlineArchive(ctx _context.Context, st
 	return req.ApiService.getUsageOnlineArchiveExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageOnlineArchiveResponse
- */
+// getUsageOnlineArchiveExecute executes the request.
 func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnlineArchiveRequest) (UsageOnlineArchiveResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5117,14 +5203,18 @@ type apiGetUsageProfilingRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageProfilingOptionalParameters holds optional parameters for GetUsageProfiling.
 type GetUsageProfilingOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageProfilingOptionalParameters creates an empty struct for parameters.
 func NewGetUsageProfilingOptionalParameters() *GetUsageProfilingOptionalParameters {
 	this := GetUsageProfilingOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageProfilingOptionalParameters) WithEndHr(endHr time.Time) *GetUsageProfilingOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -5147,10 +5237,8 @@ func (a *UsageMeteringApiService) buildGetUsageProfilingRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * GetUsageProfiling Get hourly usage for profiled hosts
- * Get hourly usage for profiled hosts.
- */
+// GetUsageProfiling Get hourly usage for profiled hosts.
+// Get hourly usage for profiled hosts.
 func (a *UsageMeteringApiService) GetUsageProfiling(ctx _context.Context, startHr time.Time, o ...GetUsageProfilingOptionalParameters) (UsageProfilingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageProfilingRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5161,10 +5249,7 @@ func (a *UsageMeteringApiService) GetUsageProfiling(ctx _context.Context, startH
 	return req.ApiService.getUsageProfilingExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageProfilingResponse
- */
+// getUsageProfilingExecute executes the request.
 func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilingRequest) (UsageProfilingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5297,24 +5382,30 @@ type apiGetUsageRumSessionsRequest struct {
 	ApiService *UsageMeteringApiService
 	startHr    *time.Time
 	endHr      *time.Time
-	type_      *string
+	typeVar    *string
 }
 
+// GetUsageRumSessionsOptionalParameters holds optional parameters for GetUsageRumSessions.
 type GetUsageRumSessionsOptionalParameters struct {
 	EndHr *time.Time
 	Type  *string
 }
 
+// NewGetUsageRumSessionsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageRumSessionsOptionalParameters() *GetUsageRumSessionsOptionalParameters {
 	this := GetUsageRumSessionsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageRumSessionsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageRumSessionsOptionalParameters {
 	r.EndHr = &endHr
 	return r
 }
-func (r *GetUsageRumSessionsOptionalParameters) WithType(type_ string) *GetUsageRumSessionsOptionalParameters {
-	r.Type = &type_
+
+// WithType sets the corresponding parameter name and returns the struct.
+func (r *GetUsageRumSessionsOptionalParameters) WithType(typeVar string) *GetUsageRumSessionsOptionalParameters {
+	r.Type = &typeVar
 	return r
 }
 
@@ -5331,15 +5422,13 @@ func (a *UsageMeteringApiService) buildGetUsageRumSessionsRequest(ctx _context.C
 
 	if o != nil {
 		req.endHr = o[0].EndHr
-		req.type_ = o[0].Type
+		req.typeVar = o[0].Type
 	}
 	return req, nil
 }
 
-/*
- * GetUsageRumSessions Get hourly usage for RUM Sessions
- * Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
- */
+// GetUsageRumSessions Get hourly usage for RUM Sessions.
+// Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Sessions.
 func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, startHr time.Time, o ...GetUsageRumSessionsOptionalParameters) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumSessionsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5350,10 +5439,7 @@ func (a *UsageMeteringApiService) GetUsageRumSessions(ctx _context.Context, star
 	return req.ApiService.getUsageRumSessionsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageRumSessionsResponse
- */
+// getUsageRumSessionsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSessionsRequest) (UsageRumSessionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5378,8 +5464,8 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", parameterToString(*r.endHr, ""))
 	}
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	if r.typeVar != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.typeVar, ""))
 	}
 
 	// to determine the Accept header
@@ -5491,14 +5577,18 @@ type apiGetUsageRumUnitsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageRumUnitsOptionalParameters holds optional parameters for GetUsageRumUnits.
 type GetUsageRumUnitsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageRumUnitsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageRumUnitsOptionalParameters() *GetUsageRumUnitsOptionalParameters {
 	this := GetUsageRumUnitsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageRumUnitsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageRumUnitsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -5521,10 +5611,8 @@ func (a *UsageMeteringApiService) buildGetUsageRumUnitsRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * GetUsageRumUnits Get hourly usage for RUM Units
- * Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Units.
- */
+// GetUsageRumUnits Get hourly usage for RUM Units.
+// Get hourly usage for [RUM](https://docs.datadoghq.com/real_user_monitoring/) Units.
 func (a *UsageMeteringApiService) GetUsageRumUnits(ctx _context.Context, startHr time.Time, o ...GetUsageRumUnitsOptionalParameters) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageRumUnitsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5535,10 +5623,7 @@ func (a *UsageMeteringApiService) GetUsageRumUnits(ctx _context.Context, startHr
 	return req.ApiService.getUsageRumUnitsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageRumUnitsResponse
- */
+// getUsageRumUnitsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsRequest) (UsageRumUnitsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5673,14 +5758,18 @@ type apiGetUsageSDSRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageSDSOptionalParameters holds optional parameters for GetUsageSDS.
 type GetUsageSDSOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageSDSOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSDSOptionalParameters() *GetUsageSDSOptionalParameters {
 	this := GetUsageSDSOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSDSOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSDSOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -5703,10 +5792,8 @@ func (a *UsageMeteringApiService) buildGetUsageSDSRequest(ctx _context.Context, 
 	return req, nil
 }
 
-/*
- * GetUsageSDS Get hourly usage for Sensitive Data Scanner
- * Get hourly usage for Sensitive Data Scanner.
- */
+// GetUsageSDS Get hourly usage for Sensitive Data Scanner.
+// Get hourly usage for Sensitive Data Scanner.
 func (a *UsageMeteringApiService) GetUsageSDS(ctx _context.Context, startHr time.Time, o ...GetUsageSDSOptionalParameters) (UsageSDSResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSDSRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5717,10 +5804,7 @@ func (a *UsageMeteringApiService) GetUsageSDS(ctx _context.Context, startHr time
 	return req.ApiService.getUsageSDSExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSDSResponse
- */
+// getUsageSDSExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (UsageSDSResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -5855,14 +5939,18 @@ type apiGetUsageSNMPRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageSNMPOptionalParameters holds optional parameters for GetUsageSNMP.
 type GetUsageSNMPOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageSNMPOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSNMPOptionalParameters() *GetUsageSNMPOptionalParameters {
 	this := GetUsageSNMPOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSNMPOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSNMPOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -5885,10 +5973,8 @@ func (a *UsageMeteringApiService) buildGetUsageSNMPRequest(ctx _context.Context,
 	return req, nil
 }
 
-/*
- * GetUsageSNMP Get hourly usage for SNMP devices
- * Get hourly usage for SNMP devices.
- */
+// GetUsageSNMP Get hourly usage for SNMP devices.
+// Get hourly usage for SNMP devices.
 func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context, startHr time.Time, o ...GetUsageSNMPOptionalParameters) (UsageSNMPResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSNMPRequest(ctx, startHr, o...)
 	if err != nil {
@@ -5899,10 +5985,7 @@ func (a *UsageMeteringApiService) GetUsageSNMP(ctx _context.Context, startHr tim
 	return req.ApiService.getUsageSNMPExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSNMPResponse
- */
+// getUsageSNMPExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) (UsageSNMPResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6038,19 +6121,25 @@ type apiGetUsageSummaryRequest struct {
 	includeOrgDetails *bool
 }
 
+// GetUsageSummaryOptionalParameters holds optional parameters for GetUsageSummary.
 type GetUsageSummaryOptionalParameters struct {
 	EndMonth          *time.Time
 	IncludeOrgDetails *bool
 }
 
+// NewGetUsageSummaryOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSummaryOptionalParameters() *GetUsageSummaryOptionalParameters {
 	this := GetUsageSummaryOptionalParameters{}
 	return &this
 }
+
+// WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSummaryOptionalParameters) WithEndMonth(endMonth time.Time) *GetUsageSummaryOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
 }
+
+// WithIncludeOrgDetails sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSummaryOptionalParameters) WithIncludeOrgDetails(includeOrgDetails bool) *GetUsageSummaryOptionalParameters {
 	r.IncludeOrgDetails = &includeOrgDetails
 	return r
@@ -6074,10 +6163,8 @@ func (a *UsageMeteringApiService) buildGetUsageSummaryRequest(ctx _context.Conte
 	return req, nil
 }
 
-/*
- * GetUsageSummary Get usage across your multi-org account
- * Get usage across your multi-org account. You must have the multi-org feature enabled.
- */
+// GetUsageSummary Get usage across your multi-org account.
+// Get usage across your multi-org account. You must have the multi-org feature enabled.
 func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context, startMonth time.Time, o ...GetUsageSummaryOptionalParameters) (UsageSummaryResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSummaryRequest(ctx, startMonth, o...)
 	if err != nil {
@@ -6088,10 +6175,7 @@ func (a *UsageMeteringApiService) GetUsageSummary(ctx _context.Context, startMon
 	return req.ApiService.getUsageSummaryExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSummaryResponse
- */
+// getUsageSummaryExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryRequest) (UsageSummaryResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6229,14 +6313,18 @@ type apiGetUsageSyntheticsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageSyntheticsOptionalParameters holds optional parameters for GetUsageSynthetics.
 type GetUsageSyntheticsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageSyntheticsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSyntheticsOptionalParameters() *GetUsageSyntheticsOptionalParameters {
 	this := GetUsageSyntheticsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSyntheticsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -6259,10 +6347,8 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * GetUsageSynthetics Get hourly usage for Synthetics Checks
- * Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
- */
+// GetUsageSynthetics Get hourly usage for Synthetics Checks.
+// Get hourly usage for [Synthetics checks](https://docs.datadoghq.com/synthetics/).
 func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsOptionalParameters) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6273,10 +6359,7 @@ func (a *UsageMeteringApiService) GetUsageSynthetics(ctx _context.Context, start
 	return req.ApiService.getUsageSyntheticsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSyntheticsResponse
- */
+// getUsageSyntheticsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSyntheticsRequest) (UsageSyntheticsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6411,14 +6494,18 @@ type apiGetUsageSyntheticsAPIRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageSyntheticsAPIOptionalParameters holds optional parameters for GetUsageSyntheticsAPI.
 type GetUsageSyntheticsAPIOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageSyntheticsAPIOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSyntheticsAPIOptionalParameters() *GetUsageSyntheticsAPIOptionalParameters {
 	this := GetUsageSyntheticsAPIOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSyntheticsAPIOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsAPIOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -6441,10 +6528,8 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsAPIRequest(ctx _context
 	return req, nil
 }
 
-/*
- * GetUsageSyntheticsAPI Get hourly usage for Synthetics API Checks
- * Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
- */
+// GetUsageSyntheticsAPI Get hourly usage for Synthetics API Checks.
+// Get hourly usage for [synthetics API checks](https://docs.datadoghq.com/synthetics/).
 func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsAPIOptionalParameters) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsAPIRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6455,10 +6540,7 @@ func (a *UsageMeteringApiService) GetUsageSyntheticsAPI(ctx _context.Context, st
 	return req.ApiService.getUsageSyntheticsAPIExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSyntheticsAPIResponse
- */
+// getUsageSyntheticsAPIExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSyntheticsAPIRequest) (UsageSyntheticsAPIResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6593,14 +6675,18 @@ type apiGetUsageSyntheticsBrowserRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageSyntheticsBrowserOptionalParameters holds optional parameters for GetUsageSyntheticsBrowser.
 type GetUsageSyntheticsBrowserOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageSyntheticsBrowserOptionalParameters creates an empty struct for parameters.
 func NewGetUsageSyntheticsBrowserOptionalParameters() *GetUsageSyntheticsBrowserOptionalParameters {
 	this := GetUsageSyntheticsBrowserOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageSyntheticsBrowserOptionalParameters) WithEndHr(endHr time.Time) *GetUsageSyntheticsBrowserOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -6623,10 +6709,8 @@ func (a *UsageMeteringApiService) buildGetUsageSyntheticsBrowserRequest(ctx _con
 	return req, nil
 }
 
-/*
- * GetUsageSyntheticsBrowser Get hourly usage for Synthetics Browser Checks
- * Get hourly usage for synthetics browser checks.
- */
+// GetUsageSyntheticsBrowser Get hourly usage for Synthetics Browser Checks.
+// Get hourly usage for synthetics browser checks.
 func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context, startHr time.Time, o ...GetUsageSyntheticsBrowserOptionalParameters) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageSyntheticsBrowserRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6637,10 +6721,7 @@ func (a *UsageMeteringApiService) GetUsageSyntheticsBrowser(ctx _context.Context
 	return req.ApiService.getUsageSyntheticsBrowserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageSyntheticsBrowserResponse
- */
+// getUsageSyntheticsBrowserExecute executes the request.
 func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsageSyntheticsBrowserRequest) (UsageSyntheticsBrowserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6775,14 +6856,18 @@ type apiGetUsageTimeseriesRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageTimeseriesOptionalParameters holds optional parameters for GetUsageTimeseries.
 type GetUsageTimeseriesOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageTimeseriesOptionalParameters creates an empty struct for parameters.
 func NewGetUsageTimeseriesOptionalParameters() *GetUsageTimeseriesOptionalParameters {
 	this := GetUsageTimeseriesOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTimeseriesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageTimeseriesOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -6805,10 +6890,8 @@ func (a *UsageMeteringApiService) buildGetUsageTimeseriesRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * GetUsageTimeseries Get hourly usage for custom metrics
- * Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
- */
+// GetUsageTimeseries Get hourly usage for custom metrics.
+// Get hourly usage for [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/).
 func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context, startHr time.Time, o ...GetUsageTimeseriesOptionalParameters) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTimeseriesRequest(ctx, startHr, o...)
 	if err != nil {
@@ -6819,10 +6902,7 @@ func (a *UsageMeteringApiService) GetUsageTimeseries(ctx _context.Context, start
 	return req.ApiService.getUsageTimeseriesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageTimeseriesResponse
- */
+// getUsageTimeseriesExecute executes the request.
 func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeseriesRequest) (UsageTimeseriesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -6960,6 +7040,7 @@ type apiGetUsageTopAvgMetricsRequest struct {
 	nextRecordId *string
 }
 
+// GetUsageTopAvgMetricsOptionalParameters holds optional parameters for GetUsageTopAvgMetrics.
 type GetUsageTopAvgMetricsOptionalParameters struct {
 	Month        *time.Time
 	Day          *time.Time
@@ -6968,26 +7049,37 @@ type GetUsageTopAvgMetricsOptionalParameters struct {
 	NextRecordId *string
 }
 
+// NewGetUsageTopAvgMetricsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageTopAvgMetricsOptionalParameters() *GetUsageTopAvgMetricsOptionalParameters {
 	this := GetUsageTopAvgMetricsOptionalParameters{}
 	return &this
 }
+
+// WithMonth sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithMonth(month time.Time) *GetUsageTopAvgMetricsOptionalParameters {
 	r.Month = &month
 	return r
 }
+
+// WithDay sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithDay(day time.Time) *GetUsageTopAvgMetricsOptionalParameters {
 	r.Day = &day
 	return r
 }
+
+// WithNames sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithNames(names []string) *GetUsageTopAvgMetricsOptionalParameters {
 	r.Names = &names
 	return r
 }
+
+// WithLimit sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithLimit(limit int32) *GetUsageTopAvgMetricsOptionalParameters {
 	r.Limit = &limit
 	return r
 }
+
+// WithNextRecordId sets the corresponding parameter name and returns the struct.
 func (r *GetUsageTopAvgMetricsOptionalParameters) WithNextRecordId(nextRecordId string) *GetUsageTopAvgMetricsOptionalParameters {
 	r.NextRecordId = &nextRecordId
 	return r
@@ -7013,10 +7105,8 @@ func (a *UsageMeteringApiService) buildGetUsageTopAvgMetricsRequest(ctx _context
 	return req, nil
 }
 
-/*
- * GetUsageTopAvgMetrics Get all custom metrics by hourly average
- * Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
- */
+// GetUsageTopAvgMetrics Get all custom metrics by hourly average.
+// Get all [custom metrics](https://docs.datadoghq.com/developers/metrics/custom_metrics/) by hourly average. Use the month parameter to get a month-to-date data resolution or use the day parameter to get a daily resolution. One of the two is required, and only one of the two is allowed.
 func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o ...GetUsageTopAvgMetricsOptionalParameters) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageTopAvgMetricsRequest(ctx, o...)
 	if err != nil {
@@ -7027,10 +7117,7 @@ func (a *UsageMeteringApiService) GetUsageTopAvgMetrics(ctx _context.Context, o 
 	return req.ApiService.getUsageTopAvgMetricsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageTopAvgMetricsResponse
- */
+// getUsageTopAvgMetricsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopAvgMetricsRequest) (UsageTopAvgMetricsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

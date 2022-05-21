@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,26 +20,26 @@ type DashboardListItemRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewDashboardListItemRequest instantiates a new DashboardListItemRequest object
+// NewDashboardListItemRequest instantiates a new DashboardListItemRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewDashboardListItemRequest(id string, type_ DashboardType) *DashboardListItemRequest {
+// will change when the set of required properties is changed.
+func NewDashboardListItemRequest(id string, typeVar DashboardType) *DashboardListItemRequest {
 	this := DashboardListItemRequest{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewDashboardListItemRequestWithDefaults instantiates a new DashboardListItemRequest object
+// NewDashboardListItemRequestWithDefaults instantiates a new DashboardListItemRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewDashboardListItemRequestWithDefaults() *DashboardListItemRequest {
 	this := DashboardListItemRequest{}
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *DashboardListItemRequest) GetId() string {
 	if o == nil {
 		var ret string
@@ -59,12 +57,12 @@ func (o *DashboardListItemRequest) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *DashboardListItemRequest) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *DashboardListItemRequest) GetType() DashboardType {
 	if o == nil {
 		var ret DashboardType
@@ -82,11 +80,12 @@ func (o *DashboardListItemRequest) GetTypeOk() (*DashboardType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *DashboardListItemRequest) SetType(v DashboardType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o DashboardListItemRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,6 +100,7 @@ func (o DashboardListItemRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *DashboardListItemRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -21,18 +19,18 @@ type AuthNMappingResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAuthNMappingResponse instantiates a new AuthNMappingResponse object
+// NewAuthNMappingResponse instantiates a new AuthNMappingResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewAuthNMappingResponse() *AuthNMappingResponse {
 	this := AuthNMappingResponse{}
 	return &this
 }
 
-// NewAuthNMappingResponseWithDefaults instantiates a new AuthNMappingResponse object
+// NewAuthNMappingResponseWithDefaults instantiates a new AuthNMappingResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAuthNMappingResponseWithDefaults() *AuthNMappingResponse {
 	this := AuthNMappingResponse{}
 	return &this
@@ -70,6 +68,7 @@ func (o *AuthNMappingResponse) SetData(v AuthNMapping) {
 	o.Data = &v
 }
 
+<<<<<<< HEAD
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *AuthNMappingResponse) GetIncluded() []AuthNMappingIncluded {
 	if o == nil || o.Included == nil {
@@ -102,6 +101,10 @@ func (o *AuthNMappingResponse) SetIncluded(v []AuthNMappingIncluded) {
 	o.Included = v
 }
 
+||||||| parent of 51a71954 (Remove various lints)
+=======
+// MarshalJSON serializes the struct using spec logic.
+>>>>>>> 51a71954 (Remove various lints)
 func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,6 +123,7 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

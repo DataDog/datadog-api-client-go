@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,29 +24,29 @@ type LogsArchiveDestinationS3 struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object
+// NewLogsArchiveDestinationS3 instantiates a new LogsArchiveDestinationS3 object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrationS3, type_ LogsArchiveDestinationS3Type) *LogsArchiveDestinationS3 {
+// will change when the set of required properties is changed.
+func NewLogsArchiveDestinationS3(bucket string, integration LogsArchiveIntegrationS3, typeVar LogsArchiveDestinationS3Type) *LogsArchiveDestinationS3 {
 	this := LogsArchiveDestinationS3{}
 	this.Bucket = bucket
 	this.Integration = integration
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsArchiveDestinationS3WithDefaults instantiates a new LogsArchiveDestinationS3 object
+// NewLogsArchiveDestinationS3WithDefaults instantiates a new LogsArchiveDestinationS3 object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsArchiveDestinationS3WithDefaults() *LogsArchiveDestinationS3 {
 	this := LogsArchiveDestinationS3{}
-	var type_ LogsArchiveDestinationS3Type = LOGSARCHIVEDESTINATIONS3TYPE_S3
-	this.Type = type_
+	var typeVar LogsArchiveDestinationS3Type = LOGSARCHIVEDESTINATIONS3TYPE_S3
+	this.Type = typeVar
 	return &this
 }
 
-// GetBucket returns the Bucket field value
+// GetBucket returns the Bucket field value.
 func (o *LogsArchiveDestinationS3) GetBucket() string {
 	if o == nil {
 		var ret string
@@ -66,12 +64,12 @@ func (o *LogsArchiveDestinationS3) GetBucketOk() (*string, bool) {
 	return &o.Bucket, true
 }
 
-// SetBucket sets field value
+// SetBucket sets field value.
 func (o *LogsArchiveDestinationS3) SetBucket(v string) {
 	o.Bucket = v
 }
 
-// GetIntegration returns the Integration field value
+// GetIntegration returns the Integration field value.
 func (o *LogsArchiveDestinationS3) GetIntegration() LogsArchiveIntegrationS3 {
 	if o == nil {
 		var ret LogsArchiveIntegrationS3
@@ -89,7 +87,7 @@ func (o *LogsArchiveDestinationS3) GetIntegrationOk() (*LogsArchiveIntegrationS3
 	return &o.Integration, true
 }
 
-// SetIntegration sets field value
+// SetIntegration sets field value.
 func (o *LogsArchiveDestinationS3) SetIntegration(v LogsArchiveIntegrationS3) {
 	o.Integration = v
 }
@@ -126,7 +124,7 @@ func (o *LogsArchiveDestinationS3) SetPath(v string) {
 	o.Path = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsArchiveDestinationS3) GetType() LogsArchiveDestinationS3Type {
 	if o == nil {
 		var ret LogsArchiveDestinationS3Type
@@ -144,11 +142,12 @@ func (o *LogsArchiveDestinationS3) GetTypeOk() (*LogsArchiveDestinationS3Type, b
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsArchiveDestinationS3) SetType(v LogsArchiveDestinationS3Type) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -167,6 +166,7 @@ func (o LogsArchiveDestinationS3) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsArchiveDestinationS3) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

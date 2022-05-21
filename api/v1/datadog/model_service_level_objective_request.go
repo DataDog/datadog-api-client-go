@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -48,21 +46,21 @@ type ServiceLevelObjectiveRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object
+// NewServiceLevelObjectiveRequest instantiates a new ServiceLevelObjectiveRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, type_ SLOType) *ServiceLevelObjectiveRequest {
+// will change when the set of required properties is changed.
+func NewServiceLevelObjectiveRequest(name string, thresholds []SLOThreshold, typeVar SLOType) *ServiceLevelObjectiveRequest {
 	this := ServiceLevelObjectiveRequest{}
 	this.Name = name
 	this.Thresholds = thresholds
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewServiceLevelObjectiveRequestWithDefaults instantiates a new ServiceLevelObjectiveRequest object
+// NewServiceLevelObjectiveRequestWithDefaults instantiates a new ServiceLevelObjectiveRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewServiceLevelObjectiveRequestWithDefaults() *ServiceLevelObjectiveRequest {
 	this := ServiceLevelObjectiveRequest{}
 	return &this
@@ -79,7 +77,7 @@ func (o *ServiceLevelObjectiveRequest) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *ServiceLevelObjectiveRequest) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -101,12 +99,12 @@ func (o *ServiceLevelObjectiveRequest) SetDescription(v string) {
 	o.Description.Set(&v)
 }
 
-// SetDescriptionNil sets the value for Description to be an explicit nil
+// SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *ServiceLevelObjectiveRequest) SetDescriptionNil() {
 	o.Description.Set(nil)
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
 func (o *ServiceLevelObjectiveRequest) UnsetDescription() {
 	o.Description.Unset()
 }
@@ -175,7 +173,7 @@ func (o *ServiceLevelObjectiveRequest) SetMonitorIds(v []int64) {
 	o.MonitorIds = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *ServiceLevelObjectiveRequest) GetName() string {
 	if o == nil {
 		var ret string
@@ -193,7 +191,7 @@ func (o *ServiceLevelObjectiveRequest) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *ServiceLevelObjectiveRequest) SetName(v string) {
 	o.Name = v
 }
@@ -262,7 +260,7 @@ func (o *ServiceLevelObjectiveRequest) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetThresholds returns the Thresholds field value
+// GetThresholds returns the Thresholds field value.
 func (o *ServiceLevelObjectiveRequest) GetThresholds() []SLOThreshold {
 	if o == nil {
 		var ret []SLOThreshold
@@ -280,12 +278,12 @@ func (o *ServiceLevelObjectiveRequest) GetThresholdsOk() (*[]SLOThreshold, bool)
 	return &o.Thresholds, true
 }
 
-// SetThresholds sets field value
+// SetThresholds sets field value.
 func (o *ServiceLevelObjectiveRequest) SetThresholds(v []SLOThreshold) {
 	o.Thresholds = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ServiceLevelObjectiveRequest) GetType() SLOType {
 	if o == nil {
 		var ret SLOType
@@ -303,11 +301,12 @@ func (o *ServiceLevelObjectiveRequest) GetTypeOk() (*SLOType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ServiceLevelObjectiveRequest) SetType(v SLOType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -338,6 +337,7 @@ func (o ServiceLevelObjectiveRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ServiceLevelObjectiveRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

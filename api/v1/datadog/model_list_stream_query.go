@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,10 +22,10 @@ type ListStreamQuery struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewListStreamQuery instantiates a new ListStreamQuery object
+// NewListStreamQuery instantiates a new ListStreamQuery object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListStreamQuery {
 	this := ListStreamQuery{}
 	this.DataSource = dataSource
@@ -35,9 +33,9 @@ func NewListStreamQuery(dataSource ListStreamSource, queryString string) *ListSt
 	return &this
 }
 
-// NewListStreamQueryWithDefaults instantiates a new ListStreamQuery object
+// NewListStreamQueryWithDefaults instantiates a new ListStreamQuery object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	this := ListStreamQuery{}
 	var dataSource ListStreamSource = LISTSTREAMSOURCE_APM_ISSUE_STREAM
@@ -45,7 +43,7 @@ func NewListStreamQueryWithDefaults() *ListStreamQuery {
 	return &this
 }
 
-// GetDataSource returns the DataSource field value
+// GetDataSource returns the DataSource field value.
 func (o *ListStreamQuery) GetDataSource() ListStreamSource {
 	if o == nil {
 		var ret ListStreamSource
@@ -63,7 +61,7 @@ func (o *ListStreamQuery) GetDataSourceOk() (*ListStreamSource, bool) {
 	return &o.DataSource, true
 }
 
-// SetDataSource sets field value
+// SetDataSource sets field value.
 func (o *ListStreamQuery) SetDataSource(v ListStreamSource) {
 	o.DataSource = v
 }
@@ -100,7 +98,7 @@ func (o *ListStreamQuery) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
-// GetQueryString returns the QueryString field value
+// GetQueryString returns the QueryString field value.
 func (o *ListStreamQuery) GetQueryString() string {
 	if o == nil {
 		var ret string
@@ -118,11 +116,12 @@ func (o *ListStreamQuery) GetQueryStringOk() (*string, bool) {
 	return &o.QueryString, true
 }
 
-// SetQueryString sets field value
+// SetQueryString sets field value.
 func (o *ListStreamQuery) SetQueryString(v string) {
 	o.QueryString = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,6 +139,7 @@ func (o ListStreamQuery) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ListStreamQuery) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

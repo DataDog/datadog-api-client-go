@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -70,18 +68,18 @@ type SLOResponseData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOResponseData instantiates a new SLOResponseData object
+// NewSLOResponseData instantiates a new SLOResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOResponseData() *SLOResponseData {
 	this := SLOResponseData{}
 	return &this
 }
 
-// NewSLOResponseDataWithDefaults instantiates a new SLOResponseData object
+// NewSLOResponseDataWithDefaults instantiates a new SLOResponseData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOResponseDataWithDefaults() *SLOResponseData {
 	this := SLOResponseData{}
 	return &this
@@ -194,7 +192,7 @@ func (o *SLOResponseData) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOResponseData) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -216,12 +214,12 @@ func (o *SLOResponseData) SetDescription(v string) {
 	o.Description.Set(&v)
 }
 
-// SetDescriptionNil sets the value for Description to be an explicit nil
+// SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *SLOResponseData) SetDescriptionNil() {
 	o.Description.Set(nil)
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
 func (o *SLOResponseData) UnsetDescription() {
 	o.Description.Unset()
 }
@@ -546,6 +544,7 @@ func (o *SLOResponseData) SetType(v SLOType) {
 	o.Type = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -600,6 +599,7 @@ func (o SLOResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
