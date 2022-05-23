@@ -16,7 +16,7 @@ type SAMLAssertionAttribute struct {
 	// Key/Value pair of attributes used in SAML assertion attributes.
 	Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
 	// The ID of the SAML assertion attribute.
-	Id int32 `json:"id"`
+	Id string `json:"id"`
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -28,7 +28,7 @@ type SAMLAssertionAttribute struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewSAMLAssertionAttribute(id int32, type_ SAMLAssertionAttributesType) *SAMLAssertionAttribute {
+func NewSAMLAssertionAttribute(id string, type_ SAMLAssertionAttributesType) *SAMLAssertionAttribute {
 	this := SAMLAssertionAttribute{}
 	this.Id = id
 	this.Type = type_
@@ -78,9 +78,9 @@ func (o *SAMLAssertionAttribute) SetAttributes(v SAMLAssertionAttributeAttribute
 }
 
 // GetId returns the Id field value
-func (o *SAMLAssertionAttribute) GetId() int32 {
+func (o *SAMLAssertionAttribute) GetId() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return o.Id
@@ -88,7 +88,7 @@ func (o *SAMLAssertionAttribute) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SAMLAssertionAttribute) GetIdOk() (*int32, bool) {
+func (o *SAMLAssertionAttribute) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -96,7 +96,7 @@ func (o *SAMLAssertionAttribute) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *SAMLAssertionAttribute) SetId(v int32) {
+func (o *SAMLAssertionAttribute) SetId(v string) {
 	o.Id = v
 }
 
@@ -143,12 +143,12 @@ func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *int32                       `json:"id"`
+		Id   *string                      `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	all := struct {
 		Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
-		Id         int32                             `json:"id"`
+		Id         string                            `json:"id"`
 		Type       SAMLAssertionAttributesType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

@@ -14,7 +14,7 @@ import (
 // RelationshipToSAMLAssertionAttributeData Data of AuthN Mapping relationship to SAML Assertion Attribute.
 type RelationshipToSAMLAssertionAttributeData struct {
 	// The ID of the SAML assertion attribute.
-	Id int32 `json:"id"`
+	Id string `json:"id"`
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -26,7 +26,7 @@ type RelationshipToSAMLAssertionAttributeData struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed
-func NewRelationshipToSAMLAssertionAttributeData(id int32, type_ SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
+func NewRelationshipToSAMLAssertionAttributeData(id string, type_ SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
 	this := RelationshipToSAMLAssertionAttributeData{}
 	this.Id = id
 	this.Type = type_
@@ -44,9 +44,9 @@ func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSA
 }
 
 // GetId returns the Id field value
-func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
+func (o *RelationshipToSAMLAssertionAttributeData) GetId() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return o.Id
@@ -54,7 +54,7 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*int32, bool) {
+func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
@@ -62,7 +62,7 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*int32, bool) {
 }
 
 // SetId sets field value
-func (o *RelationshipToSAMLAssertionAttributeData) SetId(v int32) {
+func (o *RelationshipToSAMLAssertionAttributeData) SetId(v string) {
 	o.Id = v
 }
 
@@ -106,11 +106,11 @@ func (o RelationshipToSAMLAssertionAttributeData) MarshalJSON() ([]byte, error) 
 func (o *RelationshipToSAMLAssertionAttributeData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *int32                       `json:"id"`
+		Id   *string                      `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	all := struct {
-		Id   int32                       `json:"id"`
+		Id   string                      `json:"id"`
 		Type SAMLAssertionAttributesType `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

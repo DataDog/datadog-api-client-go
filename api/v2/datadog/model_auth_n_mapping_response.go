@@ -14,6 +14,8 @@ import (
 type AuthNMappingResponse struct {
 	// The AuthN Mapping object returned by API.
 	Data *AuthNMapping `json:"data,omitempty"`
+	// Included data in the AuthN Mapping response.
+	Included []AuthNMappingIncluded `json:"included,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -68,6 +70,38 @@ func (o *AuthNMappingResponse) SetData(v AuthNMapping) {
 	o.Data = &v
 }
 
+// GetIncluded returns the Included field value if set, zero value otherwise.
+func (o *AuthNMappingResponse) GetIncluded() []AuthNMappingIncluded {
+	if o == nil || o.Included == nil {
+		var ret []AuthNMappingIncluded
+		return ret
+	}
+	return o.Included
+}
+
+// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *AuthNMappingResponse) GetIncludedOk() (*[]AuthNMappingIncluded, bool) {
+	if o == nil || o.Included == nil {
+		return nil, false
+	}
+	return &o.Included, true
+}
+
+// HasIncluded returns a boolean if a field has been set.
+func (o *AuthNMappingResponse) HasIncluded() bool {
+	if o != nil && o.Included != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetIncluded gets a reference to the given []AuthNMappingIncluded and assigns it to the Included field.
+func (o *AuthNMappingResponse) SetIncluded(v []AuthNMappingIncluded) {
+	o.Included = v
+}
+
 func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -75,6 +109,9 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.Data != nil {
 		toSerialize["data"] = o.Data
+	}
+	if o.Included != nil {
+		toSerialize["included"] = o.Included
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -86,7 +123,8 @@ func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Data *AuthNMapping `json:"data,omitempty"`
+		Data     *AuthNMapping          `json:"data,omitempty"`
+		Included []AuthNMappingIncluded `json:"included,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -105,5 +143,6 @@ func (o *AuthNMappingResponse) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Data = all.Data
+	o.Included = all.Included
 	return nil
 }

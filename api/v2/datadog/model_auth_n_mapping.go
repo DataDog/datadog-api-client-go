@@ -17,8 +17,6 @@ type AuthNMapping struct {
 	Attributes *AuthNMappingAttributes `json:"attributes,omitempty"`
 	// ID of the AuthN Mapping.
 	Id string `json:"id"`
-	// Included data in the AuthN Mapping response.
-	Included []AuthNMappingIncluded `json:"included,omitempty"`
 	// All relationships associated with AuthN Mapping.
 	Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
 	// AuthN Mappings resource type.
@@ -104,38 +102,6 @@ func (o *AuthNMapping) SetId(v string) {
 	o.Id = v
 }
 
-// GetIncluded returns the Included field value if set, zero value otherwise.
-func (o *AuthNMapping) GetIncluded() []AuthNMappingIncluded {
-	if o == nil || o.Included == nil {
-		var ret []AuthNMappingIncluded
-		return ret
-	}
-	return o.Included
-}
-
-// GetIncludedOk returns a tuple with the Included field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *AuthNMapping) GetIncludedOk() (*[]AuthNMappingIncluded, bool) {
-	if o == nil || o.Included == nil {
-		return nil, false
-	}
-	return &o.Included, true
-}
-
-// HasIncluded returns a boolean if a field has been set.
-func (o *AuthNMapping) HasIncluded() bool {
-	if o != nil && o.Included != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetIncluded gets a reference to the given []AuthNMappingIncluded and assigns it to the Included field.
-func (o *AuthNMapping) SetIncluded(v []AuthNMappingIncluded) {
-	o.Included = v
-}
-
 // GetRelationships returns the Relationships field value if set, zero value otherwise.
 func (o *AuthNMapping) GetRelationships() AuthNMappingRelationships {
 	if o == nil || o.Relationships == nil {
@@ -200,9 +166,6 @@ func (o AuthNMapping) MarshalJSON() ([]byte, error) {
 		toSerialize["attributes"] = o.Attributes
 	}
 	toSerialize["id"] = o.Id
-	if o.Included != nil {
-		toSerialize["included"] = o.Included
-	}
 	if o.Relationships != nil {
 		toSerialize["relationships"] = o.Relationships
 	}
@@ -223,7 +186,6 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Attributes    *AuthNMappingAttributes    `json:"attributes,omitempty"`
 		Id            string                     `json:"id"`
-		Included      []AuthNMappingIncluded     `json:"included,omitempty"`
 		Relationships *AuthNMappingRelationships `json:"relationships,omitempty"`
 		Type          AuthNMappingsType          `json:"type"`
 	}{}
@@ -263,7 +225,6 @@ func (o *AuthNMapping) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.Attributes = all.Attributes
 	o.Id = all.Id
-	o.Included = all.Included
 	if all.Relationships != nil && all.Relationships.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
