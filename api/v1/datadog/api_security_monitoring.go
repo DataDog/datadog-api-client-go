@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// SecurityMonitoringApiService SecurityMonitoringApi service
+// SecurityMonitoringApiService SecurityMonitoringApi service.
 type SecurityMonitoringApiService service
 
 type apiAddSecurityMonitoringSignalToIncidentRequest struct {
@@ -40,10 +33,8 @@ func (a *SecurityMonitoringApiService) buildAddSecurityMonitoringSignalToInciden
 	return req, nil
 }
 
-/*
- * AddSecurityMonitoringSignalToIncident Add a security signal to an incident
- * Add a security signal to an incident. This makes it possible to search for signals by incident within the signal explorer and to view the signals on the incident timeline.
- */
+// AddSecurityMonitoringSignalToIncident Add a security signal to an incident.
+// Add a security signal to an incident. This makes it possible to search for signals by incident within the signal explorer and to view the signals on the incident timeline.
 func (a *SecurityMonitoringApiService) AddSecurityMonitoringSignalToIncident(ctx _context.Context, signalId string, body AddSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildAddSecurityMonitoringSignalToIncidentRequest(ctx, signalId, body)
 	if err != nil {
@@ -54,10 +45,7 @@ func (a *SecurityMonitoringApiService) AddSecurityMonitoringSignalToIncident(ctx
 	return req.ApiService.addSecurityMonitoringSignalToIncidentExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SuccessfulSignalUpdateResponse
- */
+// addSecurityMonitoringSignalToIncidentExecute executes the request.
 func (a *SecurityMonitoringApiService) addSecurityMonitoringSignalToIncidentExecute(r apiAddSecurityMonitoringSignalToIncidentRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -221,10 +209,8 @@ func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalAssignee
 	return req, nil
 }
 
-/*
- * EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal
- * Modify the triage assignee of a security signal.
- */
+// EditSecurityMonitoringSignalAssignee Modify the triage assignee of a security signal.
+// Modify the triage assignee of a security signal.
 func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalAssignee(ctx _context.Context, signalId string, body SignalAssigneeUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalAssigneeRequest(ctx, signalId, body)
 	if err != nil {
@@ -235,10 +221,7 @@ func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalAssignee(ctx 
 	return req.ApiService.editSecurityMonitoringSignalAssigneeExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SuccessfulSignalUpdateResponse
- */
+// editSecurityMonitoringSignalAssigneeExecute executes the request.
 func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecute(r apiEditSecurityMonitoringSignalAssigneeRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -402,10 +385,8 @@ func (a *SecurityMonitoringApiService) buildEditSecurityMonitoringSignalStateReq
 	return req, nil
 }
 
-/*
- * EditSecurityMonitoringSignalState Change the triage state of a security signal
- * Change the triage state of a security signal.
- */
+// EditSecurityMonitoringSignalState Change the triage state of a security signal.
+// Change the triage state of a security signal.
 func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalState(ctx _context.Context, signalId string, body SignalStateUpdateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEditSecurityMonitoringSignalStateRequest(ctx, signalId, body)
 	if err != nil {
@@ -416,10 +397,7 @@ func (a *SecurityMonitoringApiService) EditSecurityMonitoringSignalState(ctx _co
 	return req.ApiService.editSecurityMonitoringSignalStateExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SuccessfulSignalUpdateResponse
- */
+// editSecurityMonitoringSignalStateExecute executes the request.
 func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(r apiEditSecurityMonitoringSignalStateRequest) (SuccessfulSignalUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

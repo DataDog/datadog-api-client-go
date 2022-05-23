@@ -25,16 +25,8 @@ type SAMLAssertionAttribute struct {
 // NewSAMLAssertionAttribute instantiates a new SAMLAssertionAttribute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-<<<<<<< HEAD
-// will change when the set of required properties is changed
-func NewSAMLAssertionAttribute(id string, type_ SAMLAssertionAttributesType) *SAMLAssertionAttribute {
-||||||| parent of 51a71954 (Remove various lints)
-// will change when the set of required properties is changed
-func NewSAMLAssertionAttribute(id int32, type_ SAMLAssertionAttributesType) *SAMLAssertionAttribute {
-=======
 // will change when the set of required properties is changed.
-func NewSAMLAssertionAttribute(id int32, typeVar SAMLAssertionAttributesType) *SAMLAssertionAttribute {
->>>>>>> 51a71954 (Remove various lints)
+func NewSAMLAssertionAttribute(id string, typeVar SAMLAssertionAttributesType) *SAMLAssertionAttribute {
 	this := SAMLAssertionAttribute{}
 	this.Id = id
 	this.Type = typeVar
@@ -83,16 +75,8 @@ func (o *SAMLAssertionAttribute) SetAttributes(v SAMLAssertionAttributeAttribute
 	o.Attributes = &v
 }
 
-<<<<<<< HEAD
-// GetId returns the Id field value
-func (o *SAMLAssertionAttribute) GetId() string {
-||||||| parent of 51a71954 (Remove various lints)
-// GetId returns the Id field value
-func (o *SAMLAssertionAttribute) GetId() int32 {
-=======
 // GetId returns the Id field value.
-func (o *SAMLAssertionAttribute) GetId() int32 {
->>>>>>> 51a71954 (Remove various lints)
+func (o *SAMLAssertionAttribute) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -109,16 +93,8 @@ func (o *SAMLAssertionAttribute) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-<<<<<<< HEAD
-// SetId sets field value
-func (o *SAMLAssertionAttribute) SetId(v string) {
-||||||| parent of 51a71954 (Remove various lints)
-// SetId sets field value
-func (o *SAMLAssertionAttribute) SetId(v int32) {
-=======
 // SetId sets field value.
-func (o *SAMLAssertionAttribute) SetId(v int32) {
->>>>>>> 51a71954 (Remove various lints)
+func (o *SAMLAssertionAttribute) SetId(v string) {
 	o.Id = v
 }
 

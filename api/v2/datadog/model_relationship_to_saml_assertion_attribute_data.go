@@ -23,16 +23,8 @@ type RelationshipToSAMLAssertionAttributeData struct {
 // NewRelationshipToSAMLAssertionAttributeData instantiates a new RelationshipToSAMLAssertionAttributeData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-<<<<<<< HEAD
-// will change when the set of required properties is changed
-func NewRelationshipToSAMLAssertionAttributeData(id string, type_ SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
-||||||| parent of 51a71954 (Remove various lints)
-// will change when the set of required properties is changed
-func NewRelationshipToSAMLAssertionAttributeData(id int32, type_ SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
-=======
 // will change when the set of required properties is changed.
-func NewRelationshipToSAMLAssertionAttributeData(id int32, typeVar SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
->>>>>>> 51a71954 (Remove various lints)
+func NewRelationshipToSAMLAssertionAttributeData(id string, typeVar SAMLAssertionAttributesType) *RelationshipToSAMLAssertionAttributeData {
 	this := RelationshipToSAMLAssertionAttributeData{}
 	this.Id = id
 	this.Type = typeVar
@@ -49,16 +41,8 @@ func NewRelationshipToSAMLAssertionAttributeDataWithDefaults() *RelationshipToSA
 	return &this
 }
 
-<<<<<<< HEAD
-// GetId returns the Id field value
-func (o *RelationshipToSAMLAssertionAttributeData) GetId() string {
-||||||| parent of 51a71954 (Remove various lints)
-// GetId returns the Id field value
-func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
-=======
 // GetId returns the Id field value.
-func (o *RelationshipToSAMLAssertionAttributeData) GetId() int32 {
->>>>>>> 51a71954 (Remove various lints)
+func (o *RelationshipToSAMLAssertionAttributeData) GetId() string {
 	if o == nil {
 		var ret string
 		return ret
@@ -75,16 +59,8 @@ func (o *RelationshipToSAMLAssertionAttributeData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-<<<<<<< HEAD
-// SetId sets field value
-func (o *RelationshipToSAMLAssertionAttributeData) SetId(v string) {
-||||||| parent of 51a71954 (Remove various lints)
-// SetId sets field value
-func (o *RelationshipToSAMLAssertionAttributeData) SetId(v int32) {
-=======
 // SetId sets field value.
-func (o *RelationshipToSAMLAssertionAttributeData) SetId(v int32) {
->>>>>>> 51a71954 (Remove various lints)
+func (o *RelationshipToSAMLAssertionAttributeData) SetId(v string) {
 	o.Id = v
 }
 

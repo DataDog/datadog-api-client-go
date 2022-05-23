@@ -68,7 +68,6 @@ func (o *AuthNMappingResponse) SetData(v AuthNMapping) {
 	o.Data = &v
 }
 
-<<<<<<< HEAD
 // GetIncluded returns the Included field value if set, zero value otherwise.
 func (o *AuthNMappingResponse) GetIncluded() []AuthNMappingIncluded {
 	if o == nil || o.Included == nil {
@@ -101,10 +100,7 @@ func (o *AuthNMappingResponse) SetIncluded(v []AuthNMappingIncluded) {
 	o.Included = v
 }
 
-||||||| parent of 51a71954 (Remove various lints)
-=======
 // MarshalJSON serializes the struct using spec logic.
->>>>>>> 51a71954 (Remove various lints)
 func (o AuthNMappingResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
