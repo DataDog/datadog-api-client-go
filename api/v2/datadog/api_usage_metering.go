@@ -61,8 +61,8 @@ func (a *UsageMeteringApiService) buildGetCostByOrgRequest(ctx _context.Context,
 }
 
 /*
- * GetCostByOrg Get Cost Across Multi-Org Account
- * Get Cost Across Multi-Org Account.
+ * GetCostByOrg Get cost across multi-org account
+ * Get cost across multi-org account.
  */
 func (a *UsageMeteringApiService) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetCostByOrgRequest(ctx, startMonth, o...)

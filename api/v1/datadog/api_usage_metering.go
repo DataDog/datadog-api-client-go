@@ -284,8 +284,8 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 }
 
 /*
- * GetHourlyUsageAttribution Get Hourly Usage Attribution
- * Get Hourly Usage Attribution.
+ * GetHourlyUsageAttribution Get hourly usage attribution
+ * Get hourly usage attribution.
  *
  * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
  * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -1084,8 +1084,8 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 }
 
 /*
- * GetMonthlyUsageAttribution Get Monthly Usage Attribution
- * Get Monthly Usage Attribution.
+ * GetMonthlyUsageAttribution Get monthly usage attribution
+ * Get monthly usage attribution.
  *
  * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
  * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -1844,8 +1844,8 @@ func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.C
 }
 
 /*
- * GetUsageAttribution Get Usage Attribution
- * Get Usage Attribution.
+ * GetUsageAttribution Get usage attribution
+ * Get usage attribution.
  */
 func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
