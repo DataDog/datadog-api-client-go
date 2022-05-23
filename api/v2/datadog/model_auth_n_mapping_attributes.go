@@ -22,7 +22,7 @@ type AuthNMappingAttributes struct {
 	// Time of last AuthN Mapping modification.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The ID of the SAML assertion attribute.
-	SamlAssertionAttributeId *int32 `json:"saml_assertion_attribute_id,omitempty"`
+	SamlAssertionAttributeId *string `json:"saml_assertion_attribute_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -174,9 +174,9 @@ func (o *AuthNMappingAttributes) SetModifiedAt(v time.Time) {
 }
 
 // GetSamlAssertionAttributeId returns the SamlAssertionAttributeId field value if set, zero value otherwise.
-func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() int32 {
+func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() string {
 	if o == nil || o.SamlAssertionAttributeId == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.SamlAssertionAttributeId
@@ -184,7 +184,7 @@ func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() int32 {
 
 // GetSamlAssertionAttributeIdOk returns a tuple with the SamlAssertionAttributeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthNMappingAttributes) GetSamlAssertionAttributeIdOk() (*int32, bool) {
+func (o *AuthNMappingAttributes) GetSamlAssertionAttributeIdOk() (*string, bool) {
 	if o == nil || o.SamlAssertionAttributeId == nil {
 		return nil, false
 	}
@@ -200,8 +200,8 @@ func (o *AuthNMappingAttributes) HasSamlAssertionAttributeId() bool {
 	return false
 }
 
-// SetSamlAssertionAttributeId gets a reference to the given int32 and assigns it to the SamlAssertionAttributeId field.
-func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v int32) {
+// SetSamlAssertionAttributeId gets a reference to the given string and assigns it to the SamlAssertionAttributeId field.
+func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v string) {
 	o.SamlAssertionAttributeId = &v
 }
 
@@ -247,7 +247,7 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		AttributeValue           *string    `json:"attribute_value,omitempty"`
 		CreatedAt                *time.Time `json:"created_at,omitempty"`
 		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
-		SamlAssertionAttributeId *int32     `json:"saml_assertion_attribute_id,omitempty"`
+		SamlAssertionAttributeId *string    `json:"saml_assertion_attribute_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
