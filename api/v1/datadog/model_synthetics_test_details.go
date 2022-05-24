@@ -32,7 +32,7 @@ type SyntheticsTestDetails struct {
 	// For browser test, the steps of the test.
 	Steps []SyntheticsStep `json:"steps,omitempty"`
 	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
-	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
+	// `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
 	Tags []string `json:"tags,omitempty"`
