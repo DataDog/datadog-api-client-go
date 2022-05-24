@@ -14,7 +14,7 @@ import (
 type MonthlyUsageAttributionResponse struct {
 	// The object containing document metadata.
 	Metadata *MonthlyUsageAttributionMetadata `json:"metadata,omitempty"`
-	// Get Usage Summary by tag(s).
+	// Get usage summary by tag(s).
 	Usage []MonthlyUsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`

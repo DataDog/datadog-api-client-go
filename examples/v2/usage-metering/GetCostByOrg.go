@@ -1,4 +1,4 @@
-// Get Cost Across Multi-Org Account returns "OK" response
+// Get cost across multi-org account returns "OK" response
 
 package main
 
