@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -46,24 +44,24 @@ type MonitorSummaryWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object
+// NewMonitorSummaryWidgetDefinition instantiates a new MonitorSummaryWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMonitorSummaryWidgetDefinition(query string, type_ MonitorSummaryWidgetDefinitionType) *MonitorSummaryWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewMonitorSummaryWidgetDefinition(query string, typeVar MonitorSummaryWidgetDefinitionType) *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
 	this.Query = query
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewMonitorSummaryWidgetDefinitionWithDefaults instantiates a new MonitorSummaryWidgetDefinition object
+// NewMonitorSummaryWidgetDefinitionWithDefaults instantiates a new MonitorSummaryWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorSummaryWidgetDefinitionWithDefaults() *MonitorSummaryWidgetDefinition {
 	this := MonitorSummaryWidgetDefinition{}
-	var type_ MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
-	this.Type = type_
+	var typeVar MonitorSummaryWidgetDefinitionType = MONITORSUMMARYWIDGETDEFINITIONTYPE_MANAGE_STATUS
+	this.Type = typeVar
 	return &this
 }
 
@@ -198,7 +196,7 @@ func (o *MonitorSummaryWidgetDefinition) SetHideZeroCounts(v bool) {
 	o.HideZeroCounts = &v
 }
 
-// GetQuery returns the Query field value
+// GetQuery returns the Query field value.
 func (o *MonitorSummaryWidgetDefinition) GetQuery() string {
 	if o == nil {
 		var ret string
@@ -216,7 +214,7 @@ func (o *MonitorSummaryWidgetDefinition) GetQueryOk() (*string, bool) {
 	return &o.Query, true
 }
 
-// SetQuery sets field value
+// SetQuery sets field value.
 func (o *MonitorSummaryWidgetDefinition) SetQuery(v string) {
 	o.Query = v
 }
@@ -448,7 +446,7 @@ func (o *MonitorSummaryWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *MonitorSummaryWidgetDefinition) GetType() MonitorSummaryWidgetDefinitionType {
 	if o == nil {
 		var ret MonitorSummaryWidgetDefinitionType
@@ -466,11 +464,12 @@ func (o *MonitorSummaryWidgetDefinition) GetTypeOk() (*MonitorSummaryWidgetDefin
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *MonitorSummaryWidgetDefinition) SetType(v MonitorSummaryWidgetDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -518,6 +517,7 @@ func (o MonitorSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

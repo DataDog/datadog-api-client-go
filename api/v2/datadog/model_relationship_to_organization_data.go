@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,28 +20,28 @@ type RelationshipToOrganizationData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRelationshipToOrganizationData instantiates a new RelationshipToOrganizationData object
+// NewRelationshipToOrganizationData instantiates a new RelationshipToOrganizationData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRelationshipToOrganizationData(id string, type_ OrganizationsType) *RelationshipToOrganizationData {
+// will change when the set of required properties is changed.
+func NewRelationshipToOrganizationData(id string, typeVar OrganizationsType) *RelationshipToOrganizationData {
 	this := RelationshipToOrganizationData{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewRelationshipToOrganizationDataWithDefaults instantiates a new RelationshipToOrganizationData object
+// NewRelationshipToOrganizationDataWithDefaults instantiates a new RelationshipToOrganizationData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewRelationshipToOrganizationDataWithDefaults() *RelationshipToOrganizationData {
 	this := RelationshipToOrganizationData{}
-	var type_ OrganizationsType = ORGANIZATIONSTYPE_ORGS
-	this.Type = type_
+	var typeVar OrganizationsType = ORGANIZATIONSTYPE_ORGS
+	this.Type = typeVar
 	return &this
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *RelationshipToOrganizationData) GetId() string {
 	if o == nil {
 		var ret string
@@ -61,12 +59,12 @@ func (o *RelationshipToOrganizationData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *RelationshipToOrganizationData) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *RelationshipToOrganizationData) GetType() OrganizationsType {
 	if o == nil {
 		var ret OrganizationsType
@@ -84,11 +82,12 @@ func (o *RelationshipToOrganizationData) GetTypeOk() (*OrganizationsType, bool) 
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *RelationshipToOrganizationData) SetType(v OrganizationsType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o RelationshipToOrganizationData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,6 +102,7 @@ func (o RelationshipToOrganizationData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *RelationshipToOrganizationData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

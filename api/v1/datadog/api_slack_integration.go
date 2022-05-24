@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// SlackIntegrationApiService SlackIntegrationApi service
+// SlackIntegrationApiService SlackIntegrationApi service.
 type SlackIntegrationApiService service
 
 type apiCreateSlackIntegrationChannelRequest struct {
@@ -40,10 +33,8 @@ func (a *SlackIntegrationApiService) buildCreateSlackIntegrationChannelRequest(c
 	return req, nil
 }
 
-/*
- * CreateSlackIntegrationChannel Create a Slack integration channel
- * Add a channel to your Datadog-Slack integration.
- */
+// CreateSlackIntegrationChannel Create a Slack integration channel.
+// Add a channel to your Datadog-Slack integration.
 func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.Context, accountName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req, err := a.buildCreateSlackIntegrationChannelRequest(ctx, accountName, body)
 	if err != nil {
@@ -54,10 +45,7 @@ func (a *SlackIntegrationApiService) CreateSlackIntegrationChannel(ctx _context.
 	return req.ApiService.createSlackIntegrationChannelExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SlackIntegrationChannel
- */
+// createSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiCreateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -221,10 +209,8 @@ func (a *SlackIntegrationApiService) buildGetSlackIntegrationChannelRequest(ctx 
 	return req, nil
 }
 
-/*
- * GetSlackIntegrationChannel Get a Slack integration channel
- * Get a channel configured for your Datadog-Slack integration.
- */
+// GetSlackIntegrationChannel Get a Slack integration channel.
+// Get a channel configured for your Datadog-Slack integration.
 func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req, err := a.buildGetSlackIntegrationChannelRequest(ctx, accountName, channelName)
 	if err != nil {
@@ -235,10 +221,7 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannel(ctx _context.Con
 	return req.ApiService.getSlackIntegrationChannelExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SlackIntegrationChannel
- */
+// getSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -386,10 +369,8 @@ func (a *SlackIntegrationApiService) buildGetSlackIntegrationChannelsRequest(ctx
 	return req, nil
 }
 
-/*
- * GetSlackIntegrationChannels Get all channels in a Slack integration
- * Get a list of all channels configured for your Datadog-Slack integration.
- */
+// GetSlackIntegrationChannels Get all channels in a Slack integration.
+// Get a list of all channels configured for your Datadog-Slack integration.
 func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Context, accountName string) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	req, err := a.buildGetSlackIntegrationChannelsRequest(ctx, accountName)
 	if err != nil {
@@ -400,10 +381,7 @@ func (a *SlackIntegrationApiService) GetSlackIntegrationChannels(ctx _context.Co
 	return req.ApiService.getSlackIntegrationChannelsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return []SlackIntegrationChannel
- */
+// getSlackIntegrationChannelsExecute executes the request.
 func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGetSlackIntegrationChannelsRequest) ([]SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -552,10 +530,8 @@ func (a *SlackIntegrationApiService) buildRemoveSlackIntegrationChannelRequest(c
 	return req, nil
 }
 
-/*
- * RemoveSlackIntegrationChannel Remove a Slack integration channel
- * Remove a channel from your Datadog-Slack integration.
- */
+// RemoveSlackIntegrationChannel Remove a Slack integration channel.
+// Remove a channel from your Datadog-Slack integration.
 func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string) (*_nethttp.Response, error) {
 	req, err := a.buildRemoveSlackIntegrationChannelRequest(ctx, accountName, channelName)
 	if err != nil {
@@ -565,9 +541,7 @@ func (a *SlackIntegrationApiService) RemoveSlackIntegrationChannel(ctx _context.
 	return req.ApiService.removeSlackIntegrationChannelExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// removeSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiRemoveSlackIntegrationChannelRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -709,10 +683,8 @@ func (a *SlackIntegrationApiService) buildUpdateSlackIntegrationChannelRequest(c
 	return req, nil
 }
 
-/*
- * UpdateSlackIntegrationChannel Update a Slack integration channel
- * Update a channel used in your Datadog-Slack integration.
- */
+// UpdateSlackIntegrationChannel Update a Slack integration channel.
+// Update a channel used in your Datadog-Slack integration.
 func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.Context, accountName string, channelName string, body SlackIntegrationChannel) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSlackIntegrationChannelRequest(ctx, accountName, channelName, body)
 	if err != nil {
@@ -723,10 +695,7 @@ func (a *SlackIntegrationApiService) UpdateSlackIntegrationChannel(ctx _context.
 	return req.ApiService.updateSlackIntegrationChannelExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SlackIntegrationChannel
- */
+// updateSlackIntegrationChannelExecute executes the request.
 func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiUpdateSlackIntegrationChannelRequest) (SlackIntegrationChannel, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

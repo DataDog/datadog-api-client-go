@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// ServiceChecksApiService ServiceChecksApi service
+// ServiceChecksApiService ServiceChecksApi service.
 type ServiceChecksApiService service
 
 type apiSubmitServiceCheckRequest struct {
@@ -37,14 +30,12 @@ func (a *ServiceChecksApiService) buildSubmitServiceCheckRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * SubmitServiceCheck Submit a Service Check
- * Submit a list of Service Checks.
- *
- * **Notes**:
- * - A valid API key is required.
- * - Service checks can be submitted up to 10 minutes in the past.
- */
+// SubmitServiceCheck Submit a Service Check.
+// Submit a list of Service Checks.
+//
+// **Notes**:
+// - A valid API key is required.
+// - Service checks can be submitted up to 10 minutes in the past.
 func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body []ServiceCheck) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitServiceCheckRequest(ctx, body)
 	if err != nil {
@@ -55,10 +46,7 @@ func (a *ServiceChecksApiService) SubmitServiceCheck(ctx _context.Context, body 
 	return req.ApiService.submitServiceCheckExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IntakePayloadAccepted
- */
+// submitServiceCheckExecute executes the request.
 func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCheckRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

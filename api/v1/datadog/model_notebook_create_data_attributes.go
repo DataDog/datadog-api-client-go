@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -28,10 +26,10 @@ type NotebookCreateDataAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object
+// NewNotebookCreateDataAttributes instantiates a new NotebookCreateDataAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name string, time NotebookGlobalTime) *NotebookCreateDataAttributes {
 	this := NotebookCreateDataAttributes{}
 	this.Cells = cells
@@ -42,9 +40,9 @@ func NewNotebookCreateDataAttributes(cells []NotebookCellCreateRequest, name str
 	return &this
 }
 
-// NewNotebookCreateDataAttributesWithDefaults instantiates a new NotebookCreateDataAttributes object
+// NewNotebookCreateDataAttributesWithDefaults instantiates a new NotebookCreateDataAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookCreateDataAttributesWithDefaults() *NotebookCreateDataAttributes {
 	this := NotebookCreateDataAttributes{}
 	var status NotebookStatus = NOTEBOOKSTATUS_PUBLISHED
@@ -52,7 +50,7 @@ func NewNotebookCreateDataAttributesWithDefaults() *NotebookCreateDataAttributes
 	return &this
 }
 
-// GetCells returns the Cells field value
+// GetCells returns the Cells field value.
 func (o *NotebookCreateDataAttributes) GetCells() []NotebookCellCreateRequest {
 	if o == nil {
 		var ret []NotebookCellCreateRequest
@@ -70,7 +68,7 @@ func (o *NotebookCreateDataAttributes) GetCellsOk() (*[]NotebookCellCreateReques
 	return &o.Cells, true
 }
 
-// SetCells sets field value
+// SetCells sets field value.
 func (o *NotebookCreateDataAttributes) SetCells(v []NotebookCellCreateRequest) {
 	o.Cells = v
 }
@@ -107,7 +105,7 @@ func (o *NotebookCreateDataAttributes) SetMetadata(v NotebookMetadata) {
 	o.Metadata = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *NotebookCreateDataAttributes) GetName() string {
 	if o == nil {
 		var ret string
@@ -125,7 +123,7 @@ func (o *NotebookCreateDataAttributes) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *NotebookCreateDataAttributes) SetName(v string) {
 	o.Name = v
 }
@@ -162,7 +160,7 @@ func (o *NotebookCreateDataAttributes) SetStatus(v NotebookStatus) {
 	o.Status = &v
 }
 
-// GetTime returns the Time field value
+// GetTime returns the Time field value.
 func (o *NotebookCreateDataAttributes) GetTime() NotebookGlobalTime {
 	if o == nil {
 		var ret NotebookGlobalTime
@@ -180,11 +178,12 @@ func (o *NotebookCreateDataAttributes) GetTimeOk() (*NotebookGlobalTime, bool) {
 	return &o.Time, true
 }
 
-// SetTime sets field value
+// SetTime sets field value.
 func (o *NotebookCreateDataAttributes) SetTime(v NotebookGlobalTime) {
 	o.Time = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -206,6 +205,7 @@ func (o NotebookCreateDataAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookCreateDataAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

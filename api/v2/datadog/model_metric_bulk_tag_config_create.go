@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,24 +22,24 @@ type MetricBulkTagConfigCreate struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMetricBulkTagConfigCreate instantiates a new MetricBulkTagConfigCreate object
+// NewMetricBulkTagConfigCreate instantiates a new MetricBulkTagConfigCreate object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMetricBulkTagConfigCreate(id string, type_ MetricBulkConfigureTagsType) *MetricBulkTagConfigCreate {
+// will change when the set of required properties is changed.
+func NewMetricBulkTagConfigCreate(id string, typeVar MetricBulkConfigureTagsType) *MetricBulkTagConfigCreate {
 	this := MetricBulkTagConfigCreate{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewMetricBulkTagConfigCreateWithDefaults instantiates a new MetricBulkTagConfigCreate object
+// NewMetricBulkTagConfigCreateWithDefaults instantiates a new MetricBulkTagConfigCreate object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMetricBulkTagConfigCreateWithDefaults() *MetricBulkTagConfigCreate {
 	this := MetricBulkTagConfigCreate{}
-	var type_ MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
-	this.Type = type_
+	var typeVar MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
+	this.Type = typeVar
 	return &this
 }
 
@@ -77,7 +75,7 @@ func (o *MetricBulkTagConfigCreate) SetAttributes(v MetricBulkTagConfigCreateAtt
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *MetricBulkTagConfigCreate) GetId() string {
 	if o == nil {
 		var ret string
@@ -95,12 +93,12 @@ func (o *MetricBulkTagConfigCreate) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *MetricBulkTagConfigCreate) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *MetricBulkTagConfigCreate) GetType() MetricBulkConfigureTagsType {
 	if o == nil {
 		var ret MetricBulkConfigureTagsType
@@ -118,11 +116,12 @@ func (o *MetricBulkTagConfigCreate) GetTypeOk() (*MetricBulkConfigureTagsType, b
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *MetricBulkTagConfigCreate) SetType(v MetricBulkConfigureTagsType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MetricBulkTagConfigCreate) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,6 +139,7 @@ func (o MetricBulkTagConfigCreate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MetricBulkTagConfigCreate) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

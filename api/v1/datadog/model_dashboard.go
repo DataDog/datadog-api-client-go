@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -55,10 +53,10 @@ type Dashboard struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewDashboard instantiates a new Dashboard object
+// NewDashboard instantiates a new Dashboard object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewDashboard(layoutType DashboardLayoutType, title string, widgets []Widget) *Dashboard {
 	this := Dashboard{}
 	var isReadOnly bool = false
@@ -69,9 +67,9 @@ func NewDashboard(layoutType DashboardLayoutType, title string, widgets []Widget
 	return &this
 }
 
-// NewDashboardWithDefaults instantiates a new Dashboard object
+// NewDashboardWithDefaults instantiates a new Dashboard object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewDashboardWithDefaults() *Dashboard {
 	this := Dashboard{}
 	var isReadOnly bool = false
@@ -122,7 +120,7 @@ func (o *Dashboard) GetAuthorName() string {
 
 // GetAuthorNameOk returns a tuple with the AuthorName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetAuthorNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -144,12 +142,12 @@ func (o *Dashboard) SetAuthorName(v string) {
 	o.AuthorName.Set(&v)
 }
 
-// SetAuthorNameNil sets the value for AuthorName to be an explicit nil
+// SetAuthorNameNil sets the value for AuthorName to be an explicit nil.
 func (o *Dashboard) SetAuthorNameNil() {
 	o.AuthorName.Set(nil)
 }
 
-// UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil
+// UnsetAuthorName ensures that no value is present for AuthorName, not even an explicit nil.
 func (o *Dashboard) UnsetAuthorName() {
 	o.AuthorName.Unset()
 }
@@ -197,7 +195,7 @@ func (o *Dashboard) GetDescription() string {
 
 // GetDescriptionOk returns a tuple with the Description field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetDescriptionOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -219,12 +217,12 @@ func (o *Dashboard) SetDescription(v string) {
 	o.Description.Set(&v)
 }
 
-// SetDescriptionNil sets the value for Description to be an explicit nil
+// SetDescriptionNil sets the value for Description to be an explicit nil.
 func (o *Dashboard) SetDescriptionNil() {
 	o.Description.Set(nil)
 }
 
-// UnsetDescription ensures that no value is present for Description, not even an explicit nil
+// UnsetDescription ensures that no value is present for Description, not even an explicit nil.
 func (o *Dashboard) UnsetDescription() {
 	o.Description.Unset()
 }
@@ -296,7 +294,7 @@ func (o *Dashboard) SetIsReadOnly(v bool) {
 	o.IsReadOnly = &v
 }
 
-// GetLayoutType returns the LayoutType field value
+// GetLayoutType returns the LayoutType field value.
 func (o *Dashboard) GetLayoutType() DashboardLayoutType {
 	if o == nil {
 		var ret DashboardLayoutType
@@ -314,7 +312,7 @@ func (o *Dashboard) GetLayoutTypeOk() (*DashboardLayoutType, bool) {
 	return &o.LayoutType, true
 }
 
-// SetLayoutType sets field value
+// SetLayoutType sets field value.
 func (o *Dashboard) SetLayoutType(v DashboardLayoutType) {
 	o.LayoutType = v
 }
@@ -362,7 +360,7 @@ func (o *Dashboard) GetNotifyList() []string {
 
 // GetNotifyListOk returns a tuple with the NotifyList field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetNotifyListOk() (*[]string, bool) {
 	if o == nil || o.NotifyList == nil {
 		return nil, false
@@ -459,7 +457,7 @@ func (o *Dashboard) GetTemplateVariablePresets() []DashboardTemplateVariablePres
 
 // GetTemplateVariablePresetsOk returns a tuple with the TemplateVariablePresets field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetTemplateVariablePresetsOk() (*[]DashboardTemplateVariablePreset, bool) {
 	if o == nil || o.TemplateVariablePresets == nil {
 		return nil, false
@@ -492,7 +490,7 @@ func (o *Dashboard) GetTemplateVariables() []DashboardTemplateVariable {
 
 // GetTemplateVariablesOk returns a tuple with the TemplateVariables field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Dashboard) GetTemplateVariablesOk() (*[]DashboardTemplateVariable, bool) {
 	if o == nil || o.TemplateVariables == nil {
 		return nil, false
@@ -514,7 +512,7 @@ func (o *Dashboard) SetTemplateVariables(v []DashboardTemplateVariable) {
 	o.TemplateVariables = v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value.
 func (o *Dashboard) GetTitle() string {
 	if o == nil {
 		var ret string
@@ -532,7 +530,7 @@ func (o *Dashboard) GetTitleOk() (*string, bool) {
 	return &o.Title, true
 }
 
-// SetTitle sets field value
+// SetTitle sets field value.
 func (o *Dashboard) SetTitle(v string) {
 	o.Title = v
 }
@@ -569,7 +567,7 @@ func (o *Dashboard) SetUrl(v string) {
 	o.Url = &v
 }
 
-// GetWidgets returns the Widgets field value
+// GetWidgets returns the Widgets field value.
 func (o *Dashboard) GetWidgets() []Widget {
 	if o == nil {
 		var ret []Widget
@@ -587,11 +585,12 @@ func (o *Dashboard) GetWidgetsOk() (*[]Widget, bool) {
 	return &o.Widgets, true
 }
 
-// SetWidgets sets field value
+// SetWidgets sets field value.
 func (o *Dashboard) SetWidgets(v []Widget) {
 	o.Widgets = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o Dashboard) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -654,6 +653,7 @@ func (o Dashboard) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *Dashboard) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

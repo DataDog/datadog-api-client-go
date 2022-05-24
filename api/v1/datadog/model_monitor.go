@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -51,20 +49,20 @@ type Monitor struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitor instantiates a new Monitor object
+// NewMonitor instantiates a new Monitor object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMonitor(query string, type_ MonitorType) *Monitor {
+// will change when the set of required properties is changed.
+func NewMonitor(query string, typeVar MonitorType) *Monitor {
 	this := Monitor{}
 	this.Query = query
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewMonitorWithDefaults instantiates a new Monitor object
+// NewMonitorWithDefaults instantiates a new Monitor object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorWithDefaults() *Monitor {
 	this := Monitor{}
 	return &this
@@ -145,7 +143,7 @@ func (o *Monitor) GetDeleted() time.Time {
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Monitor) GetDeletedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -167,12 +165,12 @@ func (o *Monitor) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
 
-// SetDeletedNil sets the value for Deleted to be an explicit nil
+// SetDeletedNil sets the value for Deleted to be an explicit nil.
 func (o *Monitor) SetDeletedNil() {
 	o.Deleted.Set(nil)
 }
 
-// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
+// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil.
 func (o *Monitor) UnsetDeleted() {
 	o.Deleted.Unset()
 }
@@ -412,7 +410,7 @@ func (o *Monitor) GetPriority() int64 {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Monitor) GetPriorityOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -434,17 +432,17 @@ func (o *Monitor) SetPriority(v int64) {
 	o.Priority.Set(&v)
 }
 
-// SetPriorityNil sets the value for Priority to be an explicit nil
+// SetPriorityNil sets the value for Priority to be an explicit nil.
 func (o *Monitor) SetPriorityNil() {
 	o.Priority.Set(nil)
 }
 
-// UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+// UnsetPriority ensures that no value is present for Priority, not even an explicit nil.
 func (o *Monitor) UnsetPriority() {
 	o.Priority.Unset()
 }
 
-// GetQuery returns the Query field value
+// GetQuery returns the Query field value.
 func (o *Monitor) GetQuery() string {
 	if o == nil {
 		var ret string
@@ -462,7 +460,7 @@ func (o *Monitor) GetQueryOk() (*string, bool) {
 	return &o.Query, true
 }
 
-// SetQuery sets field value
+// SetQuery sets field value.
 func (o *Monitor) SetQuery(v string) {
 	o.Query = v
 }
@@ -478,7 +476,7 @@ func (o *Monitor) GetRestrictedRoles() []string {
 
 // GetRestrictedRolesOk returns a tuple with the RestrictedRoles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Monitor) GetRestrictedRolesOk() (*[]string, bool) {
 	if o == nil || o.RestrictedRoles == nil {
 		return nil, false
@@ -564,7 +562,7 @@ func (o *Monitor) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *Monitor) GetType() MonitorType {
 	if o == nil {
 		var ret MonitorType
@@ -582,11 +580,12 @@ func (o *Monitor) GetTypeOk() (*MonitorType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *Monitor) SetType(v MonitorType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o Monitor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -651,6 +650,7 @@ func (o Monitor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

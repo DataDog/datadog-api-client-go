@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -35,19 +33,19 @@ type LogsListRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsListRequest instantiates a new LogsListRequest object
+// NewLogsListRequest instantiates a new LogsListRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewLogsListRequest(time LogsListRequestTime) *LogsListRequest {
 	this := LogsListRequest{}
 	this.Time = time
 	return &this
 }
 
-// NewLogsListRequestWithDefaults instantiates a new LogsListRequest object
+// NewLogsListRequestWithDefaults instantiates a new LogsListRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsListRequestWithDefaults() *LogsListRequest {
 	this := LogsListRequest{}
 	return &this
@@ -213,7 +211,7 @@ func (o *LogsListRequest) SetStartAt(v string) {
 	o.StartAt = &v
 }
 
-// GetTime returns the Time field value
+// GetTime returns the Time field value.
 func (o *LogsListRequest) GetTime() LogsListRequestTime {
 	if o == nil {
 		var ret LogsListRequestTime
@@ -231,11 +229,12 @@ func (o *LogsListRequest) GetTimeOk() (*LogsListRequestTime, bool) {
 	return &o.Time, true
 }
 
-// SetTime sets field value
+// SetTime sets field value.
 func (o *LogsListRequest) SetTime(v LogsListRequestTime) {
 	o.Time = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -264,6 +263,7 @@ func (o LogsListRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsListRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

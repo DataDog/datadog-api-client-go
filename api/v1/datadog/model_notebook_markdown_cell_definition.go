@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,28 +20,28 @@ type NotebookMarkdownCellDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookMarkdownCellDefinition instantiates a new NotebookMarkdownCellDefinition object
+// NewNotebookMarkdownCellDefinition instantiates a new NotebookMarkdownCellDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNotebookMarkdownCellDefinition(text string, type_ NotebookMarkdownCellDefinitionType) *NotebookMarkdownCellDefinition {
+// will change when the set of required properties is changed.
+func NewNotebookMarkdownCellDefinition(text string, typeVar NotebookMarkdownCellDefinitionType) *NotebookMarkdownCellDefinition {
 	this := NotebookMarkdownCellDefinition{}
 	this.Text = text
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewNotebookMarkdownCellDefinitionWithDefaults instantiates a new NotebookMarkdownCellDefinition object
+// NewNotebookMarkdownCellDefinitionWithDefaults instantiates a new NotebookMarkdownCellDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookMarkdownCellDefinitionWithDefaults() *NotebookMarkdownCellDefinition {
 	this := NotebookMarkdownCellDefinition{}
-	var type_ NotebookMarkdownCellDefinitionType = NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN
-	this.Type = type_
+	var typeVar NotebookMarkdownCellDefinitionType = NOTEBOOKMARKDOWNCELLDEFINITIONTYPE_MARKDOWN
+	this.Type = typeVar
 	return &this
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value.
 func (o *NotebookMarkdownCellDefinition) GetText() string {
 	if o == nil {
 		var ret string
@@ -61,12 +59,12 @@ func (o *NotebookMarkdownCellDefinition) GetTextOk() (*string, bool) {
 	return &o.Text, true
 }
 
-// SetText sets field value
+// SetText sets field value.
 func (o *NotebookMarkdownCellDefinition) SetText(v string) {
 	o.Text = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *NotebookMarkdownCellDefinition) GetType() NotebookMarkdownCellDefinitionType {
 	if o == nil {
 		var ret NotebookMarkdownCellDefinitionType
@@ -84,11 +82,12 @@ func (o *NotebookMarkdownCellDefinition) GetTypeOk() (*NotebookMarkdownCellDefin
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *NotebookMarkdownCellDefinition) SetType(v NotebookMarkdownCellDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -103,6 +102,7 @@ func (o NotebookMarkdownCellDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookMarkdownCellDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

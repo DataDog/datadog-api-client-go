@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -17,12 +15,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// MetricsApiService MetricsApi service
+// MetricsApiService MetricsApi service.
 type MetricsApiService service
 
 type apiCreateBulkTagsMetricsConfigurationRequest struct {
@@ -40,15 +33,13 @@ func (a *MetricsApiService) buildCreateBulkTagsMetricsConfigurationRequest(ctx _
 	return req, nil
 }
 
-/*
- * CreateBulkTagsMetricsConfiguration Configure tags for multiple metrics
- * Create and define a list of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
- * Metrics are selected by passing a metric name prefix. Use the Delete method of this API path to remove tag configurations.
- * Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
- * If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
- * expect deterministic ordering of concurrent calls.
- * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
- */
+// CreateBulkTagsMetricsConfiguration Configure tags for multiple metrics.
+// Create and define a list of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
+// Metrics are selected by passing a metric name prefix. Use the Delete method of this API path to remove tag configurations.
+// Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
+// If multiple calls include the same metric, the last configuration applied (not by submit order) is used, do not
+// expect deterministic ordering of concurrent calls.
+// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigCreateRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
@@ -59,10 +50,7 @@ func (a *MetricsApiService) CreateBulkTagsMetricsConfiguration(ctx _context.Cont
 	return req.ApiService.createBulkTagsMetricsConfigurationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricBulkTagConfigResponse
- */
+// createBulkTagsMetricsConfigurationExecute executes the request.
 func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreateBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -225,13 +213,11 @@ func (a *MetricsApiService) buildCreateTagConfigurationRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * CreateTagConfiguration Create a tag configuration
- * Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
- * Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
- * on any count, rate, or gauge metric.
- * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
- */
+// CreateTagConfiguration Create a tag configuration.
+// Create and define a list of queryable tag keys for an existing count/gauge/rate/distribution metric.
+// Optionally, include percentile aggregations on any distribution metric or configure custom aggregations
+// on any count, rate, or gauge metric.
+// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationCreateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
@@ -242,10 +228,7 @@ func (a *MetricsApiService) CreateTagConfiguration(ctx _context.Context, metricN
 	return req.ApiService.createTagConfigurationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricTagConfigurationResponse
- */
+// createTagConfigurationExecute executes the request.
 func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -414,13 +397,11 @@ func (a *MetricsApiService) buildDeleteBulkTagsMetricsConfigurationRequest(ctx _
 	return req, nil
 }
 
-/*
- * DeleteBulkTagsMetricsConfiguration Configure tags for multiple metrics
- * Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
- * Metrics are selected by passing a metric name prefix.
- * Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
- * Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
- */
+// DeleteBulkTagsMetricsConfiguration Configure tags for multiple metrics.
+// Delete all custom lists of queryable tag keys for a set of existing count, gauge, rate, and distribution metrics.
+// Metrics are selected by passing a metric name prefix.
+// Results can be sent to a set of account email addresses, just like the same operation in the Datadog web app.
+// Can only be used with application keys of users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Context, body MetricBulkTagConfigDeleteRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	req, err := a.buildDeleteBulkTagsMetricsConfigurationRequest(ctx, body)
 	if err != nil {
@@ -431,10 +412,7 @@ func (a *MetricsApiService) DeleteBulkTagsMetricsConfiguration(ctx _context.Cont
 	return req.ApiService.deleteBulkTagsMetricsConfigurationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricBulkTagConfigResponse
- */
+// deleteBulkTagsMetricsConfigurationExecute executes the request.
 func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDeleteBulkTagsMetricsConfigurationRequest) (MetricBulkTagConfigResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -595,11 +573,9 @@ func (a *MetricsApiService) buildDeleteTagConfigurationRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * DeleteTagConfiguration Delete a tag configuration
- * Deletes a metric's tag configuration. Can only be used with application
- * keys from users with the `Manage Tags for Metrics` permission.
- */
+// DeleteTagConfiguration Delete a tag configuration.
+// Deletes a metric's tag configuration. Can only be used with application
+// keys from users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteTagConfigurationRequest(ctx, metricName)
 	if err != nil {
@@ -609,9 +585,7 @@ func (a *MetricsApiService) DeleteTagConfiguration(ctx _context.Context, metricN
 	return req.ApiService.deleteTagConfigurationExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteTagConfigurationExecute executes the request.
 func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigurationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -741,6 +715,7 @@ type apiEstimateMetricsOutputSeriesRequest struct {
 	filterTimespanH       *int32
 }
 
+// EstimateMetricsOutputSeriesOptionalParameters holds optional parameters for EstimateMetricsOutputSeries.
 type EstimateMetricsOutputSeriesOptionalParameters struct {
 	FilterGroups          *string
 	FilterHoursAgo        *int32
@@ -749,26 +724,37 @@ type EstimateMetricsOutputSeriesOptionalParameters struct {
 	FilterTimespanH       *int32
 }
 
+// NewEstimateMetricsOutputSeriesOptionalParameters creates an empty struct for parameters.
 func NewEstimateMetricsOutputSeriesOptionalParameters() *EstimateMetricsOutputSeriesOptionalParameters {
 	this := EstimateMetricsOutputSeriesOptionalParameters{}
 	return &this
 }
+
+// WithFilterGroups sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterGroups(filterGroups string) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterGroups = &filterGroups
 	return r
 }
+
+// WithFilterHoursAgo sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterHoursAgo(filterHoursAgo int32) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterHoursAgo = &filterHoursAgo
 	return r
 }
+
+// WithFilterNumAggregations sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterNumAggregations(filterNumAggregations int32) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterNumAggregations = &filterNumAggregations
 	return r
 }
+
+// WithFilterPct sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterPct(filterPct bool) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterPct = &filterPct
 	return r
 }
+
+// WithFilterTimespanH sets the corresponding parameter name and returns the struct.
 func (r *EstimateMetricsOutputSeriesOptionalParameters) WithFilterTimespanH(filterTimespanH int32) *EstimateMetricsOutputSeriesOptionalParameters {
 	r.FilterTimespanH = &filterTimespanH
 	return r
@@ -795,10 +781,8 @@ func (a *MetricsApiService) buildEstimateMetricsOutputSeriesRequest(ctx _context
 	return req, nil
 }
 
-/*
- * EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator
- * Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
- */
+// EstimateMetricsOutputSeries Tag Configuration Cardinality Estimator.
+// Returns the estimated cardinality for a metric with a given tag, percentile and number of aggregations configuration using Metrics without Limits&trade;.
 func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, metricName string, o ...EstimateMetricsOutputSeriesOptionalParameters) (MetricEstimateResponse, *_nethttp.Response, error) {
 	req, err := a.buildEstimateMetricsOutputSeriesRequest(ctx, metricName, o...)
 	if err != nil {
@@ -809,10 +793,7 @@ func (a *MetricsApiService) EstimateMetricsOutputSeries(ctx _context.Context, me
 	return req.ApiService.estimateMetricsOutputSeriesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricEstimateResponse
- */
+// estimateMetricsOutputSeriesExecute executes the request.
 func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetricsOutputSeriesRequest) (MetricEstimateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -974,10 +955,8 @@ func (a *MetricsApiService) buildListTagConfigurationByNameRequest(ctx _context.
 	return req, nil
 }
 
-/*
- * ListTagConfigurationByName List tag configuration by name
- * Returns the tag configuration for the given metric name.
- */
+// ListTagConfigurationByName List tag configuration by name.
+// Returns the tag configuration for the given metric name.
 func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, metricName string) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationByNameRequest(ctx, metricName)
 	if err != nil {
@@ -988,10 +967,7 @@ func (a *MetricsApiService) ListTagConfigurationByName(ctx _context.Context, met
 	return req.ApiService.listTagConfigurationByNameExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricTagConfigurationResponse
- */
+// listTagConfigurationByNameExecute executes the request.
 func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfigurationByNameRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1131,6 +1107,7 @@ type apiListTagConfigurationsRequest struct {
 	windowSeconds            *int64
 }
 
+// ListTagConfigurationsOptionalParameters holds optional parameters for ListTagConfigurations.
 type ListTagConfigurationsOptionalParameters struct {
 	FilterConfigured         *bool
 	FilterTagsConfigured     *string
@@ -1140,30 +1117,43 @@ type ListTagConfigurationsOptionalParameters struct {
 	WindowSeconds            *int64
 }
 
+// NewListTagConfigurationsOptionalParameters creates an empty struct for parameters.
 func NewListTagConfigurationsOptionalParameters() *ListTagConfigurationsOptionalParameters {
 	this := ListTagConfigurationsOptionalParameters{}
 	return &this
 }
+
+// WithFilterConfigured sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterConfigured(filterConfigured bool) *ListTagConfigurationsOptionalParameters {
 	r.FilterConfigured = &filterConfigured
 	return r
 }
+
+// WithFilterTagsConfigured sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterTagsConfigured(filterTagsConfigured string) *ListTagConfigurationsOptionalParameters {
 	r.FilterTagsConfigured = &filterTagsConfigured
 	return r
 }
+
+// WithFilterMetricType sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterMetricType(filterMetricType MetricTagConfigurationMetricTypes) *ListTagConfigurationsOptionalParameters {
 	r.FilterMetricType = &filterMetricType
 	return r
 }
+
+// WithFilterIncludePercentiles sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterIncludePercentiles(filterIncludePercentiles bool) *ListTagConfigurationsOptionalParameters {
 	r.FilterIncludePercentiles = &filterIncludePercentiles
 	return r
 }
+
+// WithFilterTags sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithFilterTags(filterTags string) *ListTagConfigurationsOptionalParameters {
 	r.FilterTags = &filterTags
 	return r
 }
+
+// WithWindowSeconds sets the corresponding parameter name and returns the struct.
 func (r *ListTagConfigurationsOptionalParameters) WithWindowSeconds(windowSeconds int64) *ListTagConfigurationsOptionalParameters {
 	r.WindowSeconds = &windowSeconds
 	return r
@@ -1190,11 +1180,9 @@ func (a *MetricsApiService) buildListTagConfigurationsRequest(ctx _context.Conte
 	return req, nil
 }
 
-/*
- * ListTagConfigurations List tag configurations
- * Returns all configured count/gauge/rate/distribution metric names
- * (with additional filters if specified).
- */
+// ListTagConfigurations List tag configurations.
+// Returns all configured count/gauge/rate/distribution metric names
+// (with additional filters if specified).
 func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...ListTagConfigurationsOptionalParameters) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagConfigurationsRequest(ctx, o...)
 	if err != nil {
@@ -1205,10 +1193,7 @@ func (a *MetricsApiService) ListTagConfigurations(ctx _context.Context, o ...Lis
 	return req.ApiService.listTagConfigurationsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricsAndMetricTagConfigurationsResponse
- */
+// listTagConfigurationsExecute executes the request.
 func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurationsRequest) (MetricsAndMetricTagConfigurationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1369,10 +1354,8 @@ func (a *MetricsApiService) buildListTagsByMetricNameRequest(ctx _context.Contex
 	return req, nil
 }
 
-/*
- * ListTagsByMetricName List tags by metric name
- * View indexed tag key-value pairs for a given metric name.
- */
+// ListTagsByMetricName List tags by metric name.
+// View indexed tag key-value pairs for a given metric name.
 func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricName string) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListTagsByMetricNameRequest(ctx, metricName)
 	if err != nil {
@@ -1383,10 +1366,7 @@ func (a *MetricsApiService) ListTagsByMetricName(ctx _context.Context, metricNam
 	return req.ApiService.listTagsByMetricNameExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricAllTagsResponse
- */
+// listTagsByMetricNameExecute executes the request.
 func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNameRequest) (MetricAllTagsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1533,14 +1513,12 @@ func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * ListVolumesByMetricName List distinct metric volumes by metric name
- * View distinct metrics volumes for the given metric name.
- *
- * Custom distribution metrics will return both ingested and indexed custom metric volumes.
- * For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
- * Custom metrics generated in-app from other products will return `null` for ingested volumes.
- */
+// ListVolumesByMetricName List distinct metric volumes by metric name.
+// View distinct metrics volumes for the given metric name.
+//
+// Custom distribution metrics will return both ingested and indexed custom metric volumes.
+// For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
+// Custom metrics generated in-app from other products will return `null` for ingested volumes.
 func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListVolumesByMetricNameRequest(ctx, metricName)
 	if err != nil {
@@ -1551,10 +1529,7 @@ func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metric
 	return req.ApiService.listVolumesByMetricNameExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricVolumesResponse
- */
+// listVolumesByMetricNameExecute executes the request.
 func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMetricNameRequest) (MetricVolumesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1693,14 +1668,18 @@ type apiSubmitMetricsRequest struct {
 	contentEncoding *MetricContentEncoding
 }
 
+// SubmitMetricsOptionalParameters holds optional parameters for SubmitMetrics.
 type SubmitMetricsOptionalParameters struct {
 	ContentEncoding *MetricContentEncoding
 }
 
+// NewSubmitMetricsOptionalParameters creates an empty struct for parameters.
 func NewSubmitMetricsOptionalParameters() *SubmitMetricsOptionalParameters {
 	this := SubmitMetricsOptionalParameters{}
 	return &this
 }
+
+// WithContentEncoding sets the corresponding parameter name and returns the struct.
 func (r *SubmitMetricsOptionalParameters) WithContentEncoding(contentEncoding MetricContentEncoding) *SubmitMetricsOptionalParameters {
 	r.ContentEncoding = &contentEncoding
 	return r
@@ -1723,19 +1702,17 @@ func (a *MetricsApiService) buildSubmitMetricsRequest(ctx _context.Context, body
 	return req, nil
 }
 
-/*
- * SubmitMetrics Submit metrics
- * The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
- * The maximum payload size is 500 kilobytes (512000 bytes). Compressed payloads must have a decompressed size of less than 5 megabytes (5242880 bytes).
- *
- * If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect:
- *
- * - 64 bits for the timestamp
- * - 64 bits for the value
- * - 20 bytes for the metric names
- * - 50 bytes for the timeseries
- * - The full payload is approximately 100 bytes.
- */
+// SubmitMetrics Submit metrics.
+// The metrics end-point allows you to post time-series data that can be graphed on Datadog’s dashboards.
+// The maximum payload size is 500 kilobytes (512000 bytes). Compressed payloads must have a decompressed size of less than 5 megabytes (5242880 bytes).
+//
+// If you’re submitting metrics directly to the Datadog API without using DogStatsD, expect:
+//
+// - 64 bits for the timestamp
+// - 64 bits for the value
+// - 20 bytes for the metric names
+// - 50 bytes for the timeseries
+// - The full payload is approximately 100 bytes.
 func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricPayload, o ...SubmitMetricsOptionalParameters) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	req, err := a.buildSubmitMetricsRequest(ctx, body, o...)
 	if err != nil {
@@ -1746,10 +1723,7 @@ func (a *MetricsApiService) SubmitMetrics(ctx _context.Context, body MetricPaylo
 	return req.ApiService.submitMetricsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IntakePayloadAccepted
- */
+// submitMetricsExecute executes the request.
 func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (IntakePayloadAccepted, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1912,12 +1886,10 @@ func (a *MetricsApiService) buildUpdateTagConfigurationRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * UpdateTagConfiguration Update a tag configuration
- * Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
- * of a count, rate, or gauge metric.
- * Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
- */
+// UpdateTagConfiguration Update a tag configuration.
+// Update the tag configuration of a metric or percentile aggregations of a distribution metric or custom aggregations
+// of a count, rate, or gauge metric.
+// Can only be used with application keys from users with the `Manage Tags for Metrics` permission.
 func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricName string, body MetricTagConfigurationUpdateRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateTagConfigurationRequest(ctx, metricName, body)
 	if err != nil {
@@ -1928,10 +1900,7 @@ func (a *MetricsApiService) UpdateTagConfiguration(ctx _context.Context, metricN
 	return req.ApiService.updateTagConfigurationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return MetricTagConfigurationResponse
- */
+// updateTagConfigurationExecute executes the request.
 func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigurationRequest) (MetricTagConfigurationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

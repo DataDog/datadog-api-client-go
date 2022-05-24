@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -23,18 +21,18 @@ type AuditLogsEventsResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAuditLogsEventsResponse instantiates a new AuditLogsEventsResponse object
+// NewAuditLogsEventsResponse instantiates a new AuditLogsEventsResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewAuditLogsEventsResponse() *AuditLogsEventsResponse {
 	this := AuditLogsEventsResponse{}
 	return &this
 }
 
-// NewAuditLogsEventsResponseWithDefaults instantiates a new AuditLogsEventsResponse object
+// NewAuditLogsEventsResponseWithDefaults instantiates a new AuditLogsEventsResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAuditLogsEventsResponseWithDefaults() *AuditLogsEventsResponse {
 	this := AuditLogsEventsResponse{}
 	return &this
@@ -136,6 +134,7 @@ func (o *AuditLogsEventsResponse) SetMeta(v AuditLogsResponseMetadata) {
 	o.Meta = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,6 +156,7 @@ func (o AuditLogsEventsResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *AuditLogsEventsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

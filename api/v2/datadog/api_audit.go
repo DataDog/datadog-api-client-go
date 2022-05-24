@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// AuditApiService AuditApi service
+// AuditApiService AuditApi service.
 type AuditApiService service
 
 type apiListAuditLogsRequest struct {
@@ -34,6 +27,7 @@ type apiListAuditLogsRequest struct {
 	pageLimit   *int32
 }
 
+// ListAuditLogsOptionalParameters holds optional parameters for ListAuditLogs.
 type ListAuditLogsOptionalParameters struct {
 	FilterQuery *string
 	FilterFrom  *time.Time
@@ -43,30 +37,43 @@ type ListAuditLogsOptionalParameters struct {
 	PageLimit   *int32
 }
 
+// NewListAuditLogsOptionalParameters creates an empty struct for parameters.
 func NewListAuditLogsOptionalParameters() *ListAuditLogsOptionalParameters {
 	this := ListAuditLogsOptionalParameters{}
 	return &this
 }
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithFilterQuery(filterQuery string) *ListAuditLogsOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
+
+// WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListAuditLogsOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
+
+// WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithFilterTo(filterTo time.Time) *ListAuditLogsOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithSort(sort AuditLogsSort) *ListAuditLogsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithPageCursor(pageCursor string) *ListAuditLogsOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListAuditLogsOptionalParameters) WithPageLimit(pageLimit int32) *ListAuditLogsOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
@@ -93,15 +100,13 @@ func (a *AuditApiService) buildListAuditLogsRequest(ctx _context.Context, o ...L
 	return req, nil
 }
 
-/*
- * ListAuditLogs Get a list of Audit Logs events
- * List endpoint returns events that match a Audit Logs search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to see your latest Audit Logs events.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
+// ListAuditLogs Get a list of Audit Logs events.
+// List endpoint returns events that match a Audit Logs search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to see your latest Audit Logs events.
+//
+// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuditLogsRequest(ctx, o...)
 	if err != nil {
@@ -112,9 +117,7 @@ func (a *AuditApiService) ListAuditLogs(ctx _context.Context, o ...ListAuditLogs
 	return req.ApiService.listAuditLogsExecute(req)
 }
 
-/*
- * ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
- */
+// ListAuditLogsWithPagination provides a paginated version of ListAuditLogs returning a channel with all items.
 func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ...ListAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -175,10 +178,7 @@ func (a *AuditApiService) ListAuditLogsWithPagination(ctx _context.Context, o ..
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return AuditLogsEventsResponse
- */
+// listAuditLogsExecute executes the request.
 func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -323,14 +323,18 @@ type apiSearchAuditLogsRequest struct {
 	body       *AuditLogsSearchEventsRequest
 }
 
+// SearchAuditLogsOptionalParameters holds optional parameters for SearchAuditLogs.
 type SearchAuditLogsOptionalParameters struct {
 	Body *AuditLogsSearchEventsRequest
 }
 
+// NewSearchAuditLogsOptionalParameters creates an empty struct for parameters.
 func NewSearchAuditLogsOptionalParameters() *SearchAuditLogsOptionalParameters {
 	this := SearchAuditLogsOptionalParameters{}
 	return &this
 }
+
+// WithBody sets the corresponding parameter name and returns the struct.
 func (r *SearchAuditLogsOptionalParameters) WithBody(body AuditLogsSearchEventsRequest) *SearchAuditLogsOptionalParameters {
 	r.Body = &body
 	return r
@@ -352,15 +356,13 @@ func (a *AuditApiService) buildSearchAuditLogsRequest(ctx _context.Context, o ..
 	return req, nil
 }
 
-/*
- * SearchAuditLogs Search Audit Logs events
- * List endpoint returns Audit Logs events that match an Audit search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to build complex Audit Logs events filtering and search.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
+// SearchAuditLogs Search Audit Logs events.
+// List endpoint returns Audit Logs events that match an Audit search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to build complex Audit Logs events filtering and search.
+//
+// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchAuditLogsRequest(ctx, o...)
 	if err != nil {
@@ -371,9 +373,7 @@ func (a *AuditApiService) SearchAuditLogs(ctx _context.Context, o ...SearchAudit
 	return req.ApiService.searchAuditLogsExecute(req)
 }
 
-/*
- * SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
- */
+// SearchAuditLogsWithPagination provides a paginated version of SearchAuditLogs returning a channel with all items.
 func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o ...SearchAuditLogsOptionalParameters) (<-chan AuditLogsEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -440,10 +440,7 @@ func (a *AuditApiService) SearchAuditLogsWithPagination(ctx _context.Context, o 
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return AuditLogsEventsResponse
- */
+// searchAuditLogsExecute executes the request.
 func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (AuditLogsEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

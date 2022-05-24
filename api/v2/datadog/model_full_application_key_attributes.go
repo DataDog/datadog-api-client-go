@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -27,18 +25,18 @@ type FullApplicationKeyAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFullApplicationKeyAttributes instantiates a new FullApplicationKeyAttributes object
+// NewFullApplicationKeyAttributes instantiates a new FullApplicationKeyAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewFullApplicationKeyAttributes() *FullApplicationKeyAttributes {
 	this := FullApplicationKeyAttributes{}
 	return &this
 }
 
-// NewFullApplicationKeyAttributesWithDefaults instantiates a new FullApplicationKeyAttributes object
+// NewFullApplicationKeyAttributesWithDefaults instantiates a new FullApplicationKeyAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewFullApplicationKeyAttributesWithDefaults() *FullApplicationKeyAttributes {
 	this := FullApplicationKeyAttributes{}
 	return &this
@@ -183,7 +181,7 @@ func (o *FullApplicationKeyAttributes) GetScopes() []string {
 
 // GetScopesOk returns a tuple with the Scopes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *FullApplicationKeyAttributes) GetScopesOk() (*[]string, bool) {
 	if o == nil || o.Scopes == nil {
 		return nil, false
@@ -205,6 +203,7 @@ func (o *FullApplicationKeyAttributes) SetScopes(v []string) {
 	o.Scopes = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -232,6 +231,7 @@ func (o FullApplicationKeyAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *FullApplicationKeyAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

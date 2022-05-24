@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,27 +24,27 @@ type SyntheticsBrowserError struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object
+// NewSyntheticsBrowserError instantiates a new SyntheticsBrowserError object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsBrowserError(description string, name string, type_ SyntheticsBrowserErrorType) *SyntheticsBrowserError {
+// will change when the set of required properties is changed.
+func NewSyntheticsBrowserError(description string, name string, typeVar SyntheticsBrowserErrorType) *SyntheticsBrowserError {
 	this := SyntheticsBrowserError{}
 	this.Description = description
 	this.Name = name
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsBrowserErrorWithDefaults instantiates a new SyntheticsBrowserError object
+// NewSyntheticsBrowserErrorWithDefaults instantiates a new SyntheticsBrowserError object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsBrowserErrorWithDefaults() *SyntheticsBrowserError {
 	this := SyntheticsBrowserError{}
 	return &this
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value.
 func (o *SyntheticsBrowserError) GetDescription() string {
 	if o == nil {
 		var ret string
@@ -64,12 +62,12 @@ func (o *SyntheticsBrowserError) GetDescriptionOk() (*string, bool) {
 	return &o.Description, true
 }
 
-// SetDescription sets field value
+// SetDescription sets field value.
 func (o *SyntheticsBrowserError) SetDescription(v string) {
 	o.Description = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *SyntheticsBrowserError) GetName() string {
 	if o == nil {
 		var ret string
@@ -87,7 +85,7 @@ func (o *SyntheticsBrowserError) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *SyntheticsBrowserError) SetName(v string) {
 	o.Name = v
 }
@@ -124,7 +122,7 @@ func (o *SyntheticsBrowserError) SetStatus(v int64) {
 	o.Status = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsBrowserError) GetType() SyntheticsBrowserErrorType {
 	if o == nil {
 		var ret SyntheticsBrowserErrorType
@@ -142,11 +140,12 @@ func (o *SyntheticsBrowserError) GetTypeOk() (*SyntheticsBrowserErrorType, bool)
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsBrowserError) SetType(v SyntheticsBrowserErrorType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -165,6 +164,7 @@ func (o SyntheticsBrowserError) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserError) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

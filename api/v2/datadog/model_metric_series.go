@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -37,10 +35,10 @@ type MetricSeries struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMetricSeries instantiates a new MetricSeries object
+// NewMetricSeries instantiates a new MetricSeries object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMetricSeries(metric string, points []MetricPoint) *MetricSeries {
 	this := MetricSeries{}
 	this.Metric = metric
@@ -48,9 +46,9 @@ func NewMetricSeries(metric string, points []MetricPoint) *MetricSeries {
 	return &this
 }
 
-// NewMetricSeriesWithDefaults instantiates a new MetricSeries object
+// NewMetricSeriesWithDefaults instantiates a new MetricSeries object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMetricSeriesWithDefaults() *MetricSeries {
 	this := MetricSeries{}
 	return &this
@@ -120,7 +118,7 @@ func (o *MetricSeries) SetMetadata(v MetricMetadata) {
 	o.Metadata = &v
 }
 
-// GetMetric returns the Metric field value
+// GetMetric returns the Metric field value.
 func (o *MetricSeries) GetMetric() string {
 	if o == nil {
 		var ret string
@@ -138,12 +136,12 @@ func (o *MetricSeries) GetMetricOk() (*string, bool) {
 	return &o.Metric, true
 }
 
-// SetMetric sets field value
+// SetMetric sets field value.
 func (o *MetricSeries) SetMetric(v string) {
 	o.Metric = v
 }
 
-// GetPoints returns the Points field value
+// GetPoints returns the Points field value.
 func (o *MetricSeries) GetPoints() []MetricPoint {
 	if o == nil {
 		var ret []MetricPoint
@@ -161,7 +159,7 @@ func (o *MetricSeries) GetPointsOk() (*[]MetricPoint, bool) {
 	return &o.Points, true
 }
 
-// SetPoints sets field value
+// SetPoints sets field value.
 func (o *MetricSeries) SetPoints(v []MetricPoint) {
 	o.Points = v
 }
@@ -326,6 +324,7 @@ func (o *MetricSeries) SetUnit(v string) {
 	o.Unit = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MetricSeries) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -361,6 +360,7 @@ func (o MetricSeries) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MetricSeries) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

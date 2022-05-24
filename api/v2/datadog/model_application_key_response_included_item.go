@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -19,81 +17,80 @@ type ApplicationKeyResponseIncludedItem struct {
 	UnparsedObject interface{}
 }
 
-// UserAsApplicationKeyResponseIncludedItem is a convenience function that returns User wrapped in ApplicationKeyResponseIncludedItem
+// UserAsApplicationKeyResponseIncludedItem is a convenience function that returns User wrapped in ApplicationKeyResponseIncludedItem.
 func UserAsApplicationKeyResponseIncludedItem(v *User) ApplicationKeyResponseIncludedItem {
 	return ApplicationKeyResponseIncludedItem{User: v}
 }
 
-// RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem
+// RoleAsApplicationKeyResponseIncludedItem is a convenience function that returns Role wrapped in ApplicationKeyResponseIncludedItem.
 func RoleAsApplicationKeyResponseIncludedItem(v *Role) ApplicationKeyResponseIncludedItem {
 	return ApplicationKeyResponseIncludedItem{Role: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *ApplicationKeyResponseIncludedItem) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into User
-	err = json.Unmarshal(data, &dst.User)
+	err = json.Unmarshal(data, &obj.User)
 	if err == nil {
-		if dst.User != nil && dst.User.UnparsedObject == nil {
-			jsonUser, _ := json.Marshal(dst.User)
+		if obj.User != nil && obj.User.UnparsedObject == nil {
+			jsonUser, _ := json.Marshal(obj.User)
 			if string(jsonUser) == "{}" { // empty struct
-				dst.User = nil
+				obj.User = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.User = nil
+			obj.User = nil
 		}
 	} else {
-		dst.User = nil
+		obj.User = nil
 	}
 
 	// try to unmarshal data into Role
-	err = json.Unmarshal(data, &dst.Role)
+	err = json.Unmarshal(data, &obj.Role)
 	if err == nil {
-		if dst.Role != nil && dst.Role.UnparsedObject == nil {
-			jsonRole, _ := json.Marshal(dst.Role)
+		if obj.Role != nil && obj.Role.UnparsedObject == nil {
+			jsonRole, _ := json.Marshal(obj.Role)
 			if string(jsonRole) == "{}" { // empty struct
-				dst.Role = nil
+				obj.Role = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.Role = nil
+			obj.Role = nil
 		}
 	} else {
-		dst.Role = nil
+		obj.Role = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.User = nil
-		dst.Role = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.User = nil
+		obj.Role = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
-	if src.User != nil {
-		return json.Marshal(&src.User)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj ApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
+	if obj.User != nil {
+		return json.Marshal(&obj.User)
 	}
 
-	if src.Role != nil {
-		return json.Marshal(&src.Role)
+	if obj.Role != nil {
+		return json.Marshal(&obj.Role)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
@@ -107,37 +104,45 @@ func (obj *ApplicationKeyResponseIncludedItem) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableApplicationKeyResponseIncludedItem handles when a null is used for ApplicationKeyResponseIncludedItem.
 type NullableApplicationKeyResponseIncludedItem struct {
 	value *ApplicationKeyResponseIncludedItem
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableApplicationKeyResponseIncludedItem) Get() *ApplicationKeyResponseIncludedItem {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableApplicationKeyResponseIncludedItem) Set(val *ApplicationKeyResponseIncludedItem) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableApplicationKeyResponseIncludedItem) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableApplicationKeyResponseIncludedItem) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableApplicationKeyResponseIncludedItem initializes the struct as if Set has been called.
 func NewNullableApplicationKeyResponseIncludedItem(val *ApplicationKeyResponseIncludedItem) *NullableApplicationKeyResponseIncludedItem {
 	return &NullableApplicationKeyResponseIncludedItem{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableApplicationKeyResponseIncludedItem) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableApplicationKeyResponseIncludedItem) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

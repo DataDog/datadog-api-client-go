@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -34,10 +32,10 @@ type SyntheticsGlobalVariable struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsGlobalVariable instantiates a new SyntheticsGlobalVariable object
+// NewSyntheticsGlobalVariable instantiates a new SyntheticsGlobalVariable object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsGlobalVariable(description string, name string, tags []string, value SyntheticsGlobalVariableValue) *SyntheticsGlobalVariable {
 	this := SyntheticsGlobalVariable{}
 	this.Description = description
@@ -47,9 +45,9 @@ func NewSyntheticsGlobalVariable(description string, name string, tags []string,
 	return &this
 }
 
-// NewSyntheticsGlobalVariableWithDefaults instantiates a new SyntheticsGlobalVariable object
+// NewSyntheticsGlobalVariableWithDefaults instantiates a new SyntheticsGlobalVariable object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsGlobalVariableWithDefaults() *SyntheticsGlobalVariable {
 	this := SyntheticsGlobalVariable{}
 	return &this
@@ -87,7 +85,7 @@ func (o *SyntheticsGlobalVariable) SetAttributes(v SyntheticsGlobalVariableAttri
 	o.Attributes = &v
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value.
 func (o *SyntheticsGlobalVariable) GetDescription() string {
 	if o == nil {
 		var ret string
@@ -105,7 +103,7 @@ func (o *SyntheticsGlobalVariable) GetDescriptionOk() (*string, bool) {
 	return &o.Description, true
 }
 
-// SetDescription sets field value
+// SetDescription sets field value.
 func (o *SyntheticsGlobalVariable) SetDescription(v string) {
 	o.Description = v
 }
@@ -142,7 +140,7 @@ func (o *SyntheticsGlobalVariable) SetId(v string) {
 	o.Id = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *SyntheticsGlobalVariable) GetName() string {
 	if o == nil {
 		var ret string
@@ -160,7 +158,7 @@ func (o *SyntheticsGlobalVariable) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *SyntheticsGlobalVariable) SetName(v string) {
 	o.Name = v
 }
@@ -229,7 +227,7 @@ func (o *SyntheticsGlobalVariable) SetParseTestPublicId(v string) {
 	o.ParseTestPublicId = &v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value.
 func (o *SyntheticsGlobalVariable) GetTags() []string {
 	if o == nil {
 		var ret []string
@@ -247,12 +245,12 @@ func (o *SyntheticsGlobalVariable) GetTagsOk() (*[]string, bool) {
 	return &o.Tags, true
 }
 
-// SetTags sets field value
+// SetTags sets field value.
 func (o *SyntheticsGlobalVariable) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetValue returns the Value field value
+// GetValue returns the Value field value.
 func (o *SyntheticsGlobalVariable) GetValue() SyntheticsGlobalVariableValue {
 	if o == nil {
 		var ret SyntheticsGlobalVariableValue
@@ -270,11 +268,12 @@ func (o *SyntheticsGlobalVariable) GetValueOk() (*SyntheticsGlobalVariableValue,
 	return &o.Value, true
 }
 
-// SetValue sets field value
+// SetValue sets field value.
 func (o *SyntheticsGlobalVariable) SetValue(v SyntheticsGlobalVariableValue) {
 	o.Value = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -303,6 +302,7 @@ func (o SyntheticsGlobalVariable) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsGlobalVariable) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -41,31 +39,31 @@ type SyntheticsBrowserTest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object
+// NewSyntheticsBrowserTest instantiates a new SyntheticsBrowserTest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsBrowserTest(config SyntheticsBrowserTestConfig, locations []string, name string, options SyntheticsTestOptions, type_ SyntheticsBrowserTestType) *SyntheticsBrowserTest {
+// will change when the set of required properties is changed.
+func NewSyntheticsBrowserTest(config SyntheticsBrowserTestConfig, locations []string, name string, options SyntheticsTestOptions, typeVar SyntheticsBrowserTestType) *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
 	this.Config = config
 	this.Locations = locations
 	this.Name = name
 	this.Options = options
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsBrowserTestWithDefaults instantiates a new SyntheticsBrowserTest object
+// NewSyntheticsBrowserTestWithDefaults instantiates a new SyntheticsBrowserTest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsBrowserTestWithDefaults() *SyntheticsBrowserTest {
 	this := SyntheticsBrowserTest{}
-	var type_ SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
-	this.Type = type_
+	var typeVar SyntheticsBrowserTestType = SYNTHETICSBROWSERTESTTYPE_BROWSER
+	this.Type = typeVar
 	return &this
 }
 
-// GetConfig returns the Config field value
+// GetConfig returns the Config field value.
 func (o *SyntheticsBrowserTest) GetConfig() SyntheticsBrowserTestConfig {
 	if o == nil {
 		var ret SyntheticsBrowserTestConfig
@@ -83,12 +81,12 @@ func (o *SyntheticsBrowserTest) GetConfigOk() (*SyntheticsBrowserTestConfig, boo
 	return &o.Config, true
 }
 
-// SetConfig sets field value
+// SetConfig sets field value.
 func (o *SyntheticsBrowserTest) SetConfig(v SyntheticsBrowserTestConfig) {
 	o.Config = v
 }
 
-// GetLocations returns the Locations field value
+// GetLocations returns the Locations field value.
 func (o *SyntheticsBrowserTest) GetLocations() []string {
 	if o == nil {
 		var ret []string
@@ -106,7 +104,7 @@ func (o *SyntheticsBrowserTest) GetLocationsOk() (*[]string, bool) {
 	return &o.Locations, true
 }
 
-// SetLocations sets field value
+// SetLocations sets field value.
 func (o *SyntheticsBrowserTest) SetLocations(v []string) {
 	o.Locations = v
 }
@@ -175,7 +173,7 @@ func (o *SyntheticsBrowserTest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *SyntheticsBrowserTest) GetName() string {
 	if o == nil {
 		var ret string
@@ -193,12 +191,12 @@ func (o *SyntheticsBrowserTest) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *SyntheticsBrowserTest) SetName(v string) {
 	o.Name = v
 }
 
-// GetOptions returns the Options field value
+// GetOptions returns the Options field value.
 func (o *SyntheticsBrowserTest) GetOptions() SyntheticsTestOptions {
 	if o == nil {
 		var ret SyntheticsTestOptions
@@ -216,7 +214,7 @@ func (o *SyntheticsBrowserTest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 	return &o.Options, true
 }
 
-// SetOptions sets field value
+// SetOptions sets field value.
 func (o *SyntheticsBrowserTest) SetOptions(v SyntheticsTestOptions) {
 	o.Options = v
 }
@@ -349,7 +347,7 @@ func (o *SyntheticsBrowserTest) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsBrowserTest) GetType() SyntheticsBrowserTestType {
 	if o == nil {
 		var ret SyntheticsBrowserTestType
@@ -367,11 +365,12 @@ func (o *SyntheticsBrowserTest) GetTypeOk() (*SyntheticsBrowserTestType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsBrowserTest) SetType(v SyntheticsBrowserTestType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -407,6 +406,7 @@ func (o SyntheticsBrowserTest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBrowserTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

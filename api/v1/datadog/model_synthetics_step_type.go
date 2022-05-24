@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // SyntheticsStepType Step type used in your Synthetic test.
 type SyntheticsStepType string
 
-// List of SyntheticsStepType
+// List of SyntheticsStepType.
 const (
 	SYNTHETICSSTEPTYPE_ASSERT_CURRENT_URL        SyntheticsStepType = "assertCurrentUrl"
 	SYNTHETICSSTEPTYPE_ASSERT_ELEMENT_ATTRIBUTE  SyntheticsStepType = "assertElementAttribute"
@@ -71,10 +69,12 @@ var allowedSyntheticsStepTypeEnumValues = []SyntheticsStepType{
 	SYNTHETICSSTEPTYPE_WAIT,
 }
 
-func (w *SyntheticsStepType) GetAllowedValues() []SyntheticsStepType {
+// GetAllowedValues reeturns the list of possible values.
+func (v *SyntheticsStepType) GetAllowedValues() []SyntheticsStepType {
 	return allowedSyntheticsStepTypeEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -86,17 +86,16 @@ func (v *SyntheticsStepType) UnmarshalJSON(src []byte) error {
 }
 
 // NewSyntheticsStepTypeFromValue returns a pointer to a valid SyntheticsStepType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewSyntheticsStepTypeFromValue(v string) (*SyntheticsStepType, error) {
 	ev := SyntheticsStepType(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SyntheticsStepType: valid values are %v", v, allowedSyntheticsStepTypeEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for SyntheticsStepType: valid values are %v", v, allowedSyntheticsStepTypeEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v SyntheticsStepType) IsValid() bool {
 	for _, existing := range allowedSyntheticsStepTypeEnumValues {
 		if existing == v {
@@ -106,42 +105,50 @@ func (v SyntheticsStepType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SyntheticsStepType value
+// Ptr returns reference to SyntheticsStepType value.
 func (v SyntheticsStepType) Ptr() *SyntheticsStepType {
 	return &v
 }
 
+// NullableSyntheticsStepType handles when a null is used for SyntheticsStepType.
 type NullableSyntheticsStepType struct {
 	value *SyntheticsStepType
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableSyntheticsStepType) Get() *SyntheticsStepType {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableSyntheticsStepType) Set(val *SyntheticsStepType) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableSyntheticsStepType) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableSyntheticsStepType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableSyntheticsStepType initializes the struct as if Set has been called.
 func NewNullableSyntheticsStepType(val *SyntheticsStepType) *NullableSyntheticsStepType {
 	return &NullableSyntheticsStepType{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableSyntheticsStepType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableSyntheticsStepType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

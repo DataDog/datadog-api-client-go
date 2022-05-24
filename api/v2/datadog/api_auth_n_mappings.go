@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// AuthNMappingsApiService AuthNMappingsApi service
+// AuthNMappingsApiService AuthNMappingsApi service.
 type AuthNMappingsApiService service
 
 type apiCreateAuthNMappingRequest struct {
@@ -38,10 +31,8 @@ func (a *AuthNMappingsApiService) buildCreateAuthNMappingRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * CreateAuthNMapping Create an AuthN Mapping
- * Create an AuthN Mapping.
- */
+// CreateAuthNMapping Create an AuthN Mapping.
+// Create an AuthN Mapping.
 func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body AuthNMappingCreateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateAuthNMappingRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *AuthNMappingsApiService) CreateAuthNMapping(ctx _context.Context, body 
 	return req.ApiService.createAuthNMappingExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return AuthNMappingResponse
- */
+// createAuthNMappingExecute executes the request.
 func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -216,10 +204,8 @@ func (a *AuthNMappingsApiService) buildDeleteAuthNMappingRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * DeleteAuthNMapping Delete an AuthN Mapping
- * Delete an AuthN Mapping specified by AuthN Mapping UUID.
- */
+// DeleteAuthNMapping Delete an AuthN Mapping.
+// Delete an AuthN Mapping specified by AuthN Mapping UUID.
 func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authnMappingId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
@@ -229,9 +215,7 @@ func (a *AuthNMappingsApiService) DeleteAuthNMapping(ctx _context.Context, authn
 	return req.ApiService.deleteAuthNMappingExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteAuthNMappingExecute executes the request.
 func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMappingRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -358,10 +342,8 @@ func (a *AuthNMappingsApiService) buildGetAuthNMappingRequest(ctx _context.Conte
 	return req, nil
 }
 
-/*
- * GetAuthNMapping Get an AuthN Mapping by UUID
- * Get an AuthN Mapping specified by the AuthN Mapping UUID.
- */
+// GetAuthNMapping Get an AuthN Mapping by UUID.
+// Get an AuthN Mapping specified by the AuthN Mapping UUID.
 func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMappingId string) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetAuthNMappingRequest(ctx, authnMappingId)
 	if err != nil {
@@ -372,10 +354,7 @@ func (a *AuthNMappingsApiService) GetAuthNMapping(ctx _context.Context, authnMap
 	return req.ApiService.getAuthNMappingExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return AuthNMappingResponse
- */
+// getAuthNMappingExecute executes the request.
 func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -506,6 +485,7 @@ type apiListAuthNMappingsRequest struct {
 	filter     *string
 }
 
+// ListAuthNMappingsOptionalParameters holds optional parameters for ListAuthNMappings.
 type ListAuthNMappingsOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
@@ -513,22 +493,31 @@ type ListAuthNMappingsOptionalParameters struct {
 	Filter     *string
 }
 
+// NewListAuthNMappingsOptionalParameters creates an empty struct for parameters.
 func NewListAuthNMappingsOptionalParameters() *ListAuthNMappingsOptionalParameters {
 	this := ListAuthNMappingsOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListAuthNMappingsOptionalParameters) WithPageSize(pageSize int64) *ListAuthNMappingsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListAuthNMappingsOptionalParameters) WithPageNumber(pageNumber int64) *ListAuthNMappingsOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListAuthNMappingsOptionalParameters) WithSort(sort AuthNMappingsSort) *ListAuthNMappingsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListAuthNMappingsOptionalParameters) WithFilter(filter string) *ListAuthNMappingsOptionalParameters {
 	r.Filter = &filter
 	return r
@@ -553,10 +542,8 @@ func (a *AuthNMappingsApiService) buildListAuthNMappingsRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * ListAuthNMappings List all AuthN Mappings
- * List all AuthN Mappings in the org.
- */
+// ListAuthNMappings List all AuthN Mappings.
+// List all AuthN Mappings in the org.
 func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...ListAuthNMappingsOptionalParameters) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListAuthNMappingsRequest(ctx, o...)
 	if err != nil {
@@ -567,10 +554,7 @@ func (a *AuthNMappingsApiService) ListAuthNMappings(ctx _context.Context, o ...L
 	return req.ApiService.listAuthNMappingsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return AuthNMappingsResponse
- */
+// listAuthNMappingsExecute executes the request.
 func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMappingsRequest) (AuthNMappingsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -710,10 +694,8 @@ func (a *AuthNMappingsApiService) buildUpdateAuthNMappingRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * UpdateAuthNMapping Edit an AuthN Mapping
- * Edit an AuthN Mapping.
- */
+// UpdateAuthNMapping Edit an AuthN Mapping.
+// Edit an AuthN Mapping.
 func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authnMappingId string, body AuthNMappingUpdateRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateAuthNMappingRequest(ctx, authnMappingId, body)
 	if err != nil {
@@ -724,10 +706,7 @@ func (a *AuthNMappingsApiService) UpdateAuthNMapping(ctx _context.Context, authn
 	return req.ApiService.updateAuthNMappingExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return AuthNMappingResponse
- */
+// updateAuthNMappingExecute executes the request.
 func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMappingRequest) (AuthNMappingResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

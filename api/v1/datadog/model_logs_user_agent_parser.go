@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -31,11 +29,11 @@ type LogsUserAgentParser struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsUserAgentParser instantiates a new LogsUserAgentParser object
+// NewLogsUserAgentParser instantiates a new LogsUserAgentParser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsUserAgentParser(sources []string, target string, type_ LogsUserAgentParserType) *LogsUserAgentParser {
+// will change when the set of required properties is changed.
+func NewLogsUserAgentParser(sources []string, target string, typeVar LogsUserAgentParserType) *LogsUserAgentParser {
 	this := LogsUserAgentParser{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
@@ -43,13 +41,13 @@ func NewLogsUserAgentParser(sources []string, target string, type_ LogsUserAgent
 	this.IsEncoded = &isEncoded
 	this.Sources = sources
 	this.Target = target
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsUserAgentParserWithDefaults instantiates a new LogsUserAgentParser object
+// NewLogsUserAgentParserWithDefaults instantiates a new LogsUserAgentParser object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsUserAgentParserWithDefaults() *LogsUserAgentParser {
 	this := LogsUserAgentParser{}
 	var isEnabled bool = false
@@ -58,8 +56,8 @@ func NewLogsUserAgentParserWithDefaults() *LogsUserAgentParser {
 	this.IsEncoded = &isEncoded
 	var target string = "http.useragent_details"
 	this.Target = target
-	var type_ LogsUserAgentParserType = LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER
-	this.Type = type_
+	var typeVar LogsUserAgentParserType = LOGSUSERAGENTPARSERTYPE_USER_AGENT_PARSER
+	this.Type = typeVar
 	return &this
 }
 
@@ -159,7 +157,7 @@ func (o *LogsUserAgentParser) SetName(v string) {
 	o.Name = &v
 }
 
-// GetSources returns the Sources field value
+// GetSources returns the Sources field value.
 func (o *LogsUserAgentParser) GetSources() []string {
 	if o == nil {
 		var ret []string
@@ -177,12 +175,12 @@ func (o *LogsUserAgentParser) GetSourcesOk() (*[]string, bool) {
 	return &o.Sources, true
 }
 
-// SetSources sets field value
+// SetSources sets field value.
 func (o *LogsUserAgentParser) SetSources(v []string) {
 	o.Sources = v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsUserAgentParser) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -200,12 +198,12 @@ func (o *LogsUserAgentParser) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsUserAgentParser) SetTarget(v string) {
 	o.Target = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsUserAgentParser) GetType() LogsUserAgentParserType {
 	if o == nil {
 		var ret LogsUserAgentParserType
@@ -223,11 +221,12 @@ func (o *LogsUserAgentParser) GetTypeOk() (*LogsUserAgentParserType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsUserAgentParser) SetType(v LogsUserAgentParserType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -252,6 +251,7 @@ func (o LogsUserAgentParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsUserAgentParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -42,31 +40,31 @@ type SyntheticsAPITest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsAPITest instantiates a new SyntheticsAPITest object
+// NewSyntheticsAPITest instantiates a new SyntheticsAPITest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, name string, options SyntheticsTestOptions, type_ SyntheticsAPITestType) *SyntheticsAPITest {
+// will change when the set of required properties is changed.
+func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, name string, options SyntheticsTestOptions, typeVar SyntheticsAPITestType) *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
 	this.Config = config
 	this.Locations = locations
 	this.Name = name
 	this.Options = options
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsAPITestWithDefaults instantiates a new SyntheticsAPITest object
+// NewSyntheticsAPITestWithDefaults instantiates a new SyntheticsAPITest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsAPITestWithDefaults() *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
-	var type_ SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
-	this.Type = type_
+	var typeVar SyntheticsAPITestType = SYNTHETICSAPITESTTYPE_API
+	this.Type = typeVar
 	return &this
 }
 
-// GetConfig returns the Config field value
+// GetConfig returns the Config field value.
 func (o *SyntheticsAPITest) GetConfig() SyntheticsAPITestConfig {
 	if o == nil {
 		var ret SyntheticsAPITestConfig
@@ -84,12 +82,12 @@ func (o *SyntheticsAPITest) GetConfigOk() (*SyntheticsAPITestConfig, bool) {
 	return &o.Config, true
 }
 
-// SetConfig sets field value
+// SetConfig sets field value.
 func (o *SyntheticsAPITest) SetConfig(v SyntheticsAPITestConfig) {
 	o.Config = v
 }
 
-// GetLocations returns the Locations field value
+// GetLocations returns the Locations field value.
 func (o *SyntheticsAPITest) GetLocations() []string {
 	if o == nil {
 		var ret []string
@@ -107,7 +105,7 @@ func (o *SyntheticsAPITest) GetLocationsOk() (*[]string, bool) {
 	return &o.Locations, true
 }
 
-// SetLocations sets field value
+// SetLocations sets field value.
 func (o *SyntheticsAPITest) SetLocations(v []string) {
 	o.Locations = v
 }
@@ -176,7 +174,7 @@ func (o *SyntheticsAPITest) SetMonitorId(v int64) {
 	o.MonitorId = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *SyntheticsAPITest) GetName() string {
 	if o == nil {
 		var ret string
@@ -194,12 +192,12 @@ func (o *SyntheticsAPITest) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *SyntheticsAPITest) SetName(v string) {
 	o.Name = v
 }
 
-// GetOptions returns the Options field value
+// GetOptions returns the Options field value.
 func (o *SyntheticsAPITest) GetOptions() SyntheticsTestOptions {
 	if o == nil {
 		var ret SyntheticsTestOptions
@@ -217,7 +215,7 @@ func (o *SyntheticsAPITest) GetOptionsOk() (*SyntheticsTestOptions, bool) {
 	return &o.Options, true
 }
 
-// SetOptions sets field value
+// SetOptions sets field value.
 func (o *SyntheticsAPITest) SetOptions(v SyntheticsTestOptions) {
 	o.Options = v
 }
@@ -350,7 +348,7 @@ func (o *SyntheticsAPITest) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsAPITest) GetType() SyntheticsAPITestType {
 	if o == nil {
 		var ret SyntheticsAPITestType
@@ -368,11 +366,12 @@ func (o *SyntheticsAPITest) GetTypeOk() (*SyntheticsAPITestType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsAPITest) SetType(v SyntheticsAPITestType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -408,6 +407,7 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

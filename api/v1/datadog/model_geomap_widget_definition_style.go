@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,10 +20,10 @@ type GeomapWidgetDefinitionStyle struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewGeomapWidgetDefinitionStyle instantiates a new GeomapWidgetDefinitionStyle object
+// NewGeomapWidgetDefinitionStyle instantiates a new GeomapWidgetDefinitionStyle object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewGeomapWidgetDefinitionStyle(palette string, paletteFlip bool) *GeomapWidgetDefinitionStyle {
 	this := GeomapWidgetDefinitionStyle{}
 	this.Palette = palette
@@ -33,15 +31,15 @@ func NewGeomapWidgetDefinitionStyle(palette string, paletteFlip bool) *GeomapWid
 	return &this
 }
 
-// NewGeomapWidgetDefinitionStyleWithDefaults instantiates a new GeomapWidgetDefinitionStyle object
+// NewGeomapWidgetDefinitionStyleWithDefaults instantiates a new GeomapWidgetDefinitionStyle object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewGeomapWidgetDefinitionStyleWithDefaults() *GeomapWidgetDefinitionStyle {
 	this := GeomapWidgetDefinitionStyle{}
 	return &this
 }
 
-// GetPalette returns the Palette field value
+// GetPalette returns the Palette field value.
 func (o *GeomapWidgetDefinitionStyle) GetPalette() string {
 	if o == nil {
 		var ret string
@@ -59,12 +57,12 @@ func (o *GeomapWidgetDefinitionStyle) GetPaletteOk() (*string, bool) {
 	return &o.Palette, true
 }
 
-// SetPalette sets field value
+// SetPalette sets field value.
 func (o *GeomapWidgetDefinitionStyle) SetPalette(v string) {
 	o.Palette = v
 }
 
-// GetPaletteFlip returns the PaletteFlip field value
+// GetPaletteFlip returns the PaletteFlip field value.
 func (o *GeomapWidgetDefinitionStyle) GetPaletteFlip() bool {
 	if o == nil {
 		var ret bool
@@ -82,11 +80,12 @@ func (o *GeomapWidgetDefinitionStyle) GetPaletteFlipOk() (*bool, bool) {
 	return &o.PaletteFlip, true
 }
 
-// SetPaletteFlip sets field value
+// SetPaletteFlip sets field value.
 func (o *GeomapWidgetDefinitionStyle) SetPaletteFlip(v bool) {
 	o.PaletteFlip = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,6 +100,7 @@ func (o GeomapWidgetDefinitionStyle) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinitionStyle) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

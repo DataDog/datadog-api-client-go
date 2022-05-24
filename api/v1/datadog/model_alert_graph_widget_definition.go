@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -32,29 +30,29 @@ type AlertGraphWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAlertGraphWidgetDefinition instantiates a new AlertGraphWidgetDefinition object
+// NewAlertGraphWidgetDefinition instantiates a new AlertGraphWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewAlertGraphWidgetDefinition(alertId string, type_ AlertGraphWidgetDefinitionType, vizType WidgetVizType) *AlertGraphWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewAlertGraphWidgetDefinition(alertId string, typeVar AlertGraphWidgetDefinitionType, vizType WidgetVizType) *AlertGraphWidgetDefinition {
 	this := AlertGraphWidgetDefinition{}
 	this.AlertId = alertId
-	this.Type = type_
+	this.Type = typeVar
 	this.VizType = vizType
 	return &this
 }
 
-// NewAlertGraphWidgetDefinitionWithDefaults instantiates a new AlertGraphWidgetDefinition object
+// NewAlertGraphWidgetDefinitionWithDefaults instantiates a new AlertGraphWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAlertGraphWidgetDefinitionWithDefaults() *AlertGraphWidgetDefinition {
 	this := AlertGraphWidgetDefinition{}
-	var type_ AlertGraphWidgetDefinitionType = ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH
-	this.Type = type_
+	var typeVar AlertGraphWidgetDefinitionType = ALERTGRAPHWIDGETDEFINITIONTYPE_ALERT_GRAPH
+	this.Type = typeVar
 	return &this
 }
 
-// GetAlertId returns the AlertId field value
+// GetAlertId returns the AlertId field value.
 func (o *AlertGraphWidgetDefinition) GetAlertId() string {
 	if o == nil {
 		var ret string
@@ -72,7 +70,7 @@ func (o *AlertGraphWidgetDefinition) GetAlertIdOk() (*string, bool) {
 	return &o.AlertId, true
 }
 
-// SetAlertId sets field value
+// SetAlertId sets field value.
 func (o *AlertGraphWidgetDefinition) SetAlertId(v string) {
 	o.AlertId = v
 }
@@ -205,7 +203,7 @@ func (o *AlertGraphWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *AlertGraphWidgetDefinition) GetType() AlertGraphWidgetDefinitionType {
 	if o == nil {
 		var ret AlertGraphWidgetDefinitionType
@@ -223,12 +221,12 @@ func (o *AlertGraphWidgetDefinition) GetTypeOk() (*AlertGraphWidgetDefinitionTyp
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *AlertGraphWidgetDefinition) SetType(v AlertGraphWidgetDefinitionType) {
 	o.Type = v
 }
 
-// GetVizType returns the VizType field value
+// GetVizType returns the VizType field value.
 func (o *AlertGraphWidgetDefinition) GetVizType() WidgetVizType {
 	if o == nil {
 		var ret WidgetVizType
@@ -246,11 +244,12 @@ func (o *AlertGraphWidgetDefinition) GetVizTypeOk() (*WidgetVizType, bool) {
 	return &o.VizType, true
 }
 
-// SetVizType sets field value
+// SetVizType sets field value.
 func (o *AlertGraphWidgetDefinition) SetVizType(v WidgetVizType) {
 	o.VizType = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -278,6 +277,7 @@ func (o AlertGraphWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *AlertGraphWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

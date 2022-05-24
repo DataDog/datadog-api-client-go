@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -28,24 +26,24 @@ type FreeTextWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object
+// NewFreeTextWidgetDefinition instantiates a new FreeTextWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewFreeTextWidgetDefinition(text string, type_ FreeTextWidgetDefinitionType) *FreeTextWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewFreeTextWidgetDefinition(text string, typeVar FreeTextWidgetDefinitionType) *FreeTextWidgetDefinition {
 	this := FreeTextWidgetDefinition{}
 	this.Text = text
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewFreeTextWidgetDefinitionWithDefaults instantiates a new FreeTextWidgetDefinition object
+// NewFreeTextWidgetDefinitionWithDefaults instantiates a new FreeTextWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewFreeTextWidgetDefinitionWithDefaults() *FreeTextWidgetDefinition {
 	this := FreeTextWidgetDefinition{}
-	var type_ FreeTextWidgetDefinitionType = FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT
-	this.Type = type_
+	var typeVar FreeTextWidgetDefinitionType = FREETEXTWIDGETDEFINITIONTYPE_FREE_TEXT
+	this.Type = typeVar
 	return &this
 }
 
@@ -113,7 +111,7 @@ func (o *FreeTextWidgetDefinition) SetFontSize(v string) {
 	o.FontSize = &v
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value.
 func (o *FreeTextWidgetDefinition) GetText() string {
 	if o == nil {
 		var ret string
@@ -131,7 +129,7 @@ func (o *FreeTextWidgetDefinition) GetTextOk() (*string, bool) {
 	return &o.Text, true
 }
 
-// SetText sets field value
+// SetText sets field value.
 func (o *FreeTextWidgetDefinition) SetText(v string) {
 	o.Text = v
 }
@@ -168,7 +166,7 @@ func (o *FreeTextWidgetDefinition) SetTextAlign(v WidgetTextAlign) {
 	o.TextAlign = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *FreeTextWidgetDefinition) GetType() FreeTextWidgetDefinitionType {
 	if o == nil {
 		var ret FreeTextWidgetDefinitionType
@@ -186,11 +184,12 @@ func (o *FreeTextWidgetDefinition) GetTypeOk() (*FreeTextWidgetDefinitionType, b
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *FreeTextWidgetDefinition) SetType(v FreeTextWidgetDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -214,6 +213,7 @@ func (o FreeTextWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *FreeTextWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

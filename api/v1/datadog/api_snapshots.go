@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// SnapshotsApiService SnapshotsApi service
+// SnapshotsApiService SnapshotsApi service.
 type SnapshotsApiService service
 
 type apiGetGraphSnapshotRequest struct {
@@ -33,6 +26,7 @@ type apiGetGraphSnapshotRequest struct {
 	title       *string
 }
 
+// GetGraphSnapshotOptionalParameters holds optional parameters for GetGraphSnapshot.
 type GetGraphSnapshotOptionalParameters struct {
 	MetricQuery *string
 	EventQuery  *string
@@ -40,22 +34,31 @@ type GetGraphSnapshotOptionalParameters struct {
 	Title       *string
 }
 
+// NewGetGraphSnapshotOptionalParameters creates an empty struct for parameters.
 func NewGetGraphSnapshotOptionalParameters() *GetGraphSnapshotOptionalParameters {
 	this := GetGraphSnapshotOptionalParameters{}
 	return &this
 }
+
+// WithMetricQuery sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithMetricQuery(metricQuery string) *GetGraphSnapshotOptionalParameters {
 	r.MetricQuery = &metricQuery
 	return r
 }
+
+// WithEventQuery sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithEventQuery(eventQuery string) *GetGraphSnapshotOptionalParameters {
 	r.EventQuery = &eventQuery
 	return r
 }
+
+// WithGraphDef sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithGraphDef(graphDef string) *GetGraphSnapshotOptionalParameters {
 	r.GraphDef = &graphDef
 	return r
 }
+
+// WithTitle sets the corresponding parameter name and returns the struct.
 func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSnapshotOptionalParameters {
 	r.Title = &title
 	return r
@@ -82,11 +85,9 @@ func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context,
 	return req, nil
 }
 
-/*
- * GetGraphSnapshot Take graph snapshots
- * Take graph snapshots.
- * **Note**: When a snapshot is created, there is some delay before it is available.
- */
+// GetGraphSnapshot Take graph snapshots.
+// Take graph snapshots.
+// **Note**: When a snapshot is created, there is some delay before it is available.
 func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (GraphSnapshot, *_nethttp.Response, error) {
 	req, err := a.buildGetGraphSnapshotRequest(ctx, start, end, o...)
 	if err != nil {
@@ -97,10 +98,7 @@ func (a *SnapshotsApiService) GetGraphSnapshot(ctx _context.Context, start int64
 	return req.ApiService.getGraphSnapshotExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return GraphSnapshot
- */
+// getGraphSnapshotExecute executes the request.
 func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotRequest) (GraphSnapshot, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

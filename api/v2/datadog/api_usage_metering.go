@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// UsageMeteringApiService UsageMeteringApi service
+// UsageMeteringApiService UsageMeteringApi service.
 type UsageMeteringApiService service
 
 type apiGetCostByOrgRequest struct {
@@ -30,14 +23,18 @@ type apiGetCostByOrgRequest struct {
 	endMonth   *time.Time
 }
 
+// GetCostByOrgOptionalParameters holds optional parameters for GetCostByOrg.
 type GetCostByOrgOptionalParameters struct {
 	EndMonth *time.Time
 }
 
+// NewGetCostByOrgOptionalParameters creates an empty struct for parameters.
 func NewGetCostByOrgOptionalParameters() *GetCostByOrgOptionalParameters {
 	this := GetCostByOrgOptionalParameters{}
 	return &this
 }
+
+// WithEndMonth sets the corresponding parameter name and returns the struct.
 func (r *GetCostByOrgOptionalParameters) WithEndMonth(endMonth time.Time) *GetCostByOrgOptionalParameters {
 	r.EndMonth = &endMonth
 	return r
@@ -60,10 +57,8 @@ func (a *UsageMeteringApiService) buildGetCostByOrgRequest(ctx _context.Context,
 	return req, nil
 }
 
-/*
- * GetCostByOrg Get cost across multi-org account
- * Get cost across multi-org account. Cost by org data for a given month becomes available no later than the 16th of the following month.
- */
+// GetCostByOrg Get cost across multi-org account.
+// Get cost across multi-org account. Cost by org data for a given month becomes available no later than the 16th of the following month.
 func (a *UsageMeteringApiService) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetCostByOrgRequest(ctx, startMonth, o...)
 	if err != nil {
@@ -74,10 +69,7 @@ func (a *UsageMeteringApiService) GetCostByOrg(ctx _context.Context, startMonth 
 	return req.ApiService.getCostByOrgExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return CostByOrgResponse
- */
+// getCostByOrgExecute executes the request.
 func (a *UsageMeteringApiService) getCostByOrgExecute(r apiGetCostByOrgRequest) (CostByOrgResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -212,14 +204,18 @@ type apiGetUsageApplicationSecurityMonitoringRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageApplicationSecurityMonitoringOptionalParameters holds optional parameters for GetUsageApplicationSecurityMonitoring.
 type GetUsageApplicationSecurityMonitoringOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageApplicationSecurityMonitoringOptionalParameters creates an empty struct for parameters.
 func NewGetUsageApplicationSecurityMonitoringOptionalParameters() *GetUsageApplicationSecurityMonitoringOptionalParameters {
 	this := GetUsageApplicationSecurityMonitoringOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageApplicationSecurityMonitoringOptionalParameters) WithEndHr(endHr time.Time) *GetUsageApplicationSecurityMonitoringOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -242,10 +238,8 @@ func (a *UsageMeteringApiService) buildGetUsageApplicationSecurityMonitoringRequ
 	return req, nil
 }
 
-/*
- * GetUsageApplicationSecurityMonitoring Get hourly usage for Application Security
- * Get hourly usage for Application Security .
- */
+// GetUsageApplicationSecurityMonitoring Get hourly usage for Application Security.
+// Get hourly usage for Application Security .
 func (a *UsageMeteringApiService) GetUsageApplicationSecurityMonitoring(ctx _context.Context, startHr time.Time, o ...GetUsageApplicationSecurityMonitoringOptionalParameters) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageApplicationSecurityMonitoringRequest(ctx, startHr, o...)
 	if err != nil {
@@ -256,10 +250,7 @@ func (a *UsageMeteringApiService) GetUsageApplicationSecurityMonitoring(ctx _con
 	return req.ApiService.getUsageApplicationSecurityMonitoringExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageApplicationSecurityMonitoringResponse
- */
+// getUsageApplicationSecurityMonitoringExecute executes the request.
 func (a *UsageMeteringApiService) getUsageApplicationSecurityMonitoringExecute(r apiGetUsageApplicationSecurityMonitoringRequest) (UsageApplicationSecurityMonitoringResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -394,14 +385,18 @@ type apiGetUsageLambdaTracedInvocationsRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageLambdaTracedInvocationsOptionalParameters holds optional parameters for GetUsageLambdaTracedInvocations.
 type GetUsageLambdaTracedInvocationsOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageLambdaTracedInvocationsOptionalParameters creates an empty struct for parameters.
 func NewGetUsageLambdaTracedInvocationsOptionalParameters() *GetUsageLambdaTracedInvocationsOptionalParameters {
 	this := GetUsageLambdaTracedInvocationsOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageLambdaTracedInvocationsOptionalParameters) WithEndHr(endHr time.Time) *GetUsageLambdaTracedInvocationsOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -424,10 +419,8 @@ func (a *UsageMeteringApiService) buildGetUsageLambdaTracedInvocationsRequest(ct
 	return req, nil
 }
 
-/*
- * GetUsageLambdaTracedInvocations Get hourly usage for Lambda Traced Invocations
- * Get hourly usage for Lambda Traced Invocations.
- */
+// GetUsageLambdaTracedInvocations Get hourly usage for Lambda Traced Invocations.
+// Get hourly usage for Lambda Traced Invocations.
 func (a *UsageMeteringApiService) GetUsageLambdaTracedInvocations(ctx _context.Context, startHr time.Time, o ...GetUsageLambdaTracedInvocationsOptionalParameters) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageLambdaTracedInvocationsRequest(ctx, startHr, o...)
 	if err != nil {
@@ -438,10 +431,7 @@ func (a *UsageMeteringApiService) GetUsageLambdaTracedInvocations(ctx _context.C
 	return req.ApiService.getUsageLambdaTracedInvocationsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageLambdaTracedInvocationsResponse
- */
+// getUsageLambdaTracedInvocationsExecute executes the request.
 func (a *UsageMeteringApiService) getUsageLambdaTracedInvocationsExecute(r apiGetUsageLambdaTracedInvocationsRequest) (UsageLambdaTracedInvocationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -576,14 +566,18 @@ type apiGetUsageObservabilityPipelinesRequest struct {
 	endHr      *time.Time
 }
 
+// GetUsageObservabilityPipelinesOptionalParameters holds optional parameters for GetUsageObservabilityPipelines.
 type GetUsageObservabilityPipelinesOptionalParameters struct {
 	EndHr *time.Time
 }
 
+// NewGetUsageObservabilityPipelinesOptionalParameters creates an empty struct for parameters.
 func NewGetUsageObservabilityPipelinesOptionalParameters() *GetUsageObservabilityPipelinesOptionalParameters {
 	this := GetUsageObservabilityPipelinesOptionalParameters{}
 	return &this
 }
+
+// WithEndHr sets the corresponding parameter name and returns the struct.
 func (r *GetUsageObservabilityPipelinesOptionalParameters) WithEndHr(endHr time.Time) *GetUsageObservabilityPipelinesOptionalParameters {
 	r.EndHr = &endHr
 	return r
@@ -606,10 +600,8 @@ func (a *UsageMeteringApiService) buildGetUsageObservabilityPipelinesRequest(ctx
 	return req, nil
 }
 
-/*
- * GetUsageObservabilityPipelines Get hourly usage for Observability Pipelines
- * Get hourly usage for Observability Pipelines.
- */
+// GetUsageObservabilityPipelines Get hourly usage for Observability Pipelines.
+// Get hourly usage for Observability Pipelines.
 func (a *UsageMeteringApiService) GetUsageObservabilityPipelines(ctx _context.Context, startHr time.Time, o ...GetUsageObservabilityPipelinesOptionalParameters) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageObservabilityPipelinesRequest(ctx, startHr, o...)
 	if err != nil {
@@ -620,10 +612,7 @@ func (a *UsageMeteringApiService) GetUsageObservabilityPipelines(ctx _context.Co
 	return req.ApiService.getUsageObservabilityPipelinesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsageObservabilityPipelinesResponse
- */
+// getUsageObservabilityPipelinesExecute executes the request.
 func (a *UsageMeteringApiService) getUsageObservabilityPipelinesExecute(r apiGetUsageObservabilityPipelinesRequest) (UsageObservabilityPipelinesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -37,10 +35,10 @@ type SLOThreshold struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOThreshold instantiates a new SLOThreshold object
+// NewSLOThreshold instantiates a new SLOThreshold object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOThreshold(target float64, timeframe SLOTimeframe) *SLOThreshold {
 	this := SLOThreshold{}
 	this.Target = target
@@ -48,15 +46,15 @@ func NewSLOThreshold(target float64, timeframe SLOTimeframe) *SLOThreshold {
 	return &this
 }
 
-// NewSLOThresholdWithDefaults instantiates a new SLOThreshold object
+// NewSLOThresholdWithDefaults instantiates a new SLOThreshold object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOThresholdWithDefaults() *SLOThreshold {
 	this := SLOThreshold{}
 	return &this
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *SLOThreshold) GetTarget() float64 {
 	if o == nil {
 		var ret float64
@@ -74,7 +72,7 @@ func (o *SLOThreshold) GetTargetOk() (*float64, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *SLOThreshold) SetTarget(v float64) {
 	o.Target = v
 }
@@ -111,7 +109,7 @@ func (o *SLOThreshold) SetTargetDisplay(v string) {
 	o.TargetDisplay = &v
 }
 
-// GetTimeframe returns the Timeframe field value
+// GetTimeframe returns the Timeframe field value.
 func (o *SLOThreshold) GetTimeframe() SLOTimeframe {
 	if o == nil {
 		var ret SLOTimeframe
@@ -129,7 +127,7 @@ func (o *SLOThreshold) GetTimeframeOk() (*SLOTimeframe, bool) {
 	return &o.Timeframe, true
 }
 
-// SetTimeframe sets field value
+// SetTimeframe sets field value.
 func (o *SLOThreshold) SetTimeframe(v SLOTimeframe) {
 	o.Timeframe = v
 }
@@ -198,6 +196,7 @@ func (o *SLOThreshold) SetWarningDisplay(v string) {
 	o.WarningDisplay = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -221,6 +220,7 @@ func (o SLOThreshold) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOThreshold) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

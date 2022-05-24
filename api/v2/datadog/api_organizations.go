@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"os"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// OrganizationsApiService OrganizationsApi service
+// OrganizationsApiService OrganizationsApi service.
 type OrganizationsApiService service
 
 type apiUploadIdPMetadataRequest struct {
@@ -29,14 +22,18 @@ type apiUploadIdPMetadataRequest struct {
 	idpFile    **os.File
 }
 
+// UploadIdPMetadataOptionalParameters holds optional parameters for UploadIdPMetadata.
 type UploadIdPMetadataOptionalParameters struct {
 	IdpFile **os.File
 }
 
+// NewUploadIdPMetadataOptionalParameters creates an empty struct for parameters.
 func NewUploadIdPMetadataOptionalParameters() *UploadIdPMetadataOptionalParameters {
 	this := UploadIdPMetadataOptionalParameters{}
 	return &this
 }
+
+// WithIdpFile sets the corresponding parameter name and returns the struct.
 func (r *UploadIdPMetadataOptionalParameters) WithIdpFile(idpFile *os.File) *UploadIdPMetadataOptionalParameters {
 	r.IdpFile = &idpFile
 	return r
@@ -58,12 +55,10 @@ func (a *OrganizationsApiService) buildUploadIdPMetadataRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * UploadIdPMetadata Upload IdP metadata
- * Endpoint for uploading IdP metadata for SAML setup.
- *
- * Use this endpoint to upload or replace IdP metadata for SAML login configuration.
- */
+// UploadIdPMetadata Upload IdP metadata.
+// Endpoint for uploading IdP metadata for SAML setup.
+//
+// Use this endpoint to upload or replace IdP metadata for SAML login configuration.
 func (a *OrganizationsApiService) UploadIdPMetadata(ctx _context.Context, o ...UploadIdPMetadataOptionalParameters) (*_nethttp.Response, error) {
 	req, err := a.buildUploadIdPMetadataRequest(ctx, o...)
 	if err != nil {
@@ -73,9 +68,7 @@ func (a *OrganizationsApiService) UploadIdPMetadata(ctx _context.Context, o ...U
 	return req.ApiService.uploadIdPMetadataExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// uploadIdPMetadataExecute executes the request.
 func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadataRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPost

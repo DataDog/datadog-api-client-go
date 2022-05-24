@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// DowntimesApiService DowntimesApi service
+// DowntimesApiService DowntimesApi service.
 type DowntimesApiService service
 
 type apiCancelDowntimeRequest struct {
@@ -38,10 +31,8 @@ func (a *DowntimesApiService) buildCancelDowntimeRequest(ctx _context.Context, d
 	return req, nil
 }
 
-/*
- * CancelDowntime Cancel a downtime
- * Cancel a downtime.
- */
+// CancelDowntime Cancel a downtime.
+// Cancel a downtime.
 func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId int64) (*_nethttp.Response, error) {
 	req, err := a.buildCancelDowntimeRequest(ctx, downtimeId)
 	if err != nil {
@@ -51,9 +42,7 @@ func (a *DowntimesApiService) CancelDowntime(ctx _context.Context, downtimeId in
 	return req.ApiService.cancelDowntimeExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// cancelDowntimeExecute executes the request.
 func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -180,10 +169,8 @@ func (a *DowntimesApiService) buildCancelDowntimesByScopeRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * CancelDowntimesByScope Cancel downtimes by scope
- * Delete all downtimes that match the scope of `X`.
- */
+// CancelDowntimesByScope Cancel downtimes by scope.
+// Delete all downtimes that match the scope of `X`.
 func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, body CancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	req, err := a.buildCancelDowntimesByScopeRequest(ctx, body)
 	if err != nil {
@@ -194,10 +181,7 @@ func (a *DowntimesApiService) CancelDowntimesByScope(ctx _context.Context, body 
 	return req.ApiService.cancelDowntimesByScopeExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return CanceledDowntimesIds
- */
+// cancelDowntimesByScopeExecute executes the request.
 func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimesByScopeRequest) (CanceledDowntimesIds, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -358,10 +342,8 @@ func (a *DowntimesApiService) buildCreateDowntimeRequest(ctx _context.Context, b
 	return req, nil
 }
 
-/*
- * CreateDowntime Schedule a downtime
- * Schedule a downtime.
- */
+// CreateDowntime Schedule a downtime.
+// Schedule a downtime.
 func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildCreateDowntimeRequest(ctx, body)
 	if err != nil {
@@ -372,10 +354,7 @@ func (a *DowntimesApiService) CreateDowntime(ctx _context.Context, body Downtime
 	return req.ApiService.createDowntimeExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return Downtime
- */
+// createDowntimeExecute executes the request.
 func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -526,10 +505,8 @@ func (a *DowntimesApiService) buildGetDowntimeRequest(ctx _context.Context, down
 	return req, nil
 }
 
-/*
- * GetDowntime Get a downtime
- * Get downtime detail by `downtime_id`.
- */
+// GetDowntime Get a downtime.
+// Get downtime detail by `downtime_id`.
 func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildGetDowntimeRequest(ctx, downtimeId)
 	if err != nil {
@@ -540,10 +517,7 @@ func (a *DowntimesApiService) GetDowntime(ctx _context.Context, downtimeId int64
 	return req.ApiService.getDowntimeExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return Downtime
- */
+// getDowntimeExecute executes the request.
 func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -671,14 +645,18 @@ type apiListDowntimesRequest struct {
 	currentOnly *bool
 }
 
+// ListDowntimesOptionalParameters holds optional parameters for ListDowntimes.
 type ListDowntimesOptionalParameters struct {
 	CurrentOnly *bool
 }
 
+// NewListDowntimesOptionalParameters creates an empty struct for parameters.
 func NewListDowntimesOptionalParameters() *ListDowntimesOptionalParameters {
 	this := ListDowntimesOptionalParameters{}
 	return &this
 }
+
+// WithCurrentOnly sets the corresponding parameter name and returns the struct.
 func (r *ListDowntimesOptionalParameters) WithCurrentOnly(currentOnly bool) *ListDowntimesOptionalParameters {
 	r.CurrentOnly = &currentOnly
 	return r
@@ -700,10 +678,8 @@ func (a *DowntimesApiService) buildListDowntimesRequest(ctx _context.Context, o 
 	return req, nil
 }
 
-/*
- * ListDowntimes Get all downtimes
- * Get all scheduled downtimes.
- */
+// ListDowntimes Get all downtimes.
+// Get all scheduled downtimes.
 func (a *DowntimesApiService) ListDowntimes(ctx _context.Context, o ...ListDowntimesOptionalParameters) ([]Downtime, *_nethttp.Response, error) {
 	req, err := a.buildListDowntimesRequest(ctx, o...)
 	if err != nil {
@@ -714,10 +690,7 @@ func (a *DowntimesApiService) ListDowntimes(ctx _context.Context, o ...ListDownt
 	return req.ApiService.listDowntimesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return []Downtime
- */
+// listDowntimesExecute executes the request.
 func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -846,10 +819,8 @@ func (a *DowntimesApiService) buildListMonitorDowntimesRequest(ctx _context.Cont
 	return req, nil
 }
 
-/*
- * ListMonitorDowntimes Get all downtimes for a monitor
- * Get all active downtimes for the specified monitor.
- */
+// ListMonitorDowntimes Get all downtimes for a monitor.
+// Get all active downtimes for the specified monitor.
 func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitorId int64) ([]Downtime, *_nethttp.Response, error) {
 	req, err := a.buildListMonitorDowntimesRequest(ctx, monitorId)
 	if err != nil {
@@ -860,10 +831,7 @@ func (a *DowntimesApiService) ListMonitorDowntimes(ctx _context.Context, monitor
 	return req.ApiService.listMonitorDowntimesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return []Downtime
- */
+// listMonitorDowntimesExecute executes the request.
 func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDowntimesRequest) ([]Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1002,10 +970,8 @@ func (a *DowntimesApiService) buildUpdateDowntimeRequest(ctx _context.Context, d
 	return req, nil
 }
 
-/*
- * UpdateDowntime Update a downtime
- * Update a single downtime by `downtime_id`.
- */
+// UpdateDowntime Update a downtime.
+// Update a single downtime by `downtime_id`.
 func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId int64, body Downtime) (Downtime, *_nethttp.Response, error) {
 	req, err := a.buildUpdateDowntimeRequest(ctx, downtimeId, body)
 	if err != nil {
@@ -1016,10 +982,7 @@ func (a *DowntimesApiService) UpdateDowntime(ctx _context.Context, downtimeId in
 	return req.ApiService.updateDowntimeExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return Downtime
- */
+// updateDowntimeExecute executes the request.
 func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) (Downtime, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

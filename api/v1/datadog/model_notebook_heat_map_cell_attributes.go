@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,25 +24,25 @@ type NotebookHeatMapCellAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookHeatMapCellAttributes instantiates a new NotebookHeatMapCellAttributes object
+// NewNotebookHeatMapCellAttributes instantiates a new NotebookHeatMapCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookHeatMapCellAttributes(definition HeatMapWidgetDefinition) *NotebookHeatMapCellAttributes {
 	this := NotebookHeatMapCellAttributes{}
 	this.Definition = definition
 	return &this
 }
 
-// NewNotebookHeatMapCellAttributesWithDefaults instantiates a new NotebookHeatMapCellAttributes object
+// NewNotebookHeatMapCellAttributesWithDefaults instantiates a new NotebookHeatMapCellAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookHeatMapCellAttributesWithDefaults() *NotebookHeatMapCellAttributes {
 	this := NotebookHeatMapCellAttributes{}
 	return &this
 }
 
-// GetDefinition returns the Definition field value
+// GetDefinition returns the Definition field value.
 func (o *NotebookHeatMapCellAttributes) GetDefinition() HeatMapWidgetDefinition {
 	if o == nil {
 		var ret HeatMapWidgetDefinition
@@ -62,7 +60,7 @@ func (o *NotebookHeatMapCellAttributes) GetDefinitionOk() (*HeatMapWidgetDefinit
 	return &o.Definition, true
 }
 
-// SetDefinition sets field value
+// SetDefinition sets field value.
 func (o *NotebookHeatMapCellAttributes) SetDefinition(v HeatMapWidgetDefinition) {
 	o.Definition = v
 }
@@ -142,7 +140,7 @@ func (o *NotebookHeatMapCellAttributes) GetTime() NotebookCellTime {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookHeatMapCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
 	if o == nil {
 		return nil, false
@@ -164,16 +162,17 @@ func (o *NotebookHeatMapCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
 
-// SetTimeNil sets the value for Time to be an explicit nil
+// SetTimeNil sets the value for Time to be an explicit nil.
 func (o *NotebookHeatMapCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
 }
 
-// UnsetTime ensures that no value is present for Time, not even an explicit nil
+// UnsetTime ensures that no value is present for Time, not even an explicit nil.
 func (o *NotebookHeatMapCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookHeatMapCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,6 +195,7 @@ func (o NotebookHeatMapCellAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookHeatMapCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

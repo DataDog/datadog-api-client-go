@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -17,12 +15,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// IncidentTeamsApiService IncidentTeamsApi service
+// IncidentTeamsApiService IncidentTeamsApi service.
 type IncidentTeamsApiService service
 
 type apiCreateIncidentTeamRequest struct {
@@ -40,10 +33,8 @@ func (a *IncidentTeamsApiService) buildCreateIncidentTeamRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * CreateIncidentTeam Create a new incident team
- * Creates a new incident team.
- */
+// CreateIncidentTeam Create a new incident team.
+// Creates a new incident team.
 func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body IncidentTeamCreateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateIncidentTeamRequest(ctx, body)
 	if err != nil {
@@ -54,10 +45,7 @@ func (a *IncidentTeamsApiService) CreateIncidentTeam(ctx _context.Context, body 
 	return req.ApiService.createIncidentTeamExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentTeamResponse
- */
+// createIncidentTeamExecute executes the request.
 func (a *IncidentTeamsApiService) createIncidentTeamExecute(r apiCreateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -235,10 +223,8 @@ func (a *IncidentTeamsApiService) buildDeleteIncidentTeamRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * DeleteIncidentTeam Delete an existing incident team
- * Deletes an existing incident team.
- */
+// DeleteIncidentTeam Delete an existing incident team.
+// Deletes an existing incident team.
 func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteIncidentTeamRequest(ctx, teamId)
 	if err != nil {
@@ -248,9 +234,7 @@ func (a *IncidentTeamsApiService) DeleteIncidentTeam(ctx _context.Context, teamI
 	return req.ApiService.deleteIncidentTeamExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteIncidentTeamExecute executes the request.
 func (a *IncidentTeamsApiService) deleteIncidentTeamExecute(r apiDeleteIncidentTeamRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -396,14 +380,18 @@ type apiGetIncidentTeamRequest struct {
 	include    *IncidentRelatedObject
 }
 
+// GetIncidentTeamOptionalParameters holds optional parameters for GetIncidentTeam.
 type GetIncidentTeamOptionalParameters struct {
 	Include *IncidentRelatedObject
 }
 
+// NewGetIncidentTeamOptionalParameters creates an empty struct for parameters.
 func NewGetIncidentTeamOptionalParameters() *GetIncidentTeamOptionalParameters {
 	this := GetIncidentTeamOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetIncidentTeamOptionalParameters) WithInclude(include IncidentRelatedObject) *GetIncidentTeamOptionalParameters {
 	r.Include = &include
 	return r
@@ -426,11 +414,9 @@ func (a *IncidentTeamsApiService) buildGetIncidentTeamRequest(ctx _context.Conte
 	return req, nil
 }
 
-/*
- * GetIncidentTeam Get details of an incident team
- * Get details of an incident team. If the `include[users]` query parameter is provided,
- * the included attribute will contain the users related to these incident teams.
- */
+// GetIncidentTeam Get details of an incident team.
+// Get details of an incident team. If the `include[users]` query parameter is provided,
+// the included attribute will contain the users related to these incident teams.
 func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId string, o ...GetIncidentTeamOptionalParameters) (IncidentTeamResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentTeamRequest(ctx, teamId, o...)
 	if err != nil {
@@ -441,10 +427,7 @@ func (a *IncidentTeamsApiService) GetIncidentTeam(ctx _context.Context, teamId s
 	return req.ApiService.getIncidentTeamExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentTeamResponse
- */
+// getIncidentTeamExecute executes the request.
 func (a *IncidentTeamsApiService) getIncidentTeamExecute(r apiGetIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -605,6 +588,7 @@ type apiListIncidentTeamsRequest struct {
 	filter     *string
 }
 
+// ListIncidentTeamsOptionalParameters holds optional parameters for ListIncidentTeams.
 type ListIncidentTeamsOptionalParameters struct {
 	Include    *IncidentRelatedObject
 	PageSize   *int64
@@ -612,22 +596,31 @@ type ListIncidentTeamsOptionalParameters struct {
 	Filter     *string
 }
 
+// NewListIncidentTeamsOptionalParameters creates an empty struct for parameters.
 func NewListIncidentTeamsOptionalParameters() *ListIncidentTeamsOptionalParameters {
 	this := ListIncidentTeamsOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentTeamsOptionalParameters) WithInclude(include IncidentRelatedObject) *ListIncidentTeamsOptionalParameters {
 	r.Include = &include
 	return r
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentTeamsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentTeamsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentTeamsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentTeamsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentTeamsOptionalParameters) WithFilter(filter string) *ListIncidentTeamsOptionalParameters {
 	r.Filter = &filter
 	return r
@@ -652,10 +645,8 @@ func (a *IncidentTeamsApiService) buildListIncidentTeamsRequest(ctx _context.Con
 	return req, nil
 }
 
-/*
- * ListIncidentTeams Get a list of all incident teams
- * Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
- */
+// ListIncidentTeams Get a list of all incident teams.
+// Get all incident teams for the requesting user's organization. If the `include[users]` query parameter is provided, the included attribute will contain the users related to these incident teams.
 func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...ListIncidentTeamsOptionalParameters) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListIncidentTeamsRequest(ctx, o...)
 	if err != nil {
@@ -666,10 +657,7 @@ func (a *IncidentTeamsApiService) ListIncidentTeams(ctx _context.Context, o ...L
 	return req.ApiService.listIncidentTeamsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentTeamsResponse
- */
+// listIncidentTeamsExecute executes the request.
 func (a *IncidentTeamsApiService) listIncidentTeamsExecute(r apiListIncidentTeamsRequest) (IncidentTeamsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -846,10 +834,8 @@ func (a *IncidentTeamsApiService) buildUpdateIncidentTeamRequest(ctx _context.Co
 	return req, nil
 }
 
-/*
- * UpdateIncidentTeam Update an existing incident team
- * Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
- */
+// UpdateIncidentTeam Update an existing incident team.
+// Updates an existing incident team. Only provide the attributes which should be updated as this request is a partial update.
 func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamId string, body IncidentTeamUpdateRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateIncidentTeamRequest(ctx, teamId, body)
 	if err != nil {
@@ -860,10 +846,7 @@ func (a *IncidentTeamsApiService) UpdateIncidentTeam(ctx _context.Context, teamI
 	return req.ApiService.updateIncidentTeamExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentTeamResponse
- */
+// updateIncidentTeamExecute executes the request.
 func (a *IncidentTeamsApiService) updateIncidentTeamExecute(r apiUpdateIncidentTeamRequest) (IncidentTeamResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

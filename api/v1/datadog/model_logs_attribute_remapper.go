@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -42,11 +40,11 @@ type LogsAttributeRemapper struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object
+// NewLogsAttributeRemapper instantiates a new LogsAttributeRemapper object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsAttributeRemapper(sources []string, target string, type_ LogsAttributeRemapperType) *LogsAttributeRemapper {
+// will change when the set of required properties is changed.
+func NewLogsAttributeRemapper(sources []string, target string, typeVar LogsAttributeRemapperType) *LogsAttributeRemapper {
 	this := LogsAttributeRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
@@ -60,13 +58,13 @@ func NewLogsAttributeRemapper(sources []string, target string, type_ LogsAttribu
 	this.Target = target
 	var targetType string = "attribute"
 	this.TargetType = &targetType
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsAttributeRemapperWithDefaults instantiates a new LogsAttributeRemapper object
+// NewLogsAttributeRemapperWithDefaults instantiates a new LogsAttributeRemapper object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
 	this := LogsAttributeRemapper{}
 	var isEnabled bool = false
@@ -79,8 +77,8 @@ func NewLogsAttributeRemapperWithDefaults() *LogsAttributeRemapper {
 	this.SourceType = &sourceType
 	var targetType string = "attribute"
 	this.TargetType = &targetType
-	var type_ LogsAttributeRemapperType = LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER
-	this.Type = type_
+	var typeVar LogsAttributeRemapperType = LOGSATTRIBUTEREMAPPERTYPE_ATTRIBUTE_REMAPPER
+	this.Type = typeVar
 	return &this
 }
 
@@ -244,7 +242,7 @@ func (o *LogsAttributeRemapper) SetSourceType(v string) {
 	o.SourceType = &v
 }
 
-// GetSources returns the Sources field value
+// GetSources returns the Sources field value.
 func (o *LogsAttributeRemapper) GetSources() []string {
 	if o == nil {
 		var ret []string
@@ -262,12 +260,12 @@ func (o *LogsAttributeRemapper) GetSourcesOk() (*[]string, bool) {
 	return &o.Sources, true
 }
 
-// SetSources sets field value
+// SetSources sets field value.
 func (o *LogsAttributeRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsAttributeRemapper) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -285,7 +283,7 @@ func (o *LogsAttributeRemapper) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsAttributeRemapper) SetTarget(v string) {
 	o.Target = v
 }
@@ -354,7 +352,7 @@ func (o *LogsAttributeRemapper) SetTargetType(v string) {
 	o.TargetType = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsAttributeRemapper) GetType() LogsAttributeRemapperType {
 	if o == nil {
 		var ret LogsAttributeRemapperType
@@ -372,11 +370,12 @@ func (o *LogsAttributeRemapper) GetTypeOk() (*LogsAttributeRemapperType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsAttributeRemapper) SetType(v LogsAttributeRemapperType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -413,6 +412,7 @@ func (o LogsAttributeRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsAttributeRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -17,12 +15,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// ServiceLevelObjectiveCorrectionsApiService ServiceLevelObjectiveCorrectionsApi service
+// ServiceLevelObjectiveCorrectionsApiService ServiceLevelObjectiveCorrectionsApi service.
 type ServiceLevelObjectiveCorrectionsApiService service
 
 type apiCreateSLOCorrectionRequest struct {
@@ -40,10 +33,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildCreateSLOCorrectionReq
 	return req, nil
 }
 
-/*
- * CreateSLOCorrection Create an SLO correction
- * Create an SLO Correction.
- */
+// CreateSLOCorrection Create an SLO correction.
+// Create an SLO Correction.
 func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _context.Context, body SLOCorrectionCreateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateSLOCorrectionRequest(ctx, body)
 	if err != nil {
@@ -54,10 +45,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) CreateSLOCorrection(ctx _co
 	return req.ApiService.createSLOCorrectionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SLOCorrectionResponse
- */
+// createSLOCorrectionExecute executes the request.
 func (a *ServiceLevelObjectiveCorrectionsApiService) createSLOCorrectionExecute(r apiCreateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -225,10 +213,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildDeleteSLOCorrectionReq
 	return req, nil
 }
 
-/*
- * DeleteSLOCorrection Delete an SLO correction
- * Permanently delete the specified SLO correction object.
- */
+// DeleteSLOCorrection Delete an SLO correction.
+// Permanently delete the specified SLO correction object.
 func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _context.Context, sloCorrectionId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteSLOCorrectionRequest(ctx, sloCorrectionId)
 	if err != nil {
@@ -238,9 +224,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) DeleteSLOCorrection(ctx _co
 	return req.ApiService.deleteSLOCorrectionExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteSLOCorrectionExecute executes the request.
 func (a *ServiceLevelObjectiveCorrectionsApiService) deleteSLOCorrectionExecute(r apiDeleteSLOCorrectionRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -374,10 +358,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildGetSLOCorrectionReques
 	return req, nil
 }
 
-/*
- * GetSLOCorrection Get an SLO correction for an SLO
- * Get an SLO correction.
- */
+// GetSLOCorrection Get an SLO correction for an SLO.
+// Get an SLO correction.
 func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _context.Context, sloCorrectionId string) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetSLOCorrectionRequest(ctx, sloCorrectionId)
 	if err != nil {
@@ -388,10 +370,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) GetSLOCorrection(ctx _conte
 	return req.ApiService.getSLOCorrectionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SLOCorrectionResponse
- */
+// getSLOCorrectionExecute executes the request.
 func (a *ServiceLevelObjectiveCorrectionsApiService) getSLOCorrectionExecute(r apiGetSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -533,10 +512,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildListSLOCorrectionReque
 	return req, nil
 }
 
-/*
- * ListSLOCorrection Get all SLO corrections
- * Get all Service Level Objective corrections.
- */
+// ListSLOCorrection Get all SLO corrections.
+// Get all Service Level Objective corrections.
 func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrection(ctx _context.Context) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListSLOCorrectionRequest(ctx)
 	if err != nil {
@@ -547,10 +524,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) ListSLOCorrection(ctx _cont
 	return req.ApiService.listSLOCorrectionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SLOCorrectionListResponse
- */
+// listSLOCorrectionExecute executes the request.
 func (a *ServiceLevelObjectiveCorrectionsApiService) listSLOCorrectionExecute(r apiListSLOCorrectionRequest) (SLOCorrectionListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -685,10 +659,8 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) buildUpdateSLOCorrectionReq
 	return req, nil
 }
 
-/*
- * UpdateSLOCorrection Update an SLO correction
- * Update the specified SLO correction object.
- */
+// UpdateSLOCorrection Update an SLO correction.
+// Update the specified SLO correction object.
 func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _context.Context, sloCorrectionId string, body SLOCorrectionUpdateRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateSLOCorrectionRequest(ctx, sloCorrectionId, body)
 	if err != nil {
@@ -699,10 +671,7 @@ func (a *ServiceLevelObjectiveCorrectionsApiService) UpdateSLOCorrection(ctx _co
 	return req.ApiService.updateSLOCorrectionExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SLOCorrectionResponse
- */
+// updateSLOCorrectionExecute executes the request.
 func (a *ServiceLevelObjectiveCorrectionsApiService) updateSLOCorrectionExecute(r apiUpdateSLOCorrectionRequest) (SLOCorrectionResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

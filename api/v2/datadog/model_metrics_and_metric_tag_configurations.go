@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -19,81 +17,80 @@ type MetricsAndMetricTagConfigurations struct {
 	UnparsedObject interface{}
 }
 
-// MetricAsMetricsAndMetricTagConfigurations is a convenience function that returns Metric wrapped in MetricsAndMetricTagConfigurations
+// MetricAsMetricsAndMetricTagConfigurations is a convenience function that returns Metric wrapped in MetricsAndMetricTagConfigurations.
 func MetricAsMetricsAndMetricTagConfigurations(v *Metric) MetricsAndMetricTagConfigurations {
 	return MetricsAndMetricTagConfigurations{Metric: v}
 }
 
-// MetricTagConfigurationAsMetricsAndMetricTagConfigurations is a convenience function that returns MetricTagConfiguration wrapped in MetricsAndMetricTagConfigurations
+// MetricTagConfigurationAsMetricsAndMetricTagConfigurations is a convenience function that returns MetricTagConfiguration wrapped in MetricsAndMetricTagConfigurations.
 func MetricTagConfigurationAsMetricsAndMetricTagConfigurations(v *MetricTagConfiguration) MetricsAndMetricTagConfigurations {
 	return MetricsAndMetricTagConfigurations{MetricTagConfiguration: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *MetricsAndMetricTagConfigurations) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into Metric
-	err = json.Unmarshal(data, &dst.Metric)
+	err = json.Unmarshal(data, &obj.Metric)
 	if err == nil {
-		if dst.Metric != nil && dst.Metric.UnparsedObject == nil {
-			jsonMetric, _ := json.Marshal(dst.Metric)
+		if obj.Metric != nil && obj.Metric.UnparsedObject == nil {
+			jsonMetric, _ := json.Marshal(obj.Metric)
 			if string(jsonMetric) == "{}" { // empty struct
-				dst.Metric = nil
+				obj.Metric = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.Metric = nil
+			obj.Metric = nil
 		}
 	} else {
-		dst.Metric = nil
+		obj.Metric = nil
 	}
 
 	// try to unmarshal data into MetricTagConfiguration
-	err = json.Unmarshal(data, &dst.MetricTagConfiguration)
+	err = json.Unmarshal(data, &obj.MetricTagConfiguration)
 	if err == nil {
-		if dst.MetricTagConfiguration != nil && dst.MetricTagConfiguration.UnparsedObject == nil {
-			jsonMetricTagConfiguration, _ := json.Marshal(dst.MetricTagConfiguration)
+		if obj.MetricTagConfiguration != nil && obj.MetricTagConfiguration.UnparsedObject == nil {
+			jsonMetricTagConfiguration, _ := json.Marshal(obj.MetricTagConfiguration)
 			if string(jsonMetricTagConfiguration) == "{}" { // empty struct
-				dst.MetricTagConfiguration = nil
+				obj.MetricTagConfiguration = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.MetricTagConfiguration = nil
+			obj.MetricTagConfiguration = nil
 		}
 	} else {
-		dst.MetricTagConfiguration = nil
+		obj.MetricTagConfiguration = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.Metric = nil
-		dst.MetricTagConfiguration = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.Metric = nil
+		obj.MetricTagConfiguration = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
-	if src.Metric != nil {
-		return json.Marshal(&src.Metric)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj MetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
+	if obj.Metric != nil {
+		return json.Marshal(&obj.Metric)
 	}
 
-	if src.MetricTagConfiguration != nil {
-		return json.Marshal(&src.MetricTagConfiguration)
+	if obj.MetricTagConfiguration != nil {
+		return json.Marshal(&obj.MetricTagConfiguration)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
 	if obj.Metric != nil {
 		return obj.Metric
@@ -107,37 +104,45 @@ func (obj *MetricsAndMetricTagConfigurations) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableMetricsAndMetricTagConfigurations handles when a null is used for MetricsAndMetricTagConfigurations.
 type NullableMetricsAndMetricTagConfigurations struct {
 	value *MetricsAndMetricTagConfigurations
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableMetricsAndMetricTagConfigurations) Get() *MetricsAndMetricTagConfigurations {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableMetricsAndMetricTagConfigurations) Set(val *MetricsAndMetricTagConfigurations) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableMetricsAndMetricTagConfigurations) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableMetricsAndMetricTagConfigurations) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableMetricsAndMetricTagConfigurations initializes the struct as if Set has been called.
 func NewNullableMetricsAndMetricTagConfigurations(val *MetricsAndMetricTagConfigurations) *NullableMetricsAndMetricTagConfigurations {
 	return &NullableMetricsAndMetricTagConfigurations{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableMetricsAndMetricTagConfigurations) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableMetricsAndMetricTagConfigurations) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

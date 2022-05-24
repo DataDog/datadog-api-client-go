@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// AuthenticationApiService AuthenticationApi service
+// AuthenticationApiService AuthenticationApi service.
 type AuthenticationApiService service
 
 type apiValidateRequest struct {
@@ -35,10 +28,8 @@ func (a *AuthenticationApiService) buildValidateRequest(ctx _context.Context) (a
 	return req, nil
 }
 
-/*
- * Validate Validate API key
- * Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
- */
+// Validate Validate API key.
+// Check if the API key (not the APP key) is valid. If invalid, a 403 is returned.
 func (a *AuthenticationApiService) Validate(ctx _context.Context) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	req, err := a.buildValidateRequest(ctx)
 	if err != nil {
@@ -49,10 +40,7 @@ func (a *AuthenticationApiService) Validate(ctx _context.Context) (Authenticatio
 	return req.ApiService.validateExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return AuthenticationValidationResponse
- */
+// validateExecute executes the request.
 func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (AuthenticationValidationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

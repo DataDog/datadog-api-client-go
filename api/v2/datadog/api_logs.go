@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// LogsApiService LogsApi service
+// LogsApiService LogsApi service.
 type LogsApiService service
 
 type apiAggregateLogsRequest struct {
@@ -38,10 +31,8 @@ func (a *LogsApiService) buildAggregateLogsRequest(ctx _context.Context, body Lo
 	return req, nil
 }
 
-/*
- * AggregateLogs Aggregate events
- * The API endpoint to aggregate events into buckets and compute metrics and timeseries.
- */
+// AggregateLogs Aggregate events.
+// The API endpoint to aggregate events into buckets and compute metrics and timeseries.
 func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
 	req, err := a.buildAggregateLogsRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *LogsApiService) AggregateLogs(ctx _context.Context, body LogsAggregateR
 	return req.ApiService.aggregateLogsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsAggregateResponse
- */
+// aggregateLogsExecute executes the request.
 func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -197,14 +185,18 @@ type apiListLogsRequest struct {
 	body       *LogsListRequest
 }
 
+// ListLogsOptionalParameters holds optional parameters for ListLogs.
 type ListLogsOptionalParameters struct {
 	Body *LogsListRequest
 }
 
+// NewListLogsOptionalParameters creates an empty struct for parameters.
 func NewListLogsOptionalParameters() *ListLogsOptionalParameters {
 	this := ListLogsOptionalParameters{}
 	return &this
 }
+
+// WithBody sets the corresponding parameter name and returns the struct.
 func (r *ListLogsOptionalParameters) WithBody(body LogsListRequest) *ListLogsOptionalParameters {
 	r.Body = &body
 	return r
@@ -226,20 +218,18 @@ func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, o ...ListLog
 	return req, nil
 }
 
-/*
- * ListLogs Search logs
- * List endpoint returns logs that match a log search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to build complex logs filtering and search.
- *
- * **If you are considering archiving logs for your organization,
- * consider use of the Datadog archive capabilities instead of the log list API.
- * See [Datadog Logs Archive documentation][2].**
- *
- * [1]: /logs/guide/collect-multiple-logs-with-pagination
- * [2]: https://docs.datadoghq.com/logs/archives
- */
+// ListLogs Search logs.
+// List endpoint returns logs that match a log search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to build complex logs filtering and search.
+//
+// **If you are considering archiving logs for your organization,
+// consider use of the Datadog archive capabilities instead of the log list API.
+// See [Datadog Logs Archive documentation][2].**
+//
+// [1]: /logs/guide/collect-multiple-logs-with-pagination
+// [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListLogsRequest(ctx, o...)
 	if err != nil {
@@ -250,9 +240,7 @@ func (a *LogsApiService) ListLogs(ctx _context.Context, o ...ListLogsOptionalPar
 	return req.ApiService.listLogsExecute(req)
 }
 
-/*
- * ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
- */
+// ListLogsWithPagination provides a paginated version of ListLogs returning a channel with all items.
 func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListLogsOptionalParameters) (<-chan Log, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -319,10 +307,7 @@ func (a *LogsApiService) ListLogsWithPagination(ctx _context.Context, o ...ListL
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return LogsListResponse
- */
+// listLogsExecute executes the request.
 func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -467,6 +452,7 @@ type apiListLogsGetRequest struct {
 	pageLimit   *int32
 }
 
+// ListLogsGetOptionalParameters holds optional parameters for ListLogsGet.
 type ListLogsGetOptionalParameters struct {
 	FilterQuery *string
 	FilterIndex *string
@@ -477,34 +463,49 @@ type ListLogsGetOptionalParameters struct {
 	PageLimit   *int32
 }
 
+// NewListLogsGetOptionalParameters creates an empty struct for parameters.
 func NewListLogsGetOptionalParameters() *ListLogsGetOptionalParameters {
 	this := ListLogsGetOptionalParameters{}
 	return &this
 }
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithFilterQuery(filterQuery string) *ListLogsGetOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
+
+// WithFilterIndex sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithFilterIndex(filterIndex string) *ListLogsGetOptionalParameters {
 	r.FilterIndex = &filterIndex
 	return r
 }
+
+// WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListLogsGetOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
+
+// WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithFilterTo(filterTo time.Time) *ListLogsGetOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithSort(sort LogsSort) *ListLogsGetOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithPageCursor(pageCursor string) *ListLogsGetOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListLogsGetOptionalParameters) WithPageLimit(pageLimit int32) *ListLogsGetOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
@@ -532,20 +533,18 @@ func (a *LogsApiService) buildListLogsGetRequest(ctx _context.Context, o ...List
 	return req, nil
 }
 
-/*
- * ListLogsGet Get a list of logs
- * List endpoint returns logs that match a log search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to see your latest logs.
- *
- * **If you are considering archiving logs for your organization,
- * consider use of the Datadog archive capabilities instead of the log list API.
- * See [Datadog Logs Archive documentation][2].**
- *
- * [1]: /logs/guide/collect-multiple-logs-with-pagination
- * [2]: https://docs.datadoghq.com/logs/archives
- */
+// ListLogsGet Get a list of logs.
+// List endpoint returns logs that match a log search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to see your latest logs.
+//
+// **If you are considering archiving logs for your organization,
+// consider use of the Datadog archive capabilities instead of the log list API.
+// See [Datadog Logs Archive documentation][2].**
+//
+// [1]: /logs/guide/collect-multiple-logs-with-pagination
+// [2]: https://docs.datadoghq.com/logs/archives
 func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptionalParameters) (LogsListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListLogsGetRequest(ctx, o...)
 	if err != nil {
@@ -556,9 +555,7 @@ func (a *LogsApiService) ListLogsGet(ctx _context.Context, o ...ListLogsGetOptio
 	return req.ApiService.listLogsGetExecute(req)
 }
 
-/*
- * ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
- */
+// ListLogsGetWithPagination provides a paginated version of ListLogsGet returning a channel with all items.
 func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...ListLogsGetOptionalParameters) (<-chan Log, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -619,10 +616,7 @@ func (a *LogsApiService) ListLogsGetWithPagination(ctx _context.Context, o ...Li
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return LogsListResponse
- */
+// listLogsGetExecute executes the request.
 func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -772,19 +766,25 @@ type apiSubmitLogRequest struct {
 	ddtags          *string
 }
 
+// SubmitLogOptionalParameters holds optional parameters for SubmitLog.
 type SubmitLogOptionalParameters struct {
 	ContentEncoding *ContentEncoding
 	Ddtags          *string
 }
 
+// NewSubmitLogOptionalParameters creates an empty struct for parameters.
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
 	this := SubmitLogOptionalParameters{}
 	return &this
 }
+
+// WithContentEncoding sets the corresponding parameter name and returns the struct.
 func (r *SubmitLogOptionalParameters) WithContentEncoding(contentEncoding ContentEncoding) *SubmitLogOptionalParameters {
 	r.ContentEncoding = &contentEncoding
 	return r
 }
+
+// WithDdtags sets the corresponding parameter name and returns the struct.
 func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOptionalParameters {
 	r.Ddtags = &ddtags
 	return r
@@ -808,32 +808,30 @@ func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTP
 	return req, nil
 }
 
-/*
- * SubmitLog Send logs
- * Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
- *
- * - Maximum content size per payload (uncompressed): 5MB
- * - Maximum size for a single log: 1MB
- * - Maximum array size if sending multiple logs in an array: 1000 entries
- *
- * Any log exceeding 1MB is accepted and truncated by Datadog:
- * - For a single log request, the API truncates the log at 1MB and returns a 2xx.
- * - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
- *
- * Datadog recommends sending your logs compressed.
- * Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
- *
- * The status codes answered by the HTTP API are:
- * - 202: Accepted: the request has been accepted for processing
- * - 400: Bad request (likely an issue in the payload formatting)
- * - 401: Unauthorized (likely a missing API Key)
- * - 403: Permission issue (likely using an invalid API Key)
- * - 408: Request Timeout, request should be retried after some time
- * - 413: Payload too large (batch is above 5MB uncompressed)
- * - 429: Too Many Requests, request should be retried after some time
- * - 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time
- * - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
- */
+// SubmitLog Send logs.
+// Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
+//
+// - Maximum content size per payload (uncompressed): 5MB
+// - Maximum size for a single log: 1MB
+// - Maximum array size if sending multiple logs in an array: 1000 entries
+//
+// Any log exceeding 1MB is accepted and truncated by Datadog:
+// - For a single log request, the API truncates the log at 1MB and returns a 2xx.
+// - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
+//
+// Datadog recommends sending your logs compressed.
+// Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
+//
+// The status codes answered by the HTTP API are:
+// - 202: Accepted: the request has been accepted for processing
+// - 400: Bad request (likely an issue in the payload formatting)
+// - 401: Unauthorized (likely a missing API Key)
+// - 403: Permission issue (likely using an invalid API Key)
+// - 408: Request Timeout, request should be retried after some time
+// - 413: Payload too large (batch is above 5MB uncompressed)
+// - 429: Too Many Requests, request should be retried after some time
+// - 500: Internal Server Error, the server encountered an unexpected condition that prevented it from fulfilling the request, request should be retried after some time
+// - 503: Service Unavailable, the server is not ready to handle the request probably because it is overloaded, request should be retried after some time
 func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildSubmitLogRequest(ctx, body, o...)
 	if err != nil {
@@ -844,10 +842,7 @@ func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o .
 	return req.ApiService.submitLogExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return interface{}
- */
+// submitLogExecute executes the request.
 func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -42,24 +40,24 @@ type QueryValueWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object
+// NewQueryValueWidgetDefinition instantiates a new QueryValueWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, type_ QueryValueWidgetDefinitionType) *QueryValueWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewQueryValueWidgetDefinition(requests []QueryValueWidgetRequest, typeVar QueryValueWidgetDefinitionType) *QueryValueWidgetDefinition {
 	this := QueryValueWidgetDefinition{}
 	this.Requests = requests
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewQueryValueWidgetDefinitionWithDefaults instantiates a new QueryValueWidgetDefinition object
+// NewQueryValueWidgetDefinitionWithDefaults instantiates a new QueryValueWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewQueryValueWidgetDefinitionWithDefaults() *QueryValueWidgetDefinition {
 	this := QueryValueWidgetDefinition{}
-	var type_ QueryValueWidgetDefinitionType = QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE
-	this.Type = type_
+	var typeVar QueryValueWidgetDefinitionType = QUERYVALUEWIDGETDEFINITIONTYPE_QUERY_VALUE
+	this.Type = typeVar
 	return &this
 }
 
@@ -191,7 +189,7 @@ func (o *QueryValueWidgetDefinition) SetPrecision(v int64) {
 	o.Precision = &v
 }
 
-// GetRequests returns the Requests field value
+// GetRequests returns the Requests field value.
 func (o *QueryValueWidgetDefinition) GetRequests() []QueryValueWidgetRequest {
 	if o == nil {
 		var ret []QueryValueWidgetRequest
@@ -209,7 +207,7 @@ func (o *QueryValueWidgetDefinition) GetRequestsOk() (*[]QueryValueWidgetRequest
 	return &o.Requests, true
 }
 
-// SetRequests sets field value
+// SetRequests sets field value.
 func (o *QueryValueWidgetDefinition) SetRequests(v []QueryValueWidgetRequest) {
 	o.Requests = v
 }
@@ -406,7 +404,7 @@ func (o *QueryValueWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *QueryValueWidgetDefinition) GetType() QueryValueWidgetDefinitionType {
 	if o == nil {
 		var ret QueryValueWidgetDefinitionType
@@ -424,11 +422,12 @@ func (o *QueryValueWidgetDefinition) GetTypeOk() (*QueryValueWidgetDefinitionTyp
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *QueryValueWidgetDefinition) SetType(v QueryValueWidgetDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -473,6 +472,7 @@ func (o QueryValueWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *QueryValueWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

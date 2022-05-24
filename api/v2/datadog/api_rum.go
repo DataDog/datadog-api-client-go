@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"time"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// RUMApiService RUMApi service
+// RUMApiService RUMApi service.
 type RUMApiService service
 
 type apiAggregateRUMEventsRequest struct {
@@ -38,10 +31,8 @@ func (a *RUMApiService) buildAggregateRUMEventsRequest(ctx _context.Context, bod
 	return req, nil
 }
 
-/*
- * AggregateRUMEvents Aggregate RUM events
- * The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
- */
+// AggregateRUMEvents Aggregate RUM events.
+// The API endpoint to aggregate RUM events into buckets of computed metrics and timeseries.
 func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggregateRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	req, err := a.buildAggregateRUMEventsRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *RUMApiService) AggregateRUMEvents(ctx _context.Context, body RUMAggrega
 	return req.ApiService.aggregateRUMEventsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RUMAnalyticsAggregateResponse
- */
+// aggregateRUMEventsExecute executes the request.
 func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest) (RUMAnalyticsAggregateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -202,6 +190,7 @@ type apiListRUMEventsRequest struct {
 	pageLimit   *int32
 }
 
+// ListRUMEventsOptionalParameters holds optional parameters for ListRUMEvents.
 type ListRUMEventsOptionalParameters struct {
 	FilterQuery *string
 	FilterFrom  *time.Time
@@ -211,30 +200,43 @@ type ListRUMEventsOptionalParameters struct {
 	PageLimit   *int32
 }
 
+// NewListRUMEventsOptionalParameters creates an empty struct for parameters.
 func NewListRUMEventsOptionalParameters() *ListRUMEventsOptionalParameters {
 	this := ListRUMEventsOptionalParameters{}
 	return &this
 }
+
+// WithFilterQuery sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithFilterQuery(filterQuery string) *ListRUMEventsOptionalParameters {
 	r.FilterQuery = &filterQuery
 	return r
 }
+
+// WithFilterFrom sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithFilterFrom(filterFrom time.Time) *ListRUMEventsOptionalParameters {
 	r.FilterFrom = &filterFrom
 	return r
 }
+
+// WithFilterTo sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithFilterTo(filterTo time.Time) *ListRUMEventsOptionalParameters {
 	r.FilterTo = &filterTo
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithSort(sort RUMSort) *ListRUMEventsOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithPageCursor(pageCursor string) *ListRUMEventsOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListRUMEventsOptionalParameters) WithPageLimit(pageLimit int32) *ListRUMEventsOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
@@ -261,15 +263,13 @@ func (a *RUMApiService) buildListRUMEventsRequest(ctx _context.Context, o ...Lis
 	return req, nil
 }
 
-/*
- * ListRUMEvents Get a list of RUM events
- * List endpoint returns events that match a RUM search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to see your latest RUM events.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
+// ListRUMEvents Get a list of RUM events.
+// List endpoint returns events that match a RUM search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to see your latest RUM events.
+//
+// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (RUMEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListRUMEventsRequest(ctx, o...)
 	if err != nil {
@@ -280,9 +280,7 @@ func (a *RUMApiService) ListRUMEvents(ctx _context.Context, o ...ListRUMEventsOp
 	return req.ApiService.listRUMEventsExecute(req)
 }
 
-/*
- * ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
- */
+// ListRUMEventsWithPagination provides a paginated version of ListRUMEvents returning a channel with all items.
 func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...ListRUMEventsOptionalParameters) (<-chan RUMEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -343,10 +341,7 @@ func (a *RUMApiService) ListRUMEventsWithPagination(ctx _context.Context, o ...L
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return RUMEventsResponse
- */
+// listRUMEventsExecute executes the request.
 func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -500,15 +495,13 @@ func (a *RUMApiService) buildSearchRUMEventsRequest(ctx _context.Context, body R
 	return req, nil
 }
 
-/*
- * SearchRUMEvents Search RUM events
- * List endpoint returns RUM events that match a RUM search query.
- * [Results are paginated][1].
- *
- * Use this endpoint to build complex RUM events filtering and search.
- *
- * [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
- */
+// SearchRUMEvents Search RUM events.
+// List endpoint returns RUM events that match a RUM search query.
+// [Results are paginated][1].
+//
+// Use this endpoint to build complex RUM events filtering and search.
+//
+// [1]: https://docs.datadoghq.com/logs/guide/collect-multiple-logs-with-pagination
 func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSearchRUMEventsRequest(ctx, body)
 	if err != nil {
@@ -519,9 +512,7 @@ func (a *RUMApiService) SearchRUMEvents(ctx _context.Context, body RUMSearchEven
 	return req.ApiService.searchRUMEventsExecute(req)
 }
 
-/*
- * SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
- */
+// SearchRUMEventsWithPagination provides a paginated version of SearchRUMEvents returning a channel with all items.
 func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body RUMSearchEventsRequest) (<-chan RUMEvent, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int32(10)
@@ -584,10 +575,7 @@ func (a *RUMApiService) SearchRUMEventsWithPagination(ctx _context.Context, body
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return RUMEventsResponse
- */
+// searchRUMEventsExecute executes the request.
 func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUMEventsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

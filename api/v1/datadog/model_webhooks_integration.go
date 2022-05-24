@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -34,10 +32,10 @@ type WebhooksIntegration struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewWebhooksIntegration instantiates a new WebhooksIntegration object
+// NewWebhooksIntegration instantiates a new WebhooksIntegration object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 	this := WebhooksIntegration{}
 	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
@@ -47,9 +45,9 @@ func NewWebhooksIntegration(name string, url string) *WebhooksIntegration {
 	return &this
 }
 
-// NewWebhooksIntegrationWithDefaults instantiates a new WebhooksIntegration object
+// NewWebhooksIntegrationWithDefaults instantiates a new WebhooksIntegration object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewWebhooksIntegrationWithDefaults() *WebhooksIntegration {
 	this := WebhooksIntegration{}
 	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
@@ -68,7 +66,7 @@ func (o *WebhooksIntegration) GetCustomHeaders() string {
 
 // GetCustomHeadersOk returns a tuple with the CustomHeaders field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *WebhooksIntegration) GetCustomHeadersOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -90,12 +88,12 @@ func (o *WebhooksIntegration) SetCustomHeaders(v string) {
 	o.CustomHeaders.Set(&v)
 }
 
-// SetCustomHeadersNil sets the value for CustomHeaders to be an explicit nil
+// SetCustomHeadersNil sets the value for CustomHeaders to be an explicit nil.
 func (o *WebhooksIntegration) SetCustomHeadersNil() {
 	o.CustomHeaders.Set(nil)
 }
 
-// UnsetCustomHeaders ensures that no value is present for CustomHeaders, not even an explicit nil
+// UnsetCustomHeaders ensures that no value is present for CustomHeaders, not even an explicit nil.
 func (o *WebhooksIntegration) UnsetCustomHeaders() {
 	o.CustomHeaders.Unset()
 }
@@ -132,7 +130,7 @@ func (o *WebhooksIntegration) SetEncodeAs(v WebhooksIntegrationEncoding) {
 	o.EncodeAs = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *WebhooksIntegration) GetName() string {
 	if o == nil {
 		var ret string
@@ -150,7 +148,7 @@ func (o *WebhooksIntegration) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *WebhooksIntegration) SetName(v string) {
 	o.Name = v
 }
@@ -166,7 +164,7 @@ func (o *WebhooksIntegration) GetPayload() string {
 
 // GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *WebhooksIntegration) GetPayloadOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -188,17 +186,17 @@ func (o *WebhooksIntegration) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
 
-// SetPayloadNil sets the value for Payload to be an explicit nil
+// SetPayloadNil sets the value for Payload to be an explicit nil.
 func (o *WebhooksIntegration) SetPayloadNil() {
 	o.Payload.Set(nil)
 }
 
-// UnsetPayload ensures that no value is present for Payload, not even an explicit nil
+// UnsetPayload ensures that no value is present for Payload, not even an explicit nil.
 func (o *WebhooksIntegration) UnsetPayload() {
 	o.Payload.Unset()
 }
 
-// GetUrl returns the Url field value
+// GetUrl returns the Url field value.
 func (o *WebhooksIntegration) GetUrl() string {
 	if o == nil {
 		var ret string
@@ -216,11 +214,12 @@ func (o *WebhooksIntegration) GetUrlOk() (*string, bool) {
 	return &o.Url, true
 }
 
-// SetUrl sets field value
+// SetUrl sets field value.
 func (o *WebhooksIntegration) SetUrl(v string) {
 	o.Url = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o WebhooksIntegration) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -244,6 +243,7 @@ func (o WebhooksIntegration) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegration) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,23 +20,23 @@ type SLOCorrectionCreateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object
+// NewSLOCorrectionCreateData instantiates a new SLOCorrectionCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSLOCorrectionCreateData(type_ SLOCorrectionType) *SLOCorrectionCreateData {
+// will change when the set of required properties is changed.
+func NewSLOCorrectionCreateData(typeVar SLOCorrectionType) *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSLOCorrectionCreateDataWithDefaults instantiates a new SLOCorrectionCreateData object
+// NewSLOCorrectionCreateDataWithDefaults instantiates a new SLOCorrectionCreateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOCorrectionCreateDataWithDefaults() *SLOCorrectionCreateData {
 	this := SLOCorrectionCreateData{}
-	var type_ SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
-	this.Type = type_
+	var typeVar SLOCorrectionType = SLOCORRECTIONTYPE_CORRECTION
+	this.Type = typeVar
 	return &this
 }
 
@@ -74,7 +72,7 @@ func (o *SLOCorrectionCreateData) SetAttributes(v SLOCorrectionCreateRequestAttr
 	o.Attributes = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SLOCorrectionCreateData) GetType() SLOCorrectionType {
 	if o == nil {
 		var ret SLOCorrectionType
@@ -92,11 +90,12 @@ func (o *SLOCorrectionCreateData) GetTypeOk() (*SLOCorrectionType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SLOCorrectionCreateData) SetType(v SLOCorrectionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -113,6 +112,7 @@ func (o SLOCorrectionCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOCorrectionCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
