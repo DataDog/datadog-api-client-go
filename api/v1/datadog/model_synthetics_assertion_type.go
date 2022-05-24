@@ -31,6 +31,7 @@ const (
 	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED       SyntheticsAssertionType = "packetsReceived"
 	SYNTHETICSASSERTIONTYPE_NETWORK_HOP            SyntheticsAssertionType = "networkHop"
 	SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE       SyntheticsAssertionType = "receivedMessage"
+	SYNTHETICSASSERTIONTYPE_CONNECTION             SyntheticsAssertionType = "connection"
 )
 
 var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
@@ -49,6 +50,7 @@ var allowedSyntheticsAssertionTypeEnumValues = []SyntheticsAssertionType{
 	SYNTHETICSASSERTIONTYPE_PACKETS_RECEIVED,
 	SYNTHETICSASSERTIONTYPE_NETWORK_HOP,
 	SYNTHETICSASSERTIONTYPE_RECEIVED_MESSAGE,
+	SYNTHETICSASSERTIONTYPE_CONNECTION,
 }
 
 func (w *SyntheticsAssertionType) GetAllowedValues() []SyntheticsAssertionType {
