@@ -289,47 +289,8 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 	return req, nil
 }
 
-<<<<<<< HEAD
-/*
- * GetHourlyUsageAttribution Get hourly usage attribution
- * Get hourly usage attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetHourlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetHourlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
- */
-||||||| parent of b1662597 (Remove various lints)
-/*
- * GetHourlyUsageAttribution Get Hourly Usage Attribution
- * Get Hourly Usage Attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetHourlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetHourlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
- */
-=======
-// GetHourlyUsageAttribution Get Hourly Usage Attribution.
-// Get Hourly Usage Attribution.
+// GetHourlyUsageAttribution Get hourly usage attribution.
+// Get hourly usage attribution.
 //
 // This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
 // set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -344,7 +305,6 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
->>>>>>> b1662597 (Remove various lints)
 func (a *UsageMeteringApiService) GetHourlyUsageAttribution(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (HourlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetHourlyUsageAttributionRequest(ctx, startHr, usageType, o...)
 	if err != nil {
@@ -1139,47 +1099,8 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 	return req, nil
 }
 
-<<<<<<< HEAD
-/*
- * GetMonthlyUsageAttribution Get monthly usage attribution
- * Get monthly usage attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetMonthlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetMonthlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
- */
-||||||| parent of b1662597 (Remove various lints)
-/*
- * GetMonthlyUsageAttribution Get Monthly Usage Attribution
- * Get Monthly Usage Attribution.
- *
- * This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
- * set in the response. If it is, make another request and pass `next_record_id` as a parameter.
- * Pseudo code example:
- *
- * ```
- * response := GetMonthlyUsageAttribution(start_month)
- * cursor := response.metadata.pagination.next_record_id
- * WHILE cursor != null BEGIN
- *   sleep(5 seconds)  # Avoid running into rate limit
- *   response := GetMonthlyUsageAttribution(start_month, next_record_id=cursor)
- *   cursor := response.metadata.pagination.next_record_id
- * END
- * ```
- */
-=======
-// GetMonthlyUsageAttribution Get Monthly Usage Attribution.
-// Get Monthly Usage Attribution.
+// GetMonthlyUsageAttribution Get monthly usage attribution.
+// Get monthly usage attribution.
 //
 // This API endpoint is paginated. To make sure you receive all records, check if the value of `next_record_id` is
 // set in the response. If it is, make another request and pass `next_record_id` as a parameter.
@@ -1194,7 +1115,6 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 //   cursor := response.metadata.pagination.next_record_id
 // END
 // ```
->>>>>>> b1662597 (Remove various lints)
 func (a *UsageMeteringApiService) GetMonthlyUsageAttribution(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (MonthlyUsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetMonthlyUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {
@@ -1937,20 +1857,8 @@ func (a *UsageMeteringApiService) buildGetUsageAttributionRequest(ctx _context.C
 	return req, nil
 }
 
-<<<<<<< HEAD
-/*
- * GetUsageAttribution Get usage attribution
- * Get usage attribution.
- */
-||||||| parent of b1662597 (Remove various lints)
-/*
- * GetUsageAttribution Get Usage Attribution
- * Get Usage Attribution.
- */
-=======
-// GetUsageAttribution Get Usage Attribution.
-// Get Usage Attribution.
->>>>>>> b1662597 (Remove various lints)
+// GetUsageAttribution Get usage attribution.
+// Get usage attribution.
 func (a *UsageMeteringApiService) GetUsageAttribution(ctx _context.Context, startMonth time.Time, fields UsageAttributionSupportedMetrics, o ...GetUsageAttributionOptionalParameters) (UsageAttributionResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUsageAttributionRequest(ctx, startMonth, fields, o...)
 	if err != nil {

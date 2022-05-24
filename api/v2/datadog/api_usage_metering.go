@@ -57,20 +57,8 @@ func (a *UsageMeteringApiService) buildGetCostByOrgRequest(ctx _context.Context,
 	return req, nil
 }
 
-<<<<<<< HEAD
-/*
- * GetCostByOrg Get cost across multi-org account
- * Get cost across multi-org account. Cost by org data for a given month becomes available no later than the 16th of the following month.
- */
-||||||| parent of b1662597 (Remove various lints)
-/*
- * GetCostByOrg Get Cost Across Multi-Org Account
- * Get Cost Across Multi-Org Account.
- */
-=======
-// GetCostByOrg Get Cost Across Multi-Org Account.
-// Get Cost Across Multi-Org Account.
->>>>>>> b1662597 (Remove various lints)
+// GetCostByOrg Get cost across multi-org account.
+// Get cost across multi-org account. Cost by org data for a given month becomes available no later than the 16th of the following month.
 func (a *UsageMeteringApiService) GetCostByOrg(ctx _context.Context, startMonth time.Time, o ...GetCostByOrgOptionalParameters) (CostByOrgResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetCostByOrgRequest(ctx, startMonth, o...)
 	if err != nil {
