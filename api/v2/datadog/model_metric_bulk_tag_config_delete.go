@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,24 +22,24 @@ type MetricBulkTagConfigDelete struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMetricBulkTagConfigDelete instantiates a new MetricBulkTagConfigDelete object
+// NewMetricBulkTagConfigDelete instantiates a new MetricBulkTagConfigDelete object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewMetricBulkTagConfigDelete(id string, type_ MetricBulkConfigureTagsType) *MetricBulkTagConfigDelete {
+// will change when the set of required properties is changed.
+func NewMetricBulkTagConfigDelete(id string, typeVar MetricBulkConfigureTagsType) *MetricBulkTagConfigDelete {
 	this := MetricBulkTagConfigDelete{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewMetricBulkTagConfigDeleteWithDefaults instantiates a new MetricBulkTagConfigDelete object
+// NewMetricBulkTagConfigDeleteWithDefaults instantiates a new MetricBulkTagConfigDelete object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMetricBulkTagConfigDeleteWithDefaults() *MetricBulkTagConfigDelete {
 	this := MetricBulkTagConfigDelete{}
-	var type_ MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
-	this.Type = type_
+	var typeVar MetricBulkConfigureTagsType = METRICBULKCONFIGURETAGSTYPE_BULK_MANAGE_TAGS
+	this.Type = typeVar
 	return &this
 }
 
@@ -77,7 +75,7 @@ func (o *MetricBulkTagConfigDelete) SetAttributes(v MetricBulkTagConfigDeleteAtt
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *MetricBulkTagConfigDelete) GetId() string {
 	if o == nil {
 		var ret string
@@ -95,12 +93,12 @@ func (o *MetricBulkTagConfigDelete) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *MetricBulkTagConfigDelete) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *MetricBulkTagConfigDelete) GetType() MetricBulkConfigureTagsType {
 	if o == nil {
 		var ret MetricBulkConfigureTagsType
@@ -118,11 +116,12 @@ func (o *MetricBulkTagConfigDelete) GetTypeOk() (*MetricBulkConfigureTagsType, b
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *MetricBulkTagConfigDelete) SetType(v MetricBulkConfigureTagsType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MetricBulkTagConfigDelete) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,6 +139,7 @@ func (o MetricBulkTagConfigDelete) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MetricBulkTagConfigDelete) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

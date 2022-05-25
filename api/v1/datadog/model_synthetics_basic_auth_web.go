@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,30 +22,30 @@ type SyntheticsBasicAuthWeb struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsBasicAuthWeb instantiates a new SyntheticsBasicAuthWeb object
+// NewSyntheticsBasicAuthWeb instantiates a new SyntheticsBasicAuthWeb object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsBasicAuthWeb(password string, username string) *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
 	this.Password = password
-	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
-	this.Type = &type_
+	var typeVar SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
+	this.Type = &typeVar
 	this.Username = username
 	return &this
 }
 
-// NewSyntheticsBasicAuthWebWithDefaults instantiates a new SyntheticsBasicAuthWeb object
+// NewSyntheticsBasicAuthWebWithDefaults instantiates a new SyntheticsBasicAuthWeb object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsBasicAuthWebWithDefaults() *SyntheticsBasicAuthWeb {
 	this := SyntheticsBasicAuthWeb{}
-	var type_ SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
-	this.Type = &type_
+	var typeVar SyntheticsBasicAuthWebType = SYNTHETICSBASICAUTHWEBTYPE_WEB
+	this.Type = &typeVar
 	return &this
 }
 
-// GetPassword returns the Password field value
+// GetPassword returns the Password field value.
 func (o *SyntheticsBasicAuthWeb) GetPassword() string {
 	if o == nil {
 		var ret string
@@ -65,7 +63,7 @@ func (o *SyntheticsBasicAuthWeb) GetPasswordOk() (*string, bool) {
 	return &o.Password, true
 }
 
-// SetPassword sets field value
+// SetPassword sets field value.
 func (o *SyntheticsBasicAuthWeb) SetPassword(v string) {
 	o.Password = v
 }
@@ -102,7 +100,7 @@ func (o *SyntheticsBasicAuthWeb) SetType(v SyntheticsBasicAuthWebType) {
 	o.Type = &v
 }
 
-// GetUsername returns the Username field value
+// GetUsername returns the Username field value.
 func (o *SyntheticsBasicAuthWeb) GetUsername() string {
 	if o == nil {
 		var ret string
@@ -120,11 +118,12 @@ func (o *SyntheticsBasicAuthWeb) GetUsernameOk() (*string, bool) {
 	return &o.Username, true
 }
 
-// SetUsername sets field value
+// SetUsername sets field value.
 func (o *SyntheticsBasicAuthWeb) SetUsername(v string) {
 	o.Username = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -142,6 +141,7 @@ func (o SyntheticsBasicAuthWeb) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthWeb) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

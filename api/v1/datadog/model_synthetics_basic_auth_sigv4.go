@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -30,29 +28,29 @@ type SyntheticsBasicAuthSigv4 struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsBasicAuthSigv4 instantiates a new SyntheticsBasicAuthSigv4 object
+// NewSyntheticsBasicAuthSigv4 instantiates a new SyntheticsBasicAuthSigv4 object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsBasicAuthSigv4(accessKey string, secretKey string, type_ SyntheticsBasicAuthSigv4Type) *SyntheticsBasicAuthSigv4 {
+// will change when the set of required properties is changed.
+func NewSyntheticsBasicAuthSigv4(accessKey string, secretKey string, typeVar SyntheticsBasicAuthSigv4Type) *SyntheticsBasicAuthSigv4 {
 	this := SyntheticsBasicAuthSigv4{}
 	this.AccessKey = accessKey
 	this.SecretKey = secretKey
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsBasicAuthSigv4WithDefaults instantiates a new SyntheticsBasicAuthSigv4 object
+// NewSyntheticsBasicAuthSigv4WithDefaults instantiates a new SyntheticsBasicAuthSigv4 object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsBasicAuthSigv4WithDefaults() *SyntheticsBasicAuthSigv4 {
 	this := SyntheticsBasicAuthSigv4{}
-	var type_ SyntheticsBasicAuthSigv4Type = SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4
-	this.Type = type_
+	var typeVar SyntheticsBasicAuthSigv4Type = SYNTHETICSBASICAUTHSIGV4TYPE_SIGV4
+	this.Type = typeVar
 	return &this
 }
 
-// GetAccessKey returns the AccessKey field value
+// GetAccessKey returns the AccessKey field value.
 func (o *SyntheticsBasicAuthSigv4) GetAccessKey() string {
 	if o == nil {
 		var ret string
@@ -70,7 +68,7 @@ func (o *SyntheticsBasicAuthSigv4) GetAccessKeyOk() (*string, bool) {
 	return &o.AccessKey, true
 }
 
-// SetAccessKey sets field value
+// SetAccessKey sets field value.
 func (o *SyntheticsBasicAuthSigv4) SetAccessKey(v string) {
 	o.AccessKey = v
 }
@@ -107,7 +105,7 @@ func (o *SyntheticsBasicAuthSigv4) SetRegion(v string) {
 	o.Region = &v
 }
 
-// GetSecretKey returns the SecretKey field value
+// GetSecretKey returns the SecretKey field value.
 func (o *SyntheticsBasicAuthSigv4) GetSecretKey() string {
 	if o == nil {
 		var ret string
@@ -125,7 +123,7 @@ func (o *SyntheticsBasicAuthSigv4) GetSecretKeyOk() (*string, bool) {
 	return &o.SecretKey, true
 }
 
-// SetSecretKey sets field value
+// SetSecretKey sets field value.
 func (o *SyntheticsBasicAuthSigv4) SetSecretKey(v string) {
 	o.SecretKey = v
 }
@@ -194,7 +192,7 @@ func (o *SyntheticsBasicAuthSigv4) SetSessionToken(v string) {
 	o.SessionToken = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsBasicAuthSigv4) GetType() SyntheticsBasicAuthSigv4Type {
 	if o == nil {
 		var ret SyntheticsBasicAuthSigv4Type
@@ -212,11 +210,12 @@ func (o *SyntheticsBasicAuthSigv4) GetTypeOk() (*SyntheticsBasicAuthSigv4Type, b
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsBasicAuthSigv4) SetType(v SyntheticsBasicAuthSigv4Type) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -241,6 +240,7 @@ func (o SyntheticsBasicAuthSigv4) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthSigv4) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -36,10 +34,10 @@ type FormulaAndFunctionProcessQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object
+// NewFormulaAndFunctionProcessQueryDefinition instantiates a new FormulaAndFunctionProcessQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionProcessQueryDataSource, metric string, name string) *FormulaAndFunctionProcessQueryDefinition {
 	this := FormulaAndFunctionProcessQueryDefinition{}
 	this.DataSource = dataSource
@@ -50,9 +48,9 @@ func NewFormulaAndFunctionProcessQueryDefinition(dataSource FormulaAndFunctionPr
 	return &this
 }
 
-// NewFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionProcessQueryDefinition object
+// NewFormulaAndFunctionProcessQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionProcessQueryDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewFormulaAndFunctionProcessQueryDefinitionWithDefaults() *FormulaAndFunctionProcessQueryDefinition {
 	this := FormulaAndFunctionProcessQueryDefinition{}
 	var sort QuerySortOrder = QUERYSORTORDER_DESC
@@ -92,7 +90,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetAggregator(v FormulaAndFun
 	o.Aggregator = &v
 }
 
-// GetDataSource returns the DataSource field value
+// GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSource() FormulaAndFunctionProcessQueryDataSource {
 	if o == nil {
 		var ret FormulaAndFunctionProcessQueryDataSource
@@ -110,7 +108,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetDataSourceOk() (*FormulaAn
 	return &o.DataSource, true
 }
 
-// SetDataSource sets field value
+// SetDataSource sets field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) SetDataSource(v FormulaAndFunctionProcessQueryDataSource) {
 	o.DataSource = v
 }
@@ -179,7 +177,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetLimit(v int64) {
 	o.Limit = &v
 }
 
-// GetMetric returns the Metric field value
+// GetMetric returns the Metric field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetMetric() string {
 	if o == nil {
 		var ret string
@@ -197,12 +195,12 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetMetricOk() (*string, bool)
 	return &o.Metric, true
 }
 
-// SetMetric sets field value
+// SetMetric sets field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) SetMetric(v string) {
 	o.Metric = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) GetName() string {
 	if o == nil {
 		var ret string
@@ -220,7 +218,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *FormulaAndFunctionProcessQueryDefinition) SetName(v string) {
 	o.Name = v
 }
@@ -321,6 +319,7 @@ func (o *FormulaAndFunctionProcessQueryDefinition) SetTextFilter(v string) {
 	o.TextFilter = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -354,6 +353,7 @@ func (o FormulaAndFunctionProcessQueryDefinition) MarshalJSON() ([]byte, error) 
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionProcessQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

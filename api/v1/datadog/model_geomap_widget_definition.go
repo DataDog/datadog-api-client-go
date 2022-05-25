@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -39,26 +37,26 @@ type GeomapWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object
+// NewGeomapWidgetDefinition instantiates a new GeomapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewGeomapWidgetDefinition(requests []GeomapWidgetRequest, style GeomapWidgetDefinitionStyle, type_ GeomapWidgetDefinitionType, view GeomapWidgetDefinitionView) *GeomapWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewGeomapWidgetDefinition(requests []GeomapWidgetRequest, style GeomapWidgetDefinitionStyle, typeVar GeomapWidgetDefinitionType, view GeomapWidgetDefinitionView) *GeomapWidgetDefinition {
 	this := GeomapWidgetDefinition{}
 	this.Requests = requests
 	this.Style = style
-	this.Type = type_
+	this.Type = typeVar
 	this.View = view
 	return &this
 }
 
-// NewGeomapWidgetDefinitionWithDefaults instantiates a new GeomapWidgetDefinition object
+// NewGeomapWidgetDefinitionWithDefaults instantiates a new GeomapWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewGeomapWidgetDefinitionWithDefaults() *GeomapWidgetDefinition {
 	this := GeomapWidgetDefinition{}
-	var type_ GeomapWidgetDefinitionType = GEOMAPWIDGETDEFINITIONTYPE_GEOMAP
-	this.Type = type_
+	var typeVar GeomapWidgetDefinitionType = GEOMAPWIDGETDEFINITIONTYPE_GEOMAP
+	this.Type = typeVar
 	return &this
 }
 
@@ -94,7 +92,7 @@ func (o *GeomapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
-// GetRequests returns the Requests field value
+// GetRequests returns the Requests field value.
 func (o *GeomapWidgetDefinition) GetRequests() []GeomapWidgetRequest {
 	if o == nil {
 		var ret []GeomapWidgetRequest
@@ -112,12 +110,12 @@ func (o *GeomapWidgetDefinition) GetRequestsOk() (*[]GeomapWidgetRequest, bool) 
 	return &o.Requests, true
 }
 
-// SetRequests sets field value
+// SetRequests sets field value.
 func (o *GeomapWidgetDefinition) SetRequests(v []GeomapWidgetRequest) {
 	o.Requests = v
 }
 
-// GetStyle returns the Style field value
+// GetStyle returns the Style field value.
 func (o *GeomapWidgetDefinition) GetStyle() GeomapWidgetDefinitionStyle {
 	if o == nil {
 		var ret GeomapWidgetDefinitionStyle
@@ -135,7 +133,7 @@ func (o *GeomapWidgetDefinition) GetStyleOk() (*GeomapWidgetDefinitionStyle, boo
 	return &o.Style, true
 }
 
-// SetStyle sets field value
+// SetStyle sets field value.
 func (o *GeomapWidgetDefinition) SetStyle(v GeomapWidgetDefinitionStyle) {
 	o.Style = v
 }
@@ -268,7 +266,7 @@ func (o *GeomapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *GeomapWidgetDefinition) GetType() GeomapWidgetDefinitionType {
 	if o == nil {
 		var ret GeomapWidgetDefinitionType
@@ -286,12 +284,12 @@ func (o *GeomapWidgetDefinition) GetTypeOk() (*GeomapWidgetDefinitionType, bool)
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *GeomapWidgetDefinition) SetType(v GeomapWidgetDefinitionType) {
 	o.Type = v
 }
 
-// GetView returns the View field value
+// GetView returns the View field value.
 func (o *GeomapWidgetDefinition) GetView() GeomapWidgetDefinitionView {
 	if o == nil {
 		var ret GeomapWidgetDefinitionView
@@ -309,11 +307,12 @@ func (o *GeomapWidgetDefinition) GetViewOk() (*GeomapWidgetDefinitionView, bool)
 	return &o.View, true
 }
 
-// SetView sets field value
+// SetView sets field value.
 func (o *GeomapWidgetDefinition) SetView(v GeomapWidgetDefinitionView) {
 	o.View = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -345,6 +344,7 @@ func (o GeomapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

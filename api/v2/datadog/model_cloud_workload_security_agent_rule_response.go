@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -19,18 +17,18 @@ type CloudWorkloadSecurityAgentRuleResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewCloudWorkloadSecurityAgentRuleResponse instantiates a new CloudWorkloadSecurityAgentRuleResponse object
+// NewCloudWorkloadSecurityAgentRuleResponse instantiates a new CloudWorkloadSecurityAgentRuleResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewCloudWorkloadSecurityAgentRuleResponse() *CloudWorkloadSecurityAgentRuleResponse {
 	this := CloudWorkloadSecurityAgentRuleResponse{}
 	return &this
 }
 
-// NewCloudWorkloadSecurityAgentRuleResponseWithDefaults instantiates a new CloudWorkloadSecurityAgentRuleResponse object
+// NewCloudWorkloadSecurityAgentRuleResponseWithDefaults instantiates a new CloudWorkloadSecurityAgentRuleResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewCloudWorkloadSecurityAgentRuleResponseWithDefaults() *CloudWorkloadSecurityAgentRuleResponse {
 	this := CloudWorkloadSecurityAgentRuleResponse{}
 	return &this
@@ -68,6 +66,7 @@ func (o *CloudWorkloadSecurityAgentRuleResponse) SetData(v CloudWorkloadSecurity
 	o.Data = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -83,6 +82,7 @@ func (o CloudWorkloadSecurityAgentRuleResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *CloudWorkloadSecurityAgentRuleResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

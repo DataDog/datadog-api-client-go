@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -31,27 +29,27 @@ type LogsTraceRemapper struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsTraceRemapper instantiates a new LogsTraceRemapper object
+// NewLogsTraceRemapper instantiates a new LogsTraceRemapper object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsTraceRemapper(type_ LogsTraceRemapperType) *LogsTraceRemapper {
+// will change when the set of required properties is changed.
+func NewLogsTraceRemapper(typeVar LogsTraceRemapperType) *LogsTraceRemapper {
 	this := LogsTraceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsTraceRemapperWithDefaults instantiates a new LogsTraceRemapper object
+// NewLogsTraceRemapperWithDefaults instantiates a new LogsTraceRemapper object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsTraceRemapperWithDefaults() *LogsTraceRemapper {
 	this := LogsTraceRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsTraceRemapperType = LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER
-	this.Type = type_
+	var typeVar LogsTraceRemapperType = LOGSTRACEREMAPPERTYPE_TRACE_ID_REMAPPER
+	this.Type = typeVar
 	return &this
 }
 
@@ -151,7 +149,7 @@ func (o *LogsTraceRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsTraceRemapper) GetType() LogsTraceRemapperType {
 	if o == nil {
 		var ret LogsTraceRemapperType
@@ -169,11 +167,12 @@ func (o *LogsTraceRemapper) GetTypeOk() (*LogsTraceRemapperType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsTraceRemapper) SetType(v LogsTraceRemapperType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -196,6 +195,7 @@ func (o LogsTraceRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsTraceRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

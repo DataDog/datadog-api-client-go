@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,19 +24,19 @@ type OrganizationCreateBody struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewOrganizationCreateBody instantiates a new OrganizationCreateBody object
+// NewOrganizationCreateBody instantiates a new OrganizationCreateBody object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewOrganizationCreateBody(name string) *OrganizationCreateBody {
 	this := OrganizationCreateBody{}
 	this.Name = name
 	return &this
 }
 
-// NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object
+// NewOrganizationCreateBodyWithDefaults instantiates a new OrganizationCreateBody object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewOrganizationCreateBodyWithDefaults() *OrganizationCreateBody {
 	this := OrganizationCreateBody{}
 	return &this
@@ -79,7 +77,7 @@ func (o *OrganizationCreateBody) SetBilling(v OrganizationBilling) {
 	o.Billing = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *OrganizationCreateBody) GetName() string {
 	if o == nil {
 		var ret string
@@ -97,7 +95,7 @@ func (o *OrganizationCreateBody) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *OrganizationCreateBody) SetName(v string) {
 	o.Name = v
 }
@@ -137,6 +135,7 @@ func (o *OrganizationCreateBody) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -156,6 +155,7 @@ func (o OrganizationCreateBody) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *OrganizationCreateBody) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

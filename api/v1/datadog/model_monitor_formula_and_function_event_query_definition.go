@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -30,10 +28,10 @@ type MonitorFormulaAndFunctionEventQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorFormulaAndFunctionEventQueryDefinition instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object
+// NewMonitorFormulaAndFunctionEventQueryDefinition instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMonitorFormulaAndFunctionEventQueryDefinition(compute MonitorFormulaAndFunctionEventQueryDefinitionCompute, dataSource MonitorFormulaAndFunctionEventsDataSource, name string) *MonitorFormulaAndFunctionEventQueryDefinition {
 	this := MonitorFormulaAndFunctionEventQueryDefinition{}
 	this.Compute = compute
@@ -42,15 +40,15 @@ func NewMonitorFormulaAndFunctionEventQueryDefinition(compute MonitorFormulaAndF
 	return &this
 }
 
-// NewMonitorFormulaAndFunctionEventQueryDefinitionWithDefaults instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object
+// NewMonitorFormulaAndFunctionEventQueryDefinitionWithDefaults instantiates a new MonitorFormulaAndFunctionEventQueryDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorFormulaAndFunctionEventQueryDefinitionWithDefaults() *MonitorFormulaAndFunctionEventQueryDefinition {
 	this := MonitorFormulaAndFunctionEventQueryDefinition{}
 	return &this
 }
 
-// GetCompute returns the Compute field value
+// GetCompute returns the Compute field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetCompute() MonitorFormulaAndFunctionEventQueryDefinitionCompute {
 	if o == nil {
 		var ret MonitorFormulaAndFunctionEventQueryDefinitionCompute
@@ -68,12 +66,12 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetComputeOk() (*Monitor
 	return &o.Compute, true
 }
 
-// SetCompute sets field value
+// SetCompute sets field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetCompute(v MonitorFormulaAndFunctionEventQueryDefinitionCompute) {
 	o.Compute = v
 }
 
-// GetDataSource returns the DataSource field value
+// GetDataSource returns the DataSource field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSource() MonitorFormulaAndFunctionEventsDataSource {
 	if o == nil {
 		var ret MonitorFormulaAndFunctionEventsDataSource
@@ -91,7 +89,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetDataSourceOk() (*Moni
 	return &o.DataSource, true
 }
 
-// SetDataSource sets field value
+// SetDataSource sets field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetDataSource(v MonitorFormulaAndFunctionEventsDataSource) {
 	o.DataSource = v
 }
@@ -160,7 +158,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetIndexes(v []string) {
 	o.Indexes = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetName() string {
 	if o == nil {
 		var ret string
@@ -178,7 +176,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) GetNameOk() (*string, bo
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetName(v string) {
 	o.Name = v
 }
@@ -215,6 +213,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinition) SetSearch(v MonitorFormu
 	o.Search = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -239,6 +238,7 @@ func (o MonitorFormulaAndFunctionEventQueryDefinition) MarshalJSON() ([]byte, er
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionEventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

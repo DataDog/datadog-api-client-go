@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,28 +36,28 @@ type NoteWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNoteWidgetDefinition instantiates a new NoteWidgetDefinition object
+// NewNoteWidgetDefinition instantiates a new NoteWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewNoteWidgetDefinition(content string, type_ NoteWidgetDefinitionType) *NoteWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewNoteWidgetDefinition(content string, typeVar NoteWidgetDefinitionType) *NoteWidgetDefinition {
 	this := NoteWidgetDefinition{}
 	this.Content = content
 	var hasPadding bool = true
 	this.HasPadding = &hasPadding
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewNoteWidgetDefinitionWithDefaults instantiates a new NoteWidgetDefinition object
+// NewNoteWidgetDefinitionWithDefaults instantiates a new NoteWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNoteWidgetDefinitionWithDefaults() *NoteWidgetDefinition {
 	this := NoteWidgetDefinition{}
 	var hasPadding bool = true
 	this.HasPadding = &hasPadding
-	var type_ NoteWidgetDefinitionType = NOTEWIDGETDEFINITIONTYPE_NOTE
-	this.Type = type_
+	var typeVar NoteWidgetDefinitionType = NOTEWIDGETDEFINITIONTYPE_NOTE
+	this.Type = typeVar
 	return &this
 }
 
@@ -95,7 +93,7 @@ func (o *NoteWidgetDefinition) SetBackgroundColor(v string) {
 	o.BackgroundColor = &v
 }
 
-// GetContent returns the Content field value
+// GetContent returns the Content field value.
 func (o *NoteWidgetDefinition) GetContent() string {
 	if o == nil {
 		var ret string
@@ -113,7 +111,7 @@ func (o *NoteWidgetDefinition) GetContentOk() (*string, bool) {
 	return &o.Content, true
 }
 
-// SetContent sets field value
+// SetContent sets field value.
 func (o *NoteWidgetDefinition) SetContent(v string) {
 	o.Content = v
 }
@@ -310,7 +308,7 @@ func (o *NoteWidgetDefinition) SetTickPos(v string) {
 	o.TickPos = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *NoteWidgetDefinition) GetType() NoteWidgetDefinitionType {
 	if o == nil {
 		var ret NoteWidgetDefinitionType
@@ -328,7 +326,7 @@ func (o *NoteWidgetDefinition) GetTypeOk() (*NoteWidgetDefinitionType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *NoteWidgetDefinition) SetType(v NoteWidgetDefinitionType) {
 	o.Type = v
 }
@@ -365,6 +363,7 @@ func (o *NoteWidgetDefinition) SetVerticalAlign(v WidgetVerticalAlign) {
 	o.VerticalAlign = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -403,6 +402,7 @@ func (o NoteWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NoteWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

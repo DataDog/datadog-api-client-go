@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -35,10 +33,10 @@ type WebhooksIntegrationUpdateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewWebhooksIntegrationUpdateRequest instantiates a new WebhooksIntegrationUpdateRequest object
+// NewWebhooksIntegrationUpdateRequest instantiates a new WebhooksIntegrationUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewWebhooksIntegrationUpdateRequest() *WebhooksIntegrationUpdateRequest {
 	this := WebhooksIntegrationUpdateRequest{}
 	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
@@ -46,9 +44,9 @@ func NewWebhooksIntegrationUpdateRequest() *WebhooksIntegrationUpdateRequest {
 	return &this
 }
 
-// NewWebhooksIntegrationUpdateRequestWithDefaults instantiates a new WebhooksIntegrationUpdateRequest object
+// NewWebhooksIntegrationUpdateRequestWithDefaults instantiates a new WebhooksIntegrationUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewWebhooksIntegrationUpdateRequestWithDefaults() *WebhooksIntegrationUpdateRequest {
 	this := WebhooksIntegrationUpdateRequest{}
 	var encodeAs WebhooksIntegrationEncoding = WEBHOOKSINTEGRATIONENCODING_JSON
@@ -163,7 +161,7 @@ func (o *WebhooksIntegrationUpdateRequest) GetPayload() string {
 
 // GetPayloadOk returns a tuple with the Payload field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *WebhooksIntegrationUpdateRequest) GetPayloadOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -185,12 +183,12 @@ func (o *WebhooksIntegrationUpdateRequest) SetPayload(v string) {
 	o.Payload.Set(&v)
 }
 
-// SetPayloadNil sets the value for Payload to be an explicit nil
+// SetPayloadNil sets the value for Payload to be an explicit nil.
 func (o *WebhooksIntegrationUpdateRequest) SetPayloadNil() {
 	o.Payload.Set(nil)
 }
 
-// UnsetPayload ensures that no value is present for Payload, not even an explicit nil
+// UnsetPayload ensures that no value is present for Payload, not even an explicit nil.
 func (o *WebhooksIntegrationUpdateRequest) UnsetPayload() {
 	o.Payload.Unset()
 }
@@ -227,6 +225,7 @@ func (o *WebhooksIntegrationUpdateRequest) SetUrl(v string) {
 	o.Url = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -254,6 +253,7 @@ func (o WebhooksIntegrationUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *WebhooksIntegrationUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

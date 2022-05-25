@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -17,12 +15,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// IncidentsApiService IncidentsApi service
+// IncidentsApiService IncidentsApi service.
 type IncidentsApiService service
 
 type apiCreateIncidentRequest struct {
@@ -40,10 +33,8 @@ func (a *IncidentsApiService) buildCreateIncidentRequest(ctx _context.Context, b
 	return req, nil
 }
 
-/*
- * CreateIncident Create an incident
- * Create an incident.
- */
+// CreateIncident Create an incident.
+// Create an incident.
 func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body IncidentCreateRequest) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateIncidentRequest(ctx, body)
 	if err != nil {
@@ -54,10 +45,7 @@ func (a *IncidentsApiService) CreateIncident(ctx _context.Context, body Incident
 	return req.ApiService.createIncidentExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentResponse
- */
+// createIncidentExecute executes the request.
 func (a *IncidentsApiService) createIncidentExecute(r apiCreateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -235,10 +223,8 @@ func (a *IncidentsApiService) buildDeleteIncidentRequest(ctx _context.Context, i
 	return req, nil
 }
 
-/*
- * DeleteIncident Delete an existing incident
- * Deletes an existing incident from the users organization.
- */
+// DeleteIncident Delete an existing incident.
+// Deletes an existing incident from the users organization.
 func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId string) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteIncidentRequest(ctx, incidentId)
 	if err != nil {
@@ -248,9 +234,7 @@ func (a *IncidentsApiService) DeleteIncident(ctx _context.Context, incidentId st
 	return req.ApiService.deleteIncidentExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteIncidentExecute executes the request.
 func (a *IncidentsApiService) deleteIncidentExecute(r apiDeleteIncidentRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -396,14 +380,18 @@ type apiGetIncidentRequest struct {
 	include    *[]IncidentRelatedObject
 }
 
+// GetIncidentOptionalParameters holds optional parameters for GetIncident.
 type GetIncidentOptionalParameters struct {
 	Include *[]IncidentRelatedObject
 }
 
+// NewGetIncidentOptionalParameters creates an empty struct for parameters.
 func NewGetIncidentOptionalParameters() *GetIncidentOptionalParameters {
 	this := GetIncidentOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *GetIncidentOptionalParameters {
 	r.Include = &include
 	return r
@@ -426,10 +414,8 @@ func (a *IncidentsApiService) buildGetIncidentRequest(ctx _context.Context, inci
 	return req, nil
 }
 
-/*
- * GetIncident Get the details of an incident
- * Get the details of an incident by `incident_id`.
- */
+// GetIncident Get the details of an incident.
+// Get the details of an incident by `incident_id`.
 func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId string, o ...GetIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetIncidentRequest(ctx, incidentId, o...)
 	if err != nil {
@@ -440,10 +426,7 @@ func (a *IncidentsApiService) GetIncident(ctx _context.Context, incidentId strin
 	return req.ApiService.getIncidentExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentResponse
- */
+// getIncidentExecute executes the request.
 func (a *IncidentsApiService) getIncidentExecute(r apiGetIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -603,24 +586,32 @@ type apiListIncidentsRequest struct {
 	pageOffset *int64
 }
 
+// ListIncidentsOptionalParameters holds optional parameters for ListIncidents.
 type ListIncidentsOptionalParameters struct {
 	Include    *[]IncidentRelatedObject
 	PageSize   *int64
 	PageOffset *int64
 }
 
+// NewListIncidentsOptionalParameters creates an empty struct for parameters.
 func NewListIncidentsOptionalParameters() *ListIncidentsOptionalParameters {
 	this := ListIncidentsOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithInclude(include []IncidentRelatedObject) *ListIncidentsOptionalParameters {
 	r.Include = &include
 	return r
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithPageSize(pageSize int64) *ListIncidentsOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageOffset sets the corresponding parameter name and returns the struct.
 func (r *ListIncidentsOptionalParameters) WithPageOffset(pageOffset int64) *ListIncidentsOptionalParameters {
 	r.PageOffset = &pageOffset
 	return r
@@ -644,10 +635,8 @@ func (a *IncidentsApiService) buildListIncidentsRequest(ctx _context.Context, o 
 	return req, nil
 }
 
-/*
- * ListIncidents Get a list of incidents
- * Get all incidents for the user's organization.
- */
+// ListIncidents Get a list of incidents.
+// Get all incidents for the user's organization.
 func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncidentsOptionalParameters) (IncidentsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListIncidentsRequest(ctx, o...)
 	if err != nil {
@@ -658,9 +647,7 @@ func (a *IncidentsApiService) ListIncidents(ctx _context.Context, o ...ListIncid
 	return req.ApiService.listIncidentsExecute(req)
 }
 
-/*
- * ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
- */
+// ListIncidentsWithPagination provides a paginated version of ListIncidents returning a channel with all items.
 func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, o ...ListIncidentsOptionalParameters) (<-chan IncidentResponseData, func(), error) {
 	ctx, cancel := _context.WithCancel(ctx)
 	pageSize_ := int64(10)
@@ -713,10 +700,7 @@ func (a *IncidentsApiService) ListIncidentsWithPagination(ctx _context.Context, 
 	return items, cancel, nil
 }
 
-/*
- * Execute executes the request
- * @return IncidentsResponse
- */
+// listIncidentsExecute executes the request.
 func (a *IncidentsApiService) listIncidentsExecute(r apiListIncidentsRequest) (IncidentsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -881,14 +865,18 @@ type apiUpdateIncidentRequest struct {
 	include    *[]IncidentRelatedObject
 }
 
+// UpdateIncidentOptionalParameters holds optional parameters for UpdateIncident.
 type UpdateIncidentOptionalParameters struct {
 	Include *[]IncidentRelatedObject
 }
 
+// NewUpdateIncidentOptionalParameters creates an empty struct for parameters.
 func NewUpdateIncidentOptionalParameters() *UpdateIncidentOptionalParameters {
 	this := UpdateIncidentOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *UpdateIncidentOptionalParameters) WithInclude(include []IncidentRelatedObject) *UpdateIncidentOptionalParameters {
 	r.Include = &include
 	return r
@@ -912,10 +900,8 @@ func (a *IncidentsApiService) buildUpdateIncidentRequest(ctx _context.Context, i
 	return req, nil
 }
 
-/*
- * UpdateIncident Update an existing incident
- * Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
- */
+// UpdateIncident Update an existing incident.
+// Updates an incident. Provide only the attributes that should be updated as this request is a partial update.
 func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId string, body IncidentUpdateRequest, o ...UpdateIncidentOptionalParameters) (IncidentResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateIncidentRequest(ctx, incidentId, body, o...)
 	if err != nil {
@@ -926,10 +912,7 @@ func (a *IncidentsApiService) UpdateIncident(ctx _context.Context, incidentId st
 	return req.ApiService.updateIncidentExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IncidentResponse
- */
+// updateIncidentExecute executes the request.
 func (a *IncidentsApiService) updateIncidentExecute(r apiUpdateIncidentRequest) (IncidentResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

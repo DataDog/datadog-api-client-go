@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// NotebooksApiService NotebooksApi service
+// NotebooksApiService NotebooksApi service.
 type NotebooksApiService service
 
 type apiCreateNotebookRequest struct {
@@ -38,10 +31,8 @@ func (a *NotebooksApiService) buildCreateNotebookRequest(ctx _context.Context, b
 	return req, nil
 }
 
-/*
- * CreateNotebook Create a notebook
- * Create a notebook using the specified options.
- */
+// CreateNotebook Create a notebook.
+// Create a notebook using the specified options.
 func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body NotebookCreateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateNotebookRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *NotebooksApiService) CreateNotebook(ctx _context.Context, body Notebook
 	return req.ApiService.createNotebookExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return NotebookResponse
- */
+// createNotebookExecute executes the request.
 func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -206,10 +194,8 @@ func (a *NotebooksApiService) buildDeleteNotebookRequest(ctx _context.Context, n
 	return req, nil
 }
 
-/*
- * DeleteNotebook Delete a notebook
- * Delete a notebook using the specified ID.
- */
+// DeleteNotebook Delete a notebook.
+// Delete a notebook using the specified ID.
 func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId int64) (*_nethttp.Response, error) {
 	req, err := a.buildDeleteNotebookRequest(ctx, notebookId)
 	if err != nil {
@@ -219,9 +205,7 @@ func (a *NotebooksApiService) DeleteNotebook(ctx _context.Context, notebookId in
 	return req.ApiService.deleteNotebookExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteNotebookExecute executes the request.
 func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -358,10 +342,8 @@ func (a *NotebooksApiService) buildGetNotebookRequest(ctx _context.Context, note
 	return req, nil
 }
 
-/*
- * GetNotebook Get a notebook
- * Get a notebook using the specified notebook ID.
- */
+// GetNotebook Get a notebook.
+// Get a notebook using the specified notebook ID.
 func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetNotebookRequest(ctx, notebookId)
 	if err != nil {
@@ -372,10 +354,7 @@ func (a *NotebooksApiService) GetNotebook(ctx _context.Context, notebookId int64
 	return req.ApiService.getNotebookExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return NotebookResponse
- */
+// getNotebookExecute executes the request.
 func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -519,9 +498,10 @@ type apiListNotebooksRequest struct {
 	query               *string
 	includeCells        *bool
 	isTemplate          *bool
-	type_               *string
+	typeVar             *string
 }
 
+// ListNotebooksOptionalParameters holds optional parameters for ListNotebooks.
 type ListNotebooksOptionalParameters struct {
 	AuthorHandle        *string
 	ExcludeAuthorHandle *string
@@ -535,48 +515,69 @@ type ListNotebooksOptionalParameters struct {
 	Type                *string
 }
 
+// NewListNotebooksOptionalParameters creates an empty struct for parameters.
 func NewListNotebooksOptionalParameters() *ListNotebooksOptionalParameters {
 	this := ListNotebooksOptionalParameters{}
 	return &this
 }
+
+// WithAuthorHandle sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithAuthorHandle(authorHandle string) *ListNotebooksOptionalParameters {
 	r.AuthorHandle = &authorHandle
 	return r
 }
+
+// WithExcludeAuthorHandle sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithExcludeAuthorHandle(excludeAuthorHandle string) *ListNotebooksOptionalParameters {
 	r.ExcludeAuthorHandle = &excludeAuthorHandle
 	return r
 }
+
+// WithStart sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithStart(start int64) *ListNotebooksOptionalParameters {
 	r.Start = &start
 	return r
 }
+
+// WithCount sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithCount(count int64) *ListNotebooksOptionalParameters {
 	r.Count = &count
 	return r
 }
+
+// WithSortField sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithSortField(sortField string) *ListNotebooksOptionalParameters {
 	r.SortField = &sortField
 	return r
 }
+
+// WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithSortDir(sortDir string) *ListNotebooksOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
+// WithQuery sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithQuery(query string) *ListNotebooksOptionalParameters {
 	r.Query = &query
 	return r
 }
+
+// WithIncludeCells sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithIncludeCells(includeCells bool) *ListNotebooksOptionalParameters {
 	r.IncludeCells = &includeCells
 	return r
 }
+
+// WithIsTemplate sets the corresponding parameter name and returns the struct.
 func (r *ListNotebooksOptionalParameters) WithIsTemplate(isTemplate bool) *ListNotebooksOptionalParameters {
 	r.IsTemplate = &isTemplate
 	return r
 }
-func (r *ListNotebooksOptionalParameters) WithType(type_ string) *ListNotebooksOptionalParameters {
-	r.Type = &type_
+
+// WithType sets the corresponding parameter name and returns the struct.
+func (r *ListNotebooksOptionalParameters) WithType(typeVar string) *ListNotebooksOptionalParameters {
+	r.Type = &typeVar
 	return r
 }
 
@@ -600,16 +601,14 @@ func (a *NotebooksApiService) buildListNotebooksRequest(ctx _context.Context, o 
 		req.query = o[0].Query
 		req.includeCells = o[0].IncludeCells
 		req.isTemplate = o[0].IsTemplate
-		req.type_ = o[0].Type
+		req.typeVar = o[0].Type
 	}
 	return req, nil
 }
 
-/*
- * ListNotebooks Get all notebooks
- * Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
- * `name` or author `handle`.
- */
+// ListNotebooks Get all notebooks.
+// Get all notebooks. This can also be used to search for notebooks with a particular `query` in the notebook
+// `name` or author `handle`.
 func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNotebooksOptionalParameters) (NotebooksResponse, *_nethttp.Response, error) {
 	req, err := a.buildListNotebooksRequest(ctx, o...)
 	if err != nil {
@@ -620,10 +619,7 @@ func (a *NotebooksApiService) ListNotebooks(ctx _context.Context, o ...ListNoteb
 	return req.ApiService.listNotebooksExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return NotebooksResponse
- */
+// listNotebooksExecute executes the request.
 func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (NotebooksResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -668,8 +664,8 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 	if r.isTemplate != nil {
 		localVarQueryParams.Add("is_template", parameterToString(*r.isTemplate, ""))
 	}
-	if r.type_ != nil {
-		localVarQueryParams.Add("type", parameterToString(*r.type_, ""))
+	if r.typeVar != nil {
+		localVarQueryParams.Add("type", parameterToString(*r.typeVar, ""))
 	}
 
 	// to determine the Accept header
@@ -791,10 +787,8 @@ func (a *NotebooksApiService) buildUpdateNotebookRequest(ctx _context.Context, n
 	return req, nil
 }
 
-/*
- * UpdateNotebook Update a notebook
- * Update a notebook using the specified ID.
- */
+// UpdateNotebook Update a notebook.
+// Update a notebook using the specified ID.
 func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId int64, body NotebookUpdateRequest) (NotebookResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateNotebookRequest(ctx, notebookId, body)
 	if err != nil {
@@ -805,10 +799,7 @@ func (a *NotebooksApiService) UpdateNotebook(ctx _context.Context, notebookId in
 	return req.ApiService.updateNotebookExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return NotebookResponse
- */
+// updateNotebookExecute executes the request.
 func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) (NotebookResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

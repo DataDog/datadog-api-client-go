@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -29,18 +27,18 @@ type SLOHistoryMetricsSeriesMetadataUnit struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
+// NewSLOHistoryMetricsSeriesMetadataUnit instantiates a new SLOHistoryMetricsSeriesMetadataUnit object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOHistoryMetricsSeriesMetadataUnit() *SLOHistoryMetricsSeriesMetadataUnit {
 	this := SLOHistoryMetricsSeriesMetadataUnit{}
 	return &this
 }
 
-// NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadataUnit object
+// NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults instantiates a new SLOHistoryMetricsSeriesMetadataUnit object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOHistoryMetricsSeriesMetadataUnitWithDefaults() *SLOHistoryMetricsSeriesMetadataUnit {
 	this := SLOHistoryMetricsSeriesMetadataUnit{}
 	return &this
@@ -153,7 +151,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPlural() string {
 
 // GetPluralOk returns a tuple with the Plural field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetPluralOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -175,12 +173,12 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPlural(v string) {
 	o.Plural.Set(&v)
 }
 
-// SetPluralNil sets the value for Plural to be an explicit nil
+// SetPluralNil sets the value for Plural to be an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetPluralNil() {
 	o.Plural.Set(nil)
 }
 
-// UnsetPlural ensures that no value is present for Plural, not even an explicit nil
+// UnsetPlural ensures that no value is present for Plural, not even an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetPlural() {
 	o.Plural.Unset()
 }
@@ -228,7 +226,7 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortName() string {
 
 // GetShortNameOk returns a tuple with the ShortName field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) GetShortNameOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -250,16 +248,17 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortName(v string) {
 	o.ShortName.Set(&v)
 }
 
-// SetShortNameNil sets the value for ShortName to be an explicit nil
+// SetShortNameNil sets the value for ShortName to be an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) SetShortNameNil() {
 	o.ShortName.Set(nil)
 }
 
-// UnsetShortName ensures that no value is present for ShortName, not even an explicit nil
+// UnsetShortName ensures that no value is present for ShortName, not even an explicit nil.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnsetShortName() {
 	o.ShortName.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -290,6 +289,7 @@ func (o SLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -318,37 +318,45 @@ func (o *SLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(bytes []byte) (err e
 	return nil
 }
 
+// NullableSLOHistoryMetricsSeriesMetadataUnit handles when a null is used for SLOHistoryMetricsSeriesMetadataUnit.
 type NullableSLOHistoryMetricsSeriesMetadataUnit struct {
 	value *SLOHistoryMetricsSeriesMetadataUnit
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableSLOHistoryMetricsSeriesMetadataUnit) Get() *SLOHistoryMetricsSeriesMetadataUnit {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableSLOHistoryMetricsSeriesMetadataUnit) Set(val *SLOHistoryMetricsSeriesMetadataUnit) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableSLOHistoryMetricsSeriesMetadataUnit) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableSLOHistoryMetricsSeriesMetadataUnit) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableSLOHistoryMetricsSeriesMetadataUnit initializes the struct as if Set has been called.
 func NewNullableSLOHistoryMetricsSeriesMetadataUnit(val *SLOHistoryMetricsSeriesMetadataUnit) *NullableSLOHistoryMetricsSeriesMetadataUnit {
 	return &NullableSLOHistoryMetricsSeriesMetadataUnit{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableSLOHistoryMetricsSeriesMetadataUnit) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableSLOHistoryMetricsSeriesMetadataUnit) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,24 +24,24 @@ type IncidentUpdateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewIncidentUpdateData instantiates a new IncidentUpdateData object
+// NewIncidentUpdateData instantiates a new IncidentUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewIncidentUpdateData(id string, type_ IncidentType) *IncidentUpdateData {
+// will change when the set of required properties is changed.
+func NewIncidentUpdateData(id string, typeVar IncidentType) *IncidentUpdateData {
 	this := IncidentUpdateData{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewIncidentUpdateDataWithDefaults instantiates a new IncidentUpdateData object
+// NewIncidentUpdateDataWithDefaults instantiates a new IncidentUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewIncidentUpdateDataWithDefaults() *IncidentUpdateData {
 	this := IncidentUpdateData{}
-	var type_ IncidentType = INCIDENTTYPE_INCIDENTS
-	this.Type = type_
+	var typeVar IncidentType = INCIDENTTYPE_INCIDENTS
+	this.Type = typeVar
 	return &this
 }
 
@@ -79,7 +77,7 @@ func (o *IncidentUpdateData) SetAttributes(v IncidentUpdateAttributes) {
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *IncidentUpdateData) GetId() string {
 	if o == nil {
 		var ret string
@@ -97,7 +95,7 @@ func (o *IncidentUpdateData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *IncidentUpdateData) SetId(v string) {
 	o.Id = v
 }
@@ -134,7 +132,7 @@ func (o *IncidentUpdateData) SetRelationships(v IncidentUpdateRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *IncidentUpdateData) GetType() IncidentType {
 	if o == nil {
 		var ret IncidentType
@@ -152,11 +150,12 @@ func (o *IncidentUpdateData) GetTypeOk() (*IncidentType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *IncidentUpdateData) SetType(v IncidentType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -177,6 +176,7 @@ func (o IncidentUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *IncidentUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

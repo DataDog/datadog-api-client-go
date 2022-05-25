@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,19 +22,19 @@ type SunburstWidgetLegendInlineAutomatic struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSunburstWidgetLegendInlineAutomatic instantiates a new SunburstWidgetLegendInlineAutomatic object
+// NewSunburstWidgetLegendInlineAutomatic instantiates a new SunburstWidgetLegendInlineAutomatic object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSunburstWidgetLegendInlineAutomatic(type_ SunburstWidgetLegendInlineAutomaticType) *SunburstWidgetLegendInlineAutomatic {
+// will change when the set of required properties is changed.
+func NewSunburstWidgetLegendInlineAutomatic(typeVar SunburstWidgetLegendInlineAutomaticType) *SunburstWidgetLegendInlineAutomatic {
 	this := SunburstWidgetLegendInlineAutomatic{}
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSunburstWidgetLegendInlineAutomaticWithDefaults instantiates a new SunburstWidgetLegendInlineAutomatic object
+// NewSunburstWidgetLegendInlineAutomaticWithDefaults instantiates a new SunburstWidgetLegendInlineAutomatic object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSunburstWidgetLegendInlineAutomaticWithDefaults() *SunburstWidgetLegendInlineAutomatic {
 	this := SunburstWidgetLegendInlineAutomatic{}
 	return &this
@@ -106,7 +104,7 @@ func (o *SunburstWidgetLegendInlineAutomatic) SetHideValue(v bool) {
 	o.HideValue = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SunburstWidgetLegendInlineAutomatic) GetType() SunburstWidgetLegendInlineAutomaticType {
 	if o == nil {
 		var ret SunburstWidgetLegendInlineAutomaticType
@@ -124,11 +122,12 @@ func (o *SunburstWidgetLegendInlineAutomatic) GetTypeOk() (*SunburstWidgetLegend
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SunburstWidgetLegendInlineAutomatic) SetType(v SunburstWidgetLegendInlineAutomaticType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -148,6 +147,7 @@ func (o SunburstWidgetLegendInlineAutomatic) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SunburstWidgetLegendInlineAutomatic) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -27,29 +25,29 @@ type LogsCompute struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsCompute instantiates a new LogsCompute object
+// NewLogsCompute instantiates a new LogsCompute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewLogsCompute(aggregation LogsAggregationFunction) *LogsCompute {
 	this := LogsCompute{}
 	this.Aggregation = aggregation
-	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
-	this.Type = &type_
+	var typeVar LogsComputeType = LOGSCOMPUTETYPE_TOTAL
+	this.Type = &typeVar
 	return &this
 }
 
-// NewLogsComputeWithDefaults instantiates a new LogsCompute object
+// NewLogsComputeWithDefaults instantiates a new LogsCompute object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsComputeWithDefaults() *LogsCompute {
 	this := LogsCompute{}
-	var type_ LogsComputeType = LOGSCOMPUTETYPE_TOTAL
-	this.Type = &type_
+	var typeVar LogsComputeType = LOGSCOMPUTETYPE_TOTAL
+	this.Type = &typeVar
 	return &this
 }
 
-// GetAggregation returns the Aggregation field value
+// GetAggregation returns the Aggregation field value.
 func (o *LogsCompute) GetAggregation() LogsAggregationFunction {
 	if o == nil {
 		var ret LogsAggregationFunction
@@ -67,7 +65,7 @@ func (o *LogsCompute) GetAggregationOk() (*LogsAggregationFunction, bool) {
 	return &o.Aggregation, true
 }
 
-// SetAggregation sets field value
+// SetAggregation sets field value.
 func (o *LogsCompute) SetAggregation(v LogsAggregationFunction) {
 	o.Aggregation = v
 }
@@ -168,6 +166,7 @@ func (o *LogsCompute) SetType(v LogsComputeType) {
 	o.Type = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -190,6 +189,7 @@ func (o LogsCompute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

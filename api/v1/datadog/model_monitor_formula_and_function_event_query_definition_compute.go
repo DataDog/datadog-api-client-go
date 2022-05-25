@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,25 +22,25 @@ type MonitorFormulaAndFunctionEventQueryDefinitionCompute struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorFormulaAndFunctionEventQueryDefinitionCompute instantiates a new MonitorFormulaAndFunctionEventQueryDefinitionCompute object
+// NewMonitorFormulaAndFunctionEventQueryDefinitionCompute instantiates a new MonitorFormulaAndFunctionEventQueryDefinitionCompute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMonitorFormulaAndFunctionEventQueryDefinitionCompute(aggregation MonitorFormulaAndFunctionEventAggregation) *MonitorFormulaAndFunctionEventQueryDefinitionCompute {
 	this := MonitorFormulaAndFunctionEventQueryDefinitionCompute{}
 	this.Aggregation = aggregation
 	return &this
 }
 
-// NewMonitorFormulaAndFunctionEventQueryDefinitionComputeWithDefaults instantiates a new MonitorFormulaAndFunctionEventQueryDefinitionCompute object
+// NewMonitorFormulaAndFunctionEventQueryDefinitionComputeWithDefaults instantiates a new MonitorFormulaAndFunctionEventQueryDefinitionCompute object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorFormulaAndFunctionEventQueryDefinitionComputeWithDefaults() *MonitorFormulaAndFunctionEventQueryDefinitionCompute {
 	this := MonitorFormulaAndFunctionEventQueryDefinitionCompute{}
 	return &this
 }
 
-// GetAggregation returns the Aggregation field value
+// GetAggregation returns the Aggregation field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregation() MonitorFormulaAndFunctionEventAggregation {
 	if o == nil {
 		var ret MonitorFormulaAndFunctionEventAggregation
@@ -60,7 +58,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) GetAggregationOk(
 	return &o.Aggregation, true
 }
 
-// SetAggregation sets field value
+// SetAggregation sets field value.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) SetAggregation(v MonitorFormulaAndFunctionEventAggregation) {
 	o.Aggregation = v
 }
@@ -129,6 +127,7 @@ func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) SetMetric(v strin
 	o.Metric = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -148,6 +147,7 @@ func (o MonitorFormulaAndFunctionEventQueryDefinitionCompute) MarshalJSON() ([]b
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorFormulaAndFunctionEventQueryDefinitionCompute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

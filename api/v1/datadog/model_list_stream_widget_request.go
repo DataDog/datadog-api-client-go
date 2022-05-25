@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,10 +22,10 @@ type ListStreamWidgetRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object
+// NewListStreamWidgetRequest instantiates a new ListStreamWidgetRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewListStreamWidgetRequest(columns []ListStreamColumn, query ListStreamQuery, responseFormat ListStreamResponseFormat) *ListStreamWidgetRequest {
 	this := ListStreamWidgetRequest{}
 	this.Columns = columns
@@ -36,15 +34,15 @@ func NewListStreamWidgetRequest(columns []ListStreamColumn, query ListStreamQuer
 	return &this
 }
 
-// NewListStreamWidgetRequestWithDefaults instantiates a new ListStreamWidgetRequest object
+// NewListStreamWidgetRequestWithDefaults instantiates a new ListStreamWidgetRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewListStreamWidgetRequestWithDefaults() *ListStreamWidgetRequest {
 	this := ListStreamWidgetRequest{}
 	return &this
 }
 
-// GetColumns returns the Columns field value
+// GetColumns returns the Columns field value.
 func (o *ListStreamWidgetRequest) GetColumns() []ListStreamColumn {
 	if o == nil {
 		var ret []ListStreamColumn
@@ -62,12 +60,12 @@ func (o *ListStreamWidgetRequest) GetColumnsOk() (*[]ListStreamColumn, bool) {
 	return &o.Columns, true
 }
 
-// SetColumns sets field value
+// SetColumns sets field value.
 func (o *ListStreamWidgetRequest) SetColumns(v []ListStreamColumn) {
 	o.Columns = v
 }
 
-// GetQuery returns the Query field value
+// GetQuery returns the Query field value.
 func (o *ListStreamWidgetRequest) GetQuery() ListStreamQuery {
 	if o == nil {
 		var ret ListStreamQuery
@@ -85,12 +83,12 @@ func (o *ListStreamWidgetRequest) GetQueryOk() (*ListStreamQuery, bool) {
 	return &o.Query, true
 }
 
-// SetQuery sets field value
+// SetQuery sets field value.
 func (o *ListStreamWidgetRequest) SetQuery(v ListStreamQuery) {
 	o.Query = v
 }
 
-// GetResponseFormat returns the ResponseFormat field value
+// GetResponseFormat returns the ResponseFormat field value.
 func (o *ListStreamWidgetRequest) GetResponseFormat() ListStreamResponseFormat {
 	if o == nil {
 		var ret ListStreamResponseFormat
@@ -108,11 +106,12 @@ func (o *ListStreamWidgetRequest) GetResponseFormatOk() (*ListStreamResponseForm
 	return &o.ResponseFormat, true
 }
 
-// SetResponseFormat sets field value
+// SetResponseFormat sets field value.
 func (o *ListStreamWidgetRequest) SetResponseFormat(v ListStreamResponseFormat) {
 	o.ResponseFormat = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -128,6 +127,7 @@ func (o ListStreamWidgetRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ListStreamWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

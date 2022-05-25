@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -20,25 +18,25 @@ type GeomapWidgetDefinitionView struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object
+// NewGeomapWidgetDefinitionView instantiates a new GeomapWidgetDefinitionView object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewGeomapWidgetDefinitionView(focus string) *GeomapWidgetDefinitionView {
 	this := GeomapWidgetDefinitionView{}
 	this.Focus = focus
 	return &this
 }
 
-// NewGeomapWidgetDefinitionViewWithDefaults instantiates a new GeomapWidgetDefinitionView object
+// NewGeomapWidgetDefinitionViewWithDefaults instantiates a new GeomapWidgetDefinitionView object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewGeomapWidgetDefinitionViewWithDefaults() *GeomapWidgetDefinitionView {
 	this := GeomapWidgetDefinitionView{}
 	return &this
 }
 
-// GetFocus returns the Focus field value
+// GetFocus returns the Focus field value.
 func (o *GeomapWidgetDefinitionView) GetFocus() string {
 	if o == nil {
 		var ret string
@@ -56,11 +54,12 @@ func (o *GeomapWidgetDefinitionView) GetFocusOk() (*string, bool) {
 	return &o.Focus, true
 }
 
-// SetFocus sets field value
+// SetFocus sets field value.
 func (o *GeomapWidgetDefinitionView) SetFocus(v string) {
 	o.Focus = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -74,6 +73,7 @@ func (o GeomapWidgetDefinitionView) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *GeomapWidgetDefinitionView) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

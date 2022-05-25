@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // DashboardLayoutType Layout type of the dashboard.
 type DashboardLayoutType string
 
-// List of DashboardLayoutType
+// List of DashboardLayoutType.
 const (
 	DASHBOARDLAYOUTTYPE_ORDERED DashboardLayoutType = "ordered"
 	DASHBOARDLAYOUTTYPE_FREE    DashboardLayoutType = "free"
@@ -25,10 +23,12 @@ var allowedDashboardLayoutTypeEnumValues = []DashboardLayoutType{
 	DASHBOARDLAYOUTTYPE_FREE,
 }
 
-func (w *DashboardLayoutType) GetAllowedValues() []DashboardLayoutType {
+// GetAllowedValues reeturns the list of possible values.
+func (v *DashboardLayoutType) GetAllowedValues() []DashboardLayoutType {
 	return allowedDashboardLayoutTypeEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *DashboardLayoutType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -40,17 +40,16 @@ func (v *DashboardLayoutType) UnmarshalJSON(src []byte) error {
 }
 
 // NewDashboardLayoutTypeFromValue returns a pointer to a valid DashboardLayoutType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewDashboardLayoutTypeFromValue(v string) (*DashboardLayoutType, error) {
 	ev := DashboardLayoutType(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for DashboardLayoutType: valid values are %v", v, allowedDashboardLayoutTypeEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for DashboardLayoutType: valid values are %v", v, allowedDashboardLayoutTypeEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v DashboardLayoutType) IsValid() bool {
 	for _, existing := range allowedDashboardLayoutTypeEnumValues {
 		if existing == v {
@@ -60,42 +59,50 @@ func (v DashboardLayoutType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to DashboardLayoutType value
+// Ptr returns reference to DashboardLayoutType value.
 func (v DashboardLayoutType) Ptr() *DashboardLayoutType {
 	return &v
 }
 
+// NullableDashboardLayoutType handles when a null is used for DashboardLayoutType.
 type NullableDashboardLayoutType struct {
 	value *DashboardLayoutType
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableDashboardLayoutType) Get() *DashboardLayoutType {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableDashboardLayoutType) Set(val *DashboardLayoutType) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableDashboardLayoutType) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableDashboardLayoutType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableDashboardLayoutType initializes the struct as if Set has been called.
 func NewNullableDashboardLayoutType(val *DashboardLayoutType) *NullableDashboardLayoutType {
 	return &NullableDashboardLayoutType{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableDashboardLayoutType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableDashboardLayoutType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// UsersApiService UsersApi service
+// UsersApiService UsersApi service.
 type UsersApiService service
 
 type apiCreateServiceAccountRequest struct {
@@ -38,10 +31,8 @@ func (a *UsersApiService) buildCreateServiceAccountRequest(ctx _context.Context,
 	return req, nil
 }
 
-/*
- * CreateServiceAccount Create a service account
- * Create a service account for your organization.
- */
+// CreateServiceAccount Create a service account.
+// Create a service account for your organization.
 func (a *UsersApiService) CreateServiceAccount(ctx _context.Context, body ServiceAccountCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateServiceAccountRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *UsersApiService) CreateServiceAccount(ctx _context.Context, body Servic
 	return req.ApiService.createServiceAccountExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// createServiceAccountExecute executes the request.
 func (a *UsersApiService) createServiceAccountExecute(r apiCreateServiceAccountRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -206,10 +194,8 @@ func (a *UsersApiService) buildCreateUserRequest(ctx _context.Context, body User
 	return req, nil
 }
 
-/*
- * CreateUser Create a user
- * Create a user for your organization.
- */
+// CreateUser Create a user.
+// Create a user for your organization.
 func (a *UsersApiService) CreateUser(ctx _context.Context, body UserCreateRequest) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildCreateUserRequest(ctx, body)
 	if err != nil {
@@ -220,10 +206,7 @@ func (a *UsersApiService) CreateUser(ctx _context.Context, body UserCreateReques
 	return req.ApiService.createUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// createUserExecute executes the request.
 func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -374,11 +357,9 @@ func (a *UsersApiService) buildDisableUserRequest(ctx _context.Context, userId s
 	return req, nil
 }
 
-/*
- * DisableUser Disable a user
- * Disable a user. Can only be used with an application key belonging
- * to an administrator user.
- */
+// DisableUser Disable a user.
+// Disable a user. Can only be used with an application key belonging
+// to an administrator user.
 func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_nethttp.Response, error) {
 	req, err := a.buildDisableUserRequest(ctx, userId)
 	if err != nil {
@@ -388,9 +369,7 @@ func (a *UsersApiService) DisableUser(ctx _context.Context, userId string) (*_ne
 	return req.ApiService.disableUserExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// disableUserExecute executes the request.
 func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -517,10 +496,8 @@ func (a *UsersApiService) buildGetInvitationRequest(ctx _context.Context, userIn
 	return req, nil
 }
 
-/*
- * GetInvitation Get a user invitation
- * Returns a single user invitation by its UUID.
- */
+// GetInvitation Get a user invitation.
+// Returns a single user invitation by its UUID.
 func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid string) (UserInvitationResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetInvitationRequest(ctx, userInvitationUuid)
 	if err != nil {
@@ -531,10 +508,7 @@ func (a *UsersApiService) GetInvitation(ctx _context.Context, userInvitationUuid
 	return req.ApiService.getInvitationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserInvitationResponse
- */
+// getInvitationExecute executes the request.
 func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserInvitationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -671,10 +645,8 @@ func (a *UsersApiService) buildGetUserRequest(ctx _context.Context, userId strin
 	return req, nil
 }
 
-/*
- * GetUser Get user details
- * Get a user in the organization specified by the user’s `user_id`.
- */
+// GetUser Get user details.
+// Get a user in the organization specified by the user’s `user_id`.
 func (a *UsersApiService) GetUser(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildGetUserRequest(ctx, userId)
 	if err != nil {
@@ -685,10 +657,7 @@ func (a *UsersApiService) GetUser(ctx _context.Context, userId string) (UserResp
 	return req.ApiService.getUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// getUserExecute executes the request.
 func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -825,11 +794,9 @@ func (a *UsersApiService) buildListUserOrganizationsRequest(ctx _context.Context
 	return req, nil
 }
 
-/*
- * ListUserOrganizations Get a user organization
- * Get a user organization. Returns the user information and all organizations
- * joined by this user.
- */
+// ListUserOrganizations Get a user organization.
+// Get a user organization. Returns the user information and all organizations
+// joined by this user.
 func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId string) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildListUserOrganizationsRequest(ctx, userId)
 	if err != nil {
@@ -840,10 +807,7 @@ func (a *UsersApiService) ListUserOrganizations(ctx _context.Context, userId str
 	return req.ApiService.listUserOrganizationsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// listUserOrganizationsExecute executes the request.
 func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganizationsRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -980,11 +944,9 @@ func (a *UsersApiService) buildListUserPermissionsRequest(ctx _context.Context, 
 	return req, nil
 }
 
-/*
- * ListUserPermissions Get a user permissions
- * Get a user permission set. Returns a list of the user’s permissions
- * granted by the associated user's roles.
- */
+// ListUserPermissions Get a user permissions.
+// Get a user permission set. Returns a list of the user’s permissions
+// granted by the associated user's roles.
 func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId string) (PermissionsResponse, *_nethttp.Response, error) {
 	req, err := a.buildListUserPermissionsRequest(ctx, userId)
 	if err != nil {
@@ -995,10 +957,7 @@ func (a *UsersApiService) ListUserPermissions(ctx _context.Context, userId strin
 	return req.ApiService.listUserPermissionsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PermissionsResponse
- */
+// listUserPermissionsExecute executes the request.
 func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1131,6 +1090,7 @@ type apiListUsersRequest struct {
 	filterStatus *string
 }
 
+// ListUsersOptionalParameters holds optional parameters for ListUsers.
 type ListUsersOptionalParameters struct {
 	PageSize     *int64
 	PageNumber   *int64
@@ -1140,30 +1100,43 @@ type ListUsersOptionalParameters struct {
 	FilterStatus *string
 }
 
+// NewListUsersOptionalParameters creates an empty struct for parameters.
 func NewListUsersOptionalParameters() *ListUsersOptionalParameters {
 	this := ListUsersOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithPageSize(pageSize int64) *ListUsersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListUsersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithSort(sort string) *ListUsersOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithSortDir(sortDir QuerySortOrder) *ListUsersOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithFilter(filter string) *ListUsersOptionalParameters {
 	r.Filter = &filter
 	return r
 }
+
+// WithFilterStatus sets the corresponding parameter name and returns the struct.
 func (r *ListUsersOptionalParameters) WithFilterStatus(filterStatus string) *ListUsersOptionalParameters {
 	r.FilterStatus = &filterStatus
 	return r
@@ -1190,11 +1163,9 @@ func (a *UsersApiService) buildListUsersRequest(ctx _context.Context, o ...ListU
 	return req, nil
 }
 
-/*
- * ListUsers List all users
- * Get the list of all users in the organization. This list includes
- * all users even if they are deactivated or unverified.
- */
+// ListUsers List all users.
+// Get the list of all users in the organization. This list includes
+// all users even if they are deactivated or unverified.
 func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
 	req, err := a.buildListUsersRequest(ctx, o...)
 	if err != nil {
@@ -1205,10 +1176,7 @@ func (a *UsersApiService) ListUsers(ctx _context.Context, o ...ListUsersOptional
 	return req.ApiService.listUsersExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsersResponse
- */
+// listUsersExecute executes the request.
 func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1362,10 +1330,8 @@ func (a *UsersApiService) buildSendInvitationsRequest(ctx _context.Context, body
 	return req, nil
 }
 
-/*
- * SendInvitations Send invitation emails
- * Sends emails to one or more users inviting them to join the organization.
- */
+// SendInvitations Send invitation emails.
+// Sends emails to one or more users inviting them to join the organization.
 func (a *UsersApiService) SendInvitations(ctx _context.Context, body UserInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
 	req, err := a.buildSendInvitationsRequest(ctx, body)
 	if err != nil {
@@ -1376,10 +1342,7 @@ func (a *UsersApiService) SendInvitations(ctx _context.Context, body UserInvitat
 	return req.ApiService.sendInvitationsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserInvitationsResponse
- */
+// sendInvitationsExecute executes the request.
 func (a *UsersApiService) sendInvitationsExecute(r apiSendInvitationsRequest) (UserInvitationsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1532,11 +1495,9 @@ func (a *UsersApiService) buildUpdateUserRequest(ctx _context.Context, userId st
 	return req, nil
 }
 
-/*
- * UpdateUser Update a user
- * Edit a user. Can only be used with an application key belonging
- * to an administrator user.
- */
+// UpdateUser Update a user.
+// Edit a user. Can only be used with an application key belonging
+// to an administrator user.
 func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body UserUpdateRequest) (UserResponse, *_nethttp.Response, error) {
 	req, err := a.buildUpdateUserRequest(ctx, userId, body)
 	if err != nil {
@@ -1547,10 +1508,7 @@ func (a *UsersApiService) UpdateUser(ctx _context.Context, userId string, body U
 	return req.ApiService.updateUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// updateUserExecute executes the request.
 func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

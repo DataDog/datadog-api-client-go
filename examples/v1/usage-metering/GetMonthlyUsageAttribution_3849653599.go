@@ -1,4 +1,4 @@
-// Paginate Monthly Usage Attribution
+// Paginate monthly usage attribution
 
 package main
 

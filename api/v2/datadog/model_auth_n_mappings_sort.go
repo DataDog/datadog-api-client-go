@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // AuthNMappingsSort Sorting options for AuthN Mappings.
 type AuthNMappingsSort string
 
-// List of AuthNMappingsSort
+// List of AuthNMappingsSort.
 const (
 	AUTHNMAPPINGSSORT_CREATED_AT_ASCENDING                      AuthNMappingsSort = "created_at"
 	AUTHNMAPPINGSSORT_CREATED_AT_DESCENDING                     AuthNMappingsSort = "-created_at"
@@ -45,10 +43,12 @@ var allowedAuthNMappingsSortEnumValues = []AuthNMappingsSort{
 	AUTHNMAPPINGSSORT_SAML_ASSERTION_ATTRIBUTE_VALUE_DESCENDING,
 }
 
-func (w *AuthNMappingsSort) GetAllowedValues() []AuthNMappingsSort {
+// GetAllowedValues reeturns the list of possible values.
+func (v *AuthNMappingsSort) GetAllowedValues() []AuthNMappingsSort {
 	return allowedAuthNMappingsSortEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *AuthNMappingsSort) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -60,17 +60,16 @@ func (v *AuthNMappingsSort) UnmarshalJSON(src []byte) error {
 }
 
 // NewAuthNMappingsSortFromValue returns a pointer to a valid AuthNMappingsSort
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewAuthNMappingsSortFromValue(v string) (*AuthNMappingsSort, error) {
 	ev := AuthNMappingsSort(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for AuthNMappingsSort: valid values are %v", v, allowedAuthNMappingsSortEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for AuthNMappingsSort: valid values are %v", v, allowedAuthNMappingsSortEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v AuthNMappingsSort) IsValid() bool {
 	for _, existing := range allowedAuthNMappingsSortEnumValues {
 		if existing == v {
@@ -80,42 +79,50 @@ func (v AuthNMappingsSort) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to AuthNMappingsSort value
+// Ptr returns reference to AuthNMappingsSort value.
 func (v AuthNMappingsSort) Ptr() *AuthNMappingsSort {
 	return &v
 }
 
+// NullableAuthNMappingsSort handles when a null is used for AuthNMappingsSort.
 type NullableAuthNMappingsSort struct {
 	value *AuthNMappingsSort
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableAuthNMappingsSort) Get() *AuthNMappingsSort {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableAuthNMappingsSort) Set(val *AuthNMappingsSort) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableAuthNMappingsSort) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableAuthNMappingsSort) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableAuthNMappingsSort initializes the struct as if Set has been called.
 func NewNullableAuthNMappingsSort(val *AuthNMappingsSort) *NullableAuthNMappingsSort {
 	return &NullableAuthNMappingsSort{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableAuthNMappingsSort) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableAuthNMappingsSort) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

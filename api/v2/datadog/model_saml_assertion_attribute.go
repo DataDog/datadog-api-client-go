@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -16,7 +14,7 @@ type SAMLAssertionAttribute struct {
 	// Key/Value pair of attributes used in SAML assertion attributes.
 	Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
 	// The ID of the SAML assertion attribute.
-	Id int32 `json:"id"`
+	Id string `json:"id"`
 	// SAML assertion attributes resource type.
 	Type SAMLAssertionAttributesType `json:"type"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -24,24 +22,24 @@ type SAMLAssertionAttribute struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSAMLAssertionAttribute instantiates a new SAMLAssertionAttribute object
+// NewSAMLAssertionAttribute instantiates a new SAMLAssertionAttribute object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSAMLAssertionAttribute(id int32, type_ SAMLAssertionAttributesType) *SAMLAssertionAttribute {
+// will change when the set of required properties is changed.
+func NewSAMLAssertionAttribute(id string, typeVar SAMLAssertionAttributesType) *SAMLAssertionAttribute {
 	this := SAMLAssertionAttribute{}
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSAMLAssertionAttributeWithDefaults instantiates a new SAMLAssertionAttribute object
+// NewSAMLAssertionAttributeWithDefaults instantiates a new SAMLAssertionAttribute object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSAMLAssertionAttributeWithDefaults() *SAMLAssertionAttribute {
 	this := SAMLAssertionAttribute{}
-	var type_ SAMLAssertionAttributesType = SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES
-	this.Type = type_
+	var typeVar SAMLAssertionAttributesType = SAMLASSERTIONATTRIBUTESTYPE_SAML_ASSERTION_ATTRIBUTES
+	this.Type = typeVar
 	return &this
 }
 
@@ -77,10 +75,10 @@ func (o *SAMLAssertionAttribute) SetAttributes(v SAMLAssertionAttributeAttribute
 	o.Attributes = &v
 }
 
-// GetId returns the Id field value
-func (o *SAMLAssertionAttribute) GetId() int32 {
+// GetId returns the Id field value.
+func (o *SAMLAssertionAttribute) GetId() string {
 	if o == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return o.Id
@@ -88,19 +86,19 @@ func (o *SAMLAssertionAttribute) GetId() int32 {
 
 // GetIdOk returns a tuple with the Id field value
 // and a boolean to check if the value has been set.
-func (o *SAMLAssertionAttribute) GetIdOk() (*int32, bool) {
+func (o *SAMLAssertionAttribute) GetIdOk() (*string, bool) {
 	if o == nil {
 		return nil, false
 	}
 	return &o.Id, true
 }
 
-// SetId sets field value
-func (o *SAMLAssertionAttribute) SetId(v int32) {
+// SetId sets field value.
+func (o *SAMLAssertionAttribute) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SAMLAssertionAttribute) GetType() SAMLAssertionAttributesType {
 	if o == nil {
 		var ret SAMLAssertionAttributesType
@@ -118,11 +116,12 @@ func (o *SAMLAssertionAttribute) GetTypeOk() (*SAMLAssertionAttributesType, bool
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SAMLAssertionAttribute) SetType(v SAMLAssertionAttributesType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,15 +139,16 @@ func (o SAMLAssertionAttribute) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SAMLAssertionAttribute) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Id   *int32                       `json:"id"`
+		Id   *string                      `json:"id"`
 		Type *SAMLAssertionAttributesType `json:"type"`
 	}{}
 	all := struct {
 		Attributes *SAMLAssertionAttributeAttributes `json:"attributes,omitempty"`
-		Id         int32                             `json:"id"`
+		Id         string                            `json:"id"`
 		Type       SAMLAssertionAttributesType       `json:"type"`
 	}{}
 	err = json.Unmarshal(bytes, &required)

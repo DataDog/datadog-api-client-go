@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -12,10 +10,10 @@ import (
 )
 
 // SyntheticsTestDetailsSubType The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
-// `dns`, `icmp`, `udp`, `websocket` or `multi`.
+// `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`.
 type SyntheticsTestDetailsSubType string
 
-// List of SyntheticsTestDetailsSubType
+// List of SyntheticsTestDetailsSubType.
 const (
 	SYNTHETICSTESTDETAILSSUBTYPE_HTTP      SyntheticsTestDetailsSubType = "http"
 	SYNTHETICSTESTDETAILSSUBTYPE_SSL       SyntheticsTestDetailsSubType = "ssl"
@@ -25,6 +23,7 @@ const (
 	SYNTHETICSTESTDETAILSSUBTYPE_ICMP      SyntheticsTestDetailsSubType = "icmp"
 	SYNTHETICSTESTDETAILSSUBTYPE_UDP       SyntheticsTestDetailsSubType = "udp"
 	SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET SyntheticsTestDetailsSubType = "websocket"
+	SYNTHETICSTESTDETAILSSUBTYPE_GRPC      SyntheticsTestDetailsSubType = "grpc"
 )
 
 var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubType{
@@ -36,12 +35,15 @@ var allowedSyntheticsTestDetailsSubTypeEnumValues = []SyntheticsTestDetailsSubTy
 	SYNTHETICSTESTDETAILSSUBTYPE_ICMP,
 	SYNTHETICSTESTDETAILSSUBTYPE_UDP,
 	SYNTHETICSTESTDETAILSSUBTYPE_WEBSOCKET,
+	SYNTHETICSTESTDETAILSSUBTYPE_GRPC,
 }
 
-func (w *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {
+// GetAllowedValues reeturns the list of possible values.
+func (v *SyntheticsTestDetailsSubType) GetAllowedValues() []SyntheticsTestDetailsSubType {
 	return allowedSyntheticsTestDetailsSubTypeEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -53,17 +55,16 @@ func (v *SyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
 }
 
 // NewSyntheticsTestDetailsSubTypeFromValue returns a pointer to a valid SyntheticsTestDetailsSubType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewSyntheticsTestDetailsSubTypeFromValue(v string) (*SyntheticsTestDetailsSubType, error) {
 	ev := SyntheticsTestDetailsSubType(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for SyntheticsTestDetailsSubType: valid values are %v", v, allowedSyntheticsTestDetailsSubTypeEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for SyntheticsTestDetailsSubType: valid values are %v", v, allowedSyntheticsTestDetailsSubTypeEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v SyntheticsTestDetailsSubType) IsValid() bool {
 	for _, existing := range allowedSyntheticsTestDetailsSubTypeEnumValues {
 		if existing == v {
@@ -73,42 +74,50 @@ func (v SyntheticsTestDetailsSubType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to SyntheticsTestDetailsSubType value
+// Ptr returns reference to SyntheticsTestDetailsSubType value.
 func (v SyntheticsTestDetailsSubType) Ptr() *SyntheticsTestDetailsSubType {
 	return &v
 }
 
+// NullableSyntheticsTestDetailsSubType handles when a null is used for SyntheticsTestDetailsSubType.
 type NullableSyntheticsTestDetailsSubType struct {
 	value *SyntheticsTestDetailsSubType
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableSyntheticsTestDetailsSubType) Get() *SyntheticsTestDetailsSubType {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableSyntheticsTestDetailsSubType) Set(val *SyntheticsTestDetailsSubType) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableSyntheticsTestDetailsSubType) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableSyntheticsTestDetailsSubType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableSyntheticsTestDetailsSubType initializes the struct as if Set has been called.
 func NewNullableSyntheticsTestDetailsSubType(val *SyntheticsTestDetailsSubType) *NullableSyntheticsTestDetailsSubType {
 	return &NullableSyntheticsTestDetailsSubType{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableSyntheticsTestDetailsSubType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableSyntheticsTestDetailsSubType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

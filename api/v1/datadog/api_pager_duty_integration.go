@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// PagerDutyIntegrationApiService PagerDutyIntegrationApi service
+// PagerDutyIntegrationApiService PagerDutyIntegrationApi service.
 type PagerDutyIntegrationApiService service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {
@@ -38,10 +31,8 @@ func (a *PagerDutyIntegrationApiService) buildCreatePagerDutyIntegrationServiceR
 	return req, nil
 }
 
-/*
- * CreatePagerDutyIntegrationService Create a new service object
- * Create a new service object in the PagerDuty integration.
- */
+// CreatePagerDutyIntegrationService Create a new service object.
+// Create a new service object in the PagerDuty integration.
 func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _context.Context, body PagerDutyService) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req, err := a.buildCreatePagerDutyIntegrationServiceRequest(ctx, body)
 	if err != nil {
@@ -52,10 +43,7 @@ func (a *PagerDutyIntegrationApiService) CreatePagerDutyIntegrationService(ctx _
 	return req.ApiService.createPagerDutyIntegrationServiceExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PagerDutyServiceName
- */
+// createPagerDutyIntegrationServiceExecute executes the request.
 func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecute(r apiCreatePagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -206,10 +194,8 @@ func (a *PagerDutyIntegrationApiService) buildDeletePagerDutyIntegrationServiceR
 	return req, nil
 }
 
-/*
- * DeletePagerDutyIntegrationService Delete a single service object
- * Delete a single service object in the Datadog-PagerDuty integration.
- */
+// DeletePagerDutyIntegrationService Delete a single service object.
+// Delete a single service object in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _context.Context, serviceName string) (*_nethttp.Response, error) {
 	req, err := a.buildDeletePagerDutyIntegrationServiceRequest(ctx, serviceName)
 	if err != nil {
@@ -219,9 +205,7 @@ func (a *PagerDutyIntegrationApiService) DeletePagerDutyIntegrationService(ctx _
 	return req.ApiService.deletePagerDutyIntegrationServiceExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deletePagerDutyIntegrationServiceExecute executes the request.
 func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecute(r apiDeletePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -348,10 +332,8 @@ func (a *PagerDutyIntegrationApiService) buildGetPagerDutyIntegrationServiceRequ
 	return req, nil
 }
 
-/*
- * GetPagerDutyIntegrationService Get a single service object
- * Get service name in the Datadog-PagerDuty integration.
- */
+// GetPagerDutyIntegrationService Get a single service object.
+// Get service name in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _context.Context, serviceName string) (PagerDutyServiceName, *_nethttp.Response, error) {
 	req, err := a.buildGetPagerDutyIntegrationServiceRequest(ctx, serviceName)
 	if err != nil {
@@ -362,10 +344,7 @@ func (a *PagerDutyIntegrationApiService) GetPagerDutyIntegrationService(ctx _con
 	return req.ApiService.getPagerDutyIntegrationServiceExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PagerDutyServiceName
- */
+// getPagerDutyIntegrationServiceExecute executes the request.
 func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r apiGetPagerDutyIntegrationServiceRequest) (PagerDutyServiceName, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -504,10 +483,8 @@ func (a *PagerDutyIntegrationApiService) buildUpdatePagerDutyIntegrationServiceR
 	return req, nil
 }
 
-/*
- * UpdatePagerDutyIntegrationService Update a single service object
- * Update a single service object in the Datadog-PagerDuty integration.
- */
+// UpdatePagerDutyIntegrationService Update a single service object.
+// Update a single service object in the Datadog-PagerDuty integration.
 func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _context.Context, serviceName string, body PagerDutyServiceKey) (*_nethttp.Response, error) {
 	req, err := a.buildUpdatePagerDutyIntegrationServiceRequest(ctx, serviceName, body)
 	if err != nil {
@@ -517,9 +494,7 @@ func (a *PagerDutyIntegrationApiService) UpdatePagerDutyIntegrationService(ctx _
 	return req.ApiService.updatePagerDutyIntegrationServiceExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// updatePagerDutyIntegrationServiceExecute executes the request.
 func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecute(r apiUpdatePagerDutyIntegrationServiceRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodPut

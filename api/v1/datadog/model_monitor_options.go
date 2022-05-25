@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -96,10 +94,10 @@ type MonitorOptions struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorOptions instantiates a new MonitorOptions object
+// NewMonitorOptions instantiates a new MonitorOptions object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMonitorOptions() *MonitorOptions {
 	this := MonitorOptions{}
 	var escalationMessage string = "none"
@@ -121,9 +119,9 @@ func NewMonitorOptions() *MonitorOptions {
 	return &this
 }
 
-// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object
+// NewMonitorOptionsWithDefaults instantiates a new MonitorOptions object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorOptionsWithDefaults() *MonitorOptions {
 	this := MonitorOptions{}
 	var escalationMessage string = "none"
@@ -287,7 +285,7 @@ func (o *MonitorOptions) GetEvaluationDelay() int64 {
 
 // GetEvaluationDelayOk returns a tuple with the EvaluationDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetEvaluationDelayOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -309,12 +307,12 @@ func (o *MonitorOptions) SetEvaluationDelay(v int64) {
 	o.EvaluationDelay.Set(&v)
 }
 
-// SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil
+// SetEvaluationDelayNil sets the value for EvaluationDelay to be an explicit nil.
 func (o *MonitorOptions) SetEvaluationDelayNil() {
 	o.EvaluationDelay.Set(nil)
 }
 
-// UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil
+// UnsetEvaluationDelay ensures that no value is present for EvaluationDelay, not even an explicit nil.
 func (o *MonitorOptions) UnsetEvaluationDelay() {
 	o.EvaluationDelay.Unset()
 }
@@ -429,7 +427,7 @@ func (o *MonitorOptions) GetMinFailureDuration() int64 {
 
 // GetMinFailureDurationOk returns a tuple with the MinFailureDuration field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetMinFailureDurationOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -451,12 +449,12 @@ func (o *MonitorOptions) SetMinFailureDuration(v int64) {
 	o.MinFailureDuration.Set(&v)
 }
 
-// SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil
+// SetMinFailureDurationNil sets the value for MinFailureDuration to be an explicit nil.
 func (o *MonitorOptions) SetMinFailureDurationNil() {
 	o.MinFailureDuration.Set(nil)
 }
 
-// UnsetMinFailureDuration ensures that no value is present for MinFailureDuration, not even an explicit nil
+// UnsetMinFailureDuration ensures that no value is present for MinFailureDuration, not even an explicit nil.
 func (o *MonitorOptions) UnsetMinFailureDuration() {
 	o.MinFailureDuration.Unset()
 }
@@ -472,7 +470,7 @@ func (o *MonitorOptions) GetMinLocationFailed() int64 {
 
 // GetMinLocationFailedOk returns a tuple with the MinLocationFailed field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetMinLocationFailedOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -494,12 +492,12 @@ func (o *MonitorOptions) SetMinLocationFailed(v int64) {
 	o.MinLocationFailed.Set(&v)
 }
 
-// SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil
+// SetMinLocationFailedNil sets the value for MinLocationFailed to be an explicit nil.
 func (o *MonitorOptions) SetMinLocationFailedNil() {
 	o.MinLocationFailed.Set(nil)
 }
 
-// UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil
+// UnsetMinLocationFailed ensures that no value is present for MinLocationFailed, not even an explicit nil.
 func (o *MonitorOptions) UnsetMinLocationFailed() {
 	o.MinLocationFailed.Unset()
 }
@@ -515,7 +513,7 @@ func (o *MonitorOptions) GetNewGroupDelay() int64 {
 
 // GetNewGroupDelayOk returns a tuple with the NewGroupDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetNewGroupDelayOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -537,12 +535,12 @@ func (o *MonitorOptions) SetNewGroupDelay(v int64) {
 	o.NewGroupDelay.Set(&v)
 }
 
-// SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil
+// SetNewGroupDelayNil sets the value for NewGroupDelay to be an explicit nil.
 func (o *MonitorOptions) SetNewGroupDelayNil() {
 	o.NewGroupDelay.Set(nil)
 }
 
-// UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil
+// UnsetNewGroupDelay ensures that no value is present for NewGroupDelay, not even an explicit nil.
 func (o *MonitorOptions) UnsetNewGroupDelay() {
 	o.NewGroupDelay.Unset()
 }
@@ -559,7 +557,7 @@ func (o *MonitorOptions) GetNewHostDelay() int64 {
 
 // GetNewHostDelayOk returns a tuple with the NewHostDelay field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *MonitorOptions) GetNewHostDelayOk() (*int64, bool) {
 	if o == nil {
@@ -583,12 +581,12 @@ func (o *MonitorOptions) SetNewHostDelay(v int64) {
 	o.NewHostDelay.Set(&v)
 }
 
-// SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil
+// SetNewHostDelayNil sets the value for NewHostDelay to be an explicit nil.
 func (o *MonitorOptions) SetNewHostDelayNil() {
 	o.NewHostDelay.Set(nil)
 }
 
-// UnsetNewHostDelay ensures that no value is present for NewHostDelay, not even an explicit nil
+// UnsetNewHostDelay ensures that no value is present for NewHostDelay, not even an explicit nil.
 func (o *MonitorOptions) UnsetNewHostDelay() {
 	o.NewHostDelay.Unset()
 }
@@ -604,7 +602,7 @@ func (o *MonitorOptions) GetNoDataTimeframe() int64 {
 
 // GetNoDataTimeframeOk returns a tuple with the NoDataTimeframe field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetNoDataTimeframeOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -626,12 +624,12 @@ func (o *MonitorOptions) SetNoDataTimeframe(v int64) {
 	o.NoDataTimeframe.Set(&v)
 }
 
-// SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil
+// SetNoDataTimeframeNil sets the value for NoDataTimeframe to be an explicit nil.
 func (o *MonitorOptions) SetNoDataTimeframeNil() {
 	o.NoDataTimeframe.Set(nil)
 }
 
-// UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil
+// UnsetNoDataTimeframe ensures that no value is present for NoDataTimeframe, not even an explicit nil.
 func (o *MonitorOptions) UnsetNoDataTimeframe() {
 	o.NoDataTimeframe.Unset()
 }
@@ -711,7 +709,7 @@ func (o *MonitorOptions) GetRenotifyInterval() int64 {
 
 // GetRenotifyIntervalOk returns a tuple with the RenotifyInterval field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetRenotifyIntervalOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -733,12 +731,12 @@ func (o *MonitorOptions) SetRenotifyInterval(v int64) {
 	o.RenotifyInterval.Set(&v)
 }
 
-// SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil
+// SetRenotifyIntervalNil sets the value for RenotifyInterval to be an explicit nil.
 func (o *MonitorOptions) SetRenotifyIntervalNil() {
 	o.RenotifyInterval.Set(nil)
 }
 
-// UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil
+// UnsetRenotifyInterval ensures that no value is present for RenotifyInterval, not even an explicit nil.
 func (o *MonitorOptions) UnsetRenotifyInterval() {
 	o.RenotifyInterval.Unset()
 }
@@ -754,7 +752,7 @@ func (o *MonitorOptions) GetRenotifyOccurrences() int64 {
 
 // GetRenotifyOccurrencesOk returns a tuple with the RenotifyOccurrences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetRenotifyOccurrencesOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -776,12 +774,12 @@ func (o *MonitorOptions) SetRenotifyOccurrences(v int64) {
 	o.RenotifyOccurrences.Set(&v)
 }
 
-// SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil
+// SetRenotifyOccurrencesNil sets the value for RenotifyOccurrences to be an explicit nil.
 func (o *MonitorOptions) SetRenotifyOccurrencesNil() {
 	o.RenotifyOccurrences.Set(nil)
 }
 
-// UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil
+// UnsetRenotifyOccurrences ensures that no value is present for RenotifyOccurrences, not even an explicit nil.
 func (o *MonitorOptions) UnsetRenotifyOccurrences() {
 	o.RenotifyOccurrences.Unset()
 }
@@ -797,7 +795,7 @@ func (o *MonitorOptions) GetRenotifyStatuses() []MonitorRenotifyStatusType {
 
 // GetRenotifyStatusesOk returns a tuple with the RenotifyStatuses field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetRenotifyStatusesOk() (*[]MonitorRenotifyStatusType, bool) {
 	if o == nil || o.RenotifyStatuses == nil {
 		return nil, false
@@ -898,7 +896,7 @@ func (o *MonitorOptions) GetSyntheticsCheckId() string {
 
 // GetSyntheticsCheckIdOk returns a tuple with the SyntheticsCheckId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 // Deprecated
 func (o *MonitorOptions) GetSyntheticsCheckIdOk() (*string, bool) {
 	if o == nil {
@@ -922,12 +920,12 @@ func (o *MonitorOptions) SetSyntheticsCheckId(v string) {
 	o.SyntheticsCheckId.Set(&v)
 }
 
-// SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil
+// SetSyntheticsCheckIdNil sets the value for SyntheticsCheckId to be an explicit nil.
 func (o *MonitorOptions) SetSyntheticsCheckIdNil() {
 	o.SyntheticsCheckId.Set(nil)
 }
 
-// UnsetSyntheticsCheckId ensures that no value is present for SyntheticsCheckId, not even an explicit nil
+// UnsetSyntheticsCheckId ensures that no value is present for SyntheticsCheckId, not even an explicit nil.
 func (o *MonitorOptions) UnsetSyntheticsCheckId() {
 	o.SyntheticsCheckId.Unset()
 }
@@ -1007,7 +1005,7 @@ func (o *MonitorOptions) GetTimeoutH() int64 {
 
 // GetTimeoutHOk returns a tuple with the TimeoutH field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorOptions) GetTimeoutHOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -1029,12 +1027,12 @@ func (o *MonitorOptions) SetTimeoutH(v int64) {
 	o.TimeoutH.Set(&v)
 }
 
-// SetTimeoutHNil sets the value for TimeoutH to be an explicit nil
+// SetTimeoutHNil sets the value for TimeoutH to be an explicit nil.
 func (o *MonitorOptions) SetTimeoutHNil() {
 	o.TimeoutH.Set(nil)
 }
 
-// UnsetTimeoutH ensures that no value is present for TimeoutH, not even an explicit nil
+// UnsetTimeoutH ensures that no value is present for TimeoutH, not even an explicit nil.
 func (o *MonitorOptions) UnsetTimeoutH() {
 	o.TimeoutH.Unset()
 }
@@ -1071,6 +1069,7 @@ func (o *MonitorOptions) SetVariables(v []MonitorFormulaAndFunctionQueryDefiniti
 	o.Variables = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -1158,6 +1157,7 @@ func (o MonitorOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

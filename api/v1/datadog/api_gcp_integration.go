@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// GCPIntegrationApiService GCPIntegrationApi service
+// GCPIntegrationApiService GCPIntegrationApi service.
 type GCPIntegrationApiService service
 
 type apiCreateGCPIntegrationRequest struct {
@@ -37,10 +30,8 @@ func (a *GCPIntegrationApiService) buildCreateGCPIntegrationRequest(ctx _context
 	return req, nil
 }
 
-/*
- * CreateGCPIntegration Create a GCP integration
- * Create a Datadog-GCP integration.
- */
+// CreateGCPIntegration Create a GCP integration.
+// Create a Datadog-GCP integration.
 func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildCreateGCPIntegrationRequest(ctx, body)
 	if err != nil {
@@ -51,10 +42,7 @@ func (a *GCPIntegrationApiService) CreateGCPIntegration(ctx _context.Context, bo
 	return req.ApiService.createGCPIntegrationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return interface{}
- */
+// createGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApiService) createGCPIntegrationExecute(r apiCreateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -205,10 +193,8 @@ func (a *GCPIntegrationApiService) buildDeleteGCPIntegrationRequest(ctx _context
 	return req, nil
 }
 
-/*
- * DeleteGCPIntegration Delete a GCP integration
- * Delete a given Datadog-GCP integration.
- */
+// DeleteGCPIntegration Delete a GCP integration.
+// Delete a given Datadog-GCP integration.
 func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildDeleteGCPIntegrationRequest(ctx, body)
 	if err != nil {
@@ -219,10 +205,7 @@ func (a *GCPIntegrationApiService) DeleteGCPIntegration(ctx _context.Context, bo
 	return req.ApiService.deleteGCPIntegrationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return interface{}
- */
+// deleteGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApiService) deleteGCPIntegrationExecute(r apiDeleteGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -371,10 +354,8 @@ func (a *GCPIntegrationApiService) buildListGCPIntegrationRequest(ctx _context.C
 	return req, nil
 }
 
-/*
- * ListGCPIntegration List all GCP integrations
- * List all Datadog-GCP integrations configured in your Datadog account.
- */
+// ListGCPIntegration List all GCP integrations.
+// List all Datadog-GCP integrations configured in your Datadog account.
 func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]GCPAccount, *_nethttp.Response, error) {
 	req, err := a.buildListGCPIntegrationRequest(ctx)
 	if err != nil {
@@ -385,10 +366,7 @@ func (a *GCPIntegrationApiService) ListGCPIntegration(ctx _context.Context) ([]G
 	return req.ApiService.listGCPIntegrationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return []GCPAccount
- */
+// listGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApiService) listGCPIntegrationExecute(r apiListGCPIntegrationRequest) ([]GCPAccount, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -524,13 +502,11 @@ func (a *GCPIntegrationApiService) buildUpdateGCPIntegrationRequest(ctx _context
 	return req, nil
 }
 
-/*
- * UpdateGCPIntegration Update a GCP integration
- * Update a Datadog-GCP integrations host_filters and/or auto-mute.
- * Requires a `project_id` and `client_email`, however these fields cannot be updated.
- * If you need to update these fields, delete and use the create (`POST`) endpoint.
- * The unspecified fields will keep their original values.
- */
+// UpdateGCPIntegration Update a GCP integration.
+// Update a Datadog-GCP integrations host_filters and/or auto-mute.
+// Requires a `project_id` and `client_email`, however these fields cannot be updated.
+// If you need to update these fields, delete and use the create (`POST`) endpoint.
+// The unspecified fields will keep their original values.
 func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, body GCPAccount) (interface{}, *_nethttp.Response, error) {
 	req, err := a.buildUpdateGCPIntegrationRequest(ctx, body)
 	if err != nil {
@@ -541,10 +517,7 @@ func (a *GCPIntegrationApiService) UpdateGCPIntegration(ctx _context.Context, bo
 	return req.ApiService.updateGCPIntegrationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return interface{}
- */
+// updateGCPIntegrationExecute executes the request.
 func (a *GCPIntegrationApiService) updateGCPIntegrationExecute(r apiUpdateGCPIntegrationRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

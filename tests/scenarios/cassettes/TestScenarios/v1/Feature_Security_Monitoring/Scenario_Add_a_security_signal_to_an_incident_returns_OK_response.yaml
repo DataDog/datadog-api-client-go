@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"incident_id":2609}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v1/security_analytics/signals/AQAAAYDiB_Ol8PbzFAAAAABBWURpQl9PbEFBQU0yeXhGTG9ZV2JnQUE/add_to_incident
+  response:
+    body: '{"status":"done","elapsed":4,"hitCount":1,"type":"status","requestId":"pddv1ChZVSG9rS0xiLVROR0UzaExkSVRnaTZBIisKG6tMRhR9fRc0eaDfripyLqgONwbpcw5WGKATXBIMaeO6PoTCinH6lG0J"}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+    status: 200 OK
+version: 1

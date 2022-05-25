@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,7 +12,7 @@ import (
 // HourlyUsageAttributionUsageType Supported products for hourly usage attribution requests.
 type HourlyUsageAttributionUsageType string
 
-// List of HourlyUsageAttributionUsageType
+// List of HourlyUsageAttributionUsageType.
 const (
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_API_USAGE                    HourlyUsageAttributionUsageType = "api_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APM_HOST_USAGE               HourlyUsageAttributionUsageType = "apm_host_usage"
@@ -51,10 +49,12 @@ var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionU
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_SNMP_USAGE,
 }
 
-func (w *HourlyUsageAttributionUsageType) GetAllowedValues() []HourlyUsageAttributionUsageType {
+// GetAllowedValues reeturns the list of possible values.
+func (v *HourlyUsageAttributionUsageType) GetAllowedValues() []HourlyUsageAttributionUsageType {
 	return allowedHourlyUsageAttributionUsageTypeEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *HourlyUsageAttributionUsageType) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -66,17 +66,16 @@ func (v *HourlyUsageAttributionUsageType) UnmarshalJSON(src []byte) error {
 }
 
 // NewHourlyUsageAttributionUsageTypeFromValue returns a pointer to a valid HourlyUsageAttributionUsageType
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewHourlyUsageAttributionUsageTypeFromValue(v string) (*HourlyUsageAttributionUsageType, error) {
 	ev := HourlyUsageAttributionUsageType(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for HourlyUsageAttributionUsageType: valid values are %v", v, allowedHourlyUsageAttributionUsageTypeEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for HourlyUsageAttributionUsageType: valid values are %v", v, allowedHourlyUsageAttributionUsageTypeEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v HourlyUsageAttributionUsageType) IsValid() bool {
 	for _, existing := range allowedHourlyUsageAttributionUsageTypeEnumValues {
 		if existing == v {
@@ -86,42 +85,50 @@ func (v HourlyUsageAttributionUsageType) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to HourlyUsageAttributionUsageType value
+// Ptr returns reference to HourlyUsageAttributionUsageType value.
 func (v HourlyUsageAttributionUsageType) Ptr() *HourlyUsageAttributionUsageType {
 	return &v
 }
 
+// NullableHourlyUsageAttributionUsageType handles when a null is used for HourlyUsageAttributionUsageType.
 type NullableHourlyUsageAttributionUsageType struct {
 	value *HourlyUsageAttributionUsageType
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableHourlyUsageAttributionUsageType) Get() *HourlyUsageAttributionUsageType {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableHourlyUsageAttributionUsageType) Set(val *HourlyUsageAttributionUsageType) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableHourlyUsageAttributionUsageType) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableHourlyUsageAttributionUsageType) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableHourlyUsageAttributionUsageType initializes the struct as if Set has been called.
 func NewNullableHourlyUsageAttributionUsageType(val *HourlyUsageAttributionUsageType) *NullableHourlyUsageAttributionUsageType {
 	return &NullableHourlyUsageAttributionUsageType{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableHourlyUsageAttributionUsageType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableHourlyUsageAttributionUsageType) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

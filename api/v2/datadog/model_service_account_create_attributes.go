@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,10 +24,10 @@ type ServiceAccountCreateAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewServiceAccountCreateAttributes instantiates a new ServiceAccountCreateAttributes object
+// NewServiceAccountCreateAttributes instantiates a new ServiceAccountCreateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewServiceAccountCreateAttributes(email string, serviceAccount bool) *ServiceAccountCreateAttributes {
 	this := ServiceAccountCreateAttributes{}
 	this.Email = email
@@ -37,15 +35,15 @@ func NewServiceAccountCreateAttributes(email string, serviceAccount bool) *Servi
 	return &this
 }
 
-// NewServiceAccountCreateAttributesWithDefaults instantiates a new ServiceAccountCreateAttributes object
+// NewServiceAccountCreateAttributesWithDefaults instantiates a new ServiceAccountCreateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewServiceAccountCreateAttributesWithDefaults() *ServiceAccountCreateAttributes {
 	this := ServiceAccountCreateAttributes{}
 	return &this
 }
 
-// GetEmail returns the Email field value
+// GetEmail returns the Email field value.
 func (o *ServiceAccountCreateAttributes) GetEmail() string {
 	if o == nil {
 		var ret string
@@ -63,7 +61,7 @@ func (o *ServiceAccountCreateAttributes) GetEmailOk() (*string, bool) {
 	return &o.Email, true
 }
 
-// SetEmail sets field value
+// SetEmail sets field value.
 func (o *ServiceAccountCreateAttributes) SetEmail(v string) {
 	o.Email = v
 }
@@ -100,7 +98,7 @@ func (o *ServiceAccountCreateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
-// GetServiceAccount returns the ServiceAccount field value
+// GetServiceAccount returns the ServiceAccount field value.
 func (o *ServiceAccountCreateAttributes) GetServiceAccount() bool {
 	if o == nil {
 		var ret bool
@@ -118,7 +116,7 @@ func (o *ServiceAccountCreateAttributes) GetServiceAccountOk() (*bool, bool) {
 	return &o.ServiceAccount, true
 }
 
-// SetServiceAccount sets field value
+// SetServiceAccount sets field value.
 func (o *ServiceAccountCreateAttributes) SetServiceAccount(v bool) {
 	o.ServiceAccount = v
 }
@@ -155,6 +153,7 @@ func (o *ServiceAccountCreateAttributes) SetTitle(v string) {
 	o.Title = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -175,6 +174,7 @@ func (o ServiceAccountCreateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccountCreateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

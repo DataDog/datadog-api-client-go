@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,25 +22,25 @@ type NotebookLogStreamCellAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object
+// NewNotebookLogStreamCellAttributes instantiates a new NotebookLogStreamCellAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookLogStreamCellAttributes(definition LogStreamWidgetDefinition) *NotebookLogStreamCellAttributes {
 	this := NotebookLogStreamCellAttributes{}
 	this.Definition = definition
 	return &this
 }
 
-// NewNotebookLogStreamCellAttributesWithDefaults instantiates a new NotebookLogStreamCellAttributes object
+// NewNotebookLogStreamCellAttributesWithDefaults instantiates a new NotebookLogStreamCellAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookLogStreamCellAttributesWithDefaults() *NotebookLogStreamCellAttributes {
 	this := NotebookLogStreamCellAttributes{}
 	return &this
 }
 
-// GetDefinition returns the Definition field value
+// GetDefinition returns the Definition field value.
 func (o *NotebookLogStreamCellAttributes) GetDefinition() LogStreamWidgetDefinition {
 	if o == nil {
 		var ret LogStreamWidgetDefinition
@@ -60,7 +58,7 @@ func (o *NotebookLogStreamCellAttributes) GetDefinitionOk() (*LogStreamWidgetDef
 	return &o.Definition, true
 }
 
-// SetDefinition sets field value
+// SetDefinition sets field value.
 func (o *NotebookLogStreamCellAttributes) SetDefinition(v LogStreamWidgetDefinition) {
 	o.Definition = v
 }
@@ -108,7 +106,7 @@ func (o *NotebookLogStreamCellAttributes) GetTime() NotebookCellTime {
 
 // GetTimeOk returns a tuple with the Time field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookLogStreamCellAttributes) GetTimeOk() (*NotebookCellTime, bool) {
 	if o == nil {
 		return nil, false
@@ -130,16 +128,17 @@ func (o *NotebookLogStreamCellAttributes) SetTime(v NotebookCellTime) {
 	o.Time.Set(&v)
 }
 
-// SetTimeNil sets the value for Time to be an explicit nil
+// SetTimeNil sets the value for Time to be an explicit nil.
 func (o *NotebookLogStreamCellAttributes) SetTimeNil() {
 	o.Time.Set(nil)
 }
 
-// UnsetTime ensures that no value is present for Time, not even an explicit nil
+// UnsetTime ensures that no value is present for Time, not even an explicit nil.
 func (o *NotebookLogStreamCellAttributes) UnsetTime() {
 	o.Time.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -159,6 +158,7 @@ func (o NotebookLogStreamCellAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookLogStreamCellAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

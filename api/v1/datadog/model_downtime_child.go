@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -63,18 +61,18 @@ type DowntimeChild struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewDowntimeChild instantiates a new DowntimeChild object
+// NewDowntimeChild instantiates a new DowntimeChild object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewDowntimeChild() *DowntimeChild {
 	this := DowntimeChild{}
 	return &this
 }
 
-// NewDowntimeChildWithDefaults instantiates a new DowntimeChild object
+// NewDowntimeChildWithDefaults instantiates a new DowntimeChild object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewDowntimeChildWithDefaults() *DowntimeChild {
 	this := DowntimeChild{}
 	return &this
@@ -123,7 +121,7 @@ func (o *DowntimeChild) GetCanceled() int64 {
 
 // GetCanceledOk returns a tuple with the Canceled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetCanceledOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -145,12 +143,12 @@ func (o *DowntimeChild) SetCanceled(v int64) {
 	o.Canceled.Set(&v)
 }
 
-// SetCanceledNil sets the value for Canceled to be an explicit nil
+// SetCanceledNil sets the value for Canceled to be an explicit nil.
 func (o *DowntimeChild) SetCanceledNil() {
 	o.Canceled.Set(nil)
 }
 
-// UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil
+// UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil.
 func (o *DowntimeChild) UnsetCanceled() {
 	o.Canceled.Unset()
 }
@@ -262,7 +260,7 @@ func (o *DowntimeChild) GetEnd() int64 {
 
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetEndOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -284,12 +282,12 @@ func (o *DowntimeChild) SetEnd(v int64) {
 	o.End.Set(&v)
 }
 
-// SetEndNil sets the value for End to be an explicit nil
+// SetEndNil sets the value for End to be an explicit nil.
 func (o *DowntimeChild) SetEndNil() {
 	o.End.Set(nil)
 }
 
-// UnsetEnd ensures that no value is present for End, not even an explicit nil
+// UnsetEnd ensures that no value is present for End, not even an explicit nil.
 func (o *DowntimeChild) UnsetEnd() {
 	o.End.Unset()
 }
@@ -369,7 +367,7 @@ func (o *DowntimeChild) GetMonitorId() int64 {
 
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetMonitorIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -391,12 +389,12 @@ func (o *DowntimeChild) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
 
-// SetMonitorIdNil sets the value for MonitorId to be an explicit nil
+// SetMonitorIdNil sets the value for MonitorId to be an explicit nil.
 func (o *DowntimeChild) SetMonitorIdNil() {
 	o.MonitorId.Set(nil)
 }
 
-// UnsetMonitorId ensures that no value is present for MonitorId, not even an explicit nil
+// UnsetMonitorId ensures that no value is present for MonitorId, not even an explicit nil.
 func (o *DowntimeChild) UnsetMonitorId() {
 	o.MonitorId.Unset()
 }
@@ -476,7 +474,7 @@ func (o *DowntimeChild) GetParentId() int64 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetParentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -498,12 +496,12 @@ func (o *DowntimeChild) SetParentId(v int64) {
 	o.ParentId.Set(&v)
 }
 
-// SetParentIdNil sets the value for ParentId to be an explicit nil
+// SetParentIdNil sets the value for ParentId to be an explicit nil.
 func (o *DowntimeChild) SetParentIdNil() {
 	o.ParentId.Set(nil)
 }
 
-// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil.
 func (o *DowntimeChild) UnsetParentId() {
 	o.ParentId.Unset()
 }
@@ -519,7 +517,7 @@ func (o *DowntimeChild) GetRecurrence() DowntimeRecurrence {
 
 // GetRecurrenceOk returns a tuple with the Recurrence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetRecurrenceOk() (*DowntimeRecurrence, bool) {
 	if o == nil {
 		return nil, false
@@ -541,12 +539,12 @@ func (o *DowntimeChild) SetRecurrence(v DowntimeRecurrence) {
 	o.Recurrence.Set(&v)
 }
 
-// SetRecurrenceNil sets the value for Recurrence to be an explicit nil
+// SetRecurrenceNil sets the value for Recurrence to be an explicit nil.
 func (o *DowntimeChild) SetRecurrenceNil() {
 	o.Recurrence.Set(nil)
 }
 
-// UnsetRecurrence ensures that no value is present for Recurrence, not even an explicit nil
+// UnsetRecurrence ensures that no value is present for Recurrence, not even an explicit nil.
 func (o *DowntimeChild) UnsetRecurrence() {
 	o.Recurrence.Unset()
 }
@@ -658,7 +656,7 @@ func (o *DowntimeChild) GetUpdaterId() int32 {
 
 // GetUpdaterIdOk returns a tuple with the UpdaterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeChild) GetUpdaterIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
@@ -680,16 +678,17 @@ func (o *DowntimeChild) SetUpdaterId(v int32) {
 	o.UpdaterId.Set(&v)
 }
 
-// SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil
+// SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil.
 func (o *DowntimeChild) SetUpdaterIdNil() {
 	o.UpdaterId.Set(nil)
 }
 
-// UnsetUpdaterId ensures that no value is present for UpdaterId, not even an explicit nil
+// UnsetUpdaterId ensures that no value is present for UpdaterId, not even an explicit nil.
 func (o *DowntimeChild) UnsetUpdaterId() {
 	o.UpdaterId.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -753,6 +752,7 @@ func (o DowntimeChild) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -803,37 +803,45 @@ func (o *DowntimeChild) UnmarshalJSON(bytes []byte) (err error) {
 	return nil
 }
 
+// NullableDowntimeChild handles when a null is used for DowntimeChild.
 type NullableDowntimeChild struct {
 	value *DowntimeChild
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableDowntimeChild) Get() *DowntimeChild {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableDowntimeChild) Set(val *DowntimeChild) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableDowntimeChild) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableDowntimeChild) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableDowntimeChild initializes the struct as if Set has been called.
 func NewNullableDowntimeChild(val *DowntimeChild) *NullableDowntimeChild {
 	return &NullableDowntimeChild{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableDowntimeChild) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableDowntimeChild) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

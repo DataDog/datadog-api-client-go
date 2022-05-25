@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -30,10 +28,10 @@ type SyntheticsPrivateLocation struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsPrivateLocation instantiates a new SyntheticsPrivateLocation object
+// NewSyntheticsPrivateLocation instantiates a new SyntheticsPrivateLocation object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsPrivateLocation(description string, name string, tags []string) *SyntheticsPrivateLocation {
 	this := SyntheticsPrivateLocation{}
 	this.Description = description
@@ -42,15 +40,15 @@ func NewSyntheticsPrivateLocation(description string, name string, tags []string
 	return &this
 }
 
-// NewSyntheticsPrivateLocationWithDefaults instantiates a new SyntheticsPrivateLocation object
+// NewSyntheticsPrivateLocationWithDefaults instantiates a new SyntheticsPrivateLocation object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsPrivateLocationWithDefaults() *SyntheticsPrivateLocation {
 	this := SyntheticsPrivateLocation{}
 	return &this
 }
 
-// GetDescription returns the Description field value
+// GetDescription returns the Description field value.
 func (o *SyntheticsPrivateLocation) GetDescription() string {
 	if o == nil {
 		var ret string
@@ -68,7 +66,7 @@ func (o *SyntheticsPrivateLocation) GetDescriptionOk() (*string, bool) {
 	return &o.Description, true
 }
 
-// SetDescription sets field value
+// SetDescription sets field value.
 func (o *SyntheticsPrivateLocation) SetDescription(v string) {
 	o.Description = v
 }
@@ -137,7 +135,7 @@ func (o *SyntheticsPrivateLocation) SetMetadata(v SyntheticsPrivateLocationMetad
 	o.Metadata = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *SyntheticsPrivateLocation) GetName() string {
 	if o == nil {
 		var ret string
@@ -155,7 +153,7 @@ func (o *SyntheticsPrivateLocation) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *SyntheticsPrivateLocation) SetName(v string) {
 	o.Name = v
 }
@@ -192,7 +190,7 @@ func (o *SyntheticsPrivateLocation) SetSecrets(v SyntheticsPrivateLocationSecret
 	o.Secrets = &v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value.
 func (o *SyntheticsPrivateLocation) GetTags() []string {
 	if o == nil {
 		var ret []string
@@ -210,11 +208,12 @@ func (o *SyntheticsPrivateLocation) GetTagsOk() (*[]string, bool) {
 	return &o.Tags, true
 }
 
-// SetTags sets field value
+// SetTags sets field value.
 func (o *SyntheticsPrivateLocation) SetTags(v []string) {
 	o.Tags = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -239,6 +238,7 @@ func (o SyntheticsPrivateLocation) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsPrivateLocation) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

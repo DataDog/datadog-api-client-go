@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,24 +36,24 @@ type ScatterPlotWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object
+// NewScatterPlotWidgetDefinition instantiates a new ScatterPlotWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, type_ ScatterPlotWidgetDefinitionType) *ScatterPlotWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewScatterPlotWidgetDefinition(requests ScatterPlotWidgetDefinitionRequests, typeVar ScatterPlotWidgetDefinitionType) *ScatterPlotWidgetDefinition {
 	this := ScatterPlotWidgetDefinition{}
 	this.Requests = requests
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewScatterPlotWidgetDefinitionWithDefaults instantiates a new ScatterPlotWidgetDefinition object
+// NewScatterPlotWidgetDefinitionWithDefaults instantiates a new ScatterPlotWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewScatterPlotWidgetDefinitionWithDefaults() *ScatterPlotWidgetDefinition {
 	this := ScatterPlotWidgetDefinition{}
-	var type_ ScatterPlotWidgetDefinitionType = SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT
-	this.Type = type_
+	var typeVar ScatterPlotWidgetDefinitionType = SCATTERPLOTWIDGETDEFINITIONTYPE_SCATTERPLOT
+	this.Type = typeVar
 	return &this
 }
 
@@ -123,7 +121,7 @@ func (o *ScatterPlotWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
-// GetRequests returns the Requests field value
+// GetRequests returns the Requests field value.
 func (o *ScatterPlotWidgetDefinition) GetRequests() ScatterPlotWidgetDefinitionRequests {
 	if o == nil {
 		var ret ScatterPlotWidgetDefinitionRequests
@@ -141,7 +139,7 @@ func (o *ScatterPlotWidgetDefinition) GetRequestsOk() (*ScatterPlotWidgetDefinit
 	return &o.Requests, true
 }
 
-// SetRequests sets field value
+// SetRequests sets field value.
 func (o *ScatterPlotWidgetDefinition) SetRequests(v ScatterPlotWidgetDefinitionRequests) {
 	o.Requests = v
 }
@@ -274,7 +272,7 @@ func (o *ScatterPlotWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ScatterPlotWidgetDefinition) GetType() ScatterPlotWidgetDefinitionType {
 	if o == nil {
 		var ret ScatterPlotWidgetDefinitionType
@@ -292,7 +290,7 @@ func (o *ScatterPlotWidgetDefinition) GetTypeOk() (*ScatterPlotWidgetDefinitionT
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ScatterPlotWidgetDefinition) SetType(v ScatterPlotWidgetDefinitionType) {
 	o.Type = v
 }
@@ -361,6 +359,7 @@ func (o *ScatterPlotWidgetDefinition) SetYaxis(v WidgetAxis) {
 	o.Yaxis = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -399,6 +398,7 @@ func (o ScatterPlotWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ScatterPlotWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,24 +20,24 @@ type AuthNMappingAttributes struct {
 	// Time of last AuthN Mapping modification.
 	ModifiedAt *time.Time `json:"modified_at,omitempty"`
 	// The ID of the SAML assertion attribute.
-	SamlAssertionAttributeId *int32 `json:"saml_assertion_attribute_id,omitempty"`
+	SamlAssertionAttributeId *string `json:"saml_assertion_attribute_id,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewAuthNMappingAttributes instantiates a new AuthNMappingAttributes object
+// NewAuthNMappingAttributes instantiates a new AuthNMappingAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewAuthNMappingAttributes() *AuthNMappingAttributes {
 	this := AuthNMappingAttributes{}
 	return &this
 }
 
-// NewAuthNMappingAttributesWithDefaults instantiates a new AuthNMappingAttributes object
+// NewAuthNMappingAttributesWithDefaults instantiates a new AuthNMappingAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewAuthNMappingAttributesWithDefaults() *AuthNMappingAttributes {
 	this := AuthNMappingAttributes{}
 	return &this
@@ -174,9 +172,9 @@ func (o *AuthNMappingAttributes) SetModifiedAt(v time.Time) {
 }
 
 // GetSamlAssertionAttributeId returns the SamlAssertionAttributeId field value if set, zero value otherwise.
-func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() int32 {
+func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() string {
 	if o == nil || o.SamlAssertionAttributeId == nil {
-		var ret int32
+		var ret string
 		return ret
 	}
 	return *o.SamlAssertionAttributeId
@@ -184,7 +182,7 @@ func (o *AuthNMappingAttributes) GetSamlAssertionAttributeId() int32 {
 
 // GetSamlAssertionAttributeIdOk returns a tuple with the SamlAssertionAttributeId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *AuthNMappingAttributes) GetSamlAssertionAttributeIdOk() (*int32, bool) {
+func (o *AuthNMappingAttributes) GetSamlAssertionAttributeIdOk() (*string, bool) {
 	if o == nil || o.SamlAssertionAttributeId == nil {
 		return nil, false
 	}
@@ -200,11 +198,12 @@ func (o *AuthNMappingAttributes) HasSamlAssertionAttributeId() bool {
 	return false
 }
 
-// SetSamlAssertionAttributeId gets a reference to the given int32 and assigns it to the SamlAssertionAttributeId field.
-func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v int32) {
+// SetSamlAssertionAttributeId gets a reference to the given string and assigns it to the SamlAssertionAttributeId field.
+func (o *AuthNMappingAttributes) SetSamlAssertionAttributeId(v string) {
 	o.SamlAssertionAttributeId = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -240,6 +239,7 @@ func (o AuthNMappingAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -247,7 +247,7 @@ func (o *AuthNMappingAttributes) UnmarshalJSON(bytes []byte) (err error) {
 		AttributeValue           *string    `json:"attribute_value,omitempty"`
 		CreatedAt                *time.Time `json:"created_at,omitempty"`
 		ModifiedAt               *time.Time `json:"modified_at,omitempty"`
-		SamlAssertionAttributeId *int32     `json:"saml_assertion_attribute_id,omitempty"`
+		SamlAssertionAttributeId *string    `json:"saml_assertion_attribute_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
