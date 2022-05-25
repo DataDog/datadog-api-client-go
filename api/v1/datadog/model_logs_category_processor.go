@@ -24,7 +24,7 @@ import (
 // - Once defined in the Category Processor, you can map categories to log status using the Log Status Remapper.
 type LogsCategoryProcessor struct {
 	// Array of filters to match or not a log and their
-	// corresponding `name`to assign a custom value to the log.
+	// corresponding `name` to assign a custom value to the log.
 	Categories []LogsCategoryProcessorCategory `json:"categories"`
 	// Whether or not the processor is enabled.
 	IsEnabled *bool `json:"is_enabled,omitempty"`

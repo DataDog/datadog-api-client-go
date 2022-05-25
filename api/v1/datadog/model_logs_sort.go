@@ -9,7 +9,7 @@ import (
 	"fmt"
 )
 
-// LogsSort Time-ascending `asc` or time-descending `desc`results.
+// LogsSort Time-ascending `asc` or time-descending `desc` results.
 type LogsSort string
 
 // List of LogsSort.
