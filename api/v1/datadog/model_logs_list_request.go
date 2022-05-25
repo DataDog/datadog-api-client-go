@@ -18,7 +18,7 @@ type LogsListRequest struct {
 	Limit *int32 `json:"limit,omitempty"`
 	// The search query - following the log search syntax.
 	Query *string `json:"query,omitempty"`
-	// Time-ascending `asc` or time-descending `desc`results.
+	// Time-ascending `asc` or time-descending `desc` results.
 	Sort *LogsSort `json:"sort,omitempty"`
 	// Hash identifier of the first log to return in the list, available in a log `id` attribute.
 	// This parameter is used for the pagination feature.
