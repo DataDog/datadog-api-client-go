@@ -29,7 +29,7 @@ type SyntheticsAPITest struct {
 	// Synthetic test.
 	Status *SyntheticsTestPauseStatus `json:"status,omitempty"`
 	// The subtype of the Synthetic API test, `http`, `ssl`, `tcp`,
-	// `dns`, `icmp`, `udp`, `websocket` or `multi`.
+	// `dns`, `icmp`, `udp`, `websocket`, `grpc` or `multi`.
 	Subtype *SyntheticsTestDetailsSubType `json:"subtype,omitempty"`
 	// Array of tags attached to the test.
 	Tags []string `json:"tags,omitempty"`
