@@ -378,9 +378,13 @@ def format_data_with_schema_list(
     # collect nested array types until you find a non-array type
     schema_parts = [(required, "[]")]
     list_schema = schema["items"]
+    depth = 1
     while list_schema.get("type") == "array":
         schema_parts.append((not list_schema.get("nullable", False), "[]"))
         list_schema = list_schema["items"]
+        depth += 1
+    if "oneOf" in list_schema:
+        depth += 1
 
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
     if "oneOf" in list_schema:
@@ -415,9 +419,9 @@ def format_data_with_schema_list(
         parameters += f"{value},\n"
 
     if in_list:
-        if "oneOf" in list_schema:
-            return f"{{{{{parameters}}}}}"
-        return f"{{\n{parameters}}}"
+        for _ in range(depth):
+            parameters = f"{{\n{parameters}}}"
+        return parameters
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
 
