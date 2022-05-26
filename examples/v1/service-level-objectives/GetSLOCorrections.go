@@ -17,7 +17,6 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("GetSLOCorrections", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOCorrections(ctx, SloData0ID)
 
