@@ -142,11 +142,7 @@ func main() {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)
 	}
 
-	for {
-		incident, ok := <- resp
-		if !ok {
-			 break
-		}
+        for incident := range resp {
 		fmt.Fprintf(os.Stdout, "Got incident %s\n", incident.GetId())
 	}
 
