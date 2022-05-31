@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"name":"updated","options":{"evaluation_delay":null,"new_group_delay":600,"new_host_delay":null,"renotify_interval":null,"thresholds":{"critical":2,"warning":null},"timeout_h":null}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PUT
+    url: https://api.datadoghq.com/api/v1/monitor/0
+  response:
+    body: '{"errors":["Monitor not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

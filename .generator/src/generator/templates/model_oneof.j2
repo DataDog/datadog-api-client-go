@@ -1,0 +1,121 @@
+// {{ name }} - {{ model.description|block_comment(prefix="//", first_line=False) }}
+type {{ name }} struct {
+{%- for oneOf in model.oneOf %}
+	{%- set dataType = get_type(oneOf) %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+	{{ attributeName }} *{{ dataType }}
+{%- endfor%}
+
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject interface{}
+}
+
+{%- for oneOf in model.oneOf %}
+	{%- set dataType = get_type(oneOf) %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+
+// {{ attributeName }}As{{ name }} is a convenience function that returns {{ dataType }} wrapped in {{ name }}.
+func {{ attributeName }}As{{ name }}(v *{{ dataType }}) {{ name }} {
+	return {{ name }}{{ "{" }}{{ attributeName }}: v}
+}
+{%- endfor %}
+
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *{{ name }}) UnmarshalJSON(data []byte) error {
+	var err error
+{#-
+	{{#useOneOfDiscriminatorLookup}}
+	{{#discriminator}}
+	{{#mappedModels}}
+	{{#-first}}
+	// use discriminator value to speed up the lookup
+	var jsonDict map[string]interface{}
+	err = json.Unmarshal(data, &jsonDict)
+	if err != nil {
+		return fmt.Errorf("Failed to unmarshal JSON into map for the discriminator lookup.")
+	}
+
+	{{/-first}}
+	// check if the discriminator value is '{{{mappingName}}}'
+	if jsonDict["{{{propertyBaseName}}}"] == "{{{mappingName}}}" {
+		// try to unmarshal JSON data into {{{modelName}}}
+		err = json.Unmarshal(data, &obj.{{{modelName}}})
+		if err == nil {
+			return nil // data stored in obj.{{{modelName}}}, return on the first match
+		} else {
+			obj.{{{modelName}}} = nil
+			return fmt.Errorf("Failed to unmarshal {{ name }} as {{{modelName}}}: %s", err.Error())
+		}
+	}
+
+	{{/mappedModels}}
+	{{/discriminator}}
+	return nil
+	{{/useOneOfDiscriminatorLookup}}
+-#}
+{%- if not (model.discriminator is defined) %}
+	match := 0
+{%- for oneOf in model.oneOf %}
+	{%- set dataType = get_type(oneOf) %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+	// try to unmarshal data into {{ attributeName }}
+	err = json.Unmarshal(data, &obj.{{ attributeName }})
+	if err == nil {
+		if obj.{{ attributeName }} != nil {% if oneOf.get("type", "object") == "object" %}&& obj.{{ attributeName }}.UnparsedObject == nil {% endif %}{
+			json{{ attributeName }}, _ := json.Marshal(obj.{{ attributeName }})
+			if string(json{{ attributeName }}) == "{}" { // empty struct
+				obj.{{ attributeName }} = nil
+			} else {
+				match++
+			}
+		} else {
+			obj.{{ attributeName }} = nil
+		}
+	} else {
+		obj.{{ attributeName }} = nil
+	}
+{% endfor %}
+	if match != 1 { // more than 1 match
+		// reset to nil
+		{%- for oneOf in model.oneOf %}
+		{%- set dataType = get_type(oneOf) %}
+		{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+		obj.{{ attributeName }} = nil
+		{%- endfor %}
+		return json.Unmarshal(data, &obj.UnparsedObject)
+	}
+	return nil // exactly one match
+	{%- endif %}
+}
+
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj {{ name }}) MarshalJSON() ([]byte, error) {
+{%- for oneOf in model.oneOf %}
+	{%- set dataType = get_type(oneOf) %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+	if obj.{{ attributeName }} != nil {
+		return json.Marshal(&obj.{{ attributeName }})
+	}
+
+{% endfor %}
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
+	}
+	return nil, nil // no data in oneOf schemas
+}
+
+// GetActualInstance returns the actual instance.
+func (obj *{{ name }}) GetActualInstance() (interface{}) {
+{%- for oneOf in model.oneOf %}
+	{%- set dataType = get_type(oneOf) %}
+	{%- set attributeName = (get_name(oneOf) or dataType)|upperfirst %}
+	if obj.{{ attributeName }} != nil {
+		return obj.{{ attributeName }}
+	}
+
+{% endfor %}
+	// all schemas are nil
+	return nil
+}
+
+{% include "nullable_model.j2" %}

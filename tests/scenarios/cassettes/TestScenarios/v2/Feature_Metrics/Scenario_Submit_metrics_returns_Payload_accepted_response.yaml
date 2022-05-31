@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"series":[{"metric":"system.load.1","points":[{"timestamp":1650641018,"value":0.7}],"type":0}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/series
+  response:
+    body: '{"errors":[]}'
+    code: 202
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 202 Accepted
+version: 1

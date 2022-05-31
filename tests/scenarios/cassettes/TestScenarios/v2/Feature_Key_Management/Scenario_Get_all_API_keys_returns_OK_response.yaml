@@ -1,0 +1,51 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Get_all_API_keys_returns_OK_response-1652349134"},"type":"api_keys"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/api_keys
+  response:
+    body: '{"data":{"type":"api_keys","attributes":{"created_at":"2022-05-12T09:52:15.135884+00:00","key":"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","last4":"xxxx","modified_at":"2022-05-12T09:52:15.135884+00:00","name":"Test-Get_all_API_keys_returns_OK_response-1652349134"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}},"id":"32c723fd-9e78-4b1a-a1dd-fab7fe34e8e8"}}'
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/api_keys?filter=Test-Get_all_API_keys_returns_OK_response-1652349134
+  response:
+    body: '{"meta":{"max_allowed":200,"page":{"total_filtered_count":1}},"data":[{"type":"api_keys","attributes":{"created_at":"2022-05-12T09:52:15.135884+00:00","last4":"xxxx","modified_at":"2022-05-12T09:52:15.135884+00:00","name":"Test-Get_all_API_keys_returns_OK_response-1652349134"},"relationships":{"created_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"modified_by":{"data":{"type":"users","id":"3ad549bf-eba0-11e9-a77a-0705486660d0"}},"leak_information":{"data":null}},"id":"32c723fd-9e78-4b1a-a1dd-fab7fe34e8e8"}]}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/api_keys/32c723fd-9e78-4b1a-a1dd-fab7fe34e8e8
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

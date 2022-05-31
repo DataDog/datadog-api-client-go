@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"filter":{"from":"2020-09-17T11:48:36+01:00","indexes":["main"],"query":"datadog-agent","to":"2020-09-17T12:48:36+01:00"},"page":{"limit":5},"sort":"timestamp"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/logs/events/search
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

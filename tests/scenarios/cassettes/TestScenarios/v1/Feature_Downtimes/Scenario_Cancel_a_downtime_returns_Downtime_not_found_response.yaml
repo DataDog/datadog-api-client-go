@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/0
+  response:
+    body: '{"errors": ["Downtime 0 not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

@@ -1,0 +1,49 @@
+interactions:
+- request:
+    body: |
+      {"message":"Test-Cancel_a_downtime_returns_OK_response-1652348993","recurrence":{"period":1,"type":"weeks","until_date":1654163393,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testcanceladowntimereturnsokresponse1652348993"],"start":1652348993,"timezone":"Etc/UTC"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/downtime
+  response:
+    body: '{"recurrence":{"until_date":1654163393,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"mute_first_recovery_notification":false,"created":1652348994,"org_id":321813,"modified":1652348994,"disabled":false,"start":1652348993,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testcanceladowntimereturnsokresponse1652348993"],"message":"Test-Cancel_a_downtime_returns_OK_response-1652348993","downtime_type":2,"id":1944162237,"updater_id":null}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/1944162237
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/1944162237
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

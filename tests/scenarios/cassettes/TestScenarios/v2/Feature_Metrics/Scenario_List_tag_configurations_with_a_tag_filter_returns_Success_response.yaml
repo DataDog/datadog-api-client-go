@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v2/metrics?filter%5Btags%5D=TestListtagconfigurationswithatagfilterreturnsSuccessresponse1648572657
+  response:
+    body: '{"data":[]}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json;datetime-format=rfc3339
+    method: GET
+    url: https://api.datadoghq.com/api/v1/usage/online-archive?start_hr=2022-03-05T15%3A58%3A31.986Z&end_hr=2022-03-03T15%3A58%3A31.986Z
+  response:
+    body: '{"errors": ["start_hr [YYYY-MM-DDThh] must be before end_hr [YYYY-MM-DDThh]"]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

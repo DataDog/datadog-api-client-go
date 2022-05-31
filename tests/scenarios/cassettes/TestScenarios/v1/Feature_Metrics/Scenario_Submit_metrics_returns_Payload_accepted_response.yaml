@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"series":[{"metric":"system.load.1","points":[[1652349005,1.1]],"tags":["test:TestSubmitmetricsreturnsPayloadacceptedresponse1652349005"],"type":"gauge"}]}
+    form: {}
+    headers:
+      Accept:
+      - text/json, application/json
+      Content-Type:
+      - text/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/series
+  response:
+    body: '{"status": "ok"}'
+    code: 202
+    duration: ''
+    headers:
+      Content-Type:
+      - text/json
+    status: 202 Accepted
+version: 1

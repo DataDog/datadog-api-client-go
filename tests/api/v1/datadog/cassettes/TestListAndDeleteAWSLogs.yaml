@@ -3,79 +3,76 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"661646648260","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "200"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6212109717170288846"
+      - "7774060054349715531"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"8f7a74fb5a4a486aa320a380225b9053"}'
+    body: '{"external_id":"f6cf9369c49644f6992f597026005d33"}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:41 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:35 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - vG5kxpR47Wd0uZGIzWkStfMxs3cmVIjKYEHLQf0xQiHS0P2BwlwJHwTESUSKlcdO
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11989"
+      X-Ratelimit-Reset:
+      - "20"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"661646648260","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "105"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateAWSLambdaARN
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1195427180565131983"
+      - "8241966517597261585"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: POST
   response:
@@ -87,51 +84,48 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:41 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:37 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - 8jOW1djIgkdkj4STw+0pQ3G+kGKfu548DWINvnE6phacY0k9vgC3cU1LaI38XIYk
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11988"
+      X-Ratelimit-Reset:
+      - "19"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
+      {"account_id":"661646648260","services":["s3","elb","elbv2","cloudfront","redshift","lambda"]}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "95"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - EnableAWSLogServices
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5649818804933534644"
+      - "4085737201196006784"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/services
     method: POST
   response:
@@ -143,29 +137,26 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:37 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:41 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:37 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - rK52fEhHKxisnKo2rembr3YValr4L+BG6/8tD9iNDc8Prg2mnV6DynBkS75++wh/
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11987"
+      X-Ratelimit-Reset:
+      - "19"
     status: 200 OK
     code: 200
     duration: ""
@@ -175,72 +166,67 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListAWSLogsIntegrations
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "1155530571543184607"
+      - "344296496493489278"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: GET
   response:
-    body: '[{"services":[],"account_id":"1234567890","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_081538385","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_490898611","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8901936","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_098858384","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_549684548","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9714190","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_227488654","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_849567940","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_386617816","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_275993905","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0512638","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_871377875","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_404196610","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1326003","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6695101","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_632729169","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_358391694","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2098043","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_408411970","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_960072084","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2903909","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_465589220","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_040325243","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3699440","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_860177089","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_067917823","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4467156","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_318008672","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_993891268","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5352090","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_314535534","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_529777251","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6126217","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_232304439","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_380257933","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7047406","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_891247198","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_373356310","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7692407","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_938391017","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_822684418","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8499477","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_252723274","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_800793572","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9316366","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_346921814","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_281416706","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0123973","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_816236321","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_226165720","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0919193","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_446457080","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_765455309","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1930131","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_272190635","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_513544231","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2489601","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_330482964","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_780612391","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3453346","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_365826222","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_790610927","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4077022","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_214198990","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_607181906","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4898598","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_841714035","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_260896249","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5757480","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_884025310","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_608310645","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6520871","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_044504386","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_446197759","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7334699","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_520086254","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_944581071","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8097129","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_508421089","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_224877589","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8937333","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_548366718","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_809595625","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9747032","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_443801190","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_932432409","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0573350","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_368458067","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_021779031","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1326981","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_224216336","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_947309942","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9869759","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_665028607","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_073930293","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2108964","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_646472234","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_626301354","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2598668","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_320481010","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_829688822","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3161468","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_709182055","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_796418827","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3691813","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_039185397","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_237451910","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4506820","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_715328678","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_743162318","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2520060","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_799828833","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_784162657","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3906530","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_407297620","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_105720815","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5344033","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestAddAndSaveAWSLogs-local-1589288312","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestListAndDeleteAWSLogs-local-1589288315","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestAddAndSaveAWSLogs-local-1589290171","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]}]'
+    body: '[{"account_id":"5355535356524948","touched":false,"services":[],"synced_by_service_id":{},"services_with_triggers_present":{},"lambdas":[]},{"account_id":"661646648260","touched":false,"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"synced_by_service_id":{},"services_with_triggers_present":{},"lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]}]'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:41 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:38 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - Wi4QF3nhe5s0sRyfZvyTHLc/3mQu/jJVn8BZnev44SXt+VBNA1+haKi5VcNZFpaP
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11986"
+      X-Ratelimit-Reset:
+      - "19"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
+      {"account_id":"661646648260","lambda_arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "105"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteAWSLambdaARN
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7283593203704924088"
+      - "5547964470285703197"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: DELETE
   response:
@@ -252,29 +238,26 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:41 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:38 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - NclXS5F5t+kukUaODU4jY2oSI1KBdPHFdFhJZNfbXLWDOThxbCLlKKmYvikjdDSg
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11985"
+      X-Ratelimit-Reset:
+      - "19"
     status: 200 OK
     code: 200
     duration: ""
@@ -284,72 +267,67 @@ interactions:
     headers:
       Accept:
       - application/json
-      Dd-Operation-Id:
-      - ListAWSLogsIntegrations
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "4782202519634910474"
+      - "793138963519321449"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs
     method: GET
   response:
-    body: '[{"services":[],"account_id":"1234567890","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_081538385","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_490898611","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8901936","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_098858384","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_549684548","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9714190","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_227488654","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_849567940","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_386617816","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_275993905","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0512638","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_871377875","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_404196610","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1326003","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6695101","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_632729169","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_358391694","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2098043","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_408411970","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_960072084","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2903909","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_465589220","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_040325243","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3699440","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_860177089","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_067917823","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4467156","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_318008672","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_993891268","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5352090","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_314535534","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_529777251","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6126217","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_232304439","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_380257933","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7047406","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_891247198","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_373356310","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7692407","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_938391017","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_822684418","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8499477","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_252723274","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_800793572","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9316366","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_346921814","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_281416706","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0123973","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_816236321","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_226165720","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0919193","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_446457080","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_765455309","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1930131","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_272190635","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_513544231","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2489601","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_330482964","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_780612391","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3453346","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_365826222","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_790610927","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4077022","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_214198990","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_607181906","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4898598","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_841714035","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_260896249","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5757480","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_884025310","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_608310645","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_6520871","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_044504386","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_446197759","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_7334699","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_520086254","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_944581071","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8097129","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_508421089","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_224877589","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_8937333","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_548366718","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_809595625","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9747032","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_443801190","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_932432409","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_0573350","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_368458067","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_021779031","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_1326981","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_224216336","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_947309942","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_9869759","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_665028607","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_073930293","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2108964","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_646472234","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_626301354","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2598668","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_320481010","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_829688822","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3161468","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_709182055","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_796418827","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3691813","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_039185397","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_237451910","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_4506820","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_715328678","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_743162318","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_2520060","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_799828833","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_784162657","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_3906530","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_407297620","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go_105720815","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda","s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"java_5344033","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestAddAndSaveAWSLogs-local-1589288312","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestListAndDeleteAWSLogs-local-1589288315","lambdas":[]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestAddAndSaveAWSLogs-local-1589290171","lambdas":[{"arn":"arn:aws:lambda:us-east-1:123456789101:function:GoClientTest"}]},{"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","lambdas":[]}]'
+    body: '[{"account_id":"5355535356524948","touched":false,"services":[],"synced_by_service_id":{},"services_with_triggers_present":{},"lambdas":[]},{"account_id":"661646648260","touched":false,"services":["s3","elb","elbv2","cloudfront","redshift","lambda"],"synced_by_service_id":{},"services_with_triggers_present":{},"lambdas":[]}]'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:38 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:42 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:38 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       Vary:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - WatxAL43AyqgfI4tyA152NzYM3DLdjL7IWr0SzhldiWriTsbw9vUaRZnaqhOCdUk
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11984"
+      X-Ratelimit-Reset:
+      - "19"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"go-TestListAndDeleteAWSLogs-local-1589290175","account_specific_namespace_rules":{"opsworks":true},"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"661646648260","role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "70"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - DeleteAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.10.1+dev (go go1.17.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5317241875556507920"
+      - "4063391020628170735"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "57676518390589033"
+      - "3475068698147208756"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -361,29 +339,26 @@ interactions:
       - keep-alive
       Content-Length:
       - "2"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:40 GMT
-      Dd-Pool:
-      - dogweb
+      - Mon, 07 Mar 2022 10:17:42 GMT
       Pragma:
       - no-cache
-      Set-Cookie:
-      - DD-PSHARD=233; Max-Age=604800; Path=/; expires=Tue, 19-May-2020 13:29:38 GMT;
-        secure; HttpOnly
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Debug:
-      - Lo9psmCk9egobltaxBGqrQFhgCcgUTQoFZpr2xiSR+6tucB/owychJvFjr9YMWzu
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11983"
+      X-Ratelimit-Reset:
+      - "18"
     status: 200 OK
     code: 200
     duration: ""

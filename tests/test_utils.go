@@ -9,6 +9,7 @@ package tests
 import (
 	"bytes"
 	"context"
+	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
@@ -17,18 +18,19 @@ import (
 	"net/url"
 	"os"
 	"path/filepath"
+	"reflect"
 	"regexp"
 	"runtime"
 	"strings"
 	"testing"
 	"time"
 
+	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/jonboulle/clockwork"
 	"github.com/stretchr/testify/require"
 	ddhttp "gopkg.in/DataDog/dd-trace-go.v1/contrib/net/http"
-	ddtesting "gopkg.in/DataDog/dd-trace-go.v1/contrib/testing"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/ext"
 	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
@@ -85,6 +87,9 @@ var testFiles2EndpointTags = map[string]map[string]string{
 		"security_monitoring_test": "security-monitoring",
 		"telemetry_test":           "telemetry",
 	},
+	"tests/api": {
+		"deserialization_test": "deserialization",
+	},
 }
 
 // GetRecording returns the value of RECORD environment variable
@@ -112,55 +117,9 @@ func IsCIRun() bool {
 func SecurePath(path string) string {
 	badChars := []string{"\\", "?", "%", "*", ":", "|", `"`, "<", ">", "'"}
 	for _, c := range badChars {
-		path = strings.ReplaceAll(path, c, "_")
+		path = strings.ReplaceAll(path, c, "")
 	}
 	return filepath.Clean(path)
-}
-
-// SnakeToCamelCase converts snake_case to SnakeCase.
-func SnakeToCamelCase(snake string) (camel string) {
-	isToUpper := false
-
-	for k, v := range snake {
-		if k == 0 {
-			camel = strings.ToUpper(string(v))
-		} else {
-			if isToUpper {
-				camel += strings.ToUpper(string(v))
-				isToUpper = false
-			} else {
-				if v == '_' {
-					isToUpper = true
-				} else if v == '.' { // support for lookup paths
-					isToUpper = true
-					camel += string(v)
-				} else {
-					camel += string(v)
-				}
-			}
-		}
-	}
-	return
-}
-
-func toVarName(param string) (varName string) {
-	isToUpper := true
-
-	for _, v := range param {
-		if isToUpper {
-			varName += strings.ToUpper(string(v))
-			isToUpper = false
-		} else {
-			if v == '_' {
-				isToUpper = true
-			} else if m, _ := regexp.Match("[()\\[\\].]", []byte{byte(v)}); m {
-				isToUpper = true
-			} else {
-				varName += string(v)
-			}
-		}
-	}
-	return
 }
 
 // Retry calls the call function for count times every interval while it returns false
@@ -191,16 +150,14 @@ func ReadFixture(path string) (string, error) {
 
 // ConfigureTracer starts the tracer.
 func ConfigureTracer(m *testing.M) {
-	service, ok := os.LookupEnv("DD_SERVICE")
-	if !ok {
-		service = "datadog-api-client-go"
+	tracerOptions := make([]tracer.StartOption, 0, 2)
+	if _, ok := os.LookupEnv("DD_SERVICE"); !ok {
+		tracerOptions = append(tracerOptions, tracer.WithService("datadog-api-client-go"))
 	}
-	tracer.Start(
-		tracer.WithService(service),
-		// tracer.WithServiceVersion(api.Version),
-	)
-	code := m.Run()
-	tracer.Stop()
+	if socketPath, ok := os.LookupEnv("DD_APM_RECEIVER_SOCKET"); ok {
+		tracerOptions = append(tracerOptions, tracer.WithUDS(socketPath))
+	}
+	code := ddtesting.Run(m, tracerOptions...)
 	os.Exit(code)
 }
 
@@ -250,7 +207,10 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		t.Log(err.Error())
 		tag = "features"
 	}
-	return ddtesting.StartSpanWithFinish(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+	ctx, finish := ddtesting.StartTestWithContext(ctx, t, ddtesting.WithSkipFrames(2), ddtesting.WithSpanOptions(
+		// Set resource name to TestName
+		tracer.ResourceName(t.Name()),
+
 		// We need to make the tag be something that is then searchable in monitors
 		// https://docs.datadoghq.com/tracing/guide/metrics_namespace/#errors
 		// "version" is really the only one we can use here
@@ -258,6 +218,13 @@ func WithTestSpan(ctx context.Context, t *testing.T) (context.Context, func()) {
 		// if we set it in StartSpanFromContext, it would get overwritten
 		tracer.Tag(ext.Version, tag),
 	))
+
+	return ctx, func() {
+		if r := recover(); r != nil {
+			t.Errorf("test paniced: %v", r)
+		}
+		finish()
+	}
 }
 
 func createWithDir(path string) (*os.File, error) {
@@ -287,9 +254,10 @@ func SetClock(path string) (clockwork.FakeClock, error) {
 
 // RestoreClock restore current time from .freeze file.
 func RestoreClock(path string) (clockwork.FakeClock, error) {
-	data, err := ioutil.ReadFile(fmt.Sprintf("cassettes/%s.freeze", path))
+	freezePath := fmt.Sprintf("cassettes/%s.freeze", path)
+	data, err := ioutil.ReadFile(freezePath)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("time file '%s' not found: create one setting `RECORD=true` or ignore it using `RECORD=none`", freezePath)
 	}
 	now, err := time.Parse(time.RFC3339Nano, string(data))
 	if err != nil {
@@ -320,28 +288,31 @@ func WithClock(ctx context.Context, path string) (context.Context, error) {
 }
 
 // UniqueEntityName will return a unique string that can be used as a title/description/summary/...
-// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
-// BuildId to enable mapping resources that weren't deleted to builds.
+// of an API entity.
 func UniqueEntityName(ctx context.Context, t *testing.T) *string {
 	name := WithUniqueSurrounding(ctx, t.Name())
 	return &name
 }
 
 // WithUniqueSurrounding will wrap a string that can be used as a title/description/summary/...
-// of an API entity. When used in Azure Pipelines and RECORD=true or RECORD=none, it will include
-// BuildId to enable mapping resources that weren't deleted to builds.
+// of an API entity.
 func WithUniqueSurrounding(ctx context.Context, name string) string {
-	buildID, present := os.LookupEnv("BUILD_BUILDID")
-	if !present || !IsCIRun() || GetRecording() == ModeReplaying {
-		buildID = "local"
+	prefix := "Test"
+	if GetRecording() == ModeIgnore {
+		// In ignore mode we add the language prefix to track unremoved data
+		prefix = "Test-Go"
 	}
+	alnum := regexp.MustCompile(`[^A-Za-z0-9]+`)
 
-	// Replace all - with _ in the test name (scenario test names can include -)
-	name = strings.ReplaceAll(name, "-", "_")
+	name = string(alnum.ReplaceAll([]byte(name), []byte("_")))
+	maxSize := len(name)
+	if maxSize > 100 {
+		maxSize = 100
+	}
 
 	// NOTE: some endpoints have limits on certain fields (e.g. Roles V2 names can only be 55 chars long),
 	// so we need to keep this short
-	result := fmt.Sprintf("go-%s-%s-%d", SecurePath(name), buildID, ClockFromContext(ctx).Now().Unix())
+	result := fmt.Sprintf("%s-%s-%d", prefix, name[:maxSize], ClockFromContext(ctx).Now().Unix())
 	// In case this is used in URL, make sure we replace the slash that is added by subtests
 	result = strings.ReplaceAll(result, "/", "-")
 	return result
@@ -372,11 +343,78 @@ func removeURLSecrets(u *url.URL) string {
 	return u.String()
 }
 
+// CompareAsJSON returns true if JSON strings serialize into same values.
+func CompareAsJSON(first, second io.Reader) (bool, error) {
+	var f, s interface{}
+	d := json.NewDecoder(first)
+	if err := d.Decode(&f); err != nil {
+		return false, err
+	}
+	d = json.NewDecoder(second)
+	if err := d.Decode(&s); err != nil {
+		return false, err
+	}
+	return reflect.DeepEqual(f, s), nil
+}
+
 // MatchInteraction checks if the request matches a store request in the given cassette.
 func MatchInteraction(r *http.Request, i cassette.Request) bool {
-	// Default matching on method and URL without secrets
-	if !(r.Method == i.Method && removeURLSecrets(r.URL) == i.URL) {
+	// Default matching on method
+	if r.Method != i.Method {
 		return false
+	}
+	cassetteURL, err := url.Parse(i.URL)
+	if err != nil {
+		return false
+	}
+
+	for k, v := range i.Headers {
+		if strings.Compare(k, "Content-Type") != 0 {
+			// FIXME enable when Accept headers are correctly generated
+			// if strings.Compare(k, "Accept") != 0 && strings.Compare(k, "Content-Type") != 0 {
+			continue
+		}
+
+		if strings.Compare(k, "Content-Type") == 0 && strings.HasPrefix(i.Headers.Get(k), "multipart/form-data") {
+			continue
+		}
+
+		rv := r.Header.Values(k)
+		if len(v) != len(rv) {
+			return false
+		}
+		for kv, vv := range rv {
+			if strings.Compare(vv, v[kv]) != 0 {
+				log.Printf("header %s %s does not match %s on possition %d", k, v, rv, kv)
+				return false
+			}
+		}
+	}
+
+	if cassetteURL.Path != r.URL.Path {
+		return false
+	}
+
+	q := r.URL.Query()
+	q.Del("api_key")
+	q.Del("application_key")
+	for k, v := range cassetteURL.Query() {
+		vq, ok := q[k]
+		if !ok {
+			log.Printf("query param %s is missing", k)
+			return false
+		}
+		for kv, vv := range v {
+			if strings.Compare(vv, vq[kv]) != 0 {
+				vvnow, verr := time.Parse(time.RFC3339Nano, vv)
+				vqnow, vverr := time.Parse(time.RFC3339Nano, vq[kv])
+				if verr == nil && vverr == nil && vvnow.Unix() == vqnow.Unix() {
+					continue
+				}
+				log.Printf("query param %s does not match %s stored value %s", k, vv, vq[kv])
+				return false
+			}
+		}
 	}
 
 	// Request does not contain body (e.g. `GET`)
@@ -403,6 +441,12 @@ func MatchInteraction(r *http.Request, i cassette.Request) bool {
 			if rs == cs {
 				matched = true
 			}
+		}
+	} else if !matched {
+		matched, err = CompareAsJSON(strings.NewReader(b.String()), strings.NewReader(i.Body))
+		if err != nil {
+			log.Fatalf("failed to compare as JSON: %s", err)
+			return false
 		}
 	}
 	return matched
@@ -457,9 +501,6 @@ func WrapRoundTripper(rt http.RoundTripper, opts ...ddhttp.RoundTripperOption) h
 	}
 	return ddhttp.WrapRoundTripper(
 		rt,
-		ddhttp.WithBefore(func(r *http.Request, span ddtrace.Span) {
-			span.SetTag(ext.SpanName, r.Header.Get("DD-OPERATION-ID"))
-		}),
 		ddhttp.WithAfter(func(r *http.Response, span ddtrace.Span) {
 			if 500 <= r.StatusCode && r.StatusCode < 600 {
 				var b bytes.Buffer

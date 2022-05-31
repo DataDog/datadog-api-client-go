@@ -10,16 +10,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - EnableAWSLogServices
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5154303939250256494"
+      - "682982259045188570"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "4718036708395704310"
+      - "2066796178174405161"
     url: https://api.datadoghq.com/api/v1/integration/aws/logs/services
     method: POST
   response:
@@ -30,12 +28,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:56 GMT
+      - Tue, 13 Jul 2021 17:10:27 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v1/monitor?group_states=notagroupstate
+  response:
+    body: '{"errors":["Invalid group_state filters."]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

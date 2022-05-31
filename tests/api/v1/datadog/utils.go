@@ -55,31 +55,31 @@ func WithTestAuth(ctx context.Context) context.Context {
 	)
 }
 
+// NewDefaultContext return context with detected values.
+func NewDefaultContext(ctx context.Context) context.Context {
+	if ctx == nil {
+		ctx = context.Background()
+	}
+
+	if site, ok := os.LookupEnv("DD_TEST_SITE"); ok {
+		ctx = context.WithValue(
+			ctx,
+			datadog.ContextServerIndex,
+			2,
+		)
+		ctx = context.WithValue(
+			ctx,
+			datadog.ContextServerVariables,
+			map[string]string{"site": site},
+		)
+	}
+	return ctx
+}
+
 // NewConfiguration return configuration with known options.
 func NewConfiguration() *datadog.Configuration {
 	config := datadog.NewConfiguration()
 	config.Debug = os.Getenv("DEBUG") == "true"
-
-	// Set test site as default
-	testSite, ok := os.LookupEnv("DD_TEST_SITE")
-	if ok {
-		server := config.Servers[0]
-		site := server.Variables["site"]
-		site.DefaultValue = testSite
-		site.EnumValues = append(site.EnumValues, testSite)
-		server.Variables["site"] = site
-		config.Servers[0] = server
-
-		for operationID, servers := range config.OperationServers {
-			server := servers[0]
-			site := server.Variables["site"]
-			site.DefaultValue = testSite
-			site.EnumValues = append(site.EnumValues, testSite)
-			server.Variables["site"] = site
-			servers[0] = server
-			config.OperationServers[operationID] = servers
-		}
-	}
 	return config
 }
 
@@ -91,6 +91,7 @@ var (
 
 // WithClient sets client for unit tests in context.
 func WithClient(ctx context.Context) context.Context {
+	ctx = NewDefaultContext(ctx)
 	return context.WithValue(ctx, clientKey, datadog.NewAPIClient(NewConfiguration()))
 }
 

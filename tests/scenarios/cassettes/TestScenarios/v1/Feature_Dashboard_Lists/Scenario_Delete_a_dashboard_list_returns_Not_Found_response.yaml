@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/lists/manual/0
+  response:
+    body: '{"errors":["Manual Dashboard List with id 0 not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

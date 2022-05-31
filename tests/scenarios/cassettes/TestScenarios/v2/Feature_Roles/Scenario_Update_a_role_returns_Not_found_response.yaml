@@ -1,0 +1,21 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"updated"},"id":"00000000-dead-beef-dead-ffffffffffff","type":"roles"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: PATCH
+    url: https://api.datadoghq.com/api/v2/roles/00000000-dead-beef-dead-ffffffffffff
+  response:
+    body: '{"errors":["Missing Role 00000000-dead-beef-dead-ffffffffffff not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1

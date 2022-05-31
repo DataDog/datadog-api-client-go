@@ -1,0 +1,517 @@
+// {{ name }} {{ model.description|block_comment(prefix="//", first_line=False) }}
+type {{ name }} struct {
+{#-
+{{^isMap}}
+{{^isArray}}
+	{{{parent}}}
+{{/isArray}}
+{{/isMap}}
+-#}
+{%- if model.type == "array" %}
+	Items []{{ get_type(model.get("items", {}), alternative_name=name + "Item") }}
+
+	// UnparsedObject contains the raw value of the array if there was an error when deserializing into the struct
+	UnparsedObject []interface{} `json:-`
+{%- else %}
+{%- for attr, schema in model.get("properties", {}).items() %}
+{%- set propertyName = attr|attribute_name %}
+{%- set dataType = get_type(schema, alternative_name=name + propertyName, render_nullable=True) %}
+	// {{ schema.description|block_comment(prefix="//", first_line=False)|indent("\t") }}
+{%- if schema.deprecated %}
+	// Deprecated
+{%- endif %}
+	{{ propertyName }} {% if model|is_reference(attr) %}*{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"`
+{%- endfor %}
+	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
+	UnparsedObject map[string]interface{} `json:-`
+{%- if model.get("additionalProperties", True) %}
+	AdditionalProperties map[string]{{ get_type(model.get("additionalProperties", True)) }}
+{%- endif %}
+{%- endif %}
+}
+{#%- if model.type != "array" and model.get("additionalProperties", True) %}
+
+type _{{ name }} {{ name }}
+{%- endif %#}
+
+
+// New{{ name }} instantiates a new {{ name }} object.
+// This constructor will assign default values to properties that have it defined,
+// and makes sure properties required by API are set, but the set of arguments
+// will change when the set of required properties is changed.
+func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
+	this := {{ name }}{}
+{%- for attr, spec in model.get("properties", {}).items() %}
+{%- if attr in model.get("required", []) %}
+	this.{{ attr|attribute_name }} = {{ attr|variable_name }}
+{%- elif spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
+	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
+	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
+	{%- if spec.nullable %}
+	{%- if spec.default == None %}
+	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
+	{%- else %}
+{#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
+	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
+	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
+	{%- endif %}
+	{%- else %}
+	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
+	this.{{ attr|attribute_name }} = &{{ attr|variable_name }}
+	{%- endif %}
+{%- endif %}
+{%- endfor %}
+	return &this
+}
+
+// New{{ name }}WithDefaults instantiates a new {{ name }} object.
+// This constructor will only assign default values to properties that have it defined,
+// but it doesn't guarantee that properties required by API are set.
+func New{{ name }}WithDefaults() *{{ name }} {
+	this := {{ name }}{}
+{%- for attr, spec in model.get("properties", {}).items() %}
+{%- if spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
+	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
+	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
+	{%- if spec.nullable %}
+	{%- if spec.default == None %}
+	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
+	{%- else %}
+{#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
+	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
+	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
+	{%- endif %}
+	{%- else %}
+	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
+	this.{{ attr|attribute_name }} = {% if attr not in model.get("required", []) %}&{% endif %}{{ attr|variable_name }}
+	{%- endif %}
+{%- endif %}
+{%- endfor %}
+	return &this
+}
+
+{%- for attr, spec in model.get("properties", {}).items() %}
+{%- set propertyName = attr|attribute_name %}
+{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+{%- set baseType = get_type(spec, alternative_name=name + propertyName) %}
+{%- set isNullable = spec.nullable %}
+{%- set isContainer = spec.type == "array" %}
+{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
+{%- if attr in model.get("required", []) %}
+// Get{{ propertyName }} returns the {{ propertyName }} field value.
+{%- if isNullable %}
+// If the value is explicit nil, the zero value for {{ baseType }} will be returned.
+{%- endif %}
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
+	if o == nil{%- if isNullable %}{% if not isContainer %} || o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
+		var ret {{ baseType }}
+		return ret
+	}
+
+{%- if isNullable %}
+{%- if isContainer %}
+	return o.{{ propertyName }}
+{%- else %}
+	return *o.{{ propertyName }}.Get()
+{%- endif %}
+{%- else %}
+	return o.{{ propertyName }}
+{%- endif %}
+}
+
+// Get{{ propertyName }}Ok returns a tuple with the {{ propertyName }} field value
+// and a boolean to check if the value has been set.
+{%- if isNullable %}
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+{%- endif %}
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
+	if o == nil {%- if isNullable and isContainer %}|| o.{{ propertyName }} == nil{%- endif %} {
+		return nil, false
+	}
+{%- if isNullable %}
+{%- if isContainer %}
+	return &o.{{ propertyName }}, true
+{%- else %}
+	return o.{{ propertyName }}.Get(), o.{{ propertyName }}.IsSet()
+{%- endif %}
+{%- else %}
+	return &o.{{ propertyName }}, true
+{%- endif %}
+}
+
+// Set{{ propertyName }} sets field value.
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
+{%- if isNullable %}
+{%- if isContainer %}
+	o.{{ propertyName }} = v
+{%- else %}
+	o.{{ propertyName }}.Set(&v)
+{%- endif %}
+{%- else %}
+	o.{{ propertyName }} = v
+{%- endif %}
+}
+
+{% endif %}
+{%- if attr not in model.get("required", []) %}
+// Get{{ propertyName }} returns the {{ propertyName }} field value if set, zero value otherwise{%- if isNullable %} (both if not set or set to explicit null){%- endif %}.
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
+	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{% if not isContainer %}|| o.{{ propertyName }}.Get() == nil{%- endif %}{%- endif %} {
+		var ret {{ baseType }}
+		return ret
+	}
+{%- if isNullable %}
+{%- if isContainer %}
+	return o.{{ propertyName }}
+{%- else %}
+	return *o.{{ propertyName }}.Get()
+{%- endif %}
+{%- else %}
+	return {% if model|is_reference(attr) %}*{% endif %}o.{{ propertyName }}
+{%- endif %}
+}
+
+// Get{{ propertyName }}Ok returns a tuple with the {{ propertyName }} field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+{%- if isNullable %}
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
+{%- endif %}
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
+	if o == nil {% if not isNullable %}|| o.{{ propertyName }} == nil{%- endif %}{%- if isNullable %}{%- if isContainer %}|| o.{{ propertyName }} == nil{%- endif %}{%- endif %} {
+		return nil, false
+	}
+{%- if isNullable %}
+{%- if isContainer %}
+	return &o.{{ propertyName }}, true
+{%- else %}
+	return o.{{ propertyName }}.Get(), o.{{ propertyName }}.IsSet()
+{%- endif %}
+{%- else %}
+	return {% if not model|is_reference(attr) %}&{% endif %}o.{{ propertyName }}, true
+{%- endif %}
+}
+
+// Has{{ propertyName }} returns a boolean if a field has been set.
+func (o *{{ name }}) Has{{ propertyName }}() bool {
+	if o != nil && {% if not isNullable %}o.{{ propertyName }} != nil{%- else %}{%- if isContainer %}o.{{ propertyName }} != nil{%- else %}o.{{ propertyName }}.IsSet(){%- endif %}{%- endif %} {
+		return true
+	}
+
+	return false
+}
+
+// Set{{ propertyName }} gets a reference to the given {{ dataType }} and assigns it to the {{ propertyName }} field.
+{%- if spec.deprecated %}
+// Deprecated
+{%- endif %}
+func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
+{%- if isNullable %}
+{%- if isContainer %}
+	o.{{ propertyName }} = v
+{%- else %}
+	o.{{ propertyName }}.Set(&v)
+{%- endif %}
+{%- else %}
+	o.{{ propertyName }} = {% if model|is_reference(attr) %}&{% endif %}v
+{%- endif %}
+}
+{%- if isNullable %}
+{%- if not isContainer %}
+// Set{{ propertyName }}Nil sets the value for {{ propertyName }} to be an explicit nil.
+func (o *{{ name }}) Set{{ propertyName }}Nil() {
+	o.{{ propertyName }}.Set(nil)
+}
+
+// Unset{{ propertyName }} ensures that no value is present for {{ propertyName }}, not even an explicit nil.
+func (o *{{ name }}) Unset{{ propertyName }}() {
+	o.{{ propertyName }}.Unset()
+}
+{%- endif %}
+{%- endif %}
+
+{% endif %}
+{%- endfor %}
+
+// MarshalJSON serializes the struct using spec logic.
+func (o {{ name }}) MarshalJSON() ([]byte, error) {
+	toSerialize := {% if model.type == "array" %}make([]interface{}, len(o.Items)){% else %}map[string]interface{}{}{% endif %}
+	if o.UnparsedObject != nil {
+		return json.Marshal(o.UnparsedObject)
+	}
+{%- if model.type == "array" %}
+	for i, item := range o.Items {
+		toSerialize[i] = item
+	}
+{%- endif %}
+	{%- for attr, spec in model.get("properties", {}).items() %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName) %}
+	{%- set isRequired = attr in model.get("required", []) %}
+	{%- set isNullable = spec.nullable %}
+	{%- set isContainer = spec.type == "array" %}
+	{%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
+	{#- if argument is nullable, only serialize it if it is set #}
+	{%- if isNullable %}
+	{%- if isContainer %}
+	{#- support for container fields is not ideal at this point because of lack of Nullable* types #}
+	if o.{{ propertyName }} != nil {
+		toSerialize["{{ attr }}"] = o.{{ propertyName }}
+	}
+	{%- endif %}
+	{%- if not isContainer %}
+	{%- if isRequired %}
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Get()
+	{%- else %}
+	if o.{{ propertyName }}.IsSet() {
+		toSerialize["{{ attr }}"] = o.{{ propertyName }}.Get()
+	}
+	{%- endif %}
+	{%- endif %}
+	{%- else %}
+	{#- if argument is not nullable, don't set it if it is nil #}
+{%- macro toSerizalize(attr, propertyName, spec) -%}
+{%- if spec.format == "date-time" -%}
+if o.{{ propertyName }}.Nanosecond() == 0 {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05Z07:00")
+} else {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05.000Z07:00")
+}
+{%- else -%}
+toSerialize["{{ attr }}"] = o.{{ propertyName }}
+{%- endif %}
+{%- endmacro %}
+	{%- if isRequired %}
+	{{ toSerizalize(attr, propertyName, spec)|indent("\t") }}
+	{%- else %}
+	if o.{{ propertyName }} != nil {
+		{{ toSerizalize(attr, propertyName, spec)|indent("\t\t") }}
+	}
+	{%- endif %}
+	{%- endif %}
+	{%- endfor %}
+	{%- if model.type != "array" and model.get("additionalProperties", True) %}
+
+	for key, value := range o.AdditionalProperties {
+		toSerialize[key] = value
+	}
+
+	{%- endif %}
+	return json.Marshal(toSerialize)
+}
+
+{#
+{%- if model.get("additionalProperties", True) %}
+func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
+{{#parent}}
+{{^isMap}}
+	type {{ propertyName }}WithoutEmbeddedStruct struct {
+	{{#vars}}
+	{{^-first}}
+	{{/-first}}
+	{{#description}}
+		// {{{.}}}
+	{{/description}}
+	{%- if spec.deprecated %}
+		// Deprecated
+	{%- endif %}
+		{{ propertyName }} {% if attr not in model.get("required", []) %}{% if not isNullable %}{% if not isAnyType %}*{% endif %}{%- endif %}{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"{{#withXml}} xml:"{{ attr }}{{#isXmlAttribute}},attr{{/isXmlAttribute}}"{{/withXml}}{{#vendorExtensions.x-go-custom-tag}} {{{.}}}{{/vendorExtensions.x-go-custom-tag}}`
+	{{/vars}}
+	}
+
+	var{{ propertyName }}WithoutEmbeddedStruct := {{ propertyName }}WithoutEmbeddedStruct{}
+
+	err = json.Unmarshal(bytes, &var{{ propertyName }}WithoutEmbeddedStruct)
+	if err == nil {
+		var{{ propertyName }} := _{{ propertyName }}{}
+		{{#vars}}
+		var{{ propertyName }}.{{ propertyName }} = var{{ propertyName }}WithoutEmbeddedStruct.{{ propertyName }}
+		{{/vars}}
+		*o = {{ propertyName }}(var{{ propertyName }})
+	} else {
+		return err
+	}
+
+	var{{ propertyName }} := _{{ propertyName }}{}
+
+	err = json.Unmarshal(bytes, &var{{ propertyName }})
+	if err == nil {
+		o.{{{parent}}} = var{{ propertyName }}.{{{parent}}}
+	} else {
+		return err
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		{{#vars}}
+		delete(additionalProperties, "{{{ attr }}}")
+		{{/vars}}
+
+		// remove fields from embedded structs
+		reflect{{{parent}}} := reflect.ValueOf(o.{{{parent}}})
+		for i := 0; i < reflect{{{parent}}}.Type().NumField(); i++ {
+			t := reflect{{{parent}}}.Type().Field(i)
+
+			if jsonTag := t.Tag.Get("json"); jsonTag != "" {
+				fieldName := ""
+				if commaIdx := strings.Index(jsonTag, ","); commaIdx > 0 {
+					fieldName = jsonTag[:commaIdx]
+				} else {
+					fieldName = jsonTag
+				}
+				if fieldName != "AdditionalProperties" {
+					delete(additionalProperties, fieldName)
+				}
+			}
+		}
+
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+{{/isMap}}
+{{#isMap}}
+	var{{ propertyName }} := _{{ propertyName }}{}
+
+	if err = json.Unmarshal(bytes, &var{{ propertyName }}); err == nil {
+		*o = {{ propertyName }}(var{{ propertyName }})
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		{{#vars}}
+		delete(additionalProperties, "{{{ attr }}}")
+		{{/vars}}
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+{{/isMap}}
+{{/parent}}
+{{^parent}}
+	var{{ propertyName }} := _{{ propertyName }}{}
+
+	if err = json.Unmarshal(bytes, &var{{ propertyName }}); err == nil {
+		*o = {{ propertyName }}(var{{ propertyName }})
+	}
+
+	additionalProperties := make(map[string]interface{})
+
+	if err = json.Unmarshal(bytes, &additionalProperties); err == nil {
+		{{#vars}}
+		delete(additionalProperties, "{{{ attr }}}")
+		{{/vars}}
+		o.AdditionalProperties = additionalProperties
+	}
+
+	return err
+{{/parent}}
+}
+
+{{/isAdditionalPropertiesTrue}}
+#}
+// UnmarshalJSON deserializes the given payload.
+{%- if model.type == "array" %}
+func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
+	return json.Unmarshal(bytes, &o.Items)
+}
+
+{%- else %}
+func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
+	raw := map[string]interface{}{}
+	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+	{%- if loop.first %}
+	required := struct {
+	{%- endif %}
+		{{ propertyName }} {% if not spec.nullable %}*{% endif %}{{ dataType }} `json:"{{ attr }}"`
+	{%- if loop.last %}
+	}{}
+	{%- endif %}
+	{%- endfor %}
+	all := struct {
+	{%- for attr, spec in model.get("properties", {}).items() %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+		{{ propertyName }} {% if model|is_reference(attr) %}*{% endif %}{{ dataType }} `json:"{{ attr }}{% if attr not in model.get("required", []) %},omitempty{% endif %}"`
+	{%- endfor %}
+	}{}
+	{#- unmarshal required properties #}
+	{%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- if loop.first %}
+	err = json.Unmarshal(bytes, &required)
+	if err != nil {
+		return err
+	}
+	{%- endif %}
+	{%- if not spec.nullable %}
+	if required.{{ propertyName }} == nil {
+	{%- else %}
+	if !required.{{ propertyName }}.IsSet() {
+	{%- endif %}
+		return fmt.Errorf("Required field {{ attr }} missing")
+	}
+	{%- endfor %}
+	err = json.Unmarshal(bytes, &all)
+	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	{#- check enums #}
+	{%- for attr, spec in model.get("properties", {}).items() if spec.enum is defined %}
+	{%- set propertyName = attr|attribute_name %}
+	{%- set isNullable = spec.nullable %}
+	if v := all.{{ propertyName }}; {% if attr not in model.get("required", []) and not isNullable %}v != nil && {%- endif %}{%- if isNullable %}v.Get() != nil && !v.Get(){% else %}!v{%- endif %}.IsValid() {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	{%- endfor %}
+	{%- for attr, spec in model.get("properties", {}).items() %}
+	{%- set propertyName = attr|attribute_name %}
+        {%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
+        {%- if dataType in models and not spec.enum and not spec.oneOf %}
+        if {% if model|is_reference(attr) %} all.{{ propertyName }} != nil && {% endif %}all.{{ propertyName }}.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+        }
+        {%- endif %}
+	o.{{ propertyName }} = all.{{ propertyName }}
+	{%- endfor %}
+	return nil
+}
+
+{%- endif %}
+
+{%- if model.nullable %}
+{% include "nullable_model.j2" %}
+{%- endif %}

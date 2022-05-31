@@ -1,0 +1,19 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v1/monitor/groups/search?query=status%3Anotastatus
+  response:
+    body: '{"errors":["Query parsing error: ''notastatus'' is not a valid monitor
+      status"]}'
+    code: 400
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 400 Bad Request
+version: 1

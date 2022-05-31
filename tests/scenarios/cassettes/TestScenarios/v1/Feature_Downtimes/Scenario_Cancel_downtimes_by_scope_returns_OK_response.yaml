@@ -1,0 +1,54 @@
+interactions:
+- request:
+    body: |
+      {"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1652348995","recurrence":{"period":1,"type":"weeks","until_date":1654163395,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["test:testcanceldowntimesbyscopereturnsokresponse1652348995"],"start":1652348995,"timezone":"Etc/UTC"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/downtime
+  response:
+    body: '{"recurrence":{"until_date":1654163395,"until_occurrences":null,"week_days":["Mon","Tue","Wed","Thu","Fri"],"type":"weeks","period":1},"end":null,"monitor_tags":["*"],"child_id":null,"canceled":null,"monitor_id":null,"mute_first_recovery_notification":false,"created":1652348995,"org_id":321813,"modified":1652348995,"disabled":false,"start":1652348995,"creator_id":1445416,"parent_id":null,"timezone":"Etc/UTC","active":true,"scope":["test:testcanceldowntimesbyscopereturnsokresponse1652348995"],"message":"Test-Cancel_downtimes_by_scope_returns_OK_response-1652348995","downtime_type":2,"id":1944162243,"updater_id":null}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: |
+      {"scope":"test:testcanceldowntimesbyscopereturnsokresponse1652348995"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/downtime/cancel/by_scope
+  response:
+    body: '{"cancelled_ids":[1944162243]}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/downtime/1944162243
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

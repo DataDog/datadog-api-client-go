@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"exclusion_filters":[{"name":"Exclude staging","query":"source:staging"}],"filtered_data_type":"logs","is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1652349190","query":"service:TestCreateasecurityfilterreturnsOKresponse1652349190"},"type":"security_filters"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters
+  response:
+    body: '{"data":{"attributes":{"is_enabled":true,"name":"Test-Create_a_security_filter_returns_OK_response-1652349190","filtered_data_type":"logs","exclusion_filters":[{"query":"source:staging","name":"Exclude
+      staging"}],"version":1,"query":"service:TestCreateasecurityfilterreturnsOKresponse1652349190","is_builtin":false},"type":"security_filters","id":"2co-379-ngs"}}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/configuration/security_filters/2co-379-ngs
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json;charset=utf-8
+    status: 204 No Content
+version: 1

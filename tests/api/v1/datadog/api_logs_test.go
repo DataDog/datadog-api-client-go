@@ -61,8 +61,8 @@ func TestLogsList(t *testing.T) {
 	var logsResponse datadog.LogsListResponse
 
 	// Make sure that both log items are indexed
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
@@ -75,8 +75,8 @@ func TestLogsList(t *testing.T) {
 	// Find first log item
 	logsRequest.SetLimit(1)
 
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
@@ -99,8 +99,8 @@ func TestLogsList(t *testing.T) {
 	logsRequest.SetStartAt(logsResponse.GetNextLogId())
 
 	assert.Equal(200, httpresp.StatusCode)
-	err = tests.Retry(time.Duration(5)*time.Second, 30, func() bool {
-		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx).Body(logsRequest).Execute()
+	err = tests.Retry(time.Duration(15)*time.Second, 10, func() bool {
+		logsResponse, httpresp, err = Client(ctx).LogsApi.ListLogs(ctx, logsRequest)
 		if err != nil {
 			t.Fatalf("Error listing logs: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 		}
@@ -138,14 +138,18 @@ func TestLogsListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).LogsApi.ListLogs(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).LogsApi.ListLogs(ctx, tc.Body)
+			openAPIErr, ok := err.(datadog.GenericOpenAPIError)
+			if !ok {
+				t.Fatalf("Unexpected error %T: %v", err, err)
+			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
-				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+				apiError, ok := openAPIErr.Model().(datadog.APIErrorResponse)
 				assert.True(ok)
 				assert.NotEmpty(apiError.GetErrors())
 			} else {
-				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.LogsAPIErrorResponse)
+				apiError, ok := openAPIErr.Model().(datadog.LogsAPIErrorResponse)
 				assert.True(ok)
 				assert.NotEmpty(apiError.GetError())
 			}

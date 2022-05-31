@@ -1,0 +1,37 @@
+interactions:
+- request:
+    body: |
+      {"cases":[{"name":"","notifications":[],"status":"info"}],"filters":[],"hasExtendedTitle":true,"isEnabled":true,"message":"test","name":"Test-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response-1652349188","options":{"detectionMethod":"impossible_travel","evaluationWindow":900,"impossibleTravelOptions":{"baselineUserLocations":false},"keepAlive":3600,"maxSignalDuration":86400},"queries":[{"aggregation":"geo_data","distinctFields":[],"groupByFields":["@usr.id"],"metric":"@network.client.geoip","query":"*"}],"tags":[],"type":"log_detection"}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules
+  response:
+    body: '{"creationAuthorId":1445416,"tags":[],"isEnabled":true,"hasExtendedTitle":true,"message":"test","options":{"impossibleTravelOptions":{"baselineUserLocations":false},"detectionMethod":"impossible_travel","evaluationWindow":900,"maxSignalDuration":86400,"keepAlive":3600},"version":1,"createdAt":1652349188680,"filters":[],"queries":[{"distinctFields":[],"name":"","metric":"@network.client.geoip","aggregation":"geo_data","groupByFields":["@usr.id"],"query":"*"}],"isDeleted":false,"cases":[{"status":"info","notifications":[],"name":""}],"type":"log_detection","id":"gnq-slf-npc","isDefault":false,"name":"Test-Create_a_detection_rule_with_type_impossible_travel_returns_OK_response-1652349188"}
+
+      '
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/security_monitoring/rules/gnq-slf-npc
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+version: 1

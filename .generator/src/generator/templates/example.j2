@@ -1,0 +1,86 @@
+// {{ scenario.name|wordwrap(width=120, wrapstring="\n// ")}}
+
+package main
+{# package {{ context.api_request.operation_id|snake_case }} #}
+
+{%- if context._given -%}
+    {# Include 'from os import environ' used in given statements. #}
+    {%- set given = context._imports["os"].add("environ") -%}
+{%- endif -%}
+{%- set variables = given_variables(context) %}
+{%- set parameters = format_parameters_go(context.api_request.kwargs, spec=operation_spec, replace_values=context._replace_values, has_body=context.body, variables=variables) %}
+{%- if context.body %}
+{%- set body = format_data_with_schema_go(context.body.value, context.api_request.schema.spec, name_prefix="datadog.", replace_values=context._replace_values, required=True, variables=variables)%}
+{%- endif %}
+
+{%- set response_has_three_values = context.status_code != 204 and context.api_response.content %}
+
+import (
+	"context"
+{%- if not response_has_three_values %}
+	"encoding/json"
+{%- endif %}
+	"fmt"
+	"os"
+
+	datadog "github.com/DataDog/datadog-api-client-go/api/{{ version }}/datadog"
+)
+
+func main() {
+{%- for name, values in context._given.items() %}
+	// {{ name|wordwrap(width=120, wrapstring="\n	// ") }}
+	{%- for value, schema in values.items()|sort %}
+	{%- if context._replace_values.is_used(value) %}
+	{#- // {{ schema.description + ' ' + schema.type|wordwrap(width=120, wrapstring="\n	// ") }}) #}
+	{%- if schema.type == 'string' %}
+	{{ value|go_name }} := os.Getenv("{{ value }}")
+	{%- elif schema.type == 'integer' %}
+	{{ value|go_name }}, _ := strconv.ParseInt(os.Getenv("{{ value }}"), 10, {{ '64' if schema.format == 'int64' else '32' }})
+	{%- elif schema.type == 'boolean' %}
+	{{ value|go_name }}, _ := strconv.ParseBool(os.Getenv("{{ value }}"))
+	{%- else %}
+	{{ 1/0 }}
+	{%- endif %}
+	{%- endif %}
+	{%- endfor %}
+
+{% endfor %}
+{%- if context.body %}
+	body := {{ body }}
+{%- endif%}
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+{%- for operation in context._enable_operations %}
+	configuration.SetUnstableOperationEnabled("{{ operation }}", true)
+{%- endfor %}
+	apiClient := datadog.NewAPIClient(configuration)
+{%- if response_has_three_values %}
+	resp, r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+
+	{%- for contentType, schema in context.api_response.content.items() %}
+	{%- if contentType.startswith("application/json") or contentType.startswith("text/json") %}
+
+	responseContent, _ := json.MarshalIndent(resp, "", "  ")
+	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", responseContent)
+	{%- elif schema.get("schema", {}).get("format") == "binary" %}
+
+	responseContent, _ := ioutil.ReadAll(resp)
+	fmt.Fprintf(os.Stdout, "Response from `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`:\n%s\n", responseContent)
+	{%- else %}
+	{{ 1/0 }}
+	{%- endif %}
+	{%- endfor %}
+{%- else %}
+	r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx, {% if parameters %}{{ parameters }}{% endif %})
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
+	}
+{%- endif %}
+}

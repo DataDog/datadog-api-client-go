@@ -20,14 +20,14 @@ import (
 func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 	return datadog.Monitor{
 		Name:    tests.UniqueEntityName(ctx, t),
-		Type:    datadog.MONITORTYPE_LOG_ALERT.Ptr(),
-		Query:   datadog.PtrString("logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2"),
+		Type:    datadog.MONITORTYPE_LOG_ALERT,
+		Query:   "logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") > 2",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
-		Tags: &[]string{
+		Tags: []string{
 			"test",
 			"client:go",
 		},
-		Priority: datadog.PtrInt64(3),
+		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			NotifyAudit:          datadog.PtrBool(false),
 			Locked:               datadog.PtrBool(false),
@@ -47,7 +47,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
-		RestrictedRoles: &[]string{
+		RestrictedRoles: []string{
 			"94172442-be03-11e9-a77a-3b7612558ac1",
 		},
 	}
@@ -57,15 +57,13 @@ var testUpdateMonitor = datadog.MonitorUpdateRequest{
 	Options: &datadog.MonitorOptions{
 		TimeoutH:         *datadog.NewNullableInt64(nil),
 		RenotifyInterval: *datadog.NewNullableInt64(nil),
+		NewGroupDelay:    *datadog.NewNullableInt64(datadog.PtrInt64(600)),
 		NewHostDelay:     *datadog.NewNullableInt64(nil),
 		EvaluationDelay:  *datadog.NewNullableInt64(nil),
 		Thresholds: &datadog.MonitorThresholds{
 			Critical: datadog.PtrFloat64(2),
 			Warning:  *datadog.NewNullableFloat64(nil),
 		},
-	},
-	RestrictedRoles: &[]string{
-		"94172442-be03-11e9-a77a-3b7612558ac1",
 	},
 }
 
@@ -79,7 +77,7 @@ func TestMonitorValidation(t *testing.T) {
 		Monitor            datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		"empty monitor":   {datadog.Monitor{}, 400},
+		"empty monitor":   {datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 400},
 		"example monitor": {testMonitor(ctx, t), 200},
 	}
 
@@ -89,7 +87,7 @@ func TestMonitorValidation(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.ValidateMonitor(ctx).Body(tc.Monitor).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.ValidateMonitor(ctx, tc.Monitor)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode, "error: %v", err)
 		})
 	}
@@ -105,7 +103,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	tm := testMonitor(ctx, t)
 
 	// Create monitor
-	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tm).Execute()
+	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -116,9 +114,15 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.True(set)
 	assert.Nil(val)
 
+	var monitorOptions = monitor.GetOptions()
+
+	nhd, ok := monitorOptions.GetNewHostDelayOk()
+	assert.NotNil(nhd)
+	assert.Equal(true, ok)
+
 	// Edit a monitor
 	testUpdateMonitor.SetName(fmt.Sprintf("%s-updated", tm.GetName()))
-	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId()).Body(testUpdateMonitor).Execute()
+	updatedMonitor, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, monitor.GetId(), testUpdateMonitor)
 	if err != nil {
 		t.Errorf("Error updating Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -126,7 +130,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(testUpdateMonitor.GetName(), updatedMonitor.GetName())
 
 	// Assert Explicitly null fields
-	var monitorOptions = updatedMonitor.GetOptions()
+	monitorOptions = updatedMonitor.GetOptions()
 	var monitorOptionThresholds = monitorOptions.GetThresholds()
 	th, ok1 := monitorOptions.GetTimeoutHOk()
 	assert.Nil(th)
@@ -136,8 +140,9 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Nil(rn)
 	assert.Equal(true, ok2)
 
-	nhd, ok3 := monitorOptions.GetNewHostDelayOk()
-	assert.Nil(nhd)
+	ngd, ok3 := monitorOptions.GetNewGroupDelayOk()
+	assert.NotNil(ngd)
+	assert.Equal(int64(600), *ngd)
 	assert.Equal(true, ok3)
 
 	ed, ok4 := monitorOptions.GetEvaluationDelayOk()
@@ -147,7 +152,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(false, monitorOptionThresholds.HasWarning())
 
 	// Check monitor existence
-	fetchedMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, monitor.GetId()).Execute()
+	fetchedMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, monitor.GetId())
 	if err != nil {
 		t.Errorf("Error fetching Monitor %v: Response %v: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -155,7 +160,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Equal(updatedMonitor.GetName(), fetchedMonitor.GetName())
 
 	// Find our monitor in the full list
-	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx).Execute()
+	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx)
 	if err != nil {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -164,7 +169,7 @@ func TestMonitorLifecycle(t *testing.T) {
 
 	// Can delete
 	ids := []int64{monitor.GetId()}
-	canDeleteResp, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(ids).Execute()
+	canDeleteResp, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx, ids)
 	if err != nil {
 		t.Errorf("Cannot delete Monitor %v: Response %s: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -173,7 +178,7 @@ func TestMonitorLifecycle(t *testing.T) {
 	assert.Empty(canDeleteResp.GetErrors())
 
 	// Delete
-	deletedMonitor, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, monitor.GetId()).Execute()
+	deletedMonitor, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, monitor.GetId())
 	if err != nil {
 		t.Errorf("Error deleting Monitor %v: Response %s: %v", monitor.GetId(), err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -191,52 +196,28 @@ func TestMonitorPagination(t *testing.T) {
 	tm := testMonitor(ctx, t)
 
 	// Create monitor
-	monitor, _, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tm).Execute()
+	monitor, _, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	defer deleteMonitor(ctx, t, monitor.GetId())
 
-	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx).Page(0).PageSize(1).Execute()
+	monitors, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().
+		WithPage(0).
+		WithPageSize(1))
 	if err != nil {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(1, len(monitors))
 
-	monitors, httpresp, err = Client(ctx).MonitorsApi.ListMonitors(ctx).IdOffset(monitor.GetId() - 1).PageSize(1).Execute()
+	monitors, httpresp, err = Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithIdOffset(monitor.GetId() - 1).WithPageSize(1))
 	if err != nil {
 		t.Errorf("Error fetching monitors: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	assert.Equal(1, len(monitors))
 	assert.Equal(monitor.GetId(), monitors[0].GetId())
-}
-
-func TestMonitorSyntheticsGet(t *testing.T) {
-	ctx, finish := tests.WithTestSpan(context.Background(), t)
-	defer finish()
-	// Setup the Client we'll use to interact with the Test account
-	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
-	defer finish()
-	assert := tests.Assert(ctx, t)
-
-	// Create a synthetics API test to retrieve its corresponding monitor via GetMonitor (we're borrowing these from api_synthetics_test.go)
-	testSyntheticsAPI := getLegacyTestSyntheticsAPI(ctx, t)
-	syntheticsTest, _, err := Client(ctx).SyntheticsApi.CreateTest(ctx).Body(testSyntheticsAPI).Execute()
-	if err != nil {
-		t.Fatalf("Error creating Synthetics test %v: Response %s: %v", syntheticsTest, err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	defer deleteSyntheticsTestIfExists(ctx, t, syntheticsTest.GetPublicId())
-
-	// Retrieve the corresponding synthetics Test monitor
-	syntheticsMonitor, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, syntheticsTest.GetMonitorId()).Execute()
-	if err != nil {
-		t.Errorf("Error fetching Monitor %v: Response %v: %v", syntheticsTest.GetMonitorId(), err.(datadog.GenericOpenAPIError).Body(), err)
-	}
-	assert.Equal(200, httpresp.StatusCode)
-	syntheticsMonitorOptions := syntheticsMonitor.GetOptions()
-	assert.Equal(syntheticsTest.GetPublicId(), syntheticsMonitorOptions.GetSyntheticsCheckId())
 }
 
 func TestMonitorsCreateErrors(t *testing.T) {
@@ -248,8 +229,8 @@ func TestMonitorsCreateErrors(t *testing.T) {
 		Body               datadog.Monitor
 		ExpectedStatusCode int
 	}{
-		"400 Bad Request": {WithTestAuth, datadog.Monitor{}, 400},
-		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{}, 403},
+		"400 Bad Request": {WithTestAuth, datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 400},
+		"403 Forbidden":   {WithFakeAuth, datadog.Monitor{Type: datadog.MONITORTYPE_LOG_ALERT, Query: "query"}, 403},
 	}
 
 	for name, tc := range testCases {
@@ -258,7 +239,7 @@ func TestMonitorsCreateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -285,7 +266,7 @@ func TestMonitorsListErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx).GroupStates("notagroupstate").Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.ListMonitors(ctx, *datadog.NewListMonitorsOptionalParameters().WithGroupStates("notagroupstate"))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -304,7 +285,7 @@ func TestMonitorUpdateErrors(t *testing.T) {
 
 	// Create monitor
 	tm := testMonitor(ctx, t)
-	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tm).Execute()
+	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -333,7 +314,7 @@ func TestMonitorUpdateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, tc.ID).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, tc.ID, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -359,7 +340,7 @@ func TestMonitorUpdate401Error(t *testing.T) {
 	gock.New(URL).Put("/api/v1/monitor/121").Reply(401).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, 121).Body(datadog.MonitorUpdateRequest{}).Execute()
+	_, httpresp, err := Client(ctx).MonitorsApi.UpdateMonitor(ctx, 121, datadog.MonitorUpdateRequest{})
 	assert.Equal(401, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -376,7 +357,7 @@ func TestMonitorsGetErrors(t *testing.T) {
 
 	// Create monitor
 	tm := testMonitor(ctx, t)
-	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(tm).Execute()
+	monitor, httpresp, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, tm)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -399,7 +380,8 @@ func TestMonitorsGetErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, tc.ID).GroupStates("notagroupstate").Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.GetMonitor(ctx, tc.ID, *datadog.NewGetMonitorOptionalParameters().
+				WithGroupStates("notagroupstate"))
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -431,7 +413,7 @@ func TestMonitorDeleteErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, tc.ID).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, tc.ID)
 			assert.Error(err)
 			assert.NotNil(httpresp, err)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -459,7 +441,7 @@ func TestMonitorDelete400Error(t *testing.T) {
 	gock.New(URL).Delete("/api/v1/monitor/121").Reply(400).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121).Execute()
+	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121)
 	assert.Equal(400, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -483,7 +465,7 @@ func TestMonitorDelete401Error(t *testing.T) {
 	gock.New(URL).Delete("/api/v1/monitor/121").Reply(401).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121).Execute()
+	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, 121)
 	assert.Equal(401, httpresp.StatusCode)
 	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
@@ -502,7 +484,7 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	monitor := *datadog.NewMonitorWithDefaults()
 	monitor.SetType(datadog.MONITORTYPE_QUERY_ALERT)
 	monitor.SetQuery("avg(last_5m):sum:system.net.bytes_rcvd{host:host0} > 100")
-	monitor, _, err := Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(monitor).Execute()
+	monitor, _, err := Client(ctx).MonitorsApi.CreateMonitor(ctx, monitor)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -510,7 +492,7 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 	composite := *datadog.NewMonitorWithDefaults()
 	composite.SetType(datadog.MONITORTYPE_COMPOSITE)
 	composite.SetQuery(fmt.Sprintf("%d", monitor.GetId()))
-	composite, _, err = Client(ctx).MonitorsApi.CreateMonitor(ctx).Body(composite).Execute()
+	composite, _, err = Client(ctx).MonitorsApi.CreateMonitor(ctx, composite)
 	if err != nil {
 		t.Fatalf("Error creating Monitor %v: Response %s: %v", tm, err.(datadog.GenericOpenAPIError).Body(), err)
 	}
@@ -532,7 +514,10 @@ func TestMonitorCanDeleteErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx).MonitorIds(tc.IDs).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.CheckCanDeleteMonitor(ctx, tc.IDs)
+			if _, ok := err.(datadog.GenericOpenAPIError); !ok {
+				t.Fatalf("unexpected error: %v (%t)", err, err)
+			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 409 {
 				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.CheckCanDeleteMonitorResponse)
@@ -566,7 +551,7 @@ func TestMonitorValidateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).MonitorsApi.ValidateMonitor(ctx).Body(tc.Body).Execute()
+			_, httpresp, err := Client(ctx).MonitorsApi.ValidateMonitor(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -576,7 +561,7 @@ func TestMonitorValidateErrors(t *testing.T) {
 }
 
 func deleteMonitor(ctx context.Context, t *testing.T, monitorID int64) {
-	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, monitorID).Execute()
+	_, httpresp, err := Client(ctx).MonitorsApi.DeleteMonitor(ctx, monitorID)
 	if httpresp.StatusCode != 200 || err != nil {
 		t.Logf("Deleting Monitor: %v failed with %v, Another test may have already deleted this monitor.", monitorID, httpresp.StatusCode)
 	}

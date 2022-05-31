@@ -3,50 +3,44 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"go-TestDowntimeRecurrence-until_occurences_and_until_date_are_mutually_exclusive-local-1589290249; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1591104648,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1589290248,"timezone":"Etc/UTC"}
+      {"end":1634720427,"message":"Test-TestDowntimeRecurrence_until_occurences_and_until_date_are_mutually_exclusive-1634716827; until occurences and until date are mutually exclusive","recurrence":{"period":1,"type":"weeks","until_date":1636531227,"until_occurrences":3,"week_days":["Mon","Tue","Wed","Thu","Fri"]},"scope":["*"],"start":1634716827,"timezone":"Etc/UTC"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "366"
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateDowntime
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.5.1+dev (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7903998746103679097"
+      - "6601657881484935859"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "2107215364500257571"
+      - "4390740353989189401"
     url: https://api.datadoghq.com/api/v1/downtime
     method: POST
   response:
-    body: '{"errors":["You must provide only provide one of (until_occurrences, until_date)"]}'
+    body: '{"errors": ["You must provide only provide one of (until_occurrences, until_date)"]}'
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
       Content-Length:
-      - "83"
-      Content-Security-Policy:
-      - frame-ancestors 'self'; report-uri https://api.datadoghq.com/csp-report
+      - "84"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:30:50 GMT
-      Dd-Pool:
-      - dogweb
+      - Wed, 20 Oct 2021 08:00:28 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.2492943"
       X-Frame-Options:
       - SAMEORIGIN
     status: 400 Bad Request

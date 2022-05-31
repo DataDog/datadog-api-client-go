@@ -1,0 +1,38 @@
+interactions:
+- request:
+    body: |
+      {"layout_type":"ordered","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1650360448 with list_stream widget","widgets":[{"definition":{"requests":[{"columns":[{"field":"timestamp","width":"auto"}],"query":{"data_source":"apm_issue_stream","query_string":""},"response_format":"event_list"}],"type":"list_stream"}}]}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/dashboard
+  response:
+    body: '{"notify_list":null,"description":null,"restricted_roles":[],"author_name":null,"template_variables":null,"is_read_only":false,"id":"8qi-cen-xbg","title":"Test-Create_a_new_dashboard_with_list_stream_widget-1650360448
+      with list_stream widget","url":"/dashboard/8qi-cen-xbg/test-createanewdashboardwithliststreamwidget-1650360448-with-liststream-widget","created_at":"2022-04-19T09:27:29.277529+00:00","modified_at":"2022-04-19T09:27:29.277529+00:00","author_handle":"frog@datadoghq.com","widgets":[{"definition":{"requests":[{"query":{"query_string":"","data_source":"apm_issue_stream"},"response_format":"event_list","columns":[{"field":"timestamp","width":"auto"}]}],"type":"list_stream"},"id":8256654551182209}],"layout_type":"ordered"}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: DELETE
+    url: https://api.datadoghq.com/api/v1/dashboard/8qi-cen-xbg
+  response:
+    body: '{"deleted_dashboard_id":"8qi-cen-xbg"}'
+    code: 200
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 200 OK
+version: 1

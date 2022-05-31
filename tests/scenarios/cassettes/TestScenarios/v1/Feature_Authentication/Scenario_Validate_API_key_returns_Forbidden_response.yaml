@@ -1,0 +1,18 @@
+interactions:
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - application/json
+    method: GET
+    url: https://api.datadoghq.com/api/v1/validate
+  response:
+    body: '{"errors":["API key required"]}'
+    code: 403
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 403 Forbidden
+version: 1

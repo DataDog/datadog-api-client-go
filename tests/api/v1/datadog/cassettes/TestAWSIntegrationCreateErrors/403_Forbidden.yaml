@@ -10,16 +10,14 @@ interactions:
       - application/json
       Content-Type:
       - application/json
-      Dd-Operation-Id:
-      - CreateAWSAccount
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.2 (go go1.14; os darwin; arch amd64)
+      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "3170722183112132789"
+      - "1332362223092420700"
       X-Datadog-Sampling-Priority:
       - "1"
       X-Datadog-Trace-Id:
-      - "5938189474162727102"
+      - "1825904557188759277"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
@@ -30,12 +28,14 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
+      Content-Length:
+      - "170"
       Content-Type:
       - application/json
       Date:
-      - Tue, 12 May 2020 13:29:30 GMT
+      - Tue, 13 Jul 2021 17:10:17 GMT
       Via:
-      - 1.1 haproxy
+      - haproxy
     status: 403 Forbidden
     code: 403
     duration: ""

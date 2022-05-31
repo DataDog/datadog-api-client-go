@@ -1,0 +1,71 @@
+interactions:
+- request:
+    body: |
+      {"series":[{"metric":"TestDeleteatagconfigurationreturnsNoContentresponse1652354788","points":[[1652354788,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
+    form: {}
+    headers:
+      Accept:
+      - text/json, application/json
+      Content-Type:
+      - text/json
+    method: POST
+    url: https://api.datadoghq.com/api/v1/series
+  response:
+    body: '{"status": "ok"}'
+    code: 202
+    duration: ''
+    headers:
+      Content-Type:
+      - text/json
+    status: 202 Accepted
+- request:
+    body: |
+      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestDeleteatagconfigurationreturnsNoContentresponse1652354788"]},"id":"TestDeleteatagconfigurationreturnsNoContentresponse1652354788","type":"manage_tags"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1652354788/tags
+  response:
+    body: '{"data":{"type":"manage_tags","id":"TestDeleteatagconfigurationreturnsNoContentresponse1652354788","attributes":{"tags":["datacenter","app","TestDeleteatagconfigurationreturnsNoContentresponse1652354788"],"created_at":"2022-05-12T11:26:33.849417+00:00","modified_at":"2022-05-12T11:26:33.849417+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1652354788/tags
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers: {}
+    status: 204 No Content
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/metrics/TestDeleteatagconfigurationreturnsNoContentresponse1652354788/tags
+  response:
+    body: '{"errors": ["TestDeleteatagconfigurationreturnsNoContentresponse1652354788
+      not found"]}'
+    code: 404
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 404 Not Found
+version: 1
