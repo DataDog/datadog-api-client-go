@@ -115,6 +115,40 @@ If you want to enable requests logging, set the `debug` flag on your configurati
     configuration.Debug = true
 ```
 
+### Pagination
+
+Several listing operations have a pagination method to help consume all the items available.
+For example, to retrieve all your incidents:
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+)
+
+func main() {
+	ctx := datadog.NewDefaultContext(context.Background())
+	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("ListIncidents", true)
+	apiClient := datadog.NewAPIClient(configuration)
+	resp, _, err := apiClient.IncidentsApi.ListIncidentsWithPagination(ctx, *datadog.NewListIncidentsOptionalParameters())
+
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.ListIncidents`: %v\n", err)
+	}
+
+        for incident := range resp {
+		fmt.Fprintf(os.Stdout, "Got incident %s\n", incident.GetId())
+	}
+
+}
+```
+
 ## Documentation
 
 Documentation for API endpoints and models is available on [pkg.go.dev](https://pkg.go.dev/github.com/DataDog/datadog-api-client-go).
