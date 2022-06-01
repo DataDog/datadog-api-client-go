@@ -25,12 +25,11 @@ func main() {
 				},
 				Definition: datadog.WidgetDefinition{
 					EventTimelineWidgetDefinition: &datadog.EventTimelineWidgetDefinition{
-						Title:         datadog.PtrString(""),
-						TitleSize:     datadog.PtrString("16"),
-						TitleAlign:    datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
-						Type:          datadog.EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE,
-						Query:         "status:error priority:all",
-						TagsExecution: datadog.PtrString("and"),
+						Title:      datadog.PtrString(""),
+						TitleSize:  datadog.PtrString("16"),
+						TitleAlign: datadog.WIDGETTEXTALIGN_LEFT.Ptr(),
+						Type:       datadog.EVENTTIMELINEWIDGETDEFINITIONTYPE_EVENT_TIMELINE,
+						Query:      "status:error priority:all",
 					}},
 			},
 		},

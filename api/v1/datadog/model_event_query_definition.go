@@ -13,8 +13,6 @@ import (
 type EventQueryDefinition struct {
 	// The query being made on the event.
 	Search string `json:"search"`
-	// The execution method for multi-value filters. Can be either and or or.
-	TagsExecution string `json:"tags_execution"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -24,10 +22,9 @@ type EventQueryDefinition struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewEventQueryDefinition(search string, tagsExecution string) *EventQueryDefinition {
+func NewEventQueryDefinition(search string) *EventQueryDefinition {
 	this := EventQueryDefinition{}
 	this.Search = search
-	this.TagsExecution = tagsExecution
 	return &this
 }
 
@@ -62,29 +59,6 @@ func (o *EventQueryDefinition) SetSearch(v string) {
 	o.Search = v
 }
 
-// GetTagsExecution returns the TagsExecution field value.
-func (o *EventQueryDefinition) GetTagsExecution() string {
-	if o == nil {
-		var ret string
-		return ret
-	}
-	return o.TagsExecution
-}
-
-// GetTagsExecutionOk returns a tuple with the TagsExecution field value
-// and a boolean to check if the value has been set.
-func (o *EventQueryDefinition) GetTagsExecutionOk() (*string, bool) {
-	if o == nil {
-		return nil, false
-	}
-	return &o.TagsExecution, true
-}
-
-// SetTagsExecution sets field value.
-func (o *EventQueryDefinition) SetTagsExecution(v string) {
-	o.TagsExecution = v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -92,7 +66,6 @@ func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["search"] = o.Search
-	toSerialize["tags_execution"] = o.TagsExecution
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -104,12 +77,10 @@ func (o EventQueryDefinition) MarshalJSON() ([]byte, error) {
 func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
-		Search        *string `json:"search"`
-		TagsExecution *string `json:"tags_execution"`
+		Search *string `json:"search"`
 	}{}
 	all := struct {
-		Search        string `json:"search"`
-		TagsExecution string `json:"tags_execution"`
+		Search string `json:"search"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -117,9 +88,6 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.Search == nil {
 		return fmt.Errorf("Required field search missing")
-	}
-	if required.TagsExecution == nil {
-		return fmt.Errorf("Required field tags_execution missing")
 	}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -131,6 +99,5 @@ func (o *EventQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Search = all.Search
-	o.TagsExecution = all.TagsExecution
 	return nil
 }

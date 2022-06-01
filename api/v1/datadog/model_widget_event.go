@@ -16,8 +16,6 @@ import (
 type WidgetEvent struct {
 	// Query definition.
 	Q string `json:"q"`
-	// The execution method for multi-value filters.
-	TagsExecution *string `json:"tags_execution,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -64,38 +62,6 @@ func (o *WidgetEvent) SetQ(v string) {
 	o.Q = v
 }
 
-// GetTagsExecution returns the TagsExecution field value if set, zero value otherwise.
-func (o *WidgetEvent) GetTagsExecution() string {
-	if o == nil || o.TagsExecution == nil {
-		var ret string
-		return ret
-	}
-	return *o.TagsExecution
-}
-
-// GetTagsExecutionOk returns a tuple with the TagsExecution field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *WidgetEvent) GetTagsExecutionOk() (*string, bool) {
-	if o == nil || o.TagsExecution == nil {
-		return nil, false
-	}
-	return o.TagsExecution, true
-}
-
-// HasTagsExecution returns a boolean if a field has been set.
-func (o *WidgetEvent) HasTagsExecution() bool {
-	if o != nil && o.TagsExecution != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTagsExecution gets a reference to the given string and assigns it to the TagsExecution field.
-func (o *WidgetEvent) SetTagsExecution(v string) {
-	o.TagsExecution = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -103,9 +69,6 @@ func (o WidgetEvent) MarshalJSON() ([]byte, error) {
 		return json.Marshal(o.UnparsedObject)
 	}
 	toSerialize["q"] = o.Q
-	if o.TagsExecution != nil {
-		toSerialize["tags_execution"] = o.TagsExecution
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -120,8 +83,7 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		Q *string `json:"q"`
 	}{}
 	all := struct {
-		Q             string  `json:"q"`
-		TagsExecution *string `json:"tags_execution,omitempty"`
+		Q string `json:"q"`
 	}{}
 	err = json.Unmarshal(bytes, &required)
 	if err != nil {
@@ -140,6 +102,5 @@ func (o *WidgetEvent) UnmarshalJSON(bytes []byte) (err error) {
 		return nil
 	}
 	o.Q = all.Q
-	o.TagsExecution = all.TagsExecution
 	return nil
 }
