@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,18 +36,18 @@ type DowntimeRecurrence struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewDowntimeRecurrence instantiates a new DowntimeRecurrence object
+// NewDowntimeRecurrence instantiates a new DowntimeRecurrence object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewDowntimeRecurrence() *DowntimeRecurrence {
 	this := DowntimeRecurrence{}
 	return &this
 }
 
-// NewDowntimeRecurrenceWithDefaults instantiates a new DowntimeRecurrence object
+// NewDowntimeRecurrenceWithDefaults instantiates a new DowntimeRecurrence object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewDowntimeRecurrenceWithDefaults() *DowntimeRecurrence {
 	this := DowntimeRecurrence{}
 	return &this
@@ -162,7 +160,7 @@ func (o *DowntimeRecurrence) GetUntilDate() int64 {
 
 // GetUntilDateOk returns a tuple with the UntilDate field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetUntilDateOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -184,12 +182,12 @@ func (o *DowntimeRecurrence) SetUntilDate(v int64) {
 	o.UntilDate.Set(&v)
 }
 
-// SetUntilDateNil sets the value for UntilDate to be an explicit nil
+// SetUntilDateNil sets the value for UntilDate to be an explicit nil.
 func (o *DowntimeRecurrence) SetUntilDateNil() {
 	o.UntilDate.Set(nil)
 }
 
-// UnsetUntilDate ensures that no value is present for UntilDate, not even an explicit nil
+// UnsetUntilDate ensures that no value is present for UntilDate, not even an explicit nil.
 func (o *DowntimeRecurrence) UnsetUntilDate() {
 	o.UntilDate.Unset()
 }
@@ -205,7 +203,7 @@ func (o *DowntimeRecurrence) GetUntilOccurrences() int32 {
 
 // GetUntilOccurrencesOk returns a tuple with the UntilOccurrences field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetUntilOccurrencesOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
@@ -227,12 +225,12 @@ func (o *DowntimeRecurrence) SetUntilOccurrences(v int32) {
 	o.UntilOccurrences.Set(&v)
 }
 
-// SetUntilOccurrencesNil sets the value for UntilOccurrences to be an explicit nil
+// SetUntilOccurrencesNil sets the value for UntilOccurrences to be an explicit nil.
 func (o *DowntimeRecurrence) SetUntilOccurrencesNil() {
 	o.UntilOccurrences.Set(nil)
 }
 
-// UnsetUntilOccurrences ensures that no value is present for UntilOccurrences, not even an explicit nil
+// UnsetUntilOccurrences ensures that no value is present for UntilOccurrences, not even an explicit nil.
 func (o *DowntimeRecurrence) UnsetUntilOccurrences() {
 	o.UntilOccurrences.Unset()
 }
@@ -248,7 +246,7 @@ func (o *DowntimeRecurrence) GetWeekDays() []string {
 
 // GetWeekDaysOk returns a tuple with the WeekDays field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *DowntimeRecurrence) GetWeekDaysOk() (*[]string, bool) {
 	if o == nil || o.WeekDays == nil {
 		return nil, false
@@ -270,6 +268,7 @@ func (o *DowntimeRecurrence) SetWeekDays(v []string) {
 	o.WeekDays = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -300,6 +299,7 @@ func (o DowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -328,37 +328,45 @@ func (o *DowntimeRecurrence) UnmarshalJSON(bytes []byte) (err error) {
 	return nil
 }
 
+// NullableDowntimeRecurrence handles when a null is used for DowntimeRecurrence.
 type NullableDowntimeRecurrence struct {
 	value *DowntimeRecurrence
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableDowntimeRecurrence) Get() *DowntimeRecurrence {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableDowntimeRecurrence) Set(val *DowntimeRecurrence) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableDowntimeRecurrence) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableDowntimeRecurrence) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableDowntimeRecurrence initializes the struct as if Set has been called.
 func NewNullableDowntimeRecurrence(val *DowntimeRecurrence) *NullableDowntimeRecurrence {
 	return &NullableDowntimeRecurrence{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableDowntimeRecurrence) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableDowntimeRecurrence) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

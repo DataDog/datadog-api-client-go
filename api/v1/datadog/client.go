@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,7 +36,7 @@ var (
 	xmlCheck  = regexp.MustCompile(`(?i:(?:application|text)/xml)`)
 )
 
-// APIClient manages communication with the Datadog API V1 Collection API v1.0
+// APIClient manages communication with the Datadog API V1 Collection API v1.0.
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
 	cfg    *Configuration
@@ -86,6 +84,8 @@ type APIClient struct {
 
 	PagerDutyIntegrationApi *PagerDutyIntegrationApiService
 
+	SecurityMonitoringApi *SecurityMonitoringApiService
+
 	ServiceChecksApi *ServiceChecksApiService
 
 	ServiceLevelObjectiveCorrectionsApi *ServiceLevelObjectiveCorrectionsApiService
@@ -107,7 +107,7 @@ type APIClient struct {
 	WebhooksIntegrationApi *WebhooksIntegrationApiService
 }
 
-// FormFile holds parameters for a file in multipart/form-data request
+// FormFile holds parameters for a file in multipart/form-data request.
 type FormFile struct {
 	formFileName string
 	fileName     string
@@ -150,6 +150,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.NotebooksApi = (*NotebooksApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.PagerDutyIntegrationApi = (*PagerDutyIntegrationApiService)(&c.common)
+	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
 	c.ServiceChecksApi = (*ServiceChecksApiService)(&c.common)
 	c.ServiceLevelObjectiveCorrectionsApi = (*ServiceLevelObjectiveCorrectionsApiService)(&c.common)
 	c.ServiceLevelObjectivesApi = (*ServiceLevelObjectivesApiService)(&c.common)
@@ -168,7 +169,7 @@ func atoi(in string) (int, error) {
 	return strconv.Atoi(in)
 }
 
-// selectHeaderContentType select a content type from the available list.
+// selectHeaderContentType selects a content type from the available list.
 func selectHeaderContentType(contentTypes []string) string {
 	if len(contentTypes) == 0 {
 		return ""
@@ -179,7 +180,7 @@ func selectHeaderContentType(contentTypes []string) string {
 	return contentTypes[0] // use the first content type specified in 'consumes'
 }
 
-// selectHeaderAccept join all accept types and return
+// selectHeaderAccept joins all accept types and returns them.
 func selectHeaderAccept(accepts []string) string {
 	if len(accepts) == 0 {
 		return ""
@@ -192,7 +193,7 @@ func selectHeaderAccept(accepts []string) string {
 	return strings.Join(accepts, ",")
 }
 
-// contains is a case insensitive match, finding needle in a haystack
+// contains is a case insensitive match, finding needle in a haystack.
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
 		if strings.ToLower(a) == strings.ToLower(needle) {
@@ -202,7 +203,7 @@ func contains(haystack []string, needle string) bool {
 	return false
 }
 
-// Verify optional parameters are of the correct type.
+// Verify optional parameters are of the correct type.?
 func typeCheckParameter(obj interface{}, expected string, name string) error {
 	// Make sure there is an object.
 	if obj == nil {
@@ -211,7 +212,7 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 
 	// Check the type is as expected.
 	if reflect.TypeOf(obj).String() != expected {
-		return fmt.Errorf("Expected %s to be of type %s but received %s.", name, expected, reflect.TypeOf(obj).String())
+		return fmt.Errorf("expected %s to be of type %s but received %s", name, expected, reflect.TypeOf(obj).String())
 	}
 	return nil
 }
@@ -243,7 +244,7 @@ func parameterToString(obj interface{}, collectionFormat string) string {
 	return fmt.Sprintf("%v", obj)
 }
 
-// helper for converting interface{} parameters to json strings
+// helper for converting interface{} parameters to json strings.
 func parameterToJson(obj interface{}) (string, error) {
 	jsonBuf, err := json.Marshal(obj)
 	if err != nil {
@@ -285,13 +286,13 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 	return resp, err
 }
 
-// Allow modification of underlying config for alternate implementations and testing
-// Caution: modifying the configuration while live can cause data races and potentially unwanted behavior
+// GetConfig allows modification of underlying config for alternate implementations and testing.
+// Caution: modifying the configuration while live can cause data races and potentially unwanted behavior.
 func (c *APIClient) GetConfig() *Configuration {
 	return c.cfg
 }
 
-// PrepareRequest build the request
+// PrepareRequest build the request.
 func (c *APIClient) PrepareRequest(
 	ctx context.Context,
 	path string, method string,
@@ -320,7 +321,7 @@ func (c *APIClient) PrepareRequest(
 	// add form parameters and file if available.
 	if strings.HasPrefix(headerParams["Content-Type"], "multipart/form-data") && len(formParams) > 0 || formFile != nil {
 		if body != nil {
-			return nil, errors.New("Cannot specify postBody and multipart form at the same time.")
+			return nil, errors.New("cannot specify postBody and multipart form at the same time")
 		}
 		body = &bytes.Buffer{}
 		w := multipart.NewWriter(body)
@@ -359,7 +360,7 @@ func (c *APIClient) PrepareRequest(
 
 	if strings.HasPrefix(headerParams["Content-Type"], "application/x-www-form-urlencoded") && len(formParams) > 0 {
 		if body != nil {
-			return nil, errors.New("Cannot specify postBody and x-www-form-urlencoded form at the same time.")
+			return nil, errors.New("cannot specify postBody and x-www-form-urlencoded form at the same time")
 		}
 		body = &bytes.Buffer{}
 		body.WriteString(formParams.Encode())
@@ -516,7 +517,7 @@ func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err err
 	return nil
 }
 
-// Add a file to the multipart request
+// Add a file to the multipart request.
 func addFile(w *multipart.Writer, fieldName, path string) error {
 	file, err := os.Open(path)
 	if err != nil {
@@ -533,12 +534,12 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	return err
 }
 
-// Prevent trying to import "fmt"
+// Prevent trying to import "fmt".
 func reportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
 }
 
-// Set request body from an interface{}
+// Set request body from an interface{}.
 func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err error) {
 	if reflect.ValueOf(body).IsNil() {
 		return nil, nil
@@ -569,13 +570,12 @@ func setBody(body interface{}, contentType string) (bodyBuf *bytes.Buffer, err e
 	}
 
 	if bodyBuf.Len() == 0 {
-		err = fmt.Errorf("Invalid body type %s\n", contentType)
-		return nil, err
+		return nil, fmt.Errorf("invalid body type %s", contentType)
 	}
 	return bodyBuf, nil
 }
 
-// detectContentType method is used to figure out `Request.Body` content type for request header
+// detectContentType method is used to figure out `Request.Body` content type for request header.
 func detectContentType(body interface{}) string {
 	contentType := "text/plain; charset=utf-8"
 	kind := reflect.TypeOf(body).Kind()
@@ -608,12 +608,12 @@ func (e GenericOpenAPIError) Error() string {
 	return e.error
 }
 
-// Body returns the raw bytes of the response
+// Body returns the raw bytes of the response.
 func (e GenericOpenAPIError) Body() []byte {
 	return e.body
 }
 
-// Model returns the unpacked model of the error
+// Model returns the unpacked model of the error.
 func (e GenericOpenAPIError) Model() interface{} {
 	return e.model
 }

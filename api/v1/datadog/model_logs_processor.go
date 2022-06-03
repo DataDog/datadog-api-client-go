@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -32,432 +30,431 @@ type LogsProcessor struct {
 	UnparsedObject interface{}
 }
 
-// LogsGrokParserAsLogsProcessor is a convenience function that returns LogsGrokParser wrapped in LogsProcessor
+// LogsGrokParserAsLogsProcessor is a convenience function that returns LogsGrokParser wrapped in LogsProcessor.
 func LogsGrokParserAsLogsProcessor(v *LogsGrokParser) LogsProcessor {
 	return LogsProcessor{LogsGrokParser: v}
 }
 
-// LogsDateRemapperAsLogsProcessor is a convenience function that returns LogsDateRemapper wrapped in LogsProcessor
+// LogsDateRemapperAsLogsProcessor is a convenience function that returns LogsDateRemapper wrapped in LogsProcessor.
 func LogsDateRemapperAsLogsProcessor(v *LogsDateRemapper) LogsProcessor {
 	return LogsProcessor{LogsDateRemapper: v}
 }
 
-// LogsStatusRemapperAsLogsProcessor is a convenience function that returns LogsStatusRemapper wrapped in LogsProcessor
+// LogsStatusRemapperAsLogsProcessor is a convenience function that returns LogsStatusRemapper wrapped in LogsProcessor.
 func LogsStatusRemapperAsLogsProcessor(v *LogsStatusRemapper) LogsProcessor {
 	return LogsProcessor{LogsStatusRemapper: v}
 }
 
-// LogsServiceRemapperAsLogsProcessor is a convenience function that returns LogsServiceRemapper wrapped in LogsProcessor
+// LogsServiceRemapperAsLogsProcessor is a convenience function that returns LogsServiceRemapper wrapped in LogsProcessor.
 func LogsServiceRemapperAsLogsProcessor(v *LogsServiceRemapper) LogsProcessor {
 	return LogsProcessor{LogsServiceRemapper: v}
 }
 
-// LogsMessageRemapperAsLogsProcessor is a convenience function that returns LogsMessageRemapper wrapped in LogsProcessor
+// LogsMessageRemapperAsLogsProcessor is a convenience function that returns LogsMessageRemapper wrapped in LogsProcessor.
 func LogsMessageRemapperAsLogsProcessor(v *LogsMessageRemapper) LogsProcessor {
 	return LogsProcessor{LogsMessageRemapper: v}
 }
 
-// LogsAttributeRemapperAsLogsProcessor is a convenience function that returns LogsAttributeRemapper wrapped in LogsProcessor
+// LogsAttributeRemapperAsLogsProcessor is a convenience function that returns LogsAttributeRemapper wrapped in LogsProcessor.
 func LogsAttributeRemapperAsLogsProcessor(v *LogsAttributeRemapper) LogsProcessor {
 	return LogsProcessor{LogsAttributeRemapper: v}
 }
 
-// LogsURLParserAsLogsProcessor is a convenience function that returns LogsURLParser wrapped in LogsProcessor
+// LogsURLParserAsLogsProcessor is a convenience function that returns LogsURLParser wrapped in LogsProcessor.
 func LogsURLParserAsLogsProcessor(v *LogsURLParser) LogsProcessor {
 	return LogsProcessor{LogsURLParser: v}
 }
 
-// LogsUserAgentParserAsLogsProcessor is a convenience function that returns LogsUserAgentParser wrapped in LogsProcessor
+// LogsUserAgentParserAsLogsProcessor is a convenience function that returns LogsUserAgentParser wrapped in LogsProcessor.
 func LogsUserAgentParserAsLogsProcessor(v *LogsUserAgentParser) LogsProcessor {
 	return LogsProcessor{LogsUserAgentParser: v}
 }
 
-// LogsCategoryProcessorAsLogsProcessor is a convenience function that returns LogsCategoryProcessor wrapped in LogsProcessor
+// LogsCategoryProcessorAsLogsProcessor is a convenience function that returns LogsCategoryProcessor wrapped in LogsProcessor.
 func LogsCategoryProcessorAsLogsProcessor(v *LogsCategoryProcessor) LogsProcessor {
 	return LogsProcessor{LogsCategoryProcessor: v}
 }
 
-// LogsArithmeticProcessorAsLogsProcessor is a convenience function that returns LogsArithmeticProcessor wrapped in LogsProcessor
+// LogsArithmeticProcessorAsLogsProcessor is a convenience function that returns LogsArithmeticProcessor wrapped in LogsProcessor.
 func LogsArithmeticProcessorAsLogsProcessor(v *LogsArithmeticProcessor) LogsProcessor {
 	return LogsProcessor{LogsArithmeticProcessor: v}
 }
 
-// LogsStringBuilderProcessorAsLogsProcessor is a convenience function that returns LogsStringBuilderProcessor wrapped in LogsProcessor
+// LogsStringBuilderProcessorAsLogsProcessor is a convenience function that returns LogsStringBuilderProcessor wrapped in LogsProcessor.
 func LogsStringBuilderProcessorAsLogsProcessor(v *LogsStringBuilderProcessor) LogsProcessor {
 	return LogsProcessor{LogsStringBuilderProcessor: v}
 }
 
-// LogsPipelineProcessorAsLogsProcessor is a convenience function that returns LogsPipelineProcessor wrapped in LogsProcessor
+// LogsPipelineProcessorAsLogsProcessor is a convenience function that returns LogsPipelineProcessor wrapped in LogsProcessor.
 func LogsPipelineProcessorAsLogsProcessor(v *LogsPipelineProcessor) LogsProcessor {
 	return LogsProcessor{LogsPipelineProcessor: v}
 }
 
-// LogsGeoIPParserAsLogsProcessor is a convenience function that returns LogsGeoIPParser wrapped in LogsProcessor
+// LogsGeoIPParserAsLogsProcessor is a convenience function that returns LogsGeoIPParser wrapped in LogsProcessor.
 func LogsGeoIPParserAsLogsProcessor(v *LogsGeoIPParser) LogsProcessor {
 	return LogsProcessor{LogsGeoIPParser: v}
 }
 
-// LogsLookupProcessorAsLogsProcessor is a convenience function that returns LogsLookupProcessor wrapped in LogsProcessor
+// LogsLookupProcessorAsLogsProcessor is a convenience function that returns LogsLookupProcessor wrapped in LogsProcessor.
 func LogsLookupProcessorAsLogsProcessor(v *LogsLookupProcessor) LogsProcessor {
 	return LogsProcessor{LogsLookupProcessor: v}
 }
 
-// LogsTraceRemapperAsLogsProcessor is a convenience function that returns LogsTraceRemapper wrapped in LogsProcessor
+// LogsTraceRemapperAsLogsProcessor is a convenience function that returns LogsTraceRemapper wrapped in LogsProcessor.
 func LogsTraceRemapperAsLogsProcessor(v *LogsTraceRemapper) LogsProcessor {
 	return LogsProcessor{LogsTraceRemapper: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *LogsProcessor) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *LogsProcessor) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into LogsGrokParser
-	err = json.Unmarshal(data, &dst.LogsGrokParser)
+	err = json.Unmarshal(data, &obj.LogsGrokParser)
 	if err == nil {
-		if dst.LogsGrokParser != nil && dst.LogsGrokParser.UnparsedObject == nil {
-			jsonLogsGrokParser, _ := json.Marshal(dst.LogsGrokParser)
+		if obj.LogsGrokParser != nil && obj.LogsGrokParser.UnparsedObject == nil {
+			jsonLogsGrokParser, _ := json.Marshal(obj.LogsGrokParser)
 			if string(jsonLogsGrokParser) == "{}" { // empty struct
-				dst.LogsGrokParser = nil
+				obj.LogsGrokParser = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsGrokParser = nil
+			obj.LogsGrokParser = nil
 		}
 	} else {
-		dst.LogsGrokParser = nil
+		obj.LogsGrokParser = nil
 	}
 
 	// try to unmarshal data into LogsDateRemapper
-	err = json.Unmarshal(data, &dst.LogsDateRemapper)
+	err = json.Unmarshal(data, &obj.LogsDateRemapper)
 	if err == nil {
-		if dst.LogsDateRemapper != nil && dst.LogsDateRemapper.UnparsedObject == nil {
-			jsonLogsDateRemapper, _ := json.Marshal(dst.LogsDateRemapper)
+		if obj.LogsDateRemapper != nil && obj.LogsDateRemapper.UnparsedObject == nil {
+			jsonLogsDateRemapper, _ := json.Marshal(obj.LogsDateRemapper)
 			if string(jsonLogsDateRemapper) == "{}" { // empty struct
-				dst.LogsDateRemapper = nil
+				obj.LogsDateRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsDateRemapper = nil
+			obj.LogsDateRemapper = nil
 		}
 	} else {
-		dst.LogsDateRemapper = nil
+		obj.LogsDateRemapper = nil
 	}
 
 	// try to unmarshal data into LogsStatusRemapper
-	err = json.Unmarshal(data, &dst.LogsStatusRemapper)
+	err = json.Unmarshal(data, &obj.LogsStatusRemapper)
 	if err == nil {
-		if dst.LogsStatusRemapper != nil && dst.LogsStatusRemapper.UnparsedObject == nil {
-			jsonLogsStatusRemapper, _ := json.Marshal(dst.LogsStatusRemapper)
+		if obj.LogsStatusRemapper != nil && obj.LogsStatusRemapper.UnparsedObject == nil {
+			jsonLogsStatusRemapper, _ := json.Marshal(obj.LogsStatusRemapper)
 			if string(jsonLogsStatusRemapper) == "{}" { // empty struct
-				dst.LogsStatusRemapper = nil
+				obj.LogsStatusRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsStatusRemapper = nil
+			obj.LogsStatusRemapper = nil
 		}
 	} else {
-		dst.LogsStatusRemapper = nil
+		obj.LogsStatusRemapper = nil
 	}
 
 	// try to unmarshal data into LogsServiceRemapper
-	err = json.Unmarshal(data, &dst.LogsServiceRemapper)
+	err = json.Unmarshal(data, &obj.LogsServiceRemapper)
 	if err == nil {
-		if dst.LogsServiceRemapper != nil && dst.LogsServiceRemapper.UnparsedObject == nil {
-			jsonLogsServiceRemapper, _ := json.Marshal(dst.LogsServiceRemapper)
+		if obj.LogsServiceRemapper != nil && obj.LogsServiceRemapper.UnparsedObject == nil {
+			jsonLogsServiceRemapper, _ := json.Marshal(obj.LogsServiceRemapper)
 			if string(jsonLogsServiceRemapper) == "{}" { // empty struct
-				dst.LogsServiceRemapper = nil
+				obj.LogsServiceRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsServiceRemapper = nil
+			obj.LogsServiceRemapper = nil
 		}
 	} else {
-		dst.LogsServiceRemapper = nil
+		obj.LogsServiceRemapper = nil
 	}
 
 	// try to unmarshal data into LogsMessageRemapper
-	err = json.Unmarshal(data, &dst.LogsMessageRemapper)
+	err = json.Unmarshal(data, &obj.LogsMessageRemapper)
 	if err == nil {
-		if dst.LogsMessageRemapper != nil && dst.LogsMessageRemapper.UnparsedObject == nil {
-			jsonLogsMessageRemapper, _ := json.Marshal(dst.LogsMessageRemapper)
+		if obj.LogsMessageRemapper != nil && obj.LogsMessageRemapper.UnparsedObject == nil {
+			jsonLogsMessageRemapper, _ := json.Marshal(obj.LogsMessageRemapper)
 			if string(jsonLogsMessageRemapper) == "{}" { // empty struct
-				dst.LogsMessageRemapper = nil
+				obj.LogsMessageRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsMessageRemapper = nil
+			obj.LogsMessageRemapper = nil
 		}
 	} else {
-		dst.LogsMessageRemapper = nil
+		obj.LogsMessageRemapper = nil
 	}
 
 	// try to unmarshal data into LogsAttributeRemapper
-	err = json.Unmarshal(data, &dst.LogsAttributeRemapper)
+	err = json.Unmarshal(data, &obj.LogsAttributeRemapper)
 	if err == nil {
-		if dst.LogsAttributeRemapper != nil && dst.LogsAttributeRemapper.UnparsedObject == nil {
-			jsonLogsAttributeRemapper, _ := json.Marshal(dst.LogsAttributeRemapper)
+		if obj.LogsAttributeRemapper != nil && obj.LogsAttributeRemapper.UnparsedObject == nil {
+			jsonLogsAttributeRemapper, _ := json.Marshal(obj.LogsAttributeRemapper)
 			if string(jsonLogsAttributeRemapper) == "{}" { // empty struct
-				dst.LogsAttributeRemapper = nil
+				obj.LogsAttributeRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsAttributeRemapper = nil
+			obj.LogsAttributeRemapper = nil
 		}
 	} else {
-		dst.LogsAttributeRemapper = nil
+		obj.LogsAttributeRemapper = nil
 	}
 
 	// try to unmarshal data into LogsURLParser
-	err = json.Unmarshal(data, &dst.LogsURLParser)
+	err = json.Unmarshal(data, &obj.LogsURLParser)
 	if err == nil {
-		if dst.LogsURLParser != nil && dst.LogsURLParser.UnparsedObject == nil {
-			jsonLogsURLParser, _ := json.Marshal(dst.LogsURLParser)
+		if obj.LogsURLParser != nil && obj.LogsURLParser.UnparsedObject == nil {
+			jsonLogsURLParser, _ := json.Marshal(obj.LogsURLParser)
 			if string(jsonLogsURLParser) == "{}" { // empty struct
-				dst.LogsURLParser = nil
+				obj.LogsURLParser = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsURLParser = nil
+			obj.LogsURLParser = nil
 		}
 	} else {
-		dst.LogsURLParser = nil
+		obj.LogsURLParser = nil
 	}
 
 	// try to unmarshal data into LogsUserAgentParser
-	err = json.Unmarshal(data, &dst.LogsUserAgentParser)
+	err = json.Unmarshal(data, &obj.LogsUserAgentParser)
 	if err == nil {
-		if dst.LogsUserAgentParser != nil && dst.LogsUserAgentParser.UnparsedObject == nil {
-			jsonLogsUserAgentParser, _ := json.Marshal(dst.LogsUserAgentParser)
+		if obj.LogsUserAgentParser != nil && obj.LogsUserAgentParser.UnparsedObject == nil {
+			jsonLogsUserAgentParser, _ := json.Marshal(obj.LogsUserAgentParser)
 			if string(jsonLogsUserAgentParser) == "{}" { // empty struct
-				dst.LogsUserAgentParser = nil
+				obj.LogsUserAgentParser = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsUserAgentParser = nil
+			obj.LogsUserAgentParser = nil
 		}
 	} else {
-		dst.LogsUserAgentParser = nil
+		obj.LogsUserAgentParser = nil
 	}
 
 	// try to unmarshal data into LogsCategoryProcessor
-	err = json.Unmarshal(data, &dst.LogsCategoryProcessor)
+	err = json.Unmarshal(data, &obj.LogsCategoryProcessor)
 	if err == nil {
-		if dst.LogsCategoryProcessor != nil && dst.LogsCategoryProcessor.UnparsedObject == nil {
-			jsonLogsCategoryProcessor, _ := json.Marshal(dst.LogsCategoryProcessor)
+		if obj.LogsCategoryProcessor != nil && obj.LogsCategoryProcessor.UnparsedObject == nil {
+			jsonLogsCategoryProcessor, _ := json.Marshal(obj.LogsCategoryProcessor)
 			if string(jsonLogsCategoryProcessor) == "{}" { // empty struct
-				dst.LogsCategoryProcessor = nil
+				obj.LogsCategoryProcessor = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsCategoryProcessor = nil
+			obj.LogsCategoryProcessor = nil
 		}
 	} else {
-		dst.LogsCategoryProcessor = nil
+		obj.LogsCategoryProcessor = nil
 	}
 
 	// try to unmarshal data into LogsArithmeticProcessor
-	err = json.Unmarshal(data, &dst.LogsArithmeticProcessor)
+	err = json.Unmarshal(data, &obj.LogsArithmeticProcessor)
 	if err == nil {
-		if dst.LogsArithmeticProcessor != nil && dst.LogsArithmeticProcessor.UnparsedObject == nil {
-			jsonLogsArithmeticProcessor, _ := json.Marshal(dst.LogsArithmeticProcessor)
+		if obj.LogsArithmeticProcessor != nil && obj.LogsArithmeticProcessor.UnparsedObject == nil {
+			jsonLogsArithmeticProcessor, _ := json.Marshal(obj.LogsArithmeticProcessor)
 			if string(jsonLogsArithmeticProcessor) == "{}" { // empty struct
-				dst.LogsArithmeticProcessor = nil
+				obj.LogsArithmeticProcessor = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsArithmeticProcessor = nil
+			obj.LogsArithmeticProcessor = nil
 		}
 	} else {
-		dst.LogsArithmeticProcessor = nil
+		obj.LogsArithmeticProcessor = nil
 	}
 
 	// try to unmarshal data into LogsStringBuilderProcessor
-	err = json.Unmarshal(data, &dst.LogsStringBuilderProcessor)
+	err = json.Unmarshal(data, &obj.LogsStringBuilderProcessor)
 	if err == nil {
-		if dst.LogsStringBuilderProcessor != nil && dst.LogsStringBuilderProcessor.UnparsedObject == nil {
-			jsonLogsStringBuilderProcessor, _ := json.Marshal(dst.LogsStringBuilderProcessor)
+		if obj.LogsStringBuilderProcessor != nil && obj.LogsStringBuilderProcessor.UnparsedObject == nil {
+			jsonLogsStringBuilderProcessor, _ := json.Marshal(obj.LogsStringBuilderProcessor)
 			if string(jsonLogsStringBuilderProcessor) == "{}" { // empty struct
-				dst.LogsStringBuilderProcessor = nil
+				obj.LogsStringBuilderProcessor = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsStringBuilderProcessor = nil
+			obj.LogsStringBuilderProcessor = nil
 		}
 	} else {
-		dst.LogsStringBuilderProcessor = nil
+		obj.LogsStringBuilderProcessor = nil
 	}
 
 	// try to unmarshal data into LogsPipelineProcessor
-	err = json.Unmarshal(data, &dst.LogsPipelineProcessor)
+	err = json.Unmarshal(data, &obj.LogsPipelineProcessor)
 	if err == nil {
-		if dst.LogsPipelineProcessor != nil && dst.LogsPipelineProcessor.UnparsedObject == nil {
-			jsonLogsPipelineProcessor, _ := json.Marshal(dst.LogsPipelineProcessor)
+		if obj.LogsPipelineProcessor != nil && obj.LogsPipelineProcessor.UnparsedObject == nil {
+			jsonLogsPipelineProcessor, _ := json.Marshal(obj.LogsPipelineProcessor)
 			if string(jsonLogsPipelineProcessor) == "{}" { // empty struct
-				dst.LogsPipelineProcessor = nil
+				obj.LogsPipelineProcessor = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsPipelineProcessor = nil
+			obj.LogsPipelineProcessor = nil
 		}
 	} else {
-		dst.LogsPipelineProcessor = nil
+		obj.LogsPipelineProcessor = nil
 	}
 
 	// try to unmarshal data into LogsGeoIPParser
-	err = json.Unmarshal(data, &dst.LogsGeoIPParser)
+	err = json.Unmarshal(data, &obj.LogsGeoIPParser)
 	if err == nil {
-		if dst.LogsGeoIPParser != nil && dst.LogsGeoIPParser.UnparsedObject == nil {
-			jsonLogsGeoIPParser, _ := json.Marshal(dst.LogsGeoIPParser)
+		if obj.LogsGeoIPParser != nil && obj.LogsGeoIPParser.UnparsedObject == nil {
+			jsonLogsGeoIPParser, _ := json.Marshal(obj.LogsGeoIPParser)
 			if string(jsonLogsGeoIPParser) == "{}" { // empty struct
-				dst.LogsGeoIPParser = nil
+				obj.LogsGeoIPParser = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsGeoIPParser = nil
+			obj.LogsGeoIPParser = nil
 		}
 	} else {
-		dst.LogsGeoIPParser = nil
+		obj.LogsGeoIPParser = nil
 	}
 
 	// try to unmarshal data into LogsLookupProcessor
-	err = json.Unmarshal(data, &dst.LogsLookupProcessor)
+	err = json.Unmarshal(data, &obj.LogsLookupProcessor)
 	if err == nil {
-		if dst.LogsLookupProcessor != nil && dst.LogsLookupProcessor.UnparsedObject == nil {
-			jsonLogsLookupProcessor, _ := json.Marshal(dst.LogsLookupProcessor)
+		if obj.LogsLookupProcessor != nil && obj.LogsLookupProcessor.UnparsedObject == nil {
+			jsonLogsLookupProcessor, _ := json.Marshal(obj.LogsLookupProcessor)
 			if string(jsonLogsLookupProcessor) == "{}" { // empty struct
-				dst.LogsLookupProcessor = nil
+				obj.LogsLookupProcessor = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsLookupProcessor = nil
+			obj.LogsLookupProcessor = nil
 		}
 	} else {
-		dst.LogsLookupProcessor = nil
+		obj.LogsLookupProcessor = nil
 	}
 
 	// try to unmarshal data into LogsTraceRemapper
-	err = json.Unmarshal(data, &dst.LogsTraceRemapper)
+	err = json.Unmarshal(data, &obj.LogsTraceRemapper)
 	if err == nil {
-		if dst.LogsTraceRemapper != nil && dst.LogsTraceRemapper.UnparsedObject == nil {
-			jsonLogsTraceRemapper, _ := json.Marshal(dst.LogsTraceRemapper)
+		if obj.LogsTraceRemapper != nil && obj.LogsTraceRemapper.UnparsedObject == nil {
+			jsonLogsTraceRemapper, _ := json.Marshal(obj.LogsTraceRemapper)
 			if string(jsonLogsTraceRemapper) == "{}" { // empty struct
-				dst.LogsTraceRemapper = nil
+				obj.LogsTraceRemapper = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.LogsTraceRemapper = nil
+			obj.LogsTraceRemapper = nil
 		}
 	} else {
-		dst.LogsTraceRemapper = nil
+		obj.LogsTraceRemapper = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.LogsGrokParser = nil
-		dst.LogsDateRemapper = nil
-		dst.LogsStatusRemapper = nil
-		dst.LogsServiceRemapper = nil
-		dst.LogsMessageRemapper = nil
-		dst.LogsAttributeRemapper = nil
-		dst.LogsURLParser = nil
-		dst.LogsUserAgentParser = nil
-		dst.LogsCategoryProcessor = nil
-		dst.LogsArithmeticProcessor = nil
-		dst.LogsStringBuilderProcessor = nil
-		dst.LogsPipelineProcessor = nil
-		dst.LogsGeoIPParser = nil
-		dst.LogsLookupProcessor = nil
-		dst.LogsTraceRemapper = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.LogsGrokParser = nil
+		obj.LogsDateRemapper = nil
+		obj.LogsStatusRemapper = nil
+		obj.LogsServiceRemapper = nil
+		obj.LogsMessageRemapper = nil
+		obj.LogsAttributeRemapper = nil
+		obj.LogsURLParser = nil
+		obj.LogsUserAgentParser = nil
+		obj.LogsCategoryProcessor = nil
+		obj.LogsArithmeticProcessor = nil
+		obj.LogsStringBuilderProcessor = nil
+		obj.LogsPipelineProcessor = nil
+		obj.LogsGeoIPParser = nil
+		obj.LogsLookupProcessor = nil
+		obj.LogsTraceRemapper = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src LogsProcessor) MarshalJSON() ([]byte, error) {
-	if src.LogsGrokParser != nil {
-		return json.Marshal(&src.LogsGrokParser)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj LogsProcessor) MarshalJSON() ([]byte, error) {
+	if obj.LogsGrokParser != nil {
+		return json.Marshal(&obj.LogsGrokParser)
 	}
 
-	if src.LogsDateRemapper != nil {
-		return json.Marshal(&src.LogsDateRemapper)
+	if obj.LogsDateRemapper != nil {
+		return json.Marshal(&obj.LogsDateRemapper)
 	}
 
-	if src.LogsStatusRemapper != nil {
-		return json.Marshal(&src.LogsStatusRemapper)
+	if obj.LogsStatusRemapper != nil {
+		return json.Marshal(&obj.LogsStatusRemapper)
 	}
 
-	if src.LogsServiceRemapper != nil {
-		return json.Marshal(&src.LogsServiceRemapper)
+	if obj.LogsServiceRemapper != nil {
+		return json.Marshal(&obj.LogsServiceRemapper)
 	}
 
-	if src.LogsMessageRemapper != nil {
-		return json.Marshal(&src.LogsMessageRemapper)
+	if obj.LogsMessageRemapper != nil {
+		return json.Marshal(&obj.LogsMessageRemapper)
 	}
 
-	if src.LogsAttributeRemapper != nil {
-		return json.Marshal(&src.LogsAttributeRemapper)
+	if obj.LogsAttributeRemapper != nil {
+		return json.Marshal(&obj.LogsAttributeRemapper)
 	}
 
-	if src.LogsURLParser != nil {
-		return json.Marshal(&src.LogsURLParser)
+	if obj.LogsURLParser != nil {
+		return json.Marshal(&obj.LogsURLParser)
 	}
 
-	if src.LogsUserAgentParser != nil {
-		return json.Marshal(&src.LogsUserAgentParser)
+	if obj.LogsUserAgentParser != nil {
+		return json.Marshal(&obj.LogsUserAgentParser)
 	}
 
-	if src.LogsCategoryProcessor != nil {
-		return json.Marshal(&src.LogsCategoryProcessor)
+	if obj.LogsCategoryProcessor != nil {
+		return json.Marshal(&obj.LogsCategoryProcessor)
 	}
 
-	if src.LogsArithmeticProcessor != nil {
-		return json.Marshal(&src.LogsArithmeticProcessor)
+	if obj.LogsArithmeticProcessor != nil {
+		return json.Marshal(&obj.LogsArithmeticProcessor)
 	}
 
-	if src.LogsStringBuilderProcessor != nil {
-		return json.Marshal(&src.LogsStringBuilderProcessor)
+	if obj.LogsStringBuilderProcessor != nil {
+		return json.Marshal(&obj.LogsStringBuilderProcessor)
 	}
 
-	if src.LogsPipelineProcessor != nil {
-		return json.Marshal(&src.LogsPipelineProcessor)
+	if obj.LogsPipelineProcessor != nil {
+		return json.Marshal(&obj.LogsPipelineProcessor)
 	}
 
-	if src.LogsGeoIPParser != nil {
-		return json.Marshal(&src.LogsGeoIPParser)
+	if obj.LogsGeoIPParser != nil {
+		return json.Marshal(&obj.LogsGeoIPParser)
 	}
 
-	if src.LogsLookupProcessor != nil {
-		return json.Marshal(&src.LogsLookupProcessor)
+	if obj.LogsLookupProcessor != nil {
+		return json.Marshal(&obj.LogsLookupProcessor)
 	}
 
-	if src.LogsTraceRemapper != nil {
-		return json.Marshal(&src.LogsTraceRemapper)
+	if obj.LogsTraceRemapper != nil {
+		return json.Marshal(&obj.LogsTraceRemapper)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *LogsProcessor) GetActualInstance() interface{} {
 	if obj.LogsGrokParser != nil {
 		return obj.LogsGrokParser
@@ -523,37 +520,45 @@ func (obj *LogsProcessor) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableLogsProcessor handles when a null is used for LogsProcessor.
 type NullableLogsProcessor struct {
 	value *LogsProcessor
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableLogsProcessor) Get() *LogsProcessor {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableLogsProcessor) Set(val *LogsProcessor) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableLogsProcessor) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableLogsProcessor) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableLogsProcessor initializes the struct as if Set has been called.
 func NewNullableLogsProcessor(val *LogsProcessor) *NullableLogsProcessor {
 	return &NullableLogsProcessor{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableLogsProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableLogsProcessor) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

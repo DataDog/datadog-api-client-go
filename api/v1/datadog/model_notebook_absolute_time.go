@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -25,10 +23,10 @@ type NotebookAbsoluteTime struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookAbsoluteTime instantiates a new NotebookAbsoluteTime object
+// NewNotebookAbsoluteTime instantiates a new NotebookAbsoluteTime object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookAbsoluteTime(end time.Time, start time.Time) *NotebookAbsoluteTime {
 	this := NotebookAbsoluteTime{}
 	this.End = end
@@ -36,15 +34,15 @@ func NewNotebookAbsoluteTime(end time.Time, start time.Time) *NotebookAbsoluteTi
 	return &this
 }
 
-// NewNotebookAbsoluteTimeWithDefaults instantiates a new NotebookAbsoluteTime object
+// NewNotebookAbsoluteTimeWithDefaults instantiates a new NotebookAbsoluteTime object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookAbsoluteTimeWithDefaults() *NotebookAbsoluteTime {
 	this := NotebookAbsoluteTime{}
 	return &this
 }
 
-// GetEnd returns the End field value
+// GetEnd returns the End field value.
 func (o *NotebookAbsoluteTime) GetEnd() time.Time {
 	if o == nil {
 		var ret time.Time
@@ -62,7 +60,7 @@ func (o *NotebookAbsoluteTime) GetEndOk() (*time.Time, bool) {
 	return &o.End, true
 }
 
-// SetEnd sets field value
+// SetEnd sets field value.
 func (o *NotebookAbsoluteTime) SetEnd(v time.Time) {
 	o.End = v
 }
@@ -99,7 +97,7 @@ func (o *NotebookAbsoluteTime) SetLive(v bool) {
 	o.Live = &v
 }
 
-// GetStart returns the Start field value
+// GetStart returns the Start field value.
 func (o *NotebookAbsoluteTime) GetStart() time.Time {
 	if o == nil {
 		var ret time.Time
@@ -117,21 +115,30 @@ func (o *NotebookAbsoluteTime) GetStartOk() (*time.Time, bool) {
 	return &o.Start, true
 }
 
-// SetStart sets field value
+// SetStart sets field value.
 func (o *NotebookAbsoluteTime) SetStart(v time.Time) {
 	o.Start = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	toSerialize["end"] = o.End
+	if o.End.Nanosecond() == 0 {
+		toSerialize["end"] = o.End.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["end"] = o.End.Format("2006-01-02T15:04:05.000Z07:00")
+	}
 	if o.Live != nil {
 		toSerialize["live"] = o.Live
 	}
-	toSerialize["start"] = o.Start
+	if o.Start.Nanosecond() == 0 {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05Z07:00")
+	} else {
+		toSerialize["start"] = o.Start.Format("2006-01-02T15:04:05.000Z07:00")
+	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -139,6 +146,7 @@ func (o NotebookAbsoluteTime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookAbsoluteTime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

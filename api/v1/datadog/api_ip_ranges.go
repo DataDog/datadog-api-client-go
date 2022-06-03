@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// IPRangesApiService IPRangesApi service
+// IPRangesApiService IPRangesApi service.
 type IPRangesApiService service
 
 type apiGetIPRangesRequest struct {
@@ -27,23 +20,27 @@ type apiGetIPRangesRequest struct {
 	ApiService *IPRangesApiService
 }
 
-/*
- * GetIPRanges List IP Ranges
- * Get information about Datadog IP ranges.
- */
-func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
+func (a *IPRangesApiService) buildGetIPRangesRequest(ctx _context.Context) (apiGetIPRangesRequest, error) {
 	req := apiGetIPRangesRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// GetIPRanges List IP Ranges.
+// Get information about Datadog IP ranges.
+func (a *IPRangesApiService) GetIPRanges(ctx _context.Context) (IPRanges, *_nethttp.Response, error) {
+	req, err := a.buildGetIPRangesRequest(ctx)
+	if err != nil {
+		var localVarReturnValue IPRanges
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getIPRangesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IPRanges
- */
+// getIPRangesExecute executes the request.
 func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRanges, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

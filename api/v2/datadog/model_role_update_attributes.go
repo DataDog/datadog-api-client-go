@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,18 +22,18 @@ type RoleUpdateAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRoleUpdateAttributes instantiates a new RoleUpdateAttributes object
+// NewRoleUpdateAttributes instantiates a new RoleUpdateAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewRoleUpdateAttributes() *RoleUpdateAttributes {
 	this := RoleUpdateAttributes{}
 	return &this
 }
 
-// NewRoleUpdateAttributesWithDefaults instantiates a new RoleUpdateAttributes object
+// NewRoleUpdateAttributesWithDefaults instantiates a new RoleUpdateAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewRoleUpdateAttributesWithDefaults() *RoleUpdateAttributes {
 	this := RoleUpdateAttributes{}
 	return &this
@@ -137,16 +135,25 @@ func (o *RoleUpdateAttributes) SetName(v string) {
 	o.Name = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o RoleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.CreatedAt != nil {
-		toSerialize["created_at"] = o.CreatedAt
+		if o.CreatedAt.Nanosecond() == 0 {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created_at"] = o.CreatedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.ModifiedAt != nil {
-		toSerialize["modified_at"] = o.ModifiedAt
+		if o.ModifiedAt.Nanosecond() == 0 {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified_at"] = o.ModifiedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Name != nil {
 		toSerialize["name"] = o.Name
@@ -158,6 +165,7 @@ func (o RoleUpdateAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *RoleUpdateAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

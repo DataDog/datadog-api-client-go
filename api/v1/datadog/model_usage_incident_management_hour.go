@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,18 +24,18 @@ type UsageIncidentManagementHour struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewUsageIncidentManagementHour instantiates a new UsageIncidentManagementHour object
+// NewUsageIncidentManagementHour instantiates a new UsageIncidentManagementHour object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewUsageIncidentManagementHour() *UsageIncidentManagementHour {
 	this := UsageIncidentManagementHour{}
 	return &this
 }
 
-// NewUsageIncidentManagementHourWithDefaults instantiates a new UsageIncidentManagementHour object
+// NewUsageIncidentManagementHourWithDefaults instantiates a new UsageIncidentManagementHour object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewUsageIncidentManagementHourWithDefaults() *UsageIncidentManagementHour {
 	this := UsageIncidentManagementHour{}
 	return &this
@@ -171,13 +169,18 @@ func (o *UsageIncidentManagementHour) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Hour != nil {
-		toSerialize["hour"] = o.Hour
+		if o.Hour.Nanosecond() == 0 {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["hour"] = o.Hour.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.MonthlyActiveUsers != nil {
 		toSerialize["monthly_active_users"] = o.MonthlyActiveUsers
@@ -195,6 +198,7 @@ func (o UsageIncidentManagementHour) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *UsageIncidentManagementHour) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

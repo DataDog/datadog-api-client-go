@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,23 +24,23 @@ type RoleUpdateResponseData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewRoleUpdateResponseData instantiates a new RoleUpdateResponseData object
+// NewRoleUpdateResponseData instantiates a new RoleUpdateResponseData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewRoleUpdateResponseData(type_ RolesType) *RoleUpdateResponseData {
+// will change when the set of required properties is changed.
+func NewRoleUpdateResponseData(typeVar RolesType) *RoleUpdateResponseData {
 	this := RoleUpdateResponseData{}
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewRoleUpdateResponseDataWithDefaults instantiates a new RoleUpdateResponseData object
+// NewRoleUpdateResponseDataWithDefaults instantiates a new RoleUpdateResponseData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewRoleUpdateResponseDataWithDefaults() *RoleUpdateResponseData {
 	this := RoleUpdateResponseData{}
-	var type_ RolesType = ROLESTYPE_ROLES
-	this.Type = type_
+	var typeVar RolesType = ROLESTYPE_ROLES
+	this.Type = typeVar
 	return &this
 }
 
@@ -142,7 +140,7 @@ func (o *RoleUpdateResponseData) SetRelationships(v RoleResponseRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *RoleUpdateResponseData) GetType() RolesType {
 	if o == nil {
 		var ret RolesType
@@ -160,11 +158,12 @@ func (o *RoleUpdateResponseData) GetTypeOk() (*RolesType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *RoleUpdateResponseData) SetType(v RolesType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -187,6 +186,7 @@ func (o RoleUpdateResponseData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *RoleUpdateResponseData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

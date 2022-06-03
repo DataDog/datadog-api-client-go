@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -18,54 +16,53 @@ type IncidentServiceIncludedItems struct {
 	UnparsedObject interface{}
 }
 
-// UserAsIncidentServiceIncludedItems is a convenience function that returns User wrapped in IncidentServiceIncludedItems
+// UserAsIncidentServiceIncludedItems is a convenience function that returns User wrapped in IncidentServiceIncludedItems.
 func UserAsIncidentServiceIncludedItems(v *User) IncidentServiceIncludedItems {
 	return IncidentServiceIncludedItems{User: v}
 }
 
-// Unmarshal JSON data into one of the pointers in the struct
-func (dst *IncidentServiceIncludedItems) UnmarshalJSON(data []byte) error {
+// UnmarshalJSON turns data into one of the pointers in the struct.
+func (obj *IncidentServiceIncludedItems) UnmarshalJSON(data []byte) error {
 	var err error
 	match := 0
 	// try to unmarshal data into User
-	err = json.Unmarshal(data, &dst.User)
+	err = json.Unmarshal(data, &obj.User)
 	if err == nil {
-		if dst.User != nil && dst.User.UnparsedObject == nil {
-			jsonUser, _ := json.Marshal(dst.User)
+		if obj.User != nil && obj.User.UnparsedObject == nil {
+			jsonUser, _ := json.Marshal(obj.User)
 			if string(jsonUser) == "{}" { // empty struct
-				dst.User = nil
+				obj.User = nil
 			} else {
 				match++
 			}
 		} else {
-			dst.User = nil
+			obj.User = nil
 		}
 	} else {
-		dst.User = nil
+		obj.User = nil
 	}
 
 	if match != 1 { // more than 1 match
 		// reset to nil
-		dst.User = nil
-		return json.Unmarshal(data, &dst.UnparsedObject)
-	} else {
-		return nil // exactly one match
+		obj.User = nil
+		return json.Unmarshal(data, &obj.UnparsedObject)
 	}
+	return nil // exactly one match
 }
 
-// Marshal data from the first non-nil pointers in the struct to JSON
-func (src IncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
-	if src.User != nil {
-		return json.Marshal(&src.User)
+// MarshalJSON turns data from the first non-nil pointers in the struct to JSON.
+func (obj IncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
+	if obj.User != nil {
+		return json.Marshal(&obj.User)
 	}
 
-	if src.UnparsedObject != nil {
-		return json.Marshal(src.UnparsedObject)
+	if obj.UnparsedObject != nil {
+		return json.Marshal(obj.UnparsedObject)
 	}
 	return nil, nil // no data in oneOf schemas
 }
 
-// Get the actual instance
+// GetActualInstance returns the actual instance.
 func (obj *IncidentServiceIncludedItems) GetActualInstance() interface{} {
 	if obj.User != nil {
 		return obj.User
@@ -75,37 +72,45 @@ func (obj *IncidentServiceIncludedItems) GetActualInstance() interface{} {
 	return nil
 }
 
+// NullableIncidentServiceIncludedItems handles when a null is used for IncidentServiceIncludedItems.
 type NullableIncidentServiceIncludedItems struct {
 	value *IncidentServiceIncludedItems
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableIncidentServiceIncludedItems) Get() *IncidentServiceIncludedItems {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableIncidentServiceIncludedItems) Set(val *IncidentServiceIncludedItems) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableIncidentServiceIncludedItems) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableIncidentServiceIncludedItems) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableIncidentServiceIncludedItems initializes the struct as if Set has been called.
 func NewNullableIncidentServiceIncludedItems(val *IncidentServiceIncludedItems) *NullableIncidentServiceIncludedItems {
 	return &NullableIncidentServiceIncludedItems{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableIncidentServiceIncludedItems) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableIncidentServiceIncludedItems) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

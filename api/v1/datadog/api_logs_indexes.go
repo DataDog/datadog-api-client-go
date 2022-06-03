@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// LogsIndexesApiService LogsIndexesApi service
+// LogsIndexesApiService LogsIndexesApi service.
 type LogsIndexesApiService service
 
 type apiCreateLogsIndexRequest struct {
@@ -29,24 +22,28 @@ type apiCreateLogsIndexRequest struct {
 	body       *LogsIndex
 }
 
-/*
- * CreateLogsIndex Create an index
- * Creates a new index. Returns the Index object passed in the request body when the request is successful.
- */
-func (a *LogsIndexesApiService) CreateLogsIndex(ctx _context.Context, body LogsIndex) (LogsIndex, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildCreateLogsIndexRequest(ctx _context.Context, body LogsIndex) (apiCreateLogsIndexRequest, error) {
 	req := apiCreateLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateLogsIndex Create an index.
+// Creates a new index. Returns the Index object passed in the request body when the request is successful.
+func (a *LogsIndexesApiService) CreateLogsIndex(ctx _context.Context, body LogsIndex) (LogsIndex, *_nethttp.Response, error) {
+	req, err := a.buildCreateLogsIndexRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsIndex
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createLogsIndexExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndex
- */
+// createLogsIndexExecute executes the request.
 func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -188,24 +185,28 @@ type apiGetLogsIndexRequest struct {
 	name       string
 }
 
-/*
- * GetLogsIndex Get an index
- * Get one log index from your organization. This endpoint takes no JSON arguments.
- */
-func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildGetLogsIndexRequest(ctx _context.Context, name string) (apiGetLogsIndexRequest, error) {
 	req := apiGetLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
 		name:       name,
 	}
+	return req, nil
+}
+
+// GetLogsIndex Get an index.
+// Get one log index from your organization. This endpoint takes no JSON arguments.
+func (a *LogsIndexesApiService) GetLogsIndex(ctx _context.Context, name string) (LogsIndex, *_nethttp.Response, error) {
+	req, err := a.buildGetLogsIndexRequest(ctx, name)
+	if err != nil {
+		var localVarReturnValue LogsIndex
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getLogsIndexExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndex
- */
+// getLogsIndexExecute executes the request.
 func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -332,23 +333,27 @@ type apiGetLogsIndexOrderRequest struct {
 	ApiService *LogsIndexesApiService
 }
 
-/*
- * GetLogsIndexOrder Get indexes order
- * Get the current order of your log indexes. This endpoint takes no JSON arguments.
- */
-func (a *LogsIndexesApiService) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrder, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildGetLogsIndexOrderRequest(ctx _context.Context) (apiGetLogsIndexOrderRequest, error) {
 	req := apiGetLogsIndexOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// GetLogsIndexOrder Get indexes order.
+// Get the current order of your log indexes. This endpoint takes no JSON arguments.
+func (a *LogsIndexesApiService) GetLogsIndexOrder(ctx _context.Context) (LogsIndexesOrder, *_nethttp.Response, error) {
+	req, err := a.buildGetLogsIndexOrderRequest(ctx)
+	if err != nil {
+		var localVarReturnValue LogsIndexesOrder
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.getLogsIndexOrderExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndexesOrder
- */
+// getLogsIndexOrderExecute executes the request.
 func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -464,24 +469,28 @@ type apiListLogIndexesRequest struct {
 	ApiService *LogsIndexesApiService
 }
 
-/*
- * ListLogIndexes Get all indexes
- * The Index object describes the configuration of a log index.
- * This endpoint returns an array of the `LogIndex` objects of your organization.
- */
-func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildListLogIndexesRequest(ctx _context.Context) (apiListLogIndexesRequest, error) {
 	req := apiListLogIndexesRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListLogIndexes Get all indexes.
+// The Index object describes the configuration of a log index.
+// This endpoint returns an array of the `LogIndex` objects of your organization.
+func (a *LogsIndexesApiService) ListLogIndexes(ctx _context.Context) (LogsIndexListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListLogIndexesRequest(ctx)
+	if err != nil {
+		var localVarReturnValue LogsIndexListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLogIndexesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndexListResponse
- */
+// listLogIndexesExecute executes the request.
 func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest) (LogsIndexListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -599,29 +608,33 @@ type apiUpdateLogsIndexRequest struct {
 	body       *LogsIndexUpdateRequest
 }
 
-/*
- * UpdateLogsIndex Update an index
- * Update an index as identified by its name.
- * Returns the Index object passed in the request body when the request is successful.
- *
- * Using the `PUT` method updates your index’s configuration by **replacing**
- * your current configuration with the new one sent to your Datadog organization.
- */
-func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildUpdateLogsIndexRequest(ctx _context.Context, name string, body LogsIndexUpdateRequest) (apiUpdateLogsIndexRequest, error) {
 	req := apiUpdateLogsIndexRequest{
 		ApiService: a,
 		ctx:        ctx,
 		name:       name,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateLogsIndex Update an index.
+// Update an index as identified by its name.
+// Returns the Index object passed in the request body when the request is successful.
+//
+// Using the `PUT` method updates your index’s configuration by **replacing**
+// your current configuration with the new one sent to your Datadog organization.
+func (a *LogsIndexesApiService) UpdateLogsIndex(ctx _context.Context, name string, body LogsIndexUpdateRequest) (LogsIndex, *_nethttp.Response, error) {
+	req, err := a.buildUpdateLogsIndexRequest(ctx, name, body)
+	if err != nil {
+		var localVarReturnValue LogsIndex
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateLogsIndexExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndex
- */
+// updateLogsIndexExecute executes the request.
 func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexRequest) (LogsIndex, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -764,25 +777,29 @@ type apiUpdateLogsIndexOrderRequest struct {
 	body       *LogsIndexesOrder
 }
 
-/*
- * UpdateLogsIndexOrder Update indexes order
- * This endpoint updates the index order of your organization.
- * It returns the index order object passed in the request body when the request is successful.
- */
-func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
+func (a *LogsIndexesApiService) buildUpdateLogsIndexOrderRequest(ctx _context.Context, body LogsIndexesOrder) (apiUpdateLogsIndexOrderRequest, error) {
 	req := apiUpdateLogsIndexOrderRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateLogsIndexOrder Update indexes order.
+// This endpoint updates the index order of your organization.
+// It returns the index order object passed in the request body when the request is successful.
+func (a *LogsIndexesApiService) UpdateLogsIndexOrder(ctx _context.Context, body LogsIndexesOrder) (LogsIndexesOrder, *_nethttp.Response, error) {
+	req, err := a.buildUpdateLogsIndexOrderRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsIndexesOrder
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateLogsIndexOrderExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsIndexesOrder
- */
+// updateLogsIndexOrderExecute executes the request.
 func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndexOrderRequest) (LogsIndexesOrder, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -29,18 +27,18 @@ type MonitorThresholds struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorThresholds instantiates a new MonitorThresholds object
+// NewMonitorThresholds instantiates a new MonitorThresholds object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMonitorThresholds() *MonitorThresholds {
 	this := MonitorThresholds{}
 	return &this
 }
 
-// NewMonitorThresholdsWithDefaults instantiates a new MonitorThresholds object
+// NewMonitorThresholdsWithDefaults instantiates a new MonitorThresholds object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorThresholdsWithDefaults() *MonitorThresholds {
 	this := MonitorThresholds{}
 	return &this
@@ -89,7 +87,7 @@ func (o *MonitorThresholds) GetCriticalRecovery() float64 {
 
 // GetCriticalRecoveryOk returns a tuple with the CriticalRecovery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholds) GetCriticalRecoveryOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
@@ -111,12 +109,12 @@ func (o *MonitorThresholds) SetCriticalRecovery(v float64) {
 	o.CriticalRecovery.Set(&v)
 }
 
-// SetCriticalRecoveryNil sets the value for CriticalRecovery to be an explicit nil
+// SetCriticalRecoveryNil sets the value for CriticalRecovery to be an explicit nil.
 func (o *MonitorThresholds) SetCriticalRecoveryNil() {
 	o.CriticalRecovery.Set(nil)
 }
 
-// UnsetCriticalRecovery ensures that no value is present for CriticalRecovery, not even an explicit nil
+// UnsetCriticalRecovery ensures that no value is present for CriticalRecovery, not even an explicit nil.
 func (o *MonitorThresholds) UnsetCriticalRecovery() {
 	o.CriticalRecovery.Unset()
 }
@@ -132,7 +130,7 @@ func (o *MonitorThresholds) GetOk() float64 {
 
 // GetOkOk returns a tuple with the Ok field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholds) GetOkOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
@@ -154,12 +152,12 @@ func (o *MonitorThresholds) SetOk(v float64) {
 	o.Ok.Set(&v)
 }
 
-// SetOkNil sets the value for Ok to be an explicit nil
+// SetOkNil sets the value for Ok to be an explicit nil.
 func (o *MonitorThresholds) SetOkNil() {
 	o.Ok.Set(nil)
 }
 
-// UnsetOk ensures that no value is present for Ok, not even an explicit nil
+// UnsetOk ensures that no value is present for Ok, not even an explicit nil.
 func (o *MonitorThresholds) UnsetOk() {
 	o.Ok.Unset()
 }
@@ -175,7 +173,7 @@ func (o *MonitorThresholds) GetUnknown() float64 {
 
 // GetUnknownOk returns a tuple with the Unknown field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholds) GetUnknownOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
@@ -197,12 +195,12 @@ func (o *MonitorThresholds) SetUnknown(v float64) {
 	o.Unknown.Set(&v)
 }
 
-// SetUnknownNil sets the value for Unknown to be an explicit nil
+// SetUnknownNil sets the value for Unknown to be an explicit nil.
 func (o *MonitorThresholds) SetUnknownNil() {
 	o.Unknown.Set(nil)
 }
 
-// UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil
+// UnsetUnknown ensures that no value is present for Unknown, not even an explicit nil.
 func (o *MonitorThresholds) UnsetUnknown() {
 	o.Unknown.Unset()
 }
@@ -218,7 +216,7 @@ func (o *MonitorThresholds) GetWarning() float64 {
 
 // GetWarningOk returns a tuple with the Warning field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholds) GetWarningOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
@@ -240,12 +238,12 @@ func (o *MonitorThresholds) SetWarning(v float64) {
 	o.Warning.Set(&v)
 }
 
-// SetWarningNil sets the value for Warning to be an explicit nil
+// SetWarningNil sets the value for Warning to be an explicit nil.
 func (o *MonitorThresholds) SetWarningNil() {
 	o.Warning.Set(nil)
 }
 
-// UnsetWarning ensures that no value is present for Warning, not even an explicit nil
+// UnsetWarning ensures that no value is present for Warning, not even an explicit nil.
 func (o *MonitorThresholds) UnsetWarning() {
 	o.Warning.Unset()
 }
@@ -261,7 +259,7 @@ func (o *MonitorThresholds) GetWarningRecovery() float64 {
 
 // GetWarningRecoveryOk returns a tuple with the WarningRecovery field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorThresholds) GetWarningRecoveryOk() (*float64, bool) {
 	if o == nil {
 		return nil, false
@@ -283,16 +281,17 @@ func (o *MonitorThresholds) SetWarningRecovery(v float64) {
 	o.WarningRecovery.Set(&v)
 }
 
-// SetWarningRecoveryNil sets the value for WarningRecovery to be an explicit nil
+// SetWarningRecoveryNil sets the value for WarningRecovery to be an explicit nil.
 func (o *MonitorThresholds) SetWarningRecoveryNil() {
 	o.WarningRecovery.Set(nil)
 }
 
-// UnsetWarningRecovery ensures that no value is present for WarningRecovery, not even an explicit nil
+// UnsetWarningRecovery ensures that no value is present for WarningRecovery, not even an explicit nil.
 func (o *MonitorThresholds) UnsetWarningRecovery() {
 	o.WarningRecovery.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -323,6 +322,7 @@ func (o MonitorThresholds) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorThresholds) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// KeyManagementApiService KeyManagementApi service
+// KeyManagementApiService KeyManagementApi service.
 type KeyManagementApiService service
 
 type apiCreateAPIKeyRequest struct {
@@ -29,24 +22,28 @@ type apiCreateAPIKeyRequest struct {
 	body       *APIKeyCreateRequest
 }
 
-/*
- * CreateAPIKey Create an API key
- * Create an API key.
- */
-func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context, body APIKeyCreateRequest) (APIKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildCreateAPIKeyRequest(ctx _context.Context, body APIKeyCreateRequest) (apiCreateAPIKeyRequest, error) {
 	req := apiCreateAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateAPIKey Create an API key.
+// Create an API key.
+func (a *KeyManagementApiService) CreateAPIKey(ctx _context.Context, body APIKeyCreateRequest) (APIKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateAPIKeyRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue APIKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createAPIKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return APIKeyResponse
- */
+// createAPIKeyExecute executes the request.
 func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) (APIKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -188,24 +185,28 @@ type apiCreateCurrentUserApplicationKeyRequest struct {
 	body       *ApplicationKeyCreateRequest
 }
 
-/*
- * CreateCurrentUserApplicationKey Create an application key for current user
- * Create an application key for current user
- */
-func (a *KeyManagementApiService) CreateCurrentUserApplicationKey(ctx _context.Context, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildCreateCurrentUserApplicationKeyRequest(ctx _context.Context, body ApplicationKeyCreateRequest) (apiCreateCurrentUserApplicationKeyRequest, error) {
 	req := apiCreateCurrentUserApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateCurrentUserApplicationKey Create an application key for current user.
+// Create an application key for current user
+func (a *KeyManagementApiService) CreateCurrentUserApplicationKey(ctx _context.Context, body ApplicationKeyCreateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateCurrentUserApplicationKeyRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createCurrentUserApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ApplicationKeyResponse
- */
+// createCurrentUserApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) createCurrentUserApplicationKeyExecute(r apiCreateCurrentUserApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -347,23 +348,27 @@ type apiDeleteAPIKeyRequest struct {
 	apiKeyId   string
 }
 
-/*
- * DeleteAPIKey Delete an API key
- * Delete an API key.
- */
-func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, apiKeyId string) (*_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildDeleteAPIKeyRequest(ctx _context.Context, apiKeyId string) (apiDeleteAPIKeyRequest, error) {
 	req := apiDeleteAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		apiKeyId:   apiKeyId,
 	}
+	return req, nil
+}
+
+// DeleteAPIKey Delete an API key.
+// Delete an API key.
+func (a *KeyManagementApiService) DeleteAPIKey(ctx _context.Context, apiKeyId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteAPIKeyRequest(ctx, apiKeyId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deleteAPIKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteAPIKeyExecute executes the request.
 func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -481,23 +486,27 @@ type apiDeleteApplicationKeyRequest struct {
 	appKeyId   string
 }
 
-/*
- * DeleteApplicationKey Delete an application key
- * Delete an application key
- */
-func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, appKeyId string) (*_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildDeleteApplicationKeyRequest(ctx _context.Context, appKeyId string) (apiDeleteApplicationKeyRequest, error) {
 	req := apiDeleteApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		appKeyId:   appKeyId,
 	}
+	return req, nil
+}
+
+// DeleteApplicationKey Delete an application key.
+// Delete an application key
+func (a *KeyManagementApiService) DeleteApplicationKey(ctx _context.Context, appKeyId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteApplicationKeyRequest(ctx, appKeyId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deleteApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplicationKeyRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -615,23 +624,27 @@ type apiDeleteCurrentUserApplicationKeyRequest struct {
 	appKeyId   string
 }
 
-/*
- * DeleteCurrentUserApplicationKey Delete an application key owned by current user
- * Delete an application key owned by current user
- */
-func (a *KeyManagementApiService) DeleteCurrentUserApplicationKey(ctx _context.Context, appKeyId string) (*_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildDeleteCurrentUserApplicationKeyRequest(ctx _context.Context, appKeyId string) (apiDeleteCurrentUserApplicationKeyRequest, error) {
 	req := apiDeleteCurrentUserApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		appKeyId:   appKeyId,
 	}
+	return req, nil
+}
+
+// DeleteCurrentUserApplicationKey Delete an application key owned by current user.
+// Delete an application key owned by current user
+func (a *KeyManagementApiService) DeleteCurrentUserApplicationKey(ctx _context.Context, appKeyId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteCurrentUserApplicationKeyRequest(ctx, appKeyId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deleteCurrentUserApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteCurrentUserApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) deleteCurrentUserApplicationKeyExecute(r apiDeleteCurrentUserApplicationKeyRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -750,24 +763,24 @@ type apiGetAPIKeyRequest struct {
 	include    *string
 }
 
+// GetAPIKeyOptionalParameters holds optional parameters for GetAPIKey.
 type GetAPIKeyOptionalParameters struct {
 	Include *string
 }
 
+// NewGetAPIKeyOptionalParameters creates an empty struct for parameters.
 func NewGetAPIKeyOptionalParameters() *GetAPIKeyOptionalParameters {
 	this := GetAPIKeyOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetAPIKeyOptionalParameters) WithInclude(include string) *GetAPIKeyOptionalParameters {
 	r.Include = &include
 	return r
 }
 
-/*
- * GetAPIKey Get API key
- * Get an API key.
- */
-func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, apiKeyId string, o ...GetAPIKeyOptionalParameters) (APIKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildGetAPIKeyRequest(ctx _context.Context, apiKeyId string, o ...GetAPIKeyOptionalParameters) (apiGetAPIKeyRequest, error) {
 	req := apiGetAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -775,21 +788,28 @@ func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, apiKeyId strin
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue APIKeyResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetAPIKeyOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetAPIKeyOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.include = o[0].Include
 	}
+	return req, nil
+}
+
+// GetAPIKey Get API key.
+// Get an API key.
+func (a *KeyManagementApiService) GetAPIKey(ctx _context.Context, apiKeyId string, o ...GetAPIKeyOptionalParameters) (APIKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetAPIKeyRequest(ctx, apiKeyId, o...)
+	if err != nil {
+		var localVarReturnValue APIKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getAPIKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return APIKeyResponse
- */
+// getAPIKeyExecute executes the request.
 func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (APIKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -921,24 +941,24 @@ type apiGetApplicationKeyRequest struct {
 	include    *string
 }
 
+// GetApplicationKeyOptionalParameters holds optional parameters for GetApplicationKey.
 type GetApplicationKeyOptionalParameters struct {
 	Include *string
 }
 
+// NewGetApplicationKeyOptionalParameters creates an empty struct for parameters.
 func NewGetApplicationKeyOptionalParameters() *GetApplicationKeyOptionalParameters {
 	this := GetApplicationKeyOptionalParameters{}
 	return &this
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *GetApplicationKeyOptionalParameters) WithInclude(include string) *GetApplicationKeyOptionalParameters {
 	r.Include = &include
 	return r
 }
 
-/*
- * GetApplicationKey Get an application key
- * Get an application key for your org.
- */
-func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, appKeyId string, o ...GetApplicationKeyOptionalParameters) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildGetApplicationKeyRequest(ctx _context.Context, appKeyId string, o ...GetApplicationKeyOptionalParameters) (apiGetApplicationKeyRequest, error) {
 	req := apiGetApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -946,21 +966,28 @@ func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, appKey
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ApplicationKeyResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetApplicationKeyOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetApplicationKeyOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.include = o[0].Include
 	}
+	return req, nil
+}
+
+// GetApplicationKey Get an application key.
+// Get an application key for your org.
+func (a *KeyManagementApiService) GetApplicationKey(ctx _context.Context, appKeyId string, o ...GetApplicationKeyOptionalParameters) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetApplicationKeyRequest(ctx, appKeyId, o...)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ApplicationKeyResponse
- */
+// getApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) getApplicationKeyExecute(r apiGetApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1101,24 +1128,28 @@ type apiGetCurrentUserApplicationKeyRequest struct {
 	appKeyId   string
 }
 
-/*
- * GetCurrentUserApplicationKey Get one application key owned by current user
- * Get an application key owned by current user
- */
-func (a *KeyManagementApiService) GetCurrentUserApplicationKey(ctx _context.Context, appKeyId string) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildGetCurrentUserApplicationKeyRequest(ctx _context.Context, appKeyId string) (apiGetCurrentUserApplicationKeyRequest, error) {
 	req := apiGetCurrentUserApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		appKeyId:   appKeyId,
 	}
+	return req, nil
+}
+
+// GetCurrentUserApplicationKey Get one application key owned by current user.
+// Get an application key owned by current user
+func (a *KeyManagementApiService) GetCurrentUserApplicationKey(ctx _context.Context, appKeyId string) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetCurrentUserApplicationKeyRequest(ctx, appKeyId)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getCurrentUserApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ApplicationKeyResponse
- */
+// getCurrentUserApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) getCurrentUserApplicationKeyExecute(r apiGetCurrentUserApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1254,6 +1285,7 @@ type apiListAPIKeysRequest struct {
 	include               *string
 }
 
+// ListAPIKeysOptionalParameters holds optional parameters for ListAPIKeys.
 type ListAPIKeysOptionalParameters struct {
 	PageSize              *int64
 	PageNumber            *int64
@@ -1266,60 +1298,74 @@ type ListAPIKeysOptionalParameters struct {
 	Include               *string
 }
 
+// NewListAPIKeysOptionalParameters creates an empty struct for parameters.
 func NewListAPIKeysOptionalParameters() *ListAPIKeysOptionalParameters {
 	this := ListAPIKeysOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithPageSize(pageSize int64) *ListAPIKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListAPIKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithSort(sort APIKeysSort) *ListAPIKeysOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithFilter(filter string) *ListAPIKeysOptionalParameters {
 	r.Filter = &filter
 	return r
 }
+
+// WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListAPIKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
+
+// WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListAPIKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }
+
+// WithFilterModifiedAtStart sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtStart(filterModifiedAtStart string) *ListAPIKeysOptionalParameters {
 	r.FilterModifiedAtStart = &filterModifiedAtStart
 	return r
 }
+
+// WithFilterModifiedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithFilterModifiedAtEnd(filterModifiedAtEnd string) *ListAPIKeysOptionalParameters {
 	r.FilterModifiedAtEnd = &filterModifiedAtEnd
 	return r
 }
+
+// WithInclude sets the corresponding parameter name and returns the struct.
 func (r *ListAPIKeysOptionalParameters) WithInclude(include string) *ListAPIKeysOptionalParameters {
 	r.Include = &include
 	return r
 }
 
-/*
- * ListAPIKeys Get all API keys
- * List all API keys available for your account.
- */
-func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context, o ...ListAPIKeysOptionalParameters) (APIKeysResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildListAPIKeysRequest(ctx _context.Context, o ...ListAPIKeysOptionalParameters) (apiListAPIKeysRequest, error) {
 	req := apiListAPIKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue APIKeysResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListAPIKeysOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListAPIKeysOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1333,14 +1379,22 @@ func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context, o ...ListAPI
 		req.filterModifiedAtEnd = o[0].FilterModifiedAtEnd
 		req.include = o[0].Include
 	}
+	return req, nil
+}
+
+// ListAPIKeys Get all API keys.
+// List all API keys available for your account.
+func (a *KeyManagementApiService) ListAPIKeys(ctx _context.Context, o ...ListAPIKeysOptionalParameters) (APIKeysResponse, *_nethttp.Response, error) {
+	req, err := a.buildListAPIKeysRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue APIKeysResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listAPIKeysExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return APIKeysResponse
- */
+// listAPIKeysExecute executes the request.
 func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (APIKeysResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1499,6 +1553,7 @@ type apiListApplicationKeysRequest struct {
 	filterCreatedAtEnd   *string
 }
 
+// ListApplicationKeysOptionalParameters holds optional parameters for ListApplicationKeys.
 type ListApplicationKeysOptionalParameters struct {
 	PageSize             *int64
 	PageNumber           *int64
@@ -1508,48 +1563,56 @@ type ListApplicationKeysOptionalParameters struct {
 	FilterCreatedAtEnd   *string
 }
 
+// NewListApplicationKeysOptionalParameters creates an empty struct for parameters.
 func NewListApplicationKeysOptionalParameters() *ListApplicationKeysOptionalParameters {
 	this := ListApplicationKeysOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithSort(sort ApplicationKeysSort) *ListApplicationKeysOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithFilter(filter string) *ListApplicationKeysOptionalParameters {
 	r.Filter = &filter
 	return r
 }
+
+// WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
+
+// WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }
 
-/*
- * ListApplicationKeys Get all application keys
- * List all application keys available for your org
- */
-func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context, o ...ListApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildListApplicationKeysRequest(ctx _context.Context, o ...ListApplicationKeysOptionalParameters) (apiListApplicationKeysRequest, error) {
 	req := apiListApplicationKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ListApplicationKeysResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListApplicationKeysOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListApplicationKeysOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1560,14 +1623,22 @@ func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context, o ..
 		req.filterCreatedAtStart = o[0].FilterCreatedAtStart
 		req.filterCreatedAtEnd = o[0].FilterCreatedAtEnd
 	}
+	return req, nil
+}
+
+// ListApplicationKeys Get all application keys.
+// List all application keys available for your org
+func (a *KeyManagementApiService) ListApplicationKeys(ctx _context.Context, o ...ListApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+	req, err := a.buildListApplicationKeysRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue ListApplicationKeysResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listApplicationKeysExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ListApplicationKeysResponse
- */
+// listApplicationKeysExecute executes the request.
 func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicationKeysRequest) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1727,6 +1798,7 @@ type apiListCurrentUserApplicationKeysRequest struct {
 	filterCreatedAtEnd   *string
 }
 
+// ListCurrentUserApplicationKeysOptionalParameters holds optional parameters for ListCurrentUserApplicationKeys.
 type ListCurrentUserApplicationKeysOptionalParameters struct {
 	PageSize             *int64
 	PageNumber           *int64
@@ -1736,48 +1808,56 @@ type ListCurrentUserApplicationKeysOptionalParameters struct {
 	FilterCreatedAtEnd   *string
 }
 
+// NewListCurrentUserApplicationKeysOptionalParameters creates an empty struct for parameters.
 func NewListCurrentUserApplicationKeysOptionalParameters() *ListCurrentUserApplicationKeysOptionalParameters {
 	this := ListCurrentUserApplicationKeysOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageSize(pageSize int64) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithPageNumber(pageNumber int64) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithSort(sort ApplicationKeysSort) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilter(filter string) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.Filter = &filter
 	return r
 }
+
+// WithFilterCreatedAtStart sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtStart(filterCreatedAtStart string) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.FilterCreatedAtStart = &filterCreatedAtStart
 	return r
 }
+
+// WithFilterCreatedAtEnd sets the corresponding parameter name and returns the struct.
 func (r *ListCurrentUserApplicationKeysOptionalParameters) WithFilterCreatedAtEnd(filterCreatedAtEnd string) *ListCurrentUserApplicationKeysOptionalParameters {
 	r.FilterCreatedAtEnd = &filterCreatedAtEnd
 	return r
 }
 
-/*
- * ListCurrentUserApplicationKeys Get all application keys owned by current user
- * List all application keys available for current user
- */
-func (a *KeyManagementApiService) ListCurrentUserApplicationKeys(ctx _context.Context, o ...ListCurrentUserApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildListCurrentUserApplicationKeysRequest(ctx _context.Context, o ...ListCurrentUserApplicationKeysOptionalParameters) (apiListCurrentUserApplicationKeysRequest, error) {
 	req := apiListCurrentUserApplicationKeysRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ListApplicationKeysResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListCurrentUserApplicationKeysOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListCurrentUserApplicationKeysOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1788,14 +1868,22 @@ func (a *KeyManagementApiService) ListCurrentUserApplicationKeys(ctx _context.Co
 		req.filterCreatedAtStart = o[0].FilterCreatedAtStart
 		req.filterCreatedAtEnd = o[0].FilterCreatedAtEnd
 	}
+	return req, nil
+}
+
+// ListCurrentUserApplicationKeys Get all application keys owned by current user.
+// List all application keys available for current user
+func (a *KeyManagementApiService) ListCurrentUserApplicationKeys(ctx _context.Context, o ...ListCurrentUserApplicationKeysOptionalParameters) (ListApplicationKeysResponse, *_nethttp.Response, error) {
+	req, err := a.buildListCurrentUserApplicationKeysRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue ListApplicationKeysResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listCurrentUserApplicationKeysExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ListApplicationKeysResponse
- */
+// listCurrentUserApplicationKeysExecute executes the request.
 func (a *KeyManagementApiService) listCurrentUserApplicationKeysExecute(r apiListCurrentUserApplicationKeysRequest) (ListApplicationKeysResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1951,25 +2039,29 @@ type apiUpdateAPIKeyRequest struct {
 	body       *APIKeyUpdateRequest
 }
 
-/*
- * UpdateAPIKey Edit an API key
- * Update an API key.
- */
-func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, apiKeyId string, body APIKeyUpdateRequest) (APIKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildUpdateAPIKeyRequest(ctx _context.Context, apiKeyId string, body APIKeyUpdateRequest) (apiUpdateAPIKeyRequest, error) {
 	req := apiUpdateAPIKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		apiKeyId:   apiKeyId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateAPIKey Edit an API key.
+// Update an API key.
+func (a *KeyManagementApiService) UpdateAPIKey(ctx _context.Context, apiKeyId string, body APIKeyUpdateRequest) (APIKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateAPIKeyRequest(ctx, apiKeyId, body)
+	if err != nil {
+		var localVarReturnValue APIKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateAPIKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return APIKeyResponse
- */
+// updateAPIKeyExecute executes the request.
 func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) (APIKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -2123,25 +2215,29 @@ type apiUpdateApplicationKeyRequest struct {
 	body       *ApplicationKeyUpdateRequest
 }
 
-/*
- * UpdateApplicationKey Edit an application key
- * Edit an application key
- */
-func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildUpdateApplicationKeyRequest(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateApplicationKeyRequest, error) {
 	req := apiUpdateApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		appKeyId:   appKeyId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateApplicationKey Edit an application key.
+// Edit an application key
+func (a *KeyManagementApiService) UpdateApplicationKey(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateApplicationKeyRequest(ctx, appKeyId, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ApplicationKeyResponse
- */
+// updateApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) updateApplicationKeyExecute(r apiUpdateApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch
@@ -2295,25 +2391,29 @@ type apiUpdateCurrentUserApplicationKeyRequest struct {
 	body       *ApplicationKeyUpdateRequest
 }
 
-/*
- * UpdateCurrentUserApplicationKey Edit an application key owned by current user
- * Edit an application key owned by current user
- */
-func (a *KeyManagementApiService) UpdateCurrentUserApplicationKey(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+func (a *KeyManagementApiService) buildUpdateCurrentUserApplicationKeyRequest(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (apiUpdateCurrentUserApplicationKeyRequest, error) {
 	req := apiUpdateCurrentUserApplicationKeyRequest{
 		ApiService: a,
 		ctx:        ctx,
 		appKeyId:   appKeyId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateCurrentUserApplicationKey Edit an application key owned by current user.
+// Edit an application key owned by current user
+func (a *KeyManagementApiService) UpdateCurrentUserApplicationKey(ctx _context.Context, appKeyId string, body ApplicationKeyUpdateRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateCurrentUserApplicationKeyRequest(ctx, appKeyId, body)
+	if err != nil {
+		var localVarReturnValue ApplicationKeyResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateCurrentUserApplicationKeyExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ApplicationKeyResponse
- */
+// updateCurrentUserApplicationKeyExecute executes the request.
 func (a *KeyManagementApiService) updateCurrentUserApplicationKeyExecute(r apiUpdateCurrentUserApplicationKeyRequest) (ApplicationKeyResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

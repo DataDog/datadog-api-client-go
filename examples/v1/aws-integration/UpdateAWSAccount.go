@@ -13,10 +13,9 @@ import (
 
 func main() {
 	body := datadog.AWSAccount{
-		AccountId: datadog.PtrString("1234567"),
+		AccountId: datadog.PtrString("123456789012"),
 		AccountSpecificNamespaceRules: map[string]bool{
 			"auto_scaling": false,
-			"opswork":      false,
 		},
 		CspmResourceCollectionEnabled: datadog.PtrBool(true),
 		ExcludedRegions: []string{
@@ -31,12 +30,12 @@ func main() {
 		},
 		MetricsCollectionEnabled:  datadog.PtrBool(false),
 		ResourceCollectionEnabled: datadog.PtrBool(true),
-		RoleName:                  datadog.PtrString("DatadogAWSIntegrationRole"),
+		RoleName:                  datadog.PtrString("datadog-role"),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AWSIntegrationApi.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters())
+	resp, r, err := apiClient.AWSIntegrationApi.UpdateAWSAccount(ctx, body, *datadog.NewUpdateAWSAccountOptionalParameters().WithAccountId("123456789012").WithRoleName("datadog-role"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AWSIntegrationApi.UpdateAWSAccount`: %v\n", err)

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -46,6 +44,8 @@ type Downtime struct {
 	// The resulting downtime applies to monitors that match ALL provided monitor tags.
 	// For example, `service:postgres` **AND** `team:frontend`.
 	MonitorTags []string `json:"monitor_tags,omitempty"`
+	// If the first recovery notification during a downtime should be muted.
+	MuteFirstRecoveryNotification *bool `json:"mute_first_recovery_notification,omitempty"`
 	// ID of the parent Downtime.
 	ParentId NullableInt64 `json:"parent_id,omitempty"`
 	// An object defining the recurrence of the downtime.
@@ -66,18 +66,18 @@ type Downtime struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewDowntime instantiates a new Downtime object
+// NewDowntime instantiates a new Downtime object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewDowntime() *Downtime {
 	this := Downtime{}
 	return &this
 }
 
-// NewDowntimeWithDefaults instantiates a new Downtime object
+// NewDowntimeWithDefaults instantiates a new Downtime object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewDowntimeWithDefaults() *Downtime {
 	this := Downtime{}
 	return &this
@@ -126,7 +126,7 @@ func (o *Downtime) GetActiveChild() DowntimeChild {
 
 // GetActiveChildOk returns a tuple with the ActiveChild field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetActiveChildOk() (*DowntimeChild, bool) {
 	if o == nil {
 		return nil, false
@@ -148,12 +148,12 @@ func (o *Downtime) SetActiveChild(v DowntimeChild) {
 	o.ActiveChild.Set(&v)
 }
 
-// SetActiveChildNil sets the value for ActiveChild to be an explicit nil
+// SetActiveChildNil sets the value for ActiveChild to be an explicit nil.
 func (o *Downtime) SetActiveChildNil() {
 	o.ActiveChild.Set(nil)
 }
 
-// UnsetActiveChild ensures that no value is present for ActiveChild, not even an explicit nil
+// UnsetActiveChild ensures that no value is present for ActiveChild, not even an explicit nil.
 func (o *Downtime) UnsetActiveChild() {
 	o.ActiveChild.Unset()
 }
@@ -169,7 +169,7 @@ func (o *Downtime) GetCanceled() int64 {
 
 // GetCanceledOk returns a tuple with the Canceled field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetCanceledOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -191,12 +191,12 @@ func (o *Downtime) SetCanceled(v int64) {
 	o.Canceled.Set(&v)
 }
 
-// SetCanceledNil sets the value for Canceled to be an explicit nil
+// SetCanceledNil sets the value for Canceled to be an explicit nil.
 func (o *Downtime) SetCanceledNil() {
 	o.Canceled.Set(nil)
 }
 
-// UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil
+// UnsetCanceled ensures that no value is present for Canceled, not even an explicit nil.
 func (o *Downtime) UnsetCanceled() {
 	o.Canceled.Unset()
 }
@@ -308,7 +308,7 @@ func (o *Downtime) GetEnd() int64 {
 
 // GetEndOk returns a tuple with the End field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetEndOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -330,12 +330,12 @@ func (o *Downtime) SetEnd(v int64) {
 	o.End.Set(&v)
 }
 
-// SetEndNil sets the value for End to be an explicit nil
+// SetEndNil sets the value for End to be an explicit nil.
 func (o *Downtime) SetEndNil() {
 	o.End.Set(nil)
 }
 
-// UnsetEnd ensures that no value is present for End, not even an explicit nil
+// UnsetEnd ensures that no value is present for End, not even an explicit nil.
 func (o *Downtime) UnsetEnd() {
 	o.End.Unset()
 }
@@ -415,7 +415,7 @@ func (o *Downtime) GetMonitorId() int64 {
 
 // GetMonitorIdOk returns a tuple with the MonitorId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetMonitorIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -437,12 +437,12 @@ func (o *Downtime) SetMonitorId(v int64) {
 	o.MonitorId.Set(&v)
 }
 
-// SetMonitorIdNil sets the value for MonitorId to be an explicit nil
+// SetMonitorIdNil sets the value for MonitorId to be an explicit nil.
 func (o *Downtime) SetMonitorIdNil() {
 	o.MonitorId.Set(nil)
 }
 
-// UnsetMonitorId ensures that no value is present for MonitorId, not even an explicit nil
+// UnsetMonitorId ensures that no value is present for MonitorId, not even an explicit nil.
 func (o *Downtime) UnsetMonitorId() {
 	o.MonitorId.Unset()
 }
@@ -479,6 +479,38 @@ func (o *Downtime) SetMonitorTags(v []string) {
 	o.MonitorTags = v
 }
 
+// GetMuteFirstRecoveryNotification returns the MuteFirstRecoveryNotification field value if set, zero value otherwise.
+func (o *Downtime) GetMuteFirstRecoveryNotification() bool {
+	if o == nil || o.MuteFirstRecoveryNotification == nil {
+		var ret bool
+		return ret
+	}
+	return *o.MuteFirstRecoveryNotification
+}
+
+// GetMuteFirstRecoveryNotificationOk returns a tuple with the MuteFirstRecoveryNotification field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *Downtime) GetMuteFirstRecoveryNotificationOk() (*bool, bool) {
+	if o == nil || o.MuteFirstRecoveryNotification == nil {
+		return nil, false
+	}
+	return o.MuteFirstRecoveryNotification, true
+}
+
+// HasMuteFirstRecoveryNotification returns a boolean if a field has been set.
+func (o *Downtime) HasMuteFirstRecoveryNotification() bool {
+	if o != nil && o.MuteFirstRecoveryNotification != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMuteFirstRecoveryNotification gets a reference to the given bool and assigns it to the MuteFirstRecoveryNotification field.
+func (o *Downtime) SetMuteFirstRecoveryNotification(v bool) {
+	o.MuteFirstRecoveryNotification = &v
+}
+
 // GetParentId returns the ParentId field value if set, zero value otherwise (both if not set or set to explicit null).
 func (o *Downtime) GetParentId() int64 {
 	if o == nil || o.ParentId.Get() == nil {
@@ -490,7 +522,7 @@ func (o *Downtime) GetParentId() int64 {
 
 // GetParentIdOk returns a tuple with the ParentId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetParentIdOk() (*int64, bool) {
 	if o == nil {
 		return nil, false
@@ -512,12 +544,12 @@ func (o *Downtime) SetParentId(v int64) {
 	o.ParentId.Set(&v)
 }
 
-// SetParentIdNil sets the value for ParentId to be an explicit nil
+// SetParentIdNil sets the value for ParentId to be an explicit nil.
 func (o *Downtime) SetParentIdNil() {
 	o.ParentId.Set(nil)
 }
 
-// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil
+// UnsetParentId ensures that no value is present for ParentId, not even an explicit nil.
 func (o *Downtime) UnsetParentId() {
 	o.ParentId.Unset()
 }
@@ -533,7 +565,7 @@ func (o *Downtime) GetRecurrence() DowntimeRecurrence {
 
 // GetRecurrenceOk returns a tuple with the Recurrence field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetRecurrenceOk() (*DowntimeRecurrence, bool) {
 	if o == nil {
 		return nil, false
@@ -555,12 +587,12 @@ func (o *Downtime) SetRecurrence(v DowntimeRecurrence) {
 	o.Recurrence.Set(&v)
 }
 
-// SetRecurrenceNil sets the value for Recurrence to be an explicit nil
+// SetRecurrenceNil sets the value for Recurrence to be an explicit nil.
 func (o *Downtime) SetRecurrenceNil() {
 	o.Recurrence.Set(nil)
 }
 
-// UnsetRecurrence ensures that no value is present for Recurrence, not even an explicit nil
+// UnsetRecurrence ensures that no value is present for Recurrence, not even an explicit nil.
 func (o *Downtime) UnsetRecurrence() {
 	o.Recurrence.Unset()
 }
@@ -672,7 +704,7 @@ func (o *Downtime) GetUpdaterId() int32 {
 
 // GetUpdaterIdOk returns a tuple with the UpdaterId field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *Downtime) GetUpdaterIdOk() (*int32, bool) {
 	if o == nil {
 		return nil, false
@@ -694,16 +726,17 @@ func (o *Downtime) SetUpdaterId(v int32) {
 	o.UpdaterId.Set(&v)
 }
 
-// SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil
+// SetUpdaterIdNil sets the value for UpdaterId to be an explicit nil.
 func (o *Downtime) SetUpdaterIdNil() {
 	o.UpdaterId.Set(nil)
 }
 
-// UnsetUpdaterId ensures that no value is present for UpdaterId, not even an explicit nil
+// UnsetUpdaterId ensures that no value is present for UpdaterId, not even an explicit nil.
 func (o *Downtime) UnsetUpdaterId() {
 	o.UpdaterId.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o Downtime) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -742,6 +775,9 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	if o.MonitorTags != nil {
 		toSerialize["monitor_tags"] = o.MonitorTags
 	}
+	if o.MuteFirstRecoveryNotification != nil {
+		toSerialize["mute_first_recovery_notification"] = o.MuteFirstRecoveryNotification
+	}
 	if o.ParentId.IsSet() {
 		toSerialize["parent_id"] = o.ParentId.Get()
 	}
@@ -767,26 +803,28 @@ func (o Downtime) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Active       *bool                      `json:"active,omitempty"`
-		ActiveChild  NullableDowntimeChild      `json:"active_child,omitempty"`
-		Canceled     NullableInt64              `json:"canceled,omitempty"`
-		CreatorId    *int32                     `json:"creator_id,omitempty"`
-		Disabled     *bool                      `json:"disabled,omitempty"`
-		DowntimeType *int32                     `json:"downtime_type,omitempty"`
-		End          NullableInt64              `json:"end,omitempty"`
-		Id           *int64                     `json:"id,omitempty"`
-		Message      *string                    `json:"message,omitempty"`
-		MonitorId    NullableInt64              `json:"monitor_id,omitempty"`
-		MonitorTags  []string                   `json:"monitor_tags,omitempty"`
-		ParentId     NullableInt64              `json:"parent_id,omitempty"`
-		Recurrence   NullableDowntimeRecurrence `json:"recurrence,omitempty"`
-		Scope        []string                   `json:"scope,omitempty"`
-		Start        *int64                     `json:"start,omitempty"`
-		Timezone     *string                    `json:"timezone,omitempty"`
-		UpdaterId    NullableInt32              `json:"updater_id,omitempty"`
+		Active                        *bool                      `json:"active,omitempty"`
+		ActiveChild                   NullableDowntimeChild      `json:"active_child,omitempty"`
+		Canceled                      NullableInt64              `json:"canceled,omitempty"`
+		CreatorId                     *int32                     `json:"creator_id,omitempty"`
+		Disabled                      *bool                      `json:"disabled,omitempty"`
+		DowntimeType                  *int32                     `json:"downtime_type,omitempty"`
+		End                           NullableInt64              `json:"end,omitempty"`
+		Id                            *int64                     `json:"id,omitempty"`
+		Message                       *string                    `json:"message,omitempty"`
+		MonitorId                     NullableInt64              `json:"monitor_id,omitempty"`
+		MonitorTags                   []string                   `json:"monitor_tags,omitempty"`
+		MuteFirstRecoveryNotification *bool                      `json:"mute_first_recovery_notification,omitempty"`
+		ParentId                      NullableInt64              `json:"parent_id,omitempty"`
+		Recurrence                    NullableDowntimeRecurrence `json:"recurrence,omitempty"`
+		Scope                         []string                   `json:"scope,omitempty"`
+		Start                         *int64                     `json:"start,omitempty"`
+		Timezone                      *string                    `json:"timezone,omitempty"`
+		UpdaterId                     NullableInt32              `json:"updater_id,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -808,6 +846,7 @@ func (o *Downtime) UnmarshalJSON(bytes []byte) (err error) {
 	o.Message = all.Message
 	o.MonitorId = all.MonitorId
 	o.MonitorTags = all.MonitorTags
+	o.MuteFirstRecoveryNotification = all.MuteFirstRecoveryNotification
 	o.ParentId = all.ParentId
 	o.Recurrence = all.Recurrence
 	o.Scope = all.Scope

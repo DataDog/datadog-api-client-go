@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -16,12 +14,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// OrganizationsApiService OrganizationsApi service
+// OrganizationsApiService OrganizationsApi service.
 type OrganizationsApiService service
 
 type apiCreateChildOrgRequest struct {
@@ -30,33 +23,37 @@ type apiCreateChildOrgRequest struct {
 	body       *OrganizationCreateBody
 }
 
-/*
- * CreateChildOrg Create a child organization
- * Create a child organization.
- *
- * This endpoint requires the
- * [multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
- * feature and must be enabled by
- * [contacting support](https://docs.datadoghq.com/help/).
- *
- * Once a new child organization is created, you can interact with it
- * by using the `org.public_id`, `api_key.key`, and
- * `application_key.hash` provided in the response.
- */
-func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildCreateChildOrgRequest(ctx _context.Context, body OrganizationCreateBody) (apiCreateChildOrgRequest, error) {
 	req := apiCreateChildOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateChildOrg Create a child organization.
+// Create a child organization.
+//
+// This endpoint requires the
+// [multi-organization account](https://docs.datadoghq.com/account_management/multi_organization/)
+// feature and must be enabled by
+// [contacting support](https://docs.datadoghq.com/help/).
+//
+// Once a new child organization is created, you can interact with it
+// by using the `org.public_id`, `api_key.key`, and
+// `application_key.hash` provided in the response.
+func (a *OrganizationsApiService) CreateChildOrg(ctx _context.Context, body OrganizationCreateBody) (OrganizationCreateResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateChildOrgRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue OrganizationCreateResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createChildOrgExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return OrganizationCreateResponse
- */
+// createChildOrgExecute executes the request.
 func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgRequest) (OrganizationCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -198,24 +195,28 @@ type apiGetOrgRequest struct {
 	publicId   string
 }
 
-/*
- * GetOrg Get organization information
- * Get organization information.
- */
-func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) (OrganizationResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildGetOrgRequest(ctx _context.Context, publicId string) (apiGetOrgRequest, error) {
 	req := apiGetOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+	return req, nil
+}
+
+// GetOrg Get organization information.
+// Get organization information.
+func (a *OrganizationsApiService) GetOrg(ctx _context.Context, publicId string) (OrganizationResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetOrgRequest(ctx, publicId)
+	if err != nil {
+		var localVarReturnValue OrganizationResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getOrgExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return OrganizationResponse
- */
+// getOrgExecute executes the request.
 func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -342,23 +343,27 @@ type apiListOrgsRequest struct {
 	ApiService *OrganizationsApiService
 }
 
-/*
- * ListOrgs List your managed organizations
- * List your managed organizations.
- */
-func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildListOrgsRequest(ctx _context.Context) (apiListOrgsRequest, error) {
 	req := apiListOrgsRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListOrgs List your managed organizations.
+// List your managed organizations.
+func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListOrgsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue OrganizationListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listOrgsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return OrganizationListResponse
- */
+// listOrgsExecute executes the request.
 func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (OrganizationListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -476,25 +481,29 @@ type apiUpdateOrgRequest struct {
 	body       *Organization
 }
 
-/*
- * UpdateOrg Update your organization
- * Update your organization.
- */
-func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildUpdateOrgRequest(ctx _context.Context, publicId string, body Organization) (apiUpdateOrgRequest, error) {
 	req := apiUpdateOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateOrg Update your organization.
+// Update your organization.
+func (a *OrganizationsApiService) UpdateOrg(ctx _context.Context, publicId string, body Organization) (OrganizationResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateOrgRequest(ctx, publicId, body)
+	if err != nil {
+		var localVarReturnValue OrganizationResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateOrgExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return OrganizationResponse
- */
+// updateOrgExecute executes the request.
 func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (OrganizationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -638,30 +647,34 @@ type apiUploadIdPForOrgRequest struct {
 	idpFile    **os.File
 }
 
-/*
- * UploadIdPForOrg Upload IdP metadata
- * There are a couple of options for updating the Identity Provider (IdP)
- * metadata from your SAML IdP.
- *
- * * **Multipart Form-Data**: Post the IdP metadata file using a form post.
- *
- * * **XML Body:** Post the IdP metadata file as the body of the request.
- */
-func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
+func (a *OrganizationsApiService) buildUploadIdPForOrgRequest(ctx _context.Context, publicId string, idpFile *os.File) (apiUploadIdPForOrgRequest, error) {
 	req := apiUploadIdPForOrgRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		idpFile:    &idpFile,
 	}
+	return req, nil
+}
+
+// UploadIdPForOrg Upload IdP metadata.
+// There are a couple of options for updating the Identity Provider (IdP)
+// metadata from your SAML IdP.
+//
+// * **Multipart Form-Data**: Post the IdP metadata file using a form post.
+//
+// * **XML Body:** Post the IdP metadata file as the body of the request.
+func (a *OrganizationsApiService) UploadIdPForOrg(ctx _context.Context, publicId string, idpFile *os.File) (IdpResponse, *_nethttp.Response, error) {
+	req, err := a.buildUploadIdPForOrgRequest(ctx, publicId, idpFile)
+	if err != nil {
+		var localVarReturnValue IdpResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.uploadIdPForOrgExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return IdpResponse
- */
+// uploadIdPForOrgExecute executes the request.
 func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgRequest) (IdpResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -32,10 +30,10 @@ type ApmStatsQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object
+// NewApmStatsQueryDefinition instantiates a new ApmStatsQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewApmStatsQueryDefinition(env string, name string, primaryTag string, rowType ApmStatsQueryRowType, service string) *ApmStatsQueryDefinition {
 	this := ApmStatsQueryDefinition{}
 	this.Env = env
@@ -46,9 +44,9 @@ func NewApmStatsQueryDefinition(env string, name string, primaryTag string, rowT
 	return &this
 }
 
-// NewApmStatsQueryDefinitionWithDefaults instantiates a new ApmStatsQueryDefinition object
+// NewApmStatsQueryDefinitionWithDefaults instantiates a new ApmStatsQueryDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewApmStatsQueryDefinitionWithDefaults() *ApmStatsQueryDefinition {
 	this := ApmStatsQueryDefinition{}
 	return &this
@@ -86,7 +84,7 @@ func (o *ApmStatsQueryDefinition) SetColumns(v []ApmStatsQueryColumnType) {
 	o.Columns = v
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value.
 func (o *ApmStatsQueryDefinition) GetEnv() string {
 	if o == nil {
 		var ret string
@@ -104,12 +102,12 @@ func (o *ApmStatsQueryDefinition) GetEnvOk() (*string, bool) {
 	return &o.Env, true
 }
 
-// SetEnv sets field value
+// SetEnv sets field value.
 func (o *ApmStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *ApmStatsQueryDefinition) GetName() string {
 	if o == nil {
 		var ret string
@@ -127,12 +125,12 @@ func (o *ApmStatsQueryDefinition) GetNameOk() (*string, bool) {
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *ApmStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
-// GetPrimaryTag returns the PrimaryTag field value
+// GetPrimaryTag returns the PrimaryTag field value.
 func (o *ApmStatsQueryDefinition) GetPrimaryTag() string {
 	if o == nil {
 		var ret string
@@ -150,7 +148,7 @@ func (o *ApmStatsQueryDefinition) GetPrimaryTagOk() (*string, bool) {
 	return &o.PrimaryTag, true
 }
 
-// SetPrimaryTag sets field value
+// SetPrimaryTag sets field value.
 func (o *ApmStatsQueryDefinition) SetPrimaryTag(v string) {
 	o.PrimaryTag = v
 }
@@ -187,7 +185,7 @@ func (o *ApmStatsQueryDefinition) SetResource(v string) {
 	o.Resource = &v
 }
 
-// GetRowType returns the RowType field value
+// GetRowType returns the RowType field value.
 func (o *ApmStatsQueryDefinition) GetRowType() ApmStatsQueryRowType {
 	if o == nil {
 		var ret ApmStatsQueryRowType
@@ -205,12 +203,12 @@ func (o *ApmStatsQueryDefinition) GetRowTypeOk() (*ApmStatsQueryRowType, bool) {
 	return &o.RowType, true
 }
 
-// SetRowType sets field value
+// SetRowType sets field value.
 func (o *ApmStatsQueryDefinition) SetRowType(v ApmStatsQueryRowType) {
 	o.RowType = v
 }
 
-// GetService returns the Service field value
+// GetService returns the Service field value.
 func (o *ApmStatsQueryDefinition) GetService() string {
 	if o == nil {
 		var ret string
@@ -228,11 +226,12 @@ func (o *ApmStatsQueryDefinition) GetServiceOk() (*string, bool) {
 	return &o.Service, true
 }
 
-// SetService sets field value
+// SetService sets field value.
 func (o *ApmStatsQueryDefinition) SetService(v string) {
 	o.Service = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -256,6 +255,7 @@ func (o ApmStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ApmStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

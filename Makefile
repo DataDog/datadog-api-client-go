@@ -1,6 +1,6 @@
 .PHONY: all
 all: .generator
-	@rm -rf api/*
+	@rm -rf api/* examples/*
 	@pre-commit run --all-files --hook-stage=manual generator-v1 || true
 	@pre-commit run --all-files --hook-stage=manual generator-v2 || true
 	@pre-commit run --all-files --hook-stage=manual examples || true

@@ -139,13 +139,17 @@ func TestLogsListErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 
 			_, httpresp, err := Client(ctx).LogsApi.ListLogs(ctx, tc.Body)
+			openAPIErr, ok := err.(datadog.GenericOpenAPIError)
+			if !ok {
+				t.Fatalf("Unexpected error %T: %v", err, err)
+			}
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if tc.ExpectedStatusCode == 403 {
-				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+				apiError, ok := openAPIErr.Model().(datadog.APIErrorResponse)
 				assert.True(ok)
 				assert.NotEmpty(apiError.GetErrors())
 			} else {
-				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.LogsAPIErrorResponse)
+				apiError, ok := openAPIErr.Model().(datadog.LogsAPIErrorResponse)
 				assert.True(ok)
 				assert.NotEmpty(apiError.GetError())
 			}

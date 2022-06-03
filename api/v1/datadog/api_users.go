@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// UsersApiService UsersApi service
+// UsersApiService UsersApi service.
 type UsersApiService service
 
 type apiCreateUserRequest struct {
@@ -29,27 +22,31 @@ type apiCreateUserRequest struct {
 	body       *User
 }
 
-/*
- * CreateUser Create a user
- * Create a user for your organization.
- *
- * **Note**: Users can only be created with the admin access role
- * if application keys belong to administrators.
- */
-func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildCreateUserRequest(ctx _context.Context, body User) (apiCreateUserRequest, error) {
 	req := apiCreateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateUser Create a user.
+// Create a user for your organization.
+//
+// **Note**: Users can only be created with the admin access role
+// if application keys belong to administrators.
+func (a *UsersApiService) CreateUser(ctx _context.Context, body User) (UserResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateUserRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// createUserExecute executes the request.
 func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -201,27 +198,31 @@ type apiDisableUserRequest struct {
 	userHandle string
 }
 
-/*
- * DisableUser Disable a user
- * Delete a user from an organization.
- *
- * **Note**: This endpoint can only be used with application keys belonging to
- * administrators.
- */
-func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildDisableUserRequest(ctx _context.Context, userHandle string) (apiDisableUserRequest, error) {
 	req := apiDisableUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
+	return req, nil
+}
+
+// DisableUser Disable a user.
+// Delete a user from an organization.
+//
+// **Note**: This endpoint can only be used with application keys belonging to
+// administrators.
+func (a *UsersApiService) DisableUser(ctx _context.Context, userHandle string) (UserDisableResponse, *_nethttp.Response, error) {
+	req, err := a.buildDisableUserRequest(ctx, userHandle)
+	if err != nil {
+		var localVarReturnValue UserDisableResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.disableUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserDisableResponse
- */
+// disableUserExecute executes the request.
 func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (UserDisableResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -359,24 +360,28 @@ type apiGetUserRequest struct {
 	userHandle string
 }
 
-/*
- * GetUser Get user details
- * Get a user's details.
- */
-func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildGetUserRequest(ctx _context.Context, userHandle string) (apiGetUserRequest, error) {
 	req := apiGetUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
 	}
+	return req, nil
+}
+
+// GetUser Get user details.
+// Get a user's details.
+func (a *UsersApiService) GetUser(ctx _context.Context, userHandle string) (UserResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetUserRequest(ctx, userHandle)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// getUserExecute executes the request.
 func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -503,23 +508,27 @@ type apiListUsersRequest struct {
 	ApiService *UsersApiService
 }
 
-/*
- * ListUsers List all users
- * List all users for your organization.
- */
-func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildListUsersRequest(ctx _context.Context) (apiListUsersRequest, error) {
 	req := apiListUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListUsers List all users.
+// List all users for your organization.
+func (a *UsersApiService) ListUsers(ctx _context.Context) (UserListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListUsersRequest(ctx)
+	if err != nil {
+		var localVarReturnValue UserListResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listUsersExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserListResponse
- */
+// listUsersExecute executes the request.
 func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UserListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -637,27 +646,31 @@ type apiUpdateUserRequest struct {
 	body       *User
 }
 
-/*
- * UpdateUser Update a user
- * Update a user information.
- *
- * **Note**: It can only be used with application keys belonging to administrators.
- */
-func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
+func (a *UsersApiService) buildUpdateUserRequest(ctx _context.Context, userHandle string, body User) (apiUpdateUserRequest, error) {
 	req := apiUpdateUserRequest{
 		ApiService: a,
 		ctx:        ctx,
 		userHandle: userHandle,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateUser Update a user.
+// Update a user information.
+//
+// **Note**: It can only be used with application keys belonging to administrators.
+func (a *UsersApiService) UpdateUser(ctx _context.Context, userHandle string, body User) (UserResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateUserRequest(ctx, userHandle, body)
+	if err != nil {
+		var localVarReturnValue UserResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateUserExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UserResponse
- */
+// updateUserExecute executes the request.
 func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

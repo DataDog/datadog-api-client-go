@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -50,26 +48,26 @@ type ServiceSummaryWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object
+// NewServiceSummaryWidgetDefinition instantiates a new ServiceSummaryWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, type_ ServiceSummaryWidgetDefinitionType) *ServiceSummaryWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewServiceSummaryWidgetDefinition(env string, service string, spanName string, typeVar ServiceSummaryWidgetDefinitionType) *ServiceSummaryWidgetDefinition {
 	this := ServiceSummaryWidgetDefinition{}
 	this.Env = env
 	this.Service = service
 	this.SpanName = spanName
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewServiceSummaryWidgetDefinitionWithDefaults instantiates a new ServiceSummaryWidgetDefinition object
+// NewServiceSummaryWidgetDefinitionWithDefaults instantiates a new ServiceSummaryWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewServiceSummaryWidgetDefinitionWithDefaults() *ServiceSummaryWidgetDefinition {
 	this := ServiceSummaryWidgetDefinition{}
-	var type_ ServiceSummaryWidgetDefinitionType = SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE
-	this.Type = type_
+	var typeVar ServiceSummaryWidgetDefinitionType = SERVICESUMMARYWIDGETDEFINITIONTYPE_TRACE_SERVICE
+	this.Type = typeVar
 	return &this
 }
 
@@ -105,7 +103,7 @@ func (o *ServiceSummaryWidgetDefinition) SetDisplayFormat(v WidgetServiceSummary
 	o.DisplayFormat = &v
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value.
 func (o *ServiceSummaryWidgetDefinition) GetEnv() string {
 	if o == nil {
 		var ret string
@@ -123,12 +121,12 @@ func (o *ServiceSummaryWidgetDefinition) GetEnvOk() (*string, bool) {
 	return &o.Env, true
 }
 
-// SetEnv sets field value
+// SetEnv sets field value.
 func (o *ServiceSummaryWidgetDefinition) SetEnv(v string) {
 	o.Env = v
 }
 
-// GetService returns the Service field value
+// GetService returns the Service field value.
 func (o *ServiceSummaryWidgetDefinition) GetService() string {
 	if o == nil {
 		var ret string
@@ -146,7 +144,7 @@ func (o *ServiceSummaryWidgetDefinition) GetServiceOk() (*string, bool) {
 	return &o.Service, true
 }
 
-// SetService sets field value
+// SetService sets field value.
 func (o *ServiceSummaryWidgetDefinition) SetService(v string) {
 	o.Service = v
 }
@@ -375,7 +373,7 @@ func (o *ServiceSummaryWidgetDefinition) SetSizeFormat(v WidgetSizeFormat) {
 	o.SizeFormat = &v
 }
 
-// GetSpanName returns the SpanName field value
+// GetSpanName returns the SpanName field value.
 func (o *ServiceSummaryWidgetDefinition) GetSpanName() string {
 	if o == nil {
 		var ret string
@@ -393,7 +391,7 @@ func (o *ServiceSummaryWidgetDefinition) GetSpanNameOk() (*string, bool) {
 	return &o.SpanName, true
 }
 
-// SetSpanName sets field value
+// SetSpanName sets field value.
 func (o *ServiceSummaryWidgetDefinition) SetSpanName(v string) {
 	o.SpanName = v
 }
@@ -526,7 +524,7 @@ func (o *ServiceSummaryWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ServiceSummaryWidgetDefinition) GetType() ServiceSummaryWidgetDefinitionType {
 	if o == nil {
 		var ret ServiceSummaryWidgetDefinitionType
@@ -544,11 +542,12 @@ func (o *ServiceSummaryWidgetDefinition) GetTypeOk() (*ServiceSummaryWidgetDefin
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ServiceSummaryWidgetDefinition) SetType(v ServiceSummaryWidgetDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -601,6 +600,7 @@ func (o ServiceSummaryWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ServiceSummaryWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

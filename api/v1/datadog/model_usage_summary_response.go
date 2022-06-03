@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -111,12 +109,16 @@ type UsageSummaryResponse struct {
 	MobileRumSessionCountAndroidAggSum *int64 `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM Sessions on iOS over all hours in the current months for all organizations.
 	MobileRumSessionCountIosAggSum *int64 `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
+	// Shows the sum of all mobile RUM Sessions on React Native over all hours in the current months for all organizations.
+	MobileRumSessionCountReactnativeAggSum *int64 `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
 	// Shows the sum of all mobile RUM units over all hours in the current months for all organizations.
 	MobileRumUnitsAggSum *int64 `json:"mobile_rum_units_agg_sum,omitempty"`
 	// Shows the sum of all Network flows indexed over all hours in the current months for all organizations.
 	NetflowIndexedEventsCountAggSum *int64 `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all distinct Networks hosts over all hours in the current months for all organizations.
 	NpmHostTop99pSum *int64 `json:"npm_host_top99p_sum,omitempty"`
+	// Sum of all observability pipelines bytes processed over all hours in the current months for all organizations.
+	ObservabilityPipelinesBytesProcessedAggSum *int64 `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 	// Sum of all online archived events over all hours in the current months for all organizations.
 	OnlineArchiveEventsCountAggSum *int64 `json:"online_archive_events_count_agg_sum,omitempty"`
 	// Shows the 99th percentile of all hosts reported by the Datadog exporter for the OpenTelemetry Collector over all hours in the current months for all organizations.
@@ -160,18 +162,18 @@ type UsageSummaryResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewUsageSummaryResponse instantiates a new UsageSummaryResponse object
+// NewUsageSummaryResponse instantiates a new UsageSummaryResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewUsageSummaryResponse() *UsageSummaryResponse {
 	this := UsageSummaryResponse{}
 	return &this
 }
 
-// NewUsageSummaryResponseWithDefaults instantiates a new UsageSummaryResponse object
+// NewUsageSummaryResponseWithDefaults instantiates a new UsageSummaryResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewUsageSummaryResponseWithDefaults() *UsageSummaryResponse {
 	this := UsageSummaryResponse{}
 	return &this
@@ -1745,6 +1747,38 @@ func (o *UsageSummaryResponse) SetMobileRumSessionCountIosAggSum(v int64) {
 	o.MobileRumSessionCountIosAggSum = &v
 }
 
+// GetMobileRumSessionCountReactnativeAggSum returns the MobileRumSessionCountReactnativeAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSum() int64 {
+	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.MobileRumSessionCountReactnativeAggSum
+}
+
+// GetMobileRumSessionCountReactnativeAggSumOk returns a tuple with the MobileRumSessionCountReactnativeAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetMobileRumSessionCountReactnativeAggSumOk() (*int64, bool) {
+	if o == nil || o.MobileRumSessionCountReactnativeAggSum == nil {
+		return nil, false
+	}
+	return o.MobileRumSessionCountReactnativeAggSum, true
+}
+
+// HasMobileRumSessionCountReactnativeAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasMobileRumSessionCountReactnativeAggSum() bool {
+	if o != nil && o.MobileRumSessionCountReactnativeAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMobileRumSessionCountReactnativeAggSum gets a reference to the given int64 and assigns it to the MobileRumSessionCountReactnativeAggSum field.
+func (o *UsageSummaryResponse) SetMobileRumSessionCountReactnativeAggSum(v int64) {
+	o.MobileRumSessionCountReactnativeAggSum = &v
+}
+
 // GetMobileRumUnitsAggSum returns the MobileRumUnitsAggSum field value if set, zero value otherwise.
 func (o *UsageSummaryResponse) GetMobileRumUnitsAggSum() int64 {
 	if o == nil || o.MobileRumUnitsAggSum == nil {
@@ -1839,6 +1873,38 @@ func (o *UsageSummaryResponse) HasNpmHostTop99pSum() bool {
 // SetNpmHostTop99pSum gets a reference to the given int64 and assigns it to the NpmHostTop99pSum field.
 func (o *UsageSummaryResponse) SetNpmHostTop99pSum(v int64) {
 	o.NpmHostTop99pSum = &v
+}
+
+// GetObservabilityPipelinesBytesProcessedAggSum returns the ObservabilityPipelinesBytesProcessedAggSum field value if set, zero value otherwise.
+func (o *UsageSummaryResponse) GetObservabilityPipelinesBytesProcessedAggSum() int64 {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedAggSum == nil {
+		var ret int64
+		return ret
+	}
+	return *o.ObservabilityPipelinesBytesProcessedAggSum
+}
+
+// GetObservabilityPipelinesBytesProcessedAggSumOk returns a tuple with the ObservabilityPipelinesBytesProcessedAggSum field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *UsageSummaryResponse) GetObservabilityPipelinesBytesProcessedAggSumOk() (*int64, bool) {
+	if o == nil || o.ObservabilityPipelinesBytesProcessedAggSum == nil {
+		return nil, false
+	}
+	return o.ObservabilityPipelinesBytesProcessedAggSum, true
+}
+
+// HasObservabilityPipelinesBytesProcessedAggSum returns a boolean if a field has been set.
+func (o *UsageSummaryResponse) HasObservabilityPipelinesBytesProcessedAggSum() bool {
+	if o != nil && o.ObservabilityPipelinesBytesProcessedAggSum != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetObservabilityPipelinesBytesProcessedAggSum gets a reference to the given int64 and assigns it to the ObservabilityPipelinesBytesProcessedAggSum field.
+func (o *UsageSummaryResponse) SetObservabilityPipelinesBytesProcessedAggSum(v int64) {
+	o.ObservabilityPipelinesBytesProcessedAggSum = &v
 }
 
 // GetOnlineArchiveEventsCountAggSum returns the OnlineArchiveEventsCountAggSum field value if set, zero value otherwise.
@@ -2449,6 +2515,7 @@ func (o *UsageSummaryResponse) SetVsphereHostTop99pSum(v int64) {
 	o.VsphereHostTop99pSum = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -2545,7 +2612,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["dbm_queries_avg_sum"] = o.DbmQueriesAvgSum
 	}
 	if o.EndDate != nil {
-		toSerialize["end_date"] = o.EndDate
+		if o.EndDate.Nanosecond() == 0 {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["end_date"] = o.EndDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.FargateTasksCountAvgSum != nil {
 		toSerialize["fargate_tasks_count_avg_sum"] = o.FargateTasksCountAvgSum
@@ -2578,7 +2649,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["iot_device_top99p_sum"] = o.IotDeviceTop99pSum
 	}
 	if o.LastUpdated != nil {
-		toSerialize["last_updated"] = o.LastUpdated
+		if o.LastUpdated.Nanosecond() == 0 {
+			toSerialize["last_updated"] = o.LastUpdated.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["last_updated"] = o.LastUpdated.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.LiveIndexedEventsAggSum != nil {
 		toSerialize["live_indexed_events_agg_sum"] = o.LiveIndexedEventsAggSum
@@ -2601,6 +2676,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	if o.MobileRumSessionCountIosAggSum != nil {
 		toSerialize["mobile_rum_session_count_ios_agg_sum"] = o.MobileRumSessionCountIosAggSum
 	}
+	if o.MobileRumSessionCountReactnativeAggSum != nil {
+		toSerialize["mobile_rum_session_count_reactnative_agg_sum"] = o.MobileRumSessionCountReactnativeAggSum
+	}
 	if o.MobileRumUnitsAggSum != nil {
 		toSerialize["mobile_rum_units_agg_sum"] = o.MobileRumUnitsAggSum
 	}
@@ -2609,6 +2687,9 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	}
 	if o.NpmHostTop99pSum != nil {
 		toSerialize["npm_host_top99p_sum"] = o.NpmHostTop99pSum
+	}
+	if o.ObservabilityPipelinesBytesProcessedAggSum != nil {
+		toSerialize["observability_pipelines_bytes_processed_agg_sum"] = o.ObservabilityPipelinesBytesProcessedAggSum
 	}
 	if o.OnlineArchiveEventsCountAggSum != nil {
 		toSerialize["online_archive_events_count_agg_sum"] = o.OnlineArchiveEventsCountAggSum
@@ -2647,7 +2728,11 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 		toSerialize["sds_total_scanned_bytes_sum"] = o.SdsTotalScannedBytesSum
 	}
 	if o.StartDate != nil {
-		toSerialize["start_date"] = o.StartDate
+		if o.StartDate.Nanosecond() == 0 {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["start_date"] = o.StartDate.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.SyntheticsBrowserCheckCallsCountAggSum != nil {
 		toSerialize["synthetics_browser_check_calls_count_agg_sum"] = o.SyntheticsBrowserCheckCallsCountAggSum
@@ -2674,6 +2759,7 @@ func (o UsageSummaryResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -2726,9 +2812,11 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 		MobileRumSessionCountAggSum                *int64             `json:"mobile_rum_session_count_agg_sum,omitempty"`
 		MobileRumSessionCountAndroidAggSum         *int64             `json:"mobile_rum_session_count_android_agg_sum,omitempty"`
 		MobileRumSessionCountIosAggSum             *int64             `json:"mobile_rum_session_count_ios_agg_sum,omitempty"`
+		MobileRumSessionCountReactnativeAggSum     *int64             `json:"mobile_rum_session_count_reactnative_agg_sum,omitempty"`
 		MobileRumUnitsAggSum                       *int64             `json:"mobile_rum_units_agg_sum,omitempty"`
 		NetflowIndexedEventsCountAggSum            *int64             `json:"netflow_indexed_events_count_agg_sum,omitempty"`
 		NpmHostTop99pSum                           *int64             `json:"npm_host_top99p_sum,omitempty"`
+		ObservabilityPipelinesBytesProcessedAggSum *int64             `json:"observability_pipelines_bytes_processed_agg_sum,omitempty"`
 		OnlineArchiveEventsCountAggSum             *int64             `json:"online_archive_events_count_agg_sum,omitempty"`
 		OpentelemetryHostTop99pSum                 *int64             `json:"opentelemetry_host_top99p_sum,omitempty"`
 		ProfilingContainerAgentCountAvg            *int64             `json:"profiling_container_agent_count_avg,omitempty"`
@@ -2814,9 +2902,11 @@ func (o *UsageSummaryResponse) UnmarshalJSON(bytes []byte) (err error) {
 	o.MobileRumSessionCountAggSum = all.MobileRumSessionCountAggSum
 	o.MobileRumSessionCountAndroidAggSum = all.MobileRumSessionCountAndroidAggSum
 	o.MobileRumSessionCountIosAggSum = all.MobileRumSessionCountIosAggSum
+	o.MobileRumSessionCountReactnativeAggSum = all.MobileRumSessionCountReactnativeAggSum
 	o.MobileRumUnitsAggSum = all.MobileRumUnitsAggSum
 	o.NetflowIndexedEventsCountAggSum = all.NetflowIndexedEventsCountAggSum
 	o.NpmHostTop99pSum = all.NpmHostTop99pSum
+	o.ObservabilityPipelinesBytesProcessedAggSum = all.ObservabilityPipelinesBytesProcessedAggSum
 	o.OnlineArchiveEventsCountAggSum = all.OnlineArchiveEventsCountAggSum
 	o.OpentelemetryHostTop99pSum = all.OpentelemetryHostTop99pSum
 	o.ProfilingContainerAgentCountAvg = all.ProfilingContainerAgentCountAvg

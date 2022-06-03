@@ -1,4 +1,4 @@
-// Get Usage Attribution returns "OK" response
+// Get usage attribution returns "OK" response
 
 package main
 

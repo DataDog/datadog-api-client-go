@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -43,6 +41,18 @@ type SyntheticsTestOptions struct {
 	RestrictedRoles []string `json:"restricted_roles,omitempty"`
 	// Object describing the retry strategy to apply to a Synthetic test.
 	Retry *SyntheticsTestOptionsRetry `json:"retry,omitempty"`
+	// The RUM data collection settings for the Synthetic browser test.
+	// **Note:** There are 3 ways to format RUM settings:
+	//
+	// `{ isEnabled: false }`
+	// RUM data is not collected.
+	//
+	// `{ isEnabled: true }`
+	// RUM data is collected from the Synthetic test's default application.
+	//
+	// `{ isEnabled: true, applicationId: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx", clientTokenId: 12345 }`
+	// RUM data is collected using the specified application.
+	RumSettings *SyntheticsBrowserTestRumSettings `json:"rumSettings,omitempty"`
 	// The frequency at which to run the Synthetic test (in seconds).
 	TickEvery *int64 `json:"tick_every,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -50,18 +60,18 @@ type SyntheticsTestOptions struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object
+// NewSyntheticsTestOptions instantiates a new SyntheticsTestOptions object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsTestOptions() *SyntheticsTestOptions {
 	this := SyntheticsTestOptions{}
 	return &this
 }
 
-// NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object
+// NewSyntheticsTestOptionsWithDefaults instantiates a new SyntheticsTestOptions object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsTestOptionsWithDefaults() *SyntheticsTestOptions {
 	this := SyntheticsTestOptions{}
 	return &this
@@ -515,6 +525,38 @@ func (o *SyntheticsTestOptions) SetRetry(v SyntheticsTestOptionsRetry) {
 	o.Retry = &v
 }
 
+// GetRumSettings returns the RumSettings field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetRumSettings() SyntheticsBrowserTestRumSettings {
+	if o == nil || o.RumSettings == nil {
+		var ret SyntheticsBrowserTestRumSettings
+		return ret
+	}
+	return *o.RumSettings
+}
+
+// GetRumSettingsOk returns a tuple with the RumSettings field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetRumSettingsOk() (*SyntheticsBrowserTestRumSettings, bool) {
+	if o == nil || o.RumSettings == nil {
+		return nil, false
+	}
+	return o.RumSettings, true
+}
+
+// HasRumSettings returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasRumSettings() bool {
+	if o != nil && o.RumSettings != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRumSettings gets a reference to the given SyntheticsBrowserTestRumSettings and assigns it to the RumSettings field.
+func (o *SyntheticsTestOptions) SetRumSettings(v SyntheticsBrowserTestRumSettings) {
+	o.RumSettings = &v
+}
+
 // GetTickEvery returns the TickEvery field value if set, zero value otherwise.
 func (o *SyntheticsTestOptions) GetTickEvery() int64 {
 	if o == nil || o.TickEvery == nil {
@@ -547,6 +589,7 @@ func (o *SyntheticsTestOptions) SetTickEvery(v int64) {
 	o.TickEvery = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -594,6 +637,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.Retry != nil {
 		toSerialize["retry"] = o.Retry
 	}
+	if o.RumSettings != nil {
+		toSerialize["rumSettings"] = o.RumSettings
+	}
 	if o.TickEvery != nil {
 		toSerialize["tick_every"] = o.TickEvery
 	}
@@ -604,6 +650,7 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -621,6 +668,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		NoScreenshot               *bool                                `json:"noScreenshot,omitempty"`
 		RestrictedRoles            []string                             `json:"restricted_roles,omitempty"`
 		Retry                      *SyntheticsTestOptionsRetry          `json:"retry,omitempty"`
+		RumSettings                *SyntheticsBrowserTestRumSettings    `json:"rumSettings,omitempty"`
 		TickEvery                  *int64                               `json:"tick_every,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
@@ -660,6 +708,14 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Retry = all.Retry
+	if all.RumSettings != nil && all.RumSettings.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.RumSettings = all.RumSettings
 	o.TickEvery = all.TickEvery
 	return nil
 }

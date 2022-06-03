@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -23,18 +21,18 @@ type SyntheticsCoreWebVitals struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object
+// NewSyntheticsCoreWebVitals instantiates a new SyntheticsCoreWebVitals object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsCoreWebVitals() *SyntheticsCoreWebVitals {
 	this := SyntheticsCoreWebVitals{}
 	return &this
 }
 
-// NewSyntheticsCoreWebVitalsWithDefaults instantiates a new SyntheticsCoreWebVitals object
+// NewSyntheticsCoreWebVitalsWithDefaults instantiates a new SyntheticsCoreWebVitals object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsCoreWebVitalsWithDefaults() *SyntheticsCoreWebVitals {
 	this := SyntheticsCoreWebVitals{}
 	return &this
@@ -136,6 +134,7 @@ func (o *SyntheticsCoreWebVitals) SetUrl(v string) {
 	o.Url = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,6 +156,7 @@ func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

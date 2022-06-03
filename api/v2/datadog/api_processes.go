@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// ProcessesApiService ProcessesApi service
+// ProcessesApiService ProcessesApi service.
 type ProcessesApiService service
 
 type apiListProcessesRequest struct {
@@ -33,6 +26,7 @@ type apiListProcessesRequest struct {
 	pageCursor *string
 }
 
+// ListProcessesOptionalParameters holds optional parameters for ListProcesses.
 type ListProcessesOptionalParameters struct {
 	Search     *string
 	Tags       *string
@@ -42,48 +36,56 @@ type ListProcessesOptionalParameters struct {
 	PageCursor *string
 }
 
+// NewListProcessesOptionalParameters creates an empty struct for parameters.
 func NewListProcessesOptionalParameters() *ListProcessesOptionalParameters {
 	this := ListProcessesOptionalParameters{}
 	return &this
 }
+
+// WithSearch sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithSearch(search string) *ListProcessesOptionalParameters {
 	r.Search = &search
 	return r
 }
+
+// WithTags sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithTags(tags string) *ListProcessesOptionalParameters {
 	r.Tags = &tags
 	return r
 }
+
+// WithFrom sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithFrom(from int64) *ListProcessesOptionalParameters {
 	r.From = &from
 	return r
 }
+
+// WithTo sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithTo(to int64) *ListProcessesOptionalParameters {
 	r.To = &to
 	return r
 }
+
+// WithPageLimit sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithPageLimit(pageLimit int32) *ListProcessesOptionalParameters {
 	r.PageLimit = &pageLimit
 	return r
 }
+
+// WithPageCursor sets the corresponding parameter name and returns the struct.
 func (r *ListProcessesOptionalParameters) WithPageCursor(pageCursor string) *ListProcessesOptionalParameters {
 	r.PageCursor = &pageCursor
 	return r
 }
 
-/*
- * ListProcesses Get all processes
- * Get all processes for your organization.
- */
-func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+func (a *ProcessesApiService) buildListProcessesRequest(ctx _context.Context, o ...ListProcessesOptionalParameters) (apiListProcessesRequest, error) {
 	req := apiListProcessesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue ProcessSummariesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListProcessesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -94,14 +96,83 @@ func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProce
 		req.pageLimit = o[0].PageLimit
 		req.pageCursor = o[0].PageCursor
 	}
+	return req, nil
+}
+
+// ListProcesses Get all processes.
+// Get all processes for your organization.
+func (a *ProcessesApiService) ListProcesses(ctx _context.Context, o ...ListProcessesOptionalParameters) (ProcessSummariesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListProcessesRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue ProcessSummariesResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listProcessesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return ProcessSummariesResponse
- */
+// ListProcessesWithPagination provides a paginated version of ListProcesses returning a channel with all items.
+func (a *ProcessesApiService) ListProcessesWithPagination(ctx _context.Context, o ...ListProcessesOptionalParameters) (<-chan ProcessSummary, func(), error) {
+	ctx, cancel := _context.WithCancel(ctx)
+	pageSize_ := int32(1000)
+	if len(o) == 0 {
+		o = append(o, ListProcessesOptionalParameters{})
+	}
+	if o[0].PageLimit != nil {
+		pageSize_ = *o[0].PageLimit
+	}
+	o[0].PageLimit = &pageSize_
+
+	items := make(chan ProcessSummary, pageSize_)
+	go func() {
+		for {
+			req, err := a.buildListProcessesRequest(ctx, o...)
+			if err != nil {
+				break
+			}
+
+			resp, _, err := req.ApiService.listProcessesExecute(req)
+			if err != nil {
+				break
+			}
+			respData, ok := resp.GetDataOk()
+			if !ok {
+				break
+			}
+			results := *respData
+
+			for _, item := range results {
+				select {
+				case items <- item:
+				case <-ctx.Done():
+					close(items)
+					return
+				}
+			}
+			if len(results) < int(pageSize_) {
+				break
+			}
+			cursorMeta, ok := resp.GetMetaOk()
+			if !ok {
+				break
+			}
+			cursorMetaPage, ok := cursorMeta.GetPageOk()
+			if !ok {
+				break
+			}
+			cursorMetaPageAfter, ok := cursorMetaPage.GetAfterOk()
+			if !ok {
+				break
+			}
+
+			o[0].PageCursor = cursorMetaPageAfter
+		}
+		close(items)
+	}()
+	return items, cancel, nil
+}
+
+// listProcessesExecute executes the request.
 func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (ProcessSummariesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

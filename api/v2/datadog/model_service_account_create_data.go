@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,28 +22,28 @@ type ServiceAccountCreateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewServiceAccountCreateData instantiates a new ServiceAccountCreateData object
+// NewServiceAccountCreateData instantiates a new ServiceAccountCreateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewServiceAccountCreateData(attributes ServiceAccountCreateAttributes, type_ UsersType) *ServiceAccountCreateData {
+// will change when the set of required properties is changed.
+func NewServiceAccountCreateData(attributes ServiceAccountCreateAttributes, typeVar UsersType) *ServiceAccountCreateData {
 	this := ServiceAccountCreateData{}
 	this.Attributes = attributes
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewServiceAccountCreateDataWithDefaults instantiates a new ServiceAccountCreateData object
+// NewServiceAccountCreateDataWithDefaults instantiates a new ServiceAccountCreateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewServiceAccountCreateDataWithDefaults() *ServiceAccountCreateData {
 	this := ServiceAccountCreateData{}
-	var type_ UsersType = USERSTYPE_USERS
-	this.Type = type_
+	var typeVar UsersType = USERSTYPE_USERS
+	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
+// GetAttributes returns the Attributes field value.
 func (o *ServiceAccountCreateData) GetAttributes() ServiceAccountCreateAttributes {
 	if o == nil {
 		var ret ServiceAccountCreateAttributes
@@ -63,7 +61,7 @@ func (o *ServiceAccountCreateData) GetAttributesOk() (*ServiceAccountCreateAttri
 	return &o.Attributes, true
 }
 
-// SetAttributes sets field value
+// SetAttributes sets field value.
 func (o *ServiceAccountCreateData) SetAttributes(v ServiceAccountCreateAttributes) {
 	o.Attributes = v
 }
@@ -100,7 +98,7 @@ func (o *ServiceAccountCreateData) SetRelationships(v UserRelationships) {
 	o.Relationships = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ServiceAccountCreateData) GetType() UsersType {
 	if o == nil {
 		var ret UsersType
@@ -118,11 +116,12 @@ func (o *ServiceAccountCreateData) GetTypeOk() (*UsersType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ServiceAccountCreateData) SetType(v UsersType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ServiceAccountCreateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -140,6 +139,7 @@ func (o ServiceAccountCreateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ServiceAccountCreateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

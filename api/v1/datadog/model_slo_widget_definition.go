@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,24 +36,24 @@ type SLOWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object
+// NewSLOWidgetDefinition instantiates a new SLOWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSLOWidgetDefinition(type_ SLOWidgetDefinitionType, viewType string) *SLOWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewSLOWidgetDefinition(typeVar SLOWidgetDefinitionType, viewType string) *SLOWidgetDefinition {
 	this := SLOWidgetDefinition{}
-	this.Type = type_
+	this.Type = typeVar
 	this.ViewType = viewType
 	return &this
 }
 
-// NewSLOWidgetDefinitionWithDefaults instantiates a new SLOWidgetDefinition object
+// NewSLOWidgetDefinitionWithDefaults instantiates a new SLOWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOWidgetDefinitionWithDefaults() *SLOWidgetDefinition {
 	this := SLOWidgetDefinition{}
-	var type_ SLOWidgetDefinitionType = SLOWIDGETDEFINITIONTYPE_SLO
-	this.Type = type_
+	var typeVar SLOWidgetDefinitionType = SLOWIDGETDEFINITIONTYPE_SLO
+	this.Type = typeVar
 	var viewType string = "detail"
 	this.ViewType = viewType
 	return &this
@@ -285,7 +283,7 @@ func (o *SLOWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SLOWidgetDefinition) GetType() SLOWidgetDefinitionType {
 	if o == nil {
 		var ret SLOWidgetDefinitionType
@@ -303,7 +301,7 @@ func (o *SLOWidgetDefinition) GetTypeOk() (*SLOWidgetDefinitionType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SLOWidgetDefinition) SetType(v SLOWidgetDefinitionType) {
 	o.Type = v
 }
@@ -340,7 +338,7 @@ func (o *SLOWidgetDefinition) SetViewMode(v WidgetViewMode) {
 	o.ViewMode = &v
 }
 
-// GetViewType returns the ViewType field value
+// GetViewType returns the ViewType field value.
 func (o *SLOWidgetDefinition) GetViewType() string {
 	if o == nil {
 		var ret string
@@ -358,11 +356,12 @@ func (o *SLOWidgetDefinition) GetViewTypeOk() (*string, bool) {
 	return &o.ViewType, true
 }
 
-// SetViewType sets field value
+// SetViewType sets field value.
 func (o *SLOWidgetDefinition) SetViewType(v string) {
 	o.ViewType = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -401,6 +400,7 @@ func (o SLOWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

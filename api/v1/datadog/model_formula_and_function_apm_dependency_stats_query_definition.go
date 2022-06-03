@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -38,10 +36,10 @@ type FormulaAndFunctionApmDependencyStatsQueryDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewFormulaAndFunctionApmDependencyStatsQueryDefinition instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object
+// NewFormulaAndFunctionApmDependencyStatsQueryDefinition instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAndFunctionApmDependencyStatsDataSource, env string, name string, operationName string, resourceName string, service string, stat FormulaAndFunctionApmDependencyStatName) *FormulaAndFunctionApmDependencyStatsQueryDefinition {
 	this := FormulaAndFunctionApmDependencyStatsQueryDefinition{}
 	this.DataSource = dataSource
@@ -54,15 +52,15 @@ func NewFormulaAndFunctionApmDependencyStatsQueryDefinition(dataSource FormulaAn
 	return &this
 }
 
-// NewFormulaAndFunctionApmDependencyStatsQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object
+// NewFormulaAndFunctionApmDependencyStatsQueryDefinitionWithDefaults instantiates a new FormulaAndFunctionApmDependencyStatsQueryDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewFormulaAndFunctionApmDependencyStatsQueryDefinitionWithDefaults() *FormulaAndFunctionApmDependencyStatsQueryDefinition {
 	this := FormulaAndFunctionApmDependencyStatsQueryDefinition{}
 	return &this
 }
 
-// GetDataSource returns the DataSource field value
+// GetDataSource returns the DataSource field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetDataSource() FormulaAndFunctionApmDependencyStatsDataSource {
 	if o == nil {
 		var ret FormulaAndFunctionApmDependencyStatsDataSource
@@ -80,12 +78,12 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetDataSourceOk() 
 	return &o.DataSource, true
 }
 
-// SetDataSource sets field value
+// SetDataSource sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetDataSource(v FormulaAndFunctionApmDependencyStatsDataSource) {
 	o.DataSource = v
 }
 
-// GetEnv returns the Env field value
+// GetEnv returns the Env field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnv() string {
 	if o == nil {
 		var ret string
@@ -103,7 +101,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetEnvOk() (*strin
 	return &o.Env, true
 }
 
-// SetEnv sets field value
+// SetEnv sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetEnv(v string) {
 	o.Env = v
 }
@@ -140,7 +138,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetIsUpstream(v bo
 	o.IsUpstream = &v
 }
 
-// GetName returns the Name field value
+// GetName returns the Name field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetName() string {
 	if o == nil {
 		var ret string
@@ -158,12 +156,12 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetNameOk() (*stri
 	return &o.Name, true
 }
 
-// SetName sets field value
+// SetName sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetName(v string) {
 	o.Name = v
 }
 
-// GetOperationName returns the OperationName field value
+// GetOperationName returns the OperationName field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationName() string {
 	if o == nil {
 		var ret string
@@ -181,7 +179,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetOperationNameOk
 	return &o.OperationName, true
 }
 
-// SetOperationName sets field value
+// SetOperationName sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetOperationName(v string) {
 	o.OperationName = v
 }
@@ -250,7 +248,7 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetPrimaryTagValue
 	o.PrimaryTagValue = &v
 }
 
-// GetResourceName returns the ResourceName field value
+// GetResourceName returns the ResourceName field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetResourceName() string {
 	if o == nil {
 		var ret string
@@ -268,12 +266,12 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetResourceNameOk(
 	return &o.ResourceName, true
 }
 
-// SetResourceName sets field value
+// SetResourceName sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetResourceName(v string) {
 	o.ResourceName = v
 }
 
-// GetService returns the Service field value
+// GetService returns the Service field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetService() string {
 	if o == nil {
 		var ret string
@@ -291,12 +289,12 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetServiceOk() (*s
 	return &o.Service, true
 }
 
-// SetService sets field value
+// SetService sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetService(v string) {
 	o.Service = v
 }
 
-// GetStat returns the Stat field value
+// GetStat returns the Stat field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetStat() FormulaAndFunctionApmDependencyStatName {
 	if o == nil {
 		var ret FormulaAndFunctionApmDependencyStatName
@@ -314,11 +312,12 @@ func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) GetStatOk() (*Form
 	return &o.Stat, true
 }
 
-// SetStat sets field value
+// SetStat sets field value.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) SetStat(v FormulaAndFunctionApmDependencyStatName) {
 	o.Stat = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -347,6 +346,7 @@ func (o FormulaAndFunctionApmDependencyStatsQueryDefinition) MarshalJSON() ([]by
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *FormulaAndFunctionApmDependencyStatsQueryDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

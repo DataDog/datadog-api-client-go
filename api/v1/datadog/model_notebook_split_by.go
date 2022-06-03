@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,10 +20,10 @@ type NotebookSplitBy struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookSplitBy instantiates a new NotebookSplitBy object
+// NewNotebookSplitBy instantiates a new NotebookSplitBy object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookSplitBy(keys []string, tags []string) *NotebookSplitBy {
 	this := NotebookSplitBy{}
 	this.Keys = keys
@@ -33,15 +31,15 @@ func NewNotebookSplitBy(keys []string, tags []string) *NotebookSplitBy {
 	return &this
 }
 
-// NewNotebookSplitByWithDefaults instantiates a new NotebookSplitBy object
+// NewNotebookSplitByWithDefaults instantiates a new NotebookSplitBy object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookSplitByWithDefaults() *NotebookSplitBy {
 	this := NotebookSplitBy{}
 	return &this
 }
 
-// GetKeys returns the Keys field value
+// GetKeys returns the Keys field value.
 func (o *NotebookSplitBy) GetKeys() []string {
 	if o == nil {
 		var ret []string
@@ -59,12 +57,12 @@ func (o *NotebookSplitBy) GetKeysOk() (*[]string, bool) {
 	return &o.Keys, true
 }
 
-// SetKeys sets field value
+// SetKeys sets field value.
 func (o *NotebookSplitBy) SetKeys(v []string) {
 	o.Keys = v
 }
 
-// GetTags returns the Tags field value
+// GetTags returns the Tags field value.
 func (o *NotebookSplitBy) GetTags() []string {
 	if o == nil {
 		var ret []string
@@ -82,11 +80,12 @@ func (o *NotebookSplitBy) GetTagsOk() (*[]string, bool) {
 	return &o.Tags, true
 }
 
-// SetTags sets field value
+// SetTags sets field value.
 func (o *NotebookSplitBy) SetTags(v []string) {
 	o.Tags = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,6 +100,7 @@ func (o NotebookSplitBy) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookSplitBy) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

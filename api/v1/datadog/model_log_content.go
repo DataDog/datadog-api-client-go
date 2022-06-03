@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,7 +24,7 @@ type LogContent struct {
 	// value when you use both products.
 	Service *string `json:"service,omitempty"`
 	// Array of tags associated with your log.
-	Tags []interface{} `json:"tags,omitempty"`
+	Tags []string `json:"tags,omitempty"`
 	// Timestamp of your log.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -34,18 +32,18 @@ type LogContent struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogContent instantiates a new LogContent object
+// NewLogContent instantiates a new LogContent object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewLogContent() *LogContent {
 	this := LogContent{}
 	return &this
 }
 
-// NewLogContentWithDefaults instantiates a new LogContent object
+// NewLogContentWithDefaults instantiates a new LogContent object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogContentWithDefaults() *LogContent {
 	this := LogContent{}
 	return &this
@@ -180,9 +178,9 @@ func (o *LogContent) SetService(v string) {
 }
 
 // GetTags returns the Tags field value if set, zero value otherwise.
-func (o *LogContent) GetTags() []interface{} {
+func (o *LogContent) GetTags() []string {
 	if o == nil || o.Tags == nil {
-		var ret []interface{}
+		var ret []string
 		return ret
 	}
 	return o.Tags
@@ -190,7 +188,7 @@ func (o *LogContent) GetTags() []interface{} {
 
 // GetTagsOk returns a tuple with the Tags field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *LogContent) GetTagsOk() (*[]interface{}, bool) {
+func (o *LogContent) GetTagsOk() (*[]string, bool) {
 	if o == nil || o.Tags == nil {
 		return nil, false
 	}
@@ -206,8 +204,8 @@ func (o *LogContent) HasTags() bool {
 	return false
 }
 
-// SetTags gets a reference to the given []interface{} and assigns it to the Tags field.
-func (o *LogContent) SetTags(v []interface{}) {
+// SetTags gets a reference to the given []string and assigns it to the Tags field.
+func (o *LogContent) SetTags(v []string) {
 	o.Tags = v
 }
 
@@ -243,6 +241,7 @@ func (o *LogContent) SetTimestamp(v time.Time) {
 	o.Timestamp = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogContent) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -264,7 +263,11 @@ func (o LogContent) MarshalJSON() ([]byte, error) {
 		toSerialize["tags"] = o.Tags
 	}
 	if o.Timestamp != nil {
-		toSerialize["timestamp"] = o.Timestamp
+		if o.Timestamp.Nanosecond() == 0 {
+			toSerialize["timestamp"] = o.Timestamp.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["timestamp"] = o.Timestamp.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -273,6 +276,7 @@ func (o LogContent) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -280,7 +284,7 @@ func (o *LogContent) UnmarshalJSON(bytes []byte) (err error) {
 		Host       *string                `json:"host,omitempty"`
 		Message    *string                `json:"message,omitempty"`
 		Service    *string                `json:"service,omitempty"`
-		Tags       []interface{}          `json:"tags,omitempty"`
+		Tags       []string               `json:"tags,omitempty"`
 		Timestamp  *time.Time             `json:"timestamp,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)

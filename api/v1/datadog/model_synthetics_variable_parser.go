@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,25 +20,25 @@ type SyntheticsVariableParser struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsVariableParser instantiates a new SyntheticsVariableParser object
+// NewSyntheticsVariableParser instantiates a new SyntheticsVariableParser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsVariableParser(type_ SyntheticsGlobalVariableParserType) *SyntheticsVariableParser {
+// will change when the set of required properties is changed.
+func NewSyntheticsVariableParser(typeVar SyntheticsGlobalVariableParserType) *SyntheticsVariableParser {
 	this := SyntheticsVariableParser{}
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsVariableParserWithDefaults instantiates a new SyntheticsVariableParser object
+// NewSyntheticsVariableParserWithDefaults instantiates a new SyntheticsVariableParser object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsVariableParserWithDefaults() *SyntheticsVariableParser {
 	this := SyntheticsVariableParser{}
 	return &this
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsVariableParser) GetType() SyntheticsGlobalVariableParserType {
 	if o == nil {
 		var ret SyntheticsGlobalVariableParserType
@@ -58,7 +56,7 @@ func (o *SyntheticsVariableParser) GetTypeOk() (*SyntheticsGlobalVariableParserT
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsVariableParser) SetType(v SyntheticsGlobalVariableParserType) {
 	o.Type = v
 }
@@ -95,6 +93,7 @@ func (o *SyntheticsVariableParser) SetValue(v string) {
 	o.Value = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,6 +110,7 @@ func (o SyntheticsVariableParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsVariableParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

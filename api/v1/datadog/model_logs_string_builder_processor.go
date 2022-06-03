@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -43,11 +41,11 @@ type LogsStringBuilderProcessor struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object
+// NewLogsStringBuilderProcessor instantiates a new LogsStringBuilderProcessor object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsStringBuilderProcessor(target string, template string, type_ LogsStringBuilderProcessorType) *LogsStringBuilderProcessor {
+// will change when the set of required properties is changed.
+func NewLogsStringBuilderProcessor(target string, template string, typeVar LogsStringBuilderProcessorType) *LogsStringBuilderProcessor {
 	this := LogsStringBuilderProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
@@ -55,21 +53,21 @@ func NewLogsStringBuilderProcessor(target string, template string, type_ LogsStr
 	this.IsReplaceMissing = &isReplaceMissing
 	this.Target = target
 	this.Template = template
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsStringBuilderProcessorWithDefaults instantiates a new LogsStringBuilderProcessor object
+// NewLogsStringBuilderProcessorWithDefaults instantiates a new LogsStringBuilderProcessor object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsStringBuilderProcessorWithDefaults() *LogsStringBuilderProcessor {
 	this := LogsStringBuilderProcessor{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	var isReplaceMissing bool = false
 	this.IsReplaceMissing = &isReplaceMissing
-	var type_ LogsStringBuilderProcessorType = LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR
-	this.Type = type_
+	var typeVar LogsStringBuilderProcessorType = LOGSSTRINGBUILDERPROCESSORTYPE_STRING_BUILDER_PROCESSOR
+	this.Type = typeVar
 	return &this
 }
 
@@ -169,7 +167,7 @@ func (o *LogsStringBuilderProcessor) SetName(v string) {
 	o.Name = &v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsStringBuilderProcessor) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -187,12 +185,12 @@ func (o *LogsStringBuilderProcessor) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsStringBuilderProcessor) SetTarget(v string) {
 	o.Target = v
 }
 
-// GetTemplate returns the Template field value
+// GetTemplate returns the Template field value.
 func (o *LogsStringBuilderProcessor) GetTemplate() string {
 	if o == nil {
 		var ret string
@@ -210,12 +208,12 @@ func (o *LogsStringBuilderProcessor) GetTemplateOk() (*string, bool) {
 	return &o.Template, true
 }
 
-// SetTemplate sets field value
+// SetTemplate sets field value.
 func (o *LogsStringBuilderProcessor) SetTemplate(v string) {
 	o.Template = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsStringBuilderProcessor) GetType() LogsStringBuilderProcessorType {
 	if o == nil {
 		var ret LogsStringBuilderProcessorType
@@ -233,11 +231,12 @@ func (o *LogsStringBuilderProcessor) GetTypeOk() (*LogsStringBuilderProcessorTyp
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsStringBuilderProcessor) SetType(v LogsStringBuilderProcessorType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -262,6 +261,7 @@ func (o LogsStringBuilderProcessor) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsStringBuilderProcessor) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

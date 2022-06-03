@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -23,18 +21,18 @@ type SLOCorrectionResponseAttributesModifier struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOCorrectionResponseAttributesModifier instantiates a new SLOCorrectionResponseAttributesModifier object
+// NewSLOCorrectionResponseAttributesModifier instantiates a new SLOCorrectionResponseAttributesModifier object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOCorrectionResponseAttributesModifier() *SLOCorrectionResponseAttributesModifier {
 	this := SLOCorrectionResponseAttributesModifier{}
 	return &this
 }
 
-// NewSLOCorrectionResponseAttributesModifierWithDefaults instantiates a new SLOCorrectionResponseAttributesModifier object
+// NewSLOCorrectionResponseAttributesModifierWithDefaults instantiates a new SLOCorrectionResponseAttributesModifier object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOCorrectionResponseAttributesModifierWithDefaults() *SLOCorrectionResponseAttributesModifier {
 	this := SLOCorrectionResponseAttributesModifier{}
 	return &this
@@ -136,6 +134,7 @@ func (o *SLOCorrectionResponseAttributesModifier) SetName(v string) {
 	o.Name = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -157,6 +156,7 @@ func (o SLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -179,37 +179,45 @@ func (o *SLOCorrectionResponseAttributesModifier) UnmarshalJSON(bytes []byte) (e
 	return nil
 }
 
+// NullableSLOCorrectionResponseAttributesModifier handles when a null is used for SLOCorrectionResponseAttributesModifier.
 type NullableSLOCorrectionResponseAttributesModifier struct {
 	value *SLOCorrectionResponseAttributesModifier
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableSLOCorrectionResponseAttributesModifier) Get() *SLOCorrectionResponseAttributesModifier {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableSLOCorrectionResponseAttributesModifier) Set(val *SLOCorrectionResponseAttributesModifier) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableSLOCorrectionResponseAttributesModifier) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag/
 func (v *NullableSLOCorrectionResponseAttributesModifier) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableSLOCorrectionResponseAttributesModifier initializes the struct as if Set has been called.
 func NewNullableSLOCorrectionResponseAttributesModifier(val *SLOCorrectionResponseAttributesModifier) *NullableSLOCorrectionResponseAttributesModifier {
 	return &NullableSLOCorrectionResponseAttributesModifier{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableSLOCorrectionResponseAttributesModifier) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableSLOCorrectionResponseAttributesModifier) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 

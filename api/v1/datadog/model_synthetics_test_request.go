@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -32,6 +30,8 @@ type SyntheticsTestRequest struct {
 	Host *string `json:"host,omitempty"`
 	// Message to send for UDP or WebSocket tests.
 	Message *string `json:"message,omitempty"`
+	// Metadata to include when performing the gRPC test.
+	Metadata map[string]string `json:"metadata,omitempty"`
 	// The HTTP method.
 	Method *HTTPMethod `json:"method,omitempty"`
 	// Determines whether or not to save the response body.
@@ -48,6 +48,8 @@ type SyntheticsTestRequest struct {
 	// allowing the server to present one of multiple possible certificates on
 	// the same IP address and TCP port number.
 	Servername *string `json:"servername,omitempty"`
+	// gRPC service on which you want to perform the healthcheck.
+	Service *string `json:"service,omitempty"`
 	// Turns on a traceroute probe to discover all gateways along the path to the host destination.
 	ShouldTrackHops *bool `json:"shouldTrackHops,omitempty"`
 	// Timeout in seconds for the test.
@@ -59,18 +61,18 @@ type SyntheticsTestRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object
+// NewSyntheticsTestRequest instantiates a new SyntheticsTestRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsTestRequest() *SyntheticsTestRequest {
 	this := SyntheticsTestRequest{}
 	return &this
 }
 
-// NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object
+// NewSyntheticsTestRequestWithDefaults instantiates a new SyntheticsTestRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsTestRequestWithDefaults() *SyntheticsTestRequest {
 	this := SyntheticsTestRequest{}
 	return &this
@@ -396,6 +398,38 @@ func (o *SyntheticsTestRequest) SetMessage(v string) {
 	o.Message = &v
 }
 
+// GetMetadata returns the Metadata field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetMetadata() map[string]string {
+	if o == nil || o.Metadata == nil {
+		var ret map[string]string
+		return ret
+	}
+	return o.Metadata
+}
+
+// GetMetadataOk returns a tuple with the Metadata field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetMetadataOk() (*map[string]string, bool) {
+	if o == nil || o.Metadata == nil {
+		return nil, false
+	}
+	return &o.Metadata, true
+}
+
+// HasMetadata returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasMetadata() bool {
+	if o != nil && o.Metadata != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetMetadata gets a reference to the given map[string]string and assigns it to the Metadata field.
+func (o *SyntheticsTestRequest) SetMetadata(v map[string]string) {
+	o.Metadata = v
+}
+
 // GetMethod returns the Method field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetMethod() HTTPMethod {
 	if o == nil || o.Method == nil {
@@ -620,6 +654,38 @@ func (o *SyntheticsTestRequest) SetServername(v string) {
 	o.Servername = &v
 }
 
+// GetService returns the Service field value if set, zero value otherwise.
+func (o *SyntheticsTestRequest) GetService() string {
+	if o == nil || o.Service == nil {
+		var ret string
+		return ret
+	}
+	return *o.Service
+}
+
+// GetServiceOk returns a tuple with the Service field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestRequest) GetServiceOk() (*string, bool) {
+	if o == nil || o.Service == nil {
+		return nil, false
+	}
+	return o.Service, true
+}
+
+// HasService returns a boolean if a field has been set.
+func (o *SyntheticsTestRequest) HasService() bool {
+	if o != nil && o.Service != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetService gets a reference to the given string and assigns it to the Service field.
+func (o *SyntheticsTestRequest) SetService(v string) {
+	o.Service = &v
+}
+
 // GetShouldTrackHops returns the ShouldTrackHops field value if set, zero value otherwise.
 func (o *SyntheticsTestRequest) GetShouldTrackHops() bool {
 	if o == nil || o.ShouldTrackHops == nil {
@@ -716,6 +782,7 @@ func (o *SyntheticsTestRequest) SetUrl(v string) {
 	o.Url = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -751,6 +818,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Message != nil {
 		toSerialize["message"] = o.Message
 	}
+	if o.Metadata != nil {
+		toSerialize["metadata"] = o.Metadata
+	}
 	if o.Method != nil {
 		toSerialize["method"] = o.Method
 	}
@@ -772,6 +842,9 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	if o.Servername != nil {
 		toSerialize["servername"] = o.Servername
 	}
+	if o.Service != nil {
+		toSerialize["service"] = o.Service
+	}
 	if o.ShouldTrackHops != nil {
 		toSerialize["shouldTrackHops"] = o.ShouldTrackHops
 	}
@@ -788,6 +861,7 @@ func (o SyntheticsTestRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
@@ -801,6 +875,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Headers              map[string]string                 `json:"headers,omitempty"`
 		Host                 *string                           `json:"host,omitempty"`
 		Message              *string                           `json:"message,omitempty"`
+		Metadata             map[string]string                 `json:"metadata,omitempty"`
 		Method               *HTTPMethod                       `json:"method,omitempty"`
 		NoSavingResponseBody *bool                             `json:"noSavingResponseBody,omitempty"`
 		NumberOfPackets      *int32                            `json:"numberOfPackets,omitempty"`
@@ -808,6 +883,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 		Proxy                *SyntheticsTestRequestProxy       `json:"proxy,omitempty"`
 		Query                interface{}                       `json:"query,omitempty"`
 		Servername           *string                           `json:"servername,omitempty"`
+		Service              *string                           `json:"service,omitempty"`
 		ShouldTrackHops      *bool                             `json:"shouldTrackHops,omitempty"`
 		Timeout              *float64                          `json:"timeout,omitempty"`
 		Url                  *string                           `json:"url,omitempty"`
@@ -846,6 +922,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Headers = all.Headers
 	o.Host = all.Host
 	o.Message = all.Message
+	o.Metadata = all.Metadata
 	o.Method = all.Method
 	o.NoSavingResponseBody = all.NoSavingResponseBody
 	o.NumberOfPackets = all.NumberOfPackets
@@ -860,6 +937,7 @@ func (o *SyntheticsTestRequest) UnmarshalJSON(bytes []byte) (err error) {
 	o.Proxy = all.Proxy
 	o.Query = all.Query
 	o.Servername = all.Servername
+	o.Service = all.Service
 	o.ShouldTrackHops = all.ShouldTrackHops
 	o.Timeout = all.Timeout
 	o.Url = all.Url

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -50,18 +48,18 @@ type MonitorUpdateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object
+// NewMonitorUpdateRequest instantiates a new MonitorUpdateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewMonitorUpdateRequest() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
 	return &this
 }
 
-// NewMonitorUpdateRequestWithDefaults instantiates a new MonitorUpdateRequest object
+// NewMonitorUpdateRequestWithDefaults instantiates a new MonitorUpdateRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewMonitorUpdateRequestWithDefaults() *MonitorUpdateRequest {
 	this := MonitorUpdateRequest{}
 	return &this
@@ -142,7 +140,7 @@ func (o *MonitorUpdateRequest) GetDeleted() time.Time {
 
 // GetDeletedOk returns a tuple with the Deleted field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *MonitorUpdateRequest) GetDeletedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -164,12 +162,12 @@ func (o *MonitorUpdateRequest) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
 
-// SetDeletedNil sets the value for Deleted to be an explicit nil
+// SetDeletedNil sets the value for Deleted to be an explicit nil.
 func (o *MonitorUpdateRequest) SetDeletedNil() {
 	o.Deleted.Set(nil)
 }
 
-// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil
+// UnsetDeleted ensures that no value is present for Deleted, not even an explicit nil.
 func (o *MonitorUpdateRequest) UnsetDeleted() {
 	o.Deleted.Unset()
 }
@@ -590,13 +588,18 @@ func (o *MonitorUpdateRequest) SetType(v MonitorType) {
 	o.Type = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Created != nil {
-		toSerialize["created"] = o.Created
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Creator != nil {
 		toSerialize["creator"] = o.Creator
@@ -611,7 +614,11 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 		toSerialize["message"] = o.Message
 	}
 	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
+		if o.Modified.Nanosecond() == 0 {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.Multi != nil {
 		toSerialize["multi"] = o.Multi
@@ -650,6 +657,7 @@ func (o MonitorUpdateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *MonitorUpdateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

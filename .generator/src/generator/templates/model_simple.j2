@@ -35,10 +35,10 @@ type _{{ name }} {{ name }}
 {%- endif %#}
 
 
-// New{{ name }} instantiates a new {{ name }} object
+// New{{ name }} instantiates a new {{ name }} object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if attr in model.get("required", []) %}{{ attr|variable_name }} {{ get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) }}{% if not loop.last %}, {% endif %}{% endfor %}) *{{ name }} {
 	this := {{ name }}{}
 {%- for attr, spec in model.get("properties", {}).items() %}
@@ -64,9 +64,9 @@ func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if 
 	return &this
 }
 
-// New{{ name }}WithDefaults instantiates a new {{ name }} object
+// New{{ name }}WithDefaults instantiates a new {{ name }} object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func New{{ name }}WithDefaults() *{{ name }} {
 	this := {{ name }}{}
 {%- for attr, spec in model.get("properties", {}).items() %}
@@ -98,9 +98,9 @@ func New{{ name }}WithDefaults() *{{ name }} {
 {%- set isContainer = spec.type == "array" %}
 {%- set isAnyType = not dataType.startswith("[]") and not dataType.startswith("map[") %}
 {%- if attr in model.get("required", []) %}
-// Get{{ propertyName }} returns the {{ propertyName }} field value
+// Get{{ propertyName }} returns the {{ propertyName }} field value.
 {%- if isNullable %}
-// If the value is explicit nil, the zero value for {{ baseType }} will be returned
+// If the value is explicit nil, the zero value for {{ baseType }} will be returned.
 {%- endif %}
 {%- if spec.deprecated %}
 // Deprecated
@@ -125,7 +125,7 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 // Get{{ propertyName }}Ok returns a tuple with the {{ propertyName }} field value
 // and a boolean to check if the value has been set.
 {%- if isNullable %}
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 {%- endif %}
 {%- if spec.deprecated %}
 // Deprecated
@@ -145,7 +145,7 @@ func (o *{{ name }}) Get{{ propertyName }}Ok() (*{{ baseType }}, bool) {
 {%- endif %}
 }
 
-// Set{{ propertyName }} sets field value
+// Set{{ propertyName }} sets field value.
 {%- if spec.deprecated %}
 // Deprecated
 {%- endif %}
@@ -186,7 +186,7 @@ func (o *{{ name }}) Get{{ propertyName }}() {{ baseType }} {
 // Get{{ propertyName }}Ok returns a tuple with the {{ propertyName }} field value if set, nil otherwise
 // and a boolean to check if the value has been set.
 {%- if isNullable %}
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 {%- endif %}
 {%- if spec.deprecated %}
 // Deprecated
@@ -232,12 +232,12 @@ func (o *{{ name }}) Set{{ propertyName }}(v {{ baseType }}) {
 }
 {%- if isNullable %}
 {%- if not isContainer %}
-// Set{{ propertyName }}Nil sets the value for {{ propertyName }} to be an explicit nil
+// Set{{ propertyName }}Nil sets the value for {{ propertyName }} to be an explicit nil.
 func (o *{{ name }}) Set{{ propertyName }}Nil() {
 	o.{{ propertyName }}.Set(nil)
 }
 
-// Unset{{ propertyName }} ensures that no value is present for {{ propertyName }}, not even an explicit nil
+// Unset{{ propertyName }} ensures that no value is present for {{ propertyName }}, not even an explicit nil.
 func (o *{{ name }}) Unset{{ propertyName }}() {
 	o.{{ propertyName }}.Unset()
 }
@@ -247,35 +247,17 @@ func (o *{{ name }}) Unset{{ propertyName }}() {
 {% endif %}
 {%- endfor %}
 
+// MarshalJSON serializes the struct using spec logic.
 func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	toSerialize := {% if model.type == "array" %}make([]interface{}, len(o.Items)){% else %}map[string]interface{}{}{% endif %}
-{#-
-	{{#parent}}
-	{{^isMap}}
-	{{^isArray}}
-	serialized{{parent}}, err{{parent}} := json.Marshal(o.{{parent}})
-	if err{{parent}} != nil {
-		return []byte{}, err{{parent}}
-	}
-	err{{parent}} = json.Unmarshal([]byte(serialized{{parent}}), &toSerialize)
-	if err{{parent}} != nil {
-		return []byte{}, err{{parent}}
-	}
-	{{/isArray}}
-	{{/isMap}}
-	{{#isArray}}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+{%- if model.type == "array" %}
 	for i, item := range o.Items {
 		toSerialize[i] = item
 	}
-	{{/isArray}}
-	{{/parent}}
-#}
-	if o.UnparsedObject != nil {
-		return json.Marshal(o.UnparsedObject)
-	}
+{%- endif %}
 	{%- for attr, spec in model.get("properties", {}).items() %}
 	{%- set propertyName = attr|attribute_name %}
 	{%- set dataType = get_type(spec, alternative_name=name + propertyName, render_nullable=True) %}
@@ -303,11 +285,22 @@ func (o {{ name }}) MarshalJSON() ([]byte, error) {
 	{%- endif %}
 	{%- else %}
 	{#- if argument is not nullable, don't set it if it is nil #}
+{%- macro toSerizalize(attr, propertyName, spec) -%}
+{%- if spec.format == "date-time" -%}
+if o.{{ propertyName }}.Nanosecond() == 0 {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05Z07:00")
+} else {
+	toSerialize["{{ attr }}"] = o.{{ propertyName }}.Format("2006-01-02T15:04:05.000Z07:00")
+}
+{%- else -%}
+toSerialize["{{ attr }}"] = o.{{ propertyName }}
+{%- endif %}
+{%- endmacro %}
 	{%- if isRequired %}
-	toSerialize["{{ attr }}"] = o.{{ propertyName }}
+	{{ toSerizalize(attr, propertyName, spec)|indent("\t") }}
 	{%- else %}
 	if o.{{ propertyName }} != nil {
-		toSerialize["{{ attr }}"] = o.{{ propertyName }}
+		{{ toSerizalize(attr, propertyName, spec)|indent("\t\t") }}
 	}
 	{%- endif %}
 	{%- endif %}
@@ -434,6 +427,7 @@ func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 
 {{/isAdditionalPropertiesTrue}}
 #}
+// UnmarshalJSON deserializes the given payload.
 {%- if model.type == "array" %}
 func (o *{{ name }}) UnmarshalJSON(bytes []byte) (err error) {
 	return json.Unmarshal(bytes, &o.Items)

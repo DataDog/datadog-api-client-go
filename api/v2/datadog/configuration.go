@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -57,33 +55,33 @@ var (
 	ContextOperationServerVariables = contextKey("serverOperationVariables")
 )
 
-// BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth
+// BasicAuth provides basic http authentication to a request passed via context using ContextBasicAuth.
 type BasicAuth struct {
 	UserName string `json:"userName,omitempty"`
 	Password string `json:"password,omitempty"`
 }
 
-// APIKey provides API key based authentication to a request passed via context using ContextAPIKey
+// APIKey provides API key based authentication to a request passed via context using ContextAPIKey.
 type APIKey struct {
 	Key    string
 	Prefix string
 }
 
-// ServerVariable stores the information about a server variable
+// ServerVariable stores the information about a server variable.
 type ServerVariable struct {
 	Description  string
 	DefaultValue string
 	EnumValues   []string
 }
 
-// ServerConfiguration stores the information about a server
+// ServerConfiguration stores the information about a server.
 type ServerConfiguration struct {
 	URL         string
 	Description string
 	Variables   map[string]ServerVariable
 }
 
-// ServerConfigurations stores multiple ServerConfiguration items
+// ServerConfigurations stores multiple ServerConfiguration items.
 type ServerConfigurations []ServerConfiguration
 
 // Configuration stores the configuration of the API client
@@ -100,7 +98,7 @@ type Configuration struct {
 	unstableOperations map[string]bool
 }
 
-// NewConfiguration returns a new Configuration object
+// NewConfiguration returns a new Configuration object.
 func NewConfiguration() *Configuration {
 	cfg := &Configuration{
 		DefaultHeader: make(map[string]string),
@@ -239,12 +237,12 @@ func NewConfiguration() *Configuration {
 	return cfg
 }
 
-// AddDefaultHeader adds a new HTTP header to the default header in the request
+// AddDefaultHeader adds a new HTTP header to the default header in the request.
 func (c *Configuration) AddDefaultHeader(key string, value string) {
 	c.DefaultHeader[key] = value
 }
 
-// URL formats template on a index using given variables
+// URL formats template on a index using given variables.
 func (sc ServerConfigurations) URL(index int, variables map[string]string) (string, error) {
 	if index < 0 || len(sc) <= index {
 		return "", fmt.Errorf("Index %v out of range %v", index, len(sc)-1)
@@ -272,7 +270,7 @@ func (sc ServerConfigurations) URL(index int, variables map[string]string) (stri
 	return url, nil
 }
 
-// ServerURL returns URL based on server settings
+// ServerURL returns URL based on server settings.
 func (c *Configuration) ServerURL(index int, variables map[string]string) (string, error) {
 	return c.Servers.URL(index, variables)
 }
@@ -283,7 +281,7 @@ func getServerIndex(ctx context.Context) (int, error) {
 		if index, ok := si.(int); ok {
 			return index, nil
 		}
-		return 0, reportError("Invalid type %T should be int", si)
+		return 0, reportError("invalid type %T should be int", si)
 	}
 	return 0, nil
 }
@@ -291,13 +289,13 @@ func getServerIndex(ctx context.Context) (int, error) {
 func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) {
 	osi := ctx.Value(ContextOperationServerIndices)
 	if osi != nil {
-		if operationIndices, ok := osi.(map[string]int); !ok {
-			return 0, reportError("Invalid type %T should be map[string]int", osi)
-		} else {
-			index, ok := operationIndices[endpoint]
-			if ok {
-				return index, nil
-			}
+		operationIndices, ok := osi.(map[string]int)
+		if !ok {
+			return 0, reportError("invalid type %T should be map[string]int", osi)
+		}
+		index, ok := operationIndices[endpoint]
+		if ok {
+			return index, nil
 		}
 	}
 	return getServerIndex(ctx)
@@ -317,19 +315,19 @@ func getServerVariables(ctx context.Context) (map[string]string, error) {
 func getServerOperationVariables(ctx context.Context, endpoint string) (map[string]string, error) {
 	osv := ctx.Value(ContextOperationServerVariables)
 	if osv != nil {
-		if operationVariables, ok := osv.(map[string]map[string]string); !ok {
+		operationVariables, ok := osv.(map[string]map[string]string)
+		if !ok {
 			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
-		} else {
-			variables, ok := operationVariables[endpoint]
-			if ok {
-				return variables, nil
-			}
+		}
+		variables, ok := operationVariables[endpoint]
+		if ok {
+			return variables, nil
 		}
 	}
 	return getServerVariables(ctx)
 }
 
-// ServerURLWithContext returns a new server URL given an endpoint
+// ServerURLWithContext returns a new server URL given an endpoint.
 func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint string) (string, error) {
 	sc, ok := c.OperationServers[endpoint]
 	if !ok {
@@ -353,7 +351,7 @@ func (c *Configuration) ServerURLWithContext(ctx context.Context, endpoint strin
 	return sc.URL(index, variables)
 }
 
-// GetUnstableOperations returns a slice with all unstable operation Ids
+// GetUnstableOperations returns a slice with all unstable operation Ids.
 func (c *Configuration) GetUnstableOperations() []string {
 	ids := make([]string, len(c.unstableOperations))
 	for id := range c.unstableOperations {
@@ -362,9 +360,9 @@ func (c *Configuration) GetUnstableOperations() []string {
 	return ids
 }
 
-// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false)
+// SetUnstableOperationEnabled sets an unstable operation as enabled (true) or disabled (false).
 // This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
-// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise
+// Returns true if the operation is marked as unstable and thus was enabled/disabled, false otherwise.
 func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bool) bool {
 	if _, ok := c.unstableOperations[operation]; ok {
 		c.unstableOperations[operation] = enabled
@@ -375,7 +373,7 @@ func (c *Configuration) SetUnstableOperationEnabled(operation string, enabled bo
 }
 
 // IsUnstableOperation determines whether an operation is an unstable operation.
-// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
+// This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo".
 func (c *Configuration) IsUnstableOperation(operation string) bool {
 	_, present := c.unstableOperations[operation]
 	return present
@@ -383,13 +381,12 @@ func (c *Configuration) IsUnstableOperation(operation string) bool {
 
 // IsUnstableOperationEnabled determines whether an unstable operation is enabled.
 // This function accepts operation ID as an argument - this is the name of the method on the API class, e.g. "CreateFoo"
-// Returns true if the operation is unstable and it is enabled, false otherwise
+// Returns true if the operation is unstable and it is enabled, false otherwise.
 func (c *Configuration) IsUnstableOperationEnabled(operation string) bool {
 	if enabled, present := c.unstableOperations[operation]; present {
 		return enabled
-	} else {
-		log.Printf("WARNING: '%s' is not an unstable operation, is always enabled", operation)
 	}
+	log.Printf("WARNING: '%s' is not an unstable operation, is always enabled", operation)
 	return false
 }
 
@@ -403,7 +400,7 @@ func getUserAgent() string {
 	)
 }
 
-// NewDefaultContext returns a new context setup with environment variables
+// NewDefaultContext returns a new context setup with environment variables.
 func NewDefaultContext(ctx context.Context) context.Context {
 	if ctx == nil {
 		ctx = context.Background()

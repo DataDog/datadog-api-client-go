@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -30,11 +28,11 @@ type LogsURLParser struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsURLParser instantiates a new LogsURLParser object
+// NewLogsURLParser instantiates a new LogsURLParser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsURLParser(sources []string, target string, type_ LogsURLParserType) *LogsURLParser {
+// will change when the set of required properties is changed.
+func NewLogsURLParser(sources []string, target string, typeVar LogsURLParserType) *LogsURLParser {
 	this := LogsURLParser{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
@@ -42,13 +40,13 @@ func NewLogsURLParser(sources []string, target string, type_ LogsURLParserType) 
 	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	this.Sources = sources
 	this.Target = target
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsURLParserWithDefaults instantiates a new LogsURLParser object
+// NewLogsURLParserWithDefaults instantiates a new LogsURLParser object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this := LogsURLParser{}
 	var isEnabled bool = false
@@ -57,8 +55,8 @@ func NewLogsURLParserWithDefaults() *LogsURLParser {
 	this.NormalizeEndingSlashes = *NewNullableBool(&normalizeEndingSlashes)
 	var target string = "http.url_details"
 	this.Target = target
-	var type_ LogsURLParserType = LOGSURLPARSERTYPE_URL_PARSER
-	this.Type = type_
+	var typeVar LogsURLParserType = LOGSURLPARSERTYPE_URL_PARSER
+	this.Type = typeVar
 	return &this
 }
 
@@ -137,7 +135,7 @@ func (o *LogsURLParser) GetNormalizeEndingSlashes() bool {
 
 // GetNormalizeEndingSlashesOk returns a tuple with the NormalizeEndingSlashes field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *LogsURLParser) GetNormalizeEndingSlashesOk() (*bool, bool) {
 	if o == nil {
 		return nil, false
@@ -159,17 +157,17 @@ func (o *LogsURLParser) SetNormalizeEndingSlashes(v bool) {
 	o.NormalizeEndingSlashes.Set(&v)
 }
 
-// SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil
+// SetNormalizeEndingSlashesNil sets the value for NormalizeEndingSlashes to be an explicit nil.
 func (o *LogsURLParser) SetNormalizeEndingSlashesNil() {
 	o.NormalizeEndingSlashes.Set(nil)
 }
 
-// UnsetNormalizeEndingSlashes ensures that no value is present for NormalizeEndingSlashes, not even an explicit nil
+// UnsetNormalizeEndingSlashes ensures that no value is present for NormalizeEndingSlashes, not even an explicit nil.
 func (o *LogsURLParser) UnsetNormalizeEndingSlashes() {
 	o.NormalizeEndingSlashes.Unset()
 }
 
-// GetSources returns the Sources field value
+// GetSources returns the Sources field value.
 func (o *LogsURLParser) GetSources() []string {
 	if o == nil {
 		var ret []string
@@ -187,12 +185,12 @@ func (o *LogsURLParser) GetSourcesOk() (*[]string, bool) {
 	return &o.Sources, true
 }
 
-// SetSources sets field value
+// SetSources sets field value.
 func (o *LogsURLParser) SetSources(v []string) {
 	o.Sources = v
 }
 
-// GetTarget returns the Target field value
+// GetTarget returns the Target field value.
 func (o *LogsURLParser) GetTarget() string {
 	if o == nil {
 		var ret string
@@ -210,12 +208,12 @@ func (o *LogsURLParser) GetTargetOk() (*string, bool) {
 	return &o.Target, true
 }
 
-// SetTarget sets field value
+// SetTarget sets field value.
 func (o *LogsURLParser) SetTarget(v string) {
 	o.Target = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsURLParser) GetType() LogsURLParserType {
 	if o == nil {
 		var ret LogsURLParserType
@@ -233,11 +231,12 @@ func (o *LogsURLParser) GetTypeOk() (*LogsURLParserType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsURLParser) SetType(v LogsURLParserType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -262,6 +261,7 @@ func (o LogsURLParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsURLParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

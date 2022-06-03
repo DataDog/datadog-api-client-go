@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,7 +13,7 @@ import (
 // **Note**: `zoom`, `fit` and `center` values are deprecated.
 type WidgetImageSizing string
 
-// List of WidgetImageSizing
+// List of WidgetImageSizing.
 const (
 	WIDGETIMAGESIZING_FILL      WidgetImageSizing = "fill"
 	WIDGETIMAGESIZING_CONTAIN   WidgetImageSizing = "contain"
@@ -38,10 +36,12 @@ var allowedWidgetImageSizingEnumValues = []WidgetImageSizing{
 	WIDGETIMAGESIZING_CENTER,
 }
 
-func (w *WidgetImageSizing) GetAllowedValues() []WidgetImageSizing {
+// GetAllowedValues reeturns the list of possible values.
+func (v *WidgetImageSizing) GetAllowedValues() []WidgetImageSizing {
 	return allowedWidgetImageSizingEnumValues
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (v *WidgetImageSizing) UnmarshalJSON(src []byte) error {
 	var value string
 	err := json.Unmarshal(src, &value)
@@ -53,17 +53,16 @@ func (v *WidgetImageSizing) UnmarshalJSON(src []byte) error {
 }
 
 // NewWidgetImageSizingFromValue returns a pointer to a valid WidgetImageSizing
-// for the value passed as argument, or an error if the value passed is not allowed by the enum
+// for the value passed as argument, or an error if the value passed is not allowed by the enum.
 func NewWidgetImageSizingFromValue(v string) (*WidgetImageSizing, error) {
 	ev := WidgetImageSizing(v)
 	if ev.IsValid() {
 		return &ev, nil
-	} else {
-		return nil, fmt.Errorf("invalid value '%v' for WidgetImageSizing: valid values are %v", v, allowedWidgetImageSizingEnumValues)
 	}
+	return nil, fmt.Errorf("invalid value '%v' for WidgetImageSizing: valid values are %v", v, allowedWidgetImageSizingEnumValues)
 }
 
-// IsValid return true if the value is valid for the enum, false otherwise
+// IsValid return true if the value is valid for the enum, false otherwise.
 func (v WidgetImageSizing) IsValid() bool {
 	for _, existing := range allowedWidgetImageSizingEnumValues {
 		if existing == v {
@@ -73,42 +72,50 @@ func (v WidgetImageSizing) IsValid() bool {
 	return false
 }
 
-// Ptr returns reference to WidgetImageSizing value
+// Ptr returns reference to WidgetImageSizing value.
 func (v WidgetImageSizing) Ptr() *WidgetImageSizing {
 	return &v
 }
 
+// NullableWidgetImageSizing handles when a null is used for WidgetImageSizing.
 type NullableWidgetImageSizing struct {
 	value *WidgetImageSizing
 	isSet bool
 }
 
+// Get returns the associated value.
 func (v NullableWidgetImageSizing) Get() *WidgetImageSizing {
 	return v.value
 }
 
+// Set changes the value and indicates it's been called.
 func (v *NullableWidgetImageSizing) Set(val *WidgetImageSizing) {
 	v.value = val
 	v.isSet = true
 }
 
+// IsSet returns whether Set has been called.
 func (v NullableWidgetImageSizing) IsSet() bool {
 	return v.isSet
 }
 
+// Unset sets the value to nil and resets the set flag.
 func (v *NullableWidgetImageSizing) Unset() {
 	v.value = nil
 	v.isSet = false
 }
 
+// NewNullableWidgetImageSizing initializes the struct as if Set has been called.
 func NewNullableWidgetImageSizing(val *WidgetImageSizing) *NullableWidgetImageSizing {
 	return &NullableWidgetImageSizing{value: val, isSet: true}
 }
 
+// MarshalJSON serializes the associated value.
 func (v NullableWidgetImageSizing) MarshalJSON() ([]byte, error) {
 	return json.Marshal(v.value)
 }
 
+// UnmarshalJSON deserializes the payload and sets the flag as if Set has been called.
 func (v *NullableWidgetImageSizing) UnmarshalJSON(src []byte) error {
 	v.isSet = true
 	return json.Unmarshal(src, &v.value)

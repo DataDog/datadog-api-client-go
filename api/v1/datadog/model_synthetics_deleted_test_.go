@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -23,18 +21,18 @@ type SyntheticsDeletedTest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object
+// NewSyntheticsDeletedTest instantiates a new SyntheticsDeletedTest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSyntheticsDeletedTest() *SyntheticsDeletedTest {
 	this := SyntheticsDeletedTest{}
 	return &this
 }
 
-// NewSyntheticsDeletedTestWithDefaults instantiates a new SyntheticsDeletedTest object
+// NewSyntheticsDeletedTestWithDefaults instantiates a new SyntheticsDeletedTest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsDeletedTestWithDefaults() *SyntheticsDeletedTest {
 	this := SyntheticsDeletedTest{}
 	return &this
@@ -104,13 +102,18 @@ func (o *SyntheticsDeletedTest) SetPublicId(v string) {
 	o.PublicId = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.DeletedAt != nil {
-		toSerialize["deleted_at"] = o.DeletedAt
+		if o.DeletedAt.Nanosecond() == 0 {
+			toSerialize["deleted_at"] = o.DeletedAt.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["deleted_at"] = o.DeletedAt.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.PublicId != nil {
 		toSerialize["public_id"] = o.PublicId
@@ -122,6 +125,7 @@ func (o SyntheticsDeletedTest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsDeletedTest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

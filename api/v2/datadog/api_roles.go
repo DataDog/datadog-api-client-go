@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// RolesApiService RolesApi service
+// RolesApiService RolesApi service.
 type RolesApiService service
 
 type apiAddPermissionToRoleRequest struct {
@@ -30,25 +23,29 @@ type apiAddPermissionToRoleRequest struct {
 	body       *RelationshipToPermission
 }
 
-/*
- * AddPermissionToRole Grant permission to a role
- * Adds a permission to a role.
- */
-func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildAddPermissionToRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiAddPermissionToRoleRequest, error) {
 	req := apiAddPermissionToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// AddPermissionToRole Grant permission to a role.
+// Adds a permission to a role.
+func (a *RolesApiService) AddPermissionToRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildAddPermissionToRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.addPermissionToRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PermissionsResponse
- */
+// addPermissionToRoleExecute executes the request.
 func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -202,25 +199,29 @@ type apiAddUserToRoleRequest struct {
 	body       *RelationshipToUser
 }
 
-/*
- * AddUserToRole Add a user to a role
- * Adds a user to a role.
- */
-func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildAddUserToRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiAddUserToRoleRequest, error) {
 	req := apiAddUserToRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// AddUserToRole Add a user to a role.
+// Adds a user to a role.
+func (a *RolesApiService) AddUserToRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildAddUserToRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.addUserToRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsersResponse
- */
+// addUserToRoleExecute executes the request.
 func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -374,25 +375,29 @@ type apiCloneRoleRequest struct {
 	body       *RoleCloneRequest
 }
 
-/*
- * CloneRole Create a new role by cloning an existing role
- * Clone an existing role
- */
-func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildCloneRoleRequest(ctx _context.Context, roleId string, body RoleCloneRequest) (apiCloneRoleRequest, error) {
 	req := apiCloneRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CloneRole Create a new role by cloning an existing role.
+// Clone an existing role
+func (a *RolesApiService) CloneRole(ctx _context.Context, roleId string, body RoleCloneRequest) (RoleResponse, *_nethttp.Response, error) {
+	req, err := a.buildCloneRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue RoleResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.cloneRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RoleResponse
- */
+// cloneRoleExecute executes the request.
 func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -555,24 +560,28 @@ type apiCreateRoleRequest struct {
 	body       *RoleCreateRequest
 }
 
-/*
- * CreateRole Create role
- * Create a new role for your organization.
- */
-func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildCreateRoleRequest(ctx _context.Context, body RoleCreateRequest) (apiCreateRoleRequest, error) {
 	req := apiCreateRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateRole Create role.
+// Create a new role for your organization.
+func (a *RolesApiService) CreateRole(ctx _context.Context, body RoleCreateRequest) (RoleCreateResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateRoleRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue RoleCreateResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RoleCreateResponse
- */
+// createRoleExecute executes the request.
 func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -714,23 +723,27 @@ type apiDeleteRoleRequest struct {
 	roleId     string
 }
 
-/*
- * DeleteRole Delete role
- * Disables a role.
- */
-func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
+func (a *RolesApiService) buildDeleteRoleRequest(ctx _context.Context, roleId string) (apiDeleteRoleRequest, error) {
 	req := apiDeleteRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 	}
+	return req, nil
+}
+
+// DeleteRole Delete role.
+// Disables a role.
+func (a *RolesApiService) DeleteRole(ctx _context.Context, roleId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteRoleRequest(ctx, roleId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deleteRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteRoleExecute executes the request.
 func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -848,24 +861,28 @@ type apiGetRoleRequest struct {
 	roleId     string
 }
 
-/*
- * GetRole Get a role
- * Get a role in the organization specified by the role’s `role_id`.
- */
-func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildGetRoleRequest(ctx _context.Context, roleId string) (apiGetRoleRequest, error) {
 	req := apiGetRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 	}
+	return req, nil
+}
+
+// GetRole Get a role.
+// Get a role in the organization specified by the role’s `role_id`.
+func (a *RolesApiService) GetRole(ctx _context.Context, roleId string) (RoleResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetRoleRequest(ctx, roleId)
+	if err != nil {
+		var localVarReturnValue RoleResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RoleResponse
- */
+// getRoleExecute executes the request.
 func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -992,23 +1009,27 @@ type apiListPermissionsRequest struct {
 	ApiService *RolesApiService
 }
 
-/*
- * ListPermissions List permissions
- * Returns a list of all permissions, including name, description, and ID.
- */
-func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListPermissionsRequest(ctx _context.Context) (apiListPermissionsRequest, error) {
 	req := apiListPermissionsRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListPermissions List permissions.
+// Returns a list of all permissions, including name, description, and ID.
+func (a *RolesApiService) ListPermissions(ctx _context.Context) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListPermissionsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listPermissionsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PermissionsResponse
- */
+// listPermissionsExecute executes the request.
 func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1135,24 +1156,28 @@ type apiListRolePermissionsRequest struct {
 	roleId     string
 }
 
-/*
- * ListRolePermissions List permissions for a role
- * Returns a list of all permissions for a single role.
- */
-func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListRolePermissionsRequest(ctx _context.Context, roleId string) (apiListRolePermissionsRequest, error) {
 	req := apiListRolePermissionsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 	}
+	return req, nil
+}
+
+// ListRolePermissions List permissions for a role.
+// Returns a list of all permissions for a single role.
+func (a *RolesApiService) ListRolePermissions(ctx _context.Context, roleId string) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRolePermissionsRequest(ctx, roleId)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listRolePermissionsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PermissionsResponse
- */
+// listRolePermissionsExecute executes the request.
 func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1284,6 +1309,7 @@ type apiListRoleUsersRequest struct {
 	filter     *string
 }
 
+// ListRoleUsersOptionalParameters holds optional parameters for ListRoleUsers.
 type ListRoleUsersOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
@@ -1291,32 +1317,37 @@ type ListRoleUsersOptionalParameters struct {
 	Filter     *string
 }
 
+// NewListRoleUsersOptionalParameters creates an empty struct for parameters.
 func NewListRoleUsersOptionalParameters() *ListRoleUsersOptionalParameters {
 	this := ListRoleUsersOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListRoleUsersOptionalParameters) WithPageSize(pageSize int64) *ListRoleUsersOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListRoleUsersOptionalParameters) WithPageNumber(pageNumber int64) *ListRoleUsersOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListRoleUsersOptionalParameters) WithSort(sort string) *ListRoleUsersOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListRoleUsersOptionalParameters) WithFilter(filter string) *ListRoleUsersOptionalParameters {
 	r.Filter = &filter
 	return r
 }
 
-/*
- * ListRoleUsers Get all users of a role
- * Gets all users of a role.
- */
-func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListRoleUsersRequest(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (apiListRoleUsersRequest, error) {
 	req := apiListRoleUsersRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1324,8 +1355,7 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue UsersResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListRoleUsersOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1334,14 +1364,22 @@ func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o .
 		req.sort = o[0].Sort
 		req.filter = o[0].Filter
 	}
+	return req, nil
+}
+
+// ListRoleUsers Get all users of a role.
+// Gets all users of a role.
+func (a *RolesApiService) ListRoleUsers(ctx _context.Context, roleId string, o ...ListRoleUsersOptionalParameters) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRoleUsersRequest(ctx, roleId, o...)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listRoleUsersExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsersResponse
- */
+// listRoleUsersExecute executes the request.
 func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1484,6 +1522,7 @@ type apiListRolesRequest struct {
 	filter     *string
 }
 
+// ListRolesOptionalParameters holds optional parameters for ListRoles.
 type ListRolesOptionalParameters struct {
 	PageSize   *int64
 	PageNumber *int64
@@ -1491,40 +1530,44 @@ type ListRolesOptionalParameters struct {
 	Filter     *string
 }
 
+// NewListRolesOptionalParameters creates an empty struct for parameters.
 func NewListRolesOptionalParameters() *ListRolesOptionalParameters {
 	this := ListRolesOptionalParameters{}
 	return &this
 }
+
+// WithPageSize sets the corresponding parameter name and returns the struct.
 func (r *ListRolesOptionalParameters) WithPageSize(pageSize int64) *ListRolesOptionalParameters {
 	r.PageSize = &pageSize
 	return r
 }
+
+// WithPageNumber sets the corresponding parameter name and returns the struct.
 func (r *ListRolesOptionalParameters) WithPageNumber(pageNumber int64) *ListRolesOptionalParameters {
 	r.PageNumber = &pageNumber
 	return r
 }
+
+// WithSort sets the corresponding parameter name and returns the struct.
 func (r *ListRolesOptionalParameters) WithSort(sort RolesSort) *ListRolesOptionalParameters {
 	r.Sort = &sort
 	return r
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListRolesOptionalParameters) WithFilter(filter string) *ListRolesOptionalParameters {
 	r.Filter = &filter
 	return r
 }
 
-/*
- * ListRoles List roles
- * Returns all roles, including their names and their unique identifiers.
- */
-func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildListRolesRequest(ctx _context.Context, o ...ListRolesOptionalParameters) (apiListRolesRequest, error) {
 	req := apiListRolesRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue RolesResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListRolesOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListRolesOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1533,14 +1576,22 @@ func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptional
 		req.sort = o[0].Sort
 		req.filter = o[0].Filter
 	}
+	return req, nil
+}
+
+// ListRoles List roles.
+// Returns all roles, including their names and their unique identifiers.
+func (a *RolesApiService) ListRoles(ctx _context.Context, o ...ListRolesOptionalParameters) (RolesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListRolesRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue RolesResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listRolesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RolesResponse
- */
+// listRolesExecute executes the request.
 func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1670,25 +1721,29 @@ type apiRemovePermissionFromRoleRequest struct {
 	body       *RelationshipToPermission
 }
 
-/*
- * RemovePermissionFromRole Revoke permission
- * Removes a permission from a role.
- */
-func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildRemovePermissionFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToPermission) (apiRemovePermissionFromRoleRequest, error) {
 	req := apiRemovePermissionFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// RemovePermissionFromRole Revoke permission.
+// Removes a permission from a role.
+func (a *RolesApiService) RemovePermissionFromRole(ctx _context.Context, roleId string, body RelationshipToPermission) (PermissionsResponse, *_nethttp.Response, error) {
+	req, err := a.buildRemovePermissionFromRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue PermissionsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.removePermissionFromRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return PermissionsResponse
- */
+// removePermissionFromRoleExecute executes the request.
 func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionFromRoleRequest) (PermissionsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -1842,25 +1897,29 @@ type apiRemoveUserFromRoleRequest struct {
 	body       *RelationshipToUser
 }
 
-/*
- * RemoveUserFromRole Remove a user from a role
- * Removes a user from a role.
- */
-func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildRemoveUserFromRoleRequest(ctx _context.Context, roleId string, body RelationshipToUser) (apiRemoveUserFromRoleRequest, error) {
 	req := apiRemoveUserFromRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// RemoveUserFromRole Remove a user from a role.
+// Removes a user from a role.
+func (a *RolesApiService) RemoveUserFromRole(ctx _context.Context, roleId string, body RelationshipToUser) (UsersResponse, *_nethttp.Response, error) {
+	req, err := a.buildRemoveUserFromRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue UsersResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.removeUserFromRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return UsersResponse
- */
+// removeUserFromRoleExecute executes the request.
 func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleRequest) (UsersResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodDelete
@@ -2014,25 +2073,29 @@ type apiUpdateRoleRequest struct {
 	body       *RoleUpdateRequest
 }
 
-/*
- * UpdateRole Update a role
- * Edit a role. Can only be used with application keys belonging to administrators.
- */
-func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+func (a *RolesApiService) buildUpdateRoleRequest(ctx _context.Context, roleId string, body RoleUpdateRequest) (apiUpdateRoleRequest, error) {
 	req := apiUpdateRoleRequest{
 		ApiService: a,
 		ctx:        ctx,
 		roleId:     roleId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateRole Update a role.
+// Edit a role. Can only be used with application keys belonging to administrators.
+func (a *RolesApiService) UpdateRole(ctx _context.Context, roleId string, body RoleUpdateRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
+	req, err := a.buildUpdateRoleRequest(ctx, roleId, body)
+	if err != nil {
+		var localVarReturnValue RoleUpdateResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateRoleExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return RoleUpdateResponse
- */
+// updateRoleExecute executes the request.
 func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPatch

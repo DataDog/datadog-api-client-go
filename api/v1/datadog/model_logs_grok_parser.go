@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -31,35 +29,35 @@ type LogsGrokParser struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsGrokParser instantiates a new LogsGrokParser object
+// NewLogsGrokParser instantiates a new LogsGrokParser object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsGrokParser(grok LogsGrokParserRules, source string, type_ LogsGrokParserType) *LogsGrokParser {
+// will change when the set of required properties is changed.
+func NewLogsGrokParser(grok LogsGrokParserRules, source string, typeVar LogsGrokParserType) *LogsGrokParser {
 	this := LogsGrokParser{}
 	this.Grok = grok
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	this.Source = source
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsGrokParserWithDefaults instantiates a new LogsGrokParser object
+// NewLogsGrokParserWithDefaults instantiates a new LogsGrokParser object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsGrokParserWithDefaults() *LogsGrokParser {
 	this := LogsGrokParser{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	var source string = "message"
 	this.Source = source
-	var type_ LogsGrokParserType = LOGSGROKPARSERTYPE_GROK_PARSER
-	this.Type = type_
+	var typeVar LogsGrokParserType = LOGSGROKPARSERTYPE_GROK_PARSER
+	this.Type = typeVar
 	return &this
 }
 
-// GetGrok returns the Grok field value
+// GetGrok returns the Grok field value.
 func (o *LogsGrokParser) GetGrok() LogsGrokParserRules {
 	if o == nil {
 		var ret LogsGrokParserRules
@@ -77,7 +75,7 @@ func (o *LogsGrokParser) GetGrokOk() (*LogsGrokParserRules, bool) {
 	return &o.Grok, true
 }
 
-// SetGrok sets field value
+// SetGrok sets field value.
 func (o *LogsGrokParser) SetGrok(v LogsGrokParserRules) {
 	o.Grok = v
 }
@@ -178,7 +176,7 @@ func (o *LogsGrokParser) SetSamples(v []string) {
 	o.Samples = v
 }
 
-// GetSource returns the Source field value
+// GetSource returns the Source field value.
 func (o *LogsGrokParser) GetSource() string {
 	if o == nil {
 		var ret string
@@ -196,12 +194,12 @@ func (o *LogsGrokParser) GetSourceOk() (*string, bool) {
 	return &o.Source, true
 }
 
-// SetSource sets field value
+// SetSource sets field value.
 func (o *LogsGrokParser) SetSource(v string) {
 	o.Source = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsGrokParser) GetType() LogsGrokParserType {
 	if o == nil {
 		var ret LogsGrokParserType
@@ -219,11 +217,12 @@ func (o *LogsGrokParser) GetTypeOk() (*LogsGrokParserType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsGrokParser) SetType(v LogsGrokParserType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -248,6 +247,7 @@ func (o LogsGrokParser) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsGrokParser) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

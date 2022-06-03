@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,25 +20,25 @@ type CheckCanDeleteMonitorResponse struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewCheckCanDeleteMonitorResponse instantiates a new CheckCanDeleteMonitorResponse object
+// NewCheckCanDeleteMonitorResponse instantiates a new CheckCanDeleteMonitorResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewCheckCanDeleteMonitorResponse(data CheckCanDeleteMonitorResponseData) *CheckCanDeleteMonitorResponse {
 	this := CheckCanDeleteMonitorResponse{}
 	this.Data = data
 	return &this
 }
 
-// NewCheckCanDeleteMonitorResponseWithDefaults instantiates a new CheckCanDeleteMonitorResponse object
+// NewCheckCanDeleteMonitorResponseWithDefaults instantiates a new CheckCanDeleteMonitorResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewCheckCanDeleteMonitorResponseWithDefaults() *CheckCanDeleteMonitorResponse {
 	this := CheckCanDeleteMonitorResponse{}
 	return &this
 }
 
-// GetData returns the Data field value
+// GetData returns the Data field value.
 func (o *CheckCanDeleteMonitorResponse) GetData() CheckCanDeleteMonitorResponseData {
 	if o == nil {
 		var ret CheckCanDeleteMonitorResponseData
@@ -58,7 +56,7 @@ func (o *CheckCanDeleteMonitorResponse) GetDataOk() (*CheckCanDeleteMonitorRespo
 	return &o.Data, true
 }
 
-// SetData sets field value
+// SetData sets field value.
 func (o *CheckCanDeleteMonitorResponse) SetData(v CheckCanDeleteMonitorResponseData) {
 	o.Data = v
 }
@@ -95,6 +93,7 @@ func (o *CheckCanDeleteMonitorResponse) SetErrors(v map[string][]string) {
 	o.Errors = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o CheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -111,6 +110,7 @@ func (o CheckCanDeleteMonitorResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *CheckCanDeleteMonitorResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

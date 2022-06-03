@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -22,10 +20,10 @@ type SLOHistoryResponseErrorWithType struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSLOHistoryResponseErrorWithType instantiates a new SLOHistoryResponseErrorWithType object
+// NewSLOHistoryResponseErrorWithType instantiates a new SLOHistoryResponseErrorWithType object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewSLOHistoryResponseErrorWithType(errorMessage string, errorType string) *SLOHistoryResponseErrorWithType {
 	this := SLOHistoryResponseErrorWithType{}
 	this.ErrorMessage = errorMessage
@@ -33,15 +31,15 @@ func NewSLOHistoryResponseErrorWithType(errorMessage string, errorType string) *
 	return &this
 }
 
-// NewSLOHistoryResponseErrorWithTypeWithDefaults instantiates a new SLOHistoryResponseErrorWithType object
+// NewSLOHistoryResponseErrorWithTypeWithDefaults instantiates a new SLOHistoryResponseErrorWithType object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSLOHistoryResponseErrorWithTypeWithDefaults() *SLOHistoryResponseErrorWithType {
 	this := SLOHistoryResponseErrorWithType{}
 	return &this
 }
 
-// GetErrorMessage returns the ErrorMessage field value
+// GetErrorMessage returns the ErrorMessage field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorMessage() string {
 	if o == nil {
 		var ret string
@@ -59,12 +57,12 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorMessageOk() (*string, bool) {
 	return &o.ErrorMessage, true
 }
 
-// SetErrorMessage sets field value
+// SetErrorMessage sets field value.
 func (o *SLOHistoryResponseErrorWithType) SetErrorMessage(v string) {
 	o.ErrorMessage = v
 }
 
-// GetErrorType returns the ErrorType field value
+// GetErrorType returns the ErrorType field value.
 func (o *SLOHistoryResponseErrorWithType) GetErrorType() string {
 	if o == nil {
 		var ret string
@@ -82,11 +80,12 @@ func (o *SLOHistoryResponseErrorWithType) GetErrorTypeOk() (*string, bool) {
 	return &o.ErrorType, true
 }
 
-// SetErrorType sets field value
+// SetErrorType sets field value.
 func (o *SLOHistoryResponseErrorWithType) SetErrorType(v string) {
 	o.ErrorType = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -101,6 +100,7 @@ func (o SLOHistoryResponseErrorWithType) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SLOHistoryResponseErrorWithType) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

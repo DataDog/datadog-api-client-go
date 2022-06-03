@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -24,29 +22,29 @@ type ApplicationKeyUpdateData struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewApplicationKeyUpdateData instantiates a new ApplicationKeyUpdateData object
+// NewApplicationKeyUpdateData instantiates a new ApplicationKeyUpdateData object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewApplicationKeyUpdateData(attributes ApplicationKeyUpdateAttributes, id string, type_ ApplicationKeysType) *ApplicationKeyUpdateData {
+// will change when the set of required properties is changed.
+func NewApplicationKeyUpdateData(attributes ApplicationKeyUpdateAttributes, id string, typeVar ApplicationKeysType) *ApplicationKeyUpdateData {
 	this := ApplicationKeyUpdateData{}
 	this.Attributes = attributes
 	this.Id = id
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewApplicationKeyUpdateDataWithDefaults instantiates a new ApplicationKeyUpdateData object
+// NewApplicationKeyUpdateDataWithDefaults instantiates a new ApplicationKeyUpdateData object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewApplicationKeyUpdateDataWithDefaults() *ApplicationKeyUpdateData {
 	this := ApplicationKeyUpdateData{}
-	var type_ ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
-	this.Type = type_
+	var typeVar ApplicationKeysType = APPLICATIONKEYSTYPE_APPLICATION_KEYS
+	this.Type = typeVar
 	return &this
 }
 
-// GetAttributes returns the Attributes field value
+// GetAttributes returns the Attributes field value.
 func (o *ApplicationKeyUpdateData) GetAttributes() ApplicationKeyUpdateAttributes {
 	if o == nil {
 		var ret ApplicationKeyUpdateAttributes
@@ -64,12 +62,12 @@ func (o *ApplicationKeyUpdateData) GetAttributesOk() (*ApplicationKeyUpdateAttri
 	return &o.Attributes, true
 }
 
-// SetAttributes sets field value
+// SetAttributes sets field value.
 func (o *ApplicationKeyUpdateData) SetAttributes(v ApplicationKeyUpdateAttributes) {
 	o.Attributes = v
 }
 
-// GetId returns the Id field value
+// GetId returns the Id field value.
 func (o *ApplicationKeyUpdateData) GetId() string {
 	if o == nil {
 		var ret string
@@ -87,12 +85,12 @@ func (o *ApplicationKeyUpdateData) GetIdOk() (*string, bool) {
 	return &o.Id, true
 }
 
-// SetId sets field value
+// SetId sets field value.
 func (o *ApplicationKeyUpdateData) SetId(v string) {
 	o.Id = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ApplicationKeyUpdateData) GetType() ApplicationKeysType {
 	if o == nil {
 		var ret ApplicationKeysType
@@ -110,11 +108,12 @@ func (o *ApplicationKeyUpdateData) GetTypeOk() (*ApplicationKeysType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ApplicationKeyUpdateData) SetType(v ApplicationKeysType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -130,6 +129,7 @@ func (o ApplicationKeyUpdateData) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ApplicationKeyUpdateData) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

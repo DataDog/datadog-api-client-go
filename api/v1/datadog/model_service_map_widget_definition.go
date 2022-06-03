@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -32,25 +30,25 @@ type ServiceMapWidgetDefinition struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object
+// NewServiceMapWidgetDefinition instantiates a new ServiceMapWidgetDefinition object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewServiceMapWidgetDefinition(filters []string, service string, type_ ServiceMapWidgetDefinitionType) *ServiceMapWidgetDefinition {
+// will change when the set of required properties is changed.
+func NewServiceMapWidgetDefinition(filters []string, service string, typeVar ServiceMapWidgetDefinitionType) *ServiceMapWidgetDefinition {
 	this := ServiceMapWidgetDefinition{}
 	this.Filters = filters
 	this.Service = service
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewServiceMapWidgetDefinitionWithDefaults instantiates a new ServiceMapWidgetDefinition object
+// NewServiceMapWidgetDefinitionWithDefaults instantiates a new ServiceMapWidgetDefinition object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewServiceMapWidgetDefinitionWithDefaults() *ServiceMapWidgetDefinition {
 	this := ServiceMapWidgetDefinition{}
-	var type_ ServiceMapWidgetDefinitionType = SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP
-	this.Type = type_
+	var typeVar ServiceMapWidgetDefinitionType = SERVICEMAPWIDGETDEFINITIONTYPE_SERVICEMAP
+	this.Type = typeVar
 	return &this
 }
 
@@ -86,7 +84,7 @@ func (o *ServiceMapWidgetDefinition) SetCustomLinks(v []WidgetCustomLink) {
 	o.CustomLinks = v
 }
 
-// GetFilters returns the Filters field value
+// GetFilters returns the Filters field value.
 func (o *ServiceMapWidgetDefinition) GetFilters() []string {
 	if o == nil {
 		var ret []string
@@ -104,12 +102,12 @@ func (o *ServiceMapWidgetDefinition) GetFiltersOk() (*[]string, bool) {
 	return &o.Filters, true
 }
 
-// SetFilters sets field value
+// SetFilters sets field value.
 func (o *ServiceMapWidgetDefinition) SetFilters(v []string) {
 	o.Filters = v
 }
 
-// GetService returns the Service field value
+// GetService returns the Service field value.
 func (o *ServiceMapWidgetDefinition) GetService() string {
 	if o == nil {
 		var ret string
@@ -127,7 +125,7 @@ func (o *ServiceMapWidgetDefinition) GetServiceOk() (*string, bool) {
 	return &o.Service, true
 }
 
-// SetService sets field value
+// SetService sets field value.
 func (o *ServiceMapWidgetDefinition) SetService(v string) {
 	o.Service = v
 }
@@ -228,7 +226,7 @@ func (o *ServiceMapWidgetDefinition) SetTitleSize(v string) {
 	o.TitleSize = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *ServiceMapWidgetDefinition) GetType() ServiceMapWidgetDefinitionType {
 	if o == nil {
 		var ret ServiceMapWidgetDefinitionType
@@ -246,11 +244,12 @@ func (o *ServiceMapWidgetDefinition) GetTypeOk() (*ServiceMapWidgetDefinitionTyp
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *ServiceMapWidgetDefinition) SetType(v ServiceMapWidgetDefinitionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -278,6 +277,7 @@ func (o ServiceMapWidgetDefinition) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *ServiceMapWidgetDefinition) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

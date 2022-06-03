@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,25 +12,25 @@ import (
 type UsageAttributionResponse struct {
 	// The object containing document metadata.
 	Metadata *UsageAttributionMetadata `json:"metadata,omitempty"`
-	// Get Usage Summary by tag(s).
+	// Get usage summary by tag(s).
 	Usage []UsageAttributionBody `json:"usage,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
 }
 
-// NewUsageAttributionResponse instantiates a new UsageAttributionResponse object
+// NewUsageAttributionResponse instantiates a new UsageAttributionResponse object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewUsageAttributionResponse() *UsageAttributionResponse {
 	this := UsageAttributionResponse{}
 	return &this
 }
 
-// NewUsageAttributionResponseWithDefaults instantiates a new UsageAttributionResponse object
+// NewUsageAttributionResponseWithDefaults instantiates a new UsageAttributionResponse object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewUsageAttributionResponseWithDefaults() *UsageAttributionResponse {
 	this := UsageAttributionResponse{}
 	return &this
@@ -102,6 +100,7 @@ func (o *UsageAttributionResponse) SetUsage(v []UsageAttributionBody) {
 	o.Usage = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -120,6 +119,7 @@ func (o UsageAttributionResponse) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *UsageAttributionResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

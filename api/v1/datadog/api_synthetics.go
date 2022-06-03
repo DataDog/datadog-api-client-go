@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -16,12 +14,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// SyntheticsApiService SyntheticsApi service
+// SyntheticsApiService SyntheticsApi service.
 type SyntheticsApiService service
 
 type apiCreateGlobalVariableRequest struct {
@@ -30,24 +23,28 @@ type apiCreateGlobalVariableRequest struct {
 	body       *SyntheticsGlobalVariable
 }
 
-/*
- * CreateGlobalVariable Create a global variable
- * Create a Synthetics global variable.
- */
-func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildCreateGlobalVariableRequest(ctx _context.Context, body SyntheticsGlobalVariable) (apiCreateGlobalVariableRequest, error) {
 	req := apiCreateGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateGlobalVariable Create a global variable.
+// Create a Synthetics global variable.
+func (a *SyntheticsApiService) CreateGlobalVariable(ctx _context.Context, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req, err := a.buildCreateGlobalVariableRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsGlobalVariable
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createGlobalVariableExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsGlobalVariable
- */
+// createGlobalVariableExecute executes the request.
 func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -189,24 +186,28 @@ type apiCreatePrivateLocationRequest struct {
 	body       *SyntheticsPrivateLocation
 }
 
-/*
- * CreatePrivateLocation Create a private location
- * Create a new Synthetics private location.
- */
-func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildCreatePrivateLocationRequest(ctx _context.Context, body SyntheticsPrivateLocation) (apiCreatePrivateLocationRequest, error) {
 	req := apiCreatePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreatePrivateLocation Create a private location.
+// Create a new Synthetics private location.
+func (a *SyntheticsApiService) CreatePrivateLocation(ctx _context.Context, body SyntheticsPrivateLocation) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreatePrivateLocationRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsPrivateLocationCreationResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createPrivateLocationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsPrivateLocationCreationResponse
- */
+// createPrivateLocationExecute executes the request.
 func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLocationRequest) (SyntheticsPrivateLocationCreationResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -348,24 +349,28 @@ type apiCreateSyntheticsAPITestRequest struct {
 	body       *SyntheticsAPITest
 }
 
-/*
- * CreateSyntheticsAPITest Create an API test
- * Create a Synthetic API test.
- */
-func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildCreateSyntheticsAPITestRequest(ctx _context.Context, body SyntheticsAPITest) (apiCreateSyntheticsAPITestRequest, error) {
 	req := apiCreateSyntheticsAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateSyntheticsAPITest Create an API test.
+// Create a Synthetic API test.
+func (a *SyntheticsApiService) CreateSyntheticsAPITest(ctx _context.Context, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req, err := a.buildCreateSyntheticsAPITestRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsAPITest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createSyntheticsAPITestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsAPITest
- */
+// createSyntheticsAPITestExecute executes the request.
 func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSyntheticsAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -517,24 +522,28 @@ type apiCreateSyntheticsBrowserTestRequest struct {
 	body       *SyntheticsBrowserTest
 }
 
-/*
- * CreateSyntheticsBrowserTest Create a browser test
- * Create a Synthetic browser test.
- */
-func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildCreateSyntheticsBrowserTestRequest(ctx _context.Context, body SyntheticsBrowserTest) (apiCreateSyntheticsBrowserTestRequest, error) {
 	req := apiCreateSyntheticsBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateSyntheticsBrowserTest Create a browser test.
+// Create a Synthetic browser test.
+func (a *SyntheticsApiService) CreateSyntheticsBrowserTest(ctx _context.Context, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req, err := a.buildCreateSyntheticsBrowserTestRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsBrowserTest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createSyntheticsBrowserTestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsBrowserTest
- */
+// createSyntheticsBrowserTestExecute executes the request.
 func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyntheticsBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -686,23 +695,27 @@ type apiDeleteGlobalVariableRequest struct {
 	variableId string
 }
 
-/*
- * DeleteGlobalVariable Delete a global variable
- * Delete a Synthetics global variable.
- */
-func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildDeleteGlobalVariableRequest(ctx _context.Context, variableId string) (apiDeleteGlobalVariableRequest, error) {
 	req := apiDeleteGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
+	return req, nil
+}
+
+// DeleteGlobalVariable Delete a global variable.
+// Delete a Synthetics global variable.
+func (a *SyntheticsApiService) DeleteGlobalVariable(ctx _context.Context, variableId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeleteGlobalVariableRequest(ctx, variableId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deleteGlobalVariableExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deleteGlobalVariableExecute executes the request.
 func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVariableRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -830,23 +843,27 @@ type apiDeletePrivateLocationRequest struct {
 	locationId string
 }
 
-/*
- * DeletePrivateLocation Delete a private location
- * Delete a Synthetics private location.
- */
-func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildDeletePrivateLocationRequest(ctx _context.Context, locationId string) (apiDeletePrivateLocationRequest, error) {
 	req := apiDeletePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
+	return req, nil
+}
+
+// DeletePrivateLocation Delete a private location.
+// Delete a Synthetics private location.
+func (a *SyntheticsApiService) DeletePrivateLocation(ctx _context.Context, locationId string) (*_nethttp.Response, error) {
+	req, err := a.buildDeletePrivateLocationRequest(ctx, locationId)
+	if err != nil {
+		return nil, err
+	}
 
 	return req.ApiService.deletePrivateLocationExecute(req)
 }
 
-/*
- * Execute executes the request
- */
+// deletePrivateLocationExecute executes the request.
 func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLocationRequest) (*_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod = _nethttp.MethodDelete
@@ -954,24 +971,28 @@ type apiDeleteTestsRequest struct {
 	body       *SyntheticsDeleteTestsPayload
 }
 
-/*
- * DeleteTests Delete tests
- * Delete multiple Synthetic tests by ID.
- */
-func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body SyntheticsDeleteTestsPayload) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildDeleteTestsRequest(ctx _context.Context, body SyntheticsDeleteTestsPayload) (apiDeleteTestsRequest, error) {
 	req := apiDeleteTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// DeleteTests Delete tests.
+// Delete multiple Synthetic tests by ID.
+func (a *SyntheticsApiService) DeleteTests(ctx _context.Context, body SyntheticsDeleteTestsPayload) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
+	req, err := a.buildDeleteTestsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsDeleteTestsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.deleteTestsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsDeleteTestsResponse
- */
+// deleteTestsExecute executes the request.
 func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (SyntheticsDeleteTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -1124,25 +1145,29 @@ type apiEditGlobalVariableRequest struct {
 	body       *SyntheticsGlobalVariable
 }
 
-/*
- * EditGlobalVariable Edit a global variable
- * Edit a Synthetics global variable.
- */
-func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildEditGlobalVariableRequest(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (apiEditGlobalVariableRequest, error) {
 	req := apiEditGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// EditGlobalVariable Edit a global variable.
+// Edit a Synthetics global variable.
+func (a *SyntheticsApiService) EditGlobalVariable(ctx _context.Context, variableId string, body SyntheticsGlobalVariable) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req, err := a.buildEditGlobalVariableRequest(ctx, variableId, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsGlobalVariable
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.editGlobalVariableExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsGlobalVariable
- */
+// editGlobalVariableExecute executes the request.
 func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -1285,25 +1310,29 @@ type apiGetAPITestRequest struct {
 	publicId   string
 }
 
-/*
- * GetAPITest Get an API test
- * Get the detailed configuration associated with
- * a Synthetic API test.
- */
-func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetAPITestRequest(ctx _context.Context, publicId string) (apiGetAPITestRequest, error) {
 	req := apiGetAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+	return req, nil
+}
+
+// GetAPITest Get an API test.
+// Get the detailed configuration associated with
+// a Synthetic API test.
+func (a *SyntheticsApiService) GetAPITest(ctx _context.Context, publicId string) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req, err := a.buildGetAPITestRequest(ctx, publicId)
+	if err != nil {
+		var localVarReturnValue SyntheticsAPITest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getAPITestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsAPITest
- */
+// getAPITestExecute executes the request.
 func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1434,34 +1463,38 @@ type apiGetAPITestLatestResultsRequest struct {
 	probeDc    *[]string
 }
 
+// GetAPITestLatestResultsOptionalParameters holds optional parameters for GetAPITestLatestResults.
 type GetAPITestLatestResultsOptionalParameters struct {
 	FromTs  *int64
 	ToTs    *int64
 	ProbeDc *[]string
 }
 
+// NewGetAPITestLatestResultsOptionalParameters creates an empty struct for parameters.
 func NewGetAPITestLatestResultsOptionalParameters() *GetAPITestLatestResultsOptionalParameters {
 	this := GetAPITestLatestResultsOptionalParameters{}
 	return &this
 }
+
+// WithFromTs sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetAPITestLatestResultsOptionalParameters {
 	r.FromTs = &fromTs
 	return r
 }
+
+// WithToTs sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetAPITestLatestResultsOptionalParameters {
 	r.ToTs = &toTs
 	return r
 }
+
+// WithProbeDc sets the corresponding parameter name and returns the struct.
 func (r *GetAPITestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetAPITestLatestResultsOptionalParameters {
 	r.ProbeDc = &probeDc
 	return r
 }
 
-/*
- * GetAPITestLatestResults Get an API test's latest results summaries
- * Get the last 50 test results summaries for a given Synthetics API test.
- */
-func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetAPITestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (apiGetAPITestLatestResultsRequest, error) {
 	req := apiGetAPITestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1469,8 +1502,7 @@ func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, pub
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetAPITestLatestResultsOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetAPITestLatestResultsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1478,14 +1510,22 @@ func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, pub
 		req.toTs = o[0].ToTs
 		req.probeDc = o[0].ProbeDc
 	}
+	return req, nil
+}
+
+// GetAPITestLatestResults Get an API test's latest results summaries.
+// Get the last 50 test results summaries for a given Synthetics API test.
+func (a *SyntheticsApiService) GetAPITestLatestResults(ctx _context.Context, publicId string, o ...GetAPITestLatestResultsOptionalParameters) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetAPITestLatestResultsRequest(ctx, publicId, o...)
+	if err != nil {
+		var localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getAPITestLatestResultsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsGetAPITestLatestResultsResponse
- */
+// getAPITestLatestResultsExecute executes the request.
 func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLatestResultsRequest) (SyntheticsGetAPITestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1631,25 +1671,29 @@ type apiGetAPITestResultRequest struct {
 	resultId   string
 }
 
-/*
- * GetAPITestResult Get an API test result
- * Get a specific full result from a given (API) Synthetic test.
- */
-func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetAPITestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetAPITestResultRequest, error) {
 	req := apiGetAPITestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		resultId:   resultId,
 	}
+	return req, nil
+}
+
+// GetAPITestResult Get an API test result.
+// Get a specific full result from a given (API) Synthetic test.
+func (a *SyntheticsApiService) GetAPITestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
+	req, err := a.buildGetAPITestResultRequest(ctx, publicId, resultId)
+	if err != nil {
+		var localVarReturnValue SyntheticsAPITestResultFull
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getAPITestResultExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsAPITestResultFull
- */
+// getAPITestResultExecute executes the request.
 func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequest) (SyntheticsAPITestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1778,25 +1822,29 @@ type apiGetBrowserTestRequest struct {
 	publicId   string
 }
 
-/*
- * GetBrowserTest Get a browser test
- * Get the detailed configuration (including steps) associated with
- * a Synthetic browser test.
- */
-func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetBrowserTestRequest(ctx _context.Context, publicId string) (apiGetBrowserTestRequest, error) {
 	req := apiGetBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+	return req, nil
+}
+
+// GetBrowserTest Get a browser test.
+// Get the detailed configuration (including steps) associated with
+// a Synthetic browser test.
+func (a *SyntheticsApiService) GetBrowserTest(ctx _context.Context, publicId string) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req, err := a.buildGetBrowserTestRequest(ctx, publicId)
+	if err != nil {
+		var localVarReturnValue SyntheticsBrowserTest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getBrowserTestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsBrowserTest
- */
+// getBrowserTestExecute executes the request.
 func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -1927,34 +1975,38 @@ type apiGetBrowserTestLatestResultsRequest struct {
 	probeDc    *[]string
 }
 
+// GetBrowserTestLatestResultsOptionalParameters holds optional parameters for GetBrowserTestLatestResults.
 type GetBrowserTestLatestResultsOptionalParameters struct {
 	FromTs  *int64
 	ToTs    *int64
 	ProbeDc *[]string
 }
 
+// NewGetBrowserTestLatestResultsOptionalParameters creates an empty struct for parameters.
 func NewGetBrowserTestLatestResultsOptionalParameters() *GetBrowserTestLatestResultsOptionalParameters {
 	this := GetBrowserTestLatestResultsOptionalParameters{}
 	return &this
 }
+
+// WithFromTs sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithFromTs(fromTs int64) *GetBrowserTestLatestResultsOptionalParameters {
 	r.FromTs = &fromTs
 	return r
 }
+
+// WithToTs sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithToTs(toTs int64) *GetBrowserTestLatestResultsOptionalParameters {
 	r.ToTs = &toTs
 	return r
 }
+
+// WithProbeDc sets the corresponding parameter name and returns the struct.
 func (r *GetBrowserTestLatestResultsOptionalParameters) WithProbeDc(probeDc []string) *GetBrowserTestLatestResultsOptionalParameters {
 	r.ProbeDc = &probeDc
 	return r
 }
 
-/*
- * GetBrowserTestLatestResults Get a browser test's latest results summaries
- * Get the last 50 test results summaries for a given Synthetics Browser test.
- */
-func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetBrowserTestLatestResultsRequest(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (apiGetBrowserTestLatestResultsRequest, error) {
 	req := apiGetBrowserTestLatestResultsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -1962,8 +2014,7 @@ func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
-		return localVarReturnValue, nil, reportError("only one argument of type GetBrowserTestLatestResultsOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetBrowserTestLatestResultsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -1971,14 +2022,22 @@ func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context,
 		req.toTs = o[0].ToTs
 		req.probeDc = o[0].ProbeDc
 	}
+	return req, nil
+}
+
+// GetBrowserTestLatestResults Get a browser test's latest results summaries.
+// Get the last 50 test results summaries for a given Synthetics Browser test.
+func (a *SyntheticsApiService) GetBrowserTestLatestResults(ctx _context.Context, publicId string, o ...GetBrowserTestLatestResultsOptionalParameters) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetBrowserTestLatestResultsRequest(ctx, publicId, o...)
+	if err != nil {
+		var localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getBrowserTestLatestResultsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsGetBrowserTestLatestResultsResponse
- */
+// getBrowserTestLatestResultsExecute executes the request.
 func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowserTestLatestResultsRequest) (SyntheticsGetBrowserTestLatestResultsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2124,25 +2183,29 @@ type apiGetBrowserTestResultRequest struct {
 	resultId   string
 }
 
-/*
- * GetBrowserTestResult Get a browser test result
- * Get a specific full result from a given (browser) Synthetic test.
- */
-func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetBrowserTestResultRequest(ctx _context.Context, publicId string, resultId string) (apiGetBrowserTestResultRequest, error) {
 	req := apiGetBrowserTestResultRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		resultId:   resultId,
 	}
+	return req, nil
+}
+
+// GetBrowserTestResult Get a browser test result.
+// Get a specific full result from a given (browser) Synthetic test.
+func (a *SyntheticsApiService) GetBrowserTestResult(ctx _context.Context, publicId string, resultId string) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
+	req, err := a.buildGetBrowserTestResultRequest(ctx, publicId, resultId)
+	if err != nil {
+		var localVarReturnValue SyntheticsBrowserTestResultFull
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getBrowserTestResultExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsBrowserTestResultFull
- */
+// getBrowserTestResultExecute executes the request.
 func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestResultRequest) (SyntheticsBrowserTestResultFull, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2271,24 +2334,28 @@ type apiGetGlobalVariableRequest struct {
 	variableId string
 }
 
-/*
- * GetGlobalVariable Get a global variable
- * Get the detailed configuration of a global variable.
- */
-func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableId string) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetGlobalVariableRequest(ctx _context.Context, variableId string) (apiGetGlobalVariableRequest, error) {
 	req := apiGetGlobalVariableRequest{
 		ApiService: a,
 		ctx:        ctx,
 		variableId: variableId,
 	}
+	return req, nil
+}
+
+// GetGlobalVariable Get a global variable.
+// Get the detailed configuration of a global variable.
+func (a *SyntheticsApiService) GetGlobalVariable(ctx _context.Context, variableId string) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
+	req, err := a.buildGetGlobalVariableRequest(ctx, variableId)
+	if err != nil {
+		var localVarReturnValue SyntheticsGlobalVariable
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getGlobalVariableExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsGlobalVariable
- */
+// getGlobalVariableExecute executes the request.
 func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRequest) (SyntheticsGlobalVariable, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2416,24 +2483,28 @@ type apiGetPrivateLocationRequest struct {
 	locationId string
 }
 
-/*
- * GetPrivateLocation Get a private location
- * Get a Synthetics private location.
- */
-func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetPrivateLocationRequest(ctx _context.Context, locationId string) (apiGetPrivateLocationRequest, error) {
 	req := apiGetPrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
 	}
+	return req, nil
+}
+
+// GetPrivateLocation Get a private location.
+// Get a Synthetics private location.
+func (a *SyntheticsApiService) GetPrivateLocation(ctx _context.Context, locationId string) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+	req, err := a.buildGetPrivateLocationRequest(ctx, locationId)
+	if err != nil {
+		var localVarReturnValue SyntheticsPrivateLocation
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getPrivateLocationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsPrivateLocation
- */
+// getPrivateLocationExecute executes the request.
 func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2551,24 +2622,28 @@ type apiGetSyntheticsCIBatchRequest struct {
 	batchId    string
 }
 
-/*
- * GetSyntheticsCIBatch Get details of batch
- * Get a batch's updated details.
- */
-func (a *SyntheticsApiService) GetSyntheticsCIBatch(ctx _context.Context, batchId string) (SyntheticsBatchDetails, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetSyntheticsCIBatchRequest(ctx _context.Context, batchId string) (apiGetSyntheticsCIBatchRequest, error) {
 	req := apiGetSyntheticsCIBatchRequest{
 		ApiService: a,
 		ctx:        ctx,
 		batchId:    batchId,
 	}
+	return req, nil
+}
+
+// GetSyntheticsCIBatch Get details of batch.
+// Get a batch's updated details.
+func (a *SyntheticsApiService) GetSyntheticsCIBatch(ctx _context.Context, batchId string) (SyntheticsBatchDetails, *_nethttp.Response, error) {
+	req, err := a.buildGetSyntheticsCIBatchRequest(ctx, batchId)
+	if err != nil {
+		var localVarReturnValue SyntheticsBatchDetails
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getSyntheticsCIBatchExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsBatchDetails
- */
+// getSyntheticsCIBatchExecute executes the request.
 func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIBatchRequest) (SyntheticsBatchDetails, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2686,24 +2761,28 @@ type apiGetTestRequest struct {
 	publicId   string
 }
 
-/*
- * GetTest Get a test configuration
- * Get the detailed configuration associated with a Synthetics test.
- */
-func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildGetTestRequest(ctx _context.Context, publicId string) (apiGetTestRequest, error) {
 	req := apiGetTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 	}
+	return req, nil
+}
+
+// GetTest Get a test configuration.
+// Get the detailed configuration associated with a Synthetics test.
+func (a *SyntheticsApiService) GetTest(ctx _context.Context, publicId string) (SyntheticsTestDetails, *_nethttp.Response, error) {
+	req, err := a.buildGetTestRequest(ctx, publicId)
+	if err != nil {
+		var localVarReturnValue SyntheticsTestDetails
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getTestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsTestDetails
- */
+// getTestExecute executes the request.
 func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTestDetails, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2830,23 +2909,27 @@ type apiListGlobalVariablesRequest struct {
 	ApiService *SyntheticsApiService
 }
 
-/*
- * ListGlobalVariables Get all global variables
- * Get the list of all Synthetics global variables.
- */
-func (a *SyntheticsApiService) ListGlobalVariables(ctx _context.Context) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildListGlobalVariablesRequest(ctx _context.Context) (apiListGlobalVariablesRequest, error) {
 	req := apiListGlobalVariablesRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListGlobalVariables Get all global variables.
+// Get the list of all Synthetics global variables.
+func (a *SyntheticsApiService) ListGlobalVariables(ctx _context.Context) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
+	req, err := a.buildListGlobalVariablesRequest(ctx)
+	if err != nil {
+		var localVarReturnValue SyntheticsListGlobalVariablesResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listGlobalVariablesExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsListGlobalVariablesResponse
- */
+// listGlobalVariablesExecute executes the request.
 func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariablesRequest) (SyntheticsListGlobalVariablesResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -2962,24 +3045,28 @@ type apiListLocationsRequest struct {
 	ApiService *SyntheticsApiService
 }
 
-/*
- * ListLocations Get all locations (public and private)
- * Get the list of public and private locations available for Synthetic
- * tests. No arguments required.
- */
-func (a *SyntheticsApiService) ListLocations(ctx _context.Context) (SyntheticsLocations, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildListLocationsRequest(ctx _context.Context) (apiListLocationsRequest, error) {
 	req := apiListLocationsRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListLocations Get all locations (public and private).
+// Get the list of public and private locations available for Synthetic
+// tests. No arguments required.
+func (a *SyntheticsApiService) ListLocations(ctx _context.Context) (SyntheticsLocations, *_nethttp.Response, error) {
+	req, err := a.buildListLocationsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue SyntheticsLocations
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listLocationsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsLocations
- */
+// listLocationsExecute executes the request.
 func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (SyntheticsLocations, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3085,23 +3172,27 @@ type apiListTestsRequest struct {
 	ApiService *SyntheticsApiService
 }
 
-/*
- * ListTests Get the list of all tests
- * Get the list of all Synthetic tests.
- */
-func (a *SyntheticsApiService) ListTests(ctx _context.Context) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildListTestsRequest(ctx _context.Context) (apiListTestsRequest, error) {
 	req := apiListTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
+	}
+	return req, nil
+}
+
+// ListTests Get the list of all tests.
+// Get the list of all Synthetic tests.
+func (a *SyntheticsApiService) ListTests(ctx _context.Context) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
+	req, err := a.buildListTestsRequest(ctx)
+	if err != nil {
+		var localVarReturnValue SyntheticsListTestsResponse
+		return localVarReturnValue, nil, err
 	}
 
 	return req.ApiService.listTestsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsListTestsResponse
- */
+// listTestsExecute executes the request.
 func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (SyntheticsListTestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -3228,24 +3319,28 @@ type apiTriggerCITestsRequest struct {
 	body       *SyntheticsCITestBody
 }
 
-/*
- * TriggerCITests Trigger tests from CI/CD pipelines
- * Trigger a set of Synthetics tests for continuous integration.
- */
-func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildTriggerCITestsRequest(ctx _context.Context, body SyntheticsCITestBody) (apiTriggerCITestsRequest, error) {
 	req := apiTriggerCITestsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// TriggerCITests Trigger tests from CI/CD pipelines.
+// Trigger a set of Synthetics tests for continuous integration.
+func (a *SyntheticsApiService) TriggerCITests(ctx _context.Context, body SyntheticsCITestBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+	req, err := a.buildTriggerCITestsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsTriggerCITestsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.triggerCITestsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsTriggerCITestsResponse
- */
+// triggerCITestsExecute executes the request.
 func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -3377,24 +3472,28 @@ type apiTriggerTestsRequest struct {
 	body       *SyntheticsTriggerBody
 }
 
-/*
- * TriggerTests Trigger Synthetics tests
- * Trigger a set of Synthetics tests.
- */
-func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildTriggerTestsRequest(ctx _context.Context, body SyntheticsTriggerBody) (apiTriggerTestsRequest, error) {
 	req := apiTriggerTestsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// TriggerTests Trigger Synthetics tests.
+// Trigger a set of Synthetics tests.
+func (a *SyntheticsApiService) TriggerTests(ctx _context.Context, body SyntheticsTriggerBody) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
+	req, err := a.buildTriggerTestsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsTriggerCITestsResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.triggerTestsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsTriggerCITestsResponse
- */
+// triggerTestsExecute executes the request.
 func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (SyntheticsTriggerCITestsResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -3527,25 +3626,29 @@ type apiUpdateAPITestRequest struct {
 	body       *SyntheticsAPITest
 }
 
-/*
- * UpdateAPITest Edit an API test
- * Edit the configuration of a Synthetic API test.
- */
-func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId string, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildUpdateAPITestRequest(ctx _context.Context, publicId string, body SyntheticsAPITest) (apiUpdateAPITestRequest, error) {
 	req := apiUpdateAPITestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateAPITest Edit an API test.
+// Edit the configuration of a Synthetic API test.
+func (a *SyntheticsApiService) UpdateAPITest(ctx _context.Context, publicId string, body SyntheticsAPITest) (SyntheticsAPITest, *_nethttp.Response, error) {
+	req, err := a.buildUpdateAPITestRequest(ctx, publicId, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsAPITest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateAPITestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsAPITest
- */
+// updateAPITestExecute executes the request.
 func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (SyntheticsAPITest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -3699,25 +3802,29 @@ type apiUpdateBrowserTestRequest struct {
 	body       *SyntheticsBrowserTest
 }
 
-/*
- * UpdateBrowserTest Edit a browser test
- * Edit the configuration of a Synthetic browser test.
- */
-func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildUpdateBrowserTestRequest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (apiUpdateBrowserTestRequest, error) {
 	req := apiUpdateBrowserTestRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateBrowserTest Edit a browser test.
+// Edit the configuration of a Synthetic browser test.
+func (a *SyntheticsApiService) UpdateBrowserTest(ctx _context.Context, publicId string, body SyntheticsBrowserTest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
+	req, err := a.buildUpdateBrowserTestRequest(ctx, publicId, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsBrowserTest
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateBrowserTestExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsBrowserTest
- */
+// updateBrowserTestExecute executes the request.
 func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRequest) (SyntheticsBrowserTest, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -3871,25 +3978,29 @@ type apiUpdatePrivateLocationRequest struct {
 	body       *SyntheticsPrivateLocation
 }
 
-/*
- * UpdatePrivateLocation Edit a private location
- * Edit a Synthetics private location.
- */
-func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildUpdatePrivateLocationRequest(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (apiUpdatePrivateLocationRequest, error) {
 	req := apiUpdatePrivateLocationRequest{
 		ApiService: a,
 		ctx:        ctx,
 		locationId: locationId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdatePrivateLocation Edit a private location.
+// Edit a Synthetics private location.
+func (a *SyntheticsApiService) UpdatePrivateLocation(ctx _context.Context, locationId string, body SyntheticsPrivateLocation) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
+	req, err := a.buildUpdatePrivateLocationRequest(ctx, locationId, body)
+	if err != nil {
+		var localVarReturnValue SyntheticsPrivateLocation
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updatePrivateLocationExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return SyntheticsPrivateLocation
- */
+// updatePrivateLocationExecute executes the request.
 func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLocationRequest) (SyntheticsPrivateLocation, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut
@@ -4023,25 +4134,29 @@ type apiUpdateTestPauseStatusRequest struct {
 	body       *SyntheticsUpdateTestPauseStatusPayload
 }
 
-/*
- * UpdateTestPauseStatus Pause or start a test
- * Pause or start a Synthetics test by changing the status.
- */
-func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
+func (a *SyntheticsApiService) buildUpdateTestPauseStatusRequest(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (apiUpdateTestPauseStatusRequest, error) {
 	req := apiUpdateTestPauseStatusRequest{
 		ApiService: a,
 		ctx:        ctx,
 		publicId:   publicId,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// UpdateTestPauseStatus Pause or start a test.
+// Pause or start a Synthetics test by changing the status.
+func (a *SyntheticsApiService) UpdateTestPauseStatus(ctx _context.Context, publicId string, body SyntheticsUpdateTestPauseStatusPayload) (bool, *_nethttp.Response, error) {
+	req, err := a.buildUpdateTestPauseStatusRequest(ctx, publicId, body)
+	if err != nil {
+		var localVarReturnValue bool
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.updateTestPauseStatusExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return bool
- */
+// updateTestPauseStatusExecute executes the request.
 func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPauseStatusRequest) (bool, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPut

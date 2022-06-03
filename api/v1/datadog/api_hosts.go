@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// HostsApiService HostsApi service
+// HostsApiService HostsApi service.
 type HostsApiService service
 
 type apiGetHostTotalsRequest struct {
@@ -29,46 +22,53 @@ type apiGetHostTotalsRequest struct {
 	from       *int64
 }
 
+// GetHostTotalsOptionalParameters holds optional parameters for GetHostTotals.
 type GetHostTotalsOptionalParameters struct {
 	From *int64
 }
 
+// NewGetHostTotalsOptionalParameters creates an empty struct for parameters.
 func NewGetHostTotalsOptionalParameters() *GetHostTotalsOptionalParameters {
 	this := GetHostTotalsOptionalParameters{}
 	return &this
 }
+
+// WithFrom sets the corresponding parameter name and returns the struct.
 func (r *GetHostTotalsOptionalParameters) WithFrom(from int64) *GetHostTotalsOptionalParameters {
 	r.From = &from
 	return r
 }
 
-/*
- * GetHostTotals Get the total number of active hosts
- * This endpoint returns the total number of active and up hosts in your Datadog account.
- * Active means the host has reported in the past hour, and up means it has reported in the past two hours.
- */
-func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+func (a *HostsApiService) buildGetHostTotalsRequest(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (apiGetHostTotalsRequest, error) {
 	req := apiGetHostTotalsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue HostTotals
-		return localVarReturnValue, nil, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
+		return req, reportError("only one argument of type GetHostTotalsOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.from = o[0].From
 	}
+	return req, nil
+}
+
+// GetHostTotals Get the total number of active hosts.
+// This endpoint returns the total number of active and up hosts in your Datadog account.
+// Active means the host has reported in the past hour, and up means it has reported in the past two hours.
+func (a *HostsApiService) GetHostTotals(ctx _context.Context, o ...GetHostTotalsOptionalParameters) (HostTotals, *_nethttp.Response, error) {
+	req, err := a.buildGetHostTotalsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue HostTotals
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getHostTotalsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return HostTotals
- */
+// getHostTotalsExecute executes the request.
 func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostTotals, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -205,6 +205,7 @@ type apiListHostsRequest struct {
 	includeHostsMetadata  *bool
 }
 
+// ListHostsOptionalParameters holds optional parameters for ListHosts.
 type ListHostsOptionalParameters struct {
 	Filter                *string
 	SortField             *string
@@ -216,59 +217,68 @@ type ListHostsOptionalParameters struct {
 	IncludeHostsMetadata  *bool
 }
 
+// NewListHostsOptionalParameters creates an empty struct for parameters.
 func NewListHostsOptionalParameters() *ListHostsOptionalParameters {
 	this := ListHostsOptionalParameters{}
 	return &this
 }
+
+// WithFilter sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithFilter(filter string) *ListHostsOptionalParameters {
 	r.Filter = &filter
 	return r
 }
+
+// WithSortField sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithSortField(sortField string) *ListHostsOptionalParameters {
 	r.SortField = &sortField
 	return r
 }
+
+// WithSortDir sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithSortDir(sortDir string) *ListHostsOptionalParameters {
 	r.SortDir = &sortDir
 	return r
 }
+
+// WithStart sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithStart(start int64) *ListHostsOptionalParameters {
 	r.Start = &start
 	return r
 }
+
+// WithCount sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithCount(count int64) *ListHostsOptionalParameters {
 	r.Count = &count
 	return r
 }
+
+// WithFrom sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithFrom(from int64) *ListHostsOptionalParameters {
 	r.From = &from
 	return r
 }
+
+// WithIncludeMutedHostsData sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithIncludeMutedHostsData(includeMutedHostsData bool) *ListHostsOptionalParameters {
 	r.IncludeMutedHostsData = &includeMutedHostsData
 	return r
 }
+
+// WithIncludeHostsMetadata sets the corresponding parameter name and returns the struct.
 func (r *ListHostsOptionalParameters) WithIncludeHostsMetadata(includeHostsMetadata bool) *ListHostsOptionalParameters {
 	r.IncludeHostsMetadata = &includeHostsMetadata
 	return r
 }
 
-/*
- * ListHosts Get all hosts for your organization
- * This endpoint allows searching for hosts by name, alias, or tag.
- * Hosts live within the past 3 hours are included by default.
- * Retention is 7 days.
- * Results are paginated with a max of 1000 results at a time.
- */
-func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) buildListHostsRequest(ctx _context.Context, o ...ListHostsOptionalParameters) (apiListHostsRequest, error) {
 	req := apiListHostsRequest{
 		ApiService: a,
 		ctx:        ctx,
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue HostListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListHostsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListHostsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -281,14 +291,25 @@ func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptional
 		req.includeMutedHostsData = o[0].IncludeMutedHostsData
 		req.includeHostsMetadata = o[0].IncludeHostsMetadata
 	}
+	return req, nil
+}
+
+// ListHosts Get all hosts for your organization.
+// This endpoint allows searching for hosts by name, alias, or tag.
+// Hosts live within the past 3 hours are included by default.
+// Retention is 7 days.
+// Results are paginated with a max of 1000 results at a time.
+func (a *HostsApiService) ListHosts(ctx _context.Context, o ...ListHostsOptionalParameters) (HostListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListHostsRequest(ctx, o...)
+	if err != nil {
+		var localVarReturnValue HostListResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listHostsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return HostListResponse
- */
+// listHostsExecute executes the request.
 func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -440,25 +461,29 @@ type apiMuteHostRequest struct {
 	body       *HostMuteSettings
 }
 
-/*
- * MuteHost Mute a host
- * Mute a host.
- */
-func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) buildMuteHostRequest(ctx _context.Context, hostName string, body HostMuteSettings) (apiMuteHostRequest, error) {
 	req := apiMuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
 		hostName:   hostName,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// MuteHost Mute a host.
+// Mute a host.
+func (a *HostsApiService) MuteHost(ctx _context.Context, hostName string, body HostMuteSettings) (HostMuteResponse, *_nethttp.Response, error) {
+	req, err := a.buildMuteHostRequest(ctx, hostName, body)
+	if err != nil {
+		var localVarReturnValue HostMuteResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.muteHostExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return HostMuteResponse
- */
+// muteHostExecute executes the request.
 func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -601,24 +626,28 @@ type apiUnmuteHostRequest struct {
 	hostName   string
 }
 
-/*
- * UnmuteHost Unmute a host
- * Unmutes a host. This endpoint takes no JSON arguments.
- */
-func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
+func (a *HostsApiService) buildUnmuteHostRequest(ctx _context.Context, hostName string) (apiUnmuteHostRequest, error) {
 	req := apiUnmuteHostRequest{
 		ApiService: a,
 		ctx:        ctx,
 		hostName:   hostName,
 	}
+	return req, nil
+}
+
+// UnmuteHost Unmute a host.
+// Unmutes a host. This endpoint takes no JSON arguments.
+func (a *HostsApiService) UnmuteHost(ctx _context.Context, hostName string) (HostMuteResponse, *_nethttp.Response, error) {
+	req, err := a.buildUnmuteHostRequest(ctx, hostName)
+	if err != nil {
+		var localVarReturnValue HostMuteResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.unmuteHostExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return HostMuteResponse
- */
+// unmuteHostExecute executes the request.
 func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

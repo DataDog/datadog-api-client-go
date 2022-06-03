@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -21,7 +19,7 @@ type EventCreateRequest struct {
 	// `recommendation`, and `snapshot`.
 	AlertType *EventAlertType `json:"alert_type,omitempty"`
 	// POSIX timestamp of the event. Must be sent as an integer (that is no quotes).
-	// Limited to events no older than 7 days.
+	// Limited to events no older than 18 hours
 	DateHappened *int64 `json:"date_happened,omitempty"`
 	// A device name.
 	DeviceName *string `json:"device_name,omitempty"`
@@ -48,10 +46,10 @@ type EventCreateRequest struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewEventCreateRequest instantiates a new EventCreateRequest object
+// NewEventCreateRequest instantiates a new EventCreateRequest object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewEventCreateRequest(text string, title string) *EventCreateRequest {
 	this := EventCreateRequest{}
 	this.Text = text
@@ -59,9 +57,9 @@ func NewEventCreateRequest(text string, title string) *EventCreateRequest {
 	return &this
 }
 
-// NewEventCreateRequestWithDefaults instantiates a new EventCreateRequest object
+// NewEventCreateRequestWithDefaults instantiates a new EventCreateRequest object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewEventCreateRequestWithDefaults() *EventCreateRequest {
 	this := EventCreateRequest{}
 	return &this
@@ -238,7 +236,7 @@ func (o *EventCreateRequest) GetPriority() EventPriority {
 
 // GetPriorityOk returns a tuple with the Priority field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *EventCreateRequest) GetPriorityOk() (*EventPriority, bool) {
 	if o == nil {
 		return nil, false
@@ -260,12 +258,12 @@ func (o *EventCreateRequest) SetPriority(v EventPriority) {
 	o.Priority.Set(&v)
 }
 
-// SetPriorityNil sets the value for Priority to be an explicit nil
+// SetPriorityNil sets the value for Priority to be an explicit nil.
 func (o *EventCreateRequest) SetPriorityNil() {
 	o.Priority.Set(nil)
 }
 
-// UnsetPriority ensures that no value is present for Priority, not even an explicit nil
+// UnsetPriority ensures that no value is present for Priority, not even an explicit nil.
 func (o *EventCreateRequest) UnsetPriority() {
 	o.Priority.Unset()
 }
@@ -366,7 +364,7 @@ func (o *EventCreateRequest) SetTags(v []string) {
 	o.Tags = v
 }
 
-// GetText returns the Text field value
+// GetText returns the Text field value.
 func (o *EventCreateRequest) GetText() string {
 	if o == nil {
 		var ret string
@@ -384,12 +382,12 @@ func (o *EventCreateRequest) GetTextOk() (*string, bool) {
 	return &o.Text, true
 }
 
-// SetText sets field value
+// SetText sets field value.
 func (o *EventCreateRequest) SetText(v string) {
 	o.Text = v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value.
 func (o *EventCreateRequest) GetTitle() string {
 	if o == nil {
 		var ret string
@@ -407,11 +405,12 @@ func (o *EventCreateRequest) GetTitleOk() (*string, bool) {
 	return &o.Title, true
 }
 
-// SetTitle sets field value
+// SetTitle sets field value.
 func (o *EventCreateRequest) SetTitle(v string) {
 	o.Title = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -453,6 +452,7 @@ func (o EventCreateRequest) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *EventCreateRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -15,12 +13,7 @@ import (
 	"strings"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// EventsApiService EventsApi service
+// EventsApiService EventsApi service.
 type EventsApiService service
 
 type apiCreateEventRequest struct {
@@ -29,25 +22,29 @@ type apiCreateEventRequest struct {
 	body       *EventCreateRequest
 }
 
-/*
- * CreateEvent Post an event
- * This endpoint allows you to post events to the stream.
- * Tag them, set priority and event aggregate them with other events.
- */
-func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) buildCreateEventRequest(ctx _context.Context, body EventCreateRequest) (apiCreateEventRequest, error) {
 	req := apiCreateEventRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// CreateEvent Post an event.
+// This endpoint allows you to post events to the stream.
+// Tag them, set priority and event aggregate them with other events.
+func (a *EventsApiService) CreateEvent(ctx _context.Context, body EventCreateRequest) (EventCreateResponse, *_nethttp.Response, error) {
+	req, err := a.buildCreateEventRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue EventCreateResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.createEventExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return EventCreateResponse
- */
+// createEventExecute executes the request.
 func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCreateResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -165,27 +162,31 @@ type apiGetEventRequest struct {
 	eventId    int64
 }
 
-/*
- * GetEvent Get an event
- * This endpoint allows you to query for event details.
- *
- * **Note**: If the event you’re querying contains markdown formatting of any kind,
- * you may see characters such as `%`,`\`,`n` in your output.
- */
-func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) buildGetEventRequest(ctx _context.Context, eventId int64) (apiGetEventRequest, error) {
 	req := apiGetEventRequest{
 		ApiService: a,
 		ctx:        ctx,
 		eventId:    eventId,
 	}
+	return req, nil
+}
+
+// GetEvent Get an event.
+// This endpoint allows you to query for event details.
+//
+// **Note**: If the event you’re querying contains markdown formatting of any kind,
+// you may see characters such as `%`,`\`,`n` in your output.
+func (a *EventsApiService) GetEvent(ctx _context.Context, eventId int64) (EventResponse, *_nethttp.Response, error) {
+	req, err := a.buildGetEventRequest(ctx, eventId)
+	if err != nil {
+		var localVarReturnValue EventResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.getEventExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return EventResponse
- */
+// getEventExecute executes the request.
 func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet
@@ -320,6 +321,7 @@ type apiListEventsRequest struct {
 	page             *int32
 }
 
+// ListEventsOptionalParameters holds optional parameters for ListEvents.
 type ListEventsOptionalParameters struct {
 	Priority         *EventPriority
 	Sources          *string
@@ -329,48 +331,49 @@ type ListEventsOptionalParameters struct {
 	Page             *int32
 }
 
+// NewListEventsOptionalParameters creates an empty struct for parameters.
 func NewListEventsOptionalParameters() *ListEventsOptionalParameters {
 	this := ListEventsOptionalParameters{}
 	return &this
 }
+
+// WithPriority sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPriority(priority EventPriority) *ListEventsOptionalParameters {
 	r.Priority = &priority
 	return r
 }
+
+// WithSources sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithSources(sources string) *ListEventsOptionalParameters {
 	r.Sources = &sources
 	return r
 }
+
+// WithTags sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithTags(tags string) *ListEventsOptionalParameters {
 	r.Tags = &tags
 	return r
 }
+
+// WithUnaggregated sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithUnaggregated(unaggregated bool) *ListEventsOptionalParameters {
 	r.Unaggregated = &unaggregated
 	return r
 }
+
+// WithExcludeAggregate sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithExcludeAggregate(excludeAggregate bool) *ListEventsOptionalParameters {
 	r.ExcludeAggregate = &excludeAggregate
 	return r
 }
+
+// WithPage sets the corresponding parameter name and returns the struct.
 func (r *ListEventsOptionalParameters) WithPage(page int32) *ListEventsOptionalParameters {
 	r.Page = &page
 	return r
 }
 
-/*
- * ListEvents Query the event stream
- * The event stream can be queried and filtered by time, priority, sources and tags.
- *
- * **Notes**:
- * - If the event you’re querying contains markdown formatting of any kind,
- * you may see characters such as `%`,`\`,`n` in your output.
- *
- * - This endpoint returns a maximum of `1000` most recent results. To return additional results,
- * identify the last timestamp of the last result and set that as the `end` query time to
- * paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
- */
-func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
+func (a *EventsApiService) buildListEventsRequest(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (apiListEventsRequest, error) {
 	req := apiListEventsRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -379,8 +382,7 @@ func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue EventListResponse
-		return localVarReturnValue, nil, reportError("only one argument of type ListEventsOptionalParameters is allowed")
+		return req, reportError("only one argument of type ListEventsOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -391,14 +393,30 @@ func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int
 		req.excludeAggregate = o[0].ExcludeAggregate
 		req.page = o[0].Page
 	}
+	return req, nil
+}
+
+// ListEvents Query the event stream.
+// The event stream can be queried and filtered by time, priority, sources and tags.
+//
+// **Notes**:
+// - If the event you’re querying contains markdown formatting of any kind,
+// you may see characters such as `%`,`\`,`n` in your output.
+//
+// - This endpoint returns a maximum of `1000` most recent results. To return additional results,
+// identify the last timestamp of the last result and set that as the `end` query time to
+// paginate the results. You can also use the page parameter to specify which set of `1000` results to return.
+func (a *EventsApiService) ListEvents(ctx _context.Context, start int64, end int64, o ...ListEventsOptionalParameters) (EventListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListEventsRequest(ctx, start, end, o...)
+	if err != nil {
+		var localVarReturnValue EventListResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listEventsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return EventListResponse
- */
+// listEventsExecute executes the request.
 func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodGet

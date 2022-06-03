@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -28,23 +26,23 @@ type SyntheticsBasicAuthNTLM struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsBasicAuthNTLM instantiates a new SyntheticsBasicAuthNTLM object
+// NewSyntheticsBasicAuthNTLM instantiates a new SyntheticsBasicAuthNTLM object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsBasicAuthNTLM(type_ SyntheticsBasicAuthNTLMType) *SyntheticsBasicAuthNTLM {
+// will change when the set of required properties is changed.
+func NewSyntheticsBasicAuthNTLM(typeVar SyntheticsBasicAuthNTLMType) *SyntheticsBasicAuthNTLM {
 	this := SyntheticsBasicAuthNTLM{}
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsBasicAuthNTLMWithDefaults instantiates a new SyntheticsBasicAuthNTLM object
+// NewSyntheticsBasicAuthNTLMWithDefaults instantiates a new SyntheticsBasicAuthNTLM object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsBasicAuthNTLMWithDefaults() *SyntheticsBasicAuthNTLM {
 	this := SyntheticsBasicAuthNTLM{}
-	var type_ SyntheticsBasicAuthNTLMType = SYNTHETICSBASICAUTHNTLMTYPE_NTLM
-	this.Type = type_
+	var typeVar SyntheticsBasicAuthNTLMType = SYNTHETICSBASICAUTHNTLMTYPE_NTLM
+	this.Type = typeVar
 	return &this
 }
 
@@ -112,7 +110,7 @@ func (o *SyntheticsBasicAuthNTLM) SetPassword(v string) {
 	o.Password = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsBasicAuthNTLM) GetType() SyntheticsBasicAuthNTLMType {
 	if o == nil {
 		var ret SyntheticsBasicAuthNTLMType
@@ -130,7 +128,7 @@ func (o *SyntheticsBasicAuthNTLM) GetTypeOk() (*SyntheticsBasicAuthNTLMType, boo
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsBasicAuthNTLM) SetType(v SyntheticsBasicAuthNTLMType) {
 	o.Type = v
 }
@@ -199,6 +197,7 @@ func (o *SyntheticsBasicAuthNTLM) SetWorkstation(v string) {
 	o.Workstation = &v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -224,6 +223,7 @@ func (o SyntheticsBasicAuthNTLM) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsBasicAuthNTLM) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -57,19 +55,19 @@ type IncidentResponseAttributes struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object
+// NewIncidentResponseAttributes instantiates a new IncidentResponseAttributes object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewIncidentResponseAttributes(title string) *IncidentResponseAttributes {
 	this := IncidentResponseAttributes{}
 	this.Title = title
 	return &this
 }
 
-// NewIncidentResponseAttributesWithDefaults instantiates a new IncidentResponseAttributes object
+// NewIncidentResponseAttributesWithDefaults instantiates a new IncidentResponseAttributes object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewIncidentResponseAttributesWithDefaults() *IncidentResponseAttributes {
 	this := IncidentResponseAttributes{}
 	return &this
@@ -150,7 +148,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactEnd() time.Time {
 
 // GetCustomerImpactEndOk returns a tuple with the CustomerImpactEnd field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactEndOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -172,12 +170,12 @@ func (o *IncidentResponseAttributes) SetCustomerImpactEnd(v time.Time) {
 	o.CustomerImpactEnd.Set(&v)
 }
 
-// SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil
+// SetCustomerImpactEndNil sets the value for CustomerImpactEnd to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactEndNil() {
 	o.CustomerImpactEnd.Set(nil)
 }
 
-// UnsetCustomerImpactEnd ensures that no value is present for CustomerImpactEnd, not even an explicit nil
+// UnsetCustomerImpactEnd ensures that no value is present for CustomerImpactEnd, not even an explicit nil.
 func (o *IncidentResponseAttributes) UnsetCustomerImpactEnd() {
 	o.CustomerImpactEnd.Unset()
 }
@@ -193,7 +191,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactScope() string {
 
 // GetCustomerImpactScopeOk returns a tuple with the CustomerImpactScope field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactScopeOk() (*string, bool) {
 	if o == nil {
 		return nil, false
@@ -215,12 +213,12 @@ func (o *IncidentResponseAttributes) SetCustomerImpactScope(v string) {
 	o.CustomerImpactScope.Set(&v)
 }
 
-// SetCustomerImpactScopeNil sets the value for CustomerImpactScope to be an explicit nil
+// SetCustomerImpactScopeNil sets the value for CustomerImpactScope to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactScopeNil() {
 	o.CustomerImpactScope.Set(nil)
 }
 
-// UnsetCustomerImpactScope ensures that no value is present for CustomerImpactScope, not even an explicit nil
+// UnsetCustomerImpactScope ensures that no value is present for CustomerImpactScope, not even an explicit nil.
 func (o *IncidentResponseAttributes) UnsetCustomerImpactScope() {
 	o.CustomerImpactScope.Unset()
 }
@@ -236,7 +234,7 @@ func (o *IncidentResponseAttributes) GetCustomerImpactStart() time.Time {
 
 // GetCustomerImpactStartOk returns a tuple with the CustomerImpactStart field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetCustomerImpactStartOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -258,12 +256,12 @@ func (o *IncidentResponseAttributes) SetCustomerImpactStart(v time.Time) {
 	o.CustomerImpactStart.Set(&v)
 }
 
-// SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil
+// SetCustomerImpactStartNil sets the value for CustomerImpactStart to be an explicit nil.
 func (o *IncidentResponseAttributes) SetCustomerImpactStartNil() {
 	o.CustomerImpactStart.Set(nil)
 }
 
-// UnsetCustomerImpactStart ensures that no value is present for CustomerImpactStart, not even an explicit nil
+// UnsetCustomerImpactStart ensures that no value is present for CustomerImpactStart, not even an explicit nil.
 func (o *IncidentResponseAttributes) UnsetCustomerImpactStart() {
 	o.CustomerImpactStart.Unset()
 }
@@ -311,7 +309,7 @@ func (o *IncidentResponseAttributes) GetDetected() time.Time {
 
 // GetDetectedOk returns a tuple with the Detected field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetDetectedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -333,12 +331,12 @@ func (o *IncidentResponseAttributes) SetDetected(v time.Time) {
 	o.Detected.Set(&v)
 }
 
-// SetDetectedNil sets the value for Detected to be an explicit nil
+// SetDetectedNil sets the value for Detected to be an explicit nil.
 func (o *IncidentResponseAttributes) SetDetectedNil() {
 	o.Detected.Set(nil)
 }
 
-// UnsetDetected ensures that no value is present for Detected, not even an explicit nil
+// UnsetDetected ensures that no value is present for Detected, not even an explicit nil.
 func (o *IncidentResponseAttributes) UnsetDetected() {
 	o.Detected.Unset()
 }
@@ -418,7 +416,7 @@ func (o *IncidentResponseAttributes) GetNotificationHandles() []IncidentNotifica
 
 // GetNotificationHandlesOk returns a tuple with the NotificationHandles field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetNotificationHandlesOk() (*[]IncidentNotificationHandle, bool) {
 	if o == nil || o.NotificationHandles == nil {
 		return nil, false
@@ -515,7 +513,7 @@ func (o *IncidentResponseAttributes) GetResolved() time.Time {
 
 // GetResolvedOk returns a tuple with the Resolved field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *IncidentResponseAttributes) GetResolvedOk() (*time.Time, bool) {
 	if o == nil {
 		return nil, false
@@ -537,12 +535,12 @@ func (o *IncidentResponseAttributes) SetResolved(v time.Time) {
 	o.Resolved.Set(&v)
 }
 
-// SetResolvedNil sets the value for Resolved to be an explicit nil
+// SetResolvedNil sets the value for Resolved to be an explicit nil.
 func (o *IncidentResponseAttributes) SetResolvedNil() {
 	o.Resolved.Set(nil)
 }
 
-// UnsetResolved ensures that no value is present for Resolved, not even an explicit nil
+// UnsetResolved ensures that no value is present for Resolved, not even an explicit nil.
 func (o *IncidentResponseAttributes) UnsetResolved() {
 	o.Resolved.Unset()
 }
@@ -675,7 +673,7 @@ func (o *IncidentResponseAttributes) SetTimeToResolve(v int64) {
 	o.TimeToResolve = &v
 }
 
-// GetTitle returns the Title field value
+// GetTitle returns the Title field value.
 func (o *IncidentResponseAttributes) GetTitle() string {
 	if o == nil {
 		var ret string
@@ -693,18 +691,23 @@ func (o *IncidentResponseAttributes) GetTitleOk() (*string, bool) {
 	return &o.Title, true
 }
 
-// SetTitle sets field value
+// SetTitle sets field value.
 func (o *IncidentResponseAttributes) SetTitle(v string) {
 	o.Title = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
 	if o.Created != nil {
-		toSerialize["created"] = o.Created
+		if o.Created.Nanosecond() == 0 {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["created"] = o.Created.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.CustomerImpactDuration != nil {
 		toSerialize["customer_impact_duration"] = o.CustomerImpactDuration
@@ -728,7 +731,11 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 		toSerialize["fields"] = o.Fields
 	}
 	if o.Modified != nil {
-		toSerialize["modified"] = o.Modified
+		if o.Modified.Nanosecond() == 0 {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05Z07:00")
+		} else {
+			toSerialize["modified"] = o.Modified.Format("2006-01-02T15:04:05.000Z07:00")
+		}
 	}
 	if o.NotificationHandles != nil {
 		toSerialize["notification_handles"] = o.NotificationHandles
@@ -762,6 +769,7 @@ func (o IncidentResponseAttributes) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *IncidentResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

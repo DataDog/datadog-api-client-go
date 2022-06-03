@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -14,12 +12,7 @@ import (
 	_neturl "net/url"
 )
 
-// Linger please
-var (
-	_ _context.Context
-)
-
-// LogsApiService LogsApi service
+// LogsApiService LogsApi service.
 type LogsApiService service
 
 type apiListLogsRequest struct {
@@ -28,32 +21,36 @@ type apiListLogsRequest struct {
 	body       *LogsListRequest
 }
 
-/*
- * ListLogs Search logs
- * List endpoint returns logs that match a log search query.
- * [Results are paginated][1].
- *
- * **If you are considering archiving logs for your organization,
- * consider use of the Datadog archive capabilities instead of the log list API.
- * See [Datadog Logs Archive documentation][2].**
- *
- * [1]: /logs/guide/collect-multiple-logs-with-pagination
- * [2]: https://docs.datadoghq.com/logs/archives
- */
-func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
+func (a *LogsApiService) buildListLogsRequest(ctx _context.Context, body LogsListRequest) (apiListLogsRequest, error) {
 	req := apiListLogsRequest{
 		ApiService: a,
 		ctx:        ctx,
 		body:       &body,
 	}
+	return req, nil
+}
+
+// ListLogs Search logs.
+// List endpoint returns logs that match a log search query.
+// [Results are paginated][1].
+//
+// **If you are considering archiving logs for your organization,
+// consider use of the Datadog archive capabilities instead of the log list API.
+// See [Datadog Logs Archive documentation][2].**
+//
+// [1]: /logs/guide/collect-multiple-logs-with-pagination
+// [2]: https://docs.datadoghq.com/logs/archives
+func (a *LogsApiService) ListLogs(ctx _context.Context, body LogsListRequest) (LogsListResponse, *_nethttp.Response, error) {
+	req, err := a.buildListLogsRequest(ctx, body)
+	if err != nil {
+		var localVarReturnValue LogsListResponse
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.listLogsExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return LogsListResponse
- */
+// listLogsExecute executes the request.
 func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost
@@ -197,47 +194,31 @@ type apiSubmitLogRequest struct {
 	ddtags          *string
 }
 
+// SubmitLogOptionalParameters holds optional parameters for SubmitLog.
 type SubmitLogOptionalParameters struct {
 	ContentEncoding *ContentEncoding
 	Ddtags          *string
 }
 
+// NewSubmitLogOptionalParameters creates an empty struct for parameters.
 func NewSubmitLogOptionalParameters() *SubmitLogOptionalParameters {
 	this := SubmitLogOptionalParameters{}
 	return &this
 }
+
+// WithContentEncoding sets the corresponding parameter name and returns the struct.
 func (r *SubmitLogOptionalParameters) WithContentEncoding(contentEncoding ContentEncoding) *SubmitLogOptionalParameters {
 	r.ContentEncoding = &contentEncoding
 	return r
 }
+
+// WithDdtags sets the corresponding parameter name and returns the struct.
 func (r *SubmitLogOptionalParameters) WithDdtags(ddtags string) *SubmitLogOptionalParameters {
 	r.Ddtags = &ddtags
 	return r
 }
 
-/*
- * SubmitLog Send logs
- * Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
- *
- * - Maximum content size per payload (uncompressed): 5MB
- * - Maximum size for a single log: 1MB
- * - Maximum array size if sending multiple logs in an array: 1000 entries
- *
- * Any log exceeding 1MB is accepted and truncated by Datadog:
- * - For a single log request, the API truncates the log at 1MB and returns a 2xx.
- * - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
- *
- * Datadog recommends sending your logs compressed.
- * Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
- *
- * The status codes answered by the HTTP API are:
- * - 200: OK
- * - 400: Bad request (likely an issue in the payload formatting)
- * - 403: Permission issue (likely using an invalid API Key)
- * - 413: Payload too large (batch is above 5MB uncompressed)
- * - 5xx: Internal error, request should be retried after some time
- */
-func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
+func (a *LogsApiService) buildSubmitLogRequest(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (apiSubmitLogRequest, error) {
 	req := apiSubmitLogRequest{
 		ApiService: a,
 		ctx:        ctx,
@@ -245,22 +226,47 @@ func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o .
 	}
 
 	if len(o) > 1 {
-		var localVarReturnValue interface{}
-		return localVarReturnValue, nil, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
+		return req, reportError("only one argument of type SubmitLogOptionalParameters is allowed")
 	}
 
 	if o != nil {
 		req.contentEncoding = o[0].ContentEncoding
 		req.ddtags = o[0].Ddtags
 	}
+	return req, nil
+}
+
+// SubmitLog Send logs.
+// Send your logs to your Datadog platform over HTTP. Limits per HTTP request are:
+//
+// - Maximum content size per payload (uncompressed): 5MB
+// - Maximum size for a single log: 1MB
+// - Maximum array size if sending multiple logs in an array: 1000 entries
+//
+// Any log exceeding 1MB is accepted and truncated by Datadog:
+// - For a single log request, the API truncates the log at 1MB and returns a 2xx.
+// - For a multi-logs request, the API processes all logs, truncates only logs larger than 1MB, and returns a 2xx.
+//
+// Datadog recommends sending your logs compressed.
+// Add the `Content-Encoding: gzip` header to the request when sending compressed logs.
+//
+// The status codes answered by the HTTP API are:
+// - 200: OK
+// - 400: Bad request (likely an issue in the payload formatting)
+// - 403: Permission issue (likely using an invalid API Key)
+// - 413: Payload too large (batch is above 5MB uncompressed)
+// - 5xx: Internal error, request should be retried after some time
+func (a *LogsApiService) SubmitLog(ctx _context.Context, body []HTTPLogItem, o ...SubmitLogOptionalParameters) (interface{}, *_nethttp.Response, error) {
+	req, err := a.buildSubmitLogRequest(ctx, body, o...)
+	if err != nil {
+		var localVarReturnValue interface{}
+		return localVarReturnValue, nil, err
+	}
 
 	return req.ApiService.submitLogExecute(req)
 }
 
-/*
- * Execute executes the request
- * @return interface{}
- */
+// submitLogExecute executes the request.
 func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod  = _nethttp.MethodPost

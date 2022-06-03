@@ -111,8 +111,13 @@ type ctxRequestsUndoKey struct{}
 // ConfigureClients sets up the Datadog API client for testing
 func ConfigureClients(ctx context.Context, bddCTX gobdd.Context) (context.Context, func()) {
 	t := GetT(bddCTX)
-	c1 := v1.NewAPIClient(v1.NewConfiguration())
-	c2 := v2.NewAPIClient(v2.NewConfiguration())
+	debug := os.Getenv("DEBUG") == "true"
+	config1 := v1.NewConfiguration()
+	config1.Debug = debug
+	c1 := v1.NewAPIClient(config1)
+	config2 := v2.NewConfiguration()
+	config2.Debug = debug
+	c2 := v2.NewAPIClient(config2)
 
 	ctx = context.WithValue(
 		ctx,

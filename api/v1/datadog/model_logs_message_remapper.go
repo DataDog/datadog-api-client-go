@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -31,28 +29,28 @@ type LogsMessageRemapper struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewLogsMessageRemapper instantiates a new LogsMessageRemapper object
+// NewLogsMessageRemapper instantiates a new LogsMessageRemapper object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewLogsMessageRemapper(sources []string, type_ LogsMessageRemapperType) *LogsMessageRemapper {
+// will change when the set of required properties is changed.
+func NewLogsMessageRemapper(sources []string, typeVar LogsMessageRemapperType) *LogsMessageRemapper {
 	this := LogsMessageRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
 	this.Sources = sources
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewLogsMessageRemapperWithDefaults instantiates a new LogsMessageRemapper object
+// NewLogsMessageRemapperWithDefaults instantiates a new LogsMessageRemapper object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewLogsMessageRemapperWithDefaults() *LogsMessageRemapper {
 	this := LogsMessageRemapper{}
 	var isEnabled bool = false
 	this.IsEnabled = &isEnabled
-	var type_ LogsMessageRemapperType = LOGSMESSAGEREMAPPERTYPE_MESSAGE_REMAPPER
-	this.Type = type_
+	var typeVar LogsMessageRemapperType = LOGSMESSAGEREMAPPERTYPE_MESSAGE_REMAPPER
+	this.Type = typeVar
 	return &this
 }
 
@@ -120,7 +118,7 @@ func (o *LogsMessageRemapper) SetName(v string) {
 	o.Name = &v
 }
 
-// GetSources returns the Sources field value
+// GetSources returns the Sources field value.
 func (o *LogsMessageRemapper) GetSources() []string {
 	if o == nil {
 		var ret []string
@@ -138,12 +136,12 @@ func (o *LogsMessageRemapper) GetSourcesOk() (*[]string, bool) {
 	return &o.Sources, true
 }
 
-// SetSources sets field value
+// SetSources sets field value.
 func (o *LogsMessageRemapper) SetSources(v []string) {
 	o.Sources = v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *LogsMessageRemapper) GetType() LogsMessageRemapperType {
 	if o == nil {
 		var ret LogsMessageRemapperType
@@ -161,11 +159,12 @@ func (o *LogsMessageRemapper) GetTypeOk() (*LogsMessageRemapperType, bool) {
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *LogsMessageRemapper) SetType(v LogsMessageRemapperType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -186,6 +185,7 @@ func (o LogsMessageRemapper) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *LogsMessageRemapper) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {

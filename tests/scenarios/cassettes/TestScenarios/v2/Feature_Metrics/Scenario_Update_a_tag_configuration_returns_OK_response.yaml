@@ -1,11 +1,11 @@
 interactions:
 - request:
     body: |
-      {"series":[{"metric":"TestUpdateatagconfigurationreturnsOKresponse1648572657","points":[[1648572657,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
+      {"series":[{"metric":"TestUpdateatagconfigurationreturnsOKresponse1652354372","points":[[1652354372,1.1]],"tags":["test:ExampleSubmitmetricsreturnsPayloadacceptedresponse"],"type":"gauge"}]}
     form: {}
     headers:
       Accept:
-      - text/json
+      - text/json, application/json
       Content-Type:
       - text/json
     method: POST
@@ -20,7 +20,7 @@ interactions:
     status: 202 Accepted
 - request:
     body: |
-      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestUpdateatagconfigurationreturnsOKresponse1648572657"]},"id":"TestUpdateatagconfigurationreturnsOKresponse1648572657","type":"manage_tags"}}
+      {"data":{"attributes":{"metric_type":"gauge","tags":["app","datacenter","TestUpdateatagconfigurationreturnsOKresponse1652354372"]},"id":"TestUpdateatagconfigurationreturnsOKresponse1652354372","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -28,9 +28,9 @@ interactions:
       Content-Type:
       - application/json
     method: POST
-    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1648572657/tags
+    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1652354372/tags
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestUpdateatagconfigurationreturnsOKresponse1648572657","attributes":{"tags":["datacenter","app","TestUpdateatagconfigurationreturnsOKresponse1648572657"],"created_at":"2022-03-29T16:50:58.686271+00:00","modified_at":"2022-03-29T16:50:58.686271+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestUpdateatagconfigurationreturnsOKresponse1652354372","attributes":{"tags":["datacenter","TestUpdateatagconfigurationreturnsOKresponse1652354372","app"],"created_at":"2022-05-12T11:19:33.257425+00:00","modified_at":"2022-05-12T11:19:33.257425+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
     code: 201
     duration: ''
     headers:
@@ -39,7 +39,7 @@ interactions:
     status: 201 Created
 - request:
     body: |
-      {"data":{"attributes":{"tags":["app"]},"id":"TestUpdateatagconfigurationreturnsOKresponse1648572657","type":"manage_tags"}}
+      {"data":{"attributes":{"tags":["app"]},"id":"TestUpdateatagconfigurationreturnsOKresponse1652354372","type":"manage_tags"}}
     form: {}
     headers:
       Accept:
@@ -47,9 +47,9 @@ interactions:
       Content-Type:
       - application/json
     method: PATCH
-    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1648572657/tags
+    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1652354372/tags
   response:
-    body: '{"data":{"type":"manage_tags","id":"TestUpdateatagconfigurationreturnsOKresponse1648572657","attributes":{"tags":["app"],"created_at":"2022-03-29T16:50:58.686271+00:00","modified_at":"2022-03-29T16:50:59.386565+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
+    body: '{"data":{"type":"manage_tags","id":"TestUpdateatagconfigurationreturnsOKresponse1652354372","attributes":{"tags":["app"],"created_at":"2022-05-12T11:19:33.257425+00:00","modified_at":"2022-05-12T11:19:33.820520+00:00","metric_type":"gauge","aggregations":[{"space":"avg","time":"avg"}]}}}'
     code: 200
     duration: ''
     headers:
@@ -61,9 +61,9 @@ interactions:
     form: {}
     headers:
       Accept:
-      - application/json
+      - '*/*'
     method: DELETE
-    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1648572657/tags
+    url: https://api.datadoghq.com/api/v2/metrics/TestUpdateatagconfigurationreturnsOKresponse1652354372/tags
   response:
     body: ''
     code: 204

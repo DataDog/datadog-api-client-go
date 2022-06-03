@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -23,10 +21,10 @@ type NotebookMetadata struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewNotebookMetadata instantiates a new NotebookMetadata object
+// NewNotebookMetadata instantiates a new NotebookMetadata object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
+// will change when the set of required properties is changed.
 func NewNotebookMetadata() *NotebookMetadata {
 	this := NotebookMetadata{}
 	var isTemplate bool = false
@@ -36,9 +34,9 @@ func NewNotebookMetadata() *NotebookMetadata {
 	return &this
 }
 
-// NewNotebookMetadataWithDefaults instantiates a new NotebookMetadata object
+// NewNotebookMetadataWithDefaults instantiates a new NotebookMetadata object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewNotebookMetadataWithDefaults() *NotebookMetadata {
 	this := NotebookMetadata{}
 	var isTemplate bool = false
@@ -123,7 +121,7 @@ func (o *NotebookMetadata) GetType() NotebookMetadataType {
 
 // GetTypeOk returns a tuple with the Type field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-// NOTE: If the value is an explicit nil, `nil, true` will be returned
+// NOTE: If the value is an explicit nil, `nil, true` will be returned.
 func (o *NotebookMetadata) GetTypeOk() (*NotebookMetadataType, bool) {
 	if o == nil {
 		return nil, false
@@ -145,16 +143,17 @@ func (o *NotebookMetadata) SetType(v NotebookMetadataType) {
 	o.Type.Set(&v)
 }
 
-// SetTypeNil sets the value for Type to be an explicit nil
+// SetTypeNil sets the value for Type to be an explicit nil.
 func (o *NotebookMetadata) SetTypeNil() {
 	o.Type.Set(nil)
 }
 
-// UnsetType ensures that no value is present for Type, not even an explicit nil
+// UnsetType ensures that no value is present for Type, not even an explicit nil.
 func (o *NotebookMetadata) UnsetType() {
 	o.Type.Unset()
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -176,6 +175,7 @@ func (o NotebookMetadata) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *NotebookMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {

@@ -1,8 +1,6 @@
-/*
- * Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
- * This product includes software developed at Datadog (https://www.datadoghq.com/).
- * Copyright 2019-Present Datadog, Inc.
- */
+// Unless explicitly stated otherwise all files in this repository are licensed under the Apache-2.0 License.
+// This product includes software developed at Datadog (https://www.datadoghq.com/).
+// Copyright 2019-Present Datadog, Inc.
 
 package datadog
 
@@ -26,26 +24,26 @@ type SyntheticsAssertionJSONPathTarget struct {
 	AdditionalProperties map[string]interface{}
 }
 
-// NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object
+// NewSyntheticsAssertionJSONPathTarget instantiates a new SyntheticsAssertionJSONPathTarget object.
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
-// will change when the set of required properties is changed
-func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, type_ SyntheticsAssertionType) *SyntheticsAssertionJSONPathTarget {
+// will change when the set of required properties is changed.
+func NewSyntheticsAssertionJSONPathTarget(operator SyntheticsAssertionJSONPathOperator, typeVar SyntheticsAssertionType) *SyntheticsAssertionJSONPathTarget {
 	this := SyntheticsAssertionJSONPathTarget{}
 	this.Operator = operator
-	this.Type = type_
+	this.Type = typeVar
 	return &this
 }
 
-// NewSyntheticsAssertionJSONPathTargetWithDefaults instantiates a new SyntheticsAssertionJSONPathTarget object
+// NewSyntheticsAssertionJSONPathTargetWithDefaults instantiates a new SyntheticsAssertionJSONPathTarget object.
 // This constructor will only assign default values to properties that have it defined,
-// but it doesn't guarantee that properties required by API are set
+// but it doesn't guarantee that properties required by API are set.
 func NewSyntheticsAssertionJSONPathTargetWithDefaults() *SyntheticsAssertionJSONPathTarget {
 	this := SyntheticsAssertionJSONPathTarget{}
 	return &this
 }
 
-// GetOperator returns the Operator field value
+// GetOperator returns the Operator field value.
 func (o *SyntheticsAssertionJSONPathTarget) GetOperator() SyntheticsAssertionJSONPathOperator {
 	if o == nil {
 		var ret SyntheticsAssertionJSONPathOperator
@@ -63,7 +61,7 @@ func (o *SyntheticsAssertionJSONPathTarget) GetOperatorOk() (*SyntheticsAssertio
 	return &o.Operator, true
 }
 
-// SetOperator sets field value
+// SetOperator sets field value.
 func (o *SyntheticsAssertionJSONPathTarget) SetOperator(v SyntheticsAssertionJSONPathOperator) {
 	o.Operator = v
 }
@@ -132,7 +130,7 @@ func (o *SyntheticsAssertionJSONPathTarget) SetTarget(v SyntheticsAssertionJSONP
 	o.Target = &v
 }
 
-// GetType returns the Type field value
+// GetType returns the Type field value.
 func (o *SyntheticsAssertionJSONPathTarget) GetType() SyntheticsAssertionType {
 	if o == nil {
 		var ret SyntheticsAssertionType
@@ -150,11 +148,12 @@ func (o *SyntheticsAssertionJSONPathTarget) GetTypeOk() (*SyntheticsAssertionTyp
 	return &o.Type, true
 }
 
-// SetType sets field value
+// SetType sets field value.
 func (o *SyntheticsAssertionJSONPathTarget) SetType(v SyntheticsAssertionType) {
 	o.Type = v
 }
 
+// MarshalJSON serializes the struct using spec logic.
 func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
 	if o.UnparsedObject != nil {
@@ -175,6 +174,7 @@ func (o SyntheticsAssertionJSONPathTarget) MarshalJSON() ([]byte, error) {
 	return json.Marshal(toSerialize)
 }
 
+// UnmarshalJSON deserializes the given payload.
 func (o *SyntheticsAssertionJSONPathTarget) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	required := struct {
