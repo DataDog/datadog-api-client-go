@@ -27,6 +27,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/DataDog/zstd"
 	"golang.org/x/oauth2"
 )
 
@@ -377,6 +378,16 @@ func (c *APIClient) PrepareRequest(
 		} else if headerParams["Content-Encoding"] == "deflate" {
 			var buf bytes.Buffer
 			compressor := zlib.NewWriter(&buf)
+			if _, err = compressor.Write(body.Bytes()); err != nil {
+				return nil, err
+			}
+			if err = compressor.Close(); err != nil {
+				return nil, err
+			}
+			body = &buf
+		} else if headerParams["Content-Encoding"] == "zstd1" {
+			var buf bytes.Buffer
+			compressor := zstd.NewWriter(&buf)
 			if _, err = compressor.Write(body.Bytes()); err != nil {
 				return nil, err
 			}
