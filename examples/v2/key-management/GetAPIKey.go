@@ -18,7 +18,7 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.KeyManagementApi.GetAPIKey(ctx, APIKeyDataID, *datadog.NewGetAPIKeyOptionalParameters())
+	resp, r, err := apiClient.KeyManagementApi.GetAPIKey(ctx, APIKeyDataID, *datadog.NewGetAPIKeyOptionalParameters().WithInclude("created_by,modified_by"))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `KeyManagementApi.GetAPIKey`: %v\n", err)
