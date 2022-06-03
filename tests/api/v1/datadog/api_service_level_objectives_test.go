@@ -21,7 +21,7 @@ func getTestServiceCheckMonitor(ctx context.Context, t *testing.T) datadog.Monit
 	return datadog.Monitor{
 		Name:    tests.UniqueEntityName(ctx, t),
 		Type:    datadog.MONITORTYPE_SERVICE_CHECK,
-		Query:   "\"datadog.agent.check_status\".over(\"database\").last(2).count_by_status()",
+		Query:   "\"datadog.agent.check_status\".over(\"database\").by(\"*\").last(2).count_by_status()",
 		Message: datadog.PtrString("some message Notify: @hipchat-channel"),
 		Tags: []string{
 			"test",
