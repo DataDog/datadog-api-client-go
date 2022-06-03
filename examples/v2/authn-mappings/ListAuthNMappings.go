@@ -12,10 +12,13 @@ import (
 )
 
 func main() {
+	// there is a valid "authn_mapping" in the system
+	AuthnMappingDataAttributesAttributeKey := os.Getenv("AUTHN_MAPPING_DATA_ATTRIBUTES_ATTRIBUTE_KEY")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthNMappingsApi.ListAuthNMappings(ctx, *datadog.NewListAuthNMappingsOptionalParameters())
+	resp, r, err := apiClient.AuthNMappingsApi.ListAuthNMappings(ctx, *datadog.NewListAuthNMappingsOptionalParameters().WithFilter(AuthnMappingDataAttributesAttributeKey))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.ListAuthNMappings`: %v\n", err)
