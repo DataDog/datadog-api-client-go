@@ -76,7 +76,7 @@ type APIClient struct {
 
 	RUMApi *RUMApiService
 
-	SecurityMonitoringApi *SecurityMonitoringApiService
+	SecurityPlatformApi *SecurityPlatformApiService
 
 	ServiceAccountsApi *ServiceAccountsApiService
 
@@ -124,7 +124,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.ProcessesApi = (*ProcessesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
 	c.RUMApi = (*RUMApiService)(&c.common)
-	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
+	c.SecurityPlatformApi = (*SecurityPlatformApiService)(&c.common)
 	c.ServiceAccountsApi = (*ServiceAccountsApiService)(&c.common)
 	c.UsageMeteringApi = (*UsageMeteringApiService)(&c.common)
 	c.UsersApi = (*UsersApiService)(&c.common)

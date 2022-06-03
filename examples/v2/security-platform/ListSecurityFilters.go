@@ -15,13 +15,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.ListSecurityFilters(ctx)
+	resp, r, err := apiClient.SecurityPlatformApi.ListSecurityFilters(ctx)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.ListSecurityFilters`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.ListSecurityFilters`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.ListSecurityFilters`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityPlatformApi.ListSecurityFilters`:\n%s\n", responseContent)
 }

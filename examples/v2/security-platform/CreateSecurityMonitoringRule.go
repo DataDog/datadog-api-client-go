@@ -1,4 +1,4 @@
-// Update an existing rule returns "OK" response
+// Create a detection rule returns "OK" response
 
 package main
 
@@ -12,20 +12,18 @@ import (
 )
 
 func main() {
-	body := datadog.SecurityMonitoringRuleUpdatePayload{
-		Cases: []datadog.SecurityMonitoringRuleCase{
-			{
-				Notifications: []string{},
-				Status:        datadog.SECURITYMONITORINGRULESEVERITY_CRITICAL.Ptr(),
-			},
-		},
+	body := datadog.SecurityMonitoringRuleCreatePayload{
+		Cases: []datadog.SecurityMonitoringRuleCaseCreate{},
 		Filters: []datadog.SecurityMonitoringFilter{
 			{
 				Action: datadog.SECURITYMONITORINGFILTERACTION_REQUIRE.Ptr(),
 			},
 		},
 		HasExtendedTitle: datadog.PtrBool(true),
-		Options: &datadog.SecurityMonitoringRuleOptions{
+		IsEnabled:        true,
+		Message:          "",
+		Name:             "My security monitoring rule.",
+		Options: datadog.SecurityMonitoringRuleOptions{
 			DetectionMethod:        datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
 			EvaluationWindow:       datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
 			HardcodedEvaluatorType: datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
@@ -39,26 +37,23 @@ func main() {
 				LearningDuration: datadog.SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS.Ptr(),
 			},
 		},
-		Queries: []datadog.SecurityMonitoringRuleQuery{
-			{
-				Aggregation:    datadog.SECURITYMONITORINGRULEQUERYAGGREGATION_COUNT.Ptr(),
-				DistinctFields: []string{},
-				GroupByFields:  []string{},
-			},
+		Queries: []datadog.SecurityMonitoringRuleQueryCreate{},
+		Tags: []string{
+			"env:prod",
+			"team:security",
 		},
-		Tags:    []string{},
-		Version: datadog.PtrInt32(1),
+		Type: datadog.SECURITYMONITORINGRULETYPECREATE_LOG_DETECTION.Ptr(),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.UpdateSecurityMonitoringRule(ctx, "rule_id", body)
+	resp, r, err := apiClient.SecurityPlatformApi.CreateSecurityMonitoringRule(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.UpdateSecurityMonitoringRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.CreateSecurityMonitoringRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.UpdateSecurityMonitoringRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityPlatformApi.CreateSecurityMonitoringRule`:\n%s\n", responseContent)
 }
