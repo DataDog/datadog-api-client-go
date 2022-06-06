@@ -13,7 +13,6 @@ import (
 func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("DeleteTagConfiguration", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	r, err := apiClient.MetricsApi.DeleteTagConfiguration(ctx, "ExampleDeleteatagconfigurationreturnsNoContentresponse")
 
