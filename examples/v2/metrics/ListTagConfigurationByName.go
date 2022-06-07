@@ -17,6 +17,7 @@ func main() {
 
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
+	configuration.SetUnstableOperationEnabled("ListTagConfigurationByName", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.MetricsApi.ListTagConfigurationByName(ctx, MetricTagConfigurationDataID)
 

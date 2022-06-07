@@ -7,7 +7,9 @@ package datadog
 import (
 	"bytes"
 	_context "context"
+	_fmt "fmt"
 	_ioutil "io/ioutil"
+	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -233,6 +235,13 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
+
+	operationId := "CreateTagConfiguration"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateTagConfiguration")
 	if err != nil {
@@ -582,6 +591,13 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 		localVarHTTPMethod = _nethttp.MethodDelete
 		localVarPostBody   interface{}
 	)
+
+	operationId := "DeleteTagConfiguration"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteTagConfiguration")
 	if err != nil {
@@ -959,6 +975,13 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
+	operationId := "ListTagConfigurationByName"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
+
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurationByName")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -1177,6 +1200,13 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 		localVarPostBody    interface{}
 		localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 	)
+
+	operationId := "ListTagConfigurations"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurations")
 	if err != nil {
@@ -1486,6 +1516,8 @@ func (a *MetricsApiService) buildListVolumesByMetricNameRequest(ctx _context.Con
 // ListVolumesByMetricName List distinct metric volumes by metric name.
 // View distinct metrics volumes for the given metric name.
 //
+// Custom distribution metrics will return both ingested and indexed custom metric volumes.
+// For Metrics without Limits&trade; beta customers, all metrics will return both ingested/indexed volumes.
 // Custom metrics generated in-app from other products will return `null` for ingested volumes.
 func (a *MetricsApiService) ListVolumesByMetricName(ctx _context.Context, metricName string) (MetricVolumesResponse, *_nethttp.Response, error) {
 	req, err := a.buildListVolumesByMetricNameRequest(ctx, metricName)
@@ -1875,6 +1907,13 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 		localVarPostBody    interface{}
 		localVarReturnValue MetricTagConfigurationResponse
 	)
+
+	operationId := "UpdateTagConfiguration"
+	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
+		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
+	} else {
+		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
+	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateTagConfiguration")
 	if err != nil {

@@ -27,15 +27,14 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("SearchSecurityMonitoringSignals", true)
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
+	resp, r, err := apiClient.SecurityPlatformApi.SearchSecurityMonitoringSignals(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.SearchSecurityMonitoringSignals`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.SearchSecurityMonitoringSignals`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.SearchSecurityMonitoringSignals`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityPlatformApi.SearchSecurityMonitoringSignals`:\n%s\n", responseContent)
 }

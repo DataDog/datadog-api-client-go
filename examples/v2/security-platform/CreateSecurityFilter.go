@@ -23,8 +23,8 @@ func main() {
 				},
 				FilteredDataType: datadog.SECURITYFILTERFILTEREDDATATYPE_LOGS,
 				IsEnabled:        true,
-				Name:             "Example-Create_a_security_filter_returns_OK_response",
-				Query:            "service:ExampleCreateasecurityfilterreturnsOKresponse",
+				Name:             "Custom security filter",
+				Query:            "service:api",
 			},
 			Type: datadog.SECURITYFILTERTYPE_SECURITY_FILTERS,
 		},
@@ -32,13 +32,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.CreateSecurityFilter(ctx, body)
+	resp, r, err := apiClient.SecurityPlatformApi.CreateSecurityFilter(ctx, body)
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.CreateSecurityFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.CreateSecurityFilter`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.CreateSecurityFilter`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityPlatformApi.CreateSecurityFilter`:\n%s\n", responseContent)
 }

@@ -1,4 +1,4 @@
-// Get a rule's details returns "OK" response
+// List rules returns "OK" response
 
 package main
 
@@ -15,13 +15,13 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.SecurityMonitoringApi.GetSecurityMonitoringRule(ctx, "rule_id")
+	resp, r, err := apiClient.SecurityPlatformApi.ListSecurityMonitoringRules(ctx, *datadog.NewListSecurityMonitoringRulesOptionalParameters())
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.GetSecurityMonitoringRule`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.ListSecurityMonitoringRules`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 
 	responseContent, _ := json.MarshalIndent(resp, "", "  ")
-	fmt.Fprintf(os.Stdout, "Response from `SecurityMonitoringApi.GetSecurityMonitoringRule`:\n%s\n", responseContent)
+	fmt.Fprintf(os.Stdout, "Response from `SecurityPlatformApi.ListSecurityMonitoringRules`:\n%s\n", responseContent)
 }

@@ -1,4 +1,4 @@
-// Delete a security filter returns "OK" response
+// Delete an existing rule returns "OK" response
 
 package main
 
@@ -14,10 +14,10 @@ func main() {
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.SecurityMonitoringApi.DeleteSecurityFilter(ctx, "security_filter_id")
+	r, err := apiClient.SecurityPlatformApi.DeleteSecurityMonitoringRule(ctx, "rule_id")
 
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Error when calling `SecurityMonitoringApi.DeleteSecurityFilter`: %v\n", err)
+		fmt.Fprintf(os.Stderr, "Error when calling `SecurityPlatformApi.DeleteSecurityMonitoringRule`: %v\n", err)
 		fmt.Fprintf(os.Stderr, "Full HTTP response: %v\n", r)
 	}
 }
