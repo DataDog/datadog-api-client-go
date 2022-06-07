@@ -229,20 +229,22 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 }
 
 type apiGetHourlyUsageAttributionRequest struct {
-	ctx              _context.Context
-	ApiService       *UsageMeteringApiService
-	startHr          *time.Time
-	usageType        *HourlyUsageAttributionUsageType
-	endHr            *time.Time
-	nextRecordId     *string
-	tagBreakdownKeys *string
+	ctx                _context.Context
+	ApiService         *UsageMeteringApiService
+	startHr            *time.Time
+	usageType          *HourlyUsageAttributionUsageType
+	endHr              *time.Time
+	nextRecordId       *string
+	tagBreakdownKeys   *string
+	includeDescendants *bool
 }
 
 // GetHourlyUsageAttributionOptionalParameters holds optional parameters for GetHourlyUsageAttribution.
 type GetHourlyUsageAttributionOptionalParameters struct {
-	EndHr            *time.Time
-	NextRecordId     *string
-	TagBreakdownKeys *string
+	EndHr              *time.Time
+	NextRecordId       *string
+	TagBreakdownKeys   *string
+	IncludeDescendants *bool
 }
 
 // NewGetHourlyUsageAttributionOptionalParameters creates an empty struct for parameters.
@@ -269,6 +271,12 @@ func (r *GetHourlyUsageAttributionOptionalParameters) WithTagBreakdownKeys(tagBr
 	return r
 }
 
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetHourlyUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetHourlyUsageAttributionOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
 func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _context.Context, startHr time.Time, usageType HourlyUsageAttributionUsageType, o ...GetHourlyUsageAttributionOptionalParameters) (apiGetHourlyUsageAttributionRequest, error) {
 	req := apiGetHourlyUsageAttributionRequest{
 		ApiService: a,
@@ -285,6 +293,7 @@ func (a *UsageMeteringApiService) buildGetHourlyUsageAttributionRequest(ctx _con
 		req.endHr = o[0].EndHr
 		req.nextRecordId = o[0].NextRecordId
 		req.tagBreakdownKeys = o[0].TagBreakdownKeys
+		req.includeDescendants = o[0].IncludeDescendants
 	}
 	return req, nil
 }
@@ -356,6 +365,9 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 	}
 	if r.tagBreakdownKeys != nil {
 		localVarQueryParams.Add("tag_breakdown_keys", parameterToString(*r.tagBreakdownKeys, ""))
+	}
+	if r.includeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
 	}
 
 	// to determine the Accept header
@@ -1021,24 +1033,26 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 }
 
 type apiGetMonthlyUsageAttributionRequest struct {
-	ctx              _context.Context
-	ApiService       *UsageMeteringApiService
-	startMonth       *time.Time
-	fields           *MonthlyUsageAttributionSupportedMetrics
-	endMonth         *time.Time
-	sortDirection    *UsageSortDirection
-	sortName         *MonthlyUsageAttributionSupportedMetrics
-	tagBreakdownKeys *string
-	nextRecordId     *string
+	ctx                _context.Context
+	ApiService         *UsageMeteringApiService
+	startMonth         *time.Time
+	fields             *MonthlyUsageAttributionSupportedMetrics
+	endMonth           *time.Time
+	sortDirection      *UsageSortDirection
+	sortName           *MonthlyUsageAttributionSupportedMetrics
+	tagBreakdownKeys   *string
+	nextRecordId       *string
+	includeDescendants *bool
 }
 
 // GetMonthlyUsageAttributionOptionalParameters holds optional parameters for GetMonthlyUsageAttribution.
 type GetMonthlyUsageAttributionOptionalParameters struct {
-	EndMonth         *time.Time
-	SortDirection    *UsageSortDirection
-	SortName         *MonthlyUsageAttributionSupportedMetrics
-	TagBreakdownKeys *string
-	NextRecordId     *string
+	EndMonth           *time.Time
+	SortDirection      *UsageSortDirection
+	SortName           *MonthlyUsageAttributionSupportedMetrics
+	TagBreakdownKeys   *string
+	NextRecordId       *string
+	IncludeDescendants *bool
 }
 
 // NewGetMonthlyUsageAttributionOptionalParameters creates an empty struct for parameters.
@@ -1077,6 +1091,12 @@ func (r *GetMonthlyUsageAttributionOptionalParameters) WithNextRecordId(nextReco
 	return r
 }
 
+// WithIncludeDescendants sets the corresponding parameter name and returns the struct.
+func (r *GetMonthlyUsageAttributionOptionalParameters) WithIncludeDescendants(includeDescendants bool) *GetMonthlyUsageAttributionOptionalParameters {
+	r.IncludeDescendants = &includeDescendants
+	return r
+}
+
 func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _context.Context, startMonth time.Time, fields MonthlyUsageAttributionSupportedMetrics, o ...GetMonthlyUsageAttributionOptionalParameters) (apiGetMonthlyUsageAttributionRequest, error) {
 	req := apiGetMonthlyUsageAttributionRequest{
 		ApiService: a,
@@ -1095,6 +1115,7 @@ func (a *UsageMeteringApiService) buildGetMonthlyUsageAttributionRequest(ctx _co
 		req.sortName = o[0].SortName
 		req.tagBreakdownKeys = o[0].TagBreakdownKeys
 		req.nextRecordId = o[0].NextRecordId
+		req.includeDescendants = o[0].IncludeDescendants
 	}
 	return req, nil
 }
@@ -1172,6 +1193,9 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 	}
 	if r.nextRecordId != nil {
 		localVarQueryParams.Add("next_record_id", parameterToString(*r.nextRecordId, ""))
+	}
+	if r.includeDescendants != nil {
+		localVarQueryParams.Add("include_descendants", parameterToString(*r.includeDescendants, ""))
 	}
 
 	// to determine the Accept header
