@@ -1,0 +1,39 @@
+interactions:
+- request:
+    body: |
+      {"data":{"attributes":{"name":"Test-Create_a_new_service_object_returns_CREATED_response-1653590938","opsgenie_api_key":"00000000-0000-0000-0000-000000000000","region":"us"},"type":"opsgenie-service"}}
+    form: {}
+    headers:
+      Accept:
+      - application/json
+      Content-Type:
+      - application/json
+    method: POST
+    url: https://api.datadoghq.com/api/v2/integration/opsgenie/services
+  response:
+    body: '{"data":{"attributes":{"custom_url":null,"region":"us","name":"Test-Create_a_new_service_object_returns_CREATED_response-1653590938"},"type":"opsgenie-service","id":"0dcb43af-f233-4cda-b260-37e97e12f66f"}}
+
+      '
+    code: 201
+    duration: ''
+    headers:
+      Content-Type:
+      - application/json
+    status: 201 Created
+- request:
+    body: ''
+    form: {}
+    headers:
+      Accept:
+      - '*/*'
+    method: DELETE
+    url: https://api.datadoghq.com/api/v2/integration/opsgenie/services/0dcb43af-f233-4cda-b260-37e97e12f66f
+  response:
+    body: ''
+    code: 204
+    duration: ''
+    headers:
+      Content-Type:
+      - text/html; charset=utf-8
+    status: 204 No Content
+version: 1

@@ -68,6 +68,8 @@ type APIClient struct {
 
 	MetricsApi *MetricsApiService
 
+	OpsgenieIntegrationApi *OpsgenieIntegrationApiService
+
 	OrganizationsApi *OrganizationsApiService
 
 	ProcessesApi *ProcessesApiService
@@ -120,6 +122,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	c.LogsArchivesApi = (*LogsArchivesApiService)(&c.common)
 	c.LogsMetricsApi = (*LogsMetricsApiService)(&c.common)
 	c.MetricsApi = (*MetricsApiService)(&c.common)
+	c.OpsgenieIntegrationApi = (*OpsgenieIntegrationApiService)(&c.common)
 	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
 	c.ProcessesApi = (*ProcessesApiService)(&c.common)
 	c.RolesApi = (*RolesApiService)(&c.common)
