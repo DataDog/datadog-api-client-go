@@ -3,25 +3,27 @@ version: 1
 interactions:
 - request:
     body: |
-      {"account_id":"Test-TestAWSIntegrationCreateConflictErrors-1626196217","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"AC1654245264","account_specific_namespace_rules":{"opsworks":true},"excluded_regions":["us-east-1","us-west-1"],"filter_tags":["testTag","test:Tag2"],"host_tags":["filter:one","filtertwo"],"role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "245"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5422719751176867665"
+      - "6459896280181638258"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "5320782917602482946"
+      - "8782287781421081521"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: POST
   response:
-    body: '{"external_id":"e0267b5e0aca49c582c2bc8ed986df39"}'
+    body: '{"external_id":"7f8cebd9281041cdac78320c1cdee373"}'
     headers:
       Cache-Control:
       - no-cache
@@ -30,7 +32,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Jul 2021 17:10:17 GMT
+      - Fri, 03 Jun 2022 08:34:25 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -41,26 +43,36 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11995"
+      X-Ratelimit-Reset:
+      - "36"
     status: 200 OK
     code: 200
     duration: ""
 - request:
     body: |
-      {"account_id":"Test-TestAWSIntegrationCreateConflictErrors-1626196217","role_name":"DatadogAWSIntegrationRole"}
+      {"account_id":"AC1654245264","role_name":"DatadogAWSIntegrationRole"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "70"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.2.0 (go go1.16.3; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5334487406328472450"
+      - "9166341096709690966"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "5320782917602482946"
+      - "8782287781421081521"
     url: https://api.datadoghq.com/api/v1/integration/aws
     method: DELETE
   response:
@@ -75,7 +87,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Tue, 13 Jul 2021 17:10:19 GMT
+      - Fri, 03 Jun 2022 08:34:26 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -84,6 +96,14 @@ interactions:
       - nosniff
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11992"
+      X-Ratelimit-Reset:
+      - "35"
     status: 200 OK
     code: 200
     duration: ""

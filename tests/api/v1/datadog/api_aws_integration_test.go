@@ -9,6 +9,7 @@ package test
 import (
 	"context"
 	"math/rand"
+	"fmt"
 	"testing"
 	"time"
 
@@ -19,8 +20,9 @@ import (
 )
 
 func generateUniqueAWSAccount(ctx context.Context, t *testing.T) datadog.AWSAccount {
+        accountID := fmt.Sprintf("AC%d", tests.ClockFromContext(ctx).Now().Unix())
 	return datadog.AWSAccount{
-		AccountId:                     tests.UniqueEntityName(ctx, t),
+		AccountId:                     datadog.PtrString(accountID[:12]),
 		RoleName:                      datadog.PtrString("DatadogAWSIntegrationRole"),
 		AccountSpecificNamespaceRules: map[string]bool{"opsworks": true},
 		FilterTags:                    []string{"testTag", "test:Tag2"},

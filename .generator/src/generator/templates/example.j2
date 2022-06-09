@@ -8,9 +8,9 @@ package main
     {%- set given = context._imports["os"].add("environ") -%}
 {%- endif -%}
 {%- set variables = given_variables(context) %}
-{%- set parameters = format_parameters_go(context.api_request.kwargs, spec=operation_spec, replace_values=context._replace_values, has_body=context.body, variables=variables) %}
+{%- set parameters = format_parameters(context.api_request.kwargs, spec=operation_spec, replace_values=context._replace_values, has_body=context.body, variables=variables) %}
 {%- if context.body %}
-{%- set body = format_data_with_schema_go(context.body.value, context.api_request.schema.spec, name_prefix="datadog.", replace_values=context._replace_values, required=True, variables=variables)%}
+{%- set body = format_data_with_schema(context.body.value, context.api_request.schema.spec, name_prefix="datadog.", replace_values=context._replace_values, required=True, variables=variables)%}
 {%- endif %}
 
 {%- set response_has_three_values = context.status_code != 204 and context.api_response.content %}

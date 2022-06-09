@@ -22,11 +22,7 @@ from generator.utils import (
     untitle_case,
 )
 
-from generator.go_formatter import (
-    format_parameters as format_parameters_go,
-    format_data_with_schema as format_data_with_schema_go,
-    go_name,
-)
+from generator.formatter import format_parameters, format_data_with_schema, go_name
 
 
 MODIFIED_FEATURES = {pathlib.Path(p).resolve() for p in os.getenv("BDD_MODIFIED_FEATURES", "").split(" ") if p}
@@ -72,8 +68,8 @@ JINJA_ENV.filters["snake_case"] = snake_case
 JINJA_ENV.filters["camel_case"] = camel_case
 JINJA_ENV.filters["untitle_case"] = untitle_case
 JINJA_ENV.filters["go_name"] = go_name
-JINJA_ENV.globals["format_data_with_schema_go"] = format_data_with_schema_go
-JINJA_ENV.globals["format_parameters_go"] = format_parameters_go
+JINJA_ENV.globals["format_data_with_schema"] = format_data_with_schema
+JINJA_ENV.globals["format_parameters"] = format_parameters
 JINJA_ENV.globals["given_variables"] = given_variables
 
 GO_EXAMPLE_J2 = JINJA_ENV.get_template("example.j2")
