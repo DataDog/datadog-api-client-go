@@ -526,7 +526,6 @@ def format_data_with_schema_list(
 
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
     nested_schema_name = schema_name(list_schema)
-    nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
     if "oneOf" in list_schema:
         if schema_name(list_schema):
             nested_schema_name = f"{name_prefix}{schema_name(list_schema)}"
