@@ -11,9 +11,9 @@ import (
 // SyntheticsCoreWebVitals Core Web Vitals attached to a browser test step.
 type SyntheticsCoreWebVitals struct {
 	// Cumulative Layout Shift.
-	Cls *int64 `json:"cls,omitempty"`
+	Cls *float64 `json:"cls,omitempty"`
 	// Largest Contentful Paint in milliseconds.
-	Lcp *int64 `json:"lcp,omitempty"`
+	Lcp *float64 `json:"lcp,omitempty"`
 	// URL attached to the metrics.
 	Url *string `json:"url,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -39,9 +39,9 @@ func NewSyntheticsCoreWebVitalsWithDefaults() *SyntheticsCoreWebVitals {
 }
 
 // GetCls returns the Cls field value if set, zero value otherwise.
-func (o *SyntheticsCoreWebVitals) GetCls() int64 {
+func (o *SyntheticsCoreWebVitals) GetCls() float64 {
 	if o == nil || o.Cls == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Cls
@@ -49,7 +49,7 @@ func (o *SyntheticsCoreWebVitals) GetCls() int64 {
 
 // GetClsOk returns a tuple with the Cls field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCoreWebVitals) GetClsOk() (*int64, bool) {
+func (o *SyntheticsCoreWebVitals) GetClsOk() (*float64, bool) {
 	if o == nil || o.Cls == nil {
 		return nil, false
 	}
@@ -65,15 +65,15 @@ func (o *SyntheticsCoreWebVitals) HasCls() bool {
 	return false
 }
 
-// SetCls gets a reference to the given int64 and assigns it to the Cls field.
-func (o *SyntheticsCoreWebVitals) SetCls(v int64) {
+// SetCls gets a reference to the given float64 and assigns it to the Cls field.
+func (o *SyntheticsCoreWebVitals) SetCls(v float64) {
 	o.Cls = &v
 }
 
 // GetLcp returns the Lcp field value if set, zero value otherwise.
-func (o *SyntheticsCoreWebVitals) GetLcp() int64 {
+func (o *SyntheticsCoreWebVitals) GetLcp() float64 {
 	if o == nil || o.Lcp == nil {
-		var ret int64
+		var ret float64
 		return ret
 	}
 	return *o.Lcp
@@ -81,7 +81,7 @@ func (o *SyntheticsCoreWebVitals) GetLcp() int64 {
 
 // GetLcpOk returns a tuple with the Lcp field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *SyntheticsCoreWebVitals) GetLcpOk() (*int64, bool) {
+func (o *SyntheticsCoreWebVitals) GetLcpOk() (*float64, bool) {
 	if o == nil || o.Lcp == nil {
 		return nil, false
 	}
@@ -97,8 +97,8 @@ func (o *SyntheticsCoreWebVitals) HasLcp() bool {
 	return false
 }
 
-// SetLcp gets a reference to the given int64 and assigns it to the Lcp field.
-func (o *SyntheticsCoreWebVitals) SetLcp(v int64) {
+// SetLcp gets a reference to the given float64 and assigns it to the Lcp field.
+func (o *SyntheticsCoreWebVitals) SetLcp(v float64) {
 	o.Lcp = &v
 }
 
@@ -160,9 +160,9 @@ func (o SyntheticsCoreWebVitals) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsCoreWebVitals) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Cls *int64  `json:"cls,omitempty"`
-		Lcp *int64  `json:"lcp,omitempty"`
-		Url *string `json:"url,omitempty"`
+		Cls *float64 `json:"cls,omitempty"`
+		Lcp *float64 `json:"lcp,omitempty"`
+		Url *string  `json:"url,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
