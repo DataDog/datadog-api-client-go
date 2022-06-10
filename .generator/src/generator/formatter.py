@@ -459,7 +459,7 @@ def format_data_with_schema(
         if name:
             return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
         else:
-            return f"\n{one_of_schema_name}: {reference}{parameters}"
+            return f"\n{{{one_of_schema_name}: {reference}{parameters}}}"
 
     return parameters
 
@@ -478,8 +478,8 @@ def format_data_with_schema_list(
     if not schema:
         return ""
 
-        if "oneOf" in schema:
-            parameters = ""
+    if "oneOf" in schema:
+        parameters = ""
         matched = 0
         one_of_schema = None
         for sub_schema in schema["oneOf"]:
@@ -509,7 +509,7 @@ def format_data_with_schema_list(
 
         one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
         reference = "" if one_of_schema.get("required", False) else "&"
-        return f"\n{one_of_schema_name}: {reference}{parameters}"
+        return f"\n{{{one_of_schema_name}: {reference}{parameters}}}"
 
     parameters = ""
     # collect nested array types until you find a non-array type
@@ -519,9 +519,6 @@ def format_data_with_schema_list(
     while list_schema.get("type") == "array":
         schema_parts.append((not list_schema.get("nullable", False), "[]"))
         list_schema = list_schema["items"]
-        depth += 1
-
-    if "oneOf" in list_schema:
         depth += 1
 
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
