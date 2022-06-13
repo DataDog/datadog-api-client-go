@@ -421,7 +421,7 @@ def format_data_with_schema(
     if (not required or schema.get("nullable")) and schema.get("type") is not None:
         return reference_to_value(schema, parameters, print_nullable=not in_list)
 
-    if "oneOf" in schema and name:
+    if "oneOf" in schema:
         matched = 0
         one_of_schema = None
         for sub_schema in schema["oneOf"]:
@@ -456,7 +456,10 @@ def format_data_with_schema(
         if not one_of_schema_name:
             one_of_schema_name = simple_type(one_of_schema).title()
         reference = "" if required or nullable else "&"
-        return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
+        if name:
+            return f"{reference}{name_prefix}{name}{{\n{one_of_schema_name}: {parameters}}}"
+        else:
+            return f"{{{one_of_schema_name}: {reference}{parameters}}}"
 
     return parameters
 
@@ -475,17 +478,62 @@ def format_data_with_schema_list(
     if not schema:
         return ""
 
+    if "oneOf" in schema:
+        parameters = ""
+        matched = 0
+        one_of_schema = None
+        for sub_schema in schema["oneOf"]:
+            try:
+                if sub_schema.get("nullable") and data is None:
+                    formatted = "nil"
+                else:
+                    sub_schema["nullable"] = False
+                    formatted = format_data_with_schema(
+                        data,
+                        sub_schema,
+                        name_prefix=name_prefix,
+                        replace_values=replace_values,
+                        **kwargs,
+                    )
+                if matched == 0:
+                    one_of_schema = sub_schema
+                    parameters = formatted
+                matched += 1
+            except (KeyError, ValueError) as e:
+                print(f"{e}")
+
+        if matched == 0:
+            raise ValueError(f"[{matched}] {data} is not valid for schema {name}")
+        elif matched > 1:
+            warnings.warn(f"[{matched}] {data} is not valid for schema {name}")
+
+        one_of_schema_name = simple_type(one_of_schema) or f"{schema_name(one_of_schema)}"
+        reference = "" if one_of_schema.get("required", False) else "&"
+        return f"{{{one_of_schema_name}: {reference}{parameters}}}"
+
     parameters = ""
     # collect nested array types until you find a non-array type
     schema_parts = [(required, "[]")]
     list_schema = schema["items"]
+    depth = 1
     while list_schema.get("type") == "array":
         schema_parts.append((not list_schema.get("nullable", False), "[]"))
         list_schema = list_schema["items"]
+        depth += 1
 
     nested_prefix = list_schema.get("nullable", False) and "*" or ""
     nested_schema_name = schema_name(list_schema)
-    nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
+    if "oneOf" in list_schema:
+        if schema_name(list_schema):
+            nested_schema_name = f"{name_prefix}{schema_name(list_schema)}"
+        elif schema_name(schema['items']):
+            nested_schema_name = f"{name_prefix}{schema_name(schema['items'])}Item"
+        else:
+            nested_schema_name = "interface{}"
+    else:
+        nested_schema_name = schema_name(list_schema)
+        nested_schema_name = f"{name_prefix}{nested_schema_name}" if nested_schema_name else "interface{}"
+
     nested_type = simple_type(list_schema)
     schema_parts.append(
         (
@@ -509,7 +557,9 @@ def format_data_with_schema_list(
         parameters += f"{value},\n"
 
     if in_list:
-        return f"{{\n{parameters}}}"
+        for _ in range(depth):
+            parameters = f"{{\n{parameters}}}"
+        return parameters
 
     return f"{nested_simple_type_name}{{\n{parameters}}}"
 
