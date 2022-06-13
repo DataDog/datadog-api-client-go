@@ -8,14 +8,14 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "5084448147646094627"
+      - "3961752400790520174"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "5054531355348260336"
-    url: https://api.datadoghq.com/api/v1/dashboard/random
+      - "4133238888630975704"
+    url: https://api.datadoghq.com/api/v1/dashboard/123-abc-xyz
     method: DELETE
   response:
     body: |
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:51 GMT
+      - Mon, 13 Jun 2022 15:21:28 GMT
       Via:
       - haproxy
     status: 403 Forbidden
