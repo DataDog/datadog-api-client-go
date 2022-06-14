@@ -12,10 +12,13 @@ import (
 )
 
 func main() {
+	// there is a valid "opsgenie_service" in the system
+	OpsgenieServiceDataID := os.Getenv("OPSGENIE_SERVICE_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.OpsgenieIntegrationApi.GetOpsgenieService(ctx, "integration_service_id")
+	resp, r, err := apiClient.OpsgenieIntegrationApi.GetOpsgenieService(ctx, OpsgenieServiceDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OpsgenieIntegrationApi.GetOpsgenieService`: %v\n", err)
