@@ -8,42 +8,50 @@ interactions:
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "45"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6959224231906995759"
+      - "1614008910974154033"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "994084018016719164"
-    url: https://api.datadoghq.com/api/v1/dashboard/random
+      - "2587836233113552455"
+    url: https://api.datadoghq.com/api/v1/dashboard/123-abc-xyz
     method: PUT
   response:
-    body: '{"errors": ["Value of parameter ''layout_type'' should be any of these
-      [''ordered'', ''free'']"]}'
+    body: |
+      {"errors":["Value of parameter 'layout_type' should be any of these ['ordered', 'free']"]}
     headers:
       Cache-Control:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "91"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:48:51 GMT
+      - Mon, 13 Jun 2022 15:21:18 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11369"
+      X-Ratelimit-Reset:
+      - "42"
     status: 400 Bad Request
     code: 400
     duration: ""
