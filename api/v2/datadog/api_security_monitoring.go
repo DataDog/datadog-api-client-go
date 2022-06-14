@@ -7,9 +7,7 @@ package datadog
 import (
 	"bytes"
 	_context "context"
-	_fmt "fmt"
 	_ioutil "io/ioutil"
-	_log "log"
 	_nethttp "net/http"
 	_neturl "net/url"
 	"strings"
@@ -1405,13 +1403,6 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	operationId := "ListSecurityMonitoringSignals"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
-
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
@@ -1670,13 +1661,6 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 		localVarPostBody    interface{}
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
-
-	operationId := "SearchSecurityMonitoringSignals"
-	if r.ApiService.client.cfg.IsUnstableOperationEnabled(operationId) {
-		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
-	} else {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
-	}
 
 	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
 	if err != nil {

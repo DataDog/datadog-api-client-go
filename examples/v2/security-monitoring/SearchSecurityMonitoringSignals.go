@@ -27,7 +27,6 @@ func main() {
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("SearchSecurityMonitoringSignals", true)
 	apiClient := datadog.NewAPIClient(configuration)
 	resp, r, err := apiClient.SecurityMonitoringApi.SearchSecurityMonitoringSignals(ctx, *datadog.NewSearchSecurityMonitoringSignalsOptionalParameters().WithBody(body))
 
