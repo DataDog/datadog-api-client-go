@@ -11,10 +11,13 @@ import (
 )
 
 func main() {
+	// there is a valid "opsgenie_service" in the system
+	OpsgenieServiceDataID := os.Getenv("OPSGENIE_SERVICE_DATA_ID")
+
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()
 	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.OpsgenieIntegrationApi.DeleteOpsgenieService(ctx, "integration_service_id")
+	r, err := apiClient.OpsgenieIntegrationApi.DeleteOpsgenieService(ctx, OpsgenieServiceDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `OpsgenieIntegrationApi.DeleteOpsgenieService`: %v\n", err)
