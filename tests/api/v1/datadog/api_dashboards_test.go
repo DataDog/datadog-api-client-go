@@ -1233,7 +1233,7 @@ func TestDashboardDeleteErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).DashboardsApi.DeleteDashboard(ctx, "random")
+			_, httpresp, err := Client(ctx).DashboardsApi.DeleteDashboard(ctx, "123-abc-xyz")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -1266,7 +1266,7 @@ func TestDashboardUpdateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).DashboardsApi.UpdateDashboard(ctx, "random", tc.Body)
+			_, httpresp, err := Client(ctx).DashboardsApi.UpdateDashboard(ctx, "123-abc-xyz", tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
@@ -1293,7 +1293,7 @@ func TestDashboardGetErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).DashboardsApi.GetDashboard(ctx, "random")
+			_, httpresp, err := Client(ctx).DashboardsApi.GetDashboard(ctx, "123-abc-xyz")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
