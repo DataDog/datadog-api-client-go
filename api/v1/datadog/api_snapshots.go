@@ -24,6 +24,8 @@ type apiGetGraphSnapshotRequest struct {
 	eventQuery  *string
 	graphDef    *string
 	title       *string
+	height      *int64
+	width       *int64
 }
 
 // GetGraphSnapshotOptionalParameters holds optional parameters for GetGraphSnapshot.
@@ -32,6 +34,8 @@ type GetGraphSnapshotOptionalParameters struct {
 	EventQuery  *string
 	GraphDef    *string
 	Title       *string
+	Height      *int64
+	Width       *int64
 }
 
 // NewGetGraphSnapshotOptionalParameters creates an empty struct for parameters.
@@ -64,6 +68,18 @@ func (r *GetGraphSnapshotOptionalParameters) WithTitle(title string) *GetGraphSn
 	return r
 }
 
+// WithHeight sets the corresponding parameter name and returns the struct.
+func (r *GetGraphSnapshotOptionalParameters) WithHeight(height int64) *GetGraphSnapshotOptionalParameters {
+	r.Height = &height
+	return r
+}
+
+// WithWidth sets the corresponding parameter name and returns the struct.
+func (r *GetGraphSnapshotOptionalParameters) WithWidth(width int64) *GetGraphSnapshotOptionalParameters {
+	r.Width = &width
+	return r
+}
+
 func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context, start int64, end int64, o ...GetGraphSnapshotOptionalParameters) (apiGetGraphSnapshotRequest, error) {
 	req := apiGetGraphSnapshotRequest{
 		ApiService: a,
@@ -81,6 +97,8 @@ func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context,
 		req.eventQuery = o[0].EventQuery
 		req.graphDef = o[0].GraphDef
 		req.title = o[0].Title
+		req.height = o[0].Height
+		req.width = o[0].Width
 	}
 	return req, nil
 }
@@ -135,6 +153,12 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	}
 	if r.title != nil {
 		localVarQueryParams.Add("title", parameterToString(*r.title, ""))
+	}
+	if r.height != nil {
+		localVarQueryParams.Add("height", parameterToString(*r.height, ""))
+	}
+	if r.width != nil {
+		localVarQueryParams.Add("width", parameterToString(*r.width, ""))
 	}
 
 	// to determine the Accept header
