@@ -352,7 +352,7 @@ func (a *OrganizationsApiService) buildListOrgsRequest(ctx _context.Context) (ap
 }
 
 // ListOrgs List your managed organizations.
-// List your managed organizations.
+// This endpoint returns data on your top-level organization.
 func (a *OrganizationsApiService) ListOrgs(ctx _context.Context) (OrganizationListResponse, *_nethttp.Response, error) {
 	req, err := a.buildListOrgsRequest(ctx)
 	if err != nil {
