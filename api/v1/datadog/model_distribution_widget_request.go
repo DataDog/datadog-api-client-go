@@ -26,6 +26,10 @@ type DistributionWidgetRequest struct {
 	ProfileMetricsQuery *LogQueryDefinition `json:"profile_metrics_query,omitempty"`
 	// Widget query.
 	Q *string `json:"q,omitempty"`
+	// Query definition for Distribution Widget Histogram Request
+	Query *DistributionWidgetHistogramRequestQuery `json:"query,omitempty"`
+	// Request type for the histogram request.
+	RequestType *DistributionWidgetHistogramRequestType `json:"request_type,omitempty"`
 	// The log query.
 	RumQuery *LogQueryDefinition `json:"rum_query,omitempty"`
 	// The log query.
@@ -310,6 +314,70 @@ func (o *DistributionWidgetRequest) SetQ(v string) {
 	o.Q = &v
 }
 
+// GetQuery returns the Query field value if set, zero value otherwise.
+func (o *DistributionWidgetRequest) GetQuery() DistributionWidgetHistogramRequestQuery {
+	if o == nil || o.Query == nil {
+		var ret DistributionWidgetHistogramRequestQuery
+		return ret
+	}
+	return *o.Query
+}
+
+// GetQueryOk returns a tuple with the Query field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetRequest) GetQueryOk() (*DistributionWidgetHistogramRequestQuery, bool) {
+	if o == nil || o.Query == nil {
+		return nil, false
+	}
+	return o.Query, true
+}
+
+// HasQuery returns a boolean if a field has been set.
+func (o *DistributionWidgetRequest) HasQuery() bool {
+	if o != nil && o.Query != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetQuery gets a reference to the given DistributionWidgetHistogramRequestQuery and assigns it to the Query field.
+func (o *DistributionWidgetRequest) SetQuery(v DistributionWidgetHistogramRequestQuery) {
+	o.Query = &v
+}
+
+// GetRequestType returns the RequestType field value if set, zero value otherwise.
+func (o *DistributionWidgetRequest) GetRequestType() DistributionWidgetHistogramRequestType {
+	if o == nil || o.RequestType == nil {
+		var ret DistributionWidgetHistogramRequestType
+		return ret
+	}
+	return *o.RequestType
+}
+
+// GetRequestTypeOk returns a tuple with the RequestType field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *DistributionWidgetRequest) GetRequestTypeOk() (*DistributionWidgetHistogramRequestType, bool) {
+	if o == nil || o.RequestType == nil {
+		return nil, false
+	}
+	return o.RequestType, true
+}
+
+// HasRequestType returns a boolean if a field has been set.
+func (o *DistributionWidgetRequest) HasRequestType() bool {
+	if o != nil && o.RequestType != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetRequestType gets a reference to the given DistributionWidgetHistogramRequestType and assigns it to the RequestType field.
+func (o *DistributionWidgetRequest) SetRequestType(v DistributionWidgetHistogramRequestType) {
+	o.RequestType = &v
+}
+
 // GetRumQuery returns the RumQuery field value if set, zero value otherwise.
 func (o *DistributionWidgetRequest) GetRumQuery() LogQueryDefinition {
 	if o == nil || o.RumQuery == nil {
@@ -436,6 +504,12 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 	if o.Q != nil {
 		toSerialize["q"] = o.Q
 	}
+	if o.Query != nil {
+		toSerialize["query"] = o.Query
+	}
+	if o.RequestType != nil {
+		toSerialize["request_type"] = o.RequestType
+	}
 	if o.RumQuery != nil {
 		toSerialize["rum_query"] = o.RumQuery
 	}
@@ -456,20 +530,30 @@ func (o DistributionWidgetRequest) MarshalJSON() ([]byte, error) {
 func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApmQuery            *LogQueryDefinition      `json:"apm_query,omitempty"`
-		ApmStatsQuery       *ApmStatsQueryDefinition `json:"apm_stats_query,omitempty"`
-		EventQuery          *LogQueryDefinition      `json:"event_query,omitempty"`
-		LogQuery            *LogQueryDefinition      `json:"log_query,omitempty"`
-		NetworkQuery        *LogQueryDefinition      `json:"network_query,omitempty"`
-		ProcessQuery        *ProcessQueryDefinition  `json:"process_query,omitempty"`
-		ProfileMetricsQuery *LogQueryDefinition      `json:"profile_metrics_query,omitempty"`
-		Q                   *string                  `json:"q,omitempty"`
-		RumQuery            *LogQueryDefinition      `json:"rum_query,omitempty"`
-		SecurityQuery       *LogQueryDefinition      `json:"security_query,omitempty"`
-		Style               *WidgetStyle             `json:"style,omitempty"`
+		ApmQuery            *LogQueryDefinition                      `json:"apm_query,omitempty"`
+		ApmStatsQuery       *ApmStatsQueryDefinition                 `json:"apm_stats_query,omitempty"`
+		EventQuery          *LogQueryDefinition                      `json:"event_query,omitempty"`
+		LogQuery            *LogQueryDefinition                      `json:"log_query,omitempty"`
+		NetworkQuery        *LogQueryDefinition                      `json:"network_query,omitempty"`
+		ProcessQuery        *ProcessQueryDefinition                  `json:"process_query,omitempty"`
+		ProfileMetricsQuery *LogQueryDefinition                      `json:"profile_metrics_query,omitempty"`
+		Q                   *string                                  `json:"q,omitempty"`
+		Query               *DistributionWidgetHistogramRequestQuery `json:"query,omitempty"`
+		RequestType         *DistributionWidgetHistogramRequestType  `json:"request_type,omitempty"`
+		RumQuery            *LogQueryDefinition                      `json:"rum_query,omitempty"`
+		SecurityQuery       *LogQueryDefinition                      `json:"security_query,omitempty"`
+		Style               *WidgetStyle                             `json:"style,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+		return nil
+	}
+	if v := all.RequestType; v != nil && !v.IsValid() {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
 			return err
@@ -534,6 +618,8 @@ func (o *DistributionWidgetRequest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	o.ProfileMetricsQuery = all.ProfileMetricsQuery
 	o.Q = all.Q
+	o.Query = all.Query
+	o.RequestType = all.RequestType
 	if all.RumQuery != nil && all.RumQuery.UnparsedObject != nil && o.UnparsedObject == nil {
 		err = json.Unmarshal(bytes, &raw)
 		if err != nil {
