@@ -45,7 +45,6 @@ func main() {
 		Subscription: &datadog.OrganizationSubscription{
 			Type: datadog.PtrString("pro"),
 		},
-		Trial: datadog.PtrBool(false),
 	}
 	ctx := datadog.NewDefaultContext(context.Background())
 	configuration := datadog.NewConfiguration()

@@ -26,8 +26,6 @@ type Organization struct {
 	// Subscription definition.
 	// Deprecated
 	Subscription *OrganizationSubscription `json:"subscription,omitempty"`
-	// Only available for MSP customers. Allows child organizations to be created on a trial plan.
-	Trial *bool `json:"trial,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -280,38 +278,6 @@ func (o *Organization) SetSubscription(v OrganizationSubscription) {
 	o.Subscription = &v
 }
 
-// GetTrial returns the Trial field value if set, zero value otherwise.
-func (o *Organization) GetTrial() bool {
-	if o == nil || o.Trial == nil {
-		var ret bool
-		return ret
-	}
-	return *o.Trial
-}
-
-// GetTrialOk returns a tuple with the Trial field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *Organization) GetTrialOk() (*bool, bool) {
-	if o == nil || o.Trial == nil {
-		return nil, false
-	}
-	return o.Trial, true
-}
-
-// HasTrial returns a boolean if a field has been set.
-func (o *Organization) HasTrial() bool {
-	if o != nil && o.Trial != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetTrial gets a reference to the given bool and assigns it to the Trial field.
-func (o *Organization) SetTrial(v bool) {
-	o.Trial = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o Organization) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -339,9 +305,6 @@ func (o Organization) MarshalJSON() ([]byte, error) {
 	if o.Subscription != nil {
 		toSerialize["subscription"] = o.Subscription
 	}
-	if o.Trial != nil {
-		toSerialize["trial"] = o.Trial
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -360,7 +323,6 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		PublicId     *string                   `json:"public_id,omitempty"`
 		Settings     *OrganizationSettings     `json:"settings,omitempty"`
 		Subscription *OrganizationSubscription `json:"subscription,omitempty"`
-		Trial        *bool                     `json:"trial,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -399,6 +361,5 @@ func (o *Organization) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 	}
 	o.Subscription = all.Subscription
-	o.Trial = all.Trial
 	return nil
 }

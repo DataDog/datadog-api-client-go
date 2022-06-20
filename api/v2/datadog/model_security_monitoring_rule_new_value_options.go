@@ -15,10 +15,6 @@ type SecurityMonitoringRuleNewValueOptions struct {
 	// The duration in days during which values are learned, and after which signals will be generated for values that
 	// weren't learned. If set to 0, a signal will be generated for all new values after the first value is learned.
 	LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
-	// The learning method used to determine when signals should be generated for values that weren't learned.
-	LearningMethod *SecurityMonitoringRuleNewValueOptionsLearningMethod `json:"learningMethod,omitempty"`
-	// A number of occurrences after which signals will be generated for values that weren't learned.
-	LearningThreshold *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -30,12 +26,6 @@ type SecurityMonitoringRuleNewValueOptions struct {
 // will change when the set of required properties is changed.
 func NewSecurityMonitoringRuleNewValueOptions() *SecurityMonitoringRuleNewValueOptions {
 	this := SecurityMonitoringRuleNewValueOptions{}
-	var learningDuration SecurityMonitoringRuleNewValueOptionsLearningDuration = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS
-	this.LearningDuration = &learningDuration
-	var learningMethod SecurityMonitoringRuleNewValueOptionsLearningMethod = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION
-	this.LearningMethod = &learningMethod
-	var learningThreshold SecurityMonitoringRuleNewValueOptionsLearningThreshold = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES
-	this.LearningThreshold = &learningThreshold
 	return &this
 }
 
@@ -44,12 +34,6 @@ func NewSecurityMonitoringRuleNewValueOptions() *SecurityMonitoringRuleNewValueO
 // but it doesn't guarantee that properties required by API are set.
 func NewSecurityMonitoringRuleNewValueOptionsWithDefaults() *SecurityMonitoringRuleNewValueOptions {
 	this := SecurityMonitoringRuleNewValueOptions{}
-	var learningDuration SecurityMonitoringRuleNewValueOptionsLearningDuration = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGDURATION_ZERO_DAYS
-	this.LearningDuration = &learningDuration
-	var learningMethod SecurityMonitoringRuleNewValueOptionsLearningMethod = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGMETHOD_DURATION
-	this.LearningMethod = &learningMethod
-	var learningThreshold SecurityMonitoringRuleNewValueOptionsLearningThreshold = SECURITYMONITORINGRULENEWVALUEOPTIONSLEARNINGTHRESHOLD_ZERO_OCCURRENCES
-	this.LearningThreshold = &learningThreshold
 	return &this
 }
 
@@ -117,70 +101,6 @@ func (o *SecurityMonitoringRuleNewValueOptions) SetLearningDuration(v SecurityMo
 	o.LearningDuration = &v
 }
 
-// GetLearningMethod returns the LearningMethod field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleNewValueOptions) GetLearningMethod() SecurityMonitoringRuleNewValueOptionsLearningMethod {
-	if o == nil || o.LearningMethod == nil {
-		var ret SecurityMonitoringRuleNewValueOptionsLearningMethod
-		return ret
-	}
-	return *o.LearningMethod
-}
-
-// GetLearningMethodOk returns a tuple with the LearningMethod field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleNewValueOptions) GetLearningMethodOk() (*SecurityMonitoringRuleNewValueOptionsLearningMethod, bool) {
-	if o == nil || o.LearningMethod == nil {
-		return nil, false
-	}
-	return o.LearningMethod, true
-}
-
-// HasLearningMethod returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleNewValueOptions) HasLearningMethod() bool {
-	if o != nil && o.LearningMethod != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLearningMethod gets a reference to the given SecurityMonitoringRuleNewValueOptionsLearningMethod and assigns it to the LearningMethod field.
-func (o *SecurityMonitoringRuleNewValueOptions) SetLearningMethod(v SecurityMonitoringRuleNewValueOptionsLearningMethod) {
-	o.LearningMethod = &v
-}
-
-// GetLearningThreshold returns the LearningThreshold field value if set, zero value otherwise.
-func (o *SecurityMonitoringRuleNewValueOptions) GetLearningThreshold() SecurityMonitoringRuleNewValueOptionsLearningThreshold {
-	if o == nil || o.LearningThreshold == nil {
-		var ret SecurityMonitoringRuleNewValueOptionsLearningThreshold
-		return ret
-	}
-	return *o.LearningThreshold
-}
-
-// GetLearningThresholdOk returns a tuple with the LearningThreshold field value if set, nil otherwise
-// and a boolean to check if the value has been set.
-func (o *SecurityMonitoringRuleNewValueOptions) GetLearningThresholdOk() (*SecurityMonitoringRuleNewValueOptionsLearningThreshold, bool) {
-	if o == nil || o.LearningThreshold == nil {
-		return nil, false
-	}
-	return o.LearningThreshold, true
-}
-
-// HasLearningThreshold returns a boolean if a field has been set.
-func (o *SecurityMonitoringRuleNewValueOptions) HasLearningThreshold() bool {
-	if o != nil && o.LearningThreshold != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetLearningThreshold gets a reference to the given SecurityMonitoringRuleNewValueOptionsLearningThreshold and assigns it to the LearningThreshold field.
-func (o *SecurityMonitoringRuleNewValueOptions) SetLearningThreshold(v SecurityMonitoringRuleNewValueOptionsLearningThreshold) {
-	o.LearningThreshold = &v
-}
-
 // MarshalJSON serializes the struct using spec logic.
 func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 	toSerialize := map[string]interface{}{}
@@ -193,12 +113,6 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 	if o.LearningDuration != nil {
 		toSerialize["learningDuration"] = o.LearningDuration
 	}
-	if o.LearningMethod != nil {
-		toSerialize["learningMethod"] = o.LearningMethod
-	}
-	if o.LearningThreshold != nil {
-		toSerialize["learningThreshold"] = o.LearningThreshold
-	}
 
 	for key, value := range o.AdditionalProperties {
 		toSerialize[key] = value
@@ -210,10 +124,8 @@ func (o SecurityMonitoringRuleNewValueOptions) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ForgetAfter       *SecurityMonitoringRuleNewValueOptionsForgetAfter       `json:"forgetAfter,omitempty"`
-		LearningDuration  *SecurityMonitoringRuleNewValueOptionsLearningDuration  `json:"learningDuration,omitempty"`
-		LearningMethod    *SecurityMonitoringRuleNewValueOptionsLearningMethod    `json:"learningMethod,omitempty"`
-		LearningThreshold *SecurityMonitoringRuleNewValueOptionsLearningThreshold `json:"learningThreshold,omitempty"`
+		ForgetAfter      *SecurityMonitoringRuleNewValueOptionsForgetAfter      `json:"forgetAfter,omitempty"`
+		LearningDuration *SecurityMonitoringRuleNewValueOptionsLearningDuration `json:"learningDuration,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -240,25 +152,7 @@ func (o *SecurityMonitoringRuleNewValueOptions) UnmarshalJSON(bytes []byte) (err
 		o.UnparsedObject = raw
 		return nil
 	}
-	if v := all.LearningMethod; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
-	if v := all.LearningThreshold; v != nil && !v.IsValid() {
-		err = json.Unmarshal(bytes, &raw)
-		if err != nil {
-			return err
-		}
-		o.UnparsedObject = raw
-		return nil
-	}
 	o.ForgetAfter = all.ForgetAfter
 	o.LearningDuration = all.LearningDuration
-	o.LearningMethod = all.LearningMethod
-	o.LearningThreshold = all.LearningThreshold
 	return nil
 }
