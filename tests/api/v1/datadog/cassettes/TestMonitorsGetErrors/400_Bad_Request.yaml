@@ -8,14 +8,14 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "6421067788087653460"
+      - "896676898730314185"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2145419965791398623"
-    url: https://api.datadoghq.com/api/v1/monitor/33661497?group_states=notagroupstate
+      - "3638068972914300560"
+    url: https://api.datadoghq.com/api/v1/monitor/74567206?group_states=notagroupstate
     method: GET
   response:
     body: '{"errors": ["Invalid group_state filters."]}'
@@ -24,30 +24,30 @@ interactions:
       - no-cache
       Connection:
       - keep-alive
-      Content-Length:
-      - "44"
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:43 GMT
+      - Tue, 21 Jun 2022 13:04:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
       - max-age=15724800;
+      Vary:
+      - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
       - "3000"
+      X-Ratelimit-Name:
+      - get_monitors
       X-Ratelimit-Period:
       - "10"
       X-Ratelimit-Remaining:
-      - "2997"
+      - "2999"
       X-Ratelimit-Reset:
-      - "7"
+      - "10"
     status: 400 Bad Request
     code: 400
     duration: ""

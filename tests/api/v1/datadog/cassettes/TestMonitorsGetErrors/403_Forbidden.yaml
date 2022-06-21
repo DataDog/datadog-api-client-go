@@ -8,13 +8,13 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "503727426746724842"
+      - "130004229642888062"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2145419965791398623"
+      - "3638068972914300560"
     url: https://api.datadoghq.com/api/v1/monitor/1234?group_states=notagroupstate
     method: GET
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:43 GMT
+      - Tue, 21 Jun 2022 13:04:30 GMT
       Via:
       - haproxy
     status: 403 Forbidden

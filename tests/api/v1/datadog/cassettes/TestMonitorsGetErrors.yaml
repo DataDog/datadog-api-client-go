@@ -3,28 +3,30 @@ version: 1
 interactions:
 - request:
     body: |
-      {"message":"some message Notify: @hipchat-channel","name":"Test-TestMonitorsGetErrors-1618221222","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":60},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":["test","client:go"],"type":"log alert"}
+      {"message":"some message Notify: @hipchat-channel","name":"Test-TestMonitorsGetErrors-1655816669","options":{"enable_logs_sample":true,"escalation_message":"the situation has escalated","evaluation_delay":700,"groupby_simple_monitor":true,"include_tags":true,"locked":false,"new_host_delay":600,"no_data_timeframe":null,"notify_audit":false,"notify_no_data":false,"renotify_interval":60,"require_full_window":true,"thresholds":{"critical":2,"warning":1},"timeout_h":1},"priority":3,"query":"logs(\"service:foo AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\") \u003e 2","restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":["test","client:go"],"type":"log alert"}
     form: {}
     headers:
       Accept:
       - application/json
+      Content-Length:
+      - "708"
       Content-Type:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "2487935987699598374"
+      - "8644441992485124435"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2145419965791398623"
+      - "3638068972914300560"
     url: https://api.datadoghq.com/api/v1/monitor
     method: POST
   response:
     body: '{"restricted_roles":["94172442-be03-11e9-a77a-3b7612558ac1"],"tags":["test","client:go"],"deleted":null,"query":"logs(\"service:foo
       AND type:error\").index(\"main\").rollup(\"count\").by(\"source\").last(\"5m\")
-      > 2","message":"some message Notify: @hipchat-channel","id":33661497,"multi":true,"name":"Test-TestMonitorsGetErrors-1618221222","created":"2021-04-12T09:53:42.924888+00:00","created_at":1618221222000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2021-04-12T09:53:42.924888+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
-      Data","type":"log alert","options":{"include_tags":true,"notify_audit":false,"locked":true,"timeout_h":60,"silenced":{},"enable_logs_sample":true,"no_data_timeframe":null,"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"renotify_interval":60,"groupby_simple_monitor":true,"escalation_message":"the
+      > 2","message":"some message Notify: @hipchat-channel","id":74567206,"multi":true,"name":"Test-TestMonitorsGetErrors-1655816669","created":"2022-06-21T13:04:30.151574+00:00","created_at":1655816670000,"creator":{"id":1445416,"handle":"frog@datadoghq.com","name":null,"email":"frog@datadoghq.com"},"org_id":321813,"modified":"2022-06-21T13:04:30.151574+00:00","priority":3,"overall_state_modified":null,"overall_state":"No
+      Data","type":"log alert","options":{"notify_audit":false,"locked":false,"timeout_h":1,"renotify_interval":60,"include_tags":true,"no_data_timeframe":null,"silenced":{},"new_host_delay":600,"require_full_window":true,"notify_no_data":false,"enable_logs_sample":true,"groupby_simple_monitor":true,"escalation_message":"the
       situation has escalated","evaluation_delay":700,"thresholds":{"critical":2.0,"warning":1.0}}}'
     headers:
       Cache-Control:
@@ -34,7 +36,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:42 GMT
+      - Tue, 21 Jun 2022 13:04:30 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -43,18 +45,18 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
       X-Ratelimit-Limit:
       - "500"
+      X-Ratelimit-Name:
+      - post_monitors
       X-Ratelimit-Period:
       - "10"
       X-Ratelimit-Remaining:
-      - "497"
+      - "499"
       X-Ratelimit-Reset:
-      - "8"
+      - "10"
     status: 200 OK
     code: 200
     duration: ""
@@ -65,17 +67,17 @@ interactions:
       Accept:
       - application/json
       User-Agent:
-      - datadog-api-client-go/1.0.0-beta.19+dev (go go1.15.7; os darwin; arch amd64)
+      - datadog-api-client-go/1.14.1+dev (go go1.18; os darwin; arch amd64)
       X-Datadog-Parent-Id:
-      - "7345813672592605173"
+      - "3165184119668425919"
       X-Datadog-Sampling-Priority:
-      - "1"
+      - "2"
       X-Datadog-Trace-Id:
-      - "2145419965791398623"
-    url: https://api.datadoghq.com/api/v1/monitor/33661497
+      - "3638068972914300560"
+    url: https://api.datadoghq.com/api/v1/monitor/74567206
     method: DELETE
   response:
-    body: '{"deleted_monitor_id":33661497}'
+    body: '{"deleted_monitor_id":74567206}'
     headers:
       Cache-Control:
       - no-cache
@@ -84,7 +86,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 12 Apr 2021 09:53:43 GMT
+      - Tue, 21 Jun 2022 13:04:31 GMT
       Pragma:
       - no-cache
       Strict-Transport-Security:
@@ -93,10 +95,16 @@ interactions:
       - Accept-Encoding
       X-Content-Type-Options:
       - nosniff
-      X-Dd-Version:
-      - "35.4287331"
       X-Frame-Options:
       - SAMEORIGIN
+      X-Ratelimit-Limit:
+      - "12000"
+      X-Ratelimit-Period:
+      - "60"
+      X-Ratelimit-Remaining:
+      - "11992"
+      X-Ratelimit-Reset:
+      - "29"
     status: 200 OK
     code: 200
     duration: ""

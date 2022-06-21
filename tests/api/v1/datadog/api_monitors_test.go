@@ -31,7 +31,7 @@ func testMonitor(ctx context.Context, t *testing.T) datadog.Monitor {
 		Options: &datadog.MonitorOptions{
 			NotifyAudit:          datadog.PtrBool(false),
 			Locked:               datadog.PtrBool(false),
-			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(1)),
 			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
 			EnableLogsSample:     datadog.PtrBool(true),
 			GroupbySimpleMonitor: datadog.PtrBool(true),
