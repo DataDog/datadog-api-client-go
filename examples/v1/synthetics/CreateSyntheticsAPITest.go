@@ -33,6 +33,9 @@ func main() {
 		Message: datadog.PtrString("Notification message"),
 		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
+			Ci: &datadog.SyntheticsTestCiOptions{
+				ExecutionRule: datadog.SYNTHETICSTESTEXECUTIONRULE_BLOCKING.Ptr(),
+			},
 			DeviceIds: []datadog.SyntheticsDeviceID{
 				datadog.SYNTHETICSDEVICEID_LAPTOP_LARGE,
 			},

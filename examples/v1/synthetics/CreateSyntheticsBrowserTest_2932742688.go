@@ -55,6 +55,9 @@ func main() {
 				ClientTokenId: datadog.PtrInt64(123456),
 			},
 			TickEvery: datadog.PtrInt64(300),
+			Ci: &datadog.SyntheticsTestCiOptions{
+				ExecutionRule: datadog.SYNTHETICSTESTEXECUTIONRULE_SKIPPED.Ptr(),
+			},
 		},
 		Tags: []string{
 			"testing:browser",

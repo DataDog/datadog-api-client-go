@@ -17,6 +17,8 @@ type SyntheticsTestOptions struct {
 	AllowInsecure *bool `json:"allow_insecure,omitempty"`
 	// For SSL test, whether or not the test should fail on revoked certificate in stapled OCSP.
 	CheckCertificateRevocation *bool `json:"checkCertificateRevocation,omitempty"`
+	// CI/CD options for a Synthetic test.
+	Ci *SyntheticsTestCiOptions `json:"ci,omitempty"`
 	// For browser test, array with the different device IDs used to run the test.
 	DeviceIds []SyntheticsDeviceID `json:"device_ids,omitempty"`
 	// Whether or not to disable CORS mechanism.
@@ -171,6 +173,38 @@ func (o *SyntheticsTestOptions) HasCheckCertificateRevocation() bool {
 // SetCheckCertificateRevocation gets a reference to the given bool and assigns it to the CheckCertificateRevocation field.
 func (o *SyntheticsTestOptions) SetCheckCertificateRevocation(v bool) {
 	o.CheckCertificateRevocation = &v
+}
+
+// GetCi returns the Ci field value if set, zero value otherwise.
+func (o *SyntheticsTestOptions) GetCi() SyntheticsTestCiOptions {
+	if o == nil || o.Ci == nil {
+		var ret SyntheticsTestCiOptions
+		return ret
+	}
+	return *o.Ci
+}
+
+// GetCiOk returns a tuple with the Ci field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SyntheticsTestOptions) GetCiOk() (*SyntheticsTestCiOptions, bool) {
+	if o == nil || o.Ci == nil {
+		return nil, false
+	}
+	return o.Ci, true
+}
+
+// HasCi returns a boolean if a field has been set.
+func (o *SyntheticsTestOptions) HasCi() bool {
+	if o != nil && o.Ci != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetCi gets a reference to the given SyntheticsTestCiOptions and assigns it to the Ci field.
+func (o *SyntheticsTestOptions) SetCi(v SyntheticsTestCiOptions) {
+	o.Ci = &v
 }
 
 // GetDeviceIds returns the DeviceIds field value if set, zero value otherwise.
@@ -604,6 +638,9 @@ func (o SyntheticsTestOptions) MarshalJSON() ([]byte, error) {
 	if o.CheckCertificateRevocation != nil {
 		toSerialize["checkCertificateRevocation"] = o.CheckCertificateRevocation
 	}
+	if o.Ci != nil {
+		toSerialize["ci"] = o.Ci
+	}
 	if o.DeviceIds != nil {
 		toSerialize["device_ids"] = o.DeviceIds
 	}
@@ -657,6 +694,7 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 		AcceptSelfSigned           *bool                                `json:"accept_self_signed,omitempty"`
 		AllowInsecure              *bool                                `json:"allow_insecure,omitempty"`
 		CheckCertificateRevocation *bool                                `json:"checkCertificateRevocation,omitempty"`
+		Ci                         *SyntheticsTestCiOptions             `json:"ci,omitempty"`
 		DeviceIds                  []SyntheticsDeviceID                 `json:"device_ids,omitempty"`
 		DisableCors                *bool                                `json:"disableCors,omitempty"`
 		FollowRedirects            *bool                                `json:"follow_redirects,omitempty"`
@@ -683,6 +721,14 @@ func (o *SyntheticsTestOptions) UnmarshalJSON(bytes []byte) (err error) {
 	o.AcceptSelfSigned = all.AcceptSelfSigned
 	o.AllowInsecure = all.AllowInsecure
 	o.CheckCertificateRevocation = all.CheckCertificateRevocation
+	if all.Ci != nil && all.Ci.UnparsedObject != nil && o.UnparsedObject == nil {
+		err = json.Unmarshal(bytes, &raw)
+		if err != nil {
+			return err
+		}
+		o.UnparsedObject = raw
+	}
+	o.Ci = all.Ci
 	o.DeviceIds = all.DeviceIds
 	o.DisableCors = all.DisableCors
 	o.FollowRedirects = all.FollowRedirects
