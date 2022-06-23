@@ -50,7 +50,7 @@ type SLOResponseData struct {
 	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
 	Name *string `json:"name,omitempty"`
-	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+	// A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`

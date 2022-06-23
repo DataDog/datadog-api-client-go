@@ -29,7 +29,7 @@ type SLOHistoryMetrics struct {
 	ResType string `json:"res_type"`
 	// The series response version type. This mimics `batch_query` response type.
 	RespVersion int64 `json:"resp_version"`
-	// An array of query timestamps in EPOCH milliseconds
+	// An array of query timestamps in EPOCH milliseconds.
 	Times []float64 `json:"times"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
