@@ -41,7 +41,7 @@ jobs:
           private_key: ${{ secrets.PIPELINE_GITHUB_APP_PRIVATE_KEY }}
           repository: DataDog/datadog-api-spec
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Post pending status check
         if: github.event_name == 'pull_request' && contains(github.event.pull_request.head.ref, 'datadog-api-spec/generated/')
         uses: DataDog/github-actions/post-status-check@v1.0.0
@@ -55,6 +55,7 @@ jobs:
         with:
           go-version: 1.16.x
           cache: true
+          cache-dependency-path: tests/go.sum
       - name: Run integration tests
         shell: bash
         run: ./run-tests.sh
