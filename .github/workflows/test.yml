@@ -45,6 +45,7 @@ jobs:
         with:
           go-version: 1.18.x
           cache: true
+          cache-dependency-path: tests/go.sum
       - id: pre_commit
         name: Run pre-commit
         if: github.event.action != 'closed' && github.event.pull_request.merged != true
@@ -78,6 +79,7 @@ jobs:
         with:
           go-version: ${{ matrix.go-version }}
           cache: true
+          cache-dependency-path: tests/go.sum
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test
@@ -93,6 +95,7 @@ jobs:
         with:
           go-version: 1.18.x
           cache: true
+          cache-dependency-path: tests/go.sum
       - name: Check examples
         run: ./check-examples.sh
         shell: bash
