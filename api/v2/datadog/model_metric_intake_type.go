@@ -9,16 +9,15 @@ import (
 	"fmt"
 )
 
-// MetricIntakeType The type of metric.
+// MetricIntakeType The type of metric. The available types are 0(unspecified), 1(count), 2(rate), 3(gauge)
 type MetricIntakeType int32
 
 // List of MetricIntakeType.
 const (
-	METRICINTAKETYPE_UNSPECIFIED        MetricIntakeType = 0
-	METRICINTAKETYPE_COUNT              MetricIntakeType = 1
-	METRICINTAKETYPE_RATE               MetricIntakeType = 2
-	METRICINTAKETYPE_GAUGE              MetricIntakeType = 3
-	METRICINTAKETYPE_UNSPECIFIED_LEGACY MetricIntakeType = 15
+	METRICINTAKETYPE_UNSPECIFIED MetricIntakeType = 0
+	METRICINTAKETYPE_COUNT       MetricIntakeType = 1
+	METRICINTAKETYPE_RATE        MetricIntakeType = 2
+	METRICINTAKETYPE_GAUGE       MetricIntakeType = 3
 )
 
 var allowedMetricIntakeTypeEnumValues = []MetricIntakeType{
@@ -26,7 +25,6 @@ var allowedMetricIntakeTypeEnumValues = []MetricIntakeType{
 	METRICINTAKETYPE_COUNT,
 	METRICINTAKETYPE_RATE,
 	METRICINTAKETYPE_GAUGE,
-	METRICINTAKETYPE_UNSPECIFIED_LEGACY,
 }
 
 // GetAllowedValues reeturns the list of possible values.

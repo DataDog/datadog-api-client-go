@@ -26,7 +26,7 @@ type MetricSeries struct {
 	SourceTypeName *string `json:"source_type_name,omitempty"`
 	// A list of tags associated with the metric.
 	Tags []string `json:"tags,omitempty"`
-	// The type of metric.
+	// The type of metric. The available types are 0(unspecified), 1(count), 2(rate), 3(gauge)
 	Type *MetricIntakeType `json:"type,omitempty"`
 	// The unit of point value.
 	Unit *string `json:"unit,omitempty"`

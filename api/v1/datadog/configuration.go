@@ -204,56 +204,6 @@ func NewConfiguration() *Configuration {
 					},
 				},
 			},
-			"ServiceLevelObjectivesApiService.SearchSLO": {
-				{
-					URL:         "https://{subdomain}.{site}",
-					Description: "No description provided",
-					Variables: map[string]ServerVariable{
-						"site": {
-							Description:  "The regional site for Datadog customers.",
-							DefaultValue: "datadoghq.com",
-							EnumValues: []string{
-								"datadoghq.com",
-								"us3.datadoghq.com",
-								"us5.datadoghq.com",
-								"ddog-gov.com",
-							},
-						},
-						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
-						},
-					},
-				},
-				{
-					URL:         "{protocol}://{name}",
-					Description: "No description provided",
-					Variables: map[string]ServerVariable{
-						"name": {
-							Description:  "Full site DNS name.",
-							DefaultValue: "api.datadoghq.com",
-						},
-						"protocol": {
-							Description:  "The protocol for accessing the API.",
-							DefaultValue: "https",
-						},
-					},
-				},
-				{
-					URL:         "https://{subdomain}.{site}",
-					Description: "No description provided",
-					Variables: map[string]ServerVariable{
-						"site": {
-							Description:  "Any Datadog deployment.",
-							DefaultValue: "datadoghq.com",
-						},
-						"subdomain": {
-							Description:  "The subdomain where the API is deployed.",
-							DefaultValue: "api",
-						},
-					},
-				},
-			},
 			"LogsApiService.SubmitLog": {
 				{
 					URL:         "https://{subdomain}.{site}",
@@ -311,7 +261,6 @@ func NewConfiguration() *Configuration {
 			"GetSpecifiedDailyCustomReports":   false,
 			"GetMonthlyCustomReports":          false,
 			"GetSpecifiedMonthlyCustomReports": false,
-			"SearchSLO":                        false,
 			"GetSLOHistory":                    false,
 			"GetUsageAttribution":              false,
 			"GetHourlyUsageAttribution":        false,
