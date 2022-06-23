@@ -23,7 +23,7 @@ type ServiceLevelObjective struct {
 	// Always included in service level objective responses (but may be `null`).
 	// Optional in create/update requests.
 	Description NullableString `json:"description,omitempty"`
-	// A list of (up to 20) monitor groups that narrow the scope of a monitor service level objective.
+	// A list of (up to 100) monitor groups that narrow the scope of a monitor service level objective.
 	//
 	// Included in service level objective responses if it is not empty. Optional in
 	// create/update requests for monitor service level objectives, but may only be
@@ -42,14 +42,14 @@ type ServiceLevelObjective struct {
 	MonitorIds []int64 `json:"monitor_ids,omitempty"`
 	// The union of monitor tags for all monitors referenced by the `monitor_ids`
 	// field.
-	// Always included in service level objective responses for monitor service level
+	// Always included in service level objective responses for monitor-based service level
 	// objectives (but may be empty). Ignored in create/update requests. Does not
 	// affect which monitors are included in the service level objective (that is
 	// determined entirely by the `monitor_ids` field).
 	MonitorTags []string `json:"monitor_tags,omitempty"`
 	// The name of the service level objective object.
 	Name string `json:"name"`
-	// A metric SLI query. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
+	// A metric-based SLO. **Required if type is `metric`**. Note that Datadog only allows the sum by aggregator
 	// to be used because this will sum up all request counts instead of averaging them, or taking the max or
 	// min of all of those requests.
 	Query *ServiceLevelObjectiveQuery `json:"query,omitempty"`
