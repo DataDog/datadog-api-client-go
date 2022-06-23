@@ -41,9 +41,10 @@ jobs:
           path: ~/.cache/pre-commit
           key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18.x
+          cache: true
       - id: pre_commit
         name: Run pre-commit
         if: github.event.action != 'closed' && github.event.pull_request.merged != true
@@ -73,9 +74,10 @@ jobs:
     if: github.event.pull_request.draft == false && !contains(github.event.pull_request.labels.*.name, 'ci/skip') && !contains(github.event.pull_request.head.ref, 'datadog-api-spec/test/')
     steps:
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
+          cache: true
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Test
@@ -87,9 +89,10 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install Go
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: 1.18.x
+          cache: true
       - name: Check examples
         run: ./check-examples.sh
         shell: bash
