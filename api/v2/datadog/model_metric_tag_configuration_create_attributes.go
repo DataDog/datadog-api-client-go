@@ -46,8 +46,6 @@ type MetricTagConfigurationCreateAttributes struct {
 // will change when the set of required properties is changed.
 func NewMetricTagConfigurationCreateAttributes(metricType MetricTagConfigurationMetricTypes, tags []string) *MetricTagConfigurationCreateAttributes {
 	this := MetricTagConfigurationCreateAttributes{}
-	var includePercentiles bool = false
-	this.IncludePercentiles = &includePercentiles
 	this.MetricType = metricType
 	this.Tags = tags
 	return &this
@@ -58,8 +56,6 @@ func NewMetricTagConfigurationCreateAttributes(metricType MetricTagConfiguration
 // but it doesn't guarantee that properties required by API are set.
 func NewMetricTagConfigurationCreateAttributesWithDefaults() *MetricTagConfigurationCreateAttributes {
 	this := MetricTagConfigurationCreateAttributes{}
-	var includePercentiles bool = false
-	this.IncludePercentiles = &includePercentiles
 	var metricType MetricTagConfigurationMetricTypes = METRICTAGCONFIGURATIONMETRICTYPES_GAUGE
 	this.MetricType = metricType
 	return &this
