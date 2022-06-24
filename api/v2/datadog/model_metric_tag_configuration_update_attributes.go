@@ -43,8 +43,6 @@ type MetricTagConfigurationUpdateAttributes struct {
 // will change when the set of required properties is changed.
 func NewMetricTagConfigurationUpdateAttributes() *MetricTagConfigurationUpdateAttributes {
 	this := MetricTagConfigurationUpdateAttributes{}
-	var includePercentiles bool = false
-	this.IncludePercentiles = &includePercentiles
 	return &this
 }
 
@@ -53,8 +51,6 @@ func NewMetricTagConfigurationUpdateAttributes() *MetricTagConfigurationUpdateAt
 // but it doesn't guarantee that properties required by API are set.
 func NewMetricTagConfigurationUpdateAttributesWithDefaults() *MetricTagConfigurationUpdateAttributes {
 	this := MetricTagConfigurationUpdateAttributes{}
-	var includePercentiles bool = false
-	this.IncludePercentiles = &includePercentiles
 	return &this
 }
 
