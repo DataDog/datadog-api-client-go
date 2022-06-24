@@ -75,7 +75,7 @@ func main() {
 		Locations: []string{
 			"aws:us-east-2",
 		},
-		Message: datadog.PtrString("BDD test payload: synthetics_api_http_test_payload.json"),
+		Message: "BDD test payload: synthetics_api_http_test_payload.json",
 		Name:    "Example-Create_an_API_HTTP_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned:   datadog.PtrBool(false),
