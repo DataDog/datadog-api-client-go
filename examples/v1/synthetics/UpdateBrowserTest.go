@@ -48,7 +48,7 @@ func main() {
 		Locations: []string{
 			"aws:eu-west-3",
 		},
-		Message: datadog.PtrString(""),
+		Message: "",
 		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
 			Ci: &datadog.SyntheticsTestCiOptions{

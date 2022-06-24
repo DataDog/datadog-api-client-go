@@ -30,7 +30,7 @@ func main() {
 		Locations: []string{
 			"aws:eu-west-3",
 		},
-		Message: datadog.PtrString("Notification message"),
+		Message: "Notification message",
 		Name:    "Example test name",
 		Options: datadog.SyntheticsTestOptions{
 			Ci: &datadog.SyntheticsTestCiOptions{

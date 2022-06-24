@@ -34,7 +34,7 @@ func main() {
 		Locations: []string{
 			"aws:us-east-2",
 		},
-		Message: datadog.PtrString("BDD test payload: synthetics_api_grpc_test_payload.json"),
+		Message: "BDD test payload: synthetics_api_grpc_test_payload.json",
 		Name:    "Example-Create_an_API_GRPC_test_returns_OK_Returns_the_created_test_details_response",
 		Options: datadog.SyntheticsTestOptions{
 			MinFailureDuration: datadog.PtrInt64(0),

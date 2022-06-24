@@ -32,7 +32,7 @@ func main() {
 		Locations: []string{
 			"aws:us-east-2",
 		},
-		Message: datadog.PtrString("Test message"),
+		Message: "Test message",
 		Name:    "Example-Create_a_browser_test_returns_OK_Returns_saved_rumSettings_response",
 		Options: datadog.SyntheticsTestOptions{
 			AcceptSelfSigned: datadog.PtrBool(false),

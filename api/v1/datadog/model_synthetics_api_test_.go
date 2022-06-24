@@ -16,7 +16,7 @@ type SyntheticsAPITest struct {
 	// Array of locations used to run the test.
 	Locations []string `json:"locations"`
 	// Notification message associated with the test.
-	Message *string `json:"message,omitempty"`
+	Message string `json:"message"`
 	// The associated monitor ID.
 	MonitorId *int64 `json:"monitor_id,omitempty"`
 	// Name of the test.
@@ -44,10 +44,11 @@ type SyntheticsAPITest struct {
 // This constructor will assign default values to properties that have it defined,
 // and makes sure properties required by API are set, but the set of arguments
 // will change when the set of required properties is changed.
-func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, name string, options SyntheticsTestOptions, typeVar SyntheticsAPITestType) *SyntheticsAPITest {
+func NewSyntheticsAPITest(config SyntheticsAPITestConfig, locations []string, message string, name string, options SyntheticsTestOptions, typeVar SyntheticsAPITestType) *SyntheticsAPITest {
 	this := SyntheticsAPITest{}
 	this.Config = config
 	this.Locations = locations
+	this.Message = message
 	this.Name = name
 	this.Options = options
 	this.Type = typeVar
@@ -110,36 +111,27 @@ func (o *SyntheticsAPITest) SetLocations(v []string) {
 	o.Locations = v
 }
 
-// GetMessage returns the Message field value if set, zero value otherwise.
+// GetMessage returns the Message field value.
 func (o *SyntheticsAPITest) GetMessage() string {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		var ret string
 		return ret
 	}
-	return *o.Message
+	return o.Message
 }
 
-// GetMessageOk returns a tuple with the Message field value if set, nil otherwise
+// GetMessageOk returns a tuple with the Message field value
 // and a boolean to check if the value has been set.
 func (o *SyntheticsAPITest) GetMessageOk() (*string, bool) {
-	if o == nil || o.Message == nil {
+	if o == nil {
 		return nil, false
 	}
-	return o.Message, true
+	return &o.Message, true
 }
 
-// HasMessage returns a boolean if a field has been set.
-func (o *SyntheticsAPITest) HasMessage() bool {
-	if o != nil && o.Message != nil {
-		return true
-	}
-
-	return false
-}
-
-// SetMessage gets a reference to the given string and assigns it to the Message field.
+// SetMessage sets field value.
 func (o *SyntheticsAPITest) SetMessage(v string) {
-	o.Message = &v
+	o.Message = v
 }
 
 // GetMonitorId returns the MonitorId field value if set, zero value otherwise.
@@ -379,9 +371,7 @@ func (o SyntheticsAPITest) MarshalJSON() ([]byte, error) {
 	}
 	toSerialize["config"] = o.Config
 	toSerialize["locations"] = o.Locations
-	if o.Message != nil {
-		toSerialize["message"] = o.Message
-	}
+	toSerialize["message"] = o.Message
 	if o.MonitorId != nil {
 		toSerialize["monitor_id"] = o.MonitorId
 	}
@@ -413,6 +403,7 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	required := struct {
 		Config    *SyntheticsAPITestConfig `json:"config"`
 		Locations *[]string                `json:"locations"`
+		Message   *string                  `json:"message"`
 		Name      *string                  `json:"name"`
 		Options   *SyntheticsTestOptions   `json:"options"`
 		Type      *SyntheticsAPITestType   `json:"type"`
@@ -420,7 +411,7 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Config    SyntheticsAPITestConfig       `json:"config"`
 		Locations []string                      `json:"locations"`
-		Message   *string                       `json:"message,omitempty"`
+		Message   string                        `json:"message"`
 		MonitorId *int64                        `json:"monitor_id,omitempty"`
 		Name      string                        `json:"name"`
 		Options   SyntheticsTestOptions         `json:"options"`
@@ -439,6 +430,9 @@ func (o *SyntheticsAPITest) UnmarshalJSON(bytes []byte) (err error) {
 	}
 	if required.Locations == nil {
 		return fmt.Errorf("Required field locations missing")
+	}
+	if required.Message == nil {
+		return fmt.Errorf("Required field message missing")
 	}
 	if required.Name == nil {
 		return fmt.Errorf("Required field name missing")
