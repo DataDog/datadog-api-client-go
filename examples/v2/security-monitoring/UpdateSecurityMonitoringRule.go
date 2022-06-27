@@ -26,9 +26,10 @@ func main() {
 		},
 		HasExtendedTitle: datadog.PtrBool(true),
 		Options: &datadog.SecurityMonitoringRuleOptions{
-			DetectionMethod:        datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
-			EvaluationWindow:       datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
-			HardcodedEvaluatorType: datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
+			DecreaseCriticalityBasedOnEnv: datadog.PtrBool(false),
+			DetectionMethod:               datadog.SECURITYMONITORINGRULEDETECTIONMETHOD_THRESHOLD.Ptr(),
+			EvaluationWindow:              datadog.SECURITYMONITORINGRULEEVALUATIONWINDOW_ZERO_MINUTES.Ptr(),
+			HardcodedEvaluatorType:        datadog.SECURITYMONITORINGRULEHARDCODEDEVALUATORTYPE_LOG4SHELL.Ptr(),
 			ImpossibleTravelOptions: &datadog.SecurityMonitoringRuleImpossibleTravelOptions{
 				BaselineUserLocations: datadog.PtrBool(true),
 			},
