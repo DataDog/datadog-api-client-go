@@ -16,6 +16,7 @@ type HourlyUsageAttributionUsageType string
 const (
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_API_USAGE                     HourlyUsageAttributionUsageType = "api_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APM_HOST_USAGE                HourlyUsageAttributionUsageType = "apm_host_usage"
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_USAGE                  HourlyUsageAttributionUsageType = "appsec_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE                 HourlyUsageAttributionUsageType = "browser_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE               HourlyUsageAttributionUsageType = "container_usage"
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CUSTOM_TIMESERIES_USAGE       HourlyUsageAttributionUsageType = "custom_timeseries_usage"
@@ -35,6 +36,7 @@ const (
 var allowedHourlyUsageAttributionUsageTypeEnumValues = []HourlyUsageAttributionUsageType{
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_API_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APM_HOST_USAGE,
+	HOURLYUSAGEATTRIBUTIONUSAGETYPE_APPSEC_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_BROWSER_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CONTAINER_USAGE,
 	HOURLYUSAGEATTRIBUTIONUSAGETYPE_CUSTOM_TIMESERIES_USAGE,
