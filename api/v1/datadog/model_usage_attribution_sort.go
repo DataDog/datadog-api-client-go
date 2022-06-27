@@ -18,6 +18,8 @@ const (
 	USAGEATTRIBUTIONSORT_SNMP_USAGE                         UsageAttributionSort = "snmp_usage"
 	USAGEATTRIBUTIONSORT_APM_HOST_USAGE                     UsageAttributionSort = "apm_host_usage"
 	USAGEATTRIBUTIONSORT_API_USAGE                          UsageAttributionSort = "api_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_USAGE                       UsageAttributionSort = "appsec_usage"
+	USAGEATTRIBUTIONSORT_APPSEC_PERCENTAGE                  UsageAttributionSort = "appsec_percentage"
 	USAGEATTRIBUTIONSORT_CONTAINER_USAGE                    UsageAttributionSort = "container_usage"
 	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE       UsageAttributionSort = "custom_timeseries_percentage"
 	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE               UsageAttributionSort = "container_percentage"
@@ -45,6 +47,8 @@ var allowedUsageAttributionSortEnumValues = []UsageAttributionSort{
 	USAGEATTRIBUTIONSORT_SNMP_USAGE,
 	USAGEATTRIBUTIONSORT_APM_HOST_USAGE,
 	USAGEATTRIBUTIONSORT_API_USAGE,
+	USAGEATTRIBUTIONSORT_APPSEC_USAGE,
+	USAGEATTRIBUTIONSORT_APPSEC_PERCENTAGE,
 	USAGEATTRIBUTIONSORT_CONTAINER_USAGE,
 	USAGEATTRIBUTIONSORT_CUSTOM_TIMESERIES_PERCENTAGE,
 	USAGEATTRIBUTIONSORT_CONTAINER_PERCENTAGE,
