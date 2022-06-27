@@ -34,6 +34,10 @@ type MonthlyUsageAttributionValues struct {
 	EstimatedIndexedLogsPercentage *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
 	// The estimated live indexed logs usage by tag(s). This field is in private beta.
 	EstimatedIndexedLogsUsage *float64 `json:"estimated_indexed_logs_usage,omitempty"`
+	// The percentage of estimated indexed spans usage by tag(s). This field is in private beta.
+	EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
+	// The estimated indexed spans usage by tag(s). This field is in private beta.
+	EstimatedIndexedSpansUsage *float64 `json:"estimated_indexed_spans_usage,omitempty"`
 	// The percentage of Fargate usage by tags.
 	FargatePercentage *float64 `json:"fargate_percentage,omitempty"`
 	// The Fargate usage by tags.
@@ -474,6 +478,70 @@ func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedLogsUsage() bool {
 // SetEstimatedIndexedLogsUsage gets a reference to the given float64 and assigns it to the EstimatedIndexedLogsUsage field.
 func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedLogsUsage(v float64) {
 	o.EstimatedIndexedLogsUsage = &v
+}
+
+// GetEstimatedIndexedSpansPercentage returns the EstimatedIndexedSpansPercentage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentage() float64 {
+	if o == nil || o.EstimatedIndexedSpansPercentage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIndexedSpansPercentage
+}
+
+// GetEstimatedIndexedSpansPercentageOk returns a tuple with the EstimatedIndexedSpansPercentage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansPercentageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIndexedSpansPercentage == nil {
+		return nil, false
+	}
+	return o.EstimatedIndexedSpansPercentage, true
+}
+
+// HasEstimatedIndexedSpansPercentage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedSpansPercentage() bool {
+	if o != nil && o.EstimatedIndexedSpansPercentage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedIndexedSpansPercentage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansPercentage field.
+func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansPercentage(v float64) {
+	o.EstimatedIndexedSpansPercentage = &v
+}
+
+// GetEstimatedIndexedSpansUsage returns the EstimatedIndexedSpansUsage field value if set, zero value otherwise.
+func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsage() float64 {
+	if o == nil || o.EstimatedIndexedSpansUsage == nil {
+		var ret float64
+		return ret
+	}
+	return *o.EstimatedIndexedSpansUsage
+}
+
+// GetEstimatedIndexedSpansUsageOk returns a tuple with the EstimatedIndexedSpansUsage field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *MonthlyUsageAttributionValues) GetEstimatedIndexedSpansUsageOk() (*float64, bool) {
+	if o == nil || o.EstimatedIndexedSpansUsage == nil {
+		return nil, false
+	}
+	return o.EstimatedIndexedSpansUsage, true
+}
+
+// HasEstimatedIndexedSpansUsage returns a boolean if a field has been set.
+func (o *MonthlyUsageAttributionValues) HasEstimatedIndexedSpansUsage() bool {
+	if o != nil && o.EstimatedIndexedSpansUsage != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetEstimatedIndexedSpansUsage gets a reference to the given float64 and assigns it to the EstimatedIndexedSpansUsage field.
+func (o *MonthlyUsageAttributionValues) SetEstimatedIndexedSpansUsage(v float64) {
+	o.EstimatedIndexedSpansUsage = &v
 }
 
 // GetFargatePercentage returns the FargatePercentage field value if set, zero value otherwise.
@@ -1094,6 +1162,12 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 	if o.EstimatedIndexedLogsUsage != nil {
 		toSerialize["estimated_indexed_logs_usage"] = o.EstimatedIndexedLogsUsage
 	}
+	if o.EstimatedIndexedSpansPercentage != nil {
+		toSerialize["estimated_indexed_spans_percentage"] = o.EstimatedIndexedSpansPercentage
+	}
+	if o.EstimatedIndexedSpansUsage != nil {
+		toSerialize["estimated_indexed_spans_usage"] = o.EstimatedIndexedSpansUsage
+	}
 	if o.FargatePercentage != nil {
 		toSerialize["fargate_percentage"] = o.FargatePercentage
 	}
@@ -1159,36 +1233,38 @@ func (o MonthlyUsageAttributionValues) MarshalJSON() ([]byte, error) {
 func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		ApiPercentage                  *float64 `json:"api_percentage,omitempty"`
-		ApiUsage                       *float64 `json:"api_usage,omitempty"`
-		ApmHostPercentage              *float64 `json:"apm_host_percentage,omitempty"`
-		ApmHostUsage                   *float64 `json:"apm_host_usage,omitempty"`
-		BrowserPercentage              *float64 `json:"browser_percentage,omitempty"`
-		BrowserUsage                   *float64 `json:"browser_usage,omitempty"`
-		ContainerPercentage            *float64 `json:"container_percentage,omitempty"`
-		ContainerUsage                 *float64 `json:"container_usage,omitempty"`
-		CustomTimeseriesPercentage     *float64 `json:"custom_timeseries_percentage,omitempty"`
-		CustomTimeseriesUsage          *float64 `json:"custom_timeseries_usage,omitempty"`
-		EstimatedIndexedLogsPercentage *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
-		EstimatedIndexedLogsUsage      *float64 `json:"estimated_indexed_logs_usage,omitempty"`
-		FargatePercentage              *float64 `json:"fargate_percentage,omitempty"`
-		FargateUsage                   *float64 `json:"fargate_usage,omitempty"`
-		FunctionsPercentage            *float64 `json:"functions_percentage,omitempty"`
-		FunctionsUsage                 *float64 `json:"functions_usage,omitempty"`
-		IndexedLogsPercentage          *float64 `json:"indexed_logs_percentage,omitempty"`
-		IndexedLogsUsage               *float64 `json:"indexed_logs_usage,omitempty"`
-		InfraHostPercentage            *float64 `json:"infra_host_percentage,omitempty"`
-		InfraHostUsage                 *float64 `json:"infra_host_usage,omitempty"`
-		InvocationsPercentage          *float64 `json:"invocations_percentage,omitempty"`
-		InvocationsUsage               *float64 `json:"invocations_usage,omitempty"`
-		NpmHostPercentage              *float64 `json:"npm_host_percentage,omitempty"`
-		NpmHostUsage                   *float64 `json:"npm_host_usage,omitempty"`
-		ProfiledContainerPercentage    *float64 `json:"profiled_container_percentage,omitempty"`
-		ProfiledContainerUsage         *float64 `json:"profiled_container_usage,omitempty"`
-		ProfiledHostPercentage         *float64 `json:"profiled_host_percentage,omitempty"`
-		ProfiledHostUsage              *float64 `json:"profiled_host_usage,omitempty"`
-		SnmpPercentage                 *float64 `json:"snmp_percentage,omitempty"`
-		SnmpUsage                      *float64 `json:"snmp_usage,omitempty"`
+		ApiPercentage                   *float64 `json:"api_percentage,omitempty"`
+		ApiUsage                        *float64 `json:"api_usage,omitempty"`
+		ApmHostPercentage               *float64 `json:"apm_host_percentage,omitempty"`
+		ApmHostUsage                    *float64 `json:"apm_host_usage,omitempty"`
+		BrowserPercentage               *float64 `json:"browser_percentage,omitempty"`
+		BrowserUsage                    *float64 `json:"browser_usage,omitempty"`
+		ContainerPercentage             *float64 `json:"container_percentage,omitempty"`
+		ContainerUsage                  *float64 `json:"container_usage,omitempty"`
+		CustomTimeseriesPercentage      *float64 `json:"custom_timeseries_percentage,omitempty"`
+		CustomTimeseriesUsage           *float64 `json:"custom_timeseries_usage,omitempty"`
+		EstimatedIndexedLogsPercentage  *float64 `json:"estimated_indexed_logs_percentage,omitempty"`
+		EstimatedIndexedLogsUsage       *float64 `json:"estimated_indexed_logs_usage,omitempty"`
+		EstimatedIndexedSpansPercentage *float64 `json:"estimated_indexed_spans_percentage,omitempty"`
+		EstimatedIndexedSpansUsage      *float64 `json:"estimated_indexed_spans_usage,omitempty"`
+		FargatePercentage               *float64 `json:"fargate_percentage,omitempty"`
+		FargateUsage                    *float64 `json:"fargate_usage,omitempty"`
+		FunctionsPercentage             *float64 `json:"functions_percentage,omitempty"`
+		FunctionsUsage                  *float64 `json:"functions_usage,omitempty"`
+		IndexedLogsPercentage           *float64 `json:"indexed_logs_percentage,omitempty"`
+		IndexedLogsUsage                *float64 `json:"indexed_logs_usage,omitempty"`
+		InfraHostPercentage             *float64 `json:"infra_host_percentage,omitempty"`
+		InfraHostUsage                  *float64 `json:"infra_host_usage,omitempty"`
+		InvocationsPercentage           *float64 `json:"invocations_percentage,omitempty"`
+		InvocationsUsage                *float64 `json:"invocations_usage,omitempty"`
+		NpmHostPercentage               *float64 `json:"npm_host_percentage,omitempty"`
+		NpmHostUsage                    *float64 `json:"npm_host_usage,omitempty"`
+		ProfiledContainerPercentage     *float64 `json:"profiled_container_percentage,omitempty"`
+		ProfiledContainerUsage          *float64 `json:"profiled_container_usage,omitempty"`
+		ProfiledHostPercentage          *float64 `json:"profiled_host_percentage,omitempty"`
+		ProfiledHostUsage               *float64 `json:"profiled_host_usage,omitempty"`
+		SnmpPercentage                  *float64 `json:"snmp_percentage,omitempty"`
+		SnmpUsage                       *float64 `json:"snmp_usage,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -1211,6 +1287,8 @@ func (o *MonthlyUsageAttributionValues) UnmarshalJSON(bytes []byte) (err error) 
 	o.CustomTimeseriesUsage = all.CustomTimeseriesUsage
 	o.EstimatedIndexedLogsPercentage = all.EstimatedIndexedLogsPercentage
 	o.EstimatedIndexedLogsUsage = all.EstimatedIndexedLogsUsage
+	o.EstimatedIndexedSpansPercentage = all.EstimatedIndexedSpansPercentage
+	o.EstimatedIndexedSpansUsage = all.EstimatedIndexedSpansUsage
 	o.FargatePercentage = all.FargatePercentage
 	o.FargateUsage = all.FargateUsage
 	o.FunctionsPercentage = all.FunctionsPercentage
