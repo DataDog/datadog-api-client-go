@@ -10,6 +10,10 @@ import (
 
 // SecurityMonitoringRuleOptions Options on rules.
 type SecurityMonitoringRuleOptions struct {
+	// If true, signals in non-production environments have a lower severity than what is defined by the rule case, which can reduce signal noise.
+	// The severity is decreased by one level: `CRITICAL` in production becomes `HIGH` in non-production, `HIGH` becomes `MEDIUM` and so on. `INFO` remains `INFO`.
+	// The decrement is applied when the environment tag of the signal starts with `staging`, `test` or `dev`.
+	DecreaseCriticalityBasedOnEnv *bool `json:"decreaseCriticalityBasedOnEnv,omitempty"`
 	// The detection method.
 	DetectionMethod *SecurityMonitoringRuleDetectionMethod `json:"detectionMethod,omitempty"`
 	// A time window is specified to match when at least one of the cases matches true. This is a sliding window
@@ -47,6 +51,38 @@ func NewSecurityMonitoringRuleOptions() *SecurityMonitoringRuleOptions {
 func NewSecurityMonitoringRuleOptionsWithDefaults() *SecurityMonitoringRuleOptions {
 	this := SecurityMonitoringRuleOptions{}
 	return &this
+}
+
+// GetDecreaseCriticalityBasedOnEnv returns the DecreaseCriticalityBasedOnEnv field value if set, zero value otherwise.
+func (o *SecurityMonitoringRuleOptions) GetDecreaseCriticalityBasedOnEnv() bool {
+	if o == nil || o.DecreaseCriticalityBasedOnEnv == nil {
+		var ret bool
+		return ret
+	}
+	return *o.DecreaseCriticalityBasedOnEnv
+}
+
+// GetDecreaseCriticalityBasedOnEnvOk returns a tuple with the DecreaseCriticalityBasedOnEnv field value if set, nil otherwise
+// and a boolean to check if the value has been set.
+func (o *SecurityMonitoringRuleOptions) GetDecreaseCriticalityBasedOnEnvOk() (*bool, bool) {
+	if o == nil || o.DecreaseCriticalityBasedOnEnv == nil {
+		return nil, false
+	}
+	return o.DecreaseCriticalityBasedOnEnv, true
+}
+
+// HasDecreaseCriticalityBasedOnEnv returns a boolean if a field has been set.
+func (o *SecurityMonitoringRuleOptions) HasDecreaseCriticalityBasedOnEnv() bool {
+	if o != nil && o.DecreaseCriticalityBasedOnEnv != nil {
+		return true
+	}
+
+	return false
+}
+
+// SetDecreaseCriticalityBasedOnEnv gets a reference to the given bool and assigns it to the DecreaseCriticalityBasedOnEnv field.
+func (o *SecurityMonitoringRuleOptions) SetDecreaseCriticalityBasedOnEnv(v bool) {
+	o.DecreaseCriticalityBasedOnEnv = &v
 }
 
 // GetDetectionMethod returns the DetectionMethod field value if set, zero value otherwise.
@@ -279,6 +315,9 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
+	if o.DecreaseCriticalityBasedOnEnv != nil {
+		toSerialize["decreaseCriticalityBasedOnEnv"] = o.DecreaseCriticalityBasedOnEnv
+	}
 	if o.DetectionMethod != nil {
 		toSerialize["detectionMethod"] = o.DetectionMethod
 	}
@@ -311,13 +350,14 @@ func (o SecurityMonitoringRuleOptions) MarshalJSON() ([]byte, error) {
 func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		DetectionMethod         *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
-		EvaluationWindow        *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
-		HardcodedEvaluatorType  *SecurityMonitoringRuleHardcodedEvaluatorType  `json:"hardcodedEvaluatorType,omitempty"`
-		ImpossibleTravelOptions *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
-		KeepAlive               *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
-		MaxSignalDuration       *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
-		NewValueOptions         *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
+		DecreaseCriticalityBasedOnEnv *bool                                          `json:"decreaseCriticalityBasedOnEnv,omitempty"`
+		DetectionMethod               *SecurityMonitoringRuleDetectionMethod         `json:"detectionMethod,omitempty"`
+		EvaluationWindow              *SecurityMonitoringRuleEvaluationWindow        `json:"evaluationWindow,omitempty"`
+		HardcodedEvaluatorType        *SecurityMonitoringRuleHardcodedEvaluatorType  `json:"hardcodedEvaluatorType,omitempty"`
+		ImpossibleTravelOptions       *SecurityMonitoringRuleImpossibleTravelOptions `json:"impossibleTravelOptions,omitempty"`
+		KeepAlive                     *SecurityMonitoringRuleKeepAlive               `json:"keepAlive,omitempty"`
+		MaxSignalDuration             *SecurityMonitoringRuleMaxSignalDuration       `json:"maxSignalDuration,omitempty"`
+		NewValueOptions               *SecurityMonitoringRuleNewValueOptions         `json:"newValueOptions,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -368,6 +408,7 @@ func (o *SecurityMonitoringRuleOptions) UnmarshalJSON(bytes []byte) (err error) 
 		o.UnparsedObject = raw
 		return nil
 	}
+	o.DecreaseCriticalityBasedOnEnv = all.DecreaseCriticalityBasedOnEnv
 	o.DetectionMethod = all.DetectionMethod
 	o.EvaluationWindow = all.EvaluationWindow
 	o.HardcodedEvaluatorType = all.HardcodedEvaluatorType
