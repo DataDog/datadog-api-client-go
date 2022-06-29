@@ -10,8 +10,8 @@ import (
 
 // IntakePayloadAccepted The payload accepted for intake.
 type IntakePayloadAccepted struct {
-	// The status of the intake payload.
-	Status *string `json:"status,omitempty"`
+	// A list of errors.
+	Errors []string `json:"errors,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -34,36 +34,36 @@ func NewIntakePayloadAcceptedWithDefaults() *IntakePayloadAccepted {
 	return &this
 }
 
-// GetStatus returns the Status field value if set, zero value otherwise.
-func (o *IntakePayloadAccepted) GetStatus() string {
-	if o == nil || o.Status == nil {
-		var ret string
+// GetErrors returns the Errors field value if set, zero value otherwise.
+func (o *IntakePayloadAccepted) GetErrors() []string {
+	if o == nil || o.Errors == nil {
+		var ret []string
 		return ret
 	}
-	return *o.Status
+	return o.Errors
 }
 
-// GetStatusOk returns a tuple with the Status field value if set, nil otherwise
+// GetErrorsOk returns a tuple with the Errors field value if set, nil otherwise
 // and a boolean to check if the value has been set.
-func (o *IntakePayloadAccepted) GetStatusOk() (*string, bool) {
-	if o == nil || o.Status == nil {
+func (o *IntakePayloadAccepted) GetErrorsOk() (*[]string, bool) {
+	if o == nil || o.Errors == nil {
 		return nil, false
 	}
-	return o.Status, true
+	return &o.Errors, true
 }
 
-// HasStatus returns a boolean if a field has been set.
-func (o *IntakePayloadAccepted) HasStatus() bool {
-	if o != nil && o.Status != nil {
+// HasErrors returns a boolean if a field has been set.
+func (o *IntakePayloadAccepted) HasErrors() bool {
+	if o != nil && o.Errors != nil {
 		return true
 	}
 
 	return false
 }
 
-// SetStatus gets a reference to the given string and assigns it to the Status field.
-func (o *IntakePayloadAccepted) SetStatus(v string) {
-	o.Status = &v
+// SetErrors gets a reference to the given []string and assigns it to the Errors field.
+func (o *IntakePayloadAccepted) SetErrors(v []string) {
+	o.Errors = v
 }
 
 // MarshalJSON serializes the struct using spec logic.
@@ -72,8 +72,8 @@ func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 	if o.UnparsedObject != nil {
 		return json.Marshal(o.UnparsedObject)
 	}
-	if o.Status != nil {
-		toSerialize["status"] = o.Status
+	if o.Errors != nil {
+		toSerialize["errors"] = o.Errors
 	}
 
 	for key, value := range o.AdditionalProperties {
@@ -86,7 +86,7 @@ func (o IntakePayloadAccepted) MarshalJSON() ([]byte, error) {
 func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Status *string `json:"status,omitempty"`
+		Errors []string `json:"errors,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {
@@ -97,6 +97,6 @@ func (o *IntakePayloadAccepted) UnmarshalJSON(bytes []byte) (err error) {
 		o.UnparsedObject = raw
 		return nil
 	}
-	o.Status = all.Status
+	o.Errors = all.Errors
 	return nil
 }
