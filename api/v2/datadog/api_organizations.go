@@ -169,7 +169,6 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
@@ -179,7 +178,6 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
@@ -189,7 +187,6 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 			var v APIErrorResponse
 			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
-				newErr.error = err.Error()
 				return localVarHTTPResponse, newErr
 			}
 			newErr.model = v
