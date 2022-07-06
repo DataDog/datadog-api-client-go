@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // IncidentFieldAttributesSingleValue A field with a single value selected.
@@ -13,7 +15,7 @@ type IncidentFieldAttributesSingleValue struct {
 	// Type of the single value field definitions.
 	Type *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
 	// The single value selected for this field.
-	Value NullableString `json:"value,omitempty"`
+	Value common.NullableString `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -100,7 +102,7 @@ func (o *IncidentFieldAttributesSingleValue) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given NullableString and assigns it to the Value field.
+// SetValue gets a reference to the given common.NullableString and assigns it to the Value field.
 func (o *IncidentFieldAttributesSingleValue) SetValue(v string) {
 	o.Value.Set(&v)
 }
@@ -139,7 +141,7 @@ func (o *IncidentFieldAttributesSingleValue) UnmarshalJSON(bytes []byte) (err er
 	raw := map[string]interface{}{}
 	all := struct {
 		Type  *IncidentFieldAttributesSingleValueType `json:"type,omitempty"`
-		Value NullableString                          `json:"value,omitempty"`
+		Value common.NullableString                   `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

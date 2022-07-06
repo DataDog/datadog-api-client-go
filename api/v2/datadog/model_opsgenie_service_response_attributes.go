@@ -6,12 +6,14 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // OpsgenieServiceResponseAttributes The attributes from an Opsgenie service response.
 type OpsgenieServiceResponseAttributes struct {
 	// The custom URL for a custom region.
-	CustomUrl NullableString `json:"custom_url,omitempty"`
+	CustomUrl common.NullableString `json:"custom_url,omitempty"`
 	// The name for the Opsgenie service.
 	Name *string `json:"name,omitempty"`
 	// The region for the Opsgenie service.
@@ -66,7 +68,7 @@ func (o *OpsgenieServiceResponseAttributes) HasCustomUrl() bool {
 	return false
 }
 
-// SetCustomUrl gets a reference to the given NullableString and assigns it to the CustomUrl field.
+// SetCustomUrl gets a reference to the given common.NullableString and assigns it to the CustomUrl field.
 func (o *OpsgenieServiceResponseAttributes) SetCustomUrl(v string) {
 	o.CustomUrl.Set(&v)
 }
@@ -171,7 +173,7 @@ func (o OpsgenieServiceResponseAttributes) MarshalJSON() ([]byte, error) {
 func (o *OpsgenieServiceResponseAttributes) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		CustomUrl NullableString             `json:"custom_url,omitempty"`
+		CustomUrl common.NullableString      `json:"custom_url,omitempty"`
 		Name      *string                    `json:"name,omitempty"`
 		Region    *OpsgenieServiceRegionType `json:"region,omitempty"`
 	}{}

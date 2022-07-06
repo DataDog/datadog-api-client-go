@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	// there is a valid "authn_mapping" in the system
 	AuthnMappingDataID := os.Getenv("AUTHN_MAPPING_DATA_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuthNMappingsApi.GetAuthNMapping(ctx, AuthnMappingDataID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.AuthNMappingsApi(apiClient)
+	resp, r, err := api.GetAuthNMapping(ctx, AuthnMappingDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuthNMappingsApi.GetAuthNMapping`: %v\n", err)

@@ -6,12 +6,14 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // SyntheticsTriggerCITestsResponse Object containing information about the tests triggered.
 type SyntheticsTriggerCITestsResponse struct {
 	// The public ID of the batch triggered.
-	BatchId NullableString `json:"batch_id,omitempty"`
+	BatchId common.NullableString `json:"batch_id,omitempty"`
 	// List of Synthetics locations.
 	Locations []SyntheticsTriggerCITestLocation `json:"locations,omitempty"`
 	// Information about the tests runs.
@@ -68,7 +70,7 @@ func (o *SyntheticsTriggerCITestsResponse) HasBatchId() bool {
 	return false
 }
 
-// SetBatchId gets a reference to the given NullableString and assigns it to the BatchId field.
+// SetBatchId gets a reference to the given common.NullableString and assigns it to the BatchId field.
 func (o *SyntheticsTriggerCITestsResponse) SetBatchId(v string) {
 	o.BatchId.Set(&v)
 }
@@ -208,7 +210,7 @@ func (o SyntheticsTriggerCITestsResponse) MarshalJSON() ([]byte, error) {
 func (o *SyntheticsTriggerCITestsResponse) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		BatchId           NullableString                     `json:"batch_id,omitempty"`
+		BatchId           common.NullableString              `json:"batch_id,omitempty"`
 		Locations         []SyntheticsTriggerCITestLocation  `json:"locations,omitempty"`
 		Results           []SyntheticsTriggerCITestRunResult `json:"results,omitempty"`
 		TriggeredCheckIds []string                           `json:"triggered_check_ids,omitempty"`

@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // MonitorSearchResult Holds search results.
@@ -17,7 +19,7 @@ type MonitorSearchResult struct {
 	// ID of the monitor.
 	Id *int64 `json:"id,omitempty"`
 	// Latest timestamp the monitor triggered.
-	LastTriggeredTs NullableInt64 `json:"last_triggered_ts,omitempty"`
+	LastTriggeredTs common.NullableInt64 `json:"last_triggered_ts,omitempty"`
 	// Metrics used by the monitor.
 	Metrics []string `json:"metrics,omitempty"`
 	// The monitor name.
@@ -185,7 +187,7 @@ func (o *MonitorSearchResult) HasLastTriggeredTs() bool {
 	return false
 }
 
-// SetLastTriggeredTs gets a reference to the given NullableInt64 and assigns it to the LastTriggeredTs field.
+// SetLastTriggeredTs gets a reference to the given common.NullableInt64 and assigns it to the LastTriggeredTs field.
 func (o *MonitorSearchResult) SetLastTriggeredTs(v int64) {
 	o.LastTriggeredTs.Set(&v)
 }
@@ -547,7 +549,7 @@ func (o *MonitorSearchResult) UnmarshalJSON(bytes []byte) (err error) {
 		Classification  *string                           `json:"classification,omitempty"`
 		Creator         *Creator                          `json:"creator,omitempty"`
 		Id              *int64                            `json:"id,omitempty"`
-		LastTriggeredTs NullableInt64                     `json:"last_triggered_ts,omitempty"`
+		LastTriggeredTs common.NullableInt64              `json:"last_triggered_ts,omitempty"`
 		Metrics         []string                          `json:"metrics,omitempty"`
 		Name            *string                           `json:"name,omitempty"`
 		Notifications   []MonitorSearchResultNotification `json:"notifications,omitempty"`

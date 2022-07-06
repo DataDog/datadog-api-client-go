@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -14,10 +15,11 @@ func main() {
 	body := datadog.PagerDutyServiceKey{
 		ServiceKey: "",
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService(ctx, "service_name", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.PagerDutyIntegrationApi(apiClient)
+	r, err := api.UpdatePagerDutyIntegrationService(ctx, "service_name", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `PagerDutyIntegrationApi.UpdatePagerDutyIntegrationService`: %v\n", err)

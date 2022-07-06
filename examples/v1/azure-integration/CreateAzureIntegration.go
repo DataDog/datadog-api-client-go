@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -24,10 +25,11 @@ func main() {
 		NewTenantName: datadog.PtrString("new1c44-1234-5678-9101-cc00736ftest"),
 		TenantName:    datadog.PtrString("testc44-1234-5678-9101-cc00736ftest"),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AzureIntegrationApi.CreateAzureIntegration(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.AzureIntegrationApi(apiClient)
+	resp, r, err := api.CreateAzureIntegration(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AzureIntegrationApi.CreateAzureIntegration`: %v\n", err)

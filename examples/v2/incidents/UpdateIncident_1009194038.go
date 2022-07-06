@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -21,16 +22,17 @@ func main() {
 			Type: datadog.INCIDENTTYPE_INCIDENTS,
 			Relationships: &datadog.IncidentUpdateRelationships{
 				CommanderUser: &datadog.NullableRelationshipToUser{
-					Data: *datadog.NewNullableNullableRelationshipToUserData(nil),
+					Data: *common.NewNullableNullableRelationshipToUserData(nil),
 				},
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("UpdateIncident", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentsApi.UpdateIncident(ctx, IncidentDataID, body, *datadog.NewUpdateIncidentOptionalParameters())
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.IncidentsApi(apiClient)
+	resp, r, err := api.UpdateIncident(ctx, IncidentDataID, body, *datadog.NewUpdateIncidentOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentsApi.UpdateIncident`: %v\n", err)

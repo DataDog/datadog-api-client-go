@@ -2,7 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-package datadog
+package common
 
 import (
 	"context"
@@ -274,7 +274,7 @@ func getServerIndex(ctx context.Context) (int, error) {
 		if index, ok := si.(int); ok {
 			return index, nil
 		}
-		return 0, reportError("invalid type %T should be int", si)
+		return 0, ReportError("invalid type %T should be int", si)
 	}
 	return 0, nil
 }
@@ -284,7 +284,7 @@ func getServerOperationIndex(ctx context.Context, endpoint string) (int, error) 
 	if osi != nil {
 		operationIndices, ok := osi.(map[string]int)
 		if !ok {
-			return 0, reportError("invalid type %T should be map[string]int", osi)
+			return 0, ReportError("invalid type %T should be map[string]int", osi)
 		}
 		index, ok := operationIndices[endpoint]
 		if ok {
@@ -300,7 +300,7 @@ func getServerVariables(ctx context.Context) (map[string]string, error) {
 		if variables, ok := sv.(map[string]string); ok {
 			return variables, nil
 		}
-		return nil, reportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
+		return nil, ReportError("ctx value of ContextServerVariables has invalid type %T should be map[string]string", sv)
 	}
 	return nil, nil
 }
@@ -310,7 +310,7 @@ func getServerOperationVariables(ctx context.Context, endpoint string) (map[stri
 	if osv != nil {
 		operationVariables, ok := osv.(map[string]map[string]string)
 		if !ok {
-			return nil, reportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
+			return nil, ReportError("ctx value of ContextOperationServerVariables has invalid type %T should be map[string]map[string]string", osv)
 		}
 		variables, ok := operationVariables[endpoint]
 		if ok {

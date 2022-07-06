@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -19,10 +20,11 @@ func main() {
 	body := datadog.DashboardList{
 		Name: "updated Example-Update_a_dashboard_list_returns_OK_response",
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DashboardListsApi.UpdateDashboardList(ctx, DashboardListID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.DashboardListsApi(apiClient)
+	resp, r, err := api.UpdateDashboardList(ctx, DashboardListID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DashboardListsApi.UpdateDashboardList`: %v\n", err)

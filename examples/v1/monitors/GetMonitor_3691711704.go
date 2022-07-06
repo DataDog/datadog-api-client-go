@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,10 +17,11 @@ func main() {
 	// there is a valid "synthetics_api_test" in the system
 	SyntheticsAPITestMonitorID, _ := strconv.ParseInt(os.Getenv("SYNTHETICS_API_TEST_MONITOR_ID"), 10, 64)
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.GetMonitor(ctx, SyntheticsAPITestMonitorID, *datadog.NewGetMonitorOptionalParameters())
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.MonitorsApi(apiClient)
+	resp, r, err := api.GetMonitor(ctx, SyntheticsAPITestMonitorID, *datadog.NewGetMonitorOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.GetMonitor`: %v\n", err)

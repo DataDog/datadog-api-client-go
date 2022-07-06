@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -25,31 +26,32 @@ func main() {
 			"test:examplevalidateanexistingmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(datadog.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			EnableLogsSample:     datadog.PtrBool(true),
 			EscalationMessage:    datadog.PtrString("the situation has escalated"),
-			EvaluationDelay:      *datadog.NewNullableInt64(datadog.PtrInt64(700)),
+			EvaluationDelay:      *common.NewNullableInt64(datadog.PtrInt64(700)),
 			GroupbySimpleMonitor: datadog.PtrBool(true),
 			IncludeTags:          datadog.PtrBool(true),
 			Locked:               datadog.PtrBool(false),
-			NewHostDelay:         *datadog.NewNullableInt64(datadog.PtrInt64(600)),
-			NoDataTimeframe:      *datadog.NewNullableInt64(nil),
+			NewHostDelay:         *common.NewNullableInt64(datadog.PtrInt64(600)),
+			NoDataTimeframe:      *common.NewNullableInt64(nil),
 			NotifyAudit:          datadog.PtrBool(false),
 			NotifyNoData:         datadog.PtrBool(false),
-			RenotifyInterval:     *datadog.NewNullableInt64(datadog.PtrInt64(60)),
+			RenotifyInterval:     *common.NewNullableInt64(datadog.PtrInt64(60)),
 			RequireFullWindow:    datadog.PtrBool(true),
-			TimeoutH:             *datadog.NewNullableInt64(datadog.PtrInt64(24)),
+			TimeoutH:             *common.NewNullableInt64(datadog.PtrInt64(24)),
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(2),
-				Warning:  *datadog.NewNullableFloat64(datadog.PtrFloat64(1)),
+				Warning:  *common.NewNullableFloat64(datadog.PtrFloat64(1)),
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.ValidateExistingMonitor(ctx, MonitorID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.MonitorsApi(apiClient)
+	resp, r, err := api.ValidateExistingMonitor(ctx, MonitorID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.ValidateExistingMonitor`: %v\n", err)

@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,11 +16,12 @@ func main() {
 	// there is a valid "team" in the system
 	TeamDataAttributesName := os.Getenv("TEAM_DATA_ATTRIBUTES_NAME")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("ListIncidentTeams", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.IncidentTeamsApi.ListIncidentTeams(ctx, *datadog.NewListIncidentTeamsOptionalParameters().WithFilter(TeamDataAttributesName))
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.IncidentTeamsApi(apiClient)
+	resp, r, err := api.ListIncidentTeams(ctx, *datadog.NewListIncidentTeamsOptionalParameters().WithFilter(TeamDataAttributesName))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `IncidentTeamsApi.ListIncidentTeams`: %v\n", err)

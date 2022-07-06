@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -27,10 +28,11 @@ func main() {
 		},
 		Sort: datadog.AUDITLOGSSORT_TIMESTAMP_ASCENDING.Ptr(),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.AuditApi.SearchAuditLogs(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.AuditApi(apiClient)
+	resp, r, err := api.SearchAuditLogs(ctx, *datadog.NewSearchAuditLogsOptionalParameters().WithBody(body))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `AuditApi.SearchAuditLogs`: %v\n", err)

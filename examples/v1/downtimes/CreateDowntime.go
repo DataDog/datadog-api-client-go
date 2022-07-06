@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -20,7 +21,7 @@ func main() {
 		Scope: []string{
 			"test:examplescheduleadowntimereturnsokresponse",
 		},
-		Recurrence: *datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
+		Recurrence: *common.datadog.NewNullableDowntimeRecurrence(&datadog.DowntimeRecurrence{
 			Type:   datadog.PtrString("weeks"),
 			Period: datadog.PtrInt32(1),
 			WeekDays: []string{
@@ -30,13 +31,14 @@ func main() {
 				"Thu",
 				"Fri",
 			},
-			UntilDate: *datadog.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
+			UntilDate: *common.NewNullableInt64(datadog.PtrInt64(time.Now().AddDate(0, 0, 21).Unix())),
 		}),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.CreateDowntime(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.DowntimesApi(apiClient)
+	resp, r, err := api.CreateDowntime(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.CreateDowntime`: %v\n", err)

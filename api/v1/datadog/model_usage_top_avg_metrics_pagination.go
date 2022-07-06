@@ -6,6 +6,8 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // UsageTopAvgMetricsPagination The metadata for the current pagination.
@@ -13,7 +15,7 @@ type UsageTopAvgMetricsPagination struct {
 	// Maximum amount of records to be returned.
 	Limit *int64 `json:"limit,omitempty"`
 	// The cursor to get the next results (if any). To make the next request, use the same parameters and add `next_record_id`.
-	NextRecordId NullableString `json:"next_record_id,omitempty"`
+	NextRecordId common.NullableString `json:"next_record_id,omitempty"`
 	// Total number of records.
 	TotalNumberOfRecords *int64 `json:"total_number_of_records,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
@@ -98,7 +100,7 @@ func (o *UsageTopAvgMetricsPagination) HasNextRecordId() bool {
 	return false
 }
 
-// SetNextRecordId gets a reference to the given NullableString and assigns it to the NextRecordId field.
+// SetNextRecordId gets a reference to the given common.NullableString and assigns it to the NextRecordId field.
 func (o *UsageTopAvgMetricsPagination) SetNextRecordId(v string) {
 	o.NextRecordId.Set(&v)
 }
@@ -171,9 +173,9 @@ func (o UsageTopAvgMetricsPagination) MarshalJSON() ([]byte, error) {
 func (o *UsageTopAvgMetricsPagination) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Limit                *int64         `json:"limit,omitempty"`
-		NextRecordId         NullableString `json:"next_record_id,omitempty"`
-		TotalNumberOfRecords *int64         `json:"total_number_of_records,omitempty"`
+		Limit                *int64                `json:"limit,omitempty"`
+		NextRecordId         common.NullableString `json:"next_record_id,omitempty"`
+		TotalNumberOfRecords *int64                `json:"total_number_of_records,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

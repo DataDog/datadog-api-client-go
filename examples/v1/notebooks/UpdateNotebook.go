@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -64,7 +65,7 @@ y = 6;
 										Keys: []string{},
 										Tags: []string{},
 									},
-									Time: *datadog.NewNullableNotebookCellTime(nil),
+									Time: *common.NewNullableNotebookCellTime(nil),
 								}},
 							Type: datadog.NOTEBOOKCELLRESOURCETYPE_NOTEBOOK_CELLS,
 						}},
@@ -79,10 +80,11 @@ y = 6;
 			Type: datadog.NOTEBOOKRESOURCETYPE_NOTEBOOKS,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.NotebooksApi.UpdateNotebook(ctx, NotebookDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.NotebooksApi(apiClient)
+	resp, r, err := api.UpdateNotebook(ctx, NotebookDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `NotebooksApi.UpdateNotebook`: %v\n", err)

@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -16,11 +17,12 @@ func main() {
 	// there is a valid "slo" in the system
 	SloData0ID := os.Getenv("SLO_DATA_0_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
 	configuration.SetUnstableOperationEnabled("GetSLOHistory", true)
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.ServiceLevelObjectivesApi.GetSLOHistory(ctx, SloData0ID, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), *datadog.NewGetSLOHistoryOptionalParameters())
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.ServiceLevelObjectivesApi(apiClient)
+	resp, r, err := api.GetSLOHistory(ctx, SloData0ID, time.Now().AddDate(0, 0, -1).Unix(), time.Now().Unix(), *datadog.NewGetSLOHistoryOptionalParameters())
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `ServiceLevelObjectivesApi.GetSLOHistory`: %v\n", err)

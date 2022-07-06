@@ -23,6 +23,7 @@ import (
 	"fmt"
 	"os"
 
+    "github.com/DataDog/datadog-api-client-go/api/common{{ common_package_name }}"
 	datadog "github.com/DataDog/datadog-api-client-go/api/{{ version }}/datadog"
 )
 
@@ -48,14 +49,15 @@ func main() {
 {%- if context.body %}
 	body := {{ body }}
 {%- endif%}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
 {%- for operation in context._enable_operations %}
 	configuration.SetUnstableOperationEnabled("{{ operation }}", true)
 {%- endfor %}
-	apiClient := datadog.NewAPIClient(configuration)
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.{{ context.api_instance.name }}Api(apiClient)
 {%- if response_has_three_values %}
-	resp, r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
+	resp, r, err := api.{{ context.api_request.operation_id }}(ctx{% if parameters %}, {{ parameters }}{% endif %})
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)
@@ -76,7 +78,7 @@ func main() {
 	{%- endif %}
 	{%- endfor %}
 {%- else %}
-	r, err := apiClient.{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}(ctx, {% if parameters %}{{ parameters }}{% endif %})
+	r, err := api.{{ context.api_request.operation_id }}(ctx, {% if parameters %}{{ parameters }}{% endif %})
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `{{ context.api_instance.name }}Api.{{ context.api_request.operation_id }}`: %v\n", err)

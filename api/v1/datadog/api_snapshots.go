@@ -10,10 +10,11 @@ import (
 	_ioutil "io/ioutil"
 	_nethttp "net/http"
 	_neturl "net/url"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
-// SnapshotsApiService SnapshotsApi service.
-type SnapshotsApiService service
+type SnapshotsApiService common.Service
 
 type apiGetGraphSnapshotRequest struct {
 	ctx         _context.Context
@@ -89,7 +90,7 @@ func (a *SnapshotsApiService) buildGetGraphSnapshotRequest(ctx _context.Context,
 	}
 
 	if len(o) > 1 {
-		return req, reportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
+		return req, common.ReportError("only one argument of type GetGraphSnapshotOptionalParameters is allowed")
 	}
 
 	if o != nil {
@@ -124,9 +125,9 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 		localVarReturnValue GraphSnapshot
 	)
 
-	localBasePath, err := a.client.cfg.ServerURLWithContext(r.ctx, "SnapshotsApiService.GetGraphSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SnapshotsApiService.GetGraphSnapshot")
 	if err != nil {
-		return localVarReturnValue, nil, GenericOpenAPIError{error: err.Error()}
+		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
 
 	localVarPath := localBasePath + "/api/v1/graph/snapshot"
@@ -135,43 +136,43 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	localVarQueryParams := _neturl.Values{}
 	localVarFormParams := _neturl.Values{}
 	if r.start == nil {
-		return localVarReturnValue, nil, reportError("start is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("start is required and must be specified")
 	}
 	if r.end == nil {
-		return localVarReturnValue, nil, reportError("end is required and must be specified")
+		return localVarReturnValue, nil, common.ReportError("end is required and must be specified")
 	}
-	localVarQueryParams.Add("start", parameterToString(*r.start, ""))
-	localVarQueryParams.Add("end", parameterToString(*r.end, ""))
+	localVarQueryParams.Add("start", common.ParameterToString(*r.start, ""))
+	localVarQueryParams.Add("end", common.ParameterToString(*r.end, ""))
 	if r.metricQuery != nil {
-		localVarQueryParams.Add("metric_query", parameterToString(*r.metricQuery, ""))
+		localVarQueryParams.Add("metric_query", common.ParameterToString(*r.metricQuery, ""))
 	}
 	if r.eventQuery != nil {
-		localVarQueryParams.Add("event_query", parameterToString(*r.eventQuery, ""))
+		localVarQueryParams.Add("event_query", common.ParameterToString(*r.eventQuery, ""))
 	}
 	if r.graphDef != nil {
-		localVarQueryParams.Add("graph_def", parameterToString(*r.graphDef, ""))
+		localVarQueryParams.Add("graph_def", common.ParameterToString(*r.graphDef, ""))
 	}
 	if r.title != nil {
-		localVarQueryParams.Add("title", parameterToString(*r.title, ""))
+		localVarQueryParams.Add("title", common.ParameterToString(*r.title, ""))
 	}
 	if r.height != nil {
-		localVarQueryParams.Add("height", parameterToString(*r.height, ""))
+		localVarQueryParams.Add("height", common.ParameterToString(*r.height, ""))
 	}
 	if r.width != nil {
-		localVarQueryParams.Add("width", parameterToString(*r.width, ""))
+		localVarQueryParams.Add("width", common.ParameterToString(*r.width, ""))
 	}
 
 	// to determine the Accept header
 	localVarHTTPHeaderAccepts := []string{"application/json"}
 
 	// set Accept header
-	localVarHTTPHeaderAccept := selectHeaderAccept(localVarHTTPHeaderAccepts)
+	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
 	if localVarHTTPHeaderAccept != "" {
 		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["apiKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -185,7 +186,7 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	}
 	if r.ctx != nil {
 		// API Key Authentication
-		if auth, ok := r.ctx.Value(ContextAPIKeys).(map[string]APIKey); ok {
+		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
 			if apiKey, ok := auth["appKeyAuth"]; ok {
 				var key string
 				if apiKey.Prefix != "" {
@@ -197,12 +198,12 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 			}
 		}
 	}
-	req, err := a.client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
+	req, err := a.Client.PrepareRequest(r.ctx, localVarPath, localVarHTTPMethod, localVarPostBody, localVarHeaderParams, localVarQueryParams, localVarFormParams, nil)
 	if err != nil {
 		return localVarReturnValue, nil, err
 	}
 
-	localVarHTTPResponse, err := a.client.CallAPI(req)
+	localVarHTTPResponse, err := a.Client.CallAPI(req)
 	if err != nil || localVarHTTPResponse == nil {
 		return localVarReturnValue, localVarHTTPResponse, err
 	}
@@ -215,47 +216,54 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 	}
 
 	if localVarHTTPResponse.StatusCode >= 300 {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: localVarHTTPResponse.Status,
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: localVarHTTPResponse.Status,
 		}
 		if localVarHTTPResponse.StatusCode == 400 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 403 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 			return localVarReturnValue, localVarHTTPResponse, newErr
 		}
 		if localVarHTTPResponse.StatusCode == 429 {
 			var v APIErrorResponse
-			err = a.client.decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+			err = a.Client.Decode(&v, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 			if err != nil {
 				return localVarReturnValue, localVarHTTPResponse, newErr
 			}
-			newErr.model = v
+			newErr.ErrorModel = v
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
-	err = a.client.decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
+	err = a.Client.Decode(&localVarReturnValue, localVarBody, localVarHTTPResponse.Header.Get("Content-Type"))
 	if err != nil {
-		newErr := GenericOpenAPIError{
-			body:  localVarBody,
-			error: err.Error(),
+		newErr := common.GenericOpenAPIError{
+			ErrorBody:    localVarBody,
+			ErrorMessage: err.Error(),
 		}
 		return localVarReturnValue, localVarHTTPResponse, newErr
 	}
 
 	return localVarReturnValue, localVarHTTPResponse, nil
+}
+
+// SnapshotsApi Returns new SnapshotsApi service.
+func SnapshotsApi(client *common.APIClient) *SnapshotsApiService {
+	return &SnapshotsApiService{
+		Client: client,
+	}
 }

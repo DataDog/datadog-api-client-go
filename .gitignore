@@ -5,6 +5,7 @@ gotestsum.json
 coverage.txt
 .generator/lib
 __pycache__
+.idea/
 
 # Created by https://www.toptal.com/developers/gitignore/api/go,python,vim,linux,macos,windows,visualstudiocode
 # Edit at https://www.toptal.com/developers/gitignore?templates=go,python,vim,linux,macos,windows,visualstudiocode

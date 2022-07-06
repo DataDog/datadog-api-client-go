@@ -6,12 +6,14 @@ package datadog
 
 import (
 	"encoding/json"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // MetricsQueryMetadata Object containing all metric names returned and their associated metadata.
 type MetricsQueryMetadata struct {
 	// Aggregation type.
-	Aggr NullableString `json:"aggr,omitempty"`
+	Aggr common.NullableString `json:"aggr,omitempty"`
 	// Display name of the metric.
 	DisplayName *string `json:"display_name,omitempty"`
 	// End of the time window, milliseconds since Unix epoch.
@@ -88,7 +90,7 @@ func (o *MetricsQueryMetadata) HasAggr() bool {
 	return false
 }
 
-// SetAggr gets a reference to the given NullableString and assigns it to the Aggr field.
+// SetAggr gets a reference to the given common.NullableString and assigns it to the Aggr field.
 func (o *MetricsQueryMetadata) SetAggr(v string) {
 	o.Aggr.Set(&v)
 }
@@ -543,19 +545,19 @@ func (o MetricsQueryMetadata) MarshalJSON() ([]byte, error) {
 func (o *MetricsQueryMetadata) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Aggr        NullableString     `json:"aggr,omitempty"`
-		DisplayName *string            `json:"display_name,omitempty"`
-		End         *int64             `json:"end,omitempty"`
-		Expression  *string            `json:"expression,omitempty"`
-		Interval    *int64             `json:"interval,omitempty"`
-		Length      *int64             `json:"length,omitempty"`
-		Metric      *string            `json:"metric,omitempty"`
-		Pointlist   [][]*float64       `json:"pointlist,omitempty"`
-		QueryIndex  *int64             `json:"query_index,omitempty"`
-		Scope       *string            `json:"scope,omitempty"`
-		Start       *int64             `json:"start,omitempty"`
-		TagSet      []string           `json:"tag_set,omitempty"`
-		Unit        []MetricsQueryUnit `json:"unit,omitempty"`
+		Aggr        common.NullableString `json:"aggr,omitempty"`
+		DisplayName *string               `json:"display_name,omitempty"`
+		End         *int64                `json:"end,omitempty"`
+		Expression  *string               `json:"expression,omitempty"`
+		Interval    *int64                `json:"interval,omitempty"`
+		Length      *int64                `json:"length,omitempty"`
+		Metric      *string               `json:"metric,omitempty"`
+		Pointlist   [][]*float64          `json:"pointlist,omitempty"`
+		QueryIndex  *int64                `json:"query_index,omitempty"`
+		Scope       *string               `json:"scope,omitempty"`
+		Start       *int64                `json:"start,omitempty"`
+		TagSet      []string              `json:"tag_set,omitempty"`
+		Unit        []MetricsQueryUnit    `json:"unit,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

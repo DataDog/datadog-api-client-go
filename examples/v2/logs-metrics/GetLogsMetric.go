@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -15,10 +16,11 @@ func main() {
 	// there is a valid "logs_metric" in the system
 	LogsMetricDataID := os.Getenv("LOGS_METRIC_DATA_ID")
 
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.LogsMetricsApi.GetLogsMetric(ctx, LogsMetricDataID)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.LogsMetricsApi(apiClient)
+	resp, r, err := api.GetLogsMetric(ctx, LogsMetricDataID)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsMetricsApi.GetLogsMetric`: %v\n", err)

@@ -8,6 +8,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // Monitor Object describing a monitor.
@@ -17,7 +19,7 @@ type Monitor struct {
 	// Object describing the creator of the shared element.
 	Creator *Creator `json:"creator,omitempty"`
 	// Whether or not the monitor is deleted. (Always `null`)
-	Deleted NullableTime `json:"deleted,omitempty"`
+	Deleted common.NullableTime `json:"deleted,omitempty"`
 	// ID of this monitor.
 	Id *int64 `json:"id,omitempty"`
 	// A message to include with notifications for this monitor.
@@ -33,7 +35,7 @@ type Monitor struct {
 	// The different states your monitor can be in.
 	OverallState *MonitorOverallStates `json:"overall_state,omitempty"`
 	// Integer from 1 (high) to 5 (low) indicating alert severity.
-	Priority NullableInt64 `json:"priority,omitempty"`
+	Priority common.NullableInt64 `json:"priority,omitempty"`
 	// The monitor query.
 	Query string `json:"query"`
 	// A list of unique role identifiers to define which roles are allowed to edit the monitor. The unique identifiers for all roles can be pulled from the [Roles API](https://docs.datadoghq.com/api/latest/roles/#list-roles) and are located in the `data.id` field. Editing a monitor includes any updates to the monitor configuration, monitor deletion, and muting of the monitor for any amount of time. `restricted_roles` is the successor of `locked`. For more information about `locked` and `restricted_roles`, see the [monitor options docs](https://docs.datadoghq.com/monitors/guide/monitor_api_options/#permissions-options).
@@ -160,7 +162,7 @@ func (o *Monitor) HasDeleted() bool {
 	return false
 }
 
-// SetDeleted gets a reference to the given NullableTime and assigns it to the Deleted field.
+// SetDeleted gets a reference to the given common.NullableTime and assigns it to the Deleted field.
 func (o *Monitor) SetDeleted(v time.Time) {
 	o.Deleted.Set(&v)
 }
@@ -427,7 +429,7 @@ func (o *Monitor) HasPriority() bool {
 	return false
 }
 
-// SetPriority gets a reference to the given NullableInt64 and assigns it to the Priority field.
+// SetPriority gets a reference to the given common.NullableInt64 and assigns it to the Priority field.
 func (o *Monitor) SetPriority(v int64) {
 	o.Priority.Set(&v)
 }
@@ -660,7 +662,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 	all := struct {
 		Created         *time.Time            `json:"created,omitempty"`
 		Creator         *Creator              `json:"creator,omitempty"`
-		Deleted         NullableTime          `json:"deleted,omitempty"`
+		Deleted         common.NullableTime   `json:"deleted,omitempty"`
 		Id              *int64                `json:"id,omitempty"`
 		Message         *string               `json:"message,omitempty"`
 		Modified        *time.Time            `json:"modified,omitempty"`
@@ -668,7 +670,7 @@ func (o *Monitor) UnmarshalJSON(bytes []byte) (err error) {
 		Name            *string               `json:"name,omitempty"`
 		Options         *MonitorOptions       `json:"options,omitempty"`
 		OverallState    *MonitorOverallStates `json:"overall_state,omitempty"`
-		Priority        NullableInt64         `json:"priority,omitempty"`
+		Priority        common.NullableInt64  `json:"priority,omitempty"`
 		Query           string                `json:"query"`
 		RestrictedRoles []string              `json:"restricted_roles,omitempty"`
 		State           *MonitorState         `json:"state,omitempty"`

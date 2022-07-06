@@ -9,6 +9,7 @@ import (
 	"os"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -29,10 +30,11 @@ func main() {
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MetricsApi.SubmitDistributionPoints(ctx, body, *datadog.NewSubmitDistributionPointsOptionalParameters().WithContentEncoding(datadog.DISTRIBUTIONPOINTSCONTENTENCODING_DEFLATE))
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.MetricsApi(apiClient)
+	resp, r, err := api.SubmitDistributionPoints(ctx, body, *datadog.NewSubmitDistributionPointsOptionalParameters().WithContentEncoding(datadog.DISTRIBUTIONPOINTSCONTENTENCODING_DEFLATE))
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MetricsApi.SubmitDistributionPoints`: %v\n", err)

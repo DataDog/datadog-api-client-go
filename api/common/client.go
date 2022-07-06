@@ -2,7 +2,7 @@
 // This product includes software developed at Datadog (https://www.datadoghq.com/).
 // Copyright 2019-Present Datadog, Inc.
 
-package datadog
+package common
 
 import (
 	"bytes"
@@ -39,63 +39,18 @@ var (
 // APIClient manages communication with the Datadog API V2 Collection API v1.0.
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
-	cfg    *Configuration
-	common service // Reuse a single struct instead of allocating one for each service on the heap.
-
-	// API Services
-
-	AuditApi *AuditApiService
-
-	AuthNMappingsApi *AuthNMappingsApiService
-
-	CloudWorkloadSecurityApi *CloudWorkloadSecurityApiService
-
-	DashboardListsApi *DashboardListsApiService
-
-	IncidentServicesApi *IncidentServicesApiService
-
-	IncidentTeamsApi *IncidentTeamsApiService
-
-	IncidentsApi *IncidentsApiService
-
-	KeyManagementApi *KeyManagementApiService
-
-	LogsApi *LogsApiService
-
-	LogsArchivesApi *LogsArchivesApiService
-
-	LogsMetricsApi *LogsMetricsApiService
-
-	MetricsApi *MetricsApiService
-
-	OpsgenieIntegrationApi *OpsgenieIntegrationApiService
-
-	OrganizationsApi *OrganizationsApiService
-
-	ProcessesApi *ProcessesApiService
-
-	RolesApi *RolesApiService
-
-	RUMApi *RUMApiService
-
-	SecurityMonitoringApi *SecurityMonitoringApiService
-
-	ServiceAccountsApi *ServiceAccountsApiService
-
-	UsageMeteringApi *UsageMeteringApiService
-
-	UsersApi *UsersApiService
+	Cfg *Configuration
 }
 
 // FormFile holds parameters for a file in multipart/form-data request.
 type FormFile struct {
-	formFileName string
-	fileName     string
-	fileBytes    []byte
+	FormFileName string
+	FileName     string
+	FileBytes    []byte
 }
 
-type service struct {
-	client *APIClient
+type Service struct {
+	Client *APIClient
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
@@ -106,31 +61,7 @@ func NewAPIClient(cfg *Configuration) *APIClient {
 	}
 
 	c := &APIClient{}
-	c.cfg = cfg
-	c.common.client = c
-
-	// API Services
-	c.AuditApi = (*AuditApiService)(&c.common)
-	c.AuthNMappingsApi = (*AuthNMappingsApiService)(&c.common)
-	c.CloudWorkloadSecurityApi = (*CloudWorkloadSecurityApiService)(&c.common)
-	c.DashboardListsApi = (*DashboardListsApiService)(&c.common)
-	c.IncidentServicesApi = (*IncidentServicesApiService)(&c.common)
-	c.IncidentTeamsApi = (*IncidentTeamsApiService)(&c.common)
-	c.IncidentsApi = (*IncidentsApiService)(&c.common)
-	c.KeyManagementApi = (*KeyManagementApiService)(&c.common)
-	c.LogsApi = (*LogsApiService)(&c.common)
-	c.LogsArchivesApi = (*LogsArchivesApiService)(&c.common)
-	c.LogsMetricsApi = (*LogsMetricsApiService)(&c.common)
-	c.MetricsApi = (*MetricsApiService)(&c.common)
-	c.OpsgenieIntegrationApi = (*OpsgenieIntegrationApiService)(&c.common)
-	c.OrganizationsApi = (*OrganizationsApiService)(&c.common)
-	c.ProcessesApi = (*ProcessesApiService)(&c.common)
-	c.RolesApi = (*RolesApiService)(&c.common)
-	c.RUMApi = (*RUMApiService)(&c.common)
-	c.SecurityMonitoringApi = (*SecurityMonitoringApiService)(&c.common)
-	c.ServiceAccountsApi = (*ServiceAccountsApiService)(&c.common)
-	c.UsageMeteringApi = (*UsageMeteringApiService)(&c.common)
-	c.UsersApi = (*UsersApiService)(&c.common)
+	c.Cfg = cfg
 
 	return c
 }
@@ -140,7 +71,7 @@ func atoi(in string) (int, error) {
 }
 
 // selectHeaderContentType selects a content type from the available list.
-func selectHeaderContentType(contentTypes []string) string {
+func SelectHeaderContentType(contentTypes []string) string {
 	if len(contentTypes) == 0 {
 		return ""
 	}
@@ -150,8 +81,8 @@ func selectHeaderContentType(contentTypes []string) string {
 	return contentTypes[0] // use the first content type specified in 'consumes'
 }
 
-// selectHeaderAccept joins all accept types and returns them.
-func selectHeaderAccept(accepts []string) string {
+// SelectHeaderAccept joins all accept types and returns them.
+func SelectHeaderAccept(accepts []string) string {
 	if len(accepts) == 0 {
 		return ""
 	}
@@ -187,8 +118,8 @@ func typeCheckParameter(obj interface{}, expected string, name string) error {
 	return nil
 }
 
-// parameterToString convert interface{} parameters to string, using a delimiter if format is provided.
-func parameterToString(obj interface{}, collectionFormat string) string {
+// ParameterToString convert interface{} parameters to string, using a delimiter if format is provided.
+func ParameterToString(obj interface{}, collectionFormat string) string {
 	var delimiter string
 
 	switch collectionFormat {
@@ -225,7 +156,7 @@ func parameterToJson(obj interface{}) (string, error) {
 
 // CallAPI do the request.
 func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
-	if c.cfg.Debug {
+	if c.Cfg.Debug {
 		dump, err := httputil.DumpRequestOut(request, true)
 		if err != nil {
 			return nil, err
@@ -241,12 +172,12 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 		log.Printf("\n%s\n", string(dump))
 	}
 
-	resp, err := c.cfg.HTTPClient.Do(request)
+	resp, err := c.Cfg.HTTPClient.Do(request)
 	if err != nil {
 		return resp, err
 	}
 
-	if c.cfg.Debug {
+	if c.Cfg.Debug {
 		dump, err := httputil.DumpResponse(resp, true)
 		if err != nil {
 			return resp, err
@@ -259,7 +190,7 @@ func (c *APIClient) CallAPI(request *http.Request) (*http.Response, error) {
 // GetConfig allows modification of underlying config for alternate implementations and testing.
 // Caution: modifying the configuration while live can cause data races and potentially unwanted behavior.
 func (c *APIClient) GetConfig() *Configuration {
-	return c.cfg
+	return c.Cfg
 }
 
 // PrepareRequest build the request.
@@ -310,11 +241,11 @@ func (c *APIClient) PrepareRequest(
 		}
 		if formFile != nil {
 			w.Boundary()
-			part, err := w.CreateFormFile(formFile.formFileName, filepath.Base(formFile.fileName))
+			part, err := w.CreateFormFile(formFile.FormFileName, filepath.Base(formFile.FileName))
 			if err != nil {
 				return nil, err
 			}
-			_, err = part.Write(formFile.fileBytes)
+			_, err = part.Write(formFile.FileBytes)
 			if err != nil {
 				return nil, err
 			}
@@ -345,13 +276,13 @@ func (c *APIClient) PrepareRequest(
 	}
 
 	// Override request host, if applicable
-	if c.cfg.Host != "" {
-		url.Host = c.cfg.Host
+	if c.Cfg.Host != "" {
+		url.Host = c.Cfg.Host
 	}
 
 	// Override request scheme, if applicable
-	if c.cfg.Scheme != "" {
-		url.Scheme = c.cfg.Scheme
+	if c.Cfg.Scheme != "" {
+		url.Scheme = c.Cfg.Scheme
 	}
 
 	// Adding Query Param
@@ -418,7 +349,7 @@ func (c *APIClient) PrepareRequest(
 	}
 
 	// Add the user agent to the request.
-	localVarRequest.Header.Add("User-Agent", c.cfg.UserAgent)
+	localVarRequest.Header.Add("User-Agent", c.Cfg.UserAgent)
 
 	if ctx != nil {
 		// add context to the request
@@ -448,18 +379,18 @@ func (c *APIClient) PrepareRequest(
 		}
 	}
 
-	for header, value := range c.cfg.DefaultHeader {
+	for header, value := range c.Cfg.DefaultHeader {
 		localVarRequest.Header.Add(header, value)
 	}
 
-	if !c.cfg.Compress {
+	if !c.Cfg.Compress {
 		// gzip is on by default, so disable it by setting encoding to identity
 		localVarRequest.Header.Add("Accept-Encoding", "identity")
 	}
 	return localVarRequest, nil
 }
 
-func (c *APIClient) decode(v interface{}, b []byte, contentType string) (err error) {
+func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error) {
 	if len(b) == 0 {
 		return nil
 	}
@@ -505,7 +436,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 }
 
 // Prevent trying to import "fmt".
-func reportError(format string, a ...interface{}) error {
+func ReportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
 }
 
@@ -568,22 +499,22 @@ func detectContentType(body interface{}) string {
 
 // GenericOpenAPIError Provides access to the body, error and model on returned errors.
 type GenericOpenAPIError struct {
-	body  []byte
-	error string
-	model interface{}
+	ErrorBody    []byte
+	ErrorMessage string
+	ErrorModel   interface{}
 }
 
 // Error returns non-empty string if there was an error.
 func (e GenericOpenAPIError) Error() string {
-	return e.error
+	return e.ErrorMessage
 }
 
 // Body returns the raw bytes of the response.
 func (e GenericOpenAPIError) Body() []byte {
-	return e.body
+	return e.ErrorBody
 }
 
 // Model returns the unpacked model of the error.
 func (e GenericOpenAPIError) Model() interface{} {
-	return e.model
+	return e.ErrorModel
 }

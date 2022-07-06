@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -25,10 +26,11 @@ func main() {
 			Type: datadog.CLOUDWORKLOADSECURITYAGENTRULETYPE_AGENT_RULE,
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.CloudWorkloadSecurityApi.UpdateCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.CloudWorkloadSecurityApi(apiClient)
+	resp, r, err := api.UpdateCloudWorkloadSecurityAgentRule(ctx, AgentRuleDataID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `CloudWorkloadSecurityApi.UpdateCloudWorkloadSecurityAgentRule`: %v\n", err)

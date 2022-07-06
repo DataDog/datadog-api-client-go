@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -21,17 +22,18 @@ func main() {
 			"test:examplecreateacitestsmonitorreturnsokresponse",
 			"env:ci",
 		},
-		Priority: *datadog.NewNullableInt64(datadog.PtrInt64(3)),
+		Priority: *common.NewNullableInt64(datadog.PtrInt64(3)),
 		Options: &datadog.MonitorOptions{
 			Thresholds: &datadog.MonitorThresholds{
 				Critical: datadog.PtrFloat64(1),
 			},
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.MonitorsApi.CreateMonitor(ctx, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.MonitorsApi(apiClient)
+	resp, r, err := api.CreateMonitor(ctx, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `MonitorsApi.CreateMonitor`: %v\n", err)

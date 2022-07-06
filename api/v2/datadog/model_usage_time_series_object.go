@@ -7,6 +7,8 @@ package datadog
 import (
 	"encoding/json"
 	"time"
+
+	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
 // UsageTimeSeriesObject Usage timeseries data.
@@ -14,7 +16,7 @@ type UsageTimeSeriesObject struct {
 	// Datetime in ISO-8601 format, UTC. The hour for the usage.
 	Timestamp *time.Time `json:"timestamp,omitempty"`
 	// Contains the number measured for the given usage_type during the hour.
-	Value NullableInt64 `json:"value,omitempty"`
+	Value common.NullableInt64 `json:"value,omitempty"`
 	// UnparsedObject contains the raw value of the object if there was an error when deserializing into the struct
 	UnparsedObject       map[string]interface{} `json:-`
 	AdditionalProperties map[string]interface{}
@@ -97,7 +99,7 @@ func (o *UsageTimeSeriesObject) HasValue() bool {
 	return false
 }
 
-// SetValue gets a reference to the given NullableInt64 and assigns it to the Value field.
+// SetValue gets a reference to the given common.NullableInt64 and assigns it to the Value field.
 func (o *UsageTimeSeriesObject) SetValue(v int64) {
 	o.Value.Set(&v)
 }
@@ -139,8 +141,8 @@ func (o UsageTimeSeriesObject) MarshalJSON() ([]byte, error) {
 func (o *UsageTimeSeriesObject) UnmarshalJSON(bytes []byte) (err error) {
 	raw := map[string]interface{}{}
 	all := struct {
-		Timestamp *time.Time    `json:"timestamp,omitempty"`
-		Value     NullableInt64 `json:"value,omitempty"`
+		Timestamp *time.Time           `json:"timestamp,omitempty"`
+		Value     common.NullableInt64 `json:"value,omitempty"`
 	}{}
 	err = json.Unmarshal(bytes, &all)
 	if err != nil {

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 )
 
@@ -17,10 +18,11 @@ func main() {
 			Type: datadog.ROLESTYPE_ROLES.Ptr(),
 		},
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	r, err := apiClient.LogsArchivesApi.AddReadRoleToArchive(ctx, "archive_id", body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.LogsArchivesApi(apiClient)
+	r, err := api.AddReadRoleToArchive(ctx, "archive_id", body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `LogsArchivesApi.AddReadRoleToArchive`: %v\n", err)

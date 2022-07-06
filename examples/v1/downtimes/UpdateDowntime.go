@@ -9,6 +9,7 @@ import (
 	"os"
 	"strconv"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadog "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
@@ -20,10 +21,11 @@ func main() {
 		Message:                       datadog.PtrString("Example-Update_a_downtime_returns_OK_response-updated"),
 		MuteFirstRecoveryNotification: datadog.PtrBool(true),
 	}
-	ctx := datadog.NewDefaultContext(context.Background())
-	configuration := datadog.NewConfiguration()
-	apiClient := datadog.NewAPIClient(configuration)
-	resp, r, err := apiClient.DowntimesApi.UpdateDowntime(ctx, DowntimeID, body)
+	ctx := common.NewDefaultContext(context.Background())
+	configuration := common.NewConfiguration()
+	apiClient := common.NewAPIClient(configuration)
+	api := datadog.DowntimesApi(apiClient)
+	resp, r, err := api.UpdateDowntime(ctx, DowntimeID, body)
 
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "Error when calling `DowntimesApi.UpdateDowntime`: %v\n", err)
