@@ -9,6 +9,7 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"testing"
 
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
@@ -20,25 +21,25 @@ import (
 func generateUniqueGCPAccount(ctx context.Context, t *testing.T) (datadog.GCPAccount, datadog.GCPAccount) {
 	name := tests.UniqueEntityName(ctx, t)
 	var testGCPAccount = datadog.GCPAccount{
-		Type:                    datadog.PtrString("service_account"),
+		Type:                    common.PtrString("service_account"),
 		ProjectId:               name,
-		PrivateKeyId:            datadog.PtrString("fake_private_key_id"),
-		PrivateKey:              datadog.PtrString("fake_key"),
-		ClientEmail:             datadog.PtrString(fmt.Sprintf("%s@fake-sandbox.iam.gserviceaccount.com", *name)),
-		ClientId:                datadog.PtrString("123456712345671234567"),
-		AuthUri:                 datadog.PtrString("fake_uri"),
-		TokenUri:                datadog.PtrString("fake_uri"),
-		AuthProviderX509CertUrl: datadog.PtrString("fake_url"),
-		ClientX509CertUrl:       datadog.PtrString("fake_url"),
-		HostFilters:             datadog.PtrString("fake:tag,example:test"),
-		Automute:                datadog.PtrBool(false),
+		PrivateKeyId:            common.PtrString("fake_private_key_id"),
+		PrivateKey:              common.PtrString("fake_key"),
+		ClientEmail:             common.PtrString(fmt.Sprintf("%s@fake-sandbox.iam.gserviceaccount.com", *name)),
+		ClientId:                common.PtrString("123456712345671234567"),
+		AuthUri:                 common.PtrString("fake_uri"),
+		TokenUri:                common.PtrString("fake_uri"),
+		AuthProviderX509CertUrl: common.PtrString("fake_url"),
+		ClientX509CertUrl:       common.PtrString("fake_url"),
+		HostFilters:             common.PtrString("fake:tag,example:test"),
+		Automute:                common.PtrBool(false),
 	}
 
 	var testUpdateGCPAccount = datadog.GCPAccount{
-		ProjectId:   datadog.PtrString(testGCPAccount.GetProjectId()),
+		ProjectId:   common.PtrString(testGCPAccount.GetProjectId()),
 		ClientEmail: testGCPAccount.ClientEmail,
-		HostFilters: datadog.PtrString("fake:update,example:update"),
-		Automute:    datadog.PtrBool(true),
+		HostFilters: common.PtrString("fake:update,example:update"),
+		Automute:    common.PtrBool(true),
 	}
 
 	return testGCPAccount, testUpdateGCPAccount
@@ -50,13 +51,14 @@ func TestGCPCreate(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.GCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
-	_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx, testGCPAcct)
+	_, httpresp, err := api.CreateGCPIntegration(ctx, testGCPAcct)
 	if err != nil {
-		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 }
@@ -68,16 +70,17 @@ func TestGCPListandDelete(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.GCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, _ := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
 	// Setup GCP Account to List
-	Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx, testGCPAcct)
+	api.CreateGCPIntegration(ctx, testGCPAcct)
 
-	gcpListOutput, httpresp, err := Client(ctx).GCPIntegrationApi.ListGCPIntegration(ctx)
+	gcpListOutput, httpresp, err := api.ListGCPIntegration(ctx)
 	if err != nil {
-		t.Fatalf("Error listing GCP Accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing GCP Accounts: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	var x datadog.GCPAccount
@@ -93,9 +96,9 @@ func TestGCPListandDelete(t *testing.T) {
 	assert.True(len(gcpListOutput) >= 1)
 
 	// Test account deletion as well
-	_, httpresp, err = Client(ctx).GCPIntegrationApi.DeleteGCPIntegration(ctx, testGCPAcct)
+	_, httpresp, err = api.DeleteGCPIntegration(ctx, testGCPAcct)
 	if err != nil {
-		t.Fatalf("Error uninstalling GCP Account: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error uninstalling GCP Account: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 }
@@ -107,27 +110,28 @@ func TestUpdateGCPAccount(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.GCPIntegrationApi(Client(ctx))
 
 	testGCPAcct, testGCPUpdateAcct := generateUniqueGCPAccount(ctx, t)
 	defer uninstallGCPIntegration(ctx, t, testGCPAcct)
 
 	// Setup GCP Account to Update
-	_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx, testGCPAcct)
+	_, httpresp, err := api.CreateGCPIntegration(ctx, testGCPAcct)
 	if err != nil {
-		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating GCP integration: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
-	_, httpresp, err = Client(ctx).GCPIntegrationApi.UpdateGCPIntegration(ctx, testGCPUpdateAcct)
+	_, httpresp, err = api.UpdateGCPIntegration(ctx, testGCPUpdateAcct)
 	if err != nil {
-		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error updating GCP integration: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
 	// List account to ensure update worked.
-	gcpListOutput, _, err := Client(ctx).GCPIntegrationApi.ListGCPIntegration(ctx)
+	gcpListOutput, _, err := api.ListGCPIntegration(ctx)
 	if err != nil {
-		t.Fatalf("Error listing GCP accounts: Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing GCP accounts: Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	var x datadog.GCPAccount
@@ -145,6 +149,7 @@ func TestGCPList400Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.GCPIntegrationApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/gcp/error_400.json")
 	if err != nil {
@@ -158,9 +163,9 @@ func TestGCPList400Error(t *testing.T) {
 	defer gock.Off()
 
 	// 400 Bad Request
-	_, httpresp, err := Client(ctx).GCPIntegrationApi.ListGCPIntegration(ctx)
+	_, httpresp, err := api.ListGCPIntegration(ctx)
 	assert.Equal(400, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -181,10 +186,11 @@ func TestGCPListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.GCPIntegrationApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).GCPIntegrationApi.ListGCPIntegration(ctx)
+			_, httpresp, err := api.ListGCPIntegration(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -209,10 +215,11 @@ func TestGCPCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.GCPIntegrationApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).GCPIntegrationApi.CreateGCPIntegration(ctx, tc.Body)
+			_, httpresp, err := api.CreateGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -237,10 +244,11 @@ func TestGCPDeleteErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.GCPIntegrationApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).GCPIntegrationApi.DeleteGCPIntegration(ctx, tc.Body)
+			_, httpresp, err := api.DeleteGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -265,10 +273,11 @@ func TestGCPUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.GCPIntegrationApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).GCPIntegrationApi.UpdateGCPIntegration(ctx, tc.Body)
+			_, httpresp, err := api.UpdateGCPIntegration(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -276,7 +285,9 @@ func TestGCPUpdateErrors(t *testing.T) {
 }
 
 func uninstallGCPIntegration(ctx context.Context, t *testing.T, account datadog.GCPAccount) {
-	_, httpresp, err := Client(ctx).GCPIntegrationApi.DeleteGCPIntegration(ctx, account)
+	api := datadog.GCPIntegrationApi(Client(ctx))
+
+	_, httpresp, err := api.DeleteGCPIntegration(ctx, account)
 	if httpresp.StatusCode != 200 || err != nil {
 		t.Logf("Error uninstalling GCP Account: %v, Another test may have already removed this account.", account)
 	}

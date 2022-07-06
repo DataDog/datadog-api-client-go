@@ -10,6 +10,7 @@ import (
 	"context"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
@@ -33,12 +34,13 @@ func TestAuthenticationValidate(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			validation, httpresp, err := Client(ctx).AuthenticationApi.Validate(ctx)
+			api := datadog.AuthenticationApi(Client(ctx))
+			validation, httpresp, err := api.Validate(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			if err == nil {
 				assert.Equal(tc.Valid, validation.GetValid())
 			} else {
-				apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+				apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 				assert.True(ok)
 				assert.NotEmpty(apiError.GetErrors())
 			}

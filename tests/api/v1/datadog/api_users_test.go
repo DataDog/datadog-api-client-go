@@ -8,6 +8,7 @@ package test
 
 import (
 	"context"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"strings"
 	"testing"
 
@@ -21,9 +22,9 @@ func generateUniqueUser(ctx context.Context, t *testing.T) datadog.User {
 	prefix := *tests.UniqueEntityName(ctx, t)
 	email := strings.ToLower(prefix) + "@integration-tests-accnt-for-sdk-ci.com"
 	return datadog.User{
-		Name:       datadog.PtrString(prefix),
-		Email:      datadog.PtrString(email),
-		Handle:     datadog.PtrString(email),
+		Name:       common.PtrString(prefix),
+		Email:      common.PtrString(email),
+		Handle:     common.PtrString(email),
 		AccessRole: datadog.ACCESSROLE_READ_ONLY.Ptr(),
 	}
 }
@@ -33,7 +34,7 @@ func getUpdateUser(ctx context.Context, t *testing.T) datadog.User {
 	// This is based on who owns the APP key that is making the changes
 	return datadog.User{
 		Name:       tests.UniqueEntityName(ctx, t),
-		Disabled:   datadog.PtrBool(true),
+		Disabled:   common.PtrBool(true),
 		AccessRole: datadog.ACCESSROLE_STANDARD.Ptr(),
 	}
 }
@@ -45,14 +46,15 @@ func TestCreateUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.UsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, testUser)
+	userCreateResponse, httpresp, err := api.CreateUser(ctx, testUser)
 	if err != nil {
-		t.Fatalf("Error creating User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %s: Response %s: %v", testUser.GetEmail(), err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
@@ -63,9 +65,9 @@ func TestCreateUser(t *testing.T) {
 	assert.Equal(testUser.GetEmail(), user.GetEmail())
 
 	// Assert User Get with proper fields
-	userGetResponse, httpresp, err := Client(ctx).UsersApi.GetUser(ctx, testUser.GetEmail())
+	userGetResponse, httpresp, err := api.GetUser(ctx, testUser.GetEmail())
 	if err != nil {
-		t.Fatalf("Error Getting User %s: Response %s: %v", testUser.GetEmail(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error Getting User %s: Response %s: %v", testUser.GetEmail(), err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
@@ -83,23 +85,24 @@ func TestUpdateUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.UsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	userCreateResponse, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, testUser)
+	userCreateResponse, httpresp, err := api.CreateUser(ctx, testUser)
 	if err != nil {
-		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	userCreateResponse.GetUser()
 
 	// Assert User Get with proper fields
 	updateUser := getUpdateUser(ctx, t)
-	userUpdateResponse, httpresp, err := Client(ctx).UsersApi.UpdateUser(ctx, testUser.GetHandle(), updateUser)
+	userUpdateResponse, httpresp, err := api.UpdateUser(ctx, testUser.GetHandle(), updateUser)
 	if err != nil {
-		t.Fatalf("Error getting User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error getting User %s: Response %s: %v", testUser.GetHandle(), err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
@@ -119,20 +122,21 @@ func TestDisableUser(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.UsersApi(Client(ctx))
 
 	testUser := generateUniqueUser(ctx, t)
 	defer disableUser(ctx, t, testUser.GetHandle())
 
 	// Assert User Created with proper fields
-	_, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, testUser)
+	_, httpresp, err := api.CreateUser(ctx, testUser)
 	if err != nil {
-		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 
-	_, httpresp, err = Client(ctx).UsersApi.DisableUser(ctx, testUser.GetHandle())
+	_, httpresp, err = api.DisableUser(ctx, testUser.GetHandle())
 	if err != nil {
-		t.Fatalf("Error disabling User %s: Response %s: %v", testUser.GetHandle(), err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error disabling User %s: Response %s: %v", testUser.GetHandle(), err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 }
@@ -148,11 +152,12 @@ func TestListUsers(t *testing.T) {
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
 	assert := tests.Assert(ctx, t)
+	api := datadog.UsersApi(Client(ctx))
 
 	// Assert User Created with proper fields
-	userListResponse, httpresp, err := Client(ctx).UsersApi.ListUsers(ctx)
+	userListResponse, httpresp, err := api.ListUsers(ctx)
 	if err != nil {
-		t.Fatalf("Error listing Users. Response %s: %v", err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error listing Users. Response %s: %v", err.(common.GenericOpenAPIError).Body(), err)
 	}
 	assert.Equal(200, httpresp.StatusCode)
 	// Just assert the user list isn't empty and contains a user object
@@ -178,10 +183,11 @@ func TestUserCreateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.UsersApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, tc.Body)
+			_, httpresp, err := api.CreateUser(ctx, tc.Body)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -193,6 +199,7 @@ func TestUserCreate409Error(t *testing.T) {
 	defer finish()
 	ctx = WithClient(WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
+	api := datadog.UsersApi(Client(ctx))
 
 	res, err := tests.ReadFixture("fixtures/user/error_409.json")
 	if err != nil {
@@ -204,9 +211,9 @@ func TestUserCreate409Error(t *testing.T) {
 	gock.New(URL).Post("/api/v1/user").Reply(409).JSON(res)
 	defer gock.Off()
 
-	_, httpresp, err := Client(ctx).UsersApi.CreateUser(ctx, datadog.User{})
+	_, httpresp, err := api.CreateUser(ctx, datadog.User{})
 	assert.Equal(409, httpresp.StatusCode)
-	apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+	apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 	assert.True(ok)
 	assert.NotEmpty(apiError.GetErrors())
 }
@@ -227,10 +234,11 @@ func TestUserListErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.UsersApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).UsersApi.ListUsers(ctx)
+			_, httpresp, err := api.ListUsers(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -254,10 +262,11 @@ func TestUserGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.UsersApi(Client(ctx))
 
-			_, httpresp, err := Client(ctx).UsersApi.GetUser(ctx, "notahandle")
+			_, httpresp, err := api.GetUser(ctx, "notahandle")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -270,12 +279,13 @@ func TestUserUpdateErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
+	api := datadog.UsersApi(Client(ctx))
 
 	// Create user
 	testUser := generateUniqueUser(ctx, t)
-	_, _, err := Client(ctx).UsersApi.CreateUser(ctx, testUser)
+	_, _, err := api.CreateUser(ctx, testUser)
 	if err != nil {
-		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	defer disableUser(ctx, t, testUser.GetHandle())
 
@@ -298,9 +308,9 @@ func TestUserUpdateErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsersApi.UpdateUser(ctx, tc.ID, badUser)
+			_, httpresp, err := api.UpdateUser(ctx, tc.ID, badUser)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -313,12 +323,13 @@ func TestUserDisableErrors(t *testing.T) {
 	// Setup the Client we'll use to interact with the Test account
 	ctx, finish = WithRecorder(WithTestAuth(ctx), t)
 	defer finish()
+	api := datadog.UsersApi(Client(ctx))
 
 	// Create user and disable it to trigger 400
 	testUser := generateUniqueUser(ctx, t)
-	_, _, err := Client(ctx).UsersApi.CreateUser(ctx, testUser)
+	_, _, err := api.CreateUser(ctx, testUser)
 	if err != nil {
-		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(datadog.GenericOpenAPIError).Body(), err)
+		t.Fatalf("Error creating User %v: Response %s: %v", testUser, err.(common.GenericOpenAPIError).Body(), err)
 	}
 	disableUser(ctx, t, testUser.GetHandle())
 
@@ -338,9 +349,9 @@ func TestUserDisableErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			_, httpresp, err := Client(ctx).UsersApi.DisableUser(ctx, tc.ID)
+			_, httpresp, err := api.DisableUser(ctx, tc.ID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
-			apiError, ok := err.(datadog.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
+			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
 			assert.True(ok)
 			assert.NotEmpty(apiError.GetErrors())
 		})
@@ -348,7 +359,9 @@ func TestUserDisableErrors(t *testing.T) {
 }
 
 func disableUser(ctx context.Context, t *testing.T, userID string) {
-	_, httpresp, err := Client(ctx).UsersApi.DisableUser(ctx, userID)
+	api := datadog.UsersApi(Client(ctx))
+
+	_, httpresp, err := api.DisableUser(ctx, userID)
 	if httpresp.StatusCode != 200 || err != nil {
 		t.Logf("Error disabling User: %v, Another test may have already disabled this user.", userID)
 	}

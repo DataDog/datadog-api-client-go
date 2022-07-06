@@ -3,14 +3,14 @@ package test
 import (
 	"context"
 	"fmt"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func TestConfigurationServers(t *testing.T) {
-	configuration := datadog.NewConfiguration()
+	configuration := common.NewConfiguration()
 
 	testCases := []struct {
 		URL       string
@@ -43,7 +43,7 @@ func TestConfigurationServers(t *testing.T) {
 }
 
 func TestConfigurationServersAccess(t *testing.T) {
-	configuration := datadog.NewConfiguration()
+	configuration := common.NewConfiguration()
 	testCases := []struct {
 		Index int
 		Err   string
