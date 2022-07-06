@@ -117,7 +117,7 @@ def format_value(value, quotes='"', schema=None):
     return value
 
 
-def simple_type(schema, render_nullable=False):
+def simple_type(schema, render_nullable=False, render_new=False):
     """Return the simple type of a schema.
 
     :param schema: The schema to extract the type from
@@ -127,29 +127,31 @@ def simple_type(schema, render_nullable=False):
     type_format = schema.get("format")
     nullable = render_nullable and schema.get("nullable", False)
 
+    nullable_prefix = "common.NewNullable" if  render_new else "common.Nullable"
+
     if type_name == "integer":
         return {
-            "int32": "int32" if not nullable else "NullableInt32",
-            "int64": "int64" if not nullable else "NullableInt64",
-            None: "int32" if not nullable else "NullableInt32",
+            "int32": "int32" if not nullable else f"{nullable_prefix}Int32",
+            "int64": "int64" if not nullable else f"{nullable_prefix}Int64",
+            None: "int32" if not nullable else f"{nullable_prefix}Int32",
         }[type_format]
 
     if type_name == "number":
         return {
-            "double": "float64" if not nullable else "NullableFloat64",
-            None: "float" if not nullable else "NullableFloat",
+            "double": "float64" if not nullable else f"{nullable_prefix}Float64",
+            None: "float" if not nullable else f"{nullable_prefix}Float",
         }[type_format]
 
     if type_name == "string":
         return {
-            "date": "time.Time" if not nullable else "NullableTime",
-            "date-time": "time.Time" if not nullable else "NullableTime",
-            "email": "string" if not nullable else "NullableString",
+            "date": "time.Time" if not nullable else f"{nullable_prefix}Time",
+            "date-time": "time.Time" if not nullable else f"{nullable_prefix}Time",
+            "email": "string" if not nullable else f"{nullable_prefix}String",
             "binary": "*os.File",
-            None: "string" if not nullable else "NullableString",
+            None: "string" if not nullable else f"{nullable_prefix}String",
         }[type_format]
     if type_name == "boolean":
-        return "bool" if not nullable else "NullableBool"
+        return "bool" if not nullable else f"{nullable_prefix}Bool"
 
     return None
 
@@ -212,9 +214,9 @@ def reference_to_value(schema, value, print_nullable=True):
 
     if nullable and print_nullable:
         if value == "nil":
-            formatter = "*datadog.NewNullable{function_name}({value})"
+            formatter = "*common.NewNullable{function_name}({value})"
         else:
-            formatter = "*datadog.NewNullable{function_name}(datadog.Ptr{function_name}({value}))"
+            formatter = "*common.NewNullable{function_name}(datadog.Ptr{function_name}({value}))"
     else:
         formatter = "datadog.Ptr{function_name}({value})"
 
@@ -687,7 +689,7 @@ def format_data_with_schema_dict(
         warnings.warn(f"No schema matched for {data}")
 
     if nullable:
-        return f"*{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
+        return f"*common.{name_prefix}NewNullable{name}(&{name_prefix}{name}{{\n{parameters}}})"
 
     if in_list:
         return f"{{\n{parameters}}}"

@@ -8,6 +8,7 @@ from . import formatter
 from . import utils
 
 PACKAGE_NAME = "datadog"
+COMMON_PACKAGE_NAME = "common"
 
 
 @click.command()
@@ -62,6 +63,7 @@ def cli(input, output):
     env.globals["get_container"] = openapi.get_container
     env.globals["get_container_type"] = openapi.get_container_type
     env.globals["get_type_at_path"] = openapi.get_type_at_path
+    env.globals["common_package_name"] = COMMON_PACKAGE_NAME
 
     api_j2 = env.get_template("api.j2")
     model_j2 = env.get_template("model.j2")
@@ -77,8 +79,11 @@ def cli(input, output):
 
     output.mkdir(parents=True, exist_ok=True)
 
+    common_package_output = pathlib.Path(f"../api/{COMMON_PACKAGE_NAME}")
+    common_package_output.mkdir(parents=True, exist_ok=True)
+
     for name, template in extra_files.items():
-        filename = output / name
+        filename = common_package_output / name
         with filename.open("w") as fp:
             fp.write(template.render(apis=apis, models=models))
 

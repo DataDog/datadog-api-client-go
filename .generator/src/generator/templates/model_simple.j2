@@ -46,14 +46,15 @@ func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if 
 	this.{{ attr|attribute_name }} = {{ attr|variable_name }}
 {%- elif spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
 	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
+    {%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
 	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
 	{%- if spec.nullable %}
 	{%- if spec.default == None %}
-	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
+	this.{{ attr|attribute_name }} = *{{ newDataType }}(nil)
 	{%- else %}
 {#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
 	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
-	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
+	this.{{ attr|attribute_name }} = *{{ newDataType }}(&{{ attr|variable_name }})
 	{%- endif %}
 	{%- else %}
 	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
@@ -72,14 +73,15 @@ func New{{ name }}WithDefaults() *{{ name }} {
 {%- for attr, spec in model.get("properties", {}).items() %}
 {%- if spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
 	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
+    {%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
 	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
 	{%- if spec.nullable %}
 	{%- if spec.default == None %}
-	this.{{ attr|attribute_name }} = *New{{ dataType }}(nil)
+	this.{{ attr|attribute_name }} = *{{ newDataType }}(nil)
 	{%- else %}
 {#- we use datatypeWithEnum here, since it will represent the non-nullable name of the datatype, e.g. int64 for NullableInt64 #}
 	var {{ attr|variable_name }} {{ baseType }} = {{ spec.default|format_value(schema=spec) }}
-	this.{{ attr|attribute_name }} = *New{{ dataType }}(&{{ attr|variable_name }})
+	this.{{ attr|attribute_name }} = *{{ newDataType }}(&{{ attr|variable_name }})
 	{%- endif %}
 	{%- else %}
 	var {{ attr|variable_name }} {{ dataType }} = {{ spec.default|format_value(schema=spec) }}
