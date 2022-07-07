@@ -307,6 +307,7 @@ func TestUserUpdateErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.UsersApi(Client(ctx))
 
 			_, httpresp, err := api.UpdateUser(ctx, tc.ID, badUser)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
@@ -348,6 +349,7 @@ func TestUserDisableErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+			api := datadog.UsersApi(Client(ctx))
 
 			_, httpresp, err := api.DisableUser(ctx, tc.ID)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)

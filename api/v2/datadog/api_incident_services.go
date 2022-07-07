@@ -54,7 +54,7 @@ func (a *IncidentServicesApiService) createIncidentServiceExecute(r apiCreateInc
 		localVarReturnValue IncidentServiceResponse
 	)
 
-	operationId := "CreateIncidentService"
+	operationId := "v2.CreateIncidentService"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -237,7 +237,7 @@ func (a *IncidentServicesApiService) deleteIncidentServiceExecute(r apiDeleteInc
 		localVarPostBody   interface{}
 	)
 
-	operationId := "DeleteIncidentService"
+	operationId := "v2.DeleteIncidentService"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -426,7 +426,7 @@ func (a *IncidentServicesApiService) getIncidentServiceExecute(r apiGetIncidentS
 		localVarReturnValue IncidentServiceResponse
 	)
 
-	operationId := "GetIncidentService"
+	operationId := "v2.GetIncidentService"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -651,7 +651,7 @@ func (a *IncidentServicesApiService) listIncidentServicesExecute(r apiListIncide
 		localVarReturnValue IncidentServicesResponse
 	)
 
-	operationId := "ListIncidentServices"
+	operationId := "v2.ListIncidentServices"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -835,7 +835,7 @@ func (a *IncidentServicesApiService) updateIncidentServiceExecute(r apiUpdateInc
 		localVarReturnValue IncidentServiceResponse
 	)
 
-	operationId := "UpdateIncidentService"
+	operationId := "v2.UpdateIncidentService"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {

@@ -1100,7 +1100,7 @@ func (a *ServiceLevelObjectivesApiService) getSLOHistoryExecute(r apiGetSLOHisto
 		localVarReturnValue SLOHistoryResponse
 	)
 
-	operationId := "GetSLOHistory"
+	operationId := "v1.GetSLOHistory"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -1559,7 +1559,7 @@ func (a *ServiceLevelObjectivesApiService) searchSLOExecute(r apiSearchSLOReques
 		localVarReturnValue SearchSLOResponse
 	)
 
-	operationId := "SearchSLO"
+	operationId := "v1.SearchSLO"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {

@@ -107,7 +107,7 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 		localVarReturnValue UsageCustomReportsResponse
 	)
 
-	operationId := "GetDailyCustomReports"
+	operationId := "v1.GetDailyCustomReports"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -331,7 +331,7 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 		localVarReturnValue HourlyUsageAttributionResponse
 	)
 
-	operationId := "GetHourlyUsageAttribution"
+	operationId := "v1.GetHourlyUsageAttribution"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -901,7 +901,7 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 		localVarReturnValue UsageCustomReportsResponse
 	)
 
-	operationId := "GetMonthlyCustomReports"
+	operationId := "v1.GetMonthlyCustomReports"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -1143,7 +1143,7 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 		localVarReturnValue MonthlyUsageAttributionResponse
 	)
 
-	operationId := "GetMonthlyUsageAttribution"
+	operationId := "v1.GetMonthlyUsageAttribution"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -1312,7 +1312,7 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
 
-	operationId := "GetSpecifiedDailyCustomReports"
+	operationId := "v1.GetSpecifiedDailyCustomReports"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -1465,7 +1465,7 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 		localVarReturnValue UsageSpecifiedCustomReportsResponse
 	)
 
-	operationId := "GetSpecifiedMonthlyCustomReports"
+	operationId := "v1.GetSpecifiedMonthlyCustomReports"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {
@@ -1878,7 +1878,7 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 		localVarReturnValue UsageAttributionResponse
 	)
 
-	operationId := "GetUsageAttribution"
+	operationId := "v1.GetUsageAttribution"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId)
 	} else {

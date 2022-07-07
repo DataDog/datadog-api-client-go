@@ -1257,6 +1257,8 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
+
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, "2010-01-01")

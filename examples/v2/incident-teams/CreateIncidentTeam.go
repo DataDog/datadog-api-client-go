@@ -23,7 +23,7 @@ func main() {
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("CreateIncidentTeam", true)
+	configuration.SetUnstableOperationEnabled("v2.CreateIncidentTeam", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.IncidentTeamsApi(apiClient)
 	resp, r, err := api.CreateIncidentTeam(ctx, body)

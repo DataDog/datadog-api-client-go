@@ -153,13 +153,15 @@ func NewConfiguration() *Configuration {
 			{%- endfor %}
 		},
 		unstableOperations: map[string]bool{
-		{%- for path in openapi.paths.values() %}
-		{%- for operation in path.values() %}
+        {%- for version, api in apis.items() %}
+        {%- for operations in api.values() %}
+        {%- for _, _, operation in operations|sort(attribute="2.operationId") %}
 		{%- if "x-unstable" in operation %}
-			"{{ operation.operationId }}": false,
+			"{{ version }}.{{ operation.operationId }}": false,
 		{%- endif %}
 		{%- endfor %}
 		{%- endfor %}
+        {%- endfor %}
 		},
 	}
 	return cfg

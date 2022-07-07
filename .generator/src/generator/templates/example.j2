@@ -52,7 +52,7 @@ func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
 {%- for operation in context._enable_operations %}
-	configuration.SetUnstableOperationEnabled("{{ operation }}", true)
+	configuration.SetUnstableOperationEnabled("{{ version }}.{{ operation }}", true)
 {%- endfor %}
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.{{ context.api_instance.name }}Api(apiClient)

@@ -18,7 +18,7 @@ func main() {
 
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("ListIncidentServices", true)
+	configuration.SetUnstableOperationEnabled("v2.ListIncidentServices", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.IncidentServicesApi(apiClient)
 	resp, r, err := api.ListIncidentServices(ctx, *datadog.NewListIncidentServicesOptionalParameters().WithFilter(ServiceDataAttributesName))

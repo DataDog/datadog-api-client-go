@@ -222,7 +222,7 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	)
 	{%- if "x-unstable" in operation %}
 	
-	operationId := "{{ operation.operationId }}"
+	operationId := "{{ version }}.{{ operation.operationId }}"
 	if r.ApiService.Client.Cfg.IsUnstableOperationEnabled(operationId) {
 		_log.Printf("WARNING: Using unstable operation '%s'", operationId);
 	} else {

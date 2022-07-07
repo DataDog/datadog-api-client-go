@@ -15,7 +15,7 @@ import (
 func main() {
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("GetDailyCustomReports", true)
+	configuration.SetUnstableOperationEnabled("v1.GetDailyCustomReports", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.UsageMeteringApi(apiClient)
 	resp, r, err := api.GetDailyCustomReports(ctx, *datadog.NewGetDailyCustomReportsOptionalParameters())

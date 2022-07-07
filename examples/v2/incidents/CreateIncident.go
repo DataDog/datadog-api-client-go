@@ -42,7 +42,7 @@ func main() {
 	}
 	ctx := common.NewDefaultContext(context.Background())
 	configuration := common.NewConfiguration()
-	configuration.SetUnstableOperationEnabled("CreateIncident", true)
+	configuration.SetUnstableOperationEnabled("v2.CreateIncident", true)
 	apiClient := common.NewAPIClient(configuration)
 	api := datadog.IncidentsApi(apiClient)
 	resp, r, err := api.CreateIncident(ctx, body)

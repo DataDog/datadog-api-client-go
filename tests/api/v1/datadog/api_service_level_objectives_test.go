@@ -543,6 +543,7 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
+			sloApi := datadog.ServiceLevelObjectivesApi(Client(ctx))
 
 			_, httpresp, err := sloApi.GetSLOHistory(ctx, tc.ID, 123, 12)
 			assert.Error(err)
