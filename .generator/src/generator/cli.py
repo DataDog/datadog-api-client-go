@@ -71,6 +71,10 @@ def cli(specs, output):
         "utils.go": env.get_template("utils.j2"),
     }
 
+    test_scenarios_files = {
+        "api_mappings.go": env.get_template("scenarios_api_mappings.j2"),
+    }
+
     output.mkdir(parents=True, exist_ok=True)
 
     all_specs = {}
@@ -108,5 +112,11 @@ def cli(specs, output):
     common_package_output.mkdir(parents=True, exist_ok=True)
     for name, template in extra_files.items():
         filename = common_package_output / name
+        with filename.open("w") as fp:
+            fp.write(template.render(apis=all_apis, all_specs=all_specs))
+
+    scenarios_test_output = pathlib.Path("../tests/scenarios/")
+    for name, template in test_scenarios_files.items():
+        filename = scenarios_test_output / name
         with filename.open("w") as fp:
             fp.write(template.render(apis=all_apis, all_specs=all_specs))

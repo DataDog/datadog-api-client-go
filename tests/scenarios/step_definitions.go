@@ -52,21 +52,22 @@ func aValidAppKeyAuth(t gobdd.StepTest, ctx gobdd.Context) {
 // anInstanceOf sets API callable to apiKey{}
 func anInstanceOf(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
+	version := GetVersion(ctx)
 
-	f := reflect.Indirect(ct).FieldByName(name + "Api")
-	if !f.IsValid() {
-		t.Fatalf("invalid API name %s", name)
-	}
+	api := GetApiByVersionAndName(ctx, version, name+"Api")
+	f := api.Call([]reflect.Value{ct})[0]
+
 	SetAPI(ctx, f)
 }
 
 // enableOperations sets unstable operations specific in this clause to enabled
 func enableOperations(t gobdd.StepTest, ctx gobdd.Context, name string) {
 	ct := GetClient(ctx)
+	version := GetVersion(ctx)
 	// client.GetConfig().SetUnstableOperationEnabled(name, true)
 	config := ct.MethodByName("GetConfig").Call([]reflect.Value{})
 	enable := config[0].MethodByName("SetUnstableOperationEnabled")
-	enable.Call([]reflect.Value{reflect.ValueOf(name), reflect.ValueOf(true)})
+	enable.Call([]reflect.Value{reflect.ValueOf(fmt.Sprintf("%s.%s", version, name)), reflect.ValueOf(true)})
 }
 
 // newRequest sets callable operation to requestKey{}
@@ -205,6 +206,7 @@ func requestIsSent(t gobdd.StepTest, ctx gobdd.Context) {
 	}
 
 	result := request.Call(in)
+
 	ctx.Set(responseKey{}, result)
 
 	// Report probable serialization errors

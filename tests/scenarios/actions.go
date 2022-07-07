@@ -167,7 +167,7 @@ func (s GivenStep) RegisterSuite(suite *gobdd.Suite, version string) {
 
 		// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 		tag := strings.Replace(s.Tag, " ", "", -1) + "Api"
-		api := reflect.Indirect(clientInterface).FieldByName(tag)
+		api := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{clientInterface})[0]
 		if !api.IsValid() {
 			t.Fatalf("invalid API name %s", tag)
 		}
@@ -253,7 +253,7 @@ func GetRequestsUndo(ctx gobdd.Context, version string, operationID string) (fun
 
 	// find API service based on undo tag value: `client.{{ undo.Tag }}Api`
 	tag := strings.Replace(undo.Tag, " ", "", -1) + "Api"
-	undoAPI := reflect.Indirect(undoClientInterface).FieldByName(tag)
+	undoAPI := GetApiByVersionAndName(ctx, version, tag).Call([]reflect.Value{undoClientInterface})[0]
 	if !undoAPI.IsValid() {
 		return nil, fmt.Errorf("invalid API name %sApi", tag)
 	}
