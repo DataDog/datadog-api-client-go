@@ -46,7 +46,7 @@ func New{{ name }}({%- for attr, spec in model.get("properties", {}).items() if 
 	this.{{ attr|attribute_name }} = {{ attr|variable_name }}
 {%- elif spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
 	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
-    {%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
+	{%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
 	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
 	{%- if spec.nullable %}
 	{%- if spec.default == None %}
@@ -73,7 +73,7 @@ func New{{ name }}WithDefaults() *{{ name }} {
 {%- for attr, spec in model.get("properties", {}).items() %}
 {%- if spec.default is defined and spec.get("type", "object") != "object" and spec.type != "array" and not spec.get("readOnly", False) %}
 	{%- set dataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True) %}
-    {%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
+	{%- set newDataType = get_type(spec, alternative_name=name + attr|attribute_name, render_nullable=True, render_new=True) %}
 	{%- set baseType = get_type(spec, alternative_name=name + attr|attribute_name) %}
 	{%- if spec.nullable %}
 	{%- if spec.default == None %}

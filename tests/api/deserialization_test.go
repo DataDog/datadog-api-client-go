@@ -331,7 +331,7 @@ func TestDeserializationUnkownNestedOneOf(t *testing.T) {
 	defer finish()
 	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
 	assert := tests.Assert(ctx, t)
-	api := datadogV2.LogsArchivesApi(testV1.Client(ctx))
+	api := datadogV2.LogsArchivesApi(testV2.Client(ctx))
 
 	responseBody := `
 {

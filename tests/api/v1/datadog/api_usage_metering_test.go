@@ -464,7 +464,7 @@ func TestSpecifiedDailyCustomReports(t *testing.T) {
 	currentDate := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // only have reports from day before
 	reportID := currentDate.Format("2006-01-02")                       // this is only a date format example YYYY-MM-DD
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
 	api := datadog.UsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, reportID)
 	if err != nil {
@@ -488,7 +488,7 @@ func TestSpecifiedMonthlyCustomReports(t *testing.T) {
 	currentDate := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1) // We will only have monthly reports on 2020-08-15 for this org
 	reportID := currentDate.Format("2006-01-02")                       // this is only a date format example YYYY-MM-DD
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
 	api := datadog.UsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, reportID)
 	if err != nil {
@@ -511,7 +511,7 @@ func TestDailyCustomReports(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	api := datadog.UsageMeteringApi(Client(ctx))
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetDailyCustomReports", true)
 	usage, httpresp, err := api.GetDailyCustomReports(ctx)
 	if err != nil {
 		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
@@ -533,7 +533,7 @@ func TestMonthlyCustomReports(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	api := datadog.UsageMeteringApi(Client(ctx))
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetMonthlyCustomReports", true)
 	usage, httpresp, err := api.GetMonthlyCustomReports(ctx)
 	if err != nil {
 		if tests.GetRecording() != tests.ModeReplaying || httpresp.StatusCode == 404 || httpresp.StatusCode == 403 {
@@ -656,7 +656,7 @@ func TestUsageAttribution(t *testing.T) {
 	assert := tests.Assert(ctx, t)
 	startMonth := tests.ClockFromContext(ctx).Now().AddDate(0, 0, -1)
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
 	api := datadog.UsageMeteringApi(Client(ctx))
 	usage, httpresp, err := api.GetUsageAttribution(ctx, startMonth, "*")
 	if err != nil {
@@ -1258,7 +1258,7 @@ func TestGetSpecifiedDailyCustomReportsErrors(t *testing.T) {
 			defer finish()
 			assert := tests.Assert(ctx, t)
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedDailyCustomReports", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedDailyCustomReports", true)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
 			_, httpresp, err := api.GetSpecifiedDailyCustomReports(ctx, "2010-01-01")
@@ -1289,7 +1289,7 @@ func TestGetSpecifiedMonthlyCustomReportsErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
 			_, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, "whatever")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1317,7 +1317,7 @@ func TestGetSpecifiedMonthlyCustomReports404Error(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSpecifiedMonthlyCustomReports", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSpecifiedMonthlyCustomReports", true)
 			_, httpresp, err := api.GetSpecifiedMonthlyCustomReports(ctx, "2010-01-01")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1345,7 +1345,7 @@ func TestGetDailyCustomReportsErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetDailyCustomReports", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetDailyCustomReports", true)
 			_, httpresp, err := api.GetDailyCustomReports(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1373,7 +1373,7 @@ func TestGetMonthlyCustomReportsErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetMonthlyCustomReports", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetMonthlyCustomReports", true)
 			_, httpresp, err := api.GetMonthlyCustomReports(ctx)
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)
@@ -1485,7 +1485,7 @@ func TestGetUsageAttributionErrors(t *testing.T) {
 			assert := tests.Assert(ctx, t)
 			api := datadog.UsageMeteringApi(Client(ctx))
 
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetUsageAttribution", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetUsageAttribution", true)
 			_, httpresp, err := api.GetUsageAttribution(ctx, tests.ClockFromContext(ctx).Now().AddDate(0, 1, 0), "*")
 			assert.Equal(tc.ExpectedStatusCode, httpresp.StatusCode)
 			apiError, ok := err.(common.GenericOpenAPIError).Model().(datadog.APIErrorResponse)

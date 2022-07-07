@@ -134,7 +134,7 @@ func TestSLOMonitorLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = sloApi.GetSLOHistory(ctx, slo3.GetId(), now-11, now-1)
 	// the contents of history really depend on the org that this test is running in, so we just ensure
@@ -204,7 +204,7 @@ func TestSLOEventLifecycle(t *testing.T) {
 	assert.Equal(slo2.GetName(), slo3.GetName())
 
 	// Get SLO history
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSLOHistory", true)
 	now := tests.ClockFromContext(ctx).Now().Unix()
 	_, httpresp, err = sloApi.GetSLOHistory(ctx, slo3.GetId(), now-11, now-1)
 	// the contents of history really depend on the org that this test is running in, so we just ensure
@@ -542,7 +542,7 @@ func TestSLOHistoryGetErrors(t *testing.T) {
 			ctx, finish := WithRecorder(tc.Ctx(ctx), t)
 			defer finish()
 			assert := tests.Assert(ctx, t)
-			Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOHistory", true)
+			Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSLOHistory", true)
 			sloApi := datadog.ServiceLevelObjectivesApi(Client(ctx))
 
 			_, httpresp, err := sloApi.GetSLOHistory(ctx, tc.ID, 123, 12)
@@ -657,11 +657,11 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	sloApi := datadog.ServiceLevelObjectivesApi(Client(ctx))
 	sloCorrectionApi := datadog.ServiceLevelObjectiveCorrectionsApi(Client(ctx))
 
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("CreateSLOCorrection", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("GetSLOCorrection", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("ListSLOCorrection", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("UpdateSLOCorrection", true)
-	Client(ctx).GetConfig().SetUnstableOperationEnabled("DeleteSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.CreateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.GetSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.ListSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.UpdateSLOCorrection", true)
+	Client(ctx).GetConfig().SetUnstableOperationEnabled("v1.DeleteSLOCorrection", true)
 
 	// Create SLO
 	testEventSLO := getTestEventSLO(ctx, t)
