@@ -269,9 +269,9 @@ func SetClient(ctx gobdd.Context, value interface{}) {
 
 // GetClient get reflected value of client instance.
 func GetClient(ctx gobdd.Context) reflect.Value {
-	client, _ := GetClientVersion(ctx, GetVersion(ctx))
+	client, _ := ctx.Get(clientKeys{})
 
-	return client
+	return client.(reflect.Value)
 }
 
 // SetVersion sets package version.
@@ -454,7 +454,6 @@ func stringToType(s string, t interface{}) (interface{}, error) {
 		return nil, fmt.Errorf("unknown type '%T' to convert", t)
 	}
 }
-
 
 func readChannel(ch interface{}) ([]interface{}, error) {
 	t := reflect.TypeOf(ch)

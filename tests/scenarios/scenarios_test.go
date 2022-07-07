@@ -14,7 +14,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	ddtesting "github.com/DataDog/dd-sdk-go-testing"
 	msgs "github.com/cucumber/messages-go/v12"
 	"github.com/go-bdd/gobdd"
@@ -78,7 +78,7 @@ func TestScenarios(t *testing.T) {
 					testCodeowners, _ := json.Marshal(codeowners)
 
 					cctx, closeSpan := ddtesting.StartTestWithContext(
-						datadog.NewDefaultContext(context.Background()),
+						common.NewDefaultContext(context.Background()),
 						tt,
 						ddtesting.WithSpanOptions(
 							// Override the default tags set by ddtesting package for bdd
