@@ -24,7 +24,7 @@ COMMON_PACKAGE_NAME = "common"
 )
 def cli(specs, output):
     """
-    Generate a Ruby code snippet from OpenAPI specification.
+    Generate a Go code snippet from OpenAPI specification.
     """
     # spec = openapi.load(input)
     # version = input.parent.name
