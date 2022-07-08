@@ -96,15 +96,8 @@ func (a *UsageMeteringApiService) getCostByOrgExecute(r apiGetCostByOrgRequest) 
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", common.ParameterToString(*r.endMonth, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
@@ -304,15 +297,8 @@ func (a *UsageMeteringApiService) getEstimatedCostByOrgExecute(r apiGetEstimated
 	if r.endDate != nil {
 		localVarQueryParams.Add("end_date", common.ParameterToString(*r.endDate, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
@@ -482,15 +468,8 @@ func (a *UsageMeteringApiService) getUsageApplicationSecurityMonitoringExecute(r
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
@@ -660,15 +639,8 @@ func (a *UsageMeteringApiService) getUsageLambdaTracedInvocationsExecute(r apiGe
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {
@@ -838,15 +810,8 @@ func (a *UsageMeteringApiService) getUsageObservabilityPipelinesExecute(r apiGet
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
+	localVarHeaderParams["Accept"] = "application/json"
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{"application/json;datetime-format=rfc3339"}
-
-	// set Accept header
-	localVarHTTPHeaderAccept := common.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
 	if r.ctx != nil {
 		// API Key Authentication
 		if auth, ok := r.ctx.Value(common.ContextAPIKeys).(map[string]common.APIKey); ok {

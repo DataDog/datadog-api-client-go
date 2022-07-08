@@ -321,26 +321,28 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endfor %}
 	{%- if operation.requestBody %}
 
-	// to determine the Content-Type header
-	localVarHTTPContentTypes := []string{ {%- for mediaType in operation.requestBody.content.keys() %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
+	{%- set contentTypeHeaders = operation.requestBody.content.keys()|list %}
+	{%- if contentTypeHeaders %}
+	{%- if "application/json" in contentTypeHeaders %}
+	localVarHeaderParams["Content-Type"] = "application/json"
+	{%- else  %}
+	localVarHeaderParams["Content-Type"] =  "{{ contentTypeHeaders[0] }}"
+	{%- endif %}
+	{%- endif %}
 
-	// set Content-Type header
-	localVarHTTPContentType := {{ common_package_name }}.SelectHeaderContentType(localVarHTTPContentTypes)
-	if localVarHTTPContentType != "" {
-		localVarHeaderParams["Content-Type"] = localVarHTTPContentType
-	}
 	{%- endif %}
 	{%- if operation.responses %}
 
-	// to determine the Accept header
-	localVarHTTPHeaderAccepts := []string{ {%- for mediaType in operation|accept_headers %}"{{ mediaType }}"{%- if not loop.last %}, {% endif %}{% endfor -%} }
-
-	// set Accept header
-	localVarHTTPHeaderAccept := {{ common_package_name }}.SelectHeaderAccept(localVarHTTPHeaderAccepts)
-	if localVarHTTPHeaderAccept != "" {
-		localVarHeaderParams["Accept"] = localVarHTTPHeaderAccept
-	}
+	{%- set acceptHeaders = operation|accept_headers|join(",") %}
+	{%- if acceptHeaders %}
+	{%- if "application/json" in acceptHeaders %}
+	localVarHeaderParams["Accept"] = "application/json"
+	{%- else  %}
+	localVarHeaderParams["Accept"] =  "{{ acceptHeaders }}"
 	{%- endif %}
+	{%- endif %}
+
+	{% endif %}
 
 	{%- for name, parameter in operation|parameters if parameter.in == "header" %}
 	{%- if parameter.required %}

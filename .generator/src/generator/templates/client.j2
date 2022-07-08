@@ -69,30 +69,6 @@ func atoi(in string) (int, error) {
 	return strconv.Atoi(in)
 }
 
-// SelectHeaderContentType selects a content type from the available list.
-func SelectHeaderContentType(contentTypes []string) string {
-	if len(contentTypes) == 0 {
-		return ""
-	}
-	if contains(contentTypes, "application/json") {
-		return "application/json"
-	}
-	return contentTypes[0] // use the first content type specified in 'consumes'
-}
-
-// SelectHeaderAccept joins all accept types and returns them.
-func SelectHeaderAccept(accepts []string) string {
-	if len(accepts) == 0 {
-		return ""
-	}
-
-	if contains(accepts, "application/json") {
-		return "application/json"
-	}
-
-	return strings.Join(accepts, ",")
-}
-
 // contains is a case insensitive match, finding needle in a haystack.
 func contains(haystack []string, needle string) bool {
 	for _, a := range haystack {
