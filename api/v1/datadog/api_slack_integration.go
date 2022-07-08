@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// SlackIntegrationApiService service type
 type SlackIntegrationApiService common.Service
 
 type apiCreateSlackIntegrationChannelRequest struct {

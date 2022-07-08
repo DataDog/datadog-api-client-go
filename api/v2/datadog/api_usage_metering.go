@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// UsageMeteringApiService service type
 type UsageMeteringApiService common.Service
 
 type apiGetCostByOrgRequest struct {

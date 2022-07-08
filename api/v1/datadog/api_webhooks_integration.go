@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// WebhooksIntegrationApiService service type
 type WebhooksIntegrationApiService common.Service
 
 type apiCreateWebhooksIntegrationRequest struct {

@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// IPRangesApiService service type
 type IPRangesApiService common.Service
 
 type apiGetIPRangesRequest struct {

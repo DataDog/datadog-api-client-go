@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// AzureIntegrationApiService service type
 type AzureIntegrationApiService common.Service
 
 type apiCreateAzureIntegrationRequest struct {

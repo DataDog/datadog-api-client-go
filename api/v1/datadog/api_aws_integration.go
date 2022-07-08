@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// AWSIntegrationApiService service type
 type AWSIntegrationApiService common.Service
 
 type apiCreateAWSAccountRequest struct {

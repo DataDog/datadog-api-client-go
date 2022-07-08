@@ -49,6 +49,7 @@ type FormFile struct {
 	FileBytes    []byte
 }
 
+// Service holds APIClient
 type Service struct {
 	Client *APIClient
 }
@@ -70,7 +71,7 @@ func atoi(in string) (int, error) {
 	return strconv.Atoi(in)
 }
 
-// selectHeaderContentType selects a content type from the available list.
+// SelectHeaderContentType selects a content type from the available list.
 func SelectHeaderContentType(contentTypes []string) string {
 	if len(contentTypes) == 0 {
 		return ""
@@ -390,6 +391,7 @@ func (c *APIClient) PrepareRequest(
 	return localVarRequest, nil
 }
 
+// Decode unmarshal bytes into an interface
 func (c *APIClient) Decode(v interface{}, b []byte, contentType string) (err error) {
 	if len(b) == 0 {
 		return nil
@@ -435,7 +437,7 @@ func addFile(w *multipart.Writer, fieldName, path string) error {
 	return err
 }
 
-// Prevent trying to import "fmt".
+// ReportError Prevent trying to import "fmt".
 func ReportError(format string, a ...interface{}) error {
 	return fmt.Errorf(format, a...)
 }

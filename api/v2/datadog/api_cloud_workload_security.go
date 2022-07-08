@@ -16,6 +16,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// CloudWorkloadSecurityApiService service type
 type CloudWorkloadSecurityApiService common.Service
 
 type apiCreateCloudWorkloadSecurityAgentRuleRequest struct {

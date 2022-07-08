@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// TagsApiService service type
 type TagsApiService common.Service
 
 type apiCreateHostTagsRequest struct {

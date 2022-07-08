@@ -16,6 +16,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// SyntheticsApiService service type
 type SyntheticsApiService common.Service
 
 type apiCreateGlobalVariableRequest struct {

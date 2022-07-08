@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// LogsPipelinesApiService service type
 type LogsPipelinesApiService common.Service
 
 type apiCreateLogsPipelineRequest struct {

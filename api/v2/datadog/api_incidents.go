@@ -17,6 +17,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// IncidentsApiService service type
 type IncidentsApiService common.Service
 
 type apiCreateIncidentRequest struct {

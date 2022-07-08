@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// HostsApiService service type
 type HostsApiService common.Service
 
 type apiGetHostTotalsRequest struct {

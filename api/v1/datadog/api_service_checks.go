@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// ServiceChecksApiService service type
 type ServiceChecksApiService common.Service
 
 type apiSubmitServiceCheckRequest struct {

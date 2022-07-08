@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// LogsIndexesApiService service type
 type LogsIndexesApiService common.Service
 
 type apiCreateLogsIndexRequest struct {

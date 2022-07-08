@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// PagerDutyIntegrationApiService service type
 type PagerDutyIntegrationApiService common.Service
 
 type apiCreatePagerDutyIntegrationServiceRequest struct {

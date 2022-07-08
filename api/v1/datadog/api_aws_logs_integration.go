@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// AWSLogsIntegrationApiService service type
 type AWSLogsIntegrationApiService common.Service
 
 type apiCheckAWSLogsLambdaAsyncRequest struct {

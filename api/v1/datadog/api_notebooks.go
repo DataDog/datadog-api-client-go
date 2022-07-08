@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// NotebooksApiService service type
 type NotebooksApiService common.Service
 
 type apiCreateNotebookRequest struct {

@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// SnapshotsApiService service type
 type SnapshotsApiService common.Service
 
 type apiGetGraphSnapshotRequest struct {

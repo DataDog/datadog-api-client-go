@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// SecurityMonitoringApiService service type
 type SecurityMonitoringApiService common.Service
 
 type apiAddSecurityMonitoringSignalToIncidentRequest struct {

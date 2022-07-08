@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// DashboardListsApiService service type
 type DashboardListsApiService common.Service
 
 type apiCreateDashboardListRequest struct {

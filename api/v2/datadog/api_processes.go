@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// ProcessesApiService service type
 type ProcessesApiService common.Service
 
 type apiListProcessesRequest struct {

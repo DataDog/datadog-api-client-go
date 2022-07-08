@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// LogsApiService service type
 type LogsApiService common.Service
 
 type apiAggregateLogsRequest struct {

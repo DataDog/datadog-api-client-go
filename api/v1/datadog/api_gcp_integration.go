@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// GCPIntegrationApiService service type
 type GCPIntegrationApiService common.Service
 
 type apiCreateGCPIntegrationRequest struct {

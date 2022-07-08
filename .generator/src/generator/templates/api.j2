@@ -15,6 +15,7 @@ import (
 
 {%- set classname = name.replace(" ", "") + "Api" %}
 
+// {{ classname }}Service service type
 type {{ classname }}Service {{ common_package_name }}.Service
 {%- for path, method, operation in operations|sort(attribute="2.operationId", case_sensitive=True) %}
 {%- set httpMethod = method.upper() %}

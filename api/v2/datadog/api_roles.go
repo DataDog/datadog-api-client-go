@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// RolesApiService service type
 type RolesApiService common.Service
 
 type apiAddPermissionToRoleRequest struct {

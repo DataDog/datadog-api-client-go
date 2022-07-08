@@ -16,6 +16,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// OrganizationsApiService service type
 type OrganizationsApiService common.Service
 
 type apiCreateChildOrgRequest struct {

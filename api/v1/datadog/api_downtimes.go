@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// DowntimesApiService service type
 type DowntimesApiService common.Service
 
 type apiCancelDowntimeRequest struct {

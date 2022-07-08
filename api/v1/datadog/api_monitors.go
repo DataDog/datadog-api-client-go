@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// MonitorsApiService service type
 type MonitorsApiService common.Service
 
 type apiCheckCanDeleteMonitorRequest struct {

@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// ServiceAccountsApiService service type
 type ServiceAccountsApiService common.Service
 
 type apiCreateServiceAccountApplicationKeyRequest struct {

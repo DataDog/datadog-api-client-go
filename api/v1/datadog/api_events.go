@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// EventsApiService service type
 type EventsApiService common.Service
 
 type apiCreateEventRequest struct {

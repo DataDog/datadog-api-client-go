@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// LogsArchivesApiService service type
 type LogsArchivesApiService common.Service
 
 type apiAddReadRoleToArchiveRequest struct {

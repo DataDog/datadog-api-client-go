@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// AuthNMappingsApiService service type
 type AuthNMappingsApiService common.Service
 
 type apiCreateAuthNMappingRequest struct {

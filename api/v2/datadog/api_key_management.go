@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// KeyManagementApiService service type
 type KeyManagementApiService common.Service
 
 type apiCreateAPIKeyRequest struct {

@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// OpsgenieIntegrationApiService service type
 type OpsgenieIntegrationApiService common.Service
 
 type apiCreateOpsgenieServiceRequest struct {

@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// ServiceLevelObjectiveCorrectionsApiService service type
 type ServiceLevelObjectiveCorrectionsApiService common.Service
 
 type apiCreateSLOCorrectionRequest struct {

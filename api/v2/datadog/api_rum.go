@@ -15,6 +15,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// RUMApiService service type
 type RUMApiService common.Service
 
 type apiAggregateRUMEventsRequest struct {

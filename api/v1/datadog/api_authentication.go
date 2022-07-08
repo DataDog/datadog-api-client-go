@@ -14,6 +14,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// AuthenticationApiService service type
 type AuthenticationApiService common.Service
 
 type apiValidateRequest struct {

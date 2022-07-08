@@ -17,6 +17,7 @@ import (
 	"github.com/DataDog/datadog-api-client-go/api/common"
 )
 
+// ServiceLevelObjectivesApiService service type
 type ServiceLevelObjectivesApiService common.Service
 
 type apiCheckCanDeleteSLORequest struct {
