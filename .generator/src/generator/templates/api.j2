@@ -230,7 +230,7 @@ func (a *{{ classname }}Service) {{ operation.operationId|untitle_case }}Execute
 	}
 	{%- endif %}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "{{ classname }}Service.{{ operation.operationId }}")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "{{ version }}.{{ classname }}Service.{{ operation.operationId }}")
 	if err != nil {
 		return {% if returnType %}localVarReturnValue, {% endif %}nil, {{ common_package_name }}.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

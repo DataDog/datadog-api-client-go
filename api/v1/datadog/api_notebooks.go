@@ -52,7 +52,7 @@ func (a *NotebooksApiService) createNotebookExecute(r apiCreateNotebookRequest) 
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.CreateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.CreateNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -210,7 +210,7 @@ func (a *NotebooksApiService) deleteNotebookExecute(r apiDeleteNotebookRequest) 
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.DeleteNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.DeleteNotebook")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -356,7 +356,7 @@ func (a *NotebooksApiService) getNotebookExecute(r apiGetNotebookRequest) (Noteb
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.GetNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.GetNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -617,7 +617,7 @@ func (a *NotebooksApiService) listNotebooksExecute(r apiListNotebooksRequest) (N
 		localVarReturnValue NotebooksResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.ListNotebooks")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.ListNotebooks")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -794,7 +794,7 @@ func (a *NotebooksApiService) updateNotebookExecute(r apiUpdateNotebookRequest) 
 		localVarReturnValue NotebookResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "NotebooksApiService.UpdateNotebook")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.NotebooksApiService.UpdateNotebook")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

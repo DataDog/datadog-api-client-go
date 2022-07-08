@@ -52,7 +52,7 @@ func (a *LogsArchivesApiService) addReadRoleToArchiveExecute(r apiAddReadRoleToA
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.AddReadRoleToArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.AddReadRoleToArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -213,7 +213,7 @@ func (a *LogsArchivesApiService) createLogsArchiveExecute(r apiCreateLogsArchive
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.CreateLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.CreateLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -371,7 +371,7 @@ func (a *LogsArchivesApiService) deleteLogsArchiveExecute(r apiDeleteLogsArchive
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.DeleteLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.DeleteLogsArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -517,7 +517,7 @@ func (a *LogsArchivesApiService) getLogsArchiveExecute(r apiGetLogsArchiveReques
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.GetLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.GetLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -671,7 +671,7 @@ func (a *LogsArchivesApiService) getLogsArchiveOrderExecute(r apiGetLogsArchiveO
 		localVarReturnValue LogsArchiveOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.GetLogsArchiveOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.GetLogsArchiveOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -807,7 +807,7 @@ func (a *LogsArchivesApiService) listArchiveReadRolesExecute(r apiListArchiveRea
 		localVarReturnValue RolesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.ListArchiveReadRoles")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.ListArchiveReadRoles")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -960,7 +960,7 @@ func (a *LogsArchivesApiService) listLogsArchivesExecute(r apiListLogsArchivesRe
 		localVarReturnValue LogsArchives
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.ListLogsArchives")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.ListLogsArchives")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1096,7 +1096,7 @@ func (a *LogsArchivesApiService) removeRoleFromArchiveExecute(r apiRemoveRoleFro
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.RemoveRoleFromArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.RemoveRoleFromArchive")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1262,7 +1262,7 @@ func (a *LogsArchivesApiService) updateLogsArchiveExecute(r apiUpdateLogsArchive
 		localVarReturnValue LogsArchive
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.UpdateLogsArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.UpdateLogsArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1436,7 +1436,7 @@ func (a *LogsArchivesApiService) updateLogsArchiveOrderExecute(r apiUpdateLogsAr
 		localVarReturnValue LogsArchiveOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsArchivesApiService.UpdateLogsArchiveOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsArchivesApiService.UpdateLogsArchiveOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

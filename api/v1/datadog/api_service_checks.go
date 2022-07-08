@@ -55,7 +55,7 @@ func (a *ServiceChecksApiService) submitServiceCheckExecute(r apiSubmitServiceCh
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceChecksApiService.SubmitServiceCheck")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.ServiceChecksApiService.SubmitServiceCheck")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

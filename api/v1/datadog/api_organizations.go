@@ -62,7 +62,7 @@ func (a *OrganizationsApiService) createChildOrgExecute(r apiCreateChildOrgReque
 		localVarReturnValue OrganizationCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.CreateChildOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.CreateChildOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -222,7 +222,7 @@ func (a *OrganizationsApiService) downgradeOrgExecute(r apiDowngradeOrgRequest) 
 		localVarReturnValue OrgDowngradedResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.DowngradeOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.DowngradeOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -368,7 +368,7 @@ func (a *OrganizationsApiService) getOrgExecute(r apiGetOrgRequest) (Organizatio
 		localVarReturnValue OrganizationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.GetOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.GetOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -512,7 +512,7 @@ func (a *OrganizationsApiService) listOrgsExecute(r apiListOrgsRequest) (Organiz
 		localVarReturnValue OrganizationListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.ListOrgs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.ListOrgs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -650,7 +650,7 @@ func (a *OrganizationsApiService) updateOrgExecute(r apiUpdateOrgRequest) (Organ
 		localVarReturnValue OrganizationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UpdateOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.UpdateOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -818,7 +818,7 @@ func (a *OrganizationsApiService) uploadIdPForOrgExecute(r apiUploadIdPForOrgReq
 		localVarReturnValue IdpResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UploadIdPForOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.OrganizationsApiService.UploadIdPForOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

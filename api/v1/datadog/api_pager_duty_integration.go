@@ -52,7 +52,7 @@ func (a *PagerDutyIntegrationApiService) createPagerDutyIntegrationServiceExecut
 		localVarReturnValue PagerDutyServiceName
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.CreatePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApiService.CreatePagerDutyIntegrationService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -210,7 +210,7 @@ func (a *PagerDutyIntegrationApiService) deletePagerDutyIntegrationServiceExecut
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.DeletePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApiService.DeletePagerDutyIntegrationService")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -347,7 +347,7 @@ func (a *PagerDutyIntegrationApiService) getPagerDutyIntegrationServiceExecute(r
 		localVarReturnValue PagerDutyServiceName
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.GetPagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApiService.GetPagerDutyIntegrationService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -493,7 +493,7 @@ func (a *PagerDutyIntegrationApiService) updatePagerDutyIntegrationServiceExecut
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "PagerDutyIntegrationApiService.UpdatePagerDutyIntegrationService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.PagerDutyIntegrationApiService.UpdatePagerDutyIntegrationService")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

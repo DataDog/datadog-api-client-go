@@ -54,7 +54,7 @@ func (a *SlackIntegrationApiService) createSlackIntegrationChannelExecute(r apiC
 		localVarReturnValue SlackIntegrationChannel
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.CreateSlackIntegrationChannel")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApiService.CreateSlackIntegrationChannel")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -226,7 +226,7 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelExecute(r apiGetS
 		localVarReturnValue SlackIntegrationChannel
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannel")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApiService.GetSlackIntegrationChannel")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -382,7 +382,7 @@ func (a *SlackIntegrationApiService) getSlackIntegrationChannelsExecute(r apiGet
 		localVarReturnValue []SlackIntegrationChannel
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.GetSlackIntegrationChannels")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApiService.GetSlackIntegrationChannels")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -537,7 +537,7 @@ func (a *SlackIntegrationApiService) removeSlackIntegrationChannelExecute(r apiR
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.RemoveSlackIntegrationChannel")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApiService.RemoveSlackIntegrationChannel")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -688,7 +688,7 @@ func (a *SlackIntegrationApiService) updateSlackIntegrationChannelExecute(r apiU
 		localVarReturnValue SlackIntegrationChannel
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SlackIntegrationApiService.UpdateSlackIntegrationChannel")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SlackIntegrationApiService.UpdateSlackIntegrationChannel")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

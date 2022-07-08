@@ -53,7 +53,7 @@ func (a *CloudWorkloadSecurityApiService) createCloudWorkloadSecurityAgentRuleEx
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.CreateCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.CreateCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -220,7 +220,7 @@ func (a *CloudWorkloadSecurityApiService) deleteCloudWorkloadSecurityAgentRuleEx
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.DeleteCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.DeleteCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -357,7 +357,7 @@ func (a *CloudWorkloadSecurityApiService) downloadCloudWorkloadPolicyFileExecute
 		localVarReturnValue *os.File
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.DownloadCloudWorkloadPolicyFile")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.DownloadCloudWorkloadPolicyFile")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -493,7 +493,7 @@ func (a *CloudWorkloadSecurityApiService) getCloudWorkloadSecurityAgentRuleExecu
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.GetCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.GetCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -637,7 +637,7 @@ func (a *CloudWorkloadSecurityApiService) listCloudWorkloadSecurityAgentRulesExe
 		localVarReturnValue CloudWorkloadSecurityAgentRulesListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.ListCloudWorkloadSecurityAgentRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.ListCloudWorkloadSecurityAgentRules")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -776,7 +776,7 @@ func (a *CloudWorkloadSecurityApiService) updateCloudWorkloadSecurityAgentRuleEx
 		localVarReturnValue CloudWorkloadSecurityAgentRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "CloudWorkloadSecurityApiService.UpdateCloudWorkloadSecurityAgentRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.CloudWorkloadSecurityApiService.UpdateCloudWorkloadSecurityAgentRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

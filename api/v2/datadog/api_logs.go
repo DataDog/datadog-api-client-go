@@ -52,7 +52,7 @@ func (a *LogsApiService) aggregateLogsExecute(r apiAggregateLogsRequest) (LogsAg
 		localVarReturnValue LogsAggregateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.AggregateLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsApiService.AggregateLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -313,7 +313,7 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 		localVarReturnValue LogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsApiService.ListLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -619,7 +619,7 @@ func (a *LogsApiService) listLogsGetExecute(r apiListLogsGetRequest) (LogsListRe
 		localVarReturnValue LogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogsGet")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsApiService.ListLogsGet")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -842,7 +842,7 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.SubmitLog")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsApiService.SubmitLog")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

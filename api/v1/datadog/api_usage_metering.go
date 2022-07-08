@@ -114,7 +114,7 @@ func (a *UsageMeteringApiService) getDailyCustomReportsExecute(r apiGetDailyCust
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetDailyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -338,7 +338,7 @@ func (a *UsageMeteringApiService) getHourlyUsageAttributionExecute(r apiGetHourl
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetHourlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetHourlyUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -520,7 +520,7 @@ func (a *UsageMeteringApiService) getIncidentManagementExecute(r apiGetIncidentM
 		localVarReturnValue UsageIncidentManagementResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIncidentManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetIncidentManagement")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -698,7 +698,7 @@ func (a *UsageMeteringApiService) getIngestedSpansExecute(r apiGetIngestedSpansR
 		localVarReturnValue UsageIngestedSpansResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetIngestedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetIngestedSpans")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -908,7 +908,7 @@ func (a *UsageMeteringApiService) getMonthlyCustomReportsExecute(r apiGetMonthly
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetMonthlyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1150,7 +1150,7 @@ func (a *UsageMeteringApiService) getMonthlyUsageAttributionExecute(r apiGetMont
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetMonthlyUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetMonthlyUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1319,7 +1319,7 @@ func (a *UsageMeteringApiService) getSpecifiedDailyCustomReportsExecute(r apiGet
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedDailyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetSpecifiedDailyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1472,7 +1472,7 @@ func (a *UsageMeteringApiService) getSpecifiedMonthlyCustomReportsExecute(r apiG
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetSpecifiedMonthlyCustomReports")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetSpecifiedMonthlyCustomReports")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1653,7 +1653,7 @@ func (a *UsageMeteringApiService) getUsageAnalyzedLogsExecute(r apiGetUsageAnaly
 		localVarReturnValue UsageAnalyzedLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAnalyzedLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAnalyzedLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1885,7 +1885,7 @@ func (a *UsageMeteringApiService) getUsageAttributionExecute(r apiGetUsageAttrib
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAttribution")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAttribution")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2073,7 +2073,7 @@ func (a *UsageMeteringApiService) getUsageAuditLogsExecute(r apiGetUsageAuditLog
 		localVarReturnValue UsageAuditLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2249,7 +2249,7 @@ func (a *UsageMeteringApiService) getUsageBillableSummaryExecute(r apiGetUsageBi
 		localVarReturnValue UsageBillableSummaryResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageBillableSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageBillableSummary")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2423,7 +2423,7 @@ func (a *UsageMeteringApiService) getUsageCIAppExecute(r apiGetUsageCIAppRequest
 		localVarReturnValue UsageCIVisibilityResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCIApp")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCIApp")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2601,7 +2601,7 @@ func (a *UsageMeteringApiService) getUsageCWSExecute(r apiGetUsageCWSRequest) (U
 		localVarReturnValue UsageCWSResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCWS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCWS")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2779,7 +2779,7 @@ func (a *UsageMeteringApiService) getUsageCloudSecurityPostureManagementExecute(
 		localVarReturnValue UsageCloudSecurityPostureManagementResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageCloudSecurityPostureManagement")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageCloudSecurityPostureManagement")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2957,7 +2957,7 @@ func (a *UsageMeteringApiService) getUsageDBMExecute(r apiGetUsageDBMRequest) (U
 		localVarReturnValue UsageDBMResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageDBM")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageDBM")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3135,7 +3135,7 @@ func (a *UsageMeteringApiService) getUsageFargateExecute(r apiGetUsageFargateReq
 		localVarReturnValue UsageFargateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageFargate")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageFargate")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3313,7 +3313,7 @@ func (a *UsageMeteringApiService) getUsageHostsExecute(r apiGetUsageHostsRequest
 		localVarReturnValue UsageHostsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3491,7 +3491,7 @@ func (a *UsageMeteringApiService) getUsageIndexedSpansExecute(r apiGetUsageIndex
 		localVarReturnValue UsageIndexedSpansResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageIndexedSpans")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageIndexedSpans")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3669,7 +3669,7 @@ func (a *UsageMeteringApiService) getUsageInternetOfThingsExecute(r apiGetUsageI
 		localVarReturnValue UsageIoTResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageInternetOfThings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageInternetOfThings")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3847,7 +3847,7 @@ func (a *UsageMeteringApiService) getUsageLambdaExecute(r apiGetUsageLambdaReque
 		localVarReturnValue UsageLambdaResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLambda")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLambda")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4025,7 +4025,7 @@ func (a *UsageMeteringApiService) getUsageLogsExecute(r apiGetUsageLogsRequest) 
 		localVarReturnValue UsageLogsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4212,7 +4212,7 @@ func (a *UsageMeteringApiService) getUsageLogsByIndexExecute(r apiGetUsageLogsBy
 		localVarReturnValue UsageLogsByIndexResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogsByIndex")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4401,7 +4401,7 @@ func (a *UsageMeteringApiService) getUsageLogsByRetentionExecute(r apiGetUsageLo
 		localVarReturnValue UsageLogsByRetentionResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLogsByRetention")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageLogsByRetention")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4579,7 +4579,7 @@ func (a *UsageMeteringApiService) getUsageNetworkFlowsExecute(r apiGetUsageNetwo
 		localVarReturnValue UsageNetworkFlowsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkFlows")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageNetworkFlows")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4757,7 +4757,7 @@ func (a *UsageMeteringApiService) getUsageNetworkHostsExecute(r apiGetUsageNetwo
 		localVarReturnValue UsageNetworkHostsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageNetworkHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageNetworkHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4935,7 +4935,7 @@ func (a *UsageMeteringApiService) getUsageOnlineArchiveExecute(r apiGetUsageOnli
 		localVarReturnValue UsageOnlineArchiveResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageOnlineArchive")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageOnlineArchive")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5113,7 +5113,7 @@ func (a *UsageMeteringApiService) getUsageProfilingExecute(r apiGetUsageProfilin
 		localVarReturnValue UsageProfilingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageProfiling")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageProfiling")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5300,7 +5300,7 @@ func (a *UsageMeteringApiService) getUsageRumSessionsExecute(r apiGetUsageRumSes
 		localVarReturnValue UsageRumSessionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumSessions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageRumSessions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5481,7 +5481,7 @@ func (a *UsageMeteringApiService) getUsageRumUnitsExecute(r apiGetUsageRumUnitsR
 		localVarReturnValue UsageRumUnitsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageRumUnits")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageRumUnits")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5659,7 +5659,7 @@ func (a *UsageMeteringApiService) getUsageSDSExecute(r apiGetUsageSDSRequest) (U
 		localVarReturnValue UsageSDSResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSDS")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSDS")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -5837,7 +5837,7 @@ func (a *UsageMeteringApiService) getUsageSNMPExecute(r apiGetUsageSNMPRequest) 
 		localVarReturnValue UsageSNMPResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSNMP")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSNMP")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6024,7 +6024,7 @@ func (a *UsageMeteringApiService) getUsageSummaryExecute(r apiGetUsageSummaryReq
 		localVarReturnValue UsageSummaryResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSummary")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSummary")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6205,7 +6205,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsExecute(r apiGetUsageSynthet
 		localVarReturnValue UsageSyntheticsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSynthetics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSynthetics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6383,7 +6383,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsAPIExecute(r apiGetUsageSynt
 		localVarReturnValue UsageSyntheticsAPIResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsAPI")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSyntheticsAPI")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6561,7 +6561,7 @@ func (a *UsageMeteringApiService) getUsageSyntheticsBrowserExecute(r apiGetUsage
 		localVarReturnValue UsageSyntheticsBrowserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageSyntheticsBrowser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageSyntheticsBrowser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6739,7 +6739,7 @@ func (a *UsageMeteringApiService) getUsageTimeseriesExecute(r apiGetUsageTimeser
 		localVarReturnValue UsageTimeseriesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTimeseries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageTimeseries")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -6951,7 +6951,7 @@ func (a *UsageMeteringApiService) getUsageTopAvgMetricsExecute(r apiGetUsageTopA
 		localVarReturnValue UsageTopAvgMetricsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageTopAvgMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.UsageMeteringApiService.GetUsageTopAvgMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

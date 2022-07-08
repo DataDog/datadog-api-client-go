@@ -61,7 +61,7 @@ func (a *IncidentTeamsApiService) createIncidentTeamExecute(r apiCreateIncidentT
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.CreateIncidentTeam")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentTeamsApiService.CreateIncidentTeam")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -244,7 +244,7 @@ func (a *IncidentTeamsApiService) deleteIncidentTeamExecute(r apiDeleteIncidentT
 		return nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.DeleteIncidentTeam")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentTeamsApiService.DeleteIncidentTeam")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -433,7 +433,7 @@ func (a *IncidentTeamsApiService) getIncidentTeamExecute(r apiGetIncidentTeamReq
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.GetIncidentTeam")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentTeamsApiService.GetIncidentTeam")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -658,7 +658,7 @@ func (a *IncidentTeamsApiService) listIncidentTeamsExecute(r apiListIncidentTeam
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.ListIncidentTeams")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentTeamsApiService.ListIncidentTeams")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -842,7 +842,7 @@ func (a *IncidentTeamsApiService) updateIncidentTeamExecute(r apiUpdateIncidentT
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: _fmt.Sprintf("Unstable operation '%s' is disabled", operationId)}
 	}
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IncidentTeamsApiService.UpdateIncidentTeam")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.IncidentTeamsApiService.UpdateIncidentTeam")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

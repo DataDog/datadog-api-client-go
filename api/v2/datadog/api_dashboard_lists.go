@@ -54,7 +54,7 @@ func (a *DashboardListsApiService) createDashboardListItemsExecute(r apiCreateDa
 		localVarReturnValue DashboardListAddItemsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApiService.CreateDashboardListItems")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -226,7 +226,7 @@ func (a *DashboardListsApiService) deleteDashboardListItemsExecute(r apiDeleteDa
 		localVarReturnValue DashboardListDeleteItemsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.DeleteDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApiService.DeleteDashboardListItems")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -396,7 +396,7 @@ func (a *DashboardListsApiService) getDashboardListItemsExecute(r apiGetDashboar
 		localVarReturnValue DashboardListItems
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.GetDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApiService.GetDashboardListItems")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -544,7 +544,7 @@ func (a *DashboardListsApiService) updateDashboardListItemsExecute(r apiUpdateDa
 		localVarReturnValue DashboardListUpdateItemsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.UpdateDashboardListItems")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.DashboardListsApiService.UpdateDashboardListItems")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

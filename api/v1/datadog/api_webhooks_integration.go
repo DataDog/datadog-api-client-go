@@ -52,7 +52,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationExecute(r apiCr
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.CreateWebhooksIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -212,7 +212,7 @@ func (a *WebhooksIntegrationApiService) createWebhooksIntegrationCustomVariableE
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.CreateWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.CreateWebhooksIntegrationCustomVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -370,7 +370,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationExecute(r apiDe
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.DeleteWebhooksIntegration")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -505,7 +505,7 @@ func (a *WebhooksIntegrationApiService) deleteWebhooksIntegrationCustomVariableE
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.DeleteWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.DeleteWebhooksIntegrationCustomVariable")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -642,7 +642,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationExecute(r apiGetWe
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.GetWebhooksIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -800,7 +800,7 @@ func (a *WebhooksIntegrationApiService) getWebhooksIntegrationCustomVariableExec
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.GetWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.GetWebhooksIntegrationCustomVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -957,7 +957,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationExecute(r apiUp
 		localVarReturnValue WebhooksIntegration
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.UpdateWebhooksIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1129,7 +1129,7 @@ func (a *WebhooksIntegrationApiService) updateWebhooksIntegrationCustomVariableE
 		localVarReturnValue WebhooksIntegrationCustomVariableResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "WebhooksIntegrationApiService.UpdateWebhooksIntegrationCustomVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.WebhooksIntegrationApiService.UpdateWebhooksIntegrationCustomVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

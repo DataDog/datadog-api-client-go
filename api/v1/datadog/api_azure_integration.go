@@ -57,7 +57,7 @@ func (a *AzureIntegrationApiService) createAzureIntegrationExecute(r apiCreateAz
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.CreateAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.CreateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -217,7 +217,7 @@ func (a *AzureIntegrationApiService) deleteAzureIntegrationExecute(r apiDeleteAz
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.DeleteAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.DeleteAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -375,7 +375,7 @@ func (a *AzureIntegrationApiService) listAzureIntegrationExecute(r apiListAzureI
 		localVarReturnValue []AzureAccount
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.ListAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.ListAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -520,7 +520,7 @@ func (a *AzureIntegrationApiService) updateAzureHostFiltersExecute(r apiUpdateAz
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureHostFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.UpdateAzureHostFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -682,7 +682,7 @@ func (a *AzureIntegrationApiService) updateAzureIntegrationExecute(r apiUpdateAz
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AzureIntegrationApiService.UpdateAzureIntegration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AzureIntegrationApiService.UpdateAzureIntegration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

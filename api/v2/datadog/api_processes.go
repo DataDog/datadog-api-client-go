@@ -181,7 +181,7 @@ func (a *ProcessesApiService) listProcessesExecute(r apiListProcessesRequest) (P
 		localVarReturnValue ProcessSummariesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ProcessesApiService.ListProcesses")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ProcessesApiService.ListProcesses")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

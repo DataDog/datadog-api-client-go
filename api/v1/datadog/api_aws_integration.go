@@ -54,7 +54,7 @@ func (a *AWSIntegrationApiService) createAWSAccountExecute(r apiCreateAWSAccount
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -223,7 +223,7 @@ func (a *AWSIntegrationApiService) createAWSTagFilterExecute(r apiCreateAWSTagFi
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateAWSTagFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -383,7 +383,7 @@ func (a *AWSIntegrationApiService) createNewAWSExternalIDExecute(r apiCreateNewA
 		localVarReturnValue AWSAccountCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.CreateNewAWSExternalID")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.CreateNewAWSExternalID")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -543,7 +543,7 @@ func (a *AWSIntegrationApiService) deleteAWSAccountExecute(r apiDeleteAWSAccount
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.DeleteAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -712,7 +712,7 @@ func (a *AWSIntegrationApiService) deleteAWSTagFilterExecute(r apiDeleteAWSTagFi
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.DeleteAWSTagFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.DeleteAWSTagFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -914,7 +914,7 @@ func (a *AWSIntegrationApiService) listAWSAccountsExecute(r apiListAWSAccountsRe
 		localVarReturnValue AWSAccountListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSAccounts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAWSAccounts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1068,7 +1068,7 @@ func (a *AWSIntegrationApiService) listAWSTagFiltersExecute(r apiListAWSTagFilte
 		localVarReturnValue AWSTagFilterListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAWSTagFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAWSTagFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1215,7 +1215,7 @@ func (a *AWSIntegrationApiService) listAvailableAWSNamespacesExecute(r apiListAv
 		localVarReturnValue []string
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.ListAvailableAWSNamespaces")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.ListAvailableAWSNamespaces")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1395,7 +1395,7 @@ func (a *AWSIntegrationApiService) updateAWSAccountExecute(r apiUpdateAWSAccount
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSIntegrationApiService.UpdateAWSAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSIntegrationApiService.UpdateAWSAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

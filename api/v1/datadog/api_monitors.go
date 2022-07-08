@@ -52,7 +52,7 @@ func (a *MonitorsApiService) checkCanDeleteMonitorExecute(r apiCheckCanDeleteMon
 		localVarReturnValue CheckCanDeleteMonitorResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CheckCanDeleteMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.CheckCanDeleteMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -392,7 +392,7 @@ func (a *MonitorsApiService) createMonitorExecute(r apiCreateMonitorRequest) (Mo
 		localVarReturnValue Monitor
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.CreateMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.CreateMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -578,7 +578,7 @@ func (a *MonitorsApiService) deleteMonitorExecute(r apiDeleteMonitorRequest) (De
 		localVarReturnValue DeletedMonitor
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.DeleteMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.DeleteMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -771,7 +771,7 @@ func (a *MonitorsApiService) getMonitorExecute(r apiGetMonitorRequest) (Monitor,
 		localVarReturnValue Monitor
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.GetMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.GetMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1016,7 +1016,7 @@ func (a *MonitorsApiService) listMonitorsExecute(r apiListMonitorsRequest) ([]Mo
 		localVarReturnValue []Monitor
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ListMonitors")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.ListMonitors")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1236,7 +1236,7 @@ func (a *MonitorsApiService) searchMonitorGroupsExecute(r apiSearchMonitorGroups
 		localVarReturnValue MonitorGroupSearchResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitorGroups")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.SearchMonitorGroups")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1444,7 +1444,7 @@ func (a *MonitorsApiService) searchMonitorsExecute(r apiSearchMonitorsRequest) (
 		localVarReturnValue MonitorSearchResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.SearchMonitors")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.SearchMonitors")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1603,7 +1603,7 @@ func (a *MonitorsApiService) updateMonitorExecute(r apiUpdateMonitorRequest) (Mo
 		localVarReturnValue Monitor
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.UpdateMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.UpdateMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1784,7 +1784,7 @@ func (a *MonitorsApiService) validateExistingMonitorExecute(r apiValidateExistin
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateExistingMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.ValidateExistingMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1945,7 +1945,7 @@ func (a *MonitorsApiService) validateMonitorExecute(r apiValidateMonitorRequest)
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MonitorsApiService.ValidateMonitor")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.MonitorsApiService.ValidateMonitor")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

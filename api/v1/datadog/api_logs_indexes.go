@@ -52,7 +52,7 @@ func (a *LogsIndexesApiService) createLogsIndexExecute(r apiCreateLogsIndexReque
 		localVarReturnValue LogsIndex
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.CreateLogsIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.CreateLogsIndex")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -212,7 +212,7 @@ func (a *LogsIndexesApiService) getLogsIndexExecute(r apiGetLogsIndexRequest) (L
 		localVarReturnValue LogsIndex
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.GetLogsIndex")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -356,7 +356,7 @@ func (a *LogsIndexesApiService) getLogsIndexOrderExecute(r apiGetLogsIndexOrderR
 		localVarReturnValue LogsIndexesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.GetLogsIndexOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.GetLogsIndexOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -491,7 +491,7 @@ func (a *LogsIndexesApiService) listLogIndexesExecute(r apiListLogIndexesRequest
 		localVarReturnValue LogsIndexListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.ListLogIndexes")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.ListLogIndexes")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -633,7 +633,7 @@ func (a *LogsIndexesApiService) updateLogsIndexExecute(r apiUpdateLogsIndexReque
 		localVarReturnValue LogsIndex
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndex")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.UpdateLogsIndex")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -795,7 +795,7 @@ func (a *LogsIndexesApiService) updateLogsIndexOrderExecute(r apiUpdateLogsIndex
 		localVarReturnValue LogsIndexesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsIndexesApiService.UpdateLogsIndexOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsIndexesApiService.UpdateLogsIndexOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

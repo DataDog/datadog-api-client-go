@@ -53,7 +53,7 @@ func (a *SyntheticsApiService) createGlobalVariableExecute(r apiCreateGlobalVari
 		localVarReturnValue SyntheticsGlobalVariable
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateGlobalVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.CreateGlobalVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -213,7 +213,7 @@ func (a *SyntheticsApiService) createPrivateLocationExecute(r apiCreatePrivateLo
 		localVarReturnValue SyntheticsPrivateLocationCreationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreatePrivateLocation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.CreatePrivateLocation")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -373,7 +373,7 @@ func (a *SyntheticsApiService) createSyntheticsAPITestExecute(r apiCreateSynthet
 		localVarReturnValue SyntheticsAPITest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsAPITest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.CreateSyntheticsAPITest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -542,7 +542,7 @@ func (a *SyntheticsApiService) createSyntheticsBrowserTestExecute(r apiCreateSyn
 		localVarReturnValue SyntheticsBrowserTest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.CreateSyntheticsBrowserTest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.CreateSyntheticsBrowserTest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -709,7 +709,7 @@ func (a *SyntheticsApiService) deleteGlobalVariableExecute(r apiDeleteGlobalVari
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteGlobalVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.DeleteGlobalVariable")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -853,7 +853,7 @@ func (a *SyntheticsApiService) deletePrivateLocationExecute(r apiDeletePrivateLo
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeletePrivateLocation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.DeletePrivateLocation")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -981,7 +981,7 @@ func (a *SyntheticsApiService) deleteTestsExecute(r apiDeleteTestsRequest) (Synt
 		localVarReturnValue SyntheticsDeleteTestsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.DeleteTests")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.DeleteTests")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1152,7 +1152,7 @@ func (a *SyntheticsApiService) editGlobalVariableExecute(r apiEditGlobalVariable
 		localVarReturnValue SyntheticsGlobalVariable
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.EditGlobalVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.EditGlobalVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1314,7 +1314,7 @@ func (a *SyntheticsApiService) getAPITestExecute(r apiGetAPITestRequest) (Synthe
 		localVarReturnValue SyntheticsAPITest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetAPITest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1504,7 +1504,7 @@ func (a *SyntheticsApiService) getAPITestLatestResultsExecute(r apiGetAPITestLat
 		localVarReturnValue SyntheticsGetAPITestLatestResultsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestLatestResults")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetAPITestLatestResults")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1669,7 +1669,7 @@ func (a *SyntheticsApiService) getAPITestResultExecute(r apiGetAPITestResultRequ
 		localVarReturnValue SyntheticsAPITestResultFull
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetAPITestResult")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetAPITestResult")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1817,7 +1817,7 @@ func (a *SyntheticsApiService) getBrowserTestExecute(r apiGetBrowserTestRequest)
 		localVarReturnValue SyntheticsBrowserTest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetBrowserTest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2007,7 +2007,7 @@ func (a *SyntheticsApiService) getBrowserTestLatestResultsExecute(r apiGetBrowse
 		localVarReturnValue SyntheticsGetBrowserTestLatestResultsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestLatestResults")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetBrowserTestLatestResults")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2172,7 +2172,7 @@ func (a *SyntheticsApiService) getBrowserTestResultExecute(r apiGetBrowserTestRe
 		localVarReturnValue SyntheticsBrowserTestResultFull
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetBrowserTestResult")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetBrowserTestResult")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2319,7 +2319,7 @@ func (a *SyntheticsApiService) getGlobalVariableExecute(r apiGetGlobalVariableRe
 		localVarReturnValue SyntheticsGlobalVariable
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetGlobalVariable")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetGlobalVariable")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2465,7 +2465,7 @@ func (a *SyntheticsApiService) getPrivateLocationExecute(r apiGetPrivateLocation
 		localVarReturnValue SyntheticsPrivateLocation
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetPrivateLocation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetPrivateLocation")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2602,7 +2602,7 @@ func (a *SyntheticsApiService) getSyntheticsCIBatchExecute(r apiGetSyntheticsCIB
 		localVarReturnValue SyntheticsBatchDetails
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetSyntheticsCIBatch")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetSyntheticsCIBatch")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2739,7 +2739,7 @@ func (a *SyntheticsApiService) getTestExecute(r apiGetTestRequest) (SyntheticsTe
 		localVarReturnValue SyntheticsTestDetails
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.GetTest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.GetTest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2883,7 +2883,7 @@ func (a *SyntheticsApiService) listGlobalVariablesExecute(r apiListGlobalVariabl
 		localVarReturnValue SyntheticsListGlobalVariablesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListGlobalVariables")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.ListGlobalVariables")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3018,7 +3018,7 @@ func (a *SyntheticsApiService) listLocationsExecute(r apiListLocationsRequest) (
 		localVarReturnValue SyntheticsLocations
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListLocations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.ListLocations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3143,7 +3143,7 @@ func (a *SyntheticsApiService) listTestsExecute(r apiListTestsRequest) (Syntheti
 		localVarReturnValue SyntheticsListTestsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.ListTests")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.ListTests")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3288,7 +3288,7 @@ func (a *SyntheticsApiService) triggerCITestsExecute(r apiTriggerCITestsRequest)
 		localVarReturnValue SyntheticsTriggerCITestsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerCITests")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.TriggerCITests")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3439,7 +3439,7 @@ func (a *SyntheticsApiService) triggerTestsExecute(r apiTriggerTestsRequest) (Sy
 		localVarReturnValue SyntheticsTriggerCITestsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.TriggerTests")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.TriggerTests")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3592,7 +3592,7 @@ func (a *SyntheticsApiService) updateAPITestExecute(r apiUpdateAPITestRequest) (
 		localVarReturnValue SyntheticsAPITest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateAPITest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.UpdateAPITest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3764,7 +3764,7 @@ func (a *SyntheticsApiService) updateBrowserTestExecute(r apiUpdateBrowserTestRe
 		localVarReturnValue SyntheticsBrowserTest
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateBrowserTest")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.UpdateBrowserTest")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -3936,7 +3936,7 @@ func (a *SyntheticsApiService) updatePrivateLocationExecute(r apiUpdatePrivateLo
 		localVarReturnValue SyntheticsPrivateLocation
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdatePrivateLocation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.UpdatePrivateLocation")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -4090,7 +4090,7 @@ func (a *SyntheticsApiService) updateTestPauseStatusExecute(r apiUpdateTestPause
 		localVarReturnValue bool
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SyntheticsApiService.UpdateTestPauseStatus")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SyntheticsApiService.UpdateTestPauseStatus")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

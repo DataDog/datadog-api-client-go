@@ -125,7 +125,7 @@ func (a *SnapshotsApiService) getGraphSnapshotExecute(r apiGetGraphSnapshotReque
 		localVarReturnValue GraphSnapshot
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SnapshotsApiService.GetGraphSnapshot")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SnapshotsApiService.GetGraphSnapshot")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

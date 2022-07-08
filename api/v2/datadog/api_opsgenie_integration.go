@@ -52,7 +52,7 @@ func (a *OpsgenieIntegrationApiService) createOpsgenieServiceExecute(r apiCreate
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.CreateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.CreateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -219,7 +219,7 @@ func (a *OpsgenieIntegrationApiService) deleteOpsgenieServiceExecute(r apiDelete
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.DeleteOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.DeleteOpsgenieService")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -365,7 +365,7 @@ func (a *OpsgenieIntegrationApiService) getOpsgenieServiceExecute(r apiGetOpsgen
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.GetOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.GetOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -527,7 +527,7 @@ func (a *OpsgenieIntegrationApiService) listOpsgenieServicesExecute(r apiListOps
 		localVarReturnValue OpsgenieServicesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.ListOpsgenieServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.ListOpsgenieServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -665,7 +665,7 @@ func (a *OpsgenieIntegrationApiService) updateOpsgenieServiceExecute(r apiUpdate
 		localVarReturnValue OpsgenieServiceResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OpsgenieIntegrationApiService.UpdateOpsgenieService")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OpsgenieIntegrationApiService.UpdateOpsgenieService")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

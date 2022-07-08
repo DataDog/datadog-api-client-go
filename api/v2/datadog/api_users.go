@@ -52,7 +52,7 @@ func (a *UsersApiService) createServiceAccountExecute(r apiCreateServiceAccountR
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateServiceAccount")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.CreateServiceAccount")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -212,7 +212,7 @@ func (a *UsersApiService) createUserExecute(r apiCreateUserRequest) (UserRespons
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.CreateUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.CreateUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -371,7 +371,7 @@ func (a *UsersApiService) disableUserExecute(r apiDisableUserRequest) (*_nethttp
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.DisableUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.DisableUser")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -508,7 +508,7 @@ func (a *UsersApiService) getInvitationExecute(r apiGetInvitationRequest) (UserI
 		localVarReturnValue UserInvitationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetInvitation")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.GetInvitation")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -654,7 +654,7 @@ func (a *UsersApiService) getUserExecute(r apiGetUserRequest) (UserResponse, *_n
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.GetUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.GetUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -801,7 +801,7 @@ func (a *UsersApiService) listUserOrganizationsExecute(r apiListUserOrganization
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUserOrganizations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.ListUserOrganizations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -948,7 +948,7 @@ func (a *UsersApiService) listUserPermissionsExecute(r apiListUserPermissionsReq
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUserPermissions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.ListUserPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1164,7 +1164,7 @@ func (a *UsersApiService) listUsersExecute(r apiListUsersRequest) (UsersResponse
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.ListUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.ListUsers")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1327,7 +1327,7 @@ func (a *UsersApiService) sendInvitationsExecute(r apiSendInvitationsRequest) (U
 		localVarReturnValue UserInvitationsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.SendInvitations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.SendInvitations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1490,7 +1490,7 @@ func (a *UsersApiService) updateUserExecute(r apiUpdateUserRequest) (UserRespons
 		localVarReturnValue UserResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsersApiService.UpdateUser")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsersApiService.UpdateUser")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

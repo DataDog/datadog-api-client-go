@@ -76,7 +76,7 @@ func (a *OrganizationsApiService) uploadIdPMetadataExecute(r apiUploadIdPMetadat
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "OrganizationsApiService.UploadIdPMetadata")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.OrganizationsApiService.UploadIdPMetadata")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -58,7 +58,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsLambdaAsyncExecute(r apiCheck
 		localVarReturnValue AWSLogsAsyncResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsLambdaAsync")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CheckAWSLogsLambdaAsync")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -227,7 +227,7 @@ func (a *AWSLogsIntegrationApiService) checkAWSLogsServicesAsyncExecute(r apiChe
 		localVarReturnValue AWSLogsAsyncResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CheckAWSLogsServicesAsync")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CheckAWSLogsServicesAsync")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -387,7 +387,7 @@ func (a *AWSLogsIntegrationApiService) createAWSLambdaARNExecute(r apiCreateAWSL
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.CreateAWSLambdaARN")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.CreateAWSLambdaARN")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -547,7 +547,7 @@ func (a *AWSLogsIntegrationApiService) deleteAWSLambdaARNExecute(r apiDeleteAWSL
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.DeleteAWSLambdaARN")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -707,7 +707,7 @@ func (a *AWSLogsIntegrationApiService) enableAWSLogServicesExecute(r apiEnableAW
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.EnableAWSLogServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.EnableAWSLogServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -865,7 +865,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsIntegrationsExecute(r apiListA
 		localVarReturnValue []AWSLogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.ListAWSLogsIntegrations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1008,7 +1008,7 @@ func (a *AWSLogsIntegrationApiService) listAWSLogsServicesExecute(r apiListAWSLo
 		localVarReturnValue []AWSLogsListServicesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AWSLogsIntegrationApiService.ListAWSLogsServices")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AWSLogsIntegrationApiService.ListAWSLogsServices")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

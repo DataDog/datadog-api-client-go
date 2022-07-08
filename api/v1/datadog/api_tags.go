@@ -81,7 +81,7 @@ func (a *TagsApiService) createHostTagsExecute(r apiCreateHostTagsRequest) (Host
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "TagsApiService.CreateHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApiService.CreateHostTags")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -270,7 +270,7 @@ func (a *TagsApiService) deleteHostTagsExecute(r apiDeleteHostTagsRequest) (*_ne
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "TagsApiService.DeleteHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApiService.DeleteHostTags")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -436,7 +436,7 @@ func (a *TagsApiService) getHostTagsExecute(r apiGetHostTagsRequest) (HostTags, 
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "TagsApiService.GetHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApiService.GetHostTags")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -609,7 +609,7 @@ func (a *TagsApiService) listHostTagsExecute(r apiListHostTagsRequest) (TagToHos
 		localVarReturnValue TagToHosts
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "TagsApiService.ListHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApiService.ListHostTags")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -786,7 +786,7 @@ func (a *TagsApiService) updateHostTagsExecute(r apiUpdateHostTagsRequest) (Host
 		localVarReturnValue HostTags
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "TagsApiService.UpdateHostTags")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.TagsApiService.UpdateHostTags")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

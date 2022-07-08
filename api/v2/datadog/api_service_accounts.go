@@ -54,7 +54,7 @@ func (a *ServiceAccountsApiService) createServiceAccountApplicationKeyExecute(r 
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.CreateServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApiService.CreateServiceAccountApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -215,7 +215,7 @@ func (a *ServiceAccountsApiService) deleteServiceAccountApplicationKeyExecute(r 
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.DeleteServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApiService.DeleteServiceAccountApplicationKey")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -355,7 +355,7 @@ func (a *ServiceAccountsApiService) getServiceAccountApplicationKeyExecute(r api
 		localVarReturnValue PartialApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.GetServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApiService.GetServiceAccountApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -573,7 +573,7 @@ func (a *ServiceAccountsApiService) listServiceAccountApplicationKeysExecute(r a
 		localVarReturnValue ListApplicationKeysResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.ListServiceAccountApplicationKeys")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApiService.ListServiceAccountApplicationKeys")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -750,7 +750,7 @@ func (a *ServiceAccountsApiService) updateServiceAccountApplicationKeyExecute(r 
 		localVarReturnValue PartialApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "ServiceAccountsApiService.UpdateServiceAccountApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.ServiceAccountsApiService.UpdateServiceAccountApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

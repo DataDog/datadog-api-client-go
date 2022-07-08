@@ -52,7 +52,7 @@ func (a *DashboardListsApiService) createDashboardListExecute(r apiCreateDashboa
 		localVarReturnValue DashboardList
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.CreateDashboardList")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApiService.CreateDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -212,7 +212,7 @@ func (a *DashboardListsApiService) deleteDashboardListExecute(r apiDeleteDashboa
 		localVarReturnValue DashboardListDeleteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.DeleteDashboardList")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApiService.DeleteDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -358,7 +358,7 @@ func (a *DashboardListsApiService) getDashboardListExecute(r apiGetDashboardList
 		localVarReturnValue DashboardList
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.GetDashboardList")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApiService.GetDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -502,7 +502,7 @@ func (a *DashboardListsApiService) listDashboardListsExecute(r apiListDashboardL
 		localVarReturnValue DashboardListListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.ListDashboardLists")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApiService.ListDashboardLists")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -640,7 +640,7 @@ func (a *DashboardListsApiService) updateDashboardListExecute(r apiUpdateDashboa
 		localVarReturnValue DashboardList
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DashboardListsApiService.UpdateDashboardList")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DashboardListsApiService.UpdateDashboardList")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -52,7 +52,7 @@ func (a *LogsPipelinesApiService) createLogsPipelineExecute(r apiCreateLogsPipel
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.CreateLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.CreateLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -211,7 +211,7 @@ func (a *LogsPipelinesApiService) deleteLogsPipelineExecute(r apiDeleteLogsPipel
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.DeleteLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.DeleteLogsPipeline")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -349,7 +349,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineExecute(r apiGetLogsPipelineReq
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.GetLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -494,7 +494,7 @@ func (a *LogsPipelinesApiService) getLogsPipelineOrderExecute(r apiGetLogsPipeli
 		localVarReturnValue LogsPipelinesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.GetLogsPipelineOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.GetLogsPipelineOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -629,7 +629,7 @@ func (a *LogsPipelinesApiService) listLogsPipelinesExecute(r apiListLogsPipeline
 		localVarReturnValue []LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.ListLogsPipelines")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.ListLogsPipelines")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -770,7 +770,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineExecute(r apiUpdateLogsPipel
 		localVarReturnValue LogsPipeline
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipeline")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.UpdateLogsPipeline")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -935,7 +935,7 @@ func (a *LogsPipelinesApiService) updateLogsPipelineOrderExecute(r apiUpdateLogs
 		localVarReturnValue LogsPipelinesOrder
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsPipelinesApiService.UpdateLogsPipelineOrder")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsPipelinesApiService.UpdateLogsPipelineOrder")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

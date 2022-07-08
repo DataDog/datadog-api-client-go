@@ -56,7 +56,7 @@ func (a *SecurityMonitoringApiService) createSecurityFilterExecute(r apiCreateSe
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.CreateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -225,7 +225,7 @@ func (a *SecurityMonitoringApiService) createSecurityMonitoringRuleExecute(r api
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.CreateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.CreateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -383,7 +383,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityFilterExecute(r apiDeleteSe
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.DeleteSecurityFilter")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -518,7 +518,7 @@ func (a *SecurityMonitoringApiService) deleteSecurityMonitoringRuleExecute(r api
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.DeleteSecurityMonitoringRule")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -658,7 +658,7 @@ func (a *SecurityMonitoringApiService) getSecurityFilterExecute(r apiGetSecurity
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.GetSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -804,7 +804,7 @@ func (a *SecurityMonitoringApiService) getSecurityMonitoringRuleExecute(r apiGet
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.GetSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.GetSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -939,7 +939,7 @@ func (a *SecurityMonitoringApiService) listSecurityFiltersExecute(r apiListSecur
 		localVarReturnValue SecurityFiltersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityFilters")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityFilters")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1108,7 +1108,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringRulesExecute(r apiL
 		localVarReturnValue SecurityMonitoringListRulesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringRules")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityMonitoringRules")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1382,7 +1382,7 @@ func (a *SecurityMonitoringApiService) listSecurityMonitoringSignalsExecute(r ap
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.ListSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.ListSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1638,7 +1638,7 @@ func (a *SecurityMonitoringApiService) searchSecurityMonitoringSignalsExecute(r 
 		localVarReturnValue SecurityMonitoringSignalsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.SearchSecurityMonitoringSignals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1798,7 +1798,7 @@ func (a *SecurityMonitoringApiService) updateSecurityFilterExecute(r apiUpdateSe
 		localVarReturnValue SecurityFilterResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityFilter")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.UpdateSecurityFilter")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1981,7 +1981,7 @@ func (a *SecurityMonitoringApiService) updateSecurityMonitoringRuleExecute(r api
 		localVarReturnValue SecurityMonitoringRuleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.SecurityMonitoringApiService.UpdateSecurityMonitoringRule")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

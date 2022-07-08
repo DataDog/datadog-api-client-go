@@ -53,7 +53,7 @@ func (a *EventsApiService) createEventExecute(r apiCreateEventRequest) (EventCre
 		localVarReturnValue EventCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "EventsApiService.CreateEvent")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.CreateEvent")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -193,7 +193,7 @@ func (a *EventsApiService) getEventExecute(r apiGetEventRequest) (EventResponse,
 		localVarReturnValue EventResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "EventsApiService.GetEvent")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.GetEvent")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -420,7 +420,7 @@ func (a *EventsApiService) listEventsExecute(r apiListEventsRequest) (EventListR
 		localVarReturnValue EventListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "EventsApiService.ListEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.EventsApiService.ListEvents")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

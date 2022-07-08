@@ -52,7 +52,7 @@ func (a *KeyManagementApiService) createAPIKeyExecute(r apiCreateAPIKeyRequest) 
 		localVarReturnValue ApiKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateAPIKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.CreateAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -212,7 +212,7 @@ func (a *KeyManagementApiService) createApplicationKeyExecute(r apiCreateApplica
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.CreateApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.CreateApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -381,7 +381,7 @@ func (a *KeyManagementApiService) deleteAPIKeyExecute(r apiDeleteAPIKeyRequest) 
 		localVarReturnValue ApiKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteAPIKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.DeleteAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -536,7 +536,7 @@ func (a *KeyManagementApiService) deleteApplicationKeyExecute(r apiDeleteApplica
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.DeleteApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.DeleteApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -682,7 +682,7 @@ func (a *KeyManagementApiService) getAPIKeyExecute(r apiGetAPIKeyRequest) (ApiKe
 		localVarReturnValue ApiKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetAPIKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.GetAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -828,7 +828,7 @@ func (a *KeyManagementApiService) getApplicationKeyExecute(r apiGetApplicationKe
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.GetApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.GetApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -972,7 +972,7 @@ func (a *KeyManagementApiService) listAPIKeysExecute(r apiListAPIKeysRequest) (A
 		localVarReturnValue ApiKeyListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.ListAPIKeys")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.ListAPIKeys")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1106,7 +1106,7 @@ func (a *KeyManagementApiService) listApplicationKeysExecute(r apiListApplicatio
 		localVarReturnValue ApplicationKeyListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.ListApplicationKeys")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.ListApplicationKeys")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1244,7 +1244,7 @@ func (a *KeyManagementApiService) updateAPIKeyExecute(r apiUpdateAPIKeyRequest) 
 		localVarReturnValue ApiKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.UpdateAPIKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.UpdateAPIKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1416,7 +1416,7 @@ func (a *KeyManagementApiService) updateApplicationKeyExecute(r apiUpdateApplica
 		localVarReturnValue ApplicationKeyResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "KeyManagementApiService.UpdateApplicationKey")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.KeyManagementApiService.UpdateApplicationKey")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

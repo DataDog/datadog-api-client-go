@@ -53,7 +53,7 @@ func (a *LogsMetricsApiService) createLogsMetricExecute(r apiCreateLogsMetricReq
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.CreateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.CreateLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -220,7 +220,7 @@ func (a *LogsMetricsApiService) deleteLogsMetricExecute(r apiDeleteLogsMetricReq
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.DeleteLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.DeleteLogsMetric")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -357,7 +357,7 @@ func (a *LogsMetricsApiService) getLogsMetricExecute(r apiGetLogsMetricRequest) 
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.GetLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.GetLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -501,7 +501,7 @@ func (a *LogsMetricsApiService) listLogsMetricsExecute(r apiListLogsMetricsReque
 		localVarReturnValue LogsMetricsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.ListLogsMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.ListLogsMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -640,7 +640,7 @@ func (a *LogsMetricsApiService) updateLogsMetricExecute(r apiUpdateLogsMetricReq
 		localVarReturnValue LogsMetricResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsMetricsApiService.UpdateLogsMetric")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.LogsMetricsApiService.UpdateLogsMetric")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

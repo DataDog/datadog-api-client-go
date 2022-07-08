@@ -49,7 +49,7 @@ func (a *AuthenticationApiService) validateExecute(r apiValidateRequest) (Authen
 		localVarReturnValue AuthenticationValidationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthenticationApiService.Validate")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.AuthenticationApiService.Validate")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

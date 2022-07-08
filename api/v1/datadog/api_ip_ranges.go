@@ -49,7 +49,7 @@ func (a *IPRangesApiService) getIPRangesExecute(r apiGetIPRangesRequest) (IPRang
 		localVarReturnValue IPRanges
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "IPRangesApiService.GetIPRanges")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.IPRangesApiService.GetIPRanges")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

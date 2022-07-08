@@ -59,7 +59,7 @@ func (a *LogsApiService) listLogsExecute(r apiListLogsRequest) (LogsListResponse
 		localVarReturnValue LogsListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.ListLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApiService.ListLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -272,7 +272,7 @@ func (a *LogsApiService) submitLogExecute(r apiSubmitLogRequest) (interface{}, *
 		localVarReturnValue interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "LogsApiService.SubmitLog")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.LogsApiService.SubmitLog")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

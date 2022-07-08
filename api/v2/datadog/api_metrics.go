@@ -57,7 +57,7 @@ func (a *MetricsApiService) createBulkTagsMetricsConfigurationExecute(r apiCreat
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.CreateBulkTagsMetricsConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -231,7 +231,7 @@ func (a *MetricsApiService) createTagConfigurationExecute(r apiCreateTagConfigur
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.CreateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.CreateTagConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -404,7 +404,7 @@ func (a *MetricsApiService) deleteBulkTagsMetricsConfigurationExecute(r apiDelet
 		localVarReturnValue MetricBulkTagConfigResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteBulkTagsMetricsConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.DeleteBulkTagsMetricsConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -572,7 +572,7 @@ func (a *MetricsApiService) deleteTagConfigurationExecute(r apiDeleteTagConfigur
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.DeleteTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.DeleteTagConfiguration")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -771,7 +771,7 @@ func (a *MetricsApiService) estimateMetricsOutputSeriesExecute(r apiEstimateMetr
 		localVarReturnValue MetricEstimateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.EstimateMetricsOutputSeries")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.EstimateMetricsOutputSeries")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -941,7 +941,7 @@ func (a *MetricsApiService) listTagConfigurationByNameExecute(r apiListTagConfig
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurationByName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagConfigurationByName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1157,7 +1157,7 @@ func (a *MetricsApiService) listTagConfigurationsExecute(r apiListTagConfigurati
 		localVarReturnValue MetricsAndMetricTagConfigurationsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagConfigurations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagConfigurations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1320,7 +1320,7 @@ func (a *MetricsApiService) listTagsByMetricNameExecute(r apiListTagsByMetricNam
 		localVarReturnValue MetricAllTagsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListTagsByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListTagsByMetricName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1477,7 +1477,7 @@ func (a *MetricsApiService) listVolumesByMetricNameExecute(r apiListVolumesByMet
 		localVarReturnValue MetricVolumesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.ListVolumesByMetricName")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.ListVolumesByMetricName")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1667,7 +1667,7 @@ func (a *MetricsApiService) submitMetricsExecute(r apiSubmitMetricsRequest) (Int
 		localVarReturnValue IntakePayloadAccepted
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.SubmitMetrics")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.SubmitMetrics")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1839,7 +1839,7 @@ func (a *MetricsApiService) updateTagConfigurationExecute(r apiUpdateTagConfigur
 		localVarReturnValue MetricTagConfigurationResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "MetricsApiService.UpdateTagConfiguration")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.MetricsApiService.UpdateTagConfiguration")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

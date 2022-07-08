@@ -52,7 +52,7 @@ func (a *RUMApiService) aggregateRUMEventsExecute(r apiAggregateRUMEventsRequest
 		localVarReturnValue RUMAnalyticsAggregateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RUMApiService.AggregateRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApiService.AggregateRUMEvents")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -347,7 +347,7 @@ func (a *RUMApiService) listRUMEventsExecute(r apiListRUMEventsRequest) (RUMEven
 		localVarReturnValue RUMEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RUMApiService.ListRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApiService.ListRUMEvents")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -578,7 +578,7 @@ func (a *RUMApiService) searchRUMEventsExecute(r apiSearchRUMEventsRequest) (RUM
 		localVarReturnValue RUMEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RUMApiService.SearchRUMEvents")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RUMApiService.SearchRUMEvents")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

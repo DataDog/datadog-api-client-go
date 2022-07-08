@@ -187,7 +187,7 @@ func (a *AuditApiService) listAuditLogsExecute(r apiListAuditLogsRequest) (Audit
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuditApiService.ListAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApiService.ListAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -446,7 +446,7 @@ func (a *AuditApiService) searchAuditLogsExecute(r apiSearchAuditLogsRequest) (A
 		localVarReturnValue AuditLogsEventsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuditApiService.SearchAuditLogs")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuditApiService.SearchAuditLogs")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

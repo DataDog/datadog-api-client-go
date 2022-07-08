@@ -77,7 +77,7 @@ func (a *HostsApiService) getHostTotalsExecute(r apiGetHostTotalsRequest) (HostT
 		localVarReturnValue HostTotals
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "HostsApiService.GetHostTotals")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.GetHostTotals")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -315,7 +315,7 @@ func (a *HostsApiService) listHostsExecute(r apiListHostsRequest) (HostListRespo
 		localVarReturnValue HostListResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "HostsApiService.ListHosts")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.ListHosts")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -486,7 +486,7 @@ func (a *HostsApiService) muteHostExecute(r apiMuteHostRequest) (HostMuteRespons
 		localVarReturnValue HostMuteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "HostsApiService.MuteHost")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.MuteHost")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -647,7 +647,7 @@ func (a *HostsApiService) unmuteHostExecute(r apiUnmuteHostRequest) (HostMuteRes
 		localVarReturnValue HostMuteResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "HostsApiService.UnmuteHost")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.HostsApiService.UnmuteHost")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

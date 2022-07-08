@@ -78,7 +78,7 @@ func (a *UsageMeteringApiService) getCostByOrgExecute(r apiGetCostByOrgRequest) 
 		localVarReturnValue CostByOrgResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetCostByOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApiService.GetCostByOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -281,7 +281,7 @@ func (a *UsageMeteringApiService) getEstimatedCostByOrgExecute(r apiGetEstimated
 		localVarReturnValue CostByOrgResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetEstimatedCostByOrg")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApiService.GetEstimatedCostByOrg")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -464,7 +464,7 @@ func (a *UsageMeteringApiService) getUsageApplicationSecurityMonitoringExecute(r
 		localVarReturnValue UsageApplicationSecurityMonitoringResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageApplicationSecurityMonitoring")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApiService.GetUsageApplicationSecurityMonitoring")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -642,7 +642,7 @@ func (a *UsageMeteringApiService) getUsageLambdaTracedInvocationsExecute(r apiGe
 		localVarReturnValue UsageLambdaTracedInvocationsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageLambdaTracedInvocations")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApiService.GetUsageLambdaTracedInvocations")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -820,7 +820,7 @@ func (a *UsageMeteringApiService) getUsageObservabilityPipelinesExecute(r apiGet
 		localVarReturnValue UsageObservabilityPipelinesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "UsageMeteringApiService.GetUsageObservabilityPipelines")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.UsageMeteringApiService.GetUsageObservabilityPipelines")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

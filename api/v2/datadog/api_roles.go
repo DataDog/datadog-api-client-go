@@ -54,7 +54,7 @@ func (a *RolesApiService) addPermissionToRoleExecute(r apiAddPermissionToRoleReq
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddPermissionToRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.AddPermissionToRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -226,7 +226,7 @@ func (a *RolesApiService) addUserToRoleExecute(r apiAddUserToRoleRequest) (Users
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.AddUserToRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.AddUserToRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -398,7 +398,7 @@ func (a *RolesApiService) cloneRoleExecute(r apiCloneRoleRequest) (RoleResponse,
 		localVarReturnValue RoleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.CloneRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.CloneRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -577,7 +577,7 @@ func (a *RolesApiService) createRoleExecute(r apiCreateRoleRequest) (RoleCreateR
 		localVarReturnValue RoleCreateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.CreateRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.CreateRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -735,7 +735,7 @@ func (a *RolesApiService) deleteRoleExecute(r apiDeleteRoleRequest) (*_nethttp.R
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.DeleteRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.DeleteRole")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -872,7 +872,7 @@ func (a *RolesApiService) getRoleExecute(r apiGetRoleRequest) (RoleResponse, *_n
 		localVarReturnValue RoleResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.GetRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.GetRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1016,7 +1016,7 @@ func (a *RolesApiService) listPermissionsExecute(r apiListPermissionsRequest) (P
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListPermissions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListPermissions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1161,7 +1161,7 @@ func (a *RolesApiService) listRolePermissionsExecute(r apiListRolePermissionsReq
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRolePermissions")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRolePermissions")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1360,7 +1360,7 @@ func (a *RolesApiService) listRoleUsersExecute(r apiListRoleUsersRequest) (Users
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoleUsers")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRoleUsers")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1569,7 +1569,7 @@ func (a *RolesApiService) listRolesExecute(r apiListRolesRequest) (RolesResponse
 		localVarReturnValue RolesResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.ListRoles")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.ListRoles")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1719,7 +1719,7 @@ func (a *RolesApiService) removePermissionFromRoleExecute(r apiRemovePermissionF
 		localVarReturnValue PermissionsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemovePermissionFromRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.RemovePermissionFromRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -1891,7 +1891,7 @@ func (a *RolesApiService) removeUserFromRoleExecute(r apiRemoveUserFromRoleReque
 		localVarReturnValue UsersResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.RemoveUserFromRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.RemoveUserFromRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -2063,7 +2063,7 @@ func (a *RolesApiService) updateRoleExecute(r apiUpdateRoleRequest) (RoleUpdateR
 		localVarReturnValue RoleUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "RolesApiService.UpdateRole")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.RolesApiService.UpdateRole")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

@@ -50,7 +50,7 @@ func (a *DowntimesApiService) cancelDowntimeExecute(r apiCancelDowntimeRequest) 
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CancelDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CancelDowntime")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -187,7 +187,7 @@ func (a *DowntimesApiService) cancelDowntimesByScopeExecute(r apiCancelDowntimes
 		localVarReturnValue CanceledDowntimesIds
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CancelDowntimesByScope")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CancelDowntimesByScope")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -356,7 +356,7 @@ func (a *DowntimesApiService) createDowntimeExecute(r apiCreateDowntimeRequest) 
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.CreateDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.CreateDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -516,7 +516,7 @@ func (a *DowntimesApiService) getDowntimeExecute(r apiGetDowntimeRequest) (Downt
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.GetDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.GetDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -686,7 +686,7 @@ func (a *DowntimesApiService) listDowntimesExecute(r apiListDowntimesRequest) ([
 		localVarReturnValue []Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.ListDowntimes")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.ListDowntimes")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -825,7 +825,7 @@ func (a *DowntimesApiService) listMonitorDowntimesExecute(r apiListMonitorDownti
 		localVarReturnValue []Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.ListMonitorDowntimes")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.ListMonitorDowntimes")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -973,7 +973,7 @@ func (a *DowntimesApiService) updateDowntimeExecute(r apiUpdateDowntimeRequest) 
 		localVarReturnValue Downtime
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "DowntimesApiService.UpdateDowntime")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.DowntimesApiService.UpdateDowntime")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

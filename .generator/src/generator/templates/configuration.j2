@@ -138,16 +138,18 @@ func NewConfiguration() *Configuration {
 		{%- endfor %}
 		},
 		OperationServers: map[string]ServerConfigurations{
-			{%- for path in openapi.paths.values() %}
+			{%- for version, spec in all_specs.items() %}
+			{%- for path in spec.paths.values() %}
 			{%- for operation in path.values() %}
 			{%- for server in operation.servers %}
 			{%- if loop.first %}
-			"{{ operation.tags[0].replace(" ", "") }}ApiService.{{ operation.operationId }}": {
+			"{{ version }}.{{ operation.tags[0].replace(" ", "") }}ApiService.{{ operation.operationId }}": {
 			{%- endif %}
 				{{ server_configuration(server)|indent("\t"*4) }},
 			{%- if loop.last %}
 			},
 			{%- endif %}
+			{%- endfor %}
 			{%- endfor %}
 			{%- endfor %}
 			{%- endfor %}

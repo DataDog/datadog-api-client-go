@@ -52,7 +52,7 @@ func (a *AuthNMappingsApiService) createAuthNMappingExecute(r apiCreateAuthNMapp
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.CreateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.CreateAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -219,7 +219,7 @@ func (a *AuthNMappingsApiService) deleteAuthNMappingExecute(r apiDeleteAuthNMapp
 		localVarPostBody   interface{}
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.DeleteAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.DeleteAuthNMapping")
 	if err != nil {
 		return nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -356,7 +356,7 @@ func (a *AuthNMappingsApiService) getAuthNMappingExecute(r apiGetAuthNMappingReq
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.GetAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.GetAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -553,7 +553,7 @@ func (a *AuthNMappingsApiService) listAuthNMappingsExecute(r apiListAuthNMapping
 		localVarReturnValue AuthNMappingsResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.ListAuthNMappings")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.ListAuthNMappings")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -703,7 +703,7 @@ func (a *AuthNMappingsApiService) updateAuthNMappingExecute(r apiUpdateAuthNMapp
 		localVarReturnValue AuthNMappingResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "AuthNMappingsApiService.UpdateAuthNMapping")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v2.AuthNMappingsApiService.UpdateAuthNMapping")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}

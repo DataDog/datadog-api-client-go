@@ -54,7 +54,7 @@ func (a *SecurityMonitoringApiService) addSecurityMonitoringSignalToIncidentExec
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.AddSecurityMonitoringSignalToIncident")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.AddSecurityMonitoringSignalToIncident")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -226,7 +226,7 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalAssigneeExecu
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.EditSecurityMonitoringSignalAssignee")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.EditSecurityMonitoringSignalAssignee")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
@@ -398,7 +398,7 @@ func (a *SecurityMonitoringApiService) editSecurityMonitoringSignalStateExecute(
 		localVarReturnValue SuccessfulSignalUpdateResponse
 	)
 
-	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "SecurityMonitoringApiService.EditSecurityMonitoringSignalState")
+	localBasePath, err := a.Client.Cfg.ServerURLWithContext(r.ctx, "v1.SecurityMonitoringApiService.EditSecurityMonitoringSignalState")
 	if err != nil {
 		return localVarReturnValue, nil, common.GenericOpenAPIError{ErrorMessage: err.Error()}
 	}
