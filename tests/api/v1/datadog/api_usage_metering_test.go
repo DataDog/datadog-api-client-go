@@ -9,18 +9,17 @@ package test
 import (
 	"context"
 	"encoding/json"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"io/ioutil"
 	"path/filepath"
 	"strconv"
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"gopkg.in/h2non/gock.v1"
-
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 )
 
 func getStartEndHr(ctx context.Context) (time.Time, time.Time) {

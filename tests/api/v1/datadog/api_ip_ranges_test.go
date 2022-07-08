@@ -8,10 +8,10 @@ package test
 
 import (
 	"context"
-	"github.com/DataDog/datadog-api-client-go/api/common"
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
 	"gopkg.in/h2non/gock.v1"

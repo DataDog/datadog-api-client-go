@@ -3,9 +3,9 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/tests"
 )
 

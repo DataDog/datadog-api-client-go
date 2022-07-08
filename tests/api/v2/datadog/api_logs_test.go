@@ -3,14 +3,13 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"net/http"
 	"testing"
 	"time"
 
-	"github.com/DataDog/datadog-api-client-go/tests"
-
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v2/datadog"
+	"github.com/DataDog/datadog-api-client-go/tests"
 )
 
 func TestLogsList(t *testing.T) {

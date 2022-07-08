@@ -9,13 +9,13 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"testing"
 	"time"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
+	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
-	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	is "gotest.tools/assert/cmp"
 )
 

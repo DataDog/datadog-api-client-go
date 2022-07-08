@@ -9,9 +9,9 @@ package test
 import (
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 
@@ -705,7 +705,7 @@ func TestSLOCorrectionsLifecycle(t *testing.T) {
 	assert.Equal(200, httpresp.StatusCode)
 
 	sloCorrections := sloCorrectionListResp.GetData()
-	assert.NoError(isSLOCorrecionIDPresent(sloCorrection.GetId(), sloCorrections))
+	assert.NoError(isSLOCorrectionIDPresent(sloCorrection.GetId(), sloCorrections))
 
 	sloCorrectionGetResp, httpresp, err := sloCorrectionApi.GetSLOCorrection(ctx, sloCorrection.GetId())
 	if err != nil {
@@ -756,7 +756,7 @@ func deleteSLOCorrectionIfExists(ctx context.Context, t *testing.T, sloCorrectio
 	}
 }
 
-func isSLOCorrecionIDPresent(sloCorrectionID string, sloCorrections []datadog.SLOCorrection) error {
+func isSLOCorrectionIDPresent(sloCorrectionID string, sloCorrections []datadog.SLOCorrection) error {
 	for _, sloCorrection := range sloCorrections {
 		if sloCorrection.GetId() == sloCorrectionID {
 			return nil

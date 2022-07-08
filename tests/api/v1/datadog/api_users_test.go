@@ -8,10 +8,10 @@ package test
 
 import (
 	"context"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"strings"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
 

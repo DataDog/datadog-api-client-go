@@ -10,7 +10,6 @@ import (
 	"bytes"
 	"context"
 	"fmt"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -19,9 +18,10 @@ import (
 	"strings"
 	"testing"
 
-	"golang.org/x/net/publicsuffix"
-
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	"github.com/DataDog/datadog-api-client-go/tests"
+
+	"golang.org/x/net/publicsuffix"
 )
 
 // WithFakeAuth avoids issue of API returning `text/html` instead of `application/json`

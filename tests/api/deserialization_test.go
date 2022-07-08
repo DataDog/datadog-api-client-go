@@ -2,10 +2,10 @@ package api
 
 import (
 	"context"
-	"github.com/DataDog/datadog-api-client-go/api/common"
 	"strings"
 	"testing"
 
+	"github.com/DataDog/datadog-api-client-go/api/common"
 	datadogV1 "github.com/DataDog/datadog-api-client-go/api/v1/datadog"
 	datadogV2 "github.com/DataDog/datadog-api-client-go/api/v2/datadog"
 	"github.com/DataDog/datadog-api-client-go/tests"
@@ -14,7 +14,7 @@ import (
 	"gopkg.in/h2non/gock.v1"
 )
 
-func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
+func TestDeserializationUnknownNestedOneOfInList(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
@@ -107,7 +107,7 @@ func TestDeserializationUnkownNestedOneOfInList(t *testing.T) {
 	assert.True(common.ContainsUnparsedObject(resp))
 }
 
-func TestDeserializationUnkownNestedEnumInList(t *testing.T) {
+func TestDeserializationUnknownNestedEnumInList(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV1.WithClient(testV1.WithFakeAuth(ctx))
@@ -326,7 +326,7 @@ func TestDeserializationUnkownNestedEnum(t *testing.T) {
 	assert.True(common.ContainsUnparsedObject(resp))
 }
 
-func TestDeserializationUnkownNestedOneOf(t *testing.T) {
+func TestDeserializationUnknownNestedOneOf(t *testing.T) {
 	ctx, finish := tests.WithTestSpan(context.Background(), t)
 	defer finish()
 	ctx = testV2.WithClient(testV2.WithFakeAuth(ctx))
