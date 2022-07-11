@@ -333,12 +333,12 @@ localVarQueryParams.Add("{{ parameter.name }}", {{ common_package_name }}.Parame
 	{%- endif %}
 	{%- if operation.responses %}
 
-	{%- set acceptHeaders = operation|accept_headers|join(",") %}
+	{%- set acceptHeaders = operation|accept_headers %}
 	{%- if acceptHeaders %}
 	{%- if "application/json" in acceptHeaders %}
 	localVarHeaderParams["Accept"] = "application/json"
 	{%- else  %}
-	localVarHeaderParams["Accept"] =  "{{ acceptHeaders }}"
+	localVarHeaderParams["Accept"] =  "{{ acceptHeaders|join(",") }}"
 	{%- endif %}
 	{%- endif %}
 

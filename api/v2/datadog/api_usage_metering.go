@@ -96,7 +96,7 @@ func (a *UsageMeteringApiService) getCostByOrgExecute(r apiGetCostByOrgRequest) 
 	if r.endMonth != nil {
 		localVarQueryParams.Add("end_month", common.ParameterToString(*r.endMonth, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -297,7 +297,7 @@ func (a *UsageMeteringApiService) getEstimatedCostByOrgExecute(r apiGetEstimated
 	if r.endDate != nil {
 		localVarQueryParams.Add("end_date", common.ParameterToString(*r.endDate, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -468,7 +468,7 @@ func (a *UsageMeteringApiService) getUsageApplicationSecurityMonitoringExecute(r
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -639,7 +639,7 @@ func (a *UsageMeteringApiService) getUsageLambdaTracedInvocationsExecute(r apiGe
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if r.ctx != nil {
 		// API Key Authentication
@@ -810,7 +810,7 @@ func (a *UsageMeteringApiService) getUsageObservabilityPipelinesExecute(r apiGet
 	if r.endHr != nil {
 		localVarQueryParams.Add("end_hr", common.ParameterToString(*r.endHr, ""))
 	}
-	localVarHeaderParams["Accept"] = "application/json"
+	localVarHeaderParams["Accept"] = "application/json;datetime-format=rfc3339"
 
 	if r.ctx != nil {
 		// API Key Authentication
