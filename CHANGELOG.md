@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 1.15.1 / 2022-07-11
+
+### Fixed
+* Allow compilation without cgo by @therve in https://github.com/DataDog/datadog-api-client-go/pull/1585
+
+
+**Full Changelog**: https://github.com/DataDog/datadog-api-client-go/compare/v1.15.0...v1.15.1
+
 ## 1.15.0 / 2022-07-04
 
 ### Fixed
